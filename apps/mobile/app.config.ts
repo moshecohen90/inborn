@@ -18,6 +18,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   web: { bundler: "metro", output: "single" },
   plugins: [
+    "llama.rn",
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Autark and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],

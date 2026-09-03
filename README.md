@@ -19,6 +19,18 @@ cd apps/mobile && APP_VARIANT=development npx expo start      # dev needs INTERN
 npx expo export -p web                                        # web build (also what the desktop shell loads)
 ```
 
+## Run on a phone (M1 dev path)
+Android + iOS use llama.rn when a GGUF named `instant.gguf` sits in the app's document directory; otherwise the
+in-memory engine streams. Nothing downloads: put the file there yourself (models live in `.models/`, gitignored).
+```
+cd apps/mobile && APP_VARIANT=development npx expo prebuild -p android --no-install
+cd android && ./gradlew assembleDebug -PreactNativeArchitectures=arm64-v8a       # first run installs NDK 27 + CMake
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb exec-in "run-as app.autark.mobile sh -c 'cat > files/instant.gguf'" < ../../../.models/<model>.gguf
+adb reverse tcp:8081 tcp:8081 && cd .. && APP_VARIANT=development npx expo start   # Metro, then open the app
+```
+The header shows the engine, tok/s and time-to-first-token after each reply (`stats()`).
+
 ## The no-INTERNET rule (decision D3)
 `apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
 Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
@@ -31,7 +43,7 @@ Play Asset Delivery (Instant as fast-follow, larger tiers on-demand); purchases 
 3. Test devices: iPhone 15 Pro (8 GB), iPhone 14 (6 GB), Pixel 8, Galaxy S23, a cheap Android tablet, 16 KB-page emulator.
 
 ## Intentionally not built yet
-Real inference on device (llama.rn adapter is wired but untested on hardware), Apple FM adapter, SQLCipher schema,
+Apple FM adapter, SQLCipher schema,
 model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
 
 ## Package ids

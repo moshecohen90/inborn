@@ -1,25 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts } from "@autark/ui";
-import type { LocalLM, Message, Session } from "@autark/core";
+import type { Message, Session, Stats } from "@autark/core";
 import { createEngine } from "../adapters";
 
 type Row = Message & { id: string; streaming?: boolean };
+type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
 
 export function Chat() {
   const { t } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
-  const engine = useRef<LocalLM>(createEngine());
+  const insets = useSafeAreaInsets();
+  const boot = useRef(createEngine());
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
+  const [status, setStatus] = useState<Status>({ kind: "loading" });
+  const [stats, setStats] = useState<Stats | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [draft, setDraft] = useState("");
+  const { engine, model } = boot.current;
 
   useEffect(() => {
-    engine.current.load({ id: "instant", uri: "bundled://instant" }, { nCtx: 4096 }).then((s) => (session.current = s));
-    return () => void engine.current.unload();
-  }, []);
+    engine
+      .load(model, { nCtx: 4096 })
+      .then((s) => {
+        session.current = s;
+        setStatus({ kind: "ready" });
+      })
+      .catch((e: unknown) => setStatus({ kind: "error", error: e instanceof Error ? e.message : String(e) }));
+    return () => void engine.unload();
+  }, [engine, model]);
 
   const send = async () => {
     const text = draft.trim();
@@ -31,19 +43,33 @@ export function Chat() {
     setRows((r) => [...r, { id: id + "u", role: "user", content: text }, { id, role: "assistant", content: "", streaming: true }]);
     abort.current = new AbortController();
     try {
-      for await (const d of engine.current.generate(s, history, {}, abort.current.signal)) {
+      for await (const d of engine.generate(s, history, { reasoning: false }, abort.current.signal)) {
         if (d.text) setRows((r) => r.map((x) => (x.id === id ? { ...x, content: x.content + d.text } : x)));
       }
+    } catch (e: unknown) {
+      const error = e instanceof Error ? e.message : String(e);
+      setRows((r) => r.map((x) => (x.id === id ? { ...x, content: x.content || error } : x)));
     } finally {
       abort.current = null;
+      setStats(engine.stats());
       setRows((r) => r.map((x) => (x.id === id ? { ...x, streaming: false } : x)));
     }
   };
 
+  const statusLine =
+    status.kind === "loading"
+      ? t("chat.loading", { model: model.id })
+      : status.kind === "error"
+        ? t("chat.loadFailed", { model: model.id, error: status.error })
+        : stats && stats.tokPerSec > 0
+          ? t("chat.stats", { engine: engine.id, tps: stats.tokPerSec.toFixed(1), ttft: Math.round(stats.ttftMs) })
+          : engine.id;
+
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg }]}>
+    <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 16, paddingBottom: insets.bottom }]}>
       <View style={styles.header}>
         <Text style={[styles.mono, { color: theme.sealed }]}>{t("chat.onDevice")}</Text>
+        <Text style={[styles.mono, { color: status.kind === "error" ? theme.danger : theme.text3 }]}>{statusLine}</Text>
       </View>
       <FlatList
         data={rows}
@@ -80,8 +106,8 @@ export function Chat() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, paddingTop: 56 },
-  header: { alignItems: "center", paddingBottom: 8 },
+  root: { flex: 1 },
+  header: { alignItems: "center", paddingBottom: 8, gap: 4 },
   mono: { fontFamily: fonts.mono, fontSize: 12, letterSpacing: 1 },
   list: { padding: 16, gap: 10, flexGrow: 1, justifyContent: "flex-end" },
   headline: { fontSize: 24, fontWeight: "600", textAlign: "center", marginBottom: 24 },

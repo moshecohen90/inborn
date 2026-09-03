@@ -48,6 +48,19 @@ export class LlamaRnLM implements LocalLM {
     };
     const started = Date.now();
     let ttft = 0;
+    /* llama.rn streams the parsed content/reasoning as accumulated strings, so emit only what is new. */
+    let sentText = 0;
+    let sentReasoning = 0;
+    const emit = (content: string | undefined, reasoning: string | undefined) => {
+      if (reasoning && reasoning.length > sentReasoning) {
+        push({ reasoning: reasoning.slice(sentReasoning) });
+        sentReasoning = reasoning.length;
+      }
+      if (content && content.length > sentText) {
+        push({ text: content.slice(sentText) });
+        sentText = content.length;
+      }
+    };
     const onAbort = () => void ctx.stopCompletion();
     signal.addEventListener("abort", onAbort, { once: true });
     ctx
@@ -58,13 +71,17 @@ export class LlamaRnLM implements LocalLM {
           temperature: opts.temperature ?? 0.7,
           top_p: opts.topP ?? 0.9,
           stop: opts.stop ?? [],
+          enable_thinking: opts.reasoning ?? true,
+          reasoning_format: "auto",
         },
         (data) => {
           if (!ttft) ttft = Date.now() - started;
-          push({ text: data.token });
+          if (data.accumulated_text === undefined) push({ text: data.token });
+          else emit(data.content, data.reasoning_content);
         },
       )
       .then((res) => {
+        emit(res.content, res.reasoning_content);
         const tps = res.timings?.predicted_per_second ?? 0;
         this.last = { tokPerSec: tps, ttftMs: ttft, ctxUsed: (res.tokens_evaluated ?? 0) + (res.tokens_predicted ?? 0), memMB: 0 };
         push({ done: { promptTokens: res.tokens_evaluated ?? 0, completionTokens: res.tokens_predicted ?? 0, ttftMs: ttft, tokPerSec: tps } });
