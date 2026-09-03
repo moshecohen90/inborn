@@ -1,0 +1,35 @@
+{
+  "name": "@autark/mobile",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "start": "APP_VARIANT=development expo start",
+    "android": "APP_VARIANT=development expo start --android",
+    "ios": "APP_VARIANT=development expo start --ios",
+    "web": "APP_VARIANT=development expo start --web",
+    "export:web": "expo export -p web",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@autark/core": "workspace:*",
+    "@autark/i18n": "workspace:*",
+    "@autark/ui": "workspace:*",
+    "expo": "~57.0.19",
+    "expo-local-authentication": "~57.0.2",
+    "expo-localization": "~57.0.1",
+    "expo-sqlite": "~57.0.2",
+    "expo-status-bar": "~57.0.1",
+    "i18next": "26.4.1",
+    "llama.rn": "0.12.9",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-i18next": "17.0.13",
+    "react-native": "0.86.3",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "5.9.3"
+  }
+}

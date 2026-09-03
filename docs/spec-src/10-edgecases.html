@@ -1,0 +1,162 @@
+<h2 id="s10"><span class="n">10</span>מקרי קצה ומצבי כשל</h2>
+<p class="lead">שבעים מקרים, מקובצים לפי מחזור החיים. לכל אחד: מה קורה בשוק היום, ומה האפליקציה שלנו חייבת לעשות. הרשימה הזו היא גם רשימת הבדיקות של §14: כל שורה כאן היא בדיקה שם.</p>
+
+<h3>10.1 השקה ראשונה, onboarding והורדות</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>השקה ראשונה בלי מודל</td><td>PocketPal/Enclave/Apollo: רשימה ריקה והורדה של 1–4 GB לפני ההודעה הראשונה; Layla מורידה 4 GB</td><td>מודל Instant מובנה כך שההודעה הראשונה עובדת אופליין תוך שניות: ב‑iOS בתוך ה‑bundle (אפליקציה של ~600 MB, כמו Private LLM עם 1.4 GB; מאפשר גם לבודקי App Review לבדוק אופליין), באנדרואיד כחבילת fast‑follow של Play כך שהבסיס נשאר מתחת ל‑200 MB; Apple FM/Gemini Nano כמאיץ; ה‑onboarding לעולם לא חוסם על רשת</td></tr>
+<tr><td class="num">2</td><td>הורדה נקטעת (סגירה, ניתוק, נעילה)</td><td>"נעצר באמצע בלי המשך", "נתקע", "לקח ימים"</td><td>Android: Play Asset Delivery מבצע את ההורדה (המשך, סלולר ואישור אצל Play; האפליקציה רק מציגה מצב); iOS 26: Apple‑hosted packs; iOS ישן/דסקטופ: URLSession ברקע עם Range, אימות SHA‑256 לחלק, retry עם backoff, התראת התקדמות קבועה, מסך הורדות ששורד הפעלה מחדש, תור מרובה</td></tr>
+<tr><td class="num">3</td><td>429 / נפילת Hugging Face / חומת אש ארגונית / חסימה בסין</td><td>"Download failed 429"; Private LLM ממליצה על VPN</td><td>באנדרואיד וב‑iOS 26 החנות מספקת ולכן HF לא בנתיב; במקומות שיש CDN: מניפסט חתום, HF רק לייבוא יזום, רשימת מראות, שגיאה שמסבירה את הסיבה; ייבוא ידני שתמיד עובד בכל פלטפורמה</td></tr>
+<tr><td class="num">4</td><td>סלולר יקר / Low Data Mode</td><td>"בזבוז דאטה" ממדינות עם רשת יקרה</td><td>Wi‑Fi בלבד כברירת מחדל מעל 100 MB, כיבוד isExpensive/isConstrained ו‑isActiveNetworkMetered, גודל לפני הורדה, אישור בסלולר, "download later on Wi‑Fi"</td></tr>
+<tr><td class="num">5</td><td>גודל מודל שגוי או ענק</td><td>Enclave: מודל שהוצג כ‑4 GB היה 400 GB ו"כמעט הרס" iPad</td><td>גודל אמיתי מ‑HEAD, חסימה מעל מקום פנוי פחות 2 GB, אזהרה מעל RAM, הורדה אחת לעולם לא ממלאת דיסק</td></tr>
+<tr><td class="num">6</td><td>אחסון מלא (לפני/בזמן/אחרי הורדה, בכתיבת DB, בעדכון OS)</td><td>קריסות ו‑DB פגום</td><td>בדיקת מקום מראש (הצהרת E174.1 במניפסט הפרטיות), מודלים ב‑Application Support מוחרגים מגיבוי, ENOSPC בלי לפגום (WAL + טרנזקציות), מנהל אחסון, תגובה ל‑ACTION_DEVICE_STORAGE_LOW בהשהיית הורדות</td></tr>
+<tr><td class="num">7</td><td>SD card / אחסון חיצוני (Android)</td><td>בקשות חוזרות</td><td>בחירת מיקום דרך SAF למודלים מיובאים; הסבר שאחסון מאומץ איטי; לא מפצלים מודל בין כרכים</td></tr>
+<tr><td class="num">8</td><td>קובץ פגום / קטוע / פורמט לא נכון (GGML, safetensors, LiteRT, BitNet)</td><td>PocketPal קורסת בכל הפעלה עד ניקוי (#658); BitNet מונע הפעלה</td><td>אימות magic bytes, header, ארכיטקטורה וספירת טנזורים לפני "Load"; checksum; הסגר למודל שקרס בטעינה (סמן "last attempted" לפני טעינה, ניקוי אחרי הצלחה); שגיאה ספציפית; לעולם לא טעינה אוטומטית אחרי קריסה</td></tr>
+<tr><td class="num">9</td><td>מודל בקטלוג שהמנוע הנוכחי לא מריץ (ארכיטקטורה חדשה)</td><td>Gemma 4 קרסה ב‑PocketPal; "E4B הוסר במכשיר שלי"</td><td>minEngineVersion ואילוצי מכשיר בקטלוג; הסתרה/אפרור עם סיבה; עדכון מנוע לפני עדכון קטלוג</td></tr>
+<tr><td class="num">10</td><td>מודלים gated / רישיון (טוקן HF, תנאי Gemma, Llama)</td><td></td><td>הזנת טוקן, הצגת רישיון ודרישת אישור לפני הורדה, מסך רישיונות קבוע</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.2 יכולת מכשיר וזיכרון</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">11</td><td>מודל לא מתאים ל‑RAM (OOM בטעינה או באמצע)</td><td>iOS הורג בשקט (jetsam), משתמשים מאשימים את האפליקציה</td><td>מודל התאמה: RAM פיזי, רזרבת OS, תקרה פר‑תהליך; הערכה = משקולות + KV + activations + baseline; סיווג Runs well / slowly / Will not run; חסימה עם override; הקטנת הקשר אוטומטית עם הודעה</td></tr>
+<tr><td class="num">12</td><td>jetsam באמצע יצירה או עם מודל גדול טעון</td><td>"סגור אפליקציות, הפעל מחדש, מודל קטן יותר"</td><td>mmap למשקולות, mlock מינימלי, מתחת לתקרת dirty memory, תגובה לאזהרות זיכרון (זריקת KV, פריקת מודל משני), שמירת תשובה חלקית תוך כדי הזרמה, "Continue" בפתיחה</td></tr>
+<tr><td class="num">13</td><td>Android חלש (4–6 GB, MediaTek/Unisoc, Mali ישן, בלי NPU, arm64 בלי dotprod/i8mm)</td><td>"דקה ל‑Hello"</td><td>minSdk 26–28, arm64 בלבד, זיהוי יכולות CPU בזמן ריצה לבחירת kernels, Instant + הקשר 2K מתחת ל‑6 GB, אזהרה כנה, אף פעם לא ברירת מחדל "Will not run", רשימת הדרה ב‑Play מתחת ל‑4 GB</td></tr>
+<tr><td class="num">14</td><td>iPhone ישן (11/SE2, 3–4 GB) ורצפת OS</td><td>PocketPal משובחת על iOS 15; Enclave נענשת על iOS 26</td><td>רצפה: iOS 17 / A12+; Apple FM רק כמאיץ ב‑iOS 26; מודלים של 1B למכשירי 4 GB</td></tr>
+<tr><td class="num">15</td><td>16 KB pages (Pixel 8+, Snapdragon 8 Gen 5)</td><td>SIGBUS בטעינה (PocketPal #512)</td><td>כל .so עם NDK r28+ או max-page-size=16384, JNI לא דחוס עם AGP 8.5.1+, בדיקה באימולטור 16 KB; חובה ב‑Play</td></tr>
+<tr><td class="num">16</td><td>כשל backend GPU/NPU (Vulkan, OpenCL חסר, Metal working set, Hexagon)</td><td>"לא מזהה GPU", ".so not found"</td><td>בדיקת backend עם נפילה ל‑CPU, תג "Acceleration: CPU/GPU/NPU", override ידני, שכבות GPU ניתנות לכיוון</td></tr>
+<tr><td class="num">17</td><td>מכשיר rooted / jailbroken</td><td>Gemini Nano מסרב</td><td>לא חוסמים (קהל GrapheneOS הוא הקהל שלנו); AICore/Play פשוט לא זמינים; אימות רכישה לא תלוי ב‑Play Integrity</td></tr>
+<tr><td class="num">18</td><td>חום ועומס מתמשך</td><td>30–50% האטה אחרי 10–15 דקות</td><td>thermalState / getThermalHeadroom: ב‑serious פחות threads/שכבות GPU + הודעה; ב‑critical השהיה עם resume; Eco/Balanced/Max; max tokens 1,024 עם "continue"</td></tr>
+<tr><td class="num">19</td><td>סוללה נמוכה / Low Power / Battery Saver</td><td></td><td>זיהוי; מעבר אוטומטי ל‑Eco; דחיית הורדות; הערכת אנרגיה; אין יצירה ארוכה מתחת ל‑5% בלי אישור</td></tr>
+<tr><td class="num">20</td><td>טעינה בזמן יצירה (חום נוסף)</td><td></td><td>אותו טיפול תרמי; רמז אופציונלי</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.3 מחזור חיים ומקביליות</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (~30s) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
+<tr><td class="num">22</td><td>האפליקציה נהרגת בזמן כתיבה ל‑DB / migration</td><td></td><td>SQLite WAL, migrations אטומיות עם גיבוי, בדיקת שלמות בפתיחה, נתיב "Repair"</td></tr>
+<tr><td class="num">23</td><td>יצירות מקבילות (שתי שיחות, Shortcut + UI, ווידג'ט, מקלדת)</td><td>Apple FM זורק concurrentRequests; llama.cpp סשן יחיד</td><td>תור הסקה אחד עם עדיפויות; "Waiting for the current answer"; Shortcuts דרך אותו תור עם timeout; הרחבות לא טוענות מודל (מגבלת זיכרון) ומנותבות לאפליקציה דרך App Groups</td></tr>
+<tr><td class="num">24</td><td>החלפת מודל באמצע יצירה; מחיקת מודל בשימוש; הורדה מסתיימת תוך כדי צ'אט</td><td></td><td>בטל‑ואז‑החלף עם אישור; חסימת מחיקה של מודל טעון; הצעת טעינה מחדש בסיום הורדה</td></tr>
+<tr><td class="num">25</td><td>Shortcut מופעל כשהאפליקציה נעולה או באינקוגניטו</td><td></td><td>Shortcuts מכבדים את המנעול (דורשים פתיחה או הגדרה מפורשת); סשני אינקוגניטו לא מופיעים בתוצאות Shortcuts</td></tr>
+<tr><td class="num">26</td><td>עדכון OS/אפליקציה משנה מנוע, פורמט, תבנית, או מסיר תמיכה</td><td>PocketPal: כל המודלים קרסו אחרי עדכון; Apollo מחקה מודלים</td><td>גרסאות מנוע ומודלים נפרדות; אימות מחדש בפתיחה ראשונה אחרי עדכון; אף פעם לא מחיקה שקטה; release notes בתוך האפליקציה</td></tr>
+<tr><td class="num">27</td><td>Apple FM משתנה עם OS (3 גרסאות מודל), modelNotReady אחרי עדכון, סירובי guardrail, חלון 4,096, locale לא נתמך</td><td></td><td>Apple FM כמאיץ אופציונלי; תמיד מודל מובנה כגיבוי; כל GenerationError עם נפילה גלויה; מסמכים לעולם לא דרכו; כבוי ב‑locales לא נתמכים (כולל עברית)</td></tr>
+<tr><td class="num">28</td><td>Apple Intelligence כבוי / מכשיר לא זכאי / סין / מגבלות EU</td><td></td><td>זיהוי בזמן ריצה; אין UI שתלוי בו; קופי שלא מבטיח Apple Intelligence</td></tr>
+<tr><td class="num">29</td><td>Gemini Nano / AICore לא זמין (מכשיר, אזור, root, רקע) או בהורדה</td><td></td><td>אותו דפוס מאיץ; טיפול ב‑BACKGROUND_USE_BLOCKED; ההבטחה לא תלויה בו</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.4 מסמכים וקלט</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">30</td><td>PDF ענק, סרוק, מוגן, עם טפסים/עמודות/טבלאות; DOCX עם מעקב שינויים; XLSX רב‑גיליונות; תמונות בתוך מסמכים</td><td>Enclave/Locally קורסות על קבצים צנועים; Lumo "הקובץ חייב להיות זעיר"</td><td>ניתוח בזרימה עם מגבלות עמודים לפי שכבה; PDFKit/Vision ב‑iOS, PdfRenderer + ML Kit ב‑Android; זיהוי עמודים בלי טקסט והצעת OCR עם התקדמות וביטול; שמירת סדר קריאה בעמודות; אינדוקס הדרגתי ברקע עם מצב גלוי; סירוב לקבצים מוצפנים; לעולם לא כל הקובץ לפרומפט</td></tr>
+<tr><td class="num">31</td><td>מסמכים לא באנגלית, תסריטים מעורבים, PDF RTL, CJK אנכי</td><td></td><td>חבילות OCR על המכשיר; חיתוך bidi‑aware; גודל chunk מודע לטוקנייזר (עברית/CJK ארוכים יותר); embedding רב‑לשוני; המלצת מודל לפי שפת המסמך</td></tr>
+<tr><td class="num">32</td><td>שיחה ארוכה מעבר לחלון ההקשר</td><td>"מגבלות הקשר קוטעות שיחה"; Apollo הקשר זעיר</td><td>מד טוקנים; חלון מחליק עם system prompt מוצמד; סיכום אוטומטי של תחילת השיחה עם סימון גלוי; "start a new chat with a summary"; אף פעם לא שגיאה קשה באמצע</td></tr>
+<tr><td class="num">33</td><td>הדבקת טקסט ענק / clipboard עם תמונות / 100 MB דרך share sheet</td><td></td><td>מכסות עם הודעת קיצוץ; ייבוא ברקע; ההרחבה מעבירה לאפליקציה</td></tr>
+<tr><td class="num">34</td><td>הזרקת פרומפט דרך מסמכים</td><td></td><td>קריאות כלים עם תופעות לוואי דורשות אישור; מסמכים הם נתונים לא הוראות; אין ביצוע אוטומטי</td></tr>
+<tr><td class="num">35</td><td>תמונות: HEIC/HDR/Live, רזולוציה ענקית, EXIF, צילומי מסך רגישים, הרשאת מצלמה נדחתה</td><td></td><td>הקטנה על המכשיר, מחיקת EXIF לפני שמירה, טיפול חינני בדחייה</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.5 פלט המודל, בטיחות וציפיות</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">36</td><td>פלט מזיק, שנאה, מיני, מסוכן (מודלים פתוחים קטנים יעשו זאת)</td><td>Play דורשת דיווח בתוך האפליקציה; Apple סופרת פלט צ'אטבוט בדירוג הגיל; אף אפליקציה מקומית לא מספקת</td><td>"Report" בכל הודעה (שומר מקומית, מציע מייל/ייצוא, עובד אופליין ומבהיר שהדיווח יזום); מסווג בטיחות אופציונלי על המכשיר (ShieldGemma‑class) במצב Family‑safe; system prompt ברירת מחדל עם הנחיות בטיחות; הגדרות guardrail גלויות; תיעוד המנגנון לצוותי הביקורת</td></tr>
+<tr><td class="num">37</td><td>בקשות רפואיות, משפטיות, כספיות, נפשיות; שפת משבר</td><td>"אמר לי לשתות אלכוהול רפואי"</td><td>זיהוי כוונה קל על המכשיר לביטויי משבר עם כרטיס משאבים לפי locale שלא חוסם; הצהרה קבועה בפרסונות של תחומים אלו; Work מוסיף הצהרות מקצוע ו"verify before use"</td></tr>
+<tr><td class="num">38</td><td>הזיות וביטחון יתר</td><td>פער ציפיות מול ChatGPT הוא סיבה #1 ל"חסר תועלת"</td><td>הודעה קבועה וניתנת לסגירה "can be wrong" בשיחות ראשונות ובכל כותרת פרסונה; ציטוטים במסמכים; שם וגודל המודל ליד כל תשובה כדי לכייל ציפיות</td></tr>
+<tr><td class="num">39</td><td>המודל מתעלם/מדליף system prompt, חוזר על דוגמאות, נכנס ללולאה, לא עוצר</td><td>Apollo, Enclave, Layla</td><td>תבניות צ'אט נכונות פר משפחה, repeat penalty, max tokens עם "continue", stop sequences, זיהוי לולאה (n‑gram) שעוצר ומציע regenerate, "reset persona"</td></tr>
+<tr><td class="num">40</td><td>שפה או כתב שגויים בתשובה (סינית לשאלה בעברית, ערבוב RTL/LTR)</td><td></td><td>רמז שפה ב‑system prompt מ‑locale/זיהוי קלט; מודלים מומלצים פר שפה; רינדור bidi בטוח</td></tr>
+<tr><td class="num">41</td><td>ציפיות "uncensored" מול מדיניות החנויות</td><td>גל כוכב אחד ב‑Venice כשהצנזורה השתנתה</td><td>קטלוג family‑safe; ייבוא משתמש חופשי; דירוג 13+ כנה; לעולם לא "uncensored" בקופי החנות</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.6 נתונים, החלפת מכשיר, גיבוי</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">42</td><td>iCloud/Google backup של מודלים (GB) ושל שיחות</td><td>אף מתחרה לא מתעד</td><td>מודלים בתיקייה מוחרגת; שיחות בגיבוי המכשיר עם Data Protection; ייצוא במשפט‑סיסמה למעבר בין מכשירים (מפתח קשור‑מכשיר לא משתחזר); המדיניות כתובה בלוח הפרטיות</td></tr>
+<tr><td class="num">43</td><td>טלפון חדש / שחזור / העברה</td><td></td><td>שיחות משתחזרות מגיבוי OS; מודלים מוצעים להורדה בלחיצה; ייצוא/ייבוא מוצפן; העברה מכשיר‑למכשיר (AirDrop/Nearby/QR ברשת מקומית); Pro משתחזר מהחנות</td></tr>
+<tr><td class="num">44</td><td>אותו Apple ID בכמה מכשירים בלי סנכרון ענן</td><td>"סשנים פר מכשיר בלבד" (Venice, Chatbox)</td><td>אומרים במפורש שאין סנכרון ענן; סנכרון ברשת מקומית (E2E) כ‑Pro בהמשך</td></tr>
+<tr><td class="num">45</td><td>מכשיר משותף / כמה משתמשים / בן משפחה מוצא את האפליקציה</td><td></td><td>מנעול מוצע בהשקה ראשונה; אינקוגניטו; שיחות מוסתרות מאחורי קוד שני (Work vaults); הנחיית "hide app"; ווידג'טים בלי תצוגה מקדימה בנעילה</td></tr>
+<tr><td class="num">46</td><td>המשתמש מוחק את האפליקציה</td><td></td><td>אזהרה בהגדרות → אחסון שהשיחות מקומיות בלבד, והצעת ייצוא</td></tr>
+<tr><td class="num">47</td><td>Data Protection: מכשיר נעול בזמן שהורדה ברקע מסתיימת או Shortcut רץ</td><td></td><td>completeUntilFirstUserAuthentication ל‑DB ולקבצי מודל</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.7 רכישות ורישוי</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">48</td><td>אימות רישיון Pro אופליין בלי שרת</td><td>StoreKit 2 currentEntitlements (JWS חתום, מאומת על המכשיר, במטמון מקומי; המטמון עשוי להיות ריק עד סנכרון ראשון; ידועה רגרסיית 26.x שמפילה Family Sharing אחרי שחזור, ולכן מטמון חתום מקומי + "Restore" עם AppStore.sync()). Play: queryPurchasesAsync (במטמון אופליין; אימות חתימה עם המפתח הציבורי של האפליקציה; acknowledge תוך 3 ימים אחרת החזר). חסד: אם אין גישה לחנות, שומרים את הזכאות הידועה 30 יום</td></tr>
+<tr><td class="num">49</td><td>שחזור, Family Sharing, החזרים, ביטול</td><td>Apple Family Sharing ל‑non‑consumable; revocationDate ננעל פיצ'רים ולעולם לא מוחק נתונים; Play Family Library לא כולל IAP (נאמר ב‑paywall); voided purchases נבדקות בפתיחה; החזרים דרך החנויות; מייל תמיכה מפורסם</td></tr>
+<tr><td class="num">50</td><td>שינויי מחיר, אזורים, קודי הצעה, שדרוג ל‑Work</td><td>non‑consumable "Pro" + non‑consumable "Work upgrade" מוצג רק לבעלי Pro (StoreKit לא נותן הנחות על non‑consumables); Play one‑time products באותו אופן</td></tr>
+<tr><td class="num">51</td><td>פיראטיות / IAP פרוץ ב‑jailbreak</td><td>מקבלים דליפה מסוימת; אימות JWS מקומי; בלי Play Integrity קשיח (שובר משתמשי de‑Googled שהם הקהל); בלי רישוי בשרת</td></tr>
+<tr><td class="num">52</td><td>רכישה נקטעת (Ask to Buy, pending, ניתוק)</td><td>טיפול ב‑pending ו‑deferred, הצגת מצב, סיום טרנזקציות בפתיחה הבאה</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.8 נגישות, שפות, UI</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">53</td><td>VoiceOver/TalkBack בזמן הזרמה</td><td>הכרזות פר משפט בתור מנומס; פעולת "read latest answer"; בלי גניבת פוקוס; אזור הזרמה מסומן updatesFrequently; בדיקה עם תשובה של 1,000 טוקנים</td></tr>
+<tr><td class="num">54</td><td>Dynamic Type בגדלים הגדולים עם קוד/טבלאות; RTL עם קוד LTR; קורא מסך שמקריא תחביר Markdown</td><td>מרנדר Markdown נגיש (טקסט מדובר), גלילה אופקית לטבלאות וקוד, QA של RTL בכל מסך</td></tr>
+<tr><td class="num">55</td><td>מקלדת חומרה (iPad/טאבלט): Enter מול Shift+Enter</td><td>הגדרה</td></tr>
+<tr><td class="num">56</td><td>הודעה בודדת ארוכה מאוד (10K טוקנים); קפיצות גלילה</td><td>רשימה וירטואלית; עיגון גלילה יציב</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.9 תנוחת אבטחה</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">57</td><td>צילומי מסך והקלטה של שיחות רגישות</td><td>iOS: זיהוי isCaptured, טשטוש ב‑switcher, "hide content in switcher"; Android: FLAG_SECURE כ‑opt‑in (חוסם גם צילומים של המשתמש); בלי thumbnails ב‑snapshot</td></tr>
+<tr><td class="num">58</td><td>דליפות clipboard (Universal Clipboard, אפליקציות אחרות באנדרואיד)</td><td>"copy with expiry" (60s), localOnly ב‑iOS, אזהרה חד‑פעמית</td></tr>
+<tr><td class="num">59</td><td>לוגים של קריסה עם טקסט פרומפט</td><td>לעולם לא תוכן משתמש בלוגים; ניקוי מאבחון מקומי; בלי SDK קריסות של צד שלישי; דוחות OS (opt‑in ברמת המערכת) מוזכרים במדיניות הפרטיות</td></tr>
+<tr><td class="num">60</td><td>SDK של צד שלישי שמוסיף קריאות רשת בשקט</td><td>מדיניות אפס SDK רשת; שער CI של <code>aapt2 dump permissions</code> שנכשל אם INTERNET מופיע במניפסט הממוזג (Android); בדיקת CI שמריצה את האפליקציה ב‑sandbox מנוטר ונכשלת על כל יציאה מלבד ה‑allowlist (iOS/דסקטופ); פרסום ה‑allowlist</td></tr>
+<tr><td class="num">61</td><td>שלמות שרשרת האספקה של מודלים (GGUF זדוני, באגי parser)</td><td>מניפסטים חתומים, checksums, parsing ב‑sandbox היכן שאפשר, llama.cpp מעודכן, fuzzing ל‑loader</td></tr>
+<tr><td class="num">62</td><td>פיצ'רי רשת מקומית (LAN, שרת מקומי) על Wi‑Fi עוין</td><td>כבוי כברירת מחדל, גילוי mDNS עם קוד צימוד, HTTP רגיל רק ב‑RFC1918, אזהרה ברשת ציבורית</td></tr>
+<tr><td class="num">63</td><td>Sideload / חנויות חלופיות (EU) ו‑notarization</td><td>אותן טענות פרטיות; הצהרות דירוג גיל נדרשות גם ל‑notarization</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>10.10 גיל, ילדים, שימוש מוסדר, ותפעול</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th class="num">#</th><th>מקרה</th><th>התנהגות נדרשת</th></tr></thead>
+<tbody>
+<tr><td class="num">64</td><td>ילדים ודירוג גיל</td><td>13+ מינימום עם שאלון כנה (טקסט גנרטיבי לא מוגבל); 18+ אם roleplay/uncensored; לא בקטגוריית Kids; מצב family‑safe עם מסווג על המכשיר; בלי שיווק לילדים; אם פרסונת "companion" תתווסף, בוחנים מחדש דירוג וכללי Play</td></tr>
+<tr><td class="num">65</td><td>מקצוענים מוסדרים (Work)</td><td>אין טענת ציות ("HIPAA‑compliant"); טענות ארכיטקטורה בלבד; באנרי "verify outputs" (קליפורניה מציעה חובת אימות לעורכי דין); בקרות שמירה; ייצוא לרשומות</td></tr>
+<tr><td class="num">66</td><td>שינויי שעון, אזור זמן, DST למחיקה אוטומטית ותזכורות</td><td>טיימרים מונוטוניים; התראות מקומיות</td></tr>
+<tr><td class="num">67</td><td>בודקי App Review בלי רשת ובלי מודל</td><td>מודל מובנה למצב ביקורת; הערות לבודק שמסבירות את עיצוב אפס הרשת ואיך לבדוק את הדיווח</td></tr>
+<tr><td class="num">68</td><td>עדכון ראשון שמשנה את חתימת המניפסט</td><td>גרסאות מניפסט עם חסד לאפליקציות ישנות</td></tr>
+<tr><td class="num">69</td><td>ציפייה למהירות ענן (קול בזמן אמת ב‑3–5 tok/s)</td><td>הערכת מהירות כנה פר מכשיר ב‑onboarding; דמו מוכן מראש</td></tr>
+<tr><td class="num">70</td><td>ווידג'טים / Live Activities שמציגים תשובות חלקיות במסך הנעול</td><td>תוכן מוסתר עד פתיחה; Live Activity מציג רק התקדמות</td></tr>
+</tbody>
+</table>
+</div>

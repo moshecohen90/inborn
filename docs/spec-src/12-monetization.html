@@ -1,0 +1,60 @@
+<h2 id="s12"><span class="n">12</span>מוניטיזציה ותמחור</h2>
+<p class="lead">אין עלות שוטפת פר משתמש, ולכן אין מנוי. המודל: חינמי שלם, Pro חד‑פעמי, ו‑Work חד‑פעמי לדסקטופ. "שלם פעם אחת" הוא גם התמחור וגם המסר.</p>
+
+<h3>12.1 נקודות המחיר</h3>
+<div class="tw">
+<table>
+<thead><tr><th>SKU</th><th class="num">מחיר (US)</th><th>סוג</th><th>היכן</th><th class="num">נטו (15%)</th><th>למי</th></tr></thead>
+<tbody>
+<tr><td><strong>Pro</strong></td><td class="num">$19.99</td><td>non‑consumable, universal (iPhone + iPad + Mac App Store), Family Sharing</td><td>App Store, Play, Microsoft Store / Paddle</td><td class="num">$16.99</td><td>הפרטי, הנוסע, החובב</td></tr>
+<tr><td>Pro · מחיר השקה (30 יום)</td><td class="num">$14.99</td><td>אותו SKU במחיר מבצע</td><td>שתי החנויות</td><td class="num">$12.74</td><td>גל ההשקה וה‑PR</td></tr>
+<tr><td><strong>Work</strong> (הוחלט, משה 3.9.2026)</td><td class="num">$69.99</td><td>non‑consumable; SKU "Work upgrade" ל‑Pro owners ב‑$49.99</td><td>דסקטופ תחילה (Paddle/MS Store/Mac App Store), מובייל אחר כך</td><td class="num">$59.49</td><td>עו"ד, מטפלים, רופאים, רו"ח</td></tr>
+<tr><td>Work Team (5 מושבים)</td><td class="num">$249</td><td>מפתחות רישיון חתומים, אימות אופליין</td><td>Paddle בלבד (חשבונית)</td><td class="num">≈$236 (Paddle ~5%)</td><td>משרדים קטנים, קליניקות</td></tr>
+</tbody>
+</table>
+</div>
+<div class="decision"><span class="k">Decision</span><p><strong>אין מנוי שנתי, גם לא כעוגן.</strong> המחקר הקודם הציע מנוי שנתי של 9.99 דולר כעוגן פסיכולוגי. נדחה: הוא סותר את "No subscription" בדף החנות, מזמין ביקורות "אמרו שאין מנוי", ומחצית מהמחיר ל‑lifetime הופכת אותו לזול מדי או ל‑lifetime ליקר מדי. העוגנים במקום: מחיר Work ($69), Off Grid Pro ($69 חד‑פעמי, בדרך ל‑$149), והמנויים של "פרטיות ענן" (Venice $18/חודש, Lumo $9.99/חודש) שמצוטטים בקופי: "Less than two months of a cloud subscription. Forever."</p></div>
+
+<h3>12.2 למה 19.99 ולא 4.99 או 69</h3>
+<ul>
+<li>Private LLM ב‑4.99 מוכיחה שמשלמים פעם אחת, אבל היא נענשת על "פחות פיצ'רים מ‑PocketPal החינמית". מחיר נמוך לא קונה סליחה על חוסר.</li>
+<li>Off Grid ב‑69 היא העוגן הגבוה, עם 24 דירוגים ו‑3.0 כוכבים: המחיר לא הבעיה שלה, האמינות כן.</li>
+<li>19.99 יושב מתחת לסף "צריך לחשוב" של רכישה חד‑פעמית באפליקציות פרודוקטיביות, ומעל 9.99 שמסמן "עוד אפליקציה". עם ערך Pro גלוי ומתמשך (מסמכים, קול, גיבוי) הוא נקרא הוגן.</li>
+<li>תמחור אזורי: המחירים בארה"ב הם הבסיס (Pro 19.99, Work 69.99), ולכל שוק אחר נגזר מחיר מקומי מאותו מנגנון של אפליקציות התנ"ך: קובץ המחירים לפי מדינה (<code>fbcloud/functions/src/tools/iap/config/pricing.json</code>) והפונקציה <code>getCountryPrice</code> ב‑<code>country-pricing.config.ts</code>, שמחזיקים יחס מחיר לכל מדינה מול ארה"ב ומטבע פר פלטפורמה. לרכישה חד‑פעמית משתמשים באותו יחס (למשל ברזיל ≈ 36% מארה"ב, מקסיקו ≈ 50%, ניגריה ≈ 14%) ומעגלים למחיר מקומי נאה. חד‑פעמי בלבד, לא מנוי.</li>
+<p><strong>למה Pro בחזית בטלפון ו‑Work בחזית בדסקטופ.</strong> הפייוול נפתח כשמשתמש נוגע בפיצ'ר Pro; בטלפון זה כמעט תמיד צרכן, ולכן Pro הוא הכרטיס הראשי. Work מוצג מתחתיו כעוגן עם התג "For professionals": הוא פונה למי שבאמת צריך כספות ללקוחות ורדקציה, ובאותה הזדמנות גורם ל‑19.99 להיראות זול ליד 69.99 (עיגון מחיר). בדסקטופ, ששם יושב הקהל המקצועי ו‑Work נמכר תחילה, הסדר הפוך. Family Sharing מופיע רק ב‑iOS (עד 6 בני משפחה על רכישה אחת); ב‑Play כתוב במפורש ש‑Family Library לא כולל רכישות בתוך האפליקציה, כדי למנוע בקשות החזר.</p>
+</ul>
+
+<h3>12.3 מה נמכר ומה לא (עקרונות הגידור)</h3>
+<ul>
+<li><strong>לעולם לא בתשלום:</strong> פרטיות, אבטחה, הוכחה, מודל טוב, צ'אט ללא הגבלה, נגישות, שפות, דיווח. גידור של אחד מאלה הופך את המוצר לשקר של עצמו.</li>
+<li><strong>בתשלום:</strong> יכולות מקומיות קבועות שמצדיקות מחיר חד‑פעמי כי הן שוות יותר ככל שמשתמשים: ספריית מסמכים, זיכרון, קול, אינטגרציות, שליטה, גיבוי.</li>
+<li><strong>אף פעם לא:</strong> פרסומות, מכירת נתונים, "מנוי כדי להמשיך", מגבלת הודעות, סימן מים, ניסיון שנגמר בהפתעה.</li>
+<li><strong>המרה בתוך המוצר:</strong> נקודות המגע ל‑Pro הן רגעי ערך, לא הפרעות: צירוף קובץ שני, יצירת פרסונה רביעית, לחיצה על "Voice", ייצוא הכל, מסך הכספת עם Sharp. כל נקודה מציגה את הפיצ'ר עובד (תצוגה מקדימה) ושורת מחיר אחת. אין popup בפתיחה.</li>
+</ul>
+
+<h3>12.4 אימות רישיון אופליין, בלי שרת</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>פלטפורמה</th><th>מנגנון</th><th>אופליין</th><th>הערות</th></tr></thead>
+<tbody>
+<tr><td class="ltr">iOS / macOS (App Store)</td><td class="ltr">StoreKit 2 · Transaction.currentEntitlements · JWS</td><td>כן, מטמון חתום מקומי</td><td>המטמון עשוי להיות ריק עד סנכרון ראשון; "Restore" קורא AppStore.sync(); revocationDate נועל פיצ'רים בלבד; Family Sharing מופעל ב‑ASC</td></tr>
+<tr><td class="ltr">Android (Play)</td><td class="ltr">Play Billing 9.x · queryPurchasesAsync · אימות חתימת RSA עם המפתח הציבורי של האפליקציה</td><td>כן, מטמון של Play</td><td>acknowledge תוך 3 ימים; Family Library לא כולל IAP; Voided Purchases API דורש שרת ולכן לא בשימוש, מסתמכים על queryPurchases שמסיר רכישות שבוטלו</td></tr>
+<tr><td class="ltr">Windows (Microsoft Store)</td><td class="ltr">Windows.Services.Store · StoreContext.GetAppLicenseAsync</td><td>כן, רישיון במטמון</td><td>Add‑on "Pro" / "Work"</td></tr>
+<tr><td class="ltr">Windows / macOS (ישיר)</td><td class="ltr">Paddle license key → קובץ רישיון חתום Ed25519 (מזהה מכשיר, SKU, תאריך)</td><td>כן, אחרי הפעלה אחת</td><td>עד 3 מכשירים; ביטול הפעלה מהאפליקציה; Team = מפתח עם N מושבים</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>חסד:</strong> אם החנות לא נגישה, הזכאות האחרונה הידועה נשמרת 30 יום. <strong>פיראטיות:</strong> מקבלים דליפה; אימות JWS/חתימה מקומי מעלה את הרף; אין Play Integrity קשיח, אין שרת. <strong>מכשירים:</strong> Pro אחד לכל המכשירים של אותה חנות; בין חנויות (iPhone + Windows) — הוחלט (משה, 3.9.2026): רכישה נפרדת, עם קוד הצעה של 20–30% למי שמציג קבלה (ידני, דרך התמיכה). מכיוון שאין חשבון משתמש, רכישה חוצת‑חנויות אינה אפשרית טכנית, וזה חלק מהעיצוב.</p>
+
+<h3>12.5 תחזית</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>תרחיש</th><th class="num">הורדות/יום</th><th class="num">המרה</th><th class="num">מחיר ממוצע נטו</th><th class="num">הכנסה/חודש (Pro)</th><th class="num">+ Work/חודש</th></tr></thead>
+<tbody>
+<tr><td>בסיס (חודש 6)</td><td class="num">800</td><td class="num">1.5%</td><td class="num">$15</td><td class="num">$5,400</td><td class="num">$0</td></tr>
+<tr><td>יעד (חודש 12)</td><td class="num">2,500</td><td class="num">2.5%</td><td class="num">$15</td><td class="num">$28,000</td><td class="num">$3,000 (50 × $59.5)</td></tr>
+<tr><td>הצלחה (שנה 2)</td><td class="num">4,000</td><td class="num">3%</td><td class="num">$15</td><td class="num">$54,000</td><td class="num">$11,900 (200 × $59.5)</td></tr>
+</tbody>
+</table>
+</div>
+<p>המספרים מניחים שהמרה נספרת מכל המתקינים (כולל אלה שלא נשארים), ולכן 1.5–3% הם טווח שמרני לעומת 5% שמצוטט כתקרה ל‑AI wrappers. תרחיש הבסיס כבר עומד ביעד "אלפי דולרים בחודש"; היעד והצלחה תלויים בדסקטופ וב‑Work, ולכן ההחלטה עליהם מתקבלת עכשיו. מחיר Work הוכרע על 69.99 דולר (D12); מחירים לשווקים אחרים נגזרים כמתואר ב‑§12.2.</p>

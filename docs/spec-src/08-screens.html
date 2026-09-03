@@ -1,0 +1,386 @@
+<h2 id="s8"><span class="n">08</span>מסכי האפליקציה, מסך אחר מסך</h2>
+<p class="lead">לכל מסך: התפקיד שלו, האלמנטים, המצבים, מקרי הקצה שהוא חייב לטפל בהם, ומה בו חינם ומה Pro. הדמו האינטראקטיבי מציג את כל המסכים הממוספרים כאן (S01–S60); המסמך מגדיר גם את המצבים ומקרי הקצה שלהם. הניווט: במובייל כותרת עם החותם במרכז, כפתור מגירת השיחות בצד ההתחלה וצ'יפ המודל בצד הסיום; בדסקטופ ובטאבלט סרגל צד קבוע במקום המגירה.</p>
+
+<h3>8.1 השקה ראשונה ו‑onboarding (5 מסכים, פחות מ‑90 שניות)</h3>
+
+<div class="screen">
+<h4>S01 · Welcome <span class="pill free">Free</span></h4>
+<p class="job">להגיד את התזה במשפט אחד ולהראות את החותם לפני כל דבר אחר.</p>
+<div class="wire">┌────────────────────────┐
+│                        │
+│        <b>◯</b> (72px, open)  │
+│                        │
+│  <u>Nothing leaves</u>       │
+│  <u>this phone.</u>          │
+│  AI that runs on your  │
+│  device. No account.   │
+│  No cloud. No trace.   │
+│                        │
+│  ▣ Runs on: A18 Pro    │
+│  [ Continue ]  (cta)   │
+│  <i>This is AI. It can be wrong.</i> │
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>חותם פתוח 72px, כותרת Display, שלוש שורות תזה, שורת "runs on this chip" עם גליף השבב ושם השבב האמיתי, כפתור ראשי, שורת גילוי AI (EU AI Act, Play).</dd>
+<dt>states</dt><dd>מכשיר מתחת לרצפה: שורה כנה "This phone can run small models slowly" עם קישור להסבר.</dd>
+<dt>edge cases</dt><dd>Reduced motion: החותם סטטי. VoiceOver מכריז את התזה ואת הגילוי. אין כפתור "דלג": המסך הבא הוא כבר שימושי.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S02 · Your model <span class="pill free">Free</span></h4>
+<p class="job">להראות שהאפליקציה כבר יודעת מה מתאים למכשיר, ולאפשר צ'אט מיד בלי הורדה.</p>
+<dl class="grid">
+<dt>elements</dt><dd>כרטיס "Ready now": Instant (מובנה, 0.5 GB, "~50 tok/s on this phone" במכשיר 8 GB) או Apple on‑device במכשירים מתאימים. מתחתיו הצעה: "Fast (1.3 GB) downloads once. Never uploads." עם גודל, זמן משוער, ומתג Wi‑Fi בלבד; באנדרואיד השורה אומרת "Delivered by Google Play. Autark itself has no internet access." כפתור ראשי אחד: "Start chatting" (עושה את הדבר הנכון: Instant עכשיו, Fast ברקע ב‑Wi‑Fi), וקישור קטן "Stay on Instant only". הכרטיסים בלי שמות מודלים ומספרי פרמטרים; רק גודל ומשפט אחד.</dd>
+<dt>states</dt><dd>Apple FM זמין / כבוי / באזור לא נתמך / בהורדה: הכרטיס מציג את המצב ואת החלופה. מקום פנוי חסר: ההצעה להוריד מוצגת באפור עם "Free up 1.5 GB".</dd>
+<dt>edge cases</dt><dd>רשת סלולרית יקרה: ברירת מחדל Wi‑Fi בלבד, גודל בדיאלוג. המשתמש מבטל הורדה: הצ'אט עובד עם Instant. הורדה נמשכת ברקע עם התראה מקומית בסיום.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S03 · Airplane test <span class="pill free">Free</span></h4>
+<p class="job">הטקס שהופך הבטחה להוכחה: המשתמש מכבה את הרשת בעצמו ורואה שהאפליקציה ממשיכה לענות.</p>
+<div class="wire">┌────────────────────────┐
+│  <u>Prove it to yourself.</u> │
+│  1. Turn on Airplane   │
+│     Mode.        [✈ ON]│
+│  2. Ask anything.      │
+│  ┌────────────────────┐│
+│  │ What's 17 × 23?    ││
+│  └────────────────────┘│
+│  INSTANT · ON-DEVICE   │
+│  <u>391.</u>▍                │
+│                        │
+│  OUT <b>0 B</b> · IN 0 B      │
+│  [ Ask ] (cta) … then   │
+│  [ I saw it ]  Skip test │
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>שני צעדים, אינדיקטור מצב הרשת (מזוהה ב‑NWPathMonitor / ConnectivityManager), שדה שאלה עם הצעה, "Ask" ככפתור הבולט במסך, תשובה מוזרמת, קריאת OUT/IN חיה; "I saw it" מופיע רק אחרי שהתשובה הגיעה, ו"Skip the test" כקישור קטן.</dd>
+<dt>states</dt><dd>מצב טיסה עדיין דולק בסוף: מציעים להשאיר ("You can use {{BRAND}} like this forever"). המשתמש לא מכבה רשת: המבחן עדיין רץ, הכיתוב אומר "Airplane Mode is off; the counter still shows 0 B".</dd>
+<dt>edge cases</dt><dd>iOS לא מאפשר לאפליקציה להפעיל מצב טיסה; הכפתור פותח את Control Center בהנחיה. ב‑Android אפשר לפתוח את הגדרות הרשת. ווב: ה‑Service Worker מאפשר את המבחן; iPhone Safari מציג הודעת "התקן את האפליקציה למבחן מלא".</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S04 · Sealed <span class="pill free">Free</span></h4>
+<p class="job">רגע השיא של ה‑onboarding (חוק Peak‑End): החותם נסגר בקפיץ, הפטיק אחד, "SEALED · ON‑DEVICE".</p>
+<dl class="grid">
+<dt>elements</dt><dd>חותם 72px נסגר ב‑420ms, bloom ירוק 600ms, תווית מונו, משפט אחד: "From here on, every answer is made on this phone." כפתור "Start".</dd>
+<dt>states</dt><dd>Reduced motion: מעבר חד לטבעת סגורה + הפטיק. בלי הפטיקה (הגדרה או מכשיר): רק ויזואל.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S05 · Lock it (אופציונלי) <span class="pill free">Free</span></h4>
+<p class="job">להציע מנעול ביומטרי כשהערך הרגשי הכי גבוה, בלי לכפות.</p>
+<dl class="grid">
+<dt>elements</dt><dd>מתג Face ID / ביומטריה, הסבר בשורה: "Also hides chats in the app switcher." כשהמתג כבוי: כפתור אחד "Start". כשהוא דולק: בחירת השהיה (מיד / 1 דקה / 5 דקות), "Turn on and start", וקישור קטן "Not now".</dd>
+<dt>edge cases</dt><dd>אין ביומטריה: הצעה לקוד. ביומטריה נכשלת בהפעלה: הודעה ולא נעילה. משתמש מדלג: תזכורת עדינה פעם אחת בהגדרות, לא יותר.</dd>
+</dl>
+</div>
+
+<h3>8.2 הצ'אט</h3>
+
+<div class="screen">
+<h4>S10 · Chat, empty state <span class="pill free">Free</span></h4>
+<p class="job">מסך הבית. חותם 72px, שם המודל, "Nothing leaves this phone.", שלושה צ'יפים שקטים של הצעות, קומפוזר.</p>
+<dl class="grid">
+<dt>elements</dt><dd>כותרת: "Chats" (פותח מגירה), החותם 28px + "SEALED", צ'יפ מודל [▣ FAST] (שם ידידותי בלבד, בלי גודל). גוף: חותם גדול, שם המודל, הצעות (Summarize a document · Translate · Draft a message). קומפוזר עם [+] (צירוף: קובץ, תמונה, מצלמה), מיקרופון, שדה, שליחה.</dd>
+<dt>states</dt><dd>מודל בטעינה: החותם כקשת עם אחוזים, הקומפוזר פעיל (הודעה ממתינה בתור). אינקוגניטו: רקע well, אייקון מסכה בכותרת, ותחת החותם "Not saved. Gone when you close it." ההבדל מצ'אט רגיל: רגיל נשמר מוצפן בטלפון, נמצא בחיפוש ובגיבוי והזיכרון לומד ממנו; אינקוגניטו הוא RAM בלבד, בלי זיכרון (לא קורא ולא כותב), לא בחיפוש, לא בייצוא, נעלם בסגירה. ההבטחה "Nothing leaves this phone" תקפה לשני המצבים, ולכן היא לא חוזרת במסך האינקוגניטו: שם כתוב רק מה שהמצב מוסיף. Apple FM: צ'יפ "APPLE · ON‑DEVICE".</dd>
+<dt>edge cases</dt><dd>אין שום מודל (מחקו את המובנה): מצב ריק מציע להוריד/לייבא, הקומפוזר מושבת עם הסבר. זיכרון נמוך: הצעה אוטומטית לעבור ל‑Instant.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S11 · Chat, conversation <span class="pill free">Free</span></h4>
+<p class="job">הקריאה. תשובות שטוחות ברוחב מלא עם תווית מונו, הודעות משתמש בבועה שקטה, הזרמה עם סמן, החותם נושם.</p>
+<dl class="grid">
+<dt>elements</dt><dd>תווית פשוטה "FAST · ON‑DEVICE" מעל כל תשובה (המספרים, כולל tok/s וקוונטיזציה, חיים רק בפנקס); טקסט; ▸ Ledger מקופל; פעולות רק בלחיצה ארוכה (או הקשה על הטקסט): העתק, צור מחדש, הקרא, דווח; בהודעת משתמש: ערוך. "העתקה עם תפוגה" היא הגדרה (Security → clipboard expiry), לא כפתור. מד הקשר 2px מעל הקומפוזר. כפתור Stop מחליף את השליחה בזמן הזרמה.</dd>
+<dt>states</dt><dd>ממתין לטוקן ראשון (נקודה פועמת עד 2 שניות); מזרים (סמן, החותם נושם ענבר); הושלם; נעצר על ידי המשתמש (סימון "Stopped"); נעצר על ידי המערכת (זיכרון/חום) עם "Continue"; לולאה זוהתה (n‑gram) עם "Regenerate"; הקשר מתמלא: מד ענבר מעל 80%, ואז "This chat is getting long" עם "Summarize and continue".</dd>
+<dt>edge cases</dt><dd>רקע באמצע יצירה: השלמה עד 15–30 שניות ושמירה חלקית. שיחה ארוכה מאוד: רשימה וירטואלית, עוגן גלילה יציב. Markdown חלקי: קוד מוצג כטקסט עד סגירה. תשובה בשפה לא נכונה: רמז שפה ב‑system prompt; פעולת "Answer in Hebrew". LaTeX: מוצג, וב‑VoiceOver מוקרא כטקסט. 10K טוקנים בהודעה אחת: ביצועים בלי קפיצות.</dd>
+<dt>free/pro</dt><dd>הכל חינם. השוואה זה לצד זה (Pro) נפתחת מצ'יפ המודל.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S12 · Attach & documents in chat <span class="pill free">Free</span> קובץ אחד · <span class="pill pro">Pro</span> ספרייה</h4>
+<p class="job">לצרף מסמך או תמונה בלי לקרוס, ולראות ציטוטים.</p>
+<dl class="grid">
+<dt>elements</dt><dd>תפריט [+]: Photo, Camera, File, From library (Pro). כרטיס צירוף עם שם, גודל, מספר עמודים, מד אינדוקס. בתשובה: ציטוטים כצ'יפים "contract.pdf · p.4" שפותחים את הקטע.</dd>
+<dt>states</dt><dd>מאנדקס (אפשר לשאול על מה שכבר מוכן); סריקה בלי טקסט: "Scanned. Run OCR on this phone?" (Pro); קובץ מוגן בסיסמה: סירוב ברור; קובץ גדול מהמכסה: חינם עד 20 עמודים, Pro ללא הגבלה עם אינדוקס הדרגתי.</dd>
+<dt>edge cases</dt><dd>HEIC/HDR/EXIF: הקטנה על המכשיר, מחיקת EXIF לפני שמירה. הרשאת מצלמה נדחתה: הסבר וקישור להגדרות. 100 MB דרך share sheet: ייבוא ברקע. מסמך RTL: חיתוך bidi‑aware. הזרקת פרומפט במסמך: מסמכים הם נתונים, לא הוראות; אין ביצוע אוטומטי.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S13 · Report output <span class="pill free">Free</span></h4>
+<p class="job">דרישת מדיניות Play ו‑Apple: לדווח על פלט פוגעני מבלי לצאת מהאפליקציה, ובלי לשלוח כלום אוטומטית.</p>
+<dl class="grid">
+<dt>elements</dt><dd>גיליון: סיבה (פוגעני, מסוכן, שגוי, אחר), טקסט חופשי, מתג "include the message", כפתור "Save report". הסבר: "Reports are stored on this phone. Send them by email when you choose." כפתור "Email report" שפותח את אפליקציית המייל עם הקובץ.</dd>
+<dt>states</dt><dd>אופליין: עובד במלואו. דוח שמור מופיע בהגדרות → Reports עם מחיקה.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S14 · Safety card <span class="pill free">Free</span></h4>
+<p class="job">כשמזוהה שפת משבר (אובדנות, פגיעה עצמית) מוצג כרטיס משאבים לפי אזור, בלי לחסום את הצ'אט.</p>
+<dl class="grid">
+<dt>elements</dt><dd>כרטיס מעל התשובה: "If you're in crisis, you can talk to a person now" + קו חם לפי locale (ער"ן בישראל, 988 בארה"ב), כפתור להתקשר, "Dismiss". זיהוי על המכשיר במילון קטן פר שפה.</dd>
+<dt>edge cases</dt><dd>אין locale ידוע: רשימה בינלאומית קצרה. הכרטיס לא נכתב להיסטוריה באינקוגניטו. תחומי רפואה/משפט/כסף: הצהרה קבועה בכותרת הפרסונה, "verify before use".</dd>
+</dl>
+</div>
+
+<h3>8.3 ניווט ושיחות</h3>
+
+<div class="screen">
+<h4>S20 · Chats drawer <span class="pill free">Free</span> · תיקיות <span class="pill pro">Pro</span></h4>
+<p class="job">כל השיחות, חיפוש, אינקוגניטו, והקריאה של אפס‑יציאה בתחתית.</p>
+<div class="wire">┌────────────────────────┐
+│ 🔍 Search              │
+│ [+ New chat] [◐ Incognito]│
+│ ▸ Pinned               │
+│   Lease review · 2h    │
+│ ▸ Work (Pro folder)    │
+│   Client A · Client B  │
+│ ▸ Recent               │
+│   Trip to Rome · Sun   │
+│   ...                  │
+├────────────────────────┤
+│ ▣ FAST 2B · OUT <b>0 B</b>   │
+│ ⚙ Settings  ◯ Proof    │
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>חיפוש (בכותרות ובתוכן, מקומי), שיחה חדשה, אינקוגניטו, מוצמדות, תיקיות (Pro), אחרונות, ארכיון, קריאת יציאה, קיצורים להגדרות ולהוכחה. החלקה: הצמד / ארכב / מחק.</dd>
+<dt>states</dt><dd>ריק; שיחות אינקוגניטו פעילות מופיעות עם מסכה ונעלמות בסגירה; מנעול פעיל: התוכן מטושטש עד אימות.</dd>
+<dt>edge cases</dt><dd>1,000+ שיחות: רשימה וירטואלית וחיפוש FTS5. מחיקה: אישור עם Undo ל‑5 שניות. מחיקה אוטומטית מוגדרת: תג "Deletes in 3 days".</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S21 · New chat sheet <span class="pill free">Free</span></h4>
+<p class="job">לבחור פרסונה ומודל לפני שמתחילים, בלי לחסום את מי שרוצה פשוט להקליד.</p>
+<dl class="grid">
+<dt>elements</dt><dd>פרסונות כצ'יפים (Assistant, Writer, Tutor, Translator + מותאמות), מודל (ברירת מחדל מסומנת "fits"), מתג אינקוגניטו, "Start". הקומפוזר במסך הריק עוקף את הגיליון.</dd>
+</dl>
+</div>
+
+<h3>8.4 כספת המודלים</h3>
+
+<div class="screen">
+<h4>S30 · Model vault <span class="pill free">Free</span></h4>
+<p class="job">להראות מה מותקן, מה מתאים למכשיר הזה, ולהוריד או לייבא, על משטח עם רשת פאראדיי.</p>
+<div class="wire">┌────────────────────────┐
+│ On this device         │
+│ ┌────────────────────┐ │
+│ │ <b>●</b> FAST · Qwen3.5 2B │ │
+│ │ 1.3 GB · Q4 · <i>~34 tok/s</i>│ │
+│ │ ▰▰▰▰▰▰▰▰▰▰ Loaded  │ │
+│ └────────────────────┘ │
+│ ┌────────────────────┐ │
+│ │ ○ INSTANT · 0.5 GB │ │
+│ └────────────────────┘ │
+│ Fits your phone        │
+│ ┌────────────────────┐ │
+│ │ SHARP · 4B · 2.7 GB│ │
+│ │ <i>~14 tok/s</i> · PRO   │ │
+│ └────────────────────┘ │
+│ Too big for 6 GB       │
+│ │ POWER · 9B  (greyed)│ │
+│ [Import GGUF] [Search HF]│
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>מחסניות עם נקודת מצב (טעון/מותקן/זמין), שם, ספק, גודל, קוונטיזציה, מהירות צפויה כטווח, תג רישיון, פס טעינה. על כל מחסנית גם שורת "למה זה טוב" בשפה פשוטה ("Everyday assistant: writing, questions, translation"), תג סוללה (Low / Medium / High) ותג RECOMMENDED FOR THIS PHONE על ברירת המחדל שנבחרה אוטומטית לפי רצפת המכשיר (§6.3), כמו שקלוד ו‑ChatGPT מסבירים לאיזה מודל לפנות; המספרים הטכניים חיים רק ב‑Details. קבוצות: On this device / Fits your phone / Too big (עם סיבה) / Apple on‑device. כפתור ייבוא בכל הפלטפורמות; חיפוש HF רק ב‑iOS ובדסקטופ (באנדרואיד: "Download in your browser, then open the file here"). מונה אחסון בכותרת.</dd>
+<dt>states</dt><dd>הורדה בתהליך (קשת בתוך המחסנית, השהיה); מודל פגום (אדום, "Not a valid GGUF"); מודל שקרס בטעינה (מסומן "Quarantined", לא ייטען אוטומטית); מנוע ישן מדי למודל חדש ("Update the app to run this").</dd>
+<dt>edge cases</dt><dd>מקום מלא: הורדה חסומה עם "Free up 3 GB"; גודל אמיתי נקרא ב‑HEAD לפני הורדה; מודל מעל ה‑RAM: "Will not run" עם override למומחים; מודל gated ב‑HF: טוקן + אישור רישיון; Gemma ≤3: מסך תנאים; Llama: "Built with Llama" במסך הרישיונות.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S31 · Model details <span class="pill free">Free</span></h4>
+<p class="job">הכל על מודל אחד: יכולות, שפות, benchmark על המכשיר הזה, רישיון, מחיקה.</p>
+<dl class="grid">
+<dt>elements</dt><dd>כותרת עם גליף שבב, טבלת מפרט (פרמטרים, קוונטיזציה, הקשר מקסימלי, ראייה, כלים, שפות טובות), כפתור "Benchmark on this phone" (PP 512 / TG 128), טקסט רישיון וקישור, "Set as default", "Delete" (חסום אם טעון).</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S32 · Downloads <span class="pill free">Free</span></h4>
+<p class="job">תור הורדות ששורד סגירה, עם המשך, אימות ו‑Wi‑Fi בלבד.</p>
+<dl class="grid">
+<dt>elements</dt><dd>שורות עם אחוז, מהירות, זמן משוער, השהה/המשך/בטל; מתג Wi‑Fi בלבד; "Verify after download" תמיד דולק; יומן: מקור (Google Play / Apple / models.{{DOMAIN}} / HF), גודל, hash. באנדרואיד ההורדה מתבצעת על ידי Play (AssetPackManager) והמסך מציג את המצב שלו, כולל דיאלוג האישור בסלולר.</dd>
+<dt>states</dt><dd>ניתוק: "Paused, will resume on Wi‑Fi"; 429/שגיאת שרת (CDN/HF בלבד): הודעה שמסבירה ומציעה מראה; hash שגוי: מחיקה אוטומטית ו"Try again"; רקע: התראה מקומית עם התקדמות; Play לא זמין (sideload): "Import a model file instead".</dd>
+</dl>
+</div>
+
+<h3>8.5 מסמכים, פרסונות וזיכרון</h3>
+
+<div class="screen">
+<h4>S40 · Document library <span class="pill pro">Pro</span></h4>
+<p class="job">הספרייה המקומית: מסמכים, מצב אינדוקס, פרויקטים, ומצב "ענה רק מהמסמכים".</p>
+<dl class="grid">
+<dt>elements</dt><dd>רשימת מסמכים עם סוג, עמודים, גודל, מצב (Indexed / Indexing 43% / Needs OCR / Failed), פרויקטים (תיקיות), חיפוש, מתג Strict mode, "Ask about selected". פרטי מסמך: chunks, שפה מזוהה, מודל embedding, מחיקה.</dd>
+<dt>edge cases</dt><dd>200+ עמודים: אינדוקס הדרגתי ברקע עם עצירה בחום; קובץ 0 בייט; DOCX עם מעקב שינויים (מקבלים את הטקסט הסופי); XLSX רב‑גיליונות (בחירת גיליונות); CJK אנכי; מקום מלא באמצע אינדוקס (עצירה נקייה, DB לא נפגם).</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S41 · Personas <span class="pill free">Free</span> 3 · <span class="pill pro">Pro</span> ללא הגבלה</h4>
+<p class="job">ליצור ולנהל פרסונות: שם, אייקון (מספריית SVG, לא אימוג'י), system prompt, מודל ברירת מחדל, כלים מותרים, סגנון תגובה, ובפרסונות רגישות (רפואה/משפט) הצהרה קבועה.</p>
+<dl class="grid">
+<dt>edge cases</dt><dd>מודל שמתעלם מה‑system prompt: תבנית צ'אט נכונה פר משפחה + "Reset persona"; ייבוא פרסונה מקובץ (JSON חתום) עם אזהרה על פרומפט זר; ייצוא כקובץ לשיתוף.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S42 · Memory <span class="pill pro">Pro</span></h4>
+<p class="job">פאנל שקוף של "עובדות עליי": כל פריט ניתן לעריכה ולמחיקה, עם מקור (איזו שיחה), מתג לכל פרסונה, ומתג ראשי.</p>
+<dl class="grid">
+<dt>edge cases</dt><dd>זיכרון לא נאסף באינקוגניטו; מחיקת חירום מוחקת אותו; ייצוא כולל אותו רק אם המשתמש מסמן.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S43 · Quick actions & share target <span class="pill free">Free</span> 6 · <span class="pill pro">Pro</span> מותאמות</h4>
+<p class="job">להפוך טקסט מכל אפליקציה לפעולה: סכם, נסח מחדש, תקן, תרגם, הסבר, חלץ משימות.</p>
+<dl class="grid">
+<dt>elements</dt><dd>גיליון share עם הטקסט הנבחר, שש פעולות, תוצאה מוזרמת, "Copy" / "Replace" (ב‑PROCESS_TEXT באנדרואיד) / "Open in chat". עורך פעולות מותאמות (Pro): שם, פרומפט, מודל, פלט.</dd>
+<dt>edge cases</dt><dd>הרחבה לא יכולה לטעון מודל בגלל מגבלת זיכרון: ההרחבה מעבירה לאפליקציה הראשית דרך App Group ומחזירה תוצאה; טקסט ענק: קיצוץ עם הודעה; מנעול פעיל: דורש אימות.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S44 · Voice mode <span class="pill free">Free</span> הכתבה · <span class="pill pro">Pro</span> שיחה</h4>
+<p class="job">שיחת קול hands‑free כולה על המכשיר: VAD, תמלול, תשובה, הקראה, הפרעה.</p>
+<dl class="grid">
+<dt>elements</dt><dd>מסך מלא כהה, החותם 96px כאינדיקטור (מאזין: טבעת עם גל; חושב: נושם; מדבר: פועם עדין), תמליל חי, בורר קול, ניתוב לאוזניות, "Tap to interrupt", כפתור סיום. מצב Instant בלבד במכשירי 6 GB לשמירה על זמן תגובה.</dd>
+<dt>edge cases</dt><dd>הרשאת מיקרופון נדחתה; שיחה נכנסת (עצירה ושמירה); רעש רקע (סף VAD); שפה לא נתמכת במערכת (Whisper Pro); 3–5 tok/s במכשיר חלש: הודעת "voice works best with Instant" מראש.</dd>
+</dl>
+</div>
+
+<h3>8.6 הוכחה, פרטיות והגדרות</h3>
+
+<div class="screen">
+<h4>S50 · Proof <span class="pill free">Free</span></h4>
+<p class="job">מסך ההוכחה. כל טענת פרטיות ולצידה הדרך לאמת אותה.</p>
+<div class="proof"><p class="m"><b>SEALED · ON-DEVICE</b>            since install · 41 days
+OUT <b>0 B</b> · IN 2.71 GB · CONNECTIONS 0 open
+NETWORK ALLOWLIST   none by default · the store delivers models
+                    huggingface.co only when you ask · then it shows in App Privacy Report, on purpose
+                    iOS 17–25 / desktop: models.{{DOMAIN}}, on request
+LAST DELIVERY       qwen3.5-2b-q4_k_m.gguf · 1.28 GB · Apple-hosted asset pack · sha256 ✓ · 2026-08-14
+PERMISSIONS         Internet: none (Android manifest) · Microphone (off) · Camera (off)
+TRACKERS            0 (Exodus report ↗)
+BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
+[ Run the airplane test ]   [ View network log ]</p></div>
+<dl class="grid">
+<dt>elements</dt><dd>קריאות מונו, allowlist, יומן רשת פר סשן (כל בקשה: יעד, בייטים, זמן), רשימת הרשאות עם מצב, קישור לדוח Exodus, hash של הבנייה מול הפרסום, כפתור מבחן טיסה (בסיום המבחן המונה OUT 0 B נשאר גלוי כפס קבוע בצ'אט, לא הודעה חולפת), קישור לקוד הפתוח.</dd>
+<dt>states</dt><dd>אם מצב LAN (Pro) פעיל: החותם מציג "LAN · 192.168.1.20" בכתום ולא ירוק. אם אי פעם ייפתח מצב ענן: UNSEALED אדום עם הסיבה.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S51 · Privacy & storage dashboard <span class="pill free">Free</span> · גיבוי <span class="pill pro">Pro</span></h4>
+<p class="job">מה מאוחסן, היכן, כמה, ואיך מוחקים או מייצאים.</p>
+<dl class="grid">
+<dt>elements</dt><dd>שורות: Chats (12.4 MB, encrypted), Documents (340 MB), Models (4.0 GB, not backed up), Memory (2 KB), Reports (0). פעולות: Export all (Pro, מוצפן במשפט‑סיסמה), Transfer to another device (Pro), Delete all chats, Delete everything. הסבר גיבוי: "Chats are included in your device backup, encrypted. Models are not."</dd>
+<dt>edge cases</dt><dd>מחיקת האפליקציה: אזהרה כאן ש"chats live only here"; שחזור מגיבוי במכשיר חדש: שיחות חוזרות, מודלים מוצעים להורדה בלחיצה; אותו Apple ID בכמה מכשירים: "There is no cloud sync" נאמר במפורש.</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S52 · Settings <span class="pill free">Free</span></h4>
+<p class="job">הגדרות מעטות, מנוסחות כפשרות ברורות, בלי מתג טלמטריה כי אין טלמטריה.</p>
+<dl class="grid">
+<dt>sections</dt><dd><strong>Appearance</strong>: System (ברירת מחדל: אוטומטי יום/לילה לפי המכשיר, כמו באפליקציות התנ"ך) / Dark / Light, גופן, גודל. <strong>Security</strong>: App lock, delay, hide in switcher, screenshot protection (Android: blocks your own screenshots too), panic wipe (after N failed attempts / from lock screen), auto‑delete chats (Off / 1 / 7 / 30 days), clipboard expiry. <strong>Chat</strong>: default persona, model, thinking visible, Enter vs Shift+Enter, keep screen awake, haptics, sounds (off). <strong>Performance</strong>: Eco / Balanced / Max בלבד גלויים; תחת "Advanced" מקופל: אורך תשובה/הקשר, תג האצה (CPU/GPU/NPU) עם override. משתמש רגיל לא רואה בקרות למומחים בלי לפתוח את הקבוצה. <strong>Language</strong>: UI language, answer language hint. <strong>Downloads</strong>: Wi‑Fi only, storage location (Android SAF). <strong>Accessibility</strong>: announce per sentence, dyslexia font, reduce motion follows system. <strong>About</strong>: version + hash, model licenses, open‑source licenses, privacy policy, "Report a problem" (יוצר קובץ אבחון בלי תוכן שיחות, המשתמש שולח במייל), "What's missing?" (מייל).</dd>
+</dl>
+</div>
+
+<div class="screen">
+<h4>S53 · App lock <span class="pill free">Free</span></h4>
+<p class="job">מסך נעילה שקט: החותם, "Locked", ביומטריה אוטומטית, קוד כגיבוי.</p>
+<p><strong>שם הביומטריה נקבע בזמן ריצה לפי המכשיר.</strong> "Face ID" לעולם לא מופיע על מכשיר שאין בו Face ID (כלל של Apple), ובאנדרואיד אין שמות מותג בכלל. אותו מתג, תווית שונה:</p>
+<table><thead><tr><th>פלטפורמה</th><th>מה כתוב על המתג ובמסך הנעילה</th><th>איך האפליקציה יודעת</th></tr></thead><tbody>
+<tr><td>iPhone / iPad עם Face ID</td><td class="ltr">Require Face ID</td><td class="ltr">LAContext.biometryType == .faceID (expo-local-authentication: supportedAuthenticationTypes)</td></tr>
+<tr><td>iPhone / iPad / Mac עם Touch ID</td><td class="ltr">Require Touch ID</td><td class="ltr">.touchID</td></tr>
+<tr><td>Apple Vision Pro</td><td class="ltr">Require Optic ID</td><td class="ltr">.opticID</td></tr>
+<tr><td>Android</td><td class="ltr">Require fingerprint or face</td><td>BiometricManager.canAuthenticate(BIOMETRIC_STRONG); חלון האימות עצמו הוא של המערכת (BiometricPrompt) ומציג את מה שיש במכשיר</td></tr>
+<tr><td>Windows</td><td class="ltr">Require Windows Hello</td><td class="ltr">UserConsentVerifier.CheckAvailabilityAsync</td></tr>
+<tr><td>ווב, או מכשיר בלי ביומטריה</td><td class="ltr">Require a passcode</td><td>בדפדפן אין ביומטריה לנעילה מקומית; קוד בלבד. גם בכל פלטפורמה אחרת הקוד הוא הגיבוי</td></tr>
+</tbody></table>
+<dl class="grid">
+<dt>edge cases</dt><dd>N ניסיונות כושלים עם מחיקת חירום פעילה: ספירה לאחור גלויה ("2 attempts left before wipe"); Shortcut שמופעל בנעילה: דורש אימות אלא אם הותר במפורש; ווידג'טים לא מציגים תוכן בנעילה.</dd>
+</dl>
+</div>
+
+<h3>8.7 תשלום</h3>
+
+<div class="screen">
+<h4>S60 · Pro paywall <span class="pill pro">Pro</span></h4>
+<p class="job">להסביר בשורה אחת למה אפשר לשלם פעם אחת, ולהראות שהחינמי לא נפגע.</p>
+<div class="wire">┌────────────────────────┐
+│ <u>Pay once. Own it.</u>      │
+│ No subscription. No    │
+│ account. Yours forever.│
+│                        │
+│ ┌────────────────────┐ │
+│ │ <b>PRO · $19.99</b>  once │ │
+│ │ ✓ Documents + OCR  │ │
+│ │ ✓ Unlimited personas│ │
+│ │ ✓ Voice conversation│ │
+│ │ ✓ Encrypted backup │ │
+│ │ ✓ Keyboard + actions│ │
+│ │ ✓ Advanced controls│ │
+│ └────────────────────┘ │
+│ [ Unlock Pro ]  (cta)  │
+│ Restore · Family Sharing (iOS) │
+│ <i>Everything runs on your device. Nothing changes about privacy.</i> │
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>כותרת, שורת עיקרון, כרטיס אחד עם מחיר מקומי (StoreKit/Play מספקים), רשימת ערך, כפתור, Restore, הערת Family Sharing (iOS: כן; Play: Family Library לא כולל IAP, נאמר כדי למנוע בקשות החזר), וכרטיס Work שני עם התג "For professionals". בטלפון Pro הוא הכרטיס הראשי ו‑Work העוגן מתחתיו: רוב מי שמגיע לפייוול בטלפון הוא צרכן, ו‑Work ב‑69.99 גם גורם ל‑19.99 להיראות זול (עיגון מחיר). בדסקטופ הסדר הפוך, Work ראשון, כי שם יושב הקהל המקצועי. המחיר כתוב "$19.99 · one-time purchase", לא "once".</dd>
+<dt>states</dt><dd>Pending (Ask to Buy); רכישה קיימת (מסך "You own Pro"); החזר/ביטול (revocationDate): הפיצ'רים ננעלים, הנתונים נשארים; אין חנות (מצב טיסה): "Purchases need a connection once" והפיצ'רים שכבר נרכשו עובדים מהמטמון החתום.</dd>
+<dt>edge cases</dt><dd>מחיר אזורי; קודי הצעה; שדרוג ל‑Work כ‑SKU נפרד ל‑Pro owners; מכשיר jailbroken: אין חסימה, אימות JWS מקומי.</dd>
+</dl>
+</div>
+
+<h3>8.8 מצבי מערכת חוצי‑מסכים</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>מצב</th><th>איך נראה</th><th>מה המשתמש יכול לעשות</th></tr></thead>
+<tbody>
+<tr><td>מקום מלא</td><td>באנר עליון ענבר עם משולש: "Storage is full. Chats are safe; downloads paused."</td><td>פתיחת מנהל האחסון</td></tr>
+<tr><td>המכשיר חם (serious)</td><td>שורה תחת החותם: "Slowing down to keep the phone cool"</td><td>להמשיך; לעבור ל‑Eco</td></tr>
+<tr><td>המכשיר חם (critical)</td><td>היצירה נעצרת עם "Paused for heat. Resume when cooler."</td><td>Resume</td></tr>
+<tr><td>סוללה נמוכה / Low Power</td><td>גיליון קטן: "Low battery. Switch to Instant?"</td><td>כן / לא עכשיו</td></tr>
+<tr><td>המערכת סגרה את האפליקציה (jetsam) באמצע תשובה</td><td>בפתיחה: התשובה החלקית שמורה + "The system stopped generation to free memory. Continue?"</td><td>Continue / Switch to a smaller model</td></tr>
+<tr><td>Apple FM לא זמין (כבוי / אזור / בהורדה / סירוב guardrail)</td><td>צ'יפ המודל מתחלף ל‑Instant עם הודעה בת שורה: "Apple's model declined; switching to Private model"</td><td>לבחור מודל</td></tr>
+<tr><td>עדכון אפליקציה שינה מנוע</td><td>מסך "Checking your models" עם רשימה; מודל לא תואם מסומן, לא נמחק</td><td>להוריד גרסה חדשה של המודל</td></tr>
+<tr><td>קריאת מוד UNSEALED (עתידי)</td><td>החותם סדוק אדום בכל מסך, בלי דרך להסתיר</td><td>לסגור את המצב</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>8.9 דלתות דסקטופ וווב</h3>
+<div class="cols2">
+<div>
+<h4>דסקטופ (Tauri, Windows + macOS)</h4>
+<ul>
+<li>פריסה: סרגל צד 280px (שיחות, פרויקטים, כספת, הוכחה, הגדרות) + עמודת הודעות 680px + פאנל מסמך/ציטוט אופציונלי מימין.</li>
+<li>drag‑and‑drop של קבצים ותיקיות לספרייה; פרויקטים (Work) עם vault ומסמכים מרובים.</li>
+<li>קיצורי מקלדת בלי אנימציה: New chat, Search, Stop, Toggle sidebar, Model picker. Command palette (Cmd/Ctrl+K).</li>
+<li>Tray/Menu bar: מצב החותם, שיחה מהירה, "Quit unloads model".</li>
+<li>הגדרות דסקטופ: מיקום מודלים ו‑Launch at login (off) גלויים; תחת "Advanced": backend (Auto/CUDA/Vulkan/Metal/CPU), VRAM offload, שרת מקומי (Pro).</li>
+<li>Paywall: Microsoft Store / Mac App Store, או מפתח רישיון חתום (Paddle) מאומת אופליין.</li>
+</ul>
+</div>
+<div>
+<h4>ווב (wllama)</h4>
+<ul>
+<li>שער כניסה: בדיקת WebGPU וזיכרון; דסקטופ עד Sharp, טלפון עד Instant, iPhone Safari: "Install the app for the full experience" עם קישור.</li>
+<li>הורדה ראשונה עם בקשת persist ובחירת גודל; "Keep on this device" מסביר את מגבלת 7 הימים של Safari.</li>
+<li>מבחן מצב טיסה עובד דרך Service Worker; הקריאה מציגה "This tab sent 0 B to us".</li>
+<li>ניסוח: "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors."</li>
+<li>אין Pro בווב; כפתור "Get the app" קבוע. Chrome Prompt API מאחורי מתג מסומן.</li>
+</ul>
+</div>
+</div>

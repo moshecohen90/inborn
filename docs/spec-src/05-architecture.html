@@ -1,0 +1,120 @@
+<h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית</h2>
+<p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
+
+<h3>5.1 נתיב הרשת: אפס באנדרואיד, אחד ומבוקר בשאר</h3>
+<p>העיקרון: האפליקציה עצמה לא פותחת socket בשום פלטפורמה שבה אפשר להימנע מזה. אין analytics, אין crash reporting מרחוק, אין remote config, אין push, אין SDK פרסום, אין בדיקת גרסה. כך מגיעים מודלים ורכישות בכל פלטפורמה:</p>
+<div class="tw compact">
+<table>
+<thead><tr><th>פלטפורמה</th><th>איך מגיעים מודלים</th><th>רכישות</th><th>מה האפליקציה עצמה פותחת</th><th>ההוכחה</th></tr></thead>
+<tbody>
+<tr><td><strong>Android</strong></td><td>Instant כחבילת fast‑follow של Play Asset Delivery (יורדת מיד אחרי ההתקנה, Play מטפל בסלולר ובהמשך); Fast/Sharp/Power כחבילות on‑demand (עד 1.5 GB לחבילה, 30 GB מצטבר, מודלים גדולים מפוצלים); כל GGUF אחר בייבוא דרך בורר הקבצים (SAF), שלא דורש הרשאה</td><td>Play Billing 9.x, בלי INTERNET (המניפסט של הספרייה מצהיר רק BILLING; אומת 2.9.2026)</td><td><strong>כלום.</strong> המניפסט הממוזג ללא <code>INTERNET</code>; ספריית asset‑delivery 2.3.0 מצהירה רק FOREGROUND_SERVICE (אומת)</td><td>דף ההרשאות ב‑Play בלי "full network access"; Exodus: 0 טראקרים, 0 הרשאות רשת</td></tr>
+<tr><td><strong>iOS 26+</strong></td><td>Instant בתוך ה‑bundle; מודלים נוספים כ‑Apple‑hosted asset packs (Background Assets): המערכת מורידה, עד 200 חבילות / 200 GB לאפליקציה</td><td class="ltr">StoreKit 2</td><td>כלום כברירת מחדל. חיפוש Hugging Face רק בפעולה יזומה של המשתמש, ואז huggingface.co מופיע ב‑App Privacy Report, בכוונה, אחרי שהאפליקציה אמרה זאת</td><td>App Privacy Report: 0 domains כברירת מחדל; תווית Data Not Collected</td></tr>
+<tr><td><strong>iOS 17–25</strong></td><td>Instant בתוך ה‑bundle; מודלים נוספים בהורדה יזומה מ‑<code>models.{{DOMAIN}}</code> (URLSession ברקע)</td><td class="ltr">StoreKit 2</td><td>רק את ההורדה שהמשתמש לחץ עליה</td><td>App Privacy Report מציג רק את models.{{DOMAIN}}, רק בזמן הורדה, ויומן הרשת באפליקציה מציג אותו דבר</td></tr>
+<tr><td><strong>Windows / macOS</strong></td><td>CDN (R2) + ייבוא / drag‑and‑drop</td><td>Store / Paddle</td><td>הורדה שהמשתמש לחץ עליה + הפעלת רישיון חד‑פעמית</td><td>"Put us behind Little Snitch / NetGuard"; hash מפורסם</td></tr>
+<tr><td><strong>Web</strong></td><td>CDN (R2) ל‑OPFS</td><td>אין Pro בווב</td><td>הורדת מודל</td><td>CSP, SRI, hash, Service Worker למבחן מצב טיסה</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>Allowlist קשיח בקוד</strong> בפלטפורמות שבהן יש socket בכלל: רק <code>models.{{DOMAIN}}</code> (ו‑Hugging Face כמראה שהמשתמש מאשר במפורש). כל כתובת אחרת נדחית בקומפילציה, לא בהגדרה.</li>
+<li><strong>ההורדה היא פעולה מפורשת</strong> עם מסך משלה, מונה בייטים וביטול. לעולם לא הורדה ברקע בלי לחיצה (חבילת ה‑fast‑follow באנדרואיד היא של Play, גלויה במסך ההורדות, ומוצגת למשתמש ב‑S02).</li>
+<li><strong>מד יציאה גלוי:</strong> מסך ההוכחה מציג <code>OUT 0 B</code> שנצבר מאז ההתקנה. הורדות נספרות ב‑<code>IN</code> בלבד. אם אי פעם יתווסף מסלול ענן אופציונלי, החותם נפתח (UNSEALED) והמשתמש רואה זאת.</li>
+<li><strong>שער CI:</strong> <code>aapt2 dump permissions</code> על כל APK/AAB לפני שחרור; כל SDK טרנזיטיבי (Firebase, RevenueCat, WebView SDKs) יכול להזריק INTERNET דרך מיזוג מניפסטים, ולכן <strong>אין אף SDK צד‑שלישי עם רשת</strong>. בניית CI שנכשלת אם ההרשאה מופיעה.</li>
+<li><strong>Sideload באנדרואיד</strong> (APK מחוץ ל‑Play) לא יכול להשתמש ב‑Asset Delivery: מקבל את Instant המובנה ואת נתיב הייבוא בלבד, ואומרים זאת.</li>
+<li><strong>מה מאבדים ומה מרוויחים:</strong> באנדרואיד אין חיפוש Hugging Face בתוך האפליקציה (המשתמש מוריד בדפדפן ופותח את הקובץ ב‑Autark, שרשום כ‑handler ל‑.gguf), ומודל חדש בקטלוג מגיע עם עדכון אפליקציה. בתמורה: הטענה היחידה בקטגוריה שכל אחד יכול לאמת בדף החנות.</li>
+</ul>
+
+<h3>5.2 ממשק ההסקה LocalLM</h3>
+<p>ממשק אחד, בצורת ספק של Vercel AI SDK, כדי ששכבת הצ'אט לא תדע על איזו פלטפורמה היא רצה:</p>
+<pre><code>interface LocalLM {
+  id: string;                       // "llama.rn" | "apple-fm" | "wllama" | "tauri" | "chrome-nano"
+  capabilities(): { vision: boolean; tools: boolean; embeddings: boolean; maxContext: number };
+  load(model: ModelRef, opts: { nCtx: number; gpuLayers?: number }): Promise&lt;Session&gt;;
+  unload(): Promise&lt;void&gt;;
+  generate(session, messages, opts: GenOpts, signal: AbortSignal): AsyncIterable&lt;Delta&gt;;
+  embed(texts: string[]): Promise&lt;Float32Array[]&gt;;
+  stats(): { tokPerSec: number; ttftMs: number; ctxUsed: number; memMB: number };
+}
+// Delta = { text?: string; reasoning?: string; toolCall?: ToolCall; done?: Usage }</code></pre>
+<ul>
+<li><strong>Streaming תמיד</strong> עם <code>AbortSignal</code>; כפתור Stop הוא ביטול אמיתי, לא הסתרה.</li>
+<li><strong>בחירת מנוע אוטומטית:</strong> Apple FM אם זמין ומודל הפתיחה הוא הבחירה, אחרת GGUF. המשתמש רואה "מודל" אחד עם תיאור, לא רשימת מנועים.</li>
+<li><strong>תבניות צ'אט</strong> מגיעות מקובץ ה‑GGUF (Jinja) ומאומתות בקטלוג; המערכת לא מנחשת תבנית.</li>
+<li><strong>Tool calling מקומי בלבד:</strong> כלים כמו "חפש במסמכים שלי", "חשב", "תאריך היום" רצים במכשיר. אין כלי רשת.</li>
+</ul>
+
+<h3>5.3 אחסון והצפנה</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>נתון</th><th>היכן</th><th>הגנה</th></tr></thead>
+<tbody>
+<tr><td>שיחות, הודעות, תיקיות, פרסונות, הגדרות</td><td>SQLite (expo-sqlite עם SQLCipher בנייטיב; SQLite ב‑Rust בדסקטופ; OPFS בווב)</td><td>מפתח DB אקראי של 256 ביט ב‑Secure Enclave / Android Keystore / Windows Hello‑DPAPI, נפתח בביומטריה כשמנעול האפליקציה פעיל. ב‑iOS גם <code>NSFileProtectionComplete</code>.</td></tr>
+<tr><td>מסמכים שיובאו, chunks, וקטורים</td><td>אותו DB (sqlite-vec) + עותק המסמך בתיקיית האפליקציה</td><td>מוצפן עם ה‑DB; ניתן למחיקה פר מסמך</td></tr>
+<tr><td>קבצי מודל (GGUF)</td><td>תיקיית אפליקציה ייעודית</td><td>לא מוצפנים (ציבוריים ממילא), <strong>מוחרגים מגיבוי</strong> (iOS <code>isExcludedFromBackup</code>, Android <code>fullBackupContent</code>/<code>dataExtractionRules</code>), נבדקים ב‑sha256 מול המניפסט</td></tr>
+<tr><td>שיחות אינקוגניטו</td><td>RAM בלבד</td><td>לא נכתבות לדיסק, נמחקות בסגירה או במעבר לרקע לפי הגדרה</td></tr>
+<tr><td>ייצוא</td><td>קובץ <code>.sealed</code> שהמשתמש בוחר לו יעד</td><td>libsodium secretstream + Argon2id על משפט‑סיסמה; מכיל שיחות, פרסונות והגדרות, בלי מודלים</td></tr>
+<tr><td>מפתח Pro</td><td>Keychain / Keystore / DPAPI</td><td>ראו §12.4 אימות אופליין</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>5.4 קטלוג מודלים ומנהל הורדות</h3>
+<ul>
+<li><strong>מניפסט חתום</strong> (Ed25519, המפתח הציבורי בתוך האפליקציה): לכל מודל שם, ספק, גודל, קוונטיזציה, sha256 לכל חלק, רישיון, RAM מינימלי, tier, יכולות (vision/tools), ותבנית צ'אט מאומתת. באנדרואיד המניפסט והחבילות מגיעים עם עדכון אפליקציה (אין נתיב רשת); ב‑iOS 26 יחד עם ה‑asset packs; ב‑iOS ישן, בדסקטופ ובווב המניפסט מתרענן רק כשהמשתמש פותח את הכספת ומבקש לרענן.</li>
+<li><strong>מסירה:</strong> Android דרך Play Asset Delivery (fast‑follow ל‑Instant, on‑demand לשאר; Play מטפל בהמשך, בסלולר ובאישור המשתמש); iOS 26+ דרך Apple‑hosted asset packs; iOS ישן, דסקטופ וווב מ‑Cloudflare R2 (אפס עלות egress; קטלוג של 60 GB עולה כדולר בחודש; 10,000 הורדות של 2.7 GB עולות 0 דולר לעומת אלפי דולרים ב‑CDN רגיל), Hugging Face כמראה גיבוי. אותו מניפסט חתום מתאר את כל הנתיבים.</li>
+<li><strong>הורדה מה‑CDN (היכן שיש):</strong> חלקים (split GGUF) במקביל, המשך אחרי ניתוק, אימות hash לכל חלק ובסוף, בדיקת מקום פנוי לפני התחלה (גודל × 1.1), המשך ברקע מוגבל (iOS URLSession background) עם התראה מקומית בסיום.</li>
+<li><strong>ייבוא ידני:</strong> כל קובץ GGUF מהמכשיר (Files / SAF / drag‑and‑drop בדסקטופ; האפליקציה רשומה כ‑handler ל‑.gguf כך שהורדה בדפדפן נפתחת ישר בה). זו גם הדרך של משתמש פרנואיד להימנע לחלוטין מרשת, וב‑Android זו הדרך לכל מודל שאינו בקטלוג.</li>
+<li><strong>ניהול מקום:</strong> מסך הכספת מציג מה תופס מה, ומאפשר מחיקה. מודל שלא נטען 60 יום מוצע למחיקה (לא נמחק לבד).</li>
+</ul>
+
+<h3>5.5 מסמכים ו‑RAG על המכשיר</h3>
+<div class="arch">import → extract → (OCR if scanned) → chunk (≈400 tok, overlap 60) → embed → sqlite-vec → retrieve top‑k (k=6, MMR) → cite → generate
+extract:   iOS PDFKit · Android PdfRenderer/pdfbox · Web/Desktop pdf.js · DOCX via mammoth · TXT/MD/CSV native
+OCR:       iOS Vision · Android ML Kit Text Recognition (on‑device bundle) · Desktop Tesseract (Rust) · Web Tesseract.js
+embed:     nomic-embed-text-v1.5 (274 MB) ברירת מחדל · Qwen3-Embedding-0.6B (395 MB) ל‑Pro רב‑לשוני · all-MiniLM (46 MB) לחלשים
+store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
+<ul>
+<li>כל תשובה שמבוססת על מסמך מציגה <strong>ציטוטים</strong> עם שם הקובץ ומספר עמוד; לחיצה פותחת את הקטע. בלי ציטוט, המודל אומר שלא מצא.</li>
+<li>מסמך גדול (200+ עמודים) מאונדקס בהדרגה עם מד התקדמות, ואפשר לשאול על מה שכבר אונדקס.</li>
+<li>שפות RTL ורב‑לשוניות: חיתוך לפי משפטים עם Intl.Segmenter, לא לפי תווים; embedding רב‑לשוני ב‑Pro.</li>
+</ul>
+
+<h3>5.6 קול</h3>
+<ul>
+<li><strong>תמלול (STT):</strong> iOS 26 SpeechAnalyzer (על המכשיר, מהיר), אחרת whisper.rn (whisper.cpp + Parakeet, Core ML). Android: whisper.rn או SpeechRecognizer אופליין. ווב: Transformers.js Whisper על WebGPU. הרשאת מיקרופון מתבקשת רק בלחיצה על המיקרופון.</li>
+<li><strong>הקראה (TTS):</strong> קולות מערכת (AVSpeechSynthesizer, Android TextToSpeech, Web Speech) בחינם ואופליין. קול נוירוני (Kokoro‑82M דרך ONNX) כשדרוג Pro בדסקטופ, לא בטלפון (כבד על CPU).</li>
+<li><strong>שיחת קול רציפה</strong> (hands‑free, VAD של Silero) היא פיצ'ר Pro שמובחן בשוק: Enclave היא היחידה שמציעה זאת מקומית.</li>
+</ul>
+
+<h3>5.7 מנגנוני הגנה על המכשיר</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>מנגנון</th><th>מימוש</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td>מנעול אפליקציה</td><td>Face ID / Touch ID / Android BiometricPrompt / Windows Hello, עם נפילה לקוד; חוסם גם את תצוגת ה‑app switcher (מסך הסתרה)</td><td>ברירת מחדל: כבוי, מוצע בסוף ה‑onboarding</td></tr>
+<tr><td>חסימת צילומי מסך</td><td>Android <code>FLAG_SECURE</code>; iOS אין API לחסימה, אבל מזהים <code>UIScreen.isCaptured</code> ומסתירים תוכן בזמן שיקוף/הקלטה</td><td>Pro; מסביר בכנות ש‑iOS לא מאפשר חסימה מלאה</td></tr>
+<tr><td>מחיקת חירום (Panic wipe)</td><td>מוחק DB + מפתח + מסמכים; מודלים לפי בחירה. אפשרות "מחק אחרי N ניסיונות כושלים" ואפשרות מחיקה מהירה מהמסך הנעול (Pro)</td><td>אישור כפול, ללא שחזור</td></tr>
+<tr><td>אינקוגניטו</td><td>שיחה ב‑RAM בלבד: לא נכתבת ל‑DB, לא לאינדקס החיפוש, לא לגיבוי/ייצוא, לא לווידג'טים ול‑Shortcuts; הזיכרון לא נקרא ולא נכתב; מסמך שצורף מאונדקס ב‑RAM בלבד; נמחקת בסגירה או במעבר לרקע לפי הגדרה; אייקון ייעודי</td><td>חינם</td></tr>
+<tr><td>ניקוי זיכרון</td><td>KV cache ו‑buffers מאופסים אחרי כל סשן אינקוגניטו; המודל נפרק אחרי 10 דקות חוסר פעילות (חוסך גם סוללה)</td><td></td></tr>
+<tr><td>ניתוח בדיקות</td><td>קוד פתוח לליבה (מנוע, אחסון, רשת) תחת רישיון מתירני, hash של ה‑bundle מפורסם לכל גרסה</td><td>ראו §16 החלטה על היקף הקוד הפתוח</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>5.8 ניהול זיכרון, חום וסוללה</h3>
+<ul>
+<li>לפני טעינה: קוראים זיכרון זמין (<code>os_proc_available_memory</code> ב‑iOS, <code>ActivityManager.MemoryInfo</code> ב‑Android) ומציגים רק מודלים שנכנסים (גודל × 1.4 + KV cache).</li>
+<li>Entitlement <code>increased-memory-limit</code> ב‑iOS, mmap של ה‑GGUF, KV cache מוגבל ל‑2–4K טוקנים בטלפון (הגדלה ב‑Pro על מכשירי 8 GB+).</li>
+<li>מצב חום <code>.serious</code> (iOS) או <code>getThermalHeadroom</code> (Android): מורידים GPU layers, מאטים, ומראים למשתמש "המכשיר חם, מאט כדי להגן עליו". במצב <code>.critical</code> עוצרים יצירה עם הודעה.</li>
+<li>סוללה מתחת ל‑10% ו‑Low Power Mode: מציעים לעבור למודל הקטן; לעולם לא מריצים הסקה ברקע.</li>
+<li>אפליקציה שנכנסת לרקע באמצע יצירה: משלימה עד 15 שניות (background task) ושומרת חלקית; בחזרה מציעה "המשך".</li>
+</ul>
+
+<h3>5.9 בנייה, שחרור ובדיקות</h3>
+<ul>
+<li>Monorepo (pnpm workspaces), TypeScript strict, Expo EAS למובייל, GitHub Actions למטריצת דסקטופ (Windows x64/ARM64, macOS arm64) ולווב.</li>
+<li>בדיקות: יחידה ל‑core (חיתוך, RAG, קטלוג, רישוי), בדיקות אינטגרציה לאדפטרים על מכשירים אמיתיים (iPhone 15 Pro, Pixel 8, Galaxy S23 כרצפה), בדיקת 16 KB pages באימולטור, בדיקת זיכרון ב‑Instruments, ו‑golden screenshots ל‑UI בשלושה גדלים ובשני ערכות נושא.</li>
+<li>אין טלמטריה, ולכן <strong>בדיקות לפני שחרור מחליפות ניטור אחרי שחרור</strong>: רשימת בדיקה של 40 פריטים (ראו §14) חובה לכל גרסה, ו‑crash logs מגיעים רק אם המשתמש בוחר לשלוח ידנית מהגדרות (מסך "דווח על בעיה" שמייצר קובץ שהמשתמש שולח בעצמו במייל).</li>
+</ul>
+<h3>5.10 ריבוי שפות מהיום הראשון</h3>
+<p>ההשקה באנגלית, אבל הקוד נבנה כך שהוספת שפה היא קובץ אחד ובלי שינוי קוד: כל מחרוזת בממשק חיה בקובץ locale אחד לכל שפה (JSON בפורמט ICU MessageFormat, עם ריבוי וסדר מילים לפי שפה), נטענת דרך i18next + react-i18next, ואותם קבצים משרתים את הטלפון, את הווב ואת הדסקטופ (Tauri מציג את הממשק מאותה בניית ווב). expo-localization קורא את שפת המכשיר; Intl מעצב תאריכים, מספרים ויחידות. RTL מהיום הראשון: מאפייני CSS לוגיים (start/end) ו‑I18nManager, בדיקה בעברית ובערבית בכל PR. CI מריץ פסאודו‑לוקליזציה (מחרוזות מוארכות ב‑40% עם תווים מיוחדים) כדי לתפוס חיתוך טקסט לפני שיש מתרגם. מחרוזות חדשות נאספות אוטומטית (extraction) ומועברות לצינור התרגום הקיים של אפליקציות התנ"ך (translation-expert + validateLangs), שכבר יודע לתרגם בהקשר ולאמת שלמות; גם מטא‑דאטה בחנויות וצילומי מסך לכל שפה עוברים באותו צינור. מה לא מתורגם: תשובות המודל, שתלויות במודל; לכן לכל מחסנית יש תג "שפות טובות" (§6), ובשפה שהמודל חלש בה האפליקציה אומרת זאת במקום להבטיח.</p>

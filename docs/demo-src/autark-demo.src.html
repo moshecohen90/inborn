@@ -1,0 +1,1069 @@
+<title>Autark Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0A0D11;--s1:#12161B;--s2:#181D23;--s3:#1E242B;--well:#0E1115;--bd:#1F262E;--bds:#2E3842;
+  --t1:#EEF2F5;--t2:#9AA6B2;--t3:#667380;
+  --acc:#F0B35B;--sealed:#3ECF8E;--dgr:#F25555;--cta:#E6EAEE;
+  --accfill:#F0B35B;--sealedfill:#3ECF8E;--hdrbg:rgba(10,13,17,.86);--meshdot:rgba(255,255,255,.035);
+  --glow:rgba(240,179,91,.38);--bloom:rgba(62,207,142,.28);
+  --sans:"IBM Plex Sans","IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --eo:cubic-bezier(.23,1,.32,1);--eio:cubic-bezier(.77,0,.175,1);
+  color-scheme:dark;
+}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--t1);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid rgba(240,179,91,.6);outline-offset:2px}
+::selection{background:rgba(240,179,91,.25)}
+
+/* ---------- page chrome (Hebrew, RTL) ---------- */
+.stage{min-height:100vh;display:grid;grid-template-columns:240px minmax(0,1fr) 300px;grid-template-rows:auto minmax(0,1fr);gap:0 24px;padding:0 24px 32px}
+.top{grid-column:1/-1;display:flex;align-items:center;gap:18px;padding:18px 0 14px;border-bottom:1px solid var(--bd);margin-bottom:22px;flex-wrap:wrap}
+.top .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px}
+.top .brand .m{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--t3);font-weight:500;direction:ltr}
+.top .ctrls{margin-inline-start:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:var(--s1)}
+.seg button{padding:7px 12px;font-size:13px;color:var(--t2);transition:background 120ms,color 120ms}
+.seg button.on{background:var(--s3);color:var(--t1)}
+.btn{padding:7px 12px;border:1px solid var(--bd);border-radius:10px;font-size:13px;color:var(--t2);background:var(--s1);transition:transform 120ms var(--eo),color 120ms}
+.btn:hover{color:var(--t1)}.btn:active{transform:scale(.97)}
+.top a{color:var(--acc);font-size:13px;text-decoration:none;border-bottom:1px solid rgba(240,179,91,.4)}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 7px;border-radius:4px;border:1px solid var(--bd);color:var(--t2);direction:ltr;vertical-align:middle}
+.pill.pro{color:var(--acc);border-color:rgba(240,179,91,.5);background:rgba(240,179,91,.1)}
+.pill.free{color:var(--sealed);border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.08)}
+.screens{align-self:start;position:sticky;top:20px}
+.screens .h{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--t3);margin:0 0 8px;direction:ltr;text-align:right}
+.screens button{display:flex;width:100%;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;color:var(--t2);font-size:14px;text-align:right;transition:background 120ms,color 120ms}
+.screens button .sn{font-family:var(--mono);font-size:10.5px;color:var(--t3);min-width:30px;direction:ltr;text-align:left}
+.screens button:hover{background:var(--s1);color:var(--t1)}
+.screens button.on{background:var(--s2);color:var(--t1)}
+.screens button.on .sn{color:var(--acc)}
+.notes{align-self:start;position:sticky;top:20px;border-inline-start:1px solid var(--bd);padding-inline-start:18px;font-size:13.5px;color:var(--t2)}
+.notes h3{margin:0 0 4px;font-size:15px;color:var(--t1)}
+.notes .sn{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.06em;direction:ltr;display:inline-block;margin-bottom:6px}
+.notes ul{margin:8px 0 0;padding-inline-start:18px}
+.notes li{margin:0 0 6px}
+.notes .k{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.06em;direction:ltr;display:block;margin-top:14px}
+@media (max-width:1180px){.stage{grid-template-columns:200px minmax(0,1fr)}.notes{display:none}}
+@media (max-width:820px){.stage{grid-template-columns:minmax(0,1fr);padding:0 12px 24px}.screens{position:static;display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}.screens .h{display:none}.screens button{width:auto;padding:6px 10px;border:1px solid var(--bd)}}
+
+/* ---------- device ---------- */
+.devwrap{display:flex;justify-content:center;align-items:flex-start;direction:ltr}
+.device{position:relative;background:var(--bg);border:1px solid var(--bds);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.03);overflow:hidden;font-family:var(--sans);color:var(--t1);text-align:left}
+.device.phone{width:390px;height:844px;border-radius:44px}
+.device.desktop{width:1120px;height:720px;border-radius:12px}
+.device.light{--bg:#F3F5F7;--s1:#FFFFFF;--s2:#EEF1F4;--s3:#E9EDF1;--well:#E9EDF1;--bd:#DDE3E9;--bds:#C5CDD5;--t1:#12161B;--t2:#4A5560;--t3:#6B7682;--acc:#7A4708;--sealed:#0B7A4C;--dgr:#C93A3A;--cta:#12161B;--hdrbg:rgba(243,245,247,.86);--meshdot:rgba(0,0,0,.06);color-scheme:light;border-color:#C5CDD5}
+@media (max-width:1180px){.device.desktop{width:100%;max-width:1120px}}
+.statusbar{height:50px;display:flex;align-items:center;justify-content:space-between;padding:8px 28px 0;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--t1)}
+.statusbar .r{display:flex;gap:6px;align-items:center}
+.statusbar svg{width:16px;height:16px;display:block}
+.device.desktop .statusbar{display:none}
+.titlebar{display:none;height:40px;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--bd);background:var(--s1);font-size:12.5px;color:var(--t2)}
+.titlebar .dots{display:flex;gap:6px}.titlebar .dots i{width:11px;height:11px;border-radius:50%;background:var(--bds);display:block}
+.titlebar .m{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--sealed);margin-left:auto}
+.device.desktop .titlebar{display:flex}
+.app{position:absolute;inset:50px 0 0 0;display:grid;grid-template-columns:minmax(0,1fr)}
+.device.desktop .app{inset:40px 0 0 0;grid-template-columns:280px minmax(0,1fr)}
+.sidebar{display:none;border-right:1px solid var(--bd);background:var(--s1);overflow:auto}
+.device.desktop .sidebar{display:block}
+.main{position:relative;min-width:0;overflow:hidden}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);opacity:1;transition:opacity 180ms var(--eo)}
+.scr[hidden]{display:none}
+.device.desktop .scr{max-width:100%}
+.device.desktop .scr .col{max-width:760px;width:100%;margin:0 auto}
+
+/* header */
+.hdr{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--bd);background:var(--hdrbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);flex:0 0 auto;z-index:2}
+.hdr .hb{padding:8px 8px;border-radius:10px;color:var(--t2);font-size:15px;display:flex;align-items:center;gap:6px;min-height:44px}
+.hdr .hb:hover{color:var(--t1)}
+.hdr .ctr{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--sealed);font-weight:500}
+.hdr .ttl{font-weight:600;font-size:16px}
+.device.desktop .hdr .only-phone{display:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--s1);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--t2);min-height:34px;transition:transform 120ms var(--eo)}
+.chip:active{transform:scale(.97)}
+.chip svg{width:12px;height:12px}
+.chip.pro{color:var(--acc)}
+
+/* seal */
+.seal{display:inline-block;width:28px;height:28px;position:relative;vertical-align:middle}
+.seal svg{width:100%;height:100%;display:block;overflow:visible}
+.seal .track{fill:none;stroke:var(--bds);stroke-width:3}
+.seal .arc{fill:none;stroke:var(--sealedfill);stroke-width:3;stroke-linecap:round;stroke-dasharray:106.8;stroke-dashoffset:0;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 260ms var(--eo),stroke 180ms}
+.seal .core{fill:var(--accfill);opacity:.9}
+.seal.big{width:72px;height:72px}.seal.huge{width:96px;height:96px}
+.seal.open .arc{stroke-dashoffset:22;stroke:var(--t3)}
+.seal.loading .arc{stroke:var(--accfill)}
+.app[data-seal="generating"] .seal:not(.static) .arc{animation:breathe 1.6s ease-in-out infinite;filter:drop-shadow(0 0 6px var(--glow))}
+.app[data-seal="generating"] .seal.huge .arc{filter:drop-shadow(0 0 14px var(--glow))}
+.seal.sealing .arc{animation:sealpop 420ms cubic-bezier(.2,1.4,.5,1) both}
+.seal.sealing::after{content:"";position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,var(--bloom),transparent 70%);animation:bloom 600ms var(--eo) both}
+.seal.listen .arc{stroke:var(--sealedfill);animation:listen 1.1s ease-in-out infinite}
+.seal.speak .arc{stroke:var(--accfill);animation:breathe .9s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes sealpop{0%{transform:rotate(-90deg) scale(.96)}60%{transform:rotate(-90deg) scale(1.03)}100%{transform:rotate(-90deg) scale(1)}}
+@keyframes bloom{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@keyframes listen{0%,100%{stroke-width:3}50%{stroke-width:4.5}}
+@media (prefers-reduced-motion:reduce){.seal .arc,.seal.sealing::after{animation:none!important;filter:none!important}}
+
+/* generic layout bits */
+.col{flex:1 1 auto;overflow:auto;padding:16px 16px 24px;display:flex;flex-direction:column;gap:14px}
+.col::-webkit-scrollbar{width:6px}.col::-webkit-scrollbar-thumb{background:var(--bds);border-radius:3px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}
+.mono b{color:var(--sealed);font-weight:500}.mono i{color:var(--acc);font-style:normal}.mono s{color:var(--dgr);text-decoration:none}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:14px 16px}
+.card.sel{border-color:rgba(62,207,142,.55)}
+.card h4{margin:0 0 4px;font-size:16px;font-weight:600}
+.card p{margin:0;color:var(--t2);font-size:14px}
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;border-radius:10px;background:var(--cta);color:var(--bg);font-weight:600;font-size:15px;transition:transform 120ms var(--eo),opacity 120ms}
+.cta:active{transform:scale(.98)}.cta[disabled]{opacity:.45;cursor:default}
+.ghost{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;border-radius:10px;border:1px solid var(--bd);color:var(--t2);font-weight:500;font-size:14px;transition:transform 120ms var(--eo),color 120ms}
+.ghost:hover{color:var(--t1)}.ghost:active{transform:scale(.98)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd);min-height:48px}
+.row:last-child{border-bottom:0}
+.row .l{display:flex;flex-direction:column;gap:2px;min-width:0}
+.row .l small{color:var(--t3);font-size:12.5px}
+.row .lbl{font-size:15px}
+.tog{width:46px;height:28px;border-radius:14px;background:var(--bds);position:relative;flex:0 0 auto;transition:background 180ms}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--t1);transition:transform 180ms var(--eo)}
+.tog.on{background:var(--sealedfill)}.tog.on::after{transform:translateX(18px)}
+.segm{display:inline-flex;border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:var(--well)}
+.segm button{padding:7px 10px;font-size:12.5px;color:var(--t2)}.segm button.on{background:var(--s3);color:var(--t1)}
+.disp{font-size:32px;line-height:1.18;font-weight:600;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.t22{font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0}
+.t2{color:var(--t2)}.t3{color:var(--t3)}
+.mesh{background-image:radial-gradient(var(--meshdot) 1px,transparent 1px);background-size:8px 8px}
+.toast{position:absolute;left:50%;bottom:110px;transform:translate(-50%,8px);background:var(--s3);border:1px solid var(--bds);color:var(--t1);padding:10px 14px;border-radius:10px;font-size:13.5px;opacity:0;transition:opacity 180ms var(--eo),transform 180ms var(--eo);pointer-events:none;z-index:9;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.device.desktop .toast{bottom:40px}
+.warnbar{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid rgba(240,179,91,.5);background:rgba(240,179,91,.1);border-radius:10px;font-size:13px;color:var(--t1)}
+.warnbar.ok{border-color:rgba(62,207,142,.5);background:rgba(62,207,142,.1)}
+.warnbar .m{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sealed)}
+.warnbar svg{width:16px;height:16px;flex:0 0 auto}
+.ic{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.press{transition:transform 120ms var(--eo)}.press:active{transform:scale(.97)}
+
+/* onboarding */
+.onb .col{padding:28px 24px 28px;justify-content:space-between}
+.onb .top-b{display:flex;flex-direction:column;gap:18px}
+.onb .disc{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--t3);text-align:center;margin:8px 0 0}
+.steps{display:flex;gap:6px;justify-content:center;margin-top:6px}
+.steps i{width:22px;height:3px;border-radius:2px;background:var(--bds);display:block}.steps i.on{background:var(--acc)}
+.runs{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--t2)}
+.runs svg{width:14px;height:14px}
+.optrow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.airbox{background:var(--well);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.airbox .q{background:var(--s1);border-radius:14px 14px 4px 14px;padding:9px 12px;align-self:flex-end;max-width:85%}
+.airbox .a{font-size:16px;line-height:1.55}
+.kv2{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;color:var(--t2)}
+.kv2 b{color:var(--t1);font-weight:600}
+.olist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.olist li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.olist .n{font-family:var(--mono);font-size:11px;color:var(--acc);padding-top:4px;min-width:16px}
+
+/* chat */
+.chatlist{flex:1 1 auto;overflow:auto;padding:14px 16px 8px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth}
+.chatlist::-webkit-scrollbar{width:6px}.chatlist::-webkit-scrollbar-thumb{background:var(--bds);border-radius:3px}
+.empty{margin:auto;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:24px 0}
+.empty .sug{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.empty .sug button{padding:8px 12px;border-radius:10px;background:var(--s2);border:1px solid var(--bd);color:var(--t2);font-size:13.5px;min-height:38px}
+.empty .sug button:hover{color:var(--t1)}
+.msg{max-width:100%;font-size:16px;line-height:1.56}
+.msg.me{align-self:flex-end;background:var(--s1);border-radius:14px 14px 4px 14px;padding:9px 13px;max-width:85%;white-space:pre-wrap}
+.msg.me[dir=rtl]{border-radius:14px 14px 14px 4px}
+.msg.ai{align-self:stretch;display:flex;flex-direction:column;gap:6px}
+.msg.ai .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);display:flex;gap:8px;flex-wrap:wrap}
+.msg.ai .lbl i{color:var(--acc);font-style:normal}
+.msg.ai .txt{white-space:pre-wrap;word-wrap:break-word}
+.msg.ai .txt code{font-family:var(--mono);font-size:.9em;background:var(--well);border:1px solid var(--bd);border-radius:4px;padding:0 4px}
+.msg.ai .txt[dir=rtl]{text-align:right}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--t1);vertical-align:-.15em;margin-left:1px;animation:blink 600ms steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.wait{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--t3);animation:breathe 1s ease-in-out infinite}
+.cite{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:4px;border:1px solid var(--bd);background:var(--s2);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--t2);margin:2px 4px 0 0;vertical-align:middle}
+.cite svg{width:11px;height:11px}
+.ledger{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.04em;display:flex;flex-direction:column;gap:4px}
+.ledger button{color:var(--t3);text-align:left;display:flex;gap:6px;align-items:center;min-height:28px}
+.ledger button:hover{color:var(--t2)}
+.ledger .body{display:none;border-top:1px solid var(--bd);padding-top:6px;line-height:1.7}
+.ledger.open .body{display:block}
+.acts{display:none;gap:4px;flex-wrap:wrap}
+.msg.ai.open .acts{display:flex}
+.msg.ai .txt{cursor:default}
+.acts button{padding:5px 9px;border-radius:8px;border:1px solid var(--bd);font-size:12.5px;color:var(--t2);min-height:32px}
+.acts button:hover{color:var(--t1)}
+.safety{border:1px solid rgba(62,207,142,.45);background:rgba(62,207,142,.07);border-radius:10px;padding:10px 12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.safety b{font-weight:600}
+.safety .r{display:flex;gap:8px}
+.safety .r button{padding:6px 10px;border-radius:8px;border:1px solid var(--bd);font-size:12.5px;color:var(--t1)}
+.composer{flex:0 0 auto;padding:6px 12px 14px;border-top:1px solid var(--bd);background:var(--bg)}
+.meter{height:2px;background:var(--bd);border-radius:1px;margin:0 4px 8px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--t3);transition:width 280ms var(--eo)}
+.meter i.hot{background:var(--accfill)}
+.cbox{display:flex;align-items:flex-end;gap:6px;background:var(--well);border:1px solid var(--bd);border-radius:10px;padding:5px 6px 5px 6px;transition:border-color 180ms}
+.cbox:focus-within{border-color:rgba(240,179,91,.6)}
+.cbox .ib{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--t2);flex:0 0 auto}
+.cbox .ib:hover{color:var(--t1)}
+.cbox textarea{flex:1 1 auto;resize:none;background:none;border:0;color:var(--t1);font:inherit;font-size:16px;line-height:1.4;padding:8px 4px;max-height:150px;min-height:36px;outline:none}
+.cbox textarea::placeholder{color:var(--t3)}
+.send{width:36px;height:36px;border-radius:50%;background:var(--cta);color:var(--bg);display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:transform 120ms var(--eo),background 120ms}
+.send:active{transform:scale(.94)}
+.send.stop{background:var(--s3);color:var(--t1);border:1px solid var(--bds)}
+.send svg{width:18px;height:18px}
+.attachbar{display:flex;gap:8px;padding:0 4px 8px;flex-wrap:wrap}
+.attach{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--s1);font-size:12.5px}
+.attach .m{font-family:var(--mono);font-size:10.5px;color:var(--t3)}
+.attach svg{width:14px;height:14px}
+.attach button{color:var(--t3);margin-left:4px}
+.incog .chatlist{background:var(--well)}
+.incog .hdr .ctr{color:var(--t2)}
+
+/* chats drawer */
+.search{display:flex;align-items:center;gap:8px;background:var(--well);border:1px solid var(--bd);border-radius:10px;padding:0 10px;min-height:40px;color:var(--t3);font-size:14px}
+.search svg{width:16px;height:16px}
+.search input{flex:1;background:none;border:0;color:var(--t1);font:inherit;outline:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grp{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin:8px 0 2px;display:flex;justify-content:space-between;align-items:center}
+.citem{display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:10px;min-height:48px;width:100%;text-align:left}
+.citem:hover{background:var(--s2)}
+.citem.on{background:var(--s2)}
+.citem .t{flex:1;min-width:0;display:flex;flex-direction:column}
+.citem .t span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14.5px}
+.citem .t small{color:var(--t3);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.citem svg{width:16px;height:16px;color:var(--t3);flex:0 0 auto}
+.citem .when{font-family:var(--mono);font-size:10.5px;color:var(--t3)}
+.dfoot{border-top:1px solid var(--bd);padding:10px 12px;display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
+.dfoot .r{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dfoot .lnk{display:flex;align-items:center;gap:6px;color:var(--t2);font-size:13.5px;padding:6px 8px;border-radius:8px;min-height:36px}
+.dfoot .lnk:hover{color:var(--t1)}
+.dfoot .lnk svg{width:15px;height:15px}
+
+/* vault */
+.cart{background:var(--s1);border:1px solid var(--bd);border-radius:20px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;position:relative}
+.cart.locked{opacity:.55}
+.cart .h{display:flex;align-items:center;gap:8px}
+.cart .dot{width:8px;height:8px;border-radius:2px;background:var(--bds);flex:0 0 auto}
+.cart .dot.on{background:var(--sealedfill)}.cart .dot.have{background:var(--t2)}.cart .dot.dl{background:var(--accfill)}
+.cart .nm{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--t1);font-weight:500}
+.cart .nm small{color:var(--t3);font-weight:400;letter-spacing:.04em;text-transform:none}
+.cart .spec{font-family:var(--mono);font-size:11px;color:var(--t2);letter-spacing:.03em;display:flex;gap:10px;flex-wrap:wrap}
+.cart .spec i{color:var(--acc);font-style:normal}
+.cart .bar{height:2px;background:var(--bd);border-radius:1px;overflow:hidden}
+.cart .bar i{display:block;height:100%;width:0;background:var(--accfill);transition:width 220ms linear}
+.cart .bar.full i{width:100%;background:var(--sealedfill)}
+.cart .ft{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cart .ft .st{font-family:var(--mono);font-size:10.5px;color:var(--t3);letter-spacing:.06em;text-transform:uppercase}
+.cart .ft .st b{color:var(--sealed);font-weight:500}
+.sbtn{padding:7px 12px;border-radius:8px;border:1px solid var(--bds);font-size:13px;color:var(--t1);min-height:34px;transition:transform 120ms var(--eo)}
+.sbtn:active{transform:scale(.97)}
+.sbtn.cta2{background:var(--cta);color:var(--bg);border-color:transparent;font-weight:600}
+.chipg{width:12px;height:12px;flex:0 0 auto}
+
+/* proof */
+.pf{background:var(--well);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--t2);letter-spacing:.02em}
+.pf b{color:var(--sealed);font-weight:500}.pf i{color:var(--acc);font-style:normal}.pf .k{color:var(--t3);display:inline-block;min-width:150px}
+.pf .big{font-size:26px;color:var(--t1);letter-spacing:-.01em;line-height:1.2}
+.log{font-family:var(--mono);font-size:11px;color:var(--t2);display:flex;flex-direction:column;gap:4px}
+.log div{display:grid;grid-template-columns:78px 1fr auto;gap:8px;padding:6px 0;border-bottom:1px solid var(--bd)}
+.log div:last-child{border-bottom:0}
+.log .z{color:var(--sealed)}.log .in{color:var(--acc)}
+
+/* personas / memory / actions */
+.pchips{display:flex;flex-wrap:wrap;gap:8px}
+.pchips button{padding:8px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--s1);font-size:13.5px;color:var(--t2);min-height:38px;display:inline-flex;gap:6px;align-items:center;transition:transform 120ms var(--eo),border-color 120ms,color 120ms}
+.pchips button.on{border-color:var(--accfill);color:var(--t1)}
+.pchips button:active{transform:scale(.97)}
+.pchips svg{width:14px;height:14px}
+.inp,.ta{width:100%;background:var(--well);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font:inherit;font-size:15px;padding:10px 12px;outline:none}
+.inp:focus,.ta:focus{border-color:rgba(240,179,91,.6)}
+.ta{resize:vertical;min-height:84px;line-height:1.45}
+
+/* advanced group */
+.adv{border-top:1px solid var(--bd);margin-top:4px}
+.adv summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;font-size:15px;color:var(--t2)}
+.adv summary::-webkit-details-marker{display:none}
+.adv summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--t3);border-bottom:1.6px solid var(--t3);transform:rotate(45deg);margin-right:6px;transition:transform 180ms var(--eo)}
+.adv[open] summary::after{transform:rotate(-135deg)}
+
+/* paywall */
+.pw{border:1px solid var(--bds);border-radius:20px;padding:16px;background:var(--s1);display:flex;flex-direction:column;gap:10px}
+.pw .pr{display:flex;align-items:baseline;gap:8px}
+.pw .pr b{font-family:var(--mono);font-size:24px;letter-spacing:-.01em;color:var(--t1);font-weight:500}
+.pw .pr small{color:var(--t3);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.pw ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.pw li{display:flex;gap:10px;align-items:center}
+.pw li svg{width:14px;height:14px;color:var(--sealed);flex:0 0 auto}
+
+/* voice */
+.voice{background:var(--well)}
+.voice .col{align-items:center;justify-content:center;text-align:center;gap:22px}
+.trans{display:flex;flex-direction:column;gap:8px;width:100%;max-width:320px;font-size:15px;color:var(--t2);min-height:120px}
+.trans .u{color:var(--t1);align-self:flex-end;background:var(--s1);border-radius:14px 14px 4px 14px;padding:8px 12px}
+.trans .a{align-self:flex-start;text-align:left}
+.vst{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--t3);text-transform:uppercase}
+
+/* sheet / overlays */
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--s3);border-top:1px solid var(--bds);border-radius:20px 20px 0 0;padding:14px 16px 24px;transform:translateY(100%);transition:transform 280ms cubic-bezier(.32,.72,0,1);z-index:8;display:flex;flex-direction:column;gap:10px;max-height:78%;overflow:auto}
+.sheet.on{transform:translateY(0)}
+.sheet .grab{width:36px;height:4px;border-radius:2px;background:var(--bds);margin:0 auto 4px}
+.sheet h4{margin:0;font-size:16px}
+.scrim{position:absolute;inset:0;background:rgba(10,13,17,.6);opacity:0;pointer-events:none;transition:opacity 180ms;z-index:7}
+.scrim.on{opacity:1;pointer-events:auto}
+.device.desktop .sheet{left:280px;max-width:560px;margin:0 auto;right:0;border-radius:20px 20px 0 0}
+.lock{position:absolute;inset:0;background:var(--bg);z-index:12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+.lock[hidden]{display:none}
+.lock .cnt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dgr);text-transform:uppercase}
+.sysbar{position:absolute;left:12px;right:12px;top:58px;z-index:6;opacity:0;transform:translateY(-6px);transition:opacity 180ms var(--eo),transform 180ms var(--eo);pointer-events:none}
+.sysbar.on{opacity:1;transform:none;pointer-events:auto}
+.main.has-sysbar .chatlist{padding-top:70px}
+.device.desktop .sysbar{left:292px;top:48px;max-width:560px}
+</style>
+
+<div class="stage" dir="rtl" lang="he">
+  <header class="top">
+    <div class="brand"><span class="seal static" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="17"/><circle class="arc" cx="20" cy="20" r="17"/><circle class="core" cx="20" cy="20" r="3"/></svg></span> Autark <span class="m">INTERACTIVE DEMO · SPEC v1.0</span></div>
+    <div class="ctrls">
+      <div class="seg" role="group" aria-label="מכשיר"><button data-device="phone" class="on">טלפון</button><button data-device="desktop">דסקטופ (Windows/macOS)</button></div>
+      <button class="btn" id="resetBtn">איפוס דמו</button>
+      <span class="pill pro" id="proBadge" hidden>PRO UNLOCKED</span>
+      <a href="{{SPEC_URL}}" id="specLink">מסמך האפיון</a>
+    </div>
+  </header>
+
+  <nav class="screens" aria-label="מסכים">
+    <p class="h">SCREENS</p>
+    <button data-go="onb"><span class="sn">S01–05</span>Onboarding</button>
+    <button data-go="chat"><span class="sn">S10–14</span>Chat</button>
+    <button data-go="chats"><span class="sn">S20–21</span>Chats drawer</button>
+    <button data-go="vault"><span class="sn">S30–32</span>Model vault</button>
+    <button data-go="docs"><span class="sn">S40</span>Documents</button>
+    <button data-go="personas"><span class="sn">S41</span>Personas</button>
+    <button data-go="memory"><span class="sn">S42</span>Memory</button>
+    <button data-go="actions"><span class="sn">S43</span>Quick actions</button>
+    <button data-go="voice"><span class="sn">S44</span>Voice mode</button>
+    <button data-go="proof"><span class="sn">S50</span>Proof</button>
+    <button data-go="settings"><span class="sn">S51–53</span>Settings</button>
+    <button data-go="paywall"><span class="sn">S60</span>Pro paywall</button>
+  </nav>
+
+  <div class="devwrap">
+    <div class="device phone" id="device" lang="en" dir="ltr">
+      <div class="statusbar"><span>9:41</span><span class="r"><svg id="sbPlane" viewBox="0 0 24 24" hidden><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 17h3v4H2zM7 13h3v8H7zM12 9h3v12h-3zM17 5h3v16h-3z"/></svg><svg viewBox="0 0 28 14" aria-hidden="true"><rect x="1" y="1" width="22" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="3" width="16" height="8" rx="1.5" fill="currentColor"/><rect x="24.5" y="5" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="titlebar"><span class="dots"><i></i><i></i><i></i></span><span>Autark</span><span class="m" id="tbState">SEALED · ON-DEVICE</span></div>
+      <div class="app" id="app" data-seal="sealed">
+        <aside class="sidebar" id="sidebar"></aside>
+        <div class="main" id="main">
+
+          <!-- S01–S05 Onboarding -->
+          <section class="scr onb mesh" data-scr="onb">
+            <div class="col" id="onbCol"></div>
+          </section>
+
+          <!-- S10–S14 Chat -->
+          <section class="scr" data-scr="chat" hidden>
+            <div class="hdr">
+              <button class="hb only-phone" data-go="chats" aria-label="Chats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Chats</button>
+              <div class="ctr"><span class="seal" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="17"/><circle class="arc" cx="20" cy="20" r="17"/><circle class="core" cx="20" cy="20" r="3"/></svg></span><span id="sealLbl">SEALED</span><span id="tps" style="color:var(--acc)"></span></div>
+              <button class="chip" id="modelChip" data-sheet="model" aria-label="Model"><svg viewBox="0 0 24 24" class="chipg" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="9.5" y="9.5" width="5" height="5" fill="currentColor"/><path d="M9 2v3M12 2v3M15 2v3M9 19v3M12 19v3M15 19v3M2 9h3M2 12h3M2 15h3M19 9h3M19 12h3M19 15h3" stroke="currentColor" stroke-width="1.4"/></svg><span id="modelChipTxt">FAST</span></button>
+            </div>
+            <div class="chatlist" id="chatlist"></div>
+            <div class="composer">
+              <div class="attachbar" id="attachbar"></div>
+              <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+              <div class="cbox">
+                <button class="ib" data-sheet="attach" aria-label="Attach"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+                <button class="ib" id="micBtn" aria-label="Voice"><svg class="ic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+                <textarea id="input" rows="1" placeholder="Message…" aria-label="Message"></textarea>
+                <button class="send" id="sendBtn" aria-label="Send"><svg viewBox="0 0 24 24" class="ic" style="stroke-width:2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+              </div>
+            </div>
+          </section>
+
+          <!-- S20 Chats drawer (phone) -->
+          <section class="scr" data-scr="chats" hidden>
+            <div class="hdr"><span class="ttl">Chats</span><button class="chip" data-go="chat">Close</button></div>
+            <div class="col" id="chatsCol"></div>
+            <div class="dfoot" id="chatsFoot"></div>
+          </section>
+
+          <!-- S30–S32 Vault -->
+          <section class="scr mesh" data-scr="vault" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Model vault</span><button class="chip" id="vaultStore" data-sheet="downloads">MODELS 1.8 GB</button></div>
+            <div class="col" id="vaultCol"></div>
+          </section>
+
+          <!-- S40 Documents -->
+          <section class="scr" data-scr="docs" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Documents</span><span class="pill pro">PRO</span></div>
+            <div class="col" id="docsCol"></div>
+          </section>
+
+          <!-- S41 Personas -->
+          <section class="scr" data-scr="personas" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Personas</span><button class="chip" data-go="memory">Memory</button></div>
+            <div class="col" id="persCol"></div>
+          </section>
+
+          <!-- S42 Memory -->
+          <section class="scr" data-scr="memory" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="personas" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Memory</span><span class="pill pro">PRO</span></div>
+            <div class="col" id="memCol"></div>
+          </section>
+
+          <!-- S43 Quick actions -->
+          <section class="scr" data-scr="actions" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Quick actions</span><span class="mono">SHARE SHEET</span></div>
+            <div class="col" id="actCol"></div>
+          </section>
+
+          <!-- S44 Voice -->
+          <section class="scr voice" data-scr="voice" hidden>
+            <div class="hdr"><span class="ttl">Voice</span><button class="chip" id="voiceEnd">End</button></div>
+            <div class="col" id="voiceCol"></div>
+          </section>
+
+          <!-- S50 Proof -->
+          <section class="scr mesh" data-scr="proof" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Proof</span><span class="mono"><b>SEALED</b></span></div>
+            <div class="col" id="proofCol"></div>
+          </section>
+
+          <!-- S51–S53 Settings -->
+          <section class="scr" data-scr="settings" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Settings</span><span class="mono">v1.0.3 (412)</span></div>
+            <div class="col" id="setCol"></div>
+          </section>
+
+          <!-- S60 Paywall -->
+          <section class="scr" data-scr="paywall" hidden>
+            <div class="hdr"><button class="hb only-phone" data-go="chat" aria-label="Back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button><span class="ttl">Autark Pro</span><span></span></div>
+            <div class="col" id="payCol"></div>
+          </section>
+
+          <div class="sysbar" id="sysbar"></div>
+          <div class="toast" id="toast"></div>
+        </div>
+        <div class="scrim" id="scrim"></div>
+        <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+        <div class="lock" id="lock" hidden></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes" id="notes"></aside>
+</div>
+
+<script>
+(() => {
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const fmtB = n => n >= 1e9 ? (n/1e9).toFixed(2)+' GB' : n >= 1e6 ? (n/1e6).toFixed(0)+' MB' : n+' B';
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const isRTL = s => /[֐-׿؀-ۿ]/.test(s);
+
+const ICON = {
+  chip: '<svg viewBox="0 0 24 24" class="chipg" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="9.5" y="9.5" width="5" height="5" fill="currentColor"/><path d="M9 2v3M12 2v3M15 2v3M9 19v3M12 19v3M15 19v3M2 9h3M2 12h3M2 15h3M19 9h3M19 12h3M19 15h3" stroke="currentColor" stroke-width="1.4"/></svg>',
+  doc: '<svg class="ic" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z M14 3v5h5 M10 13h6M10 17h6"/></svg>',
+  mask: '<svg class="ic" viewBox="0 0 24 24"><path d="M4 9c0-3 3-5 8-5s8 2 8 5v3c0 4-3 8-8 8s-8-4-8-8z M9 12h1M14 12h1M9 16c1 1 5 1 6 0"/></svg>',
+  pin: '<svg class="ic" viewBox="0 0 24 24"><path d="M14 3l7 7-4 1-3 6-3-3-6 6 6-6-3-3 6-3z"/></svg>',
+  folder: '<svg class="ic" viewBox="0 0 24 24"><path d="M3 6h6l2 2h10v11H3z"/></svg>',
+  search: '<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',
+  chat: '<svg class="ic" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  gear: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>',
+  ring: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>',
+  warn: '<svg viewBox="0 0 24 24" fill="none" stroke="#F0B35B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z M12 10v5M12 18v.5"/></svg>',
+  plane: '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>',
+  lock: '<svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+  face: '<svg class="ic" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 10v1M15 10v1M9.5 15c1 1 4 1 5 0M12 10v4h-1"/></svg>',
+};
+const sealSVG = cls => `<span class="seal ${cls||''}" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="17"/><circle class="arc" cx="20" cy="20" r="17"/><circle class="core" cx="20" cy="20" r="3"/></svg></span>`;
+
+/* ---------------- state ---------------- */
+const CATALOG = [
+  {id:'instant', name:'INSTANT', model:'Qwen3.5 0.8B', size:533e6, quant:'Q4_K_M', tps:'~52 tok/s', tier:'free', state:'have', fit:'fits', good:'Quick answers, rewrites, summaries. Lightest on battery.', energy:'LOW', note:'Built in. Ships inside the app.'},
+  {id:'fast', name:'FAST', model:'Qwen3.5 2B', size:1.28e9, quant:'Q4_K_M', tps:'~34 tok/s', tier:'free', state:'loaded', fit:'fits', good:'Everyday assistant: writing, questions, translation. Best balance on this phone.', energy:'MEDIUM', rec:true, note:'Picked for this phone automatically. Change it any time.'},
+  {id:'apple', name:'APPLE ON-DEVICE', model:'Foundation Models ~3B', size:0, quant:'built in', tps:'~30 tok/s', tier:'free', state:'have', fit:'fits', note:'iOS 26 · 4,096-token window · English, no Hebrew.'},
+  {id:'sharp', name:'SHARP', model:'Qwen3.5 4B', size:2.74e9, quant:'Q4_K_M', tps:'~14 tok/s', tier:'pro', state:'avail', fit:'fits', good:'Complex tasks: analysis, code, long documents, photos. Slower, runs warmer.', energy:'HIGH', note:'Sharper reasoning, vision. Delivered by the store.'},
+  {id:'phi', name:'SHARP · PHI', model:'Phi-4-mini 3.8B', size:2.49e9, quant:'Q4_K_M', tps:'~15 tok/s', tier:'pro', state:'avail', fit:'fits', note:'Math and code. MIT licence.'},
+  {id:'power', name:'POWER', model:'Qwen3.5 9B', size:5.5e9, quant:'Q4_K_M', tps:'—', tier:'pro', state:'avail', fit:'toobig', good:'Best quality, for desktop and the newest phones. Slowest.', energy:'HIGHEST', note:'Needs 12 GB. This phone has 8 GB.'},
+];
+const DEVICE = {name:'iPhone 16 Pro', chip:'A18 Pro', ram:'8 GB', os:'iOS', bio:'Face ID'}; /* label follows the device: Touch ID / Optic ID / "fingerprint or face" (Android) / Windows Hello / passcode */
+const initial = () => ({
+  screen:'onb', step:0, device:'phone', pro:false, incognito:false, airplane:false,
+  model:'fast', loaded:true, seal:'sealed', generating:false, abort:null,
+  outBytes:0, inBytes:1.28e9, ctx:0, ctxMax:4096, attach:[], msgs:[],
+  lock:false, lockDelay:'1 min', hideSwitcher:true, shotBlock:false, autoDel:'Off', awake:false, haptics:true, profile:'Balanced', theme:'System', wipe:false,
+  docs:[{id:'lease', name:'Lease_2026.pdf', pages:14, size:'1.2 MB', state:'indexed', lang:'EN'},{id:'notes', name:'Therapy_notes_Aug.md', pages:3, size:'18 KB', state:'indexed', lang:'EN'}],
+  chats:[
+    {id:'c1', title:'Lease review', when:'2h', pinned:true, folder:null},
+    {id:'c2', title:'Trip to Rome, day plan', when:'Sun', pinned:false, folder:null},
+    {id:'c3', title:'Client A · contract summary', when:'Mon', pinned:false, folder:'Work'},
+    {id:'c4', title:'Client B · intake', when:'Aug 28', pinned:false, folder:'Work'},
+    {id:'c5', title:'תרגום מכתב לסבתא', when:'Aug 27', pinned:false, folder:null},
+  ],
+  catalog: CATALOG.map(c => ({...c})),
+  log:[{when:'Aug 14', what:'qwen3.5-2b-q4_k_m.gguf · via Apple-hosted asset pack', bytes:'IN 1.28 GB', z:false},{when:'Since',what:'Any other connection', bytes:'0', z:true}],
+  reports:0,
+  persona:'assistant', memOn:true,
+  personas:[{id:'assistant',name:'Assistant',icon:'ring',builtin:true,model:'fast',style:'Balanced',tools:['calc','date']},{id:'writer',name:'Writer',icon:'doc',builtin:true,model:'fast',style:'Concise',tools:[]},{id:'tutor',name:'Tutor',icon:'chip',builtin:true,model:'sharp',style:'Step by step',tools:['calc']},{id:'translator',name:'Translator',icon:'chat',builtin:true,model:'fast',style:'Literal',tools:[]},{id:'p1',name:'Contract reviewer',icon:'folder',builtin:false,model:'sharp',style:'Formal',tools:['docs'],sensitive:true,prompt:'You review contracts for a small law office. Cite the page for every claim. Never guess a number.'}],
+  facts:[{t:'Lives in Tel Aviv',src:'Trip to Rome, day plan',when:'Aug 30'},{t:'Prefers concise answers',src:'Lease review',when:'Aug 14'},{t:'Works as a lawyer; clients A and B',src:'Client A · contract summary',when:'Aug 12'}],
+  actions:[{id:'a1',name:'Client-safe rewrite',prompt:'Rewrite so no client names or amounts remain.'}], actResult:null, actRunning:false,
+});
+let S = initial();
+let onbSeal = 'open';
+
+/* ---------------- helpers ---------------- */
+const app = $('#app'), dev = $('#device');
+function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),2200); }
+function setSeal(state){ S.seal=state; app.dataset.seal=state; const l=$('#sealLbl'); if(l){ l.textContent = state==='generating'?'THINKING':'SEALED'; } $('#tbState').textContent = state==='generating'?'THINKING · ON-DEVICE':'SEALED · ON-DEVICE'; }
+function go(scr){
+  if(scr==='docs' && !S.pro){ return go('paywall'); }
+  if(scr==='voice' && !S.pro){ return go('paywall'); }
+  if(scr==='memory' && !S.pro){ return go('paywall'); }
+  S.screen=scr;
+  $$('.scr', $('#main')).forEach(el=>{ el.hidden = el.dataset.scr!==scr; });
+  $$('.screens button').forEach(b=>b.classList.toggle('on', b.dataset.go===scr));
+  if(S.device==='desktop' && scr==='chats'){ S.screen='chat'; $$('.scr',$('#main')).forEach(el=>el.hidden=el.dataset.scr!=='chat'); }
+  renderScreen(scr); renderNotes(scr); closeSheet();
+}
+function renderScreen(scr){
+  ({onb:renderOnb, chat:renderChat, chats:renderChats, vault:renderVault, docs:renderDocs, voice:renderVoice, proof:renderProof, settings:renderSettings, paywall:renderPay, personas:renderPersonas, memory:renderMemory, actions:renderActions})[scr]?.();
+  if(S.device==='desktop') renderSidebar();
+}
+function meter(){ const f=$('#meterFill'); const p=Math.min(1,S.ctx/S.ctxMax); f.style.width=(p*100)+'%'; f.classList.toggle('hot',p>.8); }
+function press(el){ el.classList.add('press'); }
+
+/* ---------------- onboarding ---------------- */
+function stepsHTML(n){ return '<div class="steps">'+[0,1,2,3,4].map(i=>`<i class="${i<=n?'on':''}"></i>`).join('')+'</div>'; }
+function renderOnb(){
+  const c=$('#onbCol'); const s=S.step;
+  if(s===0){
+    c.innerHTML=`<div class="top-b" style="align-items:center;text-align:center;margin-top:36px">
+      ${sealSVG('big open')}
+      <p class="disp" style="margin-top:8px">Nothing leaves<br>this phone.</p>
+      <p class="t2" style="margin:0;font-size:16px;max-width:280px">AI that runs on your device. No account. No cloud. No trace.</p>
+      <div class="runs">${ICON.chip}<span>RUNS ON: ${DEVICE.chip} · ${DEVICE.ram}</span></div>
+    </div>
+    <div><button class="cta" data-onb="1">Continue</button><p class="disc">THIS IS AI. IT CAN BE WRONG. CHECK IMPORTANT FACTS.</p>${stepsHTML(0)}</div>`;
+  } else if(s===1){
+    c.innerHTML=`<div class="top-b">
+      <p class="t22">Your model is ready.</p>
+      <div class="card sel"><div class="optrow"><h4>Instant <span class="pill free">BUILT IN</span></h4><span class="mono">READY</span></div><p>Quick answers, right now. Nothing to download.</p></div>
+      <div class="card" id="fastCard"><div class="optrow"><h4>Fast <span class="pill free">RECOMMENDED</span></h4><span class="mono">1.3 GB</span></div><p>Smarter answers. Arrives once, over Wi‑Fi, in the background. Never uploads anything.</p></div>
+      <div class="card"><div class="optrow"><h4>Apple on-device</h4><span class="mono">0 MB</span></div><p>Built into iOS 26. English only. Used for your very first reply while Instant gets ready.</p></div>
+    </div>
+    <div><button class="cta" data-onb="2">Start chatting</button><button data-onb="2" data-instantonly="1" style="display:block;margin:10px auto 0;color:var(--t3);font-size:13px;min-height:32px">Stay on Instant only</button>${stepsHTML(1)}</div>`;
+  } else if(s===2){
+    c.innerHTML=`<div class="top-b">
+      <p class="t22">Prove it to yourself.</p>
+      <ol class="olist">
+        <li><span class="n">1</span><div style="flex:1;display:flex;justify-content:space-between;align-items:center;gap:10px"><span>Turn on Airplane Mode.</span><button class="tog ${S.airplane?'on':''}" data-tog="air" aria-label="Airplane mode"></button></div></li>
+        <li><span class="n">2</span><span>Ask anything.</span></li>
+      </ol>
+      <div class="airbox">
+        <div class="q">What's 17 × 23?</div>
+        <div class="mono" id="airLbl">INSTANT · ON-DEVICE</div>
+        <div class="a" id="airA"><button class="cta" id="airAsk" style="min-height:44px">Ask</button></div>
+        <div class="mono" style="margin-top:4px">OUT <b id="airOut">0 B</b> · IN <span id="airIn">0 B</span> · CONNECTIONS 0</div>
+      </div>
+      <p class="t3" style="font-size:13px;margin:0">${S.airplane?'Airplane Mode is on. The counter cannot change even if we wanted it to.':'Airplane Mode is off. The counter still shows 0 B: the app has no path to the network.'}</p>
+    </div>
+    <div><div id="sawWrap" hidden><button class="cta" data-onb="3" id="sawBtn">I saw it</button></div><button data-onb="3" id="skipBtn" style="display:block;margin:10px auto 0;color:var(--t3);font-size:13px;min-height:32px">Skip the test</button>${stepsHTML(2)}</div>`;
+  } else if(s===3){
+    c.innerHTML=`<div class="top-b" style="align-items:center;text-align:center;margin-top:60px">
+      ${sealSVG('big open')}
+      <p class="mono" id="sealedLbl" style="color:var(--t3)">SEALING…</p>
+      <p class="t22" style="margin-top:8px">From here on, every answer is made on this phone.</p>
+    </div>
+    <div><button class="cta" data-onb="4" id="startBtn" disabled>Start</button>${stepsHTML(3)}</div>`;
+    const seal=$('.seal', c);
+    setTimeout(()=>{ seal.classList.remove('open'); seal.classList.add('sealing'); try{ navigator.vibrate && navigator.vibrate(18);}catch(e){} setTimeout(()=>{ $('#sealedLbl').innerHTML='<b>SEALED · ON-DEVICE</b>'; $('#startBtn').disabled=false; },420); }, 700);
+  } else if(s===4){
+    c.innerHTML=`<div class="top-b">
+      <p class="t22">Lock it?</p>
+      <p class="t2" style="margin:0">${DEVICE.bio} opens Autark. Also hides chats in the app switcher.</p>
+      <div class="card"><div class="row"><div class="l"><span class="lbl">Require ${DEVICE.bio}</span><small>Or your passcode</small></div><button class="tog ${S.lock?'on':''}" data-tog="lock" aria-label="Require ${DEVICE.bio}"></button></div>
+      ${S.lock?`<div class="row"><div class="l"><span class="lbl">Lock after</span></div><div class="segm">${['Immediately','1 min','5 min'].map(v=>`<button data-delay="${v}" class="${S.lockDelay===v?'on':''}">${v}</button>`).join('')}</div></div>`:''}</div>
+    </div>
+    <div><button class="cta" data-onb="done">${S.lock?'Turn on and start':'Start'}</button>${S.lock?'<button data-onb="done" data-nolock="1" style="display:block;margin:10px auto 0;color:var(--t3);font-size:13px;min-height:32px">Not now</button>':''}${stepsHTML(4)}</div>`;
+  }
+}
+async function airAsk(){
+  const a=$('#airA'); a.innerHTML='<span class="wait"></span>'; setSeal('generating');
+  await sleep(420);
+  a.innerHTML='<span id="airTxt"></span><span class="caret"></span>';
+  const t=$('#airTxt'); for(const w of ['391','.',' 17 × 23 = 17 × 20 + 17 × 3 = 340 + 51.']){ t.textContent+=w; await sleep(w.length>2?260:120); }
+  $('.caret',a)?.remove(); setSeal('sealed'); const w=$('#sawWrap'); if(w) w.hidden=false; const sk=$('#skipBtn'); if(sk) sk.hidden=true;
+}
+
+/* ---------------- chat ---------------- */
+const ANSWERS = {
+  generic: [
+    "Here's a quick take. The key question is what you actually need from the result: a decision, a draft, or a check. Tell me which and I'll go one level deeper.\n\nEverything I write stays on this phone. The ledger under this message shows exactly what ran.",
+    "Short version: yes, with one caveat. The caveat is that I'm a 2B model running on your phone, so for anything with numbers or law I'll show my working and you should check it.\n\nWant the long version?",
+  ],
+  draft: "Subject: Quick follow-up\n\nHi Dana,\n\nThanks for yesterday. Two things on my side: I'll send the revised figures by Thursday, and I'd like 20 minutes next week to walk through the open items.\n\nDoes Tuesday at 10:00 work?\n\nBest,\nMoshe",
+  translate: "בטח. הנה התרגום:\n\n\"אנחנו לא שומרים את הנתונים שלך. הם פיזית לא יכולים להגיע אלינו.\"\n\nהערה: תרגמתי \"physically\" כ\"פיזית\", אפשר גם \"מבחינה טכנית\" אם הטון פחות פורמלי.",
+  rome: "Day plan, on foot, no bookings needed:\n\n- 08:30 Coffee near Campo de' Fiori, market opens.\n- 09:30 Pantheon (free, arrive before the queue).\n- 11:00 Piazza Navona, then Via dei Coronari for lunch.\n- 14:00 Trastevere by the Sisto bridge; Santa Maria in Trastevere.\n- 17:30 Gianicolo hill for the view.\n- 20:00 Dinner in Testaccio.\n\nAbout 9 km total. Say the word and I'll shorten it.",
+  doc: "From Lease_2026.pdf, the points that matter:\n\n1. Term: 24 months from 1 Oct 2026, with one 12-month renewal at the tenant's option [Lease_2026.pdf · p.2].\n2. Rent: 7,400 per month, indexed to CPI once a year, capped at 3% [p.4].\n3. Exit: 90 days' written notice after month 12; earlier exit costs two months' rent [p.7].\n4. Repairs: landlord handles structure and plumbing; tenant handles everything under 1,200 per incident [p.9].\n\nOne thing I'd flag: clause 14.2 lets the landlord enter with 24 hours' notice, which is shorter than usual [p.11].",
+  crisis: "I'm really glad you told me. I'm an AI on your phone, and I can stay with you here, but a person can help in a way I can't. If you're in immediate danger, please call your local emergency number now.\n\nIf you'd like, tell me what tonight has been like, and we'll take it one step at a time.",
+};
+function pickAnswer(p){
+  const q=p.toLowerCase();
+  if(/(kill myself|suicide|end it all|don't want to live|לא רוצה לחיות)/.test(q)) return {t:ANSWERS.crisis, crisis:true};
+  if(/17\s*[x×*]\s*23/.test(q)) return {t:"391.\n\n17 × 23 = 17 × 20 + 17 × 3 = 340 + 51."};
+  if(/translat|תרגם/.test(q)) return {t:ANSWERS.translate, rtl:true};
+  if(/draft|email|message to/.test(q)) return {t:ANSWERS.draft};
+  if(/rome|trip|itinerary/.test(q)) return {t:ANSWERS.rome};
+  if(/summar|lease|contract|document|pdf/.test(q) && (S.attach.length || S.pro)) return {t:ANSWERS.doc, cites:true};
+  if(/summar|lease|contract|document|pdf/.test(q)) return {t:"Attach the file first (the + button) and I'll summarise it here, on the phone. Free plan: one file up to 20 pages per chat.\n\nWith Pro, a whole document library stays indexed on the device and every answer cites the page."};
+  return {t:ANSWERS.generic[S.msgs.length % 2]};
+}
+function renderChat(){
+  const list=$('#chatlist'); const sec=$('[data-scr=chat]');
+  sec.classList.toggle('incog', S.incognito);
+  $('#modelChipTxt').textContent = S.catalog.find(c=>c.id===S.model).name.split(' · ')[0];
+  if(!S.msgs.length){
+    list.innerHTML=`<div class="empty">${sealSVG('big')}<div class="mono">${S.incognito?'INCOGNITO · NOT SAVED':(personaName().toUpperCase()+' · '+S.catalog.find(c=>c.id===S.model).name.split(' · ')[0]+' · ON-DEVICE')}</div><p class="t22" style="margin-top:4px">${S.incognito?'Not saved. Gone when you close it.':'Nothing leaves this phone.'}</p>
+      <div class="sug"><button data-sug="Summarize the lease I attached">Summarize a document</button><button data-sug="Translate to Hebrew: We don't store your data. It physically can't reach us.">Translate to Hebrew</button><button data-sug="Draft a short follow-up message to Dana about Thursday's figures">Draft a message</button></div></div>`;
+  } else {
+    list.innerHTML = S.msgs.map(m => m.role==='me'
+      ? `<div class="msg me" ${isRTL(m.text)?'dir="rtl"':''}>${esc(m.text)}</div>`
+      : `<div class="msg ai" data-id="${m.id}">${m.crisis?`<div class="safety"><b>If you're in crisis, you can talk to a person now.</b><span>Israel: ERAN 1201 · US: 988 · UK: 116 123</span><div class="r"><button>Call 1201</button><button data-dismiss="${m.id}">Dismiss</button></div></div>`:''}
+          <div class="lbl"><span>${m.model.split(' ')[0]}</span><span>·</span><span>ON-DEVICE</span>${m.stopped?'<span>· STOPPED</span>':''}</div>
+          <div class="txt" ${m.rtl?'dir="rtl"':''}>${renderTxt(m)}</div>
+          ${m.done?`<div class="ledger" data-ledger="${m.id}"><button><svg class="ic" style="width:12px;height:12px" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>Ledger</button><div class="body">MODEL ${m.modelFull} · ${m.quant} · ${m.tps||''} TOK/S<br>CONTEXT ${m.ctx} / ${S.ctxMax} tok · ${m.msTok} ms/token · ${m.secs} s<br>PROMPT ${m.ptoks} tok · OUTPUT ${m.otoks} tok · ENERGY ≈ ${m.energy}%</div></div>
+          <div class="acts"><button data-act="copy">Copy</button><button data-act="regen" data-id="${m.id}">Regenerate</button><button data-act="read">Read aloud</button><button data-act="report" data-id="${m.id}">Report</button></div>`:''}
+        </div>`).join('');
+  }
+  list.scrollTop = list.scrollHeight;
+  $('#attachbar').innerHTML = S.attach.map(a=>`<span class="attach">${ICON.doc}<span>${a.name}</span><span class="m">${a.pages} p · ${a.state}</span><button data-detach="${a.name}" aria-label="Remove">×</button></span>`).join('');
+  meter();
+  const sb=$('#sendBtn'); sb.classList.toggle('stop', S.generating); sb.innerHTML = S.generating ? '<svg viewBox="0 0 24 24" width="14" height="14"><rect x="5" y="5" width="14" height="14" rx="2" fill="currentColor"/></svg>' : '<svg viewBox="0 0 24 24" class="ic" style="stroke-width:2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  sb.setAttribute('aria-label', S.generating?'Stop':'Send');
+}
+function renderTxt(m){
+  let t = esc(m.text);
+  if(m.cites) t = t.replace(/\s*\[(Lease_2026\.pdf · )?p\.(\d+)\](\.?)/g, (_,a,p,dot)=>`${dot?'.':''} <span class="cite">${ICON.doc.replace('class="ic"','')}Lease_2026.pdf · p.${p}</span>`);
+  t = t.replace(/`([^`]+)`/g,'<code>$1</code>');
+  if(m.streaming) t += m.text.length ? '<span class="caret"></span>' : '<span class="wait"></span>';
+  return t;
+}
+async function send(text){
+  text=(text||'').trim(); if(!text) return;
+  if(S.generating){ return; }
+  S.msgs.push({role:'me', text});
+  S.ctx += Math.round(text.length/3.6);
+  const ans = pickAnswer(text);
+  const cat = S.catalog.find(c=>c.id===S.model);
+  const m = {id:'m'+Date.now(), role:'ai', text:'', model:cat.name.split(' · ')[0]+(S.model==='apple'?'':' '+cat.model.split(' ').pop()), modelFull:cat.model.toUpperCase(), quant:cat.quant, streaming:true, cites:!!ans.cites, rtl:!!ans.rtl, crisis:!!ans.crisis};
+  S.msgs.push(m); S.generating=true; setSeal('generating'); renderChat();
+  const ac = new AbortController(); S.abort=ac;
+  const t0=performance.now(); await sleep(380);
+  const toks = ans.t.split(/(?<=\s)/); const base = S.model==='sharp'||S.model==='phi'? 70 : S.model==='instant'? 19 : 29;
+  let n=0;
+  for(const w of toks){
+    if(ac.signal.aborted){ m.stopped=true; break; }
+    m.text += w; n++;
+    const el = $(`.msg.ai[data-id="${m.id}"] .txt`); if(el){ el.innerHTML = renderTxt(m); const list=$('#chatlist'); if(list.scrollHeight-list.scrollTop-list.clientHeight<100) list.scrollTop=list.scrollHeight; }
+    const tps = Math.round(1000/base + (Math.random()*6-3)); $('#tps').textContent = (S.airplane?'':'')+tps;
+    await sleep(base + Math.random()*22);
+  }
+  const secs=((performance.now()-t0)/1000).toFixed(1);
+  Object.assign(m,{streaming:false, done:true, tps:Math.round(n/Math.max(.5,secs-0.38)), ctx:S.ctx+n, msTok:base, secs, ptoks:Math.round(text.length/3.6), otoks:n, energy:(n/1000*0.3).toFixed(2)});
+  S.ctx += n; S.generating=false; S.abort=null; $('#tps').textContent=''; setSeal('sealed'); renderChat();
+  if(S.ctx > S.ctxMax*0.8) sysbar(`This chat is getting long (${Math.round(S.ctx/S.ctxMax*100)}% of context). <button class="sbtn" data-sys="summ">Summarize and continue</button>`);
+}
+function stop(){ if(S.abort) S.abort.abort(); }
+function sysbar(html, ok){ const b=$('#sysbar'); b.innerHTML=`<div class="warnbar ${ok?'ok':''}">${ok?ICON.plane:ICON.warn}<span style="flex:1">${html}</span><button data-sys="x" aria-label="Dismiss" style="color:var(--t3)">×</button></div>`; b.classList.add('on'); $('#main').classList.add('has-sysbar'); const l=$('#chatlist'); if(l) l.scrollTop=0; }
+
+/* ---------------- chats drawer ---------------- */
+function chatsHTML(){
+  const grp=(t,items)=> items.length?`<div class="grp"><span>${t}</span></div>`+items.map(c=>`<button class="citem ${c.id==='c1'?'on':''}" data-open="${c.id}">${ICON.chat}<span class="t"><span ${isRTL(c.title)?'dir="rtl" style="text-align:right"':''}>${esc(c.title)}</span>${S.autoDel!=='Off'?`<small>Deletes in ${S.autoDel==='1 day'?'23 h':S.autoDel==='7 days'?'3 days':'26 days'}</small>`:''}</span><span class="when">${c.when}</span></button>`).join(''):'';
+  const pinned=S.chats.filter(c=>c.pinned), work=S.chats.filter(c=>c.folder==='Work'), recent=S.chats.filter(c=>!c.pinned&&!c.folder);
+  return `<div class="search">${ICON.search}<input placeholder="Search chats and messages" aria-label="Search"></div>
+    <div class="two"><button class="ghost" data-sheet="newchat"><svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 5v14M5 12h14"/></svg>New chat</button><button class="ghost" data-new="incog">${ICON.mask.replace('class="ic"','class="ic" style="width:16px;height:16px"')}Incognito</button></div>
+    ${grp('Pinned',pinned)}
+    <div class="grp"><span>Work ${S.pro?'':'<span class="pill pro" style="margin-left:6px">PRO FOLDER</span>'}</span>${S.pro?'':''}</div>
+    ${S.pro? work.map(c=>`<button class="citem" data-open="${c.id}">${ICON.folder}<span class="t"><span>${esc(c.title)}</span></span><span class="when">${c.when}</span></button>`).join('') : `<button class="citem" data-go="paywall">${ICON.folder}<span class="t"><span class="t3">Folders keep client work separate</span><small>Unlock Pro</small></span></button>`}
+    ${grp('Recent',recent)}`;
+}
+function footHTML(){
+  return `<div class="r"><span class="mono">${ICON.chip} ${S.catalog.find(c=>c.id===S.model).name.split(' · ')[0]} · OUT <b>${fmtB(S.outBytes)}</b></span>${S.incognito?'<span class="pill">INCOGNITO</span>':''}</div>
+    <div class="r"><button class="lnk" data-go="vault">${ICON.chip}Model vault</button><button class="lnk" data-go="docs">${ICON.doc}Documents</button></div>
+    <div class="r"><button class="lnk" data-go="personas">${ICON.mask}Personas</button><button class="lnk" data-go="actions">${ICON.chat}Quick actions</button></div>
+    <div class="r"><button class="lnk" data-go="proof">${ICON.ring}Proof</button><button class="lnk" data-go="settings">${ICON.gear}Settings</button>${S.lock?`<button class="lnk" data-lock="now">${ICON.lock}Lock</button>`:''}</div>`;
+}
+function renderChats(){ $('#chatsCol').innerHTML=chatsHTML(); $('#chatsFoot').innerHTML=footHTML(); }
+function renderSidebar(){ $('#sidebar').innerHTML=`<div class="col" style="padding:14px 12px">${chatsHTML()}</div><div class="dfoot">${footHTML()}</div>`; }
+
+/* ---------------- vault ---------------- */
+function cartHTML(c){
+  const locked = c.tier==='pro' && !S.pro;
+  const dot = c.state==='loaded'?'on':c.state==='have'?'have':c.state==='dl'?'dl':'';
+  const st = c.state==='loaded'?'<b>LOADED</b>':c.state==='have'?'INSTALLED':c.state==='dl'?`<i style="color:var(--acc)">DELIVERING · ${c.pct||0}%</i>`:c.fit==='toobig'?'TOO BIG FOR 8 GB':'AVAILABLE';
+  const details = c.fit==='toobig' ? '' : `<button class="sbtn" data-details="${c.id}">Details</button>`;
+  const btn = c.fit==='toobig' ? `<button class="sbtn" data-explain="${c.id}">Why?</button>`
+    : c.state==='loaded' ? ''
+    : c.state==='have' ? `<button class="sbtn cta2" data-load="${c.id}">Load</button>`
+    : c.state==='dl' ? `<button class="sbtn" data-pause="${c.id}">Pause</button>`
+    : locked ? `<button class="sbtn" data-go="paywall">Unlock Pro</button>` : `<button class="sbtn cta2" data-get="${c.id}">Get · ${fmtB(c.size)}</button>`;
+  return `<div class="cart ${c.fit==='toobig'?'locked':''}" data-cart="${c.id}">
+    <div class="h"><span class="dot ${dot}"></span><span class="nm">${c.name} <small>· ${c.model}</small></span>${c.tier==='pro'?'<span class="pill pro" style="margin-left:auto">PRO</span>':'<span class="pill free" style="margin-left:auto">FREE</span>'}</div>
+    ${c.good?`<p class="t2" style="margin:2px 0 0;font-size:13px">${c.good}</p>`:''}
+    <div class="spec"><span>${c.size?fmtB(c.size):'Built in'}</span><span>·</span><span><i>${c.tps}</i> on this phone</span></div>
+    ${c.energy?`<div class="spec"><span>Battery: ${c.energy}</span>${c.rec?`<span class="pill free" style="margin-left:auto">RECOMMENDED FOR THIS PHONE</span>`:''}</div>`:''}
+    <div class="bar ${c.state==='loaded'||c.state==='have'?'full':''}"><i style="width:${c.state==='dl'?(c.pct||0):0}%"></i></div>
+    <div class="ft"><span class="st">${st}</span><span style="display:flex;gap:6px">${details}${btn}</span></div>
+    <p class="t3" style="margin:0;font-size:12.5px">${c.note}</p></div>`;
+}
+function renderVault(){
+  const models = S.catalog.filter(c=>c.state!=='avail').reduce((a,c)=>a+c.size,0);
+  $('#vaultStore').textContent = 'MODELS '+fmtB(models);
+  const on=S.catalog.filter(c=>c.state==='loaded'||c.state==='have'||c.state==='dl'), fits=S.catalog.filter(c=>c.state==='avail'&&c.fit==='fits'), big=S.catalog.filter(c=>c.fit==='toobig'&&c.state==='avail');
+  $('#vaultCol').innerHTML = `<div class="grp"><span>On this device</span><span>${DEVICE.name} · ${DEVICE.ram}</span></div>${on.map(cartHTML).join('')}
+    <div class="grp"><span>Fits your phone</span></div>${fits.map(cartHTML).join('')}
+    <div class="grp"><span>Too big for ${DEVICE.ram}</span></div>${big.map(cartHTML).join('')}
+    <div class="two"><button class="ghost" data-import="1">${ICON.doc.replace('class="ic"','class="ic" style="width:16px;height:16px"')}Add a model file</button><button class="ghost" data-hf="1">${ICON.search.replace('class="ic"','class="ic" style="width:16px;height:16px"')}Find more models</button></div>
+    <p class="t3" style="font-size:12.5px;margin:0">Models arrive through the App Store (Apple-hosted asset packs). Autark itself opens no connection. On Android the app has no Internet permission at all: models come from Google Play, or from a file you import.</p>`;
+}
+async function getModel(id){
+  const c=S.catalog.find(x=>x.id===id); c.state='dl'; c.pct=0; renderVault();
+  for(let p=0;p<=100;p+=Math.round(3+Math.random()*5)){ if(c.state!=='dl') return; c.pct=Math.min(100,p); const el=$(`[data-cart="${id}"]`); if(el){ $('.bar i',el).style.width=c.pct+'%'; $('.st',el).innerHTML=`<i style="color:var(--acc)">DELIVERING · ${c.pct}%</i>`; } await sleep(140); }
+  c.state='have'; S.inBytes+=c.size; S.log.unshift({when:'Now', what:`${c.model.toLowerCase().replace(/\s/g,'-')}-q4_k_m.gguf · via Apple-hosted asset pack · sha256 ✓`, bytes:'IN '+fmtB(c.size), z:false});
+  toast('Verified. sha256 matches the catalog.'); renderVault();
+}
+async function loadModel(id){
+  const c=S.catalog.find(x=>x.id===id); S.catalog.forEach(x=>{ if(x.state==='loaded') x.state='have'; });
+  c.state='dl'; c.pct=0; renderVault(); setSeal('loading');
+  for(let p=0;p<=100;p+=12){ c.pct=p; const el=$(`[data-cart="${id}"]`); if(el){ $('.bar i',el).style.width=p+'%'; $('.st',el).innerHTML=`<i style="color:var(--acc)">LOADING · ${p}%</i>`; } await sleep(90); }
+  c.state='loaded'; S.model=id; setSeal('sealed'); renderVault(); renderChat(); toast(`${c.name} loaded. Sealed.`);
+}
+
+/* ---------------- docs ---------------- */
+function renderDocs(){
+  $('#docsCol').innerHTML = `<div class="search">${ICON.search}<input placeholder="Search documents" aria-label="Search documents"></div>
+    <div class="row"><div class="l"><span class="lbl">Answer only from my documents</span><small>Strict mode: no outside knowledge</small></div><button class="tog" data-tog="strict" aria-label="Strict mode"></button></div>
+    <div class="grp"><span>Library · ${S.docs.length} files · indexed on this phone</span></div>
+    ${S.docs.map(d=>`<div class="card" style="display:flex;gap:12px;align-items:center">${ICON.doc}<div style="flex:1;min-width:0"><h4 style="font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.name}</h4><p class="mono" style="letter-spacing:.04em;text-transform:none">${d.pages} pages · ${d.size} · ${d.lang} · ${d.state==='indexed'?'<b>INDEXED</b>':d.state==='ocr'?'<i>NEEDS OCR</i>':`<i>INDEXING ${d.pct||0}%</i>`}</p></div>${d.state==='ocr'?`<button class="sbtn" data-ocr="${d.id}">Run OCR</button>`:`<button class="sbtn" data-ask="${d.id}">Ask</button>`}</div>`).join('')}
+    <div class="two"><button class="ghost" data-adddoc="1"><svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 5v14M5 12h14"/></svg>Add file</button><button class="ghost" data-adddoc="scan">Add a scanned PDF</button></div>
+    <p class="t3" style="font-size:12.5px;margin:0">Nothing is uploaded. Your files are read and indexed on this phone only.</p>`;
+}
+async function addDoc(kind){
+  const d = kind==='scan' ? {id:'scan'+Date.now(), name:'Receipt_scan.pdf', pages:2, size:'640 KB', state:'ocr', lang:'?'} : {id:'d'+Date.now(), name:'Contract_draft.docx', pages:31, size:'210 KB', state:'idx', pct:0, lang:'EN'};
+  S.docs.unshift(d); renderDocs();
+  if(d.state==='idx'){ for(let p=0;p<=100;p+=7){ d.pct=p; renderDocs(); await sleep(120);} d.state='indexed'; renderDocs(); toast('Indexed 31 pages on this phone.'); }
+}
+async function ocr(id){ const d=S.docs.find(x=>x.id===id); d.state='idx'; d.pct=0; for(let p=0;p<=100;p+=10){ d.pct=p; renderDocs(); await sleep(150);} d.state='indexed'; d.lang='HE'; renderDocs(); toast('OCR done on device. Hebrew detected.'); }
+
+/* ---------------- voice ---------------- */
+let voiceRun=null;
+function renderVoice(){
+  $('#voiceCol').innerHTML=`${sealSVG('huge listen')}<div class="vst" id="vst">LISTENING · ON-DEVICE</div><div class="trans" id="trans"></div><p class="t3" style="font-size:13px;margin:0">Tap the ring to interrupt. Speech recognition and voice run on this phone.</p><div class="segm"><button class="on">Standard voice</button><button data-go="paywall">Natural voice · Pro</button></div>`;
+  runVoice();
+}
+async function runVoice(){
+  const my = voiceRun = {}; const tr=$('#trans'), st=$('#vst'), seal=$('.seal.huge');
+  const line=(cls,txt)=>{ const d=document.createElement('div'); d.className=cls; tr.appendChild(d); return d; };
+  await sleep(900); if(voiceRun!==my) return;
+  const u=line('u',''); for(const w of "What's the exit clause in my lease?".split(' ')){ u.textContent+=(u.textContent?' ':'')+w; await sleep(130); if(voiceRun!==my) return; }
+  seal.className='seal huge'; st.textContent='THINKING'; setSeal('generating'); await sleep(700); if(voiceRun!==my) return;
+  seal.className='seal huge speak'; st.textContent='SPEAKING · AVA';
+  const a=line('a',''); for(const w of "Ninety days' written notice after month twelve. Leaving earlier costs two months' rent, page seven.".split(' ')){ a.textContent+=(a.textContent?' ':'')+w; await sleep(150); if(voiceRun!==my) return; }
+  setSeal('sealed'); seal.className='seal huge listen'; st.textContent='LISTENING · ON-DEVICE';
+}
+
+/* ---------------- proof ---------------- */
+function renderProof(){
+  $('#proofCol').innerHTML=`<div class="pf"><div class="big"><b>SEALED · ON-DEVICE</b></div><div>since install · 41 days</div>
+    <div style="margin-top:8px"><span class="k">OUT</span><b style="font-size:18px">${fmtB(S.outBytes)}</b></div>
+    <div><span class="k">IN</span><i>${fmtB(S.inBytes)}</i> <span style="color:var(--t3)">(models, delivered by the store)</span></div>
+    <div><span class="k">CONNECTIONS</span><b>0</b> open · 0 ever opened by Autark</div>
+    <div><span class="k">NETWORK ALLOWLIST</span>none by default · the store delivers models</div>
+    <div><span class="k"></span><span style="color:var(--t3)">huggingface.co only when you ask · then it shows in App Privacy Report, on purpose</span></div>
+    <div><span class="k">PERMISSIONS</span>Microphone (off) · Camera (off) · Photos (on request)</div>
+    <div><span class="k">TRACKERS</span><b>0</b> · <span style="color:var(--acc);text-decoration:underline">Exodus report ↗</span></div>
+    <div><span class="k">BUILD</span>1.0.3 (412) · sha256 9f2a…c41e · <b>matches published ↗</b></div>
+    <div><span class="k">AIRPLANE MODE</span>${S.airplane?'<b>ON</b>':'off'}</div></div>
+    <div class="two"><button class="cta" data-air="run">Run the airplane test</button><button class="ghost" data-sheet="log">View network log</button></div>
+    <div class="card"><h4>How to check it yourself</h4><p>iOS: Settings → Privacy & Security → App Privacy Report. Autark's row lists no domains. Android: the Play listing shows no "full network access" permission, because the app does not have one.</p></div>
+    <div class="card"><h4>Unsealed state, by design</h4><p>If a future version ever adds an online option, this ring turns red and cracks open on every screen: <span class="mono" style="color:var(--dgr)">UNSEALED · LAN 192.168.1.20</span>. Green means something because red exists.</p></div>`;
+}
+async function airplaneTest(){
+  S.airplane=true; $('#sbPlane').hidden=false; go('chat'); S.msgs=[]; renderChat();
+  await sleep(500); await send("What's 17 × 23?"); renderProof();
+  sysbar(`Airplane Mode is on and it still answered. <span class="m">OUT 0 B · IN ${fmtB(S.inBytes)} · CONNECTIONS 0</span>`, true);
+}
+
+/* ---------------- settings ---------------- */
+function rowT(lbl, small, key){ return `<div class="row"><div class="l"><span class="lbl">${lbl}</span>${small?`<small>${small}</small>`:''}</div><button class="tog ${S[key]?'on':''}" data-tog="${key}" aria-label="${lbl}"></button></div>`; }
+function rowS(lbl, key, opts){ return `<div class="row"><div class="l"><span class="lbl">${lbl}</span></div><div class="segm">${opts.map(o=>`<button data-set="${key}" data-val="${o}" class="${S[key]===o?'on':''}">${o}</button>`).join('')}</div></div>`; }
+function renderSettings(){
+  $('#setCol').innerHTML=`<div class="grp"><span>Appearance</span></div><div class="card">${rowS('Theme','theme',['System','Dark','Light'])}</div>
+    <div class="grp"><span>Security</span></div><div class="card">${rowT('Require '+DEVICE.bio,'Also hides chats in the app switcher','lock')}${rowS('Lock after','lockDelay',['Immediately','1 min','5 min'])}${rowT('Block screenshots','Android: blocks your own too. iOS: hides content while recording','shotBlock')}${rowS('Auto-delete chats','autoDel',['Off','1 day','7 days','30 days'])}${rowT('Wipe after 10 failed unlocks','Deletes chats, documents and memory. No recovery','wipe')}</div>
+    <div class="grp"><span>Chat</span></div><div class="card">${rowT('Keep screen awake while generating','','awake')}<div class="row"><div class="l"><span class="lbl">Personas</span><small>${S.personas.filter(p=>!p.builtin).length} custom · active: ${personaName()}</small></div><button class="sbtn" data-go="personas">Manage</button></div><div class="row"><div class="l"><span class="lbl">Memory</span><small>${S.pro?(S.memOn?'On · '+S.facts.length+' facts':'Off'):'Facts about you, kept on this phone'}</small></div>${S.pro?'<button class="sbtn" data-go="memory">Manage</button>':'<span class="pill pro">PRO</span>'}</div>${rowT('Haptics','One tap when the seal closes','haptics')}${rowS('Performance','profile',['Eco','Balanced','Max'])}<details class="adv"><summary>Advanced</summary><div class="row"><div class="l"><span class="lbl">Answer length before it asks to continue</span><small>Longer uses more memory</small></div><div class="segm"><button class="on">Normal</button><button>Long</button></div></div><div class="row"><div class="l"><span class="lbl">Acceleration</span><small>Auto-detected · override only if something misbehaves</small></div><span class="mono"><b>GPU · METAL</b></span></div></details></div>
+    <div class="grp"><span>Storage & privacy</span></div><div class="card">
+      <div class="row"><div class="l"><span class="lbl">Chats</span><small>12.4 MB · encrypted · included in your phone backup</small></div><span class="mono"><b>ENCRYPTED</b></span></div>
+      <div class="row"><div class="l"><span class="lbl">Documents</span><small>340 MB · encrypted · on this phone only</small></div></div>
+      <div class="row"><div class="l"><span class="lbl">Models</span><small>${fmtB(S.catalog.filter(c=>c.state!=='avail').reduce((a,c)=>a+c.size,0))} · not backed up · re-deliverable</small></div><button class="sbtn" data-go="vault">Manage</button></div>
+      <div class="row"><div class="l"><span class="lbl">Export everything</span><small>Password-protected backup file</small></div>${S.pro?'<button class="sbtn">Export</button>':'<span class="pill pro">PRO</span>'}</div>
+      <div class="row"><div class="l"><span class="lbl" style="color:var(--dgr)">Delete everything</span><small>Chats, documents, memory. Models optional</small></div><button class="sbtn" style="color:var(--dgr)" data-wipe="1">Delete…</button></div></div>
+    <div class="grp"><span>About</span></div><div class="card">
+      <div class="row"><div class="l"><span class="lbl">Version</span><small>1.0.3 (412) · sha256 9f2a…c41e</small></div></div>
+      <div class="row"><div class="l"><span class="lbl">Model licenses</span><small>Qwen3.5 Apache-2.0 · Phi-4-mini MIT · nomic-embed Apache-2.0</small></div></div>
+      <div class="row"><div class="l"><span class="lbl">Report a problem</span><small>Creates a diagnostics file without chat content. You send it.</small></div><button class="sbtn">Create</button></div>
+      <div class="row"><div class="l"><span class="lbl">Saved reports</span><small>${S.reports} on this phone</small></div></div>
+      <div class="row"><div class="l"><span class="lbl">Privacy policy</span><small>We collect nothing. There is nothing to opt out of.</small></div></div></div>`;
+}
+
+/* ---------------- paywall ---------------- */
+function renderPay(){
+  $('#payCol').innerHTML = S.pro ? `<div class="pw"><p class="t22">You own Pro.</p><p class="t2" style="margin:0">Forever, on every device signed in to this App Store account. Nothing about privacy changed.</p><button class="ghost" data-go="chat">Back to chat</button></div>`
+  : `<p class="disp" style="font-size:28px">Pay once. Own it.</p><p class="t2" style="margin:-4px 0 0">No subscription. No account. Yours forever.</p>
+    <div class="pw"><div class="pr"><small>PRO</small><b>$19.99</b><small>one-time purchase</small></div>
+    <ul><li>${ICON.check}Ask your own documents. Every answer cites the page, and it reads scans too.</li><li>${ICON.check}Unlimited saved assistants, plus a memory you control.</li><li>${ICON.check}Talk to it out loud, with natural-sounding voices.</li><li>${ICON.check}Encrypted backup, and move everything to a new phone.</li><li>${ICON.check}A private keyboard and your own custom actions.</li><li>${ICON.check}Bigger, sharper models.</li></ul>
+    <button class="cta" data-buy="1" style="margin-top:6px">Unlock Pro · $19.99</button>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--t3)"><button data-restore="1" style="color:var(--t2)">Restore purchases</button><span>${DEVICE.os==='iOS'?'Family Sharing · up to 6':'Family Library does not include in-app purchases'}</span></div></div>
+    <p class="t3" style="font-size:12.5px;margin:0;text-align:center">Everything runs on your device. Nothing changes about privacy.<br>Less than two months of a cloud subscription. Forever.</p>
+    <div class="card work"><div class="mono">FOR PROFESSIONALS</div><h4>Work · $69.99 one-time</h4><p>Client vaults, redaction, dictation to notes, Power and Studio models, team licences. Desktop first. Pro owners upgrade for $49.99.</p></div>`;
+  if($('#device').classList.contains('desktop')){ const col=$('#payCol'); const w=col.querySelector('.card.work'), pro=col.querySelector('.pw'); if(w&&pro) col.insertBefore(w,pro); } /* desktop audience is professional: Work leads there */
+}
+
+/* ---------------- sheets ---------------- */
+function openSheet(kind, arg){
+  const sh=$('#sheet'); let html='';
+  if(kind==='model'){
+    html=`<div class="grab"></div><h4>Model for this chat</h4>${S.catalog.filter(c=>c.state!=='avail'||c.fit==='fits').map(c=>{ const locked=c.tier==='pro'&&!S.pro; const usable=c.state==='loaded'||c.state==='have'; return `<button class="row" style="width:100%;text-align:left" ${usable&&!locked?`data-pick="${c.id}"`:locked?'data-go="paywall"':`data-go="vault"`}><div class="l"><span class="lbl">${c.name} <span class="t3">· ${c.model}</span></span><small>${c.good?c.good+' · ':''}${c.tps} · ${c.size?fmtB(c.size):'built in'}${locked?' · Pro':''}</small></div>${S.model===c.id?'<span class="mono"><b>ACTIVE</b></span>':usable?'<span class="mono">READY</span>':'<span class="mono">GET</span>'}</button>`;}).join('')}
+      <button class="ghost" data-go="vault">Open the vault</button>${S.pro?'<button class="ghost">Compare two models side by side</button>':''}`;
+  } else if(kind==='attach'){
+    html=`<div class="grab"></div><h4>Attach</h4>
+      <button class="row" style="width:100%" data-attachk="photo"><div class="l"><span class="lbl">Photo</span><small>EXIF stripped on device</small></div></button>
+      <button class="row" style="width:100%" data-attachk="camera"><div class="l"><span class="lbl">Camera</span><small>Asks for permission now, not at install</small></div></button>
+      <button class="row" style="width:100%" data-attachk="file"><div class="l"><span class="lbl">File</span><small>PDF, DOCX, TXT, CSV · free: 1 file, 20 pages</small></div></button>
+      <button class="row" style="width:100%" data-go="docs"><div class="l"><span class="lbl">From library</span><small>${S.pro?'2 documents indexed':'Pro'}</small></div>${S.pro?'':'<span class="pill pro">PRO</span>'}</button>`;
+  } else if(kind==='report'){
+    html=`<div class="grab"></div><h4>Report this answer</h4><p class="t2" style="margin:0;font-size:13.5px">Reports are stored on this phone. Send them by email when you choose. Nothing is sent automatically.</p>
+      <div class="segm" style="flex-wrap:wrap">${['Offensive','Dangerous','Wrong','Other'].map((o,i)=>`<button class="${i===2?'on':''}">${o}</button>`).join('')}</div>
+      <div class="row"><div class="l"><span class="lbl">Include the message</span></div><button class="tog on" aria-label="Include"></button></div>
+      <button class="cta" data-savereport="1">Save report</button><button class="ghost" data-close="1">Cancel</button>`;
+  } else if(kind==='log'){
+    html=`<div class="grab"></div><h4>Network log</h4><div class="log">${S.log.map(l=>`<div><span>${l.when}</span><span>${l.what}</span><span class="${l.z?'z':'in'}">${l.z?'OUT 0 B':l.bytes}</span></div>`).join('')}<div><span>Always</span><span>Bytes sent by Autark to anyone</span><span class="z">0 B</span></div></div><button class="ghost" data-close="1">Close</button>`;
+  } else if(kind==='explain'){
+    const c=S.catalog.find(x=>x.id===arg);
+    html=`<div class="grab"></div><h4>${c.name} won't run here</h4><p class="t2" style="margin:0">${c.model} at ${c.quant} needs about ${fmtB(c.size*1.4)} of memory plus context. ${DEVICE.name} gives an app about 4 GB. It would be killed mid-answer. On an iPhone 17 Pro (12 GB) or any laptop with 16 GB it runs at 10–20 tok/s.</p><button class="ghost" data-close="1">OK</button>`;
+  } else if(kind==='wipe'){
+    html=`<div class="grab"></div><h4>Delete everything?</h4><p class="t2" style="margin:0">Chats, documents and memory on this phone. There is no copy anywhere else, so there is no recovery.</p><div class="row"><div class="l"><span class="lbl">Also delete models (6.9 GB)</span></div><button class="tog" aria-label="Also models"></button></div><button class="cta" style="background:var(--dgr);color:#fff" data-dowipe="1">Delete everything</button><button class="ghost" data-close="1">Cancel</button>`;
+  } else if(kind==='newchat'){
+    NC = NC || {persona:S.persona, model:S.model, incog:false};
+    html=`<div class="grab"></div><h4>New chat</h4><div class="mono">PERSONA</div><div class="pchips">${S.personas.map(p=>`<button data-pchip="${p.id}" class="${NC.persona===p.id?'on':''}">${PICONS[p.icon]||ICON.ring}${esc(p.name)}</button>`).join('')}</div>
+      <div class="mono" style="margin-top:6px">MODEL</div>${S.catalog.filter(c=>c.state==='loaded'||c.state==='have').map(c=>`<button class="row" style="width:100%;text-align:left" data-mrow="${c.id}"><div class="l"><span class="lbl">${c.name}</span><small>${c.good?c.good+' · ':''}${c.tps} · ${c.size?fmtB(c.size):'built in'}</small></div>${NC.model===c.id?'<span class="mono"><b>SELECTED</b></span>':'<span class="mono">FITS</span>'}</button>`).join('')}
+      <div class="row"><div class="l"><span class="lbl">Incognito</span><small>Not saved, no memory. Gone when you close it.</small></div><button class="tog ${NC.incog?'on':''}" data-tog="ncincog" aria-label="Incognito"></button></div>
+      <button class="cta" data-startchat="1">Start</button>`;
+  } else if(kind==='details'){
+    const c=S.catalog.find(x=>x.id===arg);
+    html=`<div class="grab"></div><h4>${c.name} <span class="t3">· ${c.model}</span></h4>
+      <div class="kv2"><span>Parameters</span><b>${c.model.split(' ').pop()}</b><span>Quantisation</span><b>${c.quant}</b><span>Context</span><b>${c.id==='apple'?'4,096 tokens':'32K max · 4K default on phone'}</b><span>Vision</span><b>${c.id==='phi'||c.id==='apple'?'No':'Yes'}</b><span>Tools</span><b>Yes, local only</b><span>Good in</span><b>${c.id==='apple'?'English + 15 languages, no Hebrew':'EN, HE, ES, DE, FR, ZH, JA and 100 more'}</b><span>Size</span><b>${c.size?fmtB(c.size):'built in'}</b><span>On this phone</span><b>${c.tps}</b><span>Licence</span><b>${c.id==='apple'?'Apple':c.id==='phi'?'MIT':'Apache-2.0'}</b></div>
+      <button class="ghost" data-bench="${c.id}">Benchmark on this phone</button><div class="mono" id="benchOut" style="text-transform:none;letter-spacing:.02em;min-height:16px"></div>
+      <div class="two"><button class="sbtn" data-setdefault="${c.id}">Set as default</button><button class="sbtn" data-delmodel="${c.id}" ${c.state==='loaded'||c.id==='apple'?'disabled style="opacity:.5"':''}>${c.state==='loaded'?'Loaded · unload first':'Delete'}</button></div>`;
+  } else if(kind==='downloads'){
+    const q=S.catalog.filter(c=>c.state==='dl');
+    html=`<div class="grab"></div><h4>Deliveries</h4>
+      <div class="row"><div class="l"><span class="lbl">Wi‑Fi only</span><small>Large packs wait for Wi‑Fi</small></div><button class="tog on" data-tog="wifi" aria-label="Wi‑Fi only"></button></div>
+      <div class="mono" style="margin-top:6px">IN PROGRESS · ${q.length}</div>${q.length?q.map(c=>`<div class="row"><div class="l"><span class="lbl">${c.name}</span><small>${fmtB(c.size)} · ${c.pct||0}% · via App Store</small></div><button class="sbtn" data-pause="${c.id}">Pause</button></div>`).join(''):'<p class="t3" style="margin:0;font-size:13.5px">Nothing in the queue.</p>'}
+      <div class="mono" style="margin-top:6px">HISTORY</div><div class="log">${S.log.filter(l=>!l.z).map(l=>`<div><span>${l.when}</span><span>${l.what}</span><span class="in">${l.bytes}</span></div>`).join('')}</div>
+      <p class="t3" style="font-size:12.5px;margin:0">The store downloads; Autark verifies every file against the signed catalog (sha256) before it can load. On Android the app has no network permission at all, so Google Play does the transfer.</p><button class="ghost" data-close="1">Close</button>`;
+  } else if(kind==='persona'){
+    const p = arg ? S.personas.find(x=>x.id===arg) : null;
+    PE = PE || (p ? {...p, id: p.builtin? null : p.id, name: p.builtin? p.name+' (copy)': p.name, builtin:false, tools:[...(p.tools||[])], prompt:p.prompt||'You are '+p.name.toLowerCase()+'. Keep answers useful and honest.'} : {name:'', icon:'ring', prompt:'You are a careful assistant. Answer briefly, show your working for numbers, and say when you are not sure.', model:'fast', tools:['calc','date'], style:'Balanced', sensitive:false});
+    html=`<div class="grab"></div><h4>${p&&!p.builtin?'Edit persona':'New persona'}</h4>
+      <input class="inp" id="pName" placeholder="Name" value="${esc(PE.name)}">
+      <div class="pchips">${Object.keys(PICONS).map(k=>`<button data-picon="${k}" class="${PE.icon===k?'on':''}" aria-label="${k}">${PICONS[k]}</button>`).join('')}</div>
+      <textarea class="ta" id="pPrompt" placeholder="Instructions: how it should answer">${esc(PE.prompt||'')}</textarea>
+      <div class="row"><div class="l"><span class="lbl">Default model</span></div><div class="segm">${S.catalog.filter(c=>c.state!=='avail').map(c=>`<button data-pmodel="${c.id}" class="${PE.model===c.id?'on':''}">${c.name.split(' ')[0]}</button>`).join('')}</div></div>
+      <div class="row"><div class="l"><span class="lbl">Tools</span><small>All run on this phone</small></div><div class="segm">${[['docs','Documents'],['calc','Calculator'],['date','Date']].map(([k,l])=>`<button data-ptool="${k}" class="${PE.tools.includes(k)?'on':''}">${l}</button>`).join('')}</div></div>
+      <div class="row"><div class="l"><span class="lbl">Style</span></div><div class="segm">${['Concise','Balanced','Formal','Step by step'].map(st=>`<button data-pstyle="${st}" class="${PE.style===st?'on':''}">${st}</button>`).join('')}</div></div>
+      <div class="row"><div class="l"><span class="lbl">Sensitive domain</span><small>Adds a permanent "verify before use" line</small></div><button class="tog ${PE.sensitive?'on':''}" data-tog="pesensitive" aria-label="Sensitive"></button></div>
+      <button class="cta" data-savep="1">Save</button>${PE.id?`<button class="ghost" data-delp="${PE.id}" style="color:var(--dgr)">Delete persona</button>`:''}`;
+  } else if(kind==='action'){
+    html=`<div class="grab"></div><h4>New custom action</h4><input class="inp" id="aName" placeholder="Name, e.g. Client-safe rewrite"><textarea class="ta" id="aPrompt" placeholder="What should the model do with the selected text?"></textarea><button class="cta" data-saveact="1">Save</button>`;
+  } else if(kind==='hf'){
+    html=`<div class="grab"></div><h4>Find more models</h4><p class="t2" style="margin:0;font-size:13.5px">On iPhone and desktop you can search the open model library. Each download is a connection you start yourself, and it shows in the network log. Some models ask you to accept a licence first.</p><div class="search">${ICON.search}<input placeholder="e.g. DictaLM 3 Hebrew GGUF"></div><button class="ghost" data-close="1">Close</button>`;
+  }
+  sh.innerHTML=html; sh.classList.add('on'); $('#scrim').classList.add('on');
+}
+function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on'); }
+
+/* ---------------- personas / memory / actions ---------------- */
+const PICONS = {ring:ICON.ring, doc:ICON.doc, chip:ICON.chip, folder:ICON.folder, chat:ICON.chat};
+function personaName(){ return (S.personas.find(p=>p.id===S.persona)||S.personas[0]).name; }
+let PE=null, NC=null, actAbort=null;
+function renderPersonas(){
+  const custom=S.personas.filter(p=>!p.builtin), builtin=S.personas.filter(p=>p.builtin);
+  const row=p=>`<div class="row"><div class="l" style="flex-direction:row;align-items:center;gap:10px;min-width:0"><span style="color:var(--t2);flex:0 0 auto">${PICONS[p.icon]||ICON.ring}</span><div class="l" style="min-width:0"><span class="lbl">${esc(p.name)}${S.persona===p.id?' <span class="mono"><b>ACTIVE</b></span>':''}</span><small>${(S.catalog.find(c=>c.id===p.model)||{}).name||'FAST'} · ${p.style}${p.tools&&p.tools.length?' · '+p.tools.join(', '):''}${p.sensitive?' · verify-before-use line':''}</small></div></div><div style="display:flex;gap:6px;flex:0 0 auto"><button class="sbtn" data-usep="${p.id}">Use</button><button class="sbtn" data-editp="${p.id}">${p.builtin?'Duplicate':'Edit'}</button></div></div>`;
+  $('#persCol').innerHTML=`<div class="grp"><span>Built in</span></div><div class="card">${builtin.map(row).join('')}</div>
+    <div class="grp"><span>Yours · ${custom.length}${S.pro?'':' of 3 free'}</span>${S.pro?'':'<span class="pill pro">UNLIMITED WITH PRO</span>'}</div><div class="card">${custom.length?custom.map(row).join(''):'<p class="t3" style="margin:0;font-size:13.5px">No custom personas yet.</p>'}</div>
+    <button class="ghost" data-newp="1"><svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 5v14M5 12h14"/></svg>New persona</button>
+    <p class="t3" style="font-size:12.5px;margin:0">A persona is a saved setup: how the assistant talks, which model it uses, and what it can do. Medical, legal and money personas always carry a "verify before use" line.</p>`;
+}
+function renderMemory(){
+  $('#memCol').innerHTML=`<div class="card"><div class="row"><div class="l"><span class="lbl">Remember facts about me</span><small>Kept private on this phone</small></div><button class="tog ${S.memOn?'on':''}" data-tog="memOn" aria-label="Memory"></button></div></div>
+    <div class="grp"><span>Facts · ${S.facts.length}</span></div><div class="card">${S.facts.length?S.facts.map((f,i)=>`<div class="row"><div class="l"><span class="lbl">${esc(f.t)}</span><small>from: ${esc(f.src)} · ${f.when}</small></div><div style="display:flex;gap:6px;flex:0 0 auto"><button class="sbtn" data-editfact="${i}">Edit</button><button class="sbtn" data-delfact="${i}" style="color:var(--dgr)">Delete</button></div></div>`).join(''):'<p class="t3" style="margin:0;font-size:13.5px">Nothing remembered yet.</p>'}</div>
+    <button class="ghost" data-addfact="1">Add a fact</button>
+    <div class="grp"><span>Use memory in</span></div><div class="pchips">${S.personas.map(p=>`<button data-memp="${p.id}" class="${p.mem===false?'':'on'}">${PICONS[p.icon]||ICON.ring}${esc(p.name)}</button>`).join('')}</div>
+    <p class="t3" style="font-size:12.5px;margin:0">Never collected in incognito. Panic wipe deletes it. Export includes it only if you tick it. Every fact shows the chat it came from.</p>`;
+}
+const SHARED = "14.1 Term and termination. The lease runs for twenty-four months from 1 October 2026. After the twelfth month, either party may terminate on ninety (90) days' written notice. Should the tenant terminate before the end of the twelfth month, the tenant shall pay the landlord an amount equal to two (2) months' rent as liquidated damages, and shall recieve it's deposit back within thirty days.";
+const ACTS = {
+  summarize:{l:'Summarize',t:"Two points: after month 12 either side can end the lease with 90 days' written notice, and leaving earlier costs the tenant two months' rent. The deposit comes back within 30 days."},
+  rewrite:{l:'Rewrite',t:"After the first twelve months, either side may end the lease with ninety days' written notice. Ending it earlier costs the tenant two months' rent, and the deposit is returned within thirty days."},
+  fix:{l:'Fix grammar',t:"Fixed 2 issues: \"recieve\" → \"receive\", \"it's deposit\" → \"its deposit\". Everything else reads correctly."},
+  translate:{l:'Translate',t:"לאחר שנים־עשר החודשים הראשונים, כל צד רשאי לסיים את השכירות בהודעה בכתב של תשעים יום. סיום מוקדם יותר יעלה לשוכר שני חודשי שכירות, והפיקדון יוחזר בתוך שלושים יום.",rtl:true},
+  explain:{l:'Explain',t:"In plain words: you're committed for a year. After that you can leave, but you have to say so three months ahead. Leave sooner and you pay two extra months. The deposit rule is normal."},
+  todos:{l:'Extract to-dos',t:"- Diary the earliest notice date: 1 July 2027\n- Ask the landlord whether email counts as written notice\n- Check the deposit clause elsewhere in the lease"},
+};
+function renderActions(){
+  const r=S.actResult;
+  $('#actCol').innerHTML=`<div class="card"><div class="mono" style="margin-bottom:6px">SHARED FROM SAFARI · 68 WORDS</div><p style="font-size:14.5px;color:var(--t1);margin:0">${esc(SHARED)}</p></div>
+    <div class="pchips">${Object.entries(ACTS).map(([k,a])=>`<button data-runact="${k}" class="${r&&r.k===k?'on':''}">${a.l}</button>`).join('')}</div>
+    ${r?`<div class="card"><div class="mono" style="margin-bottom:6px">FAST · ON-DEVICE${S.actRunning?' · <i>WORKING</i>':''}</div><div id="actTxt" ${r.rtl?'dir="rtl"':''} style="white-space:pre-wrap;font-size:15.5px;line-height:1.55;${r.rtl?'text-align:right':''}">${esc(r.text)}${S.actRunning?'<span class="caret"></span>':''}</div>${S.actRunning?'':'<div class="acts" style="margin-top:10px"><button data-act="copy">Copy</button><button data-actreplace="1">Replace in Safari</button><button data-actopen="1">Open in chat</button></div>'}</div>`:'<p class="t3" style="margin:0;font-size:13.5px">Pick an action. The text stays on your phone; nothing is sent anywhere.</p>'}
+    <div class="grp"><span>Custom actions</span>${S.pro?'':'<span class="pill pro">PRO</span>'}</div><div class="card">${S.actions.map(a=>`<div class="row"><div class="l"><span class="lbl">${esc(a.name)}</span><small>${esc(a.prompt)}</small></div><button class="sbtn" data-runcustom="${a.id}">Run</button></div>`).join('')}</div>
+    <button class="ghost" data-newact="1">New custom action</button>`;
+}
+async function runAction(k, custom){
+  if(actAbort) actAbort.abort(); const ac=new AbortController(); actAbort=ac;
+  const a = custom ? {t:"Rewritten with no client names or amounts:\n\nThe tenant may end the agreement after the first year with three months' notice; an earlier exit carries a two-month penalty."} : ACTS[k];
+  S.actResult={k:custom?'custom':k, text:'', rtl:!!a.rtl}; S.actRunning=true; setSeal('generating'); renderActions();
+  await sleep(350);
+  for(const w of a.t.split(/(?<=\s)/)){ if(ac.signal.aborted) return; S.actResult.text+=w; const el=$('#actTxt'); if(el) el.innerHTML=esc(S.actResult.text)+'<span class="caret"></span>'; await sleep(28+Math.random()*20); }
+  S.actRunning=false; setSeal('sealed'); renderActions();
+}
+function applyTheme(){ const light = S.theme==='Light' || (S.theme==='System' && window.matchMedia('(prefers-color-scheme: light)').matches); dev.classList.toggle('light', light); }
+
+/* ---------------- lock ---------------- */
+function showLock(){
+  const l=$('#lock'); l.hidden=false; l.innerHTML=`${sealSVG('big')}<div class="mono">LOCKED</div><p class="t2" style="margin:0;max-width:240px">${DEVICE.bio} opens Autark. Chats stay encrypted until then.</p><button class="ghost" style="width:auto;padding:0 18px" data-unlock="1">${ICON.face}Face ID</button>${S.wipe?'<div class="cnt">10 attempts left before wipe</div>':''}`;
+}
+
+/* ---------------- notes (Hebrew) ---------------- */
+const NOTES = {
+  onb: {t:'Onboarding', sn:'S01 · S02 · S03 · S04 · S05', items:['חמישה מסכים, פחות מ‑90 שניות, בלי הורדה לפני ההודעה הראשונה.','במסך 2 כפתור ראשי אחד: Start chatting. במסך 3 Ask הוא הפעולה הבולטת; "I saw it" מופיע רק אחרי התשובה.','במסך 4 החותם נסגר בקפיץ עם bloom ירוק: רגע השיא.'], k:'PEAK-END · PROOF OVER PROMISE'},
+  chat: {t:'Chat', sn:'S10 · S11 · S12 · S13 · S14', items:['שלחו הודעה: החותם נושם ענבר, tok/s נספר, סמן מהבהב. Stop עוצר באמת.','הקישו על טקסט התשובה: פעולות (Copy, Regenerate, Read aloud, Report) מופיעות רק אז; Ledger מקופל מתחת.','נסו "translate to Hebrew" ל‑RTL, "17 × 23", "draft a message", או צרפו קובץ ואז "summarize".','מד ההקשר (הקו מעל הקומפוזר) מתחמם מעל 80%.'], k:'FLAT ASSISTANT · QUIET USER BUBBLE · ONE INDICATOR'},
+  chats: {t:'Chats drawer', sn:'S20 · S21', items:['חיפוש מקומי, אינקוגניטו (לא נכתב לדיסק). New chat פותח את גיליון S21: פרסונה, מודל, אינקוגניטו.','תיקיות Work הן Pro; שאר הרשימה חינם.','קריאת אפס‑יציאה בתחתית, וקיצורים לכספת, למסמכים, להוכחה ולהגדרות.'], k:'OUT 0 B · ALWAYS VISIBLE'},
+  vault: {t:'Model vault', sn:'S30 · S31 · S32', items:['מחסניות עם נקודת מצב, גודל, קוונטיזציה ומהירות צפויה על המכשיר הזה.','Get על Sharp (Pro): אספקה דרך החנות עם פס פילמנט, ואז Load: החותם בטעינה.','Power אפור עם "Why?": 8 GB לא מספיקים, ואומרים זאת.','Details פותח את S31 (מפרט, Benchmark על המכשיר, רישיון, מחיקה); הצ\'יפ MODELS פותח את S32 Deliveries.','ייבוא GGUF בכל מקום; חיפוש HF רק ב‑iOS/דסקטופ (באנדרואיד אין רשת).'], k:'FITS YOUR DEVICE · HONEST SPEED'},
+  personas: {t:'Personas', sn:'S41', items:['ארבע מובנות ועד שלוש מותאמות בחינם; Pro ללא הגבלה.','New persona: שם, אייקון, system prompt, מודל ברירת מחדל, כלים מקומיים, סגנון, ותחום רגיש עם שורת "verify before use".','Use מפעיל את הפרסונה לשיחות הבאות; Duplicate על מובנית יוצר עותק לעריכה.'], k:'PERSONA = PROMPT + MODEL + TOOLS + STYLE'},
+  memory: {t:'Memory', sn:'S42', items:['Pro. מתג ראשי; כל עובדה עם המקור שלה (מאיזו שיחה), עריכה ומחיקה.','בחירה באילו פרסונות הזיכרון פעיל.','אינקוגניטו לא אוסף; מחיקת חירום מוחקת; ייצוא כולל רק בסימון.'], k:'TRANSPARENT · ON-DEVICE'},
+  actions: {t:'Quick actions', sn:'S43', items:['מדמה share sheet: טקסט שהגיע מספארי ושש פעולות חינם.','Translate ל‑RTL, Extract to‑dos לרשימה; Replace מחזיר לאפליקציה המקורית, Open in chat ממשיך בצ\'אט.','פעולות מותאמות (Pro): שם + פרומפט.'], k:'SHARE SHEET · APP GROUP · NO NETWORK'},
+  docs: {t:'Documents', sn:'S40', items:['Pro. ספרייה מאונדקסת על המכשיר, מצב "ענה רק מהמסמכים".','Add file: אינדוקס הדרגתי. Add a scanned PDF: OCR על המכשיר.','Ask על Lease: התשובה בצ\'אט עם צ\'יפי ציטוט לעמוד.'], k:'CITATIONS OR "I DID NOT FIND IT"'},
+  voice: {t:'Voice mode', sn:'S44', items:['Pro. החותם 96px: מאזין (טבעת נושמת ירוק), חושב, מדבר (ענבר).','תמלול וקול על המכשיר; בורר קול; End מסיים.'], k:'HANDS-FREE · ON-DEVICE'},
+  proof: {t:'Proof', sn:'S50', items:['כל טענה ולידה הדרך לאמת אותה: OUT/IN, חיבורים, הרשאות, טראקרים, hash.','Run the airplane test: מפעיל מצב טיסה, שולח שאלה, המונה נשאר 0.','View network log: כל בייט שנכנס, ואפס שיצא.','המצב האדום UNSEALED מעוצב כדי שהירוק יאמר משהו.'], k:'NUMBERS, NOT ADJECTIVES'},
+  settings: {t:'Settings', sn:'S51 · S52 · S53', items:['הגדרות כפשרות ברורות; אין מתג טלמטריה כי אין טלמטריה.','הדליקו את המתג הביומטרי (התווית לפי המכשיר: Face ID באייפון הזה, Touch ID, "fingerprint or face" באנדרואיד, Windows Hello) ואז Lock במגירת השיחות: מסך הנעילה (S53).','Auto-delete מסמן כל שיחה ב"Deletes in…". Delete everything: אישור כפול.','Report a problem יוצר קובץ בלי תוכן שיחות, שהמשתמש שולח בעצמו.'], k:'NO TELEMETRY TOGGLE'},
+  paywall: {t:'Pro paywall', sn:'S60', items:['כרטיס אחד, מחיר אחד, פעם אחת. אין מנוי.','Unlock Pro פותח מסמכים, קול, תיקיות, Sharp.','Restore, שורת Family Sharing רק באייפון (ב‑Play כתוב שאין שיתוף משפחתי לרכישות בתוך האפליקציה), כרטיס Work כעוגן "For professionals" (בדסקטופ הוא ראשון), ושורת "Nothing changes about privacy".'], k:'PAY ONCE · OWN IT'},
+};
+function renderNotes(scr){
+  const n=NOTES[scr]; if(!n) return;
+  $('#notes').innerHTML=`<span class="sn">${n.sn}</span><h3>${n.t}</h3><ul>${n.items.map(i=>`<li>${i}</li>`).join('')}</ul><span class="k">${n.k}</span>${S.device==='desktop'?'<span class="k">DESKTOP · TAURI · SAME CODE</span><ul><li>סרגל צד קבוע, עמודת הודעות 760px, אותם מסכים.</li><li>Windows ו‑macOS מאותו ייצוא ווב; ההסקה נייטיב (Vulkan/CUDA/Metal).</li></ul>':''}`;
+}
+
+/* ---------------- events ---------------- */
+document.addEventListener('click', async e => {
+  const t = e.target.closest('.msg.ai .txt'); if(t){ const m=t.closest('.msg.ai'); if(m && m.querySelector('.acts')){ m.classList.toggle('open'); } return; }
+  const b = e.target.closest('button,[data-go]'); if(!b) return;
+  const d = b.dataset;
+  if(d.device){ S.device=d.device; dev.classList.toggle('desktop', d.device==='desktop'); dev.classList.toggle('phone', d.device!=='desktop'); $$('.seg [data-device]').forEach(x=>x.classList.toggle('on',x===b)); if(S.screen==='chats'||S.screen==='onb'&&d.device==='desktop'){ go('chat'); } else { renderScreen(S.screen); renderNotes(S.screen);} return; }
+  if(b.id==='resetBtn'){ S=initial(); onbSeal='open'; PE=null; NC=null; applyTheme(); $('#sbPlane').hidden=true; $('#proBadge').hidden=true; setSeal('sealed'); dev.classList.remove('desktop'); dev.classList.add('phone'); $$('.seg [data-device]').forEach(x=>x.classList.toggle('on',x.dataset.device==='phone')); $('#lock').hidden=true; $('#sysbar').classList.remove('on'); $('#main').classList.remove('has-sysbar'); go('onb'); return; }
+  if(d.go){ go(d.go); return; }
+  if(d.onb!==undefined){ if(d.nolock){ S.lock=false; } if(d.instantonly){ toast('Staying on Instant. Get Fast any time in the vault.'); } if(d.onb==='done'){ go('chat'); if(S.lock) toast('Face ID on. Lock after '+S.lockDelay+'.'); } else { S.step=+d.onb; renderOnb(); } return; }
+  if(b.id==='airAsk'){ airAsk(); return; }
+  if(d.tog){
+    const k=d.tog;
+    if(k==='air'){ S.airplane=!S.airplane; $('#sbPlane').hidden=!S.airplane; b.classList.toggle('on',S.airplane); if(S.step===2) renderOnb(); return; }
+    if(k==='wifi'||k==='strict'){ b.classList.toggle('on'); return; }
+    if(k==='ncincog'){ NC.incog=!NC.incog; b.classList.toggle('on',NC.incog); return; }
+    if(k==='pesensitive'){ PE.sensitive=!PE.sensitive; b.classList.toggle('on',PE.sensitive); return; }
+    S[k]=!S[k]; b.classList.toggle('on',S[k]);
+    if(k==='lock' && S.screen==='onb') renderOnb();
+    if(k==='shotBlock' && S[k]) toast('Screenshots blocked. Your own too.');
+    return;
+  }
+  if(d.delay){ S.lockDelay=d.delay; renderOnb(); return; }
+  if(d.set){ S[d.set]=d.val; renderSettings(); if(d.set==='theme'){ applyTheme(); toast(d.val==='System'?'Following the system setting.':d.val+' theme. Same tokens, both ways.'); } if(d.set==='profile') toast(d.val==='Eco'?'Eco: fewer threads, cooler phone.':d.val==='Max'?'Max: all GPU layers. Watch the heat.':'Balanced.'); return; }
+  if(d.sug!==undefined){ $('#input').value=''; if(/lease/i.test(d.sug) && !S.attach.length) S.attach.push({name:'Lease_2026.pdf',pages:14,state:'indexed'}); send(d.sug); return; }
+  if(b.id==='sendBtn'){ if(S.generating) stop(); else { const v=$('#input').value; $('#input').value=''; $('#input').style.height='auto'; send(v);} return; }
+  if(b.id==='micBtn'){ go('voice'); return; }
+  if(b.id==='voiceEnd'){ voiceRun=null; setSeal('sealed'); go('chat'); return; }
+  if(d.sheet){ openSheet(d.sheet); return; }
+  if(d.close){ closeSheet(); return; }
+  if(d.pick){ S.model=d.pick; closeSheet(); renderChat(); toast(`Switched to ${S.catalog.find(c=>c.id===d.pick).name}.`); return; }
+  if(d.attachk){ closeSheet(); if(d.attachk==='file'){ if(S.attach.length&&!S.pro){ go('paywall'); toast('Free plan: one file per chat.'); return; } S.attach.push({name:'Lease_2026.pdf',pages:14,state:'indexed'}); toast('Lease_2026.pdf · 14 pages · indexed on device'); } else { S.attach.push({name:d.attachk==='camera'?'IMG_0412.heic':'Screenshot.png',pages:1,state:'ready'}); toast('EXIF stripped. Stays on device.'); } renderChat(); return; }
+  if(d.detach){ S.attach=S.attach.filter(a=>a.name!==d.detach); renderChat(); return; }
+  if(d.act){
+    if(d.act==='copy') toast('Copied.');
+    if(d.act==='copyx') toast('Copied. Clears in 60 s.');
+    if(d.act==='read') toast('Reading aloud with the system voice.');
+    if(d.act==='report') openSheet('report');
+    if(d.act==='regen'){ const i=S.msgs.findIndex(m=>m.id===d.id); const prompt=S.msgs[i-1]?.text||''; S.msgs.splice(i-1,2); send(prompt); }
+    return;
+  }
+  if(d.ledger!==undefined || b.closest('.ledger')){ b.closest('.ledger').classList.toggle('open'); return; }
+  if(d.dismiss){ const m=S.msgs.find(x=>x.id===d.dismiss); if(m) m.crisis=false; renderChat(); return; }
+  if(d.savereport){ S.reports++; closeSheet(); toast('Saved on this phone. Email it from Settings when you choose.'); return; }
+  if(d.sys){ $('#sysbar').classList.remove('on'); $('#main').classList.remove('has-sysbar'); if(d.sys==='summ'){ S.ctx=Math.round(S.ctx*0.3); meter(); toast('Summarized earlier turns on device. Context freed.'); } return; }
+  if(d.new){ S.msgs=[]; S.attach=[]; S.ctx=0; S.incognito = d.new==='incog'; go('chat'); if(S.incognito) toast('Incognito. Nothing is written to disk.'); return; }
+  if(d.open){ S.msgs=[]; S.attach=[]; S.ctx=0; S.incognito=false; const c=S.chats.find(x=>x.id===d.open); if(c.id==='c1'){ S.attach=[{name:'Lease_2026.pdf',pages:14,state:'indexed'}]; S.msgs=[{role:'me',text:'What are the key points of this lease?'},{id:'m0',role:'ai',text:ANSWERS.doc,model:'FAST 2B',modelFull:'QWEN3.5 2B',quant:'Q4_K_M',done:true,cites:true,tps:33,ctx:612,msTok:29,secs:'5.8',ptoks:410,otoks:190,energy:'0.06'}]; S.ctx=612; } else if(c.id==='c5'){ S.msgs=[{role:'me',text:'תתרגם לאנגלית: סבתא, אני חושב עלייך כל יום.'},{id:'m0',role:'ai',text:'Grandma, I think about you every day.',model:'FAST 2B',modelFull:'QWEN3.5 2B',quant:'Q4_K_M',done:true,tps:36,ctx:60,msTok:29,secs:'0.9',ptoks:22,otoks:9,energy:'0.00'}]; S.ctx=60; } else if(c.id==='c2'){ S.msgs=[{role:'me',text:'One day in Rome on foot, no bookings.'},{id:'m0',role:'ai',text:ANSWERS.rome,model:'FAST 2B',modelFull:'QWEN3.5 2B',quant:'Q4_K_M',done:true,tps:34,ctx:230,msTok:29,secs:'6.1',ptoks:14,otoks:120,energy:'0.04'}]; S.ctx=230; } go('chat'); return; }
+  if(d.get){ if(!S.pro && S.catalog.find(c=>c.id===d.get).tier==='pro'){ go('paywall'); return;} getModel(d.get); return; }
+  if(d.load){ loadModel(d.load); return; }
+  if(d.pause){ const c=S.catalog.find(x=>x.id===d.pause); c.state='avail'; renderVault(); toast('Paused. Resumes on Wi‑Fi.'); return; }
+  if(d.explain){ openSheet('explain', d.explain); return; }
+  if(d.details){ openSheet('details', d.details); return; }
+  if(d.import){ toast('Files picker (SAF / Files). Validates GGUF header before Load.'); return; }
+  if(d.hf){ openSheet('hf'); return; }
+  if(d.adddoc){ addDoc(d.adddoc); return; }
+  if(d.ocr){ ocr(d.ocr); return; }
+  if(d.ask){ const doc=S.docs.find(x=>x.id===d.ask); S.attach=[{name:doc.name,pages:doc.pages,state:'indexed'}]; S.msgs=[]; go('chat'); send('Summarize the key points of '+doc.name); return; }
+  if(d.air){ airplaneTest(); return; }
+  if(d.buy){ S.pro=true; $('#proBadge').hidden=false; renderPay(); toast('Pro unlocked on this device. Forever.'); return; }
+  if(d.restore){ toast('Checking App Store… nothing to restore on this account.'); return; }
+  if(d.lock){ showLock(); return; }
+  if(d.unlock){ $('#lock').hidden=true; toast('Unlocked.'); return; }
+  if(d.pchip){ NC.persona=d.pchip; openSheet('newchat'); return; }
+  if(d.mrow){ NC.model=d.mrow; openSheet('newchat'); return; }
+  if(d.startchat){ S.persona=NC.persona; S.model=NC.model; S.incognito=NC.incog; NC=null; S.msgs=[]; S.attach=[]; S.ctx=0; closeSheet(); go('chat'); if(S.incognito) toast('Incognito. Nothing is written to disk.'); return; }
+  if(d.bench){ const o=$('#benchOut'); b.textContent='Running PP 512 / TG 128…'; b.disabled=true; await sleep(1800); if(o) o.innerHTML='<b>PP 512</b> 214 t/s · <b>TG 128</b> 34.2 tok/s · RSS 1.9 GB · GPU Metal · thermal nominal'; b.textContent='Benchmark again'; b.disabled=false; return; }
+  if(d.setdefault){ const c=S.catalog.find(x=>x.id===d.setdefault); if(c.state==='avail'){ toast('Get it first.'); return;} S.model=d.setdefault; closeSheet(); renderChat(); toast(`${c.name} is the default now.`); return; }
+  if(d.delmodel){ const c=S.catalog.find(x=>x.id===d.delmodel); if(c.state==='loaded'||c.id==='apple'){ toast('Unload it first.'); return;} c.state='avail'; closeSheet(); renderVault(); toast(`${c.name} deleted. ${fmtB(c.size)} freed.`); return; }
+  if(d.usep){ S.persona=d.usep; renderPersonas(); toast(`${personaName()} is active for new chats.`); return; }
+  if(d.editp){ PE=null; openSheet('persona', d.editp); return; }
+  if(d.newp){ const custom=S.personas.filter(p=>!p.builtin).length; if(!S.pro && custom>=3){ toast('Free plan: 3 custom personas.'); go('paywall'); return;} PE=null; openSheet('persona', null); return; }
+  if(d.picon||d.pmodel||d.ptool||d.pstyle){ PE.name=$('#pName').value; PE.prompt=$('#pPrompt').value; if(d.picon) PE.icon=d.picon; if(d.pmodel) PE.model=d.pmodel; if(d.ptool) PE.tools = PE.tools.includes(d.ptool)? PE.tools.filter(t=>t!==d.ptool) : [...PE.tools, d.ptool]; if(d.pstyle) PE.style=d.pstyle; openSheet('persona', PE.id); return; }
+  if(d.savep){ PE.name=($('#pName').value||'').trim()||'Untitled'; PE.prompt=$('#pPrompt').value; if(PE.id){ const i=S.personas.findIndex(p=>p.id===PE.id); S.personas[i]={...S.personas[i],...PE}; } else { PE.id='p'+Date.now(); PE.builtin=false; S.personas.push({...PE}); } PE=null; closeSheet(); renderPersonas(); toast('Saved on this phone.'); return; }
+  if(d.delp){ S.personas=S.personas.filter(p=>p.id!==d.delp); if(S.persona===d.delp) S.persona='assistant'; PE=null; closeSheet(); renderPersonas(); toast('Persona deleted.'); return; }
+  if(d.memp){ const p=S.personas.find(x=>x.id===d.memp); p.mem = p.mem===false ? true : false; renderMemory(); return; }
+  if(d.delfact){ S.facts.splice(+d.delfact,1); renderMemory(); toast('Forgotten.'); return; }
+  if(d.editfact){ toast('Inline edit in the app; read-only in the demo.'); return; }
+  if(d.addfact){ S.facts.push({t:'Reads Hebrew and English', src:'added by you', when:'now'}); renderMemory(); return; }
+  if(d.runact){ runAction(d.runact); return; }
+  if(d.runcustom){ if(!S.pro){ go('paywall'); return;} runAction(null, true); return; }
+  if(d.actreplace){ toast('Replaced the selection in Safari.'); return; }
+  if(d.actopen){ const t=S.actResult?.text||''; const rtl=!!S.actResult?.rtl; S.msgs=[]; S.attach=[]; S.ctx=180; S.incognito=false; S.msgs.push({role:'me',text:'From Safari: '+SHARED.slice(0,90)+'…'},{id:'m'+Date.now(),role:'ai',text:t,model:'FAST 2B',modelFull:'QWEN3.5 2B',quant:'Q4_K_M',done:true,tps:34,ctx:180,msTok:29,secs:'2.4',ptoks:90,otoks:60,energy:'0.02',rtl}); go('chat'); return; }
+  if(d.newact){ if(!S.pro){ go('paywall'); return;} openSheet('action'); return; }
+  if(d.saveact){ const n=($('#aName').value||'').trim()||'Untitled action'; S.actions.push({id:'a'+Date.now(), name:n, prompt:$('#aPrompt').value||''}); closeSheet(); renderActions(); toast('Saved.'); return; }
+  if(d.wipe){ openSheet('wipe'); return; }
+  if(d.dowipe){ closeSheet(); S.msgs=[]; S.attach=[]; S.docs=[]; S.chats=[]; S.ctx=0; toast('Deleted. There was no copy anywhere else.'); go('chat'); return; }
+});
+$('#scrim').addEventListener('click', closeSheet);
+$('#input').addEventListener('keydown', e => { if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); const v=e.target.value; e.target.value=''; e.target.style.height='auto'; send(v);} if(e.key==='Escape') stop(); });
+$('#input').addEventListener('input', e => { e.target.style.height='auto'; e.target.style.height=Math.min(150,e.target.scrollHeight)+'px'; });
+
+/* ---------------- boot ---------------- */
+applyTheme();
+const h=(location.hash||'').replace('#','');
+if(h && ['chat','chats','vault','docs','personas','memory','actions','voice','proof','settings','paywall'].includes(h)){ if(h==='memory'||h==='voice'||h==='docs'){ S.pro=true; $('#proBadge').hidden=false; } go(h); } else { go('onb'); }
+window.addEventListener('hashchange',()=>{ const x=(location.hash||'').replace('#',''); if(x) go(x); });
+})();
+</script>

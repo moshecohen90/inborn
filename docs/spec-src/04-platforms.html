@@ -1,0 +1,113 @@
+<h2 id="s4"><span class="n">04</span>פלטפורמות: iOS, Android, Windows, macOS, Web, וקוד אחד</h2>
+<p class="lead">התשובה הקצרה לשאלה "אפשר גם ווינדוס וגם אתר, ובקוד אחד?": כן, כן בתנאים, וכן ב‑80 עד 85 אחוז מהקוד. הסעיף מפרט מה מותר להבטיח בכל פלטפורמה, איך בונים קוד משותף בלי לוותר על ביצועים, ובאיזה סדר.</p>
+
+<h3>4.1 החלטת הפלטפורמות</h3>
+<div class="tw">
+<table>
+<thead><tr><th>פלטפורמה</th><th>היתכנות</th><th>מנוע הסקה</th><th>מודל פתיחה ללא הורדה</th><th>עוצמת הוכחת הפרטיות</th><th>שלב</th></tr></thead>
+<tbody>
+<tr><td><strong>iOS</strong> (iPhone, iPad)</td><td>מלאה</td><td class="ltr">llama.rn (llama.cpp, Metal)</td><td class="ltr">Apple Foundation Models (iPhone 15 Pro+, iOS 26)</td><td>הגבוהה ביותר: בינארי חתום, עובד במצב טיסה, תווית "Data Not Collected"</td><td class="ltr">P1</td></tr>
+<tr><td><strong>Android</strong></td><td>מלאה</td><td class="ltr">llama.rn (OpenCL/Adreno, Hexagon NPU ניסיוני)</td><td class="ltr">Gemini Nano via ML Kit (Pixel 8+, S24+), אופציונלי</td><td>הגבוהה בקטגוריה: <strong>מניפסט ללא הרשאת INTERNET</strong> (מודלים דרך Play Asset Delivery, רכישות דרך Play Billing), Exodus אפס טראקרים, Data Safety "no data collected"</td><td class="ltr">P1</td></tr>
+<tr><td><strong>Windows</strong> (10/11, x64 + ARM)</td><td>מלאה, ומומלצת כפלטפורמה השנייה</td><td class="ltr">Tauri v2 + llama.cpp ב‑Rust (llama-cpp-2) או llama-server sidecar; CUDA / Vulkan</td><td class="ltr">Phi Silica על Copilot+ PC (אופציונלי, P4)</td><td>גבוהה: מתקין חתום, מודלים 7–9B, קבצים מקומיים</td><td class="ltr">P3</td></tr>
+<tr><td><strong>macOS</strong> (Apple Silicon)</td><td>מלאה, אותו קוד כמו Windows</td><td class="ltr">Tauri v2 + llama.cpp (Metal)</td><td class="ltr">Apple Foundation Models (macOS 26, M1+), P4</td><td>גבוהה: Notarized, sandbox</td><td class="ltr">P3</td></tr>
+<tr><td><strong>Web</strong> (דפדפן)</td><td>חלקית: שכבת "נסה ב‑30 שניות", לא מוצר הדגל</td><td class="ltr">wllama (llama.cpp WASM + WebGPU), אותם קבצי GGUF</td><td class="ltr">Chrome Prompt API (Gemini Nano, דסקטופ בלבד), מאחורי מתג מפורש</td><td>בינונית: נכון לכל סשן אבל לא ניתן לביקורת; ניסוח זהיר יותר</td><td class="ltr">P2</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="decision"><span class="k">Decision</span><p>מוצר הדגל הוא האפליקציות המותקנות (מובייל בשלב 1, דסקטופ בשלב 3). הווב הוא שכבת התנסות ודף נחיתה שמנתב להתקנה. את הניסוח החזק ביותר ("ניתן לביקורת, עובד לגמרי אופליין, אין שרת בלולאה") שומרים לאפליקציות המותקנות בלבד.</p></div>
+
+<h3>4.2 למה דסקטופ הוא הפלטפורמה השנייה בחשיבותה, לפני הווב</h3>
+<ul>
+<li><strong>שם הכסף של הנישה.</strong> שכבת "Pro for Work" (עורכי דין, מטפלים, רופאים, רואי חשבון) עובדת מול מסמכים על מחשב, לא על טלפון. "נתח את החוזה הזה בלי שהוא עוזב את המחשב" הוא מוצר דסקטופ.</li>
+<li><strong>מודלים גדולים.</strong> על מחשב עם 16 GB זיכרון רצים מודלים של 7–9B (איכות שונה לגמרי מ‑2B בטלפון), ועל GPU של 24 GB גם 30B. הדסקטופ הוא המקום שבו "עוצמה" נהיית מוחשית.</li>
+<li><strong>המתחרים חלשים שם.</strong> LM Studio, Jan ו‑Msty פונים לחובבי טכנולוגיה. אין מוצר דסקטופ צרכני עם מיצוב פרטיות מוכחת, תמחור חד‑פעמי ומכונת ASO מאחוריו.</li>
+<li><strong>עלות שולית נמוכה.</strong> אחרי שהאדפטר והקטלוג נבנים במובייל, הדסקטופ הוא מעטפת Tauri סביב אותו ייצוא ווב, ועוד שכבת Rust דקה.</li>
+</ul>
+
+<h3>4.3 מה נפסל, ולמה</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>אופציה</th><th>מצב בספטמבר 2026</th><th>פסק דין</th></tr></thead>
+<tbody>
+<tr><td class="ltr">React Native for Windows + llama.rn</td><td>ל‑llama.rn אין יעד Windows או macOS (סקריפטי בנייה ל‑iOS ו‑Android בלבד). RNW 0.84 דורש Visual Studio 2026, Fabric בלבד, 796 issues פתוחים, ו‑Expo לא תומך בו.</td><td><span class="pill no">נפסל</span> היית כותב ומתחזק לבד TurboModule ב‑C++ סביב llama.cpp, בלי קהילה.</td></tr>
+<tr><td class="ltr">Electron + node-llama-cpp 3.20</td><td>בשל: בינארים מוכנים ל‑Windows (CUDA 163 MB, Vulkan 95 MB, CPU 45 MB), תבנית Electron, MSIX ל‑Store.</td><td><span class="pill p1">גיבוי</span> אם לא רוצים Rust. המחיר: מתקין של 120–200 MB, שנראה "נפוח" למוצר פרטיות.</td></tr>
+<tr><td class="ltr">Tauri v2 + Rust (llama-cpp-2) / llama-server sidecar</td><td>מעטפת של 3–10 MB, WebView מערכת, sidecar מובנה. llama-cpp-2 (Apache‑2.0) פעיל. אפליקציות local‑AI מ‑2026 (Helix, warpdrv) עובדות כך.</td><td><span class="pill free">נבחר</span> הבינארי הקטן ביותר, תנוחת אבטחה הטובה ביותר, GPU נייטיב, אותו frontend.</td></tr>
+<tr><td class="ltr">Windows ML / ONNX GenAI / Phi Silica</td><td>מנוע נוסף עם פורמט מודל אחר (ONNX), רק Windows.</td><td><span class="pill p1">מאיץ</span> המקבילה ל‑Apple Foundation Models: מודל פתיחה ללא הורדה על Copilot+ PC. לא המנוע.</td></tr>
+<tr><td class="ltr">PWA בלבד כ"דסקטופ"</td><td>מתקין דרך Chrome/Edge, נכנס ל‑Microsoft Store בחינם דרך PWABuilder.</td><td><span class="pill p1">גשר</span> פתרון ביניים של יומיים אם הביקוש לדסקטופ מקדים את שלב 3. לא נותן GPU נייטיב, מודלים גדולים או גישה לקבצים.</td></tr>
+<tr><td class="ltr">WebLLM (MLC) לווב</td><td>דורש מודלים מקומפלים ב‑MLC, כלומר קטלוג שני.</td><td><span class="pill no">נפסל</span> wllama מריץ את אותם קבצי GGUF כמו המובייל והדסקטופ; קטלוג אחד.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>4.4 הווב: מה אפשר להבטיח ומה לא</h3>
+<p>WebGPU הוא כבר ברירת מחדל ב‑Chrome, Edge, Firefox ו‑Safari 26 (כ‑90% מהדסקטופ, 70–75% מהמובייל). המגבלות שקובעות את העיצוב:</p>
+<ul>
+<li><strong>הורדה ראשונה של 0.5–2.7 GB</strong> לפני ההודעה הראשונה. ניתנת לחלוקה ולהמשך (split GGUF), נשמרת ב‑OPFS עם בקשת <code>persist()</code>. Safari מוחק אחסון של אתר שלא ביקרו בו 7 ימים.</li>
+<li><strong>iPhone Safari מגביל טאב לפחות מ‑500 MB</strong>, כלומר רק מודלים מתחת ל‑1B. המסקנה: בטלפון, הווב מזהה את המכשיר ומציע להתקין את האפליקציה.</li>
+<li><strong>ריבוי threads דורש כותרות COOP/COEP</strong>, ששוברות iframes של צד שלישי. הדמו יושב על origin משלו, נפרד מדף השיווק.</li>
+<li><strong>המילים.</strong> בווב כותבים "רץ מקומית בדפדפן שלך, שום דבר לא נשלח אלינו", ומסבירים שהדפדפן ומערכת ההפעלה עצמם עשויים לתקשר, האפליקציה לא. כדי לקרב את הווב לאמינות של בינארי: CSP קשיח (<code>default-src 'self'</code>), SRI על כל סקריפט, Service Worker שמאפשר את "מבחן מצב הטיסה" גם בדפדפן, קוד פתוח עם hash מפורסם של ה‑bundle, ומודלים מ‑CDN משלנו.</li>
+</ul>
+
+<h3>4.5 קוד אחד: הארכיטקטורה המאחדת</h3>
+<div class="note ok"><p><strong>בעברית פשוטה:</strong> ריפו אחד, צוות אחד, רכבת שחרורים אחת. כל המסכים, הצ'אט, הכספת, המסמכים וההגדרות נכתבים פעם אחת ב‑TypeScript, ורצים כאפליקציה נייטיב באייפון ובאנדרואיד, כאתר בדפדפן, ובתוך חלון Tauri קטן במק ובווינדוס (אותה בניית ווב, בלי דפדפן מוטמע כבד). מה שכן נפרד לכל פלטפורמה הוא שלושה דברים דקים: החיבור למנוע המודל (llama.cpp דרך llama.rn בטלפון, דרך Rust במחשב, דרך WebAssembly בדפדפן), גישה לקבצים ולאחסון, ואריזה וחתימה. זה 15–20 אחוז מהקוד, ובדיוק החלקים שממילא חייבים להיות שונים. פיצול לאפליקציות נייטיב נפרדות (Swift/Kotlin) לא נדרש לפי המחקר: הביצועים נקבעים על ידי מנוע המודל, שהוא נייטיב בכל מקרה, ולא על ידי שכבת הממשק.</p></div>
+<p>אפליקציית Expo אוניברסלית (SDK 54/55, Expo Router, React Native 0.83+, New Architecture) מייצרת iOS, Android ו‑Web מאותו קוד. הדסקטופ הוא Tauri v2 שה‑frontend שלו הוא ייצוא הווב של אותה אפליקציה. הדבר היחיד שמשתנה בין פלטפורמות הוא מימוש ממשק אחד: <code>LocalLM</code>.</p>
+<div class="arch"><b>apps/</b>
+  app/        Expo universal: iOS + Android + Web (Expo Router, NativeWind v4)
+  desktop/    Tauri v2: frontendDist = expo export --platform web; Rust crate (llama-cpp-2) או sidecar llama-server
+<b>packages/</b>
+  ui/         רכיבים משותפים, וריאנטים .web.tsx / .native.tsx רק היכן שצריך
+  core/       מצב הצ'אט, מאגר שיחות, תבניות פרומפט, RAG, קטלוג מודלים, מנהל הורדות, הגדרות
+  llm/        ממשק <i>LocalLM</i> + 5 מימושים דקים (200–800 שורות כל אחד)
+  models/     מניפסט חתום: שם, sha256, גודל, רישיון, RAM מינימלי, tier
+<b>מסירת מודלים</b>
+  Android      Play Asset Delivery (fast-follow + on-demand) · ייבוא SAF · <i>אין הרשאת INTERNET</i>
+  iOS 26+      bundle + Apple-hosted asset packs · iOS 17–25: bundle + CDN
+  Desktop/Web  CDN (Cloudflare R2) · ייבוא
+<b>מימושי LocalLM</b>
+  iOS/Android  llama.rn        (GGUF)            דרך @react-native-ai/llama
+  iOS 26+      Apple FM        (מובנה, 4,096 tok) דרך @react-native-ai/apple
+  Web          wllama          (GGUF, WebGPU/WASM)
+  Desktop      Rust / sidecar  (GGUF, CUDA/Vulkan/Metal) דרך Tauri invoke + event stream
+  Web (opt.)   Chrome Prompt API (Gemini Nano, דסקטופ בלבד, מאחורי מתג)</div>
+<p>מכיוון ש‑llama.rn, wllama, node-llama-cpp וה‑crate של Rust הם כולם llama.cpp, קטלוג GGUF אחד, סט תבניות צ'אט אחד, סיפור tool‑calling אחד ומנהל הורדות אחד משרתים את כל הפלטפורמות.</p>
+
+<div class="tw compact">
+<table>
+<thead><tr><th>שכבה</th><th>משותף</th><th>הערות</th></tr></thead>
+<tbody>
+<tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>NativeWind v4 (Tailwind מקומפל). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
+<tr><td>מצב הצ'אט, סכמת אחסון, הגדרות</td><td class="num">100%</td><td>SQLite (expo-sqlite עם SQLCipher) בנייטיב, OPFS/IndexedDB בווב, SQLite דרך Rust בדסקטופ, מאחורי ממשק repository אחד.</td></tr>
+<tr><td>קטלוג מודלים, הורדות, אימות hash</td><td class="num">~90%</td><td>ה‑API של הקבצים שונה: expo-file-system / OPFS / Tauri fs.</td></tr>
+<tr><td>RAG (חיתוך, embeddings, חיפוש וקטורי)</td><td class="num">~85%</td><td>sqlite-vec במובייל ובדסקטופ, in‑memory/IndexedDB בווב.</td></tr>
+<tr><td>הסקה</td><td>ממשק בלבד</td><td>5 מימושים; צד Rust 1–3K שורות.</td></tr>
+<tr><td>דיבור, בוררי קבצים, share sheet, tray, עדכונים</td><td>פר פלטפורמה</td><td>whisper.rn / SpeechAnalyzer / Transformers.js; קולות מערכת ל‑TTS.</td></tr>
+<tr><td>אריזה, חתימה, CI</td><td>פר פלטפורמה</td><td>EAS למובייל, אחסון סטטי לווב, Tauri bundler + Notarization + חתימת Windows.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>4.6 מלכודות ידועות מראש</h3>
+<ol>
+<li>RN Windows אינו יעד של Expo. לא מתכננים עליו את הדסקטופ.</li>
+<li>Expo Web לא מספק Service Worker; משתמשים ב‑Workbox ובודקים <code>expo export --platform web --analyze</code> לפני שחרור.</li>
+<li>Apple Foundation Models: חלון של 4,096 טוקנים לסשן, ומצבי זמינות (מכשיר לא נתמך, Apple Intelligence כבוי, מודל בהורדה). מתכננים קיצוץ שיחה ונפילה חזרה למנוע GGUF.</li>
+<li>Android 16 KB pages חובה ב‑Play מאז נובמבר 2025. llama.rn נבנה עם דפים גמישים; נדרש AGP 8.5.1+, NDK r28+, RN 0.77+, וכל תלות נייטיב אחרת מיושרת. בודקים על אימולטור 16 KB.</li>
+<li>Tauri משתמש ב‑WebKit ב‑macOS וב‑Chromium ב‑Windows: בודקים את בניית הווב ב‑Safari כפרוקסי ל‑macOS.</li>
+<li>Chrome על Windows‑on‑ARM עדיין בלי WebGPU כברירת מחדל; הדסקטופ עוקף זאת כי ההסקה נייטיב.</li>
+<li>עלויות וזמני חתימה: Apple Developer ID + Notarization, תעודת חתימה ל‑Windows (או Azure Trusted Signing) נדרשות ל‑Store ול‑SmartScreen.</li>
+</ol>
+
+<h3>4.7 סדר השלבים והמאמץ</h3>
+<div class="tw">
+<table>
+<thead><tr><th>שלב</th><th>היקף</th><th class="num">הערכה</th></tr></thead>
+<tbody>
+<tr><td><strong>P1 מובייל</strong></td><td>אפליקציית Expo, אדפטרים llama.rn + Apple FM, קטלוג והורדות, UX צ'אט מלא, RAG גרסה 1, App Store + Play. כאן מונחים ממשק האדפטר והחבילות המשותפות.</td><td class="num">8–12 שבועות</td></tr>
+<tr><td><strong>P2 ווב</strong></td><td>ייצוא ווב, אדפטר wllama (WebGPU + נפילה ל‑WASM), מטמון OPFS עם persist, אירוח COOP/COEP, CSP/SRI, שער מכשיר (דסקטופ עד 4B, טלפון עד 1B), PWA + Workbox, מתג Chrome Prompt API.</td><td class="num">3–5 שבועות</td></tr>
+<tr><td><strong>P3 דסקטופ</strong></td><td>מעטפת Tauri, crate Rust או sidecar עם Vulkan + CUDA (Windows) ו‑Metal (macOS), אדפטרי fs/sqlite, updater, חתימה ו‑Notarization, Microsoft Store (רישום EXE/MSI), Mac App Store אופציונלי.</td><td class="num">5–8 שבועות</td></tr>
+<tr><td><strong>P4 מאיצים</strong></td><td>Apple FM ב‑macOS בתוך Tauri (Swift sidecar), Phi Silica על Copilot+ (גשר WinRT), Hexagon/OpenVINO NPU, Gemini Nano ב‑Android.</td><td class="num">2–4 שבועות כל אחד</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>

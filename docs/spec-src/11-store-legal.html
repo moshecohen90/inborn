@@ -1,0 +1,66 @@
+<h2 id="s11"><span class="n">11</span>חנויות, פרטיות ורישוי</h2>
+<p class="lead">אפליקציה שלא אוספת כלום עוברת ביקורת בקלות יחסית, בתנאי שהיא עונה בכנות על שאלון הגיל, מספקת כפתור דיווח, ומצהירה על התווית הנכונה. כאן כל דרישה ב‑2026 והמענה שלנו.</p>
+
+<h3>11.1 Apple App Store</h3>
+<ul>
+<li><strong>דירוג גיל (בתוקף מ‑31.1.2026):</strong> המדרגות הן 4+, 9+, 13+, 16+, 18+. השאלון שואל במפורש על צ'אטבוטים, ו‑Apple קובעת שיש לשקול "how AI assistants and chatbot functionality impact the frequency of sensitive content". התשובה שלנו: <strong>13+</strong>, טקסט גנרטיבי לא מוגבל, מצב family‑safe כברירת מחדל, ללא roleplay, ללא "no filters". מותר לבחור דירוג גבוה מהמחושב; לא נבחר 18+ כי זה מוחק את מיצוב הכלי היומיומי.</li>
+<li><strong>Review Guidelines:</strong> 1.2 (סינון, דיווח, חסימה ופרטי קשר, מוחל על פלט AI), 2.3.6 (שאלות גיל בכנות), 5.1.1 (קישור למדיניות פרטיות גם כשלא אוספים), 5.1.2(i) (הסכמה לפני שיתוף עם AI צד‑שלישי, לא רלוונטי בלי ענן), 5.1.4 (ילדים). הערות לבודק: הסבר עיצוב אפס‑הרשת, מודל מובנה לבדיקה אופליין, איך לבדוק את הדיווח.</li>
+<li><strong>תווית פרטיות:</strong> "Data Not Collected". "Collect" פירושו שידור מחוץ למכשיר לגישה שלנו או של שותפים. זה אפשרי רק עם אפס SDK יוצא; Apple דחתה אפליקציות שהצהירו "לא אוסף" בזמן ש‑SDK של analytics רץ. דיאגנוסטיקה ברמת OS היא איסוף של Apple, לא שלנו.</li>
+<li><strong>Privacy manifest</strong> (<code>PrivacyInfo.xcprivacy</code>): הצהרת required‑reason APIs: מקום בדיסק (E174.1), UserDefaults (CA92.1), חותמות זמן קבצים (C617.1), boot time (35F9.1); <code>NSPrivacyTracking = false</code>; SBOM לספריות נייטיב.</li>
+<li><strong>Foundation Models acceptable use:</strong> אין פלטים רפואיים/משפטיים/כספיים/תעסוקתיים לא מדויקים או אוטונומיים, אין תוכן למבוגרים, אין "dependency or spiraling". לכן Apple FM לא משמש בזרימות Work רפואיות/משפטיות ולא בשום נתיב "לא מסונן".</li>
+<li><strong>רכישות:</strong> non‑consumable Pro עם Family Sharing מופעל ב‑App Store Connect; JWS מאומת על המכשיר; revocationDate נועל פיצ'רים ולא נתונים; Small Business Program (15%) מתחת למיליון דולר בשנה.</li>
+<li><strong>גיבוי iCloud:</strong> מודלים מוחרגים (isExcludedFromBackup), תוכן משתמש לא מוחרג.</li>
+<li><strong>Siri AI Extensions (iOS 27):</strong> אפליקציות צ'אטבוט יכולות להירשם להפעלה מ‑Siri; עוקבים אחרי תיעוד App Intents ונרשמים ראשונים.</li>
+</ul>
+
+<h3>11.2 Google Play</h3>
+<ul>
+<li><strong>מדיניות AI‑Generated Content:</strong> חלה על צ'אטבוט טקסט. דרישות: (א) דרך בתוך האפליקציה לדווח על תוכן פוגעני בלי לצאת ממנה, ושימוש בדיווחים לסינון; (ב) אין יצירת תוכן אסור (CSAM, הונאה, הטרדה, סיפוק מיני, הטעיית בחירות, קוד זדוני, מסמכים מזויפים); (ג) אחריות על הפלט כולל מניעה ובדיקה; (ד) סימון שהתוכן מיוצר ב‑AI; (ה) תוכן AI לקטינים לא מסוכן/מיני/מניפולטיבי. המענה: S13 (דיווח אופליין), system prompt בטיחות, מסווג family‑safe, גילוי AI ב‑onboarding ובכותרות פרסונה.</li>
+<li><strong>מדיניות תוכן מוגבל‑גיל (עדכון 26.8.2026):</strong> חלה על צ'אט אנונימי/היכרויות/הימורים. האפליקציה שלנו היא משתמש‑יחיד, מקומית, לא חברתית: מחוץ לתחולה. אם אי פעם תתווסף פרסונת companion, בוחנים מחדש.</li>
+<li><strong>דירוג תוכן IARC:</strong> צפוי "Teen". אפליקציה לא מדורגת מוסרת.</li>
+<li><strong>Data Safety:</strong> נדרש גם לאפס איסוף: "No data collected", "No data shared", הצפנה במנוחה, מנגנון מחיקה (ייצוא/מחיקה), URL מדיניות. <strong>הרשאות:</strong> המניפסט ללא INTERNET, ולכן דף ההרשאות ב‑Play לא מציג גישה לרשת; מודלים מגיעים דרך Play Asset Delivery (הורדה של Play, לא של האפליקציה); מציינים במדיניות ש‑Google רואה את ההורדה כמו כל התקנה.</li>
+<li><strong>Billing:</strong> Play Billing Library 9.x (המניפסט שלה ללא INTERNET, אומת); רכישות במטמון ל‑queryPurchasesAsync אופליין; acknowledge תוך 3 ימים; Family Library לא כולל IAP.</li>
+<li><strong>מגבלות:</strong> foreground service מסוג dataSync מוגבל ל‑6 שעות ב‑24 ב‑Android 15+, ולכן היצירה רצה כשירות קצר‑חיים; target API 36 עד 31.8.2026; אימות מפתחים עד 30.9.2026; 16 KB pages לעדכונים מ‑1.2.2027 (וכבר חובה לאפליקציות חדשות).</li>
+<li><strong>אכיפת "low‑value AI apps" (2026):</strong> האפליקציה חייבת להיות מובחנת ולא "wrapper"; מסך ההוכחה, הכספת והמסמכים הם הבידול המתועד.</li>
+</ul>
+
+<h3>11.3 GDPR, CCPA, ו‑EU AI Act</h3>
+<ul>
+<li><strong>GDPR/UK GDPR:</strong> כשאין נתונים אישיים שמגיעים אלינו (בלי חשבונות, analytics, crash SDK, שרת), איננו controller או processor לתוכן השיחות; העיבוד של המשתמש הוא שימוש ביתי. החנויות עדיין דורשות מדיניות פרטיות, ולכן מפרסמים אחת שאומרת: מעובד על המכשיר בלבד, אין איסוף, אין שיתוף, אין מעקב; רכישות ודיאגנוסטיקת OS מעובדות על ידי Apple/Google כ‑controllers עצמאיים; הורדת מודלים חושפת IP למארח כמו כל הורדה; מייל התמיכה הוא הערוץ היחיד שבו מעובד נתון אישי (הכתובת), על בסיס אינטרס לגיטימי, ונמחק אחרי הטיפול.</li>
+<li><strong>CCPA/CPRA:</strong> מחוץ לתחולה (אין מידע אישי), אבל משאירים הצהרת "Do not sell or share" לבהירות. בקשות נושאי מידע: אין צד שרת; האפליקציה עצמה נותנת גישה/ייצוא/מחיקה, שזו התשובה החזקה ביותר.</li>
+<li><strong>EU AI Act, סעיף 50 (מ‑2.8.2026):</strong> (1) ליידע שמדובר ב‑AI, גם אם ברור: שורת גילוי ב‑S01 ובכותרות פרסונה; (2) סימון פלט סינתטי בצורה קריאה למכונה: לטקסט על המכשיר זו שאלה פתוחה (קוד הנוהג של הנציבות בהכנה; ההסכמה הזמנית מ‑5.2026 נותנת למערכות קיימות עד 2.12.2026). ביניים הגנתי: פונקציות הייצוא מטביעות כותרת/מטא‑דאטה "generated by AI". אין סיווג high‑risk לצ'אט צרכני כללי; תבניות Work לא יהפכו אותו למערכת החלטות תעסוקתית/אשראי/רפואית.</li>
+<li><strong>מיצוב למקצוענים (Work):</strong> ABA Opinion 512, Florida Bar 24‑1, והנחיית קליפורניה (5.2026, עם כללים מוצעים לחובת אימות פלט) כולן תלויות בשאלה אם מידע חסוי עוזב את שליטת עורך הדין ואם הכלי שומר או מאמן עליו. כלי על המכשיר בלי שמירה מחוץ למכשיר הוא התשובה הנקייה ביותר, אבל עורך הדין עדיין חב כשירות, אימות וגילוי. HIPAA: BAA נדרש רק עם ספק שמקבל PHI; אפליקציה שלא מקבלת PHI אינה business associate, אבל הישות המכוסה עדיין צריכה אמצעי הגנה ברמת המכשיר, ואנחנו מספקים את התיעוד. IRC §7216: הסכמה נדרשת כשנתוני לקוח נחשפים לצד שלישי כמו AI בענן; עיבוד על המכשיר נמנע מהחשיפה. <strong>לעולם לא כותבים "HIPAA‑compliant" או "privileged" בשיווק</strong>; כותבים "no data leaves your device" ומספקים הצהרת ארכיטקטורה להורדה.</li>
+</ul>
+
+<h3>11.4 רישיונות מודלים ורכיבים</h3>
+<div class="tw compact">
+<table>
+<thead><tr><th>רכיב</th><th>רישיון</th><th>חובות כמפיצים (מובנה או מוגש מה‑CDN שלנו)</th></tr></thead>
+<tbody>
+<tr><td class="ltr">Qwen3.5 (0.8B–9B), SmolLM3, Ministral 3, Granite 4, Gemma 4</td><td class="ltr">Apache-2.0</td><td>NOTICE/LICENSE וייחוס; אין מגבלות שימוש עוברות</td></tr>
+<tr><td class="ltr">Phi-4-mini, DeepSeek-R1 (משקולות), Whisper, llama.cpp, whisper.cpp, MLX</td><td class="ltr">MIT</td><td>הודעת זכויות יוצרים במסך הרישיונות</td></tr>
+<tr><td class="ltr">Gemma ≤3 / 3n, EmbeddingGemma, ShieldGemma</td><td class="ltr">Gemma Terms of Use</td><td>העברת מגבלות השימוש כתנאים אכיפים, עותק התנאים למקבל, סימון קבצים ששונו, טקסט NOTICE. ב‑HF זה gated: טוקן + אישור. <strong>לכן ShieldGemma למסווג family‑safe דורש מסך תנאים</strong>; חלופה: מסווג Apache</td></tr>
+<tr><td class="ltr">Llama 3.x / 4</td><td class="ltr">Llama Community License</td><td>"Built with Llama" בולט, שמות נגזרים מתחילים ב‑Llama, NOTICE, AUP. <strong>לא בקטלוג ברירת המחדל</strong>; זמין בייבוא</td></tr>
+<tr><td class="ltr">LFM2 / LFM2.5</td><td class="ltr">LFM Open License v1.0</td><td>מסחרי חינם מתחת ל‑10M דולר הכנסה שנתית; מסומן לבדיקה בגדילה</td></tr>
+<tr><td class="ltr">Mistral 7B / Ministral 8B ישן (2410)</td><td class="ltr">Apache / MRL</td><td>לבדוק כל שחרור; מודלים תחת MRL (לא מסחרי) מחוץ לקטלוג</td></tr>
+<tr><td class="ltr">Apple Foundation Models, Gemini Nano</td><td>תנאי הפלטפורמה</td><td>אין הפצה מחדש; acceptable use; foreground בלבד (Nano)</td></tr>
+<tr><td class="ltr">Kokoro TTS</td><td class="ltr">Apache-2.0 (משקולות)</td><td><strong>espeak‑ng הוא GPL‑3</strong>: לא מקשרים לאפליקציה סגורה; משתמשים ב‑G2P מתירני (misaki) או Supertonic/Kitten</td></tr>
+<tr><td class="ltr">IBM Plex, Plex Mono</td><td class="ltr">OFL</td><td>ייחוס</td></tr>
+</tbody>
+</table>
+</div>
+<p>כלל מעשי: הורדה יזומה של המשתמש מ‑Hugging Face מטילה את אישור הרישיון עליו (מציגים ודורשים הקשה); כל מה שמובנה או מוגש מה‑CDN שלנו הופך אותנו למפיצים, ולכן מסך "Model licenses" בתוך האפליקציה מפרט כל מודל עם שם רישיון, קישור ומגבלות. SBOM של ספריות נייטיב למניפסט הפרטיות ולהצהרות SDK של Play.</p>
+
+<h3>11.5 רשימת ציות בעמוד אחד</h3>
+<ol class="chk">
+<li>דירוג גיל 13+ עם שאלון כנה; לא בקטגוריית Kids.</li>
+<li>כפתור דיווח על כל הודעת AI שעובד אופליין ומסביר ששום דבר לא נשלח אוטומטית.</li>
+<li>גילוי AI ב‑onboarding ובכותרות פרסונה; הודעת "can be wrong".</li>
+<li>URL מדיניות פרטיות בשתי החנויות ובאפליקציה; "Data Not Collected"; Data Safety "No data collected/shared"; privacy manifest; אפס SDK עם רשת.</li>
+<li>מסך רישיונות מודלים + קובצי NOTICE; "Built with Llama" אם Llama בקטלוג (לא); זרימת תנאי Gemma; gating ל‑HF.</li>
+<li>non‑consumable Pro, Family Sharing (iOS), מטמון זכאות אופליין, Restore, טיפול בביטול; Play acknowledge; בלי שרת.</li>
+<li>גיבוי: מודלים מוחרגים, שיחות כלולות ומוצפנות; ייצוא במשפט‑סיסמה למעבר.</li>
+<li>בטיחות: family‑safe כברירת מחדל, כרטיס משבר, הצהרות רפואה/משפט, שליטה בלולאות ועצירה.</li>
+<li>Android: 16 KB, target API 36, דפוס foreground service, אימות מפתחים.</li>
+<li>Work: PDF הצהרת ארכיטקטורה, בלי "compliant/privileged", באנרי אימות, בקרות שמירה.</li>
+</ol>

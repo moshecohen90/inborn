@@ -1,0 +1,36 @@
+<h2 id="s15"><span class="n">15</span>מדדי הצלחה בלי טלמטריה</h2>
+<p class="lead">האפליקציה לא מודדת את המשתמשים, ולכן המדדים מגיעים רק ממה שהחנויות, המכירות והמשתמשים מספרים מרצונם. זה מספיק, ואפילו ממקד: המדדים שנשארים הם בדיוק אלו שמזיזים את העסק.</p>
+<p><strong>מה יש לנו בלי שום SDK (בלי Firebase, בלי טלמטריה):</strong> App Store Connect מציג הופעות, צפיות בדף, המרה להורדה, הורדות, מכירות והחזרים לכולם, ובנוסף סשנים, מכשירים פעילים ושימור למשתמשים שהסכימו לשתף נתונים עם Apple (חלק מהמשתמשים, אבל מדגם קבוע שמספיק למגמות); קריסות iOS מגיעות ל‑Xcode Organizer מאותם משתמשים. Play Console מציג התקנות, הסרות, שימור לפי קוהורטה, דירוגים, הכנסות, ו‑Android vitals (קריסות, ANR, סוללה) שנאספים על ידי מערכת ההפעלה ממשתמשים שהסכימו, לא על ידי קוד באפליקציה, ולכן עובדים גם בלי הרשאת INTERNET. ניסויים: רק ברמת דף החנות (Product Page Optimization ב‑App Store, Store listing experiments ב‑Play); בתוך האפליקציה אין A/B, ולכן שינויים נמדדים בין גרסאות. מכירות דסקטופ ב‑Paddle ובחנות Microsoft. ואת "למה" מספרים הביקורות, מייל התמיכה, וקובץ "דווח על בעיה" שהמשתמש שולח בעצמו. אתר השיווק בלבד עם Cloudflare Web Analytics (בלי עוגיות), שגם הוא לא נוגע באפליקציה.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>מדד</th><th>מקור</th><th class="num">יעד חודש 3</th><th class="num">יעד חודש 12</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td>הורדות ביום (iOS + Android)</td><td>App Store Connect, Play Console</td><td class="num">300</td><td class="num">2,500</td><td>PocketPal ≈ 3,800 ביום היא נקודת הייחוס; תואם לתרחיש "יעד" ב‑§12.5</td></tr>
+<tr><td>המרה צפייה → התקנה בדף החנות</td><td>ASC, Play</td><td class="num">≥ 30%</td><td class="num">≥ 35%</td><td>מסר "offline / private" + צילומי מסך</td></tr>
+<tr><td>דירוג ומספר ביקורות</td><td>החנויות</td><td class="num">4.6 · 200</td><td class="num">4.7 · 3,000</td><td>מענה לכל ביקורת דרך מנגנון הביקורות הקיים</td></tr>
+<tr><td>המרה ל‑Pro (מהמתקינים)</td><td>ASC, Play, Paddle</td><td class="num">1.5%</td><td class="num">2.5–3%</td><td>lifetime בלבד; אין SKU שנתי</td></tr>
+<tr><td>הכנסה חודשית נטו</td><td>דוחות החנויות</td><td class="num">$2K</td><td class="num">$28K (יעד) · $8K (סף שער C)</td><td>אחרי 15% בתוכנית העסקים הקטנים; תואם ל‑§12.5</td></tr>
+<tr><td>החזרים</td><td>החנויות</td><td class="num">&lt; 3%</td><td class="num">&lt; 2%</td><td>מוצר חד‑פעמי חייב לעמוד בהבטחתו</td></tr>
+<tr><td>Retention יום 1 / יום 7 (מצטבר, אנונימי)</td><td>Play Console בלבד (Apple לא מספקת)</td><td class="num">45% / 20%</td><td class="num">50% / 25%</td><td>מדד מצרפי של החנות, לא שלנו</td></tr>
+<tr><td>קריסות</td><td>Play Vitals (מצרפי), דוחות שהמשתמש שולח ידנית</td><td class="num">&lt; 0.5%</td><td class="num">&lt; 0.3%</td><td>iOS: רק אם המשתמש הסכים לשיתוף עם Apple ו‑Apple איתנו (Xcode Organizer)</td></tr>
+<tr><td>דירוג מילות מפתח</td><td>מעקב ה‑ASO הקיים</td><td>Top‑10 ל‑"offline ai chat" (Play)</td><td>Top‑3 ל‑"private ai chat" (iOS), Top‑3 "offline chatbot" (Play)</td><td>לפי המחקר ב‑§13</td></tr>
+<tr><td>תנועה אורגנית לאתר</td><td>לוגים של Cloudflare (ללא עוגיות, ללא JS analytics)</td><td class="num">5K/חודש</td><td class="num">50K/חודש</td><td>מדריכי "Is ChatGPT private?" וכד'</td></tr>
+<tr><td>דסקטופ: התקנות והמרות ל‑Work</td><td>Microsoft Store, Paddle</td><td>—</td><td class="num">1,000/חודש · 5% = 50 Work</td><td>תואם ל‑50 רישיונות Work בחודש בתרחיש היעד של §12.5; המרה גבוהה יותר כי הקהל מקצועי</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>15.1 מה לא מודדים, בכוונה</h3>
+<ul>
+<li>לא מודדים כמה הודעות נשלחות, אילו מודלים נטענים, אורך שיחות, או שגיאות בזמן ריצה. אין מזהה מכשיר, אין "ping" יומי, אין A/B בשרת.</li>
+<li>ניסויים (מחיר, paywall, onboarding) נעשים בין גרסאות ובין מדינות דרך החנויות (Play יש ניסויי דף חנות ומחירים; Apple יש Product Page Optimization), לא בתוך האפליקציה.</li>
+<li>שאלון רצוני "מה חסר לך" קיים במסך ההגדרות ופותח מייל שהמשתמש שולח בעצמו; זו כל ה"טלמטריה".</li>
+</ul>
+
+<h3>15.2 שערי החלטה</h3>
+<div class="kv">
+<span class="k">gate A · חודש 3</span><span>אם ההורדות מעל 150 ביום והדירוג מעל 4.5: ממשיכים לשלב 2 (ווב). אחרת: חודש של ASO ותיקוני ביקורות לפני הרחבה.</span>
+<span class="k">gate B · חודש 4 (סוף שלב 2)</span><span>אם ההמרה ל‑Pro מעל 1.5% ויש 50+ ביקורות שמזכירות מסמכים או עבודה: מתחילים דסקטופ ו‑Work (שלב 3, שבועות 18–25). אחרת: מעמיקים במובייל (קול, ראייה) לפני דסקטופ. השער יושב לפני תחילת שלב 3 בכוונה.</span>
+<span class="k">gate C · חודש 12</span><span>אם ההכנסה נטו מעל 8K דולר בחודש: מעבירים את האפליקציה לישות ייעודית (App Transfer) ומגייסים מפתח שני. אחרת: המוצר נשאר יחידה רווחית קטנה בפורטפוליו, במצב תחזוקה עם עדכוני מודלים בלבד.</span>
+</div>
