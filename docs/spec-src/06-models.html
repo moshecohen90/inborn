@@ -82,22 +82,25 @@
 <ul>
 <li><strong>שתי דרגות:</strong> <em>הצעה</em> (שורה עם כפתור, כלום לא משתנה) לעומת <em>פעולה</em> (משנים ואומרים, עם "Switch back"). פועלים רק כשהמכשיר עצמו אומר שזה רציני: Low Power Mode / Battery Saver, מתחת ל‑10%, חום serious/critical, לחץ זיכרון.</li>
 <li><strong>לא מחליפים מודל באמצע תשובה.</strong> החלפה נכנסת לתוקף מההודעה הבאה; התשובה הנוכחית מסתיימת (או נעצרת על ידי המערכת רק במצב קריטי). השיחה ממשיכה עם המודל הקטן, והתווית על התשובה אומרת איזה מודל ענה.</li>
-<li><strong>פעם ראשונה מסבירים, אחר כך רק מיידעים.</strong> בהחלפה האוטומטית הראשונה נפתח גיליון קצר: "Switched to Instant to save battery. Answers are faster and simpler. Fast comes back when you charge." עם "Don't switch automatically". אחר כך רק שורת המצב.</li>
+<li><strong>פעם ראשונה מסבירים, אחר כך רק מיידעים.</strong> בהחלפה האוטומטית הראשונה נפתח גיליון קצר: "Switched to Instant to save battery. Answers are faster and simpler. Fast comes back when you plug in." עם "Don't switch automatically". אחר כך רק שורת המצב.</li>
 <li><strong>סוג המכשיר קובע את הסף ואת הכיוון:</strong> טלפון יורד ישר ל‑Instant (הסוללה קטנה, הציפייה היא לזמינות); מחשב נייד על סוללה יורד רמה אחת בלבד (Power→Sharp→Fast), כי משתמש דסקטופ בחר איכות; מחשב מחובר לחשמל: אין לוגיקת סוללה בכלל, רק חום; דפדפן: הצעות בלבד.</li>
 <li><strong>המשתמש שולט:</strong> S52 › Performance: Auto power management (On בטלפון ובנייד, Off בשולחני), פרופיל Eco / Balanced / Max, ו"Never switch my model automatically". רק ההגנה מחום קריטי אינה ניתנת לכיבוי.</li>
 </ul>
 <div class="tw"><table><thead><tr><th>טריגר</th><th>טלפון וטאבלט</th><th>מחשב נייד על סוללה (Mac / PC)</th><th>מחשב מחובר לחשמל</th><th>השורה שהמשתמש רואה (אנגלית)</th></tr></thead><tbody>
 <tr><td>מצב רגיל: מעל 20%, לא חם</td><td>כלום. אין תזכורות כשהכול בסדר</td><td>כלום</td><td>כלום</td><td class="ltr">—</td></tr>
 <tr><td>סוללה 20–10%, לא בטעינה (טאבלט: 15–10%)</td><td><em>הצעה</em> חד‑פעמית לעבור ל‑Instant</td><td><em>הצעה</em> לרדת רמה אחת</td><td>לא רלוונטי</td><td class="ltr">Battery 18% · Instant uses about half the power · Switch</td></tr>
-<tr><td>מתחת ל‑10%, או Low Power Mode / Battery Saver דולק</td><td><em>פעולה</em>: Instant מההודעה הבאה; תשובות עד 512 טוקנים; הורדות ואינדוקס מושהים; החותם בלי זוהר; הקול ממשיך לעבוד</td><td><em>פעולה</em>: רמה אחת למטה (לא Instant); הורדות רק בטעינה</td><td>כלום</td><td class="ltr">Low Power Mode · switched to Instant · Switch back</td></tr>
+<tr><td>מתחת ל‑10%, או Low Power Mode / Battery Saver דולק</td><td><em>פעולה</em>: Instant מההודעה הבאה; תשובות עד 512 טוקנים (מחצית התקרה הרגילה של 1,024, §10); הורדות ואינדוקס מושהים; החותם בלי זוהר; הקול ממשיך לעבוד</td><td><em>פעולה</em>: רמה אחת למטה (לא Instant); הורדות רק בטעינה</td><td>כלום</td><td class="ltr">Low Power Mode · switched to Instant · Switch back</td></tr>
 <tr><td>מתחת ל‑5%, לא בטעינה</td><td>לפני תשובה ארוכה מבקשים אישור; מסמכים לא מאונדקסים</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Battery 4% · Answer anyway?</td></tr>
-<tr><td>חזרה לטעינה, או מעל 30%</td><td><em>הצעה</em> לחזור למודל הקודם (לא אוטומטי באמצע שיחה); בפתיחה הבאה ברירת המחדל חוזרת מעצמה</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Charging · Switch back to Fast</td></tr>
+<tr><td>חיבור לחשמל</td><td><em>פעולה</em> בין הודעות (לא באמצע תשובה): חזרה למודל הקודם, כמו שהגיליון הבטיח</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Charging · back to Fast · Keep Instant</td></tr>
+<tr><td>מעל 30% בלי טעינה</td><td><em>הצעה</em> בלבד (הסוללה עדיין מתרוקנת); בפתיחה הבאה של האפליקציה ברירת המחדל חוזרת מעצמה</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Battery 34% · Switch back to Fast</td></tr>
+<tr><td>המכשיר כבר על Instant (ברירת המחדל ב‑4–6 GB), או על Apple on‑device</td><td>אין מה להחליף: רק תשובות קצרות יותר והשהיית הורדות ואינדוקס; המודל של Apple הוא הקל ביותר ונשאר</td><td>אותו דבר</td><td>כלום</td><td class="ltr">Low Power Mode · shorter answers, downloads paused</td></tr>
 <tr><td>חום קל: iOS fair / Android LIGHT–MODERATE</td><td>כלום גלוי; פנימית thread אחד פחות; אינדוקס ממשיך</td><td>כלום גלוי</td><td>כלום גלוי</td><td class="ltr">—</td></tr>
 <tr><td>חום רציני: iOS serious / Android SEVERE</td><td>שורה + כפתור; פחות threads ושכבות GPU; תשובות עד 512; הורדות ואינדוקס מושהים</td><td>אותו דבר, "computer" במקום "phone"</td><td>אותו דבר (מאווררים, throttling)</td><td class="ltr">Slowing down to keep the phone cool · Switch to Instant</td></tr>
 <tr><td>חום קריטי: iOS critical / Android CRITICAL ומעלה</td><td><em>פעולה</em>: התשובה הנוכחית נעצרת; "Continue" נדלק כשהמכשיר מתקרר; המודל נפרק אחרי 60 שניות</td><td>אותו דבר</td><td>אותו דבר</td><td class="ltr">Stopped to protect the phone · Continue when cool</td></tr>
 <tr><td>Windows: אין API לחום</td><td>—</td><td>זיהוי לפי ירידת מהירות של 35% תוך 60 שניות: <em>הצעה</em> בלבד</td><td>אותו דבר</td><td class="ltr">Your PC is throttling · Switch to a smaller model</td></tr>
 <tr><td>לחץ זיכרון (אזהרת המערכת)</td><td><em>פעולה</em>: התשובה נעצרת, Instant מההודעה הבאה; ברקע המודל נפרק מיד</td><td><em>הצעה</em> למודל קטן יותר</td><td><em>הצעה</em></td><td class="ltr">Ran out of memory · Switched to Instant · Switch back</td></tr>
-<tr><td>מעבר לרקע באמצע תשובה</td><td>עד 15 שניות סיום (iOS background task), שמירה חלקית, "Continue" בחזרה; אף פעם לא הסקה ברקע</td><td>ממשיך (אין הגבלה)</td><td>ממשיך</td><td class="ltr">Paused · Continue</td></tr>
+<tr><td>מעבר לרקע באמצע תשובה</td><td>עד 15 שניות סיום (תקרת המוצר בתוך תקציב ה‑30 שניות של iOS), שמירה חלקית, "Continue" בחזרה; אף פעם לא הסקה ברקע</td><td>ממשיך (אין הגבלה)</td><td>ממשיך</td><td class="ltr">Paused · Continue</td></tr>
+<tr><td>דפדפן (Chrome בלבד מדווח סוללה)</td><td colspan="3"><em>הצעה</em> בלבד מתחת ל‑15%; אין פעולות אוטומטיות ואין אותות חום; wllama מגביל לבד את ה‑threads</td><td class="ltr">Battery 14% · Switch to a smaller model</td></tr>
 </tbody></table></div>
 <h4>האותות לפי פלטפורמה</h4>
 <div class="tw"><table><thead><tr><th>פלטפורמה</th><th>סוללה וספק כוח</th><th>חום</th><th>זיכרון</th></tr></thead><tbody>
@@ -107,4 +110,5 @@
 <tr><td>Windows (Tauri)</td><td class="ltr">GetSystemPowerStatus (AC line, battery %, Battery Saver)</td><td>אין API לאפליקציות: זיהוי לפי מהירות</td><td class="ltr">GlobalMemoryStatusEx</td></tr>
 <tr><td>דפדפן</td><td class="ltr">Battery Status API (Chrome בלבד): הצעה מתחת ל‑15%</td><td>אין</td><td class="ltr">performance.memory (Chrome)</td></tr>
 </tbody></table></div>
+<p><strong>עדיפות כשכמה טריגרים פעילים יחד</strong> (למשל 18% ו‑Battery Saver שנדלק מעצמו ברוב מכשירי האנדרואיד): החמור גובר, בסדר הזה: חום קריטי, לחץ זיכרון, חום רציני, מתחת ל‑5%, Low Power / מתחת ל‑10%, הצעות. שורת מצב אחת בלבד מוצגת, של הטריגר החמור ביותר.</p>
 <p>המספרים שמאחורי הספים: §6.4 (חום מוריד 15–40% אחרי 5–10 דקות; 0.3–0.5% סוללה ל‑1,000 טוקנים). מה שמשתנה בין מכשירים הוא רק הסף והכיוון; הקופי, הכפתורים והעיקרון "מיידעים, לא מפתיעים" זהים בכולם, ולכן משתמש שעובר מהטלפון למק פוגש אותה התנהגות.</p>

@@ -215,7 +215,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <section class="guide" aria-label="מדריך קריאה">
 <div class="row"><div class="tier must"><span class="k">MUST · ~36 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~37 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~38 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~110 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~73 דק'</button><button type="button" data-view="must">חובה בלבד · ~36 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~112 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~73 דק'</button><button type="button" data-view="must">חובה בלבד · ~36 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -226,7 +226,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
     <li data-tier="must"><a href="#s3"><span>שוק, מיצוב ומותג</span><span class="min">6′</span></a></li>
     <li data-tier="must"><a href="#s4"><span>פלטפורמות וקוד אחד</span><span class="min">7′</span></a></li>
     <li data-tier="rec"><a href="#s5"><span>ארכיטקטורה טכנית</span><span class="min">9′</span></a></li>
-    <li data-tier="rec"><a href="#s6"><span>מודלים ורצפת מכשירים</span><span class="min">8′</span></a></li>
+    <li data-tier="rec"><a href="#s6"><span>מודלים ורצפת מכשירים</span><span class="min">9′</span></a></li>
     <li data-tier="must"><a href="#s7"><span>מפת פיצ'רים: חינם / Pro / Work</span><span class="min">8′</span></a></li>
     <li data-tier="ref"><a href="#s8"><span>מסכי האפליקציה</span><span class="min">18′</span></a></li>
     <li data-tier="rec"><a href="#s9"><span>מערכת העיצוב FARADAY</span><span class="min">9′</span></a></li>
@@ -511,7 +511,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1751">
+<section class="sec" data-tier="rec" data-words="1765">
 <h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית<span class="tierpill">RECOMMENDED</span><span class="h2min">~9 min</span></h2>
 <p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
 
@@ -620,23 +620,23 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <li>לפני טעינה: קוראים זיכרון זמין (<code>os_proc_available_memory</code> ב‑iOS, <code>ActivityManager.MemoryInfo</code> ב‑Android) ומציגים רק מודלים שנכנסים (גודל × 1.4 + KV cache).</li>
 <li>Entitlement <code>increased-memory-limit</code> ב‑iOS, mmap של ה‑GGUF, KV cache מוגבל ל‑2–4K טוקנים בטלפון (הגדלה ב‑Pro על מכשירי 8 GB+).</li>
 <li>מצב חום <code>.serious</code> (iOS) או <code>getThermalHeadroom</code> (Android): מורידים GPU layers, מאטים, ומראים למשתמש "המכשיר חם, מאט כדי להגן עליו". במצב <code>.critical</code> עוצרים יצירה עם הודעה.</li>
-<li>סוללה מתחת ל‑10% ו‑Low Power Mode: מציעים לעבור למודל הקטן; לעולם לא מריצים הסקה ברקע. הטבלה המלאה לפי סוג מכשיר וטריגר, כולל הקופי: §6.5.</li>
+<li>סוללה מתחת ל‑10% או Low Power Mode: בטלפון עוברים ל‑Instant מההודעה הבאה (עם "Switch back"), בנייד על סוללה רמה אחת למטה, בשולחני מחובר כלום; לעולם לא מריצים הסקה ברקע. הטבלה המלאה לפי סוג מכשיר וטריגר, כולל הקופי: §6.5.</li>
 <li>אפליקציה שנכנסת לרקע באמצע יצירה: משלימה עד 15 שניות (background task) ושומרת חלקית; בחזרה מציעה "המשך".</li>
 </ul>
 
 <h3>5.9 בנייה, שחרור ובדיקות</h3>
 <ul>
 <li>Monorepo (pnpm workspaces), TypeScript strict, Expo EAS למובייל, GitHub Actions למטריצת דסקטופ (Windows x64/ARM64, macOS arm64) ולווב.</li>
-<p>מזהי החבילה (הוחלט, משה 3.9.2026): <span class="ltr">app.autark.mobile</span> ל‑iOS ולאנדרואיד, <span class="ltr">app.autark.desktop</span> לדסקטופ. הריפו: <span class="ltr">~/dev/autark</span> (monorepo; שלד שבוע 0 הוגש ב‑3.9.2026).</p>
 <li>בדיקות: יחידה ל‑core (חיתוך, RAG, קטלוג, רישוי), בדיקות אינטגרציה לאדפטרים על מכשירים אמיתיים (iPhone 15 Pro, Pixel 8, Galaxy S23 כרצפה), בדיקת 16 KB pages באימולטור, בדיקת זיכרון ב‑Instruments, ו‑golden screenshots ל‑UI בשלושה גדלים ובשני ערכות נושא.</li>
 <li>אין טלמטריה, ולכן <strong>בדיקות לפני שחרור מחליפות ניטור אחרי שחרור</strong>: רשימת בדיקה של 40 פריטים (ראו §14) חובה לכל גרסה, ו‑crash logs מגיעים רק אם המשתמש בוחר לשלוח ידנית מהגדרות (מסך "דווח על בעיה" שמייצר קובץ שהמשתמש שולח בעצמו במייל).</li>
 </ul>
+<p>מזהי החבילה (הוחלט, משה 3.9.2026): <span class="ltr">app.autark.mobile</span> ל‑iOS ולאנדרואיד, <span class="ltr">app.autark.desktop</span> לדסקטופ. הריפו: <span class="ltr">~/dev/autark</span> (monorepo; שלד שבוע 0 הוגש ב‑3.9.2026).</p>
 <h3>5.10 ריבוי שפות מהיום הראשון</h3>
 <p>הוחלט (D13, משה 3.9.2026): משיקים ב‑6 שפות (§7.8), ובכל מקרה הקוד נבנה כך שהוספת שפה היא קובץ אחד ובלי שינוי קוד: כל מחרוזת בממשק חיה בקובץ locale אחד לכל שפה (JSON בפורמט ICU MessageFormat, עם ריבוי וסדר מילים לפי שפה), נטענת דרך i18next + react-i18next, ואותם קבצים משרתים את הטלפון, את הווב ואת הדסקטופ (Tauri מציג את הממשק מאותה בניית ווב). expo-localization קורא את שפת המכשיר; Intl מעצב תאריכים, מספרים ויחידות. RTL מהיום הראשון: מאפייני CSS לוגיים (start/end) ו‑I18nManager, בדיקה בעברית ובערבית בכל PR. CI מריץ פסאודו‑לוקליזציה (מחרוזות מוארכות ב‑40% עם תווים מיוחדים) כדי לתפוס חיתוך טקסט לפני שיש מתרגם. מחרוזות חדשות נאספות אוטומטית (extraction) ומועברות לצינור התרגום הקיים של אפליקציות התנ"ך (translation-expert + validateLangs), שכבר יודע לתרגם בהקשר ולאמת שלמות; גם מטא‑דאטה בחנויות וצילומי מסך לכל שפה עוברים באותו צינור. מה לא מתורגם: תשובות המודל, שתלויות במודל; לכן בפרטי כל מחסנית (S31, §8) יש שורת "שפות טובות", ובשפה שהמודל חלש בה האפליקציה אומרת זאת במקום להבטיח.</p>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1598">
-<h2 id="s6"><span class="n">06</span>מודלים ורצפת מכשירים<span class="tierpill">RECOMMENDED</span><span class="h2min">~8 min</span></h2>
+<section class="sec" data-tier="rec" data-words="1744">
+<h2 id="s6"><span class="n">06</span>מודלים ורצפת מכשירים<span class="tierpill">RECOMMENDED</span><span class="h2min">~9 min</span></h2>
 <p class="lead">המשתמש לא בוחר "מודל" מרשימה של 40 שמות. הוא רואה ארבע רמות עם שם, גודל, ומהירות צפויה על המכשיר שלו, וברירת מחדל שנבחרה לפי הזיכרון. מאחורי הקלעים, קטלוג GGUF אחד משרת את כל הפלטפורמות.</p>
 
 <h3>6.1 רמות המודלים (GGUF Q4_K_M, ספטמבר 2026)</h3>
@@ -720,22 +720,25 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <ul>
 <li><strong>שתי דרגות:</strong> <em>הצעה</em> (שורה עם כפתור, כלום לא משתנה) לעומת <em>פעולה</em> (משנים ואומרים, עם "Switch back"). פועלים רק כשהמכשיר עצמו אומר שזה רציני: Low Power Mode / Battery Saver, מתחת ל‑10%, חום serious/critical, לחץ זיכרון.</li>
 <li><strong>לא מחליפים מודל באמצע תשובה.</strong> החלפה נכנסת לתוקף מההודעה הבאה; התשובה הנוכחית מסתיימת (או נעצרת על ידי המערכת רק במצב קריטי). השיחה ממשיכה עם המודל הקטן, והתווית על התשובה אומרת איזה מודל ענה.</li>
-<li><strong>פעם ראשונה מסבירים, אחר כך רק מיידעים.</strong> בהחלפה האוטומטית הראשונה נפתח גיליון קצר: "Switched to Instant to save battery. Answers are faster and simpler. Fast comes back when you charge." עם "Don't switch automatically". אחר כך רק שורת המצב.</li>
+<li><strong>פעם ראשונה מסבירים, אחר כך רק מיידעים.</strong> בהחלפה האוטומטית הראשונה נפתח גיליון קצר: "Switched to Instant to save battery. Answers are faster and simpler. Fast comes back when you plug in." עם "Don't switch automatically". אחר כך רק שורת המצב.</li>
 <li><strong>סוג המכשיר קובע את הסף ואת הכיוון:</strong> טלפון יורד ישר ל‑Instant (הסוללה קטנה, הציפייה היא לזמינות); מחשב נייד על סוללה יורד רמה אחת בלבד (Power→Sharp→Fast), כי משתמש דסקטופ בחר איכות; מחשב מחובר לחשמל: אין לוגיקת סוללה בכלל, רק חום; דפדפן: הצעות בלבד.</li>
 <li><strong>המשתמש שולט:</strong> S52 › Performance: Auto power management (On בטלפון ובנייד, Off בשולחני), פרופיל Eco / Balanced / Max, ו"Never switch my model automatically". רק ההגנה מחום קריטי אינה ניתנת לכיבוי.</li>
 </ul>
 <div class="tw"><table><thead><tr><th>טריגר</th><th>טלפון וטאבלט</th><th>מחשב נייד על סוללה (Mac / PC)</th><th>מחשב מחובר לחשמל</th><th>השורה שהמשתמש רואה (אנגלית)</th></tr></thead><tbody>
 <tr><td>מצב רגיל: מעל 20%, לא חם</td><td>כלום. אין תזכורות כשהכול בסדר</td><td>כלום</td><td>כלום</td><td class="ltr">—</td></tr>
 <tr><td>סוללה 20–10%, לא בטעינה (טאבלט: 15–10%)</td><td><em>הצעה</em> חד‑פעמית לעבור ל‑Instant</td><td><em>הצעה</em> לרדת רמה אחת</td><td>לא רלוונטי</td><td class="ltr">Battery 18% · Instant uses about half the power · Switch</td></tr>
-<tr><td>מתחת ל‑10%, או Low Power Mode / Battery Saver דולק</td><td><em>פעולה</em>: Instant מההודעה הבאה; תשובות עד 512 טוקנים; הורדות ואינדוקס מושהים; החותם בלי זוהר; הקול ממשיך לעבוד</td><td><em>פעולה</em>: רמה אחת למטה (לא Instant); הורדות רק בטעינה</td><td>כלום</td><td class="ltr">Low Power Mode · switched to Instant · Switch back</td></tr>
+<tr><td>מתחת ל‑10%, או Low Power Mode / Battery Saver דולק</td><td><em>פעולה</em>: Instant מההודעה הבאה; תשובות עד 512 טוקנים (מחצית התקרה הרגילה של 1,024, §10); הורדות ואינדוקס מושהים; החותם בלי זוהר; הקול ממשיך לעבוד</td><td><em>פעולה</em>: רמה אחת למטה (לא Instant); הורדות רק בטעינה</td><td>כלום</td><td class="ltr">Low Power Mode · switched to Instant · Switch back</td></tr>
 <tr><td>מתחת ל‑5%, לא בטעינה</td><td>לפני תשובה ארוכה מבקשים אישור; מסמכים לא מאונדקסים</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Battery 4% · Answer anyway?</td></tr>
-<tr><td>חזרה לטעינה, או מעל 30%</td><td><em>הצעה</em> לחזור למודל הקודם (לא אוטומטי באמצע שיחה); בפתיחה הבאה ברירת המחדל חוזרת מעצמה</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Charging · Switch back to Fast</td></tr>
+<tr><td>חיבור לחשמל</td><td><em>פעולה</em> בין הודעות (לא באמצע תשובה): חזרה למודל הקודם, כמו שהגיליון הבטיח</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Charging · back to Fast · Keep Instant</td></tr>
+<tr><td>מעל 30% בלי טעינה</td><td><em>הצעה</em> בלבד (הסוללה עדיין מתרוקנת); בפתיחה הבאה של האפליקציה ברירת המחדל חוזרת מעצמה</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Battery 34% · Switch back to Fast</td></tr>
+<tr><td>המכשיר כבר על Instant (ברירת המחדל ב‑4–6 GB), או על Apple on‑device</td><td>אין מה להחליף: רק תשובות קצרות יותר והשהיית הורדות ואינדוקס; המודל של Apple הוא הקל ביותר ונשאר</td><td>אותו דבר</td><td>כלום</td><td class="ltr">Low Power Mode · shorter answers, downloads paused</td></tr>
 <tr><td>חום קל: iOS fair / Android LIGHT–MODERATE</td><td>כלום גלוי; פנימית thread אחד פחות; אינדוקס ממשיך</td><td>כלום גלוי</td><td>כלום גלוי</td><td class="ltr">—</td></tr>
 <tr><td>חום רציני: iOS serious / Android SEVERE</td><td>שורה + כפתור; פחות threads ושכבות GPU; תשובות עד 512; הורדות ואינדוקס מושהים</td><td>אותו דבר, "computer" במקום "phone"</td><td>אותו דבר (מאווררים, throttling)</td><td class="ltr">Slowing down to keep the phone cool · Switch to Instant</td></tr>
 <tr><td>חום קריטי: iOS critical / Android CRITICAL ומעלה</td><td><em>פעולה</em>: התשובה הנוכחית נעצרת; "Continue" נדלק כשהמכשיר מתקרר; המודל נפרק אחרי 60 שניות</td><td>אותו דבר</td><td>אותו דבר</td><td class="ltr">Stopped to protect the phone · Continue when cool</td></tr>
 <tr><td>Windows: אין API לחום</td><td>—</td><td>זיהוי לפי ירידת מהירות של 35% תוך 60 שניות: <em>הצעה</em> בלבד</td><td>אותו דבר</td><td class="ltr">Your PC is throttling · Switch to a smaller model</td></tr>
 <tr><td>לחץ זיכרון (אזהרת המערכת)</td><td><em>פעולה</em>: התשובה נעצרת, Instant מההודעה הבאה; ברקע המודל נפרק מיד</td><td><em>הצעה</em> למודל קטן יותר</td><td><em>הצעה</em></td><td class="ltr">Ran out of memory · Switched to Instant · Switch back</td></tr>
-<tr><td>מעבר לרקע באמצע תשובה</td><td>עד 15 שניות סיום (iOS background task), שמירה חלקית, "Continue" בחזרה; אף פעם לא הסקה ברקע</td><td>ממשיך (אין הגבלה)</td><td>ממשיך</td><td class="ltr">Paused · Continue</td></tr>
+<tr><td>מעבר לרקע באמצע תשובה</td><td>עד 15 שניות סיום (תקרת המוצר בתוך תקציב ה‑30 שניות של iOS), שמירה חלקית, "Continue" בחזרה; אף פעם לא הסקה ברקע</td><td>ממשיך (אין הגבלה)</td><td>ממשיך</td><td class="ltr">Paused · Continue</td></tr>
+<tr><td>דפדפן (Chrome בלבד מדווח סוללה)</td><td colspan="3"><em>הצעה</em> בלבד מתחת ל‑15%; אין פעולות אוטומטיות ואין אותות חום; wllama מגביל לבד את ה‑threads</td><td class="ltr">Battery 14% · Switch to a smaller model</td></tr>
 </tbody></table></div>
 <h4>האותות לפי פלטפורמה</h4>
 <div class="tw"><table><thead><tr><th>פלטפורמה</th><th>סוללה וספק כוח</th><th>חום</th><th>זיכרון</th></tr></thead><tbody>
@@ -745,6 +748,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <tr><td>Windows (Tauri)</td><td class="ltr">GetSystemPowerStatus (AC line, battery %, Battery Saver)</td><td>אין API לאפליקציות: זיהוי לפי מהירות</td><td class="ltr">GlobalMemoryStatusEx</td></tr>
 <tr><td>דפדפן</td><td class="ltr">Battery Status API (Chrome בלבד): הצעה מתחת ל‑15%</td><td>אין</td><td class="ltr">performance.memory (Chrome)</td></tr>
 </tbody></table></div>
+<p><strong>עדיפות כשכמה טריגרים פעילים יחד</strong> (למשל 18% ו‑Battery Saver שנדלק מעצמו ברוב מכשירי האנדרואיד): החמור גובר, בסדר הזה: חום קריטי, לחץ זיכרון, חום רציני, מתחת ל‑5%, Low Power / מתחת ל‑10%, הצעות. שורת מצב אחת בלבד מוצגת, של הטריגר החמור ביותר.</p>
 <p>המספרים שמאחורי הספים: §6.4 (חום מוריד 15–40% אחרי 5–10 דקות; 0.3–0.5% סוללה ל‑1,000 טוקנים). מה שמשתנה בין מכשירים הוא רק הסף והכיוון; הקופי, הכפתורים והעיקרון "מיידעים, לא מפתיעים" זהים בכולם, ולכן משתמש שעובר מהטלפון למק פוגש אותה התנהגות.</p>
 
 </section>
@@ -921,7 +925,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <div class="note"><p><strong>Pro for Work (69.99 דולר חד‑פעמי, דסקטופ תחילה; Pro משדרגים ב‑49.99):</strong> חבילות מקצוע (משפטי, טיפולי, רפואי, חשבונאי) עם תבניות והצהרות, vaults לפי לקוח/תיק עם קוד נפרד, כלי רדקציה/אנונימיזציה לפני הדבקה, קליטת DOCX/XLSX/HTML, הכתבה לרשומות, יומן ביקורת וייצוא מוחתם, מודלים גדולים (Power/Studio), מפתחות רישיון קבוצתיים שמאומתים אופליין, והצהרת ארכיטקטורה להדפסה לתיקי ציות. לעולם לא "HIPAA‑compliant" ולא "privileged" בשיווק.</p></div>
 
 </section>
-<section class="sec" data-tier="ref" data-words="3557">
+<section class="sec" data-tier="ref" data-words="3595">
 <h2 id="s8"><span class="n">08</span>מסכי האפליקציה, מסך אחר מסך<span class="tierpill">REFERENCE</span><span class="h2min">~18 min</span></h2>
 <p class="lead">לכל מסך: התפקיד שלו, האלמנטים, המצבים, מקרי הקצה שהוא חייב לטפל בהם, ומה בו חינם ומה Pro. הדמו האינטראקטיבי מציג את כל המסכים הממוספרים כאן (S01–S60); המסמך מגדיר גם את המצבים ומקרי הקצה שלהם. הניווט: במובייל כותרת עם החותם במרכז, כפתור מגירת השיחות בצד ההתחלה וצ'יפ המודל בצד הסיום; בדסקטופ ובטאבלט סרגל צד קבוע במקום המגירה.</p>
 
@@ -1216,7 +1220,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <h4>S52 · Settings <span class="pill free">Free</span></h4>
 <p class="job">הגדרות מעטות, מנוסחות כפשרות ברורות, בלי מתג טלמטריה כי אין טלמטריה.</p>
 <dl class="grid">
-<dt>sections</dt><dd><strong>Appearance</strong>: System (ברירת מחדל: אוטומטי יום/לילה לפי המכשיר, כמו באפליקציות התנ"ך) / Dark / Light, גופן, גודל. <strong>Security</strong>: App lock, delay, hide in switcher, screenshot protection (Android: blocks your own screenshots too), panic wipe (after N failed attempts / from lock screen), auto‑delete chats (Off / 1 / 7 / 30 days), clipboard expiry. <strong>Chat</strong>: default persona, model, thinking visible, Enter vs Shift+Enter, keep screen awake, haptics, sounds (off). <strong>Performance</strong>: Eco / Balanced / Max, Auto power management (On בטלפון ובנייד, Off בשולחני), "Never switch my model automatically"; הלוגיקה המלאה לפי סוג מכשיר וטריגר ב‑§6.5 בלבד גלויים; תחת "Advanced" מקופל: אורך תשובה/הקשר, תג האצה (CPU/GPU/NPU) עם override. משתמש רגיל לא רואה בקרות למומחים בלי לפתוח את הקבוצה. <strong>Language</strong>: UI language, answer language hint. <strong>Downloads</strong>: Wi‑Fi only, storage location (Android SAF). <strong>Accessibility</strong>: announce per sentence, dyslexia font, reduce motion follows system. <strong>About</strong>: version + hash, model licenses, open‑source licenses, privacy policy, "Report a problem" (יוצר קובץ אבחון בלי תוכן שיחות, המשתמש שולח במייל), "What's missing?" (מייל).</dd>
+<dt>sections</dt><dd><strong>Appearance</strong>: System (ברירת מחדל: אוטומטי יום/לילה לפי המכשיר, כמו באפליקציות התנ"ך) / Dark / Light, גופן, גודל. <strong>Security</strong>: App lock, delay, hide in switcher, screenshot protection (Android: blocks your own screenshots too), panic wipe (after N failed attempts / from lock screen), auto‑delete chats (Off / 1 / 7 / 30 days), clipboard expiry. <strong>Chat</strong>: default persona, model, thinking visible, Enter vs Shift+Enter, keep screen awake, haptics, sounds (off). <strong>Performance</strong>: Eco / Balanced / Max, Auto power management (On בטלפון ובנייד, Off בשולחני), "Never switch my model automatically" (הלוגיקה המלאה לפי סוג מכשיר וטריגר ב‑§6.5). רק הבקרות האלה גלויות; תחת "Advanced" מקופל: אורך תשובה/הקשר, תג האצה (CPU/GPU/NPU) עם override. משתמש רגיל לא רואה בקרות למומחים בלי לפתוח את הקבוצה. <strong>Language</strong>: UI language, answer language hint. <strong>Downloads</strong>: Wi‑Fi only, storage location (Android SAF). <strong>Accessibility</strong>: announce per sentence, dyslexia font, reduce motion follows system. <strong>About</strong>: version + hash, model licenses, open‑source licenses, privacy policy, "Report a problem" (יוצר קובץ אבחון בלי תוכן שיחות, המשתמש שולח במייל), "What's missing?" (מייל).</dd>
 </dl>
 </div>
 
@@ -1273,9 +1277,9 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <thead><tr><th>מצב</th><th>איך נראה</th><th>מה המשתמש יכול לעשות</th></tr></thead>
 <tbody>
 <tr><td>מקום מלא</td><td>באנר עליון ענבר עם משולש: "Storage is full. Chats are safe; downloads paused."</td><td>פתיחת מנהל האחסון</td></tr>
-<tr><td>המכשיר חם (serious)</td><td>שורה תחת החותם: "Slowing down to keep the phone cool"</td><td>להמשיך; לעבור ל‑Eco</td></tr>
-<tr><td>המכשיר חם (critical)</td><td>היצירה נעצרת עם "Paused for heat. Resume when cooler."</td><td>Resume</td></tr>
-<tr><td>סוללה נמוכה / Low Power</td><td>גיליון קטן: "Low battery. Switch to Instant?"</td><td>כן / לא עכשיו</td></tr>
+<tr><td>המכשיר חם (serious)</td><td>שורה תחת החותם: "Slowing down to keep the phone cool"</td><td>Switch to Instant (או להמשיך כרגיל); §6.5</td></tr>
+<tr><td>המכשיר חם (critical)</td><td>היצירה נעצרת עם "Stopped to protect the phone · Continue when cool"</td><td>Continue (נדלק כשהמכשיר מתקרר); §6.5</td></tr>
+<tr><td>סוללה נמוכה / Low Power</td><td>שורת מצב: "Low Power Mode · switched to Instant · Switch back" (20–10%: הצעה "Battery 18% · Instant uses about half the power · Switch"); גיליון הסבר רק בהחלפה האוטומטית הראשונה</td><td>Switch back / Switch; §6.5</td></tr>
 <tr><td>המערכת סגרה את האפליקציה (jetsam) באמצע תשובה</td><td>בפתיחה: התשובה החלקית שמורה + "The system stopped generation to free memory. Continue?"</td><td>Continue / Switch to a smaller model</td></tr>
 <tr><td>Apple FM לא זמין (כבוי / אזור / בהורדה / סירוב guardrail)</td><td>צ'יפ המודל מתחלף ל‑Instant עם הודעה בת שורה: "Apple's model declined; switching to Private model"</td><td>לבחור מודל</td></tr>
 <tr><td>עדכון אפליקציה שינה מנוע</td><td>מסך "Checking your models" עם רשימה; מודל לא תואם מסומן, לא נמחק</td><td>להוריד גרסה חדשה של המודל</td></tr>
@@ -1464,7 +1468,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <p>נדחו: ui-ux-pro-max (124K★, תבניתי; טוב רק כלוקאפ של פלטות), superdesign (דורש login לענן ומשכפל את הקנבס המובנה), stitch-skills (רק ל‑Google Stitch). סדר העבודה המומלץ בריפו: <code>/impeccable init</code> → <code>shape</code> לכל מסך → בנייה → <code>critique</code>/<code>audit</code>/<code>adapt</code> (נייטיב) → <code>harden</code> → <code>polish</code>; ואת שלושת הווריאנטים של החותם וההזרמה בונים עם <code>/prototype</code> של אמיל.</p>
 
 </section>
-<section class="sec" data-tier="ref" data-words="2303">
+<section class="sec" data-tier="ref" data-words="2336">
 <h2 id="s10"><span class="n">10</span>מקרי קצה ומצבי כשל<span class="tierpill">REFERENCE</span><span class="h2min">~12 min</span></h2>
 <p class="lead">שבעים מקרים, מקובצים לפי מחזור החיים. לכל אחד: מה קורה בשוק היום, ומה האפליקציה שלנו חייבת לעשות. הרשימה הזו היא גם רשימת הבדיקות של §14: כל שורה כאן היא בדיקה שם.</p>
 
@@ -1499,8 +1503,8 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <tr><td class="num">15</td><td>16 KB pages (Pixel 8+, Snapdragon 8 Gen 5)</td><td>SIGBUS בטעינה (PocketPal #512)</td><td>כל .so עם NDK r28+ או max-page-size=16384, JNI לא דחוס עם AGP 8.5.1+, בדיקה באימולטור 16 KB; חובה ב‑Play</td></tr>
 <tr><td class="num">16</td><td>כשל backend GPU/NPU (Vulkan, OpenCL חסר, Metal working set, Hexagon)</td><td>"לא מזהה GPU", ".so not found"</td><td>בדיקת backend עם נפילה ל‑CPU, תג "Acceleration: CPU/GPU/NPU", override ידני, שכבות GPU ניתנות לכיוון</td></tr>
 <tr><td class="num">17</td><td>מכשיר rooted / jailbroken</td><td>Gemini Nano מסרב</td><td>לא חוסמים (קהל GrapheneOS הוא הקהל שלנו); AICore/Play פשוט לא זמינים; אימות רכישה לא תלוי ב‑Play Integrity</td></tr>
-<tr><td class="num">18</td><td>חום ועומס מתמשך</td><td>30–50% האטה אחרי 10–15 דקות</td><td>thermalState / getThermalHeadroom: ב‑serious פחות threads/שכבות GPU + הודעה; ב‑critical השהיה עם resume; Eco/Balanced/Max; max tokens 1,024 עם "continue"</td></tr>
-<tr><td class="num">19</td><td>סוללה נמוכה / Low Power / Battery Saver</td><td></td><td>זיהוי; מעבר אוטומטי ל‑Eco; דחיית הורדות; הערכת אנרגיה; אין יצירה ארוכה מתחת ל‑5% בלי אישור</td></tr>
+<tr><td class="num">18</td><td>חום ועומס מתמשך</td><td>15–40% האטה אחרי 5–10 דקות (§6.4)</td><td>thermalState / getThermalHeadroom: ב‑serious פחות threads/שכבות GPU + השורה "Slowing down to keep the phone cool"; ב‑critical עצירה עם "Continue when cool"; תקרת תשובה 1,024 טוקנים עם "Continue" (512 במצבי חיסכון); הלוגיקה המלאה ב‑§6.5</td></tr>
+<tr><td class="num">19</td><td>סוללה נמוכה / Low Power / Battery Saver</td><td></td><td>זיהוי; מעבר למודל קטן יותר לפי §6.5 (טלפון: Instant מההודעה הבאה; נייד: רמה אחת); דחיית הורדות ואינדוקס; אין יצירה ארוכה מתחת ל‑5% בלי אישור</td></tr>
 <tr><td class="num">20</td><td>טעינה בזמן יצירה (חום נוסף)</td><td></td><td>אותו טיפול תרמי; רמז אופציונלי</td></tr>
 </tbody>
 </table>
@@ -1511,7 +1515,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <table>
 <thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
 <tbody>
-<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (~30s) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
+<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (תקציב המערכת ~30 שניות; תקרת המוצר 15 שניות, §6.5) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
 <tr><td class="num">22</td><td>האפליקציה נהרגת בזמן כתיבה ל‑DB / migration</td><td></td><td>SQLite WAL, migrations אטומיות עם גיבוי, בדיקת שלמות בפתיחה, נתיב "Repair"</td></tr>
 <tr><td class="num">23</td><td>יצירות מקבילות (שתי שיחות, Shortcut + UI, ווידג'ט, מקלדת)</td><td>Apple FM זורק concurrentRequests; llama.cpp סשן יחיד</td><td>תור הסקה אחד עם עדיפויות; "Waiting for the current answer"; Shortcuts דרך אותו תור עם timeout; הרחבות לא טוענות מודל (מגבלת זיכרון) ומנותבות לאפליקציה דרך App Groups</td></tr>
 <tr><td class="num">24</td><td>החלפת מודל באמצע יצירה; מחיקת מודל בשימוש; הורדה מסתיימת תוך כדי צ'אט</td><td></td><td>בטל‑ואז‑החלף עם אישור; חסימת מחיקה של מודל טעון; הצעת טעינה מחדש בסיום הורדה</td></tr>

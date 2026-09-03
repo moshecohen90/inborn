@@ -32,8 +32,8 @@
 <tr><td class="num">15</td><td>16 KB pages (Pixel 8+, Snapdragon 8 Gen 5)</td><td>SIGBUS בטעינה (PocketPal #512)</td><td>כל .so עם NDK r28+ או max-page-size=16384, JNI לא דחוס עם AGP 8.5.1+, בדיקה באימולטור 16 KB; חובה ב‑Play</td></tr>
 <tr><td class="num">16</td><td>כשל backend GPU/NPU (Vulkan, OpenCL חסר, Metal working set, Hexagon)</td><td>"לא מזהה GPU", ".so not found"</td><td>בדיקת backend עם נפילה ל‑CPU, תג "Acceleration: CPU/GPU/NPU", override ידני, שכבות GPU ניתנות לכיוון</td></tr>
 <tr><td class="num">17</td><td>מכשיר rooted / jailbroken</td><td>Gemini Nano מסרב</td><td>לא חוסמים (קהל GrapheneOS הוא הקהל שלנו); AICore/Play פשוט לא זמינים; אימות רכישה לא תלוי ב‑Play Integrity</td></tr>
-<tr><td class="num">18</td><td>חום ועומס מתמשך</td><td>30–50% האטה אחרי 10–15 דקות</td><td>thermalState / getThermalHeadroom: ב‑serious פחות threads/שכבות GPU + הודעה; ב‑critical השהיה עם resume; Eco/Balanced/Max; max tokens 1,024 עם "continue"</td></tr>
-<tr><td class="num">19</td><td>סוללה נמוכה / Low Power / Battery Saver</td><td></td><td>זיהוי; מעבר אוטומטי ל‑Eco; דחיית הורדות; הערכת אנרגיה; אין יצירה ארוכה מתחת ל‑5% בלי אישור</td></tr>
+<tr><td class="num">18</td><td>חום ועומס מתמשך</td><td>15–40% האטה אחרי 5–10 דקות (§6.4)</td><td>thermalState / getThermalHeadroom: ב‑serious פחות threads/שכבות GPU + השורה "Slowing down to keep the phone cool"; ב‑critical עצירה עם "Continue when cool"; תקרת תשובה 1,024 טוקנים עם "Continue" (512 במצבי חיסכון); הלוגיקה המלאה ב‑§6.5</td></tr>
+<tr><td class="num">19</td><td>סוללה נמוכה / Low Power / Battery Saver</td><td></td><td>זיהוי; מעבר למודל קטן יותר לפי §6.5 (טלפון: Instant מההודעה הבאה; נייד: רמה אחת); דחיית הורדות ואינדוקס; אין יצירה ארוכה מתחת ל‑5% בלי אישור</td></tr>
 <tr><td class="num">20</td><td>טעינה בזמן יצירה (חום נוסף)</td><td></td><td>אותו טיפול תרמי; רמז אופציונלי</td></tr>
 </tbody>
 </table>
@@ -44,7 +44,7 @@
 <table>
 <thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
 <tbody>
-<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (~30s) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
+<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (תקציב המערכת ~30 שניות; תקרת המוצר 15 שניות, §6.5) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
 <tr><td class="num">22</td><td>האפליקציה נהרגת בזמן כתיבה ל‑DB / migration</td><td></td><td>SQLite WAL, migrations אטומיות עם גיבוי, בדיקת שלמות בפתיחה, נתיב "Repair"</td></tr>
 <tr><td class="num">23</td><td>יצירות מקבילות (שתי שיחות, Shortcut + UI, ווידג'ט, מקלדת)</td><td>Apple FM זורק concurrentRequests; llama.cpp סשן יחיד</td><td>תור הסקה אחד עם עדיפויות; "Waiting for the current answer"; Shortcuts דרך אותו תור עם timeout; הרחבות לא טוענות מודל (מגבלת זיכרון) ומנותבות לאפליקציה דרך App Groups</td></tr>
 <tr><td class="num">24</td><td>החלפת מודל באמצע יצירה; מחיקת מודל בשימוש; הורדה מסתיימת תוך כדי צ'אט</td><td></td><td>בטל‑ואז‑החלף עם אישור; חסימת מחיקה של מודל טעון; הצעת טעינה מחדש בסיום הורדה</td></tr>
