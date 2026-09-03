@@ -9,6 +9,9 @@ Source: TMview search API (tmdn.org, criteria "contains", 189 results for AUTARK
 
 An identical word mark, registered five months ago, covering downloadable and AI software. Launching an AI app named Autark in the EU (Germany, France, Spain are 3 of our 6 launch languages) would be a direct infringement risk: opposition/injunction and store takedown on notice.
 
+## The owner uses it (evening update)
+MWAY GROUP's brand is **Autarq** (MWAY DIGITAL GmbH, "MWAY.ai is now AUTARQ", autarq.now): a "sovereign" European AI workplace platform with **Autarq/Chat** ("AI assistant… securely connected to your organization's knowledge"), Autarq/Work and Autarq Network, hosted in Germany/EU, sold to SMEs, municipalities and federal states. The "Autark" word mark is the German dictionary spelling of the same brand. So this is not a paper registration in another field: it is an actively marketed AI-chat product with a privacy/sovereignty pitch, in our launch markets.
+
 ## Other identical or near-identical marks in 9/42
 | Mark | Office | Classes | Owner | Status/date | Relevance |
 |---|---|---|---|---|---|
