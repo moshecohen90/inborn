@@ -77,3 +77,34 @@
 </div>
 <p>הכללים שנגזרים: חום מוריד 15–40% מהמהירות אחרי 5–10 דקות רצופות, ולכן מציגים "מהירות צפויה" כטווח ולא כמספר אחד; סוללה נצרכת ב‑0.3–0.5% לכל 1,000 טוקנים, כלומר שעתיים עד ארבע שעות של שימוש רצוף במודל 3B. אלו מספרים שכדאי להראות למשתמש בכנות במסך הכספת, כי המתחרים מסתירים אותם ומקבלים ביקורות "הטלפון מתחמם".</p>
 <p>מהמספרים האלה נגזר תג הסוללה על כל מחסנית (Low / Medium / High לפי צריכה ל‑1,000 טוקנים על מכשיר ייחוס), כך שמי שלא מבין במודלים עדיין יודע מה יחמם את הטלפון ומה לא.</p>
+<h3>6.5 לוגיקת סוללה, חום וספק כוח: מה קורה, מה מציגים, לאן עוברים</h3>
+<p class="lead">עיקרון אחד: המשתמש תמיד יודע מה קרה ומה הוא מקבל. שורת מצב אחת מתחת לחותם היא הערוץ היחיד שבו האפליקציה מדברת על סוללה וחום; כל שינוי אוטומטי נושא סיבה, מה השתנה, וכפתור ביטול. אין חלונות קופצים באמצע תשובה, ואין נדנוד: הצעה מופיעה פעם אחת לכל מדרגה.</p>
+<ul>
+<li><strong>שתי דרגות:</strong> <em>הצעה</em> (שורה עם כפתור, כלום לא משתנה) לעומת <em>פעולה</em> (משנים ואומרים, עם "Switch back"). פועלים רק כשהמכשיר עצמו אומר שזה רציני: Low Power Mode / Battery Saver, מתחת ל‑10%, חום serious/critical, לחץ זיכרון.</li>
+<li><strong>לא מחליפים מודל באמצע תשובה.</strong> החלפה נכנסת לתוקף מההודעה הבאה; התשובה הנוכחית מסתיימת (או נעצרת על ידי המערכת רק במצב קריטי). השיחה ממשיכה עם המודל הקטן, והתווית על התשובה אומרת איזה מודל ענה.</li>
+<li><strong>פעם ראשונה מסבירים, אחר כך רק מיידעים.</strong> בהחלפה האוטומטית הראשונה נפתח גיליון קצר: "Switched to Instant to save battery. Answers are faster and simpler. Fast comes back when you charge." עם "Don't switch automatically". אחר כך רק שורת המצב.</li>
+<li><strong>סוג המכשיר קובע את הסף ואת הכיוון:</strong> טלפון יורד ישר ל‑Instant (הסוללה קטנה, הציפייה היא לזמינות); מחשב נייד על סוללה יורד רמה אחת בלבד (Power→Sharp→Fast), כי משתמש דסקטופ בחר איכות; מחשב מחובר לחשמל: אין לוגיקת סוללה בכלל, רק חום; דפדפן: הצעות בלבד.</li>
+<li><strong>המשתמש שולט:</strong> S52 › Performance: Auto power management (On בטלפון ובנייד, Off בשולחני), פרופיל Eco / Balanced / Max, ו"Never switch my model automatically". רק ההגנה מחום קריטי אינה ניתנת לכיבוי.</li>
+</ul>
+<div class="tw"><table><thead><tr><th>טריגר</th><th>טלפון וטאבלט</th><th>מחשב נייד על סוללה (Mac / PC)</th><th>מחשב מחובר לחשמל</th><th>השורה שהמשתמש רואה (אנגלית)</th></tr></thead><tbody>
+<tr><td>מצב רגיל: מעל 20%, לא חם</td><td>כלום. אין תזכורות כשהכול בסדר</td><td>כלום</td><td>כלום</td><td class="ltr">—</td></tr>
+<tr><td>סוללה 20–10%, לא בטעינה (טאבלט: 15–10%)</td><td><em>הצעה</em> חד‑פעמית לעבור ל‑Instant</td><td><em>הצעה</em> לרדת רמה אחת</td><td>לא רלוונטי</td><td class="ltr">Battery 18% · Instant uses about half the power · Switch</td></tr>
+<tr><td>מתחת ל‑10%, או Low Power Mode / Battery Saver דולק</td><td><em>פעולה</em>: Instant מההודעה הבאה; תשובות עד 512 טוקנים; הורדות ואינדוקס מושהים; החותם בלי זוהר; הקול ממשיך לעבוד</td><td><em>פעולה</em>: רמה אחת למטה (לא Instant); הורדות רק בטעינה</td><td>כלום</td><td class="ltr">Low Power Mode · switched to Instant · Switch back</td></tr>
+<tr><td>מתחת ל‑5%, לא בטעינה</td><td>לפני תשובה ארוכה מבקשים אישור; מסמכים לא מאונדקסים</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Battery 4% · Answer anyway?</td></tr>
+<tr><td>חזרה לטעינה, או מעל 30%</td><td><em>הצעה</em> לחזור למודל הקודם (לא אוטומטי באמצע שיחה); בפתיחה הבאה ברירת המחדל חוזרת מעצמה</td><td>אותו דבר</td><td>לא רלוונטי</td><td class="ltr">Charging · Switch back to Fast</td></tr>
+<tr><td>חום קל: iOS fair / Android LIGHT–MODERATE</td><td>כלום גלוי; פנימית thread אחד פחות; אינדוקס ממשיך</td><td>כלום גלוי</td><td>כלום גלוי</td><td class="ltr">—</td></tr>
+<tr><td>חום רציני: iOS serious / Android SEVERE</td><td>שורה + כפתור; פחות threads ושכבות GPU; תשובות עד 512; הורדות ואינדוקס מושהים</td><td>אותו דבר, "computer" במקום "phone"</td><td>אותו דבר (מאווררים, throttling)</td><td class="ltr">Slowing down to keep the phone cool · Switch to Instant</td></tr>
+<tr><td>חום קריטי: iOS critical / Android CRITICAL ומעלה</td><td><em>פעולה</em>: התשובה הנוכחית נעצרת; "Continue" נדלק כשהמכשיר מתקרר; המודל נפרק אחרי 60 שניות</td><td>אותו דבר</td><td>אותו דבר</td><td class="ltr">Stopped to protect the phone · Continue when cool</td></tr>
+<tr><td>Windows: אין API לחום</td><td>—</td><td>זיהוי לפי ירידת מהירות של 35% תוך 60 שניות: <em>הצעה</em> בלבד</td><td>אותו דבר</td><td class="ltr">Your PC is throttling · Switch to a smaller model</td></tr>
+<tr><td>לחץ זיכרון (אזהרת המערכת)</td><td><em>פעולה</em>: התשובה נעצרת, Instant מההודעה הבאה; ברקע המודל נפרק מיד</td><td><em>הצעה</em> למודל קטן יותר</td><td><em>הצעה</em></td><td class="ltr">Ran out of memory · Switched to Instant · Switch back</td></tr>
+<tr><td>מעבר לרקע באמצע תשובה</td><td>עד 15 שניות סיום (iOS background task), שמירה חלקית, "Continue" בחזרה; אף פעם לא הסקה ברקע</td><td>ממשיך (אין הגבלה)</td><td>ממשיך</td><td class="ltr">Paused · Continue</td></tr>
+</tbody></table></div>
+<h4>האותות לפי פלטפורמה</h4>
+<div class="tw"><table><thead><tr><th>פלטפורמה</th><th>סוללה וספק כוח</th><th>חום</th><th>זיכרון</th></tr></thead><tbody>
+<tr><td>iOS / iPadOS</td><td class="ltr">UIDevice.batteryLevel / batteryState; ProcessInfo.isLowPowerModeEnabled (+ notification)</td><td class="ltr">ProcessInfo.thermalState: nominal / fair / serious / critical</td><td class="ltr">os_proc_available_memory; didReceiveMemoryWarning</td></tr>
+<tr><td>Android</td><td class="ltr">BatteryManager (level, charging); PowerManager.isPowerSaveMode</td><td class="ltr">PowerManager.getThermalHeadroom + addThermalStatusListener: NONE … SEVERE / CRITICAL / EMERGENCY</td><td class="ltr">ActivityManager.MemoryInfo.lowMemory; onTrimMemory</td></tr>
+<tr><td>macOS (Tauri)</td><td class="ltr">IOKit power sources (AC / battery %, Low Power Mode)</td><td class="ltr">ProcessInfo.thermalState (זהה ל‑iOS)</td><td class="ltr">memory pressure notifications</td></tr>
+<tr><td>Windows (Tauri)</td><td class="ltr">GetSystemPowerStatus (AC line, battery %, Battery Saver)</td><td>אין API לאפליקציות: זיהוי לפי מהירות</td><td class="ltr">GlobalMemoryStatusEx</td></tr>
+<tr><td>דפדפן</td><td class="ltr">Battery Status API (Chrome בלבד): הצעה מתחת ל‑15%</td><td>אין</td><td class="ltr">performance.memory (Chrome)</td></tr>
+</tbody></table></div>
+<p>המספרים שמאחורי הספים: §6.4 (חום מוריד 15–40% אחרי 5–10 דקות; 0.3–0.5% סוללה ל‑1,000 טוקנים). מה שמשתנה בין מכשירים הוא רק הסף והכיוון; הקופי, הכפתורים והעיקרון "מיידעים, לא מפתיעים" זהים בכולם, ולכן משתמש שעובר מהטלפון למק פוגש אותה התנהגות.</p>

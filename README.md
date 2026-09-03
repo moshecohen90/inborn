@@ -35,4 +35,4 @@ Real inference on device (llama.rn adapter is wired but untested on hardware), A
 model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
 
 ## Package ids
-`app.autark.mobile` (iOS + Android) and `app.autark.desktop` are placeholders until confirmed.
+`app.autark.mobile` (iOS + Android) and `app.autark.desktop`, confirmed by Moshe on 3.9.2026.
