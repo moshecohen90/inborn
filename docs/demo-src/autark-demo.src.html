@@ -947,7 +947,7 @@ function applyTheme(){ const light = S.theme==='Light' || (S.theme==='System' &&
 
 /* ---------------- lock ---------------- */
 function showLock(){
-  const l=$('#lock'); l.hidden=false; l.innerHTML=`${sealSVG('big')}<div class="mono">LOCKED</div><p class="t2" style="margin:0;max-width:240px">${DEVICE.bio} opens Autark. Chats stay encrypted until then.</p><button class="ghost" style="width:auto;padding:0 18px" data-unlock="1">${ICON.face}Face ID</button>${S.wipe?'<div class="cnt">10 attempts left before wipe</div>':''}`;
+  const l=$('#lock'); l.hidden=false; l.innerHTML=`${sealSVG('big')}<div class="mono">LOCKED</div><p class="t2" style="margin:0;max-width:240px">${DEVICE.bio} opens Autark. Chats stay encrypted until then.</p><button class="ghost" style="width:auto;padding:0 18px" data-unlock="1">${ICON.face}${DEVICE.bio}</button>${S.wipe?'<div class="cnt">10 attempts left before wipe</div>':''}`;
 }
 
 /* ---------------- notes (Hebrew) ---------------- */
@@ -978,7 +978,7 @@ document.addEventListener('click', async e => {
   if(d.device){ S.device=d.device; dev.classList.toggle('desktop', d.device==='desktop'); dev.classList.toggle('phone', d.device!=='desktop'); $$('.seg [data-device]').forEach(x=>x.classList.toggle('on',x===b)); if(S.screen==='chats'||S.screen==='onb'&&d.device==='desktop'){ go('chat'); } else { renderScreen(S.screen); renderNotes(S.screen);} return; }
   if(b.id==='resetBtn'){ S=initial(); onbSeal='open'; PE=null; NC=null; applyTheme(); $('#sbPlane').hidden=true; $('#proBadge').hidden=true; setSeal('sealed'); dev.classList.remove('desktop'); dev.classList.add('phone'); $$('.seg [data-device]').forEach(x=>x.classList.toggle('on',x.dataset.device==='phone')); $('#lock').hidden=true; $('#sysbar').classList.remove('on'); $('#main').classList.remove('has-sysbar'); go('onb'); return; }
   if(d.go){ go(d.go); return; }
-  if(d.onb!==undefined){ if(d.nolock){ S.lock=false; } if(d.instantonly){ toast('Staying on Instant. Get Fast any time in the vault.'); } if(d.onb==='done'){ go('chat'); if(S.lock) toast('Face ID on. Lock after '+S.lockDelay+'.'); } else { S.step=+d.onb; renderOnb(); } return; }
+  if(d.onb!==undefined){ if(d.nolock){ S.lock=false; } if(d.instantonly){ toast('Staying on Instant. Get Fast any time in the vault.'); } if(d.onb==='done'){ go('chat'); if(S.lock) toast(DEVICE.bio+' on. Lock after '+S.lockDelay+'.'); } else { S.step=+d.onb; renderOnb(); } return; }
   if(b.id==='airAsk'){ airAsk(); return; }
   if(d.tog){
     const k=d.tog;
