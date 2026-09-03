@@ -1,7 +1,7 @@
-# Autark
+# Inborn
 
 Private, offline, on-device AI chat. One codebase: iOS + Android + web (Expo) and Windows + macOS (Tauri v2).
-Spec and demo: `docs/autark-spec.html`, `docs/autark-demo.html` (Hebrew, RTL).
+Spec and demo: `docs/inborn-spec.html`, `docs/inborn-demo.html` (Hebrew, RTL).
 
 ## Layout
 - `apps/mobile` — Expo app (iOS, Android, web). `App.tsx` boots i18n and a single Chat screen streaming from the engine.
@@ -26,7 +26,7 @@ in-memory engine streams. Nothing downloads: put the file there yourself (models
 cd apps/mobile && APP_VARIANT=development npx expo prebuild -p android --no-install
 cd android && ./gradlew assembleDebug -PreactNativeArchitectures=arm64-v8a       # first run installs NDK 27 + CMake
 adb install -r app/build/outputs/apk/debug/app-debug.apk
-adb exec-in "run-as app.autark.mobile sh -c 'cat > files/instant.gguf'" < ../../../.models/<model>.gguf
+adb exec-in "run-as com.inbornapp.mobile sh -c 'cat > files/instant.gguf'" < ../../../.models/<model>.gguf
 adb reverse tcp:8081 tcp:8081 && cd .. && APP_VARIANT=development npx expo start   # Metro, then open the app
 ```
 The header shows the engine, tok/s and time-to-first-token after each reply (`stats()`).
@@ -47,4 +47,4 @@ Apple FM adapter, SQLCipher schema,
 model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
 
 ## Package ids
-`app.autark.mobile` (iOS + Android) and `app.autark.desktop`, confirmed by Moshe on 3.9.2026.
+`com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.

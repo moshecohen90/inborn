@@ -12,7 +12,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm lint
-      - run: pnpm --filter @autark/mobile exec expo export -p web
+      - run: pnpm --filter @inborn/mobile exec expo export -p web
   android-permission-gate:
     # TODO enable once a release APK/AAB is produced in CI (EAS build or local gradle); the script works locally today.
     if: false

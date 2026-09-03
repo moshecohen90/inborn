@@ -5,22 +5,22 @@ const dev = process.env.APP_VARIANT === "development";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: dev ? "Autark (dev)" : "Autark",
-  slug: "autark",
-  scheme: "autark",
+  name: dev ? "Inborn (dev)" : "Inborn",
+  slug: "inborn",
+  scheme: "inborn",
   version: "0.0.1",
   orientation: "portrait",
   userInterfaceStyle: "automatic",
-  ios: { bundleIdentifier: "app.autark.mobile", supportsTablet: true },
+  ios: { bundleIdentifier: "com.inbornapp.mobile", supportsTablet: true },
   android: {
-    package: "app.autark.mobile",
+    package: "com.inbornapp.mobile",
     blockedPermissions: dev ? [] : ["android.permission.INTERNET"],
   },
   web: { bundler: "metro", output: "single" },
   plugins: [
     "llama.rn",
     "expo-localization",
-    ["expo-local-authentication", { faceIDPermission: "Unlocks Autark and hides your chats in the app switcher." }],
+    ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],
   ],
 });

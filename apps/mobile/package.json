@@ -1,5 +1,5 @@
 {
-  "name": "@autark/mobile",
+  "name": "@inborn/mobile",
   "version": "0.0.1",
   "private": true,
   "main": "index.ts",
@@ -12,9 +12,9 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "@autark/core": "workspace:*",
-    "@autark/i18n": "workspace:*",
-    "@autark/ui": "workspace:*",
+    "@inborn/core": "workspace:*",
+    "@inborn/i18n": "workspace:*",
+    "@inborn/ui": "workspace:*",
     "expo": "~57.0.19",
     "expo-file-system": "~57.0.6",
     "expo-local-authentication": "~57.0.2",

@@ -1,4 +1,4 @@
-# Autark desktop (Tauri v2)
+# Inborn desktop (Tauri v2)
 
 Windows and macOS ship together from the same web build of `apps/mobile` (`expo export -p web`), wrapped in a
 Tauri v2 window with a Rust `llama-cpp-2` (or `llama-server` sidecar) engine behind the same `LocalLM` interface.

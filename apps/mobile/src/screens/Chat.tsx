@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { dark, light, fonts } from "@autark/ui";
-import type { Message, Session, Stats } from "@autark/core";
+import { dark, light, fonts } from "@inborn/ui";
+import type { Message, Session, Stats } from "@inborn/core";
 import { createEngine } from "../adapters";
 
 type Row = Message & { id: string; streaming?: boolean };

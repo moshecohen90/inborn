@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Autark",
-  "identifier": "app.autark.desktop",
+  "productName": "Inborn",
+  "identifier": "com.inbornapp.desktop",
   "version": "0.0.1",
   "build": { "frontendDist": "../../mobile/dist" },
-  "app": { "windows": [{ "title": "Autark", "width": 1120, "height": 720 }], "security": { "csp": "default-src 'self'; connect-src 'none'" } }
+  "app": { "windows": [{ "title": "Inborn", "width": 1120, "height": 720 }], "security": { "csp": "default-src 'self'; connect-src 'none'" } }
 }

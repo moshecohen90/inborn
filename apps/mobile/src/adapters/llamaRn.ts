@@ -1,5 +1,5 @@
 import { initLlama } from "llama.rn";
-import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@autark/core";
+import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
 

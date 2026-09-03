@@ -1,4 +1,4 @@
-import { NullLM, type LocalLM, type ModelRef } from "@autark/core";
+import { NullLM, type LocalLM, type ModelRef } from "@inborn/core";
 import { devModelEngine } from "./devModel";
 
 export interface Engine {

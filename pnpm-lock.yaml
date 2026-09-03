@@ -23,13 +23,13 @@ importers:
 
   apps/mobile:
     dependencies:
-      '@autark/core':
+      '@inborn/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@autark/i18n':
+      '@inborn/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
-      '@autark/ui':
+      '@inborn/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       expo:

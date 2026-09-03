@@ -1,4 +1,4 @@
-import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@autark/core";
+import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 /** Apple Foundation Models (iOS 26+, Apple silicon). Stub until the native module lands in M1; the engine is picked automatically (spec §5.2). */
 export class AppleFmLM implements LocalLM {
