@@ -4,3 +4,7 @@ export * from "./catalog/types";
 export * from "./chat/types";
 export * from "./chat/repository";
 export { ChatStore } from "./chat/store";
+export * from "./proof/exitMeter";
+export * from "./proof/allowlist";
+export * from "./lock/policy";
+export * from "./device/chip";
