@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
 import { initI18n } from "@inborn/i18n";
 import { ChatStore, InMemoryChatRepository, type ChatRepository } from "@inborn/core";
+import { prepareEngine } from "./src/adapters";
 import { Chat } from "./src/screens/Chat";
 import { Chats } from "./src/screens/Chats";
 import { openPersistentStorage } from "./src/storage/persistent";
@@ -20,7 +21,7 @@ export default function App() {
   useEffect(() => {
     const tags = getLocales().map((l) => l.languageTag);
     (async () => {
-      await initI18n(tags[0] ?? "en", tags);
+      await Promise.all([initI18n(tags[0] ?? "en", tags), prepareEngine()]);
       let repository: ChatRepository;
       try {
         repository = (await openPersistentStorage()).repository;
