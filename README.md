@@ -173,6 +173,62 @@ Proven on 5.9.2026 (OnePlus 6T, Android 11, release AAB 579 MB = base + 532 MB p
 fast-follow delivery, base manifest without INTERNET, pack delivered and extracted by Play Core local testing
 (status COMPLETED, 532,525,407 bytes), model found at the pack path and loaded by llama.rn in 2.2 s.
 
+## Model vault (M2, spec §5.4 / §6 / §8.4)
+The catalog is one signed manifest, `packages/core/src/catalog/manifest.json` (Ed25519; public key committed in
+`publicKey.ts`, private seed only in the macOS Keychain `inborn-catalog-signing`). Every edit needs a re-sign, and the
+core tests fail otherwise:
+```
+node scripts/gen-catalog-key.mjs              # once; --rotate to replace the key (re-sign afterwards)
+node scripts/sign-catalog.mjs                 # signs manifest.json in place; --check verifies
+```
+`packages/core/src/catalog/` is pure TypeScript: manifest verification + host allowlist (`models.inbornapp.com` only),
+`pickDefault` / `groupByFit` (§6.3: 4 GB sees only Instant, 6–8 GB defaults to Fast), the install state machine
+(not installed → delivering → verifying → ready / corrupt / needs space / quarantined), the streaming GGUF header reader
+(magic, version, architecture, size, quant; rejects non-GGUF, truncated, unknown architecture), resume/space/Wi-Fi rules
+and the §6.4 expected-speed table. 38 vitest tests cover it (`pnpm --filter @inborn/core test`).
+
+On the phone (`apps/mobile/src/vault/`): `VaultStore` scans the vault directory (`Documents/models`, excluded from
+backup), the Play packs and the M1 `instant.gguf` dev fallback, verifies SHA-256 natively (`modules/vault-native`,
+streaming, 4 MB slices), and drives one `ModelDelivery` per platform:
+- Android: Play Asset Delivery only (`modules/asset-packs`: fetch, cancel, remove, Play's cellular dialog, state events).
+  `app.config.ts` declares `inborn_model` (Instant, fast-follow) plus `inborn_model_fast` / `inborn_model_sharp`
+  (on-demand); the app never opens a socket.
+- iOS / desktop: resumable HTTPS through `expo-file-system` download tasks (background URLSession on iOS, pause/resume
+  state persisted in `vault.json`, Android-style byte-offset resume where the platform supports it). The confirmation
+  sheet names the host and why before any byte moves.
+- Import: `.gguf` document type (iOS) / intent filter (Android) + "Import GGUF" picker; the header is checked before the
+  file is copied into the vault.
+- Sharp (2.6 GB) ships split: `llama-gguf-split --split-max-size 1400M` (brew `llama.cpp`) makes two shards under Play's
+  1.5 GB pack cap; the manifest lists them in `parts`, every shard is hashed, llama.cpp opens the first and finds the second.
+
+Screens: `apps/mobile/src/screens/vault/` exports `VaultScreen` (S30 cards with plain-language names, battery tag,
+"~min–max tok/s on your phone", RECOMMENDED FOR THIS PHONE, install / pause / cancel / remove / use, storage counter,
+too-big rows with the reason, import) and the S31 details sheet. The engine now resolves through the vault
+(`src/vault/resolve.ts`): the default installed chat model, else the recommended one, else `Documents/instant.gguf`.
+`resetEngine()` in `src/engine.ts` unloads after a switch. Wiring for the host: render `<VaultScreen onClose onModelChanged />`
+and bump the chat screen key in `onModelChanged`.
+
+Local stand-in for the CDN (simulator / desktop):
+```
+MODELS_DIR=$PWD/.models node scripts/serve-models.mjs        # http://127.0.0.1:8790/v1/<file>, HEAD, ETag, Range/206
+EXPO_PUBLIC_MODELS_BASE_URL=http://127.0.0.1:8790/v1 EXPO_PUBLIC_DEV_RAM_GB=6 EXPO_PUBLIC_START_SCREEN=vault \
+  APP_VARIANT=development npx expo start                       # dev builds only; release builds ignore these
+DROP_AFTER=20000000 node scripts/serve-models.mjs             # cuts the first GET after 20 MB to exercise resume
+```
+Proven 6.9.2026:
+- Android, Pixel_6_API_36 emulator (arm64, 6 GB), release AAB (no INTERNET, `check-android-permissions.sh` OK) through
+  bundletool `--local-testing`: three packs in the bundle (`inborn_model` fast-follow, `inborn_model_fast` + `inborn_model_sharp`
+  on-demand, Sharp as two shards); tapping Install on Fast → Play local testing delivered and verified the 1,280,835,840-byte
+  pack, the vault hashed it, the chat screen loaded it from the pack path with llama.rn in 2.2 s and answered at 6.4 tok/s (emulator CPU).
+- iOS, iPhone 15 simulator (iOS 17.0): Instant (532,517,120 bytes) downloaded from the local stand-in, SHA-256 matched the catalog;
+  Fast with the server cutting the connection after 300 MB resumed by itself with `Range: bytes=300000000-` (206) and verified;
+  a 0.6B Qwen3 GGUF imported with its header read (arch, size label, quant, context) while a 5 MB random file was rejected as "not a GGUF".
+- 38 catalog unit tests (signature, host allowlist, picker, install reducer, GGUF reader incl. the real Instant file, resume rules, speed table).
+
+iOS simulator: build `-configuration Release -sdk iphonesimulator SWIFT_VERSION=5.0` (Xcode 26.2 rejects
+expo-modules-core's EventEmitter.swift in Swift 6 mode, Debug and Release alike) and put the `EXPO_PUBLIC_*` exports in
+`ios/.xcode.env.local` so Metro inlines them at bundle time.
+
 ## Week-0 device prototype (spec §14.1) — status 5.9.2026
 Done on real hardware, without buying devices or opening store records:
 - Android (OnePlus 6T, 2018): release build without INTERNET, model delivered as a fast-follow asset pack and loaded from it; 15.8 tok/s.

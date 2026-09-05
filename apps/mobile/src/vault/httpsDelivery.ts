@@ -1,0 +1,132 @@
+import { Platform } from "react-native";
+import { DownloadTask, File, type DownloadPauseState, type DownloadTaskOptions } from "expo-file-system";
+import { ALLOWED_MODEL_HOSTS, httpsUrl, modelParts, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
+import type { DeliveryContext, DeliveryPlan, ModelDelivery } from "./delivery";
+import { DEV_MODEL_HOST, devBuild } from "./devFlags";
+import { fileSize, modelFile, partialFile, safeDelete } from "./paths";
+
+/* Dev bundles may also talk to the local stand-in (scripts/serve-models.mjs); store bundles never (spec §5.1). */
+export const DEV_MODEL_HOSTS: readonly string[] = devBuild() ? ["127.0.0.1", "localhost", "10.0.2.2", ...(DEV_MODEL_HOST ? [DEV_MODEL_HOST] : [])] : [];
+export const allowedHosts = (): readonly string[] => [...ALLOWED_MODEL_HOSTS, ...DEV_MODEL_HOSTS];
+
+const hostOf = (url: string): string => new URL(url).hostname;
+
+type SavedDownload = DownloadPauseState & { etag?: string };
+
+export class PausedError extends Error {
+  constructor() {
+    super("paused");
+  }
+}
+
+/**
+ * Resumable HTTPS delivery for iOS, desktop and the web (spec §5.4, §10.1 #2). Pause/resume uses the platform's
+ * resume data and survives a restart through the vault record; after a dropped connection Android continues from
+ * the bytes on disk (Range), iOS relies on its background URLSession and otherwise starts the file again.
+ */
+export class HttpsDelivery implements ModelDelivery {
+  private tasks = new Map<string, DownloadTask>();
+
+  constructor(private readonly ctx: DeliveryContext) {}
+
+  private url(model: CatalogModel, part?: ModelPart): string | null {
+    const url = httpsUrl(this.ctx.manifest, model, part);
+    return url && allowedHosts().includes(hostOf(url)) ? url : null;
+  }
+
+  plan(model: CatalogModel): DeliveryPlan | null {
+    const url = this.url(model);
+    if (!url || Platform.OS === "web") return null;
+    return { via: "https", origin: hostOf(url), host: hostOf(url), bytes: model.bytes };
+  }
+
+  locate(model: CatalogModel): string | null {
+    const all = modelParts(model).every((p) => modelFile(p.file).exists);
+    return all ? modelFile(model.file).uri : null;
+  }
+
+  /** Shards download one after another; progress is cumulative so the card shows one bar for the whole model. */
+  async deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+    let done = 0;
+    for (const shard of modelParts(model)) {
+      const final = modelFile(shard.file);
+      if (final.exists && fileSize(final) === shard.bytes) {
+        done += shard.bytes;
+        continue;
+      }
+      await this.deliverPart(model, shard, (bytes) => emit({ type: "progress", bytes: done + bytes, total: model.bytes }));
+      done += shard.bytes;
+    }
+    return modelFile(model.file).uri;
+  }
+
+  private async deliverPart(model: CatalogModel, shard: ModelPart, progress: (bytes: number) => void): Promise<void> {
+    const url = this.url(model, shard);
+    if (!url) throw new Error(`no allowed https delivery for ${model.id}`);
+    const part = partialFile(shard.file);
+    const saved = this.ctx.savedDownload(model.id) as SavedDownload | undefined;
+    const opts: DownloadTaskOptions = { sessionType: "background", onProgress: ({ bytesWritten }) => progress(bytesWritten) };
+    const task = await this.taskFor(model, shard, url, part, saved, opts);
+    this.tasks.set(model.id, task);
+    try {
+      const result = task.state === "paused" ? await task.resumeAsync() : await task.downloadAsync();
+      if (!result) {
+        this.ctx.saveDownload(model.id, { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() });
+        throw new PausedError();
+      }
+      this.ctx.saveDownload(model.id, null);
+      this.finish(shard, part);
+    } finally {
+      this.tasks.delete(model.id);
+    }
+  }
+
+  private async taskFor(model: CatalogModel, shard: ModelPart, url: string, part: File, saved: SavedDownload | undefined, opts: DownloadTaskOptions): Promise<DownloadTask> {
+    if (saved?.url === url && saved.resumeData) return DownloadTask.fromSavable(saved, opts);
+    const have = fileSize(part);
+    const head = await this.head(url);
+    if (head.total && head.total !== shard.bytes) throw new Error(`size mismatch: ${hostOf(url)} says ${head.total} bytes, catalog ${shard.bytes}`);
+    const plan = resumePlan(have > 0 && saved?.url === url ? { url, bytes: have, etag: saved.etag, total: shard.bytes } : null, head);
+    /* Android's native task appends from the byte offset; iOS has no byte-offset resume, only its own resume data. */
+    if (plan.action === "resume" && plan.start > 0 && Platform.OS === "android") {
+      return DownloadTask.fromSavable({ url, fileUri: part.uri, isDirectory: false, resumeData: String(plan.start) }, opts);
+    }
+    safeDelete(part);
+    this.ctx.saveDownload(model.id, { url, fileUri: part.uri, isDirectory: false, etag: head.etag });
+    return File.createDownloadTask(url, part, opts);
+  }
+
+  /** Real size from a HEAD before anything is written (spec S30 edge cases). */
+  private async head(url: string): Promise<{ total: number; etag?: string; acceptRanges: boolean }> {
+    const r = await fetch(url, { method: "HEAD" });
+    if (!r.ok) throw new Error(`HEAD ${r.status} from ${hostOf(url)}`);
+    return { total: Number(r.headers.get("content-length") ?? 0), etag: r.headers.get("etag") ?? undefined, acceptRanges: r.headers.get("accept-ranges") === "bytes" };
+  }
+
+  /** Bytes are complete: rename .part into place; the caller hashes it (spec §5.4) before it is "ready". */
+  private finish(shard: ModelPart, part: File): void {
+    const final = modelFile(shard.file);
+    safeDelete(final);
+    part.move(final);
+  }
+
+  async pause(model: CatalogModel): Promise<void> {
+    const t = this.tasks.get(model.id);
+    if (t?.state === "active") await t.pauseAsync();
+  }
+
+  async cancel(model: CatalogModel): Promise<void> {
+    const t = this.tasks.get(model.id);
+    if (t) {
+      t.cancel();
+      this.tasks.delete(model.id);
+    }
+    for (const shard of modelParts(model)) safeDelete(partialFile(shard.file));
+    this.ctx.saveDownload(model.id, null);
+  }
+
+  async remove(model: CatalogModel): Promise<void> {
+    await this.cancel(model);
+    for (const shard of modelParts(model)) safeDelete(modelFile(shard.file));
+  }
+}

@@ -1,0 +1,62 @@
+import type { DownloadPauseState } from "expo-file-system";
+import type { DeliverySource } from "@inborn/core";
+import { recordFile } from "./paths";
+
+/** One installed file the vault knows about (catalog model or import). */
+export interface InstalledRecord {
+  file: string;
+  bytes: number;
+  sha256: string;
+  via: DeliverySource;
+  installedAt: number;
+  lastLoadedAt?: number;
+  /** Set before a load and cleared after success; still set at boot = the last load crashed (§10.1 #8). */
+  loading?: boolean;
+  quarantined?: boolean;
+}
+
+/** An import the catalog does not know: the header fields the vault read itself. */
+export interface ImportedModel {
+  id: string;
+  name: string;
+  file: string;
+  bytes: number;
+  sha256: string;
+  arch: string;
+  sizeLabel?: string;
+  quant?: string;
+  contextLength?: number;
+  importedAt: number;
+}
+
+export interface VaultRecord {
+  version: 1;
+  defaultModelId?: string;
+  installs: Record<string, InstalledRecord>;
+  imports: Record<string, ImportedModel>;
+  /** Paused HTTPS downloads that survive a restart (expo-file-system savable state). */
+  downloads: Record<string, DownloadPauseState & { etag?: string }>;
+  wifiOnly: boolean;
+}
+
+export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, downloads: {}, wifiOnly: true };
+
+export function readRecord(): VaultRecord {
+  try {
+    const f = recordFile();
+    if (!f.exists) return { ...EMPTY_RECORD };
+    const parsed = JSON.parse(f.textSync()) as Partial<VaultRecord>;
+    return { ...EMPTY_RECORD, ...parsed, installs: parsed.installs ?? {}, imports: parsed.imports ?? {}, downloads: parsed.downloads ?? {} };
+  } catch (e: unknown) {
+    console.warn("[vault] record unreadable, starting empty", e);
+    return { ...EMPTY_RECORD };
+  }
+}
+
+export function writeRecord(record: VaultRecord): void {
+  try {
+    recordFile().write(JSON.stringify(record));
+  } catch (e: unknown) {
+    console.warn("[vault] record not written", e);
+  }
+}

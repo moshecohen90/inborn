@@ -2,7 +2,7 @@ import { NullLM, type LocalLM, type ModelRef } from "@inborn/core";
 import { devModelEngine } from "./devModel";
 import { tauriEngine } from "./tauri";
 
-/** Await once before the first createEngine(): the web has to ask its host whether a GGUF is served. */
+/** Await once before the first createEngine(): the vault scans its files (phones) or the web asks its host for a GGUF. */
 export { prepareEngine } from "./prepare";
 
 export interface Engine {
@@ -15,7 +15,7 @@ export function createEngine(): Engine {
   return (
     tauriEngine() ??
     devModelEngine() ?? {
-      engine: new NullLM("Nothing leaves this phone. This is the week-0 skeleton streaming from an in-memory engine.", 60),
+      engine: new NullLM("Nothing leaves this phone. No model is installed yet: open the vault to add one.", 60),
       model: { id: "null", uri: "bundled://null" },
     }
   );

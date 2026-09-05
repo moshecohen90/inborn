@@ -1,2 +1,2 @@
-/** Phones find their GGUF synchronously (devModel.native.ts); only the web has to ask its host first (prepare.web.ts). */
-export const prepareEngine = (): Promise<void> => Promise.resolve();
+/** Phones scan the vault (devModel.native.ts), the web asks its host for a GGUF (devModel.web.ts); both resolve before the first createEngine(). */
+export { prepareDevModel as prepareEngine } from "./devModel";

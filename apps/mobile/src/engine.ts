@@ -1,5 +1,6 @@
 import type { Session } from "@inborn/core";
 import { createEngine, type Engine } from "./adapters";
+import { getVault } from "./vault/store";
 
 let booted: Engine | null = null;
 let session: Promise<Session> | null = null;
@@ -12,10 +13,27 @@ export function getEngine(): Engine {
 export function loadSession(nCtx = 4096): Promise<Session> {
   if (!session) {
     const { engine, model } = getEngine();
-    session = engine.load(model, { nCtx }).catch((e: unknown) => {
-      session = null;
-      throw e;
-    });
+    const vault = getVault();
+    /* A crash inside load() leaves the "loading" mark on disk, which quarantines the file at next boot (§10.1 #8). */
+    vault.markLoading(model.id, true);
+    session = engine
+      .load(model, { nCtx })
+      .then((s) => {
+        vault.markLoading(model.id, false);
+        return s;
+      })
+      .catch((e: unknown) => {
+        session = null;
+        throw e;
+      });
   }
   return session;
+}
+
+/** After the vault switches the default model: unload the current engine so the next loadSession() picks the new file. */
+export async function resetEngine(): Promise<void> {
+  const previous = booted;
+  booted = null;
+  session = null;
+  await previous?.engine.unload().catch((e: unknown) => console.warn("[inborn] unload", e));
 }
