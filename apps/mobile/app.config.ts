@@ -14,7 +14,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: { bundleIdentifier: "com.inbornapp.mobile", supportsTablet: true },
   android: {
     package: "com.inbornapp.mobile",
-    blockedPermissions: dev ? [] : ["android.permission.INTERNET"],
+    blockedPermissions: dev
+      ? []
+      : [
+          "android.permission.INTERNET",
+          "android.permission.SYSTEM_ALERT_WINDOW",
+          "android.permission.READ_EXTERNAL_STORAGE",
+          "android.permission.WRITE_EXTERNAL_STORAGE",
+        ],
   },
   web: { bundler: "metro", output: "single" },
   plugins: [
@@ -22,5 +29,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],
+    /* Pack sources come from INBORN_MODELS_DIR at prebuild (plugins/withAssetPacks.js); the model is never committed. */
+    ["./plugins/withAssetPacks", { packs: [{ name: "inborn_model", deliveryType: "fast-follow", assets: { "instant.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }] }],
   ],
 });

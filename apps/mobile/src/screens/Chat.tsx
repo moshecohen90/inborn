@@ -49,6 +49,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
       .then((s) => {
         if (!alive) return;
         loadMs.current = Date.now() - started;
+        console.log(`[inborn] ${engine.id} loaded ${model.uri} in ${loadMs.current} ms`);
         session.current = s;
         setStatus({ kind: "ready" });
       })
