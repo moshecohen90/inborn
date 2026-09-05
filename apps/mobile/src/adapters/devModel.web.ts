@@ -1,22 +1,21 @@
 import type { Engine } from "./index";
 import { WllamaLM } from "./wllama";
+import { ChromeNanoLM, CHROME_MODEL_ID } from "../web/chromeNano";
+import { prepareWebBoot, webBoot, webReady } from "../web/boot";
+import { opfsUri } from "../web/opfs";
 
-/** M1 dev path on the web: the host serves the GGUF next to the bundle (scripts/serve-web.mjs). The catalog replaces this in M2. */
-export const DEV_MODEL_URL = "/models/instant.gguf";
-
-let served = false;
-let probe: Promise<void> | null = null;
-
-/* A browser cannot look at a file system, so createEngine() needs this HEAD answered first (see prepareEngine). */
+/**
+ * Web engine choice (spec §14.3): wllama over the GGUF kept in OPFS, or Chrome's Prompt API when the user switched
+ * it on. `prepareDevModel()` runs the web boot (gate, manifest, OPFS status) before the first createEngine().
+ */
 export function prepareDevModel(): Promise<void> {
-  probe ??= fetch(DEV_MODEL_URL, { method: "HEAD" }).then(
-    (r) => void (served = r.ok),
-    () => void (served = false),
-  );
-  return probe;
+  return prepareWebBoot().then(() => undefined);
 }
 
 export function devModelEngine(): Engine | null {
-  if (!served) return null;
-  return { engine: new WllamaLM(), model: { id: "instant", uri: DEV_MODEL_URL } };
+  const boot = webBoot();
+  if (boot.engine === "chrome-nano") return { engine: new ChromeNanoLM(), model: { id: CHROME_MODEL_ID, uri: "chrome://prompt-api" } };
+  if (!webReady(boot) || !boot.source) return null;
+  const { id, file, chatTemplate } = boot.source;
+  return { engine: new WllamaLM(), model: { id, uri: opfsUri(file), ...(chatTemplate ? { chatTemplate } : {}) } };
 }

@@ -13,7 +13,8 @@
     "desktop:dev": "pnpm --filter @inborn/desktop dev",
     "desktop:build": "pnpm --filter @inborn/desktop build",
     "web:serve": "node scripts/serve-web.mjs",
-    "web:smoke": "node scripts/web-smoke.mjs"
+    "web:smoke": "node scripts/web-smoke.mjs",
+    "web:build": "pnpm --filter @inborn/mobile export:web && pnpm --filter @inborn/web build"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

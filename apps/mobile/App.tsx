@@ -8,6 +8,7 @@ import { prepareEngine } from "./src/adapters";
 import { Chat } from "./src/screens/Chat";
 import { Chats } from "./src/screens/Chats";
 import { openPersistentStorage } from "./src/storage/persistent";
+import { WebShell } from "./src/web/WebShell";
 
 type Screen = "chat" | "chats";
 /** `key` remounts the chat screen whenever a different conversation is opened. */
@@ -40,6 +41,7 @@ export default function App() {
   };
   return (
     <SafeAreaProvider>
+      <WebShell>
       {screen === "chats" ? (
         <Chats
           store={store}
@@ -67,6 +69,7 @@ export default function App() {
           onChatCreated={(id) => setActive((a) => ({ ...a, id }))}
         />
       )}
+      </WebShell>
       <StatusBar style="auto" />
     </SafeAreaProvider>
   );
