@@ -176,7 +176,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
           ) : (
             <View testID="assistant-message" style={styles.assistant}>
               <Text style={[styles.monoLabel, { color: theme.text3 }]}>{t("chat.modelLabel", { model: (item.modelId ?? model.id).toUpperCase() })}</Text>
-              <Text style={[styles.body, { color: theme.text }]}>
+              <Text testID="assistant-text" style={[styles.body, { color: theme.text }]}>
                 {item.content}
                 {item.streaming ? <Text style={{ color: theme.text2 }}>▍</Text> : null}
               </Text>

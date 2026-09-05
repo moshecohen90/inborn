@@ -99,8 +99,7 @@ try {
   const [, tps, ttft] = STATS_RE.exec((await stats.textContent()) ?? "") ?? [];
   result.tokPerSec = Number(tps);
   result.ttftMs = Number(ttft);
-  const texts = await page.locator('div[dir="auto"]').allTextContents();
-  result.answer = texts[texts.indexOf(PROMPT) + 1] ?? "";
+  result.answer = ((await page.getByTestId("assistant-text").last().textContent()) ?? "").trim();
   result.memoryMB = await page.evaluate(async () => {
     try {
       return Math.round((await performance.measureUserAgentSpecificMemory()).bytes / 1048576);
