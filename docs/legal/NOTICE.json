@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inborn third-party notices",
+  "description": "Source of truth for the in-app Licences screen (spec §11.4). Groups: model, engine, library, font. scope: shipped = in the store binary or bundled asset; catalogue = served from models.{{DOMAIN}} or delivered by Play/Apple asset packs; planned = in the spec, not yet integrated; build-only = never ships (listed for completeness of the audit). Regenerate the js entries from `pnpm licenses list --prod --json` at every release.",
+  "generated": "2026-09-05",
+  "app": { "name": "Inborn", "coreLicense": "MIT", "coreScope": "engine, storage, network, catalogue (spec D4)" },
+  "components": [
+    {
+      "id": "qwen3.5-0.8b", "group": "model", "name": "Qwen3.5-0.8B", "version": "GGUF Q4_K_M", "tier": "Instant",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/Qwen/Qwen3.5-0.8B", "attribution": "Qwen3.5 by Alibaba Cloud (Qwen team), Apache License 2.0",
+      "obligations": ["include LICENSE and NOTICE text", "attribution"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "qwen3.5-2b", "group": "model", "name": "Qwen3.5-2B", "version": "GGUF Q4_K_M", "tier": "Fast",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-2B/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/Qwen/Qwen3.5-2B", "attribution": "Qwen3.5 by Alibaba Cloud (Qwen team), Apache License 2.0",
+      "obligations": ["include LICENSE and NOTICE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "qwen3.5-4b", "group": "model", "name": "Qwen3.5-4B", "version": "GGUF Q4_K_M", "tier": "Sharp",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-4B/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/Qwen/Qwen3.5-4B", "attribution": "Qwen3.5 by Alibaba Cloud (Qwen team), Apache License 2.0",
+      "obligations": ["include LICENSE and NOTICE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "qwen3.5-9b", "group": "model", "name": "Qwen3.5-9B", "version": "GGUF Q4_K_M", "tier": "Power",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/Qwen/Qwen3.5-9B", "attribution": "Qwen3.5 by Alibaba Cloud (Qwen team), Apache License 2.0",
+      "obligations": ["include LICENSE and NOTICE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "qwen3.5-mmproj", "group": "model", "name": "Qwen3.5 vision projector (mmproj)", "version": "per base model", "tier": "vision",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/Qwen", "attribution": "Qwen3.5 by Alibaba Cloud (Qwen team), Apache License 2.0",
+      "obligations": ["include LICENSE and NOTICE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "phi-4-mini-instruct", "group": "model", "name": "Phi-4-mini-instruct", "version": "3.8B GGUF Q4_K_M", "tier": "Sharp (alternative)",
+      "license": "MIT", "licenseUrl": "https://huggingface.co/microsoft/Phi-4-mini-instruct/blob/main/LICENSE",
+      "homepage": "https://huggingface.co/microsoft/Phi-4-mini-instruct", "attribution": "Copyright (c) Microsoft Corporation. MIT License",
+      "obligations": ["copyright notice"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "smollm3-3b", "group": "model", "name": "SmolLM3-3B", "version": "GGUF Q4_K_M", "tier": "Sharp (alternative)",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "homepage": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B", "attribution": "SmolLM3 by Hugging Face TB, Apache License 2.0",
+      "obligations": ["include LICENSE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "ministral-3-8b", "group": "model", "name": "Ministral 3 8B", "version": "GGUF Q4_K_M", "tier": "Power (alternative)",
+      "license": "Apache-2.0", "licenseUrl": "", "homepage": "https://huggingface.co/mistralai",
+      "attribution": "Mistral AI, Apache License 2.0", "obligations": ["include LICENSE text", "attribution"], "restrictions": [],
+      "scope": "planned", "verify": "Confirm the licence on the exact repository before adding; the 2410 Ministral 8B was MRL (non-commercial) and is excluded."
+    },
+    {
+      "id": "muse-glimmer-30b", "group": "model", "name": "Muse Glimmer 30B", "version": "GGUF", "tier": "Studio",
+      "license": "Apache-2.0", "licenseUrl": "", "homepage": "", "attribution": "Meta, Apache License 2.0 (per spec §6.1)",
+      "obligations": ["include LICENSE text", "attribution"], "restrictions": [],
+      "scope": "planned", "verify": "Confirm the licence text at the source; a Llama-style community licence would add 'Built with' and AUP obligations."
+    },
+    {
+      "id": "nomic-embed-text-v1.5", "group": "model", "name": "nomic-embed-text-v1.5", "version": "GGUF", "tier": "embeddings",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5",
+      "homepage": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5", "attribution": "Nomic AI, Apache License 2.0",
+      "obligations": ["include LICENSE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "qwen3-embedding-0.6b", "group": "model", "name": "Qwen3-Embedding-0.6B", "version": "GGUF", "tier": "embeddings (Pro)",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "homepage": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B", "attribution": "Qwen team, Alibaba Cloud, Apache License 2.0",
+      "obligations": ["include LICENSE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "all-minilm-l6-v2", "group": "model", "name": "all-MiniLM-L6-v2", "version": "GGUF", "tier": "embeddings (low-end)",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "homepage": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2", "attribution": "sentence-transformers (UKPLab), Apache License 2.0",
+      "obligations": ["include LICENSE text", "attribution"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "whisper-base", "group": "model", "name": "Whisper base / small (ggml)", "version": "ggml", "tier": "speech-to-text",
+      "license": "MIT", "licenseUrl": "https://github.com/openai/whisper/blob/main/LICENSE",
+      "homepage": "https://github.com/openai/whisper", "attribution": "Copyright (c) 2022 OpenAI. MIT License",
+      "obligations": ["copyright notice"], "restrictions": [], "scope": "catalogue"
+    },
+    {
+      "id": "parakeet", "group": "model", "name": "Parakeet (Core ML)", "version": "", "tier": "speech-to-text (alternative)",
+      "license": "CC-BY-4.0", "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "homepage": "https://huggingface.co/nvidia", "attribution": "NVIDIA, CC BY 4.0", "obligations": ["attribution with licence link"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "kokoro-82m", "group": "model", "name": "Kokoro-82M (ONNX)", "version": "", "tier": "TTS (desktop Pro)",
+      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+      "homepage": "https://huggingface.co/hexgrad/Kokoro-82M", "attribution": "hexgrad, Apache License 2.0",
+      "obligations": ["include LICENSE text", "attribution", "do NOT bundle espeak-ng (GPL-3.0); use a permissive G2P"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "silero-vad", "group": "model", "name": "Silero VAD", "version": "", "tier": "voice activity detection",
+      "license": "MIT", "licenseUrl": "https://github.com/snakers4/silero-vad/blob/master/LICENSE",
+      "homepage": "https://github.com/snakers4/silero-vad", "attribution": "Silero Team, MIT License", "obligations": ["copyright notice"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "apple-foundation-models", "group": "model", "name": "Apple Foundation Models (on-device)", "version": "iOS/macOS 26", "tier": "accelerator",
+      "license": "Apple Developer Program License Agreement + Foundation Models Acceptable Use Requirements",
+      "licenseUrl": "https://developer.apple.com/apple-intelligence/acceptable-use-requirements-for-the-foundation-models-framework/",
+      "homepage": "https://developer.apple.com/documentation/FoundationModels", "attribution": "Apple Inc.",
+      "obligations": ["acceptable use"], "restrictions": ["no autonomous medical/legal/financial/employment outputs", "no adult content", "no dependency or spiraling interactions", "not redistributed"], "scope": "shipped"
+    },
+    {
+      "id": "gemini-nano", "group": "model", "name": "Gemini Nano (AICore)", "version": "", "tier": "accelerator (Android)",
+      "license": "Google platform terms", "licenseUrl": "https://developer.android.com/ai/gemini-nano",
+      "homepage": "https://developer.android.com/ai/gemini-nano", "attribution": "Google LLC", "obligations": ["acceptable use"], "restrictions": ["foreground only", "not redistributed"], "scope": "planned"
+    },
+
+    {
+      "id": "llama.cpp", "group": "engine", "name": "llama.cpp / ggml", "version": "vendored by llama.rn 0.12.9 and wllama 3.6.1",
+      "license": "MIT", "licenseUrl": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE",
+      "homepage": "https://github.com/ggml-org/llama.cpp", "attribution": "Copyright (c) 2023-2026 The ggml authors", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "llama.rn", "group": "engine", "name": "llama.rn", "version": "0.12.9",
+      "license": "MIT", "licenseUrl": "https://github.com/mybigday/llama.rn/blob/main/LICENSE",
+      "homepage": "https://github.com/mybigday/llama.rn", "attribution": "Copyright (c) 2023 Jhen-Jie Hong", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "wllama", "group": "engine", "name": "wllama (+ wllama-compat)", "version": "3.6.1",
+      "license": "MIT", "licenseUrl": "https://github.com/ngxson/wllama/blob/master/LICENSE",
+      "homepage": "https://github.com/ngxson/wllama", "attribution": "Copyright (c) 2024 Xuan Son Nguyen", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "whisper.cpp", "group": "engine", "name": "whisper.cpp (via whisper.rn)", "version": "",
+      "license": "MIT", "licenseUrl": "https://github.com/ggml-org/whisper.cpp/blob/master/LICENSE",
+      "homepage": "https://github.com/ggml-org/whisper.cpp", "attribution": "Copyright (c) 2023-2026 The ggml authors", "obligations": ["copyright notice"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "sqlcipher", "group": "engine", "name": "SQLCipher (via expo-sqlite useSQLCipher)", "version": "bundled in expo-sqlite 57.0.2",
+      "license": "BSD-2-Clause", "licenseUrl": "https://github.com/sqlcipher/sqlcipher/blob/master/LICENSE.md",
+      "homepage": "https://www.zetetic.net/sqlcipher/", "attribution": "Copyright (c) 2025, ZETETIC LLC. All rights reserved.",
+      "obligations": ["reproduce copyright notice, conditions and disclaimer", "do not use the ZETETIC name to endorse the product"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "sqlite", "group": "engine", "name": "SQLite", "version": "bundled",
+      "license": "Public Domain", "licenseUrl": "https://sqlite.org/copyright.html", "homepage": "https://sqlite.org", "attribution": "SQLite is in the public domain", "obligations": [], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "sqlite-vec", "group": "engine", "name": "sqlite-vec", "version": "",
+      "license": "MIT", "licenseUrl": "https://github.com/asg017/sqlite-vec/blob/main/LICENSE-MIT",
+      "homepage": "https://github.com/asg017/sqlite-vec", "attribution": "Copyright (c) 2024 Alex Garcia (dual MIT/Apache-2.0; MIT elected)", "obligations": ["copyright notice"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "libsodium", "group": "engine", "name": "libsodium", "version": "",
+      "license": "ISC", "licenseUrl": "https://github.com/jedisct1/libsodium/blob/master/LICENSE",
+      "homepage": "https://libsodium.org", "attribution": "Copyright (c) 2013-2026 Frank Denis", "obligations": ["copyright notice"], "restrictions": [], "scope": "planned"
+    },
+    {
+      "id": "react-native", "group": "library", "name": "React Native (incl. Hermes)", "version": "0.86.3",
+      "license": "MIT", "licenseUrl": "https://github.com/facebook/react-native/blob/main/LICENSE",
+      "homepage": "https://reactnative.dev", "attribution": "Copyright (c) Meta Platforms, Inc. and affiliates", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "react", "group": "library", "name": "React / react-dom", "version": "19.2.3",
+      "license": "MIT", "licenseUrl": "https://github.com/facebook/react/blob/main/LICENSE",
+      "homepage": "https://react.dev", "attribution": "Copyright (c) Meta Platforms, Inc. and affiliates", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "expo", "group": "library", "name": "Expo SDK modules (expo, expo-file-system, expo-sqlite, expo-secure-store, expo-local-authentication, expo-localization, expo-crypto, expo-asset, expo-constants, expo-status-bar)", "version": "57.x",
+      "license": "MIT", "licenseUrl": "https://github.com/expo/expo/blob/main/LICENSE",
+      "homepage": "https://expo.dev", "attribution": "Copyright (c) 650 Industries, Inc.", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "react-native-safe-area-context", "group": "library", "name": "react-native-safe-area-context", "version": "5.7.0",
+      "license": "MIT", "licenseUrl": "https://github.com/AppAndFlow/react-native-safe-area-context/blob/main/LICENSE",
+      "homepage": "https://github.com/AppAndFlow/react-native-safe-area-context", "attribution": "Copyright (c) 2019 Th3rd Wave", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "react-native-web", "group": "library", "name": "react-native-web", "version": "0.21.2",
+      "license": "MIT", "licenseUrl": "https://github.com/necolas/react-native-web/blob/master/LICENSE",
+      "homepage": "https://necolas.github.io/react-native-web/", "attribution": "Copyright (c) 2015-present, Nicolas Gallagher", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "i18next", "group": "library", "name": "i18next / react-i18next / i18next-icu", "version": "26.4.1 / 17.0.13 / 2.4.4",
+      "license": "MIT", "licenseUrl": "https://github.com/i18next/i18next/blob/master/LICENSE",
+      "homepage": "https://www.i18next.com", "attribution": "Copyright (c) 2026 i18next", "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "intl-messageformat", "group": "library", "name": "intl-messageformat", "version": "11.2.14",
+      "license": "BSD-3-Clause", "licenseUrl": "https://github.com/formatjs/formatjs/blob/main/LICENSE.md",
+      "homepage": "https://formatjs.github.io", "attribution": "Copyright (c) 2019 FormatJS / OpenNext (Eric Ferraiuolo)", "obligations": ["copyright notice", "no endorsement"], "restrictions": [], "scope": "shipped"
+    },
+    {
+      "id": "tauri", "group": "library", "name": "Tauri v2 (crate + CLI)", "version": "2.x",
+      "license": "MIT OR Apache-2.0", "licenseUrl": "https://github.com/tauri-apps/tauri/blob/dev/LICENSE_MIT",
+      "homepage": "https://tauri.app", "attribution": "Copyright (c) Tauri Programme within The Commons Conservancy (MIT elected)",
+      "obligations": ["copyright notice", "run `cargo license` at each desktop release for the Rust crate tree"], "restrictions": [], "scope": "shipped (desktop)"
+    },
+    {
+      "id": "play-asset-delivery", "group": "library", "name": "Play Asset Delivery library", "version": "2.3.0",
+      "license": "Android Software Development Kit License", "licenseUrl": "https://developer.android.com/studio/terms",
+      "homepage": "https://developer.android.com/guide/playcore/asset-delivery", "attribution": "Google LLC", "obligations": ["SDK terms accepted by the developer account"], "restrictions": [], "scope": "shipped (Android)"
+    },
+    {
+      "id": "play-billing", "group": "library", "name": "Google Play Billing Library", "version": "9.x",
+      "license": "Android Software Development Kit License", "licenseUrl": "https://developer.android.com/studio/terms",
+      "homepage": "https://developer.android.com/google/play/billing", "attribution": "Google LLC", "obligations": ["SDK terms accepted by the developer account"], "restrictions": [], "scope": "planned (M6)"
+    },
+    {
+      "id": "mlkit-text-recognition", "group": "library", "name": "ML Kit Text Recognition (bundled on-device model)", "version": "",
+      "license": "Google APIs Terms of Service", "licenseUrl": "https://developers.google.com/ml-kit/terms",
+      "homepage": "https://developers.google.com/ml-kit/vision/text-recognition", "attribution": "Google LLC", "obligations": ["terms"], "restrictions": ["on-device bundled variant only (no network)"], "scope": "planned (M5)"
+    },
+    {
+      "id": "ibm-plex", "group": "font", "name": "IBM Plex Sans / IBM Plex Mono", "version": "",
+      "license": "OFL-1.1", "licenseUrl": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
+      "homepage": "https://github.com/IBM/plex", "attribution": "Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\"", "obligations": ["attribution", "fonts not sold separately"], "restrictions": [], "scope": "shipped"
+    },
+
+    {
+      "id": "node-forge", "group": "library", "name": "node-forge", "version": "1.4.0",
+      "license": "BSD-3-Clause OR GPL-2.0", "licenseUrl": "https://github.com/digitalbazaar/forge/blob/main/LICENSE",
+      "homepage": "https://github.com/digitalbazaar/forge", "attribution": "Digital Bazaar, Inc. (BSD-3-Clause elected)", "obligations": [], "restrictions": [], "scope": "build-only"
+    },
+    {
+      "id": "lightningcss", "group": "library", "name": "lightningcss", "version": "1.33.0",
+      "license": "MPL-2.0", "licenseUrl": "https://github.com/parcel-bundler/lightningcss/blob/master/LICENSE",
+      "homepage": "https://lightningcss.dev", "attribution": "Devon Govett", "obligations": [], "restrictions": [], "scope": "build-only"
+    },
+    {
+      "id": "caniuse-lite", "group": "library", "name": "caniuse-lite", "version": "1.0.30001810",
+      "license": "CC-BY-4.0", "licenseUrl": "https://github.com/browserslist/caniuse-lite/blob/main/LICENSE",
+      "homepage": "https://github.com/browserslist/caniuse-lite", "attribution": "Ben Briggs / caniuse", "obligations": [], "restrictions": [], "scope": "build-only"
+    }
+  ],
+  "excludedByRule": [
+    { "family": "Gemma ≤3 / 3n / EmbeddingGemma / ShieldGemma", "license": "Gemma Terms of Use", "reason": "use restrictions must be passed on as enforceable terms with a copy delivered; gated download" },
+    { "family": "Llama 3.x / 4", "license": "Llama Community License", "reason": "'Built with Llama' notice, derivative naming, AUP" },
+    { "family": "LFM2 / LFM2.5", "license": "LFM Open License v1.0", "reason": "free only under US$10M annual revenue; review at growth" },
+    { "family": "Mistral models under MRL", "license": "Mistral Research License", "reason": "non-commercial" },
+    { "family": "espeak-ng", "license": "GPL-3.0", "reason": "copyleft; never linked into the closed app" }
+  ]
+}

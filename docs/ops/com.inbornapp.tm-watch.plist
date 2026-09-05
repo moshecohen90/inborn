@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Monthly trademark watch for "Inborn" (docs/ops/trademark-watch.md). NOT installed by the legal-docs stream. -->
+  <key>Label</key>
+  <string>com.inbornapp.tm-watch</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>mkdir -p "$HOME/Library/Logs/inborn"; LOG="$HOME/Library/Logs/inborn/tm-watch.log"; OUT="$(bash "$HOME/dev/inborn/scripts/tm-watch.sh" Inborn 2>&amp;1)"; RC=$?; printf '%s tm-watch rc=%s\n%s\n' "$(date '+%Y-%m-%d %H:%M')" "$RC" "$OUT" >> "$LOG"; if [ "$RC" -ne 0 ]; then printf '%s\n' "$OUT" > "$HOME/Library/Logs/inborn/tm-watch.ALERT"; fi; exit 0</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Day</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>30</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/com.inbornapp.tm-watch.out</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/com.inbornapp.tm-watch.err</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>
