@@ -32,6 +32,12 @@ importers:
       '@inborn/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@wllama/wllama':
+        specifier: 3.6.1
+        version: 3.6.1
+      '@wllama/wllama-compat':
+        specifier: 3.6.1
+        version: 3.6.1
       expo:
         specifier: ~57.0.19
         version: 57.0.19(@babel/core@7.29.7)(@expo/dom-webview@57.0.1)(react-dom@19.2.3(react@19.2.3))(react-native-web@0.21.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-native@0.86.3(@babel/core@7.29.7)(@types/react@19.2.18)(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
@@ -1010,6 +1016,12 @@ packages:
 
   '@vitest/spy@5.0.0':
     resolution: {integrity: sha512-uy+luWBAPw9XfthoHi5AkfHUnuPYEESjl0p/r+meoBnU8bxg5GDQ3Ey8MjcJ6sqahkL4PFyrvfMJJBw7LbU06g==}
+
+  '@wllama/wllama-compat@3.6.1':
+    resolution: {integrity: sha512-1zSCrZEsb+mIZAofC8RW0Z9HTbLldMOVXLkbBgBt+Ca9FxT9K8VQnEtVTw/kXCu5LBiUkpzfxP7resZCnhY6Eg==}
+
+  '@wllama/wllama@3.6.1':
+    resolution: {integrity: sha512-v6cA0w6sHuaTLmUo9nSU37Sln+5YqZy/OGWp2dXWaR3ts26yLiMnKHGGbjdzQolPSPydPSKUlHHSKZgXK5Prkw==}
 
   '@xmldom/xmldom@0.8.15':
     resolution: {integrity: sha512-/5NV/vDALVFDXgLmfsy9TRCBlKwO2LNBFzpzvb9iIj+jR+eSc6DLYYvVOdivT/jm7MtU6TebYuRmzEOI7w40UA==}
@@ -4072,6 +4084,10 @@ snapshots:
       vite: 8.2.2(@types/node@26.4.1)(terser@5.51.2)(yaml@2.9.0)
 
   '@vitest/spy@5.0.0': {}
+
+  '@wllama/wllama-compat@3.6.1': {}
+
+  '@wllama/wllama@3.6.1': {}
 
   '@xmldom/xmldom@0.8.15': {}
 

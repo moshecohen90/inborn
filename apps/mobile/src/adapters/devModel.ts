@@ -1,6 +1,8 @@
 import type { Engine } from "./index";
 
-/** Web and desktop have no local GGUF engine yet (wllama / Tauri land in M2). */
+/** Type-level default: phones resolve devModel.native.ts (llama.rn), browsers devModel.web.ts (wllama). */
 export function devModelEngine(): Engine | null {
   return null;
 }
+
+export const prepareDevModel = (): Promise<void> => Promise.resolve();

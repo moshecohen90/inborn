@@ -1,0 +1,136 @@
+/* wllama's package "main" points at its TypeScript sources; esm/ carries the built JS plus .d.ts. */
+import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
+import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
+import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+
+/* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
+const WASM_PATHS = { default: "/wllama/wllama.wasm" };
+const COMPAT_PATHS = { worker: "/wllama/compat/wllama.js", wasm: "/wllama/compat/wllama.wasm" };
+
+/** llama-server streams Qwen "thinking" as reasoning_content, which wllama's chunk type leaves out. */
+type ChunkDelta = ChatCompletionChunk["choices"][number]["delta"] & { reasoning_content?: string | null };
+type GpuNavigator = Navigator & { gpu?: { requestAdapter(): Promise<unknown | null> } };
+type MemoryPerformance = Performance & { measureUserAgentSpecificMemory?: () => Promise<{ bytes: number }> };
+
+/* WASM threads need SharedArrayBuffer, which the browser only hands out under COOP/COEP (spec §4.4). */
+const threadCount = (requested: number | undefined): number =>
+  globalThis.crossOriginIsolated ? Math.max(1, requested ?? Math.floor((navigator.hardwareConcurrency || 2) / 2)) : 1;
+
+async function gpuLayers(requested: number | undefined): Promise<number> {
+  const gpu = (navigator as GpuNavigator).gpu;
+  if (requested === 0 || !gpu) return 0;
+  const adapter = await Promise.race([gpu.requestAdapter(), new Promise<null>((r) => setTimeout(() => r(null), 3000))]).catch(() => null);
+  return adapter ? (requested ?? 99) : 0;
+}
+
+function toWllamaMessage(m: Message): ChatCompletionMessage {
+  if (m.role === "tool") throw new Error("tool messages need tool calling, which the web tier does not support");
+  return { role: m.role, content: m.content };
+}
+
+const isAbort = (e: unknown): boolean => e instanceof Error && e.name === "AbortError";
+
+/** wllama adapter (llama.cpp in WebAssembly, WebGPU when the browser has an adapter). Loads the GGUF from our own origin only. */
+export class WllamaLM implements LocalLM {
+  readonly id = "wllama" as const;
+  private wllama: Wllama | null = null;
+  private session: Session | null = null;
+  private last: Stats = { tokPerSec: 0, ttftMs: 0, ctxUsed: 0, memMB: 0 };
+
+  capabilities(): Capabilities {
+    /* One llama-server context is either chat or embeddings, never both; RAG gets its own session later. */
+    return { vision: false, tools: false, embeddings: false, maxContext: this.session?.nCtx ?? 4096 };
+  }
+
+  async load(model: ModelRef, opts: LoadOptions): Promise<Session> {
+    await this.unload();
+    const started = performance.now();
+    const [threads, layers] = [threadCount(opts.threads), await gpuLayers(opts.gpuLayers)];
+    const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
+    wllama.setCompat(COMPAT_PATHS);
+    await wllama.loadModelFromUrl(model.uri, {
+      n_ctx: opts.nCtx,
+      n_threads: threads,
+      n_gpu_layers: layers,
+      jinja: true,
+      chat_template: model.chatTemplate,
+      log_level: LogLevel.WARN,
+    });
+    this.wllama = wllama;
+    this.session = { model, nCtx: opts.nCtx };
+    console.info(
+      `[wllama] loaded ${model.id} in ${Math.round(performance.now() - started)} ms · threads=${wllama.getNumThreads()} isolated=${globalThis.crossOriginIsolated} gpuLayers=${layers} nCtx=${opts.nCtx} libllama=${Wllama.getLibllamaVersion()}`,
+    );
+    return this.session;
+  }
+
+  async unload(): Promise<void> {
+    const wllama = this.wllama;
+    this.wllama = null;
+    this.session = null;
+    await wllama?.exit();
+  }
+
+  async *generate(session: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta> {
+    const wllama = this.wllama;
+    if (!wllama || session !== this.session) throw new Error("model not loaded");
+    const started = performance.now();
+    let ttft = 0;
+    let tokPerSec = 0;
+    let promptTokens = 0;
+    let completionTokens = 0;
+    let chunks = 0;
+    const request: ChatCompletionParams & { stream: true; stop?: string[] } = {
+      messages: messages.map(toWllamaMessage),
+      stream: true,
+      abortSignal: signal,
+      max_tokens: opts.maxTokens ?? 1024,
+      temperature: opts.temperature ?? 0.7,
+      top_p: opts.topP ?? 0.9,
+      stop: opts.stop,
+      chat_template_kwargs: { enable_thinking: opts.reasoning ?? true },
+    };
+    try {
+      for await (const chunk of await wllama.createChatCompletion(request)) {
+        const delta = chunk.choices[0]?.delta as ChunkDelta | undefined;
+        const reasoning = delta?.reasoning_content;
+        const text = delta?.content;
+        if (!ttft && (reasoning || text)) ttft = performance.now() - started;
+        if (reasoning) yield { reasoning };
+        if (text) {
+          chunks++;
+          yield { text };
+        }
+        if (chunk.usage) {
+          promptTokens = chunk.usage.prompt_tokens;
+          completionTokens = chunk.usage.completion_tokens;
+        }
+        if (chunk.timings) tokPerSec = chunk.timings.predicted_per_second;
+      }
+    } catch (e: unknown) {
+      if (!isAbort(e)) throw e;
+    }
+    /* A stopped stream never gets the final usage/timings chunk; one streamed chunk is one token. */
+    completionTokens ||= chunks;
+    if (!tokPerSec && completionTokens) tokPerSec = (completionTokens * 1000) / Math.max(1, performance.now() - started - ttft);
+    this.last = { tokPerSec, ttftMs: ttft, ctxUsed: promptTokens + completionTokens, memMB: this.last.memMB };
+    this.measureMemory();
+    yield { done: { promptTokens, completionTokens, ttftMs: ttft, tokPerSec } };
+  }
+
+  async embed(): Promise<Float32Array[]> {
+    throw new Error("wllama: embeddings need a session loaded with embeddings=true; the chat session cannot embed");
+  }
+
+  stats(): Stats {
+    return this.last;
+  }
+
+  /* Only defined under cross-origin isolation; it settles late, so the value lands in the next stats() read. */
+  private measureMemory(): void {
+    (performance as MemoryPerformance).measureUserAgentSpecificMemory?.().then(
+      (m) => (this.last = { ...this.last, memMB: Math.round(m.bytes / 1048576) }),
+      () => undefined,
+    );
+  }
+}

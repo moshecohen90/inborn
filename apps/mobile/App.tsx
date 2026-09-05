@@ -3,13 +3,14 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
 import { initI18n } from "@inborn/i18n";
+import { prepareEngine } from "./src/adapters";
 import { Chat } from "./src/screens/Chat";
 
 export default function App() {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     const tags = getLocales().map((l) => l.languageTag);
-    initI18n(tags[0] ?? "en", tags).then(() => setReady(true));
+    Promise.all([initI18n(tags[0] ?? "en", tags), prepareEngine()]).then(() => setReady(true));
   }, []);
   if (!ready) return null;
   return (
