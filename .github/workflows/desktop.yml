@@ -72,7 +72,14 @@ jobs:
             os: windows-latest
             bundles: nsis
             features: --features vulkan
+            vulkan: "1.3.296.0"
             artifact: inborn-windows-x64-vulkan
+          # CPU-only fallback so a Windows artefact exists even when the Vulkan toolchain breaks.
+          - name: Windows x64 (CPU)
+            os: windows-latest
+            bundles: nsis
+            features: ""
+            artifact: inborn-windows-x64-cpu
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -88,15 +95,29 @@ jobs:
           workspaces: apps/desktop/src-tauri -> target
           key: ${{ matrix.artifact }}
 
-      # llama.cpp's Vulkan backend compiles its shaders with glslc from the LunarG SDK.
+      # llama.cpp's Vulkan backend needs the LunarG SDK (headers, vulkan-1.lib, glslc) plus the SPIRV-Headers
+      # CMake package, which the Windows SDK installer does not ship; ggml does find_package(SPIRV-Headers CONFIG).
       - name: Vulkan SDK
-        if: runner.os == 'Windows'
+        if: matrix.vulkan
         uses: jakoch/install-vulkan-sdk-action@v1
         with:
-          vulkan_version: 1.3.296.0
+          vulkan_version: ${{ matrix.vulkan }}
           install_runtime: true
           cache: true
           stripdown: true
+      - name: SPIRV-Headers (CMake package) + glslc on PATH
+        if: matrix.vulkan
+        shell: pwsh
+        run: |
+          $sdk = "C:\VulkanSDK\${{ matrix.vulkan }}"
+          if (-not (Test-Path "$sdk\Bin\glslc.exe")) { throw "glslc missing under $sdk\Bin" }
+          git clone --quiet --depth 1 --branch vulkan-sdk-${{ matrix.vulkan }} https://github.com/KhronosGroup/SPIRV-Headers.git $env:RUNNER_TEMP\spirv-headers
+          cmake -S $env:RUNNER_TEMP\spirv-headers -B $env:RUNNER_TEMP\spirv-headers\build -DCMAKE_INSTALL_PREFIX=C:\spirv-headers -DSPIRV_HEADERS_ENABLE_TESTS=OFF | Out-Null
+          cmake --install $env:RUNNER_TEMP\spirv-headers\build | Out-Null
+          if (-not (Get-ChildItem -Recurse -Filter SPIRV-HeadersConfig.cmake C:\spirv-headers)) { throw "SPIRV-HeadersConfig.cmake not installed" }
+          "VULKAN_SDK=$sdk" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "CMAKE_PREFIX_PATH=C:\spirv-headers;$sdk" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "$sdk\Bin" | Out-File -FilePath $env:GITHUB_PATH -Append
 
       - run: corepack pnpm install --frozen-lockfile
 

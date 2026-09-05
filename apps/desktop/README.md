@@ -100,7 +100,9 @@ and never prompt.
   target (or via `MSIX Packaging Tool` over the NSIS output); it becomes required only for Store features we do not
   use (app-execution alias, restricted capabilities). Partner Center: one-time ≈$19 (Moshe's call, spec §14.6).
 - **CI** `.github/workflows/desktop.yml`: `gate` (typecheck, lint, tests, CSP), then a matrix `macos-14` (arm64,
-  Metal; `app,dmg`) + `windows-latest` (x64, `--features vulkan`, NSIS) with the Rust cache and the LunarG SDK;
+  Metal; `app,dmg`) + `windows-latest` (x64, `--features vulkan`, NSIS) + `windows-latest` CPU-only fallback, with the
+  Rust cache, the LunarG SDK and a SPIRV-Headers install (ggml does `find_package(SPIRV-Headers CONFIG)`, which the
+  Windows SDK installer does not provide; it is exposed through `CMAKE_PREFIX_PATH`);
   unsigned artefacts on PRs/`main`, signed + notarized + updater-signed on `v*` tags from repository secrets
   (`APPLE_*`, `TAURI_SIGNING_PRIVATE_KEY`). `workflow_dispatch` with `cuda: true` adds a Windows CUDA build
   (CUDA 12.6 toolkit). Not run yet (no push from this stream); YAML and paths validated locally.
