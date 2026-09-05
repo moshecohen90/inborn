@@ -1,4 +1,5 @@
 import type { Engine } from "./index";
+import { isTauri, writeDevResult as writeTauriDevResult } from "./tauri";
 import { WllamaLM } from "./wllama";
 import { ChromeNanoLM, CHROME_MODEL_ID } from "../web/chromeNano";
 import { prepareWebBoot, webBoot, webReady } from "../web/boot";
@@ -18,4 +19,10 @@ export function devModelEngine(): Engine | null {
   if (!webReady(boot) || !boot.source) return null;
   const { id, file, chatTemplate } = boot.source;
   return { engine: new WllamaLM(), model: { id, uri: opfsUri(file), ...(chatTemplate ? { chatTemplate } : {}) } };
+}
+
+/** Headless measurement channel: the desktop shell writes `dev-run.json` into its app data dir; a plain browser only logs. */
+export function writeDevResult(result: Record<string, unknown>): void {
+  if (isTauri()) writeTauriDevResult(result);
+  else console.info("[dev-run]", JSON.stringify(result));
 }
