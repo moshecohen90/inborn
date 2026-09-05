@@ -3,7 +3,20 @@
 
 <h3>14.1 שבוע 0: החלטות ותשתית</h3>
 <ul class="chk">
-<p><span class="pill free">בוצע · 3.9.2026</span> שלד הריפו (monorepo, Expo 57, חבילות core/i18n/ui) הוגש; המנוע האמיתי (llama.rn, Qwen3.5‑0.8B Q4_K_M) רץ על OnePlus 6T משנת 2018 (Snapdragon 845, CPU בלבד): <span class="ltr">15.8 tok/s · TTFT 922 ms</span> בבניית שחרור, טעינת מודל 2.3 שניות; הוכחת ההרשאות עברה: <span class="ltr">aapt2 dump permissions</span> על ה‑APK של השחרור (com.inbornapp.mobile) מציג אפס INTERNET, שום ספרייה לא החזירה אותה. עוד לא בוצע: iPhone (13 Pro מחובר), Play Asset Delivery ו‑Play Billing על מכשיר, Apple‑hosted asset packs.</p>
+<p><span class="pill free">בוצע · 3–5.9.2026</span> שלד הריפו (monorepo, Expo 57, חבילות core/i18n/ui) הוגש, וכל שכבת ההוכחה של שבוע 0 רצה על מכשירים אמיתיים, בלי לקנות מכשיר או לפתוח רשומת חנות:</p>
+<div class="tw compact">
+<table>
+<thead><tr><th>פלטפורמה</th><th>מה הוכח</th><th class="num">מספרים</th></tr></thead>
+<tbody>
+<tr><td><strong>Android</strong> (OnePlus 6T משנת 2018, Snapdragon 845, CPU בלבד)</td><td>המנוע האמיתי (llama.rn, Qwen3.5‑0.8B Q4_K_M) בבניית שחרור בלי הרשאת INTERNET (<span class="ltr">aapt2 dump permissions</span> על ה‑APK וה‑AAB: אפס). המודל מגיע כחבילת Play Asset Delivery מסוג fast‑follow (<span class="ltr">inborn_model</span>, 532 MB בתוך AAB של 579 MB): bundletool מאשר את המניפסט, Play Core במצב בדיקה מקומית מסר את החבילה על המכשיר, והאפליקציה טענה את המודל מנתיב החבילה</td><td><span class="ltr">15.8 tok/s · TTFT 922 ms</span><br>טעינת מודל 2.3 שניות (מהחבילה: 2.2 קר, 1.4 חם)</td></tr>
+<tr><td><strong>iOS</strong> (iPhone 13 Pro, A15, iOS 26.5, Metal)</td><td>אותו מנוע ואותו מודל, חשיבה כבויה, תשובה של 131 טוקנים קוהרנטית</td><td><span class="ltr">36.3 tok/s · TTFT 328 ms</span><br>טעינה חמה 0.45 שניות; הפעלה ראשונה 10.9 שניות (קומפילציית Metal חד‑פעמית)</td></tr>
+<tr><td><strong>ווב</strong> (wllama, WebAssembly, Chromium ללא ראש, בלי WebGPU)</td><td>המודל וה‑WASM מוגשים מאותו מקור; הדף לא דיבר עם שום שרת אחר (נבדק ברשימת המארחים). עם COOP/COEP 6 תהליכונים, בלעדיהם נפילה לתהליכון יחיד</td><td><span class="ltr">33 tok/s · TTFT 480 ms</span> (6 תהליכונים)<br><span class="ltr">7 tok/s</span> בתהליכון יחיד; טעינת מנוע 2.3 שניות</td></tr>
+<tr><td><strong>דסקטופ</strong> (macOS)</td><td>מעטפת Tauri v2 סביב ייצוא הווב עם CSP של <span class="ltr">connect-src 'none'</span>; אפס סוקטים פתוחים בזמן ריצה. Windows עוד לא נבנה</td><td>—</td></tr>
+<tr><td><strong>ליבת הצ'אט</strong></td><td>שיחות נשמרות ב‑SQLite מוצפן (SQLCipher, מפתח ב‑Secure Enclave/Keystore); שיחת אינקוגניטו לעולם לא נכתבת לדיסק ונעלמת כשעוזבים אותה; 21 בדיקות יחידה</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p>עוד לא בוצע: מסירה אמיתית דרך Play Console (fast‑follow ו‑on‑demand מהחנות עצמה) ורכישת בדיקה ב‑Play Billing; Apple‑hosted asset packs; מדידה על Pixel/Galaxy/iPhone 15 Pro (המכשירים לא נקנו עדיין, §14.6); בניית Windows; אדפטר Apple FM.</p>
 <li><strong>אב‑טיפוס אימות (יום–יומיים, לפני שם, כותרות ומסך הוכחה):</strong> אפליקציית בדיקה באנדרואיד בלי הרשאת INTERNET שמקבלת חבילת מודל אמיתית (fast‑follow ו‑on‑demand) דרך Play Asset Delivery ומבצעת רכישת בדיקה ב‑Play Billing, על Pixel ו‑Galaxy אמיתיים, עם <code>aapt2 dump permissions</code> על ה‑AAB. עד היום זה אומת רק סטטית (המניפסטים של הספריות); בלי אימות על מכשיר לא קובעים מיצוב. באותו יום גם בדיקת Apple‑hosted asset packs על iPhone עם iOS 26.</li>
 <li>שם המותג, דומיין, וחשבונות: App Store Connect ו‑Play מהחשבונות הקיימים (שם מפתח ניטרלי), Microsoft Partner Center, Cloudflare R2.</li>
 <li>ריפו חדש (monorepo), Expo SDK 55, NativeWind v4, expo-sqlite עם SQLCipher, llama.rn, @react-native-ai/apple, whisper.rn.</li>

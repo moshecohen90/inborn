@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble the Autark spec + demo into artifact fragments and standalone HTML files."""
+"""Assemble the Inborn spec + demo into artifact fragments and standalone HTML files."""
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -7,15 +7,15 @@ SPEC = os.path.join(ROOT, 'spec')
 OUT = os.path.join(ROOT, 'out')
 os.makedirs(OUT, exist_ok=True)
 
-BRAND = 'Autark'
-DOMAIN = 'autark.so'
+BRAND = 'Inborn'
+DOMAIN = 'inbornapp.com'
 SUBS = {
     '{{BRAND}}': BRAND,
     '{{DOMAIN}}': DOMAIN,
     '{{TAGLINE_HE}}': 'AI that never leaves your phone: עוזר בינה מלאכותית שרץ כולו על המכשיר, בלי חשבון, בלי ענן, ובאנדרואיד בלי הרשאת אינטרנט.',
     '{{IOS_KEYWORDS}}': 'assistant,secure,free,internet,airplane,gguf,llama,mistral,gemma,qwen,encrypted,notes,writer,phi (96)',
     '{{IOS_PROMO}}': 'Runs 100% on your phone. No account, no cloud, no ads. Nothing you type ever leaves your device. Turn on Airplane Mode and it still answers. (140)',
-    '{{PLAY_OPENING}}': 'Autark is an offline AI chat app: a private chatbot that runs 100% on your phone, with no internet connection needed. Install it and the AI works in airplane mode. Nothing you type ever leaves your device: Autark has no account, no analytics, no ads, and does not even request the Internet permission (check App permissions on this page).',
+    '{{PLAY_OPENING}}': 'Inborn is an offline AI chat app: a private chatbot that runs 100% on your phone, with no internet connection needed. Install it and the AI works in airplane mode. Nothing you type ever leaves your device: Inborn has no account, no analytics, no ads, and does not even request the Internet permission (check App permissions on this page).',
 }
 
 def apply(s):
@@ -90,19 +90,19 @@ guide = ('<section class="guide" aria-label="מדריך קריאה">\n<div class
   ) % (tier_min('must'), tier_min('rec'), tier_min('ref'), total_min, tier_min('must') + tier_min('rec'), tier_min('must'))
 spec = spec.replace('{{GUIDE}}', guide) + comments_layer('spec')
 # demo link placeholder (filled after the demo is published)
-demo_url = os.environ.get('DEMO_URL', '') or 'autark-demo.html'
+demo_url = os.environ.get('DEMO_URL', '') or 'inborn-demo.html'
 spec = spec.replace('{{DEMO_URL}}', demo_url)
-open(os.path.join(OUT, 'autark-spec.artifact.html'), 'w', encoding='utf-8').write(spec)
-open(os.path.join(OUT, 'autark-spec.html'), 'w', encoding='utf-8').write(wrap(spec, 'he', 'rtl'))
+open(os.path.join(OUT, 'inborn-spec.artifact.html'), 'w', encoding='utf-8').write(spec)
+open(os.path.join(OUT, 'inborn-spec.html'), 'w', encoding='utf-8').write(wrap(spec, 'he', 'rtl'))
 
 # ---- demo ----
-demo_src = os.path.join(ROOT, 'demo', 'autark-demo.src.html')
+demo_src = os.path.join(ROOT, 'demo', 'inborn-demo.src.html')
 if os.path.exists(demo_src):
     demo = apply(open(demo_src, encoding='utf-8').read()) + comments_layer('demo')
     spec_url = os.environ.get('SPEC_URL', '')
-    demo = demo.replace('{{SPEC_URL}}', spec_url or 'autark-spec.html')
-    open(os.path.join(OUT, 'autark-demo.artifact.html'), 'w', encoding='utf-8').write(demo)
-    open(os.path.join(OUT, 'autark-demo.html'), 'w', encoding='utf-8').write(wrap(demo, 'en', 'ltr'))
+    demo = demo.replace('{{SPEC_URL}}', spec_url or 'inborn-spec.html')
+    open(os.path.join(OUT, 'inborn-demo.artifact.html'), 'w', encoding='utf-8').write(demo)
+    open(os.path.join(OUT, 'inborn-demo.html'), 'w', encoding='utf-8').write(wrap(demo, 'en', 'ltr'))
 
 for f in sorted(glob.glob(os.path.join(OUT, '*.html'))):
     print('%-40s %8d bytes' % (os.path.basename(f), os.path.getsize(f)))

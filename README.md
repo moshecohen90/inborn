@@ -4,9 +4,9 @@ Private, offline, on-device AI chat. One codebase: iOS + Android + web (Expo) an
 Spec and demo: `docs/inborn-spec.html`, `docs/inborn-demo.html` (Hebrew, RTL).
 
 ## Layout
-- `apps/mobile` — Expo app (iOS, Android, web). `App.tsx` boots i18n and a single Chat screen streaming from the engine.
-- `apps/desktop` — Tauri v2 shell (stub until Rust ≥ 1.77 is installed; see its README).
-- `packages/core` — pure TypeScript, no network: the `LocalLM` interface (spec §5.2), `NullLM` for tests/dev, catalog types.
+- `apps/mobile` — Expo app (iOS, Android, web). `App.tsx` boots i18n, opens the encrypted chat store and switches between the Chats list and the Chat screen; `src/adapters` picks the engine per platform (llama.rn on phones, wllama in browsers, in-memory otherwise); `src/storage` is the SQLCipher repository; `plugins/` + `modules/` deliver the Android model as a Play Asset Delivery pack.
+- `apps/desktop` — Tauri v2 shell around the web export (macOS built and verified with `connect-src 'none'`; Windows pending).
+- `packages/core` — pure TypeScript, no network: the `LocalLM` interface (spec §5.2), `NullLM` for tests/dev, catalog types, the chat domain (`ChatRepository`, `ChatStore`, incognito rule).
 - `packages/i18n` — i18next + ICU; `locales/en.json` is the single source. Adding a language = one JSON file.
 - `packages/ui` — FARADAY tokens (dark + light, default follows the device) and a Tailwind/NativeWind preset.
 - `scripts/check-android-permissions.sh` — release gate: fails if the Android build declares INTERNET.
@@ -117,15 +117,18 @@ Proven on 5.9.2026 (OnePlus 6T, Android 11, release AAB 579 MB = base + 532 MB p
 fast-follow delivery, base manifest without INTERNET, pack delivered and extracted by Play Core local testing
 (status COMPLETED, 532,525,407 bytes), model found at the pack path and loaded by llama.rn in 2.2 s.
 
-## Week-0 device prototype (spec §14.1) — not done yet
-1. Android test app without INTERNET receiving a real fast-follow and an on-demand asset pack via Play Asset Delivery,
-   plus a Play Billing test purchase, on a real Pixel and Galaxy; `aapt2 dump permissions` on the AAB.
-2. Apple-hosted asset packs on an iPhone with iOS 26.
-3. Test devices: iPhone 15 Pro (8 GB), iPhone 14 (6 GB), Pixel 8, Galaxy S23, a cheap Android tablet, 16 KB-page emulator.
+## Week-0 device prototype (spec §14.1) — status 5.9.2026
+Done on real hardware, without buying devices or opening store records:
+- Android (OnePlus 6T, 2018): release build without INTERNET, model delivered as a fast-follow asset pack and loaded from it; 15.8 tok/s.
+- iOS (iPhone 13 Pro): llama.rn on Metal, 36.3 tok/s, TTFT 328 ms.
+- Web (wllama, headless Chromium): 33 tok/s multi-thread, 7 tok/s single-thread, page talks only to its own origin.
+- macOS: Tauri shell renders the web export with `connect-src 'none'`, zero sockets.
+- Chats persist in SQLCipher; incognito never touches disk; 21 unit tests.
+Still open: real Play Console delivery (fast-follow + on-demand from the store) and a Play Billing test purchase; Apple-hosted asset packs;
+Pixel 8 / Galaxy S23 / iPhone 15 Pro measurements (devices not bought yet); Windows build; 16 KB-page emulator.
 
 ## Intentionally not built yet
-Apple FM adapter, SQLCipher schema,
-model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
+Apple FM adapter, model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
 
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
