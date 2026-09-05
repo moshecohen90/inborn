@@ -35,6 +35,38 @@ The header shows the engine, tok/s and time-to-first-token after each reply (`st
 `apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
 Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
 Play Asset Delivery (Instant as fast-follow, larger tiers on-demand); purchases through Play Billing.
+An AAB (what Play receives) is checked through bundletool:
+`BUNDLETOOL=.tools/bundletool-all-1.18.3.jar scripts/check-android-permissions.sh apps/mobile/android/app/build/outputs/bundle/release/app-release.aab`
+
+## Android model delivery (PAD)
+Play Asset Delivery carries the model; the app never opens a socket (it has no INTERNET permission).
+- `apps/mobile/plugins/withAssetPacks.js` (Expo config plugin): at prebuild, every pack listed in `app.config.ts` becomes a
+  Gradle asset-pack module `android/<name>` (`inborn_model`, fast-follow, `instant.gguf`) whose files are symlinked from
+  `INBORN_MODELS_DIR` (default `<repo>/.models`, gitignored). A missing source file skips the pack with a warning.
+- `apps/mobile/modules/asset-packs` (local Expo module, Kotlin): `getPackPath`, `fetchPack`, `getPackState` over Play Core
+  `AssetPackManager`. On Android `devModel.native.ts` loads the model from the pack first, then from the document directory;
+  when the pack is not there yet it asks Play for it so the next launch finds it.
+
+Build the AAB with the pack, then test locally with bundletool (no Play Console needed; get the jar from
+github.com/google/bundletool/releases into `.tools/`, gitignored):
+```
+cd apps/mobile && INBORN_MODELS_DIR=$PWD/../../.models npx expo prebuild -p android --no-install
+cd android && ./gradlew bundleRelease -PreactNativeArchitectures=arm64-v8a
+BT=../../../.tools/bundletool-all-1.18.3.jar; AAB=app/build/outputs/bundle/release/app-release.aab
+java -jar $BT dump manifest --bundle=$AAB --module=inborn_model            # <dist:fast-follow/>
+java -jar $BT build-apks --bundle=$AAB --output=/tmp/inborn.apks --local-testing
+java -jar $BT install-apks --apks=/tmp/inborn.apks --device-id=<serial>    # slow USB? see below
+BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB          # OK: no INTERNET permission.
+```
+`install-apks` pushes the 532 MB pack APK into `/sdcard/Android/data/com.inbornapp.mobile/files/local_testing/`; on a slow
+USB link push `asset-slices/inborn_model-master.apk` from the `.apks` zip there yourself. First launch: Play Core's local
+testing service delivers the pack (`FakeAssetPackService … notifyModuleCompleted` in logcat); every launch after that logs
+`[inborn] instant model from asset pack inborn_model: file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model/…`
+and `[inborn] llama.rn loaded … in N ms`.
+
+Proven on 5.9.2026 (OnePlus 6T, Android 11, release AAB 579 MB = base + 532 MB pack): pack module present with
+fast-follow delivery, base manifest without INTERNET, pack delivered and extracted by Play Core local testing
+(status COMPLETED, 532,525,407 bytes), model found at the pack path and loaded by llama.rn in 2.2 s.
 
 ## Week-0 device prototype (spec §14.1) — not done yet
 1. Android test app without INTERNET receiving a real fast-follow and an on-demand asset pack via Play Asset Delivery,

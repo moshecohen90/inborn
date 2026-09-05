@@ -13,19 +13,22 @@ export function Chat() {
   const { t } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
-  const boot = useRef(createEngine());
+  /* Lazy initializer: useRef(createEngine()) would build an engine (and ask Play for the pack) on every render. */
+  const [boot] = useState(createEngine);
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
   const [status, setStatus] = useState<Status>({ kind: "loading" });
   const [stats, setStats] = useState<Stats | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [draft, setDraft] = useState("");
-  const { engine, model } = boot.current;
+  const { engine, model } = boot;
 
   useEffect(() => {
+    const started = Date.now();
     engine
       .load(model, { nCtx: 4096 })
       .then((s) => {
+        console.log(`[inborn] ${engine.id} loaded ${model.uri} in ${Date.now() - started} ms`);
         session.current = s;
         setStatus({ kind: "ready" });
       })

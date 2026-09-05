@@ -1,0 +1,19 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'com.inbornapp'
+version = '0.0.1'
+
+android {
+  namespace "com.inbornapp.assetpacks"
+  defaultConfig {
+    versionCode 1
+    versionName "0.0.1"
+  }
+}
+
+dependencies {
+  implementation "com.google.android.play:asset-delivery:2.3.0"
+}
