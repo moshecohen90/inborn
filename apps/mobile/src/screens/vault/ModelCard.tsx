@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { fonts, radius, type Theme } from "@inborn/ui";
-import { expectedSpeed, formatBytes, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
+import { expectedSpeed, formatModelBytes, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 
@@ -41,11 +41,11 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
       case "delivering":
         if (state.needsConfirmation) return { text: t("vault.state.needsConfirmation") };
         if (state.waitingForWifi) return { text: t("vault.state.waitingWifi") };
-        return { text: t(state.paused ? "vault.state.paused" : "vault.state.delivering", { percent: Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)), done: formatBytes(state.bytes), total: formatBytes(state.total || model.bytes) }) };
+        return { text: t(state.paused ? "vault.state.paused" : "vault.state.delivering", { percent: Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
       case "verifying":
         return { text: t("vault.state.verifying") };
       case "needs-space":
-        return { text: t("vault.state.needsSpace", { size: formatBytes(state.requiredBytes - state.freeBytes) }), danger: true };
+        return { text: t("vault.state.needsSpace", { size: formatModelBytes(state.requiredBytes - state.freeBytes) }), danger: true };
       case "corrupt":
         return { text: t(state.reason === "hash-mismatch" ? "vault.state.corruptHash" : "vault.state.corrupt"), danger: true };
       case "quarantined":
@@ -76,7 +76,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         <Text style={[styles.body, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}
       <Text style={[styles.mono, { color: theme.text3 }]}>
-        {t("vault.spec", { size: formatBytes(model.bytes), quant: model.quant })} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
+        {t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant })} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>
       <Text style={[styles.mono, { color: theme.text3 }]}>
         {disabledReason === "engine"
@@ -102,7 +102,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         <View style={styles.actions}>
           {state.kind === "not-installed" || state.kind === "needs-space" || state.kind === "corrupt" || state.kind === "failed" ? (
             plan ? (
-              <Action testID={`install-${model.id}`} theme={theme} primary onPress={onInstall} label={state.kind === "not-installed" ? t("vault.installFrom", { size: formatBytes(model.bytes), origin: plan.origin }) : t("vault.retry")} />
+              <Action testID={`install-${model.id}`} theme={theme} primary onPress={onInstall} label={state.kind === "not-installed" ? t("vault.installFrom", { size: formatModelBytes(model.bytes), origin: plan.origin }) : t("vault.retry")} />
             ) : null
           ) : null}
           {state.kind === "delivering" && state.paused ? <Action testID={`resume-${model.id}`} theme={theme} primary onPress={onResume} label={t("vault.resume")} /> : null}

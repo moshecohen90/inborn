@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import type { ConfigContext, ExpoConfig } from "expo/config";
 
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
@@ -15,6 +16,14 @@ const ggufIntentFilter = {
     { scheme: "file", mimeType: "*/*", pathPattern: ".*\\.gguf" },
   ],
 };
+/* The proof screen shows the commit the build came from so a reader can match it against the published hash (S50). */
+const commit = (() => {
+  try {
+    return execSync("git rev-parse --short=12 HEAD", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
+  } catch {
+    return "unknown";
+  }
+})();
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -49,7 +58,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         ],
   },
   web: { bundler: "metro", output: "single" },
+  extra: { commit, builtAt: new Date().toISOString().slice(0, 10) },
   plugins: [
+    ["expo-router", { root: "./src/app" }],
     "llama.rn",
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],

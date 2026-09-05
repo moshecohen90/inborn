@@ -5,5 +5,5 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   { rules: { "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }] } },
-  { files: ["**/*.cjs", "**/*.mjs", "**/*.js"], languageOptions: { globals: { process: "readonly", console: "readonly", require: "readonly", module: "writable", __dirname: "readonly", setTimeout: "readonly", fetch: "readonly", navigator: "readonly", performance: "readonly", document: "readonly" } }, rules: { "@typescript-eslint/no-require-imports": "off" } }
+  { files: ["**/*.cjs", "**/*.mjs", "**/*.js"], languageOptions: { globals: { process: "readonly", console: "readonly", require: "readonly", module: "writable", __dirname: "readonly", Buffer: "readonly", setTimeout: "readonly", fetch: "readonly", navigator: "readonly", performance: "readonly", document: "readonly" } }, rules: { "@typescript-eslint/no-require-imports": "off" } }
 );

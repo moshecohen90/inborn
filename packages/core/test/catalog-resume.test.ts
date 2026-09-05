@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { acceptsResume, backoffMs, checkSpace, formatBytes, resumePlan, shouldWait } from "../src/index";
+import { acceptsResume, backoffMs, checkSpace, formatModelBytes, resumePlan, shouldWait } from "../src/index";
 
 const GB = 1024 ** 3;
 const url = "https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf";
@@ -49,10 +49,10 @@ describe("space, network and backoff (spec §10.1 #4/#5/#6)", () => {
   it("backoff doubles from 2 s and caps at 60 s", () => {
     expect([0, 1, 2, 3, 10].map(backoffMs)).toEqual([2000, 4000, 8000, 16000, 60000]);
   });
-  it("formatBytes matches the cartridge copy", () => {
-    expect(formatBytes(532517120)).toBe("508 MB");
-    expect(formatBytes(1280835840)).toBe("1.2 GB");
-    expect(formatBytes(2740937888)).toBe("2.6 GB");
-    expect(formatBytes(12 * GB)).toBe("12 GB");
+  it("formatModelBytes matches the cartridge copy", () => {
+    expect(formatModelBytes(532517120)).toBe("508 MB");
+    expect(formatModelBytes(1280835840)).toBe("1.2 GB");
+    expect(formatModelBytes(2740937888)).toBe("2.6 GB");
+    expect(formatModelBytes(12 * GB)).toBe("12 GB");
   });
 });
