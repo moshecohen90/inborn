@@ -1,0 +1,105 @@
+import { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import type { Chat, ChatStore, Folder } from "@inborn/core";
+import { useTheme } from "../../lib/theme";
+import { Sheet, SheetItem } from "../../components/chat/Sheet";
+import { shape, type } from "../../components/chat/styles";
+
+interface Props {
+  /** `move` picks a folder for the chat; `manage` creates, renames and deletes folders. */
+  mode: { kind: "move"; chat: Chat } | { kind: "manage" } | null;
+  onClose: () => void;
+  store: ChatStore;
+  onChanged: () => void;
+}
+
+/** Folder management and "Move to folder" (§8.3 S20). Gating is decided by the caller; the sheet only does the work. */
+export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
+  const theme = useTheme();
+  const { t } = useTranslation();
+  const [folders, setFolders] = useState<Folder[]>([]);
+  const [draft, setDraft] = useState<{ id?: string; name: string } | null>(null);
+  const refresh = () => store.library.listFolders().then(setFolders).catch(() => undefined);
+  useEffect(() => {
+    if (mode) void refresh();
+    else setDraft(null);
+  }, [mode]);
+
+  const commit = async () => {
+    if (!draft) return;
+    const name = draft.name.trim();
+    if (name) {
+      if (draft.id) await store.library.renameFolder(draft.id, name);
+      else {
+        const f = await store.library.createFolder(name);
+        if (mode?.kind === "move") {
+          await store.updateChat(mode.chat.id, { folderId: f.id });
+          onChanged();
+          onClose();
+          return;
+        }
+      }
+    }
+    setDraft(null);
+    await refresh();
+    onChanged();
+  };
+  const move = async (folderId: string | null) => {
+    if (mode?.kind !== "move") return;
+    await store.updateChat(mode.chat.id, { folderId });
+    onChanged();
+    onClose();
+  };
+  const remove = async (id: string) => {
+    await store.library.deleteFolder(id);
+    await refresh();
+    onChanged();
+  };
+
+  return (
+    <Sheet visible={mode !== null} onClose={onClose} title={mode?.kind === "move" ? t("folders.moveTitle") : t("folders.title")} testID="folder-sheet">
+      {mode?.kind === "move" ? <SheetItem testID="folder-none" label={t("folders.none")} onPress={() => void move(null)} trailing={!mode.chat.folderId ? <Text style={{ color: theme.accent }}>✓</Text> : undefined} /> : null}
+      {folders.map((f) =>
+        mode?.kind === "move" ? (
+          <SheetItem key={f.id} testID={`folder-pick-${f.id}`} label={f.name} onPress={() => void move(f.id)} trailing={mode.chat.folderId === f.id ? <Text style={{ color: theme.accent }}>✓</Text> : undefined} />
+        ) : (
+          <View key={f.id} style={styles.manageRow}>
+            <Text style={[type.body, styles.grow, { color: theme.text }]}>{f.name}</Text>
+            <Pressable testID={`folder-rename-${f.id}`} accessibilityRole="button" onPress={() => setDraft({ id: f.id, name: f.name })} hitSlop={6} style={styles.textBtn}>
+              <Text style={[type.caption, { color: theme.accent }]}>{t("chats.rename")}</Text>
+            </Pressable>
+            <Pressable testID={`folder-delete-${f.id}`} accessibilityRole="button" onPress={() => void remove(f.id)} hitSlop={6} style={styles.textBtn}>
+              <Text style={[type.caption, { color: theme.danger }]}>{t("chats.delete")}</Text>
+            </Pressable>
+          </View>
+        ),
+      )}
+      {!folders.length && mode?.kind === "manage" ? <Text style={[type.bodySmall, styles.empty, { color: theme.text3 }]}>{t("folders.empty")}</Text> : null}
+      {draft ? (
+        <View style={styles.editor}>
+          <TextInput testID="folder-name" autoFocus value={draft.name} onChangeText={(name) => setDraft({ ...draft, name })} placeholder={t("folders.name")} placeholderTextColor={theme.text3} onSubmitEditing={() => void commit()} style={[shape.field, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />
+          <View style={styles.actions}>
+            <Pressable accessibilityRole="button" onPress={() => setDraft(null)} style={shape.control}>
+              <Text style={[type.body, { color: theme.text2 }]}>{t("chats.cancel")}</Text>
+            </Pressable>
+            <Pressable testID="folder-save" accessibilityRole="button" onPress={() => void commit()} style={[shape.control, { backgroundColor: theme.ctaFill }]}>
+              <Text style={[type.body, type.strong, { color: theme.ctaText }]}>{t("chats.save")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      ) : (
+        <SheetItem testID="folder-new" label={t("folders.new")} onPress={() => setDraft({ name: "" })} />
+      )}
+    </Sheet>
+  );
+}
+
+const styles = StyleSheet.create({
+  manageRow: { flexDirection: "row", alignItems: "center", gap: 16, minHeight: 48, paddingHorizontal: 12 },
+  grow: { flex: 1 },
+  textBtn: { minHeight: 32, justifyContent: "center" },
+  empty: { paddingHorizontal: 12, paddingVertical: 8 },
+  editor: { paddingHorizontal: 12, paddingVertical: 8, gap: 8 },
+  actions: { flexDirection: "row", justifyContent: "flex-end", gap: 4 },
+});
