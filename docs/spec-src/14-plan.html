@@ -19,10 +19,10 @@
 <p>עוד לא בוצע: מסירה אמיתית דרך Play Console (fast‑follow ו‑on‑demand מהחנות עצמה) ורכישת בדיקה ב‑Play Billing; Apple‑hosted asset packs; מדידה על Pixel/Galaxy/iPhone 15 Pro (המכשירים לא נקנו עדיין, §14.6); בניית Windows; אדפטר Apple FM.</p>
 <li><strong>אב‑טיפוס אימות (יום–יומיים, לפני שם, כותרות ומסך הוכחה):</strong> אפליקציית בדיקה באנדרואיד בלי הרשאת INTERNET שמקבלת חבילת מודל אמיתית (fast‑follow ו‑on‑demand) דרך Play Asset Delivery ומבצעת רכישת בדיקה ב‑Play Billing, על Pixel ו‑Galaxy אמיתיים, עם <code>aapt2 dump permissions</code> על ה‑AAB. עד היום זה אומת רק סטטית (המניפסטים של הספריות); בלי אימות על מכשיר לא קובעים מיצוב. באותו יום גם בדיקת Apple‑hosted asset packs על iPhone עם iOS 26.</li>
 <li>שם המותג, דומיין, וחשבונות: App Store Connect ו‑Play מהחשבונות הקיימים (שם מפתח ניטרלי), Microsoft Partner Center, Cloudflare R2.</li>
-<li>ריפו חדש (monorepo), Expo SDK 55, NativeWind v4, expo-sqlite עם SQLCipher, llama.rn, @react-native-ai/apple, whisper.rn.</li>
-<li>הפעלת סקילי העיצוב בריפו: <code>/impeccable init</code> עם PRODUCT.md ו‑DESIGN.md שמקודדים את FARADAY (§9); סקילי אמיל; frontend-design.</li>
+<li>ריפו חדש (monorepo), Expo SDK 57, expo-sqlite עם SQLCipher, llama.rn, wllama, @react-native-ai/apple, whisper.rn (בוצע: ריפו, SDK 57, SQLCipher, llama.rn, wllama; NativeWind נדחה).</li>
+<li>סקילי העיצוב (<code>/impeccable</code>, אמיל, frontend-design) לא הופעלו; FARADAY מיושם ישירות מ‑§9 דרך הטוקנים ב‑packages/ui, וסוכן המעצב מבקר את המסכים לפני כל סיום.</li>
 <li>קטלוג מודלים גרסה 1 עם מניפסט חתום: חבילות Play Asset Delivery (Android), Apple‑hosted asset packs (iOS 26), ו‑R2 ל‑iOS ישן/דסקטופ/ווב: Instant, Fast, Sharp (Qwen3.5 0.8B/2B/4B), Phi‑4‑mini, nomic‑embed, whisper base.</li>
-<li>מכשירי בדיקה: iPhone 15 Pro (8 GB), iPhone 14 (6 GB), Pixel 8, Galaxy S23, טאבלט אנדרואיד זול, ואימולטור 16 KB.</li>
+<li>מכשירי בדיקה (משה 5.9.2026: לא קונים מכשירים): OnePlus 6T (2018, 8 GB, רצפת אנדרואיד), OnePlus 11 (16 GB, Android 16, האישי של משה), iPhone 13 Pro (6 GB, A15, בלי Apple Intelligence), אימולטורי Pixel עם 16 KB pages וסימולטורי iOS 17/26. פערים שנשארים ללא מכשיר: Pixel/Galaxy אמיתיים ו‑iPhone עם Apple Intelligence; מתועדים ב‑docs/qa/release-checklist.md כ‑BLOCKED.</li>
 </ul>
 
 <h3>14.2 שלב 1: מובייל (שבועות 1–12)</h3>
@@ -30,7 +30,7 @@
 <table>
 <thead><tr><th class="num">שבועות</th><th>אבן דרך</th><th>הגדרת סיום (Definition of Done)</th></tr></thead>
 <tbody>
-<tr><td class="num">1–2</td><td><strong>M1 מנוע</strong>: אדפטר LocalLM, llama.rn + Apple FM, הזרמה, ביטול, סטטיסטיקות</td><td>צ'אט טקסטואלי גולמי עובד על iPhone 15 Pro ו‑Pixel 8 עם שני המנועים; tok/s נמדד ומוצג</td></tr>
+<tr><td class="num">1–2</td><td><strong>M1 מנוע</strong>: אדפטר LocalLM, llama.rn + Apple FM, הזרמה, ביטול, סטטיסטיקות</td><td>צ'אט טקסטואלי גולמי עובד על iPhone 13 Pro ועל OnePlus 6T/11 (המכשירים שיש; לא נקנים מכשירים, משה 5.9.2026) עם llama.rn; Apple FM מאומת בסימולטור iOS 26 בלבד; tok/s נמדד ומוצג</td></tr>
 <tr><td class="num">3–4</td><td><strong>M2 כספת</strong>: קטלוג, מסירת מודלים (Play Asset Delivery באנדרואיד, Apple‑hosted packs ב‑iOS 26, CDN ב‑iOS ישן; המשך, hash, מקום), ייבוא GGUF כ‑handler, בחירת ברירת מחדל לפי RAM, שער CI ל‑aapt2 permissions</td><td>הורדה נקטעת ומתחדשת; מודל פגום נדחה; מכשיר 4 GB רואה רק Instant; ה‑APK ללא INTERNET</td></tr>
 <tr><td class="num">5–6</td><td><strong>M3 צ'אט מלא</strong>: שיחות, תיקיות, חיפוש, אינקוגניטו, פרסונות, Markdown, קוד, ייצוא, הפנקס</td><td>כל מסכי §8 בחלק הצ'אט, בשני ערכות נושא, RTL, VoiceOver ו‑TalkBack</td></tr>
 <tr><td class="num">7</td><td><strong>M4 הוכחה ו‑onboarding</strong>: החותם על כל מצביו, מבחן מצב הטיסה, מד יציאה, מנעול, מסך ההוכחה</td><td>סגירת החותם עם הפטיק; "OUT 0 B" נכון אחרי שבוע שימוש</td></tr>
@@ -64,7 +64,7 @@
 <ul>
 <li>Apple FM ב‑macOS בתוך Tauri, Phi Silica על Copilot+ PC, Hexagon/OpenVINO NPU, Gemini Nano ב‑Android.</li>
 <li>קול רציף hands‑free; ראייה על כל הפלטפורמות; Shortcuts/Siri, Android intents, widgets, keyboard extension.</li>
-<li>שפות ממשק: אנגלית, עברית, ספרדית, פורטוגזית, גרמנית, צרפתית בהשקה; יפנית, קוריאנית, סינית מסורתית ברבעון שאחרי (דרך צינור התרגום הקיים).</li>
+<li>שפות ממשק בהשקה (D13): אנגלית, יפנית, גרמנית, צרפתית, ספרדית, פורטוגזית‑ברזיל; עברית, קוריאנית וסינית מסורתית ברבעון שאחרי (דרך צינור התרגום הקיים).</li>
 </ul>
 
 <h3>14.6 עלויות הקמה (אושרו על ידי משה ב‑3.9.2026; כל רכישה שדורשת תשלום מבוצעת איתו, לא לבד)</h3>
@@ -89,7 +89,7 @@
 <p>סך ההקמה עד ההשקה, בלי מכשירים: כ‑200–600 דולר; עם מכשירים: עד כ‑1,700 דולר. המחירים הם מחירוני 2026 משוערים ומסומנים לאימות ברכישה; שום רכישה לא מתבצעת בלי אישור משה.</p>
 
 <h3>14.7 רשימת 40 הבדיקות לפני כל שחרור (תמצית)</h3>
-<p>מכיוון שאין טלמטריה, הרשימה הזו היא הניטור. הגרסה המלאה חיה בריפו; כאן הקטגוריות:</p>
+<p>מכיוון שאין טלמטריה, הרשימה הזו היא הניטור. הגרסה המלאה (T01–T40 עם פקודות, קריטריוני מעבר ואיזה מכשיר שלנו מריץ כל בדיקה) חיה בריפו ב‑<code>docs/qa/release-checklist.md</code>, ומפת 70 מקרי הקצה של §10 ב‑<code>docs/qa/edge-cases-matrix.md</code>; כאן הקטגוריות:</p>
 <div class="cols2">
 <ul>
 <li>התקנה נקייה על מכשיר הרצפה ועל הדגל בשתי הפלטפורמות</li>
