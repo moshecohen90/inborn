@@ -9,7 +9,7 @@
 בערכה כהה ובהירה ובדסקטופ. לא רק צילומי מסך ולא רק מקור.
 
 ```
-Demo:        file:///Users/moshecohen/dev/autark/docs/autark-demo.html
+Demo:        file:///Users/moshecohen/dev/inborn/docs/inborn-demo.html
 Live shots:  /private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/qa/live/
 Method:      playwright-core + Chromium (chromium-1208), real clicks per flow, headless, closed after each run
 ```
