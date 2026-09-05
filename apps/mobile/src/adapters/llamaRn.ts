@@ -9,6 +9,7 @@ export class LlamaRnLM implements LocalLM {
   private ctx: Ctx | null = null;
   private session: Session | null = null;
   private last: Stats = { tokPerSec: 0, ttftMs: 0, ctxUsed: 0, memMB: 0 };
+  devInfo: Record<string, unknown> = {};
 
   capabilities(): Capabilities {
     return { vision: false, tools: false, embeddings: true, maxContext: this.session?.nCtx ?? 4096 };
@@ -23,6 +24,9 @@ export class LlamaRnLM implements LocalLM {
       n_threads: opts.threads,
       use_mlock: true,
     });
+    const { gpu, reasonNoGPU, devices, model: m } = this.ctx;
+    this.devInfo = { gpu, reasonNoGPU, devices, desc: m.desc, sizeMB: Math.round(m.size / 1048576), nParams: m.nParams };
+    if (__DEV__) console.log("[llama.rn] loaded", JSON.stringify(this.devInfo));
     this.session = { model, nCtx: opts.nCtx };
     return this.session;
   }
@@ -82,6 +86,8 @@ export class LlamaRnLM implements LocalLM {
       )
       .then((res) => {
         emit(res.content, res.reasoning_content);
+        this.devInfo.timings = res.timings;
+        if (__DEV__) console.log("[llama.rn] timings", JSON.stringify(res.timings));
         const tps = res.timings?.predicted_per_second ?? 0;
         this.last = { tokPerSec: tps, ttftMs: ttft, ctxUsed: (res.tokens_evaluated ?? 0) + (res.tokens_predicted ?? 0), memMB: 0 };
         push({ done: { promptTokens: res.tokens_evaluated ?? 0, completionTokens: res.tokens_predicted ?? 0, ttftMs: ttft, tokPerSec: tps } });

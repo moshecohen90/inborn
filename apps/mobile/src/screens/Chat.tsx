@@ -5,9 +5,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts } from "@inborn/ui";
 import type { Message, Session, Stats } from "@inborn/core";
 import { createEngine } from "../adapters";
+import { writeDevResult } from "../adapters/devModel";
 
 type Row = Message & { id: string; streaming?: boolean };
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
+
+/* Headless device runs (USB, nothing can tap the screen): bundling with EXPO_PUBLIC_AUTOPROMPT=1 sends one prompt 2 s after the model loads and writes the numbers to Documents/dev-run.json. Store builds never set it. */
+const AUTOPROMPT = process.env.EXPO_PUBLIC_AUTOPROMPT === "1" ? "Explain in about 150 words why the sky is blue." : null;
 
 export function Chat() {
   const { t } = useTranslation();
@@ -16,6 +20,7 @@ export function Chat() {
   const boot = useRef(createEngine());
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
+  const loadMs = useRef(0);
   const [status, setStatus] = useState<Status>({ kind: "loading" });
   const [stats, setStats] = useState<Stats | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
@@ -23,18 +28,24 @@ export function Chat() {
   const { engine, model } = boot.current;
 
   useEffect(() => {
+    const started = Date.now();
     engine
       .load(model, { nCtx: 4096 })
       .then((s) => {
+        loadMs.current = Date.now() - started;
         session.current = s;
         setStatus({ kind: "ready" });
       })
-      .catch((e: unknown) => setStatus({ kind: "error", error: e instanceof Error ? e.message : String(e) }));
+      .catch((e: unknown) => {
+        const error = e instanceof Error ? e.message : String(e);
+        if (AUTOPROMPT) writeDevResult({ engine: engine.id, model: model.id, error });
+        setStatus({ kind: "error", error });
+      });
     return () => void engine.unload();
   }, [engine, model]);
 
-  const send = async () => {
-    const text = draft.trim();
+  const submit = async (input: string) => {
+    const text = input.trim();
     const s = session.current;
     if (!text || !s || abort.current) return;
     setDraft("");
@@ -42,19 +53,33 @@ export function Chat() {
     const history: Message[] = [...rows.map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setRows((r) => [...r, { id: id + "u", role: "user", content: text }, { id, role: "assistant", content: "", streaming: true }]);
     abort.current = new AbortController();
+    let reply = "";
     try {
       for await (const d of engine.generate(s, history, { reasoning: false }, abort.current.signal)) {
-        if (d.text) setRows((r) => r.map((x) => (x.id === id ? { ...x, content: x.content + d.text } : x)));
+        if (!d.text) continue;
+        reply += d.text;
+        setRows((r) => r.map((x) => (x.id === id ? { ...x, content: x.content + d.text } : x)));
       }
     } catch (e: unknown) {
       const error = e instanceof Error ? e.message : String(e);
       setRows((r) => r.map((x) => (x.id === id ? { ...x, content: x.content || error } : x)));
     } finally {
       abort.current = null;
-      setStats(engine.stats());
+      const last = engine.stats();
+      setStats(last);
+      const result = { engine: engine.id, model: model.id, loadMs: loadMs.current, ...last, info: "devInfo" in engine ? engine.devInfo : undefined };
+      if (__DEV__) console.log("[stats]", JSON.stringify(result));
+      if (AUTOPROMPT) writeDevResult({ ...result, reply });
       setRows((r) => r.map((x) => (x.id === id ? { ...x, streaming: false } : x)));
     }
   };
+  const send = () => submit(draft);
+
+  useEffect(() => {
+    if (!AUTOPROMPT || status.kind !== "ready") return;
+    const timer = setTimeout(() => void submit(AUTOPROMPT), 2000);
+    return () => clearTimeout(timer);
+  }, [status.kind]);
 
   const statusLine =
     status.kind === "loading"

@@ -4,3 +4,5 @@ import type { Engine } from "./index";
 export function devModelEngine(): Engine | null {
   return null;
 }
+
+export function writeDevResult(_result: Record<string, unknown>): void {}
