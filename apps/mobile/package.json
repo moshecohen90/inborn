@@ -10,7 +10,8 @@
     "web": "pnpm run wasm && APP_VARIANT=development expo start --web",
     "export:web": "pnpm run wasm && expo export -p web",
     "wasm": "mkdir -p public/wllama/compat && cp node_modules/@wllama/wllama/esm/wasm/wllama.wasm public/wllama/ && cp node_modules/@wllama/wllama-compat/wasm/wllama.js node_modules/@wllama/wllama-compat/wasm/wllama.wasm public/wllama/compat/",
-    "typecheck": "tsc --noEmit -p tsconfig.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
   },
   "dependencies": {
     "@inborn/core": "workspace:*",
@@ -37,6 +38,8 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "typescript": "5.9.3"
+    "fake-indexeddb": "6.2.5",
+    "typescript": "5.9.3",
+    "vitest": "5.0.0"
   }
 }
