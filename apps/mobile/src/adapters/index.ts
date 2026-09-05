@@ -1,7 +1,7 @@
 import { NullLM, type LocalLM, type ModelRef } from "@inborn/core";
 import { devModelEngine } from "./devModel";
 
-/** Await once before the first createEngine(): the web has to ask its host whether a GGUF is served. */
+/** Await once before the first createEngine(): the vault scans its files (phones) or the web asks its host for a GGUF. */
 export { prepareEngine } from "./prepare";
 
 export interface Engine {
@@ -9,11 +9,11 @@ export interface Engine {
   model: ModelRef;
 }
 
-/** Phones run llama.rn when a GGUF is present (devModel.native.ts), browsers wllama when the host serves one (devModel.web.ts); everything else streams from the in-memory engine until M2 (Apple FM, Tauri). */
+/** Phones load the vault's default installed model with llama.rn (devModel.native.ts), browsers wllama when the host serves one (devModel.web.ts); with nothing installed the in-memory engine streams. */
 export function createEngine(): Engine {
   return (
     devModelEngine() ?? {
-      engine: new NullLM("Nothing leaves this phone. This is the week-0 skeleton streaming from an in-memory engine.", 60),
+      engine: new NullLM("Nothing leaves this phone. No model is installed yet: open the vault to add one.", 60),
       model: { id: "null", uri: "bundled://null" },
     }
   );
