@@ -11,7 +11,7 @@ bash scripts/tm-watch.sh            # default name: Inborn
 bash scripts/tm-watch.sh Inborn     # explicit
 ```
 
-Baseline on 3 September 2026: zero identical live marks in 9/42 at the seven offices searched. The only neighbour is a US application "INKBORN" (different word, classes 41/42, storytelling service): not blocking (spec §3.2).
+Baseline on 3 September 2026: zero identical live marks in 9/42 at the seven offices searched. Re-run 6 September 2026 with this script: 264 TMview results for "Inborn", 0 identical live marks in 9/42 at EM/US/GB/WO, exit 0. The only neighbour is a US application "INKBORN" (different word, classes 41/42, storytelling service): not blocking (spec §3.2).
 
 ### Monthly schedule (launchd, not installed by this stream)
 
