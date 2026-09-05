@@ -1,4 +1,5 @@
 import type { Engine } from "./index";
+import { isTauri, writeDevResult as writeTauriDevResult } from "./tauri";
 import { WllamaLM } from "./wllama";
 
 /** M1 dev path on the web: the host serves the GGUF next to the bundle (scripts/serve-web.mjs). The catalog replaces this in M2. */
@@ -19,4 +20,10 @@ export function prepareDevModel(): Promise<void> {
 export function devModelEngine(): Engine | null {
   if (!served) return null;
   return { engine: new WllamaLM(), model: { id: "instant", uri: DEV_MODEL_URL } };
+}
+
+/** Headless measurement channel: the desktop shell writes `dev-run.json` into its app data dir; a plain browser only logs. */
+export function writeDevResult(result: Record<string, unknown>): void {
+  if (isTauri()) writeTauriDevResult(result);
+  else console.info("[dev-run]", JSON.stringify(result));
 }

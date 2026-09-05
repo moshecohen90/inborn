@@ -12,6 +12,9 @@
     "check:permissions": "bash scripts/check-android-permissions.sh",
     "desktop:dev": "pnpm --filter @inborn/desktop dev",
     "desktop:build": "pnpm --filter @inborn/desktop build",
+    "desktop:build:app": "pnpm --filter @inborn/desktop build:app",
+    "desktop:check": "node apps/desktop/scripts/check-csp.mjs && cd apps/desktop/src-tauri && cargo test --release",
+    "desktop:release:macos": "bash apps/desktop/scripts/release-macos.sh",
     "web:serve": "node scripts/serve-web.mjs",
     "web:smoke": "node scripts/web-smoke.mjs"
   },

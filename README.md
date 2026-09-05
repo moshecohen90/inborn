@@ -5,7 +5,7 @@ Spec and demo: `docs/inborn-spec.html`, `docs/inborn-demo.html` (Hebrew, RTL).
 
 ## Layout
 - `apps/mobile` — Expo app (iOS, Android, web). `App.tsx` boots i18n, opens the encrypted chat store and switches between the Chats list and the Chat screen; `src/adapters` picks the engine per platform (llama.rn on phones, wllama in browsers, in-memory otherwise); `src/storage` is the SQLCipher repository; `plugins/` + `modules/` deliver the Android model as a Play Asset Delivery pack.
-- `apps/desktop` — Tauri v2 shell around the web export (macOS built and verified with `connect-src 'none'`; Windows pending).
+- `apps/desktop` — Tauri v2 shell around the web export with a native llama.cpp engine in Rust (Metal / Vulkan / CUDA), SQLCipher chats keyed from the OS keychain, model vault, tray + menu shortcuts, signed updater config; CI matrix in `.github/workflows/desktop.yml`. See `apps/desktop/README.md`.
 - `packages/core` — pure TypeScript, no network: the `LocalLM` interface (spec §5.2), `NullLM` for tests/dev, catalog types, the chat domain (`ChatRepository`, `ChatStore`, incognito rule).
 - `packages/i18n` — i18next + ICU; `locales/en.json` is the single source. Adding a language = one JSON file.
 - `packages/ui` — FARADAY tokens (dark + light, default follows the device) and a Tailwind/NativeWind preset.
@@ -80,6 +80,21 @@ embedded environments" before `registerRootComponent`, so use Release. Screensho
 | warm relaunch, one-sentence answer | 0.45 s | 146 ms | 27.5 tok/s (6 tokens) |
 | warm relaunch, 131-token answer | 0.42 s | 328 ms | **36.3 tok/s** (prompt 87.6 tok/s) |
 
+## Desktop (phase 3, spec §14.4) — status 6.9.2026
+`corepack pnpm desktop:build:app` builds `Inborn.app` (web export + Rust). The page talks only to Tauri's in-process IPC
+(`connect-src ipc: http://ipc.localhost`, gated by `apps/desktop/scripts/check-csp.mjs`); the engine, the encrypted chat
+store (SQLCipher, key in the Keychain / Credential Manager) and the model vault live in Rust. Drop a GGUF on the window or
+use *File › Import GGUF Model…*; the tray shows the seal; *Check for Updates…* is the only socket the process can open and
+runs only on click. Windows ships as an NSIS `.exe` for the Microsoft Store listing, macOS as a notarized DMG
+(`apps/desktop/scripts/release-macos.sh`, ad-hoc + hardened runtime locally). Details and numbers: `apps/desktop/README.md`.
+
+| run (Apple Silicon, Metal, Qwen3.5-0.8B Q4_K_M) | model load | TTFT | generation |
+|---|---|---|---|
+| first launch (Metal library compile ≈10 s before the load) | 537 ms | 614 ms | 188 tokens |
+| warm relaunch | 484 ms | **48 ms** | **156.5 tok/s** (170 tokens), prompt 600 tok/s |
+
+Zero internet sockets on the process for the whole run (`lsof -a -p <pid> -i`, polled every 0.5 s); `inborn.db` is SQLCipher (no SQLite header).
+
 ## The no-INTERNET rule (decision D3)
 `apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
 Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
@@ -122,10 +137,10 @@ Done on real hardware, without buying devices or opening store records:
 - Android (OnePlus 6T, 2018): release build without INTERNET, model delivered as a fast-follow asset pack and loaded from it; 15.8 tok/s.
 - iOS (iPhone 13 Pro): llama.rn on Metal, 36.3 tok/s, TTFT 328 ms.
 - Web (wllama, headless Chromium): 33 tok/s multi-thread, 7 tok/s single-thread, page talks only to its own origin.
-- macOS: Tauri shell renders the web export with `connect-src 'none'`, zero sockets.
+- macOS: Tauri shell with the native Metal engine (156.5 tok/s, TTFT 48 ms warm), SQLCipher chats, zero sockets.
 - Chats persist in SQLCipher; incognito never touches disk; 21 unit tests.
 Still open: real Play Console delivery (fast-follow + on-demand from the store) and a Play Billing test purchase; Apple-hosted asset packs;
-Pixel 8 / Galaxy S23 / iPhone 15 Pro measurements (devices not bought yet); Windows build; 16 KB-page emulator.
+Pixel 8 / Galaxy S23 / iPhone 15 Pro measurements (devices not bought yet); Windows build on CI (workflow written, not yet run); 16 KB-page emulator.
 
 ## Intentionally not built yet
 Apple FM adapter, model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist), expo-router navigation.
