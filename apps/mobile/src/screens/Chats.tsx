@@ -334,7 +334,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       {pendingIds.size ? (
         <View testID="undo-toast" style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border, bottom: insets.bottom + 72 }]}>
           <Text numberOfLines={1} style={[type.body, styles.toastText, { color: theme.text }]}>
-            {t("chats.deletedCount", { count: pendingIds.size })}
+            {pendingIds.size === 1 ? t("chats.deletedOne") : t("chats.deletedMany", { count: pendingIds.size })}
           </Text>
           <Pressable testID="undo-delete" accessibilityRole="button" onPress={undo} hitSlop={12}>
             <Text style={[type.body, type.strong, { color: theme.accent }]}>{t("chats.undo")}</Text>

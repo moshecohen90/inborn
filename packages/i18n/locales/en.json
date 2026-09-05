@@ -115,8 +115,6 @@
   "ledger.time": "GENERATION",
   "chats.select": "Select",
   "chats.selectAll": "Select all",
-  "chats.deleteCount": "Delete {count, plural, =0 {} one {# chat} other {# chats}}",
-  "chats.deletedCount": "{count, plural, one {Chat deleted} other {# chats deleted}}",
   "chats.pin": "Pin",
   "chats.unpin": "Unpin",
   "chats.archive": "Archive",
@@ -137,7 +135,6 @@
   "personas.custom": "CUSTOM ({count})",
   "personas.empty": "No custom personas yet.",
   "personas.add": "Add persona",
-  "personas.limit": "Free includes {count, plural, one {# custom persona} other {# custom personas}}. Pro removes the limit.",
   "personas.name": "Name",
   "personas.prompt": "System prompt",
   "personas.temperature": "Temperature (0–2)",
@@ -189,5 +186,9 @@
   "report.saved": "Saved",
   "report.email": "Email report",
   "safety.title": "If you're in crisis, you can talk to a person now",
-  "safety.dismiss": "Dismiss"
+  "safety.dismiss": "Dismiss",
+  "chats.deleteCount": "Delete {count}",
+  "chats.deletedOne": "Chat deleted",
+  "chats.deletedMany": "{count} chats deleted",
+  "personas.limit": "Free includes {count} custom personas. Pro removes the limit."
 }

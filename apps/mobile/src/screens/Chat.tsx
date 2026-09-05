@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { AppState, FlatList, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
@@ -427,7 +427,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
 
   return (
-    <View style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: insets.top + 8, paddingBottom: insets.bottom }]}>
+    // Edge-to-edge Android does not resize the window for the keyboard, so the screen pads itself (§9.6 anchored composer).
+    <KeyboardAvoidingView behavior="padding" style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: insets.top + 8, paddingBottom: insets.bottom }]}>
       <View style={styles.header}>
         <Pressable testID="open-chats" accessibilityRole="button" onPress={onOpenChats} hitSlop={8} style={styles.headerBtn}>
           <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
@@ -628,7 +629,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       </Sheet>
       <ReportSheet message={reportRow} onClose={() => setReportRow(null)} onSave={saveReport} onEmail={emailReport} />
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
