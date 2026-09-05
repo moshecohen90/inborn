@@ -5,10 +5,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts, radius } from "@inborn/ui";
 import { titleFromFirstMessage, type ChatMessage, type ChatStore, type Message, type Session, type Stats, type Usage } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
+import { writeDevResult } from "../adapters/devModel";
 import { Seal } from "../components/Seal";
 
 type Row = ChatMessage & { streaming?: boolean };
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
+
+/* Headless device runs (USB, nothing can tap the screen): bundling with EXPO_PUBLIC_AUTOPROMPT=1 sends one prompt 2 s after the model loads and writes the numbers to Documents/dev-run.json. Store builds never set it. */
+const AUTOPROMPT = process.env.EXPO_PUBLIC_AUTOPROMPT === "1" ? "Explain in about 150 words why the sky is blue." : null;
 
 export interface ChatProps {
   store: ChatStore;
@@ -30,6 +34,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
   const abort = useRef<AbortController | null>(null);
   const chatRef = useRef<string | null>(chatId);
   const list = useRef<FlatList<Row>>(null);
+  const loadMs = useRef(0);
   const [status, setStatus] = useState<Status>({ kind: "loading" });
   const [stats, setStats] = useState<Stats | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
@@ -39,14 +44,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
 
   useEffect(() => {
     let alive = true;
+    const started = Date.now();
     loadSession()
       .then((s) => {
         if (!alive) return;
+        loadMs.current = Date.now() - started;
         session.current = s;
         setStatus({ kind: "ready" });
       })
       .catch((e: unknown) => {
-        if (alive) setStatus({ kind: "error", error: errorText(e) });
+        const error = errorText(e);
+        if (AUTOPROMPT) writeDevResult({ engine: engine.id, model: model.id, error });
+        if (alive) setStatus({ kind: "error", error });
       });
     return () => {
       alive = false;
@@ -70,8 +79,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
     };
   }, [store]);
 
-  const send = async () => {
-    const text = draft.trim();
+  const submit = async (input: string) => {
+    const text = input.trim();
     const s = session.current;
     if (!text || !s || busy) return;
     setDraft("");
@@ -114,9 +123,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated }: C
     } finally {
       abort.current = null;
       setBusy(false);
-      setStats(engine.stats());
+      const last = engine.stats();
+      setStats(last);
+      const result = { engine: engine.id, model: model.id, loadMs: loadMs.current, ...last, info: "devInfo" in engine ? engine.devInfo : undefined };
+      if (__DEV__) console.log("[stats]", JSON.stringify(result));
+      if (AUTOPROMPT) writeDevResult({ ...result, reply });
     }
   };
+  const send = () => submit(draft);
+
+  useEffect(() => {
+    if (!AUTOPROMPT || status.kind !== "ready") return;
+    const timer = setTimeout(() => void submit(AUTOPROMPT), 2000);
+    return () => clearTimeout(timer);
+  }, [status.kind]);
 
   const statusLine =
     status.kind === "loading"

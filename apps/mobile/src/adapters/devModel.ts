@@ -6,3 +6,5 @@ export function devModelEngine(): Engine | null {
 }
 
 export const prepareDevModel = (): Promise<void> => Promise.resolve();
+
+export function writeDevResult(_result: Record<string, unknown>): void {}

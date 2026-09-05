@@ -52,6 +52,34 @@ Measured 5.9.2026, M-series Mac, Playwright chromium_headless_shell 1208 (no Web
 | multi-thread (COOP/COEP, 6 threads) | 33 | 480 ms | 2.3 s | 2.9 s |
 | single-thread (`ISOLATION=off`) | 7 | 2.5 s | 2.6 s | 2.8 s |
 
+## iOS device run (M1, measured 5.9.2026)
+iPhone 13 Pro (A15, iOS 26.5.2), Metal, Qwen3.5-0.8B-Q4_K_M (508 MB), thinking off, `n_ctx` 4096. Xcode signs with the
+team's wildcard development profile (team `NGCHN95667`); no account login is needed for `xcodebuild`.
+```
+cd apps/mobile && APP_VARIANT=development npx expo prebuild -p ios --no-install && (cd ios && pod install)
+DEV=$(xcrun xctrace list devices | grep -o '(0000[0-9A-F-]*)' | tr -d '()' | head -1)   # Xcode device id, not the CoreDevice UDID
+cd ios && echo 'export EXPO_PUBLIC_AUTOPROMPT=1' >> .xcode.env.local   # bundle-time env for the measurement run; remove it afterwards
+xcodebuild -workspace Inborndev.xcworkspace -scheme Inborndev -configuration Release \
+  -destination "id=$DEV" -derivedDataPath build/dd -allowProvisioningUpdates DEVELOPMENT_TEAM=NGCHN95667 build
+UDID=$(xcrun devicectl list devices | grep -o '[0-9A-F-]\{36\}' | head -1); APP=com.inbornapp.mobile
+xcrun devicectl device install app --device $UDID build/dd/Build/Products/Release-iphoneos/Inborndev.app
+xcrun devicectl device copy to --device $UDID --domain-type appDataContainer --domain-identifier $APP \
+  --source ../../../.models/Qwen3.5-0.8B-Q4_K_M.gguf --destination Documents/instant.gguf
+xcrun devicectl device process launch --device $UDID --terminate-existing $APP; sleep 30
+xcrun devicectl device copy from --device $UDID --domain-type appDataContainer --domain-identifier $APP \
+  --source Documents/dev-run.json --destination /tmp/dev-run.json && cat /tmp/dev-run.json
+```
+`EXPO_PUBLIC_AUTOPROMPT=1` (bundle time, via `.xcode.env.local`) makes the Chat screen send one prompt by itself and
+write the numbers to `Documents/dev-run.json`; JS console output is not readable over USB, so this file is the measurement channel. Debug
+builds need Metro; an embedded dev bundle (`FORCE_BUNDLING=1`) throws "Cannot create devtools websocket connections in
+embedded environments" before `registerRootComponent`, so use Release. Screenshot: `pymobiledevice3 developer dvt screenshot`.
+
+| run | model load | TTFT | generation |
+|---|---|---|---|
+| first launch after the push (Metal init) | 10.9 s | 415 ms | 26.1 tok/s (6 tokens) |
+| warm relaunch, one-sentence answer | 0.45 s | 146 ms | 27.5 tok/s (6 tokens) |
+| warm relaunch, 131-token answer | 0.42 s | 328 ms | **36.3 tok/s** (prompt 87.6 tok/s) |
+
 ## The no-INTERNET rule (decision D3)
 `apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
 Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
