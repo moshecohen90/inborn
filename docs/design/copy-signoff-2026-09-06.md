@@ -16,7 +16,7 @@ is the spec's telemetry separator, kept). 13 strings changed, all applied. Gates
 | # | Key | Current | Applied | Why |
 |---|-----|---------|---------|-----|
 | 1 | newChat.fits | FITS THIS PHONE | FITS THIS DEVICE | The other model-fit strings use {device} (models.recommended, vault.fits); this one is wrong on a tablet. Code passes no device var here, so device-neutral wording is the no-code fix. |
-| 2 | device.throttling | Your PC is throttling | Your computer is throttling | Desktop ships on Mac too; "PC" is wrong there. Matches device.thermal.slowingComputer ("computer"). |
+| 2 | device.throttling (REVERTED by lead: spec §6.5 fixes "Your PC is throttling" for the Windows-only speed-drop heuristic; macOS uses the thermal API rows) | Your PC is throttling | Your computer is throttling | Desktop ships on Mac too; "PC" is wrong there. Matches device.thermal.slowingComputer ("computer"). |
 | 3 | chat.stats | {engine} · {tps} tok/s · TTFT {ttft} ms | {engine} · {tps} tok/s · first token {ttft} ms | "TTFT" is jargon; the Ledger already uses plain "FIRST TOKEN" (ledger.ttft). (Key is currently unused; fixed for when it is wired.) |
 | 4 | paywall.pro.voice | Whisper dictation + hands-free voice | Hands-free voice and dictation | Sibling Pro bullets lead with the capability, not a model name. "Whisper" is jargon in a consumer paywall bullet (§2.3 plain language). Still honest: voice and dictation both ship as Pro. |
 | 5 | paywall.pro.models | Larger models: Sharp and Sharp (Phi) | Larger models, Sharp and Sharp (Phi) | Drop the colon for consistency with the other bullets (which use "+"/commas, not colons). Both names are real Pro models in the catalog (sharp, sharp-phi), so both are kept. |
