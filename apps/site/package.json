@@ -1,0 +1,11 @@
+{
+  "name": "@inborn/site",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs && node check.mjs",
+    "deploy": "node build.mjs && node check.mjs && wrangler pages deploy dist --project-name inborn-site --branch main --commit-dirty=true"
+  }
+}

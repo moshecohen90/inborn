@@ -1,0 +1,52 @@
+<!-- meta: {"title": "Proof", "h1": "Verify it yourself", "description": "How to check that Inborn sends nothing: the airplane test, the Android permissions page, the iOS App Privacy Report, the exit meter, and a firewall. Numbers you can verify, not adjectives."} -->
+<article class="prose">
+<p>Every AI app says it is private. This page is the list of things you can check without trusting us. Each takes under a minute and needs nothing but the phone in your hand.</p>
+
+<p class="readout" aria-label="Network readout from the app's proof screen"><span>OUT <b>0 B</b></span><span>IN <b>2.7 GB</b></span><span>CONNECTIONS <b>0</b></span><span class="ok">SEALED · ON-DEVICE</span></p>
+
+<h2 id="checks">Five checks</h2>
+<ol class="steps">
+  <li>
+    <h3>The airplane test <span class="platform">All platforms</span></h3>
+    <p>Turn on Airplane Mode. Open Inborn and ask it anything. It answers at the same speed, because the model is on the device and there is no server to reach. The header shows an ✈ badge for as long as the device is offline. The app asks you to do exactly this during onboarding.</p>
+  </li>
+  <li>
+    <h3>The permissions page <span class="platform">Android</span></h3>
+    <p>On Google Play, open Inborn's listing, then <em>About this app → App permissions</em>. "Have full network access" is not listed. The release build does not declare the INTERNET permission, so Android will not let the app open a connection. You can confirm it on the APK itself:</p>
+    <pre><code>aapt2 dump permissions inborn.apk</code></pre>
+    <p>The line <code>android.permission.INTERNET</code> does not appear. Our build fails if it ever does.</p>
+  </li>
+  <li>
+    <h3>App Privacy Report <span class="platform">iPhone · iPad</span></h3>
+    <p>Settings → Privacy &amp; Security → App Privacy Report. iOS lists every domain each app contacted in the last 7 days. Inborn's row stays empty. If you explicitly download a model from Hugging Face, <code>huggingface.co</code> appears there, once, and the app tells you so before the download starts.</p>
+  </li>
+  <li>
+    <h3>The exit meter <span class="platform">In the app</span></h3>
+    <p>The Proof screen inside Inborn shows three numbers from the operating system's own counters: bytes out, bytes in and open connections. Out reads <span class="mono">0 B</span> for the life of the install. In counts the model files the store delivered. The "Airplane test" button on that screen walks you through check 1.</p>
+  </li>
+  <li>
+    <h3>A firewall <span class="platform">Android · Windows · macOS</span></h3>
+    <p>Put Inborn behind NetGuard (Android), Little Snitch or LuLu (macOS) or the Windows firewall, and watch nothing appear. There is no connection to block.</p>
+  </li>
+</ol>
+
+<h2 id="source">Open core and release hashes</h2>
+<p>The engine, storage, network and catalogue core is open source under the MIT licence, so the claims above can be read in code rather than believed. The README states the no-INTERNET rule, and continuous integration fails the build if the permission appears through manifest merging. From version 1.0 this section lists the SHA-256 of every released build so you can compare the binary you installed with the one we published.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Version</th><th>Platform</th><th>SHA-256</th></tr></thead>
+<tbody><tr><td class="mono small">1.0</td><td class="mono small">Android · iOS</td><td class="small">Published with the 1.0 release.</td></tr></tbody>
+</table></div>
+
+<h2 id="what-can-leave">The complete list of what can leave, and when</h2>
+<p>Nothing leaves on its own. These are the only situations in which any bytes go out, and each is either done by the store rather than by Inborn, or started by you with a tap:</p>
+<ul>
+  <li><strong>Model delivery.</strong> On Android, Google Play delivers models as asset packs, the way it delivers an app update. On iOS 26 and later, the operating system delivers them. On iOS 17 to 25 and on desktop, a download you start fetches one file over HTTPS from our model host; that request carries your IP address and nothing else, and no cookie or identifier.</li>
+  <li><strong>Purchases.</strong> Apple, Google, Microsoft or Paddle process the payment. Inborn reads the receipt on the device. We never see your name, email or card.</li>
+  <li><strong>Hugging Face import.</strong> Only if you choose it, and the app says so first.</li>
+  <li><strong>Support email.</strong> Only if you write to us, from your own mail app, with what you chose to attach.</li>
+</ul>
+<p>The same list, in legal wording and per platform, is section 3 of the <a href="/privacy#3-the-complete-list-of-network-activity-by-platform">privacy policy</a>.</p>
+
+<h2 id="limits">What this does not prove</h2>
+<p>These checks show that the app sends nothing. They do not make the AI right. A small model on a phone can be wrong, and Inborn labels every answer as AI-generated. Check anything that matters.</p>
+</article>
