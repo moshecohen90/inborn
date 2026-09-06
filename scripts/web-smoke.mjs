@@ -98,6 +98,13 @@ function observe(page) {
 }
 
 /** Polls the captured console for the first line matching `re` (the line may already be there when the wait starts). */
+
+/* The shell sends first visits to onboarding (§8.1); the smoke measures the engine, so it arrives as an onboarded user. */
+const skipOnboarding = (ctx) =>
+  ctx.addInitScript(() => {
+    if (!localStorage.getItem("inborn.prefs")) localStorage.setItem("inborn.prefs", JSON.stringify({ onboarded: true }));
+  });
+
 async function waitForConsole(lines, re, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
@@ -108,11 +115,10 @@ async function waitForConsole(lines, re, timeoutMs) {
   throw new Error(`console never matched ${re}`);
 }
 
-/** Ready = the Chat screen is up, the "Loading…" status line has gone, and the console says wllama loaded. */
+/** Ready = the Chat screen is up and the console says which engine loaded (the status line stays visible with the engine name). */
 async function waitForEngine(page, out, consoleLines, t0) {
   await page.getByTestId("composer-input").waitFor({ timeout: LOAD_TIMEOUT_MS });
-  await page.getByTestId("status-line").waitFor({ state: "hidden", timeout: LOAD_TIMEOUT_MS });
-  const [, engine, loadMs] = await waitForConsole(consoleLines, ENGINE_RE, 10_000);
+  const [, engine, loadMs] = await waitForConsole(consoleLines, ENGINE_RE, LOAD_TIMEOUT_MS);
   if (engine !== "wllama") throw new Error(`engine "${engine}" loaded instead of wllama`);
   out.readyMs = Date.now() - t0;
   out.sessionLoadMs = Number(loadMs);
@@ -143,6 +149,7 @@ const foreignHosts = (hosts) => [...hosts].filter((h) => h !== origin);
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+  await skipOnboarding(context);
 
   /* 1. First visit: download door → OPFS → wllama → chat. */
   {
@@ -230,6 +237,7 @@ try {
   /* 3. A phone: the gate says Instant only + get the app (spec §8.9). */
   {
     const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: IPHONE_UA, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+    await skipOnboarding(phone);
     const page = await phone.newPage();
     const out = result.phone;
     await page.goto(server.url);
@@ -245,6 +253,7 @@ try {
   /* 4. Not enough space: the estimate says 100 MB free, so the door refuses before a byte moves (spec §10 row 5). */
   {
     const tight = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(tight);
     await tight.addInitScript(() => {
       navigator.storage.estimate = async () => ({ usage: 0, quota: 100 * 1024 * 1024 });
     });
