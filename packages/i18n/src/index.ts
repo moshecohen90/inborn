@@ -43,13 +43,14 @@ export function registerLocale(locale: string, translation: Record<string, strin
   if (i18next.isInitialized) i18next.addResourceBundle(locale, "translation", translation, true, true);
 }
 
-export async function initI18n(locale: string, deviceLocales: readonly string[] = []): Promise<i18n> {
+/** `defaultVariables` reach every string (e.g. `{device}` from the shell), so "stays on this {device}" needs no per-call argument. */
+export async function initI18n(locale: string, deviceLocales: readonly string[] = [], defaultVariables: Record<string, string> = {}): Promise<i18n> {
   const preferred = [locale, ...deviceLocales].find((l) => resources[l]) ?? "en";
   await i18next.use(ICU).use(initReactI18next).init({
     resources,
     lng: preferred,
     fallbackLng: "en",
-    interpolation: { escapeValue: false },
+    interpolation: { escapeValue: false, defaultVariables },
     returnNull: false,
   });
   return i18next;
