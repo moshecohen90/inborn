@@ -11,3 +11,7 @@ export * from "./chat/loop";
 export * from "./chat/export";
 export * from "./chat/language";
 export * from "./chat/safety";
+export * from "./proof/exitMeter";
+export * from "./proof/allowlist";
+export * from "./lock/policy";
+export * from "./device/chip";
