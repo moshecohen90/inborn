@@ -25,6 +25,25 @@
 <li>מכשירי בדיקה (משה 5.9.2026: לא קונים מכשירים): OnePlus 6T (2018, 8 GB, רצפת אנדרואיד), OnePlus 11 (16 GB, Android 16, האישי של משה), iPhone 13 Pro (6 GB, A15, בלי Apple Intelligence), אימולטורי Pixel עם 16 KB pages וסימולטורי iOS 17/26. פערים שנשארים ללא מכשיר: Pixel/Galaxy אמיתיים ו‑iPhone עם Apple Intelligence; מתועדים ב‑docs/qa/release-checklist.md כ‑BLOCKED.</li>
 </ul>
 
+<p><span class="pill free">סטטוס · 6.9.2026 ערב</span> אחרי יומיים של בנייה אוטונומית (ענפים במקביל, מיזוג לענף הראשי אחרי שערים ירוקים: typecheck, 323 בדיקות יחידה, lint, ייצוא ווב ובדיקת עשן של המנוע בדפדפן) מצב אבני הדרך:</p>
+<div class="tw compact">
+<table>
+<thead><tr><th>אבן דרך</th><th>מה קיים בקוד</th><th>מה אומת</th><th>פתוח</th></tr></thead>
+<tbody>
+<tr><td><strong>M1 מנוע</strong></td><td>llama.rn (iOS/Android), wllama (ווב), llama.cpp ב‑Rust (דסקטופ), הזרמה, ביטול, סטטיסטיקות, חשיבה כבויה ל‑Instant</td><td>iPhone 13 Pro 36 tok/s · OnePlus 6T 15.8 · דפדפן 33 · Mac Metal 156</td><td>אדפטר Apple FM (סימולטור iOS 26 בלבד)</td></tr>
+<tr><td><strong>M2 כספת</strong></td><td>קטלוג חתום Ed25519, חבילות Play (fast‑follow + on‑demand), הורדה עם המשך ו‑SHA‑256, ייבוא GGUF, בחירת ברירת מחדל לפי RAM, מסכי S30/S31</td><td>bundletool במצב בדיקה מקומית על אמולטור וטלפון; המשך הורדה אחרי ניתוק; ייבוא וקובץ פגום</td><td>מסירה אמיתית מ‑Play Console; Apple‑hosted asset packs</td></tr>
+<tr><td><strong>M3 צ'אט</strong></td><td>Markdown, קוד, תיקיות, חיפוש FTS, אינקוגניטו, פרסונות, זיכרון, ייצוא, שומר לולאות, כרטיס משבר, דיווח</td><td>40 צילומי מסך על אמולטור, RTL, 200% טקסט</td><td>ייצוא כל השיחות</td></tr>
+<tr><td><strong>M4 הוכחה</strong></td><td>expo‑router, onboarding S01–S05, חותם על כל מצביו, מד יציאה (TrafficStats), נעילה ביומטרית, FLAG_SECURE, מחיקת חירום, הגדרות, מסך הוכחה</td><td>סימולטור iOS + אמולטור; צילום מסך חסום; מבחן מצב טיסה</td><td>—</td></tr>
+<tr><td><strong>M5 מסמכים וקול</strong></td><td>RAG עם ציטוטים, OCR (Vision / Tesseract עברית+אנגלית), הגנה מהזרקת הוראות, מצב קפדני, מסכי S40</td><td>PDF של 200 עמודים, PDF עברי, סריקות, DOCX, קובץ פגום; ציטוט עמוד נכון</td><td>קול (whisper.rn, hands‑free), תמונה כקלט, OCR עברי ב‑iOS</td></tr>
+<tr><td><strong>M6 Pro</strong></td><td>אימות StoreKit 2 ו‑Play Billing אופליין, מפתח רישיון לדסקטופ, מטמון מוצפן, paywall S60, נקודות ערך</td><td>סימולטור: רכישה, החזר, שחזור, אתחול לא מקוון</td><td>רכישת sandbox אמיתית (דורשת בנייה בחנות)</td></tr>
+<tr><td><strong>M7 הקשחה</strong></td><td>מדיניות סוללה/חום/זיכרון (§6.5) עם מודול נייטיב, 6 שפות ממשק (699 מפתחות), גופני IBM Plex, chrome נייטיבי (Liquid Glass / M3)</td><td>כל שורות §6.5 על אמולטור; מדידת חום על OnePlus 6T</td><td>ריצת רשימת 40 הבדיקות המלאה, 16 KB, soak של שעתיים</td></tr>
+<tr><td><strong>M8 שחרור</strong></td><td>אייקון §9.8, טקסטי חנות ב‑6 שפות, מסמכים משפטיים, רשומות חנות: Play (טיוטות מלאות) ו‑App Store Connect (מידע, מחיר, פרטיות, 4 מוצרי IAP, גרסה 1.0 ב‑6 שפות)</td><td>העלאה ל‑TestFlight דרך API</td><td>צילומי מסך לחנויות, כתובת מדיניות פרטיות, אימייל תמיכה, שם המפתח, הגשה</td></tr>
+<tr><td><strong>ווב (שלב 2)</strong></td><td>OPFS, Service Worker, שער מכשיר, כותרות אירוח, PWA</td><td>ביקור לא מקוון עם אפס בקשות למודל</td><td>Safari/Firefox אמיתיים</td></tr>
+<tr><td><strong>דסקטופ (שלב 3)</strong></td><td>מנוע Metal/Vulkan/CPU, SQLCipher, ייבוא, מגש, updater חתום, CI ל‑macOS ו‑Windows</td><td>בניות macOS ו‑Windows (CPU ו‑Vulkan) ב‑GitHub Actions</td><td>חתימה ונוטריזציה עם זהות אמיתית</td></tr>
+</tbody>
+</table>
+</div>
+
 <h3>14.2 שלב 1: מובייל (שבועות 1–12)</h3>
 <div class="tw">
 <table>
