@@ -7,6 +7,21 @@ const dir = join(__dirname, "../locales");
 const en = JSON.parse(readFileSync(join(dir, "en.json"), "utf8")) as Record<string, string>;
 const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
 
+/* Argument names from the parsed ICU tree; a regex would also catch the first word of every plural branch. */
+function placeholders(message: string): string[] {
+  const names = new Set<string>();
+  const walk = (nodes: unknown[]): void => {
+    for (const node of nodes) {
+      const n = node as { type: number; value?: unknown; options?: Record<string, { value: unknown[] }>; children?: unknown[] };
+      if (n.type !== 0 && n.type !== 7 && typeof n.value === "string") names.add(n.value);
+      if (n.options) for (const o of Object.values(n.options)) walk(o.value);
+      if (n.children) walk(n.children);
+    }
+  };
+  walk(new IntlMessageFormat(message, "en").getAst());
+  return [...names].sort();
+}
+
 describe("locales", () => {
   it("every locale has every key of en.json and no extras", () => {
     for (const f of files) {
@@ -21,8 +36,7 @@ describe("locales", () => {
       const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
       for (const [k, v] of Object.entries(d)) {
         expect(() => new IntlMessageFormat(v, "en"), `${f}:${k}`).not.toThrow();
-        const ph = (s: string) => (s.match(/\{\s*([a-zA-Z0-9_]+)/g) ?? []).map((m) => m.replace(/\{\s*/, "")).sort();
-        expect(ph(v), `${f}:${k}`).toEqual(ph(en[k] ?? ""));
+        expect(placeholders(v), `${f}:${k}`).toEqual(placeholders(en[k] ?? ""));
       }
     }
   });

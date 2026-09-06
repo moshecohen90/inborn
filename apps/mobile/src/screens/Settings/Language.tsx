@@ -29,7 +29,7 @@ export function Language() {
     <Screen header={{ back: true, title: forAnswer ? t("settings.language.answer") : t("settings.language.ui") }} testID="language">
       {forAnswer ? <Row label={t("settings.language.followsUi")} value={current === "" ? "✓" : undefined} onPress={() => choose("")} /> : null}
       {list.map((tag) => (
-        <Row key={tag} testID={`lang-${tag}`} label={tag === "pseudo" ? "Pseudo (QA)" : languageName(tag)} sub={tag} value={tag === current ? "✓" : undefined} onPress={() => choose(tag)} />
+        <Row key={tag} testID={`lang-${tag}`} label={languageName(tag)} sub={tag} value={tag === current ? "✓" : undefined} onPress={() => choose(tag)} />
       ))}
     </Screen>
   );

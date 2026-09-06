@@ -3,7 +3,7 @@ import { AccessibilityInfo, Platform, StyleSheet, Text, View } from "react-nativ
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { LOCK_TIMEOUTS } from "@inborn/core";
-import { biometricLabel } from "@inborn/i18n";
+import { LOCALE_NAMES, biometricLabel } from "@inborn/i18n";
 import { TEXT_SCALES, type ThemeMode } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
@@ -203,6 +203,7 @@ export function Settings() {
 }
 
 export function languageName(tag: string): string {
+  if (tag in LOCALE_NAMES) return LOCALE_NAMES[tag as keyof typeof LOCALE_NAMES];
   try {
     return new Intl.DisplayNames([tag], { type: "language" }).of(tag) ?? tag;
   } catch {

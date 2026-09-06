@@ -3,15 +3,40 @@ import i18next, { type i18n } from "i18next";
 import ICU from "i18next-icu";
 import { initReactI18next } from "react-i18next";
 import en from "../locales/en.json";
+import ja from "../locales/ja.json";
+import de from "../locales/de.json";
+import fr from "../locales/fr.json";
+import es from "../locales/es.json";
+import ptBR from "../locales/pt-BR.json";
+import pseudo from "../locales/pseudo.json";
 
 export type Locale = "en" | "ja" | "de" | "fr" | "es" | "pt-BR" | "pseudo";
 export const LAUNCH_LOCALES: readonly Locale[] = ["en", "ja", "de", "fr", "es", "pt-BR"];
 export const RTL_LOCALES: ReadonlySet<string> = new Set(["he", "ar", "fa", "ur"]);
 
+/** Each language's own name for the picker (Hermes has no Intl.DisplayNames, so this is the source, not a fallback). */
+export const LOCALE_NAMES: Readonly<Record<Locale, string>> = {
+  en: "English",
+  ja: "日本語",
+  de: "Deutsch",
+  fr: "Français",
+  es: "Español",
+  "pt-BR": "Português (Brasil)",
+  pseudo: "Pseudo (QA)",
+};
+
 export type MessageKey = keyof typeof en;
 
 /** Adding a language = one JSON file registered here; no other code changes (spec §5.10). */
-const resources: Record<string, { translation: Record<string, string> }> = { en: { translation: en } };
+const resources: Record<string, { translation: Record<string, string> }> = {
+  en: { translation: en },
+  ja: { translation: ja },
+  de: { translation: de },
+  fr: { translation: fr },
+  es: { translation: es },
+  "pt-BR": { translation: ptBR },
+  pseudo: { translation: pseudo },
+};
 
 export function registerLocale(locale: string, translation: Record<string, string>): void {
   resources[locale] = { translation };
