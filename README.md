@@ -432,6 +432,51 @@ merge commit (iPhone 15 Pro / iOS 17.0 simulator, iOS 26 simulator for glass, Pi
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
 
+## Play internal testing (spec §14.1 "real store delivery") — status 6.9.2026
+Play limits (compressed download size, [Play Console Help: app size limits](https://support.google.com/googleplay/android-developer/answer/9859372)):
+base module 500 MB, one asset pack 1.5 GB, base + install-time packs 4 GB, fast-follow + on-demand packs 30 GB
+cumulative, 100 packs per bundle. The full bundle (4.55 GB, four packs) breaks the per-pack cap: `inborn_model_sharp`
+carries both 4B shards in one pack (2.74 GB). Sharp needs one pack per shard before it can ship (not done here).
+
+**Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all four)
+limits what `plugins/withAssetPacks.js` declares. The internal-testing bundle ships Instant (fast-follow, 532 MB) and
+Fast (on-demand, 1.28 GB). `INBORN_VERSION_CODE` sets `android.versionCode` (Play refuses a code it already has;
+`node scripts/play-upload.mjs --next-version-code` prints the next free one).
+
+**Upload key.** `~/.inborn/keys/inborn-upload.jks` (PKCS12, alias `inborn-upload`, RSA 2048, valid to 2056), created
+with `keytool -genkeypair`; its password is the Keychain item `inborn-upload-key` (accounts `store-password` and
+`key-password`). Nothing of it is in the repo. `plugins/withUploadSigning.js` adds a `release` signing config that
+reads `INBORN_UPLOAD_KEYSTORE`, `INBORN_UPLOAD_KEY_ALIAS`, `INBORN_UPLOAD_STORE_PASSWORD`, `INBORN_UPLOAD_KEY_PASSWORD`
+from the Gradle environment and falls back to the debug keystore when the first is unset. `scripts/play-signing-env.sh`
+prints the four exports from the Keychain. Play App Signing holds the app signing key; this key only signs uploads.
+
+**Publisher API.** `scripts/play-upload.mjs` (no dependencies) does `edits.insert` → resumable `edits.bundles.upload`
+(64 MiB chunks, resume on 5xx) → `edits.tracks.update` → `edits.commit`. The service account comes from
+`INBORN_PLAY_SA_JSON=<file>` or `INBORN_PLAY_SA_KEYCHAIN=<service>:<account>`; on this Mac the Bible apps' account
+(`google-play@bible-commentary-13d9a.iam.gserviceaccount.com`, Keychain `store-reviews` / `play-service-account`)
+already has access to the Inborn app.
+
+```
+cd apps/mobile
+INBORN_MODELS_DIR=/Users/moshecohen/dev/inborn/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=$(node ../../scripts/play-upload.mjs --next-version-code) \
+  npx expo prebuild -p android --no-install
+cd android && eval "$(../../../scripts/play-signing-env.sh)" && ./gradlew bundleRelease -PreactNativeArchitectures=arm64-v8a
+AAB=app/build/outputs/bundle/release/app-release.aab; BT=/Users/moshecohen/dev/inborn/.tools/bundletool-all-1.18.3.jar
+java -jar $BT validate --bundle=$AAB && BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB
+INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts/play-upload.mjs --aab $AAB --track internal --status completed
+```
+arm64-v8a only: Play accepts it (64-bit is the requirement) and every test phone is arm64; add `armeabi-v7a` before a
+wider rollout.
+
+First run, 6.9.2026: AAB 1,864,941,810 bytes (base + Instant 532 MB + Fast 1.28 GB; 4.10 GB uncompressed), signed by
+`CN=Inborn Upload Key` (SHA-256 `E7:02:C9:A9:…:ED:CD`), `bundletool validate` OK, permission gate "OK: no INTERNET
+permission", manifests: base minSdk 24 / targetSdk 36 / versionCode 1 / versionName 1.0.0, `inborn_model` fast-follow,
+`inborn_model_fast` on-demand. Uploaded as edit `13076337155671403999`: bundle versionCode 1 (sha256 `f735907f…49e7d4`),
+track `internal` release "1.0.0 (1) internal" status `completed`, committed. Play App Signing was enrolled by that first
+upload with a Google-generated app signing key. Testers are managed in Play Console → Testing → Internal testing
+(no tester list was created by the script); the full 6-minute build once failed in `:app:signReleaseBundle` while the
+Mac was low on memory and passed on rerun.
+
 ## Legal, compliance, QA and launch docs (legal-docs stream)
 Docs only, no app code. Everything the spec promises "lives in the repo" for §10–§11, §13.5, §14.7, §15:
 - `docs/legal/` — `privacy-policy.md` (store + website text, per-platform network list), `terms.md` (EULA, one-time Pro/Work, Family Sharing, refunds via stores, AI disclaimer), `ai-act-notes.md` (Art. 50 duties; Inborn launches after 2.8.2026 so the 2.12.2026 grace does not apply), `licenses.md` + `NOTICE.json` (every model/native/JS component with licence, attribution, obligations; nothing conflicts with a closed Pro app), `app-privacy-details.md` (Apple "Data Not Collected" reasoning, `PrivacyInfo.xcprivacy` content from the manifests actually in node_modules, Play Data safety, AI-content policy, age-rating answers, review notes).

@@ -54,7 +54,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     package: "com.inbornapp.mobile",
-    versionCode: 1,
+    /* Play rejects a versionCode it has already seen, so each upload bumps it via INBORN_VERSION_CODE (scripts/play-upload.mjs --next-version-code prints the next free one). */
+    versionCode: Number(process.env.INBORN_VERSION_CODE) || 1,
     adaptiveIcon: {
       foregroundImage: "./assets/android-icon-foreground.png",
       backgroundImage: "./assets/android-icon-background.png",
@@ -84,22 +85,32 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],
     /* Pack sources come from INBORN_MODELS_DIR at prebuild (plugins/withAssetPacks.js); models are never committed. Asset names must equal the catalog `file` names: the vault looks the delivered pack up by them. */
-    [
-      "./plugins/withAssetPacks",
-      {
-        packs: [
-          { name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } },
-          { name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } },
-          /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
-          { name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } },
-          /* Split with llama-gguf-split (Play caps a pack at 1.5 GB); llama.cpp opens the first shard and finds the second beside it. */
-          {
-            name: "inborn_model_sharp",
-            deliveryType: "on-demand",
-            assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf", "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf" },
-          },
-        ],
-      },
-    ],
+    ["./plugins/withAssetPacks", { packs: selectedPacks() }],
+    /* Release signing with the Play upload key when INBORN_UPLOAD_KEYSTORE is set at build time; debug keystore otherwise. */
+    "./plugins/withUploadSigning",
   ],
 });
+
+/* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. */
+const ALL_PACKS = {
+  instant: { name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } },
+  fast: { name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } },
+  /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
+  embed: { name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } },
+  /* Split with llama-gguf-split (Play caps a pack at 1.5 GB); llama.cpp opens the first shard and finds the second beside it. */
+  sharp: {
+    name: "inborn_model_sharp",
+    deliveryType: "on-demand",
+    assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf", "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf" },
+  },
+} as const;
+
+function selectedPacks() {
+  const raw = process.env.INBORN_PACKS?.trim();
+  if (!raw) return Object.values(ALL_PACKS);
+  return raw.split(",").map((k: string) => {
+    const pack = ALL_PACKS[k.trim() as keyof typeof ALL_PACKS];
+    if (!pack) throw new Error(`INBORN_PACKS: unknown pack "${k}" (known: ${Object.keys(ALL_PACKS).join(", ")})`);
+    return pack;
+  });
+}
