@@ -30,13 +30,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: dev ? "Inborn (dev)" : "Inborn",
   slug: "inborn",
   scheme: "inborn",
-  version: "0.0.1",
+  version: "1.0.0",
   orientation: "portrait",
   userInterfaceStyle: "automatic",
   /* All icon files come from design/icon/build.mjs (spec §9.8); edit the SVG master there, never these PNGs. */
   icon: "./assets/icon.png",
   ios: {
     bundleIdentifier: "com.inbornapp.mobile",
+    buildNumber: "1",
     supportsTablet: true,
     /* Icon Composer bundle: Xcode 26 renders Liquid Glass + the iOS 18 light/dark/tinted fallbacks from its layers. */
     icon: "../../design/icon/Inborn.icon",
@@ -47,10 +48,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       ],
       /* The file is copied into the vault, never edited in place. */
       LSSupportsOpeningDocumentsInPlace: false,
+      /* Only HTTPS via the OS for the model download: exempt, so TestFlight never blocks on export compliance. */
+      ITSAppUsesNonExemptEncryption: false,
     },
   },
   android: {
     package: "com.inbornapp.mobile",
+    versionCode: 1,
     adaptiveIcon: {
       foregroundImage: "./assets/android-icon-foreground.png",
       backgroundImage: "./assets/android-icon-background.png",
