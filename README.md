@@ -176,10 +176,15 @@ After the merge with the shell: `useDeviceState()` returns the shell's `DeviceSt
 banner preview still works, and the three AppServices buttons route to the guard; the thermal override on the emulator renders the shell's
 "Slowing down to keep the phone cool · Switch to Instant" banner.
 
-## The no-INTERNET rule (decision D3)
-`apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
-Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
-Play Asset Delivery (Instant as fast-follow, larger tiers on-demand); purchases through Play Billing.
+## The no-INTERNET rule (decision D3) and the permission allowlist
+`apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`, and removes every
+permission a library brings that is not in the documented allowlist (`android.blockedPermissions`: WIFI_STATE, WAKE_LOCK,
+BOOT_COMPLETED, USE_FINGERPRINT, install-referrer). Every release APK/AAB must pass `scripts/check-android-permissions.sh
+<file>` (aapt2): it fails on INTERNET and on any permission outside the allowlist in the script, which is the table in
+`docs/legal/app-privacy-details.md` §4.2 (BILLING, FOREGROUND_SERVICE(+DATA_SYNC), ACCESS_NETWORK_STATE, USE_BIOMETRIC,
+VIBRATE, RECORD_AUDIO, CAMERA, the app's own DYNAMIC_RECEIVER permission). A new permission goes into the script, the
+table and the Play data-safety answers in one change. Models arrive through Play Asset Delivery (Instant as fast-follow,
+larger tiers on-demand); purchases through Play Billing.
 An AAB (what Play receives) is checked through bundletool:
 `BUNDLETOOL=.tools/bundletool-all-1.18.3.jar scripts/check-android-permissions.sh apps/mobile/android/app/build/outputs/bundle/release/app-release.aab`
 
@@ -591,8 +596,11 @@ track) were already on `main`; this round closes what was still open and finishe
 ## Play internal testing (spec §14.1 "real store delivery") — status 6.9.2026
 Play limits (compressed download size, [Play Console Help: app size limits](https://support.google.com/googleplay/android-developer/answer/9859372)):
 base module 500 MB, one asset pack 1.5 GB, base + install-time packs 4 GB, fast-follow + on-demand packs 30 GB
-cumulative, 100 packs per bundle. The full bundle (4.55 GB, four packs) breaks the per-pack cap: `inborn_model_sharp`
-carries both 4B shards in one pack (2.74 GB). Sharp needs one pack per shard before it can ship (not done here).
+cumulative, 100 packs per bundle. Rule for Inborn: every pack is one file under 1.5 GB, all packs are fast-follow or
+on-demand (none install-time), so the caps that bind are 1.5 GB per pack and 30 GB for all packs together. Sharp is two
+packs since fixes-r4a (`inborn_model_sharp` 1.40 GB + `inborn_model_sharp_2` 1.34 GB; the vault joins the shards, see
+"Android release blockers"). All seven packs: Instant 0.53 + Fast 1.28 + embed 0.27 + speech 0.15 + vision 0.20 + Sharp
+1.40 + 1.34 = 5.18 GB, every tier stays on Play; the full AAB is base (~60 MB) + 5.18 GB.
 
 **Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all six: instant, fast, embed, sharp, speech, vision)
 limits what `plugins/withAssetPacks.js` declares. The internal-testing bundle ships Instant (fast-follow, 532 MB) and
@@ -749,3 +757,41 @@ moved in (VAULT badge), locked from the badge (chat hidden, "1 chats · locked")
 record exported through the share sheet and the pulled `.json` verified VALID by the Node snippet (tampered copy INVALID), audit log screen
 "Chain verified · 5 entries" (created, moved in, locked, unlocked, signed export), architecture statement rendered, templates as Free show the
 price line + WORK tag.
+
+## Android release blockers (QA run 6.9.2026 B1/B2/B3/B5/B14/B16/B18/B19, branch fixes-r4a) — status 7.9.2026
+- **B1 16 KB pages**: `modules/doc-extract` now depends on `cz.adaptech.tesseract4android:tesseract4android:4.9.0` (JitPack;
+  4.8.0 added 16 KB page-size support, NDK r27c). Proof on the release APK: every `lib/arm64-v8a/*.so` LOAD segment
+  aligned 0x4000 (`llvm-readelf -l`, the four OCR libs included), `zipalign -c -P 16 -v` OK, and a launch on the API 36.1
+  `google_apis_ps16k` emulator with no "isn't 16 KB compatible" dialog. Measured 7.9.2026 on the release AAB (1,870,410,071 bytes, Instant + Fast
+  packs, arm64-v8a, signed by the upload key): 45 of 45 `.so` files at 0x4000 (4.7.0 had libtesseract/libleptonica/libjpeg/libpngx
+  at 0x1000), `zipalign -c -P 16` OK for `base-master.apk` and `base-arm64_v8a.apk`. Emulator `qa_ps16k` (API 36.1 google_apis_ps16k, `getconf PAGE_SIZE` = 16384), release splits installed via
+  bundletool local testing, 7.9.2026 08:15: welcome screen up, focus on MainActivity, no compat dialog, logcat has no
+  page-size/ELF-alignment line (`scratchpad ps16k-3.png`). Also launched clean on the OnePlus 11 (Android 16, 4 KB kernel).
+- **B2 permissions**: allowlist gate + blocked permissions (section above). Gate output on the release AAB (7.9.2026): "OK: no INTERNET permission; every declared
+  permission is in the allowlist (9 declared)" — BILLING, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, ACCESS_NETWORK_STATE,
+  USE_BIOMETRIC, VIBRATE, RECORD_AUDIO, CAMERA, DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION. `bundletool validate` OK; merged
+  manifest minSdk 26 / targetSdk 36 / allowBackup false.
+- **B3 backup**: `android.allowBackup: false` in `app.config.ts`; merged manifest `android:allowBackup="false"`.
+- **B5 packs**: one Play pack per shard. `app.config.ts` `ALL_PACKS` maps a tier key to a list of packs; the catalog
+  (`packages/core/src/catalog/manifest.json`, re-signed) lists one `play-asset-pack` delivery per shard with its `file`;
+  `src/vault/playDelivery.ts` fetches the packs one after another (one cumulative progress bar) and, when the shards live
+  in different pack directories, links them into `Documents/assetpacks-joined/<model>/` through the new
+  `linkInto` function of `modules/asset-packs` (`Os.symlink`; llama.cpp opens the first shard and finds the second beside
+  it). Relinked on every locate because Play may move a pack; `remove` deletes the join directory.
+- **B14 status bar**: not reproduced on this build — ps16k emulator, system night mode, welcome screen: clock and icons
+  render light on the dark background (`ps16k-dark.png`). No code change; if QA still sees it, record the screen and
+  whether the app theme override (Settings → Appearance) or system dark mode was in use.
+- **B16 onboarding model step**: `ModelChoice` reads `useInstalledModel()` (vault subscription) instead of the engine once,
+  so the card flips to "Instant · built in" the moment the fast-follow pack is extracted. **Not proven on a device**:
+  on the ps16k emulator the fast-follow pack never arrived in 4 minutes (bundletool local testing pushed
+  `inborn_model-master.apk` to `/sdcard/…/local_testing/`, but no Play Core / WorkManager / `[inborn]` line ever appeared
+  for the app process and the step stayed "No model on this device"). The 5.9 README run proved this path with WAKE_LOCK
+  still declared; whether blocking WAKE_LOCK/RECEIVE_BOOT_COMPLETED stops Play Core's extraction worker is the open
+  question — re-test on the OnePlus 6T (local testing) or through the Play internal track before release; if extraction
+  needs it, move WAKE_LOCK back to the allowlist with that justification.
+- **B18** duplicate `expo-iap` was already removed on main. **B19** `plugins/withMinSdk.js` writes
+  `android.minSdkVersion=26` into gradle.properties (merged manifest minSdk 26).
+- Build note: `gradlew --stop` from any other worktree kills a running build (daemons are per Gradle version, not per
+  project). Build with `GRADLE_USER_HOME=~/.gradle-r4a` (APFS-cloned `caches/modules-2` + `wrapper`, instant) or agree on a
+  no-`--stop` rule while several streams build.
+

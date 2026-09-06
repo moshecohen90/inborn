@@ -9,6 +9,7 @@ import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
 import { Button, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
+import { useInstalledModel } from "../../vault";
 import { modelFileSize } from "./modelSize";
 import { font, useType } from "../../services/type";
 
@@ -19,8 +20,11 @@ export function ModelChoice() {
   const { theme } = useTheme();
   const router = useRouter();
   const { engine, prefs, updatePrefs } = useAppServices();
-  const size = useMemo(() => modelFileSize(engine.model.uri), [engine.model.uri]);
-  const ready = engine.model.id !== "null";
+  /* Subscribed to the vault: the fast-follow pack lands while this step is up (B16), before the engine has swapped. */
+  const installed = useInstalledModel();
+  const uri = installed?.path ?? engine.model.uri;
+  const size = useMemo(() => modelFileSize(uri), [uri]);
+  const ready = installed !== null || engine.model.id !== "null";
   const next = () => router.push("/onboarding/airplane");
   return (
     <Screen header={{ back: true }} mesh testID="onboarding-model" footer={<Footer ready={ready} onStart={next} onInstantOnly={next} />}>

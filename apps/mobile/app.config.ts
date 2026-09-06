@@ -73,6 +73,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: "#0D1115",
     },
     intentFilters: [ggufIntentFilter],
+    /* Chats, keys and models never leave the device through Google's backup either (spec §10.6 #42). */
+    allowBackup: false,
+    /* The release manifest is exactly the allowlist in scripts/check-android-permissions.sh; everything a library adds beyond it is removed here (docs/legal/app-privacy-details.md §4.2). */
     blockedPermissions: dev
       ? []
       : [
@@ -80,6 +83,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           "android.permission.SYSTEM_ALERT_WINDOW",
           "android.permission.READ_EXTERNAL_STORAGE",
           "android.permission.WRITE_EXTERNAL_STORAGE",
+          /* expo-network: only ConnectivityManager is read (proof screen S03); Wi-Fi details are Play's business. */
+          "android.permission.ACCESS_WIFI_STATE",
+          /* androidx.work (Play asset-delivery transitive): extraction runs through JobScheduler on API 26+, no boot receiver, no wake lock of its own. */
+          "android.permission.RECEIVE_BOOT_COMPLETED",
+          "android.permission.WAKE_LOCK",
+          /* installreferrer (Play Billing transitive): attribution is telemetry. */
+          "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+          /* Pre-API 28 alias of USE_BIOMETRIC. */
+          "android.permission.USE_FINGERPRINT",
         ],
   },
   web: { bundler: "metro", output: "single", favicon: "./assets/favicon.png" },
@@ -104,32 +116,33 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ["./plugins/withAssetPacks", { packs: selectedPacks() }],
     /* Release signing with the Play upload key when INBORN_UPLOAD_KEYSTORE is set at build time; debug keystore otherwise. */
     "./plugins/withUploadSigning",
+    /* Spec floor is Android 8.0 (docs/qa/release-checklist.md T30). */
+    ["./plugins/withMinSdk", { minSdkVersion: 26 }],
   ],
 });
 
-/* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. */
+/* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. Pack names and asset names must match the catalog's play-asset-pack deliveries. */
 const ALL_PACKS = {
-  instant: { name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } },
-  fast: { name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } },
+  instant: [{ name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
+  fast: [{ name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } }],
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
-  embed: { name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } },
+  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } }],
   /* Voice (whisper base) and vision (Qwen3.5 projector) companions, same rule. */
-  speech: { name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } },
-  vision: { name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } },
-  /* Split with llama-gguf-split (Play caps a pack at 1.5 GB); llama.cpp opens the first shard and finds the second beside it. */
-  sharp: {
-    name: "inborn_model_sharp",
-    deliveryType: "on-demand",
-    assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf", "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf" },
-  },
+  speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
+  vision: [{ name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
+  /* Play caps one pack at 1.5 GB, so each llama-gguf-split shard is its own pack; the vault links them into one directory (src/vault/playDelivery.ts). */
+  sharp: [
+    { name: "inborn_model_sharp", deliveryType: "on-demand", assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf" } },
+    { name: "inborn_model_sharp_2", deliveryType: "on-demand", assets: { "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf" } },
+  ],
 } as const;
 
 function selectedPacks() {
   const raw = process.env.INBORN_PACKS?.trim();
-  if (!raw) return Object.values(ALL_PACKS);
-  return raw.split(",").map((k: string) => {
-    const pack = ALL_PACKS[k.trim() as keyof typeof ALL_PACKS];
-    if (!pack) throw new Error(`INBORN_PACKS: unknown pack "${k}" (known: ${Object.keys(ALL_PACKS).join(", ")})`);
-    return pack;
+  if (!raw) return Object.values(ALL_PACKS).flat();
+  return raw.split(",").flatMap((k: string) => {
+    const packs = ALL_PACKS[k.trim() as keyof typeof ALL_PACKS];
+    if (!packs) throw new Error(`INBORN_PACKS: unknown pack "${k}" (known: ${Object.keys(ALL_PACKS).join(", ")})`);
+    return packs;
   });
 }

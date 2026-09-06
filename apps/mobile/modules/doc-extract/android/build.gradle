@@ -35,5 +35,5 @@ dependencies {
   // Text layer of PDFs (Apache-2.0); PdfRenderer only rasterizes.
   implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
   // OCR fully on the device (Apache-2.0); ML Kit has no Hebrew model, so Tesseract with bundled traineddata.
-  implementation 'cz.adaptech.tesseract4android:tesseract4android:4.7.0'
+  implementation 'cz.adaptech.tesseract4android:tesseract4android:4.9.0'
 }

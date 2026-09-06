@@ -9,6 +9,10 @@ import expo.modules.kotlin.Promise
 import expo.modules.kotlin.exception.Exceptions
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import java.io.File
+
+import android.system.ErrnoException
+import android.system.Os
 
 /** Play Asset Delivery bridge: packs arrive through Play, never through a socket the app opens (spec §5.1). */
 class AssetPacksModule : Module() {
@@ -45,6 +49,23 @@ class AssetPacksModule : Module() {
       manager.getPackLocation(packName)?.assetsPath()
     }
 
+    /* Shards delivered as separate packs are joined by symlinks in app storage so llama.cpp finds them beside each other. */
+    Function("linkInto") { dir: String, links: Map<String, String> ->
+      val target = File(dir)
+      if (!target.isDirectory && !target.mkdirs()) return@Function null
+      for ((name, source) in links) {
+        if (!File(source).exists()) return@Function null
+        val link = File(target, name)
+        if (link.exists() || isBrokenLink(link)) link.delete()
+        try {
+          Os.symlink(source, link.path)
+        } catch (e: ErrnoException) {
+          return@Function null
+        }
+      }
+      target.path
+    }
+
     AsyncFunction("fetch") { packName: String, promise: Promise ->
       manager.fetch(listOf(packName))
         .addOnSuccessListener { promise.resolve(stateOf(packName, it)) }
@@ -77,6 +98,12 @@ class AssetPacksModule : Module() {
         .addOnSuccessListener { promise.resolve(it) }
         .addOnFailureListener { promise.reject("ERR_ASSET_PACK_CONFIRM", it.message, it) }
     }
+  }
+
+  private fun isBrokenLink(f: File): Boolean = try {
+    Os.lstat(f.path); true
+  } catch (e: ErrnoException) {
+    false
   }
 
   private fun stateOf(packName: String, states: AssetPackStates): Map<String, Any?>? =
