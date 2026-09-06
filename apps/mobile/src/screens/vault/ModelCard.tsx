@@ -5,6 +5,7 @@ import { expectedSpeed, formatModelBytes, ramFit, type CatalogModel, type Instal
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -73,7 +74,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         </Text>
         {model.proOnly ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
-      {recommended && !disabled ? <Text style={[type.mono, { color: theme.sealed }]}>{t("models.recommended")}</Text> : null}
+      {recommended && !disabled ? <Text style={[type.mono, { color: theme.sealed }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
       {model.goodFor ? (
         <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}

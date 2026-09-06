@@ -45,7 +45,7 @@ The app itself opens no connection by default.
 - **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
 
 ### Web version
-The browser version downloads the model from `models.{{DOMAIN}}` into the browser's own storage and runs it locally. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
+The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
 
 ### Marketing website
 `{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.

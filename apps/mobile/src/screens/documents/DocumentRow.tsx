@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Icon, radius, type Theme } from "@inborn/ui";
 import { formatBytes, type DocumentRecord, type IndexProgress } from "@inborn/core";
 import { font } from "../../services/type";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 export interface DocumentRowProps {
   doc: DocumentRecord;
@@ -36,7 +37,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
       case "indexed":
         return { text: t("documents.state.indexed", { count: doc.chunkCount }), color: theme.sealed };
       case "needs-ocr":
-        return { text: t("documents.state.needsOcr"), color: theme.accent };
+        return { text: t("documents.state.needsOcr", { device: deviceNoun() }), color: theme.accent };
       case "cancelled":
         return { text: t("documents.state.cancelled", { page: doc.indexedPages, pages: doc.pages }), color: theme.text2 };
       case "empty":

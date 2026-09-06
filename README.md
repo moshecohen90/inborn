@@ -279,9 +279,6 @@ uploaded to TestFlight on 6.9.2026 (no bundled model on iOS yet: import a GGUF o
 Open: voice + image input (M5b), the full 40-test run (`docs/qa/release-checklist.md`), real Play delivery + sandbox purchases, store
 screenshots, privacy-policy URL + support email + developer name (Moshe), Windows signing, Apple FM adapter.
 
-## Intentionally not built yet
-Apple FM adapter, model catalog + downloads, voice, personas, NativeWind styling (tokens exist), expo-router navigation, OCR in the browser tier.
-
 ## M3 full chat (spec §7.1, §8.2, §8.3, §8.5) — status 6.9.2026
 Everything below is free-tier unless marked PRO; PRO items render with a `PRO` tag and are gated by `apps/mobile/src/lib/entitlements.ts`
 (`EXPO_PUBLIC_PRO=1` unlocks them in dev builds; the paywall stream replaces `setEntitlements`).
@@ -355,11 +352,13 @@ The iOS build needs `patches/expo-modules-core@57.0.15.patch` (Xcode 26.2's Swif
 - **Web** (headless Chromium): the whole flow (onboarding → chat → drawer → settings light/dark → storage → about → licences → language/pseudo →
   proof → network log → cold-reload lock → wrong then right passcode → deep links → wipe→onboarding), 0 console errors.
 
-## Intentionally not built yet
-Apple FM adapter, model catalog + downloads, RAG, voice, purchases, NativeWind styling (tokens exist), expo-router navigation.
-
-Apple FM adapter, model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist). The device-guard policy behind
-`useDeviceState()`, the vault/documents/paywall screens, and per-message ledger actions are owned by other streams.
+## Intentionally not built yet (one list, 6.9.2026)
+Apple FM adapter (simulator-only so far), voice + image input (M5b, on `voice-m5b`), OCR in the browser tier, NativeWind styling (tokens
+exist), encrypted backup + device-to-device transfer, keyboard extension, custom quick actions, advanced engine controls (LAN, multi-model,
+speculative decoding, GPU / context tuning), Shortcuts / widgets, and every Work-only capability (profession packs, client vaults, redaction,
+XLSX intake, audit log, signed export, team keys). Nothing in this list is named on the paywall or in the store copy; the voice lines are the
+one exception and are marked (`VOICE_LINES` in `packages/core/src/licence/gates.ts`, `voice_lines` in `docs/store/listing.*.json`) so they can
+be pulled in one commit if M5b misses 1.0.
 
 ## Integration round 2 (documents ↔ chat, value moments, legal, shell events) — 6.9.2026
 The cross-stream wiring no stream owned, on branch `integrate-r2`:
@@ -417,6 +416,8 @@ What changed, numbered as in the review:
    Android chrome is drawn in-app; dynamic colour never touches a semantic surface because no Material theme is used.
 4–5. **One green.** The context meter is neutral (`text3`) below 80 %, accent from 80 %, danger from 92 %; every switch is
    the `Toggle` primitive (neutral track), the sealed green stays with the seal.
+   On the web the same primitive needs `activeTrackColor` / `activeThumbColor` (react-native-web ignores RN's `trackColor` object for the
+   ON thumb and paints its own teal); fixed and re-shot in the review-fixes round below.
 6–8. **Icons.** `packages/ui/src/icons` (14 Lucide paths, ISC) replaces every text glyph: back/chevrons mirror in RTL
    (`I18nManager.isRTL` → `scaleX(-1)`), airplane, incognito, mic, send, stop, attach, close, check, pin, upload. Attach/mic
    in `text2`, dimmed to `DISABLED_OPACITY` while they wait for M5.
@@ -439,3 +440,22 @@ Docs only, no app code. Everything the spec promises "lives in the repo" for §1
 - `docs/ops/` — `metrics-without-sdk.md` (sources, gates A/B/C, weekly routine, template), `trademark-watch.md` + `com.inbornapp.tm-watch.plist` (monthly `scripts/tm-watch.sh`, not installed; inborn.app expiry 25.10.2026; EU/US/UK filing costs), `developer-account.md` (neutral developer name, App Transfer at gate C).
 - `docs/launch/launch-plan.md` — Product Hunt / Show HN / Reddit / creator / promo-code / ASA+UAC drafts. Nothing sent.
 Verified: `plutil -lint` on the plist, `NOTICE.json` parses; licence inventory from `pnpm licenses list --json` (534 packages, 447 MIT). `scripts/tm-watch.sh Inborn` run 6.9.2026: 264 TMview results, 0 identical live marks in classes 9/42 at EM/US/GB/WO (exit 0).
+
+## Review fixes round 3 (MosheAI final review, 6.9.2026) — branch `fixes-r3`
+- **Honest paywall** (§2.3, §12.3): `PAYWALL_BULLETS` lists only shipped capabilities: unlimited documents + OCR with citations, unlimited
+  personas + memory, folders + export all, the Sharp models, and the voice line (marked in `VOICE_LINES`). Backup, keyboard extension, advanced
+  controls and the whole Work list are gone from the copy. Work has no capability of its own on main, so `sellable("work")` is false and the
+  Work card is not offered (the gate map, products and owned-state stay; the card returns with its first real feature). Core test
+  `licence-gates.test.ts` pins every bullet to an `en.json` key.
+- **Proof on the web** (§3.4, §8.9): "Last delivery" reads the OPFS model (`src/proof/webDelivery.ts`): name, bytes, the origin the tab fetched
+  it from and whether the stored sha256 equals the manifest's. The download worker's fetch never appears in the page's resource timing, so the
+  finished download is recorded in `localStorage` (`src/web/transfers.ts`) and seeded into the session `NetworkLog`: the meter shows
+  `OUT 0 B · IN <model size>` and the log lists the transfer.
+- **Web toggles** are neutral on the web too (see design fix 4–5).
+- **Airplane test** asks the model for one or two plain sentences (S03 shows "391.") and renders the answer through the chat `Markdown`, so a
+  table can never appear as raw pipes.
+- **{device} wording** (§9.9): `lib/deviceNoun.ts` (phone / tablet / computer / browser from the guard's device class) feeds the shared strings
+  (`onboarding.headline`, `chats.emptyHint`, `chat.canBeWrong`, `memory.explain`, `report.explain`, `onboarding.sealed.line`,
+  `onboarding.slowDevice`, `documents.state.needsOcr`, `models.recommended`); the five locales inflect with an ICU `select`.
+- Docs: one "not built" list above, privacy policy §3 web row says the model is served from the page's own origin, the store README documents
+  `voice_lines`.

@@ -15,6 +15,7 @@ import { getLicence, wipeLicence } from "../licence";
 import { useAppLock, type AppLock } from "../lock/useAppLock";
 import { isCaptured, onCapturedChange, setSecure } from "../../modules/secure-screen";
 import { meterKind, sample, type MeterKind } from "../proof/meterSource";
+import { priorTransfers } from "../proof/webDelivery";
 import type { SealState } from "../components/Seal";
 import { defaultPrefs, mergePrefs, type Prefs } from "./prefsTypes";
 import { deletePrefs, readPrefsRaw, writePrefsRaw } from "./prefsStore";
@@ -119,7 +120,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   const [delivery, setDelivery] = useState<DeliveryState | null>(null);
   const [captured, setCaptured] = useState(false);
   const [logTick, setLogTick] = useState(0);
-  const networkLog = useMemo(() => new NetworkLog(), []);
+  const networkLog = useMemo(() => {
+    const log = new NetworkLog();
+    for (const r of priorTransfers()) log.record(r);
+    return log;
+  }, []);
   const prefsRef = useRef(prefs);
   prefsRef.current = prefs;
   const lastMeterWrite = useRef(0);

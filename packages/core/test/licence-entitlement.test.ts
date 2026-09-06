@@ -2,7 +2,7 @@ import { randomBytes } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { deriveCacheKey, openCache, sealCache } from "../src/licence/cache";
 import { fallbackPrice, launchPriceActive, offersFor, resolveEntitlement, tierOf, updateCache } from "../src/licence/entitlement";
-import { FEATURES, FEATURE_LIST, PAYWALL_BULLETS, can, limits, requiredTier } from "../src/licence/gates";
+import { FEATURES, FEATURE_LIST, PAYWALL_BULLETS, can, limits, requiredTier, type Feature } from "../src/licence/gates";
 import { GRACE_DAYS, PRODUCTS, USD_PRICES, type EntitlementCache, type VerifiedPurchase } from "../src/licence/types";
 import { NOW } from "./licence-fixtures";
 
@@ -124,7 +124,9 @@ describe("feature gates (spec §7.5–§7.9, §12.3)", () => {
     for (const never of ["appLock", "encryptedDb", "incognito", "autoDelete", "panicWipe", "screenshotBlock", "proof", "accessibility", "languages", "report", "unlimitedChat"]) expect(never in FEATURES).toBe(false);
     expect(limits("free")).toEqual({ personas: 3, filesPerChat: 1, quickActions: 6 });
     expect(limits("pro")).toEqual({ personas: Infinity, filesPerChat: Infinity, quickActions: Infinity });
-    expect(PAYWALL_BULLETS.pro).toHaveLength(6);
-    expect(PAYWALL_BULLETS.work).toHaveLength(6);
+    /* S60 copy is bounded by the gates (§2.3): every Pro line names a pro-tier capability, and Work has none to name yet. */
+    const backing: Record<string, Feature> = { documents: "documents", personas: "unlimitedPersonas", folders: "folders", models: "proModels", voice: "whisperDictation" };
+    for (const b of PAYWALL_BULLETS.pro) expect(requiredTier(backing[b]!), b).toBe("pro");
+    expect(PAYWALL_BULLETS.work).toEqual([]);
   });
 });

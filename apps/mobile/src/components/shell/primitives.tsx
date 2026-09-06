@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Pressable, StyleSheet, Switch, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
+import { Platform, Pressable, StyleSheet, Switch, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
 import Svg, { Circle, Defs, Pattern, Rect } from "react-native-svg";
 import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
@@ -69,7 +69,9 @@ export function Button({
 /** §9.9: the sealed green belongs to the seal alone, so an ordinary on/off track is neutral. */
 export function Toggle({ value, onChange, disabled, testID, label }: { value: boolean; onChange: (v: boolean) => void; disabled?: boolean; testID?: string; label?: string }) {
   const { theme } = useTheme();
-  return <Switch testID={testID} accessibilityLabel={label} value={value} onValueChange={onChange} disabled={disabled} trackColor={{ true: theme.text2, false: theme.border }} thumbColor={theme.surface1} ios_backgroundColor={theme.border} />;
+  /* react-native-web paints the ON state from its own teal defaults unless activeTrackColor / activeThumbColor are given. */
+  const web = Platform.OS === "web" ? { activeTrackColor: theme.text2, activeThumbColor: theme.surface1 } : {};
+  return <Switch testID={testID} accessibilityLabel={label} value={value} onValueChange={onChange} disabled={disabled} trackColor={{ true: theme.text2, false: theme.border }} thumbColor={theme.surface1} ios_backgroundColor={theme.border} {...web} />;
 }
 
 /** One dimming for every control that exists but cannot be used yet. */
