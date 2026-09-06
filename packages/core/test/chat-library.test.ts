@@ -181,6 +181,8 @@ describe("exportChat", () => {
     expect(md.body).toContain("## Fast\n\n**May**.");
     expect(md.body).toContain("_Stopped_");
     expect(md.body).not.toContain("think");
+    expect(md.body.startsWith("---\nai_generated: true\ngenerator: Inborn\nmodel: Fast\ngenerated_at: ")).toBe(true);
+    expect(md.body).toContain("Generated with Inborn (on-device AI). Verify before use.");
     expect(exportChat(chat, messages, "markdown", { reasoning: true }).body).toContain("<details><summary>Reasoning</summary>");
   });
 
@@ -189,8 +191,11 @@ describe("exportChat", () => {
     expect(txt.filename).toBe("Trip-to-Rome-plan.txt");
     expect(txt.body.split("\n")[0]).toBe("Trip to Rome / plan?");
     expect(txt.body).toContain("INSTANT · ");
+    expect(txt.body).toContain("Generated with Inborn (on-device AI). Verify before use.");
     const json = exportChat(chat, messages, "json", { now: 0 });
-    const parsed = JSON.parse(json.body) as { chat: { title: string }; messages: { role: string; usage?: unknown; reasoning?: string }[] };
+    const parsed = JSON.parse(json.body) as { aiGenerated: boolean; generator: string; chat: { title: string }; messages: { role: string; usage?: unknown; reasoning?: string }[] };
+    expect(parsed.aiGenerated).toBe(true);
+    expect(parsed.generator).toBe("Inborn (on-device AI)");
     expect(parsed.chat.title).toBe(chat.title);
     expect(parsed.messages).toHaveLength(2);
     expect(parsed.messages[1]!.usage).toBeDefined();

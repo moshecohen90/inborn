@@ -37,6 +37,9 @@ export function safeFilename(title: string, fallback = "chat"): string {
 
 const modelName = (id: string | undefined, o: ExportOptions) => (id ? (o.modelNames?.[id] ?? id.toUpperCase()) : "");
 
+/** EU AI Act Art. 50(2) marking (docs/legal/ai-act-notes.md): every export says, visibly, that the text is AI-generated. */
+const AI_NOTICE = "Generated with Inborn (on-device AI). Verify before use.";
+
 /** One chat as a file (§7.1: single-chat export is free). Incognito chats are never passed here by the UI. */
 export function exportChat(chat: Chat, messages: readonly ChatMessage[], format: ExportFormat, options: ExportOptions = {}): ExportFile {
   const stem = safeFilename(chat.title);
@@ -44,6 +47,8 @@ export function exportChat(chat: Chat, messages: readonly ChatMessage[], format:
   if (format === "json") {
     const body = {
       app: options.appName ?? "Inborn",
+      aiGenerated: true,
+      generator: `${options.appName ?? "Inborn"} (on-device AI)`,
       exportedAt: new Date(options.now ?? Date.now()).toISOString(),
       chat: { id: chat.id, title: chat.title, createdAt: chat.createdAt, updatedAt: chat.updatedAt, modelId: chat.modelId, ...(chat.systemPrompt ? { systemPrompt: chat.systemPrompt } : {}) },
       messages: turns.map((m) => ({
@@ -59,14 +64,27 @@ export function exportChat(chat: Chat, messages: readonly ChatMessage[], format:
     return { filename: `${stem}.json`, mimeType: "application/json", body: JSON.stringify(body, null, 2) };
   }
   if (format === "text") {
-    const lines = [chat.title || "Chat", stamp(chat.createdAt), ""];
+    const lines = [chat.title || "Chat", stamp(chat.createdAt), AI_NOTICE, ""];
     for (const m of turns) {
       lines.push(`${m.role === "user" ? "You" : modelName(m.modelId ?? chat.modelId, options) || "Assistant"} · ${stamp(m.createdAt)}`);
       lines.push(m.content.trim(), "");
     }
     return { filename: `${stem}.txt`, mimeType: "text/plain", body: lines.join("\n") };
   }
-  const md = [`# ${chat.title || "Chat"}`, "", `_${stamp(chat.createdAt)} · ${modelName(chat.modelId, options)} · on-device_`, ""];
+  const md = [
+    "---",
+    "ai_generated: true",
+    `generator: ${options.appName ?? "Inborn"}`,
+    `model: ${modelName(chat.modelId, options)}`,
+    `generated_at: ${new Date(options.now ?? Date.now()).toISOString()}`,
+    "---",
+    `# ${chat.title || "Chat"}`,
+    "",
+    `_${stamp(chat.createdAt)} · ${modelName(chat.modelId, options)} · on-device_`,
+    "",
+    `_${AI_NOTICE}_`,
+    "",
+  ];
   if (chat.systemPrompt) md.push("> **System prompt:** " + chat.systemPrompt.replace(/\n/g, "\n> "), "");
   for (const m of turns) {
     md.push(`## ${m.role === "user" ? "You" : modelName(m.modelId ?? chat.modelId, options) || "Assistant"}`, "");
