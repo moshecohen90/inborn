@@ -50,7 +50,14 @@ export function PasscodeSheet({ visible, mode, onClose, onSubmit, warning }: Pro
       setError(t("passcode.mismatch"));
       return;
     }
-    const ok = await onSubmit(code);
+    let ok: boolean;
+    try {
+      ok = await onSubmit(code);
+    } catch (e: unknown) {
+      setCode("");
+      setError(t("passcode.saveFailed", { error: e instanceof Error ? e.message : String(e) }));
+      return;
+    }
     if (!ok) {
       setCode("");
       setError(t("passcode.wrong"));

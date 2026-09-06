@@ -233,9 +233,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     return vault.subscribe(update);
   }, [booted, reloadEngine]);
 
+  const lockRef = useRef<AppLock | null>(null);
   const wipeAll = useCallback(async (opts: WipeOptions) => {
     await wipeLicence();
     await wipe(opts);
+    await lockRef.current?.refresh();
     deletePrefs();
     const fresh = defaultPrefs(Date.now());
     writePrefsRaw(fresh);
@@ -246,6 +248,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   }, []);
 
   const lock = useAppLock({ prefs: prefs.lock, onWipe: () => void wipeAll({ models: false }) });
+  lockRef.current = lock;
 
   const meter = useMemo<Meter>(() => {
     const kind = meterKind();

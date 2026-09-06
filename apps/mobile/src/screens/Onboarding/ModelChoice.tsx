@@ -44,7 +44,7 @@ export function ModelChoice() {
         {Platform.OS === "android" ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.playLine")}</Text> : null}
         <View style={styles.switchRow}>
           <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("settings.downloads.wifiOnly")}</Text>
-          <Toggle value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} />
+          <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} label={t("settings.downloads.wifiOnly")} />
         </View>
         <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
       </View>

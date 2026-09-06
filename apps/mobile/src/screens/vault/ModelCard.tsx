@@ -23,12 +23,15 @@ export interface ModelCardProps {
   onResume: () => void;
   onUse: () => void;
   onDetails: () => void;
+  /** A stray file (QA B17): size + Remove only, never Use. */
+  stray?: boolean;
+  onRemove?: () => void;
 }
 
 const deviceWord = (t: (k: string) => string, d: DeviceInfo) => t(`vault.device.${d.deviceClass}`);
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const speed = expectedSpeed(device.chip, model.tier);
@@ -63,6 +66,26 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
   };
   const status = statusLine();
   const progress = state.kind === "delivering" ? state.bytes / Math.max(1, state.total || model.bytes) : state.kind === "ready" || state.kind === "verifying" ? 1 : 0;
+
+  if (stray)
+    return (
+      <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+        <View style={styles.head}>
+          <Text style={[styles.dot, { color: theme.text3 }]}>○</Text>
+          <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{t("vault.stray.label")}</Text>
+          <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
+            · {model.name}
+          </Text>
+        </View>
+        <Text style={[type.mono, { color: theme.text3 }]}>{formatModelBytes(model.bytes)}</Text>
+        <Text testID={`model-status-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
+          {t("vault.stray.status")}
+        </Text>
+        <View style={styles.actions}>
+          <Action testID={`remove-${model.id}`} theme={theme} onPress={onRemove ?? (() => undefined)} label={t("vault.remove")} />
+        </View>
+      </View>
+    );
 
   return (
     <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: active ? theme.sealed : theme.border, opacity: disabled ? 0.45 : 1 }]}>

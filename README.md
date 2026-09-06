@@ -612,3 +612,28 @@ node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/
 - Sets: Apple 6.9" 1320×2868, 6.5" 1284×2778, iPad 13" 2064×2752 (real iPad capture); Play phone 1080×1920, 7" 1200×1920 and 10"
   1600×2560 (the phone capture on a tablet canvas, noted on the panel until there is an Android tablet capture), feature graphic 1024×500.
 - Only the English set is committed (`out/apple/en`, `out/play/en`, `out/preview.html`); other locales and raw captures are regenerated.
+
+## QA bug fixes round 4b (`docs/qa/qa-run-2026-09-06.md` B7–B13, B17) — branch `fixes-r4b`
+- **B7 wipe** deletes every Keychain / Keystore item: `src/storage/secureItems.ts` is the single list (db key, lock passcode) that the
+  passcode store, the SQLCipher key and `wipe.native.ts` all use; `AppLock.refresh()` re-reads it after a wipe so Settings shows "Set a
+  passcode" again (Pixel_4 emulator: SecureStore.xml held both items, after the wipe only the fresh db key; Settings row back to "Set a passcode").
+- **B8 background mid-generation**: the guard's pause (`wasStoppedByGuard`) now counts as a system stop, so the partial answer gets the inline
+  "The system stopped generation · Continue"; the §8.8 strip shows "Paused while Inborn was in the background" with CONTINUE, which accepts the
+  guard line and fires the `continue` shortcut the chat screen handles. Emulator: 600-word essay, Home after 6 s, back after 22 s → banner +
+  CONTINUE → the essay resumed (second `[stats]` run at 14 tok/s).
+- **B9** the passcode sheet catches a failed `setPasscode()` and shows `passcode.saveFailed` with the OS error instead of four silent dots.
+- **B10 iOS 26 glass composer**: `maintainVisibleContentPosition` pinned index 0 while the list was empty, so the bar inset the list grew by was
+  scrolled straight back under the composer; it is off for the empty list, and the chat re-anchors the end when the floating bar grows.
+  `ChromeBar` measures with a plain View (the glass fills it underneath). iPhone 17 Pro / iOS 26.3 Release build: the three chips sit above the bar.
+- **B11 contrast**: `text3` is `#7A8794` (dark) / `#5E6975` (light); `contrastRatio()` in `packages/ui` and a test keep text/text2/text3 ≥ 4.5:1
+  on bg, surface1, surface2 and well in both schemes.
+- **B12 Settings › Reports** (`src/screens/Settings/Reports.tsx`, `/settings/reports`): every saved report with reason, date and size; a detail
+  sheet with "Email report" (share sheet, `reportText()` in core, also used by the chat) and "Delete report". Nothing is sent by the app.
+- **B13**: the Wi-Fi-only and lock switches carry `accessibilityLabel`; the composer no longer doubles its placeholder as a label.
+- **B17**: `.gguf` files in `Documents/models` that no catalog part, import or download owns are listed as `FILE · <name>` with
+  "Unverified file in the vault folder", counted in the vault header and in Settings › Storage, and removable; never loaded.
+- New i18n keys (English placeholders in the five locales until translated): `passcode.saveFailed`, `state.pausedInBackground`,
+  `reports.title|row|explain|empty|emailNote|delete`, `vault.stray.label|status`.
+- Emulator traps met on the way: Pixel_4 needs `-memory 4096` (2 GB gets the app killed while the model loads); the simulator's dyld shared
+  cache can break under host memory pressure (`_dyld_sim_prepare` SIGBUS at launch): shut the simulator down and boot it again.
+

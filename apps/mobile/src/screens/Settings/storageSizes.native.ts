@@ -28,6 +28,6 @@ export async function storageSizes(): Promise<StorageSizes> {
   const dbDir = new Directory(SQLite.defaultDatabaseDirectory);
   const chats = sizeOf(new File(dbDir, DB_NAME)) + sizeOf(new File(dbDir, `${DB_NAME}-wal`));
   const packDir = Platform.OS === "android" ? getPackPath(MODEL_PACK) : null;
-  const models = ggufBytes(new Directory(Paths.document)) + ggufBytes(packDir ? new Directory(`file://${packDir}`) : null);
+  const models = ggufBytes(new Directory(Paths.document)) + ggufBytes(new Directory(Paths.document, "models")) + ggufBytes(packDir ? new Directory(`file://${packDir}`) : null);
   return { chats, documents: 0, models, memory: 0, reports: 0 };
 }

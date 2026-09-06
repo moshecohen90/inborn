@@ -147,6 +147,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             onResume={() => void vault.resume(item.model.id)}
             onUse={() => void use(item.model.id)}
             onDetails={() => setDetails(item.model)}
+            stray={!!item.stray}
+            onRemove={() => void vault.remove(item.model.id)}
           />
         )}
         ListFooterComponent={

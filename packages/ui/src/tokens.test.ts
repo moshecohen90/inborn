@@ -1,5 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { bundledWeight, fontFace, fonts, scaledStep, typeScale, TEXT_SCALES, MAX_TEXT_SCALE } from "./tokens";
+import { bundledWeight, contrastRatio, dark, fontFace, fonts, light, scaledStep, typeScale, TEXT_SCALES, MAX_TEXT_SCALE } from "./tokens";
+
+describe("contrast (QA B11)", () => {
+  it("text, text2 and text3 reach 4.5:1 on every surface in both schemes", () => {
+    for (const theme of [dark, light])
+      for (const surface of [theme.bg, theme.surface1, theme.surface2, theme.well])
+        for (const ink of [theme.text, theme.text2, theme.text3]) expect(contrastRatio(ink, surface), `${ink} on ${surface}`).toBeGreaterThanOrEqual(4.5);
+  });
+  it("cta text reaches 4.5:1 on the cta fill", () => {
+    expect(contrastRatio(dark.ctaText, dark.ctaFill)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(light.ctaText, light.ctaFill)).toBeGreaterThanOrEqual(4.5);
+  });
+});
 
 describe("fontFace", () => {
   it("gives the web a stack that never ends in a serif", () => {
