@@ -4,7 +4,8 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
-import { getEngine } from "../engine";
+import { getEngine, resetEngine } from "../engine";
+import { getVault } from "../vault/store";
 import { openPersistentStorage } from "../storage/persistent";
 import type { PersistenceKind } from "../storage/types";
 import { wipe, type WipeOptions } from "../storage/wipe";
@@ -22,6 +23,8 @@ export interface ActiveChat {
   id: string | null;
   incognito: boolean;
   key: number;
+  /** Persona chosen in the new-chat sheet for a chat that does not exist yet. */
+  personaId?: string;
 }
 
 /** Filled by the vault stream while the store/system delivers a model (§8.8 "model delivering"). */
@@ -55,11 +58,14 @@ export interface AppServices {
   meter: Meter;
   active: ActiveChat;
   openChat(chat: Chat): void;
-  newChat(incognito: boolean): void;
+  newChat(incognito: boolean, personaId?: string): void;
   chatCreated(id: string): void;
   chatDeleted(id: string): void;
+  /** The vault changed the default model (or one just arrived): pick the engine up again; callers remount the chat. */
+  modelChanged(): void;
   delivery: DeliveryState | null;
   setDelivery(d: DeliveryState | null): void;
+  /** §8.8: hand the chat to Instant while the device is hot / low; `switchBack` returns to the model in use before. */
   switchToInstant(): void;
   switchBack(): void;
   continueGeneration(): void;
@@ -114,6 +120,23 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   const prefsRef = useRef(prefs);
   prefsRef.current = prefs;
   const lastMeterWrite = useRef(0);
+  const bootedRef = useRef(booted);
+  bootedRef.current = booted;
+  const previousModel = useRef<string | null>(null);
+  const swapping = useRef(false);
+
+  /* A different default model (vault, §8.8 switch, a pack that just landed): unload, resolve again, remount the chat. */
+  const reloadEngine = useCallback(async () => {
+    if (swapping.current) return;
+    swapping.current = true;
+    try {
+      await resetEngine();
+      setBooted((b) => (b ? { ...b, engine: getEngine() } : b));
+      setActive((a) => ({ ...a, key: a.key + 1 }));
+    } finally {
+      swapping.current = false;
+    }
+  }, []);
 
   const updatePrefs = useCallback((patch: Partial<Prefs> | ((p: Prefs) => Partial<Prefs>)) => {
     setPrefs((p) => {
@@ -179,6 +202,25 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
 
   useEffect(() => networkLog.subscribe(() => setLogTick((n) => n + 1)), [networkLog]);
 
+  // The vault drives the §8.8 "delivering" strip and the seal; on first launch the fast-follow pack hot-swaps the engine when it lands.
+  useEffect(() => {
+    if (Platform.OS === "web" || !booted) return;
+    const vault = getVault();
+    const update = () => {
+      const chat = vault.entries().filter((e) => e.model.role === "chat");
+      const live = chat.find((e) => e.state.kind === "delivering" && !e.state.paused) ?? chat.find((e) => e.state.kind === "verifying");
+      const next: DeliveryState | null = !live
+        ? null
+        : live.state.kind === "delivering"
+          ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
+          : { name: live.model.name.toUpperCase(), status: "delivering", progress: 1, totalBytes: live.model.bytes };
+      setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
+      if (bootedRef.current?.engine.model.id === "null" && vault.activeModel()) void reloadEngine();
+    };
+    update();
+    return vault.subscribe(update);
+  }, [booted, reloadEngine]);
+
   const wipeAll = useCallback(async (opts: WipeOptions) => {
     await wipeLicence();
     await wipe(opts);
@@ -218,7 +260,8 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       updatePrefs,
       lock,
       captured,
-      sealState,
+      /* No model yet and a pack on its way: the seal shows "delivering" until the engine hot-swaps (§8.8). */
+      sealState: booted.engine.model.id === "null" && delivery?.status === "delivering" ? "loading" : sealState,
       setSealState,
       networkLog,
       meter,
@@ -229,23 +272,38 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
           return { id: chat.id, incognito: chat.incognito, key: a.key + 1 };
         });
       },
-      newChat: (incognito) => {
+      newChat: (incognito, personaId) => {
         setActive((a) => {
           closeActive(booted.store, a);
-          return { id: null, incognito, key: a.key + 1 };
+          return { id: null, incognito, key: a.key + 1, ...(personaId ? { personaId } : {}) };
         });
       },
       chatCreated: (id) => setActive((a) => ({ ...a, id })),
       chatDeleted: (id) => setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a)),
+      modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),
       delivery,
       setDelivery,
-      /* Model switching belongs to the engine/vault streams; the shell only offers the buttons (§8.8). */
-      switchToInstant: () => console.log("[inborn] switch to Instant requested"),
-      switchBack: () => console.log("[inborn] switch back requested"),
+      switchToInstant: () => {
+        const vault = getVault();
+        if (Platform.OS === "web" || vault.state("instant").kind !== "ready") return;
+        const current = vault.activeModel()?.model.id ?? null;
+        if (current === "instant") return;
+        previousModel.current = current;
+        vault.setDefault("instant");
+        void reloadEngine();
+      },
+      switchBack: () => {
+        const id = previousModel.current;
+        if (!id || Platform.OS === "web") return;
+        previousModel.current = null;
+        getVault().setDefault(id);
+        void reloadEngine();
+      },
+      /* Resuming after a thermal/memory pause belongs to the device-guard stream (§8.8). */
       continueGeneration: () => console.log("[inborn] continue generation requested"),
       wipeAll,
     };
-  }, [booted, prefs, updatePrefs, lock, captured, sealState, networkLog, meter, active, delivery, wipeAll, closeActive]);
+  }, [booted, prefs, updatePrefs, lock, captured, sealState, networkLog, meter, active, delivery, wipeAll, closeActive, reloadEngine]);
 
   if (!value) return <>{fallback}</>;
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

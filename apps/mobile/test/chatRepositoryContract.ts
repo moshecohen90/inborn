@@ -163,5 +163,27 @@ export function describeChatRepositoryContract(name: string, open: OpenRepositor
       expect(after?.summaryUpTo).toBeUndefined();
       expect((await repo.listMessages(chat.id)).map((m) => m.id)).toEqual([ids[0]]);
     });
+
+    it("keeps the citations of an answer (§7.3) through append, update and clear", async () => {
+      const repo = await open({ now: clock() });
+      const chat = await repo.createChat({ modelId: "instant" });
+      const citations = [
+        { n: 1, docId: "d1", docName: "lease.pdf", kind: "pdf" as const, page: 4, chunkId: "c1", snippet: "No pets without written consent." },
+        { n: 2, docId: "d1", docName: "lease.pdf", kind: "pdf" as const, page: 9, chunkId: "c2", snippet: "Deposit is returned within 30 days." },
+      ];
+      const plain = await repo.appendMessage({ chatId: chat.id, role: "user", content: "pets?" });
+      expect(plain.citations).toBeUndefined();
+      const m = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "Not without consent [1].", citations });
+      expect(m.citations).toEqual(citations);
+      m.citations![0]!.snippet = "mutated";
+      const [, stored] = await repo.listMessages(chat.id);
+      expect(stored?.citations).toEqual(citations);
+      await repo.updateMessage(chat.id, m.id, { content: "Deposit [2].", citations: [citations[1]!] });
+      expect((await repo.listMessages(chat.id))[1]?.citations).toEqual([citations[1]]);
+      await repo.updateMessage(chat.id, m.id, { citations: [] });
+      expect((await repo.listMessages(chat.id))[1]?.citations).toBeUndefined();
+      const none = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "x", citations: [] });
+      expect(none.citations).toBeUndefined();
+    });
   });
 }

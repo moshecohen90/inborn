@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { can, type Entitlement, type Feature, type LicenceManager, type LicenceState, type LicenceTier } from "@inborn/core";
+import { DEV_TIER } from "./devFlags";
 import { getLicence, licenceIfStarted } from "./licence";
 
 /** The manager once it has started (null on the very first render before the cache was read). */
@@ -38,6 +39,6 @@ export interface EntitlementView {
 /** `const { tier, can } = useEntitlement(); if (!can("documents")) …` */
 export function useEntitlement(): EntitlementView {
   const { state } = useLicenceState();
-  const tier = state?.entitlement.tier ?? "free";
+  const tier = DEV_TIER ?? state?.entitlement.tier ?? "free";
   return { tier, entitlement: state?.entitlement ?? null, loading: !state || state.phase !== "ready", can: (feature) => can(tier, feature) };
 }

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BUILT_IN_PERSONAS, PERSONA_ICONS, canCreatePersona, validatePersona, type ChatStore, type Persona, type PersonaIcon, type PersonaInput } from "@inborn/core";
-import { useEntitlements } from "../../lib/entitlements";
+import { BUILT_IN_PERSONAS, PERSONA_ICONS, paywallFor, validatePersona, type ChatStore, type Persona, type PersonaIcon, type PersonaInput } from "@inborn/core";
+import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { PersonaGlyph } from "../../components/chat/PersonaGlyph";
 import { ProTag, Sheet, SheetItem } from "../../components/chat/Sheet";
@@ -14,16 +14,18 @@ interface Props {
   store: ChatStore;
   /** Fires after any create / edit / delete so the caller can refresh chips. */
   onChanged?: () => void;
+  /** The 4th custom persona is a §12.3 value moment: the add row opens the paywall instead. */
+  onUnlock?: () => void;
 }
 
 type Draft = { id?: string; name: string; icon: PersonaIcon; systemPrompt: string; temperature: string; disclaimer: string };
 const empty = (): Draft => ({ name: "", icon: "spark", systemPrompt: "", temperature: "", disclaimer: "" });
 
 /** Persona library (§8.5 S41): four built-ins, custom ones with name, glyph, prompt, temperature, fixed disclaimer. */
-export function PersonasSheet({ visible, onClose, store, onChanged }: Props) {
+export function PersonasSheet({ visible, onClose, store, onChanged, onUnlock }: Props) {
   const theme = useTheme();
   const { t } = useTranslation();
-  const ent = useEntitlements();
+  const { tier } = useEntitlement();
   const [custom, setCustom] = useState<Persona[]>([]);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
@@ -33,7 +35,11 @@ export function PersonasSheet({ visible, onClose, store, onChanged }: Props) {
     if (visible) void refresh();
   }, [visible, refresh]);
 
-  const canAdd = canCreatePersona(custom.length, ent);
+  const locked = paywallFor(tier, { kind: "persona", existing: custom.length });
+  const unlock = () => {
+    onClose();
+    setTimeout(() => onUnlock?.(), 320);
+  };
   const edit = (p: Persona) => setDraft({ id: p.id, name: p.name, icon: p.icon, systemPrompt: p.systemPrompt, temperature: p.temperature === undefined ? "" : String(p.temperature), disclaimer: p.disclaimer ?? "" });
 
   const save = async () => {
@@ -129,7 +135,7 @@ export function PersonasSheet({ visible, onClose, store, onChanged }: Props) {
             </Pressable>
           ))}
           {!custom.length ? <Text style={[type.bodySmall, styles.empty, { color: theme.text3 }]}>{t("personas.empty")}</Text> : null}
-          <SheetItem testID="persona-add" label={t("personas.add")} hint={canAdd ? undefined : t("personas.limit", { count: custom.length })} onPress={() => (canAdd ? setDraft(empty()) : undefined)} disabled={!canAdd} trailing={ent.pro ? undefined : <ProTag />} />
+          <SheetItem testID="persona-add" label={t("personas.add")} hint={locked ? t("personas.limit", { count: custom.length }) : undefined} onPress={() => (locked ? unlock() : setDraft(empty()))} trailing={locked ? <ProTag onPress={unlock} /> : undefined} />
         </View>
       )}
     </Sheet>

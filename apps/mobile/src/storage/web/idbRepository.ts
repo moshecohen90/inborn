@@ -16,8 +16,8 @@ import {
 } from "@inborn/core";
 
 export const IDB_NAME = "inborn";
-/** v1: chats + messages (byChat, byId). v2: `byChatSeq` on messages for ordered reads and tail deletes; chat rows gained the §5.3 fields. */
-export const IDB_VERSION = 2;
+/** v1: chats + messages (byChat, byId). v2: `byChatSeq` on messages for ordered reads and tail deletes; chat rows gained the §5.3 fields. v3: message rows carry `citations` (§7.3); no index change. */
+export const IDB_VERSION = 3;
 const CHATS = "chats";
 const MESSAGES = "messages";
 const BY_CHAT = "byChat";
@@ -62,7 +62,7 @@ const chatRange = (chatId: string, fromSeq = -Infinity) => IDBKeyRange.bound([ch
 const bySeq = (a: MessageRow, b: MessageRow) => a.createdAt - b.createdAt || (a.seq ?? 0) - (b.seq ?? 0);
 
 const OPTIONAL_CHAT = ["personaId", "pinned", "archived", "folderId", "systemPrompt", "thinking", "summary", "summaryUpTo"] as const;
-const OPTIONAL_MESSAGE = ["reasoning", "reasoningMs", "modelId", "stopped", "stoppedBy", "usage"] as const;
+const OPTIONAL_MESSAGE = ["reasoning", "reasoningMs", "modelId", "stopped", "stoppedBy", "usage", "citations"] as const;
 
 /** Rows come back without `undefined` keys or stale flags, matching the SQL repositories' `toChat`. */
 function toChat(row: Chat): Chat {
@@ -80,8 +80,8 @@ function toMessage(row: MessageRow): ChatMessage {
   const message: ChatMessage = { id: row.id, chatId: row.chatId, role: row.role, content: row.content, createdAt: row.createdAt };
   for (const key of OPTIONAL_MESSAGE) {
     const v = row[key];
-    if (v === undefined || v === null || v === false) continue;
-    Object.assign(message, { [key]: key === "usage" ? { ...(v as ChatMessage["usage"]) } : v });
+    if (v === undefined || v === null || v === false || (Array.isArray(v) && !v.length)) continue;
+    Object.assign(message, { [key]: key === "usage" ? { ...(v as ChatMessage["usage"]) } : key === "citations" ? (v as NonNullable<ChatMessage["citations"]>).map((c) => ({ ...c })) : v });
   }
   return message;
 }
@@ -218,6 +218,7 @@ export class IdbChatRepository implements ChatRepository {
       ...(input.stopped ? { stopped: true } : {}),
       ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
+      ...(input.citations?.length ? { citations: input.citations } : {}),
     });
     const tx = this.db.transaction([CHATS, MESSAGES], "readwrite");
     const chats = tx.objectStore(CHATS);
@@ -244,6 +245,10 @@ export class IdbChatRepository implements ChatRepository {
     if (patch.stopped !== undefined) next.stopped = patch.stopped;
     if (patch.stoppedBy !== undefined) next.stoppedBy = patch.stoppedBy;
     if (patch.usage !== undefined) next.usage = { ...patch.usage };
+    if (patch.citations !== undefined) {
+      if (patch.citations.length) next.citations = patch.citations.map((c) => ({ ...c }));
+      else delete next.citations;
+    }
     store.put(next);
     await done(tx);
   }

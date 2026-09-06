@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import type { DownloadPauseState } from "expo-file-system";
 import type { DeliverySource } from "@inborn/core";
 import { recordFile } from "./paths";
@@ -41,7 +42,11 @@ export interface VaultRecord {
 
 export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, downloads: {}, wifiOnly: true };
 
+/* expo-file-system has no web implementation; the browser tier keeps its model in OPFS (src/web) and the vault stays empty. */
+const noFiles = (): boolean => Platform.OS === "web";
+
 export function readRecord(): VaultRecord {
+  if (noFiles()) return { ...EMPTY_RECORD };
   try {
     const f = recordFile();
     if (!f.exists) return { ...EMPTY_RECORD };
@@ -54,6 +59,7 @@ export function readRecord(): VaultRecord {
 }
 
 export function writeRecord(record: VaultRecord): void {
+  if (noFiles()) return;
   try {
     recordFile().write(JSON.stringify(record));
   } catch (e: unknown) {

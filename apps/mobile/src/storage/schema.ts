@@ -95,6 +95,12 @@ CREATE TABLE IF NOT EXISTS reports (
 );
 `,
   },
+  {
+    version: 3,
+    sql: `
+ALTER TABLE messages ADD COLUMN citations_json TEXT;
+`,
+  },
 ];
 
 export const SCHEMA_VERSION = MIGRATIONS[MIGRATIONS.length - 1]!.version;
@@ -123,7 +129,7 @@ export const SQL = {
   deleteChat: "DELETE FROM chats WHERE id = ?",
   listMessages: "SELECT * FROM messages WHERE chat_id = ? ORDER BY created_at, seq",
   insertMessage:
-    "INSERT INTO messages (id, chat_id, role, content, reasoning, reasoning_ms, model_id, created_at, stopped, stopped_by, usage_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO messages (id, chat_id, role, content, reasoning, reasoning_ms, model_id, created_at, stopped, stopped_by, usage_json, citations_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
   touchChat: "UPDATE chats SET updated_at = ? WHERE id = ?",
   messageSeq: "SELECT seq FROM messages WHERE id = ? AND chat_id = ?",
   deleteMessagesFromSeq: "DELETE FROM messages WHERE chat_id = ? AND seq >= ?",

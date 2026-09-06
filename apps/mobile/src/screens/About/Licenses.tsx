@@ -5,40 +5,47 @@ import { radius } from "@inborn/ui";
 import { useTheme, FONT } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
 import { Mono, Section, shellStyles } from "../../components/shell/primitives";
+import notice from "../../../../../docs/legal/NOTICE.json";
 
-interface Licence {
+interface Component {
+  id: string;
+  group: "model" | "engine" | "library" | "font";
   name: string;
-  licence: string;
-  url: string;
-  note?: string;
+  version?: string;
+  tier?: string;
+  license: string;
+  licenseUrl?: string;
+  homepage?: string;
+  attribution?: string;
+  obligations?: string[];
+  restrictions?: string[];
+  /** shipped / catalogue / planned / build-only (docs/legal/NOTICE.json). */
+  scope: string;
 }
 
-/* §11.4: what ships built in or from our CDN makes us a distributor; every item carries name, licence, link, limits. */
-const MODELS: Licence[] = [{ name: "Qwen3.5 0.8B (Instant)", licence: "Apache-2.0", url: "https://huggingface.co/Qwen", note: "NOTICE and attribution; no downstream use restrictions." }];
-
-const OSS: Licence[] = [
-  { name: "llama.cpp", licence: "MIT", url: "https://github.com/ggml-org/llama.cpp" },
-  { name: "llama.rn", licence: "MIT", url: "https://github.com/mybigday/llama.rn" },
-  { name: "wllama", licence: "MIT", url: "https://github.com/ngxson/wllama" },
-  { name: "SQLCipher", licence: "BSD-3-Clause", url: "https://www.zetetic.net/sqlcipher/" },
-  { name: "Expo, React Native", licence: "MIT", url: "https://expo.dev" },
-  { name: "react-native-svg", licence: "MIT", url: "https://github.com/software-mansion/react-native-svg" },
-  { name: "i18next, react-i18next, i18next-icu", licence: "MIT", url: "https://www.i18next.com" },
-  { name: "IBM Plex Sans, IBM Plex Mono", licence: "OFL-1.1", url: "https://github.com/IBM/plex" },
-];
+const COMPONENTS = (notice as { components: Component[] }).components;
+/* §11.4: what ships built in or from our CDN makes us a distributor; planned and build-only entries are an audit trail, not a notice. */
+const shipping = (c: Component) => /^(shipped|catalogue)/.test(c.scope);
+const GROUPS: Component["group"][] = ["engine", "library", "font"];
 
 export function Licenses() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { oss } = useLocalSearchParams<{ oss?: string }>();
-  const Item = ({ l }: { l: Licence }) => (
-    <View style={[styles.item, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-      <Text style={[shellStyles.heading, { color: theme.text }]}>{l.name}</Text>
-      <Mono color={theme.text2}>{l.licence}</Mono>
-      {l.note ? <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{l.note}</Text> : null}
-      <Text accessibilityRole="link" onPress={() => void Linking.openURL(l.url)} style={[styles.link, { color: theme.accent }]}>
-        {l.url}
+  const Item = ({ c }: { c: Component }) => (
+    <View testID={`licence-${c.id}`} style={[styles.item, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+      <Text style={[shellStyles.heading, { color: theme.text }]}>
+        {c.name}
+        {c.tier ? ` · ${c.tier}` : ""}
       </Text>
+      <Mono color={theme.text2}>{[c.license, c.version, c.scope.toUpperCase()].filter(Boolean).join(" · ")}</Mono>
+      {c.attribution ? <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{c.attribution}</Text> : null}
+      {c.restrictions?.length ? <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{c.restrictions.join(" ")}</Text> : null}
+      {c.homepage || c.licenseUrl ? (
+        <Text accessibilityRole="link" onPress={() => void Linking.openURL(c.homepage ?? c.licenseUrl!)} style={[styles.link, { color: theme.accent }]}>
+          {c.homepage ?? c.licenseUrl}
+        </Text>
+      ) : null}
     </View>
   );
   return (
@@ -46,16 +53,19 @@ export function Licenses() {
       {oss !== "1" ? (
         <Section title={t("about.modelLicenses")}>
           <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("licenses.modelsNote")}</Text>
-          {MODELS.map((l) => (
-            <Item key={l.name} l={l} />
+          {COMPONENTS.filter((c) => c.group === "model" && shipping(c)).map((c) => (
+            <Item key={c.id} c={c} />
           ))}
         </Section>
       ) : null}
-      <Section title={t("about.openSource")}>
-        {OSS.map((l) => (
-          <Item key={l.name} l={l} />
-        ))}
-      </Section>
+      {GROUPS.map((g) => (
+        <Section key={g} title={t(`licenses.group.${g}`)}>
+          {COMPONENTS.filter((c) => c.group === g && shipping(c)).map((c) => (
+            <Item key={c.id} c={c} />
+          ))}
+        </Section>
+      ))}
+      <Text style={[shellStyles.caption, styles.foot, { color: theme.text3 }]}>{t("licenses.source", { date: (notice as { generated: string }).generated })}</Text>
     </Screen>
   );
 }
@@ -63,4 +73,5 @@ export function Licenses() {
 const styles = StyleSheet.create({
   item: { borderWidth: 1, borderRadius: radius.control, padding: 12, gap: 4, marginTop: 8 },
   link: { fontFamily: FONT.mono, fontSize: 12 },
+  foot: { paddingTop: 16, textAlign: "center" },
 });

@@ -1,6 +1,6 @@
 import { LicenceManager } from "@inborn/core";
 import { setEntitlements } from "../lib/entitlements";
-import { LAUNCH_AT } from "./devFlags";
+import { DEV_TIER, LAUNCH_AT } from "./devFlags";
 import { createStoreProvider } from "./provider";
 import { cacheStorage, randomNonce, storageSecretHex } from "./storage";
 import { verifyProof } from "./verify";
@@ -25,7 +25,7 @@ export function getLicence(): Promise<LicenceManager> {
       }
       const manager = new LicenceManager({ provider: createStoreProvider(), cache, storageSecretHex: secret, randomNonce, verify: verifyProof, launchAt: LAUNCH_AT, log: (m) => console.info(`[licence] ${m}`) });
       /* The chat/persona screens read the simple `Entitlements` shape; keep it in step with the verified tier. */
-      const push = () => setEntitlements({ pro: manager.tier !== "free" });
+      const push = () => setEntitlements({ pro: DEV_TIER !== null || manager.tier !== "free" });
       manager.subscribe(push);
       await manager.start();
       push();

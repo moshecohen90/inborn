@@ -23,6 +23,8 @@ import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 
 /** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
 export const FREE_PAGE_CAP = 20;
+/** Attachment keys with this prefix (incognito chats, chats not created yet) live in RAM only (§5.7). */
+export const RAM_ATTACH_PREFIX = "ram:";
 
 export type EmbedderStatus = { kind: "ready"; path: string } | { kind: "missing" } | { kind: "loading" } | { kind: "failed"; error: string };
 
@@ -125,16 +127,21 @@ export class DocumentLibrary {
 
   // ---- preferences -------------------------------------------------------------
 
+  private savePrefs(): void {
+    const attachments = Object.fromEntries(Object.entries(this.prefs.attachments).filter(([k]) => !k.startsWith(RAM_ATTACH_PREFIX)));
+    writePrefs({ ...this.prefs, attachments });
+  }
+
   setStrict(v: boolean): void {
     this.prefs.strict = v;
-    writePrefs(this.prefs);
+    this.savePrefs();
     this.notify();
   }
 
   attach(chatId: string, docId: string): void {
     const list = this.prefs.attachments[chatId] ?? [];
     if (!list.includes(docId)) this.prefs.attachments[chatId] = [...list, docId];
-    writePrefs(this.prefs);
+    this.savePrefs();
     this.notify();
   }
 
@@ -142,7 +149,23 @@ export class DocumentLibrary {
     const list = this.prefs.attachments[chatId] ?? [];
     this.prefs.attachments[chatId] = list.filter((d) => d !== docId);
     if (!this.prefs.attachments[chatId]?.length) delete this.prefs.attachments[chatId];
-    writePrefs(this.prefs);
+    this.savePrefs();
+    this.notify();
+  }
+
+  /** The first message creates the chat: what was attached under the draft key follows it to the real id. */
+  moveAttachments(from: string, to: string): void {
+    const list = this.prefs.attachments[from];
+    delete this.prefs.attachments[from];
+    if (list?.length) this.prefs.attachments[to] = [...new Set([...(this.prefs.attachments[to] ?? []), ...list])];
+    this.savePrefs();
+    this.notify();
+  }
+
+  detachAll(chatId: string): void {
+    if (!this.prefs.attachments[chatId]) return;
+    delete this.prefs.attachments[chatId];
+    this.savePrefs();
     this.notify();
   }
 

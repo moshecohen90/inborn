@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
 import { shape, type } from "./styles";
 
@@ -47,13 +49,14 @@ export function SheetItem({ label, hint, onPress, danger, disabled, testID, trai
   );
 }
 
-/** Small "PRO" tag next to a gated action; the paywall stream turns it into a purchase entry point. */
-export function ProTag() {
+/** Small "PRO" tag next to a gated action: tapping it opens the paywall (S60), the value moment of §12.3. */
+export function ProTag({ onPress }: { onPress?: () => void } = {}) {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
-    <View testID="pro-tag" style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
+    <Pressable testID="pro-tag" accessibilityRole="button" accessibilityLabel={t("gate.unlock")} hitSlop={8} onPress={onPress ?? (() => router.push("/paywall"))} style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
       <Text style={[type.monoLabel, { color: theme.accent }]}>PRO</Text>
-    </View>
+    </Pressable>
   );
 }
 

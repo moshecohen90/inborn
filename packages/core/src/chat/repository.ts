@@ -112,7 +112,7 @@ export interface InMemoryOptions {
   newId?: () => string;
 }
 
-const cloneMessage = (m: ChatMessage): ChatMessage => ({ ...m, ...(m.usage ? { usage: { ...m.usage } } : {}) });
+const cloneMessage = (m: ChatMessage): ChatMessage => ({ ...m, ...(m.usage ? { usage: { ...m.usage } } : {}), ...(m.citations ? { citations: m.citations.map((c) => ({ ...c })) } : {}) });
 
 /** Applies a ChatPatch to a chat object in place; shared by the RAM store and tests. */
 export function applyChatPatch(chat: Chat, patch: ChatPatch): void {
@@ -214,6 +214,7 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
       ...(input.stopped ? { stopped: true } : {}),
       ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
+      ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
     };
     this.messages.get(chat.id)!.push(message);
     chat.updatedAt = message.createdAt;
@@ -229,6 +230,10 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
     if (patch.stopped !== undefined) message.stopped = patch.stopped;
     if (patch.stoppedBy !== undefined) message.stoppedBy = patch.stoppedBy;
     if (patch.usage !== undefined) message.usage = { ...patch.usage };
+    if (patch.citations !== undefined) {
+      if (patch.citations.length) message.citations = patch.citations.map((c) => ({ ...c }));
+      else delete message.citations;
+    }
   }
 
   async deleteMessagesFrom(chatId: string, messageId: string): Promise<number> {

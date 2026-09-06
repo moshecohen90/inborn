@@ -10,9 +10,11 @@ export default function VaultRoute() {
     <VaultScreen
       onClose={() => router.back()}
       onModelChanged={() => {
+        s.modelChanged();
         s.newChat(false);
         router.replace("/");
       }}
+      onUnlock={() => router.push("/paywall")}
     />
   );
 }

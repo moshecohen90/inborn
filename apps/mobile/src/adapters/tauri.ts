@@ -9,6 +9,7 @@ import {
   type Capabilities,
   type Chat,
   type ChatMessage,
+  type Citation,
   type ChatPatch,
   type ChatRepository,
   type Delta,
@@ -198,6 +199,7 @@ type MessageRow = {
   stopped: number;
   stopped_by: StoppedBy | null;
   usage_json: string | null;
+  citations_json: string | null;
 };
 type SearchRow = { chat_id: string; id: string; content: string };
 
@@ -230,6 +232,7 @@ const toMessage = (r: MessageRow): ChatMessage => ({
   ...(r.stopped ? { stopped: true } : {}),
   ...(r.stopped_by ? { stoppedBy: r.stopped_by } : {}),
   ...(r.usage_json ? { usage: JSON.parse(r.usage_json) as Usage } : {}),
+  ...(r.citations_json ? { citations: JSON.parse(r.citations_json) as Citation[] } : {}),
 });
 
 const all = <T extends Row>(sql: string, params: SqlValue[] = []): Promise<T[]> => invoke<T[]>("db_all", { sql, params });
@@ -364,13 +367,14 @@ export class TauriChatRepository implements ChatRepository {
       ...(input.stopped ? { stopped: true } : {}),
       ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
+      ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
     };
     // The touch goes first: zero changed rows means no such chat, and the batch's transaction never inserts an orphan.
     const [touched] = await batch([
       { sql: SQL.touchChat, params: [now, input.chatId] },
       {
         sql: SQL.insertMessage,
-        params: [message.id, message.chatId, message.role, message.content, input.reasoning ?? null, input.reasoningMs ?? null, input.modelId ?? null, now, input.stopped ? 1 : 0, input.stoppedBy ?? null, input.usage ? JSON.stringify(input.usage) : null],
+        params: [message.id, message.chatId, message.role, message.content, input.reasoning ?? null, input.reasoningMs ?? null, input.modelId ?? null, now, input.stopped ? 1 : 0, input.stoppedBy ?? null, input.usage ? JSON.stringify(input.usage) : null, message.citations ? JSON.stringify(message.citations) : null],
       },
     ]).catch((e: unknown) => {
       throw new Error(/FOREIGN KEY/i.test(String(e)) ? `unknown chat ${input.chatId}` : String(e));
@@ -390,9 +394,11 @@ export class TauriChatRepository implements ChatRepository {
     if (patch.stopped !== undefined) columns.push(["stopped", patch.stopped ? 1 : 0]);
     if (patch.stoppedBy !== undefined) columns.push(["stopped_by", patch.stoppedBy]);
     if (patch.usage !== undefined) columns.push(["usage_json", JSON.stringify(patch.usage)]);
+    if (patch.citations !== undefined) columns.push(["citations_json", patch.citations.length ? JSON.stringify(patch.citations) : null]);
     if (!columns.length) return;
     const sets = columns.map(([name]) => `${name} = ?`).join(", ");
-    await run(`UPDATE messages SET ${sets} WHERE id = ? AND chat_id = ?`, [...columns.map(([, v]) => v), messageId, chatId]);
+    const changed = await run(`UPDATE messages SET ${sets} WHERE id = ? AND chat_id = ?`, [...columns.map(([, v]) => v), messageId, chatId]);
+    if (changed === 0) throw new Error(`unknown message ${messageId} in chat ${chatId}`);
   }
 
   async deleteMessagesFrom(chatId: string, messageId: string): Promise<number> {

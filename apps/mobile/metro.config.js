@@ -12,4 +12,9 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
   return (upstream ?? ctx.resolveRequest)(ctx, moduleName, platform);
 };
 
+/* docs/legal/*.md are bundled as strings (metro/mdTransformer.js); the docs folder sits outside the app root, so watch it. */
+config.resolver.sourceExts.push("md");
+config.transformer.babelTransformerPath = require.resolve("./metro/mdTransformer.js");
+config.watchFolders = [...config.watchFolders, path.resolve(__dirname, "../../docs/legal")];
+
 module.exports = config;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { belowFloor, chipForModelId, ramLabel } from "../src/index";
+import { androidChipName, belowFloor, chipForModelId, ramLabel } from "../src/index";
 
 describe("runs-on line (S01)", () => {
   it("maps hardware ids to chip names, by exact id then by family", () => {
@@ -16,5 +16,14 @@ describe("runs-on line (S01)", () => {
     expect(ramLabel(0)).toBeNull();
     expect(belowFloor(3 * 2 ** 30)).toBe(true);
     expect(belowFloor(8 * 2 ** 30)).toBe(false);
+  });
+  it("names Android chips from the SoC id, then the model code, else nothing", () => {
+    expect(androidChipName("SM8550", "SM-S911B")).toBe("Snapdragon 8 Gen 2");
+    expect(androidChipName("sm8650-ab", null)).toBe("Snapdragon 8 Gen 3");
+    expect(androidChipName("Zuma", "Pixel 8")).toBe("Tensor G3");
+    expect(androidChipName(null, "ONEPLUS A6013")).toBe("Snapdragon 845");
+    expect(androidChipName("unknown", "Pixel 6")).toBe("Tensor");
+    expect(androidChipName("ranchu", "sdk_gphone64_arm64")).toBeNull();
+    expect(androidChipName(null, null)).toBeNull();
   });
 });

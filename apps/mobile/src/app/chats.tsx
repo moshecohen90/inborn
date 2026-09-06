@@ -29,11 +29,12 @@ export default function ChatsRoute() {
             s.openChat(chat);
             back();
           }}
-          onNewChat={(incognito) => {
-            s.newChat(incognito);
+          onNewChat={(incognito, personaId) => {
+            s.newChat(incognito, personaId);
             back();
           }}
           onDeleted={s.chatDeleted}
+          onOpenPaywall={() => router.push("/paywall")}
         />
       </View>
       <View testID="drawer-footer" style={[styles.footer, { borderTopColor: theme.border, backgroundColor: theme.bg, paddingBottom: insets.bottom + 8 }]}>

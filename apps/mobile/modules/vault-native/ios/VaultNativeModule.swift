@@ -26,6 +26,9 @@ public class VaultNativeModule: Module {
       return hasher.finalize().map { String(format: "%02x", $0) }.joined()
     }
 
+    /* iOS names its chips from the model id in JS (packages/core device/chip); nothing to read here. */
+    Function("socModel") { () -> String? in nil }
+
     /* Models are public bytes, so they stay out of iCloud/iTunes backups (spec §10.6 #42). */
     Function("excludeFromBackup") { (path: String) -> Bool in
       var url = URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))

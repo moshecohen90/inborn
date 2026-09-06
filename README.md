@@ -433,6 +433,44 @@ Apple FM adapter, model catalog + downloads, RAG, voice, purchases, NativeWind s
 Apple FM adapter, model catalog + downloads, RAG, voice, personas, purchases, NativeWind styling (tokens exist). The device-guard policy behind
 `useDeviceState()`, the vault/documents/paywall screens, and per-message ledger actions are owned by other streams.
 
+## Integration round 2 (documents ↔ chat, value moments, legal, shell events) — 6.9.2026
+The cross-stream wiring no stream owned, on branch `integrate-r2`:
+- **Documents in the chat** (§7.3, §8.2, §8.5): the composer's `+` opens the attach sheet (library rows with attach/detach, the strict switch,
+  "Manage documents" → S40); attached files show as chips above the composer with `DOCS ONLY` when strict is on. On send, `useDocumentContext`
+  retrieves and fences the passages; strict mode with nothing relevant prints "I could not find that in your documents." without calling the
+  model; otherwise the answer carries `<Citations>` chips (tap → passage sheet). Attachments of an incognito chat, or of a chat not created
+  yet, live under a `ram:` key that `documents.json` never receives; the first message moves them to the real chat id.
+  `ChatMessage.citations` is persisted: schema v3 (`messages.citations_json`), IndexedDB v3, the Tauri repository; the contract test covers
+  all three (`apps/mobile/test/`, the desktop one through a sql.js stand-in for the Rust `db_*` commands), plus a v2→v3 migration test.
+  The stand-in also caught that the desktop and SQLCipher repositories resolved `updateMessage` on an unknown id; both reject now.
+- **Value moments** (§12.3): `paywallFor(tier, moment)` in `packages/core/src/licence/moments.ts` answers every gate the same way (4th persona,
+  2nd document, Pro-only model, any feature). Wired at: persona add row, "Add file · PRO" in the library, Sharp's Install in the vault, the mic,
+  "Remember this", Memory's add row, Folders, "Export all chats" (new row in the export sheet, Pro exports every saved chat as one Markdown
+  file), and every `PRO` tag (tapping one opens `/paywall`). `EXPO_PUBLIC_PRO=1` stays a dev-bundle-only pretence (`DEV_TIER`); release
+  bundles read only the licence.
+- **Legal in the app**: `/legal/privacy` and `/legal/terms` render `docs/legal/*.md`, bundled as strings by `apps/mobile/metro/mdTransformer.js`
+  (no fetch); the paywall's Terms / Privacy links and About point there. The licences page reads `docs/legal/NOTICE.json` (shipped + catalogue
+  entries only).
+- **Shell events** (§14.4): `new-chat`, `toggle-incognito`, `focus-composer`, `search`, `stop` are handled by the chat screen when it is the one
+  in front (`useFocusEffect`), so the drawer's own handlers do not double up. The new-chat sheet's persona travels through
+  `AppServices.newChat(incognito, personaId)`; `newChatIntent.ts` is gone.
+- **Model delivery banner**: `AppServices` subscribes to the vault; a chat model in `delivering` / `verifying` feeds the §8.8 strip and, while no
+  model is loaded, the seal's `loading` state with the pack's progress. When the file lands the engine is reset, re-resolved and the chat
+  remounted (first-launch fast-follow case). `switchToInstant` / `switchBack` set the vault default and reload the engine the same way.
+- **Web**: the vault record and scan are no-ops on the web (expo-file-system has no web implementation), so the console is clean.
+- **Onboarding chip**: Android names the SoC from `Build.SOC_MODEL` (API 31+, `modules/vault-native`) or the model code
+  (`androidChipName` in `packages/core/src/device/chip.ts`: "ONEPLUS A6013" → Snapdragon 845, "SM8550" → Snapdragon 8 Gen 2); the emulator
+  reports "ranchu" and keeps its model name.
+- Paywall presented as a modal skips the top inset on iOS.
+
+Proven 6.9.2026 on the Pixel_6_API_36 emulator (arm64, 6 GB, CPU only), debug APK + Metro, Instant + nomic-embed pushed, the M5a library on the
+device (manual200.pdf, 600 passages): attach sheet → chip + `DOCS ONLY` → "What is the rear panel code of the unit?" → retrieval + fenced prompt
+(1218 prompt tokens, TTFT 31 s on the emulator CPU, 6.5 tok/s) → answer with `7431-KESTREL` and the chip `[3] manual200.pdf · p.143` → passage
+sheet; after `am force-stop` the reopened chat shows the same chip from SQLCipher; the unrelated question in strict mode answered "I could not
+find that in your documents." with 0 prompt tokens in 0.6 s; "Add file · PRO" in the library opened the paywall; the paywall's Privacy link
+opened the bundled policy; the Settings preview showed "Delivering FAST · 41% of 1.3 GB" on every screen. Gates: typecheck, lint, 202 core +
+66 mobile + 4 i18n tests, `web:build` + `web:smoke` (4 passes, 0 vault warnings).
+
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
 

@@ -4,7 +4,8 @@ import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts, radius } from "@inborn/ui";
-import { ENGINE_VERSION, formatModelBytes, groupByFit, type CatalogModel } from "@inborn/core";
+import { ENGINE_VERSION, formatModelBytes, groupByFit, paywallFor, type CatalogModel } from "@inborn/core";
+import { useEntitlement } from "../../licence";
 import { resetEngine } from "../../engine";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, devBuild } from "../../vault/devFlags";
@@ -15,17 +16,20 @@ export interface VaultScreenProps {
   onClose: () => void;
   /** Called after the default model changed and the engine was reset; the host remounts the chat screen. */
   onModelChanged?: (modelId: string) => void;
+  /** Installing a Pro-only model (Sharp) is a §12.3 value moment: the paywall opens instead of the download sheet. */
+  onUnlock?: () => void;
 }
 
 type Section = { key: string; title: string; data: VaultEntry[]; disabled?: Map<string, "ram" | "engine"> };
 type Confirm = { entry: VaultEntry };
 
 /** S30 Model vault (spec §8.4): what is installed, what fits this device, download / import / remove. */
-export function VaultScreen({ onClose, onModelChanged }: VaultScreenProps) {
+export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenProps) {
   const { t } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
   const { vault, entries } = useVault();
+  const { tier } = useEntitlement();
   const [details, setDetails] = useState<CatalogModel | null>(null);
   const [confirm, setConfirm] = useState<Confirm | null>(null);
   const [toast, setToast] = useState<string | null>(null);
@@ -134,7 +138,7 @@ export function VaultScreen({ onClose, onModelChanged }: VaultScreenProps) {
             recommended={item.model.id === recommendedId}
             active={active?.model.id === item.model.id}
             disabledReason={section.disabled?.get(item.model.id)}
-            onInstall={() => setConfirm({ entry: item })}
+            onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.() : setConfirm({ entry: item }))}
             onCancel={() => void vault.cancel(item.model.id)}
             onPause={() => void vault.pause(item.model.id)}
             onResume={() => void vault.resume(item.model.id)}

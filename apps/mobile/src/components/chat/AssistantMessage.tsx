@@ -1,7 +1,8 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { directionOf, type ChatMessage } from "@inborn/core";
+import { citationsForAnswer, directionOf, type ChatMessage } from "@inborn/core";
+import { Citations } from "../../documents/Citations";
 import { useTheme } from "../../lib/theme";
 import { modelLabel } from "../../lib/models";
 import { Ledger } from "./Ledger";
@@ -59,10 +60,16 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
           ) : null}
         </View>
       ) : null}
+      {!row.streaming && row.content && row.citations?.length ? <CitationChips content={row.content} citations={row.citations} /> : null}
       {!row.streaming && row.content ? <Ledger message={row} nCtx={nCtx} quant={quant} /> : null}
     </Pressable>
   );
 });
+
+function CitationChips({ content, citations }: { content: string; citations: NonNullable<ChatMessage["citations"]> }) {
+  const { shown, cited } = citationsForAnswer(content, citations);
+  return <Citations citations={shown} cited={cited} />;
+}
 
 /** The waiting window before the first token (§9.6): a pulsing dot, 200 ms to 2 s. */
 function PulsingDot() {
