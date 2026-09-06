@@ -518,7 +518,7 @@ base module 500 MB, one asset pack 1.5 GB, base + install-time packs 4 GB, fast-
 cumulative, 100 packs per bundle. The full bundle (4.55 GB, four packs) breaks the per-pack cap: `inborn_model_sharp`
 carries both 4B shards in one pack (2.74 GB). Sharp needs one pack per shard before it can ship (not done here).
 
-**Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all four)
+**Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all six: instant, fast, embed, sharp, speech, vision)
 limits what `plugins/withAssetPacks.js` declares. The internal-testing bundle ships Instant (fast-follow, 532 MB) and
 Fast (on-demand, 1.28 GB). `INBORN_VERSION_CODE` sets `android.versionCode` (Play refuses a code it already has;
 `node scripts/play-upload.mjs --next-version-code` prints the next free one).
