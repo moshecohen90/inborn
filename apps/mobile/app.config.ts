@@ -37,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: "./assets/icon.png",
   ios: {
     bundleIdentifier: "com.inbornapp.mobile",
-    buildNumber: "1",
+    buildNumber: "2",
     supportsTablet: true,
     /* Icon Composer bundle: Xcode 26 renders Liquid Glass + the iOS 18 light/dark/tinted fallbacks from its layers. */
     icon: "../../design/icon/Inborn.icon",
@@ -83,6 +83,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],
+    /* iOS ships Instant inside the app (D2): copied from INBORN_MODELS_DIR at prebuild into the bundle as `<id>.gguf`, never committed (plugins/withBundledModel.js). */
+    ["./plugins/withBundledModel", { models: { instant: "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
     /* Pack sources come from INBORN_MODELS_DIR at prebuild (plugins/withAssetPacks.js); models are never committed. Asset names must equal the catalog `file` names: the vault looks the delivered pack up by them. */
     [
       "./plugins/withAssetPacks",

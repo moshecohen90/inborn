@@ -23,7 +23,8 @@ import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
 import { fileGgufHeader, fileSha256 } from "./hash";
 import { DEV_MODEL_HOSTS, HttpsDelivery, PausedError } from "./httpsDelivery";
-import { devFallbackFile, fileSize, modelFile, safeDelete, vaultDir } from "./paths";
+import { pickModelLocation, type ModelLocation } from "./locate";
+import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vaultDir } from "./paths";
 import { PlayDelivery } from "./playDelivery";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
 
@@ -97,6 +98,11 @@ export class VaultStore {
   private async scan(): Promise<void> {
     if (Platform.OS === "web") return;
     for (const model of this.manifest.models) {
+      const bundled = bundledModelFile(model.id);
+      if (bundled) {
+        this.adoptBundled(model, bundled);
+        continue;
+      }
       const rec = this.record.installs[model.id];
       const located = this.delivery.locate(model);
       if (rec && located && fileSize(new File(located)) === rec.bytes) {
@@ -128,6 +134,42 @@ export class VaultStore {
     for (const model of this.manifest.models) {
       const fastFollow = model.delivery.some((d) => d.kind === "play-asset-pack" && d.mode === "fast-follow");
       if (fastFollow && this.states.get(model.id)?.kind === "not-installed" && this.delivery.plan(model)?.via === "play") void this.install(model.id);
+    }
+  }
+
+  /** The copy the store signed is ready at once; it is hashed once, in the background, and the verdict is kept so no launch re-reads 500 MB (§5.4). */
+  private adoptBundled(model: CatalogModel, file: File): void {
+    const bytes = fileSize(file);
+    const rec = this.record.installs[model.id];
+    const known = rec?.via === "bundled" && rec.verifiedAt && rec.bytes === bytes ? rec : undefined;
+    if (known) {
+      if (known.sha256 !== model.sha256) {
+        this.states.set(model.id, { kind: "corrupt", reason: "hash-mismatch", via: "bundled" });
+        return;
+      }
+      this.states.set(model.id, known.loading || known.quarantined ? { kind: "quarantined", path: file.uri, bytes, sha256: known.sha256, via: "bundled" } : { kind: "ready", path: file.uri, bytes, sha256: known.sha256, via: "bundled" });
+      if (known.loading) known.quarantined = true;
+      return;
+    }
+    this.record.installs[model.id] = { file: model.file, bytes, sha256: model.sha256, via: "bundled", installedAt: rec?.installedAt ?? Date.now() };
+    this.states.set(model.id, { kind: "ready", path: file.uri, bytes, sha256: model.sha256, via: "bundled" });
+    void this.verifyBundled(model, file);
+  }
+
+  private async verifyBundled(model: CatalogModel, file: File): Promise<void> {
+    try {
+      const sha = await fileSha256(file);
+      const rec = this.record.installs[model.id];
+      if (rec?.via !== "bundled") return;
+      rec.sha256 = sha;
+      rec.verifiedAt = Date.now();
+      this.persist();
+      if (sha !== model.sha256) {
+        console.warn(`[vault] ${model.id}: bundled copy sha256 ${sha} != catalog ${model.sha256}`);
+        this.set(model.id, { kind: "corrupt", reason: "hash-mismatch", via: "bundled" });
+      }
+    } catch (e: unknown) {
+      console.warn(`[vault] ${model.id}: bundled copy not hashed`, e);
     }
   }
 
@@ -184,7 +226,7 @@ export class VaultStore {
   /** Bytes the vault holds (catalog files + imports), for the header counter (S30). */
   storageUsedBytes(): number {
     let sum = 0;
-    for (const s of this.states.values()) if (isInstalled(s)) sum += s.bytes;
+    for (const s of this.states.values()) if (isInstalled(s) && s.via !== "bundled") sum += s.bytes;
     return sum;
   }
 
@@ -211,16 +253,21 @@ export class VaultStore {
     const order = [this.record.defaultModelId, this.recommendedId(), ...this.manifest.models.map((m) => m.id), ...Object.keys(this.record.imports)];
     for (const id of order) {
       if (!id) continue;
-      const s = this.states.get(id);
       const m = this.model(id);
-      if (s?.kind === "ready" && m?.role === "chat") return { model: m, path: s.path };
-    }
-    const dev = devFallbackFile();
-    if (dev.exists) {
-      const instant = this.model("instant");
-      if (instant) return { model: instant, path: dev.uri };
+      if (m?.role !== "chat") continue;
+      const loc = this.locate(id);
+      if (loc) return { model: m, path: loc.path };
     }
     return null;
+  }
+
+  /** Where the engine would load this model from right now: bundled > hand-pushed Documents file > vault copy, else null. */
+  locate(id: string): ModelLocation | null {
+    const s = this.states.get(id);
+    const ready = s?.kind === "ready" ? s : null;
+    const bundled = ready?.via === "bundled" ? ready.path : null;
+    const dev = !bundled && id === "instant" ? devFallbackFile() : null;
+    return pickModelLocation({ bundled, documents: dev?.exists ? dev.uri : null, downloaded: ready && !bundled ? ready.path : null });
   }
 
   defaultModelId(): string | undefined {
@@ -295,6 +342,8 @@ export class VaultStore {
   }
 
   async remove(id: string): Promise<void> {
+    const current = this.state(id);
+    if (current.kind === "ready" && current.via === "bundled") return;
     const imp = this.record.imports[id];
     if (imp) {
       safeDelete(modelFile(imp.file));

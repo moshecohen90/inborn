@@ -55,7 +55,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
       case "failed":
         return { text: t(state.error === "no-delivery" ? (device.os === "android" ? "vault.state.noDelivery.android" : "vault.state.noDelivery.web") : "vault.state.failed", { error: state.error }), danger: true };
       case "ready":
-        return { text: active ? t("vault.loaded") : t("vault.installed") };
+        return { text: state.via === "bundled" ? t("vault.state.bundled") : active ? t("vault.loaded") : t("vault.installed") };
       default:
         return null;
     }
