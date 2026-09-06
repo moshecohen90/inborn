@@ -269,13 +269,43 @@ iOS simulator: build `-configuration Release -sdk iphonesimulator SWIFT_VERSION=
 expo-modules-core's EventEmitter.swift in Swift 6 mode, Debug and Release alike) and put the `EXPO_PUBLIC_*` exports in
 `ios/.xcode.env.local` so Metro inlines them at bundle time.
 
+## iOS: Instant ships inside the app (D2, spec §5.4 / §6.1) — 6.9.2026
+`apps/mobile/plugins/withBundledModel.js` copies each configured model from `INBORN_MODELS_DIR` (default `<repo>/.models`) into
+`ios/Inborn/Models/<id>.gguf` at prebuild and adds it to Copy Bundle Resources, so the store build carries `Inborn.app/instant.gguf`
+(532,517,120 bytes). Nothing is committed (`ios/` is ignored); a missing source file is skipped with a warning and the vault falls
+back to download / import. The bundle is read-only and never in an iCloud/iTunes backup (only the data container is), and App
+Thinning leaves plain resources alone (it thins asset catalogs and architectures).
+On the phone the vault (`src/vault/paths.ts` `bundledModelFile`, `store.ts` `adoptBundled`) resolves `Paths.bundle/<id>.gguf` as
+`via: "bundled"`: ready at once, loaded in place by llama.rn (no copy), hashed once in the background after the first launch with the
+verdict kept in `vault.json` (`verifiedAt`), so no later launch re-reads 500 MB; a mismatch shows the model as corrupt.
+Resolver order (`src/vault/locate.ts`, unit-tested): bundled > hand-pushed `Documents/instant.gguf` > vault download/import. The
+vault card says "Included with the app" (no Remove), the storage counter excludes it. Android is unchanged (PAD fast-follow).
+```
+cd apps/mobile && npx expo prebuild -p ios --no-install && (cd ios && pod install)   # log: withBundledModel: instant.gguf ← …
+grep -c instant.gguf ios/Inborn.xcodeproj/project.pbxproj                              # 4 references
+```
+Proven 6.9.2026 on the iPhone 13 Pro (Release, production variant, build 1.0.0 (2), same archive as TestFlight):
+- The phone still had the M1 hand-pushed `Documents/instant.gguf`; the engine loaded `…/Inborn.app/instant.gguf` anyway
+  (`Documents/dev-run.json`, `EXPO_PUBLIC_AUTOPROMPT=1` bundle: `"uri":"file:///var/containers/Bundle/Application/…/Inborn.app/instant.gguf"`).
+- `Documents/models/vault.json`: `"via":"bundled"`, `verifiedAt` 570 ms after `installedAt` (native SHA-256 of 508 MB, once),
+  sha256 `bd258782…dc517` = catalog; the warm relaunch left `verifiedAt` unchanged (no re-hash).
+- No `RCTFatalException` / "Cannot find native module" on `devicectl … launch --console` (build 1 crashed on ExpoBattery; the
+  archive is built from a fresh prebuild + `pod install` of this tree, `Podfile.lock` lists `ExpoBattery (57.0.2)`).
+
+| run | model load | TTFT | generation |
+|---|---|---|---|
+| first launch after install (Metal library init 9.6 s) | 10.2 s | 313 ms | 36.6 tok/s (128 tokens) |
+| warm relaunch | 0.43 s | 269 ms | 38.6 tok/s (128 tokens) |
+
+IPA 553,951,589 bytes (528 MB; build 1 without the model was ≈40 MB). TestFlight: build 1.0.0 (2), delivery 074f5575, processingState VALID, in the "Inborn internal" group; build 1 expired.
+
 ## Status 6.9.2026 (spec §14 table)
 Built and merged: M1 engines (llama.rn / wllama / Rust llama.cpp), M2 vault (signed catalog, PAD packs, resumable downloads, GGUF import),
 M3 chat (Markdown, folders, FTS, personas, memory, incognito, crisis/report), M4 shell (expo-router, onboarding, seal, exit meter, lock,
 FLAG_SECURE, proof, settings), M5a documents + RAG with citations and OCR, M6 licence (StoreKit 2 / Play verification, paywall),
 §6.5 device guard, 6 UI languages, IBM Plex + native chrome, web phase 2 (OPFS, service worker, gate), desktop phase 3 (macOS + Windows
 CI), legal/QA/ops docs, store copy, icon. Store records exist as drafts (Play app 4973506308577999063, ASC app 6809165161); build 1.0.0 (1)
-uploaded to TestFlight on 6.9.2026 (no bundled model on iOS yet: import a GGUF or wait for Apple-hosted asset packs).
+uploaded to TestFlight on 6.9.2026; build 1.0.0 (2) with Instant inside the app (see "iOS: Instant ships inside the app").
 Open: voice + image input (M5b), the full 40-test run (`docs/qa/release-checklist.md`), real Play delivery + sandbox purchases, store
 screenshots, privacy-policy URL + support email + developer name (Moshe), Windows signing, Apple FM adapter.
 

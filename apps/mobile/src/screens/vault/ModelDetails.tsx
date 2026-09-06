@@ -61,7 +61,9 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
             </Pressable>
           ) : null}
           {installed ? (
-            active ? (
+            state.via === "bundled" ? (
+              <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.state.bundled")}</Text>
+            ) : active ? (
               <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.details.deleteBlocked")}</Text>
             ) : (
               <Pressable testID="details-delete" accessibilityRole="button" onPress={onDelete} style={styles.textBtn}>

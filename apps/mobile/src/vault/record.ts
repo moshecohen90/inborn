@@ -14,6 +14,8 @@ export interface InstalledRecord {
   /** Set before a load and cleared after success; still set at boot = the last load crashed (§10.1 #8). */
   loading?: boolean;
   quarantined?: boolean;
+  /** Bundled copies are hashed once, in the background after the first launch; the result stays here (§5.4). */
+  verifiedAt?: number;
 }
 
 /** An import the catalog does not know: the header fields the vault read itself. */

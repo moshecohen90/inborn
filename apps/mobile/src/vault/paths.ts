@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Directory, File, Paths } from "expo-file-system";
 import { excludeFromBackup } from "../../modules/vault-native";
 
@@ -19,6 +20,20 @@ export const recordFile = (): File => new File(vaultDir(), "vault.json");
 /** M1 dev path (README "Run on a phone"): a GGUF pushed by hand into the document directory. */
 export const DEV_MODEL_FILE = "instant.gguf";
 export const devFallbackFile = (): File => new File(Paths.document, DEV_MODEL_FILE);
+
+/**
+ * iOS ships Instant inside the app (D2, plugins/withBundledModel.js): `<App>.app/<id>.gguf`, read-only, never backed up
+ * (only the data container is), loaded in place by llama.rn. Null on other platforms or when the build had no model.
+ */
+export function bundledModelFile(modelId: string): File | null {
+  if (Platform.OS !== "ios") return null;
+  try {
+    const f = new File(Paths.bundle, `${modelId}.gguf`);
+    return f.exists ? f : null;
+  } catch {
+    return null;
+  }
+}
 
 export function fileSize(file: File): number {
   try {

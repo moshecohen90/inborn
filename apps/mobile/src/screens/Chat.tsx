@@ -382,7 +382,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       setBusy(false);
       setLiveTps(0);
       const last = engine.stats();
-      const result = { engine: engine.id, model: model.id, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
+      const result = { engine: engine.id, model: model.id, uri: model.uri, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
       if (__DEV__) console.log("[stats]", JSON.stringify(result));
       if (AUTOPROMPT) writeDevResult({ ...result, reply });
     }
