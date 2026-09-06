@@ -60,6 +60,7 @@ import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
 import { useEntitlement } from "../licence";
 import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
+import { deviceNoun } from "../lib/deviceNoun";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
@@ -550,7 +551,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.canBeWrong")}</Text>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.canBeWrong", { device: deviceNoun() })}</Text>
           <Pressable accessibilityRole="button" onPress={dismissNotice} hitSlop={8} style={styles.noticeBtn}>
             <Text style={[type.caption, { color: theme.accent }]}>{t("safety.dismiss")}</Text>
           </Pressable>
@@ -636,7 +637,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             <Seal size={72} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={false} label={sealLabel} />
             <Text style={[type.monoLabel, { color: theme.text3 }]}>{modelLabel(model.id)}</Text>
             <Text testID="empty-headline" style={[type.title, styles.headline, { color: theme.text }]}>
-              {incognito ? t("chat.incognito.headline") : t("onboarding.headline")}
+              {incognito ? t("chat.incognito.headline") : t("onboarding.headline", { device: deviceNoun() })}
             </Text>
             <View style={styles.suggestions}>
               {SUGGESTIONS.map((s) => (

@@ -97,6 +97,16 @@ repeat `private`, `local`, `ai`, `chat`, `offline`, `on-device`, `llm` or `chatb
 which are already indexed through the name and subtitle. `{{IOS_PROMO}}` is 152 characters.
 `{{PLAY_OPENING}}` is the first paragraph of the Play full description.
 
+## Voice lines (M5b, decide before submission)
+
+Voice (system dictation + read-aloud free; Whisper dictation + hands-free Pro) is built on the
+`voice-m5b` branch in parallel. Every sentence in the six listings that depends on it is listed
+verbatim under the `voice_lines` key of that listing file (`apple.description`, `apple.whats_new`,
+`google.full_description`, and the keyword `voice` / `sprache` / `voix` / `voz` / `音声入力`, which is
+also `{{IOS_KEYWORDS}}` in `docs/build.py`). If M5b misses 1.0, delete exactly those sentences and
+keywords, and the `VOICE_LINES` bullet in `packages/core/src/licence/gates.ts`, in one commit.
+Every other sentence names a capability that ships on `main` today.
+
 ## A/B variants (spec 15 has no in-app analytics, so test only on store surfaces)
 
 Three variants each for the Apple subtitle and the Play short description live in

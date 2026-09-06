@@ -9,6 +9,7 @@ import { ProTag, Sheet } from "../../components/chat/Sheet";
 import { shape } from "../../components/chat/styles";
 import { useType } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 interface Props {
   visible: boolean;
@@ -72,7 +73,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
         <View style={styles.switchRow}>
           <View style={styles.grow}>
             <Text style={[type.body, { color: theme.text }]}>{t("memory.master")}</Text>
-            <Text style={[type.caption, { color: theme.text3 }]}>{t("memory.explain")}</Text>
+            <Text style={[type.caption, { color: theme.text3 }]}>{t("memory.explain", { device: deviceNoun() })}</Text>
           </View>
           {locked ? <ProTag onPress={unlock} /> : null}
           <Toggle

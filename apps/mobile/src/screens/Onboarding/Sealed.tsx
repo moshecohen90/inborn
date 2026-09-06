@@ -8,6 +8,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Seal, type SealState } from "../../components/Seal";
 import { Button, MonoLabel } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 /** S04, the peak: the ring snaps shut, one haptic, "SEALED · ON-DEVICE". */
 export function Sealed() {
@@ -40,7 +41,7 @@ export function Sealed() {
         <MonoLabel color={done ? theme.sealed : theme.text3} testID="sealed-label">
           {t("onboarding.sealed.label")}
         </MonoLabel>
-        <Text style={[type.title, styles.center, { color: theme.text }]}>{t("onboarding.sealed.line")}</Text>
+        <Text style={[type.title, styles.center, { color: theme.text }]}>{t("onboarding.sealed.line", { device: deviceNoun() })}</Text>
       </View>
     </Screen>
   );

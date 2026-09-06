@@ -3,7 +3,7 @@ import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, dark, light, radius } from "@inborn/ui";
-import type { ProductId, Store } from "@inborn/core";
+import { sellable, type ProductId, type Store } from "@inborn/core";
 import { DEV_AUTOBUY, DEV_RESULT_FILE, devBuild } from "../../licence/devFlags";
 import { useLicenceState } from "../../licence/hooks";
 import { writeLicenceResult } from "../../licence/storage";
@@ -59,7 +59,7 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
 
   const store = manager.store;
   const tier = state.entitlement.tier;
-  const offers = manager.offers();
+  const offers = manager.offers().filter((o) => sellable(o.tier));
   const ordered = desktopFirst ? [...offers].sort((a, b) => (a.tier === "work" ? -1 : b.tier === "work" ? 1 : 0)) : offers;
   const busyProduct = state.purchase.kind === "purchasing" ? state.purchase.productId : null;
   const owned = tier !== "free";

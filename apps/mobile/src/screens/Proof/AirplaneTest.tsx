@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { formatBytes, type Message, type Session } from "@inborn/core";
+import { SAFETY_BASELINE, formatBytes, type Message, type Session } from "@inborn/core";
 import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
@@ -11,10 +11,13 @@ import { openAirplaneSettings, useConnectivity } from "../../proof/connectivity"
 import { Screen } from "../../components/shell/Screen";
 import { Seal } from "../../components/Seal";
 import { Button, Mono, MonoLabel } from "../../components/shell/primitives";
+import { Markdown } from "../../components/chat/Markdown";
 import { font, useType } from "../../services/type";
 
 type Phase = "idle" | "loading" | "streaming" | "done" | "error";
 const SUGGESTED = "What's 17 × 23?";
+/* S03 shows one short plain line ("391."); tables and lists belong to the chat, not the proof. */
+const AIRPLANE_SYSTEM = `${SAFETY_BASELINE} Answer in one or two short sentences of plain text: no Markdown, no tables, no lists.`;
 
 /** S03: the user cuts the network with their own hands and watches the answer arrive anyway, with OUT/IN live. */
 export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => void; doneLabel: string; skipLabel?: string }) {
@@ -46,7 +49,7 @@ export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => v
       const ac = new AbortController();
       abort.current = ac;
       setPhase("streaming");
-      const history: Message[] = [{ role: "user", content: text }];
+      const history: Message[] = [{ role: "system", content: AIRPLANE_SYSTEM }, { role: "user", content: text }];
       let reply = "";
       for await (const d of engine.engine.generate(session.current, history, { reasoning: false, maxTokens: 160 }, ac.signal)) {
         if (d.text) {
@@ -121,10 +124,7 @@ export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => v
           {error ? (
             <Text style={[type.bodySmall, { color: theme.danger }]}>{error}</Text>
           ) : (
-            <Text style={[type.body, { color: theme.text }]}>
-              {answer}
-              {phase === "streaming" ? <Text style={{ color: theme.text2 }}>▍</Text> : null}
-            </Text>
+            <Markdown source={answer} caret={phase === "streaming"} testID="airplane-answer-text" />
           )}
         </View>
       ) : null}

@@ -52,6 +52,9 @@ function classFromSnapshot(s: Snapshot | null): GuardDeviceClass {
   return tablet ? "tablet" : "phone";
 }
 
+/** The class the guard sees, for wording that names the device (§9.9: phone / tablet / computer / browser). */
+export const deviceClass = (): GuardDeviceClass => classFromSnapshot(snapshot());
+
 function ramFromSnapshot(s: Snapshot | null): number | null {
   if (s) return Math.round(((isAndroidSnapshot(s) ? s.totalMem : s.physicalMemory) / 2 ** 30) * 10) / 10;
   const mem = (globalThis.navigator as Nav | undefined)?.deviceMemory;

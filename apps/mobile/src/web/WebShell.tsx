@@ -7,6 +7,7 @@ import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
 import { writeEnginePref } from "./prefs";
+import { recordWebTransfer } from "./transfers";
 import { registerServiceWorker, type OfflineState } from "./serviceWorker";
 import { font } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
@@ -111,6 +112,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
     const end = await delivery.download(source, onEvent);
     running.current = false;
     if (end.type === "done") {
+      recordWebTransfer({ host: new URL(source.url, location.origin).host, bytesOut: 0, bytesIn: end.have, at: Date.now(), purpose: "model" });
       const status = await refreshModelStatus();
       if (status.kind === "ready") onReady();
       else setPhase({ kind: "error", message: "stored file does not match" });

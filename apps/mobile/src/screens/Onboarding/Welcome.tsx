@@ -10,6 +10,7 @@ import { Seal } from "../../components/Seal";
 import { Button, MonoLabel } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { deviceLine } from "./deviceLine";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 /** S01: the thesis in one sentence and the open seal before anything else. No skip: the next screen is already useful. */
 export function Welcome() {
@@ -23,7 +24,7 @@ export function Welcome() {
       <View style={styles.hero}>
         <Seal size={72} state="open" label={t("onboarding.sealOpen")} />
         <Text accessibilityRole="header" style={[type.headline, styles.center, { color: theme.text }]}>
-          {t("onboarding.headline")}
+          {t("onboarding.headline", { device: deviceNoun() })}
         </Text>
         <Text style={[type.body, styles.center, { color: theme.text2 }]}>{t("onboarding.sub")}</Text>
         <View style={[styles.runsOn, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
@@ -32,7 +33,7 @@ export function Welcome() {
             {line.ram ? t("onboarding.runsOn", { chip: line.chip, ram: line.ram }) : t("onboarding.runsOnNoRam", { chip: line.chip })}
           </MonoLabel>
         </View>
-        {line.slow ? <Text style={[type.bodySmall, styles.center, { color: theme.text3 }]}>{t("onboarding.slowDevice")}</Text> : null}
+        {line.slow ? <Text style={[type.bodySmall, styles.center, { color: theme.text3 }]}>{t("onboarding.slowDevice", { device: deviceNoun() })}</Text> : null}
       </View>
     </Screen>
   );

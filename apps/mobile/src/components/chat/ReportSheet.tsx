@@ -7,6 +7,7 @@ import { Sheet } from "./Sheet";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { Toggle } from "../shell/primitives";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 const REASONS: ReportReason[] = ["offensive", "dangerous", "wrong", "other"];
 
@@ -52,7 +53,7 @@ export function ReportSheet({ message, onClose, onSave, onEmail }: Props) {
           <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("report.includeMessage")}</Text>
           <Toggle testID="report-include" value={include} onChange={setInclude} />
         </View>
-        <Text style={[type.caption, { color: theme.text3 }]}>{t("report.explain")}</Text>
+        <Text style={[type.caption, { color: theme.text3 }]}>{t("report.explain", { device: deviceNoun() })}</Text>
         <View style={styles.actions}>
           <Pressable testID="report-email" accessibilityRole="button" onPress={() => void onEmail(build())} style={[shape.control, { borderWidth: 1, borderColor: theme.border }]}>
             <Text style={[type.body, { color: theme.text }]}>{t("report.email")}</Text>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Linking, Platform, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
@@ -10,6 +10,7 @@ import { radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
+import { lastWebDelivery } from "../../proof/webDelivery";
 import { Screen } from "../../components/shell/Screen";
 import { Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
 import { Sheet } from "../../components/shell/Sheet";
@@ -26,6 +27,7 @@ export function Proof() {
   const router = useRouter();
   const { meter, networkLog, sealState, delivery } = useAppServices();
   const [logOpen, setLogOpen] = useState(false);
+  const webDelivery = useMemo(lastWebDelivery, []);
   const iosMajor = Platform.OS === "ios" ? parseInt(String(Device.osVersion ?? "0"), 10) || 0 : 0;
   const platform = Platform.OS === "android" ? "android" : Platform.OS === "ios" ? "ios" : "web";
   const allow = networkAllowlist(platform, iosMajor);
@@ -53,7 +55,13 @@ export function Proof() {
       </Section>
 
       <Section title={t("proof.lastDelivery")}>
-        {delivery && delivery.status === "done" ? (
+        {Platform.OS === "web" ? (
+          webDelivery ? (
+            <Line mono={`${webDelivery.name.toUpperCase()} · ${formatBytes(webDelivery.bytes)}`} text={t(webDelivery.verified ? "proof.delivery.web" : "proof.delivery.webUnverified", { origin: webDelivery.origin })} testID="proof-delivery-web" />
+          ) : (
+            <Line text={t("proof.delivery.webNone")} testID="proof-delivery-web" />
+          )
+        ) : delivery && delivery.status === "done" ? (
           <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={Platform.OS === "android" ? t("proof.delivery.play") : t("proof.delivery.apple")} />
         ) : (
           <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} />

@@ -23,6 +23,7 @@ import { MemorySheet } from "./chat/MemorySheet";
 import { PersonasSheet } from "./chat/PersonasSheet";
 import { SwipeRow } from "./chat/SwipeRow";
 import { afterSheetClose } from "./Chat";
+import { deviceNoun } from "../lib/deviceNoun";
 
 export interface ChatsProps {
   store: ChatStore;
@@ -316,7 +317,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
           ListEmptyComponent={
             <View style={styles.emptyWrap}>
               <Text style={[type.body, styles.emptyText, { color: theme.text3 }]}>{t("chats.empty")}</Text>
-              <Text style={[type.caption, styles.emptyText, { color: theme.text3 }]}>{t("chats.emptyHint")}</Text>
+              <Text style={[type.caption, styles.emptyText, { color: theme.text3 }]}>{t("chats.emptyHint", { device: deviceNoun() })}</Text>
             </View>
           }
           renderItem={({ item }) => renderRow(item)}

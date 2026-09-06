@@ -69,8 +69,18 @@ export function limits(tier: LicenceTier): Limits {
   return tier === "free" ? { personas: 3, filesPerChat: 1, quickActions: 6 } : { personas: Infinity, filesPerChat: Infinity, quickActions: Infinity };
 }
 
-/** The bullet list on each paywall card (S60), in spec order. Keys into @inborn/i18n `paywall.pro.*` / `paywall.work.*`. */
+/**
+ * The value lines on each S60 card, in spec order. Only capabilities that ship in this build may appear (§2.3 "proof, not
+ * promise"; §12.3): a line here must be backed by a gate above and by code on main. Keys into @inborn/i18n `paywall.pro.*`.
+ * Work has no capability of its own yet, so its card is not offered until one ships (see `sellable`).
+ */
 export const PAYWALL_BULLETS: Record<"pro" | "work", readonly string[]> = {
-  pro: ["documents", "personas", "voice", "backup", "keyboard", "controls"],
-  work: ["packs", "vaults", "redaction", "office", "audit", "models"],
+  pro: ["documents", "personas", "folders", "models", "voice"],
+  work: [],
 };
+
+/** Lines that exist only if the voice stream (M5b) lands in the same release; remove them together if it slips. */
+export const VOICE_LINES: readonly string[] = ["voice"];
+
+/** A tier is offered on the paywall only when it has at least one shipped capability to show for the price. */
+export const sellable = (tier: "pro" | "work"): boolean => PAYWALL_BULLETS[tier].length > 0;
