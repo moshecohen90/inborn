@@ -545,6 +545,12 @@ AAB=app/build/outputs/bundle/release/app-release.aab; BT=/Users/moshecohen/dev/i
 java -jar $BT validate --bundle=$AAB && BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB
 INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts/play-upload.mjs --aab $AAB --track internal --status completed
 ```
+One-time products (Pro / Pro launch / Work / Work upgrade) live in Play through `scripts/play-products.mjs` (same
+credentials; `--list`, `--dry-run`): the new `monetization.onetimeproducts` API (the legacy `inappproducts` endpoint
+answers 403 for this app), US price as the base and Play's own regional conversion for the rest, six listings each,
+idempotent. Licence testers (account-level, Play Console → Settings → Licence testing) and the internal-track tester
+list are console-only; the app's Play licensing public key is committed in `packages/core/src/licence/roots.ts`
+(an empty key makes every real purchase fail with `untrusted-root`).
 arm64-v8a only: Play accepts it (64-bit is the requirement) and every test phone is arm64; add `armeabi-v7a` before a
 wider rollout.
 
