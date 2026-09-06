@@ -64,6 +64,7 @@ describe("signed export (spec §7.5 Work): content hash + Ed25519, verifiable wi
     const record = signRecord(buildRecord({ ...input, vault: { folderId: "f1", name: "Client A", auditHead: "cd".repeat(32) } }), SEED);
     const md = renderRecord(record);
     expect(md).toContain("# Signed record · Intake call");
+    expect(md).toContain("Generated with Inborn (on-device AI). Verify before use.");
     expect(md).toContain('Vault "Client A"');
     expect(md).toContain(`content sha256  ${record.contentHash}`);
     expect(md).toContain(`public key       ${record.signer.publicKeyHex}`);
