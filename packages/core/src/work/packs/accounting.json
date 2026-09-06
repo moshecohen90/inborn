@@ -1,0 +1,32 @@
+{
+  "id": "accounting",
+  "name": "Accounting",
+  "audience": "Accountants, bookkeepers and tax advisers",
+  "declaration": "Inborn runs a language model on this device. Client figures you paste never leave it: no cloud, no account, no server. The model does not know current tax law or rates for any jurisdiction unless you give them, and it makes arithmetic and classification mistakes with full confidence. Every memo, reconciliation or figure it drafts is for a qualified accountant to check against the source documents and the current rules before it reaches a client or a filing. Client vaults, the audit log and signed exports document what happened on this device; they are not an audit trail recognised by any regulator.",
+  "templates": [
+    {
+      "id": "tax-memo",
+      "title": "Tax memo",
+      "purpose": "Issue, facts, analysis and recommendation with the rules you supply",
+      "body": "Draft a tax memo for {{client_name}} ({{jurisdiction}}, tax year {{tax_year}}). Structure: Issue, Facts, Analysis, Recommendation, Open questions. Use only the rules and rates I paste below; where a rule is needed that I did not give, write [rule needed] instead of guessing. Show every calculation step.\n\nRules and rates:\n{{rules}}\n\nFacts:\n{{facts}}"
+    },
+    {
+      "id": "engagement-scope",
+      "title": "Engagement scope",
+      "purpose": "Services, exclusions, responsibilities, fees, timeline",
+      "body": "Write the scope section of an engagement letter for {{client_name}}: services included ({{services}}), services excluded, the client's responsibilities (records, deadlines, accuracy), our responsibilities, fees ({{fees}}) and timeline. Plain, unambiguous language; no promises about outcomes.\n\nContext:\n{{context}}"
+    },
+    {
+      "id": "variance-analysis",
+      "title": "Variance analysis",
+      "purpose": "Budget vs actual with drivers and a management summary",
+      "body": "Analyse the budget-versus-actual figures below for {{client_name}}, period {{period}}. For each line with a variance above {{threshold}}: amount, percentage, likely driver from my notes, and whether it looks one-off or recurring. Finish with a five-sentence management summary. Recompute every percentage; do not trust mine.\n\nFigures:\n{{figures}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "documents-request",
+      "title": "Documents request email",
+      "purpose": "A clear checklist of what the client still owes you",
+      "body": "Write an email to {{client_name}} requesting the documents still missing for {{purpose}}, due {{deadline}}. Friendly and firm, a checklist with one line per item and why it is needed, and what happens if the deadline passes.\n\nMissing items:\n{{items}}"
+    }
+  ]
+}

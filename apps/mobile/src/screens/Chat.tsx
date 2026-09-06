@@ -49,6 +49,7 @@ import { AssistantMessage, type AssistantRow } from "../components/chat/Assistan
 import { UserMessage } from "../components/chat/UserMessage";
 import { Composer } from "../components/chat/Composer";
 import { AttachSheet } from "../components/chat/AttachSheet";
+import { TemplatesSheet } from "../work";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
@@ -146,6 +147,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
+  const [templatesOpen, setTemplatesOpen] = useState(false);
   const [micOpen, setMicOpen] = useState(false);
   const [preferWhisper, setPreferWhisper] = useState(false);
   const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
@@ -907,9 +909,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => onOpenDocuments?.());
         }}
         onPhoto={addPhoto}
+        onTemplates={() => {
+          setAttachOpen(false);
+          afterSheetClose(() => setTemplatesOpen(true));
+        }}
         photoDisabled={!visionReady || !modelSees}
         photoNote={!modelSees ? t("chat.attach.noVision", { model: modelLabel(model.id) }) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
       />
+      <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />
       <Sheet visible={micOpen} onClose={() => setMicOpen(false)} title={t("voice.mic.title")} testID="mic-sheet" scroll={false}>
         <SheetItem
           testID="mic-dictate"

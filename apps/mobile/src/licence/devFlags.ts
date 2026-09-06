@@ -15,4 +15,4 @@ export const DEV_AUTOBUY: string | undefined = process.env.EXPO_PUBLIC_AUTOBUY |
 export const DEV_STORE_OFFLINE: boolean = process.env.EXPO_PUBLIC_STORE_OFFLINE === "1";
 export const DEV_RESULT_FILE = "licence-run.json";
 /** Dev bundles may pretend to own Pro (`EXPO_PUBLIC_PRO=1`) to walk the gated screens; release bundles only trust the licence. */
-export const DEV_TIER: "pro" | null = __DEV__ && process.env.EXPO_PUBLIC_PRO === "1" ? "pro" : null;
+export const DEV_TIER: "pro" | "work" | null = __DEV__ ? (process.env.EXPO_PUBLIC_TIER === "work" ? "work" : process.env.EXPO_PUBLIC_PRO === "1" || process.env.EXPO_PUBLIC_TIER === "pro" ? "pro" : null) : null;

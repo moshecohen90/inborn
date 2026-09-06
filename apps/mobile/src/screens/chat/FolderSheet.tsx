@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { Chat, ChatStore, Folder } from "@inborn/core";
@@ -14,10 +14,16 @@ interface Props {
   onClose: () => void;
   store: ChatStore;
   onChanged: () => void;
+  /** Work stream: per-folder vault controls in the manage list. */
+  extraAction?: (folder: Folder) => ReactNode;
+  /** A folder the chat may not be moved into right now (a locked vault). */
+  canMoveTo?: (folder: Folder) => boolean;
+  /** After a move (for the vault audit log): previous folder, new folder or null for the root. */
+  onMoved?: (chat: Chat, from: string | undefined, to: string | null) => void;
 }
 
 /** Folder management and "Move to folder" (§8.3 S20). Gating is decided by the caller; the sheet only does the work. */
-export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
+export function FolderSheet({ mode, onClose, store, onChanged, extraAction, canMoveTo, onMoved }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -38,6 +44,7 @@ export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
         const f = await store.library.createFolder(name);
         if (mode?.kind === "move") {
           await store.updateChat(mode.chat.id, { folderId: f.id });
+          onMoved?.(mode.chat, mode.chat.folderId, f.id);
           onChanged();
           onClose();
           return;
@@ -50,7 +57,9 @@ export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
   };
   const move = async (folderId: string | null) => {
     if (mode?.kind !== "move") return;
+    if (folderId === (mode.chat.folderId ?? null)) return onClose();
     await store.updateChat(mode.chat.id, { folderId });
+    onMoved?.(mode.chat, mode.chat.folderId, folderId);
     onChanged();
     onClose();
   };
@@ -65,10 +74,11 @@ export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
       {mode?.kind === "move" ? <SheetItem testID="folder-none" label={t("folders.none")} onPress={() => void move(null)} trailing={!mode.chat.folderId ? <Icon name="check" size={16} color={theme.accent} /> : undefined} /> : null}
       {folders.map((f) =>
         mode?.kind === "move" ? (
-          <SheetItem key={f.id} testID={`folder-pick-${f.id}`} label={f.name} onPress={() => void move(f.id)} trailing={mode.chat.folderId === f.id ? <Icon name="check" size={16} color={theme.accent} /> : undefined} />
+          <SheetItem key={f.id} testID={`folder-pick-${f.id}`} label={f.name} hint={canMoveTo && !canMoveTo(f) ? t("vaults.lockedHint") : undefined} disabled={canMoveTo ? !canMoveTo(f) : false} onPress={() => void move(f.id)} trailing={mode.chat.folderId === f.id ? <Icon name="check" size={16} color={theme.accent} /> : undefined} />
         ) : (
           <View key={f.id} style={styles.manageRow}>
             <Text style={[type.body, styles.grow, { color: theme.text }]}>{f.name}</Text>
+            {extraAction?.(f)}
             <Pressable testID={`folder-rename-${f.id}`} accessibilityRole="button" onPress={() => setDraft({ id: f.id, name: f.name })} hitSlop={6} style={styles.textBtn}>
               <Text style={[type.caption, { color: theme.accent }]}>{t("chats.rename")}</Text>
             </Pressable>

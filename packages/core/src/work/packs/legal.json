@@ -1,0 +1,32 @@
+{
+  "id": "legal",
+  "name": "Legal",
+  "audience": "Lawyers, paralegals and in-house counsel",
+  "declaration": "Inborn runs a language model on this device. Nothing you type or paste leaves it, and there is no account or server. The model can be wrong, can invent citations and can miss a controlling authority: every output is a draft for a lawyer to verify, not legal advice and not a substitute for research. Using this tool does not create a privilege or any protection beyond what your own conduct and this device's security provide; check your bar's rules on AI assistance and client confidentiality before relying on it. Client vaults, the audit log and signed exports document what happened on this device; they do not certify anything to a court.",
+  "templates": [
+    {
+      "id": "case-memo",
+      "title": "Case memo",
+      "purpose": "Facts, issues, rules, analysis, conclusion from your notes",
+      "body": "Draft an internal case memo from these notes. Structure it as Facts, Issues, Rules, Analysis, Conclusion. Do not invent authorities: where a rule needs a citation, write [citation needed] instead. Flag any assumption you had to make.\n\nMatter: {{matter}}\nJurisdiction: {{jurisdiction}}\nClient position: {{client_position}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "contract-summary",
+      "title": "Contract summary",
+      "purpose": "Parties, term, obligations, risks and unusual clauses",
+      "body": "Summarise the following contract for a busy partner: parties and roles, term and termination, payment, key obligations of each side, liability and indemnity, IP, confidentiality, governing law, and any clause that is unusual or one-sided. Quote the exact wording for anything you flag as a risk. End with five questions to raise with the client.\n\nClient: {{client_name}}\nOur side: {{our_side}}\n\nContract text:\n{{contract_text}}"
+    },
+    {
+      "id": "demand-letter",
+      "title": "Demand letter draft",
+      "purpose": "Firm, factual, with a deadline and the consequence",
+      "body": "Draft a demand letter on behalf of {{client_name}} to {{recipient}}. Tone: formal and firm, no threats beyond what the facts support. State the facts, the obligation breached, the remedy demanded ({{remedy}}), a deadline of {{deadline}}, and what follows if it passes. Leave placeholders for any figure or date I did not give you.\n\nFacts:\n{{facts}}"
+    },
+    {
+      "id": "client-update",
+      "title": "Client update email",
+      "purpose": "Plain-language status, next steps, what you need from them",
+      "body": "Write a short client update email to {{client_name}} about {{matter}}. Plain language, no jargon, three parts: where things stand, what happens next and when, what I need from them. Do not give legal conclusions I have not stated below.\n\nStatus and next steps:\n{{status}}"
+    }
+  ]
+}

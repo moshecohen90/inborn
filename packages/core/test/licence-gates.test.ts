@@ -13,9 +13,9 @@ describe("paywall bullets", () => {
   it("voice lines are a subset of the offered bullets, so pulling them is one edit", () => {
     for (const v of VOICE_LINES) expect(PAYWALL_BULLETS.pro).toContain(v);
   });
-  it("Pro is sellable; Work is not until it has a capability of its own", () => {
+  it("Pro and Work are both sellable: each has shipped capabilities behind its lines", () => {
     expect(sellable("pro")).toBe(true);
-    expect(sellable("work")).toBe(false);
+    expect(sellable("work")).toBe(true);
     expect(Object.values(FEATURES)).toContain("work");
   });
 });

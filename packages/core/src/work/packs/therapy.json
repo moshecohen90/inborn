@@ -1,0 +1,32 @@
+{
+  "id": "therapy",
+  "name": "Therapy",
+  "audience": "Psychotherapists, counsellors and social workers",
+  "declaration": "Inborn runs a language model on this device. Session notes you write here never leave it: there is no cloud, no account and no server. The model is not a clinician: it can misread risk, miss context and produce confident errors, so every note it drafts is yours to review before it enters a record. It must never replace your own risk assessment or a supervisor. Keep client identifiers out of prompts where your professional rules require it; client vaults, the audit log and signed exports document what happened on this device and are not a certification of confidentiality under any law.",
+  "templates": [
+    {
+      "id": "soap-note",
+      "title": "SOAP note",
+      "purpose": "Subjective, Objective, Assessment, Plan from session notes",
+      "body": "Turn these session notes into a SOAP note. Keep the client's own words in the Subjective section in quotes where I gave them. Do not add diagnoses, risk statements or interventions I did not write. Mark anything unclear with [confirm].\n\nClient reference: {{client_ref}}\nSession date: {{session_date}}\nModality: {{modality}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "intake-summary",
+      "title": "Intake summary",
+      "purpose": "Presenting concern, history, goals, initial plan",
+      "body": "Write an intake summary from the notes below: presenting concern, relevant history, current supports, risk factors I noted (only those), the client's stated goals, and an initial plan. Neutral clinical language, no speculation.\n\nClient reference: {{client_ref}}\nDate: {{intake_date}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "session-plan",
+      "title": "Session plan",
+      "purpose": "Goals, agenda and possible interventions for the next session",
+      "body": "Propose a plan for the next session with {{client_ref}} based on the last summary: two goals for the session, a short agenda, two or three interventions consistent with {{modality}}, and one thing to check in on. Keep it to one page and present it as options for me, not instructions.\n\nLast session summary:\n{{last_summary}}"
+    },
+    {
+      "id": "progress-note",
+      "title": "Progress note",
+      "purpose": "Change since last session against the treatment goals",
+      "body": "Draft a progress note for {{client_ref}} dated {{session_date}}: progress against each treatment goal listed, any change in functioning I described, interventions used, homework, and plan for next time. Only use what is in my notes.\n\nTreatment goals:\n{{goals}}\n\nSession notes:\n{{notes}}"
+    }
+  ]
+}
