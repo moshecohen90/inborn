@@ -6,6 +6,8 @@ import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, t
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, resetEngine } from "../engine";
 import { getVault } from "../vault/store";
+import { startDeviceGuard } from "../device/boot";
+import { getDeviceGuard } from "../device/guard";
 import { openPersistentStorage } from "../storage/persistent";
 import type { PersistenceKind } from "../storage/types";
 import { wipe, type WipeOptions } from "../storage/wipe";
@@ -90,6 +92,7 @@ interface Booted {
 async function boot(prefs: Prefs): Promise<Booted> {
   const tags = getLocales().map((l) => l.languageTag);
   await Promise.all([initI18n(prefs.locale ?? tags[0] ?? "en", tags), prepareEngine()]);
+  startDeviceGuard();
   let repository: ChatRepository;
   let storageKind: PersistenceKind;
   try {
@@ -283,7 +286,9 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),
       delivery,
       setDelivery,
+      /* The guard records the decision (banner, hysteresis); the vault performs the swap until the guard's resolver exists. */
       switchToInstant: () => {
+        getDeviceGuard().switchToInstant();
         const vault = getVault();
         if (Platform.OS === "web" || vault.state("instant").kind !== "ready") return;
         const current = vault.activeModel()?.model.id ?? null;
@@ -293,14 +298,14 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
         void reloadEngine();
       },
       switchBack: () => {
+        getDeviceGuard().switchBack();
         const id = previousModel.current;
         if (!id || Platform.OS === "web") return;
         previousModel.current = null;
         getVault().setDefault(id);
         void reloadEngine();
       },
-      /* Resuming after a thermal/memory pause belongs to the device-guard stream (§8.8). */
-      continueGeneration: () => console.log("[inborn] continue generation requested"),
+      continueGeneration: () => getDeviceGuard().continueGeneration(),
       wipeAll,
     };
   }, [booted, prefs, updatePrefs, lock, captured, sealState, networkLog, meter, active, delivery, wipeAll, closeActive, reloadEngine]);

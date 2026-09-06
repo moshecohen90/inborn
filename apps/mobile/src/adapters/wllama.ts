@@ -13,7 +13,7 @@ type ChunkDelta = ChatCompletionChunk["choices"][number]["delta"] & { reasoning_
 type GpuNavigator = Navigator & { gpu?: { requestAdapter(): Promise<unknown | null> } };
 type MemoryPerformance = Performance & { measureUserAgentSpecificMemory?: () => Promise<{ bytes: number }> };
 
-/* WASM threads need SharedArrayBuffer, which the browser only hands out under COOP/COEP (spec §4.4). */
+/* WASM threads need SharedArrayBuffer, which the browser only hands out under COOP/COEP (spec §4.4); wllama fixes the count at load, so GenOpts.threads waits for the next load. */
 const threadCount = (requested: number | undefined): number =>
   globalThis.crossOriginIsolated ? Math.max(1, requested ?? Math.floor((navigator.hardwareConcurrency || 2) / 2)) : 1;
 

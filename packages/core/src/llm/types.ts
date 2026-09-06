@@ -41,6 +41,8 @@ export interface GenOpts {
   stop?: string[];
   /** When false the model is asked not to emit reasoning tokens (Qwen "thinking" off). */
   reasoning?: boolean;
+  /** Threads for this answer (device guard, spec §6.5); engines that fix threads at load apply it on the next load. */
+  threads?: number;
 }
 
 export interface Usage {

@@ -72,6 +72,7 @@ export class LlamaRnLM implements LocalLM {
         {
           messages: messages.map((m) => ({ role: m.role, content: m.content })),
           n_predict: opts.maxTokens ?? 1024,
+          n_threads: opts.threads,
           temperature: opts.temperature ?? 0.7,
           top_p: opts.topP ?? 0.9,
           stop: opts.stop ?? [],
