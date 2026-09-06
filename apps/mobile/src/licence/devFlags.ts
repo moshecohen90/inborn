@@ -1,0 +1,16 @@
+/**
+ * Bundle-time switches for purchase proofs on simulators/emulators. Store builds never set them, so release bundles
+ * trust only Apple's production root and Play's real signature (spec §12.4, §10.7 #51).
+ */
+export const devBuild = (): boolean => __DEV__ || process.env.EXPO_PUBLIC_DEV_MODEL_HOST !== undefined;
+/** Sandbox / Xcode StoreKit transactions and `android.test.*` SKUs verify only in dev bundles. */
+export const ALLOW_TEST_PURCHASES: boolean = process.env.EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1" || __DEV__;
+/** Play licence public key (base64 SPKI) at bundle time until it is pasted into roots.ts. */
+export const PLAY_LICENCE_KEY: string = process.env.EXPO_PUBLIC_PLAY_LICENCE_KEY ?? "";
+/** Launch day as ISO date for the 30-day launch price (§12.1); unset = launch SKU hidden. */
+export const LAUNCH_AT: number | null = process.env.EXPO_PUBLIC_LAUNCH_AT ? Date.parse(process.env.EXPO_PUBLIC_LAUNCH_AT) : null;
+/** Headless proofs: the paywall taps "Unlock Pro" by itself after the store answers, then writes licence-run.json. Dev bundles only. */
+export const DEV_AUTOBUY: string | undefined = process.env.EXPO_PUBLIC_AUTOBUY || undefined;
+/** Simulates "no store" (airplane mode) on a simulator: every store call rejects, so the sealed cache is the only source. Dev bundles only. */
+export const DEV_STORE_OFFLINE: boolean = process.env.EXPO_PUBLIC_STORE_OFFLINE === "1";
+export const DEV_RESULT_FILE = "licence-run.json";

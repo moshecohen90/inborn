@@ -62,6 +62,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ["expo-router", { root: "./src/app" }],
     "llama.rn",
+    /* StoreKit 2 + Play Billing (spec §12.4). Purchases are verified in @inborn/core; the plugin only links the native billing SDKs. */
+    "expo-iap",
+    /* Dev builds only: puts storekit/Inborn.storekit into the Xcode project + a UI test target that drives StoreKit Testing (ios-tests/). */
+    "./plugins/withStoreKitTesting",
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
     ["expo-sqlite", { useSQLCipher: true }],

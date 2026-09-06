@@ -8,6 +8,7 @@ import { getEngine } from "../engine";
 import { openPersistentStorage } from "../storage/persistent";
 import type { PersistenceKind } from "../storage/types";
 import { wipe, type WipeOptions } from "../storage/wipe";
+import { getLicence, wipeLicence } from "../licence";
 import { useAppLock, type AppLock } from "../lock/useAppLock";
 import { isCaptured, onCapturedChange, setSecure } from "../../modules/secure-screen";
 import { meterKind, sample, type MeterKind } from "../proof/meterSource";
@@ -146,6 +147,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     boot(prefsRef.current)
       .then((b) => {
         if (alive) setBooted(b);
+        void getLicence();
       })
       .catch((e: unknown) => console.error("boot failed", e));
     return () => {
@@ -178,6 +180,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   useEffect(() => networkLog.subscribe(() => setLogTick((n) => n + 1)), [networkLog]);
 
   const wipeAll = useCallback(async (opts: WipeOptions) => {
+    await wipeLicence();
     await wipe(opts);
     deletePrefs();
     const fresh = defaultPrefs(Date.now());

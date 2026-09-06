@@ -3,6 +3,7 @@
 
 mod dev;
 mod engine;
+mod licence;
 mod models;
 mod shell;
 mod store;
@@ -34,6 +35,14 @@ fn main() {
       store::db_run,
       store::db_all,
       store::db_batch,
+      licence::licence_secret,
+      licence::licence_device_id,
+      licence::licence_load,
+      licence::licence_save,
+      licence::licence_clear,
+      licence::licence_cache_load,
+      licence::licence_cache_save,
+      licence::licence_cache_clear,
       models::models_list,
       models::models_space,
       models::models_import,

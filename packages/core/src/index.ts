@@ -15,3 +15,4 @@ export * from "./proof/exitMeter";
 export * from "./proof/allowlist";
 export * from "./lock/policy";
 export * from "./device/chip";
+export * from "./licence";

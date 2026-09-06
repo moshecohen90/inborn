@@ -70,7 +70,7 @@ type MemoryRow = { id: string; content: string; source_chat_id: string | null; p
 type ReportRow = { id: string; reason: ReportReason; note: string; chat_id: string | null; message_id: string | null; message_text: string | null; model_id: string | null; created_at: number };
 
 /** Random 256-bit raw key, generated once and kept in the Keychain / Android Keystore (spec §5.3). */
-async function databaseKeyHex(): Promise<string> {
+export async function databaseKeyHex(): Promise<string> {
   const existing = await SecureStore.getItemAsync(KEY_ITEM, KEY_OPTIONS);
   if (existing) return existing;
   const bytes = await Crypto.getRandomBytesAsync(32);
