@@ -46,7 +46,7 @@ type MessageRow = {
 type SearchRow = { chat_id: string; id: string; content: string };
 
 /** Random 256-bit raw key, generated once and kept in the Keychain / Android Keystore (spec §5.3). */
-async function databaseKeyHex(): Promise<string> {
+export async function databaseKeyHex(): Promise<string> {
   const existing = await SecureStore.getItemAsync(KEY_ITEM, KEY_OPTIONS);
   if (existing) return existing;
   const bytes = await Crypto.getRandomBytesAsync(32);

@@ -4,3 +4,4 @@ export * from "./catalog";
 export * from "./chat/types";
 export * from "./chat/repository";
 export { ChatStore } from "./chat/store";
+export * from "./licence";

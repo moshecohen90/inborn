@@ -9,6 +9,10 @@ import { Chat } from "./src/screens/Chat";
 import { Chats } from "./src/screens/Chats";
 import { openPersistentStorage } from "./src/storage/persistent";
 import { WebShell } from "./src/web/WebShell";
+import { PaywallScreen } from "./src/screens/paywall";
+
+/* Headless simulator proofs (README "Pro purchases"): a dev bundle can boot straight into the paywall. Store builds never set it. */
+const START_SCREEN = __DEV__ || process.env.EXPO_PUBLIC_DEV_MODEL_HOST ? process.env.EXPO_PUBLIC_START_SCREEN : undefined;
 
 type Screen = "chat" | "chats";
 /** `key` remounts the chat screen whenever a different conversation is opened. */
@@ -35,6 +39,12 @@ export default function App() {
   }, []);
 
   if (!store) return null;
+  if (START_SCREEN === "paywall") return (
+    <SafeAreaProvider>
+      <PaywallScreen onClose={() => undefined} />
+      <StatusBar style="auto" />
+    </SafeAreaProvider>
+  );
   // An incognito chat is gone the moment the user leaves it (spec §5.7), not just when the app exits.
   const closeActive = () => {
     if (active.incognito && active.id) store.deleteChat(active.id).catch((e: unknown) => console.warn("deleteChat", e));
