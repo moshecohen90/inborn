@@ -21,3 +21,6 @@ export function savePrefs(prefs: DevicePrefs): void {
     /* private mode or no storage: the choice lasts for this run only */
   }
 }
+
+/** Dev builds on phones write the guard's first read to Documents/device-guard.json (README measurement channel); nothing on the web. */
+export function writeDevSnapshot(_snapshot: Record<string, unknown>): void {}

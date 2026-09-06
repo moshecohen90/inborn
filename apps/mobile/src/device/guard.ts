@@ -31,7 +31,7 @@ import {
   unloadSession,
   type EngineState,
 } from "../engine";
-import { loadPrefs, savePrefs } from "./prefs";
+import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
 import { MEMORY_RECOVERY_MS, memoryHealthy, readSignals, setCurrentSignals, snapshot, subscribeSignals, type RawSignals } from "./signals";
 /** The guard's own view in the policy's types; mapState.ts turns it into the shell's DeviceState. */
 export interface GuardState {
@@ -292,6 +292,8 @@ class DeviceGuard {
   private publish(): void {
     const rec = this.policy.current;
     if (!this.raw || !rec) return;
+    /* Dev builds: the first read lands in Documents/device-guard.json, the README's measurement channel where no console is readable (iOS). */
+    if (__DEV__ && !this.state) writeDevSnapshot({ ...this.raw, snapshot: snapshot(), status: rec.status, at: new Date().toISOString() });
     if (__DEV__ && (rec.status !== this.state?.recommendation.status || rec.headline !== this.state?.recommendation.headline || rec.button !== this.state?.recommendation.button)) {
       console.log(`[device] ${rec.status} · ${rec.headline ?? "—"} ${JSON.stringify(rec.headlineParams)} · ${rec.recommendation}/${rec.action} · button=${rec.button} · threads=${rec.threads} maxTokens=${rec.maxTokens} · ${this.raw.thermal}/${this.raw.memoryPressure}/${Math.round((this.raw.battery.level ?? 0) * 100)}%/${this.raw.battery.state}/lpm=${this.raw.battery.lowPowerMode}`);
     }

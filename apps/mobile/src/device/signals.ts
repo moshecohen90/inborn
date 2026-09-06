@@ -64,9 +64,9 @@ function baseThreads(): number {
   return web && cores ? Math.max(1, Math.floor(cores / 2)) : 4;
 }
 
-/** Whether a snapshot says memory is fine again (jetsam threshold on Android, 150 MB of process headroom on iOS). */
+/** Whether a snapshot says memory is fine again (jetsam threshold on Android, 150 MB of process headroom on iOS; unknown counts as fine). */
 export function memoryHealthy(s: Snapshot): boolean {
-  return isAndroidSnapshot(s) ? !s.lowMemory : s.availableMemory > 150 * 1048576;
+  return isAndroidSnapshot(s) ? !s.lowMemory : s.availableMemory === null || s.availableMemory > 150 * 1048576;
 }
 
 export function snapshot(): Snapshot | null {

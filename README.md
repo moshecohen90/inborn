@@ -167,8 +167,14 @@ OnePlus 6T (Android 11), read-only trace with `scripts/device-thermal-measure.sh
 phone: a sensor named `soc` (type 8, battery-current-limit percentage) reports 100 at full charge and OxygenOS maps it to SHUTDOWN, while the skin
 sensor's own status is 3 (SEVERE) under load and 0 at rest. Without the plausibility check the app would never answer there; with it the status is
 "unknown" and the device's own throttling is the only protection. Open: whether `getThermalHeadroom` works on that phone (needs a dev build on it).
-iOS: the Swift module compiles only once ExpoModulesCore does; on this machine (Xcode 26.2) a simulator build of ExpoModulesCore 57.0.15 fails on
-Swift 6 Sendable errors before reaching it, so the iOS side is unverified (the README device path built Release earlier in this milestone).
+iOS (iPhone 15 Pro simulator, iOS 17.0.1, Debug build with `patches/expo-modules-core@57.0.15.patch`): the Swift module compiles, links and
+answers at boot with thermal nominal, Low Power off, 64 GB RAM (the Mac's), tablet false; `os_proc_available_memory()` is 0 on the simulator and
+is reported as unknown, not as pressure. The simulator's app container is shared by every stream (same bundle id) and remembers the Metro port
+in `RCT_jsLocation`; point it at your Metro with `xcrun simctl spawn <udid> defaults write com.inbornapp.mobile RCT_jsLocation localhost:8081`,
+and read the guard's first read from `Documents/device-guard.json` (dev builds write it; the simulator's console reaches neither Metro nor `log`).
+After the merge with the shell: `useDeviceState()` returns the shell's `DeviceState` (banner union from the policy, `policy` attached), Settings'
+banner preview still works, and the three AppServices buttons route to the guard; the thermal override on the emulator renders the shell's
+"Slowing down to keep the phone cool · Switch to Instant" banner.
 
 ## The no-INTERNET rule (decision D3)
 `apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.

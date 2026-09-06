@@ -21,3 +21,11 @@ export function savePrefs(prefs: DevicePrefs): void {
     console.warn("[inborn] device prefs not saved", e);
   }
 }
+
+export function writeDevSnapshot(snapshot: Record<string, unknown>): void {
+  try {
+    new File(Paths.document, "device-guard.json").write(JSON.stringify(snapshot));
+  } catch {
+    /* dev only */
+  }
+}

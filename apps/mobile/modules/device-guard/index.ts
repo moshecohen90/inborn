@@ -24,7 +24,8 @@ export interface IosSnapshot {
   /** ProcessInfo.ThermalState: 0 nominal, 1 fair, 2 serious, 3 critical */
   thermalState: number;
   lowPowerMode: boolean;
-  availableMemory: number;
+  /** os_proc_available_memory(); null where the process limit is unknown (simulator, macOS). */
+  availableMemory: number | null;
   physicalMemory: number;
   isTablet: boolean;
   model: string;
@@ -35,7 +36,7 @@ export type Snapshot = AndroidSnapshot | IosSnapshot;
 
 export type DeviceGuardEvents = {
   thermal(e: { thermalStatus?: number; thermalState?: number }): void;
-  memory(e: { trimLevel?: number; level?: "warning" | "critical"; availableMemory?: number }): void;
+  memory(e: { trimLevel?: number; level?: "warning" | "critical"; availableMemory?: number | null }): void;
   power(e: Snapshot): void;
 };
 

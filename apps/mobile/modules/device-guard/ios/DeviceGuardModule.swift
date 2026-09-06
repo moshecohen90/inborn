@@ -26,12 +26,18 @@ public class DeviceGuardModule: Module {
     OnDestroy { self.stop() }
   }
 
+  // os_proc_available_memory() is 0 where the limit is unknown (simulator, macOS): report null rather than "no memory left".
+  private func availableMemory() -> Double? {
+    let bytes = os_proc_available_memory()
+    return bytes > 0 ? Double(bytes) : nil
+  }
+
   private func snapshot() -> [String: Any?] {
     let info = ProcessInfo.processInfo
     return [
       "thermalState": info.thermalState.rawValue,
       "lowPowerMode": info.isLowPowerModeEnabled,
-      "availableMemory": Double(os_proc_available_memory()),
+      "availableMemory": availableMemory(),
       "physicalMemory": Double(info.physicalMemory),
       "isTablet": UIDevice.current.userInterfaceIdiom == .pad,
       "model": UIDevice.current.model,
@@ -50,13 +56,13 @@ public class DeviceGuardModule: Module {
       self.sendEvent("power", self.snapshot())
     })
     observers.append(center.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] _ in
-      self?.sendEvent("memory", ["level": "warning", "availableMemory": Double(os_proc_available_memory())])
+      self?.sendEvent("memory", ["level": "warning", "availableMemory": self?.availableMemory()])
     })
     let source = DispatchSource.makeMemoryPressureSource(eventMask: [.warning, .critical], queue: .main)
     source.setEventHandler { [weak self, weak source] in
       guard let source, !source.isCancelled else { return }
       let level = source.data.contains(.critical) ? "critical" : "warning"
-      self?.sendEvent("memory", ["level": level, "availableMemory": Double(os_proc_available_memory())])
+      self?.sendEvent("memory", ["level": level, "availableMemory": self?.availableMemory()])
     }
     source.activate()
     memorySource = source
