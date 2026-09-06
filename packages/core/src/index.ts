@@ -21,3 +21,4 @@ export * from "./licence";
 export * from "./rag";
 export * from "./device";
 export * from "./voice";
+export * from "./work";

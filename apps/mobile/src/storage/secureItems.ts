@@ -4,6 +4,10 @@ export const SECURE_ITEMS = {
   dbKey: "inborn.db.key",
   /** Salted passcode hash of the app lock. */
   passcode: "inborn.lock.passcode",
+  /** Client vault records: folder id, salt, code hash, audit head (Pro for Work). */
+  workVaults: "inborn.work.vaults",
+  /** Ed25519 seed that signs exported records (Pro for Work); created at the first signed export. */
+  workSigning: "inborn.work.signing",
 } as const;
 
 export const SECURE_ITEM_LIST: readonly string[] = Object.values(SECURE_ITEMS);

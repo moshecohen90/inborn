@@ -176,6 +176,12 @@ export function Settings() {
         <Row testID="row-proof" label={t("proof.title")} onPress={() => router.push("/proof")} chevron />
       </Section>
 
+      <Section title={t("settings.work")}>
+        <Row testID="row-audit" label={t("audit.title")} sub={t("audit.row")} onPress={() => router.push("/work/audit")} chevron />
+        <Row testID="row-verify" label={t("verify.title")} sub={t("verify.row")} onPress={() => router.push("/work/verify")} chevron />
+        <Row testID="row-statement" label={t("statement.title")} sub={t("statement.row")} onPress={() => router.push("/work/statement")} chevron />
+      </Section>
+
       <Section title={t("settings.about")}>
         <Row testID="row-about" label={t("about.title")} onPress={() => router.push("/settings/about")} chevron />
         <Row label={t("about.modelLicenses")} onPress={() => router.push("/settings/licenses")} chevron />

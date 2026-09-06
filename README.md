@@ -637,3 +637,33 @@ node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/
 - Emulator traps met on the way: Pixel_4 needs `-memory 4096` (2 GB gets the app killed while the model loads); the simulator's dyld shared
   cache can break under host memory pressure (`_dyld_sim_prepare` SIGBUS at launch): shut the simulator down and boot it again.
 
+## Pro for Work on mobile (work-tier, spec §7.5–§7.9, §8.7, §12.1–§12.3) — status 7.9.2026
+Work is real on the phone, so the paywall shows it: Pro card first, Work below with the "For professionals" tag (both always visible, §12.2
+anchor), Pro owners see the $49.99 upgrade card. Bullets are only what ships (`PAYWALL_BULLETS.work`): vaults, audit log, signed export,
+profession packs, architecture statement; redaction and office intake join when the work-docs stream lands. `sellable()` stays the guard.
+- **Core** (`packages/core/src/work/`, 27 vitest tests in `test/work-*.test.ts`): `vault.ts` (folder + own passcode: per-vault salt, SHA-256
+  hash, never the code; session rule: closes when the app lock engages or after 30 min), `audit.ts` (append-only, hash-chained entries: who/when/
+  what, never message content; `verifyAudit` detects edits, removals, reordering and truncation against the head mirrored in the vault record),
+  `signedRecord.ts` (chat → canonical JSON → SHA-256 → Ed25519 with a per-install key; the public key rides in the file; `verifyRecord`, a
+  Markdown companion, and verification instructions whose Node one-liner the test really runs), `packs/*.json` + `packs.ts` (legal, therapy,
+  medical, accounting: a declaration each and 4 templates with `{{placeholders}}`; a test asserts no "HIPAA-compliant / privileged / certified /
+  guarantee" wording), `statement.ts` (dated architecture statement per platform, vaults and signing key listed, explicit non-claims).
+  `licence/cache.ts` now exposes `sealJson`/`openJson` with a domain label, so audit files and the entitlement cache use unrelated keys.
+- **Phone** (`apps/mobile/src/work/`): `WorkStore` (vault records + signing seed in the Keychain/Keystore, both in `SECURE_ITEMS` so the wipe
+  removes them; sealed audit files under `Documents/work/`; unlocked set in memory, relocked by `useWork()` when `lock.locked` flips),
+  `VaultCodeSheet`, `TemplatesSheet` (pack → declaration → template → blanks → insert into the composer), `WorkTag`; screens under
+  `screens/Work/` + routes `/work/audit`, `/work/verify`, `/work/statement` (Settings → Pro for Work). Chats list: VAULT / LOCKED chip on the
+  folder header (tap = lock / ask the code), hidden chats while locked, "Vault / Code / Unvault" on the folder rows, moves in and out logged;
+  Export sheet: "Signed record" (.json, then a readable .md of the same record); Attach sheet: "Templates". Free/Pro see the value moment
+  (preview + one price line + WORK tag, §12.3), no popups. Dev bundles: `EXPO_PUBLIC_TIER=pro|work` pretends a tier (`LicenceManager.pretendTier`).
+- **Not built here**: DOCX/XLSX/HTML intake and the redaction sheet (work-docs stream), documents inside vaults, PDF rendering (the statement and
+  the readable record are Markdown handed to the OS share sheet), the Modal sheets do not move for the Android keyboard (app-wide, also the
+  app-lock and folder sheets): typing works, the field is hidden until the keyboard is dismissed.
+
+Verified 7.9.2026 on a private `Pixel_3a_API_33_arm64-v8a` instance (`-memory 4096`, the two assigned AVDs were both in use by other streams), Debug
+APK + Metro on a private port: paywall Free (Pro first, Work below, five Work lines), paywall as Pro owner (You own Pro + Upgrade to Work $49.99),
+template picked from the Legal pack with one blank filled and inserted into the composer, folder "Client A" made a vault (code set twice), chat
+moved in (VAULT badge), locked from the badge (chat hidden, "1 chats · locked"), wrong code refused, right code unlocks, relaunch relocks, signed
+record exported through the share sheet and the pulled `.json` verified VALID by the Node snippet (tampered copy INVALID), audit log screen
+"Chain verified · 5 entries" (created, moved in, locked, unlocked, signed export), architecture statement rendered, templates as Free show the
+price line + WORK tag.

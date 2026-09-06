@@ -19,6 +19,7 @@ import { Toggle } from "../components/shell/primitives";
 import { Fab, FloatingToolbar, materialChrome } from "../components/shell/NativeChrome";
 import { ExportSheet } from "./chat/ExportSheet";
 import { FolderSheet } from "./chat/FolderSheet";
+import { VaultCodeSheet, WorkTag, useWork, useWorkGate, type VaultCodeMode } from "../work";
 import { MemorySheet } from "./chat/MemorySheet";
 import { PersonasSheet } from "./chat/PersonasSheet";
 import { SwipeRow } from "./chat/SwipeRow";
@@ -39,7 +40,7 @@ export interface ChatsProps {
 const UNDO_MS = 5_000;
 type Menu = { chat: Chat; renaming: boolean; title: string };
 type Pending = { chats: Chat[]; timer: ReturnType<typeof setTimeout> };
-type Section = { key: string; title: string; data: Chat[]; folder?: Folder };
+type Section = { key: string; title: string; data: Chat[]; folder?: Folder; lockedCount?: number };
 
 /** S20 chats drawer: search with snippets, pinned / folders / recent / archived, swipe actions, bulk delete with undo, S21 new-chat sheet. */
 export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted, onOpenPaywall }: ChatsProps) {
@@ -61,6 +62,9 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [showArchived, setShowArchived] = useState(false);
   const [folderMode, setFolderMode] = useState<{ kind: "move"; chat: Chat } | { kind: "manage" } | null>(null);
+  const { work, version: workVersion } = useWork();
+  const workGate = useWorkGate();
+  const [vaultCode, setVaultCode] = useState<{ mode: VaultCodeMode; folder: Folder } | null>(null);
   const [exporting, setExporting] = useState<Chat | null>(null);
   const [personasOpen, setPersonasOpen] = useState(false);
   const [memoryOpen, setMemoryOpen] = useState(false);
@@ -72,6 +76,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     const [list, dirs, custom] = await Promise.all([store.listChats(), store.library.listFolders(), store.library.listPersonas()]);
     setChats(list);
     setFolders(dirs);
+    for (const r of work.records()) if (!dirs.some((f) => f.id === r.folderId)) void work.removeVault(r.folderId);
     setPersonas(custom);
   }, [store]);
   useEffect(() => {
@@ -164,11 +169,11 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     const archived = visible.filter((c) => c.archived);
     return [
       ...(pinned.length ? [{ key: "pinned", title: t("chats.pinned"), data: pinned }] : []),
-      ...folders.map((f) => ({ key: `folder-${f.id}`, title: f.name, data: inFolder(f), folder: f })).filter((s) => s.data.length),
+      ...folders.map((f) => (work.isHidden({ folderId: f.id }) ? { key: `folder-${f.id}`, title: f.name, data: [], folder: f, lockedCount: inFolder(f).length } : { key: `folder-${f.id}`, title: f.name, data: inFolder(f), folder: f })).filter((s) => s.data.length || s.lockedCount),
       ...(recent.length ? [{ key: "recent", title: t("chats.recent"), data: recent }] : []),
       ...(archived.length ? [{ key: "archived", title: t("chats.archived", { count: archived.length }), data: showArchived ? archived : [] }] : []),
     ];
-  }, [visible, folders, showArchived, t]);
+  }, [visible, folders, showArchived, t, work, workVersion]);
   const searchResults = useMemo(() => {
     if (!hits) return null;
     const byChat = new Map<string, { chat: Chat; snippets: string[] }>();
@@ -311,6 +316,23 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
               <View style={[styles.sectionHeader, styles.sectionRow]}>
                 {section.folder ? <Icon name="chevronRight" size={14} color={theme.text3} /> : null}
                 <Text style={[type.monoLabel, { color: theme.text3 }]}>{section.title}</Text>
+                {section.folder && work.isVault(section.folder.id) ? (
+                  <Pressable
+                    testID={`vault-${section.folder.id}`}
+                    accessibilityRole="button"
+                    accessibilityLabel={section.lockedCount ? t("vaults.unlock") : t("vaults.lock")}
+                    hitSlop={8}
+                    onPress={() => {
+                      const folder = section.folder!;
+                      if (section.lockedCount) setVaultCode({ mode: { kind: "verify", folderName: folder.name }, folder });
+                      else void work.lock(folder.id);
+                    }}
+                    style={[shape.chip, { borderColor: section.lockedCount ? theme.text3 : theme.sealed, minHeight: 22 }]}
+                  >
+                    <Text style={[type.monoLabel, { color: section.lockedCount ? theme.text3 : theme.sealed }]}>{section.lockedCount ? t("vaults.locked") : t("vaults.badge")}</Text>
+                  </Pressable>
+                ) : null}
+                {section.lockedCount ? <Text style={[type.caption, { color: theme.text3 }]}>{t("vaults.lockedRow", { count: section.lockedCount })}</Text> : null}
               </View>
             )
           }
@@ -469,7 +491,46 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
         </View>
       </Modal>
 
-      <FolderSheet mode={folderMode} onClose={() => setFolderMode(null)} store={store} onChanged={() => void refresh()} />
+      <FolderSheet
+        mode={folderMode}
+        onClose={() => setFolderMode(null)}
+        store={store}
+        onChanged={() => void refresh()}
+        canMoveTo={(f) => !work.isHidden({ folderId: f.id })}
+        onMoved={(chat, from, to) => {
+          if (to) void work.log(to, "chat.moved-in", { chatId: chat.id, title: chat.title });
+          if (from) void work.log(from, "chat.moved-out", { chatId: chat.id, title: chat.title });
+        }}
+        extraAction={(f) =>
+          work.isVault(f.id) ? (
+            <>
+              <Pressable testID={`vault-code-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => { setFolderMode(null); afterSheetClose(() => setVaultCode({ mode: { kind: "change", folderName: f.name }, folder: f })); }}>
+                <Text style={[type.caption, { color: theme.accent }]}>{t("vaults.code")}</Text>
+              </Pressable>
+              <Pressable testID={`vault-remove-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => void work.removeVault(f.id).then(() => refresh())}>
+                <Text style={[type.caption, { color: theme.danger }]}>{t("vaults.unvault")}</Text>
+              </Pressable>
+            </>
+          ) : workGate.vaultsLocked ? (
+            <WorkTag onPress={() => { setFolderMode(null); afterSheetClose(unlock); }} />
+          ) : (
+            <Pressable testID={`vault-make-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => { setFolderMode(null); afterSheetClose(() => setVaultCode({ mode: { kind: "set", folderName: f.name }, folder: f })); }}>
+              <Text style={[type.caption, { color: theme.accent }]}>{t("vaults.make")}</Text>
+            </Pressable>
+          )
+        }
+      />
+      <VaultCodeSheet
+        mode={vaultCode?.mode ?? null}
+        onClose={() => setVaultCode(null)}
+        onSubmit={async (code) => {
+          const v = vaultCode;
+          if (!v) return false;
+          const ok = v.mode.kind === "verify" ? await work.unlock(v.folder.id, code) : v.mode.kind === "set" ? await work.createVault(v.folder.id, code, v.folder.name) : await work.changeCode(v.folder.id, code);
+          if (ok) setVaultCode(null);
+          return ok;
+        }}
+      />
       <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={unlock} />
       <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} onUnlock={unlock} />
       <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} onUnlock={unlock} />

@@ -100,6 +100,7 @@ export class LicenceManager {
   private unsubscribe: Array<() => void> = [];
   private readonly now: () => number;
   private readonly log: (m: string) => void;
+  private pretend: LicenceTier | null = null;
   private _state: LicenceState = { phase: "idle", entitlement: FREE, storeReachable: null, prices: {}, familyShareable: false, purchase: { kind: "idle" }, restore: { kind: "idle" }, rejected: [] };
 
   constructor(private readonly opts: LicenceManagerOptions) {
@@ -311,8 +312,15 @@ export class LicenceManager {
     }
   }
 
+  /** Dev bundles only: walk the Pro / Work screens without a purchase. The app never calls this in release builds. */
+  pretendTier(tier: LicenceTier | null): void {
+    this.pretend = tier;
+    this.set({});
+  }
+
   private set(patch: Partial<LicenceState>): void {
     this._state = { ...this._state, ...patch };
+    if (this.pretend) this._state = { ...this._state, entitlement: { ...this._state.entitlement, tier: this.pretend }, storeReachable: this._state.storeReachable ?? true };
     for (const l of this.listeners) l();
   }
 }

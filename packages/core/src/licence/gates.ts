@@ -74,11 +74,12 @@ export function limits(tier: LicenceTier): Limits {
 /**
  * The value lines on each S60 card, in spec order. Only capabilities that ship in this build may appear (§2.3 "proof, not
  * promise"; §12.3): a line here must be backed by a gate above and by code on main. Keys into @inborn/i18n `paywall.pro.*`.
- * Work has no capability of its own yet, so its card is not offered until one ships (see `sellable`).
+ * Work lines are backed by packages/core/src/work (client vaults, audit log + signed export, profession packs, the
+ * architecture statement); redaction and office intake join when the work-docs stream lands.
  */
 export const PAYWALL_BULLETS: Record<"pro" | "work", readonly string[]> = {
   pro: ["documents", "personas", "folders", "models", "voice"],
-  work: [],
+  work: ["vaults", "audit", "signed", "packs", "statement"],
 };
 
 /** Lines that exist only if the voice stream (M5b) lands in the same release; remove them together if it slips. */

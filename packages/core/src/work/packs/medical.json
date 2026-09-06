@@ -1,0 +1,32 @@
+{
+  "id": "medical",
+  "name": "Medical",
+  "audience": "Physicians, nurses and allied health professionals",
+  "declaration": "Inborn runs a language model on this device. Patient information you enter never leaves it: no cloud, no account, no server. The model is not a medical device and not a clinician: it can state wrong doses, wrong interactions and wrong findings with full confidence. Every draft is for a licensed professional to check against the source record and current guidance before any use in care. Keep direct identifiers out of prompts where your institution's rules require it. Client vaults, the audit log and signed exports document what happened on this device; they are not a certification under any health-privacy law and do not make this device an approved record system.",
+  "templates": [
+    {
+      "id": "consult-note",
+      "title": "Consult note (SOAP)",
+      "purpose": "Subjective, Objective, Assessment, Plan from encounter notes",
+      "body": "Format these encounter notes as a SOAP note. Do not add findings, diagnoses, medications or doses I did not write; where something is missing, write [not documented]. Keep units exactly as given.\n\nPatient reference: {{patient_ref}}\nEncounter date: {{encounter_date}}\nSetting: {{setting}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "discharge-summary",
+      "title": "Discharge summary draft",
+      "purpose": "Admission, course, medications, follow-up, in plain sections",
+      "body": "Draft a discharge summary from the notes: reason for admission, hospital course, procedures, condition at discharge, discharge medications (only those listed, with the doses I gave), follow-up appointments, and instructions for the patient in plain language. Flag every item you could not find as [confirm].\n\nPatient reference: {{patient_ref}}\nAdmission: {{admission_date}} · Discharge: {{discharge_date}}\n\nNotes:\n{{notes}}"
+    },
+    {
+      "id": "referral-letter",
+      "title": "Referral letter",
+      "purpose": "Reason for referral, history, question for the specialist",
+      "body": "Write a referral letter to {{specialist}} about {{patient_ref}}: reason for referral, relevant history and current medications as I list them, investigations to date, and the specific question I want answered ({{question}}). Formal, concise, one page.\n\nClinical details:\n{{details}}"
+    },
+    {
+      "id": "patient-instructions",
+      "title": "Patient instructions",
+      "purpose": "Plain-language after-visit instructions at a stated reading level",
+      "body": "Turn these clinical instructions into after-visit instructions for the patient at about a {{reading_level}} reading level in {{language}}. Short sentences, headings for What to do, What to watch for, When to seek help. Do not add advice beyond what I wrote.\n\nInstructions:\n{{instructions}}"
+    }
+  ]
+}

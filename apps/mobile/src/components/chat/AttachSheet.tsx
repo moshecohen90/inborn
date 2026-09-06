@@ -23,16 +23,19 @@ interface Props {
   onPhoto?: (source: "library" | "camera") => void;
   photoNote?: string;
   photoDisabled?: boolean;
+  /** Opens the profession-pack templates library (§7.6, Work); the Work stream gates it inside. */
+  onTemplates?: () => void;
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const indexed = (d: DocumentRecord) => d.chunkCount > 0;
   return (
     <Sheet visible={visible} onClose={onClose} title={t("chat.attach.title")} testID="attach-sheet">
+      {onTemplates ? <SheetItem testID="attach-templates" label={t("templates.title")} hint={t("templates.hint")} onPress={onTemplates} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
       {onPhoto ? (
         <View style={[styles.photos, { borderColor: theme.border }]}>
           <Text style={[type.monoLabel, styles.sectionLabel, { color: theme.text3 }]}>{t("chat.attach.photos")}</Text>
