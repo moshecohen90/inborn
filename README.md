@@ -477,6 +477,62 @@ find that in your documents." with 0 prompt tokens in 0.6 s; "Add file · PRO" i
 opened the bundled policy; the Settings preview showed "Delivering FAST · 41% of 1.3 GB" on every screen. Gates: typecheck, lint, 202 core +
 66 mobile + 4 i18n tests, `web:build` + `web:smoke` (4 passes, 0 vault warnings).
 
+## Work documents: DOCX / XLSX / HTML intake + redaction before sending (spec §7.3 row 8, §7.9) — status 7.9.2026
+Branch `work-docs`. Both are Work-tier capabilities (`officeIngest`, `redaction` in `packages/core/src/licence/gates.ts`, unchanged).
+- **Intake** (`packages/core/src/rag/extract/`): `xlsx.ts` reads the workbook without a spreadsheet library (sheet list via the
+  relationships part, shared + inline strings, formula results, booleans, ISO dates; one sheet = one page, inflated only when its page
+  is read) and emits `Sheet · row N: a | b | c` lines; `html.ts` strips markup without a DOM (scripts, styles, `hidden` /
+  `display:none` / `aria-hidden` subtrees and comments dropped, so a hidden "ignore previous instructions" never reaches the index),
+  keeps `#` headings, `•` / `1.` list items, ` | ` table cells and `<pre>` spacing, and sections the text at h1–h3 into the `§` pages
+  a citation points at; DOCX stays the M5a parser (`docx.ts`). `kindOf` routes `.xlsx/.xlsm`, `.html/.htm/.xhtml` and a `.txt` that
+  starts with `<!doctype html`; `pageGlyph("xlsx")` is `sheet `, so a chip reads `budget.xlsx · sheet 2`. Both extractors are in the
+  native and web extractor lists; the picker offers the two MIME types.
+- **Tiering**: a Word file remains the Free single attachment of §7.3 row 1 (as shipped in M5a); Excel and HTML are Work
+  (`WORK_KINDS` in `apps/mobile/src/documents/office.ts`, one line to change). The kind is sniffed before the file is copied in: a
+  Free/Pro user who picks an Excel or HTML file sees the value-moment card in the library (`office-work-card`: what it does, one
+  price line, "See Pro for Work", "Not now"); the file is not imported. The attach sheet gained "Add a file…" (`attach-import`), which
+  picks, routes the same way, imports and attaches in one step (`pickIntoLibrary`).
+- **Redaction** (`packages/core/src/redaction/`): pure detectors for emails, phones (national / international shapes, `tel:` /
+  `נייד` hints; a bare 7-digit number is not a phone), card numbers (Luhn), IBANs (mod-97), Israeli IDs (check digit; nine digits with
+  a leading zero read as a landline unless the text says `ת"ז` / ID), SSNs, the user's own names list (Latin case-insensitive on word
+  boundaries, Hebrew with one or two clitic prefixes kept outside the placeholder: `ולשרה לוי` → `ול[NAME-1]`) and, opt-in, dates
+  (numeric, English and Hebrew month names). Overlaps resolve to the stronger detector. `RedactionSession` numbers placeholders per
+  kind (`[EMAIL-1]`, `[PHONE-2]`…), gives the same value the same placeholder in any spelling, `reveal()`s them back in an answer
+  (any bracket, any case, `[email 2]` included) and lives in RAM only: one session per chat key
+  (`apps/mobile/src/documents/redaction/sessions.ts`), the draft's session follows the first message to the real chat id like
+  attachments do, nothing is written to SQLCipher, `documents.json`, exports or backups. The names list and the dates switch are the
+  only persisted preferences (`documents.json`).
+- **UI**: a chip row above the composer (`RedactBar`): "Redact" while the draft has text, amber "Pasted text · redact before sending?"
+  after a paste longer than `PASTE_OFFER_CHARS` (300), and once something was redacted a "Show originals / Hide originals" switch plus
+  the `REDACTED` tag. The Redact sheet (`redact-sheet`) lists what was found per kind with switches, the names list (add / remove),
+  the dates switch, a preview, "Replace n items" and the memory note. Free/Pro see the locked card with one price line and
+  "See Pro for Work". The chat renders every row through `redaction.display(row)`, so user and assistant messages show the originals
+  while the switch is on and the placeholders otherwise; the model only ever received the placeholders.
+- **Dev bundles**: `EXPO_PUBLIC_PRO=work` pretends to own Work (`DEV_TIER`), next to the existing `EXPO_PUBLIC_PRO=1` for Pro.
+- Tests: `packages/core/test/rag-office.test.ts` (xlsx parts, rows, workbook fixture, html tag stripping, sections, sniffing, glyphs),
+  `packages/core/test/redaction.test.ts` (checksums, English + Hebrew detection, dates opt-in, session numbering / reveal / clitics),
+  `apps/mobile/src/documents/redaction/sessions.test.ts` (per-chat RAM sessions, move on chat creation, forget).
+- New keys (English placeholders in de / es / fr / ja / pt-BR): `chat.attach.import`, `chat.attach.importHint`, `documents.office.*`
+  (4), `redact.*` (27).
+
+Proven 7.9.2026 on the Pixel_3a_API_33_arm64-v8a emulator (4 GB, CPU only), debug APK + Metro (`EXPO_PUBLIC_PRO=work`, Instant + nomic-embed
+pushed, fixtures `lease.docx` / `budget.xlsx` / `policy.html` in the document directory, `EXPO_PUBLIC_AUTOINDEX`): lease.docx 3 sections · 7
+passages in 14.9 s, budget.xlsx 2 sheets · 2 passages in 2.7 s, policy.html 6 sections · 6 passages in 2.9 s (SQLCipher store). Ask sheet:
+"What was the cloud hosting cost in March?" → `2,275` with the chip `[1] budget.xlsx · sheet 1` (search 341 ms, 997 prompt tokens, answer
+15.6 s); "How much is the security deposit in the lease?" → `4,750 shekels, held by Meridian Holdings…` with `lease.docx · §1` first in the
+sources (search 467 ms); "Within how many days must a refund request be filed?" → `21 days` with `[1] policy.html · §3` (search 345 ms), and
+the page's hidden `<div hidden>` "refund window is 90 days" instruction never reached the index. Redaction in the chat: a message with a
+name, Israeli ID, mobile, email, Luhn-valid card and IL IBAN → the sheet counted 1 of each, "David Levi" added to the names list, "Replace 6
+items" → the composer holds `[NAME-1]`, `[ID-1]`, `[PHONE-1]`, `[EMAIL-1]`, `[CARD-1]`, `[IBAN-1]`; the model's reply began "Dear [NAME-1]"
+(TTFT 4.8 s, 6.3 tok/s); "Show originals" rendered "Dear David Levi" and the original numbers in both bubbles; after a restart the chat's
+title still reads `[NAME-1], ID [ID-1]` (only placeholders were saved). Free: the Redact chip opens the locked card with `$69.99 · one-time
+purchase` and "See Pro for Work". Pro: picking `budget.xlsx` in the library shows the Excel/HTML card with the same price line and imports
+nothing. Work: "Add a file…" in the attach sheet → system picker → `policy.html` indexed in 4.5 s and attached as a chip. One caveat from the
+run: on the very first import the DOCX read back as 0 bytes right after its copy and was recorded "empty"; the library now retries such a
+read once (400 ms) and the next two clean runs indexed it first time. The "pasted text" amber chip could not be exercised over adb (it types
+character by character); the threshold logic is covered by the composer's `onChange` and `PASTE_OFFER_CHARS`. Gates: typecheck, lint,
+312 core + 82 mobile + 4 i18n + 8 ui tests, `export:web`.
+
 ## Design fixes (review 6.9.2026, `docs/design/review-2026-09-06.md`) — status 6.9.2026
 What changed, numbered as in the review:
 1–2. **IBM Plex ships.** Plex Sans Regular/Medium/SemiBold + Plex Mono Regular/Medium (OFL 1.1, from the official IBM/plex

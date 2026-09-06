@@ -9,6 +9,8 @@ import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
   NOT_FOUND_TOKEN,
+  PASTE_OFFER_CHARS,
+  PRODUCTS,
   SAFETY_BASELINE,
   buildPrompt,
   calibrate,
@@ -21,6 +23,7 @@ import {
   languageHint,
   limits,
   markdownToText,
+  fallbackPrice,
   paywallFor,
   planSummary,
   scriptOf,
@@ -49,6 +52,7 @@ import { AssistantMessage, type AssistantRow } from "../components/chat/Assistan
 import { UserMessage } from "../components/chat/UserMessage";
 import { Composer } from "../components/chat/Composer";
 import { AttachSheet } from "../components/chat/AttachSheet";
+import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, useRedaction } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
@@ -64,7 +68,7 @@ import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
-import { useEntitlement } from "../licence";
+import { useEntitlement, useLicence } from "../licence";
 import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
 
@@ -116,7 +120,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const ent = useEntitlements();
-  const { tier } = useEntitlement();
+  const { tier, can } = useEntitlement();
+  const licence = useLicence();
+  const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
   const { engine, model } = getEngine();
   const inputRef = useRef<TextInput | null>(null);
   const focused = useRef(true);
@@ -146,6 +152,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
+  const [redactOpen, setRedactOpen] = useState(false);
+  const [pasteOffer, setPasteOffer] = useState(false);
   const [micOpen, setMicOpen] = useState(false);
   const [preferWhisper, setPreferWhisper] = useState(false);
   const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
@@ -155,6 +163,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const draftKey = useRef(`${RAM_ATTACH_PREFIX}draft-${Date.now().toString(36)}`).current;
   const [docKey, setDocKey] = useState<string>(chatId ? (incognito ? `${RAM_ATTACH_PREFIX}${chatId}` : chatId) : draftKey);
   const docs = useDocumentContext(docKey);
+  const redaction = useRedaction(docKey);
   const { library, state: libraryState } = useDocuments();
   const nCtx = session.current?.nCtx ?? 4096;
   const thinkingAvailable = model.id !== "instant";
@@ -291,6 +300,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     setChat(created);
     const key = incognito ? `${RAM_ATTACH_PREFIX}${id}` : id;
     library.moveAttachments(draftKey, key);
+    moveRedaction(draftKey, key);
     setDocKey(key);
     onChatCreated(id);
     return id;
@@ -539,6 +549,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
+  const importFile = () => {
+    setAttachOpen(false);
+    afterSheetClose(() => {
+      void pickIntoLibrary(library, tier, docs.documents.length).then((r) => {
+        if (r.kind === "paywall") onOpenPaywall?.();
+        else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
+        else if (r.kind === "imported") docs.attach(r.id);
+      }, (e: unknown) => flash(errorText(e)));
+    });
+  };
   const onMic = () => {
     if (readingId) void stopSpeaking().then(() => setReadingId(null));
     dictation.toggle();
@@ -713,6 +733,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {docs.strict ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.strict")}</Text> : null}
         </View>
       ) : null}
+      <RedactBar hasDraft={!!draft.trim()} pasteOffer={pasteOffer} active={redaction.active} reveal={redaction.reveal} onOpen={() => setRedactOpen(true)} onToggleReveal={() => redaction.setReveal(!redaction.reveal)} />
       <ContextMeter fullness={budget.fullness} />
       <Composer
         inputRef={inputRef}
@@ -722,7 +743,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onMicLongPress={() => setMicOpen(true)}
         mic={micPhase}
         value={draft}
-        onChange={setDraft}
+        onChange={(text) => {
+          /* A paste longer than PASTE_OFFER_CHARS (§7.3 Work) turns the Redact chip amber; typing never does. */
+          if (text.length - draft.length > PASTE_OFFER_CHARS) setPasteOffer(true);
+          else if (!text.trim()) setPasteOffer(false);
+          setDraft(text);
+        }}
         onSend={send}
         onStop={() => {
           stopReason.current = "user";
@@ -778,9 +804,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         renderItem={({ item }) =>
           item.role === "user" ? (
-            <UserMessage message={item} onLongPress={() => setActionRow(item)} />
+            <UserMessage message={redaction.display(item)} onLongPress={() => setActionRow(item)} />
           ) : (
-            <AssistantMessage row={item} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} />
+            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} />
           )
         }
       />
@@ -901,6 +927,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         strict={docs.strict}
         onSetStrict={docs.setStrict}
         onAttach={docs.attach}
+        onImport={importFile}
         onDetach={docs.detach}
         onManage={() => {
           setAttachOpen(false);
@@ -909,6 +936,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onPhoto={addPhoto}
         photoDisabled={!visionReady || !modelSees}
         photoNote={!modelSees ? t("chat.attach.noVision", { model: modelLabel(model.id) }) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+      />
+      <RedactSheet
+        visible={redactOpen}
+        onClose={() => setRedactOpen(false)}
+        text={draft}
+        chatKey={docKey}
+        locked={!can("redaction")}
+        price={workPrice}
+        onUnlock={() => {
+          setRedactOpen(false);
+          afterSheetClose(() => onOpenPaywall?.());
+        }}
+        onApply={(text) => {
+          setDraft(text);
+          setPasteOffer(false);
+        }}
       />
       <Sheet visible={micOpen} onClose={() => setMicOpen(false)} title={t("voice.mic.title")} testID="mic-sheet" scroll={false}>
         <SheetItem

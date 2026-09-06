@@ -4,8 +4,8 @@ import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, radius } from "@inborn/ui";
-import { formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
-import { useEntitlement } from "../../licence";
+import { PRODUCTS, fallbackPrice, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
+import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
@@ -13,6 +13,7 @@ import { installEmbedder } from "../../documents/embedder";
 import { devFileUri } from "../../documents/files";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
+import { PICK_TYPES, officeLocked, sniffPicked } from "../../documents/office";
 import { useVault } from "../../vault";
 import { AskDocuments, type AskOutcome } from "./AskDocuments";
 import { DocumentDetails } from "./DocumentDetails";
@@ -28,8 +29,6 @@ export interface DocumentsScreenProps {
   onUnlock?: () => void;
 }
 
-const PICK_TYPES = ["application/pdf", "text/plain", "text/markdown", "text/csv", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/png", "image/jpeg"];
-
 /** S40 Document library: documents with state, strict mode, add file, ask about selected, details. */
 export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: DocumentsScreenProps) {
   const { t } = useTranslation();
@@ -38,7 +37,10 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
   const { library, state } = useDocuments();
   const { vault } = useVault();
   const { tier, can } = useEntitlement();
+  const licence = useLicence();
   const pro = proOverride ?? can("documents");
+  const [workMoment, setWorkMoment] = useState(false);
+  const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
   const addLocked = paywallFor(tier, { kind: "document", existing: state.documents.length }) && proOverride === undefined;
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [details, setDetails] = useState<DocumentRecord | null>(null);
@@ -110,7 +112,14 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     }
     try {
       const picked = await File.pickFileAsync({ multipleFiles: false, mimeTypes: PICK_TYPES });
-      if (!picked.canceled) await importUri(picked.result.uri, picked.result.name ?? "document");
+      if (picked.canceled) return;
+      const name = picked.result.name ?? "document";
+      /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
+      if (proOverride === undefined && officeLocked(tier, sniffPicked(picked.result.uri, name))) {
+        setWorkMoment(true);
+        return;
+      }
+      await importUri(picked.result.uri, name);
     } catch (e: unknown) {
       console.warn("[documents] pick", e);
     }
@@ -154,6 +163,22 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         </View>
         <Toggle testID="documents-strict" value={state.strict} onChange={(v) => library.setStrict(v)} />
       </View>
+      {workMoment ? (
+        <View testID="office-work-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
+          <Text style={[styles.label, { color: theme.accent }]}>{t("documents.office.eyebrow")}</Text>
+          <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.office.title")}</Text>
+          <Text style={[styles.body, { color: theme.text }]}>{t("documents.office.explain")}</Text>
+          <Text style={[styles.mono, { color: theme.text2 }]}>{t("paywall.priceLine", { price: workPrice })}</Text>
+          <View style={styles.cardRow}>
+            <Pressable testID="office-work-unlock" accessibilityRole="button" onPress={() => onUnlock?.()} style={[styles.btn, styles.grow, { backgroundColor: theme.ctaFill }]}>
+              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("gate.unlockWork")}</Text>
+            </Pressable>
+            <Pressable testID="office-work-dismiss" accessibilityRole="button" onPress={() => setWorkMoment(false)} style={[styles.btn, styles.ghost, { borderColor: theme.border }]}>
+              <Text style={[styles.btnText, { color: theme.text2 }]}>{t("documents.office.notNow")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      ) : null}
       {embedderMissing ? (
         <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
           <Text style={[styles.label, { color: theme.accent }]}>{t("documents.embedder.title")}</Text>
@@ -265,6 +290,9 @@ const styles = StyleSheet.create({
   emptyTitle: { ...font("sans", "600"), fontSize: 20 },
   footer: { padding: 12, borderTopWidth: 1, gap: 6 },
   btn: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
+  cardRow: { flexDirection: "row", gap: 8 },
+  grow: { flex: 1 },
+  ghost: { borderWidth: 1, paddingHorizontal: 16 },
   btnText: { ...font("sans", "600"), fontSize: 16 },
   toast: { position: "absolute", left: 16, right: 16, bottom: 96, padding: 12, borderRadius: radius.card, borderWidth: 1 },
 });
