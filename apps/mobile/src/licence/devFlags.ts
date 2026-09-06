@@ -14,5 +14,5 @@ export const DEV_AUTOBUY: string | undefined = process.env.EXPO_PUBLIC_AUTOBUY |
 /** Simulates "no store" (airplane mode) on a simulator: every store call rejects, so the sealed cache is the only source. Dev bundles only. */
 export const DEV_STORE_OFFLINE: boolean = process.env.EXPO_PUBLIC_STORE_OFFLINE === "1";
 export const DEV_RESULT_FILE = "licence-run.json";
-/** Dev bundles may pretend to own Pro (`EXPO_PUBLIC_PRO=1`) to walk the gated screens; release bundles only trust the licence. */
-export const DEV_TIER: "pro" | "work" | null = __DEV__ ? (process.env.EXPO_PUBLIC_TIER === "work" ? "work" : process.env.EXPO_PUBLIC_PRO === "1" || process.env.EXPO_PUBLIC_TIER === "pro" ? "pro" : null) : null;
+/** Dev bundles may pretend to own Pro (`EXPO_PUBLIC_PRO=1`) or Work (`EXPO_PUBLIC_TIER=work` / `EXPO_PUBLIC_PRO=work`); release bundles only trust the licence. */
+export const DEV_TIER: "pro" | "work" | null = !__DEV__ ? null : process.env.EXPO_PUBLIC_TIER === "work" || process.env.EXPO_PUBLIC_PRO === "work" ? "work" : process.env.EXPO_PUBLIC_PRO === "1" || process.env.EXPO_PUBLIC_TIER === "pro" ? "pro" : null;

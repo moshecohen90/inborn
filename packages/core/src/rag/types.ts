@@ -1,7 +1,7 @@
 /** Documents and RAG on the device (spec §5.5, §7.3, §10.4). Pure types; nothing here touches the network. */
 import type { Message } from "../llm/types";
 
-export type DocKind = "pdf" | "docx" | "txt" | "md" | "csv" | "image" | "unknown";
+export type DocKind = "pdf" | "docx" | "xlsx" | "html" | "txt" | "md" | "csv" | "image" | "unknown";
 
 export type IndexStatus =
   | "queued"

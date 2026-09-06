@@ -1,4 +1,4 @@
-import { DocxExtractor, ExtractError, TextFileExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
+import { DocxExtractor, ExtractError, HtmlExtractor, TextFileExtractor, XlsxExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
 import { readBytes } from "./files";
 
 type PdfJs = typeof import("pdfjs-dist/legacy/build/pdf.mjs");
@@ -54,7 +54,7 @@ export class PdfJsExtractor implements TextExtractor {
 }
 
 export function createExtractors(): TextExtractor[] {
-  return [new PdfJsExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes)];
+  return [new PdfJsExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes), new XlsxExtractor(readBytes), new HtmlExtractor(readBytes)];
 }
 
 /** No OCR in the browser tier yet (Tesseract.js ships in a later milestone); scans are reported as "needs OCR". */
