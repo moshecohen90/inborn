@@ -1,93 +1,89 @@
 import "fake-indexeddb/auto";
 import { IDBFactory } from "fake-indexeddb";
 import { describe, expect, it } from "vitest";
-import { IdbChatRepository } from "./idbRepository";
+import { IDB_VERSION, IdbChatRepository } from "./idbRepository";
+import { clock } from "../../../test/chatRepositoryContract";
 
-/* The core repository contract (packages/core/test/chat-repository.test.ts) run against the IndexedDB implementation. */
-const clock = () => {
-  let t = 1_000;
-  return () => t++;
-};
+/* IndexedDB-specific behaviour; the shared contract runs in test/chatRepository.test.ts. */
 let n = 0;
-const open = () => IdbChatRepository.open({ now: clock(), name: `inborn-test-${n++}`, factory: new IDBFactory() });
+const name = () => `inborn-idb-${n++}`;
+
+/** A database exactly as the web stream's v1 wrote it: chats + messages with byChat / byId only. */
+function seedV1(factory: IDBFactory, dbName: string, chat: Record<string, unknown>, messages: Record<string, unknown>[]): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const r = factory.open(dbName, 1);
+    r.onupgradeneeded = () => {
+      const db = r.result;
+      db.createObjectStore("chats", { keyPath: "id" });
+      const m = db.createObjectStore("messages", { keyPath: "seq", autoIncrement: true });
+      m.createIndex("byChat", "chatId", { unique: false });
+      m.createIndex("byId", "id", { unique: true });
+    };
+    r.onsuccess = () => {
+      const db = r.result;
+      const tx = db.transaction(["chats", "messages"], "readwrite");
+      tx.objectStore("chats").add(chat);
+      for (const m of messages) tx.objectStore("messages").add(m);
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onerror = () => reject(tx.error);
+    };
+    r.onerror = () => reject(r.error);
+  });
+}
 
 describe("IdbChatRepository", () => {
-  it("lists pinned first, then most recently updated", async () => {
-    const repo = await open();
-    const a = await repo.createChat({ modelId: "instant", title: "a" });
-    const b = await repo.createChat({ modelId: "instant", title: "b", pinned: true });
-    const c = await repo.createChat({ modelId: "instant", title: "c" });
-    await repo.appendMessage({ chatId: a.id, role: "user", content: "bump" });
-    expect((await repo.listChats()).map((x) => x.title)).toEqual(["b", "a", "c"]);
-    expect(b.incognito).toBe(false);
-    expect(c.pinned).toBeUndefined();
-  });
-
-  it("appends in order, bumps updatedAt and rejects unknown chats", async () => {
-    const repo = await open();
-    const chat = await repo.createChat({ modelId: "instant" });
-    const u = await repo.appendMessage({ chatId: chat.id, role: "user", content: "hello" });
-    const a = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "hi", modelId: "instant", usage: { promptTokens: 1, completionTokens: 1, ttftMs: 5, tokPerSec: 10 } });
-    expect((await repo.listMessages(chat.id)).map((m) => m.id)).toEqual([u.id, a.id]);
-    expect((await repo.getChat(chat.id))?.updatedAt).toBe(a.createdAt);
-    expect(a.usage?.tokPerSec).toBe(10);
-    await expect(repo.appendMessage({ chatId: "nope", role: "user", content: "x" })).rejects.toThrow(/unknown chat/);
-  });
-
-  it("keeps insertion order for equal timestamps", async () => {
-    const repo = await IdbChatRepository.open({ now: () => 5, name: `inborn-test-${n++}`, factory: new IDBFactory() });
-    const chat = await repo.createChat({ modelId: "instant" });
-    const ids = [];
-    for (let i = 0; i < 5; i++) ids.push((await repo.appendMessage({ chatId: chat.id, role: "user", content: `m${i}` })).id);
-    expect((await repo.listMessages(chat.id)).map((m) => m.id)).toEqual(ids);
-  });
-
-  it("renames, patches messages and deletes with cascade", async () => {
-    const repo = await open();
-    const chat = await repo.createChat({ modelId: "instant", title: "old" });
-    await repo.renameChat(chat.id, "  new title ");
-    expect((await repo.getChat(chat.id))?.title).toBe("new title");
-    const m = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "partial" });
-    await repo.updateMessage(chat.id, m.id, { stopped: true, content: "partial…" });
-    expect(await repo.listMessages(chat.id)).toMatchObject([{ id: m.id, stopped: true, content: "partial…" }]);
-    await repo.deleteChat(chat.id);
-    expect(await repo.getChat(chat.id)).toBeUndefined();
-    expect(await repo.listMessages(chat.id)).toEqual([]);
-    await expect(repo.deleteChat(chat.id)).resolves.toBeUndefined();
-  });
-
-  it("searches titles and message text with prefix + AND semantics", async () => {
-    const repo = await open();
-    const lease = await repo.createChat({ modelId: "instant", title: "Lease review" });
-    const trip = await repo.createChat({ modelId: "instant", title: "Trip to Rome" });
-    await repo.appendMessage({ chatId: trip.id, role: "user", content: "Is my passport valid for Italy?" });
-    await repo.appendMessage({ chatId: lease.id, role: "user", content: "The landlord wants a deposit" });
-    expect((await repo.search("LEASE")).map((h) => h.chatId)).toEqual([lease.id]);
-    expect(await repo.search("passport ital")).toMatchObject([{ chatId: trip.id, title: "Trip to Rome", snippet: "Is my passport valid for Italy?" }]);
-    expect(await repo.search("passport paris")).toEqual([]);
-    expect(await repo.search("   ")).toEqual([]);
-  });
-
-  it("hands out copies, never its own objects", async () => {
-    const repo = await open();
-    const chat = await repo.createChat({ modelId: "instant", title: "t" });
-    chat.title = "mutated";
-    expect((await repo.getChat(chat.id))?.title).toBe("t");
-    const m = await repo.appendMessage({ chatId: chat.id, role: "user", content: "c", usage: { promptTokens: 1, completionTokens: 1, ttftMs: 1, tokPerSec: 1 } });
-    m.usage!.tokPerSec = 99;
-    expect((await repo.listMessages(chat.id))[0]?.usage?.tokPerSec).toBe(1);
-  });
-
-  it("refuses incognito rows and survives reopening", async () => {
+  it("refuses incognito rows and survives reopening with every field", async () => {
     const factory = new IDBFactory();
-    const name = `inborn-test-${n++}`;
-    const repo = await IdbChatRepository.open({ now: clock(), name, factory });
+    const dbName = name();
+    const repo = await IdbChatRepository.open({ now: clock(), name: dbName, factory });
     await expect(repo.createChat({ modelId: "instant", incognito: true })).rejects.toThrow(/incognito/);
-    const chat = await repo.createChat({ modelId: "instant", title: "kept" });
-    await repo.appendMessage({ chatId: chat.id, role: "user", content: "still here" });
+    const chat = await repo.createChat({ modelId: "instant", title: "kept", systemPrompt: "Be brief", thinking: false });
+    const m = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "still here", reasoningMs: 40, stoppedBy: "user", stopped: true });
+    await repo.updateChat(chat.id, { pinned: true, summary: "s", summaryUpTo: m.id, folderId: "f" });
     repo.close();
-    const again = await IdbChatRepository.open({ now: clock(), name, factory });
-    expect((await again.listChats()).map((c) => c.title)).toEqual(["kept"]);
-    expect((await again.listMessages(chat.id)).map((m) => m.content)).toEqual(["still here"]);
+    const again = await IdbChatRepository.open({ now: clock(), name: dbName, factory });
+    expect(again.version).toBe(IDB_VERSION);
+    expect(await again.listChats()).toMatchObject([{ title: "kept", systemPrompt: "Be brief", thinking: false, pinned: true, summary: "s", summaryUpTo: m.id, folderId: "f" }]);
+    expect(await again.listMessages(chat.id)).toMatchObject([{ content: "still here", reasoningMs: 40, stoppedBy: "user", stopped: true }]);
+    again.close();
+  });
+
+  it("upgrades a v1 database in place: old rows stay readable, tail deletes work through the new index", async () => {
+    const factory = new IDBFactory();
+    const dbName = name();
+    await seedV1(
+      factory,
+      dbName,
+      { id: "c1", title: "from v1", createdAt: 1, updatedAt: 3, modelId: "instant", incognito: false, pinned: true },
+      [
+        { id: "m1", chatId: "c1", role: "user", content: "first", createdAt: 2 },
+        { id: "m2", chatId: "c1", role: "assistant", content: "second", createdAt: 3, stopped: true },
+        { id: "m3", chatId: "c1", role: "user", content: "third", createdAt: 3 },
+      ],
+    );
+    const repo = await IdbChatRepository.open({ now: clock(), name: dbName, factory });
+    expect(repo.version).toBe(IDB_VERSION);
+    expect(await repo.listChats()).toEqual([{ id: "c1", title: "from v1", createdAt: 1, updatedAt: 3, modelId: "instant", incognito: false, pinned: true }]);
+    expect((await repo.listMessages("c1")).map((m) => m.id)).toEqual(["m1", "m2", "m3"]);
+    expect(await repo.deleteMessagesFrom("c1", "m2")).toBe(2);
+    expect((await repo.listMessages("c1")).map((m) => m.id)).toEqual(["m1"]);
+    await repo.updateChat("c1", { archived: true, thinking: true });
+    expect(await repo.getChat("c1")).toMatchObject({ archived: true, thinking: true, pinned: true });
+    repo.close();
+  });
+
+  it("never leaks undefined-valued keys or false flags out of storage", async () => {
+    const repo = await IdbChatRepository.open({ now: clock(), name: name(), factory: new IDBFactory() });
+    const chat = await repo.createChat({ modelId: "instant", thinking: false });
+    await repo.updateChat(chat.id, { pinned: true });
+    await repo.updateChat(chat.id, { pinned: false, archived: false });
+    expect(Object.keys((await repo.getChat(chat.id))!).sort()).toEqual(["createdAt", "id", "incognito", "modelId", "thinking", "title", "updatedAt"]);
+    const m = await repo.appendMessage({ chatId: chat.id, role: "user", content: "x", stopped: false });
+    expect(Object.keys((await repo.listMessages(chat.id))[0]!).sort()).toEqual(["chatId", "content", "createdAt", "id", "role"]);
+    expect(Object.keys(m).sort()).toEqual(["chatId", "content", "createdAt", "id", "role"]);
+    repo.close();
   });
 });

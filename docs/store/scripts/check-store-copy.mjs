@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Validates every Inborn store-listing JSON against the real store field limits.
 // Exits non-zero on any overflow or rule violation. Run: node docs/store/scripts/check-store-copy.mjs
+import { Buffer } from 'node:buffer';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';

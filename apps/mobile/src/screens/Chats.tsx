@@ -8,6 +8,7 @@ import { formatWhen } from "../lib/when";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
 import { setNewChatIntent } from "../lib/newChatIntent";
+import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
 import { getEngine } from "../engine";
 import { PersonaGlyph } from "../components/chat/PersonaGlyph";
@@ -135,6 +136,10 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       await refresh();
     }
   };
+
+  // Desktop ⌘N / ⇧⌘I (spec §8.9): open the new-chat sheet, or flip its incognito switch when it is already up.
+  useShortcut("new-chat", () => setSheet({ incognito: false, personaId: DEFAULT_PERSONA_ID }));
+  useShortcut("toggle-incognito", () => setSheet((s) => ({ incognito: !s?.incognito, personaId: s?.personaId ?? DEFAULT_PERSONA_ID })));
 
   const startChat = () => {
     const s = sheet;

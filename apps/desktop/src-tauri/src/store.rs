@@ -125,22 +125,24 @@ pub fn db_run(store: State<'_, Store>, sql: String, params: Vec<Value>) -> Resul
   with_conn(&store, |c| run_one(c, &Statement { sql, params }))
 }
 
+fn query_all(conn: &Connection, sql: &str, params: &[Value]) -> Result<Vec<Map<String, Value>>, String> {
+  let mut stmt = conn.prepare(sql).map_err(|e| e.to_string())?;
+  let names: Vec<String> = stmt.column_names().iter().map(|n| n.to_string()).collect();
+  let rows = stmt
+    .query_map(params_from_iter(params.iter().map(bind)), |row| {
+      let mut object = Map::with_capacity(names.len());
+      for (i, name) in names.iter().enumerate() {
+        object.insert(name.clone(), to_json(row.get_ref(i)?));
+      }
+      Ok(object)
+    })
+    .map_err(|e| e.to_string())?;
+  rows.collect::<Result<Vec<_>, _>>().map_err(|e| e.to_string())
+}
+
 #[tauri::command]
 pub fn db_all(store: State<'_, Store>, sql: String, params: Vec<Value>) -> Result<Vec<Map<String, Value>>, String> {
-  with_conn(&store, |c| {
-    let mut stmt = c.prepare(&sql).map_err(|e| e.to_string())?;
-    let names: Vec<String> = stmt.column_names().iter().map(|n| n.to_string()).collect();
-    let rows = stmt
-      .query_map(params_from_iter(params.iter().map(bind)), |row| {
-        let mut object = Map::with_capacity(names.len());
-        for (i, name) in names.iter().enumerate() {
-          object.insert(name.clone(), to_json(row.get_ref(i)?));
-        }
-        Ok(object)
-      })
-      .map_err(|e| e.to_string())?;
-    rows.collect::<Result<Vec<_>, _>>().map_err(|e| e.to_string())
-  })
+  with_conn(&store, |c| query_all(c, &sql, &params))
 }
 
 /// Several writes in one transaction; the per-statement change counts come back so callers can detect a miss.
@@ -155,4 +157,47 @@ pub fn db_batch(store: State<'_, Store>, statements: Vec<Statement>) -> Result<V
   }
   tx.commit().map_err(|e| e.to_string())?;
   Ok(changes)
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  /// What `TauriChatRepository.open()` relies on: a multi-statement batch inside one transaction that ends by
+  /// stamping `PRAGMA user_version`, the pragma read back through the `db_all` path, and FTS5 in this SQLCipher build.
+  #[test]
+  fn migration_batch_and_user_version_roundtrip() {
+    let conn = Connection::open_in_memory().unwrap();
+    conn.execute_batch("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;").unwrap();
+    let before = query_all(&conn, "PRAGMA user_version", &[]).unwrap();
+    assert_eq!(before[0]["user_version"], Value::from(0));
+    conn
+      .execute_batch("BEGIN; CREATE TABLE chats (id TEXT PRIMARY KEY NOT NULL, title TEXT NOT NULL); ALTER TABLE chats ADD COLUMN archived INTEGER NOT NULL DEFAULT 0; PRAGMA user_version = 2; COMMIT;")
+      .unwrap();
+    let after = query_all(&conn, "PRAGMA user_version", &[]).unwrap();
+    assert_eq!(after[0]["user_version"], Value::from(2));
+    let n = run_one(&conn, &Statement { sql: "INSERT INTO chats (id, title) VALUES (?, ?)".into(), params: vec![Value::from("c1"), Value::from("t")] }).unwrap();
+    assert_eq!(n, 1);
+    let rows = query_all(&conn, "SELECT id, archived FROM chats WHERE id = ?", &[Value::from("c1")]).unwrap();
+    assert_eq!(rows[0]["archived"], Value::from(0));
+  }
+
+  #[test]
+  fn failed_migration_step_leaves_no_open_transaction() {
+    let conn = Connection::open_in_memory().unwrap();
+    assert!(conn.execute_batch("BEGIN; CREATE TABLE a (x); CREATE TABLE a (x); PRAGMA user_version = 1; COMMIT;").is_err());
+    conn.execute_batch("ROLLBACK;").unwrap();
+    let v = query_all(&conn, "PRAGMA user_version", &[]).unwrap();
+    assert_eq!(v[0]["user_version"], Value::from(0));
+    let tables = query_all(&conn, "SELECT count(*) AS n FROM sqlite_master WHERE name = 'a'", &[]).unwrap();
+    assert_eq!(tables[0]["n"], Value::from(0));
+  }
+
+  #[test]
+  fn fts5_is_compiled_in() {
+    let conn = Connection::open_in_memory().unwrap();
+    conn.execute_batch("CREATE VIRTUAL TABLE t USING fts5 (content, tokenize = 'unicode61'); INSERT INTO t (rowid, content) VALUES (1, 'passport for Italy');").unwrap();
+    let rows = query_all(&conn, "SELECT rowid FROM t WHERE t MATCH ?", &[Value::from("\"ital\"*")]).unwrap();
+    assert_eq!(rows.len(), 1);
+  }
 }
