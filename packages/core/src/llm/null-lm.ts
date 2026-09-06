@@ -1,3 +1,4 @@
+import { hashVector } from "../rag/embedder";
 import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "./types";
 
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
@@ -44,12 +45,9 @@ export class NullLM implements LocalLM {
     yield { done: { promptTokens, completionTokens: emitted, ttftMs: ttft, tokPerSec: this.last.tokPerSec } };
   }
 
+  /** Deterministic bag-of-words hash vectors: the same text always embeds the same way, related text scores high. */
   async embed(texts: string[]): Promise<Float32Array[]> {
-    return texts.map((t) => {
-      const v = new Float32Array(8);
-      for (let i = 0; i < t.length; i++) v[i % 8] = (v[i % 8] ?? 0) + t.charCodeAt(i) / 1000;
-      return v;
-    });
+    return texts.map((t) => hashVector(t, 64));
   }
 
   stats(): Stats {

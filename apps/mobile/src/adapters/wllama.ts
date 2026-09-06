@@ -1,7 +1,7 @@
 /* wllama's package "main" points at its TypeScript sources; esm/ carries the built JS plus .d.ts. */
 import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
-import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+import type { Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
 
 /* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
@@ -130,5 +130,53 @@ export class WllamaLM implements LocalLM {
       (m) => (this.last = { ...this.last, memMB: Math.round(m.bytes / 1048576) }),
       () => undefined,
     );
+  }
+}
+
+/** Embedding companion on a second wllama instance loaded with `embeddings: true` (a chat instance cannot embed). */
+export class WllamaEmbedder implements Embedder {
+  private wllama: Wllama | null = null;
+  private loading: Promise<Wllama> | null = null;
+  loadMs = 0;
+
+  constructor(
+    readonly id: string,
+    private readonly uri: string,
+  ) {}
+
+  private ready(): Promise<Wllama> {
+    if (this.wllama) return Promise.resolve(this.wllama);
+    return (this.loading ??= (async () => {
+      const started = performance.now();
+      const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
+      wllama.setCompat(COMPAT_PATHS);
+      const params = { embeddings: true, pooling_type: "mean" as const, n_ctx: 2048, n_batch: 2048, n_ubatch: 2048, n_threads: threadCount(undefined), log_level: LogLevel.WARN };
+      const opfs = fileOfUri(this.uri);
+      if (opfs) await wllama.loadModel([await modelFile(opfs)], params);
+      else await wllama.loadModelFromUrl(this.uri, params);
+      this.loadMs = Math.round(performance.now() - started);
+      console.info(`[wllama] embedder ${this.id} loaded in ${this.loadMs} ms`);
+      this.wllama = wllama;
+      this.loading = null;
+      return wllama;
+    })());
+  }
+
+  async embed(texts: string[]): Promise<Float32Array[]> {
+    const wllama = await this.ready();
+    const out: Float32Array[] = [];
+    for (const t of texts) {
+      const r = await wllama.createEmbedding({ input: t });
+      const v = r.data[0]?.embedding;
+      if (!Array.isArray(v)) throw new Error("wllama: no embedding returned");
+      out.push(Float32Array.from(v));
+    }
+    return out;
+  }
+
+  async unload(): Promise<void> {
+    const w = this.wllama;
+    this.wllama = null;
+    await w?.exit();
   }
 }

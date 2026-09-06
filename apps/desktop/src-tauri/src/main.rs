@@ -30,6 +30,7 @@ fn main() {
       engine::lm_abort,
       engine::lm_stats,
       engine::lm_unload,
+      engine::lm_embed,
       store::db_open,
       store::db_exec,
       store::db_run,

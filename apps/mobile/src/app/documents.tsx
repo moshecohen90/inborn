@@ -1,16 +1,8 @@
-import { Text } from "react-native";
-import { useTranslation } from "react-i18next";
-import { Screen } from "../components/shell/Screen";
-import { shellStyles } from "../components/shell/primitives";
-import { useTheme } from "../services/theme";
+import { useRouter } from "expo-router";
+import { DocumentsScreen } from "../screens/documents";
 
-/** S40 placeholder (M5). */
+/** S40: the document library (spec §8.5); asking opens the in-library sheet, chats attach through useDocumentContext. */
 export default function DocumentsRoute() {
-  const { t } = useTranslation();
-  const { theme } = useTheme();
-  return (
-    <Screen header={{ back: true, title: t("documents.title") }} testID="documents">
-      <Text style={[shellStyles.body, { color: theme.text2 }]}>{t("placeholder.comingSoon")}</Text>
-    </Screen>
-  );
+  const router = useRouter();
+  return <DocumentsScreen onClose={() => (router.canGoBack() ? router.back() : router.replace("/"))} />;
 }

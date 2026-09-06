@@ -1,0 +1,324 @@
+import {
+  Retriever,
+  assertImportable,
+  buildRagPrompt,
+  citationsForAnswer,
+  indexDocument,
+  newId,
+  type Citation,
+  type DocumentRecord,
+  type EmbeddingStore,
+  type ExtractError,
+  type IndexProgress,
+  type Message,
+  type OpenedDocument,
+  type RagPrompt,
+  type TextExtractor,
+} from "@inborn/core";
+import { openRagStore, ragStoreKind } from "./db";
+import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
+import { createExtractors, nativeOcr } from "./extract";
+import { copyIntoLibrary, deleteFile, readHead, sizeOf } from "./files";
+import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
+
+/** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
+export const FREE_PAGE_CAP = 20;
+
+export type EmbedderStatus = { kind: "ready"; path: string } | { kind: "missing" } | { kind: "loading" } | { kind: "failed"; error: string };
+
+export interface LibraryState {
+  documents: DocumentRecord[];
+  progress: Map<string, IndexProgress>;
+  embedder: EmbedderStatus;
+  strict: boolean;
+  attachments: Record<string, string[]>;
+  storeKind: string;
+}
+
+export interface AskOptions {
+  docIds?: string[];
+  strict?: boolean;
+  history?: Message[];
+  nCtx?: number;
+  systemPrompt?: string;
+  answerLanguage?: string;
+}
+
+export interface AskResult {
+  prompt: RagPrompt;
+  /** Milliseconds spent embedding the question and ranking. */
+  retrieveMs: number;
+}
+
+/** A pending or running indexing job. */
+interface Job {
+  abort: AbortController;
+  ocr: boolean;
+}
+
+/**
+ * The document library (spec §5.5, S40): import → extract → (OCR) → chunk → embed → store, one document at a time,
+ * with cancel/resume, strict mode, per-chat attachments and the retrieval + prompt for a question.
+ */
+export class DocumentLibrary {
+  private store: EmbeddingStore | null = null;
+  private extractors: TextExtractor[] = createExtractors();
+  private embedderRef: ResolvedEmbedder | null = null;
+  private retriever: Retriever | null = null;
+  private docs = new Map<string, DocumentRecord>();
+  private progress = new Map<string, IndexProgress>();
+  private jobs = new Map<string, Job>();
+  private queue: string[] = [];
+  private running = false;
+  private listeners = new Set<() => void>();
+  private prefs: DocumentPrefs = readPrefs();
+  private booted: Promise<void> | null = null;
+  private storeKind: string = ragStoreKind();
+  embedder: EmbedderStatus = { kind: "loading" };
+
+  ready(): Promise<void> {
+    return (this.booted ??= this.boot());
+  }
+
+  private async boot(): Promise<void> {
+    try {
+      this.store = await openRagStore();
+    } catch (e: unknown) {
+      console.warn("[documents] store unavailable, keeping the index in memory for this run", e);
+      const { MemoryEmbeddingStore } = await import("@inborn/core");
+      this.store = new MemoryEmbeddingStore();
+      this.storeKind = "memory";
+    }
+    for (const d of await this.store.listDocuments()) {
+      /* A crash mid-index leaves "indexing"; it resumes from the committed page on the next tap. */
+      this.docs.set(d.id, d.status === "indexing" ? { ...d, status: "cancelled" } : d);
+    }
+    await this.refreshEmbedder();
+    this.notify();
+  }
+
+  async refreshEmbedder(): Promise<void> {
+    const mod = await import("./embedder");
+    const resolved = "resolveEmbedderAsync" in mod ? await (mod as { resolveEmbedderAsync: () => Promise<ResolvedEmbedder | null> }).resolveEmbedderAsync() : resolveEmbedder();
+    this.embedderRef = resolved;
+    this.retriever = null;
+    this.embedder = resolved ? { kind: "ready", path: resolved.path } : { kind: "missing" };
+    this.notify();
+  }
+
+  subscribe(listener: () => void): () => void {
+    this.listeners.add(listener);
+    return () => void this.listeners.delete(listener);
+  }
+
+  private notify(): void {
+    for (const l of this.listeners) l();
+  }
+
+  state(): LibraryState {
+    return { documents: [...this.docs.values()].sort((a, b) => b.addedAt - a.addedAt), progress: this.progress, embedder: this.embedder, strict: this.prefs.strict, attachments: this.prefs.attachments, storeKind: this.storeKind };
+  }
+
+  document(id: string): DocumentRecord | undefined {
+    return this.docs.get(id);
+  }
+
+  // ---- preferences -------------------------------------------------------------
+
+  setStrict(v: boolean): void {
+    this.prefs.strict = v;
+    writePrefs(this.prefs);
+    this.notify();
+  }
+
+  attach(chatId: string, docId: string): void {
+    const list = this.prefs.attachments[chatId] ?? [];
+    if (!list.includes(docId)) this.prefs.attachments[chatId] = [...list, docId];
+    writePrefs(this.prefs);
+    this.notify();
+  }
+
+  detach(chatId: string, docId: string): void {
+    const list = this.prefs.attachments[chatId] ?? [];
+    this.prefs.attachments[chatId] = list.filter((d) => d !== docId);
+    if (!this.prefs.attachments[chatId]?.length) delete this.prefs.attachments[chatId];
+    writePrefs(this.prefs);
+    this.notify();
+  }
+
+  attachedTo(chatId: string): DocumentRecord[] {
+    return (this.prefs.attachments[chatId] ?? []).map((id) => this.docs.get(id)).filter((d): d is DocumentRecord => !!d);
+  }
+
+  // ---- import -------------------------------------------------------------------
+
+  /** Copies the file in, sniffs it, records it and queues indexing. Failures are recorded on the document, never thrown. */
+  async importFile(sourceUri: string, name: string, opts: { ocr?: boolean; pageCap?: number } = {}): Promise<DocumentRecord> {
+    await this.ready();
+    const id = newId();
+    const bytes = sizeOf(sourceUri);
+    const base: DocumentRecord = { id, name, kind: "unknown", bytes, pages: 0, addedAt: Date.now(), status: "queued", indexedPages: 0, chunkCount: 0, flaggedLines: 0, ocrPages: 0 };
+    let doc: DocumentRecord;
+    try {
+      const kind = assertImportable(name, bytes, readHead(sourceUri));
+      const uri = copyIntoLibrary(sourceUri, id, name);
+      doc = { ...base, kind, uri };
+    } catch (e: unknown) {
+      const reason = (e as Partial<ExtractError>).reason ?? "corrupt";
+      doc = { ...base, status: reason === "empty" ? "empty" : "failed", error: reason };
+    }
+    this.docs.set(id, doc);
+    await this.store!.putDocument(doc);
+    this.notify();
+    if (doc.status === "queued") this.enqueue(id, opts.ocr ?? false, opts.pageCap);
+    return doc;
+  }
+
+  // ---- indexing -----------------------------------------------------------------
+
+  private pageCaps = new Map<string, number>();
+
+  private enqueue(id: string, ocr: boolean, pageCap?: number): void {
+    if (this.jobs.has(id)) return;
+    this.jobs.set(id, { abort: new AbortController(), ocr });
+    const doc = this.docs.get(id);
+    if (doc && doc.status !== "queued") this.commit({ ...doc, status: "queued" });
+    if (pageCap) this.pageCaps.set(id, pageCap);
+    else this.pageCaps.delete(id);
+    this.queue.push(id);
+    void this.pump();
+  }
+
+  private async pump(): Promise<void> {
+    if (this.running) return;
+    this.running = true;
+    try {
+      while (this.queue.length) {
+        const id = this.queue.shift()!;
+        const job = this.jobs.get(id);
+        if (!job) continue;
+        await this.runJob(id, job);
+        this.jobs.delete(id);
+      }
+    } finally {
+      this.running = false;
+    }
+  }
+
+  private async runJob(id: string, job: Job): Promise<void> {
+    const doc = this.docs.get(id);
+    const store = this.store;
+    if (!doc || !store) return;
+    if (!this.embedderRef) {
+      this.commit({ ...doc, status: "failed", error: "no-embedder" });
+      return;
+    }
+    const extractor = this.extractors.find((x) => x.supports(doc.kind));
+    if (!extractor) {
+      this.commit({ ...doc, status: "failed", error: "unsupported" });
+      return;
+    }
+    let opened: OpenedDocument & { render?: (index: number) => Promise<string> };
+    try {
+      opened = await extractor.open({ uri: doc.uri ?? "", name: doc.name, kind: doc.kind, bytes: doc.bytes });
+    } catch (e: unknown) {
+      const reason = (e as Partial<ExtractError>).reason ?? "corrupt";
+      this.commit({ ...doc, status: reason === "empty" ? "empty" : "failed", error: reason });
+      return;
+    }
+    const ocrEngine = job.ocr ? nativeOcr() : null;
+    const ocr = ocrEngine && opened.render ? { engine: ocrEngine, languages: await ocrEngine.languages(), render: opened.render } : undefined;
+    const started = Date.now();
+    const result = await indexDocument({
+      doc: job.ocr ? { ...doc, indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 } : doc,
+      opened,
+      embedder: this.embedderRef.embedder,
+      store,
+      ocr,
+      signal: job.abort.signal,
+      maxPages: this.pageCaps.get(id),
+      onProgress: (p) => {
+        this.progress.set(id, p);
+        const current = this.docs.get(id);
+        if (current) this.docs.set(id, { ...current, status: "indexing", indexedPages: p.page, pages: p.pages, chunkCount: p.chunks });
+        this.notify();
+      },
+    });
+    await opened.close().catch(() => undefined);
+    const pages = Math.max(1, result.indexedPages);
+    console.log(`[documents] ${doc.name}: ${result.status} · ${result.indexedPages}/${result.pages} pages · ${result.chunkCount} chunks · ${Date.now() - started} ms (${Math.round((Date.now() - started) / pages)} ms/page)`);
+    this.progress.delete(id);
+    this.commit(result);
+    this.retriever?.invalidate();
+  }
+
+  private commit(doc: DocumentRecord): void {
+    this.docs.set(doc.id, doc);
+    void this.store?.putDocument(doc);
+    this.notify();
+  }
+
+  cancel(id: string): void {
+    this.jobs.get(id)?.abort.abort();
+    this.queue = this.queue.filter((q) => q !== id);
+  }
+
+  /** Resumes a cancelled/failed document from its committed page (or re-runs a scan with OCR). */
+  resume(id: string, opts: { ocr?: boolean } = {}): void {
+    const doc = this.docs.get(id);
+    if (!doc || this.jobs.has(id)) return;
+    this.enqueue(id, opts.ocr ?? false);
+  }
+
+  runOcr(id: string): void {
+    this.resume(id, { ocr: true });
+  }
+
+  async remove(id: string): Promise<void> {
+    this.cancel(id);
+    const doc = this.docs.get(id);
+    this.docs.delete(id);
+    this.progress.delete(id);
+    for (const chatId of Object.keys(this.prefs.attachments)) this.detach(chatId, id);
+    deleteFile(doc?.uri);
+    await this.store?.deleteDocument(id);
+    this.retriever?.invalidate();
+    this.notify();
+  }
+
+  /** Releases the embedding context (called when the app goes idle; the next index or question reloads it). */
+  async unloadEmbedder(): Promise<void> {
+    await this.embedderRef?.embedder.unload();
+  }
+
+  // ---- questions ----------------------------------------------------------------
+
+  /** Retrieval + the fenced prompt for a question; `noAnswer` in strict mode means "say not found" without the model. */
+  async ask(question: string, o: AskOptions = {}): Promise<AskResult> {
+    await this.ready();
+    if (!this.store || !this.embedderRef) throw new Error("no-embedder");
+    const retriever = (this.retriever ??= new Retriever(this.store, this.embedderRef.embedder));
+    const indexed = this.state().documents.filter((d) => d.chunkCount > 0);
+    const docIds = o.docIds?.length ? o.docIds.filter((id) => this.docs.get(id)?.chunkCount) : indexed.map((d) => d.id);
+    const started = Date.now();
+    const hits = docIds.length ? await retriever.retrieve(question, { docIds }) : [];
+    const retrieveMs = Date.now() - started;
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict: o.strict ?? this.prefs.strict, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage });
+    return { prompt, retrieveMs };
+  }
+
+  citationsFor(answer: string, citations: Citation[]): { shown: Citation[]; cited: boolean } {
+    return citationsForAnswer(answer, citations);
+  }
+
+  async passage(chunkId: string): Promise<{ text: string; doc: DocumentRecord | undefined; page: number } | null> {
+    const chunk = await this.store?.getChunk(chunkId);
+    if (!chunk) return null;
+    return { text: chunk.text, doc: this.docs.get(chunk.docId), page: chunk.page };
+  }
+}
+
+let shared: DocumentLibrary | null = null;
+export function getLibrary(): DocumentLibrary {
+  return (shared ??= new DocumentLibrary());
+}

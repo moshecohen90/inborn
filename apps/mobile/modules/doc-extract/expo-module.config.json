@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["DocExtractModule"]
+  },
+  "android": {
+    "modules": ["com.inbornapp.docextract.DocExtractModule"]
+  }
+}

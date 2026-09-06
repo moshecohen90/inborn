@@ -1,0 +1,258 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import { FlatList, Platform, Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
+import { File } from "expo-file-system";
+import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { dark, light, fonts, radius } from "@inborn/ui";
+import { formatBytes, type DocumentRecord } from "@inborn/core";
+import { writeDevResult } from "../../adapters/devModel";
+import { ocrEngine } from "../../../modules/doc-extract";
+import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
+import { installEmbedder } from "../../documents/embedder";
+import { devFileUri } from "../../documents/files";
+import { useDocuments } from "../../documents/hooks";
+import { FREE_PAGE_CAP } from "../../documents/library";
+import { useVault } from "../../vault";
+import { AskDocuments, type AskOutcome } from "./AskDocuments";
+import { DocumentDetails } from "./DocumentDetails";
+import { DocumentRow } from "./DocumentRow";
+
+export interface DocumentsScreenProps {
+  onClose: () => void;
+  /** Pro unlocks the library; Free attaches one file of up to 20 pages (spec §7.3). */
+  pro?: boolean;
+}
+
+const PICK_TYPES = ["application/pdf", "text/plain", "text/markdown", "text/csv", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/png", "image/jpeg"];
+
+/** S40 Document library: documents with state, strict mode, add file, ask about selected, details. */
+export function DocumentsScreen({ onClose, pro = true }: DocumentsScreenProps) {
+  const { t } = useTranslation();
+  const theme = useColorScheme() === "light" ? light : dark;
+  const insets = useSafeAreaInsets();
+  const { library, state } = useDocuments();
+  const { vault } = useVault();
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [details, setDetails] = useState<DocumentRecord | null>(null);
+  const [ask, setAsk] = useState<{ docs: DocumentRecord[]; auto?: string } | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const devDone = useRef(false);
+  const devResults = useRef<Record<string, unknown>>({});
+
+  useEffect(() => {
+    void library.ready();
+  }, [library]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
+  const importUri = useCallback(
+    async (uri: string, name: string) => {
+      const doc = await library.importFile(uri, name, { pageCap: pro ? undefined : FREE_PAGE_CAP });
+      if (doc.status === "failed" || doc.status === "empty") setToast(t(`documents.error.${doc.error ?? doc.status}`, { defaultValue: doc.error ?? doc.status }));
+      return doc;
+    },
+    [library, pro, t],
+  );
+
+  /* Headless proof (dev bundles only): import fixtures pushed into the document directory, then ask over them. */
+  useEffect(() => {
+    if (!__DEV__ || devDone.current || (!DEV_AUTOINDEX.length && !DEV_AUTOASK && !DEV_AUTOOCR)) return;
+    devDone.current = true;
+    void (async () => {
+      await library.ready();
+      const started = Date.now();
+      for (const name of DEV_AUTOINDEX) await importUri(devFileUri(name), name);
+      const wait = () =>
+        new Promise<void>((resolve) => {
+          const check = () => {
+            const s = library.state();
+            if (s.documents.every((d) => d.status !== "queued" && d.status !== "indexing")) resolve();
+            else setTimeout(check, 500);
+          };
+          check();
+        });
+      await wait();
+      if (DEV_AUTOOCR) {
+        for (const d of library.state().documents) if (d.status === "needs-ocr") library.runOcr(d.id);
+        await wait();
+      }
+      const docs = library.state().documents.map((d) => ({ name: d.name, kind: d.kind, status: d.status, pages: d.pages, indexedPages: d.indexedPages, chunks: d.chunkCount, language: d.language, flagged: d.flaggedLines, ocrPages: d.ocrPages, error: d.error }));
+      devResults.current = { indexMs: Date.now() - started, embedder: library.state().embedder, store: library.state().storeKind, docs };
+      writeDevResult(devResults.current);
+      if (DEV_AUTOASK) {
+        if (DEV_AUTOASK_STRICT) library.setStrict(true);
+        setAsk({ docs: library.state().documents.filter((d) => d.chunkCount > 0), auto: DEV_AUTOASK });
+      }
+    })();
+  }, [library, importUri]);
+
+  const onDevResult = (r: AskOutcome) => {
+    if (!DEV_AUTOINDEX.length && !DEV_AUTOASK) return;
+    writeDevResult({ ...devResults.current, ask: r });
+  };
+
+  const pickAndImport = async () => {
+    try {
+      const picked = await File.pickFileAsync({ multipleFiles: false, mimeTypes: PICK_TYPES });
+      if (!picked.canceled) await importUri(picked.result.uri, picked.result.name ?? "document");
+    } catch (e: unknown) {
+      console.warn("[documents] pick", e);
+    }
+  };
+
+  const toggle = (id: string) =>
+    setSelected((s) => {
+      const next = new Set(s);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+
+  const askSelected = () => {
+    const docs = state.documents.filter((d) => selected.has(d.id) && d.chunkCount > 0);
+    if (docs.length) setAsk({ docs });
+  };
+
+  const embedState = vault.state("embed-nomic");
+  const embedModel = vault.model("embed-nomic");
+  const embedderMissing = state.embedder.kind === "missing";
+  const totalBytes = state.documents.reduce((n, d) => n + d.bytes, 0);
+  const ocrAvailable = Platform.OS !== "web";
+
+  return (
+    <View testID="documents-screen" style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top }]}>
+      <View style={styles.header}>
+        <Pressable testID="documents-close" accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
+          <Text style={[styles.headerBtnText, { color: theme.text2 }]}>{t("documents.close")}</Text>
+        </Pressable>
+        <Text style={[styles.title, { color: theme.text }]}>{t("documents.title")}</Text>
+        <Pressable testID="documents-add" accessibilityRole="button" onPress={pickAndImport} style={styles.headerBtn}>
+          <Text style={[styles.headerBtnText, styles.right, { color: theme.text }]}>{t("documents.add")}</Text>
+        </Pressable>
+      </View>
+      <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text>
+      <View style={[styles.strictRow, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+        <View style={styles.strictText}>
+          <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
+          <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
+        </View>
+        <Switch testID="documents-strict" value={state.strict} onValueChange={(v) => library.setStrict(v)} />
+      </View>
+      {embedderMissing ? (
+        <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
+          <Text style={[styles.label, { color: theme.accent }]}>{t("documents.embedder.title")}</Text>
+          <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
+          {embedState.kind === "delivering" ? (
+            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.delivering", { percent: Math.floor((100 * embedState.bytes) / Math.max(1, embedState.total)), done: formatBytes(embedState.bytes), total: formatBytes(embedState.total) })}</Text>
+          ) : embedState.kind === "verifying" ? (
+            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.verifying")}</Text>
+          ) : (
+            <Pressable
+              testID="embedder-install"
+              accessibilityRole="button"
+              onPress={() => void installEmbedder().then(() => library.refreshEmbedder())}
+              style={[styles.btn, { backgroundColor: theme.ctaFill }]}
+            >
+              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
+            </Pressable>
+          )}
+        </View>
+      ) : null}
+      <FlatList
+        data={state.documents}
+        keyExtractor={(d) => d.id}
+        contentContainerStyle={styles.list}
+        ListEmptyComponent={
+          <View style={styles.empty}>
+            <Text style={[styles.emptyTitle, { color: theme.text }]}>{t("documents.empty.title")}</Text>
+            <Text style={[styles.body, styles.centered, { color: theme.text2 }]}>{t("documents.empty.hint")}</Text>
+          </View>
+        }
+        renderItem={({ item }) => (
+          <DocumentRow
+            doc={item}
+            progress={state.progress.get(item.id)}
+            theme={theme}
+            selected={selected.has(item.id)}
+            onPress={() => setDetails(item)}
+            onToggleSelect={() => toggle(item.id)}
+            onCancel={() => library.cancel(item.id)}
+            onResume={() => library.resume(item.id)}
+            onOcr={() => library.runOcr(item.id)}
+            ocrAvailable={ocrAvailable}
+          />
+        )}
+      />
+      <View style={[styles.footer, { borderColor: theme.border, paddingBottom: insets.bottom + 12 }]}>
+        <Pressable
+          testID="documents-ask-selected"
+          accessibilityRole="button"
+          disabled={!selected.size}
+          onPress={askSelected}
+          style={[styles.btn, { backgroundColor: selected.size ? theme.ctaFill : theme.surface2 }]}
+        >
+          <Text style={[styles.btnText, { color: selected.size ? theme.ctaText : theme.text3 }]}>{t("documents.askSelected", { count: selected.size })}</Text>
+        </Pressable>
+        <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.onDevice", { store: state.storeKind })}</Text>
+      </View>
+      {toast ? (
+        <View style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+          <Text style={[styles.body, { color: theme.text }]}>{toast}</Text>
+        </View>
+      ) : null}
+      {details ? (
+        <DocumentDetails
+          doc={library.document(details.id) ?? details}
+          theme={theme}
+          ocrEngine={ocrEngine()}
+          onClose={() => setDetails(null)}
+          onAsk={() => {
+            const d = library.document(details.id);
+            setDetails(null);
+            if (d) setAsk({ docs: [d] });
+          }}
+          onDelete={() => {
+            const id = details.id;
+            setDetails(null);
+            setSelected((s) => {
+              const next = new Set(s);
+              next.delete(id);
+              return next;
+            });
+            void library.remove(id).then(() => setToast(t("documents.deleted")));
+          }}
+        />
+      ) : null}
+      {ask ? <AskDocuments docs={ask.docs} theme={theme} autoQuestion={ask.auto} onResult={onDevResult} onClose={() => setAsk(null)} /> : null}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  root: { flex: 1 },
+  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
+  headerBtn: { minWidth: 64, height: 44, justifyContent: "center" },
+  headerBtnText: { fontFamily: fonts.sans, fontSize: 16 },
+  right: { textAlign: "right" },
+  title: { fontFamily: fonts.sans, fontSize: 17, fontWeight: "600" },
+  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.5 },
+  label: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
+  centered: { textAlign: "center", paddingTop: 4 },
+  strictRow: { flexDirection: "row", alignItems: "center", gap: 12, margin: 12, padding: 12, borderRadius: radius.card, borderWidth: 1 },
+  strictText: { flex: 1, gap: 2 },
+  strictTitle: { fontFamily: fonts.sans, fontSize: 15, fontWeight: "600" },
+  strictHint: { fontFamily: fonts.sans, fontSize: 12 },
+  card: { marginHorizontal: 12, marginBottom: 8, padding: 14, borderRadius: radius.card, borderWidth: 1, gap: 8 },
+  body: { fontFamily: fonts.sans, fontSize: 14, lineHeight: 20 },
+  list: { paddingHorizontal: 12, paddingBottom: 12, gap: 8, flexGrow: 1 },
+  empty: { paddingVertical: 48, alignItems: "center", gap: 8 },
+  emptyTitle: { fontFamily: fonts.sans, fontSize: 20, fontWeight: "600" },
+  footer: { padding: 12, borderTopWidth: 1, gap: 6 },
+  btn: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
+  btnText: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "600" },
+  toast: { position: "absolute", left: 16, right: 16, bottom: 96, padding: 12, borderRadius: radius.card, borderWidth: 1 },
+});

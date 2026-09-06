@@ -9,7 +9,7 @@
     "ios": "APP_VARIANT=development expo start --ios",
     "web": "pnpm run wasm && APP_VARIANT=development expo start --web",
     "export:web": "pnpm run wasm && expo export -p web",
-    "wasm": "mkdir -p public/wllama/compat && cp node_modules/@wllama/wllama/esm/wasm/wllama.wasm public/wllama/ && cp node_modules/@wllama/wllama-compat/wasm/wllama.js node_modules/@wllama/wllama-compat/wasm/wllama.wasm public/wllama/compat/",
+    "wasm": "mkdir -p public/wllama/compat && cp node_modules/@wllama/wllama/esm/wasm/wllama.wasm public/wllama/ && cp node_modules/@wllama/wllama-compat/wasm/wllama.js node_modules/@wllama/wllama-compat/wasm/wllama.wasm public/wllama/compat/ && mkdir -p public/pdfjs && cp node_modules/pdfjs-dist/legacy/build/pdf.worker.min.mjs public/pdfjs/",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run"
   },
@@ -45,6 +45,7 @@
     "expo-status-bar": "~57.0.1",
     "i18next": "26.4.1",
     "llama.rn": "0.12.9",
+    "pdfjs-dist": "5.4.149",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-i18next": "17.0.13",
