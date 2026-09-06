@@ -152,7 +152,7 @@ async function main() {
         writeFileSync(tmp, panelHtml({ set, locale, headline, subline, image: src, imgW: dims.w, imgH: dims.h, note }));
         await page.goto(fileUrl(tmp));
         await page.evaluate(() => document.fonts.ready);
-        const lines = await page.evaluate(() => window.__lines);
+        const lines = await page.evaluate(() => globalThis.__lines);
         if (lines.h > 2) warnings.push(`${locale}/${name}/${screen}: headline wraps to ${lines.h} lines → shorten the copy`);
         if (lines.s > 2) warnings.push(`${locale}/${name}/${screen}: subline wraps to ${lines.s} lines → shorten the copy`);
         const file = join(dir, `${String(i + 1).padStart(2, "0")}-${screen}.png`);
@@ -164,7 +164,7 @@ async function main() {
   }
   await browser.close();
   try {
-    readdirSync(OUT).includes(".panel.html") && (await import("node:fs")).rmSync(tmp);
+    if (readdirSync(OUT).includes(".panel.html")) (await import("node:fs")).rmSync(tmp);
   } catch {
     /* fine */
   }

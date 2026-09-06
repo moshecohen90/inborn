@@ -16,7 +16,6 @@ import { execFileSync, spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { findChromium, loadPlaywright } from "./chromium.mjs";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dir, "../..");
@@ -388,7 +387,7 @@ class Android {
     /* the store build has no run-as debuggability, so its files/ is reached as root; adb root only happens in this phase,
        after every Metro-dependent capture is done; the dev screens reach Metro over 10.0.2.2, not a reverse. */
     this.adb("root");
-    this.serial && this.adb("wait-for-device");
+    if (this.serial) this.adb("wait-for-device");
     this.stop();
     this.adb("uninstall", BUNDLE);
     /* the store build has no INTERNET permission and no Metro; real airplane mode makes the meter's OUT 0 B honest */
