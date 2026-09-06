@@ -61,7 +61,7 @@ export function shouldWait(bytes: number, network: NetworkKind, wifiOnly: boolea
 /** Exponential backoff for retries after a dropped connection (§10.1 #2): 2s, 4s, 8s … capped at 60s. */
 export const backoffMs = (attempt: number): number => Math.min(60_000, 2_000 * 2 ** Math.max(0, attempt));
 
-export function formatBytes(bytes: number): string {
+export function formatModelBytes(bytes: number): string {
   if (bytes >= 1024 ** 3) return `${(bytes / 1024 ** 3).toFixed(bytes >= 10 * 1024 ** 3 ? 0 : 1)} GB`;
   if (bytes >= 1024 ** 2) return `${Math.round(bytes / 1024 ** 2)} MB`;
   return `${Math.max(1, Math.round(bytes / 1024))} KB`;

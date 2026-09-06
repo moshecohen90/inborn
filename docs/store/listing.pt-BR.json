@@ -1,0 +1,44 @@
+{
+  "locale": "pt-BR",
+  "apple": {
+    "name": "Inborn: IA privada e local",
+    "subtitle": "Chatbot LLM sem internet",
+    "promotional_text": "Chat de IA privado que roda 100% no seu celular. Sem conta, sem nuvem, sem rastreamento. Até em modo avião. Pro é pagamento único. Verifique você mesmo.",
+    "keywords": "assistente,offline,seguro,criptografado,documentos,pdf,voz,notas,gguf,qwen,gemma,mistral,phi",
+    "description": "O Inborn é um app de chat com IA que roda inteiramente no seu celular. Aqui, privado não é uma promessa numa página da web: é algo que você confere em um minuto.\n\nAtive o modo avião e pergunte o que quiser. Ele continua respondendo, na mesma velocidade, porque o modelo vive no seu aparelho. Não há servidor nenhum a ser acessado.\n\nConfira você mesmo:\n- Modo avião: o chat continua funcionando com todo o sinal desligado.\n- Android: o app não tem nenhuma permissão de Internet. Abra a página de permissões e veja.\n- iPhone: Ajustes, Privacidade, Relatório de Privacidade do App. A linha do Inborn fica vazia.\n- O núcleo de motor e armazenamento é de código aberto, com um hash publicado a cada versão.\n\nO que você tem, tudo no aparelho:\n- Chat ilimitado com modelos abertos como Qwen, Gemma, Phi e Mistral.\n- Leia seus próprios PDFs e documentos e faça perguntas sobre eles.\n- Fale com ele e ouça a leitura, com vozes que rodam localmente.\n- Um bloqueio, um modo anônimo que nunca grava no disco e apagar com um toque.\n\nHonesto sobre os limites: um modelo pequeno no celular não é um enorme modelo na nuvem. O Inborn informa o nome de cada modelo, a velocidade no seu aparelho e quando um maior ajudaria.\n\nNão há conta. Sem e-mail, sem login, nada a criar. Sem rastreamento, sem análise e sem anúncios, nunca. O rótulo de privacidade diz Nenhum dado coletado.\n\nO grátis é um app completo: chat inteiro, sem limite de mensagens, sem marca-d'água. O Pro é um pagamento único, sem assinatura. Compre uma vez e é seu. Menos de dois meses de uma assinatura de IA na nuvem, para sempre.\n\nAs respostas são geradas por IA e podem estar erradas. Confira tudo o que for importante.",
+    "whats_new": "Inborn 1.0. Um assistente de IA privado que roda inteiramente no seu celular.\n\n- Chat offline com modelos abertos no aparelho. Funciona em modo avião.\n- Leia seus próprios PDFs e documentos e faça perguntas.\n- Voz no aparelho: fale com ele e ouça a resposta.\n- Bloqueio de tela, modo anônimo e apagar com um toque.\n- Sem conta, sem anúncios, sem rastreamento. No Android, nenhuma permissão de Internet.\n\nO Pro está disponível no primeiro mês por um preço de lançamento reduzido, em pagamento único."
+  },
+  "google": {
+    "title": "Inborn - Chat de IA offline",
+    "short_description": "Chat de IA offline no seu celular. Sem conta, nada sai do aparelho.",
+    "full_description": "O Inborn é um app de chat com IA offline. O modelo de IA roda 100% no seu celular, então funciona sem conexão com a internet: no avião, no metrô, no exterior ou com o Wi-Fi desligado. Nada do que você digita sai do seu aparelho.\n\nUm chatbot de IA privado que você pode conferir, não apenas confiar:\n- No Android, o Inborn não tem nenhuma permissão de Internet. Abra as permissões do app nesta página e veja: não há acesso total à rede. O app não consegue ficar online.\n- Ative o modo avião e continue conversando. Mesma velocidade, mesmas respostas.\n- O núcleo de motor e armazenamento é de código aberto, com um hash publicado a cada versão.\n\nTudo roda no aparelho:\n- Chat de IA offline ilimitado com modelos locais abertos como Qwen, Gemma, Phi e Mistral, um LLM local no seu bolso.\n- Faça perguntas sobre seus próprios PDFs e documentos, offline.\n- Fale com ele e ouça as respostas, com vozes no aparelho.\n- Bloqueio de tela, um modo anônimo que não grava no disco e apagar de emergência.\n\nHonesto sobre os limites: um modelo pequeno no aparelho não é um enorme modelo na nuvem. O Inborn mostra o nome de cada modelo, a velocidade no seu aparelho e quando um maior ajudaria.\n\nSem conta. Sem e-mail nem login. Sem rastreamento, sem anúncios e sem nenhuma coleta de dados. O rótulo de privacidade diz Nenhum dado coletado.\n\nO grátis é um app completo: chat ilimitado, sem cota de mensagens, sem marca-d'água. O Pro é um pagamento único, sem assinatura e sem cota. Pague uma vez e é seu para sempre.\n\nO conteúdo do Inborn é gerado por IA e pode ser impreciso. Verifique as informações importantes."
+  },
+  "screenshots": [
+    {
+      "headline": "Funciona em modo avião.",
+      "subline": "Com todo o sinal desligado, ele ainda responde."
+    },
+    {
+      "headline": "Nada sai do seu celular. Verifique.",
+      "subline": "O medidor de rede mostra OUT 0 B."
+    },
+    {
+      "headline": "Converse com seus documentos. Offline.",
+      "subline": "Pergunte aos seus próprios PDFs, no aparelho."
+    },
+    {
+      "headline": "Sem conta. Sem assinatura. Pague uma vez.",
+      "subline": "O grátis é completo. O Pro é pagamento único."
+    },
+    {
+      "headline": "Escolha o modelo ideal para seu celular.",
+      "subline": "Qwen, Gemma, Phi. Do tamanho do seu celular."
+    },
+    {
+      "headline": "Bloqueie. Apague.",
+      "subline": "Bloqueio de tela, anônimo e apagar num toque."
+    }
+  ],
+  "reviewer_notes": "Inborn runs an AI model entirely on the device. There is no backend server and no user account.\n\nTESTING OFFLINE: A small model ships inside the app, so you can start chatting immediately with no download. Turn on Airplane Mode and the chat still works at the same speed.\n\nNETWORK: On Android the release manifest has no INTERNET permission at all (verified in CI with aapt2 dump permissions; the build fails if the permission ever appears through manifest merging). On iOS the only network path is an optional, user-initiated model download from Hugging Face; the default model needs no download and the app opens no socket on its own.\n\nNO ACCOUNT: No login, email or sign-in is required for any feature.\n\nAI CONTENT: Responses are AI-generated and are labeled as such in onboarding and on outputs. To test the report control, open any AI reply and choose Report; it works offline and transmits nothing.\n\nPURCHASES: Pro is a single non-consumable in-app purchase (Family Sharing on iOS). The free tier is fully functional without it: unlimited chat, no message limit, no watermark.",
+  "ab_note": "A/B testing runs in English, the primary test locale (the launch audience is global and English-first, spec 3.2). Localize the winning Apple subtitle and Play short description into this locale only after the English test concludes. Apple test surface: Product Page Optimization. Play test surface: store listing experiments."
+}

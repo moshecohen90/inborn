@@ -9,6 +9,7 @@ import {
   type Capabilities,
   type Chat,
   type ChatMessage,
+  type ChatPatch,
   type ChatRepository,
   type Delta,
   type Embedder,
@@ -23,9 +24,11 @@ import {
   type SearchHit,
   type Session,
   type Stats,
+  type StoppedBy,
   type Usage,
 } from "@inborn/core";
-import { FTS_SQL, SCHEMA_SQL, SQL, ftsQuery } from "../storage/schema";
+import { FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "../storage/schema";
+import { emitShortcut, type Shortcut } from "../lib/shortcuts";
 import type { Engine } from "./index";
 
 type Channel<T> = { onmessage: (message: T) => void };
@@ -168,8 +171,34 @@ export class TauriLM implements LocalLM {
   }
 }
 
-type ChatRow = { id: string; title: string; created_at: number; updated_at: number; model_id: string; persona_id: string | null; pinned: number; folder_id: string | null };
-type MessageRow = { id: string; chat_id: string; role: ChatMessage["role"]; content: string; reasoning: string | null; model_id: string | null; created_at: number; stopped: number; usage_json: string | null };
+type ChatRow = {
+  id: string;
+  title: string;
+  created_at: number;
+  updated_at: number;
+  model_id: string;
+  persona_id: string | null;
+  pinned: number;
+  folder_id: string | null;
+  archived: number;
+  system_prompt: string | null;
+  thinking: number | null;
+  summary: string | null;
+  summary_up_to: string | null;
+};
+type MessageRow = {
+  id: string;
+  chat_id: string;
+  role: ChatMessage["role"];
+  content: string;
+  reasoning: string | null;
+  reasoning_ms: number | null;
+  model_id: string | null;
+  created_at: number;
+  stopped: number;
+  stopped_by: StoppedBy | null;
+  usage_json: string | null;
+};
 type SearchRow = { chat_id: string; id: string; content: string };
 
 const toChat = (r: ChatRow): Chat => ({
@@ -181,7 +210,12 @@ const toChat = (r: ChatRow): Chat => ({
   incognito: false,
   ...(r.persona_id ? { personaId: r.persona_id } : {}),
   ...(r.pinned ? { pinned: true } : {}),
+  ...(r.archived ? { archived: true } : {}),
   ...(r.folder_id ? { folderId: r.folder_id } : {}),
+  ...(r.system_prompt ? { systemPrompt: r.system_prompt } : {}),
+  ...(r.thinking !== null && r.thinking !== undefined ? { thinking: !!r.thinking } : {}),
+  ...(r.summary ? { summary: r.summary } : {}),
+  ...(r.summary_up_to ? { summaryUpTo: r.summary_up_to } : {}),
 });
 
 const toMessage = (r: MessageRow): ChatMessage => ({
@@ -191,29 +225,52 @@ const toMessage = (r: MessageRow): ChatMessage => ({
   content: r.content,
   createdAt: r.created_at,
   ...(r.reasoning !== null ? { reasoning: r.reasoning } : {}),
+  ...(r.reasoning_ms !== null ? { reasoningMs: r.reasoning_ms } : {}),
   ...(r.model_id ? { modelId: r.model_id } : {}),
   ...(r.stopped ? { stopped: true } : {}),
+  ...(r.stopped_by ? { stoppedBy: r.stopped_by } : {}),
   ...(r.usage_json ? { usage: JSON.parse(r.usage_json) as Usage } : {}),
 });
 
 const all = <T extends Row>(sql: string, params: SqlValue[] = []): Promise<T[]> => invoke<T[]>("db_all", { sql, params });
 const run = (sql: string, params: SqlValue[] = []): Promise<number> => invoke<number>("db_run", { sql, params });
+const exec = (sql: string): Promise<void> => invoke("db_exec", { sql });
 const batch = (statements: { sql: string; params: SqlValue[] }[]): Promise<number[]> => invoke<number[]>("db_batch", { statements });
+
+/** Same steps as the phones' `migrate()`: each pending migration runs in one transaction that ends by stamping user_version. */
+export async function migrateDesktop(): Promise<number> {
+  await exec(PRAGMAS_SQL);
+  let current = Number((await all<{ user_version: number }>("PRAGMA user_version"))[0]?.user_version ?? 0);
+  for (const m of MIGRATIONS) {
+    if (m.version <= current) continue;
+    try {
+      await exec(`BEGIN;\n${m.sql}\nPRAGMA user_version = ${m.version};\nCOMMIT;`);
+    } catch (e) {
+      await exec("ROLLBACK;").catch(() => undefined);
+      throw e;
+    }
+    current = m.version;
+  }
+  return current;
+}
 
 /** SQLCipher on the Rust side (same schema and SQL as the phones); the key lives in the OS keychain. Refuses incognito rows. */
 export class TauriChatRepository implements ChatRepository {
-  private constructor(readonly fts: boolean) {}
+  private constructor(
+    readonly fts: boolean,
+    readonly schemaVersion: number,
+  ) {}
 
   static async open(): Promise<TauriChatRepository> {
     await invoke<{ kind: string; fts: boolean }>("db_open");
-    await invoke("db_exec", { sql: SCHEMA_SQL });
+    const version = await migrateDesktop();
     let fts = true;
     try {
-      await invoke("db_exec", { sql: FTS_SQL });
+      await exec(FTS_SQL);
     } catch {
       fts = false;
     }
-    return new TauriChatRepository(fts);
+    return new TauriChatRepository(fts, version);
   }
 
   async listChats(): Promise<Chat[]> {
@@ -238,8 +295,21 @@ export class TauriChatRepository implements ChatRepository {
       ...(input.personaId ? { personaId: input.personaId } : {}),
       ...(input.pinned ? { pinned: true } : {}),
       ...(input.folderId ? { folderId: input.folderId } : {}),
+      ...(input.systemPrompt ? { systemPrompt: input.systemPrompt } : {}),
+      ...(input.thinking !== undefined ? { thinking: input.thinking } : {}),
     };
-    await run(SQL.insertChat, [chat.id, chat.title, now, now, chat.modelId, input.personaId ?? null, input.pinned ? 1 : 0, input.folderId ?? null]);
+    await run(SQL.insertChat, [
+      chat.id,
+      chat.title,
+      now,
+      now,
+      chat.modelId,
+      input.personaId ?? null,
+      input.pinned ? 1 : 0,
+      input.folderId ?? null,
+      input.systemPrompt ?? null,
+      input.thinking === undefined ? null : input.thinking ? 1 : 0,
+    ]);
     return chat;
   }
 
@@ -247,10 +317,32 @@ export class TauriChatRepository implements ChatRepository {
     await run(SQL.renameChat, [title.trim(), id]);
   }
 
+  async updateChat(id: string, patch: ChatPatch): Promise<void> {
+    const columns: [string, SqlValue][] = [];
+    if (patch.title !== undefined) columns.push(["title", patch.title.trim()]);
+    if (patch.pinned !== undefined) columns.push(["pinned", patch.pinned ? 1 : 0]);
+    if (patch.archived !== undefined) columns.push(["archived", patch.archived ? 1 : 0]);
+    if (patch.modelId !== undefined) columns.push(["model_id", patch.modelId]);
+    if (patch.thinking !== undefined) columns.push(["thinking", patch.thinking ? 1 : 0]);
+    if (patch.folderId !== undefined) columns.push(["folder_id", patch.folderId]);
+    if (patch.personaId !== undefined) columns.push(["persona_id", patch.personaId]);
+    if (patch.systemPrompt !== undefined) columns.push(["system_prompt", patch.systemPrompt]);
+    if (patch.summary !== undefined) columns.push(["summary", patch.summary]);
+    if (patch.summaryUpTo !== undefined) columns.push(["summary_up_to", patch.summaryUpTo]);
+    if (!columns.length) return;
+    const sets = columns.map(([name]) => `${name} = ?`).join(", ");
+    await run(`UPDATE chats SET ${sets} WHERE id = ?`, [...columns.map(([, v]) => v), id]);
+  }
+
   async deleteChat(id: string): Promise<void> {
+    await this.deleteChats([id]);
+  }
+
+  async deleteChats(ids: string[]): Promise<void> {
+    if (!ids.length) return;
     await batch([
-      { sql: SQL.deleteMessagesOfChat, params: [id] },
-      { sql: SQL.deleteChat, params: [id] },
+      { sql: `DELETE FROM messages WHERE chat_id IN (${inList(ids.length)})`, params: ids },
+      { sql: `DELETE FROM chats WHERE id IN (${inList(ids.length)})`, params: ids },
     ]);
   }
 
@@ -267,23 +359,26 @@ export class TauriChatRepository implements ChatRepository {
       content: input.content,
       createdAt: now,
       ...(input.reasoning !== undefined ? { reasoning: input.reasoning } : {}),
+      ...(input.reasoningMs !== undefined ? { reasoningMs: input.reasoningMs } : {}),
       ...(input.modelId ? { modelId: input.modelId } : {}),
       ...(input.stopped ? { stopped: true } : {}),
+      ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
     };
-    const touched = await run(SQL.touchChat, [now, input.chatId]);
-    if (touched === 0) throw new Error(`unknown chat ${input.chatId}`);
-    await run(SQL.insertMessage, [
-      message.id,
-      message.chatId,
-      message.role,
-      message.content,
-      input.reasoning ?? null,
-      input.modelId ?? null,
-      now,
-      input.stopped ? 1 : 0,
-      input.usage ? JSON.stringify(input.usage) : null,
-    ]);
+    // The touch goes first: zero changed rows means no such chat, and the batch's transaction never inserts an orphan.
+    const [touched] = await batch([
+      { sql: SQL.touchChat, params: [now, input.chatId] },
+      {
+        sql: SQL.insertMessage,
+        params: [message.id, message.chatId, message.role, message.content, input.reasoning ?? null, input.reasoningMs ?? null, input.modelId ?? null, now, input.stopped ? 1 : 0, input.stoppedBy ?? null, input.usage ? JSON.stringify(input.usage) : null],
+      },
+    ]).catch((e: unknown) => {
+      throw new Error(/FOREIGN KEY/i.test(String(e)) ? `unknown chat ${input.chatId}` : String(e));
+    });
+    if (touched === 0) {
+      await run(SQL.deleteMessagesOfChat, [input.chatId]);
+      throw new Error(`unknown chat ${input.chatId}`);
+    }
     return message;
   }
 
@@ -291,11 +386,24 @@ export class TauriChatRepository implements ChatRepository {
     const columns: [string, SqlValue][] = [];
     if (patch.content !== undefined) columns.push(["content", patch.content]);
     if (patch.reasoning !== undefined) columns.push(["reasoning", patch.reasoning]);
+    if (patch.reasoningMs !== undefined) columns.push(["reasoning_ms", patch.reasoningMs]);
     if (patch.stopped !== undefined) columns.push(["stopped", patch.stopped ? 1 : 0]);
+    if (patch.stoppedBy !== undefined) columns.push(["stopped_by", patch.stoppedBy]);
     if (patch.usage !== undefined) columns.push(["usage_json", JSON.stringify(patch.usage)]);
     if (!columns.length) return;
     const sets = columns.map(([name]) => `${name} = ?`).join(", ");
     await run(`UPDATE messages SET ${sets} WHERE id = ? AND chat_id = ?`, [...columns.map(([, v]) => v), messageId, chatId]);
+  }
+
+  async deleteMessagesFrom(chatId: string, messageId: string): Promise<number> {
+    const row = (await all<{ seq: number }>(SQL.messageSeq, [messageId, chatId]))[0];
+    if (!row) return 0;
+    const [removed] = await batch([
+      { sql: SQL.deleteMessagesFromSeq, params: [chatId, row.seq] },
+      // Same rule as SqliteChatRepository: a summary whose anchor message is gone is dropped with it.
+      { sql: "UPDATE chats SET summary = NULL, summary_up_to = NULL WHERE id = ? AND summary_up_to IS NOT NULL AND NOT EXISTS (SELECT 1 FROM messages WHERE chat_id = chats.id AND id = chats.summary_up_to)", params: [chatId] },
+    ]);
+    return removed ?? 0;
   }
 
   async search(query: string): Promise<SearchHit[]> {
@@ -339,8 +447,8 @@ export const sealState = (): Promise<SealState> => invoke<SealState>("seal_state
 export const checkForUpdates = (): Promise<{ available: boolean; currentVersion: string; version: string | null; notes: string | null }> => invoke("updater_check");
 export const installUpdate = (): Promise<void> => invoke("updater_install");
 
-export type DesktopShortcut = "new-chat" | "new-incognito" | "toggle-incognito" | "focus-composer" | "search" | "stop" | "open";
-/** Menu accelerators (⌘N, ⇧⌘N, ⇧⌘I, ⌘L, ⌘F, ⌘.) arrive here; screens subscribe to `inborn:shortcut` on `window`. */
+export type DesktopShortcut = Shortcut;
+/** Menu accelerators (⌘N, ⇧⌘N, ⇧⌘I, ⌘L, ⌘F, ⌘.) arrive here and on the `lib/shortcuts` bus (`useShortcut`) the screens subscribe to. */
 export function onDesktopShortcut(handler: (id: DesktopShortcut) => void): () => void {
   const listener = (e: Event) => handler((e as CustomEvent<DesktopShortcut>).detail);
   window.addEventListener("inborn:shortcut", listener);
@@ -362,6 +470,7 @@ function installDesktopEvents(): void {
   void listen<DesktopShortcut>("inborn:shortcut", ({ payload }) => {
     if (payload === "focus-composer") focusComposer();
     window.dispatchEvent(new CustomEvent("inborn:shortcut", { detail: payload }));
+    emitShortcut(payload);
   });
   void listen<ModelFile | null>("inborn:models-changed", ({ payload }) => {
     window.dispatchEvent(new CustomEvent("inborn:models-changed", { detail: payload }));

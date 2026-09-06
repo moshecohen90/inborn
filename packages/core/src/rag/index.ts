@@ -1,5 +1,5 @@
 export * from "./types";
-export { estimateTokens, detectScript, isRtlScript, type Script } from "./tokens";
+export { estimateTokens as estimateRagTokens, detectScript, isRtlScript, type Script as TextScript } from "./tokens";
 export { normalizeText, foldForSearch, words } from "./text";
 export { chunkPage, segments, DEFAULT_CHUNK, type ChunkOptions, type PageChunk } from "./chunker";
 export { Bm25Index, bm25Tokens, termsOf, isStopWord, type Bm25Hit } from "./bm25";

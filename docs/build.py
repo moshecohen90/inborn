@@ -13,9 +13,9 @@ SUBS = {
     '{{BRAND}}': BRAND,
     '{{DOMAIN}}': DOMAIN,
     '{{TAGLINE_HE}}': 'AI that never leaves your phone: עוזר בינה מלאכותית שרץ כולו על המכשיר, בלי חשבון, בלי ענן, ובאנדרואיד בלי הרשאת אינטרנט.',
-    '{{IOS_KEYWORDS}}': 'assistant,secure,free,internet,airplane,gguf,llama,mistral,gemma,qwen,encrypted,notes,writer,phi (96)',
-    '{{IOS_PROMO}}': 'Runs 100% on your phone. No account, no cloud, no ads. Nothing you type ever leaves your device. Turn on Airplane Mode and it still answers. (140)',
-    '{{PLAY_OPENING}}': 'Inborn is an offline AI chat app: a private chatbot that runs 100% on your phone, with no internet connection needed. Install it and the AI works in airplane mode. Nothing you type ever leaves your device: Inborn has no account, no analytics, no ads, and does not even request the Internet permission (check App permissions on this page).',
+    '{{IOS_KEYWORDS}}': "assistant,secure,encrypted,gguf,deepseek,qwen,gemma,mistral,phi,documents,pdf,notes,voice,incognito",
+    '{{IOS_PROMO}}': "Private AI chat that runs 100% on your phone. No account, no cloud, no analytics. Works in Airplane Mode. One-time purchase for Pro. Verify it yourself.",
+    '{{PLAY_OPENING}}': "Inborn is an offline AI chat app. The AI model runs 100% on your phone, so it works with no internet connection: on a plane, on the subway, abroad, or with Wi-Fi off. Nothing you type ever leaves your device.",
 }
 
 def apply(s):

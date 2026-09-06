@@ -21,7 +21,7 @@ const tagged = async <T,>(sql: string, p: Promise<T>): Promise<T> => {
   try {
     return await p;
   } catch (e: unknown) {
-    throw new Error(`${e instanceof Error ? e.message : String(e)} [${sql.slice(0, 48)}]`);
+    throw new Error(`${e instanceof Error ? e.message : String(e)} [${sql.slice(0, 48)}]`, { cause: e });
   }
 };
 

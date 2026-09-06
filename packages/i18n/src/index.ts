@@ -1,3 +1,4 @@
+import "./intl";
 import i18next, { type i18n } from "i18next";
 import ICU from "i18next-icu";
 import { initReactI18next } from "react-i18next";
@@ -39,4 +40,5 @@ export function biometricLabel(t: (k: MessageKey) => string, kind: BiometricKind
   return t(key);
 }
 
+export { installed as intlPolyfills } from "./intl";
 export { i18next };
