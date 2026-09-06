@@ -79,7 +79,6 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           style={[type.body, styles.input, { color: theme.text, maxHeight: LINE * 6 * scale + 20, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]}
-          accessibilityLabel={placeholder}
         />
         <Pressable
           testID="mic"

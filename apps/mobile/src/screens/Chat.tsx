@@ -35,8 +35,9 @@ import {
   type Session,
   type StoppedBy,
   type Usage,
+  reportText,
 } from "@inborn/core";
-import { getEngine, loadSession } from "../engine";
+import { getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -244,6 +245,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current?.abort();
   });
   useShortcut("search", () => focused.current && onOpenChats());
+  useShortcut("continue", () => {
+    if (!focused.current || busy) return;
+    const last = [...rowsRef.current].reverse().find((r) => r.role === "assistant");
+    if (last?.stopped && !last.streaming) void continueRow(last);
+  });
   useShortcut("new-chat", () => focused.current && onNewChat?.(false));
   useShortcut("toggle-incognito", () => focused.current && onNewChat?.(!incognito));
   useShortcut("focus-composer", () => focused.current && inputRef.current?.focus());
@@ -346,8 +352,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (d.done) usage = d.done;
       }
       const reason = stopReason.current as StoppedBy | "loop" | null;
-      const stopped = ac.signal.aborted;
-      const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" ? "system" : "user") : undefined;
+      /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
+      const guardStopped = wasStoppedByGuard();
+      const stopped = ac.signal.aborted || guardStopped;
+      const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
         reply = t("documents.notFound");
@@ -487,10 +495,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     await store.library.saveReport(report);
   };
   const emailReport = async (report: ReportInput) => {
-    const body = [`Inborn report · ${new Date().toISOString()}`, `Reason: ${report.reason}`, report.note ? `Note: ${report.note}` : "", report.modelId ? `Model: ${report.modelId}` : "", report.messageText ? `\nMessage:\n${report.messageText}` : ""].filter(Boolean).join("\n");
-    await store.library.saveReport(report);
+    const saved = await store.library.saveReport(report);
     setReportRow(null);
-    afterSheetClose(() => void shareFile({ filename: "inborn-report.txt", mimeType: "text/plain", body }, t("report.email")));
+    afterSheetClose(() => void shareFile({ filename: "inborn-report.txt", mimeType: "text/plain", body: reportText(saved) }, t("report.email")));
   };
 
   useEffect(() => {
@@ -514,6 +521,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
   const [topH, setTopH] = useState(0);
   const [bottomH, setBottomH] = useState(0);
+  useEffect(() => {
+    if (liquidGlass && bottomH && nearBottom.current) list.current?.scrollToEnd({ animated: false });
+  }, [bottomH]);
   const top = (
     <>
       <FloatingToolbar style={styles.header}>
@@ -627,7 +637,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onScroll={onScroll}
         scrollEventThrottle={64}
         keyboardShouldPersistTaps="handled"
-        maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
+        /* Pinning index 0 while the list is empty would cancel the bar inset: the padding grows, the empty view moves up, and iOS scrolls it back under the composer (QA B10). */
+        maintainVisibleContentPosition={rows.length ? { minIndexForVisible: 0 } : undefined}
         onContentSizeChange={() => {
           if (busy && nearBottom.current) list.current?.scrollToEnd({ animated: false });
         }}

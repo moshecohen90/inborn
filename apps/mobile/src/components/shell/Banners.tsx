@@ -7,6 +7,7 @@ import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
 import { useAppServices } from "../../services/AppServices";
 import { Mono } from "./primitives";
+import { emitShortcut } from "../../lib/shortcuts";
 import { font } from "../../services/type";
 
 /** §8.8 system-wide states as one strip under the header. Policy comes from useDeviceState(); this is only how it looks. */
@@ -25,6 +26,19 @@ export function Banners() {
     rows.push({ key: "thermal-critical", tone: "danger", text: t("state.thermalCritical"), action: { label: t("state.continue"), onPress: continueGeneration } });
   else if (device.thermal === "serious") rows.push({ key: "thermal", tone: "amber", text: t("state.thermalSerious"), action: { label: t("state.switchToInstant"), onPress: switchToInstant } });
   if (rec.kind === "pause" && rec.reason === "memory") rows.push({ key: "memory", tone: "danger", text: t("state.memoryStopped"), action: { label: t("state.continue"), onPress: continueGeneration } });
+  if (rec.kind === "paused")
+    rows.push({
+      key: "paused",
+      tone: "muted",
+      text: t("state.pausedInBackground"),
+      action: {
+        label: t("state.continue"),
+        onPress: () => {
+          continueGeneration();
+          emitShortcut("continue");
+        },
+      },
+    });
   if (rec.kind === "switchToInstant" && rec.auto)
     rows.push({ key: "lowpower", tone: "muted", text: t("state.lowPowerSwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
   else if (rec.kind === "switchToInstant" && rec.reason === "battery" && device.battery.level !== null)

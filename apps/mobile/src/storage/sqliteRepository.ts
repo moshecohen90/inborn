@@ -29,9 +29,10 @@ import {
   type StoppedBy,
   type Usage,
 } from "@inborn/core";
+import { SECURE_ITEMS } from "./secureItems";
 import { DB_NAME, FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "./schema";
 
-const KEY_ITEM = "inborn.db.key";
+const KEY_ITEM = SECURE_ITEMS.dbKey;
 const KEY_OPTIONS: SecureStore.SecureStoreOptions = { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY };
 
 type ChatRow = {

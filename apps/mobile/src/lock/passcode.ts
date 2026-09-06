@@ -1,8 +1,9 @@
 import { Platform } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import * as Crypto from "expo-crypto";
+import { SECURE_ITEMS } from "../storage/secureItems";
 
-const ITEM = "inborn.lock.passcode";
+const ITEM = SECURE_ITEMS.passcode;
 const OPTIONS: SecureStore.SecureStoreOptions = { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY };
 
 async function read(): Promise<string | null> {

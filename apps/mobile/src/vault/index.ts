@@ -1,4 +1,4 @@
-export { getVault, VaultStore, importedAsModel, type VaultEntry } from "./store";
+export { getVault, VaultStore, importedAsModel, STRAY_PREFIX, type StrayFile, type VaultEntry } from "./store";
 export { useVault, useInstalledModel } from "./hooks";
 export { resolveEngine, type ResolvedEngine } from "./resolve";
 export { useGgufOpenHandler, isGgufOpenUrl } from "./fileHandler";

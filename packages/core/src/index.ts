@@ -6,6 +6,7 @@ export * from "./chat/repository";
 export { ChatStore, MEMORY_ENABLED_KEY, MEMORY_PERSONA_KEY_PREFIX } from "./chat/store";
 export * from "./chat/personas";
 export * from "./chat/context";
+export * from "./chat/report";
 export * from "./chat/markdown";
 export * from "./chat/math";
 export * from "./chat/loop";

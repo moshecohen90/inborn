@@ -2,9 +2,10 @@ import * as SQLite from "expo-sqlite";
 import * as SecureStore from "expo-secure-store";
 import { SqlEmbeddingStore, type EmbeddingStore, type SqlDriver, type SqlValue } from "@inborn/core";
 import { DB_NAME } from "../storage/schema";
+import { SECURE_ITEMS } from "../storage/secureItems";
 
 /* Same key item as the chat repository (storage/sqliteRepository.ts): documents live in the same SQLCipher file (spec §5.3). */
-const KEY_ITEM = "inborn.db.key";
+const KEY_ITEM = SECURE_ITEMS.dbKey;
 const KEY_OPTIONS: SecureStore.SecureStoreOptions = { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY };
 
 async function openSharedDb(): Promise<SQLite.SQLiteDatabase> {

@@ -62,7 +62,7 @@ export function LockOffer() {
             <Text style={[type.body, { color: theme.text }]}>{copy.require}</Text>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{copy.explain}</Text>
           </View>
-          <Toggle testID="lock-switch" value={on} onChange={setOn} />
+          <Toggle testID="lock-switch" value={on} onChange={setOn} label={copy.require} />
         </View>
         {on ? (
           <View>
