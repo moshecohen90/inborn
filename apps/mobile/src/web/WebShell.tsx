@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Linking, Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
+import { Linking, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
-import { dark, light, fonts, radius, type Theme } from "@inborn/ui";
+import { dark, light, radius, type Theme } from "@inborn/ui";
 import { delivery, refreshModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
 import { writeEnginePref } from "./prefs";
 import { registerServiceWorker, type OfflineState } from "./serviceWorker";
+import { font } from "../services/type";
+import { Toggle } from "../components/shell/primitives";
 
 /** The marketing site (spec §13.4) is a separate origin; this is only a link, never a fetch. */
 export const GET_APP_URL = "https://inbornapp.com/";
@@ -64,7 +66,7 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
         </Text>
         {boot.chromePromptApi ? (
           <View style={styles.switchRow}>
-            <Switch testID="engine-switch" value={boot.engine === "chrome-nano"} onValueChange={switchEngine} trackColor={{ true: theme.text2, false: theme.border }} />
+            <Toggle testID="engine-switch" value={boot.engine === "chrome-nano"} onChange={switchEngine} />
             <Text style={[styles.caption, { color: theme.text }]}>{t("web.engine.chrome")}</Text>
           </View>
         ) : null}
@@ -181,12 +183,12 @@ const styles = StyleSheet.create({
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },
   card: { width: "100%", maxWidth: 440, padding: 20, gap: 12, borderWidth: 1, borderRadius: radius.card },
-  headline: { fontFamily: fonts.sans, fontSize: 22, fontWeight: "600", letterSpacing: -0.2 },
-  body: { fontFamily: fonts.sans, fontSize: 16, lineHeight: 22 },
-  caption: { fontFamily: fonts.sans, fontSize: 12, lineHeight: 16 },
+  headline: { ...font("sans", "600"), fontSize: 22, letterSpacing: -0.2 },
+  body: { ...font("sans"), fontSize: 16, lineHeight: 22 },
+  caption: { ...font("sans"), fontSize: 12, lineHeight: 16 },
   strong: { fontWeight: "600" },
-  mono: { fontFamily: fonts.mono, fontSize: 12, letterSpacing: 0.3 },
-  monoLabel: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
+  mono: { ...font("mono"), fontSize: 12, letterSpacing: 0.3 },
+  monoLabel: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
   cta: { minHeight: 44, paddingHorizontal: 20, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
   textBtn: { minHeight: 36, justifyContent: "center" },
   progressWrap: { gap: 8 },

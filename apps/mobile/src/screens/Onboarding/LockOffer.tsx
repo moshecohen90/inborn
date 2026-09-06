@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { LOCK_TIMEOUTS, type BiometricKind } from "@inborn/core";
@@ -7,8 +7,9 @@ import { biometricLabel } from "@inborn/i18n";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Segmented, shellStyles } from "../../components/shell/primitives";
+import { Button, Segmented, Toggle } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
+import { useType } from "../../services/type";
 
 /** S53: the passcode variant reads as its own sentence instead of "a passcode opens Inborn". */
 export function lockCopy(t: (k: string, o?: Record<string, unknown>) => string, kind: BiometricKind, label: string): { require: string; explain: string } {
@@ -20,6 +21,7 @@ export const timeoutLabel = (t: (k: string, o?: Record<string, unknown>) => stri
 
 /** S05: offer the lock when the emotional value is highest, never force it. Passcode devices set a code first. */
 export function LockOffer() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
@@ -52,23 +54,23 @@ export function LockOffer() {
       }
     >
       <View style={styles.top}>
-        <Text accessibilityRole="header" style={[shellStyles.title, { color: theme.text }]}>
+        <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
           {t("lock.title")}
         </Text>
         <View style={styles.row}>
           <View style={styles.grow}>
-            <Text style={[shellStyles.body, { color: theme.text }]}>{copy.require}</Text>
-            <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{copy.explain}</Text>
+            <Text style={[type.body, { color: theme.text }]}>{copy.require}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{copy.explain}</Text>
           </View>
-          <Switch testID="lock-switch" value={on} onValueChange={setOn} trackColor={{ true: theme.sealed }} />
+          <Toggle testID="lock-switch" value={on} onChange={setOn} />
         </View>
         {on ? (
           <View>
-            <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("lock.delay")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("lock.delay")}</Text>
             <Segmented testID="lock-timeout" options={LOCK_TIMEOUTS.map((s) => ({ value: s, label: timeoutLabel(t, s) }))} value={timeout} onChange={setTimeoutSec} />
           </View>
         ) : null}
-        {lock.kind === "passcode" ? <Text style={[shellStyles.bodySmall, { color: theme.text3 }]}>{t("lock.noBiometrics")}</Text> : null}
+        {lock.kind === "passcode" ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("lock.noBiometrics")}</Text> : null}
       </View>
       <PasscodeSheet
         visible={passcodeOpen}

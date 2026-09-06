@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { NOT_FOUND_TOKEN, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { Citations } from "../../documents/Citations";
 import { getLibrary } from "../../documents/library";
+import { font } from "../../services/type";
+import { Toggle } from "../../components/shell/primitives";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -130,7 +132,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
             <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
             <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
           </View>
-          <Switch testID="ask-strict" value={strict} onValueChange={(v) => { setStrict(v); library.setStrict(v); }} />
+          <Toggle testID="ask-strict" value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: model.id.toUpperCase() })}</Text> : null}
@@ -170,7 +172,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           />
           {busy ? (
             <Pressable testID="ask-stop" accessibilityRole="button" onPress={() => abort.current?.abort()} style={[styles.btn, { backgroundColor: theme.danger }]}>
-              <Text style={styles.stopText}>{t("chat.stop")}</Text>
+              <Text style={[styles.stopText, { color: theme.onDanger }]}>{t("chat.stop")}</Text>
             </Pressable>
           ) : (
             <Pressable testID="ask-send" accessibilityRole="button" onPress={() => void ask(question)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
@@ -187,21 +189,21 @@ const styles = StyleSheet.create({
   root: { flex: 1, paddingTop: 48 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
   headerBtn: { minWidth: 60, height: 44, justifyContent: "center" },
-  headerBtnText: { fontFamily: fonts.sans, fontSize: 16 },
-  label: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
-  scope: { fontFamily: fonts.sans, fontSize: 13, paddingHorizontal: 16, paddingBottom: 8 },
+  headerBtnText: { ...font("sans"), fontSize: 16 },
+  label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
+  scope: { ...font("sans"), fontSize: 13, paddingHorizontal: 16, paddingBottom: 8 },
   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 16, paddingVertical: 10, borderTopWidth: 1, borderBottomWidth: 1 },
   strictText: { flex: 1, gap: 2 },
-  strictTitle: { fontFamily: fonts.sans, fontSize: 15, fontWeight: "600" },
-  strictHint: { fontFamily: fonts.sans, fontSize: 12 },
+  strictTitle: { ...font("sans", "600"), fontSize: 15 },
+  strictHint: { ...font("sans"), fontSize: 12 },
   answerWrap: { flex: 1 },
   answerContent: { padding: 16, gap: 12 },
   assistant: { gap: 4 },
-  body: { fontFamily: fonts.sans, fontSize: 16, lineHeight: 25 },
-  mono: { fontFamily: fonts.mono, fontSize: 12, letterSpacing: 0.5 },
+  body: { ...font("sans"), fontSize: 16, lineHeight: 25 },
+  mono: { ...font("mono"), fontSize: 12, letterSpacing: 0.5 },
   composer: { flexDirection: "row", alignItems: "center", margin: 12, borderWidth: 1, borderRadius: radius.card, paddingLeft: 12 },
-  input: { flex: 1, fontFamily: fonts.sans, fontSize: 16, minHeight: 44, paddingVertical: 10 },
+  input: { flex: 1, ...font("sans"), fontSize: 16, minHeight: 44, paddingVertical: 10 },
   btn: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", margin: 4 },
-  stopText: { color: "#fff", fontSize: 12 },
+  stopText: { ...font("sans", "500"), fontSize: 12 },
   sendGlyph: { fontSize: 18 },
 });

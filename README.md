@@ -471,6 +471,36 @@ find that in your documents." with 0 prompt tokens in 0.6 s; "Add file · PRO" i
 opened the bundled policy; the Settings preview showed "Delivering FAST · 41% of 1.3 GB" on every screen. Gates: typecheck, lint, 202 core +
 66 mobile + 4 i18n tests, `web:build` + `web:smoke` (4 passes, 0 vault warnings).
 
+## Design fixes (review 6.9.2026, `docs/design/review-2026-09-06.md`) — status 6.9.2026
+What changed, numbered as in the review:
+1–2. **IBM Plex ships.** Plex Sans Regular/Medium/SemiBold + Plex Mono Regular/Medium (OFL 1.1, from the official IBM/plex
+   releases) live in `apps/mobile/assets/fonts` (TTF, native via `expo-font` `useFonts` in the root layout; the sealed-ring
+   splash stays until they register) and `apps/mobile/public/fonts` (woff2, `@font-face` in `public/index.html`, the Expo web
+   template, so the web origin and the Tauri desktop bundle serve them same-origin; the service worker precaches them). One
+   type module for every surface: `packages/ui` `fonts` (web stacks ending in `sans-serif` / `monospace`), `fontFaces`
+   (one registered face per weight; Android cannot pick a weight inside a custom family) and `fontFace()`, consumed by
+   `apps/mobile/src/services/type.ts` (`font()` for a face, `useType()` for the §9.3 scale). Chat, vault, paywall, ledger,
+   markdown, legal and the shell all use it; no `fontFamily` string is written anywhere else.
+3. **Native chrome (§9.7)** in `components/shell/NativeChrome.tsx`: on iOS 26+ (`expo-glass-effect` `isLiquidGlassAvailable`)
+   the chat header + composer bar and every shell header are `GlassView` bars floating over the scrolling content; below 26
+   they are plain surfaces. Android gets an M3 Expressive floating toolbar (detached pill, hairline) for the chat and drawer
+   headers and an extended new-chat FAB whose corners morph 16→28 on an expressive spring (reduced motion: no spring).
+   SDK 57 ships no native M3 toolbar/FAB module and the app has no tab bar (`expo-router` native tabs unused), so the
+   Android chrome is drawn in-app; dynamic colour never touches a semantic surface because no Material theme is used.
+4–5. **One green.** The context meter is neutral (`text3`) below 80 %, accent from 80 %, danger from 92 %; every switch is
+   the `Toggle` primitive (neutral track), the sealed green stays with the seal.
+6–8. **Icons.** `packages/ui/src/icons` (14 Lucide paths, ISC) replaces every text glyph: back/chevrons mirror in RTL
+   (`I18nManager.isRTL` → `scaleX(-1)`), airplane, incognito, mic, send, stop, attach, close, check, pin, upload. Attach/mic
+   in `text2`, dimmed to `DISABLED_OPACITY` while they wait for M5.
+9–11. Disclaimer on the caption step; **Text size** goes to 200 % on every surface (web too) through `useType()` and is set
+   once from prefs (`applyTextScale`); `onDanger` token replaces the hardcoded whites.
+Vault on the web: `/vault` renders the web door (`VaultEntry.web.tsx`: browser tier, model file, OPFS storage) instead of
+constructing the native store; `scripts/web-smoke.mjs` now visits `/vault` and fails on any page error.
+Dev-only: Settings › Advanced › "Force RTL layout" toggles `I18nManager.forceRTL` and reloads.
+
+Verify: `pnpm typecheck && pnpm test && pnpm lint && pnpm web:build && pnpm web:smoke`; on device see the report in the
+merge commit (iPhone 15 Pro / iOS 17.0 simulator, iOS 26 simulator for glass, Pixel_4_API_33).
+
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
 

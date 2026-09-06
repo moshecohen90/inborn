@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
-import { dark, light, fonts, radius, type Theme } from "@inborn/ui";
+import { dark, light, radius, type Theme } from "@inborn/ui";
 import { citationLabel, type Citation } from "@inborn/core";
 import { getLibrary } from "./library";
+import { font } from "../services/type";
 
 export interface CitationsProps {
   citations: Citation[];
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
   wrap: { gap: 6, marginTop: 6 },
   row: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
   chip: { height: 28, paddingHorizontal: 10, borderRadius: radius.chip, borderWidth: 1, justifyContent: "center" },
-  chipText: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.3 },
-  label: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
+  chipText: { ...font("mono"), fontSize: 11, letterSpacing: 0.3 },
+  label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.55)", justifyContent: "flex-end" },
   sheet: { maxHeight: "70%", borderTopLeftRadius: radius.card, borderTopRightRadius: radius.card, borderWidth: 1, padding: 20, gap: 12 },
   scroll: { flexGrow: 0 },
-  body: { fontFamily: fonts.sans, fontSize: 16, lineHeight: 25 },
+  body: { ...font("sans"), fontSize: 16, lineHeight: 25 },
   close: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  closeText: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "600" },
+  closeText: { ...font("sans", "600"), fontSize: 16 },
 });

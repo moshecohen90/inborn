@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { formatBytes } from "@inborn/core";
 
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
 import { useAppServices } from "../../services/AppServices";
 import { Mono } from "./primitives";
+import { font } from "../../services/type";
 
 /** §8.8 system-wide states as one strip under the header. Policy comes from useDeviceState(); this is only how it looks. */
 export function Banners() {
@@ -55,6 +56,6 @@ export function Banners() {
 const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", gap: 10, minHeight: 40, paddingHorizontal: 16, paddingVertical: 6, borderBottomWidth: StyleSheet.hairlineWidth },
   icon: { fontSize: 12 },
-  text: { flex: 1, fontFamily: FONT.sans, fontSize: 14, lineHeight: 18 },
+  text: { flex: 1, ...font("sans"), fontSize: 14, lineHeight: 18 },
   action: { minHeight: 32, justifyContent: "center" },
 });

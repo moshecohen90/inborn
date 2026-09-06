@@ -1,7 +1,7 @@
 import { useRef, type ReactNode } from "react";
 import { Animated, PanResponder, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../lib/theme";
-import { type } from "../../components/chat/styles";
+import { useType } from "../../services/type";
 
 export interface SwipeAction {
   key: string;
@@ -15,6 +15,7 @@ const ACTION_WIDTH = 72;
 
 /** Swipe left to reveal row actions (§8.3 S20: pin / archive / delete). Pure RN: no gesture library, no native module. */
 export function SwipeRow({ children, actions, enabled = true }: { children: ReactNode; actions: SwipeAction[]; enabled?: boolean }) {
+  const type = useType();
   const theme = useTheme();
   const x = useRef(new Animated.Value(0)).current;
   const open = useRef(false);

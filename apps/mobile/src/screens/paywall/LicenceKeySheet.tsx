@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import type { LicenceManager, Rejection } from "@inborn/core";
+import { font } from "../../services/type";
 
 export interface LicenceKeySheetProps {
   manager: LicenceManager;
@@ -65,11 +66,11 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
 const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.5)", alignItems: "center", justifyContent: "center", padding: 24 },
   sheet: { width: "100%", maxWidth: 480, borderWidth: 1, borderRadius: radius.card, padding: 18, gap: 12 },
-  title: { fontFamily: fonts.sans, fontSize: 18, fontWeight: "600" },
-  input: { fontFamily: fonts.mono, fontSize: 13, borderWidth: 1, borderRadius: radius.control, padding: 10, minHeight: 72 },
-  body: { fontFamily: fonts.sans, fontSize: 14, lineHeight: 19 },
+  title: { ...font("sans", "600"), fontSize: 18 },
+  input: { ...font("mono"), fontSize: 13, borderWidth: 1, borderRadius: radius.control, padding: 10, minHeight: 72 },
+  body: { ...font("sans"), fontSize: 14, lineHeight: 19 },
   actions: { flexDirection: "row", justifyContent: "flex-end", gap: 10 },
   btn: { minHeight: 40, paddingHorizontal: 16, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  btnText: { fontFamily: fonts.sans, fontSize: 15, fontWeight: "500" },
+  btnText: { ...font("sans", "500"), fontSize: 15 },
   dim: { opacity: 0.5 },
 });

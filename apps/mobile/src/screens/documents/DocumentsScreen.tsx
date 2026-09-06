@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Platform, Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
+import { FlatList, Platform, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { dark, light, fonts, radius } from "@inborn/ui";
+import { dark, light, radius } from "@inborn/ui";
 import { formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
@@ -17,6 +17,8 @@ import { useVault } from "../../vault";
 import { AskDocuments, type AskOutcome } from "./AskDocuments";
 import { DocumentDetails } from "./DocumentDetails";
 import { DocumentRow } from "./DocumentRow";
+import { font } from "../../services/type";
+import { Toggle } from "../../components/shell/primitives";
 
 export interface DocumentsScreenProps {
   onClose: () => void;
@@ -150,7 +152,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Switch testID="documents-strict" value={state.strict} onValueChange={(v) => library.setStrict(v)} />
+        <Toggle testID="documents-strict" value={state.strict} onChange={(v) => library.setStrict(v)} />
       </View>
       {embedderMissing ? (
         <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
@@ -246,23 +248,23 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
   headerBtn: { minWidth: 64, height: 44, justifyContent: "center" },
-  headerBtnText: { fontFamily: fonts.sans, fontSize: 16 },
+  headerBtnText: { ...font("sans"), fontSize: 16 },
   right: { textAlign: "right" },
-  title: { fontFamily: fonts.sans, fontSize: 17, fontWeight: "600" },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.5 },
-  label: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
+  title: { ...font("sans", "600"), fontSize: 17 },
+  mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.5 },
+  label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
   centered: { textAlign: "center", paddingTop: 4 },
   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, margin: 12, padding: 12, borderRadius: radius.card, borderWidth: 1 },
   strictText: { flex: 1, gap: 2 },
-  strictTitle: { fontFamily: fonts.sans, fontSize: 15, fontWeight: "600" },
-  strictHint: { fontFamily: fonts.sans, fontSize: 12 },
+  strictTitle: { ...font("sans", "600"), fontSize: 15 },
+  strictHint: { ...font("sans"), fontSize: 12 },
   card: { marginHorizontal: 12, marginBottom: 8, padding: 14, borderRadius: radius.card, borderWidth: 1, gap: 8 },
-  body: { fontFamily: fonts.sans, fontSize: 14, lineHeight: 20 },
+  body: { ...font("sans"), fontSize: 14, lineHeight: 20 },
   list: { paddingHorizontal: 12, paddingBottom: 12, gap: 8, flexGrow: 1 },
   empty: { paddingVertical: 48, alignItems: "center", gap: 8 },
-  emptyTitle: { fontFamily: fonts.sans, fontSize: 20, fontWeight: "600" },
+  emptyTitle: { ...font("sans", "600"), fontSize: 20 },
   footer: { padding: 12, borderTopWidth: 1, gap: 6 },
   btn: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  btnText: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "600" },
+  btnText: { ...font("sans", "600"), fontSize: 16 },
   toast: { position: "absolute", left: 16, right: 16, bottom: 96, padding: 12, borderRadius: radius.card, borderWidth: 1 },
 });

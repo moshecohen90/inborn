@@ -7,18 +7,20 @@ import * as Application from "expo-application";
 import * as Device from "expo-device";
 import { daysSince, formatBytes, networkAllowlist } from "@inborn/core";
 import { radius } from "@inborn/ui";
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Mono, MonoLabel, Section, shellStyles } from "../../components/shell/primitives";
+import { Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
 import { Sheet } from "../../components/shell/Sheet";
+import { font, useType } from "../../services/type";
 
 const EXODUS = "https://reports.exodus-privacy.eu.org/en/reports/search/com.inbornapp.mobile/";
 const SOURCE = "https://github.com/moshecohen90/inborn";
 
 /** S50: every privacy claim next to the way to verify it. Mono readouts, nothing decorative. */
 export function Proof() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
@@ -80,15 +82,15 @@ export function Proof() {
       </View>
 
       <Section title={t("proof.verify.title")}>
-        <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>
+        <Text style={[type.bodySmall, { color: theme.text2 }]}>
           {Platform.OS === "android" ? t("proof.verify.android") : Platform.OS === "ios" ? t("proof.verify.ios") : t("proof.verify.web")}
         </Text>
-        <Text style={[shellStyles.bodySmall, styles.spaced, { color: theme.text2 }]}>{t("proof.verify.firewall")}</Text>
+        <Text style={[type.bodySmall, styles.spaced, { color: theme.text2 }]}>{t("proof.verify.firewall")}</Text>
       </Section>
 
       <Sheet visible={logOpen} onClose={() => setLogOpen(false)} title={t("proof.log.title")} testID="network-log">
         {log.length === 0 ? (
-          <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("proof.log.empty")}</Text>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("proof.log.empty")}</Text>
         ) : (
           log.map((r, i) => <Mono key={i}>{`${new Date(r.at).toLocaleTimeString()} · ${r.host} · ↑${formatBytes(r.bytesOut)} ↓${formatBytes(r.bytesIn)}`}</Mono>)
         )}
@@ -109,11 +111,12 @@ function ReadoutRow({ label, value, color, testID }: { label: string; value: str
 }
 
 function Line({ mono, text, testID }: { mono?: string; text: string; testID?: string }) {
+  const type = useType();
   const { theme } = useTheme();
   return (
     <View style={[styles.line, { borderBottomColor: theme.border }]} testID={testID}>
       {mono ? <Mono color={theme.text}>{mono}</Mono> : null}
-      <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{text}</Text>
+      <Text style={[type.bodySmall, { color: theme.text2 }]}>{text}</Text>
     </View>
   );
 }
@@ -121,7 +124,7 @@ function Line({ mono, text, testID }: { mono?: string; text: string; testID?: st
 const styles = StyleSheet.create({
   readout: { borderWidth: 1, borderRadius: radius.card, padding: 16, gap: 10 },
   row: { gap: 2 },
-  note: { fontFamily: FONT.sans, fontSize: 12, lineHeight: 16 },
+  note: { ...font("sans"), fontSize: 12, lineHeight: 16 },
   line: { paddingVertical: 8, gap: 2, borderBottomWidth: StyleSheet.hairlineWidth },
   actions: { gap: 8, paddingTop: 20 },
   spaced: { paddingTop: 8 },

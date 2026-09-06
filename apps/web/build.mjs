@@ -21,7 +21,7 @@ const SRC = process.env.SRC ?? path.join(repoRoot, "apps/mobile/dist");
 const OUT = process.env.OUT ?? path.join(here, "dist");
 const MODELS_ORIGIN = process.env.MODELS_ORIGIN ?? "";
 /** The desktop shell and any embedder must not get a precache from this origin. */
-const PRECACHE = ["**/*.{html,js,mjs,css,wasm,json,png,svg,ico,webmanifest}"];
+const PRECACHE = ["**/*.{html,js,mjs,css,wasm,json,png,svg,ico,webmanifest,woff2}"];
 const NOT_PRECACHED = ["hashes.json", "_headers", "sw.js", "models/**", "metadata.json"];
 
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");

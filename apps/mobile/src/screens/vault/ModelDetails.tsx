@@ -1,7 +1,8 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { formatModelBytes, type CatalogModel, type InstallState } from "@inborn/core";
+import { font, useType } from "../../services/type";
 
 export interface ModelDetailsProps {
   model: CatalogModel | null;
@@ -16,6 +17,7 @@ export interface ModelDetailsProps {
 
 /** S31: everything about one model (spec §8.4). Numbers live here, not on the cartridge. */
 export function ModelDetails({ model, state, theme, active, isDefault, onClose, onSetDefault, onDelete }: ModelDetailsProps) {
+  const type = useType();
   const { t } = useTranslation();
   const installed = state.kind === "ready" || state.kind === "quarantined";
   const rows: [string, string][] = model
@@ -36,17 +38,17 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
     <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} />
       <View style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
-        <Text style={[styles.title, { color: theme.text }]}>
+        <Text style={[type.title, { color: theme.text }]}>
           {model?.name} · {model?.family} {model?.params}
         </Text>
-        <Text style={[styles.mono, { color: theme.text3 }]}>
+        <Text style={[type.mono, { color: theme.text3 }]}>
           {model ? formatModelBytes(model.bytes) : ""} · {model?.arch}
         </Text>
         <ScrollView style={styles.table} contentContainerStyle={{ gap: 8 }}>
           {rows.map(([k, v]) => (
             <View key={k} style={styles.row}>
-              <Text style={[styles.mono, styles.key, { color: theme.text3 }]}>{k.toUpperCase()}</Text>
-              <Text selectable style={[styles.value, { color: theme.text }]}>
+              <Text style={[type.mono, type.monoLabel, { color: theme.text3 }]}>{k.toUpperCase()}</Text>
+              <Text selectable style={[type.mono, { color: theme.text }]}>
                 {v}
               </Text>
             </View>
@@ -55,20 +57,20 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         <View style={styles.actions}>
           {installed && !isDefault ? (
             <Pressable testID="details-set-default" accessibilityRole="button" onPress={onSetDefault} style={[styles.cta, { backgroundColor: theme.ctaFill }]}>
-              <Text style={[styles.body, { color: theme.ctaText }]}>{t("vault.details.setDefault")}</Text>
+              <Text style={[type.body, styles.body, { color: theme.ctaText }]}>{t("vault.details.setDefault")}</Text>
             </Pressable>
           ) : null}
           {installed ? (
             active ? (
-              <Text style={[styles.mono, { color: theme.text3 }]}>{t("vault.details.deleteBlocked")}</Text>
+              <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.details.deleteBlocked")}</Text>
             ) : (
               <Pressable testID="details-delete" accessibilityRole="button" onPress={onDelete} style={styles.textBtn}>
-                <Text style={[styles.body, { color: theme.danger }]}>{t("vault.remove")}</Text>
+                <Text style={[type.body, styles.body, { color: theme.danger }]}>{t("vault.remove")}</Text>
               </Pressable>
             )
           ) : null}
           <Pressable accessibilityRole="button" onPress={onClose} style={styles.textBtn}>
-            <Text style={[styles.body, { color: theme.text2 }]}>{t("vault.close")}</Text>
+            <Text style={[type.body, styles.body, { color: theme.text2 }]}>{t("vault.close")}</Text>
           </Pressable>
         </View>
       </View>
@@ -79,13 +81,9 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
 const styles = StyleSheet.create({
   backdrop: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.45)" },
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, maxHeight: "80%", padding: 20, paddingBottom: 32, gap: 10, borderTopWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-  title: { fontFamily: fonts.sans, fontSize: 20, fontWeight: "600" },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.4 },
   table: { flexGrow: 0 },
   row: { gap: 2 },
-  key: { fontSize: 10 },
-  value: { fontFamily: fonts.mono, fontSize: 12 },
-  body: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "500" },
+  body: { ...font("sans", "500") },
   actions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-end", gap: 8 },
   cta: { minHeight: 44, paddingHorizontal: 16, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
   textBtn: { minHeight: 44, paddingHorizontal: 12, justifyContent: "center" },

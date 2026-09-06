@@ -4,7 +4,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
-import { shape, type } from "./styles";
+import { shape } from "./styles";
+import { useType } from "../../services/type";
 
 interface SheetProps {
   visible: boolean;
@@ -18,6 +19,7 @@ interface SheetProps {
 
 /** Bottom sheet (§9.4: radius 20, 280 ms). One primitive for every sheet in the chat stream. */
 export function Sheet({ visible, onClose, title, children, testID, scroll = true }: SheetProps) {
+  const type = useType();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const Body = scroll ? ScrollView : View;
@@ -37,6 +39,7 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
 
 /** One tappable line inside a sheet. */
 export function SheetItem({ label, hint, onPress, danger, disabled, testID, trailing }: { label: string; hint?: string; onPress: () => void; danger?: boolean; disabled?: boolean; testID?: string; trailing?: ReactNode }) {
+  const type = useType();
   const theme = useTheme();
   return (
     <Pressable testID={testID} accessibilityRole="button" accessibilityState={{ disabled: !!disabled }} disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.item, { backgroundColor: pressed ? theme.surface2 : "transparent", opacity: disabled ? 0.45 : 1 }]}>
@@ -51,6 +54,7 @@ export function SheetItem({ label, hint, onPress, danger, disabled, testID, trai
 
 /** Small "PRO" tag next to a gated action: tapping it opens the paywall (S60), the value moment of §12.3. */
 export function ProTag({ onPress }: { onPress?: () => void } = {}) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   return (

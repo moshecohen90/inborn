@@ -7,12 +7,14 @@ import * as Device from "expo-device";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Row, Section, shellStyles } from "../../components/shell/primitives";
+import { Row, Section } from "../../components/shell/primitives";
+import { useType } from "../../services/type";
 
 const SUPPORT = "support@inbornapp.com";
 
 /** About (S52): version + hash, licences, privacy policy, a diagnostics mail without chat content, "What's missing?". */
 export function About() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
@@ -39,7 +41,7 @@ export function About() {
         <Row label={t("about.openSource")} onPress={() => router.push("/settings/licenses?oss=1")} chevron />
       </Section>
       <Section title={t("about.privacy")}>
-        <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("settings.privacy")}</Text>
+        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.privacy")}</Text>
         <Row testID="row-privacy" label={t("legal.privacy")} onPress={() => router.push("/legal/privacy")} chevron />
         <Row testID="row-terms" label={t("legal.terms")} onPress={() => router.push("/legal/terms")} chevron />
       </Section>
@@ -47,7 +49,7 @@ export function About() {
         <Row label={t("about.report")} sub={t("about.reportSub")} onPress={() => mail("Inborn: problem report", `${diagnostics}\n\n`)} chevron />
         <Row label={t("about.missing")} onPress={() => mail("Inborn: what's missing?", "")} chevron />
       </Section>
-      <Text style={[styles.foot, shellStyles.caption, { color: theme.text3 }]}>{t("about.footer")}</Text>
+      <Text style={[styles.foot, type.caption, { color: theme.text3 }]}>{t("about.footer")}</Text>
     </Screen>
   );
 }

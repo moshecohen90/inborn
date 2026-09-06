@@ -16,7 +16,7 @@ import { meterKind, sample, type MeterKind } from "../proof/meterSource";
 import type { SealState } from "../components/Seal";
 import { defaultPrefs, mergePrefs, type Prefs } from "./prefsTypes";
 import { deletePrefs, readPrefsRaw, writePrefsRaw } from "./prefsStore";
-import { applyThemeMode } from "./theme";
+import { applyTextScale, applyThemeMode } from "./theme";
 
 /** `key` remounts the chat screen whenever a different conversation is opened. */
 export interface ActiveChat {
@@ -149,6 +149,10 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   useEffect(() => {
     applyThemeMode(prefs.themeMode);
   }, [prefs.themeMode]);
+
+  useEffect(() => {
+    applyTextScale(prefs.textScale);
+  }, [prefs.textScale]);
 
   useEffect(() => {
     if (prefs.locale && i18next.isInitialized && i18next.language !== prefs.locale) void i18next.changeLanguage(prefs.locale);

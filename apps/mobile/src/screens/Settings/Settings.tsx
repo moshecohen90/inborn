@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AccessibilityInfo, Platform, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, DevSettings, I18nManager, Platform, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { LOCK_TIMEOUTS } from "@inborn/core";
@@ -12,10 +12,11 @@ import { setDeviceStateForPreview } from "../../device/useDeviceState";
 import { idleDeviceState } from "../../device/types";
 import type { AutoDeleteDays, PerformanceProfile } from "../../services/prefsTypes";
 import { Screen } from "../../components/shell/Screen";
-import { Row, Section, Segmented, shellStyles } from "../../components/shell/primitives";
+import { Row, Section, Segmented } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
 import { WipeSheet } from "./WipeSheet";
 import { lockCopy, timeoutLabel } from "../Onboarding/LockOffer";
+import { useType } from "../../services/type";
 
 const AUTO_DELETE: AutoDeleteDays[] = [0, 1, 7, 30];
 const WIPE_AFTER: (number | null)[] = [null, 5, 10];
@@ -24,6 +25,7 @@ const PREVIEWS = ["none", "storage", "thermalSerious", "thermalCritical", "lowPo
 
 /** S52: few settings, phrased as trade-offs, no telemetry switch because there is no telemetry. */
 export function Settings() {
+  const type = useType();
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
@@ -72,7 +74,7 @@ export function Settings() {
   return (
     <Screen header={{ back: true, title: t("settings.title") }} testID="settings">
       <Section title={t("settings.appearance")}>
-        <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.theme")}</Text>
+        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.theme")}</Text>
         <Segmented<ThemeMode>
           testID="theme-mode"
           options={[
@@ -83,7 +85,7 @@ export function Settings() {
           value={prefs.themeMode}
           onChange={(m) => updatePrefs({ themeMode: m })}
         />
-        <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
+        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
         <Segmented<number>
           testID="text-scale"
           options={TEXT_SCALES.map((s) => ({ value: s, label: s === 1 ? t("settings.appearance.textDefault") : `${Math.round(s * 100)}%` }))}
@@ -96,7 +98,7 @@ export function Settings() {
         <Row testID="row-lock" label={copy.require} sub={copy.explain} toggle={prefs.lock.enabled} onToggle={toggleLock} />
         {prefs.lock.enabled ? (
           <View style={styles.inset}>
-            <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("lock.delay")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("lock.delay")}</Text>
             <Segmented testID="lock-timeout" options={LOCK_TIMEOUTS.map((s) => ({ value: s, label: timeoutLabel(t, s) }))} value={prefs.lock.timeoutSec} onChange={(s) => setLock({ timeoutSec: s })} />
           </View>
         ) : null}
@@ -117,20 +119,20 @@ export function Settings() {
           onToggle={(v) => setLock({ screenshotProtection: v })}
           disabled={Platform.OS === "web"}
         />
-        <Text style={[shellStyles.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.panicWipe")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.panicWipe")}</Text>
         <Segmented<string>
           testID="wipe-after"
           options={WIPE_AFTER.map((n) => ({ value: String(n), label: n === null ? t("settings.off") : t("settings.security.attempts", { count: n }) }))}
           value={String(prefs.lock.wipeAfterFailed)}
           onChange={(v) => setLock({ wipeAfterFailed: v === "null" ? null : Number(v) })}
         />
-        <Text style={[shellStyles.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.autoDelete")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.autoDelete")}</Text>
         <Segmented<AutoDeleteDays>
           options={AUTO_DELETE.map((d) => ({ value: d, label: d === 0 ? t("settings.off") : t("settings.security.days", { count: d }) }))}
           value={prefs.autoDeleteDays}
           onChange={(d) => updatePrefs({ autoDeleteDays: d })}
         />
-        <Text style={[shellStyles.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.clipboard")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.clipboard")}</Text>
         <Segmented<number>
           options={[
             { value: 0, label: t("settings.off") },
@@ -176,13 +178,25 @@ export function Settings() {
       <Section title={t("settings.about")}>
         <Row testID="row-about" label={t("about.title")} onPress={() => router.push("/settings/about")} chevron />
         <Row label={t("about.modelLicenses")} onPress={() => router.push("/settings/licenses")} chevron />
-        <Text style={[shellStyles.bodySmall, styles.label, { color: theme.text3 }]}>{t("settings.privacy")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text3 }]}>{t("settings.privacy")}</Text>
       </Section>
 
       {__DEV__ ? (
         <Section title={t("settings.advanced")}>
-          <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("settings.advanced.preview")}</Text>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.advanced.preview")}</Text>
           <Segmented testID="preview-state" options={PREVIEWS.map((p) => ({ value: p, label: p }))} value={preview} onChange={applyPreview} />
+          {Platform.OS === "web" ? null : (
+            <Row
+              testID="row-force-rtl"
+              label={t("settings.advanced.rtl")}
+              toggle={I18nManager.isRTL}
+              onToggle={(v) => {
+                I18nManager.allowRTL(v);
+                I18nManager.forceRTL(v);
+                DevSettings.reload();
+              }}
+            />
+          )}
         </Section>
       ) : null}
 

@@ -1,8 +1,9 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { formatBytes, type DocumentRecord } from "@inborn/core";
 import { kindLabel } from "./DocumentRow";
+import { font } from "../../services/type";
 
 export interface DocumentDetailsProps {
   doc: DocumentRecord;
@@ -65,14 +66,14 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
 const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.55)", justifyContent: "flex-end" },
   sheet: { maxHeight: "85%", borderTopLeftRadius: radius.card, borderTopRightRadius: radius.card, borderWidth: 1, padding: 20, gap: 10 },
-  label: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
-  name: { fontFamily: fonts.sans, fontSize: 20, fontWeight: "600" },
+  label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
+  name: { ...font("sans", "600"), fontSize: 20 },
   scroll: { flexGrow: 0 },
   row: { flexDirection: "row", justifyContent: "space-between", gap: 12, paddingVertical: 10, borderBottomWidth: StyleSheet.hairlineWidth },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.5, textTransform: "uppercase" },
-  value: { fontFamily: fonts.sans, fontSize: 14, flexShrink: 1, textAlign: "right" },
-  note: { fontFamily: fonts.sans, fontSize: 13, paddingTop: 10, lineHeight: 19 },
+  mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.5, textTransform: "uppercase" },
+  value: { ...font("sans"), fontSize: 14, flexShrink: 1, textAlign: "right" },
+  note: { ...font("sans"), fontSize: 13, paddingTop: 10, lineHeight: 19 },
   buttons: { gap: 8, paddingTop: 6 },
   btn: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  btnText: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "600" },
+  btnText: { ...font("sans", "600"), fontSize: 16 },
 });

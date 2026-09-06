@@ -2,9 +2,12 @@ import type { ReactNode } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { Icon } from "@inborn/ui";
 
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
+import { useType } from "../../services/type";
 import { Mesh, MonoLabel } from "./primitives";
+import { ChromeBar, liquidGlass } from "./NativeChrome";
 import { Seal, type SealState } from "../Seal";
 
 interface HeaderProps {
@@ -16,9 +19,12 @@ interface HeaderProps {
   onBack?: () => void;
 }
 
-/** Header (§8: seal centred, start action, end chip). Custom on purpose: identical on iOS, Android and web. */
+export const HEADER_HEIGHT = 44;
+
+/** Header (§8: seal centred, start action, end chip) inside the platform's navigation chrome (§9.7). */
 export function Header({ title, seal, back = true, end, onBack }: HeaderProps) {
   const { theme } = useTheme();
+  const type = useType();
   const router = useRouter();
   const goBack = onBack ?? (() => (router.canGoBack() ? router.back() : router.replace("/")));
   return (
@@ -26,8 +32,8 @@ export function Header({ title, seal, back = true, end, onBack }: HeaderProps) {
       <View style={styles.headerSide}>
         {back ? (
           <Pressable testID="back" accessibilityRole="button" accessibilityLabel={typeof back === "string" ? back : "Back"} onPress={goBack} hitSlop={8} style={styles.headerBtn}>
-            <Text style={[styles.backGlyph, { color: theme.text2 }]}>‹</Text>
-            {typeof back === "string" ? <Text style={[styles.backText, { color: theme.text2 }]}>{back}</Text> : null}
+            <Icon name="chevronLeft" size={24} color={theme.text2} />
+            {typeof back === "string" ? <Text style={[type.body, { color: theme.text2 }]}>{back}</Text> : null}
           </Pressable>
         ) : null}
       </View>
@@ -38,7 +44,7 @@ export function Header({ title, seal, back = true, end, onBack }: HeaderProps) {
             <MonoLabel color={seal.state === "unsealed" ? theme.danger : seal.state === "lan" ? theme.accent : theme.sealed}>{seal.label}</MonoLabel>
           </View>
         ) : title ? (
-          <Text numberOfLines={1} style={[styles.title, { color: theme.text }]}>
+          <Text numberOfLines={1} style={[type.heading, { color: theme.text }]}>
             {title}
           </Text>
         ) : null}
@@ -63,17 +69,25 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const content = <View style={[padded ? styles.padded : null, style]}>{children}</View>;
+  /* Glass only reads as glass with content moving under it: the bar floats over the scroll view, which pads itself by the bar's height. */
+  const overlay = liquidGlass && !!header && scroll;
+  const barHeight = insets.top + HEADER_HEIGHT;
   return (
-    <View testID={testID} style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top }]}>
+    <View testID={testID} style={[styles.root, { backgroundColor: theme.bg, paddingTop: overlay ? 0 : insets.top }]}>
       {mesh ? <Mesh /> : null}
-      {header ? <Header {...header} /> : null}
+      {header && !overlay ? <Header {...header} /> : null}
       {scroll ? (
-        <ScrollView style={styles.flex} contentContainerStyle={{ paddingBottom: insets.bottom + 24 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={styles.flex} contentContainerStyle={{ paddingTop: overlay ? barHeight : 0, paddingBottom: insets.bottom + 24 }} keyboardShouldPersistTaps="handled">
           {content}
         </ScrollView>
       ) : (
         <View style={styles.flex}>{content}</View>
       )}
+      {header && overlay ? (
+        <ChromeBar style={[styles.overlay, { paddingTop: insets.top }]}>
+          <Header {...header} />
+        </ChromeBar>
+      ) : null}
       {footer ? <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>{footer}</View> : null}
     </View>
   );
@@ -83,14 +97,12 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   flex: { flex: 1 },
   padded: { paddingHorizontal: 16, gap: 12 },
-  header: { flexDirection: "row", alignItems: "center", height: 44, paddingHorizontal: 8 },
+  overlay: { position: "absolute", top: 0, left: 0, right: 0 },
+  header: { flexDirection: "row", alignItems: "center", height: HEADER_HEIGHT, paddingHorizontal: 8 },
   headerSide: { width: 96, flexDirection: "row", alignItems: "center" },
   headerEnd: { justifyContent: "flex-end" },
   headerCenter: { flex: 1, alignItems: "center", justifyContent: "center" },
   headerBtn: { minWidth: 44, height: 44, flexDirection: "row", alignItems: "center", paddingHorizontal: 4 },
-  backGlyph: { fontSize: 28, lineHeight: 30, marginTop: -2 },
-  backText: { fontFamily: FONT.sans, fontSize: 16, marginLeft: 2 },
-  title: { fontFamily: FONT.sans, fontSize: 17, fontWeight: "600" },
   sealRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   footer: { paddingHorizontal: 16, paddingTop: 12, gap: 8 },
 });

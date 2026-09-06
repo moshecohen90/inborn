@@ -209,9 +209,16 @@
       "homepage": "https://developers.google.com/ml-kit/vision/text-recognition", "attribution": "Google LLC", "obligations": ["terms"], "restrictions": ["on-device bundled variant only (no network)"], "scope": "planned (M5)"
     },
     {
-      "id": "ibm-plex", "group": "font", "name": "IBM Plex Sans / IBM Plex Mono", "version": "",
-      "license": "OFL-1.1", "licenseUrl": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
-      "homepage": "https://github.com/IBM/plex", "attribution": "Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\"", "obligations": ["attribution", "fonts not sold separately"], "restrictions": [], "scope": "shipped"
+      "id": "ibm-plex", "group": "font", "name": "IBM Plex Sans / IBM Plex Mono", "version": "Plex Sans 1.1.0 (Regular, Medium, SemiBold) · Plex Mono 2.5.0 (Regular, Medium)",
+      "license": "OFL-1.1", "licenseUrl": "https://github.com/IBM/plex/blob/master/LICENSE.txt", "homepage": "https://github.com/IBM/plex",
+      "attribution": "IBM Plex typeface, Copyright 2017 IBM Corp., SIL Open Font License 1.1 (Reserved Font Name Plex)",
+      "obligations": ["keep the OFL licence text beside the font files (apps/mobile/assets/fonts/LICENSE-OFL.txt, apps/mobile/public/fonts/LICENSE-OFL.txt)", "attribution"], "restrictions": ["fonts may not be sold on their own"], "scope": "shipped"
+    },
+    {
+      "id": "lucide-icons", "group": "library", "name": "Lucide icon paths", "version": "lucide main, 6.9.2026 (14 glyphs copied into packages/ui/src/icons/paths.ts)",
+      "license": "ISC", "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE", "homepage": "https://lucide.dev",
+      "attribution": "Lucide, ISC License, Copyright (c) 2022 Lucide Contributors; portions Copyright (c) 2013-2022 Cole Bemis (Feather, MIT)",
+      "obligations": ["keep the licence notice packages/ui/src/icons/LICENSE-lucide.txt"], "restrictions": [], "scope": "shipped"
     },
 
     {

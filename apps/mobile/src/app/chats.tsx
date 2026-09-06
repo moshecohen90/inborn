@@ -5,10 +5,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { formatBytes } from "@inborn/core";
 
 import { useAppServices } from "../services/AppServices";
-import { useTheme, FONT } from "../services/theme";
+import { useTheme } from "../services/theme";
 import { Chats } from "../screens/Chats";
 import { Mono } from "../components/shell/primitives";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
+import { useType } from "../services/type";
 
 /** S20: the chats drawer plus its footer: model, the exit readout, Settings and Proof. */
 export default function ChatsRoute() {
@@ -16,6 +17,7 @@ export default function ChatsRoute() {
   const router = useRouter();
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const type = useType();
   const insets = useSafeAreaInsets();
   const back = () => (router.canGoBack() ? router.back() : router.replace("/"));
   return (
@@ -44,10 +46,10 @@ export default function ChatsRoute() {
         </View>
         <View style={styles.links}>
           <Pressable testID="drawer-settings" accessibilityRole="button" onPress={() => router.push("/settings")} style={styles.link}>
-            <Text style={[styles.linkText, { color: theme.text }]}>{t("settings.title")}</Text>
+            <Text style={[type.bodySmall, type.strong, { color: theme.text }]}>{t("settings.title")}</Text>
           </Pressable>
           <Pressable testID="drawer-proof" accessibilityRole="button" onPress={() => router.push("/proof")} style={styles.link}>
-            <Text style={[styles.linkText, { color: theme.text }]}>◯ {t("proof.title")}</Text>
+            <Text style={[type.bodySmall, type.strong, { color: theme.text }]}>◯ {t("proof.title")}</Text>
           </Pressable>
         </View>
       </View>
@@ -62,5 +64,4 @@ const styles = StyleSheet.create({
   readout: { flexDirection: "row", alignItems: "center", gap: 8, minHeight: 28 },
   links: { flexDirection: "row", gap: 24 },
   link: { minHeight: 44, justifyContent: "center" },
-  linkText: { fontFamily: FONT.sans, fontSize: 15, fontWeight: "600" },
 });

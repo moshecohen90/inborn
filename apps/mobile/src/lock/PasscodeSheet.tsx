@@ -3,9 +3,10 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { isValidPasscode, PASSCODE_MAX } from "@inborn/core";
 import { radius } from "@inborn/ui";
-import { useTheme, FONT } from "../services/theme";
+import { useTheme } from "../services/theme";
 import { Sheet } from "../components/shell/Sheet";
 import { Button } from "../components/shell/primitives";
+import { font } from "../services/type";
 
 interface Props {
   visible: boolean;
@@ -82,8 +83,8 @@ export function PasscodeSheet({ visible, mode, onClose, onSubmit, warning }: Pro
 }
 
 const styles = StyleSheet.create({
-  input: { minHeight: 52, borderWidth: 1, borderRadius: radius.control, paddingHorizontal: 16, fontFamily: FONT.mono, fontSize: 24, letterSpacing: 8, textAlign: "center" },
-  hint: { fontFamily: FONT.sans, fontSize: 13, lineHeight: 18 },
+  input: { minHeight: 52, borderWidth: 1, borderRadius: radius.control, paddingHorizontal: 16, ...font("mono"), fontSize: 24, letterSpacing: 8, textAlign: "center" },
+  hint: { ...font("sans"), fontSize: 13, lineHeight: 18 },
   actions: { flexDirection: "row", gap: 8, alignItems: "center" },
   grow: { flex: 1 },
 });

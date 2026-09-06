@@ -2,10 +2,11 @@ import { memo, useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View, type TextStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf, inlineToText, parseMarkdown, type Block, type Inline } from "@inborn/core";
-import { fonts, radius } from "@inborn/ui";
+import { radius } from "@inborn/ui";
 import { useTheme } from "../../lib/theme";
 import { copyText } from "../../lib/clipboard";
-import { type } from "./styles";
+import { useType } from "../../services/type";
+import { font } from "../../services/type";
 
 interface MarkdownProps {
   source: string;
@@ -43,6 +44,7 @@ export function Caret() {
 }
 
 function BlockView({ block, dir, caret }: { block: Block; dir: "ltr" | "rtl"; caret?: boolean }) {
+  const type = useType();
   const theme = useTheme();
   const textDir: TextStyle = { writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" };
   switch (block.type) {
@@ -103,6 +105,7 @@ function BlockView({ block, dir, caret }: { block: Block; dir: "ltr" | "rtl"; ca
 }
 
 function Inlines({ nodes }: { nodes: Inline[] }) {
+  const type = useType();
   const theme = useTheme();
   return (
     <>
@@ -159,6 +162,7 @@ function Inlines({ nodes }: { nodes: Inline[] }) {
 }
 
 export function CodeBlock({ lang, text, open, caret }: { lang: string; text: string; open: boolean; caret?: boolean }) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
@@ -195,6 +199,7 @@ export function CodeBlock({ lang, text, open, caret }: { lang: string; text: str
 }
 
 function Table({ header, align, rows }: { header: Inline[][]; align: ("left" | "center" | "right" | null)[]; rows: Inline[][][] }) {
+  const type = useType();
   const theme = useTheme();
   const widths = useMemo(() => header.map((_, c) => Math.min(240, Math.max(72, 8 * Math.max(inlineToText(header[c] ?? []).length, ...rows.map((r) => inlineToText(r[c] ?? []).length)) + 24))), [header, rows]);
   const cellStyle = (c: number): TextStyle => ({ width: widths[c], textAlign: align[c] ?? "left", writingDirection: "ltr" });
@@ -227,12 +232,12 @@ const styles = StyleSheet.create({
   em: { fontStyle: "italic" },
   strike: { textDecorationLine: "line-through" },
   link: { textDecorationLine: "underline" },
-  inlineCode: { fontFamily: fonts.mono, fontSize: 14, borderRadius: 4, paddingHorizontal: 3 },
+  inlineCode: { ...font("mono"), fontSize: 14, borderRadius: 4, paddingHorizontal: 3 },
   code: { borderWidth: 1, borderRadius: radius.control, overflow: "hidden" },
   codeHeader: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 32, borderBottomWidth: StyleSheet.hairlineWidth },
   copyBtn: { minHeight: 32, justifyContent: "center" },
   codeScroll: { padding: 12 },
-  codeText: { fontFamily: fonts.mono, fontSize: 13, lineHeight: 19, writingDirection: "ltr" },
+  codeText: { ...font("mono"), fontSize: 13, lineHeight: 19, writingDirection: "ltr" },
   math: { borderWidth: 1, borderRadius: radius.control, padding: 12, alignItems: "center" },
   hr: { height: StyleSheet.hairlineWidth, marginVertical: 4 },
   quote: { borderLeftWidth: 2, paddingLeft: 12, gap: 8 },

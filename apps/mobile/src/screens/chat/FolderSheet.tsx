@@ -4,7 +4,9 @@ import { useTranslation } from "react-i18next";
 import type { Chat, ChatStore, Folder } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
-import { shape, type } from "../../components/chat/styles";
+import { shape } from "../../components/chat/styles";
+import { useType } from "../../services/type";
+import { Icon } from "@inborn/ui";
 
 interface Props {
   /** `move` picks a folder for the chat; `manage` creates, renames and deletes folders. */
@@ -16,6 +18,7 @@ interface Props {
 
 /** Folder management and "Move to folder" (§8.3 S20). Gating is decided by the caller; the sheet only does the work. */
 export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const [folders, setFolders] = useState<Folder[]>([]);
@@ -59,10 +62,10 @@ export function FolderSheet({ mode, onClose, store, onChanged }: Props) {
 
   return (
     <Sheet visible={mode !== null} onClose={onClose} title={mode?.kind === "move" ? t("folders.moveTitle") : t("folders.title")} testID="folder-sheet">
-      {mode?.kind === "move" ? <SheetItem testID="folder-none" label={t("folders.none")} onPress={() => void move(null)} trailing={!mode.chat.folderId ? <Text style={{ color: theme.accent }}>✓</Text> : undefined} /> : null}
+      {mode?.kind === "move" ? <SheetItem testID="folder-none" label={t("folders.none")} onPress={() => void move(null)} trailing={!mode.chat.folderId ? <Icon name="check" size={16} color={theme.accent} /> : undefined} /> : null}
       {folders.map((f) =>
         mode?.kind === "move" ? (
-          <SheetItem key={f.id} testID={`folder-pick-${f.id}`} label={f.name} onPress={() => void move(f.id)} trailing={mode.chat.folderId === f.id ? <Text style={{ color: theme.accent }}>✓</Text> : undefined} />
+          <SheetItem key={f.id} testID={`folder-pick-${f.id}`} label={f.name} onPress={() => void move(f.id)} trailing={mode.chat.folderId === f.id ? <Icon name="check" size={16} color={theme.accent} /> : undefined} />
         ) : (
           <View key={f.id} style={styles.manageRow}>
             <Text style={[type.body, styles.grow, { color: theme.text }]}>{f.name}</Text>

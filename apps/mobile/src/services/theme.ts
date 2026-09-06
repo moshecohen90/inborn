@@ -1,8 +1,6 @@
-import { useMemo, useSyncExternalStore } from "react";
-import { Appearance, Platform, useColorScheme, type TextStyle } from "react-native";
-import { dark, fonts, light, typeScale, webFonts, type Theme, type ThemeMode } from "@inborn/ui";
-
-export const FONT = Platform.OS === "web" ? webFonts : fonts;
+import { useSyncExternalStore } from "react";
+import { Appearance, useColorScheme } from "react-native";
+import { dark, light, MAX_TEXT_SCALE, type Theme, type ThemeMode } from "@inborn/ui";
 
 let override: ThemeMode = "system";
 const listeners = new Set<() => void>();
@@ -26,21 +24,21 @@ export function useTheme(): { theme: Theme; scheme: "dark" | "light" } {
   return { theme: scheme === "light" ? light : dark, scheme };
 }
 
-export type TypeName = keyof typeof typeScale;
+let textScale = 1;
+const scaleListeners = new Set<() => void>();
+const subscribeScale = (l: () => void) => {
+  scaleListeners.add(l);
+  return () => scaleListeners.delete(l);
+};
 
-/** The §9.3 scale multiplied by the text-size setting; mono styles keep their tracking. */
-export function useTypeScale(scale: number): Record<TypeName, TextStyle> {
-  return useMemo(() => {
-    const out = {} as Record<TypeName, TextStyle>;
-    for (const k of Object.keys(typeScale) as TypeName[]) {
-      const t = typeScale[k];
-      out[k] = {
-        fontSize: Math.round(t.fontSize * scale),
-        lineHeight: Math.round(t.lineHeight * scale),
-        fontWeight: t.fontWeight,
-        ...("letterSpacing" in t ? { letterSpacing: t.letterSpacing } : {}),
-      };
-    }
-    return out;
-  }, [scale]);
+/** The Settings "Text size" multiplier, applied once through useType() on every surface (web included). */
+export function applyTextScale(scale: number): void {
+  const next = Math.min(MAX_TEXT_SCALE, Math.max(0.5, Number.isFinite(scale) ? scale : 1));
+  if (next === textScale) return;
+  textScale = next;
+  for (const l of scaleListeners) l();
+}
+
+export function useTextScale(): number {
+  return useSyncExternalStore(subscribeScale, () => textScale, () => textScale);
 }

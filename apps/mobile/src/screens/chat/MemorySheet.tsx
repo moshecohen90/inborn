@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BUILT_IN_PERSONAS, type Chat, type ChatStore, type MemoryFact, type Persona } from "@inborn/core";
 import { paywallFor } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet } from "../../components/chat/Sheet";
-import { shape, type } from "../../components/chat/styles";
+import { shape } from "../../components/chat/styles";
+import { useType } from "../../services/type";
+import { Toggle } from "../../components/shell/primitives";
 
 interface Props {
   visible: boolean;
@@ -21,6 +23,7 @@ interface Props {
  * a switch per persona and a master switch. Pro-gated: the free tier sees the panel but cannot add facts.
  */
 export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const { tier } = useEntitlement();
@@ -72,15 +75,11 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
             <Text style={[type.caption, { color: theme.text3 }]}>{t("memory.explain")}</Text>
           </View>
           {locked ? <ProTag onPress={unlock} /> : null}
-          <Switch
-            testID="memory-master"
-            value={enabled}
-            onValueChange={(on) => {
+          <Toggle
+            testID="memory-master" value={enabled} onChange={(on) => {
               setEnabled(on);
               void store.setMemoryEnabled(on);
-            }}
-            trackColor={{ true: theme.text2, false: theme.border }}
-          />
+            }} />
         </View>
         <Text style={[type.monoLabel, styles.section, { color: theme.text3 }]}>{t("memory.facts", { count: facts.length })}</Text>
         {facts.map((f) => (
@@ -100,7 +99,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
                 </Pressable>
               </View>
             </View>
-            <Switch value={f.enabled} onValueChange={(on) => void store.library.updateMemory(f.id, { enabled: on }).then(refresh)} trackColor={{ true: theme.text2, false: theme.border }} />
+            <Toggle value={f.enabled} onChange={(on) => void store.library.updateMemory(f.id, { enabled: on }).then(refresh)} />
           </View>
         ))}
         {!facts.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("memory.empty")}</Text> : null}
@@ -125,14 +124,13 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
         {personas.map((p) => (
           <View key={p.id} style={styles.switchRow}>
             <Text style={[type.body, styles.grow, { color: theme.text }]}>{personaName(p)}</Text>
-            <Switch
+            <Toggle
               testID={`memory-persona-${p.id}`}
               value={perPersona[p.id] ?? true}
-              onValueChange={(on) => {
+              onChange={(on) => {
                 setPerPersona((f) => ({ ...f, [p.id]: on }));
                 void store.setMemoryEnabledFor(p.id, on);
               }}
-              trackColor={{ true: theme.text2, false: theme.border }}
             />
           </View>
         ))}

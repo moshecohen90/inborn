@@ -2,10 +2,11 @@ import { Linking, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useLocalSearchParams } from "expo-router";
 import { radius } from "@inborn/ui";
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
-import { Mono, Section, shellStyles } from "../../components/shell/primitives";
+import { Mono, Section } from "../../components/shell/primitives";
 import notice from "../../../../../docs/legal/NOTICE.json";
+import { font, useType } from "../../services/type";
 
 interface Component {
   id: string;
@@ -29,18 +30,19 @@ const shipping = (c: Component) => /^(shipped|catalogue)/.test(c.scope);
 const GROUPS: Component["group"][] = ["engine", "library", "font"];
 
 export function Licenses() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { oss } = useLocalSearchParams<{ oss?: string }>();
   const Item = ({ c }: { c: Component }) => (
     <View testID={`licence-${c.id}`} style={[styles.item, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-      <Text style={[shellStyles.heading, { color: theme.text }]}>
+      <Text style={[type.heading, { color: theme.text }]}>
         {c.name}
         {c.tier ? ` · ${c.tier}` : ""}
       </Text>
       <Mono color={theme.text2}>{[c.license, c.version, c.scope.toUpperCase()].filter(Boolean).join(" · ")}</Mono>
-      {c.attribution ? <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{c.attribution}</Text> : null}
-      {c.restrictions?.length ? <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{c.restrictions.join(" ")}</Text> : null}
+      {c.attribution ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{c.attribution}</Text> : null}
+      {c.restrictions?.length ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{c.restrictions.join(" ")}</Text> : null}
       {c.homepage || c.licenseUrl ? (
         <Text accessibilityRole="link" onPress={() => void Linking.openURL(c.homepage ?? c.licenseUrl!)} style={[styles.link, { color: theme.accent }]}>
           {c.homepage ?? c.licenseUrl}
@@ -52,7 +54,7 @@ export function Licenses() {
     <Screen header={{ back: true, title: oss === "1" ? t("about.openSource") : t("about.modelLicenses") }} testID="licenses">
       {oss !== "1" ? (
         <Section title={t("about.modelLicenses")}>
-          <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("licenses.modelsNote")}</Text>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("licenses.modelsNote")}</Text>
           {COMPONENTS.filter((c) => c.group === "model" && shipping(c)).map((c) => (
             <Item key={c.id} c={c} />
           ))}
@@ -65,13 +67,13 @@ export function Licenses() {
           ))}
         </Section>
       ))}
-      <Text style={[shellStyles.caption, styles.foot, { color: theme.text3 }]}>{t("licenses.source", { date: (notice as { generated: string }).generated })}</Text>
+      <Text style={[type.caption, styles.foot, { color: theme.text3 }]}>{t("licenses.source", { date: (notice as { generated: string }).generated })}</Text>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   item: { borderWidth: 1, borderRadius: radius.control, padding: 12, gap: 4, marginTop: 8 },
-  link: { fontFamily: FONT.mono, fontSize: 12 },
+  link: { ...font("mono"), fontSize: 12 },
   foot: { paddingTop: 16, textAlign: "center" },
 });

@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppServicesProvider, useAppServices } from "../services/AppServices";
 import { useTheme } from "../services/theme";
+import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
 import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
@@ -11,13 +12,17 @@ import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
 
 export default function RootLayout() {
+  /* Plex is the brand (§9.3): nothing draws in a system face while the files register. */
+  const fontsReady = useAppFonts();
   return (
     <SafeAreaProvider>
+      {!fontsReady ? <Splash /> : (
       <AppServicesProvider fallback={<Splash />}>
         <WebShell>
           <Shell />
         </WebShell>
       </AppServicesProvider>
+      )}
     </SafeAreaProvider>
   );
 }
