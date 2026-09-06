@@ -1,0 +1,216 @@
+name: desktop
+
+# macOS (arm64, Metal) and Windows (x64, Vulkan) shells from the same web export (spec §5.9, D9).
+# Pull requests and pushes produce unsigned artefacts; a `v*` tag signs, notarizes and adds updater signatures
+# when the secrets exist. CUDA is a manual extra (workflow_dispatch) because the toolkit is a 3 GB install.
+
+on:
+  # Path filters keep macOS minutes (10x) for desktop-relevant changes only; they are not evaluated for tag pushes,
+  # so a `v*` tag always builds. Manual runs via workflow_dispatch.
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - "apps/desktop/**"
+      - "apps/mobile/src/adapters/tauri.ts"
+      - "apps/web/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/desktop.yml"
+  pull_request:
+    paths:
+      - "apps/desktop/**"
+      - "apps/mobile/src/adapters/tauri.ts"
+      - "apps/web/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/desktop.yml"
+  workflow_dispatch:
+    inputs:
+      cuda:
+        description: "Also build the Windows CUDA variant"
+        type: boolean
+        default: false
+
+concurrency:
+  group: desktop-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+
+jobs:
+  gate:
+    name: gates (typecheck · lint · tests · CSP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: corepack pnpm install --frozen-lockfile
+      - run: corepack pnpm typecheck
+      - run: corepack pnpm lint
+      - run: corepack pnpm test
+      - name: Webview CSP allows only Tauri's in-process IPC
+        run: node apps/desktop/scripts/check-csp.mjs
+
+  build:
+    name: ${{ matrix.name }}
+    needs: gate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS arm64 (Metal)
+            os: macos-14
+            bundles: app,dmg
+            features: ""
+            artifact: inborn-macos-arm64
+          - name: Windows x64 (Vulkan)
+            os: windows-latest
+            bundles: nsis
+            features: --features vulkan
+            vulkan: "1.3.296.0"
+            artifact: inborn-windows-x64-vulkan
+          # CPU-only fallback so a Windows artefact exists even when the Vulkan toolchain breaks.
+          - name: Windows x64 (CPU)
+            os: windows-latest
+            bundles: nsis
+            features: ""
+            artifact: inborn-windows-x64-cpu
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      # Bundles land under BUNDLE_ROOT. The Vulkan build nests vulkan-shaders-gen so deep that MSVC overflows MAX_PATH
+      # (C1083 "Cannot open compiler generated file ''"), so that job compiles into a short target dir.
+      - name: Bundle root
+        shell: bash
+        run: echo "BUNDLE_ROOT=apps/desktop/src-tauri/target/release/bundle" >> "$GITHUB_ENV"
+      - name: Short cargo target dir (Vulkan)
+        if: matrix.vulkan
+        shell: bash
+        run: |
+          echo "CARGO_TARGET_DIR=D:\\t" >> "$GITHUB_ENV"
+          echo "BUNDLE_ROOT=D:/t/release/bundle" >> "$GITHUB_ENV"
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: apps/desktop/src-tauri -> target
+          key: ${{ matrix.artifact }}
+
+      # llama.cpp's Vulkan backend needs the LunarG SDK (headers, vulkan-1.lib, glslc) plus the SPIRV-Headers
+      # CMake package, which the Windows SDK installer does not ship; ggml does find_package(SPIRV-Headers CONFIG).
+      - name: Vulkan SDK
+        if: matrix.vulkan
+        uses: jakoch/install-vulkan-sdk-action@v1
+        with:
+          vulkan_version: ${{ matrix.vulkan }}
+          install_runtime: true
+          cache: true
+          stripdown: true
+      # ggml-vulkan configures a nested ExternalProject (vulkan-shaders-gen). Under the Visual Studio generator that
+      # nested MSBuild cannot compile a test program (FileTracker / path-length), so build both levels with Ninja from
+      # a VS developer shell: cl.exe comes from the environment and no vcxproj is generated.
+      - name: MSVC developer shell (x64)
+        if: matrix.vulkan
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - name: Ninja
+        if: matrix.vulkan
+        uses: seanmiddleditch/gha-setup-ninja@v6
+      - name: SPIRV-Headers (CMake package) + glslc on PATH + Ninja generator
+        if: matrix.vulkan
+        shell: pwsh
+        run: |
+          ninja --version
+          "CMAKE_GENERATOR=Ninja" | Out-File -FilePath $env:GITHUB_ENV -Append
+          $sdk = "C:\VulkanSDK\${{ matrix.vulkan }}"
+          if (-not (Test-Path "$sdk\Bin\glslc.exe")) { throw "glslc missing under $sdk\Bin" }
+          git clone --quiet --depth 1 --branch vulkan-sdk-${{ matrix.vulkan }} https://github.com/KhronosGroup/SPIRV-Headers.git $env:RUNNER_TEMP\spirv-headers
+          cmake -S $env:RUNNER_TEMP\spirv-headers -B $env:RUNNER_TEMP\spirv-headers\build -DCMAKE_INSTALL_PREFIX=C:\spirv-headers -DSPIRV_HEADERS_ENABLE_TESTS=OFF | Out-Null
+          cmake --install $env:RUNNER_TEMP\spirv-headers\build | Out-Null
+          if (-not (Get-ChildItem -Recurse -Filter SPIRV-HeadersConfig.cmake C:\spirv-headers)) { throw "SPIRV-HeadersConfig.cmake not installed" }
+          "VULKAN_SDK=$sdk" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "CMAKE_PREFIX_PATH=C:\spirv-headers;$sdk" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "$sdk\Bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+
+      - run: corepack pnpm install --frozen-lockfile
+
+      - name: Web export + tauri build (unsigned)
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: corepack pnpm --filter @inborn/desktop tauri build --bundles ${{ matrix.bundles }} ${{ matrix.features }}
+
+      # Tag builds: Developer ID + notarization on macOS (tauri-bundler reads APPLE_*), updater signatures on both.
+      - name: Web export + tauri build (signed release)
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: corepack pnpm --filter @inborn/desktop tauri build --bundles ${{ matrix.bundles }} ${{ matrix.features }} --config src-tauri/tauri.release.conf.json
+
+      - name: Verify hardened runtime and notarization ticket (macOS)
+        if: runner.os == 'macOS'
+        run: bash apps/desktop/scripts/verify-macos.sh ${{ env.BUNDLE_ROOT }}/macos/Inborn.app ${{ startsWith(github.ref, 'refs/tags/v') && '--notarized' || '' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          if-no-files-found: error
+          path: |
+            ${{ env.BUNDLE_ROOT }}/dmg/*.dmg
+            ${{ env.BUNDLE_ROOT }}/macos/*.app.tar.gz
+            ${{ env.BUNDLE_ROOT }}/macos/*.sig
+            ${{ env.BUNDLE_ROOT }}/nsis/*.exe
+            ${{ env.BUNDLE_ROOT }}/nsis/*.sig
+
+  build-cuda:
+    name: Windows x64 (CUDA, manual)
+    needs: gate
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.cuda }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: apps/desktop/src-tauri -> target
+          key: inborn-windows-x64-cuda
+      - uses: Jimver/cuda-toolkit@v0.2.19
+        with:
+          cuda: "12.6.0"
+          method: network
+          sub-packages: '["nvcc", "cudart", "cublas", "cublas_dev", "visual_studio_integration"]'
+      - run: corepack pnpm install --frozen-lockfile
+      - run: corepack pnpm --filter @inborn/desktop tauri build --bundles nsis --features cuda
+      - uses: actions/upload-artifact@v4
+        with:
+          name: inborn-windows-x64-cuda
+          if-no-files-found: error
+          path: apps/desktop/src-tauri/target/release/bundle/nsis/*.exe

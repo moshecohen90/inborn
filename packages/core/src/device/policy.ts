@@ -1,11 +1,11 @@
-import type { Action, Button, DeviceClass, DeviceSignals, Grade, ModelTier, PolicyOptions, Recommendation, Status, UserOverride } from "./types";
+import type { Action, Button, GuardDeviceClass, DeviceSignals, Grade, ModelTier, PolicyOptions, Recommendation, Status, UserOverride } from "./types";
 
 /** Product names on the cartridges (§6.1); they are not translated. */
-export const TIER_NAMES: Record<ModelTier, string> = { apple: "Apple", instant: "Instant", fast: "Fast", sharp: "Sharp", power: "Power" };
-const LADDER: ModelTier[] = ["apple", "instant", "fast", "sharp", "power"];
+export const TIER_NAMES: Record<ModelTier, string> = { apple: "Apple", instant: "Instant", fast: "Fast", sharp: "Sharp", power: "Power", studio: "Studio" };
+const LADDER: ModelTier[] = ["apple", "instant", "fast", "sharp", "power", "studio"];
 
 /** Where a smaller model goes: phones drop straight to Instant, laptops one step down and never below Fast (§6.5). */
-export function tierBelow(tier: ModelTier, deviceClass: DeviceClass): ModelTier | null {
+export function tierBelow(tier: ModelTier, deviceClass: GuardDeviceClass): ModelTier | null {
   const i = LADDER.indexOf(tier);
   if (i <= 1) return null;
   if (deviceClass === "phone" || deviceClass === "tablet") return "instant";
@@ -14,7 +14,7 @@ export function tierBelow(tier: ModelTier, deviceClass: DeviceClass): ModelTier 
 }
 
 /** S52 defaults: Auto power management is on for phones and laptops, off on a desk-bound computer. */
-export function defaultOverride(deviceClass: DeviceClass): UserOverride {
+export function defaultOverride(deviceClass: GuardDeviceClass): UserOverride {
   return { autoPowerManagement: deviceClass !== "desktop", neverSwitchModel: false, profile: "balanced" };
 }
 

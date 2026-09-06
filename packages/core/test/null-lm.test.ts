@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { NullLM, pickDefault, type CatalogModel } from "../src/index";
+import { NullLM } from "../src/index";
 
 const model = { id: "instant", uri: "bundled://instant" };
 
@@ -37,20 +37,5 @@ describe("NullLM", () => {
     await expect(async () => {
       for await (const _ of lm.generate(s, [], {}, new AbortController().signal)) void _;
     }).rejects.toThrow();
-  });
-});
-
-describe("pickDefault", () => {
-  const base: Omit<CatalogModel, "id" | "tier" | "minRamGB" | "proOnly"> = {
-    name: "", goodFor: "", battery: "low", file: "", bytes: 0, sha256: "", license: "Apache-2.0", vision: false, goodLanguages: [], delivery: [{ kind: "bundled" }],
-  };
-  const models: CatalogModel[] = [
-    { ...base, id: "instant", tier: "instant", minRamGB: 4, proOnly: false },
-    { ...base, id: "fast", tier: "fast", minRamGB: 6, proOnly: false },
-    { ...base, id: "sharp", tier: "sharp", minRamGB: 8, proOnly: true },
-  ];
-  it("prefers Fast on 6–8 GB phones and Instant on 4 GB", () => {
-    expect(pickDefault(models, 8)?.id).toBe("fast");
-    expect(pickDefault(models, 4)?.id).toBe("instant");
   });
 });

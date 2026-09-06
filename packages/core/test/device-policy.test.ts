@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { BUTTON_KEYS, DevicePolicy, HEADLINE_KEYS, defaultOverride, tierBelow } from "../src/device";
-import type { DeviceClass, DeviceSignals, ModelTier, UserOverride } from "../src/device";
+import type { GuardDeviceClass, DeviceSignals, ModelTier, UserOverride } from "../src/device";
 
 const en = JSON.parse(readFileSync(join(__dirname, "../../i18n/locales/en.json"), "utf8")) as Record<string, string>;
 
@@ -354,7 +354,7 @@ describe("copy", () => {
 
 describe("device classes", () => {
   it("defaults: auto power management on except desktop", () => {
-    for (const c of ["phone", "tablet", "laptop", "browser"] as DeviceClass[]) expect(defaultOverride(c).autoPowerManagement, c).toBe(true);
+    for (const c of ["phone", "tablet", "laptop", "browser"] as GuardDeviceClass[]) expect(defaultOverride(c).autoPowerManagement, c).toBe(true);
     expect(defaultOverride("desktop").autoPowerManagement).toBe(false);
   });
 });

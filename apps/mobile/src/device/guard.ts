@@ -1,5 +1,18 @@
 import { AppState, type AppStateStatus } from "react-native";
-import { DevicePolicy, SpeedWatch, defaultOverride, type DeviceSignals, type ModelTier, type Recommendation, type Tier, type UserOverride } from "@inborn/core";
+import {
+  DevicePolicy,
+  SpeedWatch,
+  defaultOverride,
+  type BatterySignal,
+  type DeviceSignals,
+  type MemoryPressure,
+  type ModelTier,
+  type PowerSource,
+  type Recommendation,
+  type ThermalState,
+  type Tier,
+  type UserOverride,
+} from "@inborn/core";
 import {
   getEngineState,
   getUnloadReason,
@@ -20,9 +33,13 @@ import {
 } from "../engine";
 import { loadPrefs, savePrefs } from "./prefs";
 import { MEMORY_RECOVERY_MS, memoryHealthy, readSignals, setCurrentSignals, snapshot, subscribeSignals, type RawSignals } from "./signals";
-import type { DeviceState } from "./types";
-
-export interface GuardState extends DeviceState {
+/** The guard's own view in the policy's types; mapState.ts turns it into the shell's DeviceState. */
+export interface GuardState {
+  battery: BatterySignal;
+  thermal: ThermalState;
+  memoryPressure: MemoryPressure;
+  powerSource: PowerSource;
+  recommendation: Recommendation;
   deviceClass: RawSignals["deviceClass"];
   ramGB: number | null;
   override: UserOverride;
@@ -80,6 +97,23 @@ class DeviceGuard {
   dismiss = (): void => {
     this.policy.dismiss();
     this.evaluate();
+  };
+
+  /** The shell's three §8.8 buttons: act on the line when it offers that action, otherwise do the plain thing. */
+  switchToInstant = (): void => {
+    const b = this.policy.current?.button;
+    if (b === "switch" || b === "switchTo" || b === "switchSmaller") return this.accept();
+    this.queueSwitch("instant", false, false);
+    this.evaluate();
+  };
+
+  switchBack = (): void => {
+    const b = this.policy.current?.button;
+    if (b === "switchBack" || b === "switchBackTo" || b === "keep") this.accept();
+  };
+
+  continueGeneration = (): void => {
+    if (this.policy.current?.button === "continue") this.accept();
   };
 
   ackExplain = (): void => {

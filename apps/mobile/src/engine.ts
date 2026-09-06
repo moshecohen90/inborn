@@ -1,5 +1,6 @@
 import type { Delta, GenOpts, LocalLM, Message, ModelRef, Session, Tier } from "@inborn/core";
 import { createEngine, type Engine } from "./adapters";
+import { getVault } from "./vault/store";
 
 export type EngineState = "unloaded" | "loading" | "loaded";
 export type UnloadReason = "idle" | "critical" | "memory" | "switch" | "manual";
@@ -52,7 +53,7 @@ function getRaw(): Engine {
 }
 
 export function getEngine(): Engine {
-  return (guarded ??= guard(getRaw()));
+  return (guarded ??= guard());
 }
 
 /** The engine if a screen already created it; the guard must not create it before prepareEngine() settled (web probes its host). */
@@ -62,11 +63,15 @@ export const peekEngine = (): Engine | null => raw;
 export function loadSession(nCtx = caps.nCtx): Promise<Session> {
   if (!session) {
     const { engine, model } = getRaw();
+    const vault = getVault();
     setState("loading");
+    /* A crash inside load() leaves the "loading" mark on disk, which quarantines the file at next boot (§10.1 #8). */
+    vault.markLoading(model.id, true);
     /* Never start a load while the previous weights are still being released. */
     session = (unloading ?? Promise.resolve())
       .then(() => engine.load(model, { nCtx, threads: caps.threads ?? undefined, gpuLayers: caps.gpuLayers ?? undefined }))
       .then((s) => {
+        vault.markLoading(model.id, false);
         live = s;
         unloadReason = null;
         setState("loaded");
@@ -182,17 +187,17 @@ export async function switchModel(tier: Tier, load = true): Promise<boolean> {
 }
 
 /* Every answer goes through here: caps applied, the guard can abort it, a stale session after an unload is replaced by the live one. */
-function guard(inner: Engine): Engine {
-  const lm = inner.engine;
+function guard(): Engine {
+  const lm = () => getRaw().engine;
   const engine: LocalLM = {
     get id() {
-      return lm.id;
+      return lm().id;
     },
-    capabilities: () => lm.capabilities(),
-    load: (m, o) => lm.load(m, o),
+    capabilities: () => lm().capabilities(),
+    load: (m, o) => lm().load(m, o),
     unload: () => unloadSession("manual"),
-    embed: (t) => lm.embed(t),
-    stats: () => lm.stats(),
+    embed: (t) => lm().embed(t),
+    stats: () => lm().stats(),
     async *generate(_stale: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta> {
       const s = await loadSession();
       const ac = new AbortController();
@@ -205,7 +210,7 @@ function guard(inner: Engine): Engine {
       if (++generating === 1) for (const l of activityListeners) l(true);
       try {
         const merged: GenOpts = { ...opts, maxTokens: Math.min(opts.maxTokens ?? caps.maxTokens, caps.maxTokens), threads: opts.threads ?? caps.threads ?? undefined };
-        for await (const d of lm.generate(s, messages, merged, ac.signal)) {
+        for await (const d of lm().generate(s, messages, merged, ac.signal)) {
           if (!ac.signal.aborted && pauseCheck?.()) {
             pausedByGuard = true;
             lastGuardStop = true;
@@ -224,11 +229,17 @@ function guard(inner: Engine): Engine {
       }
     },
   };
-  Object.defineProperty(engine, "devInfo", { get: () => (lm as { devInfo?: unknown }).devInfo, enumerable: true });
+  Object.defineProperty(engine, "devInfo", { get: () => (lm() as { devInfo?: unknown }).devInfo, enumerable: true });
   return {
     engine,
     get model() {
-      return inner.model;
+      return getRaw().model;
     },
   };
+}
+
+/** After the vault switches the default model: drop the weights and the engine so the next loadSession() picks the new file. */
+export async function resetEngine(): Promise<void> {
+  await unloadSession("switch").catch((e: unknown) => console.warn("[inborn] unload", e));
+  raw = null;
 }

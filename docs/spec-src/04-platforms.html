@@ -51,9 +51,9 @@
 
 <h3>4.5 קוד אחד: הארכיטקטורה המאחדת</h3>
 <div class="note ok"><p><strong>בעברית פשוטה:</strong> ריפו אחד, צוות אחד, רכבת שחרורים אחת. כל המסכים, הצ'אט, הכספת, המסמכים וההגדרות נכתבים פעם אחת ב‑TypeScript, ורצים כאפליקציה נייטיב באייפון ובאנדרואיד, כאתר בדפדפן, ובתוך חלון Tauri קטן במק ובווינדוס (אותה בניית ווב, בלי דפדפן מוטמע כבד). מה שכן נפרד לכל פלטפורמה הוא שלושה דברים דקים: החיבור למנוע המודל (llama.cpp דרך llama.rn בטלפון, דרך Rust במחשב, דרך WebAssembly בדפדפן), גישה לקבצים ולאחסון, ואריזה וחתימה. זה 15–20 אחוז מהקוד, ובדיוק החלקים שממילא חייבים להיות שונים. פיצול לאפליקציות נייטיב נפרדות (Swift/Kotlin) לא נדרש לפי המחקר: הביצועים נקבעים על ידי מנוע המודל, שהוא נייטיב בכל מקרה, ולא על ידי שכבת הממשק.</p></div>
-<p>אפליקציית Expo אוניברסלית (SDK 54/55, Expo Router, React Native 0.83+, New Architecture) מייצרת iOS, Android ו‑Web מאותו קוד. הדסקטופ הוא Tauri v2 שה‑frontend שלו הוא ייצוא הווב של אותה אפליקציה. הדבר היחיד שמשתנה בין פלטפורמות הוא מימוש ממשק אחד: <code>LocalLM</code>.</p>
+<p>אפליקציית Expo אוניברסלית (SDK 57, Expo Router, React Native 0.86, New Architecture) מייצרת iOS, Android ו‑Web מאותו קוד. הדסקטופ הוא Tauri v2 שה‑frontend שלו הוא ייצוא הווב של אותה אפליקציה. הדבר היחיד שמשתנה בין פלטפורמות הוא מימוש ממשק אחד: <code>LocalLM</code>.</p>
 <div class="arch"><b>apps/</b>
-  app/        Expo universal: iOS + Android + Web (Expo Router, NativeWind v4)
+  app/        Expo universal: iOS + Android + Web (Expo Router, טוקני FARADAY ב‑StyleSheet)
   desktop/    Tauri v2: frontendDist = expo export --platform web; Rust crate (llama-cpp-2) או sidecar llama-server
 <b>packages/</b>
   ui/         רכיבים משותפים, וריאנטים .web.tsx / .native.tsx רק היכן שצריך
@@ -76,7 +76,7 @@
 <table>
 <thead><tr><th>שכבה</th><th>משותף</th><th>הערות</th></tr></thead>
 <tbody>
-<tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>NativeWind v4 (Tailwind מקומפל). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
+<tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>טוקני FARADAY מ‑packages/ui ב‑StyleSheet (NativeWind v4 נדחה בינתיים: לא נדרש). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
 <tr><td>מצב הצ'אט, סכמת אחסון, הגדרות</td><td class="num">100%</td><td>SQLite (expo-sqlite עם SQLCipher) בנייטיב, OPFS/IndexedDB בווב, SQLite דרך Rust בדסקטופ, מאחורי ממשק repository אחד.</td></tr>
 <tr><td>קטלוג מודלים, הורדות, אימות hash</td><td class="num">~90%</td><td>ה‑API של הקבצים שונה: expo-file-system / OPFS / Tauri fs.</td></tr>
 <tr><td>RAG (חיתוך, embeddings, חיפוש וקטורי)</td><td class="num">~85%</td><td>sqlite-vec במובייל ובדסקטופ, in‑memory/IndexedDB בווב.</td></tr>

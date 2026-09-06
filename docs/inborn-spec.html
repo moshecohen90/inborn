@@ -215,7 +215,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <section class="guide" aria-label="מדריך קריאה">
 <div class="row"><div class="tier must"><span class="k">MUST · ~37 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~39 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~40 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~115 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~76 דק'</button><button type="button" data-view="must">חובה בלבד · ~37 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~116 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~76 דק'</button><button type="button" data-view="must">חובה בלבד · ~37 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -231,7 +231,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
     <li data-tier="ref"><a href="#s8"><span>מסכי האפליקציה</span><span class="min">18′</span></a></li>
     <li data-tier="rec"><a href="#s9"><span>מערכת העיצוב FARADAY</span><span class="min">9′</span></a></li>
     <li data-tier="ref"><a href="#s10"><span>מקרי קצה ומצבי כשל</span><span class="min">12′</span></a></li>
-    <li data-tier="ref"><a href="#s11"><span>חנויות, פרטיות ורישוי</span><span class="min">7′</span></a></li>
+    <li data-tier="ref"><a href="#s11"><span>חנויות, פרטיות ורישוי</span><span class="min">8′</span></a></li>
     <li data-tier="must"><a href="#s12"><span>מוניטיזציה ותמחור</span><span class="min">4′</span></a></li>
     <li data-tier="rec"><a href="#s13"><span>ASO, SEO ויציאה לשוק</span><span class="min">3′</span></a></li>
     <li data-tier="rec"><a href="#s14"><span>תוכנית עבודה</span><span class="min">7′</span></a></li>
@@ -395,7 +395,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <p>מפרסמים מהחשבונות הקיימים (המחקר של 16.8: הדירוג הוא פר אפליקציה, מוניטין מפתח ותיק הוא נקודת זכות). ההפרדה היא ברמת בני אדם: שם אפליקציה ומיתוג עצמאיים, אתר נפרד, שם מפתח ניטרלי בחנות. אם המוצר יתרומם, App Transfer לישות ייעודית בשער C (§15.2).</p>
 
 </section>
-<section class="sec" data-tier="must" data-words="1478">
+<section class="sec" data-tier="must" data-words="1485">
 <h2 id="s4"><span class="n">04</span>פלטפורמות: iOS, Android, Windows, macOS, Web, וקוד אחד<span class="tierpill">MUST</span><span class="h2min">~7 min</span></h2>
 <p class="lead">התשובה הקצרה לשאלה "אפשר גם ווינדוס וגם אתר, ובקוד אחד?": כן, כן בתנאים, וכן ב‑80 עד 85 אחוז מהקוד. הסעיף מפרט מה מותר להבטיח בכל פלטפורמה, איך בונים קוד משותף בלי לוותר על ביצועים, ובאיזה סדר.</p>
 
@@ -449,9 +449,9 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <h3>4.5 קוד אחד: הארכיטקטורה המאחדת</h3>
 <div class="note ok"><p><strong>בעברית פשוטה:</strong> ריפו אחד, צוות אחד, רכבת שחרורים אחת. כל המסכים, הצ'אט, הכספת, המסמכים וההגדרות נכתבים פעם אחת ב‑TypeScript, ורצים כאפליקציה נייטיב באייפון ובאנדרואיד, כאתר בדפדפן, ובתוך חלון Tauri קטן במק ובווינדוס (אותה בניית ווב, בלי דפדפן מוטמע כבד). מה שכן נפרד לכל פלטפורמה הוא שלושה דברים דקים: החיבור למנוע המודל (llama.cpp דרך llama.rn בטלפון, דרך Rust במחשב, דרך WebAssembly בדפדפן), גישה לקבצים ולאחסון, ואריזה וחתימה. זה 15–20 אחוז מהקוד, ובדיוק החלקים שממילא חייבים להיות שונים. פיצול לאפליקציות נייטיב נפרדות (Swift/Kotlin) לא נדרש לפי המחקר: הביצועים נקבעים על ידי מנוע המודל, שהוא נייטיב בכל מקרה, ולא על ידי שכבת הממשק.</p></div>
-<p>אפליקציית Expo אוניברסלית (SDK 54/55, Expo Router, React Native 0.83+, New Architecture) מייצרת iOS, Android ו‑Web מאותו קוד. הדסקטופ הוא Tauri v2 שה‑frontend שלו הוא ייצוא הווב של אותה אפליקציה. הדבר היחיד שמשתנה בין פלטפורמות הוא מימוש ממשק אחד: <code>LocalLM</code>.</p>
+<p>אפליקציית Expo אוניברסלית (SDK 57, Expo Router, React Native 0.86, New Architecture) מייצרת iOS, Android ו‑Web מאותו קוד. הדסקטופ הוא Tauri v2 שה‑frontend שלו הוא ייצוא הווב של אותה אפליקציה. הדבר היחיד שמשתנה בין פלטפורמות הוא מימוש ממשק אחד: <code>LocalLM</code>.</p>
 <div class="arch"><b>apps/</b>
-  app/        Expo universal: iOS + Android + Web (Expo Router, NativeWind v4)
+  app/        Expo universal: iOS + Android + Web (Expo Router, טוקני FARADAY ב‑StyleSheet)
   desktop/    Tauri v2: frontendDist = expo export --platform web; Rust crate (llama-cpp-2) או sidecar llama-server
 <b>packages/</b>
   ui/         רכיבים משותפים, וריאנטים .web.tsx / .native.tsx רק היכן שצריך
@@ -474,7 +474,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <table>
 <thead><tr><th>שכבה</th><th>משותף</th><th>הערות</th></tr></thead>
 <tbody>
-<tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>NativeWind v4 (Tailwind מקומפל). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
+<tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>טוקני FARADAY מ‑packages/ui ב‑StyleSheet (NativeWind v4 נדחה בינתיים: לא נדרש). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
 <tr><td>מצב הצ'אט, סכמת אחסון, הגדרות</td><td class="num">100%</td><td>SQLite (expo-sqlite עם SQLCipher) בנייטיב, OPFS/IndexedDB בווב, SQLite דרך Rust בדסקטופ, מאחורי ממשק repository אחד.</td></tr>
 <tr><td>קטלוג מודלים, הורדות, אימות hash</td><td class="num">~90%</td><td>ה‑API של הקבצים שונה: expo-file-system / OPFS / Tauri fs.</td></tr>
 <tr><td>RAG (חיתוך, embeddings, חיפוש וקטורי)</td><td class="num">~85%</td><td>sqlite-vec במובייל ובדסקטופ, in‑memory/IndexedDB בווב.</td></tr>
@@ -511,7 +511,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1765">
+<section class="sec" data-tier="rec" data-words="1769">
 <h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית<span class="tierpill">RECOMMENDED</span><span class="h2min">~9 min</span></h2>
 <p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
 
@@ -630,7 +630,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <li>בדיקות: יחידה ל‑core (חיתוך, RAG, קטלוג, רישוי), בדיקות אינטגרציה לאדפטרים על מכשירים אמיתיים (iPhone 15 Pro, Pixel 8, Galaxy S23 כרצפה), בדיקת 16 KB pages באימולטור, בדיקת זיכרון ב‑Instruments, ו‑golden screenshots ל‑UI בשלושה גדלים ובשני ערכות נושא.</li>
 <li>אין טלמטריה, ולכן <strong>בדיקות לפני שחרור מחליפות ניטור אחרי שחרור</strong>: רשימת בדיקה של 40 פריטים (ראו §14) חובה לכל גרסה, ו‑crash logs מגיעים רק אם המשתמש בוחר לשלוח ידנית מהגדרות (מסך "דווח על בעיה" שמייצר קובץ שהמשתמש שולח בעצמו במייל).</li>
 </ul>
-<p>מזהי החבילה (הוחלט, משה 3.9.2026): <span class="ltr">app.autark.mobile</span> ל‑iOS ולאנדרואיד, <span class="ltr">app.autark.desktop</span> לדסקטופ. הריפו: <span class="ltr">~/dev/autark</span> (monorepo; שלד שבוע 0 הוגש ב‑3.9.2026).</p>
+<p>מזהי החבילה (הוחלט, משה 3.9.2026; עודכנו עם השם החדש): <span class="ltr">com.inbornapp.mobile</span> ל‑iOS ולאנדרואיד, <span class="ltr">com.inbornapp.desktop</span> לדסקטופ. הריפו: <span class="ltr">~/dev/inborn</span> (monorepo; שלד שבוע 0 הוגש ב‑3.9.2026).</p>
 <h3>5.10 ריבוי שפות מהיום הראשון</h3>
 <p>הוחלט (D13, משה 3.9.2026): משיקים ב‑6 שפות (§7.8), ובכל מקרה הקוד נבנה כך שהוספת שפה היא קובץ אחד ובלי שינוי קוד: כל מחרוזת בממשק חיה בקובץ locale אחד לכל שפה (JSON בפורמט ICU MessageFormat, עם ריבוי וסדר מילים לפי שפה), נטענת דרך i18next + react-i18next, ואותם קבצים משרתים את הטלפון, את הווב ואת הדסקטופ (Tauri מציג את הממשק מאותה בניית ווב). expo-localization קורא את שפת המכשיר; Intl מעצב תאריכים, מספרים ויחידות. RTL מהיום הראשון: מאפייני CSS לוגיים (start/end) ו‑I18nManager, בדיקה בעברית ובערבית בכל PR. CI מריץ פסאודו‑לוקליזציה (מחרוזות מוארכות ב‑40% עם תווים מיוחדים) כדי לתפוס חיתוך טקסט לפני שיש מתרגם. מחרוזות חדשות נאספות אוטומטית (extraction) ומועברות לצינור התרגום הקיים של אפליקציות התנ"ך (translation-expert + validateLangs), שכבר יודע לתרגם בהקשר ולאמת שלמות; גם מטא‑דאטה בחנויות וצילומי מסך לכל שפה עוברים באותו צינור. מה לא מתורגם: תשובות המודל, שתלויות במודל; לכן בפרטי כל מחסנית (S31, §8) יש שורת "שפות טובות", ובשפה שהמודל חלש בה האפליקציה אומרת זאת במקום להבטיח.</p>
 
@@ -1633,8 +1633,8 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 </div>
 
 </section>
-<section class="sec" data-tier="ref" data-words="1497">
-<h2 id="s11"><span class="n">11</span>חנויות, פרטיות ורישוי<span class="tierpill">REFERENCE</span><span class="h2min">~7 min</span></h2>
+<section class="sec" data-tier="ref" data-words="1563">
+<h2 id="s11"><span class="n">11</span>חנויות, פרטיות ורישוי<span class="tierpill">REFERENCE</span><span class="h2min">~8 min</span></h2>
 <p class="lead">אפליקציה שלא אוספת כלום עוברת ביקורת בקלות יחסית, בתנאי שהיא עונה בכנות על שאלון הגיל, מספקת כפתור דיווח, ומצהירה על התווית הנכונה. כאן כל דרישה ב‑2026 והמענה שלנו.</p>
 
 <h3>11.1 Apple App Store</h3>
@@ -1642,7 +1642,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <li><strong>דירוג גיל (בתוקף מ‑31.1.2026):</strong> המדרגות הן 4+, 9+, 13+, 16+, 18+. השאלון שואל במפורש על צ'אטבוטים, ו‑Apple קובעת שיש לשקול "how AI assistants and chatbot functionality impact the frequency of sensitive content". התשובה שלנו: <strong>13+</strong>, טקסט גנרטיבי לא מוגבל, מצב family‑safe כברירת מחדל, ללא roleplay, ללא "no filters". מותר לבחור דירוג גבוה מהמחושב; לא נבחר 18+ כי זה מוחק את מיצוב הכלי היומיומי.</li>
 <li><strong>Review Guidelines:</strong> 1.2 (סינון, דיווח, חסימה ופרטי קשר, מוחל על פלט AI), 2.3.6 (שאלות גיל בכנות), 5.1.1 (קישור למדיניות פרטיות גם כשלא אוספים), 5.1.2(i) (הסכמה לפני שיתוף עם AI צד‑שלישי, לא רלוונטי בלי ענן), 5.1.4 (ילדים). הערות לבודק: הסבר עיצוב אפס‑הרשת, מודל מובנה לבדיקה אופליין, איך לבדוק את הדיווח.</li>
 <li><strong>תווית פרטיות:</strong> "Data Not Collected". "Collect" פירושו שידור מחוץ למכשיר לגישה שלנו או של שותפים. זה אפשרי רק עם אפס SDK יוצא; Apple דחתה אפליקציות שהצהירו "לא אוסף" בזמן ש‑SDK של analytics רץ. דיאגנוסטיקה ברמת OS היא איסוף של Apple, לא שלנו.</li>
-<li><strong>Privacy manifest</strong> (<code>PrivacyInfo.xcprivacy</code>): הצהרת required‑reason APIs: מקום בדיסק (E174.1), UserDefaults (CA92.1), חותמות זמן קבצים (C617.1), boot time (35F9.1); <code>NSPrivacyTracking = false</code>; SBOM לספריות נייטיב.</li>
+<li><strong>Privacy manifest</strong> (<code>PrivacyInfo.xcprivacy</code>): הצהרת required‑reason APIs: מקום בדיסק (E174.1, 85F4.1), UserDefaults (CA92.1), חותמות זמן קבצים (C617.1, 3B52.1 לבורר הקבצים), boot time (35F9.1); llama.rn לא מצרף מניפסט משלו ולכן האפליקציה מצהירה במקומו (הרשימה נגזרה מהמניפסטים שבפועל ב‑node_modules, ראו docs/legal/app-privacy-details.md); <code>NSPrivacyTracking = false</code>; SBOM לספריות נייטיב.</li>
 <li><strong>Foundation Models acceptable use:</strong> אין פלטים רפואיים/משפטיים/כספיים/תעסוקתיים לא מדויקים או אוטונומיים, אין תוכן למבוגרים, אין "dependency or spiraling". לכן Apple FM לא משמש בזרימות Work רפואיות/משפטיות ולא בשום נתיב "לא מסונן".</li>
 <li><strong>רכישות:</strong> non‑consumable Pro עם Family Sharing מופעל ב‑App Store Connect; JWS מאומת על המכשיר; revocationDate נועל פיצ'רים ולא נתונים; Small Business Program (15%) מתחת למיליון דולר בשנה.</li>
 <li><strong>גיבוי iCloud:</strong> מודלים מוחרגים (isExcludedFromBackup), תוכן משתמש לא מוחרג.</li>
@@ -1654,9 +1654,9 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <li><strong>מדיניות AI‑Generated Content:</strong> חלה על צ'אטבוט טקסט. דרישות: (א) דרך בתוך האפליקציה לדווח על תוכן פוגעני בלי לצאת ממנה, ושימוש בדיווחים לסינון; (ב) אין יצירת תוכן אסור (CSAM, הונאה, הטרדה, סיפוק מיני, הטעיית בחירות, קוד זדוני, מסמכים מזויפים); (ג) אחריות על הפלט כולל מניעה ובדיקה; (ד) סימון שהתוכן מיוצר ב‑AI; (ה) תוכן AI לקטינים לא מסוכן/מיני/מניפולטיבי. המענה: S13 (דיווח אופליין), system prompt בטיחות, מסווג family‑safe, גילוי AI ב‑onboarding ובכותרות פרסונה.</li>
 <li><strong>מדיניות תוכן מוגבל‑גיל (עדכון 26.8.2026):</strong> חלה על צ'אט אנונימי/היכרויות/הימורים. האפליקציה שלנו היא משתמש‑יחיד, מקומית, לא חברתית: מחוץ לתחולה. אם אי פעם תתווסף פרסונת companion, בוחנים מחדש.</li>
 <li><strong>דירוג תוכן IARC:</strong> צפוי "Teen". אפליקציה לא מדורגת מוסרת.</li>
-<li><strong>Data Safety:</strong> נדרש גם לאפס איסוף: "No data collected", "No data shared", הצפנה במנוחה, מנגנון מחיקה (ייצוא/מחיקה), URL מדיניות. <strong>הרשאות:</strong> המניפסט ללא INTERNET, ולכן דף ההרשאות ב‑Play לא מציג גישה לרשת; מודלים מגיעים דרך Play Asset Delivery (הורדה של Play, לא של האפליקציה); מציינים במדיניות ש‑Google רואה את ההורדה כמו כל התקנה.</li>
+<li><strong>Data Safety:</strong> נדרש גם לאפס איסוף: "No data collected", "No data shared", URL מדיניות (שאלות ההצפנה במנוחה ומנגנון המחיקה נשאלות רק כשיש איסוף; אצלנו הן נענות בטקסט המדיניות). <strong>הרשאות:</strong> המניפסט ללא INTERNET, ולכן דף ההרשאות ב‑Play לא מציג גישה לרשת; מודלים מגיעים דרך Play Asset Delivery (הורדה של Play, לא של האפליקציה); מציינים במדיניות ש‑Google רואה את ההורדה כמו כל התקנה.</li>
 <li><strong>Billing:</strong> Play Billing Library 9.x (המניפסט שלה ללא INTERNET, אומת); רכישות במטמון ל‑queryPurchasesAsync אופליין; acknowledge תוך 3 ימים; Family Library לא כולל IAP.</li>
-<li><strong>מגבלות:</strong> foreground service מסוג dataSync מוגבל ל‑6 שעות ב‑24 ב‑Android 15+, ולכן היצירה רצה כשירות קצר‑חיים; target API 36 עד 31.8.2026; אימות מפתחים עד 30.9.2026; 16 KB pages לעדכונים מ‑1.2.2027 (וכבר חובה לאפליקציות חדשות).</li>
+<li><strong>מגבלות:</strong> foreground service מסוג dataSync מוגבל ל‑6 שעות ב‑24 ב‑Android 15+, ולכן היצירה רצה כשירות קצר‑חיים; target API 36 עד 31.8.2026; אימות מפתחים עד 30.9.2026; 16 KB pages: חובה כבר מ‑1.11.2025 לכל אפליקציה חדשה ולכל עדכון שמכוון ל‑Android 15+, כלומר חובה עבורנו מהבנייה הראשונה.</li>
 <li><strong>אכיפת "low‑value AI apps" (2026):</strong> האפליקציה חייבת להיות מובחנת ולא "wrapper"; מסך ההוכחה, הכספת והמסמכים הם הבידול המתועד.</li>
 </ul>
 
@@ -1664,7 +1664,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <ul>
 <li><strong>GDPR/UK GDPR:</strong> כשאין נתונים אישיים שמגיעים אלינו (בלי חשבונות, analytics, crash SDK, שרת), איננו controller או processor לתוכן השיחות; העיבוד של המשתמש הוא שימוש ביתי. החנויות עדיין דורשות מדיניות פרטיות, ולכן מפרסמים אחת שאומרת: מעובד על המכשיר בלבד, אין איסוף, אין שיתוף, אין מעקב; רכישות ודיאגנוסטיקת OS מעובדות על ידי Apple/Google כ‑controllers עצמאיים; הורדת מודלים חושפת IP למארח כמו כל הורדה; מייל התמיכה הוא הערוץ היחיד שבו מעובד נתון אישי (הכתובת), על בסיס אינטרס לגיטימי, ונמחק אחרי הטיפול.</li>
 <li><strong>CCPA/CPRA:</strong> מחוץ לתחולה (אין מידע אישי), אבל משאירים הצהרת "Do not sell or share" לבהירות. בקשות נושאי מידע: אין צד שרת; האפליקציה עצמה נותנת גישה/ייצוא/מחיקה, שזו התשובה החזקה ביותר.</li>
-<li><strong>EU AI Act, סעיף 50 (מ‑2.8.2026):</strong> (1) ליידע שמדובר ב‑AI, גם אם ברור: שורת גילוי ב‑S01 ובכותרות פרסונה; (2) סימון פלט סינתטי בצורה קריאה למכונה: לטקסט על המכשיר זו שאלה פתוחה (קוד הנוהג של הנציבות בהכנה; ההסכמה הזמנית מ‑5.2026 נותנת למערכות קיימות עד 2.12.2026). ביניים הגנתי: פונקציות הייצוא מטביעות כותרת/מטא‑דאטה "generated by AI". אין סיווג high‑risk לצ'אט צרכני כללי; תבניות Work לא יהפכו אותו למערכת החלטות תעסוקתית/אשראי/רפואית.</li>
+<li><strong>EU AI Act, סעיף 50 (מ‑2.8.2026):</strong> (1) ליידע שמדובר ב‑AI, גם אם ברור: שורת גילוי ב‑S01 ובכותרות פרסונה; (2) סימון פלט סינתטי בצורה קריאה למכונה: לטקסט על המכשיר זו שאלה פתוחה (קוד הנוהג של הנציבות בהכנה; ההסכמה הזמנית מ‑5.2026 נותנת עד 2.12.2026 רק למערכות שכבר היו בשוק לפני 2.8.2026; Inborn מושק אחרי, ולכן חובות 50(1) ו‑50(2) חלות מהשחרור הראשון באיחוד, וסימון הייצוא הוא דרישת השקה של M8, ראו docs/legal/ai-act-notes.md). ביניים הגנתי: פונקציות הייצוא מטביעות כותרת/מטא‑דאטה "generated by AI". אין סיווג high‑risk לצ'אט צרכני כללי; תבניות Work לא יהפכו אותו למערכת החלטות תעסוקתית/אשראי/רפואית.</li>
 <li><strong>מיצוב למקצוענים (Work):</strong> ABA Opinion 512, Florida Bar 24‑1, והנחיית קליפורניה (5.2026, עם כללים מוצעים לחובת אימות פלט) כולן תלויות בשאלה אם מידע חסוי עוזב את שליטת עורך הדין ואם הכלי שומר או מאמן עליו. כלי על המכשיר בלי שמירה מחוץ למכשיר הוא התשובה הנקייה ביותר, אבל עורך הדין עדיין חב כשירות, אימות וגילוי. HIPAA: BAA נדרש רק עם ספק שמקבל PHI; אפליקציה שלא מקבלת PHI אינה business associate, אבל הישות המכוסה עדיין צריכה אמצעי הגנה ברמת המכשיר, ואנחנו מספקים את התיעוד. IRC §7216: הסכמה נדרשת כשנתוני לקוח נחשפים לצד שלישי כמו AI בענן; עיבוד על המכשיר נמנע מהחשיפה. <strong>לעולם לא כותבים "HIPAA‑compliant" או "privileged" בשיווק</strong>; כותבים "no data leaves your device" ומספקים הצהרת ארכיטקטורה להורדה.</li>
 </ul>
 
@@ -1703,7 +1703,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <h3>11.6 סימני מסחר: איך זה עובד, ומה אנחנו עושים לפני כל פרסום</h3>
 <p>סימן מסחר הוא <strong>טריטוריאלי ולפי כיתות</strong>: רישום תופס במדינה (או באיחוד האירופי כולו) ולסחורות שנרשמו (כיתות ניס; תוכנה להורדה = 9, תוכנה כשירות = 42). שם זהה שרשום לקפה או לאופנה לא חוסם אפליקציה. שם זהה שרשום ל"תוכנת בינה מלאכותית" כן חוסם, גם אם הבעלים מוכר משהו אחר בפועל: בחמש השנים הראשונות אחרי הרישום שופטים לפי המפרט הרשום, ורק אחריהן אפשר לבטל סימן שלא נעשה בו שימוש (סעיף 58 לתקנת סימני המסחר של האיחוד). באיחוד, סימן זהה על סחורה זהה ("זהות כפולה", סעיף 8(1)(א)) מקבל התנגדות אוטומטית בלי שצריך להוכיח בלבול; בדמיון חלקי בודקים סבירות לבלבול. מפרט של "תוכנה" סתם לפעמים צר מדי לאכיפה, אבל "תוכנת בינה מלאכותית" במפורש מספיק.</p>
 <p><strong>מי קודם:</strong> באיחוד ובבריטניה הראשון שמגיש זוכה; בארה"ב הזכות נולדת מהשימוש המסחרי, והרישום הפדרלי נותן חזקה ארצית. לכן מי שיגיש מחר על השם שלנו: אם הגשנו קודם, מתנגדים ומנצחים; אם הגיש בחוסר תום לב אחרי שראה אותנו, מבטלים (סעיף 59(1)(ב)), אבל זה הליך; ואם יש לו זכות קודמת שלא מצאנו, הוא יכול לאכוף בטריטוריה שלו, והחנויות פועלות לפי תלונה: אפל מעבירה קשר בין הצדדים תוך כשבועיים ויכולה להסיר; גוגל משעה, לעיתים לפי מדינה. התוצאה במקרה כזה היא שינוי שם באותה טריטוריה, לא סוף העולם, אבל יקר בשיווק.</p>
-<p><strong>מה עושים:</strong> (1) בדיקת TMview בכיתות 9/42 באיחוד, בארה"ב ובבריטניה לפני בחירת שם (בוצע 3.9.2026: Autark נפסל, ראו §3.2); (2) הגשת סימן מילולי לפני כל פרסום: EUIPO כ‑€850 לכיתה ראשונה ו‑€50 לשנייה, USPTO $350 לכיתה, UKIPO £170 ועוד £50 לכיתה (מתייקר ב‑1.4.2026), דרך עורך דין סימני מסחר עם חיפוש מלא (ישראל, ברזיל, יפן); (3) זכות קדימה של 6 חודשים מההגשה הראשונה לשאר המדינות; (4) שירות מעקב על השם; (5) עדיפות למילה מומצאת על מילה מילונית, כי מילים מילוניות כמעט תמיד תפוסות בכיתה 9; (6) תיעוד שימוש ראשון מהיום הראשון.</p>
+<p><strong>מה עושים:</strong> (1) בדיקת TMview בכיתות 9/42 באיחוד, בארה"ב ובבריטניה לפני בחירת שם (בוצע 3.9.2026: Autark נפסל, ראו §3.2); (2) הגשת סימן מילולי לפני כל פרסום: EUIPO כ‑€850 לכיתה ראשונה ו‑€50 לשנייה, USPTO $350 לכיתה, UKIPO £205 ועוד £60 לכיתה (אחרי ההתייקרות של 1.4.2026), דרך עורך דין סימני מסחר עם חיפוש מלא (ישראל, ברזיל, יפן); (3) זכות קדימה של 6 חודשים מההגשה הראשונה לשאר המדינות; (4) שירות מעקב על השם; (5) עדיפות למילה מומצאת על מילה מילונית, כי מילים מילוניות כמעט תמיד תפוסות בכיתה 9; (6) תיעוד שימוש ראשון מהיום הראשון.</p>
 
 
 </section>
@@ -1850,7 +1850,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 </ol>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1372">
+<section class="sec" data-tier="rec" data-words="1459">
 <h2 id="s14"><span class="n">14</span>תוכנית עבודה ואבני דרך<span class="tierpill">RECOMMENDED</span><span class="h2min">~7 min</span></h2>
 <p class="lead">ההנחה: מפתח בכיר יחיד ב‑TypeScript עם סוכני קוד, שמפעיל במקביל את מכונת השיווק הקיימת. סדר השלבים קבוע (מובייל → ווב → דסקטופ), שלב 3 מתחיל רק אחרי שער ב' (§15.2, חודש 4), וההחלטות שמעצבות את השלבים המאוחרים מתקבלות בשבוע הראשון.</p>
 
@@ -1872,10 +1872,10 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <p>עוד לא בוצע: מסירה אמיתית דרך Play Console (fast‑follow ו‑on‑demand מהחנות עצמה) ורכישת בדיקה ב‑Play Billing; Apple‑hosted asset packs; מדידה על Pixel/Galaxy/iPhone 15 Pro (המכשירים לא נקנו עדיין, §14.6); בניית Windows; אדפטר Apple FM.</p>
 <li><strong>אב‑טיפוס אימות (יום–יומיים, לפני שם, כותרות ומסך הוכחה):</strong> אפליקציית בדיקה באנדרואיד בלי הרשאת INTERNET שמקבלת חבילת מודל אמיתית (fast‑follow ו‑on‑demand) דרך Play Asset Delivery ומבצעת רכישת בדיקה ב‑Play Billing, על Pixel ו‑Galaxy אמיתיים, עם <code>aapt2 dump permissions</code> על ה‑AAB. עד היום זה אומת רק סטטית (המניפסטים של הספריות); בלי אימות על מכשיר לא קובעים מיצוב. באותו יום גם בדיקת Apple‑hosted asset packs על iPhone עם iOS 26.</li>
 <li>שם המותג, דומיין, וחשבונות: App Store Connect ו‑Play מהחשבונות הקיימים (שם מפתח ניטרלי), Microsoft Partner Center, Cloudflare R2.</li>
-<li>ריפו חדש (monorepo), Expo SDK 55, NativeWind v4, expo-sqlite עם SQLCipher, llama.rn, @react-native-ai/apple, whisper.rn.</li>
-<li>הפעלת סקילי העיצוב בריפו: <code>/impeccable init</code> עם PRODUCT.md ו‑DESIGN.md שמקודדים את FARADAY (§9); סקילי אמיל; frontend-design.</li>
+<li>ריפו חדש (monorepo), Expo SDK 57, expo-sqlite עם SQLCipher, llama.rn, wllama, @react-native-ai/apple, whisper.rn (בוצע: ריפו, SDK 57, SQLCipher, llama.rn, wllama; NativeWind נדחה).</li>
+<li>סקילי העיצוב (<code>/impeccable</code>, אמיל, frontend-design) לא הופעלו; FARADAY מיושם ישירות מ‑§9 דרך הטוקנים ב‑packages/ui, וסוכן המעצב מבקר את המסכים לפני כל סיום.</li>
 <li>קטלוג מודלים גרסה 1 עם מניפסט חתום: חבילות Play Asset Delivery (Android), Apple‑hosted asset packs (iOS 26), ו‑R2 ל‑iOS ישן/דסקטופ/ווב: Instant, Fast, Sharp (Qwen3.5 0.8B/2B/4B), Phi‑4‑mini, nomic‑embed, whisper base.</li>
-<li>מכשירי בדיקה: iPhone 15 Pro (8 GB), iPhone 14 (6 GB), Pixel 8, Galaxy S23, טאבלט אנדרואיד זול, ואימולטור 16 KB.</li>
+<li>מכשירי בדיקה (משה 5.9.2026: לא קונים מכשירים): OnePlus 6T (2018, 8 GB, רצפת אנדרואיד), OnePlus 11 (16 GB, Android 16, האישי של משה), iPhone 13 Pro (6 GB, A15, בלי Apple Intelligence), אימולטורי Pixel עם 16 KB pages וסימולטורי iOS 17/26. פערים שנשארים ללא מכשיר: Pixel/Galaxy אמיתיים ו‑iPhone עם Apple Intelligence; מתועדים ב‑docs/qa/release-checklist.md כ‑BLOCKED.</li>
 </ul>
 
 <h3>14.2 שלב 1: מובייל (שבועות 1–12)</h3>
@@ -1883,7 +1883,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <table>
 <thead><tr><th class="num">שבועות</th><th>אבן דרך</th><th>הגדרת סיום (Definition of Done)</th></tr></thead>
 <tbody>
-<tr><td class="num">1–2</td><td><strong>M1 מנוע</strong>: אדפטר LocalLM, llama.rn + Apple FM, הזרמה, ביטול, סטטיסטיקות</td><td>צ'אט טקסטואלי גולמי עובד על iPhone 15 Pro ו‑Pixel 8 עם שני המנועים; tok/s נמדד ומוצג</td></tr>
+<tr><td class="num">1–2</td><td><strong>M1 מנוע</strong>: אדפטר LocalLM, llama.rn + Apple FM, הזרמה, ביטול, סטטיסטיקות</td><td>צ'אט טקסטואלי גולמי עובד על iPhone 13 Pro ועל OnePlus 6T/11 (המכשירים שיש; לא נקנים מכשירים, משה 5.9.2026) עם llama.rn; Apple FM מאומת בסימולטור iOS 26 בלבד; tok/s נמדד ומוצג</td></tr>
 <tr><td class="num">3–4</td><td><strong>M2 כספת</strong>: קטלוג, מסירת מודלים (Play Asset Delivery באנדרואיד, Apple‑hosted packs ב‑iOS 26, CDN ב‑iOS ישן; המשך, hash, מקום), ייבוא GGUF כ‑handler, בחירת ברירת מחדל לפי RAM, שער CI ל‑aapt2 permissions</td><td>הורדה נקטעת ומתחדשת; מודל פגום נדחה; מכשיר 4 GB רואה רק Instant; ה‑APK ללא INTERNET</td></tr>
 <tr><td class="num">5–6</td><td><strong>M3 צ'אט מלא</strong>: שיחות, תיקיות, חיפוש, אינקוגניטו, פרסונות, Markdown, קוד, ייצוא, הפנקס</td><td>כל מסכי §8 בחלק הצ'אט, בשני ערכות נושא, RTL, VoiceOver ו‑TalkBack</td></tr>
 <tr><td class="num">7</td><td><strong>M4 הוכחה ו‑onboarding</strong>: החותם על כל מצביו, מבחן מצב הטיסה, מד יציאה, מנעול, מסך ההוכחה</td><td>סגירת החותם עם הפטיק; "OUT 0 B" נכון אחרי שבוע שימוש</td></tr>
@@ -1917,7 +1917,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <ul>
 <li>Apple FM ב‑macOS בתוך Tauri, Phi Silica על Copilot+ PC, Hexagon/OpenVINO NPU, Gemini Nano ב‑Android.</li>
 <li>קול רציף hands‑free; ראייה על כל הפלטפורמות; Shortcuts/Siri, Android intents, widgets, keyboard extension.</li>
-<li>שפות ממשק: אנגלית, עברית, ספרדית, פורטוגזית, גרמנית, צרפתית בהשקה; יפנית, קוריאנית, סינית מסורתית ברבעון שאחרי (דרך צינור התרגום הקיים).</li>
+<li>שפות ממשק בהשקה (D13): אנגלית, יפנית, גרמנית, צרפתית, ספרדית, פורטוגזית‑ברזיל; עברית, קוריאנית וסינית מסורתית ברבעון שאחרי (דרך צינור התרגום הקיים).</li>
 </ul>
 
 <h3>14.6 עלויות הקמה (אושרו על ידי משה ב‑3.9.2026; כל רכישה שדורשת תשלום מבוצעת איתו, לא לבד)</h3>
@@ -1942,7 +1942,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <p>סך ההקמה עד ההשקה, בלי מכשירים: כ‑200–600 דולר; עם מכשירים: עד כ‑1,700 דולר. המחירים הם מחירוני 2026 משוערים ומסומנים לאימות ברכישה; שום רכישה לא מתבצעת בלי אישור משה.</p>
 
 <h3>14.7 רשימת 40 הבדיקות לפני כל שחרור (תמצית)</h3>
-<p>מכיוון שאין טלמטריה, הרשימה הזו היא הניטור. הגרסה המלאה חיה בריפו; כאן הקטגוריות:</p>
+<p>מכיוון שאין טלמטריה, הרשימה הזו היא הניטור. הגרסה המלאה (T01–T40 עם פקודות, קריטריוני מעבר ואיזה מכשיר שלנו מריץ כל בדיקה) חיה בריפו ב‑<code>docs/qa/release-checklist.md</code>, ומפת 70 מקרי הקצה של §10 ב‑<code>docs/qa/edge-cases-matrix.md</code>; כאן הקטגוריות:</p>
 <div class="cols2">
 <ul>
 <li>התקנה נקייה על מכשיר הרצפה ועל הדגל בשתי הפלטפורמות</li>

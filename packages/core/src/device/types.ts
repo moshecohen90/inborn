@@ -3,7 +3,7 @@ import type { Tier } from "../catalog/types";
 /** Device protection policy (spec §6.5, §5.8, §10.2–10.3): inputs are raw device signals, output is one status line + one action. */
 
 /** Which column of the §6.5 table applies. A laptop on AC behaves as "desktop" (no battery logic, heat only). */
-export type DeviceClass = "phone" | "tablet" | "laptop" | "desktop" | "browser";
+export type GuardDeviceClass = "phone" | "tablet" | "laptop" | "desktop" | "browser";
 
 /** iOS thermalState names; Android maps NONE→nominal, LIGHT/MODERATE→fair, SEVERE→serious, CRITICAL+→critical. */
 export type ThermalState = "unknown" | "nominal" | "fair" | "serious" | "critical";
@@ -26,7 +26,7 @@ export interface DeviceSignals {
   thermal: ThermalState;
   memoryPressure: MemoryPressure;
   powerSource: PowerSource;
-  deviceClass: DeviceClass;
+  deviceClass: GuardDeviceClass;
   ramGB: number | null;
   currentTier: ModelTier;
   /** True while an answer is streaming: model switches wait for the next message (§6.5). */

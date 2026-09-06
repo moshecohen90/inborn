@@ -1,82 +1,113 @@
 # Inborn desktop (Tauri v2)
 
 Windows and macOS ship together from the same web build of `apps/mobile` (`expo export -p web`), wrapped in a
-Tauri v2 window. Decision D9: Windows through the Microsoft Store, macOS as a notarized DMG from the site — same code.
+Tauri v2 window with a native llama.cpp engine in Rust. Decision D9: Windows through the Microsoft Store, macOS as a
+notarized DMG from the site; same code.
 
-## What exists today
-- `src-tauri/` — the Tauri v2 shell: `tauri.conf.json` (identifier `com.inbornapp.desktop`, window 1120×720 titled
-  "Inborn"), a Rust binary that only opens the window, icons generated from `apps/mobile/assets/icon.png`
-  (`pnpm tauri icon ../mobile/assets/icon.png`).
-- `build.frontendDist = ../../mobile/dist` (paths in `tauri.conf.json` are relative to `src-tauri/`);
-  `beforeBuildCommand` runs the Expo web export, so `pnpm desktop:build` from the repo root is the whole pipeline.
-  The export's absolute `/_expo/...` asset paths resolve unchanged because Tauri serves the bundle from the root of
-  its own origin (`tauri://localhost` on macOS, `http://tauri.localhost` on Windows) — no `baseUrl` change needed.
-- No network: CSP `default-src 'self'; connect-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline';
-  img-src 'self' data:` (the string in `tauri.conf.json`) — the page cannot fetch, open sockets or load anything
-  outside the bundle (`lsof -i -p <pid>` on the running app lists no sockets).
-  `dangerousDisableAssetCspModification: ["style-src"]` stops Tauri from adding a nonce to the inline `<style>` of
-  `index.html`: a nonce in `style-src` makes browsers ignore `'unsafe-inline'`, so react-native-web's runtime
-  `<style>` sheet gets blocked and the whole layout collapses into the top-left corner. `script-src` keeps Tauri's
-  hashes. The frontend does not use `@tauri-apps/api` yet; when the engine lands, `connect-src` needs
-  `ipc: http://ipc.localhost` for Tauri's fetch-based IPC (without it Tauri falls back to `postMessage`).
-  No updater, no plugins, no analytics, `withGlobalTauri` off.
-- Engine: `NullLM` (the in-memory engine from `@inborn/core`), exactly as on web. The Rust engine is M-desktop work.
+## What exists (phase 3, spec §14.4 / §4.5 / §5.1 / §5.3 / §8.9)
+- **Engine** `src-tauri/src/engine.rs`: `llama-cpp-2` in-process (Metal on macOS; `--features vulkan` / `cuda` on
+  Windows; CPU otherwise). One worker thread owns the model + context; commands `lm_load`, `lm_generate` (streams
+  `Delta`s over a `tauri::ipc::Channel`), `lm_abort`, `lm_stats`, `lm_unload` implement the `LocalLM` contract.
+  The GGUF's own Jinja chat template is rendered with minijinja (`enable_thinking` honoured, so Qwen thinking stays
+  off for Instant); llama.cpp's built-in renderer is the fallback. `<think>` blocks stream as `reasoning`.
+- **Adapter** `apps/mobile/src/adapters/tauri.ts` (`TauriLM`, id `tauri`), chosen in `adapters/index.ts` when
+  `window.__TAURI__` exists and the vault has a GGUF; `prepare.web.ts` lists the vault instead of HEAD-probing.
+- **Chats at rest** `src-tauri/src/store.rs`: SQLCipher (rusqlite `bundled-sqlcipher`, CommonCrypto on Apple,
+  vendored OpenSSL on Windows). The 256-bit key is generated once and kept in the OS keychain (`keyring`:
+  macOS Keychain service `com.inbornapp.desktop`, Windows Credential Manager). `TauriChatRepository` runs the same
+  SQL as the phones (`storage/schema.ts`) through `db_run` / `db_all` / `db_batch` (one transaction); the webview
+  never sees the key or the path. Incognito rows are refused; `storage/persistent.ts` picks it inside the shell.
+- **Model vault** `src-tauri/src/models.rs`: `app_data_dir()/models/<id>.gguf` (macOS
+  `~/Library/Application Support/com.inbornapp.desktop/models/`, Windows `%APPDATA%\com.inbornapp.desktop\models\`).
+  Import via *File › Import GGUF Model…* (native dialog) or by dropping a `.gguf` on the window; magic-bytes check,
+  free-space check (file size + 512 MB margin), copy-then-rename. Other dropped files surface as
+  `inborn:documents-dropped` for the documents milestone. Nothing downloads.
+- **Shell** `src-tauri/src/shell.rs`: app menu with accelerators (⌘N new chat, ⇧⌘N new incognito, ⇧⌘I toggle
+  incognito, ⌘L focus composer, ⌘F search, ⌘. stop, ⇧⌘O import) delivered to the page as `inborn:shortcut`
+  events (`onDesktopShortcut()` in `tauri.ts`; focus-composer is handled there, the others wait for the screens);
+  Edit menu so copy/paste work in the webview; tray icon with the seal state (`SEALED · 0 B out`), engine backend,
+  Open / New chat / *Quit (unloads model)*; window position/size persisted by `tauri-plugin-window-state`.
+  Native strings come from `packages/i18n/locales/en.json` (`desktop.*` keys, `include_str!` at build time).
+- **Updater** `src-tauri/src/updater.rs`: `tauri-plugin-updater`, endpoint
+  `https://updates.inbornapp.com/desktop/{{target}}/{{arch}}/{{current_version}}` (placeholder host), minisign
+  public key in `tauri.conf.json`. The check runs only from *File › Check for Updates…* (never at startup), flips the
+  seal to `UNSEALED · checking updates.inbornapp.com` for its duration, and installs only after a second explicit
+  call. The private key lives in the macOS Keychain (`security find-generic-password -s inborn-tauri-updater`); see
+  `scripts/updater-key-env.sh`. Unsigned builds skip updater artefacts (`createUpdaterArtifacts` is enabled only by
+  `tauri.release.conf.json`).
+- **No network for the page**: CSP `default-src 'self'; connect-src ipc: http://ipc.localhost; …` — `ipc:` and
+  `http://ipc.localhost` are Tauri's in-process IPC schemes, not sockets. `scripts/check-csp.mjs` fails CI if any host,
+  wildcard, or the updater host ever appears in the webview CSP. The only process that can open a socket is the Rust
+  updater, on the user's click.
+- **Signing**: `bundle.macOS.signingIdentity: "-"` (ad-hoc) with `hardenedRuntime: true` and an empty
+  `entitlements.plist`, so local builds already carry the hardened-runtime flag (`codesign -d --verbose=2` →
+  `flags=0x10002(adhoc,runtime)`). Developer ID + notarization happen only in `scripts/release-macos.sh` / CI from
+  environment variables; no identity is ever on a dev machine.
 
 ## Build and run
 ```
 corepack pnpm install
-corepack pnpm desktop:build                          # expo export -p web, then tauri build (app + dmg on macOS)
-corepack pnpm --filter @inborn/desktop build:app     # .app bundle only — the local verification path
+corepack pnpm desktop:build:app                      # expo export -p web, then tauri build --bundles app (macOS .app)
+corepack pnpm desktop:build                          # + dmg (macOS) / nsis (Windows)
+corepack pnpm desktop:check                          # CSP gate + Rust unit tests
 open apps/desktop/src-tauri/target/release/bundle/macos/Inborn.app
 ```
-Dev loop: `corepack pnpm desktop:dev` starts Metro on :8081 (`APP_VARIANT=development`) and opens the window on
-`devUrl`. Needs Rust ≥ 1.77.2 (`rustup update stable`) and Xcode command-line tools on macOS; on Windows the MSVC
-toolchain and the WebView2 runtime (part of Windows 11).
+Needs Rust ≥ 1.77 and `cmake` (llama.cpp): on this Mac there is none on PATH, the Android SDK's works:
+`export CMAKE=$HOME/Library/Android/sdk/cmake/3.22.1/bin/cmake` (or `brew install cmake`). Windows needs the MSVC
+toolchain, WebView2, and for `--features vulkan` the LunarG Vulkan SDK (`VULKAN_SDK` set; ships `glslc`).
+Dev loop: `corepack pnpm desktop:dev` (Metro on :8081, `APP_VARIANT=development`).
 
-Unsigned on purpose: `bundle.macOS.signingIdentity` is `null`; the linker's ad-hoc signature is enough to run a local
-build. Developer ID signing and notarization belong to the release pipeline, never to a dev machine.
+Put a model in the vault by hand for a dev run (same as the phones): copy or hard-link a GGUF to
+`~/Library/Application Support/com.inbornapp.desktop/models/instant.gguf`; `instant` is picked first, otherwise the
+first `.gguf` in the folder. Without one the page shows the in-memory engine.
 
-## Plan for M-desktop (spec §4.5, §14.4)
+Headless measurement: build the web export with `EXPO_PUBLIC_AUTOPROMPT=1` (the Chat screen sends one prompt by
+itself), run `Inborn.app/Contents/MacOS/inborn-desktop` from a terminal, and read
+`~/Library/Application Support/com.inbornapp.desktop/dev-run.json` (`dev_write_result`); the Rust log on stderr
+carries `[inborn] +<ms since launch> …` lines.
 
-### 1. Engine: `llama-cpp-2` crate vs `llama-server` sidecar
-| | `llama-cpp-2` in-process | `llama-server` sidecar |
-|---|---|---|
-| Wiring | Rust crate (Apache-2.0) bound to llama.cpp; `LocalLM` = Tauri commands + `ipc::Channel` token stream | Tauri shell sidecar, HTTP on `127.0.0.1` |
-| Binary | one executable, no child process, no ports | +10–30 MB per backend, a child process to supervise |
-| GPU | compile-time features `metal` / `vulkan` / `cuda` | pick a prebuilt server per backend at runtime |
-| Store / sandbox | fits MSIX and the Mac App Store sandbox | loopback HTTP + child process widen Store review, and CSP must open `connect-src` to `http://127.0.0.1` |
-| Crash isolation | a llama.cpp crash takes the app down | stays in the child; the app restarts it |
-| Decision | **default** — keeps the no-network posture and `connect-src 'none'`, same shape as llama.rn on phones | fallback only if CUDA on Windows proves too heavy to link into one binary |
+## Proven on this Mac (6.9.2026, Apple Silicon, Metal, Qwen3.5-0.8B Q4_K_M, n_ctx 4096, thinking off)
+Measured 6.9.2026 on this Mac (Apple Silicon, Metal, Qwen3.5-0.8B Q4_K_M 497 MB, thinking off, n_ctx 4096, 6 threads),
+release `Inborn.app`, auto-prompt "Explain in about 150 words why the sky is blue.", `EXPO_PUBLIC_AUTOPROMPT=1`:
 
-Streaming: `generate(session, messages, opts, on_token: Channel<Delta>)`, abort through a per-session cancellation
-token, `stats()` returning tok/s and time-to-first-token like the mobile adapter. TypeScript side: a
-`devModel.web.ts`-style adapter that picks the Tauri engine when `window.__TAURI_INTERNALS__` exists, else
-`NullLM` / wllama.
+| run | backend ready | model load | TTFT | generation | prompt eval |
+|---|---|---|---|---|---|
+| first launch after install (Metal library compiled from the embedded source) | ~10 s | 537 ms | 614 ms | 188 tokens (rate not captured: perf counters were off in that build) | — |
+| warm relaunch | 54 ms | 484 ms (JS sees 488 ms) | **48 ms** | **156.5 tok/s** (170 tokens) | 600 tok/s (27 tokens) |
 
-### 2. GPU backends
-- macOS: Metal (`llama-cpp-2` feature `metal`), Apple Silicon only; Apple Foundation Models later as a P4 Swift sidecar.
-- Windows: Vulkan as the universal path (AMD, Intel, NVIDIA, Windows-on-ARM), CUDA as an optional second build for
-  NVIDIA; detect the adapter at startup and choose the backend, AVX2 CPU fallback. Chrome-on-ARM WebGPU gaps do not
-  matter here because inference is native.
+Sockets: `lsof -a -p <pid> -i` polled every 0.5 s from launch through generation: **0 hits**; the process holds one unix
+socket (WebKit XPC). `inborn.db` starts with random bytes, not `SQLite format 3` (SQLCipher); key item
+`com.inbornapp.desktop / chat-db-key` in the login Keychain. Screenshot: the header reads `tauri · 156.5 tok/s · TTFT 48 ms`.
+RSS after the run ≈125 MB plus the mmap'd model.
 
-### 3. Models on disk
-`app_data_dir()/models/` — macOS `~/Library/Application Support/com.inbornapp.desktop/models/`, Windows
-`%APPDATA%\com.inbornapp.desktop\models\`. Same GGUF catalog and sha256 manifest as mobile. Files arrive through
-the catalog downloader (Cloudflare R2, spec §4.5) or "Import GGUF…" (file dialog / drag-and-drop). Downloading is
-the only network use, runs in Rust behind an explicit user action; the webview keeps `connect-src 'none'`.
+Ad-hoc dev builds and the Keychain: each rebuild has a new code hash, so macOS asks for the login password before
+the *next* build may read the key the previous one created (`Inborn wants to use your confidential information…`).
+Allow it with "Always Allow", or reset the dev state: `security delete-generic-password -s com.inbornapp.desktop -a
+chat-db-key` and delete `inborn.db*` (dev chats are gone). Developer ID builds keep a stable designated requirement
+and never prompt.
 
-### 4. Packaging and distribution
-- Windows: MSIX for the Microsoft Store (tauri-windows-bundle, or the bundler's `msix` target once it lands;
-  otherwise the NSIS `.exe` as a Store EXE listing); Azure Trusted Signing (≈$10/month) for the direct download.
-  Partner Center account ≈$19 one-time (spec §14.6, Moshe's call).
-- macOS: `dmg` target, Developer ID + notarization (`APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_TEAM_ID` from the CI
-  keychain), hardened runtime; Mac App Store later (sandbox + Store receipt for Pro).
-- Updater only once signing exists (the Tauri updater requires a signed manifest); Store builds update through the Store.
-- CI: `tauri-action` matrix (macos-14 arm64, windows x64 + arm64), unsigned artifacts on PRs, signed on tags.
+## Packaging and distribution
+- **macOS**: `scripts/release-macos.sh` — Developer ID Application signature with hardened runtime, notarytool
+  submission + stapling (tauri-bundler does both when `APPLE_ID`/`APPLE_PASSWORD`/`APPLE_TEAM_ID` are set), DMG, and
+  the `.app.tar.gz` + `.sig` for the updater. `scripts/verify-macos.sh <app> --notarized` checks the runtime flag,
+  empty entitlements, the stapled ticket and Gatekeeper. Ad-hoc dev builds pass the same script without the flag.
+- **Windows**: NSIS installer (`currentUser` install mode, per Store guidance for EXE listings). Authenticode via
+  Azure Trusted Signing later (`bundle.windows.signCommand`).
+- **Microsoft Store** (decision D9): list as a *Win32 app (EXE installer)* in Partner Center — the NSIS `.exe` with
+  silent switch `/S`, hosted at a stable HTTPS URL, install-size and `currentUser` mode declared; the Store handles
+  updates for that channel, so the Store build ships **without** the updater (`plugins.updater` removed via a
+  `--config` overlay) to avoid double update paths. MSIX is the alternative once tauri's bundler ships an `msix`
+  target (or via `MSIX Packaging Tool` over the NSIS output); it becomes required only for Store features we do not
+  use (app-execution alias, restricted capabilities). Partner Center: one-time ≈$19 (Moshe's call, spec §14.6).
+- **CI** `.github/workflows/desktop.yml`: `gate` (typecheck, lint, tests, CSP), then a matrix `macos-14` (arm64,
+  Metal; `app,dmg`) + `windows-latest` (x64, `--features vulkan`, NSIS) + `windows-latest` CPU-only fallback, with the
+  Rust cache, the LunarG SDK and a SPIRV-Headers install (ggml does `find_package(SPIRV-Headers CONFIG)`, which the
+  Windows SDK installer does not provide; it is exposed through `CMAKE_PREFIX_PATH`);
+  unsigned artefacts on PRs/`main`, signed + notarized + updater-signed on `v*` tags from repository secrets
+  (`APPLE_*`, `TAURI_SIGNING_PRIVATE_KEY`). `workflow_dispatch` with `cuda: true` adds a Windows CUDA build
+  (CUDA 12.6 toolkit). Not run yet (no push from this stream); YAML and paths validated locally.
 
-### 5. Order of work
-1. Engine crate behind `LocalLM` (Metal first, measured on this Mac), TypeScript adapter switch.
-2. File and SQLite adapters (Tauri fs + SQLCipher through Rust), "Import GGUF…".
-3. Vulkan / CUDA Windows builds and GPU detection.
-4. Signing, notarization, DMG; MSIX + Partner Center listing.
-5. Tray with the seal state, keyboard shortcuts, drag-and-drop, updater.
+## Not done in this phase
+Sidebar/command-palette layout (§8.9 is UI work), GPU auto-detect between Vulkan/CUDA at runtime (one binary per
+backend for now), Mac App Store sandbox build, Pro licensing, documents/RAG (drop events are surfaced only), the
+screens' handling of `new-chat` / `toggle-incognito` shortcuts (events are delivered; the shell stream wires them).

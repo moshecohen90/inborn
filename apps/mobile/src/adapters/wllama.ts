@@ -2,6 +2,7 @@
 import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
 import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+import { fileOfUri, modelFile } from "../web/opfs";
 
 /* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
 const WASM_PATHS = { default: "/wllama/wllama.wasm" };
@@ -48,14 +49,11 @@ export class WllamaLM implements LocalLM {
     const [threads, layers] = [threadCount(opts.threads), await gpuLayers(opts.gpuLayers)];
     const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
     wllama.setCompat(COMPAT_PATHS);
-    await wllama.loadModelFromUrl(model.uri, {
-      n_ctx: opts.nCtx,
-      n_threads: threads,
-      n_gpu_layers: layers,
-      jinja: true,
-      chat_template: model.chatTemplate,
-      log_level: LogLevel.WARN,
-    });
+    const params = { n_ctx: opts.nCtx, n_threads: threads, n_gpu_layers: layers, jinja: true, chat_template: model.chatTemplate, log_level: LogLevel.WARN };
+    const opfs = fileOfUri(model.uri);
+    /* opfs:// is the delivered GGUF on this device (src/web/opfs.ts): no network, wllama reads the File in slices. */
+    if (opfs) await wllama.loadModel([await modelFile(opfs)], params);
+    else await wllama.loadModelFromUrl(model.uri, params);
     this.wllama = wllama;
     this.session = { model, nCtx: opts.nCtx };
     console.info(

@@ -1,6 +1,6 @@
 import { Dimensions, Platform } from "react-native";
 import * as Battery from "expo-battery";
-import { thermalFromAndroid, type AndroidThermalContext, type BatterySignal, type BatteryState, type DeviceClass, type MemoryPressure, type PowerSource, type ThermalState } from "@inborn/core";
+import { thermalFromAndroid, type AndroidThermalContext, type BatterySignal, type BatteryState, type GuardDeviceClass, type MemoryPressure, type PowerSource, type ThermalState } from "@inborn/core";
 import { AndroidTrim, DeviceGuard, isAndroidSnapshot, type AndroidSnapshot, type Snapshot } from "../../modules/device-guard";
 
 /** Raw device signals before the policy: every field falls back to "unknown" where the platform has no API (§6.5 signal table). */
@@ -9,7 +9,7 @@ export interface RawSignals {
   thermal: ThermalState;
   memoryPressure: MemoryPressure;
   powerSource: PowerSource;
-  deviceClass: DeviceClass;
+  deviceClass: GuardDeviceClass;
   ramGB: number | null;
   baseThreads: number;
 }
@@ -45,7 +45,7 @@ export function pressureFromTrim(level: number): MemoryPressure | null {
   return null;
 }
 
-function classFromSnapshot(s: Snapshot | null): DeviceClass {
+function classFromSnapshot(s: Snapshot | null): GuardDeviceClass {
   if (web) return tauri ? "desktop" : "browser";
   const { width, height } = Dimensions.get("window");
   const tablet = s?.isTablet ?? (Platform.OS === "ios" ? Platform.isPad : Math.min(width, height) >= 600);
