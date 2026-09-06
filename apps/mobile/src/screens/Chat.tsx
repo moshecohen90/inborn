@@ -4,7 +4,7 @@ import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
-import { radius } from "@inborn/ui";
+import { Icon, radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
@@ -44,11 +44,14 @@ import { UserMessage } from "../components/chat/UserMessage";
 import { Composer } from "../components/chat/Composer";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { ContextMeter } from "../components/chat/ContextMeter";
+import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
+import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
-import { shape, type } from "../components/chat/styles";
+import { shape } from "../components/chat/styles";
+import { useType } from "../services/type";
 import { copyText } from "../lib/clipboard";
 import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
@@ -96,6 +99,7 @@ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content }) => ({ id, role, content }));
 
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, sealState, sealProgress }: ChatProps) {
+  const type = useType();
   const { t } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -507,10 +511,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const attachedNames = docs.documents.map((d) => d.name);
   const onMic = () => (paywallFor(tier, { kind: "feature", feature: "voiceConversation" }) ? onOpenPaywall?.() : flash(t("chat.comingSoon")));
 
-  return (
-    // Edge-to-edge Android does not resize the window for the keyboard, so the screen pads itself (§9.6 anchored composer).
-    <KeyboardAvoidingView behavior="padding" style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: insets.top + 8, paddingBottom: insets.bottom }]}>
-      <View style={styles.header}>
+  const [topH, setTopH] = useState(0);
+  const [bottomH, setBottomH] = useState(0);
+  const top = (
+    <>
+      <FloatingToolbar style={styles.header}>
         <Pressable testID="open-chats" accessibilityRole="button" onPress={onOpenChats} hitSlop={8} style={styles.headerBtn}>
           <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
         </Pressable>
@@ -520,12 +525,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             {busy && liveTps > 0 ? t("chat.liveTps", { tps: liveTps.toFixed(0) }) : sealLabel}
           </Text>
         </View>
-        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-          <Text style={[type.monoLabel, { color: theme.text2 }]}>
-            {incognito ? "◐" : "▣"} {modelLabel(model.id)}
+        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+          {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
+          <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
+            {modelLabel(model.id)}
           </Text>
         </Pressable>
-      </View>
+      </FloatingToolbar>
       {incognito ? (
         <Text testID="incognito-badge" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
           {t("chat.incognito.badge")}
@@ -550,11 +556,73 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </Pressable>
         </View>
       ) : null}
+    </>
+  );
+  const bottom = (
+    <>
+      {level === "full" ? (
+        <View testID="context-banner" style={[styles.banner, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
+          <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("chat.contextFull")}</Text>
+          <Pressable testID="summarize" accessibilityRole="button" disabled={summarizing || busy} onPress={() => void summarizeAndContinue()} style={[shape.control, { backgroundColor: theme.ctaFill, opacity: summarizing || busy ? 0.5 : 1, minHeight: 36 }]}>
+            <Text style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>{summarizing ? t("chat.summarizing") : t("chat.summarizeContinue")}</Text>
+          </Pressable>
+        </View>
+      ) : null}
+      {toast ? (
+        <Text testID="toast" style={[type.caption, styles.centered, { color: theme.text2 }]}>
+          {toast}
+        </Text>
+      ) : null}
+      {attachedNames.length ? (
+        <View testID="attached-docs" style={styles.chips}>
+          {docs.documents.map((d) => (
+            <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: d.name })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
+              <Icon name="paperclip" size={12} color={theme.accent} />
+              <Text numberOfLines={1} style={[type.caption, styles.docChipText, { color: theme.text }]}>
+                {d.name}
+              </Text>
+              <Icon name="x" size={12} color={theme.text3} />
+            </Pressable>
+          ))}
+          {docs.strict ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.strict")}</Text> : null}
+        </View>
+      ) : null}
+      <ContextMeter fullness={budget.fullness} />
+      <Composer
+        inputRef={inputRef}
+        onAttach={() => setAttachOpen(true)}
+        attachedCount={attachedNames.length}
+        onMic={onMic}
+        value={draft}
+        onChange={setDraft}
+        onSend={send}
+        onStop={() => {
+          stopReason.current = "user";
+          abort.current?.abort();
+        }}
+        busy={busy || summarizing}
+        disabled={status.kind !== "ready"}
+        editing={editingId !== null}
+        onCancelEdit={() => {
+          setEditingId(null);
+          setDraft("");
+        }}
+        placeholder={t("chat.placeholder")}
+        incognito={incognito}
+      />
+    </>
+  );
+
+  return (
+    // Edge-to-edge Android does not resize the window for the keyboard, so the screen pads itself (§9.6 anchored composer).
+    <KeyboardAvoidingView behavior="padding" style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: liquidGlass ? 0 : insets.top + 8, paddingBottom: insets.bottom }]}>
+      {/* Glass only reads as glass with content moving under it (§9.7): on iOS 26 both bars float over the list, which pads itself by their measured heights. */}
+      {liquidGlass ? null : top}
       <FlatList
         ref={list}
         data={rows}
         keyExtractor={(r) => r.id}
-        contentContainerStyle={styles.list}
+        contentContainerStyle={[styles.list, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
         onScroll={onScroll}
         scrollEventThrottle={64}
         keyboardShouldPersistTaps="handled"
@@ -587,55 +655,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           )
         }
       />
-      {level === "full" ? (
-        <View testID="context-banner" style={[styles.banner, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
-          <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("chat.contextFull")}</Text>
-          <Pressable testID="summarize" accessibilityRole="button" disabled={summarizing || busy} onPress={() => void summarizeAndContinue()} style={[shape.control, { backgroundColor: theme.ctaFill, opacity: summarizing || busy ? 0.5 : 1, minHeight: 36 }]}>
-            <Text style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>{summarizing ? t("chat.summarizing") : t("chat.summarizeContinue")}</Text>
-          </Pressable>
-        </View>
+      {liquidGlass ? null : bottom}
+      {liquidGlass ? (
+        <ChromeBar style={[styles.overlayTop, { paddingTop: insets.top + 8 }]} onLayout={(e) => setTopH(e.nativeEvent.layout.height)}>
+          {top}
+        </ChromeBar>
       ) : null}
-      {toast ? (
-        <Text testID="toast" style={[type.caption, styles.centered, { color: theme.text2 }]}>
-          {toast}
-        </Text>
+      {liquidGlass ? (
+        <ChromeBar style={styles.overlayBottom} onLayout={(e) => setBottomH(e.nativeEvent.layout.height)}>
+          {bottom}
+        </ChromeBar>
       ) : null}
-      {attachedNames.length ? (
-        <View testID="attached-docs" style={styles.chips}>
-          {docs.documents.map((d) => (
-            <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: d.name })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
-              <Text numberOfLines={1} style={[type.caption, styles.docChipText, { color: theme.text }]}>
-                ⎘ {d.name}
-              </Text>
-              <Text style={[type.caption, { color: theme.text3 }]}>✕</Text>
-            </Pressable>
-          ))}
-          {docs.strict ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.strict")}</Text> : null}
-        </View>
-      ) : null}
-      <ContextMeter fullness={budget.fullness} />
-      <Composer
-        inputRef={inputRef}
-        onAttach={() => setAttachOpen(true)}
-        attachedCount={attachedNames.length}
-        onMic={onMic}
-        value={draft}
-        onChange={setDraft}
-        onSend={send}
-        onStop={() => {
-          stopReason.current = "user";
-          abort.current?.abort();
-        }}
-        busy={busy || summarizing}
-        disabled={status.kind !== "ready"}
-        editing={editingId !== null}
-        onCancelEdit={() => {
-          setEditingId(null);
-          setDraft("");
-        }}
-        placeholder={t("chat.placeholder")}
-        incognito={incognito}
-      />
 
       <Sheet visible={actionRow !== null} onClose={() => setActionRow(null)} testID="message-actions" scroll={false}>
         {actionRow ? (
@@ -756,8 +786,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44, gap: 8 },
+  modelChip: { flexDirection: "row", gap: 6, flexShrink: 1 },
+  modelChipText: { flexShrink: 1 },
+  overlayTop: { position: "absolute", top: 0, left: 0, right: 0 },
+  overlayBottom: { position: "absolute", bottom: 0, left: 0, right: 0 },
   headerBtn: { minWidth: 44, minHeight: 44, justifyContent: "center" },
-  sealWrap: { flexDirection: "row", alignItems: "center", gap: 8 },
+  sealWrap: { flexDirection: "row", alignItems: "center", gap: 8, flexShrink: 1 },
   centered: { textAlign: "center", paddingTop: 4, paddingHorizontal: 16 },
   notice: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 16, marginTop: 6, paddingVertical: 6, borderBottomWidth: StyleSheet.hairlineWidth },
   noticeBtn: { minHeight: 28, justifyContent: "center" },

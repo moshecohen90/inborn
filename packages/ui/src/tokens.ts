@@ -13,6 +13,8 @@ export const dark = {
   danger: "#F25555",
   ctaFill: "#E6EAEE",
   ctaText: "#0A0D11",
+  /** Text on a danger fill (the one filled colour besides cta): light in both schemes. */
+  onDanger: "#F3F5F7",
 } as const;
 
 export const light = {
@@ -29,6 +31,7 @@ export const light = {
   danger: "#C93A3A",
   ctaFill: "#12161B",
   ctaText: "#F3F5F7",
+  onDanger: "#F3F5F7",
 } as const;
 
 export type Theme = { [K in keyof typeof dark]: string };
@@ -39,38 +42,78 @@ export const DEFAULT_THEME_MODE: ThemeMode = "system";
 /** Glow/bloom fills keep the dark accent in both schemes (§9.2): only accent *text* darkens in light mode. */
 export const glow = { filament: "#F0B35B", sealed: "#3ECF8E" } as const;
 
+/** IBM Plex (OFL 1.1) ships in the bundle: `apps/mobile/assets/fonts` on native (expo-font), `public/fonts` on web (@font-face). */
+export const fontFamilies = { sans: "IBMPlexSans", mono: "IBMPlexMono" } as const;
+export type FontKind = keyof typeof fontFamilies;
+export type FontWeight = "400" | "500" | "600";
+
+/** Web stacks: the bundled family first, then each platform's own sans/mono, so no surface can ever land on a serif. */
 export const fonts = {
-  sans: "IBM Plex Sans",
-  sansHebrew: "IBM Plex Sans Hebrew",
-  mono: "IBM Plex Mono",
+  sans: '"IBMPlexSans", -apple-system, "Segoe UI", Roboto, sans-serif',
+  mono: '"IBMPlexMono", ui-monospace, Menlo, Consolas, monospace',
 } as const;
 
-/** Browsers accept a stack; native font names must be exact, so the web gets its own until Plex ships in the bundle. */
-export const webFonts = {
-  sans: "IBM Plex Sans, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
-  sansHebrew: "IBM Plex Sans Hebrew, system-ui, sans-serif",
-  mono: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-} as const;
+/** One registered family name per bundled face: Android cannot pick a weight inside a custom family, it would synthesise bold. */
+export const fontFaces: Record<FontKind, Record<FontWeight, string>> = {
+  sans: { "400": "IBMPlexSans", "500": "IBMPlexSans-Medium", "600": "IBMPlexSans-SemiBold" },
+  mono: { "400": "IBMPlexMono", "500": "IBMPlexMono-Medium", "600": "IBMPlexMono-Medium" },
+};
+
+export type FontWeightInput = FontWeight | "700" | "800" | "900" | "bold" | "normal" | 400 | 500 | 600 | 700;
+
+/** Clamp any requested weight to a bundled face (Plex Bold is not shipped; SemiBold is the heaviest the scale uses). */
+export function bundledWeight(weight: FontWeightInput = "400"): FontWeight {
+  const n = weight === "bold" ? 700 : weight === "normal" ? 400 : Number(weight);
+  return n >= 600 ? "600" : n >= 500 ? "500" : "400";
+}
+
+/** The `fontFamily` + `fontWeight` pair for a face: a CSS stack on the web, the exact registered face name on native. */
+export function fontFace(kind: FontKind, weight: FontWeightInput = "400", platform: "web" | "native"): { fontFamily: string; fontWeight: FontWeight } {
+  const w = bundledWeight(weight);
+  return { fontFamily: platform === "web" ? fonts[kind] : fontFaces[kind][w], fontWeight: w };
+}
 
 /** §9.4: 4 chips/status dots · 10 buttons/fields · 14 cards · 20 sheets/cartridges · pill. `chip` stays the legacy pill alias. */
 export const radius = { tag: 4, control: 10, card: 14, sheet: 20, pill: 999, chip: 999 } as const;
 export const space = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64] as const;
 
-/** §9.3 type scale: [fontSize, lineHeight, weight, letterSpacing(em)]. Mono only for readouts and labels. */
+export interface TypeStep {
+  font: FontKind;
+  fontSize: number;
+  lineHeight: number;
+  fontWeight: FontWeight;
+  /** Absolute units at scale 1 (the spec gives em); scaled with the size. */
+  letterSpacing?: number;
+  uppercase?: boolean;
+}
+
+/** §9.3 type scale. Mono only for readouts and labels, never paragraphs. */
 export const typeScale = {
-  display: { fontSize: 32, lineHeight: 38, fontWeight: "600", letterSpacing: -0.64 },
-  title: { fontSize: 22, lineHeight: 28, fontWeight: "600", letterSpacing: -0.22 },
-  heading: { fontSize: 17, lineHeight: 24, fontWeight: "600" },
-  body: { fontSize: 16, lineHeight: 25, fontWeight: "400" },
-  bodySmall: { fontSize: 14, lineHeight: 20, fontWeight: "400" },
-  caption: { fontSize: 12, lineHeight: 16, fontWeight: "500" },
-  monoReadout: { fontSize: 12, lineHeight: 16, fontWeight: "400" },
-  monoLabel: { fontSize: 11, lineHeight: 14, fontWeight: "500", letterSpacing: 0.88 },
-} as const;
+  display: { font: "sans", fontSize: 32, lineHeight: 38, fontWeight: "600", letterSpacing: -0.64 },
+  title: { font: "sans", fontSize: 22, lineHeight: 28, fontWeight: "600", letterSpacing: -0.22 },
+  heading: { font: "sans", fontSize: 17, lineHeight: 24, fontWeight: "600" },
+  body: { font: "sans", fontSize: 16, lineHeight: 25, fontWeight: "400" },
+  bodySmall: { font: "sans", fontSize: 14, lineHeight: 20, fontWeight: "400" },
+  caption: { font: "sans", fontSize: 12, lineHeight: 16, fontWeight: "500" },
+  monoReadout: { font: "mono", fontSize: 12, lineHeight: 16, fontWeight: "400" },
+  monoLabel: { font: "mono", fontSize: 11, lineHeight: 14, fontWeight: "500", letterSpacing: 0.88, uppercase: true },
+} as const satisfies Record<string, TypeStep>;
+export type TypeName = keyof typeof typeScale;
+
+/** A step of the scale multiplied by the text-size setting; tracking scales with the glyphs so labels keep their shape. */
+export function scaledStep(step: TypeStep, scale: number): TypeStep {
+  return {
+    ...step,
+    fontSize: Math.round(step.fontSize * scale),
+    lineHeight: Math.round(step.lineHeight * scale),
+    ...(step.letterSpacing !== undefined ? { letterSpacing: Math.round(step.letterSpacing * scale * 100) / 100 } : {}),
+  };
+}
 
 /** §9.4 motion, ms. Bounce only on the first seal close. */
 export const motion = { press: 120, state: 180, sheet: 280, seal: 420, bloom: 600, breathe: 1600 } as const;
 export const easing = { out: [0.23, 1, 0.32, 1] as const };
 
-/** Text-size steps offered in Settings (multiplier on the type scale). */
-export const TEXT_SCALES = [0.9, 1, 1.15, 1.3] as const;
+/** Text-size steps offered in Settings (multiplier on the whole type scale, every surface, web included); 200 % is the ceiling. */
+export const TEXT_SCALES = [0.9, 1, 1.15, 1.3, 1.5, 1.75, 2] as const;
+export const MAX_TEXT_SCALE = 2;

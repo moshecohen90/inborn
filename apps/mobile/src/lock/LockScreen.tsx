@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { attemptsLeft, showCountdown } from "@inborn/core";
 import { biometricLabel } from "@inborn/i18n";
 
-import { useTheme, FONT } from "../services/theme";
+import { useTheme } from "../services/theme";
 import { useAppServices } from "../services/AppServices";
 import { Seal } from "../components/Seal";
 import { Button, MonoLabel } from "../components/shell/primitives";
 import { PasscodeSheet } from "./PasscodeSheet";
 import { WipeSheet } from "../screens/Settings/WipeSheet";
+import { font } from "../services/type";
 
 /** S53: the seal, "Locked", the biometric prompt by itself, a passcode as the fallback. Rendered above everything while locked. */
 export function LockScreen() {
@@ -67,6 +68,6 @@ const styles = StyleSheet.create({
   root: { paddingHorizontal: 24, justifyContent: "space-between" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 16 },
   locked: { marginTop: 8 },
-  explain: { fontFamily: FONT.sans, fontSize: 15, lineHeight: 22, textAlign: "center", maxWidth: 320 },
+  explain: { ...font("sans"), fontSize: 15, lineHeight: 22, textAlign: "center", maxWidth: 320 },
   actions: { gap: 4 },
 });

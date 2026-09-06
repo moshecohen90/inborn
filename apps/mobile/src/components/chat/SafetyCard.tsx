@@ -2,10 +2,12 @@ import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { CrisisResource } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
-import { shape, type } from "./styles";
+import { shape } from "./styles";
+import { useType } from "../../services/type";
 
 /** Resources card above the answer when crisis language is detected (§8.2 S14). Never blocks the chat; dismissible. */
 export function SafetyCard({ resources, onDismiss }: { resources: CrisisResource[]; onDismiss: () => void }) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   return (

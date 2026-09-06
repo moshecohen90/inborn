@@ -2,9 +2,10 @@ import { useState, type RefObject } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf } from "@inborn/core";
-import { radius } from "@inborn/ui";
+import { Icon, radius } from "@inborn/ui";
 import { useFontScale, useTheme } from "../../lib/theme";
-import { type } from "./styles";
+import { useType } from "../../services/type";
+import { DISABLED_OPACITY } from "../shell/primitives";
 
 interface ComposerProps {
   value: string;
@@ -28,11 +29,12 @@ interface ComposerProps {
 
 const LINE = 25;
 
-/** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; [+] and mic wait for M5. */
+/** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; attach and mic sit in text-2, dimmed while they wait for M5. */
 export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, inputRef }: ComposerProps) {
   const theme = useTheme();
+  const type = useType();
   const { t } = useTranslation();
-  const scale = useFontScale();
+  const scale = useFontScale() * type.scale;
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
   const canSend = !!value.trim() && !disabled && !busy;
@@ -47,8 +49,16 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
         </View>
       ) : null}
       <View style={[styles.box, { backgroundColor: incognito ? theme.bg : theme.well, borderColor: focused ? `${theme.accent}99` : theme.border }]}>
-        <Pressable testID="attach" accessibilityRole="button" accessibilityLabel={t("chat.attach")} accessibilityState={{ disabled: !onAttach }} disabled={!onAttach} onPress={onAttach} style={styles.iconBtn}>
-          <Text style={[styles.icon, { color: attachedCount ? theme.accent : onAttach ? theme.text2 : theme.text3 }]}>{attachedCount ? "⎘" : "+"}</Text>
+        <Pressable
+          testID="attach"
+          accessibilityRole="button"
+          accessibilityLabel={t("chat.attach")}
+          accessibilityState={{ disabled: !onAttach }}
+          disabled={!onAttach}
+          onPress={onAttach}
+          style={[styles.iconBtn, { opacity: onAttach ? 1 : DISABLED_OPACITY }]}
+        >
+          <Icon name={attachedCount ? "paperclip" : "plus"} size={22} color={attachedCount ? theme.accent : theme.text2} />
           {attachedCount ? (
             <View style={[styles.badge, { backgroundColor: theme.accent }]}>
               <Text allowFontScaling={false} style={[styles.badgeText, { color: theme.bg }]}>
@@ -71,20 +81,24 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           style={[type.body, styles.input, { color: theme.text, maxHeight: LINE * 6 * scale + 20, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]}
           accessibilityLabel={placeholder}
         />
-        <Pressable testID="mic" accessibilityRole="button" accessibilityLabel={t("chat.dictate")} accessibilityState={{ disabled: !onMic }} disabled={!onMic} onPress={onMic} style={styles.iconBtn}>
-          <Text style={[styles.icon, { color: theme.text3 }]}>◉</Text>
+        <Pressable
+          testID="mic"
+          accessibilityRole="button"
+          accessibilityLabel={t("chat.dictate")}
+          accessibilityState={{ disabled: !onMic }}
+          disabled={!onMic}
+          onPress={onMic}
+          style={[styles.iconBtn, { opacity: onMic ? 1 : DISABLED_OPACITY }]}
+        >
+          <Icon name="mic" size={22} color={theme.text2} />
         </Pressable>
         {busy ? (
           <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.danger }]}>
-            <Text allowFontScaling={false} style={styles.stopGlyph}>
-              ■
-            </Text>
+            <Icon name="stop" size={14} color={theme.ctaFill} fill />
           </Pressable>
         ) : (
           <Pressable testID="send" accessibilityRole="button" accessibilityLabel={t("chat.send")} accessibilityState={{ disabled: !canSend }} disabled={!canSend} onPress={onSend} style={[styles.send, { backgroundColor: theme.ctaFill, opacity: canSend ? 1 : 0.45 }]}>
-            <Text allowFontScaling={false} style={[styles.sendGlyph, { color: theme.ctaText }]}>
-              ↑
-            </Text>
+            <Icon name="arrowUp" size={20} color={theme.ctaText} strokeWidth={2.5} />
           </Pressable>
         )}
       </View>
@@ -100,9 +114,6 @@ const styles = StyleSheet.create({
   iconBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   badge: { position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: "center", justifyContent: "center" },
   badgeText: { fontSize: 10, fontWeight: "700" },
-  icon: { fontSize: 20 },
   input: { flex: 1, minHeight: 44, paddingVertical: 10, paddingHorizontal: 4 },
   send: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center", margin: 4 },
-  sendGlyph: { fontSize: 18, fontWeight: "600" },
-  stopGlyph: { color: "#fff", fontSize: 12 },
 });

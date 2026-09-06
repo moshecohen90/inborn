@@ -6,7 +6,8 @@ import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { PersonaGlyph } from "../../components/chat/PersonaGlyph";
 import { ProTag, Sheet, SheetItem } from "../../components/chat/Sheet";
-import { shape, type } from "../../components/chat/styles";
+import { shape } from "../../components/chat/styles";
+import { useType } from "../../services/type";
 
 interface Props {
   visible: boolean;
@@ -23,6 +24,7 @@ const empty = (): Draft => ({ name: "", icon: "spark", systemPrompt: "", tempera
 
 /** Persona library (§8.5 S41): four built-ins, custom ones with name, glyph, prompt, temperature, fixed disclaimer. */
 export function PersonasSheet({ visible, onClose, store, onChanged, onUnlock }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const { tier } = useEntitlement();

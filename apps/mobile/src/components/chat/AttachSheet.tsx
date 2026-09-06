@@ -1,9 +1,12 @@
-import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { DocumentRecord } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { Sheet, SheetItem } from "./Sheet";
-import { shape, type } from "./styles";
+import { shape } from "./styles";
+import { useType } from "../../services/type";
+import { Icon } from "@inborn/ui";
+import { Toggle } from "../shell/primitives";
 
 interface Props {
   visible: boolean;
@@ -20,6 +23,7 @@ interface Props {
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
 export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const indexed = (d: DocumentRecord) => d.chunkCount > 0;
@@ -39,7 +43,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
               onPress={() => (on ? onDetach(d.id) : onAttach(d.id))}
               trailing={
                 <View testID={on ? `attached-${d.id}` : undefined} style={[styles.tick, { borderColor: on ? theme.accent : theme.border, backgroundColor: on ? theme.accent : "transparent" }]}>
-                  {on ? <Text style={[styles.tickGlyph, { color: theme.bg }]}>✓</Text> : null}
+                  {on ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}
                 </View>
               }
             />
@@ -53,7 +57,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <Text style={[type.body, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[type.caption, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Switch testID="attach-strict" value={strict} onValueChange={onSetStrict} trackColor={{ true: theme.text2, false: theme.border }} />
+        <Toggle testID="attach-strict" value={strict} onChange={onSetStrict} />
       </View>
       <Pressable testID="attach-manage" accessibilityRole="button" onPress={onManage} style={[shape.control, styles.manage, { borderColor: theme.border }]}>
         <Text style={[type.body, { color: theme.text }]}>{t("chat.attach.manage")}</Text>
@@ -64,7 +68,6 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
 
 const styles = StyleSheet.create({
   tick: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
-  tickGlyph: { fontSize: 12, fontWeight: "700" },
   empty: { paddingHorizontal: 12, paddingVertical: 12 },
   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 12, marginTop: 8, paddingTop: 12, borderTopWidth: StyleSheet.hairlineWidth },
   grow: { flex: 1, gap: 2 },

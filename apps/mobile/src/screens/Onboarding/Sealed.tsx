@@ -6,10 +6,12 @@ import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
 import { Seal, type SealState } from "../../components/Seal";
-import { Button, MonoLabel, shellStyles } from "../../components/shell/primitives";
+import { Button, MonoLabel } from "../../components/shell/primitives";
+import { useType } from "../../services/type";
 
 /** S04, the peak: the ring snaps shut, one haptic, "SEALED · ON-DEVICE". */
 export function Sealed() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
@@ -38,7 +40,7 @@ export function Sealed() {
         <MonoLabel color={done ? theme.sealed : theme.text3} testID="sealed-label">
           {t("onboarding.sealed.label")}
         </MonoLabel>
-        <Text style={[shellStyles.title, styles.center, { color: theme.text }]}>{t("onboarding.sealed.line")}</Text>
+        <Text style={[type.title, styles.center, { color: theme.text }]}>{t("onboarding.sealed.line")}</Text>
       </View>
     </Screen>
   );

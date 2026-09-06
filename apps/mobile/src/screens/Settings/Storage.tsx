@@ -5,13 +5,15 @@ import { formatBytes } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Row, Section, shellStyles } from "../../components/shell/primitives";
+import { Button, Row, Section } from "../../components/shell/primitives";
 import { Sheet } from "../../components/shell/Sheet";
 import { WipeSheet } from "./WipeSheet";
 import { storageSizes, type StorageSizes } from "./storageSizes";
+import { useType } from "../../services/type";
 
 /** S51: what is stored, where, how much, and how to delete or export it. Export/transfer arrive with Pro (M6). */
 export function Storage() {
+  const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { store, storageKind } = useAppServices();
@@ -49,8 +51,8 @@ export function Storage() {
         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
         <Row label={t("storage.reports")} value={size(sizes?.reports)} />
       </Section>
-      <Text style={[shellStyles.bodySmall, styles.note, { color: theme.text2 }]}>{Platform.OS === "web" ? t("storage.backup.web") : t("storage.backup")}</Text>
-      <Text style={[shellStyles.bodySmall, { color: theme.text3 }]}>{t("storage.noSync")}</Text>
+      <Text style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{Platform.OS === "web" ? t("storage.backup.web") : t("storage.backup")}</Text>
+      <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("storage.noSync")}</Text>
       <Section title={t("storage.actions")}>
         <Row label={t("storage.exportAll")} sub={t("storage.pro")} disabled />
         <Row label={t("storage.transfer")} sub={t("storage.pro")} disabled />
@@ -58,7 +60,7 @@ export function Storage() {
         <Row testID="storage-delete-all" label={t("storage.deleteEverything")} sub={t("wipe.row")} onPress={() => setWipeOpen(true)} danger chevron />
       </Section>
       <Sheet visible={confirmChats} onClose={() => setConfirmChats(false)} title={t("storage.deleteChats")}>
-        <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("storage.deleteChats.explain")}</Text>
+        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("storage.deleteChats.explain")}</Text>
         <Button title={t("storage.deleteChats")} variant="danger" onPress={() => void deleteChats()} />
         <Button title={t("chats.cancel")} variant="link" onPress={() => setConfirmChats(false)} />
       </Sheet>

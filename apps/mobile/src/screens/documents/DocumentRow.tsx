@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { Icon, radius, type Theme } from "@inborn/ui";
 import { formatBytes, type DocumentRecord, type IndexProgress } from "@inborn/core";
+import { font } from "../../services/type";
 
 export interface DocumentRowProps {
   doc: DocumentRecord;
@@ -55,7 +56,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
         onPress={canSelect ? onToggleSelect : undefined}
         style={[styles.check, { borderColor: canSelect ? theme.text2 : theme.border, backgroundColor: selected ? theme.accent : "transparent" }]}
       >
-        {selected ? <Text style={[styles.checkMark, { color: theme.bg }]}>✓</Text> : null}
+        {selected ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}
       </Pressable>
       <View style={styles.body}>
         <Text numberOfLines={1} style={[styles.name, { color: theme.text }]}>
@@ -91,13 +92,12 @@ function Action({ label, theme, onPress, testID }: { label: string; theme: Theme
 const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", gap: 12, padding: 12, borderRadius: radius.card, borderWidth: 1 },
   check: { width: 22, height: 22, borderRadius: 6, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
-  checkMark: { fontSize: 14, fontWeight: "700" },
   body: { flex: 1, gap: 3 },
-  name: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "600" },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.4 },
+  name: { ...font("sans", "600"), fontSize: 16 },
+  mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.4 },
   bar: { height: 3, borderRadius: 2, marginTop: 4, overflow: "hidden" },
   fill: { height: 3 },
   actions: { gap: 6 },
   action: { height: 32, paddingHorizontal: 12, borderRadius: radius.control, borderWidth: 1, justifyContent: "center" },
-  actionText: { fontFamily: fonts.sans, fontSize: 13, fontWeight: "500" },
+  actionText: { ...font("sans", "500"), fontSize: 13 },
 });

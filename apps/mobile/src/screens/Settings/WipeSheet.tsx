@@ -3,10 +3,11 @@ import { StyleSheet, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Sheet } from "../../components/shell/Sheet";
 import { Button } from "../../components/shell/primitives";
+import { font } from "../../services/type";
 
 /** Emergency wipe (§5.7): two confirmations, models optional, no recovery. Ends in onboarding with a fresh key. */
 export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () => void }) {
@@ -58,7 +59,7 @@ export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () 
 }
 
 const styles = StyleSheet.create({
-  body: { fontFamily: FONT.sans, fontSize: 15, lineHeight: 22 },
+  body: { ...font("sans"), fontSize: 15, lineHeight: 22 },
   row: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 8 },
   actions: { flexDirection: "row", gap: 8, alignItems: "center" },
   grow: { flex: 1 },

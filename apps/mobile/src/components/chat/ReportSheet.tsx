@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { ChatMessage, ReportInput, ReportReason } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { Sheet } from "./Sheet";
-import { shape, type } from "./styles";
+import { shape } from "./styles";
+import { useType } from "../../services/type";
+import { Toggle } from "../shell/primitives";
 
 const REASONS: ReportReason[] = ["offensive", "dangerous", "wrong", "other"];
 
@@ -17,6 +19,7 @@ interface Props {
 
 /** Report an answer without leaving the app (§8.2 S13). Stored on the phone; nothing is sent unless the user shares it. */
 export function ReportSheet({ message, onClose, onSave, onEmail }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const [reason, setReason] = useState<ReportReason>("wrong");
@@ -47,7 +50,7 @@ export function ReportSheet({ message, onClose, onSave, onEmail }: Props) {
         <TextInput testID="report-note" value={note} onChangeText={setNote} placeholder={t("report.notePlaceholder")} placeholderTextColor={theme.text3} multiline style={[shape.field, styles.note, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />
         <View style={styles.switchRow}>
           <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("report.includeMessage")}</Text>
-          <Switch testID="report-include" value={include} onValueChange={setInclude} trackColor={{ true: theme.text2, false: theme.border }} />
+          <Toggle testID="report-include" value={include} onChange={setInclude} />
         </View>
         <Text style={[type.caption, { color: theme.text3 }]}>{t("report.explain")}</Text>
         <View style={styles.actions}>

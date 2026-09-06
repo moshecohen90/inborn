@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
-import { dark, light, fonts, radius } from "@inborn/ui";
+import { dark, light, radius } from "@inborn/ui";
 import { requiredTier, type Feature } from "@inborn/core";
 import { useEntitlement } from "./hooks";
+import { font } from "../services/type";
 
 export interface GateProps {
   feature: Feature;
@@ -36,6 +37,6 @@ export function Gate({ feature, children, fallback, onUnlock }: GateProps) {
 
 const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8, borderWidth: 1, borderRadius: radius.control, paddingHorizontal: 12, paddingVertical: 8 },
-  label: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 1 },
-  link: { fontFamily: fonts.sans, fontSize: 14, fontWeight: "500" },
+  label: { ...font("mono"), fontSize: 11, letterSpacing: 1 },
+  link: { ...font("sans", "500"), fontSize: 14 },
 });

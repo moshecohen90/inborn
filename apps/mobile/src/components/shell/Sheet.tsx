@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { radius } from "@inborn/ui";
-import { useTheme, FONT } from "../../services/theme";
+import { useTheme } from "../../services/theme";
+import { font } from "../../services/type";
 
 /** Bottom sheet (§9.4 radius 20, 280 ms): confirmations, the network log, the passcode entry. */
 export function Sheet({ visible, onClose, title, children, testID }: { visible: boolean; onClose: () => void; title?: string; children: ReactNode; testID?: string }) {
@@ -22,5 +23,5 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
 const styles = StyleSheet.create({
   backdrop: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.45)" },
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, padding: 20, gap: 12, borderTopWidth: 1, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, maxHeight: "85%" },
-  title: { fontFamily: FONT.sans, fontSize: 17, fontWeight: "600", marginBottom: 4 },
+  title: { ...font("sans", "600"), fontSize: 17, marginBottom: 4 },
 });

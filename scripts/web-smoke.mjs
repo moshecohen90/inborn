@@ -199,7 +199,14 @@ try {
     });
     out.screenshot = path.join(outDir, "web-smoke.png");
     await page.screenshot({ path: out.screenshot, fullPage: true });
+    /* S30 on the web is a door, not a vault: it must render without an on-device engine (design review 6.9.2026). */
+    await page.goto(new URL("/vault", server.url).href);
+    await page.getByTestId("vault-web-door").waitFor({ timeout: 30_000 });
+    out.vaultDoor = ((await page.getByTestId("vault-web-status").textContent()) ?? "").trim();
+    out.vaultScreenshot = path.join(outDir, "web-smoke-vault.png");
+    await page.screenshot({ path: out.vaultScreenshot });
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
+    if (out.consoleErrors.some((l) => /^pageerror/.test(l))) throw new Error(`page errors: ${out.consoleErrors.join(" | ")}`);
     out.hosts = [...hosts];
     if (foreignHosts(hosts).length) throw new Error(`the page talked to ${foreignHosts(hosts).join(", ")}; only ${origin} is allowed`);
     if (out.crossOriginIsolated !== defaults.isolation) throw new Error(`crossOriginIsolated=${out.crossOriginIsolated} with ISOLATION=${defaults.isolation ? "on" : "off"}`);
@@ -295,5 +302,6 @@ const f = result.first;
 const o = result.offline;
 console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · TTFT ${f.ttftMs} ms · tokens ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
 if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · TTFT ${o.ttftMs} ms · tokens ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
+console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);

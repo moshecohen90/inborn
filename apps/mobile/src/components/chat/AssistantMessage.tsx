@@ -7,7 +7,8 @@ import { useTheme } from "../../lib/theme";
 import { modelLabel } from "../../lib/models";
 import { Ledger } from "./Ledger";
 import { Markdown } from "./Markdown";
-import { type } from "./styles";
+import { useType } from "../../services/type";
+import { Icon } from "@inborn/ui";
 
 export type AssistantRow = ChatMessage & { streaming?: boolean; error?: string; loop?: boolean };
 
@@ -22,6 +23,7 @@ interface Props {
 
 /** Flat, full-width answer (§9.6): mono label, Markdown body, collapsed reasoning and ledger, states for stopped / loop / error. */
 export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quant, onLongPress, onContinue, onRegenerate }: Props) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const [showReasoning, setShowReasoning] = useState(false);
@@ -32,9 +34,8 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
       <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chat.modelLabel", { model: modelLabel(row.modelId ?? "") })}</Text>
       {row.reasoning ? (
         <Pressable testID="reasoning-toggle" accessibilityRole="button" accessibilityState={{ expanded: showReasoning }} onPress={() => setShowReasoning((s) => !s)} style={styles.reasoningToggle}>
-          <Text style={[type.monoLabel, { color: theme.text3 }]}>
-            {showReasoning ? "▾" : "▸"} {row.reasoningMs !== undefined ? t("chat.reasoningTimed", { seconds: (row.reasoningMs / 1000).toFixed(1) }) : t("chat.reasoning")}
-          </Text>
+          <Icon name={showReasoning ? "chevronDown" : "chevronRight"} size={14} color={theme.text3} />
+          <Text style={[type.monoLabel, { color: theme.text3 }]}>{row.reasoningMs !== undefined ? t("chat.reasoningTimed", { seconds: (row.reasoningMs / 1000).toFixed(1) }) : t("chat.reasoning")}</Text>
         </Pressable>
       ) : null}
       {row.reasoning && showReasoning ? (
@@ -90,7 +91,7 @@ function PulsingDot() {
 
 const styles = StyleSheet.create({
   root: { gap: 6 },
-  reasoningToggle: { minHeight: 28, justifyContent: "center", alignSelf: "flex-start" },
+  reasoningToggle: { minHeight: 28, flexDirection: "row", alignItems: "center", gap: 4, alignSelf: "flex-start" },
   reasoning: { borderLeftWidth: 1, paddingLeft: 10, paddingVertical: 2 },
   dot: { width: 8, height: 8, borderRadius: 4, marginVertical: 8 },
   stateRow: { flexDirection: "row", alignItems: "center", gap: 12, flexWrap: "wrap" },

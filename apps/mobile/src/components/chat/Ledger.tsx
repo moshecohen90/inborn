@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import type { ChatMessage } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { modelLabel } from "../../lib/models";
-import { type } from "./styles";
+import { useType } from "../../services/type";
+import { Icon } from "@inborn/ui";
 
 interface LedgerProps {
   message: ChatMessage;
@@ -15,6 +16,7 @@ interface LedgerProps {
 
 /** The receipt under every answer (§9.5 motif 4): model, quantisation, context, ms/token, generation time. Collapsed by default. */
 export function Ledger({ message, nCtx, quant }: LedgerProps) {
+  const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -34,9 +36,8 @@ export function Ledger({ message, nCtx, quant }: LedgerProps) {
   return (
     <View>
       <Pressable testID="ledger-toggle" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.toggle}>
-        <Text style={[type.monoLabel, { color: theme.text3 }]}>
-          {open ? "▾" : "▸"} {t("ledger.title")}
-        </Text>
+        <Icon name={open ? "chevronDown" : "chevronRight"} size={14} color={theme.text3} />
+        <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("ledger.title")}</Text>
       </Pressable>
       {open ? (
         <View testID="ledger" style={[styles.receipt, { borderColor: theme.border }]}>
@@ -55,7 +56,7 @@ export function Ledger({ message, nCtx, quant }: LedgerProps) {
 }
 
 const styles = StyleSheet.create({
-  toggle: { minHeight: 28, justifyContent: "center", alignSelf: "flex-start" },
+  toggle: { minHeight: 28, flexDirection: "row", alignItems: "center", gap: 4, alignSelf: "flex-start" },
   receipt: { borderTopWidth: StyleSheet.hairlineWidth, paddingTop: 8, gap: 4, marginTop: 2 },
   row: { flexDirection: "row", justifyContent: "space-between", gap: 12, flexWrap: "wrap" },
 });

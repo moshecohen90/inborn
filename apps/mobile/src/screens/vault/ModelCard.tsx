@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { fonts, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { expectedSpeed, formatModelBytes, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
+import { useType } from "../../services/type";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -27,6 +28,7 @@ const deviceWord = (t: (k: string) => string, d: DeviceInfo) => t(`vault.device.
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
 export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails }: ModelCardProps) {
+  const type = useType();
   const { t } = useTranslation();
   const speed = expectedSpeed(device.chip, model.tier);
   const fit = ramFit(model, device.ramGB);
@@ -65,20 +67,20 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
     <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: active ? theme.sealed : theme.border, opacity: disabled ? 0.45 : 1 }]}>
       <View style={styles.head}>
         <Text style={[styles.dot, { color: dotColor }]}>{dot}</Text>
-        <Text style={[styles.tier, { color: theme.text }]}>{tierLabel}</Text>
-        <Text numberOfLines={1} style={[styles.name, { color: theme.text2 }]}>
+        <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{tierLabel}</Text>
+        <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
           · {imported ? model.name : `${model.family} ${model.params}`}
         </Text>
-        {model.proOnly ? <Text style={[styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
+        {model.proOnly ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
-      {recommended && !disabled ? <Text style={[styles.mono, { color: theme.sealed }]}>{t("models.recommended")}</Text> : null}
+      {recommended && !disabled ? <Text style={[type.mono, { color: theme.sealed }]}>{t("models.recommended")}</Text> : null}
       {model.goodFor ? (
-        <Text style={[styles.body, { color: theme.text }]}>{model.goodFor}</Text>
+        <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}
-      <Text style={[styles.mono, { color: theme.text3 }]}>
+      <Text style={[type.mono, { color: theme.text3 }]}>
         {t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant })} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>
-      <Text style={[styles.mono, { color: theme.text3 }]}>
+      <Text style={[type.mono, { color: theme.text3 }]}>
         {disabledReason === "engine"
           ? t("vault.state.updateApp")
           : disabledReason === "ram" || fit === "no"
@@ -94,7 +96,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         </View>
       ) : null}
       {status ? (
-        <Text testID={`model-status-${model.id}`} style={[styles.mono, { color: status.danger ? theme.danger : theme.text2 }]}>
+        <Text testID={`model-status-${model.id}`} style={[type.mono, { color: status.danger ? theme.danger : theme.text2 }]}>
           {status.text}
         </Text>
       ) : null}
@@ -109,7 +111,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
           {state.kind === "delivering" && !state.paused && plan?.via === "https" ? <Action testID={`pause-${model.id}`} theme={theme} onPress={onPause} label={t("vault.pause")} /> : null}
           {state.kind === "delivering" || state.kind === "verifying" ? <Action testID={`cancel-${model.id}`} theme={theme} onPress={onCancel} label={t("vault.cancel")} /> : null}
           {state.kind === "ready" && !active ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
-          {state.kind === "ready" && active ? <Text style={[styles.mono, styles.inUse, { color: theme.sealed }]}>{t("vault.inUse")}</Text> : null}
+          {state.kind === "ready" && active ? <Text style={[type.mono, styles.inUse, { color: theme.sealed }]}>{t("vault.inUse")}</Text> : null}
           <Action testID={`details-${model.id}`} theme={theme} onPress={onDetails} label={t("vault.details")} />
         </View>
       )}
@@ -118,9 +120,10 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
 }
 
 function Action({ label, onPress, theme, primary, testID }: { label: string; onPress: () => void; theme: Theme; primary?: boolean; testID: string }) {
+  const type = useType();
   return (
     <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={[styles.btn, primary ? { backgroundColor: theme.ctaFill } : { borderWidth: 1, borderColor: theme.border }]}>
-      <Text numberOfLines={1} style={[styles.btnText, { color: primary ? theme.ctaText : theme.text }]}>
+      <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: primary ? theme.ctaText : theme.text }]}>
         {label}
       </Text>
     </Pressable>
@@ -131,15 +134,12 @@ const styles = StyleSheet.create({
   card: { borderWidth: 1, borderRadius: radius.card, padding: 14, gap: 6, marginBottom: 10 },
   head: { flexDirection: "row", alignItems: "center", gap: 6 },
   dot: { fontSize: 14, width: 16 },
-  tier: { fontFamily: fonts.mono, fontSize: 13, fontWeight: "600", letterSpacing: 1 },
-  name: { fontFamily: fonts.sans, fontSize: 14, flex: 1 },
-  chip: { fontFamily: fonts.mono, fontSize: 10, letterSpacing: 1, borderWidth: 1, borderRadius: radius.chip, paddingHorizontal: 6, paddingVertical: 1 },
-  body: { fontFamily: fonts.sans, fontSize: 15, lineHeight: 20 },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.4 },
+  tier: { letterSpacing: 1 },
+  name: { flex: 1 },
+  chip: { borderWidth: 1, borderRadius: radius.chip, paddingHorizontal: 6, paddingVertical: 1 },
   bar: { height: 4, borderRadius: 2, overflow: "hidden", marginTop: 2 },
   fill: { height: 4 },
   actions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 6, alignItems: "center" },
   btn: { minHeight: 36, paddingHorizontal: 12, borderRadius: radius.control, alignItems: "center", justifyContent: "center", maxWidth: "100%" },
-  btnText: { fontFamily: fonts.sans, fontSize: 14, fontWeight: "500" },
   inUse: { paddingHorizontal: 4 },
 });

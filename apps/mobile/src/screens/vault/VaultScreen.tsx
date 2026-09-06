@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { Modal, Pressable, SectionList, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
+import { Modal, Pressable, SectionList, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { dark, light, fonts, radius } from "@inborn/ui";
+import { Icon, dark, light, radius } from "@inborn/ui";
 import { ENGINE_VERSION, formatModelBytes, groupByFit, paywallFor, type CatalogModel } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { resetEngine } from "../../engine";
@@ -11,6 +11,8 @@ import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, devBuild } from "../../vault/devFlags";
 import { ModelCard } from "./ModelCard";
 import { ModelDetails } from "./ModelDetails";
+import { font, useType } from "../../services/type";
+import { Toggle } from "../../components/shell/primitives";
 
 export interface VaultScreenProps {
   onClose: () => void;
@@ -25,6 +27,7 @@ type Confirm = { entry: VaultEntry };
 
 /** S30 Model vault (spec §8.4): what is installed, what fits this device, download / import / remove. */
 export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenProps) {
+  const type = useType();
   const { t } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
@@ -109,16 +112,16 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <View style={styles.header}>
         <Pressable testID="close-vault" accessibilityRole="button" accessibilityLabel={t("vault.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
-          <Text style={[styles.headerGlyph, { color: theme.text2 }]}>✕</Text>
+          <Icon name="x" size={20} color={theme.text2} />
         </Pressable>
-        <Text style={[styles.title, { color: theme.text }]}>{t("vault.title")}</Text>
+        <Text style={[type.title, { color: theme.text }]}>{t("vault.title")}</Text>
         <View style={styles.headerBtn} />
       </View>
-      <Text testID="vault-storage" style={[styles.mono, styles.centered, { color: theme.text3 }]}>
+      <Text testID="vault-storage" style={[type.mono, styles.centered, { color: theme.text3 }]}>
         {t("vault.storage", { used: formatModelBytes(vault.storageUsedBytes()), free: formatModelBytes(vault.freeDiskBytes()) })} · {t("onboarding.runsOn", { chip: device.chip.toUpperCase(), ram: `${device.ramGB} GB` })}
       </Text>
       {vault.manifestStatus.ok ? null : (
-        <Text testID="manifest-warning" style={[styles.mono, styles.centered, { color: theme.danger }]}>
+        <Text testID="manifest-warning" style={[type.mono, styles.centered, { color: theme.danger }]}>
           {t("vault.manifest.bad")}
         </Text>
       )}
@@ -127,7 +130,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         keyExtractor={(e) => e.model.id}
         stickySectionHeadersEnabled={false}
         contentContainerStyle={styles.list}
-        renderSectionHeader={({ section }) => <Text style={[styles.monoLabel, styles.sectionHeader, { color: theme.text3 }]}>{section.title}</Text>}
+        renderSectionHeader={({ section }) => <Text style={[type.monoLabel, styles.sectionHeader, { color: theme.text3 }]}>{section.title}</Text>}
         renderItem={({ item, section }) => (
           <ModelCard
             model={item.model}
@@ -149,39 +152,40 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         ListFooterComponent={
           <View style={styles.footer}>
             <Pressable testID="import-gguf" accessibilityRole="button" onPress={() => void pickAndImport()} style={[styles.action, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-              <Text style={[styles.actionText, { color: theme.text }]}>⇪ {t("vault.import")}</Text>
+              <Icon name="upload" size={18} color={theme.text} />
+              <Text style={[type.body, styles.actionText, { color: theme.text }]}>{t("vault.import")}</Text>
             </Pressable>
-            {device.os === "android" ? <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("vault.import.hint.android")}</Text> : null}
+            {device.os === "android" ? <Text style={[type.mono, styles.centered, { color: theme.text3 }]}>{t("vault.import.hint.android")}</Text> : null}
           </View>
         }
       />
       {toast ? (
         <View testID="vault-toast" style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border, bottom: insets.bottom + 16 }]}>
-          <Text style={[styles.body, { color: theme.text }]}>{toast}</Text>
+          <Text style={[type.body, { color: theme.text }]}>{toast}</Text>
         </View>
       ) : null}
 
       <Modal visible={confirm !== null} transparent animationType="slide" onRequestClose={() => setConfirm(null)}>
         <Pressable style={styles.backdrop} onPress={() => setConfirm(null)} />
         <View style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border, paddingBottom: insets.bottom + 20 }]}>
-          <Text style={[styles.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm?.entry.model.name ?? "" })}</Text>
-          <Text testID="confirm-text" style={[styles.body, { color: theme.text2 }]}>
+          <Text style={[type.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm?.entry.model.name ?? "" })}</Text>
+          <Text testID="confirm-text" style={[type.body, { color: theme.text2 }]}>
             {confirm?.entry.plan?.via === "play"
               ? t("vault.confirm.play", { size: formatModelBytes(confirm.entry.model.bytes) })
               : t("vault.confirm.https", { size: formatModelBytes(confirm?.entry.model.bytes ?? 0), host: confirm?.entry.plan?.host ?? "" })}
           </Text>
           {confirm?.entry.plan?.via === "https" ? (
             <View style={styles.switchRow}>
-              <Text style={[styles.body, { color: theme.text }]}>{t("vault.confirm.wifiOnly")}</Text>
-              <Switch testID="wifi-only" value={vault.wifiOnly()} onValueChange={(v) => vault.setWifiOnly(v)} trackColor={{ true: theme.text2, false: theme.border }} />
+              <Text style={[type.body, { color: theme.text }]}>{t("vault.confirm.wifiOnly")}</Text>
+              <Toggle testID="wifi-only" value={vault.wifiOnly()} onChange={(v) => vault.setWifiOnly(v)} />
             </View>
           ) : null}
           <View style={styles.sheetActions}>
             <Pressable accessibilityRole="button" onPress={() => setConfirm(null)} style={styles.textBtn}>
-              <Text style={[styles.body, { color: theme.text2 }]}>{t("vault.cancel")}</Text>
+              <Text style={[type.body, { color: theme.text2 }]}>{t("vault.cancel")}</Text>
             </Pressable>
             <Pressable testID="confirm-download" accessibilityRole="button" onPress={() => confirm && startInstall(confirm.entry)} style={[styles.cta, { backgroundColor: theme.ctaFill }]}>
-              <Text style={[styles.body, styles.strong, { color: theme.ctaText }]}>{t("vault.confirm.go")}</Text>
+              <Text style={[type.body, type.strong, { color: theme.ctaText }]}>{t("vault.confirm.go")}</Text>
             </Pressable>
           </View>
         </View>
@@ -213,18 +217,12 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
   headerBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
-  headerGlyph: { fontSize: 18 },
-  title: { fontFamily: fonts.sans, fontSize: 22, fontWeight: "600", letterSpacing: -0.2 },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.4 },
-  monoLabel: { fontFamily: fonts.mono, fontSize: 11, fontWeight: "500", letterSpacing: 0.9, textTransform: "uppercase" },
   centered: { textAlign: "center", paddingHorizontal: 16, paddingTop: 4 },
   sectionHeader: { paddingTop: 14, paddingBottom: 8 },
   list: { paddingHorizontal: 16, paddingBottom: 96 },
   footer: { gap: 8, paddingTop: 12 },
-  action: { height: 44, borderWidth: 1, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  actionText: { fontFamily: fonts.sans, fontSize: 16, fontWeight: "500" },
-  body: { fontFamily: fonts.sans, fontSize: 16, lineHeight: 22 },
-  strong: { fontWeight: "600" },
+  action: { height: 44, borderWidth: 1, borderRadius: radius.control, flexDirection: "row", gap: 8, alignItems: "center", justifyContent: "center" },
+  actionText: { ...font("sans", "500") },
   toast: { position: "absolute", left: 16, right: 16, paddingHorizontal: 16, paddingVertical: 12, borderWidth: 1, borderRadius: radius.control },
   backdrop: { ...fill, backgroundColor: "rgba(0,0,0,0.45)" },
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, padding: 20, gap: 16, borderTopWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20 },

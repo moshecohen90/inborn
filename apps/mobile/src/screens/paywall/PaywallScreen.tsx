@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { dark, light, fonts, radius } from "@inborn/ui";
+import { Icon, dark, light, radius } from "@inborn/ui";
 import type { ProductId, Store } from "@inborn/core";
 import { DEV_AUTOBUY, DEV_RESULT_FILE, devBuild } from "../../licence/devFlags";
 import { useLicenceState } from "../../licence/hooks";
 import { writeLicenceResult } from "../../licence/storage";
 import { LicenceKeySheet } from "./LicenceKeySheet";
 import { TierCard } from "./TierCard";
+import { useType } from "../../services/type";
 
 export interface PaywallScreenProps {
   onClose: () => void;
@@ -24,6 +25,7 @@ const storeName = (t: (k: string) => string, store: Store | null): string => (st
 
 /** S60 Pro paywall (spec §8.7, §12): one line on why paying once is honest, one card per tier, Restore, Family Sharing note, the one-store rule. */
 export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallScreenProps) {
+  const type = useType();
   const { t, i18n } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
@@ -83,33 +85,33 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: modal && Platform.OS === "ios" ? 12 : insets.top + 8 }]}>
       <View style={styles.header}>
         <Pressable testID="close-paywall" accessibilityRole="button" accessibilityLabel={t("paywall.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
-          <Text style={[styles.headerGlyph, { color: theme.text2 }]}>✕</Text>
+          <Icon name="x" size={20} color={theme.text2} />
         </Pressable>
         <View style={styles.headerBtn} />
       </View>
       <ScrollView contentContainerStyle={[styles.list, { paddingBottom: insets.bottom + 24 }]}>
-        <Text testID="paywall-title" style={[styles.title, { color: theme.text }]}>
+        <Text testID="paywall-title" style={[type.display, { color: theme.text }]}>
           {t("paywall.title")}
         </Text>
-        <Text style={[styles.sub, { color: theme.text2 }]}>{t("paywall.sub")}</Text>
+        <Text style={[type.body, { color: theme.text2 }]}>{t("paywall.sub")}</Text>
 
         {owned ? (
           <View testID="owned" style={[styles.owned, { borderColor: theme.sealed, backgroundColor: theme.surface1 }]}>
-            <Text style={[styles.ownedTitle, { color: theme.sealed }]}>{t(tier === "work" ? "paywall.owned.work" : "paywall.owned.pro")}</Text>
-            <Text style={[styles.body, { color: theme.text2 }]}>{t("paywall.owned.sub", { store: storeName(t, store) })}</Text>
-            {purchase?.familyShared ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("paywall.familyShared")}</Text> : null}
-            {state.entitlement.fromCache && state.entitlement.graceEndsAt ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("paywall.grace", { when: when(state.entitlement.graceEndsAt) })}</Text> : null}
+            <Text style={[type.monoLabel, { color: theme.sealed }]}>{t(tier === "work" ? "paywall.owned.work" : "paywall.owned.pro")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("paywall.owned.sub", { store: storeName(t, store) })}</Text>
+            {purchase?.familyShared ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.familyShared")}</Text> : null}
+            {state.entitlement.fromCache && state.entitlement.graceEndsAt ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.grace", { when: when(state.entitlement.graceEndsAt) })}</Text> : null}
           </View>
         ) : null}
 
         {line ? (
-          <Text testID="paywall-status" style={[styles.status, { color: line.tone === "danger" ? theme.danger : line.tone === "ok" ? theme.sealed : theme.text2 }]}>
+          <Text testID="paywall-status" style={[type.bodySmall, { color: line.tone === "danger" ? theme.danger : line.tone === "ok" ? theme.sealed : theme.text2 }]}>
             {line.text}
           </Text>
         ) : null}
 
         {store === null ? (
-          <Text style={[styles.body, styles.centered, { color: theme.text2 }]}>{t("paywall.noStore")}</Text>
+          <Text style={[type.bodySmall, styles.centered, { color: theme.text2 }]}>{t("paywall.noStore")}</Text>
         ) : (
           <View style={styles.cards}>
             {ordered.map((offer, i) => (
@@ -122,31 +124,31 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
           <View style={styles.links}>
             {store === "licence-key" ? (
               <Pressable testID="enter-key" accessibilityRole="button" onPress={() => setKeySheet(true)} hitSlop={8}>
-                <Text style={[styles.link, { color: theme.text }]}>{t("paywall.key.title")}</Text>
+                <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.key.title")}</Text>
               </Pressable>
             ) : (
               <Pressable testID="restore" accessibilityRole="button" disabled={state.restore.kind === "running"} onPress={() => void manager.restore()} hitSlop={8}>
-                <Text style={[styles.link, { color: theme.text }]}>{t("paywall.restore")}</Text>
+                <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.restore")}</Text>
               </Pressable>
             )}
-            {Platform.OS === "ios" ? <Text style={[styles.mono, { color: theme.text3 }]}>{state.familyShareable || !state.storeReachable ? t("paywall.familySharing.ios") : t("paywall.familySharing.iosOff")}</Text> : null}
-            {Platform.OS === "android" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("paywall.familySharing.play")}</Text> : null}
+            {Platform.OS === "ios" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{state.familyShareable || !state.storeReachable ? t("paywall.familySharing.ios") : t("paywall.familySharing.iosOff")}</Text> : null}
+            {Platform.OS === "android" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.familySharing.play")}</Text> : null}
           </View>
         ) : null}
 
-        <Text style={[styles.footer, { color: theme.text2 }]}>{t("paywall.footer")}</Text>
-        {store ? <Text style={[styles.footer, { color: theme.text3 }]}>{t("paywall.oneStore", { store: storeName(t, store) })}</Text> : null}
-        {store === "play" ? <Text style={[styles.footer, { color: theme.text3 }]}>{t("paywall.play.acknowledge")}</Text> : null}
+        <Text style={[type.bodySmall, styles.footer, { color: theme.text2 }]}>{t("paywall.footer")}</Text>
+        {store ? <Text style={[type.bodySmall, styles.footer, { color: theme.text3 }]}>{t("paywall.oneStore", { store: storeName(t, store) })}</Text> : null}
+        {store === "play" ? <Text style={[type.bodySmall, styles.footer, { color: theme.text3 }]}>{t("paywall.play.acknowledge")}</Text> : null}
         <View style={styles.legal}>
           <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("terms")} hitSlop={8}>
-            <Text style={[styles.mono, { color: theme.text2 }]}>{t("paywall.terms")}</Text>
+            <Text style={[type.mono, styles.mono, { color: theme.text2 }]}>{t("paywall.terms")}</Text>
           </Pressable>
-          <Text style={[styles.mono, { color: theme.text3 }]}>·</Text>
+          <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>·</Text>
           <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("privacy")} hitSlop={8}>
-            <Text style={[styles.mono, { color: theme.text2 }]}>{t("paywall.privacy")}</Text>
+            <Text style={[type.mono, styles.mono, { color: theme.text2 }]}>{t("paywall.privacy")}</Text>
           </Pressable>
         </View>
-        {devBuild() && state.rejected.length ? <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{`refused: ${state.rejected.join(", ")}`}</Text> : null}
+        {devBuild() && state.rejected.length ? <Text style={[type.mono, styles.mono, styles.centered, { color: theme.text3 }]}>{`refused: ${state.rejected.join(", ")}`}</Text> : null}
       </ScrollView>
       {keySheet ? <LicenceKeySheet manager={manager} theme={theme} onClose={() => setKeySheet(false)} /> : null}
     </View>
@@ -157,19 +159,13 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12 },
   headerBtn: { width: 40, height: 40, alignItems: "center", justifyContent: "center" },
-  headerGlyph: { fontSize: 18 },
   list: { paddingHorizontal: 20, gap: 14, maxWidth: 560, width: "100%", alignSelf: "center" },
-  title: { fontFamily: fonts.sans, fontSize: 28, fontWeight: "700", letterSpacing: -0.5 },
-  sub: { fontFamily: fonts.sans, fontSize: 16, lineHeight: 22 },
   cards: { gap: 12 },
   owned: { borderWidth: 1, borderRadius: radius.card, padding: 14, gap: 4 },
-  ownedTitle: { fontFamily: fonts.mono, fontSize: 14, fontWeight: "700", letterSpacing: 1 },
-  body: { fontFamily: fonts.sans, fontSize: 15, lineHeight: 20 },
-  status: { fontFamily: fonts.sans, fontSize: 14, lineHeight: 19 },
   links: { alignItems: "center", gap: 6, marginTop: 4 },
-  link: { fontFamily: fonts.sans, fontSize: 15, fontWeight: "500", textDecorationLine: "underline" },
-  mono: { fontFamily: fonts.mono, fontSize: 11, letterSpacing: 0.4, textAlign: "center" },
-  footer: { fontFamily: fonts.sans, fontSize: 13, lineHeight: 18, textAlign: "center" },
+  link: { textDecorationLine: "underline" },
+  mono: { textAlign: "center" },
+  footer: { textAlign: "center" },
   legal: { flexDirection: "row", justifyContent: "center", gap: 10 },
   centered: { textAlign: "center" },
 });
