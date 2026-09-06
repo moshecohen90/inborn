@@ -1,0 +1,13 @@
+# raw device captures, the proof APK, the lease fixture
+raw/
+# IBM Plex TTFs (OFL): download per README, never committed
+fonts/
+# rendered sets: only the English set travels with the repo
+out/*
+!out/preview.html
+!out/apple/
+out/apple/*
+!out/apple/en/
+!out/play/
+out/play/*
+!out/play/en/
