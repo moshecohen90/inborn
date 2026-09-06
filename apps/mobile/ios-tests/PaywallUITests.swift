@@ -3,7 +3,7 @@ import XCTest
 
 /// Headless StoreKit Testing proof of the M6 paywall (spec §14.2 row 10, §10.7 #48–#52): purchase, relaunch,
 /// refund, restore — all against Xcode's local StoreKit environment (no network, no App Store Connect).
-/// The app is bundled with EXPO_PUBLIC_START_SCREEN=paywall so it boots straight into S60.
+/// After launch the test opens the `inborn://paywall` deep link (expo-router modal route), so no dev-only start screen is needed.
 /// Screenshots go to $INBORN_SHOTS (pass `TEST_RUNNER_INBORN_SHOTS=…` to xcodebuild).
 final class PaywallUITests: XCTestCase {
   var session: SKTestSession!
@@ -29,6 +29,9 @@ final class PaywallUITests: XCTestCase {
   private func launch() -> XCUIApplication {
     let app = XCUIApplication()
     app.launch()
+    XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
+    sleep(4)
+    XCUIDevice.shared.system.open(URL(string: "inborn://paywall")!)
     XCTAssertTrue(app.staticTexts["paywall-title"].waitForExistence(timeout: 90), "paywall did not appear")
     return app
   }

@@ -1,7 +1,7 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { fonts, radius, type Theme } from "@inborn/ui";
-import { formatBytes, type CatalogModel, type InstallState } from "@inborn/core";
+import { formatModelBytes, type CatalogModel, type InstallState } from "@inborn/core";
 
 export interface ModelDetailsProps {
   model: CatalogModel | null;
@@ -40,7 +40,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
           {model?.name} · {model?.family} {model?.params}
         </Text>
         <Text style={[styles.mono, { color: theme.text3 }]}>
-          {model ? formatBytes(model.bytes) : ""} · {model?.arch}
+          {model ? formatModelBytes(model.bytes) : ""} · {model?.arch}
         </Text>
         <ScrollView style={styles.table} contentContainerStyle={{ gap: 8 }}>
           {rows.map(([k, v]) => (

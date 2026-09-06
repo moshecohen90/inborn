@@ -4,7 +4,7 @@ import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts, radius } from "@inborn/ui";
-import { ENGINE_VERSION, formatBytes, groupByFit, type CatalogModel } from "@inborn/core";
+import { ENGINE_VERSION, formatModelBytes, groupByFit, type CatalogModel } from "@inborn/core";
 import { resetEngine } from "../../engine";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, devBuild } from "../../vault/devFlags";
@@ -111,7 +111,7 @@ export function VaultScreen({ onClose, onModelChanged }: VaultScreenProps) {
         <View style={styles.headerBtn} />
       </View>
       <Text testID="vault-storage" style={[styles.mono, styles.centered, { color: theme.text3 }]}>
-        {t("vault.storage", { used: formatBytes(vault.storageUsedBytes()), free: formatBytes(vault.freeDiskBytes()) })} · {t("onboarding.runsOn", { chip: device.chip.toUpperCase(), ram: `${device.ramGB} GB` })}
+        {t("vault.storage", { used: formatModelBytes(vault.storageUsedBytes()), free: formatModelBytes(vault.freeDiskBytes()) })} · {t("onboarding.runsOn", { chip: device.chip.toUpperCase(), ram: `${device.ramGB} GB` })}
       </Text>
       {vault.manifestStatus.ok ? null : (
         <Text testID="manifest-warning" style={[styles.mono, styles.centered, { color: theme.danger }]}>
@@ -163,8 +163,8 @@ export function VaultScreen({ onClose, onModelChanged }: VaultScreenProps) {
           <Text style={[styles.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm?.entry.model.name ?? "" })}</Text>
           <Text testID="confirm-text" style={[styles.body, { color: theme.text2 }]}>
             {confirm?.entry.plan?.via === "play"
-              ? t("vault.confirm.play", { size: formatBytes(confirm.entry.model.bytes) })
-              : t("vault.confirm.https", { size: formatBytes(confirm?.entry.model.bytes ?? 0), host: confirm?.entry.plan?.host ?? "" })}
+              ? t("vault.confirm.play", { size: formatModelBytes(confirm.entry.model.bytes) })
+              : t("vault.confirm.https", { size: formatModelBytes(confirm?.entry.model.bytes ?? 0), host: confirm?.entry.plan?.host ?? "" })}
           </Text>
           {confirm?.entry.plan?.via === "https" ? (
             <View style={styles.switchRow}>

@@ -23,7 +23,7 @@ type Phase =
 export function WebShell({ children }: { children: ReactNode }) {
   const boot = webBoot();
   const theme = useColorScheme() === "light" ? light : dark;
-  const [ready, setReady] = useState(() => webReady(boot));
+  const [ready] = useState(() => webReady(boot));
   const [offline, setOffline] = useState<OfflineState>("installing");
 
   useEffect(() => {
@@ -33,7 +33,8 @@ export function WebShell({ children }: { children: ReactNode }) {
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <Strip boot={boot} theme={theme} offline={offline} />
-      {ready ? children : <DownloadDoor boot={boot} theme={theme} onReady={() => setReady(true)} />}
+      {/* The app services picked their engine at boot, before the file existed; a reload is the honest hand-over (same as the engine switch). */}
+      {ready ? children : <DownloadDoor boot={boot} theme={theme} onReady={() => location.reload()} />}
     </View>
   );
 }

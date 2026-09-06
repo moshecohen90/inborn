@@ -1,0 +1,21 @@
+import { StyleSheet, View } from "react-native";
+import { contextLevel } from "@inborn/core";
+import { useTheme } from "../../lib/theme";
+
+/** 2px hairline above the composer (§9.6); accent past 80%, danger when the summary is due. */
+export function ContextMeter({ fullness }: { fullness: number }) {
+  const theme = useTheme();
+  const level = contextLevel(fullness);
+  const color = level === "full" ? theme.danger : level === "warn" ? theme.accent : theme.sealed;
+  const pct = Math.round(Math.min(1, Math.max(0, fullness)) * 100);
+  return (
+    <View testID="context-meter" accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: 100, now: pct }} style={[styles.track, { backgroundColor: theme.border }]}>
+      <View style={[styles.fill, { width: `${pct}%`, backgroundColor: color }]} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  track: { height: 2, marginHorizontal: 12, borderRadius: 1, overflow: "hidden" },
+  fill: { height: 2, borderRadius: 1 },
+});
