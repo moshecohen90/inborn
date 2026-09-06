@@ -49,6 +49,7 @@ import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
 import { takeNewChatIntent } from "../lib/newChatIntent";
+import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
 
 type Row = AssistantRow;
@@ -192,6 +193,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (timer) clearTimeout(timer);
     };
   }, []);
+
+  // Desktop ⌘. and ⌘F (spec §8.9). TODO(lead, App.tsx): "new-chat" and "toggle-incognito" need a fresh `Active` there —
+  // useShortcut("new-chat", () => onNewChat(false)); useShortcut("toggle-incognito", () => onNewChat(!active.incognito)).
+  useShortcut("stop", () => {
+    stopReason.current = "user";
+    abort.current?.abort();
+  });
+  useShortcut("search", onOpenChats);
 
   const budget = useMemo(() => {
     const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt });

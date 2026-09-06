@@ -24,7 +24,8 @@ const PROMPT = "What is the capital of France? Answer in one sentence.";
 const PROMPT_OFFLINE = "Name one planet of the solar system in one sentence.";
 const LOAD_TIMEOUT_MS = 5 * 60_000;
 const ANSWER_TIMEOUT_MS = 3 * 60_000;
-const STATS_RE = /^wllama · ([\d.]+) tok\/s · TTFT (\d+) ms$/;
+/* The Chat screen logs which engine loaded (`[inborn] <engine> loaded <uri> in <ms> ms`); the header itself shows the model, not the engine. */
+const ENGINE_RE = /\[inborn\] (\w+) loaded .* in (\d+) ms/;
 const LOADED_RE = /\[wllama\] loaded .* in (\d+) ms · threads=(\d+) isolated=(\w+) gpuLayers=(\d+)/;
 const IPHONE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1";
 
@@ -96,27 +97,51 @@ function observe(page) {
   return { consoleLines, hosts, requests };
 }
 
-async function waitForEngine(page, out, t0) {
-  const engine = page.getByText(/^(wllama|null)$|Could not load/);
-  await engine.first().waitFor({ timeout: LOAD_TIMEOUT_MS });
-  const header = (await engine.first().textContent()) ?? "";
-  if (header !== "wllama") throw new Error(`engine header shows "${header}" instead of wllama`);
-  out.readyMs = Date.now() - t0;
+/** Polls the captured console for the first line matching `re` (the line may already be there when the wait starts). */
+
+/* The shell sends first visits to onboarding (§8.1); the smoke measures the engine, so it arrives as an onboarded user. */
+const skipOnboarding = (ctx) =>
+  ctx.addInitScript(() => {
+    if (!localStorage.getItem("inborn.prefs")) localStorage.setItem("inborn.prefs", JSON.stringify({ onboarded: true }));
+  });
+
+async function waitForConsole(lines, re, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    const hit = lines.map((l) => re.exec(l)).find(Boolean);
+    if (hit) return hit;
+    await new Promise((r) => setTimeout(r, 100));
+  }
+  throw new Error(`console never matched ${re}`);
 }
 
+/** Ready = the Chat screen is up and the console says which engine loaded (the status line stays visible with the engine name). */
+async function waitForEngine(page, out, consoleLines, t0) {
+  await page.getByTestId("composer-input").waitFor({ timeout: LOAD_TIMEOUT_MS });
+  const [, engine, loadMs] = await waitForConsole(consoleLines, ENGINE_RE, LOAD_TIMEOUT_MS);
+  if (engine !== "wllama") throw new Error(`engine "${engine}" loaded instead of wllama`);
+  out.readyMs = Date.now() - t0;
+  out.sessionLoadMs = Number(loadMs);
+}
+
+/** Types a prompt, sends it, waits for the ledger under the answer (only rendered once streaming ends), reads tok/s + TTFT from it. */
 async function chat(page, out, prompt, loadedLines) {
-  const input = page.getByPlaceholder("Message…");
+  const input = page.getByTestId("composer-input");
   await input.fill(prompt);
-  await input.press("Enter");
-  const stats = page.getByText(STATS_RE);
-  await stats.waitFor({ timeout: ANSWER_TIMEOUT_MS });
-  const [, tps, ttft] = STATS_RE.exec((await stats.textContent()) ?? "") ?? [];
-  out.tokPerSec = Number(tps);
-  out.ttftMs = Number(ttft);
+  await page.getByTestId("send").click();
+  const ledgerToggle = page.getByTestId("ledger-toggle").last();
+  await ledgerToggle.waitFor({ timeout: ANSWER_TIMEOUT_MS });
+  await ledgerToggle.click();
+  await page.getByTestId("ledger").last().waitFor({ timeout: 10_000 });
+  out.tokPerSec = Number(await page.getByTestId("ledger-tokPerSec").last().textContent());
+  out.ttftMs = Number.parseInt((await page.getByTestId("ledger-ttft").last().textContent()) ?? "", 10);
+  out.tokens = ((await page.getByTestId("ledger-tokens").last().textContent()) ?? "").trim();
   out.answer = ((await page.getByTestId("assistant-text").last().textContent()) ?? "").trim();
+  out.modelChip = ((await page.getByTestId("model-chip").textContent()) ?? "").trim();
   const loaded = loadedLines.map((l) => LOADED_RE.exec(l)).find(Boolean);
   if (loaded) Object.assign(out, { engineLoadMs: Number(loaded[1]), threads: Number(loaded[2]), gpuLayers: Number(loaded[4]) });
   if (!out.answer) throw new Error("empty answer");
+  if (!(out.tokPerSec > 0) || !Number.isFinite(out.ttftMs)) throw new Error(`ledger did not report usage: tok/s=${out.tokPerSec} ttft=${out.ttftMs}`);
 }
 
 const foreignHosts = (hosts) => [...hosts].filter((h) => h !== origin);
@@ -124,6 +149,7 @@ const foreignHosts = (hosts) => [...hosts].filter((h) => h !== origin);
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+  await skipOnboarding(context);
 
   /* 1. First visit: download door → OPFS → wllama → chat. */
   {
@@ -151,7 +177,7 @@ try {
         await resume.click();
       }
     }
-    await waitForEngine(page, out, t0);
+    await waitForEngine(page, out, consoleLines, t0);
     out.downloadRequests = requests.filter((r) => r.includes("/models/instant.gguf"));
     out.crossOriginIsolated = await page.evaluate(() => globalThis.crossOriginIsolated);
     out.webgpu = await page.evaluate(async () => (navigator.gpu ? !!(await navigator.gpu.requestAdapter()) : false));
@@ -191,7 +217,7 @@ try {
     const out = result.offline;
     const t0 = Date.now();
     await page.goto(server.url);
-    await waitForEngine(page, out, t0);
+    await waitForEngine(page, out, consoleLines, t0);
     await chat(page, out, PROMPT_OFFLINE, consoleLines);
     out.requests = requests;
     out.hosts = [...hosts];
@@ -211,6 +237,7 @@ try {
   /* 3. A phone: the gate says Instant only + get the app (spec §8.9). */
   {
     const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: IPHONE_UA, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+    await skipOnboarding(phone);
     const page = await phone.newPage();
     const out = result.phone;
     await page.goto(server.url);
@@ -226,6 +253,7 @@ try {
   /* 4. Not enough space: the estimate says 100 MB free, so the door refuses before a byte moves (spec §10 row 5). */
   {
     const tight = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(tight);
     await tight.addInitScript(() => {
       navigator.storage.estimate = async () => ({ usage: 0, quota: 100 * 1024 * 1024 });
     });
@@ -248,6 +276,7 @@ try {
       door: await lastPage.getByTestId("download-door").textContent({ timeout: 1000 }).catch(() => null),
       error: await lastPage.getByTestId("download-error").textContent({ timeout: 1000 }).catch(() => null),
       status: await lastPage.getByTestId("status-line").textContent({ timeout: 1000 }).catch(() => null),
+      modelChip: await lastPage.getByTestId("model-chip").textContent({ timeout: 1000 }).catch(() => null),
       console: lastConsole.slice(-30),
       screenshot: path.join(outDir, "web-smoke-fail.png"),
     };
@@ -264,7 +293,7 @@ if (failure) {
 }
 const f = result.first;
 const o = result.offline;
-console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · TTFT ${f.ttftMs} ms · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
-if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · TTFT ${o.ttftMs} ms · requests=${o.requests.length} · model fetches=0`);
+console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · TTFT ${f.ttftMs} ms · tokens ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
+if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · TTFT ${o.ttftMs} ms · tokens ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);

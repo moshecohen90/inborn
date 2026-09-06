@@ -11,14 +11,17 @@
     "pseudo": "node scripts/pseudo.mjs"
   },
   "dependencies": {
+    "@formatjs/intl-getcanonicallocales": "3.2.11",
+    "@formatjs/intl-locale": "5.3.10",
+    "@formatjs/intl-pluralrules": "6.3.13",
     "i18next": "26.4.1",
     "i18next-icu": "2.4.4",
     "intl-messageformat": "11.2.14",
     "react-i18next": "17.0.13"
   },
   "devDependencies": {
+    "@types/node": "26.4.1",
     "typescript": "5.9.3",
-    "vitest": "5.0.0",
-    "@types/node": "26.4.1"
+    "vitest": "5.0.0"
   }
 }

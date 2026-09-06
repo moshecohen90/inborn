@@ -21,15 +21,15 @@ export function Ledger({ message, nCtx, quant }: LedgerProps) {
   const u = message.usage;
   const msPerToken = u && u.tokPerSec > 0 ? Math.round(1000 / u.tokPerSec) : undefined;
   const genMs = u ? Math.round(u.ttftMs + (u.completionTokens * 1000) / Math.max(1, u.tokPerSec)) : undefined;
-  const rows: [string, string][] = [
-    [t("ledger.model"), modelLabel(message.modelId ?? "")],
-    [t("ledger.quant"), quant ?? "—"],
-    [t("ledger.context"), u ? `${u.promptTokens + u.completionTokens} / ${nCtx}` : "—"],
-    [t("ledger.msPerToken"), msPerToken !== undefined ? `${msPerToken} ms` : "—"],
-    [t("ledger.tokPerSec"), u ? u.tokPerSec.toFixed(1) : "—"],
-    [t("ledger.ttft"), u ? `${Math.round(u.ttftMs)} ms` : "—"],
-    [t("ledger.tokens"), u ? `${u.promptTokens} + ${u.completionTokens}` : "—"],
-    [t("ledger.time"), genMs !== undefined ? `${(genMs / 1000).toFixed(1)} s` : "—"],
+  const rows: [string, string, string][] = [
+    ["model", t("ledger.model"), modelLabel(message.modelId ?? "")],
+    ["quant", t("ledger.quant"), quant ?? "—"],
+    ["context", t("ledger.context"), u ? `${u.promptTokens + u.completionTokens} / ${nCtx}` : "—"],
+    ["msPerToken", t("ledger.msPerToken"), msPerToken !== undefined ? `${msPerToken} ms` : "—"],
+    ["tokPerSec", t("ledger.tokPerSec"), u ? u.tokPerSec.toFixed(1) : "—"],
+    ["ttft", t("ledger.ttft"), u ? `${Math.round(u.ttftMs)} ms` : "—"],
+    ["tokens", t("ledger.tokens"), u ? `${u.promptTokens} + ${u.completionTokens}` : "—"],
+    ["time", t("ledger.time"), genMs !== undefined ? `${(genMs / 1000).toFixed(1)} s` : "—"],
   ];
   return (
     <View>
@@ -40,10 +40,12 @@ export function Ledger({ message, nCtx, quant }: LedgerProps) {
       </Pressable>
       {open ? (
         <View testID="ledger" style={[styles.receipt, { borderColor: theme.border }]}>
-          {rows.map(([k, v]) => (
-            <View key={k} style={styles.row}>
+          {rows.map(([id, k, v]) => (
+            <View key={id} style={styles.row}>
               <Text style={[type.monoLabel, { color: theme.text3 }]}>{k}</Text>
-              <Text style={[type.mono, { color: theme.text2 }]}>{v}</Text>
+              <Text testID={`ledger-${id}`} style={[type.mono, { color: theme.text2 }]}>
+                {v}
+              </Text>
             </View>
           ))}
         </View>
