@@ -1,4 +1,4 @@
-# Inborn release checklist: the 40 tests
+# Inborn release checklist: the 57 tests (40 + voice, photos, Work, real-store purchases, and the retest list of 7.9.2026)
 
 Spec basis: §14.7 (categories), §10 (every row is a test), §5.9, §11.5. This is the "full version that lives in the repo". Because Inborn has no telemetry, this list *is* the monitoring: every test runs before every store release, on every platform being released. Results go in a dated copy under `docs/qa/runs/<version>-<platform>.md` (one line per test: id, device, pass/fail, evidence path).
 
@@ -269,10 +269,127 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 
 ---
 
+## O. Voice (§5.6, §7.4, §8.2, S44) — added 7.9.2026 for main ≥ 660c909
+
+Fixtures: `say -v Samantha "…" -o en.aiff && afconvert -f WAVE -d LEI16@16000 -c 1 en.aiff en.wav`, same with `-v Carmit` for `he.wav` (11 s each). Emulators and simulators have no host microphone (`coreaudio: Could not initialize record`, `localspeechrecognition … invalidated`), so every live-mic case needs a phone; dev bundles can replay the WAVs with `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav` (writes `Documents/dev-run.json` `voice`).
+
+### T41 Free dictation: the system recogniser, on-device only
+- Procedure: Free tier, Airplane Mode on. Tap the mic once. Android 13+: with the language pack absent, expect the sheet offering the system pack download or Whisper (PRO); download the pack in Settings › System › Languages › Speech, retry. iOS: Settings › General › Keyboard › Enable Dictation with the on-device language installed. Speak one English sentence, stop, send.
+- Pass: permission prompt only on the first tap; live partial text in the draft, field pulses amber, mic becomes a stop square, "Listening… / Transcribing…" line; the final text is the spoken sentence; `requiresOnDeviceRecognition` is honoured: Airplane Mode never breaks it and the proof screen stays `OUT 0 B`; Android ≤ 12 and the web show the Whisper-only reason, never a network recogniser.
+- Runs on: D-AND-FLOOR (Android 11 → Whisper-only path), a 13+ phone for the system path (BLOCKED: needs Pixel 8 until one arrives), D-IOS-FLOOR.
+
+### T42 Whisper dictation (Pro)
+- Procedure: Pro tier (dev: `EXPO_PUBLIC_PRO=1`); `speech-whisper-base` installed (Play pack `inborn_model_speech` / HTTPS / dev `Documents/whisper.bin`). Long-press the mic → choose Whisper. Speak the EN clip text, then the HE clip text.
+- Pass: whisper loads (< 1 s warm), listening → transcribing → draft; EN transcript has 0 content-word errors on the fixture sentence; HE is accepted as "usable for commands" (report the WER, do not fail on it); no audio file is written anywhere in the container (`find … -newer marker -name '*.wav' -o -name '*.pcm'` empty); Free tier sees Whisper tagged PRO and the paywall on tap.
+- Runs on: D-AND-FLOOR, D-IOS-FLOOR; emulator/simulator only through the AUTOVOICE replay (dev bundle).
+
+### T43 Hands-free voice mode (S44, Pro)
+- Procedure: open `/voice`; say a short question; do not touch; after the answer say a second question; then tap once during the spoken answer; then stay silent for five rounds; also press Home mid-answer.
+- Pass: listen → transcribe → think → speak → listen with the seal + level wave; the answer is spoken sentence by sentence through the system voice (never a network voice: check `pickVoice` result in the ledger/dev log and the proof meter); tap interrupts; five silent rounds end the session; Home pauses it and it resumes only on return; turns are saved to the chat and never in incognito; whisper is unloaded on exit (`[inborn]` log / memory drop).
+- Runs on: D-AND-FLOOR, D-IOS-FLOOR.
+
+### T44 Read aloud
+- Procedure: long-press an answer with three sentences and a code block → "Read aloud"; tap "Stop reading" mid-way; enable VoiceOver/TalkBack and repeat.
+- Pass: spoken one sentence per utterance, code is skipped or read as "code block", Stop stops within a sentence, the action is announced by the screen reader, no audio focus is kept after Stop.
+- Runs on: both floor devices.
+
+## P. Photos (§7.1, §7.2) — added 7.9.2026
+
+Fixture: a 4032×3024 JPEG with GPS + camera EXIF (`exiftool -GPSLatitude=32.08 -GPSLongitude=34.78 -Make=Test in.jpg`), a HEIC from the phone's camera, a 20 MB PNG.
+
+### T45 Attach a photo / take a photo, EXIF stripped
+- Procedure: attach sheet → Photo (pick the fixture) and → Camera (take one). Pull the stored copy from `Documents/images/` (`adb shell run-as` on a dev build, `devicectl copy from` on iOS) and run `exiftool` on it.
+- Pass: chip above the composer and thumbnail in the bubble; the stored file is JPEG ≤ 1024 px on the long side with **no** GPS/Make/Model/DateTimeOriginal tags; the HEIC is converted; the 20 MB PNG is accepted or refused with a size message, never a crash; `expo-image-picker` is called with `exif: false` (code) and the original is never copied whole.
+- Runs on: both floor devices; simulator/emulator with a pushed fixture (Photos app import) for the EXIF check.
+
+### T46 Vision answer
+- Procedure: Instant or Fast with the `vision-qwen35` projector installed; attach the geometric-house fixture; ask "What is in this picture?"; then attach the same photo to a Phi (no vision) chat.
+- Pass: projector attached with `initMultimodal` (log line), answer describes the picture (house, roof colour) — record prefill and decode tok/s; with Phi the Photo/Camera rows are disabled with the reason; without the projector the rows are disabled with "install the photo companion"; OUT 0 B throughout.
+- Runs on: D-IOS-FLOOR (Metal), D-AND-FLOOR (CPU: expect minutes of prefill, note the number), simulators with `use_gpu` off.
+
+### T47 Photo limits and tiering
+- Pass: Free attaches one photo per message and the second pick opens the value moment (paywall); Pro attaches several; an incognito chat's photo never lands in `documents.json` or the DB (`ram:` key) and is gone after the chat closes; a photo attached to an unsent draft is moved to the real chat id on the first send.
+- Runs on: emulator/simulator (dev `EXPO_PUBLIC_PRO=1` for the Pro half).
+
+## Q. Pro for Work (§7.5–§7.9, §8.7, §11.3, §12.1–§12.3) — added 7.9.2026
+
+Dev pretence: `EXPO_PUBLIC_TIER=work` (dev bundles only). Fixtures under `docs/qa/fixtures/` when they land, else the work-docs stream's `lease.docx`, `budget.xlsx`, `policy.html` (the HTML carries a `<div hidden>` "refund window is 90 days" injection; the visible text says 21 days).
+
+### T48 Client vault: lock, relock, wrong code
+- Procedure: make folder "Client A" a vault (code set twice); move a chat in; lock from the VAULT badge; open the drawer; enter a wrong code, then the right one; relaunch the app; wait 30 min (or set the clock forward) with the vault open; enable the app lock and lock the app.
+- Pass: badge shows VAULT then LOCKED; locked chats are hidden and the header reads "N chats · locked"; wrong code refused with a message and no unlock; right code unlocks; a relaunch relocks; the 30-minute session closes the vault; engaging the app lock closes every open vault; the code is never stored (Keystore/Keychain holds only the per-vault salt + hash: inspect `SecureStore.xml` / `security find-generic-password` on a dev build); search never returns a locked chat.
+- Runs on: emulator/simulator; spot-check on D-AND-FLOOR.
+
+### T49 Audit log: chain verify
+- Procedure: after T48, open Settings › Pro for Work › Audit log. Then, on a dev build, pull `Documents/work/<vault>.audit`, edit one entry, remove one, reorder two, truncate the file; push each variant back and reopen the screen.
+- Pass: "Chain verified · N entries" with the events created / moved in / locked / unlocked / signed export and never any message content; every tampered variant shows the chain broken with the first bad index; entries are sealed with a key unrelated to the entitlement cache (`sealJson` domain label: a file sealed under one label does not open under the other).
+- Runs on: emulator/simulator.
+
+### T50 Signed record export: VALID, tampered INVALID
+- Procedure: Export sheet → "Signed record" on a vault chat; save the `.json` and the `.md`; run the verification one-liner from the record's instructions on the Mac; flip one character in the JSON body and rerun; verify the `.md` states the AI marking (Art. 50).
+- Pass: `VALID` for the untouched file (Ed25519 over the canonical JSON, public key inside the file), `INVALID` for the tampered copy; the readable `.md` carries the "ON-DEVICE AI" marking and no "HIPAA-compliant / privileged / certified / guarantee" wording; the export is logged in the audit chain.
+- Runs on: emulator/simulator, M-MAC for the verifier.
+
+### T51 Templates insert
+- Procedure: Attach sheet → Templates → Legal pack → declaration → a template with two `{{placeholders}}`; fill one blank, leave one; insert.
+- Pass: the declaration is shown before the template and its "verify before use" disclaimer is fixed (not editable); the inserted text lands in the composer with the filled blank replaced and the empty one still marked; Free/Pro see the value moment with the WORK tag and one price line, no popup; Work personas carry the pack disclaimer in their header.
+- Runs on: emulator/simulator.
+
+### T52 Architecture statement share
+- Procedure: Settings › Pro for Work › Architecture statement → share to Files/Mail.
+- Pass: dated, names the platform, lists the vaults and the signing key fingerprint, states the explicit non-claims (no "HIPAA-compliant", no "privileged"); the share sheet opens with a Markdown file; nothing is sent by the app (proof meter unchanged).
+- Runs on: emulator/simulator.
+
+### T53 Excel / HTML intake with a cited answer, hidden-HTML injection ignored
+- Procedure: Work tier; import `budget.xlsx` and `policy.html` through "Add a file…"; ask "What was the cloud hosting cost in March?" and "Within how many days must a refund request be filed?"; then as Pro (not Work) pick `budget.xlsx` in the library.
+- Pass: chips read `budget.xlsx · sheet 1` and `policy.html · §3`; answers `2,275` and `21 days` with those citations; the hidden `<div hidden>` text never appears in a passage (search the index for "90 days"); Pro sees the Excel/HTML value-moment card and nothing is imported; a `.txt` starting with `<!doctype html` is routed to the HTML extractor; a Word file remains importable on Free.
+- Runs on: emulator/simulator (indexing times noted), D-AND-FLOOR spot-check.
+
+### T54 Redaction: placeholders, reveal, persistence
+- Procedure: Work tier. Paste (or type) a message with a name, an Israeli ID, a mobile number, an email, a Luhn-valid card and an IL IBAN; open Redact; add the name to the names list; "Replace n items"; send; toggle "Show originals"; restart the app; open the chat; export it; inspect `documents.json`, the DB (dev build) and the export.
+- Pass: the sheet counts one of each kind; the composer holds `[NAME-1] [ID-1] [PHONE-1] [EMAIL-1] [CARD-1] [IBAN-1]`; the model's reply uses the placeholders ("Dear [NAME-1]"); Show originals renders the real values in both bubbles, Hide restores placeholders; after the restart the chat title and every message contain placeholders only (the RAM session is gone: originals cannot be revealed any more); `documents.json` holds only the names list and the dates switch; the export and the DB contain no original value; a paste longer than 300 characters shows the amber "Pasted text · redact before sending?" chip; Free/Pro see the locked card with `$69.99 · one-time purchase`; a bare 7-digit number is not flagged as a phone; `ולשרה לוי` becomes `ול[NAME-1]`.
+- Runs on: emulator/simulator (typed input), a phone for the paste chip.
+
+## R. Real-store purchases (§12.4, §10.7) — added 7.9.2026; replaces the "needs the Play record" halves of T20–T23
+
+### T55 Play: test card → Pro unlocked → Restore
+- Procedure: Play internal testing build (versionCode ≥ 2 with the licence-key fix from `purchases-verify`), tester account in the licence-tester list, on D-AND-FLOOR. Paywall → Unlock Pro → Google test card "always approves"; then "always declines"; then "slow test card, approves after a few minutes" (pending); uninstall, reinstall, Restore purchases; Airplane Mode on, relaunch.
+- Pass: approved purchase is acknowledged in the session (Play Console shows no un-acknowledged order; `BillingClient` log `acknowledgePurchase` ok) and Pro gates open immediately (4th persona, 2nd document, Sharp install); decline leaves Free with a message and no stuck spinner; pending shows the pending state and completes on the next launch; Restore returns Pro offline from the cached signed proof after one sync; the Play licence signature is verified locally (`packages/core/src/licence/play.ts`) — a proof signed with another key is rejected (unit test) and the entitlement cache opened with the wrong domain label fails; the paywall states that Family Library excludes IAP.
+- Runs on: D-AND-FLOOR only (Play Store required).
+
+### T56 iOS: StoreKit configuration on the iPhone, then sandbox
+- Procedure: dev build with `withStoreKitTesting` (`apps/mobile/storekit/Inborn.storekit`) on D-IOS-FLOOR from Xcode with the StoreKit configuration selected; buy Pro; Ask to Buy on; refund via the transaction manager; then the TestFlight build with a sandbox Apple ID: buy, Restore after reinstall, offline relaunch. `apps/mobile/ios-tests/PaywallUITests.swift` runs the same flow headless on a simulator (SKTestSession).
+- Pass: JWS verified on device (`packages/core/src/licence/apple.ts`: the StoreKit-test JWS is self-signed and must be accepted only under the test configuration, the sandbox/production JWS must chain to the Apple root); Pro unlocks; Ask to Buy shows pending and completes; refund locks Pro with a message and **deletes nothing**; Restore works offline after one sync; the paywall shows the Family Sharing wording; `PaywallUITests` green.
+- Runs on: D-IOS-FLOOR, S-IOS-26 (UI test only).
+
+### T57 Pro owner sees the Work upgrade; Work owner sees no paywall
+- Pass: with Pro owned the paywall shows "You own Pro" and the $49.99 Upgrade to Work card only; with Work owned every Work gate is open and no PRO/WORK tag remains; a Free user sees Pro first and "For professionals · Pro for Work" below with the five Work bullets; `sellable()` hides a tier whose bullet list is empty (unit test).
+- Runs on: emulator/simulator with `EXPO_PUBLIC_TIER`, D-AND-FLOOR with the real purchases from T55.
+
+## S. Retest list for the 6.9.2026 blockers (`qa-run-2026-09-06.md`) — run after fixes-r4a, sheets-keyboard and design-r2 merge, on the lead's "GO retest"
+
+Build the release APK + AAB from the merge commit exactly as in "Play internal testing" (`INBORN_PACKS` as the release will ship it). One emulator or simulator at a time.
+
+| Id | Blocker | Exact pass criterion | How |
+|---|---|---|---|
+| R-B1 | 16 KB page size (T33) | Every `.so` in `base-arm64_v8a.apk` and the APK has all `LOAD` segments aligned ≥ 0x4000 (0 lines `UNALIGNED`); on `qa_ps16k` (API 36.1, `getconf PAGE_SIZE` = 16384) the app launches with **no** "Android App Compatibility" dialog, loads Instant and answers; `zipalign -c -P 16 -v 4` passes | `llvm-readelf -lW` loop from the run (`t33-alignment.txt` method), boot `qa_ps16k -memory 4096`, `uiautomator dump` must contain no `alertTitle` |
+| R-B2 | Manifest permissions (T30) | `aapt2 dump permissions` on the APK and on `universal.apk` from the AAB lists exactly the §4.2 set of `docs/legal/app-privacy-details.md` (now including `RECORD_AUDIO`, `CAMERA` from M5b) and none of `ACCESS_NETWORK_STATE`, `ACCESS_WIFI_STATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `BIND_GET_INSTALL_REFERRER_SERVICE`; the manifest-merger report shows them blocked or the sources removed; `check-android-permissions.sh` OK | `scripts/check-android-permissions.sh`, `aapt2 dump badging`, `manifest-merger-release-report.txt` |
+| R-B3 | Backup (T39) | Merged manifest has `android:allowBackup="false"` **or** `android:dataExtractionRules` + `android:fullBackupContent` whose XML excludes `files/models`, `files/assetpacks`, `files/SQLite`, `files/work`, `files/images` and the databases; `adb shell bmgr backupnow com.inbornapp.mobile` on a dev build reports 0 bytes for those paths (or the app opts out entirely) | merged `AndroidManifest.xml`, `res/xml/*rules*.xml`, `bmgr` |
+| R-B5 | AAB pack limits | `bundletool build-apks` lists no asset slice > 1.5 GB (Sharp split into one pack per shard or excluded from the internal bundle); `bundletool validate` OK; the fast-follow + on-demand total is within Play's cumulative cap; Play Console accepts the upload (edit committed) | `unzip -l out.apks | grep asset-slices`, `scripts/play-upload.mjs` |
+| R-B7 | Passcode survives wipe (T15) | After Delete everything → onboarding, Settings shows "Set a passcode"; `SecureStore.xml` (Android) / Keychain (iOS) hold no `inborn.lock.passcode` and no work signing seed or vault items (`SECURE_ITEMS` list); a fresh db key only; enabling the lock asks for a new code | run T15 on emulator + simulator; inspect `shared_prefs/SecureStore.xml` as root |
+| R-B8 | No Continue after background stop (T12) | 600-word essay, Home after 6 s, back after 22 s: the partial is kept, the §8.8 strip reads "Paused while Inborn was in the background · CONTINUE", the inline "The system stopped generation · Continue" is present, tapping CONTINUE resumes and the ledger shows a second run; the same on the OnePlus 6T through `KEYCODE_TAB`/`DPAD_CENTER` | emulator + D-AND-FLOOR |
+| R-B9…B13, B17 | fixes-r4b | B9: with SecureStore failing (unsigned simulator build) the sheet shows `passcode.saveFailed` with the OS error; B10: iOS 26.3 chat shows the three chips above the glass composer (`ios26-03` retake); B11: `contrastRatio()` test green and light `text3` on bg ≥ 4.5:1; B12: Settings › Reports lists the saved report with reason/date/size, detail sheet has Email report + Delete; B13: `ui.py a11y` reports 0 unlabelled on the model step and lock offer, composer label is "Message…" once; B17: a stray `.gguf` in `Documents/models` is listed as `FILE · <name>`, counted, removable, never loaded | one simulator, one emulator |
+| R-keys | sheets-keyboard | A bottom sheet with a text field (passcode, vault code, folder rename, redact names) lifts above the Android keyboard: the focused field's bounds from `uiautomator dump` stay above the IME window bounds (`dumpsys input_method` `mInputShown=true`) | Pixel_6_API_33 |
+
+Sign-off rule for the retest: every R-row PASS on its listed devices, then the full T01–T57 sign-off table is re-run only for the rows a merge touched (list them in the run file).
+
+---
+
 ## Sign-off table (copy into the run file)
 
 | Test | Android floor | Android emu | iOS floor | iOS sim | Desktop/Web | Evidence |
 |---|---|---|---|---|---|---|
-| T01–T40 | | | | | | |
+| T01–T57 | | | | | | |
+| R-B1…R-keys (retest) | | | | | | |
 
 A release ships only when every row is PASS or N/A, and every BLOCKED row is listed in the release notes to Moshe with the device it needs.
