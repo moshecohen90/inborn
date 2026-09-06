@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Inborn app icon master (spec §9.8, approved 3.9.2026): a closed seal ring on graphite with one filament highlight at 2 o'clock.
+       Three layers by id (base / glow / ring). build.mjs slices them into every platform asset; never bake corners, shadows or bevels here. -->
+  <g id="base">
+    <defs>
+      <linearGradient id="graphite" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1B2129"/>
+        <stop offset="1" stop-color="#0D1115"/>
+      </linearGradient>
+    </defs>
+    <rect width="1024" height="1024" fill="url(#graphite)"/>
+  </g>
+  <g id="glow">
+    <defs>
+      <radialGradient id="filament" cx="766.6" cy="365" r="280" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#F0B35B" stop-opacity="0.28"/>
+        <stop offset="0.45" stop-color="#F0B35B" stop-opacity="0.10"/>
+        <stop offset="1" stop-color="#F0B35B" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="766.6" cy="365" r="280" fill="url(#filament)"/>
+  </g>
+  <g id="ring">
+    <circle cx="512" cy="512" r="294" fill="none" stroke="#3ECF8E" stroke-width="92"/>
+    <path d="M 723.5 307.8 A 294 294 0 0 1 794.6 431" fill="none" stroke="#F0B35B" stroke-width="92" stroke-linecap="round"/>
+    <path d="M 723.5 307.8 A 294 294 0 0 1 794.6 431" fill="none" stroke="#FFD9A3" stroke-width="30" stroke-linecap="round"/>
+  </g>
+</svg>

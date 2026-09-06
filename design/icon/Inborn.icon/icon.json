@@ -1,0 +1,92 @@
+{
+  "fill": {
+    "linear-gradient": [
+      "srgb:0.10588,0.12941,0.16078,1.00000",
+      "srgb:0.05098,0.06667,0.08235,1.00000"
+    ],
+    "orientation": {
+      "start": {
+        "x": 0.5,
+        "y": 0
+      },
+      "stop": {
+        "x": 0.5,
+        "y": 1
+      }
+    }
+  },
+  "fill-specializations": [
+    {
+      "appearance": "dark",
+      "value": {
+        "linear-gradient": [
+          "srgb:0.07059,0.08627,0.10588,1.00000",
+          "srgb:0.03922,0.05098,0.06667,1.00000"
+        ],
+        "orientation": {
+          "start": {
+            "x": 0.5,
+            "y": 0
+          },
+          "stop": {
+            "x": 0.5,
+            "y": 1
+          }
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "seal",
+      "layers": [
+        {
+          "image-name": "ring.svg",
+          "name": "ring",
+          "glass": true
+        }
+      ],
+      "lighting": "individual",
+      "specular": true,
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.35
+      },
+      "blur-material": null
+    },
+    {
+      "name": "glow",
+      "layers": [
+        {
+          "image-name": "glow.svg",
+          "name": "filament",
+          "glass": false,
+          "blend-mode": "plus-lighter"
+        }
+      ],
+      "specular": false,
+      "shadow": {
+        "kind": "none",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      },
+      "blur-material": null,
+      "hidden-specializations": [
+        {
+          "appearance": "tinted",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "supported-platforms": {
+    "squares": "shared"
+  }
+}
