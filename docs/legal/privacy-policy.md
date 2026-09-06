@@ -68,6 +68,7 @@ If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever 
 ## 6. Your data on the device, and how to export or delete it
 
 - Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
+- **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
 - Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. Conversations are included in your iCloud or Google device backup, encrypted by the operating system's backup mechanism.
 - **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
 - **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
