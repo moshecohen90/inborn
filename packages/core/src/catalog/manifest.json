@@ -252,18 +252,27 @@
       "contextLength": 0,
       "vision": false,
       "tools": false,
-      "goodFor": "Turns your voice into text on this device.",
+      "goodFor": "Turns your voice into text on this device, in any language.",
       "battery": "low",
       "goodLanguages": [
         "en",
+        "he",
         "es",
         "fr",
         "de",
         "pt",
         "ja",
-        "zh"
+        "zh",
+        "ar",
+        "ru"
       ],
       "delivery": [
+        {
+          "kind": "play-asset-pack",
+          "pack": "inborn_model_speech",
+          "mode": "on-demand",
+          "file": "ggml-base.bin"
+        },
         {
           "kind": "https",
           "path": "ggml-base.bin"
@@ -271,7 +280,45 @@
       ],
       "proOnly": false,
       "minEngine": 1
+    },
+    {
+      "id": "vision-qwen35",
+      "role": "vision",
+      "name": "Photo understanding",
+      "vendor": "Qwen",
+      "family": "Qwen3.5 mmproj",
+      "params": "0.4B",
+      "quant": "F16",
+      "arch": "clip",
+      "file": "mmproj-Qwen3.5-0.8B-F16.gguf",
+      "bytes": 204987232,
+      "sha256": "56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453",
+      "license": "Apache-2.0",
+      "minRamGB": 3,
+      "recommendedRamGB": 4,
+      "contextLength": 0,
+      "vision": true,
+      "tools": false,
+      "goodFor": "Lets Instant, Fast and Sharp look at your photos on this device.",
+      "battery": "medium",
+      "goodLanguages": [
+        "en"
+      ],
+      "delivery": [
+        {
+          "kind": "play-asset-pack",
+          "pack": "inborn_model_vision",
+          "mode": "on-demand",
+          "file": "mmproj-Qwen3.5-0.8B-F16.gguf"
+        },
+        {
+          "kind": "https",
+          "path": "mmproj-Qwen3.5-0.8B-F16.gguf"
+        }
+      ],
+      "proOnly": false,
+      "minEngine": 1
     }
   ],
-  "signature": "1c580aa6c7628bd4d5ddcad7743c8d106993e16088dacfb79c30e17f35d9015258ec75b7d105dc65d80b20846a5cb2e653668533d6f8e3b32548c7df42ed4c0c"
+  "signature": "6618b18218f82a1a2d1e69737ea0d448de981b514108747f4b7a799e80d8631ca05ff90ab43c05bff31f6c76d1dfd03f4bfb401f22e311fcf87155c06de9e10e"
 }

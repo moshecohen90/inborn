@@ -48,6 +48,7 @@ function Shell() {
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
         <Stack.Screen name="chats" options={{ animation: "slide_from_left" }} />
         <Stack.Screen name="paywall" options={{ presentation: "modal" }} />
+        <Stack.Screen name="voice" options={{ presentation: "fullScreenModal", animation: "fade" }} />
       </Stack>
       {/* Under the header of whichever screen is up: transient system states never push content around (§8.8). */}
       <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52 }]}>

@@ -1,6 +1,6 @@
 /** Signed model catalog (spec §5.4, §6). One manifest describes every delivery path; verification is local. */
 export type Tier = "instant" | "fast" | "sharp" | "power" | "studio";
-export type ModelRole = "chat" | "embedding" | "speech";
+export type ModelRole = "chat" | "embedding" | "speech" | "vision";
 export type Battery = "low" | "medium" | "high" | "highest";
 export type License = "Apache-2.0" | "MIT";
 

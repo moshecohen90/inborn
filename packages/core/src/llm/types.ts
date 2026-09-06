@@ -32,6 +32,8 @@ export type Role = "system" | "user" | "assistant" | "tool";
 export interface Message {
   role: Role;
   content: string;
+  /** Local image files for a vision model (spec §7.1); engines without vision ignore them. */
+  images?: string[];
 }
 
 export interface GenOpts {

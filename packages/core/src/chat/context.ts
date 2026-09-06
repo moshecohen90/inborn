@@ -56,7 +56,7 @@ export interface BudgetInput {
   system: string;
   summary?: string | undefined;
   /** The chat's messages, oldest first; the summary replaces everything up to and including `summaryUpTo`. */
-  messages: readonly Pick<ChatMessage, "id" | "role" | "content">[];
+  messages: readonly Pick<ChatMessage, "id" | "role" | "content" | "images">[];
   summaryUpTo?: string | undefined;
   nCtx: number;
   reserve?: number;
@@ -94,7 +94,8 @@ export function buildPrompt(input: BudgetInput): Budget {
   const tail: Message[] = [];
   const candidates = input.messages.slice(from).filter((m) => m.role !== "system");
   for (let i = candidates.length - 1; i >= 0; i--) {
-    const m = { role: candidates[i]!.role, content: candidates[i]!.content };
+    const src = candidates[i]!;
+    const m: Message = { role: src.role, content: src.content, ...(src.images?.length ? { images: src.images } : {}) };
     const c = cost(m);
     if (tail.length && used + c > budget) break;
     tail.unshift(m);

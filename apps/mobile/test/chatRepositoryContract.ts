@@ -185,5 +185,22 @@ export function describeChatRepositoryContract(name: string, open: OpenRepositor
       const none = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "x", citations: [] });
       expect(none.citations).toBeUndefined();
     });
+
+    it("keeps the photos of a user turn (§7.1 image input) through append, update and clear", async () => {
+      const repo = await open({ now: clock() });
+      const chat = await repo.createChat({ modelId: "instant" });
+      const images = ["file:///images/a.jpg", "file:///images/b.jpg"];
+      const plain = await repo.appendMessage({ chatId: chat.id, role: "user", content: "hi" });
+      expect(plain.images).toBeUndefined();
+      const m = await repo.appendMessage({ chatId: chat.id, role: "user", content: "what is this?", images });
+      expect(m.images).toEqual(images);
+      m.images!.push("file:///mutated.jpg");
+      const [, stored] = await repo.listMessages(chat.id);
+      expect(stored?.images).toEqual(images);
+      await repo.updateMessage(chat.id, m.id, { images: [images[0]!] });
+      expect((await repo.listMessages(chat.id))[1]?.images).toEqual([images[0]]);
+      await repo.updateMessage(chat.id, m.id, { images: [] });
+      expect((await repo.listMessages(chat.id))[1]?.images).toBeUndefined();
+    });
   });
 }

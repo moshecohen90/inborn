@@ -1,4 +1,6 @@
 import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import type { ConfigContext, ExpoConfig } from "expo/config";
 
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
@@ -16,6 +18,11 @@ const ggufIntentFilter = {
     { scheme: "file", mimeType: "*/*", pathPattern: ".*\\.gguf" },
   ],
 };
+/* Usage strings for the microphone, speech recognition, camera and photos (spec §11); one file per UI language, English in Info.plist itself. */
+/* Under an "ios" key so Expo never copies them into Android string resources (lintVital rejects untranslated extras). */
+const USAGE = (JSON.parse(readFileSync(path.join(__dirname, "locales/en.json"), "utf8")) as { ios: Record<string, string> }).ios;
+const LOCALES = Object.fromEntries(["de", "es", "fr", "ja", "pt-BR"].map((l) => [l, `./locales/${l}.json`]));
+
 /* The proof screen shows the commit the build came from so a reader can match it against the published hash (S50). */
 const commit = (() => {
   try {
@@ -50,8 +57,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       LSSupportsOpeningDocumentsInPlace: false,
       /* Only HTTPS via the OS for the model download: exempt, so TestFlight never blocks on export compliance. */
       ITSAppUsesNonExemptEncryption: false,
+      ...USAGE,
+      CFBundleLocalizations: ["en", "de", "es", "fr", "ja", "pt-BR"],
     },
   },
+  locales: LOCALES,
   android: {
     package: "com.inbornapp.mobile",
     /* Play rejects a versionCode it has already seen, so each upload bumps it via INBORN_VERSION_CODE (scripts/play-upload.mjs --next-version-code prints the next free one). */
@@ -83,6 +93,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "./plugins/withStoreKitTesting",
     "expo-localization",
     ["expo-local-authentication", { faceIDPermission: "Unlocks Inborn and hides your chats in the app switcher." }],
+    /* Dictation (spec §7.4): RECORD_AUDIO + the on-device recogniser's package visibility; the flag that forbids the network is set at start(). */
+    ["expo-speech-recognition", { microphonePermission: USAGE.NSMicrophoneUsageDescription, speechRecognitionPermission: USAGE.NSSpeechRecognitionUsageDescription, androidSpeechServicePackages: ["com.google.android.as", "com.google.android.tts"] }],
+    /* Image input (spec §7.1): photos are downscaled + EXIF-stripped on the device. (`microphonePermission: false` would strip RECORD_AUDIO from the whole app.) */
+    ["expo-image-picker", { photosPermission: USAGE.NSPhotoLibraryUsageDescription, cameraPermission: USAGE.NSCameraUsageDescription }],
     ["expo-sqlite", { useSQLCipher: true }],
     /* iOS ships Instant inside the app (D2): copied from INBORN_MODELS_DIR at prebuild into the bundle as `<id>.gguf`, never committed (plugins/withBundledModel.js). */
     ["./plugins/withBundledModel", { models: { instant: "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
@@ -99,6 +113,9 @@ const ALL_PACKS = {
   fast: { name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } },
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
   embed: { name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } },
+  /* Voice (whisper base) and vision (Qwen3.5 projector) companions, same rule. */
+  speech: { name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } },
+  vision: { name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } },
   /* Split with llama-gguf-split (Play caps a pack at 1.5 GB); llama.cpp opens the first shard and finds the second beside it. */
   sharp: {
     name: "inborn_model_sharp",

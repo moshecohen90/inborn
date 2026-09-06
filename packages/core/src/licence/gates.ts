@@ -63,10 +63,12 @@ export interface Limits {
   personas: number;
   filesPerChat: number;
   quickActions: number;
+  /** Photos per message (§7.1 "Free one image · Pro several"). */
+  imagesPerMessage: number;
 }
 
 export function limits(tier: LicenceTier): Limits {
-  return tier === "free" ? { personas: 3, filesPerChat: 1, quickActions: 6 } : { personas: Infinity, filesPerChat: Infinity, quickActions: Infinity };
+  return tier === "free" ? { personas: 3, filesPerChat: 1, quickActions: 6, imagesPerMessage: 1 } : { personas: Infinity, filesPerChat: Infinity, quickActions: Infinity, imagesPerMessage: Infinity };
 }
 
 /**

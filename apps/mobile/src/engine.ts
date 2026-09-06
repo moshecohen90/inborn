@@ -238,6 +238,13 @@ function guard(): Engine {
   };
 }
 
+/** Attaches the vision projector (spec §6.2) to the resident model; false when the engine or model cannot see. */
+export async function enableVision(mmprojPath: string): Promise<boolean> {
+  await loadSession();
+  const lm = getRaw().engine as LocalLM & { enableVision?: (path: string) => Promise<boolean> };
+  return lm.enableVision ? lm.enableVision(mmprojPath) : false;
+}
+
 /** After the vault switches the default model: drop the weights and the engine so the next loadSession() picks the new file. */
 export async function resetEngine(): Promise<void> {
   await unloadSession("switch").catch((e: unknown) => console.warn("[inborn] unload", e));

@@ -120,6 +120,18 @@ Store result: "No data collected" and "No data shared". The spec's line "encrypt
 
 Merged release manifest: **no INTERNET**, no storage, no SYSTEM_ALERT_WINDOW (blocked in `app.config.ts`). Expected declared permissions: `com.android.vending.BILLING` (Play Billing), `FOREGROUND_SERVICE` + `FOREGROUND_SERVICE_DATA_SYNC` (asset delivery / short-lived generation service), `USE_BIOMETRIC` (app lock), `RECORD_AUDIO` (dictation, requested at first mic tap), `POST_NOTIFICATIONS` (download progress; Android 13+), `CAMERA` only if the image-input feature ships in the same release. No "sensitive/restricted permission" declaration forms are triggered by that list. Test T31 (`aapt2 dump permissions`) is the gate.
 
+### 4.2a Microphone, speech recognition, camera and photos (M5b voice + image input)
+
+| Permission / API | When it is asked | What happens to the data | Store answer |
+|---|---|---|---|
+| iOS `NSMicrophoneUsageDescription`, Android `RECORD_AUDIO` | Only on the first tap of the composer's mic (§5.6: "requested only on the mic tap"), never at launch | Audio is either handed to the OS recogniser with the on-device flag forced (`requiresOnDeviceRecognition`, `EXTRA_PREFER_OFFLINE`, `createOnDeviceSpeechRecognizer`) or transcribed by whisper.cpp inside the process; PCM lives in RAM for at most 35 s and is never written to disk | Not collected. "Audio Data" row: **not collected** (processed on device, no persistence) |
+| iOS `NSSpeechRecognitionUsageDescription` | Same tap, iOS only | `SFSpeechRecognizer` with `requiresOnDeviceRecognition = true`; iOS refuses to use Apple's server for that request. Locales without on-device support are refused by the app (whisper on Pro instead), so no audio can leave through this API | Not collected |
+| Android offline speech packs | Only when the user taps "Download the offline pack" in the sheet that explains the locale has none | Google's Android System Intelligence downloads its own pack, exactly like Play delivers an asset pack; the app still has no INTERNET permission | Not collected (the download is the system's, mention in the privacy policy like Play Asset Delivery) |
+| `NSCameraUsageDescription`, `NSPhotoLibraryUsageDescription`; Android photo picker (no permission: the system picker on 13+, `READ_MEDIA_IMAGES` is not declared) and `CAMERA` | Only when "Photo" / "Camera" is tapped in the attach sheet | The picture is scaled to ≤ 1024 px and re-encoded as JPEG on the device (EXIF, location and device metadata are dropped, §10.4 #35), stored under the app's `images/` directory, shown to the vision projector in-process | "Photos or Videos": **not collected** (stays on device, not transmitted) |
+| System text-to-speech (`AVSpeechSynthesizer`, Android `TextToSpeech`) | "Read aloud" / voice mode | Text goes to the OS synthesiser; only voices the platform lists as installed are used, and the web tier only uses `localService` voices. Note for Android: Google TTS may fetch a *voice* for a new language on its own if the user picks one in system settings; the app never triggers that | Not collected |
+
+Merged release manifest after M5b (verify with `scripts/check-android-permissions.sh`): still **no INTERNET**; adds `RECORD_AUDIO` and `CAMERA` (image-picker plugin, `microphonePermission: false` so no video-recording permission), plus a `<queries>` block for `android.speech.RecognitionService` (`com.google.android.as`, `com.google.android.tts`). The Play "Permissions" page shows Microphone and Camera; both are user-initiated features, so no sensitive-permission declaration form applies.
+
 ### 4.3 AI-Generated Content policy (Play Console has no separate runtime declaration; compliance is in the app)
 
 Requirements from Play's policy page and how Inborn meets each:

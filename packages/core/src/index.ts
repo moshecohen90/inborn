@@ -19,3 +19,4 @@ export * from "./device/chip";
 export * from "./licence";
 export * from "./rag";
 export * from "./device";
+export * from "./voice";

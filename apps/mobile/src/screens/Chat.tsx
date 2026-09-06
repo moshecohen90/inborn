@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AppState, FlatList, Image, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,6 +19,7 @@ import {
   detectLoop,
   findPersona,
   languageHint,
+  limits,
   markdownToText,
   paywallFor,
   planSummary,
@@ -36,8 +37,12 @@ import {
   type StoppedBy,
   type Usage,
 } from "@inborn/core";
-import { getEngine, loadSession } from "../engine";
+import { enableVision, getEngine, loadSession } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
+import { File, Paths } from "expo-file-system";
+import { DEV_AUTOVOICE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
+import { modelHasVision, pickImages, removeImage, resolveVision, visionInstalled, type PickedImage } from "../images";
+import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
 import { UserMessage } from "../components/chat/UserMessage";
@@ -88,6 +93,10 @@ export interface ChatProps {
   onOpenDocuments?: () => void;
   /** Value moments (§12.3): the mic, "remember this", the PRO tags. */
   onOpenPaywall?: () => void;
+  /** Companions live in the vault (whisper, the vision projector). */
+  onOpenVault?: () => void;
+  /** S44 hands-free voice mode (Pro). */
+  onOpenVoice?: (chatId: string | null, incognito: boolean) => void;
   /** The shell's seal state ("loading" while the first model pack is still arriving, §8.8). */
   sealState?: SealState;
   sealProgress?: number;
@@ -97,11 +106,12 @@ export interface ChatProps {
 export const afterSheetClose = (fn: () => void) => setTimeout(fn, 320);
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
-const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content }) => ({ id, role, content }));
+const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
+const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images } : {}) });
 
-export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, sealState, sealProgress }: ChatProps) {
+export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress }: ChatProps) {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const ent = useEntitlements();
@@ -135,6 +145,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
+  const [micOpen, setMicOpen] = useState(false);
+  const [preferWhisper, setPreferWhisper] = useState(false);
+  const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
+  const [readingId, setReadingId] = useState<string | null>(null);
+  const dictation = useDictation({ draft, setDraft, tier, locale: i18n.language, preferWhisper });
   /* Attachments key by chat id; a chat that does not exist yet, and every incognito chat, attach under a RAM-only key (§5.7). */
   const draftKey = useRef(`${RAM_ATTACH_PREFIX}draft-${Date.now().toString(36)}`).current;
   const [docKey, setDocKey] = useState<string>(chatId ? (incognito ? `${RAM_ATTACH_PREFIX}${chatId}` : chatId) : draftKey);
@@ -319,6 +334,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
       }
       const opts = { reasoning: thinkingAvailable && settings.thinking, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
+      /* Photos in the prompt (§7.1): attach the projector once per resident model; without it the text still goes through. */
+      if (messages.some((m) => m.images?.length)) {
+        const mmproj = resolveVision();
+        if (!mmproj || !(await enableVision(mmproj))) flash(t("chat.attach.visionMissing", { size: "205 MB" }));
+      }
       for await (const d of engine.generate(s, messages, opts, ac.signal)) {
         if (d.reasoning) {
           if (!reasoningStart) reasoningStart = Date.now();
@@ -389,7 +409,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   };
 
   const submit = async (input: string) => {
-    const text = input.trim();
+    const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
     if (!text || !session.current || busy) return;
     setDraft("");
     const editing = editingId;
@@ -403,12 +423,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (at >= 0) setRows((all) => all.slice(0, at));
         if (chat?.summaryUpTo && !rowsRef.current.some((r) => r.id === chat.summaryUpTo)) setChat((c) => (c ? { ...c, summary: undefined, summaryUpTo: undefined } : c));
       }
-      const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text });
+      const images = pendingImages.map((p) => p.uri);
+      setPendingImages([]);
+      const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text, ...(images.length ? { images } : {}) });
       const pendingId = `pending-${Date.now()}`;
       setRows((all) => [...all, user, { id: pendingId, chatId: chatIdNow, role: "assistant", content: "", modelId: model.id, createdAt: Date.now(), streaming: true }]);
       nearBottom.current = true;
       requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
-      const history: Message[] = wire(rowsRef.current).map(({ role, content }) => ({ role, content }));
+      const history: Message[] = wire(rowsRef.current).map(toMessage);
       await generate(chatIdNow, history, pendingId, "");
     } catch (e: unknown) {
       flash(errorText(e));
@@ -426,14 +448,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const before = rowsRef.current.slice(0, at);
     const pendingId = `pending-${Date.now()}`;
     setRows([...before, { id: pendingId, chatId: id, role: "assistant", content: "", modelId: model.id, createdAt: Date.now(), streaming: true }]);
-    await generate(id, wire(before).map(({ role, content }) => ({ role, content })), pendingId, "");
+    await generate(id, wire(before).map(toMessage), pendingId, "");
   };
 
   const continueRow = async (row: Row) => {
     const id = chatRef.current;
     if (!id || busy) return;
     const at = rowsRef.current.findIndex((r) => r.id === row.id);
-    const before = wire(rowsRef.current.slice(0, at)).map(({ role, content }) => ({ role, content }));
+    const before = wire(rowsRef.current.slice(0, at)).map(toMessage);
     const history: Message[] = [...before, { role: "assistant", content: row.content }, { role: "user", content: "Continue exactly where you stopped. Do not repeat what you already wrote." }];
     setRows((all) => all.map((x) => (x.id === row.id ? { ...x, streaming: true, stopped: false, loop: false } : x)));
     await generate(id, history, row.id, row.content, row.id);
@@ -510,7 +532,82 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
-  const onMic = () => (paywallFor(tier, { kind: "feature", feature: "voiceConversation" }) ? onOpenPaywall?.() : flash(t("chat.comingSoon")));
+  const onMic = () => {
+    if (readingId) void stopSpeaking().then(() => setReadingId(null));
+    dictation.toggle();
+  };
+  const openVoice = () => {
+    setMicOpen(false);
+    if (paywallFor(tier, { kind: "feature", feature: "voiceConversation" })) return afterSheetClose(() => onOpenPaywall?.());
+    afterSheetClose(() => onOpenVoice?.(chatRef.current, incognito));
+  };
+  const useWhisper = () => {
+    setMicOpen(false);
+    if (paywallFor(tier, { kind: "feature", feature: "whisperDictation" })) return afterSheetClose(() => onOpenPaywall?.());
+    setPreferWhisper(true);
+    afterSheetClose(() => dictation.toggle());
+  };
+  const readAloud = (row: Row) => {
+    setActionRow(null);
+    if (readingId === row.id && isSpeaking()) {
+      void stopSpeaking().then(() => setReadingId(null));
+      return;
+    }
+    setReadingId(row.id);
+    afterSheetClose(() => void speak(markdownToText(row.content), { uiLocale: i18n.language, onDone: () => setReadingId((r) => (r === row.id ? null : r)), onError: () => setReadingId(null) }));
+  };
+  const visionReady = visionInstalled();
+  const modelSees = modelHasVision(model.id);
+  const imageLimit = limits(tier).imagesPerMessage;
+  const addPhoto = (source: "library" | "camera") => {
+    setAttachOpen(false);
+    const room = imageLimit - pendingImages.length;
+    if (room <= 0) return afterSheetClose(() => (tier === "free" ? onOpenPaywall?.() : undefined));
+    /* iOS refuses to present the picker while the sheet's modal is still dismissing. */
+    afterSheetClose(() => {
+      void pickImages(source, room).then((r) => {
+        if (r.ok) setPendingImages((p) => [...p, ...r.images]);
+        else if (r.reason === "permission") flash(t("chat.image.permission"));
+        else if (r.reason === "failed") flash(t("chat.image.failed"));
+      });
+    });
+  };
+  const dropPhoto = (uri: string) => {
+    setPendingImages((p) => p.filter((x) => x.uri !== uri));
+    removeImage(uri);
+  };
+  const micPhase = dictation.phase.kind;
+  const micLine = micPhase === "listening" ? t("voice.listeningHint") : micPhase === "transcribing" ? t("voice.transcribingHint") : null;
+
+  /* Headless voice proof (dev bundles only): whisper over WAVs pushed into Documents, TTS latency, numbers → dev-run.json. */
+  useEffect(() => {
+    if (!DEV_AUTOVOICE.length || status.kind !== "ready") return;
+    let alive = true;
+    void (async () => {
+      const results: Record<string, unknown>[] = [];
+      let whisperLoadMs = 0;
+      try {
+        await getWhisper().load();
+        whisperLoadMs = getWhisper().loadMs;
+        for (const name of DEV_AUTOVOICE) {
+          const r = await getWhisper().transcribeFile(new File(Paths.document, name).uri);
+          results.push({ file: name, ...r });
+          if (!alive) return;
+        }
+        let ttsStartMs: number | undefined;
+        if (DEV_AUTOVOICE_TTS && results[0]) {
+          const started = Date.now();
+          await speak(String(results[0].text), { uiLocale: i18n.language, onStart: () => (ttsStartMs = Date.now() - started) });
+        }
+        writeDevResult({ voice: { whisperLoadMs, whisperInstalled: whisperInstalled(), results, ttsStartMs } });
+      } catch (e: unknown) {
+        writeDevResult({ voice: { whisperLoadMs, error: errorText(e), results } });
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [status.kind]);
 
   const [topH, setTopH] = useState(0);
   const [bottomH, setBottomH] = useState(0);
@@ -574,6 +671,24 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {toast}
         </Text>
       ) : null}
+      {micLine ? (
+        <Text testID="mic-line" style={[type.caption, styles.centered, { color: theme.accent }]}>
+          {micLine}
+        </Text>
+      ) : null}
+      {pendingImages.length ? (
+        <View testID="pending-images" style={styles.chips}>
+          {pendingImages.map((p, i) => (
+            <Pressable key={p.uri} testID={`pending-image-${i}`} accessibilityRole="button" accessibilityLabel={t("chat.image.remove", { n: i + 1 })} onPress={() => dropPhoto(p.uri)} style={[styles.thumbWrap, { borderColor: theme.accent }]}>
+              <Image source={{ uri: p.uri }} style={styles.thumb} resizeMode="cover" />
+              <View style={[styles.thumbX, { backgroundColor: theme.bg }]}>
+                <Icon name="x" size={12} color={theme.text} />
+              </View>
+            </Pressable>
+          ))}
+          {tier === "free" ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.photoLimit")}</Text> : null}
+        </View>
+      ) : null}
       {attachedNames.length ? (
         <View testID="attached-docs" style={styles.chips}>
           {docs.documents.map((d) => (
@@ -594,6 +709,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onAttach={() => setAttachOpen(true)}
         attachedCount={attachedNames.length}
         onMic={onMic}
+        onMicLongPress={() => setMicOpen(true)}
+        mic={micPhase}
         value={draft}
         onChange={setDraft}
         onSend={send}
@@ -727,7 +844,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
                 }}
               />
             ) : null}
-            {actionRow.role === "assistant" ? <SheetItem testID="action-read" label={t("chat.readAloud")} hint={t("chat.comingSoon")} disabled onPress={() => undefined} /> : null}
+            {actionRow.role === "assistant" ? <SheetItem testID="action-read" label={readingId === actionRow.id ? t("chat.readAloud.stop") : t("chat.readAloud")} onPress={() => readAloud(actionRow)} /> : null}
             {!incognito ? (
               <SheetItem
                 testID="action-remember"
@@ -778,7 +895,76 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           setAttachOpen(false);
           afterSheetClose(() => onOpenDocuments?.());
         }}
+        onPhoto={addPhoto}
+        photoDisabled={!visionReady || !modelSees}
+        photoNote={!modelSees ? t("chat.attach.noVision", { model: modelLabel(model.id) }) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
       />
+      <Sheet visible={micOpen} onClose={() => setMicOpen(false)} title={t("voice.mic.title")} testID="mic-sheet" scroll={false}>
+        <SheetItem
+          testID="mic-dictate"
+          label={t("voice.mic.dictate")}
+          hint={t("voice.mic.dictateHint")}
+          onPress={() => {
+            setMicOpen(false);
+            setPreferWhisper(false);
+            afterSheetClose(() => dictation.toggle());
+          }}
+        />
+        <SheetItem testID="mic-whisper" label={t("voice.mic.whisper")} hint={t("voice.mic.whisperHint")} trailing={ent.pro ? undefined : <ProTag onPress={useWhisper} />} onPress={useWhisper} />
+        <SheetItem testID="mic-conversation" label={t("voice.mic.conversation")} hint={t("voice.mic.conversationHint")} trailing={ent.pro ? undefined : <ProTag onPress={openVoice} />} onPress={openVoice} />
+      </Sheet>
+      <Sheet visible={dictation.problem !== null} onClose={dictation.clearProblem} testID="mic-problem" scroll={false}>
+        {dictation.problem?.kind === "permission" ? (
+          <View style={styles.problem}>
+            <Text style={[type.body, type.strong, { color: theme.text }]}>{t("voice.permission.title")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("voice.permission.body")}</Text>
+          </View>
+        ) : dictation.problem?.kind === "offline-missing" ? (
+          <>
+            <View style={styles.problem}>
+              <Text style={[type.body, type.strong, { color: theme.text }]}>{t("voice.offlineMissing.title", { language: localeLabel(dictation.problem.locale) })}</Text>
+              <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("voice.offlineMissing.body")}</Text>
+            </View>
+            {dictation.problem.canInstall ? <SheetItem testID="mic-install-offline" label={t("voice.offlineMissing.install")} onPress={() => void dictation.installOffline(dictation.problem?.kind === "offline-missing" ? dictation.problem.locale : i18n.language)} /> : null}
+            <SheetItem
+              testID="mic-use-whisper"
+              label={t("voice.offlineMissing.whisper")}
+              trailing={dictation.problem.whisperIsPro ? <ProTag onPress={() => { dictation.clearProblem(); afterSheetClose(() => onOpenPaywall?.()); }} /> : undefined}
+              onPress={() => {
+                const pro = dictation.problem?.kind === "offline-missing" && dictation.problem.whisperIsPro;
+                dictation.clearProblem();
+                if (pro) return afterSheetClose(() => onOpenPaywall?.());
+                if (!whisperInstalled()) return afterSheetClose(() => onOpenVault?.());
+                setPreferWhisper(true);
+                afterSheetClose(() => dictation.toggle());
+              }}
+            />
+          </>
+        ) : dictation.problem?.kind === "whisper-missing" ? (
+          <>
+            <View style={styles.problem}>
+              <Text style={[type.body, type.strong, { color: theme.text }]}>{t("voice.whisperMissing.title")}</Text>
+              <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("voice.whisperMissing.body")}</Text>
+            </View>
+            <SheetItem
+              testID="mic-open-vault"
+              label={t("voice.openVault")}
+              onPress={() => {
+                dictation.clearProblem();
+                afterSheetClose(() => onOpenVault?.());
+              }}
+            />
+          </>
+        ) : dictation.problem?.kind === "unsupported" ? (
+          <View style={styles.problem}>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("voice.unsupported")}</Text>
+          </View>
+        ) : dictation.problem?.kind === "error" ? (
+          <View style={styles.problem}>
+            <Text style={[type.bodySmall, { color: theme.danger }]}>{t("voice.error", { message: dictation.problem.message })}</Text>
+          </View>
+        ) : null}
+      </Sheet>
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
     </KeyboardAvoidingView>
   );
@@ -807,4 +993,8 @@ const styles = StyleSheet.create({
   docChip: { flexDirection: "row", alignItems: "center", gap: 6, minHeight: 30, maxWidth: 220 },
   docChipText: { flexShrink: 1 },
   strictTag: { paddingHorizontal: 4 },
+  thumbWrap: { width: 64, height: 64, borderRadius: 10, borderWidth: 1, overflow: "hidden" },
+  thumb: { width: "100%", height: "100%" },
+  thumbX: { position: "absolute", top: 2, right: 2, width: 18, height: 18, borderRadius: 9, alignItems: "center", justifyContent: "center", opacity: 0.9 },
+  problem: { paddingHorizontal: 16, paddingVertical: 10, gap: 6 },
 });
