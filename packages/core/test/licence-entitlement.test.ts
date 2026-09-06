@@ -122,8 +122,8 @@ describe("feature gates (spec §7.5–§7.9, §12.3)", () => {
 
   it("nothing from the never-paid list is a gate, and the Free limits are the spec's numbers", () => {
     for (const never of ["appLock", "encryptedDb", "incognito", "autoDelete", "panicWipe", "screenshotBlock", "proof", "accessibility", "languages", "report", "unlimitedChat"]) expect(never in FEATURES).toBe(false);
-    expect(limits("free")).toEqual({ personas: 3, filesPerChat: 1, quickActions: 6 });
-    expect(limits("pro")).toEqual({ personas: Infinity, filesPerChat: Infinity, quickActions: Infinity });
+    expect(limits("free")).toEqual({ personas: 3, filesPerChat: 1, quickActions: 6, imagesPerMessage: 1 });
+    expect(limits("pro")).toEqual({ personas: Infinity, filesPerChat: Infinity, quickActions: Infinity, imagesPerMessage: Infinity });
     expect(PAYWALL_BULLETS.pro).toHaveLength(6);
     expect(PAYWALL_BULLETS.work).toHaveLength(6);
   });

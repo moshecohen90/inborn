@@ -1,4 +1,6 @@
 import { initLlama } from "llama.rn";
+import { isDevice } from "expo-device";
+import { Platform } from "react-native";
 import type { Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
@@ -9,10 +11,29 @@ export class LlamaRnLM implements LocalLM {
   private ctx: Ctx | null = null;
   private session: Session | null = null;
   private last: Stats = { tokPerSec: 0, ttftMs: 0, ctxUsed: 0, memMB: 0 };
+  private vision = false;
+  private mmproj: string | null = null;
   devInfo: Record<string, unknown> = {};
 
   capabilities(): Capabilities {
-    return { vision: false, tools: false, embeddings: true, maxContext: this.session?.nCtx ?? 4096 };
+    return { vision: this.vision, tools: false, embeddings: true, maxContext: this.session?.nCtx ?? 4096 };
+  }
+
+  /** Attaches the multimodal projector (spec §6.2 vision companion) to the loaded model; false when the model has no vision. */
+  async enableVision(mmprojPath: string): Promise<boolean> {
+    const ctx = this.ctx;
+    if (!ctx) throw new Error("model not loaded");
+    if (this.vision && this.mmproj === mmprojPath) return true;
+    try {
+      /* Photos are capped at 1024 px before they get here; 512 image tokens keeps prefill in seconds on a phone CPU. */
+      /* The simulator's Metal driver traps inside the projector's buffer upload (xpc misuse); real iPhones and Android take the GPU. */
+      this.vision = await ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: 512 });
+    } catch (e: unknown) {
+      if (__DEV__) console.warn("[llama.rn] initMultimodal", e);
+      this.vision = false;
+    }
+    this.mmproj = this.vision ? mmprojPath : null;
+    return this.vision;
   }
 
   async load(model: ModelRef, opts: LoadOptions): Promise<Session> {
@@ -23,6 +44,8 @@ export class LlamaRnLM implements LocalLM {
       n_gpu_layers: opts.gpuLayers ?? 99,
       n_threads: opts.threads,
       use_mlock: true,
+      /* The prompt builder keeps every request under n_ctx itself; a shifting context would break image token positions. */
+      ctx_shift: false,
     });
     const { gpu, reasonNoGPU, devices, model: m } = this.ctx;
     this.devInfo = { gpu, reasonNoGPU, devices, desc: m.desc, sizeMB: Math.round(m.size / 1048576), nParams: m.nParams };
@@ -37,6 +60,8 @@ export class LlamaRnLM implements LocalLM {
       this.ctx = null;
     }
     this.session = null;
+    this.vision = false;
+    this.mmproj = null;
   }
 
   async *generate(session: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta> {
@@ -70,7 +95,7 @@ export class LlamaRnLM implements LocalLM {
     ctx
       .completion(
         {
-          messages: messages.map((m) => ({ role: m.role, content: m.content })),
+          messages: messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content })),
           n_predict: opts.maxTokens ?? 1024,
           n_threads: opts.threads,
           temperature: opts.temperature ?? 0.7,

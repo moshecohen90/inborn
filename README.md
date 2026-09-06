@@ -276,8 +276,56 @@ FLAG_SECURE, proof, settings), M5a documents + RAG with citations and OCR, M6 li
 §6.5 device guard, 6 UI languages, IBM Plex + native chrome, web phase 2 (OPFS, service worker, gate), desktop phase 3 (macOS + Windows
 CI), legal/QA/ops docs, store copy, icon. Store records exist as drafts (Play app 4973506308577999063, ASC app 6809165161); build 1.0.0 (1)
 uploaded to TestFlight on 6.9.2026 (no bundled model on iOS yet: import a GGUF or wait for Apple-hosted asset packs).
-Open: voice + image input (M5b), the full 40-test run (`docs/qa/release-checklist.md`), real Play delivery + sandbox purchases, store
+Open: voice/image on real phones (emulators have no host mic), the full 40-test run (`docs/qa/release-checklist.md`), real Play delivery + sandbox purchases, store
 screenshots, privacy-policy URL + support email + developer name (Moshe), Windows signing, Apple FM adapter.
+
+## Voice + image input (M5b, spec §5.6, §7.1, §7.4, §8.2, S44) — status 6.9.2026
+Free = the system's dictation with the on-device flag forced + system read-aloud; Pro = whisper.cpp base on the phone + the hands-free
+voice mode. Photos (§7.1: Free one per message, Pro several) go to the Qwen3.5 projector in-process. Nothing opens a socket.
+- **Core** (`packages/core/src/voice/`, 44 tests): `EnergyVad` (adaptive noise floor, hysteresis, 250 ms min speech, 800 ms end silence,
+  30 s cap → a constant tone becomes the floor), `cleanTranscript` / `TranscriptMerger` / `joinDictation` (whisper markers, interim vs
+  committed text), the S44 `nextHandsFree` reducer (listen → transcribe → think → speak → listen; tap to interrupt; pause for the
+  device guard / background; five silent rounds end it), `chooseDictation` (system only when it runs on-device, whisper on Pro, else the
+  reason), `speechLanguage` / `pickVoice` (never a network voice) / `speechChunks` (one utterance per sentence, §10.8 #53).
+  `Message.images` / `ChatMessage.images` (schema v4 `images_json`, IndexedDB, Tauri; contract test), `limits().imagesPerMessage`.
+- **Dictation** (`apps/mobile/src/voice/`): tap the mic → `expo-speech-recognition` with `requiresOnDeviceRecognition: true`
+  (iOS: `SFSpeechRecognizer` local only; Android 13+: `createOnDeviceSpeechRecognizer` + `EXTRA_PREFER_OFFLINE` on
+  `com.google.android.as`). The locale's offline pack is checked first (`getSupportedLocales().installedLocales`) and the service's
+  "client" error (pack listed but never downloaded) is caught too: the sheet offers the system's own pack download
+  (`androidTriggerOfflineModelDownload`) or Whisper (PRO on Free). Android ≤ 12 and the web have no on-device recogniser: whisper only.
+  Live partial text lands in the draft; the field pulses amber, the mic becomes a stop square, `Listening… / Transcribing…` line.
+- **Whisper** (Pro): `whisper.rn` 0.7.4 + `@fugood/react-native-audio-pcm-stream` (16 kHz mono PCM, `VOICE_RECOGNITION` source);
+  companion `speech-whisper-base` (ggml-base.bin, 148 MB, Play pack `inborn_model_speech` / HTTPS / dev fallback `Documents/whisper.bin`),
+  language auto-detect, `transcribeData` on the Float32 buffer, no file written. Long-press the mic for the sheet (system / Whisper / conversation).
+- **Hands-free S44** (`/voice`, Pro): dark full screen, seal + level wave, `useHandsFree` runs the reducer with mic + VAD → whisper →
+  the chat engine (≤ 160 tokens, spoken-answer system hint) → system TTS; turns are saved to the chat (never in incognito); the guard's
+  `pause` recommendation and the background pause it; tap interrupts; whisper is unloaded on exit.
+- **Read aloud**: the message action now speaks through `expo-speech` sentence by sentence; "Stop reading" while it runs.
+- **Photos**: attach sheet → Photo / Camera (`expo-image-picker`, `exif: false`), scaled to ≤ 1024 px and re-encoded as JPEG on the device
+  (`expo-image-manipulator`, EXIF gone) into `Documents/images/`, chips above the composer, thumbnails in the bubble. On send the
+  projector `vision-qwen35` (mmproj F16, 205 MB, Play pack `inborn_model_vision` / HTTPS / dev `Documents/mmproj.gguf`) is attached with
+  `initMultimodal` (512 image tokens; `ctx_shift: false` at load) and the message goes as OAI content parts. Rows are disabled with the
+  reason when the projector is missing or the model has no vision (Phi).
+- **Strings / permissions**: `apps/mobile/locales/<lang>.json` (`ios` section) → Info.plist + `InfoPlist.strings` for de/es/fr/ja/pt-BR
+  (`CFBundleLocalizations`); Android gets `RECORD_AUDIO` + `CAMERA` and the `RecognitionService` queries block; the release APK still
+  passes `scripts/check-android-permissions.sh` (no INTERNET). Store answers in `docs/legal/app-privacy-details.md` §4.2a.
+- Dev proof: `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav EXPO_PUBLIC_AUTOVOICE_TTS=1` transcribes WAVs pushed into Documents and writes
+  `Documents/dev-run.json` (`voice` key). Clips: `say -v Samantha` / `say -v Carmit` → `afconvert -f WAVE -d LEI16@16000 -c 1`.
+
+Measured 6.9.2026 (11 s clips, whisper base, `language: auto`, 4 threads):
+
+| device | whisper load | EN 11 s clip | HE 11 s clip | TTS start | vision (595-token prompt with one 900×600 photo) |
+|---|---|---|---|---|---|
+| Pixel_3a_API_33 emulator (arm64, 4 cores, CPU) | 465 ms (174 ms warm) | 3.06 s | 3.77 s | 1.24 s | prefill 175 s (3.4 tok/s), decode 0.26 tok/s, answer correct ("a stylized, geometric house with a brown roof…") |
+| iPhone 15 simulator, iOS 17.0 (CPU) | 26.3 s first (Metal shader build), 125 ms warm | 1.29 s | 1.90 s | 457 ms | PHPicker → EXIF-free copy → chip → answer; projector on CPU (the simulator's Metal driver traps in `initMultimodal`, so `use_gpu` is off when `expo-device` says simulator) |
+
+WER by eye: EN 0 word errors (capitalisation and "9" only); HE 8 of 23 words wrong (רופא השיניים → השינה עם אחר, ביצים ולחם → בצימו לכם,
+הקניות → הכניות): base is usable for Hebrew commands, not for dictating prose; whisper small (466 MB, §6.2 alternative) is the upgrade.
+The Android emulator cannot reach the host microphone (`coreaudio: Could not initialize record`), so the live-mic paths were driven
+through the UI only: permission prompt on the first mic tap, the on-device service refusing without a pack, the pack download trigger
+(`ModelManagerImpl#triggerModelDownload: en_US` in logcat), whisper listening → transcribing → draft, the S44 screen listening and
+ending, read-aloud through Google TTS's embedded voice (`en-us-x-tpf-local`). The iOS simulator has no local speech daemon
+(`localspeechrecognition … invalidated`), so system dictation there ends in the error sheet; a device run is still owed for both.
 
 ## Intentionally not built yet
 Apple FM adapter, model catalog + downloads, voice, personas, NativeWind styling (tokens exist), expo-router navigation, OCR in the browser tier.

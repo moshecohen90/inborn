@@ -43,6 +43,8 @@ export interface ChatMessage {
   usage?: Usage;
   /** Passages the model saw for this answer (§7.3); the chips shown are derived from the [n] marks in `content`. */
   citations?: Citation[];
+  /** Photos the user attached (file URIs inside the app's own images directory, EXIF stripped, §10.4 #35). */
+  images?: string[];
 }
 
 export interface NewChat {
@@ -67,9 +69,10 @@ export interface NewMessage {
   stoppedBy?: StoppedBy;
   usage?: Usage;
   citations?: Citation[];
+  images?: string[];
 }
 
-export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "stoppedBy" | "usage" | "citations">>;
+export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "stoppedBy" | "usage" | "citations" | "images">>;
 
 /** `null` clears an optional field (folder, persona, summary…); `undefined` leaves it alone. */
 export type ChatPatch = {

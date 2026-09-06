@@ -69,9 +69,9 @@ describe("signed manifest", () => {
 });
 
 describe("bundled catalog content (spec §6.1, §6.2)", () => {
-  it("carries the three chat tiers, the Phi alternative, embeddings and speech, all runnable by this engine", () => {
+  it("carries the three chat tiers, the Phi alternative, embeddings, speech and vision, all runnable by this engine", () => {
     const ids = BUNDLED_MANIFEST.models.map((m) => m.id);
-    expect(ids).toEqual(["instant", "fast", "sharp", "sharp-phi", "embed-nomic", "speech-whisper-base"]);
+    expect(ids).toEqual(["instant", "fast", "sharp", "sharp-phi", "embed-nomic", "speech-whisper-base", "vision-qwen35"]);
     for (const m of BUNDLED_MANIFEST.models) {
       expect(m.sha256, m.id).toMatch(/^[0-9a-f]{64}$/);
       expect(m.bytes, m.id).toBeGreaterThan(0);

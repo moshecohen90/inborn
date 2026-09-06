@@ -19,16 +19,27 @@ interface Props {
   onAttach: (docId: string) => void;
   onDetach: (docId: string) => void;
   onManage: () => void;
+  /** Photo rows (§7.1 image input): absent on platforms without a picker. `note` explains a disabled state. */
+  onPhoto?: (source: "library" | "camera") => void;
+  photoNote?: string;
+  photoDisabled?: boolean;
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const indexed = (d: DocumentRecord) => d.chunkCount > 0;
   return (
     <Sheet visible={visible} onClose={onClose} title={t("chat.attach.title")} testID="attach-sheet">
+      {onPhoto ? (
+        <View style={[styles.photos, { borderColor: theme.border }]}>
+          <Text style={[type.monoLabel, styles.sectionLabel, { color: theme.text3 }]}>{t("chat.attach.photos")}</Text>
+          <SheetItem testID="attach-photo" label={t("chat.attach.photo")} hint={photoNote} disabled={photoDisabled} onPress={() => onPhoto("library")} trailing={<Icon name="image" size={18} color={theme.text2} />} />
+          <SheetItem testID="attach-camera" label={t("chat.attach.camera")} disabled={photoDisabled} onPress={() => onPhoto("camera")} trailing={<Icon name="camera" size={18} color={theme.text2} />} />
+        </View>
+      ) : null}
       {documents.length ? (
         documents.map((d) => {
           const on = attachedIds.includes(d.id);
@@ -72,4 +83,6 @@ const styles = StyleSheet.create({
   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 12, marginTop: 8, paddingTop: 12, borderTopWidth: StyleSheet.hairlineWidth },
   grow: { flex: 1, gap: 2 },
   manage: { marginHorizontal: 12, marginTop: 12, borderWidth: 1, alignItems: "center" },
+  photos: { paddingBottom: 8, marginBottom: 4, borderBottomWidth: StyleSheet.hairlineWidth },
+  sectionLabel: { paddingHorizontal: 16, paddingBottom: 4 },
 });

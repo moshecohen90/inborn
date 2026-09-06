@@ -63,6 +63,7 @@ type MessageRow = {
   stopped_by: StoppedBy | null;
   usage_json: string | null;
   citations_json: string | null;
+  images_json: string | null;
 };
 
 type SearchRow = { chat_id: string; id: string; content: string };
@@ -147,6 +148,7 @@ const toMessage = (r: MessageRow): ChatMessage => ({
   ...(r.stopped_by ? { stoppedBy: r.stopped_by } : {}),
   ...(r.usage_json ? { usage: JSON.parse(r.usage_json) as Usage } : {}),
   ...(r.citations_json ? { citations: JSON.parse(r.citations_json) as Citation[] } : {}),
+  ...(r.images_json ? { images: JSON.parse(r.images_json) as string[] } : {}),
 });
 
 const toFolder = (r: FolderRow): Folder => ({ id: r.id, name: r.name, createdAt: r.created_at });
@@ -306,6 +308,7 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
       ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
+      ...(input.images?.length ? { images: [...input.images] } : {}),
     };
     await this.db.withTransactionAsync(async () => {
       const touched = await this.db.runAsync(SQL.touchChat, now, input.chatId);
@@ -324,6 +327,7 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
         input.stoppedBy ?? null,
         input.usage ? JSON.stringify(input.usage) : null,
         message.citations ? JSON.stringify(message.citations) : null,
+        message.images ? JSON.stringify(message.images) : null,
       );
     });
     return message;
@@ -338,6 +342,7 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
     if (patch.stoppedBy !== undefined) columns.push(["stopped_by", patch.stoppedBy]);
     if (patch.usage !== undefined) columns.push(["usage_json", JSON.stringify(patch.usage)]);
     if (patch.citations !== undefined) columns.push(["citations_json", patch.citations.length ? JSON.stringify(patch.citations) : null]);
+    if (patch.images !== undefined) columns.push(["images_json", patch.images.length ? JSON.stringify(patch.images) : null]);
     if (!columns.length) return;
     const sets = columns.map(([name]) => `${name} = ?`).join(", ");
     const result = await this.db.runAsync(`UPDATE messages SET ${sets} WHERE id = ? AND chat_id = ?`, [...columns.map(([, v]) => v), messageId, chatId]);

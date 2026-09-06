@@ -20,6 +20,8 @@ export default function Index() {
       onNewChat={s.newChat}
       onOpenDocuments={() => router.push("/documents")}
       onOpenPaywall={() => router.push("/paywall")}
+      onOpenVault={() => router.push("/vault")}
+      onOpenVoice={(chatId, incognito) => router.push({ pathname: "/voice", params: { ...(chatId ? { chat: chatId } : {}), ...(incognito ? { incognito: "1" } : {}) } })}
     />
   );
 }

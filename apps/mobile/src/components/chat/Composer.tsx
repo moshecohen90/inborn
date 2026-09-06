@@ -22,15 +22,18 @@ interface ComposerProps {
   /** Opens the attach-documents sheet (§7.3); absent = the [+] stays disabled. */
   onAttach?: () => void;
   attachedCount?: number;
-  /** The mic is a §12.3 value moment: Free sees the paywall, Pro hears "coming with voice". */
+  /** Tap: dictation on / off (§8.2). Long-press: the microphone sheet (whisper, hands-free). */
   onMic?: () => void;
+  onMicLongPress?: () => void;
+  /** Dictation state: the field pulses amber while listening, the mic turns into a stop square. */
+  mic?: "idle" | "starting" | "listening" | "transcribing";
   inputRef?: RefObject<TextInput | null>;
 }
 
 const LINE = 25;
 
 /** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; attach and mic sit in text-2, dimmed while they wait for M5. */
-export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, inputRef }: ComposerProps) {
+export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef }: ComposerProps) {
   const theme = useTheme();
   const type = useType();
   const { t } = useTranslation();
@@ -38,6 +41,8 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
   const canSend = !!value.trim() && !disabled && !busy;
+  const listening = mic === "listening";
+  const micBusy = mic === "starting" || mic === "transcribing";
   return (
     <View style={styles.wrap}>
       {editing ? (
@@ -48,7 +53,7 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           </Pressable>
         </View>
       ) : null}
-      <View style={[styles.box, { backgroundColor: incognito ? theme.bg : theme.well, borderColor: focused ? `${theme.accent}99` : theme.border }]}>
+      <View testID={listening ? "composer-listening" : undefined} style={[styles.box, { backgroundColor: incognito ? theme.bg : theme.well, borderColor: listening ? theme.accent : focused ? `${theme.accent}99` : theme.border }]}>
         <Pressable
           testID="attach"
           accessibilityRole="button"
@@ -84,13 +89,16 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
         <Pressable
           testID="mic"
           accessibilityRole="button"
-          accessibilityLabel={t("chat.dictate")}
-          accessibilityState={{ disabled: !onMic }}
+          accessibilityLabel={listening ? t("voice.stopDictation") : t("chat.dictate")}
+          accessibilityHint={onMicLongPress ? t("voice.mic.conversationHint") : undefined}
+          accessibilityState={{ disabled: !onMic, busy: micBusy }}
           disabled={!onMic}
           onPress={onMic}
+          onLongPress={onMicLongPress}
+          delayLongPress={400}
           style={[styles.iconBtn, { opacity: onMic ? 1 : DISABLED_OPACITY }]}
         >
-          <Icon name="mic" size={22} color={theme.text2} />
+          {listening ? <View style={[styles.micStop, { backgroundColor: theme.danger }]} /> : <Icon name="mic" size={22} color={micBusy ? theme.accent : theme.text2} />}
         </Pressable>
         {busy ? (
           <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.danger }]}>
@@ -112,6 +120,7 @@ const styles = StyleSheet.create({
   cancelEdit: { minHeight: 28, justifyContent: "center" },
   box: { flexDirection: "row", alignItems: "flex-end", borderWidth: 1, borderRadius: radius.control, paddingLeft: 4, paddingRight: 4 },
   iconBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
+  micStop: { width: 16, height: 16, borderRadius: 3 },
   badge: { position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: "center", justifyContent: "center" },
   badgeText: { fontSize: 10, fontWeight: "700" },
   input: { flex: 1, minHeight: 44, paddingVertical: 10, paddingHorizontal: 4 },

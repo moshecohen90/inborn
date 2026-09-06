@@ -62,7 +62,7 @@ const chatRange = (chatId: string, fromSeq = -Infinity) => IDBKeyRange.bound([ch
 const bySeq = (a: MessageRow, b: MessageRow) => a.createdAt - b.createdAt || (a.seq ?? 0) - (b.seq ?? 0);
 
 const OPTIONAL_CHAT = ["personaId", "pinned", "archived", "folderId", "systemPrompt", "thinking", "summary", "summaryUpTo"] as const;
-const OPTIONAL_MESSAGE = ["reasoning", "reasoningMs", "modelId", "stopped", "stoppedBy", "usage", "citations"] as const;
+const OPTIONAL_MESSAGE = ["reasoning", "reasoningMs", "modelId", "stopped", "stoppedBy", "usage", "citations", "images"] as const;
 
 /** Rows come back without `undefined` keys or stale flags, matching the SQL repositories' `toChat`. */
 function toChat(row: Chat): Chat {
@@ -81,7 +81,7 @@ function toMessage(row: MessageRow): ChatMessage {
   for (const key of OPTIONAL_MESSAGE) {
     const v = row[key];
     if (v === undefined || v === null || v === false || (Array.isArray(v) && !v.length)) continue;
-    Object.assign(message, { [key]: key === "usage" ? { ...(v as ChatMessage["usage"]) } : key === "citations" ? (v as NonNullable<ChatMessage["citations"]>).map((c) => ({ ...c })) : v });
+    Object.assign(message, { [key]: key === "usage" ? { ...(v as ChatMessage["usage"]) } : key === "citations" ? (v as NonNullable<ChatMessage["citations"]>).map((c) => ({ ...c })) : key === "images" ? [...(v as string[])] : v });
   }
   return message;
 }
@@ -219,6 +219,7 @@ export class IdbChatRepository implements ChatRepository {
       ...(input.stoppedBy ? { stoppedBy: input.stoppedBy } : {}),
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations } : {}),
+      ...(input.images?.length ? { images: [...input.images] } : {}),
     });
     const tx = this.db.transaction([CHATS, MESSAGES], "readwrite");
     const chats = tx.objectStore(CHATS);
@@ -248,6 +249,10 @@ export class IdbChatRepository implements ChatRepository {
     if (patch.citations !== undefined) {
       if (patch.citations.length) next.citations = patch.citations.map((c) => ({ ...c }));
       else delete next.citations;
+    }
+    if (patch.images !== undefined) {
+      if (patch.images.length) next.images = [...patch.images];
+      else delete next.images;
     }
     store.put(next);
     await done(tx);
