@@ -33,9 +33,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: "0.0.1",
   orientation: "portrait",
   userInterfaceStyle: "automatic",
+  /* All icon files come from design/icon/build.mjs (spec §9.8); edit the SVG master there, never these PNGs. */
+  icon: "./assets/icon.png",
   ios: {
     bundleIdentifier: "com.inbornapp.mobile",
     supportsTablet: true,
+    /* Icon Composer bundle: Xcode 26 renders Liquid Glass + the iOS 18 light/dark/tinted fallbacks from its layers. */
+    icon: "../../design/icon/Inborn.icon",
     infoPlist: {
       CFBundleDocumentTypes: [{ CFBundleTypeName: "GGUF model", LSHandlerRank: "Owner", LSItemContentTypes: [GGUF_UTI], CFBundleTypeRole: "Viewer" }],
       UTExportedTypeDeclarations: [
@@ -47,6 +51,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     package: "com.inbornapp.mobile",
+    adaptiveIcon: {
+      foregroundImage: "./assets/android-icon-foreground.png",
+      backgroundImage: "./assets/android-icon-background.png",
+      monochromeImage: "./assets/android-icon-monochrome.png",
+      backgroundColor: "#0D1115",
+    },
     intentFilters: [ggufIntentFilter],
     blockedPermissions: dev
       ? []
@@ -57,7 +67,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           "android.permission.WRITE_EXTERNAL_STORAGE",
         ],
   },
-  web: { bundler: "metro", output: "single" },
+  web: { bundler: "metro", output: "single", favicon: "./assets/favicon.png" },
   extra: { commit, builtAt: new Date().toISOString().slice(0, 10) },
   plugins: [
     ["expo-router", { root: "./src/app" }],
