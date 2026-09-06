@@ -221,6 +221,12 @@
       ],
       "delivery": [
         {
+          "kind": "play-asset-pack",
+          "pack": "inborn_model_embed",
+          "mode": "on-demand",
+          "file": "nomic-embed-text-v1.5.f16.gguf"
+        },
+        {
           "kind": "https",
           "path": "nomic-embed-text-v1.5.f16.gguf"
         }
@@ -267,5 +273,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "4a84834889559149dafdebcbba7e6ac2d9bff73cc64e636d8d50f373bdda19806e1007bcb427332b81ce9289bc18c95c256c7a744172563c0a5ed8255e92ac0d"
+  "signature": "1c580aa6c7628bd4d5ddcad7743c8d106993e16088dacfb79c30e17f35d9015258ec75b7d105dc65d80b20846a5cb2e653668533d6f8e3b32548c7df42ed4c0c"
 }

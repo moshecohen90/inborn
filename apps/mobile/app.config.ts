@@ -61,6 +61,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         packs: [
           { name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } },
           { name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } },
+          /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
+          { name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } },
           /* Split with llama-gguf-split (Play caps a pack at 1.5 GB); llama.cpp opens the first shard and finds the second beside it. */
           {
             name: "inborn_model_sharp",

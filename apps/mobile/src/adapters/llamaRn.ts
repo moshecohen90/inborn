@@ -1,5 +1,5 @@
 import { initLlama } from "llama.rn";
-import type { Capabilities, Delta, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+import type { Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
 
@@ -130,5 +130,47 @@ export class LlamaRnLM implements LocalLM {
 
   stats(): Stats {
     return this.last;
+  }
+}
+
+/**
+ * Embedding companion (nomic-embed) on its own llama.rn context: a context is either chat or embeddings, never both.
+ * Loaded on first use, released by `unload()` (the document library calls it when indexing is idle).
+ */
+export class LlamaRnEmbedder implements Embedder {
+  private ctx: Ctx | null = null;
+  private loading: Promise<Ctx> | null = null;
+  loadMs = 0;
+
+  constructor(
+    readonly id: string,
+    private readonly uri: string,
+  ) {}
+
+  private ready(): Promise<Ctx> {
+    if (this.ctx) return Promise.resolve(this.ctx);
+    return (this.loading ??= (async () => {
+      const started = Date.now();
+      /* Non-causal (BERT) attention needs the whole sequence in one micro-batch, so n_batch = n_ubatch = n_ctx. */
+      const ctx = await initLlama({ model: this.uri, embedding: true, n_ctx: 2048, n_batch: 2048, n_ubatch: 2048, pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
+      this.loadMs = Date.now() - started;
+      if (__DEV__) console.log(`[llama.rn] embedder ${this.id} loaded in ${this.loadMs} ms`);
+      this.ctx = ctx;
+      this.loading = null;
+      return ctx;
+    })());
+  }
+
+  async embed(texts: string[]): Promise<Float32Array[]> {
+    const ctx = await this.ready();
+    const out: Float32Array[] = [];
+    for (const t of texts) out.push(Float32Array.from((await ctx.embedding(t)).embedding));
+    return out;
+  }
+
+  async unload(): Promise<void> {
+    const ctx = this.ctx;
+    this.ctx = null;
+    await ctx?.release();
   }
 }

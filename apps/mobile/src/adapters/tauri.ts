@@ -11,6 +11,7 @@ import {
   type ChatMessage,
   type ChatRepository,
   type Delta,
+  type Embedder,
   type GenOpts,
   type LoadOptions,
   type LocalLM,
@@ -310,6 +311,21 @@ export class TauriChatRepository implements ChatRepository {
     for (const r of rows) hits.push({ chatId: r.chat_id, title: titles.get(r.chat_id) ?? "", messageId: r.id, snippet: snippetAround(r.content, terms) });
     return hits.slice(0, SEARCH_LIMIT);
   }
+}
+
+/** Embeddings from the Rust engine (`lm_embed`): the companion model loads on first call and stays until `lm_unload`. */
+export class TauriEmbedder implements Embedder {
+  constructor(
+    readonly id: string,
+    private readonly path: string,
+  ) {}
+
+  async embed(texts: string[]): Promise<Float32Array[]> {
+    const rows = await invoke<number[][]>("lm_embed", { request: { path: this.path, texts } });
+    return rows.map((r) => Float32Array.from(r));
+  }
+
+  async unload(): Promise<void> {}
 }
 
 /* --- desktop surface: vault, seal, shortcuts, updater --- */

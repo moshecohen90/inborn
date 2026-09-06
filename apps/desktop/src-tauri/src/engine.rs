@@ -7,7 +7,7 @@ use std::sync::{mpsc, Arc, Mutex};
 use std::sync::OnceLock;
 use std::time::Instant;
 
-use llama_cpp_2::context::params::LlamaContextParams;
+use llama_cpp_2::context::params::{LlamaContextParams, LlamaPoolingType};
 use llama_cpp_2::context::LlamaContext;
 use llama_cpp_2::llama_backend::LlamaBackend;
 use llama_cpp_2::llama_batch::LlamaBatch;
@@ -49,6 +49,13 @@ pub struct LoadedInfo {
   pub desc: String,
   pub size_mb: u64,
   pub n_params: u64,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EmbedRequest {
+  pub path: String,
+  pub texts: Vec<String>,
 }
 
 #[derive(Deserialize, Clone)]
@@ -107,6 +114,7 @@ fn uptime_ms() -> u128 {
 
 enum Cmd {
   Load(LoadRequest, oneshot::Sender<Result<LoadedInfo, String>>),
+  Embed(EmbedRequest, oneshot::Sender<Result<Vec<Vec<f32>>, String>>),
   Generate(Vec<WireMessage>, GenOpts, Channel<Delta>, Arc<AtomicBool>, oneshot::Sender<Result<Usage, String>>),
   Unload(oneshot::Sender<()>),
 }
@@ -160,8 +168,23 @@ fn worker(rx: mpsc::Receiver<Cmd>) {
   }
   eprintln!("[inborn] +{} ms {} backend ready", uptime_ms(), BACKEND);
   let mut loaded: Option<Loaded> = None;
+  let mut embedder: Option<EmbedLoaded> = None;
   while let Ok(cmd) = rx.recv() {
     match cmd {
+      Cmd::Embed(req, reply) => {
+        if embedder.as_ref().map(|e| e.path != req.path).unwrap_or(true) {
+          embedder = None;
+          match load_embedder(&backend, &req.path) {
+            Ok(e) => embedder = Some(e),
+            Err(e) => {
+              let _ = reply.send(Err(e));
+              continue;
+            }
+          }
+        }
+        let result = embed(embedder.as_mut().expect("embedder loaded"), &req.texts);
+        let _ = reply.send(result);
+      }
       Cmd::Load(req, reply) => {
         loaded = None;
         let result = load(&backend, &req);
@@ -182,6 +205,7 @@ fn worker(rx: mpsc::Receiver<Cmd>) {
       }
       Cmd::Unload(reply) => {
         loaded = None;
+        embedder = None;
         let _ = reply.send(());
       }
     }
@@ -226,6 +250,54 @@ fn load(backend: &LlamaBackend, req: &LoadRequest) -> Result<(Loaded, LoadedInfo
   };
   eprintln!("[inborn] +{} ms loaded {} ({} MB) in {} ms · backend={} gpu={} threads={} nCtx={}", uptime_ms(), req.path, info.size_mb, info.load_ms, BACKEND, info.gpu, threads, info.n_ctx);
   Ok((Loaded { ctx, model, bos }, info))
+}
+
+struct EmbedLoaded {
+  // Same drop order as `Loaded`: the context borrows the boxed model.
+  ctx: LlamaContext<'static>,
+  model: Box<LlamaModel>,
+  path: String,
+  n_ctx: usize,
+}
+
+/// The embedding companion (nomic-embed) gets its own model + context: one llama context is either chat or embeddings.
+fn load_embedder(backend: &LlamaBackend, path: &str) -> Result<EmbedLoaded, String> {
+  let started = Instant::now();
+  let model_params = LlamaModelParams::default().with_n_gpu_layers(999);
+  let model = Box::new(LlamaModel::load_from_file(backend, path, &model_params).map_err(|e| e.to_string())?);
+  let n_ctx: u32 = 2048;
+  // Non-causal (BERT) attention needs the whole sequence in one micro-batch.
+  let ctx_params = LlamaContextParams::default()
+    .with_n_ctx(NonZeroU32::new(n_ctx))
+    .with_n_batch(n_ctx)
+    .with_n_ubatch(n_ctx)
+    .with_n_threads(default_threads())
+    .with_n_threads_batch(default_threads())
+    .with_embeddings(true)
+    .with_pooling_type(LlamaPoolingType::Mean);
+  let ctx = model.new_context(backend, ctx_params).map_err(|e| e.to_string())?;
+  // SAFETY: as for `Loaded`: the model is boxed (stable address) and dropped after the context.
+  let ctx: LlamaContext<'static> = unsafe { std::mem::transmute::<LlamaContext<'_>, LlamaContext<'static>>(ctx) };
+  eprintln!("[inborn] +{} ms embedding model {} loaded in {} ms · n_embd={}", uptime_ms(), path, started.elapsed().as_millis(), model.n_embd());
+  Ok(EmbedLoaded { ctx, model, path: path.to_string(), n_ctx: n_ctx as usize })
+}
+
+fn embed(e: &mut EmbedLoaded, texts: &[String]) -> Result<Vec<Vec<f32>>, String> {
+  let mut out = Vec::with_capacity(texts.len());
+  for text in texts {
+    let mut tokens = e.model.str_to_token(text, AddBos::Always).map_err(|err| err.to_string())?;
+    tokens.truncate(e.n_ctx);
+    let mut batch = LlamaBatch::new(e.n_ctx, 1);
+    for (i, t) in tokens.iter().enumerate() {
+      batch.add(*t, i as i32, &[0], true).map_err(|err| err.to_string())?;
+    }
+    e.ctx.clear_kv_cache();
+    e.ctx.decode(&mut batch).map_err(|err| err.to_string())?;
+    let v = e.ctx.embeddings_seq_ith(0).map_err(|err| err.to_string())?;
+    let norm = v.iter().map(|x| x * x).sum::<f32>().sqrt().max(1e-12);
+    out.push(v.iter().map(|x| x / norm).collect());
+  }
+  Ok(out)
 }
 
 fn render_jinja(src: &str, messages: &[WireMessage], reasoning: bool, bos: &str) -> Result<String, minijinja::Error> {
@@ -496,6 +568,14 @@ pub async fn lm_generate(engine: State<'_, Engine>, messages: Vec<WireMessage>, 
     *stats = Stats { tok_per_sec: usage.tok_per_sec, ttft_ms: usage.ttft_ms, ctx_used: usage.prompt_tokens + usage.completion_tokens, mem_mb: stats.mem_mb };
   }
   Ok(usage)
+}
+
+/// Embeddings for the document index (spec §5.5); loads the companion model on first use and keeps it until unload.
+#[tauri::command]
+pub async fn lm_embed(engine: State<'_, Engine>, request: EmbedRequest) -> Result<Vec<Vec<f32>>, String> {
+  let (reply, wait) = oneshot::channel();
+  engine.send(Cmd::Embed(request, reply))?;
+  wait.await.map_err(|_| "engine thread is gone".to_string())?
 }
 
 #[tauri::command]

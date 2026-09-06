@@ -1,0 +1,50 @@
+/** Web + desktop: picked files are Blobs kept by object URL for the session; reading one is a same-origin blob read, not a network call. */
+const blobs = new Map<string, Blob>();
+
+export function documentsDir(): { uri: string } {
+  return { uri: "blob:" };
+}
+
+export function registerBlob(blob: Blob, name: string): string {
+  const uri = `blob:inborn/${Date.now()}-${Math.random().toString(36).slice(2)}/${encodeURIComponent(name)}`;
+  blobs.set(uri, blob);
+  return uri;
+}
+
+async function blobOf(uri: string): Promise<Blob> {
+  const b = blobs.get(uri);
+  if (b) return b;
+  const r = await fetch(uri);
+  return r.blob();
+}
+
+export function readHead(uri: string, n = 16): Uint8Array {
+  const b = blobs.get(uri);
+  const head = (b as Blob & { __head?: Uint8Array })?.__head;
+  return head ? head.subarray(0, n) : new Uint8Array();
+}
+
+export async function readBytes(uri: string): Promise<Uint8Array> {
+  return new Uint8Array(await (await blobOf(uri)).arrayBuffer());
+}
+
+export function sizeOf(uri: string): number {
+  return blobs.get(uri)?.size ?? 0;
+}
+
+/** Browsers cannot copy into an app directory; the blob simply stays registered under its URI. */
+export function copyIntoLibrary(sourceUri: string, _id: string, _name: string): string {
+  return sourceUri;
+}
+
+export function deleteFile(uri: string | undefined): void {
+  if (uri) blobs.delete(uri);
+}
+
+export const devFileUri = (name: string): string => `/fixtures/${name}`;
+
+/** Reads the first bytes once so kind sniffing stays synchronous like on the phone. */
+export async function primeHead(uri: string): Promise<void> {
+  const b = blobs.get(uri) as (Blob & { __head?: Uint8Array }) | undefined;
+  if (b && !b.__head) b.__head = new Uint8Array(await b.slice(0, 16).arrayBuffer());
+}
