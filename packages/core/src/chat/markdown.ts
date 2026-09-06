@@ -1,8 +1,10 @@
 /**
  * Small Markdown parser for chat answers (§7.1, §9.6). Produces a block tree the renderer draws with native
- * text; links stay text (never opened, no network), images become a text placeholder, math is shown verbatim.
+ * text; links stay text (never opened, no network), images become a text placeholder, math becomes plain Unicode.
  * Streaming rule (§9.6): an unclosed fence is a plain text block until the closing fence arrives.
  */
+
+import { mathToPlain } from "./math";
 
 export type Inline =
   | { type: "text"; text: string }
@@ -33,6 +35,12 @@ const BULLET = /^(\s*)([-*+])\s+(.*)$/;
 const ORDERED = /^(\s*)(\d{1,9})[.)]\s+(.*)$/;
 const QUOTE = /^\s{0,3}>\s?(.*)$/;
 const TABLE_SEP = /^\s*\|?\s*:?-{1,}:?\s*(\|\s*:?-{1,}:?\s*)*\|?\s*$/;
+
+/** Display math opens with `$$` or `\\[` on its own line (models emit both). */
+function mathOpener(line: string): "$$" | "\\[" | null {
+  const t = line.trim();
+  return t.startsWith("$$") ? "$$" : t.startsWith("\\[") ? "\\[" : null;
+}
 
 export function parseMarkdown(src: string): Block[] {
   const lines = src.replace(/\r\n?/g, "\n").split("\n");
@@ -67,10 +75,12 @@ function parseBlocks(lines: string[]): Block[] {
       i = closed ? j + 1 : lines.length;
       continue;
     }
-    if (line.trim().startsWith("$$")) {
+    const opener = mathOpener(line);
+    if (opener) {
+      const closer = opener === "$$" ? "$$" : "\\]";
       const rest = line.trim().slice(2);
-      if (rest.endsWith("$$") && rest.length >= 2) {
-        blocks.push({ type: "math", text: rest.slice(0, -2).trim() });
+      if (rest.endsWith(closer) && rest.length >= 2) {
+        blocks.push({ type: "math", text: mathToPlain(rest.slice(0, -2)) });
         i++;
         continue;
       }
@@ -79,7 +89,7 @@ function parseBlocks(lines: string[]): Block[] {
       let closed = false;
       for (; j < lines.length; j++) {
         const l = lines[j]!;
-        if (l.trim().endsWith("$$")) {
+        if (l.trim().endsWith(closer)) {
           const head = l.trim().slice(0, -2);
           if (head) body.push(head);
           closed = true;
@@ -88,7 +98,7 @@ function parseBlocks(lines: string[]): Block[] {
         body.push(l);
       }
       if (closed) {
-        blocks.push({ type: "math", text: body.join("\n").trim() });
+        blocks.push({ type: "math", text: mathToPlain(body.join("\n")) });
         i = j + 1;
         continue;
       }
@@ -176,7 +186,7 @@ const leading = (s: string): number => s.length - s.trimStart().length;
 
 function startsBlock(lines: string[], i: number): boolean {
   const l = lines[i]!;
-  return FENCE.test(l) || HEADING.test(l) || HR.test(l) || QUOTE.test(l) || BULLET.test(l) || ORDERED.test(l) || isTableStart(lines, i) || l.trim().startsWith("$$");
+  return FENCE.test(l) || HEADING.test(l) || HR.test(l) || QUOTE.test(l) || BULLET.test(l) || ORDERED.test(l) || isTableStart(lines, i) || mathOpener(l) !== null;
 }
 
 function isTableStart(lines: string[], i: number): boolean {
@@ -223,6 +233,15 @@ export function parseInline(src: string): Inline[] {
   let i = 0;
   while (i < src.length) {
     const ch = src[i]!;
+    if (ch === "\\" && src[i + 1] === "(") {
+      const close = src.indexOf("\\)", i + 2);
+      if (close > i + 2) {
+        flush();
+        out.push({ type: "math", text: mathToPlain(src.slice(i + 2, close)) });
+        i = close + 2;
+        continue;
+      }
+    }
     if (ch === "\\" && i + 1 < src.length && /[\\`*_~[\]()#$|]/.test(src[i + 1]!)) {
       text += src[i + 1];
       i += 2;
@@ -249,7 +268,7 @@ export function parseInline(src: string): Inline[] {
       const close = src.indexOf("$", i + 1);
       if (close > i + 1 && src[close - 1] !== " " && !/\d/.test(src[close + 1] ?? "")) {
         flush();
-        out.push({ type: "math", text: src.slice(i + 1, close) });
+        out.push({ type: "math", text: mathToPlain(src.slice(i + 1, close)) });
         i = close + 1;
         continue;
       }

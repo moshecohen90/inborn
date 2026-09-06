@@ -7,6 +7,7 @@ export { ChatStore, MEMORY_ENABLED_KEY, MEMORY_PERSONA_KEY_PREFIX } from "./chat
 export * from "./chat/personas";
 export * from "./chat/context";
 export * from "./chat/markdown";
+export * from "./chat/math";
 export * from "./chat/loop";
 export * from "./chat/export";
 export * from "./chat/language";

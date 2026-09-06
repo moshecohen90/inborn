@@ -50,10 +50,10 @@ describe("parseMarkdown blocks", () => {
     ]);
   });
 
-  it("shows display math verbatim and keeps inline math", () => {
+  it("shows display math as plain Unicode and keeps inline math", () => {
     const blocks = parseMarkdown("$$\nE = mc^2\n$$\n\nInline $x^2$ here");
-    expect(blocks[0]).toEqual({ type: "math", text: "E = mc^2" });
-    expect(blocks[1]).toMatchObject({ type: "paragraph", children: [{ type: "text", text: "Inline " }, { type: "math", text: "x^2" }, { type: "text", text: " here" }] });
+    expect(blocks[0]).toEqual({ type: "math", text: "E = mc²" });
+    expect(blocks[1]).toMatchObject({ type: "paragraph", children: [{ type: "text", text: "Inline " }, { type: "math", text: "x²" }, { type: "text", text: " here" }] });
   });
 });
 
