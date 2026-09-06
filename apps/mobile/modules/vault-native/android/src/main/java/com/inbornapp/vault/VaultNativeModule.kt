@@ -2,6 +2,7 @@ package com.inbornapp.vault
 
 import android.app.ActivityManager
 import android.content.Context
+import android.os.Build
 import expo.modules.kotlin.Promise
 import expo.modules.kotlin.exception.Exceptions
 import expo.modules.kotlin.modules.Module
@@ -44,6 +45,9 @@ class VaultNativeModule : Module() {
         }
       }
     }
+
+    /* Marketing chip names come from the SoC id (S01 "Runs on"); older Android has no public field, so null. */
+    Function("socModel") { if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Build.SOC_MODEL else null }
 
     /* Android excludes app files from backup through dataExtractionRules in the manifest, not per file. */
     Function("excludeFromBackup") { _: String -> true }

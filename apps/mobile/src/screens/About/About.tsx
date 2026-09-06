@@ -10,7 +10,6 @@ import { Screen } from "../../components/shell/Screen";
 import { Row, Section, shellStyles } from "../../components/shell/primitives";
 
 const SUPPORT = "support@inbornapp.com";
-const PRIVACY = "https://inbornapp.com/privacy";
 
 /** About (S52): version + hash, licences, privacy policy, a diagnostics mail without chat content, "What's missing?". */
 export function About() {
@@ -41,7 +40,8 @@ export function About() {
       </Section>
       <Section title={t("about.privacy")}>
         <Text style={[shellStyles.bodySmall, { color: theme.text2 }]}>{t("settings.privacy")}</Text>
-        <Row label={t("about.privacyPolicy")} onPress={() => void Linking.openURL(PRIVACY)} chevron />
+        <Row testID="row-privacy" label={t("legal.privacy")} onPress={() => router.push("/legal/privacy")} chevron />
+        <Row testID="row-terms" label={t("legal.terms")} onPress={() => router.push("/legal/terms")} chevron />
       </Section>
       <Section title={t("about.help")}>
         <Row label={t("about.report")} sub={t("about.reportSub")} onPress={() => mail("Inborn: problem report", `${diagnostics}\n\n`)} chevron />

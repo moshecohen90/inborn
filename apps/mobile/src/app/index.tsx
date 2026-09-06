@@ -6,5 +6,20 @@ export default function Index() {
   const s = useAppServices();
   const router = useRouter();
   if (!s.prefs.onboarded) return <Redirect href="/onboarding" />;
-  return <Chat key={s.active.key} store={s.store} chatId={s.active.id} incognito={s.active.incognito} onOpenChats={() => router.push("/chats")} onChatCreated={s.chatCreated} />;
+  return (
+    <Chat
+      key={s.active.key}
+      store={s.store}
+      chatId={s.active.id}
+      incognito={s.active.incognito}
+      personaId={s.active.personaId}
+      sealState={s.sealState}
+      sealProgress={s.delivery?.status === "delivering" ? s.delivery.progress : undefined}
+      onOpenChats={() => router.push("/chats")}
+      onChatCreated={s.chatCreated}
+      onNewChat={s.newChat}
+      onOpenDocuments={() => router.push("/documents")}
+      onOpenPaywall={() => router.push("/paywall")}
+    />
+  );
 }

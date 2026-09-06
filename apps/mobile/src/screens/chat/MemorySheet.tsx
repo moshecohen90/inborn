@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BUILT_IN_PERSONAS, type Chat, type ChatStore, type MemoryFact, type Persona } from "@inborn/core";
-import { useEntitlements } from "../../lib/entitlements";
+import { paywallFor } from "@inborn/core";
+import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet } from "../../components/chat/Sheet";
 import { shape, type } from "../../components/chat/styles";
@@ -11,16 +12,23 @@ interface Props {
   visible: boolean;
   onClose: () => void;
   store: ChatStore;
+  /** Memory is Pro (§7.9): the panel is visible to everyone, adding a fact opens the paywall on Free. */
+  onUnlock?: () => void;
 }
 
 /**
  * Transparent memory panel (§8.5 S42): every "fact about me" is visible, editable and deletable, with its source chat,
  * a switch per persona and a master switch. Pro-gated: the free tier sees the panel but cannot add facts.
  */
-export function MemorySheet({ visible, onClose, store }: Props) {
+export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
   const theme = useTheme();
   const { t } = useTranslation();
-  const ent = useEntitlements();
+  const { tier } = useEntitlement();
+  const locked = paywallFor(tier, { kind: "feature", feature: "memory" });
+  const unlock = () => {
+    onClose();
+    setTimeout(() => onUnlock?.(), 320);
+  };
   const [facts, setFacts] = useState<MemoryFact[]>([]);
   const [chats, setChats] = useState<Map<string, Chat>>(new Map());
   const [personas, setPersonas] = useState<Persona[]>([]);
@@ -63,7 +71,7 @@ export function MemorySheet({ visible, onClose, store }: Props) {
             <Text style={[type.body, { color: theme.text }]}>{t("memory.master")}</Text>
             <Text style={[type.caption, { color: theme.text3 }]}>{t("memory.explain")}</Text>
           </View>
-          {ent.pro ? null : <ProTag />}
+          {locked ? <ProTag onPress={unlock} /> : null}
           <Switch
             testID="memory-master"
             value={enabled}
@@ -109,7 +117,7 @@ export function MemorySheet({ visible, onClose, store }: Props) {
             </View>
           </View>
         ) : (
-          <Pressable testID="memory-add" accessibilityRole="button" accessibilityState={{ disabled: !ent.pro }} disabled={!ent.pro} onPress={() => setEditing({ content: "" })} style={[shape.control, styles.add, { borderColor: theme.border, opacity: ent.pro ? 1 : 0.45 }]}>
+          <Pressable testID="memory-add" accessibilityRole="button" onPress={() => (locked ? unlock() : setEditing({ content: "" }))} style={[shape.control, styles.add, { borderColor: locked ? theme.accent : theme.border }]}>
             <Text style={[type.body, { color: theme.text }]}>{t("memory.add")}</Text>
           </Pressable>
         )}

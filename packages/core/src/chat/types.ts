@@ -1,4 +1,5 @@
 import type { Role, Usage } from "../llm/types";
+import type { Citation } from "../rag/types";
 
 /** Who ended a generation early: the user tapped Stop, or the system (memory, heat, background) cut it (§8.8, §10.3). */
 export type StoppedBy = "user" | "system";
@@ -40,6 +41,8 @@ export interface ChatMessage {
   stopped?: boolean;
   stoppedBy?: StoppedBy;
   usage?: Usage;
+  /** Passages the model saw for this answer (§7.3); the chips shown are derived from the [n] marks in `content`. */
+  citations?: Citation[];
 }
 
 export interface NewChat {
@@ -63,9 +66,10 @@ export interface NewMessage {
   stopped?: boolean;
   stoppedBy?: StoppedBy;
   usage?: Usage;
+  citations?: Citation[];
 }
 
-export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "stoppedBy" | "usage">>;
+export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "stoppedBy" | "usage" | "citations">>;
 
 /** `null` clears an optional field (folder, persona, summary…); `undefined` leaves it alone. */
 export type ChatPatch = {

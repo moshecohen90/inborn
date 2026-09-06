@@ -3,11 +3,10 @@ import { Modal, Pressable, ScrollView, SectionList, StyleSheet, Switch, Text, Te
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { radius } from "@inborn/ui";
-import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, isGated, type Chat, type ChatStore, type Folder, type Persona, type SearchHit } from "@inborn/core";
+import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit } from "@inborn/core";
 import { formatWhen } from "../lib/when";
-import { useEntitlements } from "../lib/entitlements";
+import { useEntitlement } from "../licence";
 import { modelLabel } from "../lib/models";
-import { setNewChatIntent } from "../lib/newChatIntent";
 import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
 import { getEngine } from "../engine";
@@ -26,9 +25,10 @@ export interface ChatsProps {
   activeChatId: string | null;
   onClose: () => void;
   onOpenChat: (chat: Chat) => void;
-  /** The chosen persona travels through `setNewChatIntent` until App passes `personaId` to `Chat`. */
-  onNewChat: (incognito: boolean) => void;
+  onNewChat: (incognito: boolean, personaId?: string) => void;
   onDeleted: (chatId: string) => void;
+  /** Folders and "export all" are §12.3 value moments; the host opens S60. */
+  onOpenPaywall?: () => void;
 }
 
 const UNDO_MS = 5_000;
@@ -37,11 +37,11 @@ type Pending = { chats: Chat[]; timer: ReturnType<typeof setTimeout> };
 type Section = { key: string; title: string; data: Chat[]; folder?: Folder };
 
 /** S20 chats drawer: search with snippets, pinned / folders / recent / archived, swipe actions, bulk delete with undo, S21 new-chat sheet. */
-export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted }: ChatsProps) {
+export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted, onOpenPaywall }: ChatsProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const ent = useEntitlements();
+  const { tier } = useEntitlement();
   const { model } = getEngine();
   const [chats, setChats] = useState<Chat[]>([]);
   const [folders, setFolders] = useState<Folder[]>([]);
@@ -59,7 +59,8 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   const [personasOpen, setPersonasOpen] = useState(false);
   const [memoryOpen, setMemoryOpen] = useState(false);
   const pending = useRef<Pending | null>(null);
-  const foldersGated = isGated("folders", ent);
+  const foldersGated = paywallFor(tier, { kind: "feature", feature: "folders" });
+  const unlock = () => onOpenPaywall?.();
 
   const refresh = useCallback(async () => {
     const [list, dirs, custom] = await Promise.all([store.listChats(), store.library.listFolders(), store.library.listPersonas()]);
@@ -145,8 +146,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     const s = sheet;
     setSheet(null);
     if (!s) return;
-    setNewChatIntent({ personaId: s.personaId });
-    onNewChat(s.incognito);
+    onNewChat(s.incognito, s.personaId === DEFAULT_PERSONA_ID ? undefined : s.personaId);
   };
 
   const visible = useMemo(() => chats.filter((c) => !pendingIds.has(c.id)), [chats, pendingIds]);
@@ -330,10 +330,10 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
           <Pressable testID="open-memory" accessibilityRole="button" onPress={() => setMemoryOpen(true)} style={styles.footerBtn}>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("memory.title")}</Text>
           </Pressable>
-          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => setFolderMode({ kind: "manage" })} disabled={foldersGated} style={[styles.footerBtn, { opacity: foldersGated ? 0.5 : 1 }]}>
+          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock() : setFolderMode({ kind: "manage" }))} style={styles.footerBtn}>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("folders.title")}</Text>
           </Pressable>
-          {foldersGated ? <ProTag /> : null}
+          {foldersGated ? <ProTag onPress={unlock} /> : null}
         </View>
       )}
       {pendingIds.size ? (
@@ -416,12 +416,14 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
                     <SheetItem
                       testID="menu-move"
                       label={t("folders.move")}
-                      disabled={foldersGated}
-                      trailing={foldersGated ? <ProTag /> : undefined}
+                      trailing={foldersGated ? <ProTag onPress={() => {
+                        setMenu(null);
+                        afterSheetClose(unlock);
+                      }} /> : undefined}
                       onPress={() => {
                         const chat = menu.chat;
                         setMenu(null);
-                        afterSheetClose(() => setFolderMode({ kind: "move", chat }));
+                        afterSheetClose(() => (foldersGated ? unlock() : setFolderMode({ kind: "move", chat })));
                       }}
                     />
                     <SheetItem
@@ -444,9 +446,9 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       </Modal>
 
       <FolderSheet mode={folderMode} onClose={() => setFolderMode(null)} store={store} onChanged={() => void refresh()} />
-      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} />
-      <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} />
-      <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} />
+      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={unlock} />
+      <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} onUnlock={unlock} />
+      <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} onUnlock={unlock} />
     </View>
   );
 }

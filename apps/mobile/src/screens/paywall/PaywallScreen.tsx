@@ -16,12 +16,14 @@ export interface PaywallScreenProps {
   onOpenDoc?: (doc: "terms" | "privacy") => void;
   /** Overrides the platform default (Pro first on phones, Work first on desktop / web). */
   workFirst?: boolean;
+  /** Presented as a sheet over another screen: iOS already keeps it clear of the status bar. */
+  modal?: boolean;
 }
 
 const storeName = (t: (k: string) => string, store: Store | null): string => (store === "app-store" ? t("paywall.store.appStore") : store === "play" ? t("paywall.store.play") : store === "microsoft-store" ? t("paywall.store.microsoft") : t("paywall.store.licenceKey"));
 
 /** S60 Pro paywall (spec §8.7, §12): one line on why paying once is honest, one card per tier, Restore, Family Sharing note, the one-store rule. */
-export function PaywallScreen({ onClose, onOpenDoc, workFirst }: PaywallScreenProps) {
+export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallScreenProps) {
   const { t, i18n } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
@@ -78,7 +80,7 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst }: PaywallScreenPr
   const line = status();
 
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
+    <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: modal && Platform.OS === "ios" ? 12 : insets.top + 8 }]}>
       <View style={styles.header}>
         <Pressable testID="close-paywall" accessibilityRole="button" accessibilityLabel={t("paywall.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
           <Text style={[styles.headerGlyph, { color: theme.text2 }]}>✕</Text>

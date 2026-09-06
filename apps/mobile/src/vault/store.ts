@@ -95,6 +95,7 @@ export class VaultStore {
   }
 
   private async scan(): Promise<void> {
+    if (Platform.OS === "web") return;
     for (const model of this.manifest.models) {
       const rec = this.record.installs[model.id];
       const located = this.delivery.locate(model);
@@ -234,6 +235,7 @@ export class VaultStore {
 
   /** Called around engine.load(): a crash between the two calls leaves `loading` set, which quarantines the model at next boot. */
   markLoading(id: string, loading: boolean): void {
+    if (Platform.OS === "web") return;
     const rec = this.record.installs[id];
     if (rec) {
       rec.loading = loading;

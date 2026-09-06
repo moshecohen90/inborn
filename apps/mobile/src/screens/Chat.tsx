@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { AppState, FlatList, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
@@ -7,6 +8,7 @@ import { radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
+  NOT_FOUND_TOKEN,
   SAFETY_BASELINE,
   buildPrompt,
   calibrate,
@@ -18,12 +20,14 @@ import {
   findPersona,
   languageHint,
   markdownToText,
+  paywallFor,
   planSummary,
   scriptOf,
   titleFromFirstMessage,
   type Chat as ChatRecord,
   type ChatMessage,
   type ChatStore,
+  type Citation,
   type CrisisResource,
   type Message,
   type Persona,
@@ -34,10 +38,11 @@ import {
 } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
-import { Seal } from "../components/Seal";
+import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
 import { UserMessage } from "../components/chat/UserMessage";
 import { Composer } from "../components/chat/Composer";
+import { AttachSheet } from "../components/chat/AttachSheet";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ReportSheet } from "../components/chat/ReportSheet";
@@ -48,9 +53,10 @@ import { copyText } from "../lib/clipboard";
 import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
-import { takeNewChatIntent } from "../lib/newChatIntent";
 import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
+import { useEntitlement } from "../licence";
+import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
@@ -70,8 +76,17 @@ export interface ChatProps {
   incognito: boolean;
   onOpenChats: () => void;
   onChatCreated: (chatId: string) => void;
-  /** Persona for a chat that does not exist yet (additive; falls back to the new-chat intent set by Chats). */
+  /** Persona for a chat that does not exist yet (chosen in the new-chat sheet). */
   personaId?: string;
+  /** Desktop menu / hardware keyboard (§14.4): ⌘N / ⇧⌘I land here when this screen is the one in front. */
+  onNewChat?: (incognito: boolean, personaId?: string) => void;
+  /** "Manage documents" in the attach sheet → S40. */
+  onOpenDocuments?: () => void;
+  /** Value moments (§12.3): the mic, "remember this", the PRO tags. */
+  onOpenPaywall?: () => void;
+  /** The shell's seal state ("loading" while the first model pack is still arriving, §8.8). */
+  sealState?: SealState;
+  sealProgress?: number;
 }
 
 /* Android freezes when one Modal opens in the frame another one dismisses; hand over after the 280 ms sheet animation. */
@@ -80,12 +95,15 @@ export const afterSheetClose = (fn: () => void) => setTimeout(fn, 320);
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content }) => ({ id, role, content }));
 
-export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId }: ChatProps) {
+export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, sealState, sealProgress }: ChatProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const ent = useEntitlements();
+  const { tier } = useEntitlement();
   const { engine, model } = getEngine();
+  const inputRef = useRef<TextInput | null>(null);
+  const focused = useRef(true);
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
   const stopReason = useRef<StoppedBy | "loop" | null>(null);
@@ -97,7 +115,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [status, setStatus] = useState<Status>({ kind: "loading" });
   const [rows, setRowsState] = useState<Row[]>([]);
   const [chat, setChat] = useState<ChatRecord | null>(null);
-  const [settings, setSettings] = useState<ChatSettings>({ personaId: personaId ?? takeNewChatIntent()?.personaId ?? DEFAULT_PERSONA_ID, systemPrompt: "", thinking: false });
+  const [settings, setSettings] = useState<ChatSettings>({ personaId: personaId ?? DEFAULT_PERSONA_ID, systemPrompt: "", thinking: false });
   const [customPersonas, setCustomPersonas] = useState<Persona[]>([]);
   const [draft, setDraft] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -111,6 +129,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [attachOpen, setAttachOpen] = useState(false);
+  /* Attachments key by chat id; a chat that does not exist yet, and every incognito chat, attach under a RAM-only key (§5.7). */
+  const draftKey = useRef(`${RAM_ATTACH_PREFIX}draft-${Date.now().toString(36)}`).current;
+  const [docKey, setDocKey] = useState<string>(chatId ? (incognito ? `${RAM_ATTACH_PREFIX}${chatId}` : chatId) : draftKey);
+  const docs = useDocumentContext(docKey);
+  const { library, state: libraryState } = useDocuments();
   const nCtx = session.current?.nCtx ?? 4096;
   const thinkingAvailable = model.id !== "instant";
   const setRows = useCallback((update: Row[] | ((r: Row[]) => Row[])) => {
@@ -128,6 +152,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     setToast(message);
     setTimeout(() => setToast(null), 1400);
   };
+
+  useEffect(() => {
+    void library.ready();
+  }, [library]);
+  // RAM-only attachments end with the screen; a persistent chat keeps its list in documents.json.
+  useEffect(() => () => void (docKey.startsWith(RAM_ATTACH_PREFIX) && library.detachAll(docKey)), [docKey, library]);
+  useFocusEffect(
+    useCallback(() => {
+      focused.current = true;
+      return () => {
+        focused.current = false;
+      };
+    }, []),
+  );
 
   useEffect(() => {
     let alive = true;
@@ -194,13 +232,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     };
   }, []);
 
-  // Desktop ⌘. and ⌘F (spec §8.9). TODO(lead, App.tsx): "new-chat" and "toggle-incognito" need a fresh `Active` there —
-  // useShortcut("new-chat", () => onNewChat(false)); useShortcut("toggle-incognito", () => onNewChat(!active.incognito)).
+  // Desktop menu accelerators (§8.9, §14.4); the chats drawer answers them itself while it is up, so only the front screen acts.
   useShortcut("stop", () => {
+    if (!focused.current) return;
     stopReason.current = "user";
     abort.current?.abort();
   });
-  useShortcut("search", onOpenChats);
+  useShortcut("search", () => focused.current && onOpenChats());
+  useShortcut("new-chat", () => focused.current && onNewChat?.(false));
+  useShortcut("toggle-incognito", () => focused.current && onNewChat?.(!incognito));
+  useShortcut("focus-composer", () => focused.current && inputRef.current?.focus());
 
   const budget = useMemo(() => {
     const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt });
@@ -222,6 +263,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     id = created.id;
     chatRef.current = id;
     setChat(created);
+    const key = incognito ? `${RAM_ATTACH_PREFIX}${id}` : id;
+    library.moveAttachments(draftKey, key);
+    setDocKey(key);
     onChatCreated(id);
     return id;
   };
@@ -244,15 +288,33 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let firstAt = 0;
     let reasoningStart = 0;
     let reasoningMs: number | undefined;
+    let citations: Citation[] | undefined;
     const started = Date.now();
     const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === targetId ? fn(x) : x)));
     try {
       const facts = await store.memoryFor(chatIdNow, persona.id);
-      const lastUser = [...history].reverse().find((m) => m.role === "user")?.content ?? "";
+      const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
+      const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser) });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
+      let messages = prompt.messages;
+      /* Attached documents (§7.3, §8.5): retrieve, fence, cite; "Continue" keeps the passages the partial answer already saw. */
+      if (docs.ready && !existingMessageId && lastUser) {
+        try {
+          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system);
+          if (rag.prompt.noAnswer) {
+            const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t("documents.notFound"), modelId: model.id });
+            setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
+            return;
+          }
+          messages = rag.prompt.messages;
+          citations = rag.prompt.citations;
+        } catch (e: unknown) {
+          flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
+        }
+      }
       const opts = { reasoning: thinkingAvailable && settings.thinking, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
-      for await (const d of engine.generate(s, prompt.messages, opts, ac.signal)) {
+      for await (const d of engine.generate(s, messages, opts, ac.signal)) {
         if (d.reasoning) {
           if (!reasoningStart) reasoningStart = Date.now();
           reasoning += d.reasoning;
@@ -281,7 +343,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const reason = stopReason.current as StoppedBy | "loop" | null;
       const stopped = ac.signal.aborted;
       const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" ? "system" : "user") : undefined;
-      if (usage) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
+      if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
+      if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
+        reply = t("documents.notFound");
+        citations = undefined;
+        patch((x) => ({ ...x, content: prefix + reply }));
+      }
       if (!reply && !reasoning && stopped && !existingMessageId) {
         setRows((all) => all.filter((x) => x.id !== targetId));
       } else if (existingMessageId) {
@@ -298,6 +365,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           stopped,
           ...(stoppedBy ? { stoppedBy } : {}),
           ...(usage ? { usage } : {}),
+          ...(citations?.length ? { citations } : {}),
         });
         setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: reason === "loop" } : x)));
       }
@@ -434,6 +502,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
+  const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
+  const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
+  const attachedNames = docs.documents.map((d) => d.name);
+  const onMic = () => (paywallFor(tier, { kind: "feature", feature: "voiceConversation" }) ? onOpenPaywall?.() : flash(t("chat.comingSoon")));
 
   return (
     // Edge-to-edge Android does not resize the window for the keyboard, so the screen pads itself (§9.6 anchored composer).
@@ -443,8 +515,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
         </Pressable>
         <View style={styles.sealWrap}>
-          <Seal size={28} color={theme.sealed} glow={theme.accent} generating={busy || summarizing} label={t("chat.sealed")} />
-          <Text style={[type.monoLabel, { color: theme.sealed }]}>{busy && liveTps > 0 ? t("chat.liveTps", { tps: liveTps.toFixed(0) }) : t("chat.sealed")}</Text>
+          <Seal size={28} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={busy || summarizing} label={sealLabel} />
+          <Text testID="seal-label" style={[type.monoLabel, { color: theme.sealed }]}>
+            {busy && liveTps > 0 ? t("chat.liveTps", { tps: liveTps.toFixed(0) }) : sealLabel}
+          </Text>
         </View>
         <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           <Text style={[type.monoLabel, { color: theme.text2 }]}>
@@ -491,7 +565,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ListHeaderComponent={safety ? <SafetyCard resources={safety} onDismiss={() => setSafety(null)} /> : null}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Seal size={72} color={theme.sealed} glow={theme.accent} generating={false} label={t("chat.sealed")} />
+            <Seal size={72} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={false} label={sealLabel} />
             <Text style={[type.monoLabel, { color: theme.text3 }]}>{modelLabel(model.id)}</Text>
             <Text testID="empty-headline" style={[type.title, styles.headline, { color: theme.text }]}>
               {incognito ? t("chat.incognito.headline") : t("onboarding.headline")}
@@ -526,8 +600,25 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {toast}
         </Text>
       ) : null}
+      {attachedNames.length ? (
+        <View testID="attached-docs" style={styles.chips}>
+          {docs.documents.map((d) => (
+            <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: d.name })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
+              <Text numberOfLines={1} style={[type.caption, styles.docChipText, { color: theme.text }]}>
+                ⎘ {d.name}
+              </Text>
+              <Text style={[type.caption, { color: theme.text3 }]}>✕</Text>
+            </Pressable>
+          ))}
+          {docs.strict ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.strict")}</Text> : null}
+        </View>
+      ) : null}
       <ContextMeter fullness={budget.fullness} />
       <Composer
+        inputRef={inputRef}
+        onAttach={() => setAttachOpen(true)}
+        attachedCount={attachedNames.length}
+        onMic={onMic}
         value={draft}
         onChange={setDraft}
         onSend={send}
@@ -611,12 +702,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
                 testID="action-remember"
                 label={t("chat.remember")}
                 hint={t("chat.rememberHint")}
-                disabled={!ent.pro}
-                trailing={ent.pro ? undefined : <ProTag />}
+                trailing={ent.pro ? undefined : <ProTag onPress={() => {
+                  setActionRow(null);
+                  afterSheetClose(() => onOpenPaywall?.());
+                }} />}
                 onPress={() => {
                   const id = chatRef.current;
                   const row = actionRow;
                   setActionRow(null);
+                  if (!ent.pro) {
+                    afterSheetClose(() => onOpenPaywall?.());
+                    return;
+                  }
                   if (!id) return;
                   void store.remember(id, row.role === "user" ? row.content : markdownToText(row.content).slice(0, 300), persona.id).then(() => flash(t("chat.remembered")));
                 }}
@@ -637,6 +734,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ) : null}
       </Sheet>
       <ReportSheet message={reportRow} onClose={() => setReportRow(null)} onSave={saveReport} onEmail={emailReport} />
+      <AttachSheet
+        visible={attachOpen}
+        onClose={() => setAttachOpen(false)}
+        documents={libraryState.documents}
+        attachedIds={docs.context.docIds}
+        strict={docs.strict}
+        onSetStrict={docs.setStrict}
+        onAttach={docs.attach}
+        onDetach={docs.detach}
+        onManage={() => {
+          setAttachOpen(false);
+          afterSheetClose(() => onOpenDocuments?.());
+        }}
+      />
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
     </KeyboardAvoidingView>
   );
@@ -657,4 +768,8 @@ const styles = StyleSheet.create({
   suggestions: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 8 },
   suggestion: { minHeight: 36, paddingHorizontal: 14 },
   banner: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 12, marginBottom: 8, padding: 12, borderWidth: 1, borderRadius: radius.control },
+  chips: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6, paddingHorizontal: 12, paddingBottom: 4 },
+  docChip: { flexDirection: "row", alignItems: "center", gap: 6, minHeight: 30, maxWidth: 220 },
+  docChipText: { flexShrink: 1 },
+  strictTag: { paddingHorizontal: 4 },
 });

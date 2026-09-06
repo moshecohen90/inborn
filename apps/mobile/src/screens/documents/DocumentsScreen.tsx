@@ -4,7 +4,8 @@ import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dark, light, fonts, radius } from "@inborn/ui";
-import { formatBytes, type DocumentRecord } from "@inborn/core";
+import { formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
+import { useEntitlement } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
@@ -19,19 +20,24 @@ import { DocumentRow } from "./DocumentRow";
 
 export interface DocumentsScreenProps {
   onClose: () => void;
-  /** Pro unlocks the library; Free attaches one file of up to 20 pages (spec §7.3). */
+  /** Overrides the licence (tests, headless runs); Free attaches one file of up to 20 pages (spec §7.3). */
   pro?: boolean;
+  /** The 2nd document is a §12.3 value moment: "Add file" opens the paywall instead. */
+  onUnlock?: () => void;
 }
 
 const PICK_TYPES = ["application/pdf", "text/plain", "text/markdown", "text/csv", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/png", "image/jpeg"];
 
 /** S40 Document library: documents with state, strict mode, add file, ask about selected, details. */
-export function DocumentsScreen({ onClose, pro = true }: DocumentsScreenProps) {
+export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: DocumentsScreenProps) {
   const { t } = useTranslation();
   const theme = useColorScheme() === "light" ? light : dark;
   const insets = useSafeAreaInsets();
   const { library, state } = useDocuments();
   const { vault } = useVault();
+  const { tier, can } = useEntitlement();
+  const pro = proOverride ?? can("documents");
+  const addLocked = paywallFor(tier, { kind: "document", existing: state.documents.length }) && proOverride === undefined;
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [details, setDetails] = useState<DocumentRecord | null>(null);
   const [ask, setAsk] = useState<{ docs: DocumentRecord[]; auto?: string } | null>(null);
@@ -96,6 +102,10 @@ export function DocumentsScreen({ onClose, pro = true }: DocumentsScreenProps) {
   };
 
   const pickAndImport = async () => {
+    if (addLocked) {
+      onUnlock?.();
+      return;
+    }
     try {
       const picked = await File.pickFileAsync({ multipleFiles: false, mimeTypes: PICK_TYPES });
       if (!picked.canceled) await importUri(picked.result.uri, picked.result.name ?? "document");
@@ -131,7 +141,7 @@ export function DocumentsScreen({ onClose, pro = true }: DocumentsScreenProps) {
         </Pressable>
         <Text style={[styles.title, { color: theme.text }]}>{t("documents.title")}</Text>
         <Pressable testID="documents-add" accessibilityRole="button" onPress={pickAndImport} style={styles.headerBtn}>
-          <Text style={[styles.headerBtnText, styles.right, { color: theme.text }]}>{t("documents.add")}</Text>
+          <Text style={[styles.headerBtnText, styles.right, { color: addLocked ? theme.accent : theme.text }]}>{addLocked ? t("documents.addPro") : t("documents.add")}</Text>
         </Pressable>
       </View>
       <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text>
