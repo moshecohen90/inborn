@@ -22,8 +22,12 @@ export function thermalFromAndroid(status: number, ctx?: AndroidThermalContext):
   if (status === AndroidThermal.NONE) return "nominal";
   if (status <= AndroidThermal.MODERATE) return "fair";
   const critical = status >= AndroidThermal.CRITICAL;
-  if (!ctx || ctx.seenCool) return critical ? "critical" : "serious";
+  if (!ctx) return critical ? "critical" : "serious";
   const headroomHot = ctx.headroom !== null && ctx.headroom >= (critical ? 1 : 0.85);
   const batteryHot = ctx.batteryTempC !== null && ctx.batteryTempC >= (critical ? 40 : 37);
+  /* A sensor that once moved is trusted for "serious"; "critical" stops the answer and drops the weights, so a battery reading of 24 °C still vetoes it (the 6T flips to SHUTDOWN mid-answer). */
+  const batteryCool = ctx.batteryTempC !== null && !batteryHot;
+  if (ctx.seenCool) return critical && !batteryCool && (headroomHot || batteryHot) ? "critical" : "serious";
+  if (critical && batteryCool) return headroomHot ? "serious" : "unknown";
   return headroomHot || batteryHot ? (critical ? "critical" : "serious") : "unknown";
 }

@@ -795,3 +795,11 @@ price line + WORK tag.
   project). Build with `GRADLE_USER_HOME=~/.gradle-r4a` (APFS-cloned `caches/modules-2` + `wrapper`, instant) or agree on a
   no-`--stop` rule while several streams build.
 
+
+## Models run on the OnePlus 6T (spec §5, §6.3–6.5, branch `models-verify`) — status 7.9.2026
+
+Every catalog entry (Instant, Fast, Sharp two-shard, Sharp-Phi, nomic embed, whisper base, vision mmproj) plus an external GGUF import was installed through the vault's HTTPS path with SHA-256 verification and exercised on the OnePlus 6T (Snapdragon 845, 8 GB, Android 11). Full table, defects and repro: `docs/qa/models-run-2026-09-06.md`.
+
+- Numbers: Instant 12–15.5 tok/s (TTFT 2–10 s), Fast 5–5.8 tok/s (TTFT 3–24 s), Sharp 1.3–2.5 tok/s (load 12.5 s, TTFT 20–102 s, PSS 3.6 GB), Phi-4-mini 2.2–2.9 tok/s, vision answer after 61 s image encoding, whisper 7 s per 4 s clip (EN exact, HE near-exact), PDF question answered correctly with sources in 20 s.
+- Fixed here: false thermal "critical" on the 6T (stuck SHUTDOWN status, battery 24 °C) that stopped answers and crashed the app on unload, llama.rn release-while-computing SIGSEGV, sharded Sharp forgotten after relaunch, engine not reloaded when an installed model became active, import hashing a half-copied file, SD845 rated as a Pixel 9 (chip-aware class), "7 GB" vs "8 GB" RAM label.
+- Driving a phone whose touch input adb cannot reach: `EXPO_PUBLIC_AUTOPROMPT=file` (Chat consumes `Documents/dev-prompt.txt`; `image:<name>` attaches, `/scroll` scrolls) and `EXPO_PUBLIC_AUTOINSTALL=file` (vault consumes `Documents/dev-vault.txt`: `install|use|remove <id>`, `import <uri>`); `EXPO_PUBLIC_MODELS_BASE_URL` now also switches Android dev builds to HTTPS delivery (`scripts/serve-models.mjs` over `adb reverse`), with `Documents/instant.gguf` adopted as the bundled stand-in.

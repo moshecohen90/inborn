@@ -41,12 +41,20 @@ export interface ChipInput {
   ramGB: number;
   appleSilicon?: boolean;
   discreteGpu?: boolean;
+  /** Marketing chip name when known ("Snapdragon 845"); RAM alone rates an 8 GB phone from 2018 as a Pixel 9. */
+  chipName?: string | null;
 }
 
-export function chipClassFor({ os, ramGB, appleSilicon, discreteGpu }: ChipInput): ChipClass {
+/* Pre-2022 flagships and every Tensor before G3: an 8 GB OnePlus 6T measured 12-15 tok/s on Instant, the "high" row promises 18-28. */
+const OLD_ANDROID_CHIP = /snapdragon\s+(6\d\d|7\d\d|8[0-9]{2}|8 gen 1)\b|tensor(\s+g[12])?$|exynos\s+(9|2[01])\d\d|kirin|helio|dimensity\s+[1-9]\d{2,3}\b/i;
+
+export function chipClassFor({ os, ramGB, appleSilicon, discreteGpu, chipName }: ChipInput): ChipClass {
   if (os === "web") return "web";
   if (os === "ios") return ramGB >= 12 ? "ios-flagship" : ramGB >= 8 ? "ios-high" : ramGB >= 6 ? "ios-mid" : "ios-entry";
-  if (os === "android") return ramGB >= 12 ? "android-flagship" : ramGB >= 8 ? "android-high" : ramGB >= 6 ? "android-mid" : "android-entry";
+  if (os === "android") {
+    const byRam: ChipClass = ramGB >= 12 ? "android-flagship" : ramGB >= 8 ? "android-high" : ramGB >= 6 ? "android-mid" : "android-entry";
+    return chipName && OLD_ANDROID_CHIP.test(chipName) && (byRam === "android-high" || byRam === "android-flagship") ? "android-mid" : byRam;
+  }
   if (discreteGpu) return "desktop-gpu";
   return appleSilicon || os === "macos" ? "desktop-apple" : "desktop-cpu";
 }

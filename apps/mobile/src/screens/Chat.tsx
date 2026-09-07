@@ -79,7 +79,10 @@ type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: 
 
 /* Headless device runs (USB, nothing can tap the screen): bundling with EXPO_PUBLIC_AUTOPROMPT=1 sends one prompt 2 s after the model loads and writes the numbers to Documents/dev-run.json; any other value is sent verbatim (emulators cannot type non-ASCII). Store builds never set it. */
 const AUTOPROMPT_ENV = process.env.EXPO_PUBLIC_AUTOPROMPT ?? "";
-const AUTOPROMPT = AUTOPROMPT_ENV === "1" ? "Explain in about 150 words why the sky is blue." : AUTOPROMPT_ENV.length > 1 ? AUTOPROMPT_ENV : null;
+const AUTOPROMPT = AUTOPROMPT_ENV === "1" ? "Explain in about 150 words why the sky is blue." : AUTOPROMPT_ENV.length > 1 && AUTOPROMPT_ENV !== "file" ? AUTOPROMPT_ENV : null;
+/* EXPO_PUBLIC_AUTOPROMPT=file: a phone whose touch input adb cannot reach (OnePlus 6T) takes each prompt from Documents/dev-prompt.txt instead; the file is consumed once submitted. */
+const AUTOPROMPT_FILE = AUTOPROMPT_ENV === "file" ? "dev-prompt.txt" : null;
+const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null;
 /** Product ceiling for finishing a reply after the app goes to the background (§10.3 #21). */
 const BACKGROUND_GRACE_MS = 15_000;
 const NOTICE_KEY = "notice.canBeWrong";
@@ -214,7 +217,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       })
       .catch((e: unknown) => {
         const error = errorText(e);
-        if (AUTOPROMPT) writeDevResult({ engine: engine.id, model: model.id, error });
+        if (DEV_RESULTS) writeDevResult({ engine: engine.id, model: model.id, error });
         if (alive) setStatus({ kind: "error", error });
       });
     return () => {
@@ -426,7 +429,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const last = engine.stats();
       const result = { engine: engine.id, model: model.id, uri: model.uri, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
       if (__DEV__) console.log("[stats]", JSON.stringify(result));
-      if (AUTOPROMPT) writeDevResult({ ...result, reply });
+      if (DEV_RESULTS) writeDevResult({ ...result, reply });
     }
   };
 
@@ -541,6 +544,23 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const timer = setTimeout(() => void submit(AUTOPROMPT), 2000);
     return () => clearTimeout(timer);
   }, [status.kind]);
+
+  useEffect(() => {
+    if (!AUTOPROMPT_FILE || status.kind !== "ready" || busy) return;
+    const timer = setInterval(() => {
+      const file = new File(Paths.document, AUTOPROMPT_FILE);
+      if (!file.exists) return;
+      const raw = file.textSync().trim();
+      file.delete();
+      if (raw === "/scroll") return list.current?.scrollToEnd({ animated: false });
+      const lines = raw.split("\n");
+      const images = lines.filter((l) => l.startsWith("image:")).map((l) => new File(Paths.document, l.slice("image:".length).trim()));
+      if (images.length) return setPendingImages(images.map((f) => ({ uri: f.uri, width: 0, height: 0, bytes: f.size ?? 0 })));
+      const text = lines.join("\n").trim();
+      if (text) void submit(text);
+    }, 1500);
+    return () => clearInterval(timer);
+  }, [status.kind, busy, pendingImages]);
 
   const lastUserId = [...rows].reverse().find((r) => r.role === "user")?.id;
   const lastAssistant = [...rows].reverse().find((r) => r.role === "assistant");

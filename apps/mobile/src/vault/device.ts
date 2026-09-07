@@ -1,7 +1,8 @@
 import { Platform } from "react-native";
 import { Paths } from "expo-file-system";
-import { chipClassFor, type ChipClass, type DeviceClass, type DeviceProfile } from "@inborn/core";
-import { totalMemoryBytes } from "../../modules/vault-native";
+import * as Device from "expo-device";
+import { androidChipName, chipClassFor, type ChipClass, type DeviceClass, type DeviceProfile } from "@inborn/core";
+import { socModel, totalMemoryBytes } from "../../modules/vault-native";
 import { DEV_RAM_GB, devBuild } from "./devFlags";
 
 export interface DeviceInfo extends DeviceProfile {
@@ -31,7 +32,7 @@ export function readDevice(pro = false): DeviceInfo {
   const ramGB = Number.isFinite(override) && override > 0 ? override : bytes ? marketingRamGB(bytes) : 8;
   const cls = deviceClass();
   const platform = os();
-  return { ramGB, deviceClass: cls, pro, os: platform, chip: chipClassFor({ os: platform, ramGB, appleSilicon: platform === "macos" }) };
+  return { ramGB, deviceClass: cls, pro, os: platform, chip: chipClassFor({ os: platform, ramGB, appleSilicon: platform === "macos", chipName: platform === "android" ? androidChipName(socModel(), Device.modelName) : null }) };
 }
 
 export function freeDiskBytes(): number {

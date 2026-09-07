@@ -11,6 +11,7 @@ export class LlamaRnLM implements LocalLM {
   private ctx: Ctx | null = null;
   private session: Session | null = null;
   private last: Stats = { tokPerSec: 0, ttftMs: 0, ctxUsed: 0, memMB: 0 };
+  private inflight: Promise<unknown> | null = null;
   private vision = false;
   private mmproj: string | null = null;
   devInfo: Record<string, unknown> = {};
@@ -55,6 +56,8 @@ export class LlamaRnLM implements LocalLM {
   }
 
   async unload(): Promise<void> {
+    /* stopCompletion() only flags the native loop; releasing the context while it still computes (image chunks take seconds) segfaults in ggml. */
+    if (this.inflight) await this.inflight.catch(() => undefined);
     if (this.ctx) {
       await this.ctx.release();
       this.ctx = null;
@@ -92,7 +95,7 @@ export class LlamaRnLM implements LocalLM {
     };
     const onAbort = () => void ctx.stopCompletion();
     signal.addEventListener("abort", onAbort, { once: true });
-    ctx
+    this.inflight = ctx
       .completion(
         {
           messages: messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content })),
@@ -123,6 +126,7 @@ export class LlamaRnLM implements LocalLM {
       })
       .finally(() => {
         finished = true;
+        this.inflight = null;
         wake?.();
       });
     try {

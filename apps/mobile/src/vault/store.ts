@@ -71,7 +71,8 @@ export class VaultStore {
         this.persist();
       },
     };
-    this.delivery = Platform.OS === "android" ? new PlayDelivery() : new HttpsDelivery(ctx);
+    /* Debug APKs cannot reach Play Core; pointing a dev bundle at scripts/serve-models.mjs gives Android the same HTTPS path the other platforms use. */
+    this.delivery = Platform.OS === "android" && !(devBuild() && DEV_MODELS_BASE_URL) ? new PlayDelivery() : new HttpsDelivery(ctx);
     for (const m of this.manifest.models) this.states.set(m.id, NOT_INSTALLED);
   }
 
@@ -107,14 +108,14 @@ export class VaultStore {
   private async scan(): Promise<void> {
     if (Platform.OS === "web") return;
     for (const model of this.manifest.models) {
-      const bundled = bundledModelFile(model.id);
+      const bundled = bundledModelFile(model.id) ?? devBundledStandIn(model.id);
       if (bundled) {
         this.adoptBundled(model, bundled);
         continue;
       }
       const rec = this.record.installs[model.id];
       const located = this.delivery.locate(model);
-      if (rec && located && fileSize(new File(located)) === rec.bytes) {
+      if (rec && located && onDiskBytes(model, located) === rec.bytes) {
         const via = rec.via;
         this.states.set(model.id, rec.loading || rec.quarantined ? { kind: "quarantined", path: located, bytes: rec.bytes, sha256: rec.sha256, via } : { kind: "ready", path: located, bytes: rec.bytes, sha256: rec.sha256, via });
         if (rec.loading) rec.quarantined = true;
@@ -417,6 +418,12 @@ export class VaultStore {
       return { ok: false, reason: "copy-failed" };
     }
     this.set(id, { kind: "verifying", via: "import", bytes });
+    /* File.copy() returns while Android is still writing (a 508 MB import hashed at 342 MB); hash only once the copy has all the bytes. */
+    for (let i = 0; fileSize(dest) < bytes && i < 600; i++) await new Promise((r) => setTimeout(r, 200));
+    if (fileSize(dest) !== bytes) {
+      safeDelete(dest);
+      return { ok: false, reason: "copy-failed" };
+    }
     const sha256 = await fileSha256(dest);
     const imp: ImportedModel = { id, name: header.name ?? name.replace(/\.gguf$/i, ""), file: fileName, bytes, sha256, arch: header.arch, sizeLabel: header.sizeLabel, quant: header.quant, contextLength: header.contextLength, importedAt: Date.now() };
     this.record.imports[id] = imp;
@@ -439,6 +446,19 @@ function withDevBaseUrl(manifest: CatalogManifest): CatalogManifest {
   } catch {
     return manifest;
   }
+}
+
+/* A sharded model records the sum of its parts, so the scan must measure every shard next to the first one. */
+function onDiskBytes(model: CatalogModel, firstPart: string): number {
+  const dir = firstPart.slice(0, firstPart.lastIndexOf("/") + 1);
+  return modelParts(model).reduce((sum, p) => sum + fileSize(new File(`${dir}${p.file}`)), 0);
+}
+
+/* Dev builds have no store pack; a hand-pushed Documents/instant.gguf stands in for the bundled copy so the vault and the engine agree. */
+function devBundledStandIn(modelId: string): File | null {
+  if (modelId !== "instant" || !devBuild()) return null;
+  const f = devFallbackFile();
+  return f.exists ? f : null;
 }
 
 const strayId = (s: StrayFile): string => `${STRAY_PREFIX}${s.file}`;

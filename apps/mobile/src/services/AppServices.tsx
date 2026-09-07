@@ -5,7 +5,7 @@ import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
-import { getEngine, resetEngine } from "../engine";
+import { getEngine, isGenerating, resetEngine } from "../engine";
 import { getVault } from "../vault/store";
 import { startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
@@ -228,7 +228,10 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
           ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
           : { name: live.model.name.toUpperCase(), status: "delivering", progress: 1, totalBytes: live.model.bytes };
       setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
-      if (bootedRef.current?.engine.model.id === "null" && vault.activeModel()) void reloadEngine();
+      /* A download or pack that just became the default (§6.3) must reach the chat too, never mid-answer. */
+      const activeId = vault.activeModel()?.model.id ?? null;
+      const engineId = bootedRef.current?.engine.model.id ?? null;
+      if (activeId && engineId && engineId !== activeId && !isGenerating()) void reloadEngine();
     };
     update();
     return vault.subscribe(update);

@@ -11,7 +11,8 @@ describe("runs-on line (S01)", () => {
     expect(chipForModelId(null)).toBeNull();
   });
   it("rounds RAM to the marketed size and knows the floor", () => {
-    expect(ramLabel(5.6e9)).toBe("5 GB");
+    expect(ramLabel(5.6e9)).toBe("6 GB");
+    expect(ramLabel(7818096 * 1024)).toBe("8 GB");
     expect(ramLabel(6 * 2 ** 30 - 400e6)).toBe("6 GB");
     expect(ramLabel(0)).toBeNull();
     expect(belowFloor(3 * 2 ** 30)).toBe(true);

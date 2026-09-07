@@ -26,7 +26,10 @@ export function chipForModelId(modelId: string | null | undefined): string | nul
 /** Whole gigabytes as marketed: 5.6e9 reported by the OS is the 6 GB phone. */
 export function ramLabel(totalBytes: number | null | undefined): string | null {
   if (!totalBytes || totalBytes <= 0) return null;
-  return `${Math.round(totalBytes / 2 ** 30)} GB`;
+  /* Same steps as the vault's marketingRamGB: the 6T reports 7.46 GiB and is the 8 GB phone, not "7 GB". */
+  const gb = totalBytes / 2 ** 30;
+  const step = [2, 3, 4, 6, 8, 12, 16, 24, 32, 64, 128].find((s) => gb <= s + 0.05) ?? Math.round(gb);
+  return `${step} GB`;
 }
 
 /** Below 4 GB the honest line is "small models, slowly" (S01 floor state). */

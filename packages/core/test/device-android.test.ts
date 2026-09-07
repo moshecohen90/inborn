@@ -24,13 +24,18 @@ describe("thermalFromAndroid", () => {
     expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, batteryTempC: 41 })).toBe("critical");
     expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, batteryTempC: 38 })).toBe("unknown");
     expect(thermalFromAndroid(AndroidThermal.SEVERE, { ...cool, batteryTempC: 38 })).toBe("serious");
-    expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, headroom: 1.05 })).toBe("critical");
+    expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, headroom: 1.05, batteryTempC: null })).toBe("critical");
     expect(thermalFromAndroid(AndroidThermal.SEVERE, { ...cool, headroom: 0.9 })).toBe("serious");
     expect(thermalFromAndroid(AndroidThermal.SEVERE, { ...cool, headroom: 0.5 })).toBe("unknown");
   });
 
   it("once the device was seen cool, every later status is trusted", () => {
     expect(thermalFromAndroid(AndroidThermal.SEVERE, { ...cool, seenCool: true })).toBe("serious");
-    expect(thermalFromAndroid(AndroidThermal.SHUTDOWN, { ...cool, seenCool: true })).toBe("critical");
+    expect(thermalFromAndroid(AndroidThermal.SHUTDOWN, { ...cool, seenCool: true })).toBe("serious");
+    expect(thermalFromAndroid(AndroidThermal.SHUTDOWN, { ...cool, seenCool: true, batteryTempC: 41 })).toBe("critical");
+    expect(thermalFromAndroid(AndroidThermal.SHUTDOWN, { ...cool, seenCool: true, batteryTempC: null })).toBe("serious");
+    expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, seenCool: true, headroom: 1.05 })).toBe("serious");
+    expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, seenCool: true, headroom: 1.05, batteryTempC: null })).toBe("critical");
+    expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, headroom: 1.05 })).toBe("serious");
   });
 });

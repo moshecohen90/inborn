@@ -9,7 +9,7 @@ import { ENGINE_VERSION, formatModelBytes, groupByFit, paywallFor, type CatalogM
 import { useEntitlement } from "../../licence";
 import { resetEngine } from "../../engine";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
-import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, devBuild } from "../../vault/devFlags";
+import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { ModelCard } from "./ModelCard";
 import { ModelDetails } from "./ModelDetails";
 import { font, useType } from "../../services/type";
@@ -83,6 +83,26 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
     await resetEngine();
     onModelChanged?.(id);
   };
+
+  useEffect(() => {
+    const commandFile = DEV_VAULT_FILE;
+    if (!commandFile || !devBuild()) return;
+    const timer = setInterval(() => {
+      const file = new File(Paths.document, commandFile);
+      if (!file.exists) return;
+      const lines = file.textSync().split("\n");
+      file.delete();
+      for (const line of lines) {
+        const [cmd, arg, name] = line.trim().split(/\s+/);
+        if (!cmd || !arg) continue;
+        if (cmd === "install") void vault.install(arg);
+        else if (cmd === "use") void use(arg);
+        else if (cmd === "remove") void vault.remove(arg);
+        else if (cmd === "import") void importUri(arg, name);
+      }
+    }, 1500);
+    return () => clearInterval(timer);
+  }, [vault, importUri]);
 
   const startInstall = (entry: VaultEntry) => {
     setConfirm(null);

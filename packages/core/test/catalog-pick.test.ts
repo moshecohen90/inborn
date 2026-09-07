@@ -60,6 +60,11 @@ describe("expected speed (spec §6.4)", () => {
   it("classes devices by platform and RAM and always answers with a range", () => {
     expect(chipClassFor({ os: "ios", ramGB: 6 })).toBe("ios-mid");
     expect(chipClassFor({ os: "ios", ramGB: 8 })).toBe("ios-high");
+    expect(chipClassFor({ os: "android", ramGB: 8, chipName: "Snapdragon 845" })).toBe("android-mid");
+    expect(chipClassFor({ os: "android", ramGB: 12, chipName: "Snapdragon 8 Gen 1" })).toBe("android-mid");
+    expect(chipClassFor({ os: "android", ramGB: 12, chipName: "Snapdragon 8 Gen 2" })).toBe("android-flagship");
+    expect(chipClassFor({ os: "android", ramGB: 8, chipName: "Tensor G4" })).toBe("android-high");
+    expect(chipClassFor({ os: "android", ramGB: 6, chipName: "Snapdragon 845" })).toBe("android-mid");
     expect(chipClassFor({ os: "android", ramGB: 4 })).toBe("android-entry");
     expect(chipClassFor({ os: "android", ramGB: 12 })).toBe("android-flagship");
     expect(chipClassFor({ os: "macos", ramGB: 16 })).toBe("desktop-apple");
