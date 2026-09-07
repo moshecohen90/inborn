@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Image, KeyboardAvoidingView, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AppState, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -134,6 +134,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const chatRef = useRef<string | null>(chatId);
   const list = useRef<FlatList<Row>>(null);
   const nearBottom = useRef(true);
+  const follow = useRef(true);
   const loadMs = useRef(0);
   const rowsRef = useRef<Row[]>([]);
   const [status, setStatus] = useState<Status>({ kind: "loading" });
@@ -450,6 +451,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const pendingId = `pending-${Date.now()}`;
       setRows((all) => [...all, user, { id: pendingId, chatId: chatIdNow, role: "assistant", content: "", modelId: model.id, createdAt: Date.now(), streaming: true }]);
       nearBottom.current = true;
+      follow.current = true;
       requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
       const history: Message[] = wire(rowsRef.current).map(toMessage);
       await generate(chatIdNow, history, pendingId, "");
@@ -524,6 +526,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
     nearBottom.current = contentSize.height - (contentOffset.y + layoutMeasurement.height) < 100;
+    if (nearBottom.current) follow.current = true;
   };
 
   const saveReport = async (report: ReportInput) => {
@@ -784,10 +787,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onScroll={onScroll}
         scrollEventThrottle={64}
         keyboardShouldPersistTaps="handled"
-        /* Pinning index 0 while the list is empty would cancel the bar inset: the padding grows, the empty view moves up, and iOS scrolls it back under the composer (QA B10). */
-        maintainVisibleContentPosition={rows.length ? { minIndexForVisible: 0 } : undefined}
+        /* iOS only, for the floating-bar inset; pinning index 0 while the list is empty would cancel it (QA B10), and on Android the pin holds the view in place while an answer streams. */
+        maintainVisibleContentPosition={rows.length && Platform.OS === "ios" ? { minIndexForVisible: 0 } : undefined}
+        /* The user's own drag decides whether the answer is followed (§9.6, 100 px): the animated send scroll lands short while the new cells are unmeasured, so `nearBottom` alone goes stale. */
+        onScrollBeginDrag={() => {
+          follow.current = false;
+        }}
         onContentSizeChange={() => {
-          if (busy && nearBottom.current) list.current?.scrollToEnd({ animated: false });
+          if (busy && (follow.current || nearBottom.current)) list.current?.scrollToEnd({ animated: false });
         }}
         ListHeaderComponent={safety ? <SafetyCard resources={safety} onDismiss={() => setSafety(null)} /> : null}
         ListEmptyComponent={

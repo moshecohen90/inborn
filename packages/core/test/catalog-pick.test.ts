@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, ENGINE_VERSION, chipClassFor, defaultTier, expectedSpeed, groupByFit, maxTier, pickDefault, ramFit, type DeviceProfile } from "../src/index";
+import { BUNDLED_MANIFEST, ENGINE_VERSION, chipClassFor, defaultTier, expectedSpeed, groupByFit, isLegacyAndroidChip, maxTier, pickDefault, ramFit, type DeviceProfile } from "../src/index";
 
 const models = BUNDLED_MANIFEST.models;
 const phone = (ramGB: number, pro = false): DeviceProfile => ({ ramGB, deviceClass: "phone", pro });
@@ -68,5 +68,23 @@ describe("expected speed (spec §6.4)", () => {
     expect(min).toBeLessThan(max);
     expect(expectedSpeed("android-entry", "sharp")).toBeUndefined();
     expect(expectedSpeed("web", undefined)).toBeUndefined();
+  });
+
+  /* Measured on the phones: OnePlus 6T (Snapdragon 845, 8 GB) Instant 12–15.5 tok/s and Fast 5–5.8 tok/s; iPhone 13 Pro Instant 36 tok/s. */
+  const within20 = (range: readonly [number, number], measured: number[]) => measured.every((m) => m >= range[0] * 0.8 && m <= range[1] * 1.2 && m >= range[0] && m <= range[1]);
+  it("a Snapdragon 845 phone is a legacy chip whatever its RAM, and its ranges hold the OnePlus 6T numbers", () => {
+    const sixT = chipClassFor({ os: "android", ramGB: 8, chipName: "Snapdragon 845" });
+    expect(sixT).toBe("android-legacy");
+    expect(within20(expectedSpeed(sixT, "instant")!, [15.5, 12])).toBe(true);
+    expect(within20(expectedSpeed(sixT, "fast")!, [5, 5.8])).toBe(true);
+    expect(isLegacyAndroidChip("Snapdragon 865")).toBe(true);
+    expect(isLegacyAndroidChip("Snapdragon 8 Gen 2")).toBe(false);
+    expect(isLegacyAndroidChip(null)).toBe(false);
+  });
+  it("modern 8 GB Androids and the iPhone 13 Pro keep their anchors", () => {
+    expect(chipClassFor({ os: "android", ramGB: 8, chipName: "Snapdragon 8 Gen 3" })).toBe("android-high");
+    expect(chipClassFor({ os: "android", ramGB: 8 })).toBe("android-high");
+    expect(expectedSpeed("android-high", "instant")![0]).toBeGreaterThanOrEqual(expectedSpeed("android-legacy", "instant")![1]);
+    expect(within20(expectedSpeed(chipClassFor({ os: "ios", ramGB: 6 }), "instant")!, [36])).toBe(true);
   });
 });

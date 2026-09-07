@@ -5,7 +5,7 @@ import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
-import { getEngine, resetEngine } from "../engine";
+import { getEngine, isGenerating, resetEngine, subscribeActivity } from "../engine";
 import { getVault } from "../vault/store";
 import { startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
@@ -133,6 +133,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   bootedRef.current = booted;
   const previousModel = useRef<string | null>(null);
   const swapping = useRef(false);
+  const reloadQueued = useRef(false);
 
   /* A different default model (vault, §8.8 switch, a pack that just landed): unload, resolve again, remount the chat. */
   const reloadEngine = useCallback(async () => {
@@ -146,6 +147,19 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       swapping.current = false;
     }
   }, []);
+
+  /* A model swap never interrupts an answer (§6.5): while one streams, the reload waits for the engine to go idle. */
+  const reloadWhenIdle = useCallback(() => {
+    if (reloadQueued.current) return;
+    if (!isGenerating()) return void reloadEngine();
+    reloadQueued.current = true;
+    const off = subscribeActivity((busy) => {
+      if (busy) return;
+      off();
+      reloadQueued.current = false;
+      void reloadEngine();
+    });
+  }, [reloadEngine]);
 
   const updatePrefs = useCallback((patch: Partial<Prefs> | ((p: Prefs) => Partial<Prefs>)) => {
     setPrefs((p) => {
@@ -228,11 +242,13 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
           ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
           : { name: live.model.name.toUpperCase(), status: "delivering", progress: 1, totalBytes: live.model.bytes };
       setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
-      if (bootedRef.current?.engine.model.id === "null" && vault.activeModel()) void reloadEngine();
+      /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. */
+      const wanted = vault.activeModel()?.path;
+      if (wanted && bootedRef.current && bootedRef.current.engine.model.uri !== wanted) reloadWhenIdle();
     };
     update();
     return vault.subscribe(update);
-  }, [booted, reloadEngine]);
+  }, [booted, reloadWhenIdle]);
 
   const lockRef = useRef<AppLock | null>(null);
   const wipeAll = useCallback(async (opts: WipeOptions) => {

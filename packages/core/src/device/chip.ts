@@ -23,10 +23,17 @@ export function chipForModelId(modelId: string | null | undefined): string | nul
   return IPHONE_CHIPS[family] ?? null;
 }
 
-/** Whole gigabytes as marketed: 5.6e9 reported by the OS is the 6 GB phone. */
+/* Phones report a little under their marketing size (7.4 GiB on an "8 GB" phone); §6.3 speaks in marketing sizes. */
+export function marketingRamGB(bytes: number): number {
+  const gb = bytes / 1024 ** 3;
+  const steps = [2, 3, 4, 6, 8, 12, 16, 24, 32, 64, 128];
+  return steps.find((s) => gb <= s + 0.05) ?? Math.round(gb);
+}
+
+/** The one RAM label every screen shows (S01 / S02 / S30): the marketed size, never a rounded raw number. */
 export function ramLabel(totalBytes: number | null | undefined): string | null {
   if (!totalBytes || totalBytes <= 0) return null;
-  return `${Math.round(totalBytes / 2 ** 30)} GB`;
+  return `${marketingRamGB(totalBytes)} GB`;
 }
 
 /** Below 4 GB the honest line is "small models, slowly" (S01 floor state). */

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { androidChipName, belowFloor, chipForModelId, ramLabel } from "../src/index";
+import { androidChipName, belowFloor, chipForModelId, marketingRamGB, ramLabel } from "../src/index";
 
 describe("runs-on line (S01)", () => {
   it("maps hardware ids to chip names, by exact id then by family", () => {
@@ -11,8 +11,13 @@ describe("runs-on line (S01)", () => {
     expect(chipForModelId(null)).toBeNull();
   });
   it("rounds RAM to the marketed size and knows the floor", () => {
-    expect(ramLabel(5.6e9)).toBe("5 GB");
+    expect(ramLabel(5.6e9)).toBe("6 GB");
     expect(ramLabel(6 * 2 ** 30 - 400e6)).toBe("6 GB");
+    // OnePlus 6T: ActivityManager reports 7.4 GiB; onboarding and the vault must both say 8 GB.
+    expect(ramLabel(7.4 * 2 ** 30)).toBe("8 GB");
+    expect(marketingRamGB(7.4 * 2 ** 30)).toBe(8);
+    expect(marketingRamGB(3.7 * 2 ** 30)).toBe(4);
+    expect(marketingRamGB(11.6 * 2 ** 30)).toBe(12);
     expect(ramLabel(0)).toBeNull();
     expect(belowFloor(3 * 2 ** 30)).toBe(true);
     expect(belowFloor(8 * 2 ** 30)).toBe(false);
