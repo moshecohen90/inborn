@@ -342,6 +342,7 @@ voice mode. Photos (§7.1: Free one per message, Pro several) go to the Qwen3.5 
   passes `scripts/check-android-permissions.sh` (no INTERNET). Store answers in `docs/legal/app-privacy-details.md` §4.2a.
 - Dev proof: `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav EXPO_PUBLIC_AUTOVOICE_TTS=1` transcribes WAVs pushed into Documents and writes
   `Documents/dev-run.json` (`voice` key). Clips: `say -v Samantha` / `say -v Carmit` → `afconvert -f WAVE -d LEI16@16000 -c 1`.
+- Real phone (7.9.2026, `docs/qa/voice-run-2026-09-07.md`): `EXPO_PUBLIC_AUTOVOICE_SAY="…"` makes the phone speak the sentence through its own speaker one second after each listener opens, and every stage (system dictation, whisper, read-aloud, hands-free) lands under `live` in `Documents/dev-run.json`; the taps come from `ios-tests/VoiceDeviceUITests.swift` (`VOICE_STEPS` in the `.xctestrun`). Blocked on the iPhone 13 Pro until UI automation is approved once on the phone ("Timed out while enabling automation mode").
 
 Measured 6.9.2026 (11 s clips, whisper base, `language: auto`, 4 threads):
 
