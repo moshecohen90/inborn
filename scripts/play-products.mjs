@@ -7,6 +7,7 @@
 //   node scripts/play-products.mjs [--list] [--dry-run] [--no-activate] [--only inborn.pro] [--package com.inbornapp.mobile]
 //
 // Credentials: see scripts/lib/play-api.mjs (INBORN_PLAY_SA_JSON or INBORN_PLAY_SA_KEYCHAIN).
+import { URLSearchParams } from "node:url";
 import { API, accessToken, client, loadServiceAccount, parseArgs } from "./lib/play-api.mjs";
 
 const args = parseArgs(process.argv.slice(2));
