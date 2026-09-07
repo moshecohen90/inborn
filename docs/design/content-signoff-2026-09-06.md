@@ -35,3 +35,22 @@ Content-owner pass over the shipping app (main @ cbb3810) against spec §6 (mode
 
 1. Fill the 12 legal placeholders (developer legal name, support email, domain, postal address, privacy URL, governing law, effective dates) — Moshe + lawyer.
 2. Keep Work hidden until `work-tier`/`work-docs` ship real capabilities with reviewed copy (the code already enforces this; the deliverables list above is their contract).
+
+## Addendum 7.9: Work copy (7 September 2026, main @ f1193c1)
+
+Review of the Work-tier copy against §7.5/§7.6/§7.9 and §11.3. `packClaimsAreHonest` stays green for all four packs.
+
+| Area | Finding | Severity | Exact change |
+|---|---|---|---|
+| Pack declarations | Excellent: each states what leaves the device (nothing), that output is a draft for a qualified professional, and that vaults/audit/signed exports "document, not certify". Legal correctly says the tool "does not create a privilege" (a disclaimer, not a claim — passes `\bprivileged\b`). Medical avoids naming HIPAA entirely. But the Art. 50(4) note that `ai-act-notes.md` §5 requires in the Work pack was missing. | Med | **Fixed**: one sentence appended to all four declarations: "If you publish AI-generated text on a matter of public interest in the EU, you must disclose that it is AI-generated (EU AI Act, Art. 50(4))." |
+| Signed record (Markdown companion) | Assistant turns are labelled "AI" ✓, but the record itself carried no AI-generated marking line, unlike every other export since 984bfa2 — and Work exports must keep the marking (ai-act table). | Med | **Fixed** in `renderRecord`: "Generated with Inborn (on-device AI). Verify before use." after the header; test asserts it. The signed JSON itself has no `aiGenerated` field — adding one changes the hashed canonical shape, so that is the work stream's call at the next format version, not a copy edit. |
+| Templates (16) | Reviewed all: consistently anti-hallucination ("[citation needed]", "[not documented]", "[confirm]", "[rule needed]", "only those listed", "do not add", "recompute every percentage"), right register per profession, no outcome promises. No changes. | OK | None. |
+| Architecture statement | Facts-only, per-platform lines match the privacy policy, §6 disclaims certification without using a forbidden claim, "reviewed by a qualified person before use" present. No changes. | OK | None. |
+| Verification instructions | Clear two-path verify (in-app + standalone Node one-liner), honest about per-install keys and wipe behaviour. No changes. | OK | None. |
+| Paywall + moments | All five `paywall.work.*` bullets are backed by shipped code (vault.ts, audit.ts, signedRecord.ts, packs, statement.ts) — the blocker from the main review is closed; Work is now legitimately sellable. `work.moment.*` lines are honest and price-transparent. | OK | None. |
+| Redaction + office intake | `redact.*` copy is precise ("The model never sees the originals", mapping "never written or exported") and matches the implementation's on-device claim; `documents.office.*` consistent with the intake feature. | OK | None. |
+| Open note | When Work ships persona presets, each sensitive-domain persona needs its fixed "verify before use" disclaimer (§10.5 #37); today the pack declaration covers it. | Info | Work stream, later. |
+
+Changed keys for the locales: **none** (edits were pack JSON and a code string; `en.json` untouched, pseudo unchanged).
+
+Tests 422 pass (328 core), lint clean. Verdict unchanged: **Content sign-off: YES** — Work-copy blocker closed; the legal-placeholder blocker from the main review still stands.

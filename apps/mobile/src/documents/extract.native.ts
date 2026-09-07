@@ -1,4 +1,4 @@
-import { DocxExtractor, ExtractError, TextFileExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
+import { DocxExtractor, ExtractError, HtmlExtractor, TextFileExtractor, XlsxExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
 import { closePdf, hasDocExtract, ocrEngine, ocrLanguages, openPdf, pageText, recognizeText, renderPage } from "../../modules/doc-extract";
 import { readBytes } from "./files";
 
@@ -48,7 +48,7 @@ export class ImageExtractor implements TextExtractor {
 }
 
 export function createExtractors(): TextExtractor[] {
-  return [new NativePdfExtractor(), new ImageExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes)];
+  return [new NativePdfExtractor(), new ImageExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes), new XlsxExtractor(readBytes), new HtmlExtractor(readBytes)];
 }
 
 /** iOS Vision / Android Tesseract, both on the device; null when the native module is missing (Expo Go). */

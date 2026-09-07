@@ -19,6 +19,7 @@ export * from "./lock/policy";
 export * from "./device/chip";
 export * from "./licence";
 export * from "./rag";
+export * from "./redaction";
 export * from "./device";
 export * from "./voice";
 export * from "./work";

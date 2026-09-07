@@ -3,6 +3,7 @@ import { TranscriptMerger, chooseDictation, joinDictation, type DictationEngine,
 import { installOfflineDictation, requestMicPermission, startSystemDictation, systemDictationStatus, systemDictationSupported, type DictationHandle } from "./dictation";
 import { MicRecorder, micAvailable } from "./mic";
 import { getWhisper, whisperInstalled } from "./whisper";
+import { devUtter, devVoiceRecord } from "./devLive";
 
 export type DictationPhase = { kind: "idle" } | { kind: "starting" } | { kind: "listening"; engine: DictationEngine } | { kind: "transcribing" };
 
@@ -65,8 +66,11 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
   const startSystem = useCallback(() => {
     const merger = new TranscriptMerger(draftRef.current);
     setPhase({ kind: "listening", engine: "system" });
+    const startedAt = Date.now();
+    let firstInterimMs: number | undefined;
     system.current = startSystemDictation(locale, {
       onInterim: (text) => {
+        firstInterimMs ??= Date.now() - startedAt;
         merger.setInterim(text);
         setDraft(merger.text());
       },
@@ -77,10 +81,12 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
       onEnd: () => {
         const text = merger.finish();
         setDraft(text);
+        devVoiceRecord("dictation", { engine: "system", locale, firstInterimMs, totalMs: Date.now() - startedAt, text });
         onFinal?.(text);
         finishSystem();
       },
       onError: (code, message) => {
+        devVoiceRecord("dictationError", { code, message, afterMs: Date.now() - startedAt });
         if (code === "no-speech" || code === "aborted" || code === "speech-timeout") return;
         if (code === "not-allowed") setProblem({ kind: "permission" });
         /* "client" is what Android's on-device service answers when the locale's pack was never downloaded, even though it lists the locale. */
@@ -89,6 +95,7 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
         finishSystem();
       },
     });
+    devUtter("dictation");
   }, [locale, setDraft, onFinal, tier, finishSystem]);
 
   const stopWhisper = useCallback(async () => {
@@ -107,6 +114,7 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     abort.current = ac;
     try {
       const r = await getWhisper().transcribe(audio.samples, { signal: ac.signal });
+      devVoiceRecord("whisper", { loadMs: getWhisper().loadMs, audioMs: audio.ms, transcribeMs: r.ms, language: r.whisperLanguage, text: r.text });
       if (!ac.signal.aborted) {
         const text = joinDictation(draftRef.current, r.text);
         setDraft(text);
@@ -128,6 +136,7 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
       void getWhisper().load().catch(() => undefined);
       await rec.start();
       setPhase({ kind: "listening", engine: "whisper" });
+      devUtter("whisper");
     } catch (e: unknown) {
       recorder.current = null;
       setProblem({ kind: "error", message: e instanceof Error ? e.message : String(e) });
@@ -184,6 +193,10 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     },
     [],
   );
+
+  useEffect(() => {
+    if (problem) devVoiceRecord("problem", problem);
+  }, [problem]);
 
   const installOffline = useCallback(async (loc: string) => {
     setProblem(null);
