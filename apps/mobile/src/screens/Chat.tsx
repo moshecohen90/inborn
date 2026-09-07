@@ -44,6 +44,7 @@ import {
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
+import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
 import { modelHasVision, pickImages, removeImage, resolveVision, visionInstalled, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
@@ -583,7 +584,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       return;
     }
     setReadingId(row.id);
-    afterSheetClose(() => void speak(markdownToText(row.content), { uiLocale: i18n.language, onDone: () => setReadingId((r) => (r === row.id ? null : r)), onError: () => setReadingId(null) }));
+    const started = Date.now();
+    afterSheetClose(() => void speak(markdownToText(row.content), { uiLocale: i18n.language, onStart: () => devVoiceRecord("readAloud", { ttsStartMs: Date.now() - started, chars: row.content.length }), onDone: () => setReadingId((r) => (r === row.id ? null : r)), onError: () => setReadingId(null) }));
   };
   const visionReady = visionInstalled();
   const modelSees = modelHasVision(model.id);

@@ -6,6 +6,7 @@ import { useDeviceState } from "../device/useDeviceState";
 import { UtteranceListener } from "./mic";
 import { speak, stopSpeaking } from "./tts";
 import { getWhisper } from "./whisper";
+import { devUtter, devVoiceRecord } from "./devLive";
 
 /** Answers stay short in a spoken exchange (S44); the loop never waits on a 1,024-token reply. */
 const VOICE_MAX_TOKENS = 160;
@@ -94,7 +95,10 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
             .load()
             .then(() => setTimings((t) => ({ ...t, whisperLoadMs: getWhisper().loadMs })))
             .catch((e: unknown) => dispatch({ type: "error", message: e instanceof Error ? e.message : String(e) }));
+          devUtter("handsFree");
+          const listenedAt = Date.now();
           const audio = await l.listen();
+          devVoiceRecord("handsFree.listen", { waitedMs: Date.now() - listenedAt, audioMs: audio?.ms ?? null });
           setSpeaking(false);
           setLevel(0);
           if (stateRef.current.phase !== "listening") return;
@@ -115,6 +119,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           transcription.current = null;
           if (ac.signal.aborted) return;
           setTimings((t) => ({ ...t, transcribeMs: r.ms }));
+          devVoiceRecord("handsFree.stt", { whisperLoadMs: getWhisper().loadMs, transcribeMs: r.ms, language: r.whisperLanguage, text: r.text });
           if (isEmptyTranscript(r.text)) return dispatch({ type: "no-speech" });
           dispatch({ type: "transcript", text: r.text, ...(r.language ? { language: r.language } : {}) });
           return;
@@ -141,6 +146,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           generation.current = null;
           if (ac.signal.aborted) return;
           setTimings((t) => ({ ...t, answerMs: Date.now() - started }));
+          devVoiceRecord("handsFree.answer", { answerMs: Date.now() - started, text: reply.trim() });
           if (id && reply.trim()) await store.appendMessage({ chatId: id, role: "assistant", content: reply.trim(), modelId });
           dispatch({ type: "answer", text: reply });
           return;
@@ -155,7 +161,10 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           const started = Date.now();
           await speak(effect.text, {
             uiLocale,
-            onStart: () => setTimings((t) => ({ ...t, ttsStartMs: Date.now() - started })),
+            onStart: () => {
+              setTimings((t) => ({ ...t, ttsStartMs: Date.now() - started }));
+              devVoiceRecord("handsFree.tts", { ttsStartMs: Date.now() - started });
+            },
           });
           if (stateRef.current.phase === "speaking") dispatch({ type: "spoken" });
           return;
@@ -171,6 +180,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : String(e);
       if (message === "aborted") return;
+      devVoiceRecord("handsFree.error", { effect: effect.type, message });
       dispatch({ type: "error", message });
     }
   };
