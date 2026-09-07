@@ -8,16 +8,24 @@ const ascii = (b: Uint8Array, start: number, len: number): string => String.from
 export function kindOf(name: string, head: Uint8Array): DocKind {
   const ext = name.toLowerCase().split(".").pop() ?? "";
   if (head.length >= 5 && ascii(head, 0, 5) === "%PDF-") return "pdf";
-  if (head.length >= 4 && head[0] === 0x50 && head[1] === 0x4b && head[2] === 0x03 && head[3] === 0x04) return ext === "docx" ? "docx" : "unknown";
+  if (head.length >= 4 && head[0] === 0x50 && head[1] === 0x4b && head[2] === 0x03 && head[3] === 0x04) return ext === "docx" ? "docx" : ext === "xlsx" || ext === "xlsm" ? "xlsx" : "unknown";
   if (head.length >= 8 && head[0] === 0x89 && ascii(head, 1, 3) === "PNG") return "image";
   if (head.length >= 3 && head[0] === 0xff && head[1] === 0xd8 && head[2] === 0xff) return "image";
   if (ext === "pdf") return "pdf";
   if (ext === "docx") return "docx";
+  if (ext === "xlsx" || ext === "xlsm") return "xlsx";
+  if (ext === "html" || ext === "htm" || ext === "xhtml" || looksLikeHtml(head)) return "html";
   if (ext === "md" || ext === "markdown") return "md";
   if (ext === "csv" || ext === "tsv") return "csv";
-  if (ext === "txt" || ext === "text" || ext === "log" || ext === "json" || ext === "xml" || ext === "html") return "txt";
+  if (ext === "txt" || ext === "text" || ext === "log" || ext === "json" || ext === "xml") return "txt";
   if (ext === "png" || ext === "jpg" || ext === "jpeg" || ext === "heic" || ext === "webp") return "image";
   return looksLikeText(head) ? "txt" : "unknown";
+}
+
+/** A `.txt` that starts with a doctype or an html tag is read as HTML, so its markup never reaches the index. */
+export function looksLikeHtml(head: Uint8Array): boolean {
+  const start = ascii(head, 0, Math.min(head.length, 64)).replace(/^\xEF\xBB\xBF/, "").trimStart().toLowerCase();
+  return start.startsWith("<!doctype html") || start.startsWith("<html");
 }
 
 /** Bytes that decode without NULs and with few controls are treated as text. */

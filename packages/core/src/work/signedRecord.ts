@@ -94,6 +94,7 @@ export function renderRecord(record: SignedRecord): string {
   const lines: string[] = [];
   lines.push(`# Signed record · ${record.chat.title || "Untitled chat"}`, "");
   lines.push(`Exported ${iso(record.exportedAt)} from Inborn ${record.app.version} (${record.app.platform}). ${record.messages.length} messages, chat created ${iso(record.chat.createdAt)}, model ${record.chat.modelId}.`);
+  lines.push("", "Generated with Inborn (on-device AI). Verify before use.");
   if (record.vault) lines.push(`Vault "${record.vault.name}" · audit head ${record.vault.auditHead.slice(0, 16)}…`);
   lines.push("", "---", "");
   for (const m of record.messages) {

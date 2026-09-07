@@ -35,6 +35,8 @@ export interface LibraryState {
   strict: boolean;
   attachments: Record<string, string[]>;
   storeKind: string;
+  redactNames: string[];
+  redactDates: boolean;
 }
 
 export interface AskOptions {
@@ -118,7 +120,7 @@ export class DocumentLibrary {
   }
 
   state(): LibraryState {
-    return { documents: [...this.docs.values()].sort((a, b) => b.addedAt - a.addedAt), progress: this.progress, embedder: this.embedder, strict: this.prefs.strict, attachments: this.prefs.attachments, storeKind: this.storeKind };
+    return { documents: [...this.docs.values()].sort((a, b) => b.addedAt - a.addedAt), progress: this.progress, embedder: this.embedder, strict: this.prefs.strict, attachments: this.prefs.attachments, storeKind: this.storeKind, redactNames: this.prefs.redactNames, redactDates: this.prefs.redactDates };
   }
 
   document(id: string): DocumentRecord | undefined {
@@ -134,6 +136,18 @@ export class DocumentLibrary {
 
   setStrict(v: boolean): void {
     this.prefs.strict = v;
+    this.savePrefs();
+    this.notify();
+  }
+
+  setRedactNames(names: string[]): void {
+    this.prefs.redactNames = [...new Set(names.map((n) => n.trim()).filter((n) => n.length >= 2))];
+    this.savePrefs();
+    this.notify();
+  }
+
+  setRedactDates(v: boolean): void {
+    this.prefs.redactDates = v;
     this.savePrefs();
     this.notify();
   }
@@ -243,7 +257,7 @@ export class DocumentLibrary {
     }
     let opened: OpenedDocument & { render?: (index: number) => Promise<string> };
     try {
-      opened = await extractor.open({ uri: doc.uri ?? "", name: doc.name, kind: doc.kind, bytes: doc.bytes });
+      opened = await this.openWithRetry(extractor, doc);
     } catch (e: unknown) {
       const reason = (e as Partial<ExtractError>).reason ?? "corrupt";
       this.commit({ ...doc, status: reason === "empty" ? "empty" : "failed", error: reason });
@@ -273,6 +287,18 @@ export class DocumentLibrary {
     this.progress.delete(id);
     this.commit(result);
     this.retriever?.invalidate();
+  }
+
+  /* A copy made a moment ago can still read back as 0 bytes on Android; a non-empty file gets one more try. */
+  private async openWithRetry(extractor: TextExtractor, doc: DocumentRecord): Promise<OpenedDocument> {
+    const source = { uri: doc.uri ?? "", name: doc.name, kind: doc.kind, bytes: doc.bytes };
+    try {
+      return await extractor.open(source);
+    } catch (e: unknown) {
+      if ((e as Partial<ExtractError>).reason !== "empty" || doc.bytes === 0) throw e;
+      await new Promise((r) => setTimeout(r, 400));
+      return extractor.open(source);
+    }
   }
 
   private commit(doc: DocumentRecord): void {
