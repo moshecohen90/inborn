@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
+import { GlassFill, panelColor, panelStyle } from "../shell/NativeChrome";
 
 interface SheetProps {
   visible: boolean;
@@ -26,7 +27,8 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
-      <View testID={testID} style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border, paddingBottom: insets.bottom + 16, maxHeight: "88%" }]}>
+      <View testID={testID} style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border, paddingBottom: insets.bottom + 16, maxHeight: "88%" }]}>
+        <GlassFill />
         <View style={[styles.grabber, { backgroundColor: theme.border }]} />
         {title ? <Text style={[type.title, styles.title, { color: theme.text }]}>{title}</Text> : null}
         <Body style={styles.body} keyboardShouldPersistTaps="handled">

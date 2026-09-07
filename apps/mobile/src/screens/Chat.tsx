@@ -4,7 +4,7 @@ import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
-import { Icon, radius } from "@inborn/ui";
+import { Icon, compactChrome, radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
@@ -64,7 +64,7 @@ import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
-import { useTheme } from "../lib/theme";
+import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement } from "../licence";
 import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
@@ -113,6 +113,7 @@ const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "conten
 
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress }: ChatProps) {
   const type = useType();
+  const fontScale = useFontScale();
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -631,9 +632,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </Pressable>
         <View style={styles.sealWrap}>
           <Seal size={28} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={busy || summarizing} label={sealLabel} />
-          <Text testID="seal-label" style={[type.monoLabel, { color: theme.sealed }]}>
-            {busy && liveTps > 0 ? t("chat.liveTps", { tps: liveTps.toFixed(0) }) : sealLabel}
-          </Text>
+          {compactChrome(fontScale * type.scale) ? null : (
+            <Text testID="seal-label" numberOfLines={1} style={[type.monoLabel, styles.sealLabel, { color: theme.sealed }]}>
+              {busy && liveTps > 0 ? t("chat.liveTps", { tps: liveTps.toFixed(0) }) : sealLabel}
+            </Text>
+          )}
         </View>
         <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
@@ -672,7 +675,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     <>
       {level === "full" ? (
         <View testID="context-banner" style={[styles.banner, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
-          <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("chat.contextFull")}</Text>
+          <Text style={[type.bodySmall, styles.bannerText, { color: theme.text }]}>{t("chat.contextFull")}</Text>
           <Pressable testID="summarize" accessibilityRole="button" disabled={summarizing || busy} onPress={() => void summarizeAndContinue()} style={[shape.control, { backgroundColor: theme.ctaFill, opacity: summarizing || busy ? 0.5 : 1, minHeight: 36 }]}>
             <Text style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>{summarizing ? t("chat.summarizing") : t("chat.summarizeContinue")}</Text>
           </Pressable>
@@ -991,8 +994,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44, gap: 8 },
-  modelChip: { flexDirection: "row", gap: 6, flexShrink: 1 },
-  modelChipText: { flexShrink: 1 },
+  /* SC-1: the model name never truncates; at large text sizes the seal label (already told by the ring) gives way first. */
+  modelChip: { flexDirection: "row", gap: 6, flexShrink: 0 },
+  modelChipText: { flexShrink: 0 },
+  sealLabel: { flexShrink: 1 },
   overlayTop: { position: "absolute", top: 0, left: 0, right: 0 },
   overlayBottom: { position: "absolute", bottom: 0, left: 0, right: 0 },
   headerBtn: { minWidth: 44, minHeight: 44, justifyContent: "center" },
@@ -1006,7 +1011,9 @@ const styles = StyleSheet.create({
   headline: { textAlign: "center" },
   suggestions: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 8 },
   suggestion: { minHeight: 36, paddingHorizontal: 14 },
-  banner: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 12, marginBottom: 8, padding: 12, borderWidth: 1, borderRadius: radius.control },
+  banner: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12, marginHorizontal: 12, marginBottom: 8, padding: 12, borderWidth: 1, borderRadius: radius.control },
+  /* At large text sizes the button drops under the text instead of squeezing it to one word per line. */
+  bannerText: { flexGrow: 1, flexBasis: 180 },
   chips: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6, paddingHorizontal: 12, paddingBottom: 4 },
   docChip: { flexDirection: "row", alignItems: "center", gap: 6, minHeight: 30, maxWidth: 220 },
   docChipText: { flexShrink: 1 },

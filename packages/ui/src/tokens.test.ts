@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { bundledWeight, contrastRatio, dark, fontFace, fonts, light, scaledStep, typeScale, TEXT_SCALES, MAX_TEXT_SCALE } from "./tokens";
+import { bundledWeight, compactChrome, contrastRatio, dark, fontFace, fonts, light, scaledStep, typeScale, withAlpha, TEXT_SCALES, MAX_TEXT_SCALE } from "./tokens";
 
 describe("contrast (QA B11)", () => {
   it("text, text2 and text3 reach 4.5:1 on every surface in both schemes", () => {
@@ -49,5 +49,28 @@ describe("type scale", () => {
     expect(TEXT_SCALES[TEXT_SCALES.length - 1]).toBe(MAX_TEXT_SCALE);
     expect(Math.max(...TEXT_SCALES)).toBe(2);
     expect(TEXT_SCALES).toContain(1);
+  });
+});
+
+describe("withAlpha", () => {
+  it("appends the alpha byte to a 6-digit hex colour", () => {
+    expect(withAlpha("#0B0D10", 0.72)).toBe("#0B0D10B8");
+    expect(withAlpha("#ffffff", 1)).toBe("#ffffffFF");
+    expect(withAlpha("#000000", 0)).toBe("#00000000");
+  });
+  it("clamps alpha and leaves non-hex colours alone", () => {
+    expect(withAlpha("#0B0D10", 2)).toBe("#0B0D10FF");
+    expect(withAlpha("#0B0D10", -1)).toBe("#0B0D1000");
+    expect(withAlpha("rgba(0,0,0,0.5)", 0.5)).toBe("rgba(0,0,0,0.5)");
+    expect(withAlpha("#0B0D10B8", 0.5)).toBe("#0B0D10B8");
+  });
+});
+
+describe("compactChrome", () => {
+  it("keeps the seal caption up to 130 % and drops it from 150 %", () => {
+    expect(compactChrome(1)).toBe(false);
+    expect(compactChrome(1.3)).toBe(false);
+    expect(compactChrome(1.5)).toBe(true);
+    expect(compactChrome(2)).toBe(true);
   });
 });

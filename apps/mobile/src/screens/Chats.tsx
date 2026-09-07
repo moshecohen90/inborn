@@ -16,7 +16,7 @@ import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
 import { shape } from "../components/chat/styles";
 import { useType } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
-import { Fab, FloatingToolbar, materialChrome } from "../components/shell/NativeChrome";
+import { Fab, FloatingToolbar, GlassFill, materialChrome, panelColor, panelStyle } from "../components/shell/NativeChrome";
 import { ExportSheet } from "./chat/ExportSheet";
 import { FolderSheet } from "./chat/FolderSheet";
 import { VaultCodeSheet, WorkTag, useWork, useWorkGate, type VaultCodeMode } from "../work";
@@ -436,7 +436,8 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       <Modal visible={menu !== null} transparent animationType="fade" onRequestClose={() => setMenu(null)}>
         <Pressable style={[shape.fill, styles.backdrop]} onPress={() => setMenu(null)} />
         <View style={styles.center} pointerEvents="box-none">
-          <View style={[shape.card, styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+          <View style={[shape.card, styles.card, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+            <GlassFill />
             {menu?.renaming ? (
               <>
                 <TextInput testID="rename-input" autoFocus value={menu.title} onChangeText={(title) => setMenu({ ...menu, title })} onSubmitEditing={saveRename} style={[shape.field, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />

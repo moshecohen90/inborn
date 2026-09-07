@@ -1,6 +1,7 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
+import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { formatModelBytes, type CatalogModel, type InstallState } from "@inborn/core";
 import { font, useType } from "../../services/type";
 
@@ -37,7 +38,8 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
   return (
     <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} />
-      <View style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+      <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+        <GlassFill />
         <Text style={[type.title, { color: theme.text }]}>
           {model?.name} · {model?.family} {model?.params}
         </Text>

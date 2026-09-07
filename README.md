@@ -509,6 +509,25 @@ Dev-only: Settings › Advanced › "Force RTL layout" toggles `I18nManager.forc
 Verify: `pnpm typecheck && pnpm test && pnpm lint && pnpm web:build && pnpm web:smoke`; on device see the report in the
 merge commit (iPhone 15 Pro / iOS 17.0 simulator, iOS 26 simulator for glass, Pixel_4_API_33).
 
+## Design round 2 (sign-off 6.9.2026, `docs/design/signoff-2026-09-06.md`) — status 7.9.2026
+The sign-off ran on `cbb3810`, before the design-fixes merge, so PC-1 (native chrome), CM-1 (meter colour) and SW-1 (switch
+track) were already on `main`; this round closes what was still open and finishes §9.7:
+- **§9.7 sheets, menus, popovers.** `NativeChrome.tsx` exports `GlassFill` (a `GlassView` under the panel, iOS 26 only),
+  `panelColor()` (the surface at 72 % alpha over the glass so body text keeps contrast; opaque elsewhere) and `panelStyle`
+  (clips the glass to the panel's corners). Both `Sheet` primitives and the six bespoke panels (new-chat menu, model details,
+  vault confirm, document details, passage sheet, licence key) use them; nothing changes on Android, iOS < 26 or web.
+- **VA-2** the vault "recommended" line is the `monoLabel` step (uppercase, tracked) in the accent colour: the interpolated
+  device noun is uppercased with the rest, and the sealed green stays with the seal (§9.9).
+- **SC-1** the chat header model chip no longer shrinks; from a combined text scale of 150 % (`compactChrome()` in
+  `packages/ui`, unit-tested) the header drops the seal caption (the ring and its accessibility label still say SEALED), so
+  "INSTANT" is never truncated at 200 %.
+- **Full-context banner at 200 %.** The banner text had `flex: 1` (basis 0) beside a `Pressable` whose default `flexShrink`
+  is 0, so the button's intrinsic width took the row and the text got zero width (one clipped glyph per line, a tall empty
+  card). The row now wraps and the text keeps a 180 pt basis, so the button drops under the text at large sizes.
+- Verified 7.9.2026 on Pixel_6_API_36 (Android 16, arm64, dev build + Metro, real Instant model) and iPhone 17 Pro iOS 26.3
+  (Debug, `SWIFT_VERSION=5.0`, Metro): chat header / floating toolbar / FAB, model card, context meter at 30 / 85 / 100 %
+  (local `nCtx` override, not committed), switches off/on, both themes, 100 % and 200 %.
+
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
 

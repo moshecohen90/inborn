@@ -1,6 +1,7 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
+import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { formatBytes, type DocumentRecord } from "@inborn/core";
 import { kindLabel } from "./DocumentRow";
 import { font } from "../../services/type";
@@ -31,7 +32,8 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
   return (
     <Modal transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable testID="doc-details" style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border }]} onPress={() => undefined}>
+        <Pressable testID="doc-details" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
+          <GlassFill />
           <Text style={[styles.label, { color: theme.text3 }]}>{t("documents.details.title")}</Text>
           <Text style={[styles.name, { color: theme.text }]}>{doc.name}</Text>
           <ScrollView style={styles.scroll}>
