@@ -99,12 +99,3 @@ We will post changes here with a new effective date, and describe them in the ap
 `{{DEVELOPER_LEGAL_NAME}}`
 `{{POSTAL_ADDRESS}}`
 `{{SUPPORT_EMAIL}}`
-
----
-
-### Notes for the maintainer (delete before publishing)
-
-- Apple's definition of "collect" (transmitting data off the device in a way that lets us or partners access it beyond servicing the request) is what makes the model-download IP address non-reportable: it is sent on a server call and not retained by us. Source: https://developer.apple.com/app-store/app-privacy-details/
-- Keep the domain list in section 3 in sync with the compiled allowlist in the download code (spec §5.1). If a host is added to the allowlist, it must be added here in the same release.
-- Google Play requires the policy URL to be reachable from both the store listing and inside the app (spec §11.2; Play Data safety help: https://support.google.com/googleplay/android-developer/answer/10787469).
-- Retention for support email (90 days) is a policy decision for Moshe; the spec says "deleted after handling".

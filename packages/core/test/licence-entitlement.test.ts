@@ -127,6 +127,7 @@ describe("feature gates (spec §7.5–§7.9, §12.3)", () => {
     /* S60 copy is bounded by the gates (§2.3): every Pro line names a pro-tier capability, and Work has none to name yet. */
     const backing: Record<string, Feature> = { documents: "documents", personas: "unlimitedPersonas", folders: "folders", models: "proModels", voice: "whisperDictation" };
     for (const b of PAYWALL_BULLETS.pro) expect(requiredTier(backing[b]!), b).toBe("pro");
-    expect(PAYWALL_BULLETS.work).toEqual([]);
+    const workBacking: Record<string, Feature> = { vaults: "clientVaults", audit: "auditLog", signed: "signedExport", packs: "templates", statement: "architectureStatement" };
+    for (const b of PAYWALL_BULLETS.work) expect(requiredTier(workBacking[b]!), b).toBe("work");
   });
 });

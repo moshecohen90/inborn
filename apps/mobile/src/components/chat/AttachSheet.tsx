@@ -19,20 +19,25 @@ interface Props {
   onAttach: (docId: string) => void;
   onDetach: (docId: string) => void;
   onManage: () => void;
+  /** "Add a file…": the system picker, routed by kind (Excel / HTML are Work, spec §7.3 row 8). */
+  onImport?: () => void;
   /** Photo rows (§7.1 image input): absent on platforms without a picker. `note` explains a disabled state. */
   onPhoto?: (source: "library" | "camera") => void;
   photoNote?: string;
   photoDisabled?: boolean;
+  /** Opens the profession-pack templates library (§7.6, Work); the Work stream gates it inside. */
+  onTemplates?: () => void;
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
   const indexed = (d: DocumentRecord) => d.chunkCount > 0;
   return (
     <Sheet visible={visible} onClose={onClose} title={t("chat.attach.title")} testID="attach-sheet">
+      {onTemplates ? <SheetItem testID="attach-templates" label={t("templates.title")} hint={t("templates.hint")} onPress={onTemplates} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
       {onPhoto ? (
         <View style={[styles.photos, { borderColor: theme.border }]}>
           <Text style={[type.monoLabel, styles.sectionLabel, { color: theme.text3 }]}>{t("chat.attach.photos")}</Text>
@@ -40,6 +45,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <SheetItem testID="attach-camera" label={t("chat.attach.camera")} disabled={photoDisabled} onPress={() => onPhoto("camera")} trailing={<Icon name="camera" size={18} color={theme.text2} />} />
         </View>
       ) : null}
+      {onImport ? <SheetItem testID="attach-import" label={t("chat.attach.import")} hint={t("chat.attach.importHint")} onPress={onImport} trailing={<Icon name="upload" size={18} color={theme.text2} />} /> : null}
       {documents.length ? (
         documents.map((d) => {
           const on = attachedIds.includes(d.id);

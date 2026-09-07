@@ -2,9 +2,7 @@ import * as SQLite from "expo-sqlite";
 import * as SecureStore from "expo-secure-store";
 import { Directory, File, Paths } from "expo-file-system";
 import { DB_NAME } from "./schema";
-
-/* Same item as sqliteRepository.ts: the key must die with the database or the file stays decryptable. */
-const DB_KEY_ITEM = "inborn.db.key";
+import { wipeSecureItems } from "./secureItems";
 
 export interface WipeOptions {
   /** Also delete model files the user imported or the dev path pushed (Play-delivered packs belong to Play). */
@@ -18,11 +16,11 @@ export interface WipeReport {
 
 const isModel = (name: string) => /\.gguf$/i.test(name);
 
-/** Emergency wipe (spec §5.7): encrypted DB + its key + every file in the app's documents; no recovery. */
+/** Emergency wipe (spec §5.7): encrypted DB, every Keychain item (key, passcode) and every file in the app's documents; no recovery. */
 export async function wipe(opts: WipeOptions): Promise<WipeReport> {
   const report: WipeReport = { deletedFiles: 0, keptModels: 0 };
   await SQLite.deleteDatabaseAsync(DB_NAME).catch(() => undefined);
-  await SecureStore.deleteItemAsync(DB_KEY_ITEM, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }).catch(() => undefined);
+  await wipeSecureItems((item) => SecureStore.deleteItemAsync(item, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }));
   for (const dir of [new Directory(Paths.document), new Directory(Paths.cache)]) {
     if (!dir.exists) continue;
     for (const entry of dir.list()) {

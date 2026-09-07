@@ -3,9 +3,9 @@ import type { Citation, DocKind, DocumentRecord, RetrievalHit } from "./types";
 
 const SNIPPET_CHARS = 220;
 
-/** Page-based formats cite pages; text formats are sectioned, so the chip says "§". */
+/** Page-based formats cite pages, a workbook cites its sheet, text formats are sectioned, so the chip says "§". */
 export function pageGlyph(kind: DocKind): string {
-  return kind === "pdf" || kind === "image" ? "p." : "§";
+  return kind === "pdf" || kind === "image" ? "p." : kind === "xlsx" ? "sheet " : "§";
 }
 
 export function citationLabel(c: Pick<Citation, "docName" | "kind" | "page">): string {

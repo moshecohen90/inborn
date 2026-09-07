@@ -18,6 +18,8 @@ export interface AppLock {
   unlock(prompt: string, cancel: string): Promise<boolean>;
   unlockWithPasscode(code: string): Promise<boolean>;
   setPasscode(code: string): Promise<void>;
+  /** Re-reads the Keychain (after an emergency wipe deleted the passcode). */
+  refresh(): Promise<void>;
   clearPasscode(): Promise<void>;
 }
 
@@ -131,6 +133,11 @@ export function useAppLock({ prefs, onWipe }: Options): AppLock {
       clearPasscode: async () => {
         await clearPasscode();
         setPasscodeSet(false);
+      },
+      refresh: async () => {
+        setPasscodeSet(await hasPasscode());
+        setLocked(false);
+        setFailed(0);
       },
     }),
     [kind, ready, locked, covered, failed, passcodeSet, unlock, unlockWithPasscode],

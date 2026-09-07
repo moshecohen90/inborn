@@ -13,6 +13,8 @@ export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "
 export { LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX } from "./embedder";
 export { MemoryEmbeddingStore, type StoreSnapshot } from "./store";
 export { SqlEmbeddingStore, RAG_SCHEMA_SQL, RAG_SQL, int8ToBase64, base64ToInt8, type SqlDriver, type SqlValue } from "./sql";
-export { kindOf, assertImportable, looksLikeText, MAX_DOCUMENT_BYTES } from "./extract/sniff";
+export { kindOf, assertImportable, looksLikeText, looksLikeHtml, MAX_DOCUMENT_BYTES } from "./extract/sniff";
 export { TextFileExtractor, decodeText, paginate, csvToText, TEXT_PAGE_CHARS } from "./extract/text";
 export { DocxExtractor, documentXmlToText, paragraphText, decodeXml, PAGE_BREAK } from "./extract/docx";
+export { XlsxExtractor, listSheets, sharedStrings, sheetToLines, columnIndex, type SheetInfo } from "./extract/xlsx";
+export { HtmlExtractor, htmlToText, htmlSections, decodeHtml } from "./extract/html";

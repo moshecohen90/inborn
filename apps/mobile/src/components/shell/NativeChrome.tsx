@@ -21,11 +21,13 @@ interface BarProps {
 /** A navigation-layer bar: Liquid Glass on iOS 26 (content scrolls beneath it), the page background elsewhere. */
 export function ChromeBar({ children, style, onLayout, testID }: BarProps) {
   const { scheme } = useTheme();
+  /* The native GlassView reports no onLayout; a plain View owns the layout (and the measured height the chat pads by) with the glass filling it underneath. */
   if (liquidGlass)
     return (
-      <GlassView testID={testID} glassEffectStyle="regular" colorScheme={scheme} style={style} onLayout={onLayout}>
+      <View testID={testID} style={style} onLayout={onLayout}>
+        <GlassView glassEffectStyle="regular" colorScheme={scheme} style={StyleSheet.absoluteFill} pointerEvents="none" />
         {children}
-      </GlassView>
+      </View>
     );
   return (
     <View testID={testID} style={style} onLayout={onLayout}>

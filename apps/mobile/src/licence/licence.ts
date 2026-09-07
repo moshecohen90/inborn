@@ -28,6 +28,7 @@ export function getLicence(): Promise<LicenceManager> {
       const push = () => setEntitlements({ pro: DEV_TIER !== null || manager.tier !== "free" });
       manager.subscribe(push);
       await manager.start();
+      if (DEV_TIER) manager.pretendTier(DEV_TIER);
       push();
       instance = manager;
       return manager;

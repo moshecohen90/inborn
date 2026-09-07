@@ -477,6 +477,62 @@ find that in your documents." with 0 prompt tokens in 0.6 s; "Add file · PRO" i
 opened the bundled policy; the Settings preview showed "Delivering FAST · 41% of 1.3 GB" on every screen. Gates: typecheck, lint, 202 core +
 66 mobile + 4 i18n tests, `web:build` + `web:smoke` (4 passes, 0 vault warnings).
 
+## Work documents: DOCX / XLSX / HTML intake + redaction before sending (spec §7.3 row 8, §7.9) — status 7.9.2026
+Branch `work-docs`. Both are Work-tier capabilities (`officeIngest`, `redaction` in `packages/core/src/licence/gates.ts`, unchanged).
+- **Intake** (`packages/core/src/rag/extract/`): `xlsx.ts` reads the workbook without a spreadsheet library (sheet list via the
+  relationships part, shared + inline strings, formula results, booleans, ISO dates; one sheet = one page, inflated only when its page
+  is read) and emits `Sheet · row N: a | b | c` lines; `html.ts` strips markup without a DOM (scripts, styles, `hidden` /
+  `display:none` / `aria-hidden` subtrees and comments dropped, so a hidden "ignore previous instructions" never reaches the index),
+  keeps `#` headings, `•` / `1.` list items, ` | ` table cells and `<pre>` spacing, and sections the text at h1–h3 into the `§` pages
+  a citation points at; DOCX stays the M5a parser (`docx.ts`). `kindOf` routes `.xlsx/.xlsm`, `.html/.htm/.xhtml` and a `.txt` that
+  starts with `<!doctype html`; `pageGlyph("xlsx")` is `sheet `, so a chip reads `budget.xlsx · sheet 2`. Both extractors are in the
+  native and web extractor lists; the picker offers the two MIME types.
+- **Tiering**: a Word file remains the Free single attachment of §7.3 row 1 (as shipped in M5a); Excel and HTML are Work
+  (`WORK_KINDS` in `apps/mobile/src/documents/office.ts`, one line to change). The kind is sniffed before the file is copied in: a
+  Free/Pro user who picks an Excel or HTML file sees the value-moment card in the library (`office-work-card`: what it does, one
+  price line, "See Pro for Work", "Not now"); the file is not imported. The attach sheet gained "Add a file…" (`attach-import`), which
+  picks, routes the same way, imports and attaches in one step (`pickIntoLibrary`).
+- **Redaction** (`packages/core/src/redaction/`): pure detectors for emails, phones (national / international shapes, `tel:` /
+  `נייד` hints; a bare 7-digit number is not a phone), card numbers (Luhn), IBANs (mod-97), Israeli IDs (check digit; nine digits with
+  a leading zero read as a landline unless the text says `ת"ז` / ID), SSNs, the user's own names list (Latin case-insensitive on word
+  boundaries, Hebrew with one or two clitic prefixes kept outside the placeholder: `ולשרה לוי` → `ול[NAME-1]`) and, opt-in, dates
+  (numeric, English and Hebrew month names). Overlaps resolve to the stronger detector. `RedactionSession` numbers placeholders per
+  kind (`[EMAIL-1]`, `[PHONE-2]`…), gives the same value the same placeholder in any spelling, `reveal()`s them back in an answer
+  (any bracket, any case, `[email 2]` included) and lives in RAM only: one session per chat key
+  (`apps/mobile/src/documents/redaction/sessions.ts`), the draft's session follows the first message to the real chat id like
+  attachments do, nothing is written to SQLCipher, `documents.json`, exports or backups. The names list and the dates switch are the
+  only persisted preferences (`documents.json`).
+- **UI**: a chip row above the composer (`RedactBar`): "Redact" while the draft has text, amber "Pasted text · redact before sending?"
+  after a paste longer than `PASTE_OFFER_CHARS` (300), and once something was redacted a "Show originals / Hide originals" switch plus
+  the `REDACTED` tag. The Redact sheet (`redact-sheet`) lists what was found per kind with switches, the names list (add / remove),
+  the dates switch, a preview, "Replace n items" and the memory note. Free/Pro see the locked card with one price line and
+  "See Pro for Work". The chat renders every row through `redaction.display(row)`, so user and assistant messages show the originals
+  while the switch is on and the placeholders otherwise; the model only ever received the placeholders.
+- **Dev bundles**: `EXPO_PUBLIC_PRO=work` pretends to own Work (`DEV_TIER`), next to the existing `EXPO_PUBLIC_PRO=1` for Pro.
+- Tests: `packages/core/test/rag-office.test.ts` (xlsx parts, rows, workbook fixture, html tag stripping, sections, sniffing, glyphs),
+  `packages/core/test/redaction.test.ts` (checksums, English + Hebrew detection, dates opt-in, session numbering / reveal / clitics),
+  `apps/mobile/src/documents/redaction/sessions.test.ts` (per-chat RAM sessions, move on chat creation, forget).
+- New keys (English placeholders in de / es / fr / ja / pt-BR): `chat.attach.import`, `chat.attach.importHint`, `documents.office.*`
+  (4), `redact.*` (27).
+
+Proven 7.9.2026 on the Pixel_3a_API_33_arm64-v8a emulator (4 GB, CPU only), debug APK + Metro (`EXPO_PUBLIC_PRO=work`, Instant + nomic-embed
+pushed, fixtures `lease.docx` / `budget.xlsx` / `policy.html` in the document directory, `EXPO_PUBLIC_AUTOINDEX`): lease.docx 3 sections · 7
+passages in 14.9 s, budget.xlsx 2 sheets · 2 passages in 2.7 s, policy.html 6 sections · 6 passages in 2.9 s (SQLCipher store). Ask sheet:
+"What was the cloud hosting cost in March?" → `2,275` with the chip `[1] budget.xlsx · sheet 1` (search 341 ms, 997 prompt tokens, answer
+15.6 s); "How much is the security deposit in the lease?" → `4,750 shekels, held by Meridian Holdings…` with `lease.docx · §1` first in the
+sources (search 467 ms); "Within how many days must a refund request be filed?" → `21 days` with `[1] policy.html · §3` (search 345 ms), and
+the page's hidden `<div hidden>` "refund window is 90 days" instruction never reached the index. Redaction in the chat: a message with a
+name, Israeli ID, mobile, email, Luhn-valid card and IL IBAN → the sheet counted 1 of each, "David Levi" added to the names list, "Replace 6
+items" → the composer holds `[NAME-1]`, `[ID-1]`, `[PHONE-1]`, `[EMAIL-1]`, `[CARD-1]`, `[IBAN-1]`; the model's reply began "Dear [NAME-1]"
+(TTFT 4.8 s, 6.3 tok/s); "Show originals" rendered "Dear David Levi" and the original numbers in both bubbles; after a restart the chat's
+title still reads `[NAME-1], ID [ID-1]` (only placeholders were saved). Free: the Redact chip opens the locked card with `$69.99 · one-time
+purchase` and "See Pro for Work". Pro: picking `budget.xlsx` in the library shows the Excel/HTML card with the same price line and imports
+nothing. Work: "Add a file…" in the attach sheet → system picker → `policy.html` indexed in 4.5 s and attached as a chip. One caveat from the
+run: on the very first import the DOCX read back as 0 bytes right after its copy and was recorded "empty"; the library now retries such a
+read once (400 ms) and the next two clean runs indexed it first time. The "pasted text" amber chip could not be exercised over adb (it types
+character by character); the threshold logic is covered by the composer's `onChange` and `PASTE_OFFER_CHARS`. Gates: typecheck, lint,
+312 core + 82 mobile + 4 i18n + 8 ui tests, `export:web`.
+
 ## Design fixes (review 6.9.2026, `docs/design/review-2026-09-06.md`) — status 6.9.2026
 What changed, numbered as in the review:
 1–2. **IBM Plex ships.** Plex Sans Regular/Medium/SemiBold + Plex Mono Regular/Medium (OFL 1.1, from the official IBM/plex
@@ -612,3 +668,58 @@ node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/
 - Sets: Apple 6.9" 1320×2868, 6.5" 1284×2778, iPad 13" 2064×2752 (real iPad capture); Play phone 1080×1920, 7" 1200×1920 and 10"
   1600×2560 (the phone capture on a tablet canvas, noted on the panel until there is an Android tablet capture), feature graphic 1024×500.
 - Only the English set is committed (`out/apple/en`, `out/play/en`, `out/preview.html`); other locales and raw captures are regenerated.
+
+## QA bug fixes round 4b (`docs/qa/qa-run-2026-09-06.md` B7–B13, B17) — branch `fixes-r4b`
+- **B7 wipe** deletes every Keychain / Keystore item: `src/storage/secureItems.ts` is the single list (db key, lock passcode) that the
+  passcode store, the SQLCipher key and `wipe.native.ts` all use; `AppLock.refresh()` re-reads it after a wipe so Settings shows "Set a
+  passcode" again (Pixel_4 emulator: SecureStore.xml held both items, after the wipe only the fresh db key; Settings row back to "Set a passcode").
+- **B8 background mid-generation**: the guard's pause (`wasStoppedByGuard`) now counts as a system stop, so the partial answer gets the inline
+  "The system stopped generation · Continue"; the §8.8 strip shows "Paused while Inborn was in the background" with CONTINUE, which accepts the
+  guard line and fires the `continue` shortcut the chat screen handles. Emulator: 600-word essay, Home after 6 s, back after 22 s → banner +
+  CONTINUE → the essay resumed (second `[stats]` run at 14 tok/s).
+- **B9** the passcode sheet catches a failed `setPasscode()` and shows `passcode.saveFailed` with the OS error instead of four silent dots.
+- **B10 iOS 26 glass composer**: `maintainVisibleContentPosition` pinned index 0 while the list was empty, so the bar inset the list grew by was
+  scrolled straight back under the composer; it is off for the empty list, and the chat re-anchors the end when the floating bar grows.
+  `ChromeBar` measures with a plain View (the glass fills it underneath). iPhone 17 Pro / iOS 26.3 Release build: the three chips sit above the bar.
+- **B11 contrast**: `text3` is `#7A8794` (dark) / `#5E6975` (light); `contrastRatio()` in `packages/ui` and a test keep text/text2/text3 ≥ 4.5:1
+  on bg, surface1, surface2 and well in both schemes.
+- **B12 Settings › Reports** (`src/screens/Settings/Reports.tsx`, `/settings/reports`): every saved report with reason, date and size; a detail
+  sheet with "Email report" (share sheet, `reportText()` in core, also used by the chat) and "Delete report". Nothing is sent by the app.
+- **B13**: the Wi-Fi-only and lock switches carry `accessibilityLabel`; the composer no longer doubles its placeholder as a label.
+- **B17**: `.gguf` files in `Documents/models` that no catalog part, import or download owns are listed as `FILE · <name>` with
+  "Unverified file in the vault folder", counted in the vault header and in Settings › Storage, and removable; never loaded.
+- New i18n keys (English placeholders in the five locales until translated): `passcode.saveFailed`, `state.pausedInBackground`,
+  `reports.title|row|explain|empty|emailNote|delete`, `vault.stray.label|status`.
+- Emulator traps met on the way: Pixel_4 needs `-memory 4096` (2 GB gets the app killed while the model loads); the simulator's dyld shared
+  cache can break under host memory pressure (`_dyld_sim_prepare` SIGBUS at launch): shut the simulator down and boot it again.
+
+## Pro for Work on mobile (work-tier, spec §7.5–§7.9, §8.7, §12.1–§12.3) — status 7.9.2026
+Work is real on the phone, so the paywall shows it: Pro card first, Work below with the "For professionals" tag (both always visible, §12.2
+anchor), Pro owners see the $49.99 upgrade card. Bullets are only what ships (`PAYWALL_BULLETS.work`): vaults, audit log, signed export,
+profession packs, architecture statement; redaction and office intake join when the work-docs stream lands. `sellable()` stays the guard.
+- **Core** (`packages/core/src/work/`, 27 vitest tests in `test/work-*.test.ts`): `vault.ts` (folder + own passcode: per-vault salt, SHA-256
+  hash, never the code; session rule: closes when the app lock engages or after 30 min), `audit.ts` (append-only, hash-chained entries: who/when/
+  what, never message content; `verifyAudit` detects edits, removals, reordering and truncation against the head mirrored in the vault record),
+  `signedRecord.ts` (chat → canonical JSON → SHA-256 → Ed25519 with a per-install key; the public key rides in the file; `verifyRecord`, a
+  Markdown companion, and verification instructions whose Node one-liner the test really runs), `packs/*.json` + `packs.ts` (legal, therapy,
+  medical, accounting: a declaration each and 4 templates with `{{placeholders}}`; a test asserts no "HIPAA-compliant / privileged / certified /
+  guarantee" wording), `statement.ts` (dated architecture statement per platform, vaults and signing key listed, explicit non-claims).
+  `licence/cache.ts` now exposes `sealJson`/`openJson` with a domain label, so audit files and the entitlement cache use unrelated keys.
+- **Phone** (`apps/mobile/src/work/`): `WorkStore` (vault records + signing seed in the Keychain/Keystore, both in `SECURE_ITEMS` so the wipe
+  removes them; sealed audit files under `Documents/work/`; unlocked set in memory, relocked by `useWork()` when `lock.locked` flips),
+  `VaultCodeSheet`, `TemplatesSheet` (pack → declaration → template → blanks → insert into the composer), `WorkTag`; screens under
+  `screens/Work/` + routes `/work/audit`, `/work/verify`, `/work/statement` (Settings → Pro for Work). Chats list: VAULT / LOCKED chip on the
+  folder header (tap = lock / ask the code), hidden chats while locked, "Vault / Code / Unvault" on the folder rows, moves in and out logged;
+  Export sheet: "Signed record" (.json, then a readable .md of the same record); Attach sheet: "Templates". Free/Pro see the value moment
+  (preview + one price line + WORK tag, §12.3), no popups. Dev bundles: `EXPO_PUBLIC_TIER=pro|work` pretends a tier (`LicenceManager.pretendTier`).
+- **Not built here**: DOCX/XLSX/HTML intake and the redaction sheet (work-docs stream), documents inside vaults, PDF rendering (the statement and
+  the readable record are Markdown handed to the OS share sheet), the Modal sheets do not move for the Android keyboard (app-wide, also the
+  app-lock and folder sheets): typing works, the field is hidden until the keyboard is dismissed.
+
+Verified 7.9.2026 on a private `Pixel_3a_API_33_arm64-v8a` instance (`-memory 4096`, the two assigned AVDs were both in use by other streams), Debug
+APK + Metro on a private port: paywall Free (Pro first, Work below, five Work lines), paywall as Pro owner (You own Pro + Upgrade to Work $49.99),
+template picked from the Legal pack with one blank filled and inserted into the composer, folder "Client A" made a vault (code set twice), chat
+moved in (VAULT badge), locked from the badge (chat hidden, "1 chats · locked"), wrong code refused, right code unlocks, relaunch relocks, signed
+record exported through the share sheet and the pulled `.json` verified VALID by the Node snippet (tampered copy INVALID), audit log screen
+"Chain verified · 5 entries" (created, moved in, locked, unlocked, signed export), architecture statement rendered, templates as Free show the
+price line + WORK tag.

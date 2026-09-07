@@ -28,7 +28,15 @@ import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vau
 import { PlayDelivery } from "./playDelivery";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
 
-export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel };
+/** A .gguf in the vault folder that neither the catalog nor an import registered (copied by hand, a crash mid-import): shown, counted, removable, never loaded. */
+export interface StrayFile {
+  file: string;
+  bytes: number;
+  path: string;
+}
+export const STRAY_PREFIX = "stray:";
+
+export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile };
 export type ManifestStatus = { ok: true } | { ok: false; problem: string };
 
 /**
@@ -41,6 +49,7 @@ export class VaultStore {
   readonly device: DeviceInfo;
   private record: VaultRecord;
   private states = new Map<string, InstallState>();
+  private strays: StrayFile[] = [];
   private listeners = new Set<() => void>();
   private delivery: ModelDelivery;
   private booted: Promise<void> | null = null;
@@ -128,6 +137,7 @@ export class VaultStore {
       if (!f.exists) delete this.record.imports[imp.id];
       else this.states.set(imp.id, { kind: "ready", path: f.uri, bytes: imp.bytes, sha256: imp.sha256, via: "import" });
     }
+    this.strays = this.scanStrays();
     this.persist();
     this.notify();
     /* Play delivers fast-follow packs by itself after install; asking once makes local testing and a slow first launch behave the same (S02). */
@@ -212,7 +222,22 @@ export class VaultStore {
   entries(): VaultEntry[] {
     const catalog = this.manifest.models.map((model) => ({ model, state: this.states.get(model.id) ?? NOT_INSTALLED, plan: this.manifestStatus.ok ? this.delivery.plan(model) : null }));
     const imports = Object.values(this.record.imports).map((imp) => ({ model: importedAsModel(imp), state: this.states.get(imp.id) ?? NOT_INSTALLED, plan: null, imported: imp }));
-    return [...catalog, ...imports];
+    const strays = this.strays.map((s) => ({ model: strayAsModel(s), state: { kind: "ready", path: s.path, bytes: s.bytes, sha256: "", via: "import" } as InstallState, plan: null, stray: s }));
+    return [...catalog, ...imports, ...strays];
+  }
+
+  /** Files in the vault folder that no catalog part, import or download owns (QA B17). */
+  private scanStrays(): StrayFile[] {
+    const known = new Set<string>(["vault.json"]);
+    for (const m of this.manifest.models) for (const p of modelParts(m)) known.add(p.file);
+    for (const imp of Object.values(this.record.imports)) known.add(imp.file);
+    const out: StrayFile[] = [];
+    try {
+      for (const e of vaultDir().list()) if (e instanceof File && /\.gguf$/i.test(e.name) && !known.has(e.name)) out.push({ file: e.name, bytes: fileSize(e), path: e.uri });
+    } catch {
+      /* no vault directory yet */
+    }
+    return out;
   }
 
   state(id: string): InstallState {
@@ -227,6 +252,7 @@ export class VaultStore {
   storageUsedBytes(): number {
     let sum = 0;
     for (const s of this.states.values()) if (isInstalled(s) && s.via !== "bundled") sum += s.bytes;
+    for (const s of this.strays) sum += s.bytes;
     return sum;
   }
 
@@ -342,6 +368,13 @@ export class VaultStore {
   }
 
   async remove(id: string): Promise<void> {
+    if (id.startsWith(STRAY_PREFIX)) {
+      const stray = this.strays.find((s) => strayId(s) === id);
+      if (stray) safeDelete(new File(stray.path));
+      this.strays = this.scanStrays();
+      this.notify();
+      return;
+    }
     const current = this.state(id);
     if (current.kind === "ready" && current.via === "bundled") return;
     const imp = this.record.imports[id];
@@ -406,6 +439,13 @@ function withDevBaseUrl(manifest: CatalogManifest): CatalogManifest {
   } catch {
     return manifest;
   }
+}
+
+const strayId = (s: StrayFile): string => `${STRAY_PREFIX}${s.file}`;
+
+/** A stray file wears the catalog shape so the vault list can render it; its id never reaches the engine. */
+export function strayAsModel(s: StrayFile): CatalogModel {
+  return importedAsModel({ id: strayId(s), name: s.file, file: s.file, bytes: s.bytes, sha256: "", arch: "?", importedAt: 0 });
 }
 
 export function importedAsModel(imp: ImportedModel): CatalogModel {

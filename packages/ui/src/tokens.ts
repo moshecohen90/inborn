@@ -7,7 +7,7 @@ export const dark = {
   border: "#1F262E",
   text: "#EEF2F5",
   text2: "#9AA6B2",
-  text3: "#667380",
+  text3: "#7A8794",
   accent: "#F0B35B",
   sealed: "#3ECF8E",
   danger: "#F25555",
@@ -25,7 +25,7 @@ export const light = {
   border: "#DDE3E9",
   text: "#12161B",
   text2: "#4A5560",
-  text3: "#6B7682",
+  text3: "#5E6975",
   accent: "#8F5309",
   sealed: "#0B7A4C",
   danger: "#C93A3A",
@@ -35,6 +35,19 @@ export const light = {
 } as const;
 
 export type Theme = { [K in keyof typeof dark]: string };
+
+/** WCAG 2.x contrast ratio between two hex colours (checklist: text3 ≥ 4.5:1 on every surface). */
+export function contrastRatio(a: string, b: string): number {
+  const lum = (hex: string): number => {
+    const c = (i: number) => {
+      const v = parseInt(hex.slice(i, i + 2), 16) / 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    };
+    return 0.2126 * c(1) + 0.7152 * c(3) + 0.0722 * c(5);
+  };
+  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x) as [number, number];
+  return (hi + 0.05) / (lo + 0.05);
+}
 export type ThemeMode = "system" | "dark" | "light";
 /** Default is the device setting (decision D7). */
 export const DEFAULT_THEME_MODE: ThemeMode = "system";

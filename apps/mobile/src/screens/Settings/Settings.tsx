@@ -172,7 +172,14 @@ export function Settings() {
 
       <Section title={t("settings.storageSection")}>
         <Row testID="row-storage" label={t("storage.title")} onPress={() => router.push("/settings/storage")} chevron />
+        <Row testID="row-reports" label={t("reports.title")} sub={t("reports.row")} onPress={() => router.push("/settings/reports")} chevron />
         <Row testID="row-proof" label={t("proof.title")} onPress={() => router.push("/proof")} chevron />
+      </Section>
+
+      <Section title={t("settings.work")}>
+        <Row testID="row-audit" label={t("audit.title")} sub={t("audit.row")} onPress={() => router.push("/work/audit")} chevron />
+        <Row testID="row-verify" label={t("verify.title")} sub={t("verify.row")} onPress={() => router.push("/work/verify")} chevron />
+        <Row testID="row-statement" label={t("statement.title")} sub={t("statement.row")} onPress={() => router.push("/work/statement")} chevron />
       </Section>
 
       <Section title={t("settings.about")}>

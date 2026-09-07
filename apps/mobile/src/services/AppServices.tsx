@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { AppState, Platform } from "react-native";
 import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
+import { deviceNoun } from "../lib/deviceNoun";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, resetEngine } from "../engine";
@@ -92,7 +93,7 @@ interface Booted {
 
 async function boot(prefs: Prefs): Promise<Booted> {
   const tags = getLocales().map((l) => l.languageTag);
-  await Promise.all([initI18n(prefs.locale ?? tags[0] ?? "en", tags), prepareEngine()]);
+  await Promise.all([initI18n(prefs.locale ?? tags[0] ?? "en", tags, { device: deviceNoun() }), prepareEngine()]);
   startDeviceGuard();
   let repository: ChatRepository;
   let storageKind: PersistenceKind;
@@ -233,9 +234,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     return vault.subscribe(update);
   }, [booted, reloadEngine]);
 
+  const lockRef = useRef<AppLock | null>(null);
   const wipeAll = useCallback(async (opts: WipeOptions) => {
     await wipeLicence();
     await wipe(opts);
+    await lockRef.current?.refresh();
     deletePrefs();
     const fresh = defaultPrefs(Date.now());
     writePrefsRaw(fresh);
@@ -246,6 +249,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   }, []);
 
   const lock = useAppLock({ prefs: prefs.lock, onWipe: () => void wipeAll({ models: false }) });
+  lockRef.current = lock;
 
   const meter = useMemo<Meter>(() => {
     const kind = meterKind();

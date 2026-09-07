@@ -90,12 +90,3 @@ These terms are governed by the laws of `{{GOVERNING_LAW: Israel proposed}}`, wi
 ## 14. Changes
 
 We may update these terms; the effective date at the top changes when we do, and the app's release notes will mention material changes. Continued use after a change means you accept it.
-
----
-
-### Notes for the maintainer (delete before publishing)
-
-- If we use Apple's standard EULA instead of these terms, the AI disclaimer (section 4) still needs to appear in the app itself (spec §10.5 #38, "can be wrong"), so keep section 4's wording as the in-app text source.
-- Section 12 mirrors the minimum terms Apple requires for a custom EULA: https://www.apple.com/legal/internet-services/itunes/dev/minterms/
-- The 30-day offline grace period comes from spec §12.4; keep in sync with the code.
-- Governing law is a decision for Moshe with a lawyer (Israel is the natural choice; the business is Israeli). The consumer carve-out in section 13 is what makes an Israeli-law clause defensible for EU customers.
