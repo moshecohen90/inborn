@@ -118,7 +118,25 @@ Store result: "No data collected" and "No data shared". The spec's line "encrypt
 
 ### 4.2 Permissions
 
-Merged release manifest: **no INTERNET**, no storage, no SYSTEM_ALERT_WINDOW (blocked in `app.config.ts`). Expected declared permissions: `com.android.vending.BILLING` (Play Billing), `FOREGROUND_SERVICE` + `FOREGROUND_SERVICE_DATA_SYNC` (asset delivery / short-lived generation service), `USE_BIOMETRIC` (app lock), `RECORD_AUDIO` (dictation, requested at first mic tap), `POST_NOTIFICATIONS` (download progress; Android 13+), `CAMERA` only if the image-input feature ships in the same release. No "sensitive/restricted permission" declaration forms are triggered by that list. Test T31 (`aapt2 dump permissions`) is the gate.
+Merged release manifest (the gate `scripts/check-android-permissions.sh` fails on anything outside this list; every
+extra permission a library brings is removed in `app.config.ts` → `android.blockedPermissions`):
+
+| Permission | Why it is there |
+|---|---|
+| `com.android.vending.BILLING` | Play Billing (spec §12.4) |
+| `android.permission.FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_DATA_SYNC` | Play asset-delivery's own extraction service (fast-follow / on-demand model packs) |
+| `android.permission.ACCESS_NETWORK_STATE` | the proof screen (S03) reads ConnectivityManager to show "no path" / airplane mode; nothing is sent |
+| `android.permission.USE_BIOMETRIC` | app lock |
+| `android.permission.VIBRATE` | haptics (seal, taps) |
+| `android.permission.RECORD_AUDIO` | dictation, asked on the first mic tap only (§4.2a) |
+| `android.permission.CAMERA` | "Camera" in the attach sheet, asked on that tap only (§4.2a) |
+| `com.inbornapp.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` | defined by androidx.core for the app's own non-exported receivers |
+
+Never declared: `INTERNET`, storage, `SYSTEM_ALERT_WINDOW`, `ACCESS_WIFI_STATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`,
+`USE_FINGERPRINT`, install-referrer, `POST_NOTIFICATIONS`, `READ_MEDIA_IMAGES`. `android:allowBackup="false"` (spec §10.6 #42):
+no chat, key or model reaches Google's device backup. No "sensitive/restricted permission" declaration forms are triggered by
+that list. Test T30/T31 (`aapt2 dump permissions`) is the gate; a new permission is added to the gate, to this table and to the
+Play data-safety answers in the same change.
 
 ### 4.2a Microphone, speech recognition, camera and photos (M5b voice + image input)
 
@@ -130,7 +148,7 @@ Merged release manifest: **no INTERNET**, no storage, no SYSTEM_ALERT_WINDOW (bl
 | `NSCameraUsageDescription`, `NSPhotoLibraryUsageDescription`; Android photo picker (no permission: the system picker on 13+, `READ_MEDIA_IMAGES` is not declared) and `CAMERA` | Only when "Photo" / "Camera" is tapped in the attach sheet | The picture is scaled to ≤ 1024 px and re-encoded as JPEG on the device (EXIF, location and device metadata are dropped, §10.4 #35), stored under the app's `images/` directory, shown to the vision projector in-process | "Photos or Videos": **not collected** (stays on device, not transmitted) |
 | System text-to-speech (`AVSpeechSynthesizer`, Android `TextToSpeech`) | "Read aloud" / voice mode | Text goes to the OS synthesiser; only voices the platform lists as installed are used, and the web tier only uses `localService` voices. Note for Android: Google TTS may fetch a *voice* for a new language on its own if the user picks one in system settings; the app never triggers that | Not collected |
 
-Merged release manifest after M5b (verify with `scripts/check-android-permissions.sh`): still **no INTERNET**; adds `RECORD_AUDIO` and `CAMERA` (image-picker plugin, `microphonePermission: false` so no video-recording permission), plus a `<queries>` block for `android.speech.RecognitionService` (`com.google.android.as`, `com.google.android.tts`). The Play "Permissions" page shows Microphone and Camera; both are user-initiated features, so no sensitive-permission declaration form applies.
+The Android permissions this adds (`RECORD_AUDIO`, `CAMERA`) are part of the §4.2 allowlist; the `<queries>` block for the recogniser packages declares no permission.
 
 ### 4.3 AI-Generated Content policy (Play Console has no separate runtime declaration; compliance is in the app)
 

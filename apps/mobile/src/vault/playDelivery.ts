@@ -1,31 +1,65 @@
-import { File } from "expo-file-system";
-import { modelParts, type CatalogModel, type InstallEvent } from "@inborn/core";
-import { AssetPackErrorCode, AssetPackStatus, addPackListener, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
+import { Directory, File, Paths } from "expo-file-system";
+import { modelParts, type CatalogModel, type Delivery, type InstallEvent } from "@inborn/core";
+import { AssetPackErrorCode, AssetPackStatus, addPackListener, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
 import type { DeliveryPlan, ModelDelivery } from "./delivery";
 
-const packOf = (model: CatalogModel) => model.delivery.find((d) => d.kind === "play-asset-pack");
+type PlayPack = Extract<Delivery, { kind: "play-asset-pack" }>;
+
+/** One pack per shard (Play caps a pack at 1.5 GB, spec §5.1); a single-file model has exactly one. */
+const packsOf = (model: CatalogModel): PlayPack[] => model.delivery.filter((d): d is PlayPack => d.kind === "play-asset-pack");
 
 /** Play Asset Delivery: Play downloads (cellular consent, resume, retries are Play's), the app only shows state (spec §5.1, S32). */
 export class PlayDelivery implements ModelDelivery {
   plan(model: CatalogModel): DeliveryPlan | null {
-    return packOf(model) && hasAssetPacks() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+    return packsOf(model).length && hasAssetPacks() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
   }
 
   locate(model: CatalogModel): string | null {
-    const pack = packOf(model);
-    const dir = pack ? getPackPath(pack.pack) : null;
-    if (!pack || !dir) return null;
+    const packs = packsOf(model);
+    const first = packs[0];
+    if (!first) return null;
     /* Pack assets carry the catalog file names, so the same part list serves Play, HTTPS and the boot scan. */
-    const all = modelParts(model).every((p) => new File(`file://${dir}`, p.file).exists);
-    return all ? new File(`file://${dir}`, pack.file).uri : null;
+    const found: { file: string; dir: string }[] = [];
+    for (const part of modelParts(model)) {
+      const pack = packs.find((p) => p.file === part.file) ?? first;
+      const dir = getPackPath(pack.pack);
+      if (!dir || !new File(`file://${dir}`, part.file).exists) return null;
+      found.push({ file: part.file, dir });
+    }
+    const dirs = new Set(found.map((f) => f.dir));
+    const [one] = dirs;
+    if (dirs.size === 1 && one) return new File(`file://${one}`, model.file).uri;
+    /* Shards from different packs: llama.cpp opens the first and expects the rest beside it, so a directory of links joins them. Relinked on every locate because Play may move a pack. */
+    const joined = new Directory(Paths.document, "assetpacks-joined", model.id);
+    const dir = linkInto(joined.uri.replace(/^file:\/\//, ""), Object.fromEntries(found.map((f) => [f.file, `${f.dir}/${f.file}`])));
+    return dir ? new File(`file://${dir}`, model.file).uri : null;
   }
 
   async deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
-    const pack = packOf(model);
-    if (!pack) throw new Error(`${model.id} has no Play pack`);
+    const packs = packsOf(model);
+    if (!packs.length) throw new Error(`${model.id} has no Play pack`);
     const located = this.locate(model);
     if (located) return located;
-    return new Promise<string>((resolve, reject) => {
+    /* Packs arrive one after another; progress is cumulative so the card shows one bar for the whole model. */
+    let done = 0;
+    for (const pack of packs) {
+      const part = modelParts(model).find((p) => p.file === pack.file);
+      const bytes = part?.bytes ?? model.bytes;
+      const dir = getPackPath(pack.pack);
+      if (dir && new File(`file://${dir}`, pack.file).exists) {
+        done += bytes;
+        continue;
+      }
+      await this.fetchOne(pack, bytes, (b) => emit({ type: "progress", bytes: done + b, total: model.bytes }), emit);
+      done += bytes;
+    }
+    const path = this.locate(model);
+    if (!path) throw new Error(`packs for ${model.id} completed but a shard is missing`);
+    return path;
+  }
+
+  private fetchOne(pack: PlayPack, bytes: number, progress: (bytes: number) => void, emit: (e: InstallEvent) => void): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
       let settled = false;
       const done = (fn: () => void) => {
         if (settled) return;
@@ -39,7 +73,7 @@ export class PlayDelivery implements ModelDelivery {
           case AssetPackStatus.PENDING:
           case AssetPackStatus.DOWNLOADING:
           case AssetPackStatus.TRANSFERRING:
-            emit({ type: "progress", bytes: s.bytesDownloaded, total: s.totalBytes || model.bytes });
+            progress(Math.min(s.bytesDownloaded, bytes));
             return;
           case AssetPackStatus.WAITING_FOR_WIFI:
             emit({ type: "waiting-for-wifi" });
@@ -51,8 +85,9 @@ export class PlayDelivery implements ModelDelivery {
             });
             return;
           case AssetPackStatus.COMPLETED: {
-            const path = this.locate(model);
-            done(() => (path ? resolve(path) : reject(new Error(`pack ${pack.pack} completed but ${pack.file} is missing`))));
+            const dir = getPackPath(pack.pack);
+            const ok = dir ? new File(`file://${dir}`, pack.file).exists : false;
+            done(() => (ok ? resolve() : reject(new Error(`pack ${pack.pack} completed but ${pack.file} is missing`))));
             return;
           }
           case AssetPackStatus.CANCELED:
@@ -86,13 +121,16 @@ export class PlayDelivery implements ModelDelivery {
   }
 
   async cancel(model: CatalogModel): Promise<void> {
-    const pack = packOf(model);
-    if (pack) cancelPack(pack.pack);
+    for (const pack of packsOf(model)) cancelPack(pack.pack);
   }
 
   async remove(model: CatalogModel): Promise<void> {
-    const pack = packOf(model);
-    if (pack) await removePack(pack.pack);
+    for (const pack of packsOf(model)) await removePack(pack.pack);
+    try {
+      new Directory(Paths.document, "assetpacks-joined", model.id).delete();
+    } catch {
+      /* never linked */
+    }
   }
 }
 

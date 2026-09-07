@@ -6,6 +6,7 @@ import { useTheme } from "../../services/theme";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { sheetGeometry } from "../../lib/keyboardLayout";
 import { font } from "../../services/type";
+import { GlassFill, panelColor, panelStyle } from "./NativeChrome";
 
 /** Bottom sheet (§9.4 radius 20, 280 ms): confirmations, the network log, the passcode entry. */
 export function Sheet({ visible, onClose, title, children, testID }: { visible: boolean; onClose: () => void; title?: string; children: ReactNode; testID?: string }) {
@@ -17,7 +18,8 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />
-      <View testID={testID} style={[styles.sheet, geometry, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+      <View testID={testID} style={[styles.sheet, panelStyle, geometry, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+        <GlassFill />
         {title ? <Text style={[styles.title, { color: theme.text }]}>{title}</Text> : null}
         {children}
       </View>

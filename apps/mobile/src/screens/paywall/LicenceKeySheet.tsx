@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
+import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import type { LicenceManager, Rejection } from "@inborn/core";
 import { font } from "../../services/type";
 import { useKeyboardLift } from "../../lib/keyboard";
@@ -33,7 +34,8 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <View style={[styles.backdrop, { paddingBottom: 24 + lift }]}>
-        <View style={[styles.sheet, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+        <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface2), borderColor: theme.border }]}>
+          <GlassFill />
           <Text style={[styles.title, { color: theme.text }]}>{t("paywall.key.title")}</Text>
           <TextInput
             testID="licence-key-input"

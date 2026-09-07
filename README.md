@@ -176,10 +176,15 @@ After the merge with the shell: `useDeviceState()` returns the shell's `DeviceSt
 banner preview still works, and the three AppServices buttons route to the guard; the thermal override on the emulator renders the shell's
 "Slowing down to keep the phone cool · Switch to Instant" banner.
 
-## The no-INTERNET rule (decision D3)
-`apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`.
-Every release APK/AAB must pass `scripts/check-android-permissions.sh <file>` (aapt2). Models arrive through
-Play Asset Delivery (Instant as fast-follow, larger tiers on-demand); purchases through Play Billing.
+## The no-INTERNET rule (decision D3) and the permission allowlist
+`apps/mobile/app.config.ts` blocks `android.permission.INTERNET` unless `APP_VARIANT=development`, and removes every
+permission a library brings that is not in the documented allowlist (`android.blockedPermissions`: WIFI_STATE, WAKE_LOCK,
+BOOT_COMPLETED, USE_FINGERPRINT, install-referrer). Every release APK/AAB must pass `scripts/check-android-permissions.sh
+<file>` (aapt2): it fails on INTERNET and on any permission outside the allowlist in the script, which is the table in
+`docs/legal/app-privacy-details.md` §4.2 (BILLING, FOREGROUND_SERVICE(+DATA_SYNC), ACCESS_NETWORK_STATE, USE_BIOMETRIC,
+VIBRATE, RECORD_AUDIO, CAMERA, the app's own DYNAMIC_RECEIVER permission). A new permission goes into the script, the
+table and the Play data-safety answers in one change. Models arrive through Play Asset Delivery (Instant as fast-follow,
+larger tiers on-demand); purchases through Play Billing.
 An AAB (what Play receives) is checked through bundletool:
 `BUNDLETOOL=.tools/bundletool-all-1.18.3.jar scripts/check-android-permissions.sh apps/mobile/android/app/build/outputs/bundle/release/app-release.aab`
 
@@ -342,6 +347,7 @@ voice mode. Photos (§7.1: Free one per message, Pro several) go to the Qwen3.5 
   passes `scripts/check-android-permissions.sh` (no INTERNET). Store answers in `docs/legal/app-privacy-details.md` §4.2a.
 - Dev proof: `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav EXPO_PUBLIC_AUTOVOICE_TTS=1` transcribes WAVs pushed into Documents and writes
   `Documents/dev-run.json` (`voice` key). Clips: `say -v Samantha` / `say -v Carmit` → `afconvert -f WAVE -d LEI16@16000 -c 1`.
+- Real phone (7.9.2026, `docs/qa/voice-run-2026-09-07.md`): `EXPO_PUBLIC_AUTOVOICE_SAY="…"` makes the phone speak the sentence through its own speaker one second after each listener opens, and every stage (system dictation, whisper, read-aloud, hands-free) lands under `live` in `Documents/dev-run.json`; the taps come from `ios-tests/VoiceDeviceUITests.swift` (`VOICE_STEPS` in the `.xctestrun`). Blocked on the iPhone 13 Pro until UI automation is approved once on the phone ("Timed out while enabling automation mode").
 
 Measured 6.9.2026 (11 s clips, whisper base, `language: auto`, 4 threads):
 
@@ -565,14 +571,36 @@ Dev-only: Settings › Advanced › "Force RTL layout" toggles `I18nManager.forc
 Verify: `pnpm typecheck && pnpm test && pnpm lint && pnpm web:build && pnpm web:smoke`; on device see the report in the
 merge commit (iPhone 15 Pro / iOS 17.0 simulator, iOS 26 simulator for glass, Pixel_4_API_33).
 
+## Design round 2 (sign-off 6.9.2026, `docs/design/signoff-2026-09-06.md`) — status 7.9.2026
+The sign-off ran on `cbb3810`, before the design-fixes merge, so PC-1 (native chrome), CM-1 (meter colour) and SW-1 (switch
+track) were already on `main`; this round closes what was still open and finishes §9.7:
+- **§9.7 sheets, menus, popovers.** `NativeChrome.tsx` exports `GlassFill` (a `GlassView` under the panel, iOS 26 only),
+  `panelColor()` (the surface at 72 % alpha over the glass so body text keeps contrast; opaque elsewhere) and `panelStyle`
+  (clips the glass to the panel's corners). Both `Sheet` primitives and the six bespoke panels (new-chat menu, model details,
+  vault confirm, document details, passage sheet, licence key) use them; nothing changes on Android, iOS < 26 or web.
+- **VA-2** the vault "recommended" line is the `monoLabel` step (uppercase, tracked) in the accent colour: the interpolated
+  device noun is uppercased with the rest, and the sealed green stays with the seal (§9.9).
+- **SC-1** the chat header model chip no longer shrinks; from a combined text scale of 150 % (`compactChrome()` in
+  `packages/ui`, unit-tested) the header drops the seal caption (the ring and its accessibility label still say SEALED), so
+  "INSTANT" is never truncated at 200 %.
+- **Full-context banner at 200 %.** The banner text had `flex: 1` (basis 0) beside a `Pressable` whose default `flexShrink`
+  is 0, so the button's intrinsic width took the row and the text got zero width (one clipped glyph per line, a tall empty
+  card). The row now wraps and the text keeps a 180 pt basis, so the button drops under the text at large sizes.
+- Verified 7.9.2026 on Pixel_6_API_36 (Android 16, arm64, dev build + Metro, real Instant model) and iPhone 17 Pro iOS 26.3
+  (Debug, `SWIFT_VERSION=5.0`, Metro): chat header / floating toolbar / FAB, model card, context meter at 30 / 85 / 100 %
+  (local `nCtx` override, not committed), switches off/on, both themes, 100 % and 200 %.
+
 ## Package ids
 `com.inbornapp.mobile` (iOS + Android) and `com.inbornapp.desktop`, confirmed by Moshe on 3.9.2026.
 
 ## Play internal testing (spec §14.1 "real store delivery") — status 6.9.2026
 Play limits (compressed download size, [Play Console Help: app size limits](https://support.google.com/googleplay/android-developer/answer/9859372)):
 base module 500 MB, one asset pack 1.5 GB, base + install-time packs 4 GB, fast-follow + on-demand packs 30 GB
-cumulative, 100 packs per bundle. The full bundle (4.55 GB, four packs) breaks the per-pack cap: `inborn_model_sharp`
-carries both 4B shards in one pack (2.74 GB). Sharp needs one pack per shard before it can ship (not done here).
+cumulative, 100 packs per bundle. Rule for Inborn: every pack is one file under 1.5 GB, all packs are fast-follow or
+on-demand (none install-time), so the caps that bind are 1.5 GB per pack and 30 GB for all packs together. Sharp is two
+packs since fixes-r4a (`inborn_model_sharp` 1.40 GB + `inborn_model_sharp_2` 1.34 GB; the vault joins the shards, see
+"Android release blockers"). All seven packs: Instant 0.53 + Fast 1.28 + embed 0.27 + speech 0.15 + vision 0.20 + Sharp
+1.40 + 1.34 = 5.18 GB, every tier stays on Play; the full AAB is base (~60 MB) + 5.18 GB.
 
 **Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all six: instant, fast, embed, sharp, speech, vision)
 limits what `plugins/withAssetPacks.js` declares. The internal-testing bundle ships Instant (fast-follow, 532 MB) and
@@ -601,6 +629,12 @@ AAB=app/build/outputs/bundle/release/app-release.aab; BT=/Users/moshecohen/dev/i
 java -jar $BT validate --bundle=$AAB && BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB
 INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts/play-upload.mjs --aab $AAB --track internal --status completed
 ```
+One-time products (Pro / Pro launch / Work / Work upgrade) live in Play through `scripts/play-products.mjs` (same
+credentials; `--list`, `--dry-run`): the new `monetization.onetimeproducts` API (the legacy `inappproducts` endpoint
+answers 403 for this app), US price as the base and Play's own regional conversion for the rest, six listings each,
+idempotent. Licence testers (account-level, Play Console → Settings → Licence testing) and the internal-track tester
+list are console-only; the app's Play licensing public key is committed in `packages/core/src/licence/roots.ts`
+(an empty key makes every real purchase fail with `untrusted-root`).
 arm64-v8a only: Play accepts it (64-bit is the requirement) and every test phone is arm64; add `armeabi-v7a` before a
 wider rollout.
 
@@ -741,3 +775,41 @@ price line + WORK tag.
   visible; the Save button below it is one scroll away inside the sheet.
 - Not reachable on a phone: the licence-key dialog exists only for the web/desktop store (`store === "licence-key"`); Ask documents needs the
   262 MB embedder and shares the chat root's padding, so it is covered by the same code path, not by a screenshot.
+
+## Android release blockers (QA run 6.9.2026 B1/B2/B3/B5/B14/B16/B18/B19, branch fixes-r4a) — status 7.9.2026
+- **B1 16 KB pages**: `modules/doc-extract` now depends on `cz.adaptech.tesseract4android:tesseract4android:4.9.0` (JitPack;
+  4.8.0 added 16 KB page-size support, NDK r27c). Proof on the release APK: every `lib/arm64-v8a/*.so` LOAD segment
+  aligned 0x4000 (`llvm-readelf -l`, the four OCR libs included), `zipalign -c -P 16 -v` OK, and a launch on the API 36.1
+  `google_apis_ps16k` emulator with no "isn't 16 KB compatible" dialog. Measured 7.9.2026 on the release AAB (1,870,410,071 bytes, Instant + Fast
+  packs, arm64-v8a, signed by the upload key): 45 of 45 `.so` files at 0x4000 (4.7.0 had libtesseract/libleptonica/libjpeg/libpngx
+  at 0x1000), `zipalign -c -P 16` OK for `base-master.apk` and `base-arm64_v8a.apk`. Emulator `qa_ps16k` (API 36.1 google_apis_ps16k, `getconf PAGE_SIZE` = 16384), release splits installed via
+  bundletool local testing, 7.9.2026 08:15: welcome screen up, focus on MainActivity, no compat dialog, logcat has no
+  page-size/ELF-alignment line (`scratchpad ps16k-3.png`). Also launched clean on the OnePlus 11 (Android 16, 4 KB kernel).
+- **B2 permissions**: allowlist gate + blocked permissions (section above). Gate output on the release AAB (7.9.2026): "OK: no INTERNET permission; every declared
+  permission is in the allowlist (9 declared)" — BILLING, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, ACCESS_NETWORK_STATE,
+  USE_BIOMETRIC, VIBRATE, RECORD_AUDIO, CAMERA, DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION. `bundletool validate` OK; merged
+  manifest minSdk 26 / targetSdk 36 / allowBackup false.
+- **B3 backup**: `android.allowBackup: false` in `app.config.ts`; merged manifest `android:allowBackup="false"`.
+- **B5 packs**: one Play pack per shard. `app.config.ts` `ALL_PACKS` maps a tier key to a list of packs; the catalog
+  (`packages/core/src/catalog/manifest.json`, re-signed) lists one `play-asset-pack` delivery per shard with its `file`;
+  `src/vault/playDelivery.ts` fetches the packs one after another (one cumulative progress bar) and, when the shards live
+  in different pack directories, links them into `Documents/assetpacks-joined/<model>/` through the new
+  `linkInto` function of `modules/asset-packs` (`Os.symlink`; llama.cpp opens the first shard and finds the second beside
+  it). Relinked on every locate because Play may move a pack; `remove` deletes the join directory.
+- **B14 status bar**: not reproduced on this build — ps16k emulator, system night mode, welcome screen: clock and icons
+  render light on the dark background (`ps16k-dark.png`). No code change; if QA still sees it, record the screen and
+  whether the app theme override (Settings → Appearance) or system dark mode was in use.
+- **B16 onboarding model step**: `ModelChoice` reads `useInstalledModel()` (vault subscription) instead of the engine once,
+  so the card flips to "Instant · built in" the moment the fast-follow pack is extracted. **Not proven on a device**:
+  on the ps16k emulator the fast-follow pack never arrived in 4 minutes (bundletool local testing pushed
+  `inborn_model-master.apk` to `/sdcard/…/local_testing/`, but no Play Core / WorkManager / `[inborn]` line ever appeared
+  for the app process and the step stayed "No model on this device"). The 5.9 README run proved this path with WAKE_LOCK
+  still declared; whether blocking WAKE_LOCK/RECEIVE_BOOT_COMPLETED stops Play Core's extraction worker is the open
+  question — re-test on the OnePlus 6T (local testing) or through the Play internal track before release; if extraction
+  needs it, move WAKE_LOCK back to the allowlist with that justification.
+- **B18** duplicate `expo-iap` was already removed on main. **B19** `plugins/withMinSdk.js` writes
+  `android.minSdkVersion=26` into gradle.properties (merged manifest minSdk 26).
+- Build note: `gradlew --stop` from any other worktree kills a running build (daemons are per Gradle version, not per
+  project). Build with `GRADLE_USER_HOME=~/.gradle-r4a` (APFS-cloned `caches/modules-2` + `wrapper`, instant) or agree on a
+  no-`--stop` rule while several streams build.
+

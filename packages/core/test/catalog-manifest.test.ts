@@ -81,7 +81,15 @@ describe("bundled catalog content (spec §6.1, §6.2)", () => {
     expect(findModel(BUNDLED_MANIFEST, "instant")?.delivery.map((d) => d.kind)).toEqual(["bundled", "play-asset-pack", "https"]);
     expect(findModel(BUNDLED_MANIFEST, "fast")?.delivery[0]).toEqual({ kind: "play-asset-pack", pack: "inborn_model_fast", mode: "on-demand", file: "Qwen3.5-2B-Q4_K_M.gguf" });
     /* The vault finds a delivered pack by the catalog file name, so every pack/bundled entry must use it (asset names in app.config.ts too). */
-    for (const m of BUNDLED_MANIFEST.models) for (const d of m.delivery) if (d.kind === "play-asset-pack" || d.kind === "bundled") expect(d.file, m.id).toBe(m.file);
+    /* A bundled file is the model file; a Play pack carries the model file or one of its shards (one pack per shard, §5.1). */
+    for (const m of BUNDLED_MANIFEST.models) {
+      for (const d of m.delivery) {
+        if (d.kind === "bundled") expect(d.file, m.id).toBe(m.file);
+        if (d.kind === "play-asset-pack") expect(modelParts(m).map((p) => p.file), m.id).toContain(d.file);
+      }
+      const packs = m.delivery.filter((d) => d.kind === "play-asset-pack");
+      if (packs.length) expect(packs.map((d) => d.file).sort(), m.id).toEqual(modelParts(m).map((p) => p.file).sort());
+    }
     expect(findModel(BUNDLED_MANIFEST, "sharp")?.proOnly).toBe(true);
     expect(httpsUrl(BUNDLED_MANIFEST, findModel(BUNDLED_MANIFEST, "fast")!)).toBe("https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf");
   });

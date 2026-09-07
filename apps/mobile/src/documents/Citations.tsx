@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
 import { dark, light, radius, type Theme } from "@inborn/ui";
+import { GlassFill, panelColor, panelStyle } from "../components/shell/NativeChrome";
 import { citationLabel, type Citation } from "@inborn/core";
 import { getLibrary } from "./library";
 import { font } from "../services/type";
@@ -63,7 +64,8 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable testID="passage-sheet" style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border }]} onPress={() => undefined}>
+        <Pressable testID="passage-sheet" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
+          <GlassFill />
           <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation)}</Text>
           <ScrollView style={styles.scroll}>
             <Text style={[styles.body, { color: theme.text }]}>{text}</Text>

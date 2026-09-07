@@ -1,7 +1,7 @@
 import { useRef, type ReactNode } from "react";
 import { AccessibilityInfo, Animated, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
 import { GlassView, isLiquidGlassAvailable } from "expo-glass-effect";
-import { Icon, radius, type IconName } from "@inborn/ui";
+import { Icon, radius, withAlpha, type IconName } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useType } from "../../services/type";
 import { haptic } from "../../services/haptics";
@@ -35,6 +35,21 @@ export function ChromeBar({ children, style, onLayout, testID }: BarProps) {
     </View>
   );
 }
+
+/** §9.7: Liquid Glass under a sheet, menu or popover panel on iOS 26; nothing elsewhere. Pair with panelColor / panelStyle on the panel. */
+export function GlassFill() {
+  const { scheme } = useTheme();
+  if (!liquidGlass) return null;
+  return <GlassView glassEffectStyle="regular" colorScheme={scheme} style={StyleSheet.absoluteFill} pointerEvents="none" />;
+}
+
+/** Sheet / menu panels keep most of their surface colour over the glass so body text stays readable; opaque where there is no glass. */
+export function panelColor(color: string): string {
+  return liquidGlass ? withAlpha(color, 0.72) : color;
+}
+
+/** The glass fill is clipped by the panel's own corners. */
+export const panelStyle: ViewStyle | null = liquidGlass ? { overflow: "hidden" } : null;
 
 /** A header row: an M3 floating toolbar (detached pill, hairline, surface-1) on Android, in-flow everywhere else. */
 export function FloatingToolbar({ children, style, testID }: Omit<BarProps, "onLayout">) {

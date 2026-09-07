@@ -97,7 +97,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         </Text>
         {model.proOnly ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
-      {recommended && !disabled ? <Text style={[type.mono, { color: theme.sealed }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
+      {recommended && !disabled ? <Text style={[type.monoLabel, { color: theme.accent }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
       {model.goodFor ? (
         <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}

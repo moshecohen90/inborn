@@ -8,6 +8,7 @@ import { useKeyboardLift } from "../../lib/keyboard";
 import { sheetGeometry } from "../../lib/keyboardLayout";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
+import { GlassFill, panelColor, panelStyle } from "../shell/NativeChrome";
 
 interface SheetProps {
   visible: boolean;
@@ -31,7 +32,8 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
-      <View testID={testID} style={[styles.sheet, geometry, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+      <View testID={testID} style={[styles.sheet, panelStyle, geometry, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+        <GlassFill />
         <View style={[styles.grabber, { backgroundColor: theme.border }]} />
         {title ? <Text style={[type.title, styles.title, { color: theme.text }]}>{title}</Text> : null}
         <Body style={[styles.body, scroll ? styles.shrink : null]} keyboardShouldPersistTaps="handled">

@@ -4,6 +4,7 @@ import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, dark, light, radius } from "@inborn/ui";
+import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { ENGINE_VERSION, formatModelBytes, groupByFit, paywallFor, type CatalogModel } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { resetEngine } from "../../engine";
@@ -169,7 +170,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
 
       <Modal visible={confirm !== null} transparent animationType="slide" onRequestClose={() => setConfirm(null)}>
         <Pressable style={styles.backdrop} onPress={() => setConfirm(null)} />
-        <View style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border, paddingBottom: insets.bottom + 20 }]}>
+        <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border, paddingBottom: insets.bottom + 20 }]}>
+          <GlassFill />
           <Text style={[type.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm?.entry.model.name ?? "" })}</Text>
           <Text testID="confirm-text" style={[type.body, { color: theme.text2 }]}>
             {confirm?.entry.plan?.via === "play"

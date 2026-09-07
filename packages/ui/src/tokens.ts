@@ -88,6 +88,17 @@ export function fontFace(kind: FontKind, weight: FontWeightInput = "400", platfo
 
 /** §9.4: 4 chips/status dots · 10 buttons/fields · 14 cards · 20 sheets/cartridges · pill. `chip` stays the legacy pill alias. */
 export const radius = { tag: 4, control: 10, card: 14, sheet: 20, pill: 999, chip: 999 } as const;
+
+/** From this combined text scale the chat header drops its seal caption (the ring still says it) so the model name never truncates. */
+export const COMPACT_CHROME_SCALE = 1.5;
+export const compactChrome = (scale: number): boolean => scale >= COMPACT_CHROME_SCALE;
+
+/** "#RRGGBB" with an alpha in [0, 1] → "#RRGGBBAA"; anything else passes through untouched. */
+export function withAlpha(color: string, alpha: number): string {
+  if (!/^#[0-9a-fA-F]{6}$/.test(color)) return color;
+  const a = Math.round(Math.min(1, Math.max(0, alpha)) * 255);
+  return `${color}${a.toString(16).padStart(2, "0").toUpperCase()}`;
+}
 export const space = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64] as const;
 
 export interface TypeStep {

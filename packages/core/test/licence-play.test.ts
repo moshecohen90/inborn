@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { acknowledgeDeadline, needsAcknowledgement, parsePlayPublicKey, verifyPlayPurchase } from "../src/licence/play";
 import { NOW, makePlayPurchase, playPublicKeyB64, read } from "./licence-fixtures";
+import { PLAY_LICENCE_PUBLIC_KEY_PLACEHOLDER } from "../src/licence/roots";
 
 const publicKey = playPublicKeyB64();
 
 describe("Play Billing purchase verification (spec §12.4, §10.7 #48)", () => {
+  it("ships the real Play Console licence key (an empty key refuses every real purchase with untrusted-root)", () => {
+    expect(parsePlayPublicKey(PLAY_LICENCE_PUBLIC_KEY_PLACEHOLDER)).toMatchObject({ kind: "rsa", key: { k: 256 } });
+  });
+
   it("parses the Play Console SPKI key and accepts a purchase signed SHA1withRSA under it", () => {
     expect(parsePlayPublicKey(publicKey)).toMatchObject({ kind: "rsa", key: { k: 256 } });
     const { json, signature } = makePlayPurchase();
