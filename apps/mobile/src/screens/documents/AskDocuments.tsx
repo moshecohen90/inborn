@@ -8,6 +8,8 @@ import { Citations } from "../../documents/Citations";
 import { getLibrary } from "../../documents/library";
 import { font } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useKeyboardLift } from "../../lib/keyboard";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -114,9 +116,11 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
 
   const busy = phase.kind === "loading" || phase.kind === "retrieving" || phase.kind === "answering";
   const names = docs.map((d) => d.name).join(", ");
+  const insets = useSafeAreaInsets();
+  const lift = useKeyboardLift();
   return (
     <Modal animationType="slide" onRequestClose={onClose}>
-      <View testID="ask-sheet" style={[styles.root, { backgroundColor: theme.bg }]}>
+      <View testID="ask-sheet" style={[styles.root, { backgroundColor: theme.bg, paddingBottom: lift || insets.bottom }]}>
         <View style={styles.header}>
           <Pressable accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
             <Text style={[styles.headerBtnText, { color: theme.text2 }]}>{t("documents.close")}</Text>

@@ -723,3 +723,21 @@ moved in (VAULT badge), locked from the badge (chat hidden, "1 chats · locked")
 record exported through the share sheet and the pulled `.json` verified VALID by the Node snippet (tampered copy INVALID), audit log screen
 "Chain verified · 5 entries" (created, moved in, locked, unlocked, signed export), architecture statement rendered, templates as Free show the
 price line + WORK tag.
+
+## Keyboard never hides the field (Moshe 7.9.2026: "when the keyboard opens you must see what you type") — branch `sheets-keyboard`
+- One mechanism, app-wide: `src/lib/keyboard.ts` `useKeyboardLift()` listens to the RN `Keyboard` events and returns the keyboard top above the
+  window bottom (Android reports the IME above the navigation bar, so the bar inset is added; iOS from the screen edge; 0 on web). The pure
+  geometry lives in `src/lib/keyboardLayout.ts` (`keyboardLift`, `sheetGeometry`) with 5 vitest cases.
+- Where it is applied: both bottom-sheet primitives (`components/chat/Sheet.tsx`, `components/shell/Sheet.tsx`: `bottom` = lift, safe inset
+  dropped while the keyboard covers it, `maxHeight` capped to the visible room, scroll body `flexShrink: 1`), the `Screen` primitive (root pads
+  by the lift so the scroll view shrinks and Android scrolls the focused field into view), the chat root (replaces `KeyboardAvoidingView`,
+  which added the keyboard height on top of the safe inset) plus the iOS 26 glass composer overlay (`bottom: lift`; Yoga does not offset
+  absolute children by the parent's padding), the rename dialog and the licence-key dialog (centred in the room above the keyboard) and the
+  Ask-documents modal. Every Modal-based sheet (folder, vault code, passcode, persona, memory, report, templates, redaction, chat settings)
+  inherits it from the primitives; no new dependency.
+- Verified with the keyboard open on Pixel_6_API_33 (edge-to-edge, own AVD, dark + light + 200 % text) and iPhone 17 Pro / iOS 26.3 Release
+  (dark + light 200 %): New folder, vault code, passcode, persona (last field), memory, report, templates blanks, redact names, chat settings
+  prompt, rename, composer (last message stays visible above it), airplane test, verify record. Long forms at 200 % keep the focused field
+  visible; the Save button below it is one scroll away inside the sheet.
+- Not reachable on a phone: the licence-key dialog exists only for the web/desktop store (`store === "licence-key"`); Ask documents needs the
+  262 MB embedder and shares the chat root's padding, so it is covered by the same code path, not by a screenshot.

@@ -9,6 +9,7 @@ import { useEntitlement } from "../licence";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
 import { useTheme } from "../lib/theme";
+import { useKeyboardLift } from "../lib/keyboard";
 import { getEngine } from "../engine";
 import { PersonaGlyph } from "../components/chat/PersonaGlyph";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
@@ -48,6 +49,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const lift = useKeyboardLift();
   const { tier } = useEntitlement();
   const { model } = getEngine();
   const [chats, setChats] = useState<Chat[]>([]);
@@ -435,7 +437,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
 
       <Modal visible={menu !== null} transparent animationType="fade" onRequestClose={() => setMenu(null)}>
         <Pressable style={[shape.fill, styles.backdrop]} onPress={() => setMenu(null)} />
-        <View style={styles.center} pointerEvents="box-none">
+        <View style={[styles.center, { paddingBottom: 24 + lift }]} pointerEvents="box-none">
           <View style={[shape.card, styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
             {menu?.renaming ? (
               <>

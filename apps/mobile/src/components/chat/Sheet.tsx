@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
+import { useKeyboardLift } from "../../lib/keyboard";
+import { sheetGeometry } from "../../lib/keyboardLayout";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
 
@@ -22,14 +24,17 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   const type = useType();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const lift = useKeyboardLift();
+  const { height: windowHeight } = useWindowDimensions();
+  const geometry = sheetGeometry({ lift, safeBottom: insets.bottom, safeTop: insets.top, windowHeight, basePadding: 16, share: 0.88 });
   const Body = scroll ? ScrollView : View;
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
-      <View testID={testID} style={[styles.sheet, { backgroundColor: theme.surface1, borderColor: theme.border, paddingBottom: insets.bottom + 16, maxHeight: "88%" }]}>
+      <View testID={testID} style={[styles.sheet, geometry, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
         <View style={[styles.grabber, { backgroundColor: theme.border }]} />
         {title ? <Text style={[type.title, styles.title, { color: theme.text }]}>{title}</Text> : null}
-        <Body style={styles.body} keyboardShouldPersistTaps="handled">
+        <Body style={[styles.body, scroll ? styles.shrink : null]} keyboardShouldPersistTaps="handled">
           {children}
         </Body>
       </View>
@@ -70,6 +75,7 @@ const styles = StyleSheet.create({
   grabber: { alignSelf: "center", width: 36, height: 4, borderRadius: 2, marginBottom: 8 },
   title: { paddingHorizontal: 20, paddingVertical: 8 },
   body: { paddingHorizontal: 8 },
+  shrink: { flexShrink: 1 },
   item: { flexDirection: "row", alignItems: "center", gap: 12, minHeight: 48, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10 },
   itemText: { flex: 1, gap: 2 },
 });
