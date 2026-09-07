@@ -27,7 +27,8 @@ export const APPLE_WWDR_INTERMEDIATE_OID = "1.2.840.113635.100.6.2.1";
 export const APPLE_RECEIPT_SIGNING_OID = "1.2.840.113635.100.6.11.1";
 
 /**
- * Google Play licence public key (Play Console → Monetisation setup → Licensing), base64 SPKI. Empty until the
- * listing exists; then paste it here or supply it at bundle time (EXPO_PUBLIC_PLAY_LICENCE_KEY). Not a secret.
+ * Google Play licence public key for com.inbornapp.mobile (Play Console → Monetisation setup → Licensing), base64
+ * SPKI, RSA-2048. Not a secret. Empty here means every real Play purchase is refused (`untrusted-root`); a
+ * bundle-time EXPO_PUBLIC_PLAY_LICENCE_KEY only applies when this is empty.
  */
-export const PLAY_LICENCE_PUBLIC_KEY_PLACEHOLDER = "";
+export const PLAY_LICENCE_PUBLIC_KEY_PLACEHOLDER = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq5vjrn94a1o7B2Ykve8Vge5lUGurGNZKikbDLZQAX9DWGpG+bqX6/sCUubqnqC0ZW+oH0g9taAturg5f2S47xVaGQ+30j3h/Noz2lBFtqxBg4zoZwMu/p6yG2iZKP33TEAbBuTK7Gj74UyNulRjSC98sQx/r83X5pfqJlp+Uhvz9ip/GOdqMRk/4/ChLO7cpPTcndoTeV2V1qIAHp7I2iY+N6TS9rNdgCzWv2vt/ucjaPdBKOJtYvHDmIj54GA4GzHqaBH8lWDgKlDw6lyXGHqsNTR3UbSlWkOHU/lE6LvDqxRUF8exsB7MxYKPjggPmjZXook3GqWthoWKfRXbINQIDAQAB";
