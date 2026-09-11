@@ -31,8 +31,6 @@ export interface ModelCardProps {
   onImport?: () => void;
 }
 
-const deviceWord = (t: (k: string) => string, d: DeviceInfo) => t(`vault.device.${d.deviceClass}`);
-
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
 export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
@@ -117,8 +115,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
           : disabledReason === "ram" || fit === "no"
             ? t("vault.willNotRun", { ram: device.ramGB })
             : speed
-              ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceWord(t, device) })
-              : t("vault.speedUnknown", { device: deviceWord(t, device) })}
+              ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() })
+              : t("vault.speedUnknown", { device: deviceNoun() })}
         {!disabled && fit === "slowly" ? ` · ${t("vault.runsSlowly", { ram: device.ramGB })}` : ""}
       </Text>
       {progress > 0 ? (

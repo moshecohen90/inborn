@@ -14,6 +14,7 @@ import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../..
 import { ModelCard } from "./ModelCard";
 import { ModelDetails } from "./ModelDetails";
 import { font, useType } from "../../services/type";
+import { deviceNoun } from "../../lib/deviceNoun";
 import { Toggle } from "../../components/shell/primitives";
 
 export interface VaultScreenProps {
@@ -168,7 +169,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const companions = entries.filter((e) => e.model.role !== "chat" && !installed(e));
   const sections: Section[] = [
     { key: "on", title: t("vault.onDevice"), data: onDevice },
-    ...(fits.length ? [{ key: "fits", title: t("vault.fits", { device: t(`vault.device.${device.deviceClass}`) }), data: fits }] : []),
+    ...(fits.length ? [{ key: "fits", title: t("vault.fits", { device: deviceNoun() }), data: fits }] : []),
     ...(tooBig.length ? [{ key: "big", title: t("vault.tooBig", { ram: device.ramGB }), data: tooBig, disabled: new Map(groups.tooBig.map((x) => [x.model.id, x.reason])) }] : []),
     ...(companions.length ? [{ key: "companions", title: t("vault.companions"), data: companions }] : []),
   ];
