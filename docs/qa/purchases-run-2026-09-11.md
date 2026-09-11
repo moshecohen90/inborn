@@ -9,7 +9,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 |---|---|
 | A. StoreKit configuration on the iPhone 13 Pro (T56, T57, T21, T22) | DONE: Pro purchase, Work upgrade from Pro, Work direct, Restore (empty and after an external purchase), refund → Free; every state on screen |
 | B. Play internal release versionCode 3 | DONE: AAB 1,870,499,229 bytes, all gates OK, uploaded and committed as "1.0.0 (3) internal" |
-| C. OnePlus 11 fresh Play install, Instant pack without WAKE_LOCK, Restore | BLOCKED: the phone is not attached (`adb devices` shows only the OnePlus 6T) |
+| C. Fresh Play install, Instant pack without WAKE_LOCK, first answer, Proof, Restore | DONE on the OnePlus 6T as the substitute (Task E, 14:19–14:28): Play install of 1.0.0 (3), fast-follow pack extracted without WAKE_LOCK, onboarding flipped to "Instant · built in" by itself, first answer OUT 0 B, Proof sealed, YOU OWN PRO + "Purchase restored". OnePlus 11 absent; nothing remains OnePlus-11-only |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -83,9 +83,25 @@ Two-step script (as written before Moshe's decision):
 
 Without step 1, the manual alternative (2 minutes): open Inborn (dev build with `EXPO_PUBLIC_AUTOBUY=inborn.pro`, or the paywall in any dev build and tap Unlock Pro), tap **Purchase** on the "Sandbox" sheet (account tester1@example.com, "you will not be charged"), enter the sandbox password if asked; the app then shows YOU OWN PRO and `Documents/licence-run.json` records `environment: "sandbox"`. Then delete and reinstall, open the paywall, Restore purchases. Alternatively enable Settings → Developer → UI Automation and the test in `ios-tests/SandboxPurchaseUITests.swift` does the tap (the password prompt, if any, still needs him).
 
-## C. OnePlus 11 (blocked)
+## C. Real Play delivery on the OnePlus 6T (Task E, substitute for the OnePlus 11 run) — 14:19–14:28
 
-`adb devices` at 11:20 and again before the report: only the OnePlus 6T (`REDACTED-6T`) is attached; the OnePlus 11 (`8a3120ef`) is not. Task C (fresh Play install, Instant pack extraction without WAKE_LOCK, 16 KB dialog check, Restore) is blocked on the phone. versionCode 3 on the internal track is what that run needs; the B16 open question from the README ("does blocking WAKE_LOCK stop Play Core's extraction worker") stays open.
+The OnePlus 11 (`8a3120ef`) was never attached today, so the lead moved the run to the OnePlus 6T (`REDACTED-6T`, Android 11, Snapdragon 845, 8 GB) once the QA stream released it. Account check without names: `dumpsys account` counts 19 `type=com.google` lines and the two internal-tester addresses match 6 lines, so a tester account is signed in. The QA stream's debug build (versionCode 1, debug key) was uninstalled first (Play cannot update over a different signer).
+Evidence: scratch `purchases-r2/6t/` (`01-optin.png` … `20-restore.png`, `logcat.txt` = full `logcat -v time` from before the install to after Restore).
+
+| step | result | evidence |
+|---|---|---|
+| opt-in link in Chrome | "App not available … hasn't yet been invited" — Chrome's web session is a different account; irrelevant, the Play Store app's account is the tester | `01-optin.png` |
+| `market://details?id=com.inbornapp.mobile` | Play Store sheet "com.inbornapp.mobile (unreviewed) · In-app purchases · 56 MB · Install" | `02-market.png` |
+| Install | `input tap` on Install works in the Play Store (the app itself ignores taps: TAB / DPAD_DOWN + DPAD_CENTER, see `6t-focus.sh`); "0% of 56.48 MB" → installed 14:21:31: `versionCode=3`, `versionName=1.0.0`, `installerPackageName=com.android.vending` | `04-after-tap.png`, `05-installed.png` |
+| installed manifest | `dumpsys package` requested permissions: RECORD_AUDIO, USE_BIOMETRIC, VIBRATE, BILLING, CAMERA, ACCESS_NETWORK_STATE, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION **and `com.android.vending.CHECK_LICENSE`** — no INTERNET, no WAKE_LOCK, no RECEIVE_BOOT_COMPLETED. CHECK_LICENSE is not in the AAB (the bundletool gate saw 9): Play adds it to the delivered APKs for licensing; harmless, but the data-safety text should not claim "9 permissions" | dumpsys output in this section |
+| **fast-follow Instant pack without WAKE_LOCK (B16)** | the app launched 14:21:42 on the welcome screen with "Delivering INSTANT · 21% of 508 MB"; logcat: `Finsky … RF: onProgress … artifact_id=inborn_model artifact_bytes=…/519450674` (Play downloads), then `PlayCore … ExtractChunkTaskHandler : Extraction finished for chunk 0…10 of slice inborn_model of pack inborn_model of session 1` (11 chunks, extraction runs in the app's own `AssetPackExtractionService`, UID of the app), `AssetPackServiceImpl : notifyModuleCompleted` 14:22:35, and `[inborn] engine model instant from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model/3/3/assets/Qwen3.5-0.8B-Q4_K_M.gguf` 14:22:36. No wake-lock line for the app in the whole log. 53 s from launch to model located, on Wi-Fi | `06-launch.png`, `logcat.txt` |
+| onboarding model step | "Your model — READY NOW · Instant · built in · 508 MB · works offline" appeared by itself (the `useInstalledModel()` fix from fixes-r4a), Fast (1.3 GB) offered as optional, "Delivered by Google Play. Inborn itself has no internet access." | `13-small.png` (`13-step.png`) |
+| first answer | "Prove it to yourself" step: Ask → **INSTANT · ON-DEVICE AI — "17 times 23 is 391."**, counter **OUT 0 B · IN 0 B** | `16-answer.png` |
+| Proof screen (`inborn://proof`) | **SEALED · ON-DEVICE · since install · 0 days · OUT 0 B · IN 0 B · CONNECTIONS 0 open**, network allowlist "none · the app has no internet permission", last delivery "Instant arrives as a Play asset pack · nothing downloaded by Inborn", Internet "none (not in the manifest)", trackers 0 | `18-proof.png` |
+| paywall (`inborn://paywall`) | **YOU OWN PRO · Unlocked on every device that uses this Google Play account** at once (startup refresh: this Play account is the one that bought Pro on 7.9 on the OnePlus 11), Work card = **Upgrade to Work · ₪149.90**, "Family Library does not include in-app purchases" | `19-paywall.png` |
+| Restore purchases | focus + DPAD_CENTER on "Restore purchases" → **"Purchase restored"** | `20-restore.png` |
+
+Not seen: any 16 KB compatibility dialog (a 4 KB Android 11 device cannot show one; 16 KB was proven on the ps16k emulator on 7.9). Left on the phone: the Play build 1.0.0 (3) with Pro owned, phone on the launcher home screen; one Chrome tab with the opt-in page stays open in Chrome's tab list (no way to close a single tab over adb). What remains OnePlus-11-only: nothing for this checklist; a 16 KB / Android 16 device run of the Play path would only repeat what the emulator proved.
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
