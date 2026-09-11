@@ -485,6 +485,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       await generate(chatIdNow, history, pendingId, "");
     } catch (e: unknown) {
       flash(errorText(e));
+      /* A message the store could not take stays in the composer instead of vanishing with the toast (QA F15). */
+      if (!rowsRef.current.some((r) => r.role === "user" && r.content === text)) setDraft(input);
       setBusy(false);
     }
   };

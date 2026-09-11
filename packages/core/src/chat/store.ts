@@ -24,6 +24,10 @@ export class ChatStore {
     return this.incognitoIds.has(chatId);
   }
 
+  async close(): Promise<void> {
+    await this.persistent.close?.();
+  }
+
   async listChats(): Promise<Chat[]> {
     const [saved, ram] = await Promise.all([this.persistent.listChats(), this.memory.listChats()]);
     return sortChats([...ram, ...saved]);

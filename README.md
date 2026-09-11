@@ -1032,3 +1032,20 @@ simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 
     existing line offers "Switch back". Test: `packages/core/test/device-boot-tier.test.ts` (6 cases). Emulator (3.8 GB): a 2.5 GB import as
     the vault default → `[device] boot floor: import:Phi-4-mini… needs more RAM than this device has (3.8 GB), starting on instant`, Instant
     loaded in 2.0 s, no 1.2 GB load first (before the fix the same boot started "Loading PHI-4-MINI-INSTRUCT…", `f13-f14-01-boot-floor.png`).
+11. **F15 · the chat database survives its handle dying** (`storage/reopen.ts` `isDeadHandleError` / `ReopeningHandle`,
+    `storage/reopeningDb.ts`, `storage/sqliteRepository.ts`, `packages/core/src/chat/{repository,store}.ts` `close()`, `AppServices.tsx`,
+    `Chat.tsx`, `engine.ts`). Mechanism found in expo-sqlite 57 on Android: `NativeDatabase.sharedObjectDidRelease` closes the native
+    connection whenever any JS wrapper of it is garbage-collected, and the module hands the same cached connection to every
+    `openDatabaseAsync(name)` without `useNewConnection` (a second wrapper for one connection: a JS reload, a second boot, or a wipe's
+    re-boot). The next statement then fails with `NativeDatabase.prepareAsync … NullPointerException` (`isClosed` is never set on that
+    path), every send fails and the drawer reads "No chats yet". Fix: the repository owns one `ReopeningDatabase`; a statement that fails
+    with a dead-handle error (NPE, "Access to closed resource", released shared object) reopens the keyed connection once, re-applies the
+    pragmas and FTS, and runs again; concurrent statements share one reopen; transaction bodies run on the raw handle so a death mid-body
+    reruns the whole body, never half of it; any other error passes through. A wipe now closes the store first, so `deleteDatabaseAsync`
+    really deletes and the next boot cannot inherit the old handle on the unlinked file. A send the store could not take puts the text back
+    in the composer next to the toast. Tests: `storage/reopen.test.ts` (9 cases). Dev hooks (bundle time): `EXPO_PUBLIC_IDLE_UNLOAD_MS`
+    shortens the idle unload, `EXPO_PUBLIC_DEAD_DB_AFTER_MS` closes the chat handle underneath the repository after N ms. Emulator
+    (`IDLE_UNLOAD_MS=15000`, `DEAD_DB_AFTER_MS=20000`): `engine unloaded (idle)` at 15 s, `[storage] dev: closing the chat handle` at 20 s,
+    the next send logged `[storage] chat database handle died underneath, reopening: Call to function 'NativeDatabase.prepareAsync' has been
+    rejected.` (the QA run's exact text), the answer streamed, and the drawer listed the chat (`f15-01-send-after-dead-handle.png`,
+    `f15-02-chat-list-after-reopen.png`).

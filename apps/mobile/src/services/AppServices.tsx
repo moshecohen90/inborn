@@ -313,6 +313,8 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   const lockRef = useRef<AppLock | null>(null);
   const wipeAll = useCallback(async (opts: WipeOptions) => {
     await wipeLicence();
+    /* Closed first: expo-sqlite refuses to delete a cached open file, and the next boot would be handed the old handle on the unlinked one (QA F15). */
+    await bootedRef.current?.store.close().catch((e: unknown) => console.warn("[storage] close before wipe", e));
     await wipe(opts);
     await lockRef.current?.refresh();
     deletePrefs();

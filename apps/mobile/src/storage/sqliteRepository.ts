@@ -33,6 +33,8 @@ import {
 } from "@inborn/core";
 import { SECURE_ITEMS } from "./secureItems";
 import { DB_NAME, FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "./schema";
+import { errorChain } from "./reopen";
+import { ReopeningDatabase } from "./reopeningDb";
 
 const KEY_ITEM = SECURE_ITEMS.dbKey;
 const KEY_OPTIONS: SecureStore.SecureStoreOptions = { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY };
@@ -85,12 +87,10 @@ export async function databaseKeyHex(): Promise<string> {
   return hex;
 }
 
-/** Message plus the cause chain: expo-sqlite wraps the SQLite text one level down. */
-function describe(e: unknown): string {
-  const parts: string[] = [];
-  for (let cur: unknown = e, i = 0; cur && i < 5; cur = (cur as { cause?: unknown }).cause, i++) parts.push(cur instanceof Error ? cur.message : String(cur));
-  return parts.join(" | ");
-}
+const describe = errorChain;
+
+/* Dev bundles can close the chat handle underneath the repository after N ms (EXPO_PUBLIC_DEAD_DB_AFTER_MS) to drive the reopen path on an emulator. */
+const DEV_DEAD_DB_MS = __DEV__ ? Number(process.env.EXPO_PUBLIC_DEAD_DB_AFTER_MS ?? NaN) : NaN;
 
 async function openKeyed(keyHex: string): Promise<SQLite.SQLiteDatabase> {
   const db = await SQLite.openDatabaseAsync(DB_NAME);
@@ -192,7 +192,7 @@ const toReport = (r: ReportRow): Report => ({
 /** SQLCipher-encrypted chats + library (expo-sqlite with `useSQLCipher`). Refuses incognito rows outright. */
 export class SqliteChatRepository implements ChatRepository, LibraryRepository {
   private constructor(
-    private readonly db: SQLite.SQLiteDatabase,
+    private readonly db: ReopeningDatabase,
     readonly fts: boolean,
     readonly schemaVersion: number,
   ) {}
@@ -215,7 +215,20 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
     } catch {
       fts = false;
     }
-    return new SqliteChatRepository(db, fts, version);
+    const reopen = async () => {
+      const fresh = await openKeyed(await databaseKeyHex());
+      await fresh.execAsync(PRAGMAS_SQL);
+      if (fts) await fresh.execAsync(FTS_SQL);
+      return fresh;
+    };
+    const owned = new ReopeningDatabase(db, reopen, (e) => console.warn(`[storage] chat database handle died underneath, reopening: ${describe(e)}`));
+    if (Number.isFinite(DEV_DEAD_DB_MS) && DEV_DEAD_DB_MS > 0) {
+      setTimeout(() => {
+        console.log(`[storage] dev: closing the chat handle underneath the repository after ${DEV_DEAD_DB_MS} ms`);
+        void owned.raw().closeAsync().catch((e: unknown) => console.warn("[storage] dev close", e));
+      }, DEV_DEAD_DB_MS);
+    }
+    return new SqliteChatRepository(owned, fts, version);
   }
 
   async listChats(): Promise<Chat[]> {
@@ -286,9 +299,9 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
 
   async deleteChats(ids: string[]): Promise<void> {
     if (!ids.length) return;
-    await this.db.withTransactionAsync(async () => {
-      await this.db.runAsync(`DELETE FROM messages WHERE chat_id IN (${inList(ids.length)})`, ids);
-      await this.db.runAsync(`DELETE FROM chats WHERE id IN (${inList(ids.length)})`, ids);
+    await this.db.withTransactionAsync(async (db) => {
+      await db.runAsync(`DELETE FROM messages WHERE chat_id IN (${inList(ids.length)})`, ids);
+      await db.runAsync(`DELETE FROM chats WHERE id IN (${inList(ids.length)})`, ids);
     });
   }
 
@@ -313,10 +326,10 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
       ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
     };
-    await this.db.withTransactionAsync(async () => {
-      const touched = await this.db.runAsync(SQL.touchChat, now, input.chatId);
+    await this.db.withTransactionAsync(async (db) => {
+      const touched = await db.runAsync(SQL.touchChat, now, input.chatId);
       if (touched.changes === 0) throw new Error(`unknown chat ${input.chatId}`);
-      await this.db.runAsync(
+      await db.runAsync(
         SQL.insertMessage,
         message.id,
         message.chatId,
@@ -354,12 +367,12 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
 
   async deleteMessagesFrom(chatId: string, messageId: string): Promise<number> {
     let removed = 0;
-    await this.db.withTransactionAsync(async () => {
-      const row = await this.db.getFirstAsync<{ seq: number }>(SQL.messageSeq, messageId, chatId);
+    await this.db.withTransactionAsync(async (db) => {
+      const row = await db.getFirstAsync<{ seq: number }>(SQL.messageSeq, messageId, chatId);
       if (!row) return;
-      removed = (await this.db.runAsync(SQL.deleteMessagesFromSeq, chatId, row.seq)).changes;
-      const chat = await this.db.getFirstAsync<ChatRow>(SQL.getChat, chatId);
-      if (chat?.summary_up_to && !(await this.db.getFirstAsync(SQL.summaryStillPresent, chatId, chat.summary_up_to))) await this.db.runAsync(SQL.clearSummary, chatId);
+      removed = (await db.runAsync(SQL.deleteMessagesFromSeq, chatId, row.seq)).changes;
+      const chat = await db.getFirstAsync<ChatRow>(SQL.getChat, chatId);
+      if (chat?.summary_up_to && !(await db.getFirstAsync(SQL.summaryStillPresent, chatId, chat.summary_up_to))) await db.runAsync(SQL.clearSummary, chatId);
     });
     return removed;
   }
@@ -396,9 +409,9 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
   }
 
   async deleteFolder(id: string): Promise<void> {
-    await this.db.withTransactionAsync(async () => {
-      await this.db.runAsync(SQL.unfolderChats, id);
-      await this.db.runAsync(SQL.deleteFolder, id);
+    await this.db.withTransactionAsync(async (db) => {
+      await db.runAsync(SQL.unfolderChats, id);
+      await db.runAsync(SQL.deleteFolder, id);
     });
   }
 
@@ -426,10 +439,10 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
   }
 
   async deletePersona(id: string): Promise<void> {
-    await this.db.withTransactionAsync(async () => {
-      await this.db.runAsync(SQL.unpersonaChats, id);
-      await this.db.runAsync(SQL.unpersonaMemory, id);
-      await this.db.runAsync(SQL.deletePersona, id);
+    await this.db.withTransactionAsync(async (db) => {
+      await db.runAsync(SQL.unpersonaChats, id);
+      await db.runAsync(SQL.unpersonaMemory, id);
+      await db.runAsync(SQL.deletePersona, id);
     });
   }
 

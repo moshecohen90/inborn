@@ -14,7 +14,9 @@ export interface GenerationCaps {
 }
 
 /** Weights leave memory after this long without an answer (spec §5.7); the next message loads them again. */
-export const IDLE_UNLOAD_MS = 10 * 60_000;
+/* Dev bundles may shorten the idle unload (EXPO_PUBLIC_IDLE_UNLOAD_MS=20000) to drive the unload and reload paths on an emulator in seconds. */
+const DEV_IDLE_MS = __DEV__ ? Number(process.env.EXPO_PUBLIC_IDLE_UNLOAD_MS ?? NaN) : NaN;
+export const IDLE_UNLOAD_MS = Number.isFinite(DEV_IDLE_MS) && DEV_IDLE_MS > 0 ? DEV_IDLE_MS : 10 * 60_000;
 
 let raw: Engine | null = null;
 let guarded: Engine | null = null;

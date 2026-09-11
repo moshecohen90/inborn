@@ -20,6 +20,8 @@ import type {
 export interface ChatRepository {
   /** Pinned first, then most recently updated. Archived chats are included; callers filter. */
   listChats(): Promise<Chat[]>;
+  /** Releases the underlying connection (a wipe deletes the file next; an open handle would keep writing to the unlinked one). */
+  close?(): Promise<void> | void;
   getChat(id: string): Promise<Chat | undefined>;
   createChat(input: NewChat): Promise<Chat>;
   renameChat(id: string, title: string): Promise<void>;
