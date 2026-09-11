@@ -132,6 +132,12 @@ class DeviceGuard {
     this.evaluate();
   };
 
+  /** The boot-time RAM floor started Instant instead of the vault default (§6.5): the line reads as a memory switch and offers the way back. */
+  noteBootSwitch = (from: ModelTier): void => {
+    this.policy.noteSwitched(from, "instant", true, "memory");
+    this.evaluate();
+  };
+
   /** Which chat tiers are installed right now; the policy never proposes or applies a switch towards a missing one. */
   setAvailableTiers = (provider: (() => ModelTier[]) | null): void => {
     this.tiers = provider;

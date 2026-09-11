@@ -7,7 +7,7 @@ import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, t
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
-import { startDeviceGuard } from "../device/boot";
+import { applyBootFloor, startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
 import { openPersistentStorage } from "../storage/persistent";
 import type { PersistenceKind } from "../storage/types";
@@ -104,6 +104,7 @@ async function boot(prefs: Prefs): Promise<Booted> {
   const tags = getLocales().map((l) => l.languageTag);
   await Promise.all([initI18n(prefs.locale ?? tags[0] ?? "en", tags, { device: deviceNoun() }), prepareEngine()]);
   startDeviceGuard();
+  await applyBootFloor();
   let repository: ChatRepository;
   let storageKind: PersistenceKind;
   try {
