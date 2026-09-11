@@ -3,7 +3,9 @@ import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppServicesProvider, useAppServices } from "../services/AppServices";
-import { useTheme } from "../services/theme";
+import { applyThemeMode, useTheme } from "../services/theme";
+import { mergePrefs } from "../services/prefsTypes";
+import { readPrefsRaw } from "../services/prefsStore";
 import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
 import { PrivacyCover } from "../lock/PrivacyCover";
@@ -12,6 +14,9 @@ import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
 import { useShareTarget } from "../share";
 import { closeOpenSheets } from "../lib/openSheets";
+
+/* The stored theme is applied before the first paint (QA B14): the splash, the lock screen and the status bar never show the system scheme first. */
+applyThemeMode(mergePrefs(readPrefsRaw(), Date.now()).themeMode);
 
 export default function RootLayout() {
   /* Plex is the brand (§9.3): nothing draws in a system face while the files register. */

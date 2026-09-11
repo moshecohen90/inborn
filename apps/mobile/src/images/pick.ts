@@ -15,3 +15,7 @@ export async function pickImages(_source: "library" | "camera", _limit: number):
 }
 
 export function removeImage(_uri: string): void {}
+
+/** Web keeps whatever URI the picker gave; nothing moves. */
+export const storedImagePath = (uri: string): string => uri;
+export const imageUri = (stored: string): string => stored;

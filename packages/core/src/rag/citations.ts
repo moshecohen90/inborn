@@ -3,13 +3,24 @@ import type { Citation, DocKind, DocumentRecord, RetrievalHit } from "./types";
 
 const SNIPPET_CHARS = 220;
 
-/** Page-based formats cite pages, a workbook cites its sheet, text formats are sectioned, so the chip says "§". */
-export function pageGlyph(kind: DocKind): string {
-  return kind === "pdf" || kind === "image" ? "p." : kind === "xlsx" ? "sheet " : "§";
+/** What `page` counts for a kind: a real page (PDF, scan), a workbook sheet, or an ordinal part of a text cut by size/headings. */
+export type PageUnit = "page" | "sheet" | "part";
+
+export function pageUnit(kind: DocKind): PageUnit {
+  return kind === "pdf" || kind === "image" ? "page" : kind === "xlsx" ? "sheet" : "part";
 }
 
-export function citationLabel(c: Pick<Citation, "docName" | "kind" | "page">): string {
-  return `${c.docName} · ${pageGlyph(c.kind)}${c.page}`;
+/** Words per unit; the UI passes its translations, the prompt keeps English. */
+export type PageWords = Record<PageUnit, string>;
+export const PAGE_WORDS: PageWords = { page: "p.", sheet: "sheet ", part: "part " };
+
+/** "§" was the old text glyph; a section number the document did not write itself is labelled "part N" now. */
+export function pageGlyph(kind: DocKind, words: PageWords = PAGE_WORDS): string {
+  return words[pageUnit(kind)];
+}
+
+export function citationLabel(c: Pick<Citation, "docName" | "kind" | "page">, words: PageWords = PAGE_WORDS): string {
+  return `${c.docName} · ${pageGlyph(c.kind, words)}${c.page}`;
 }
 
 export function snippetOf(text: string, max = SNIPPET_CHARS): string {

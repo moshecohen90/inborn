@@ -77,7 +77,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
           </View>
           {locked ? <ProTag onPress={unlock} /> : null}
           <Toggle
-            testID="memory-master" value={enabled} onChange={(on) => {
+            testID="memory-master" label={t("memory.master")} value={enabled} onChange={(on) => {
               setEnabled(on);
               void store.setMemoryEnabled(on);
             }} />
@@ -100,7 +100,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
                 </Pressable>
               </View>
             </View>
-            <Toggle value={f.enabled} onChange={(on) => void store.library.updateMemory(f.id, { enabled: on }).then(refresh)} />
+            <Toggle label={f.content} value={f.enabled} onChange={(on) => void store.library.updateMemory(f.id, { enabled: on }).then(refresh)} />
           </View>
         ))}
         {!facts.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("memory.empty")}</Text> : null}
@@ -127,6 +127,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
             <Text style={[type.body, styles.grow, { color: theme.text }]}>{personaName(p)}</Text>
             <Toggle
               testID={`memory-persona-${p.id}`}
+              label={personaName(p)}
               value={perPersona[p.id] ?? true}
               onChange={(on) => {
                 setPerPersona((f) => ({ ...f, [p.id]: on }));

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
-import { dark, light, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../components/shell/NativeChrome";
-import { citationLabel, type Citation } from "@inborn/core";
+import { citationLabel, type Citation, type PageWords } from "@inborn/core";
 import { getLibrary } from "./library";
 import { font } from "../services/type";
 import { useOpenSheet } from "../lib/openSheets";
@@ -17,9 +18,16 @@ export interface CitationsProps {
 }
 
 /** "contract.pdf · p.4" chips under an answer (spec S12); tapping opens the passage. */
+/** "p." / "sheet" / "part": the number after it is a real page only for PDFs and scans (QA F8). */
+export function usePageWords(): PageWords {
+  const { t } = useTranslation();
+  return { page: t("documents.cite.page"), sheet: t("documents.cite.sheet"), part: t("documents.cite.part") };
+}
+
 export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
   const { t } = useTranslation();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const words = usePageWords();
+  const { theme } = useTheme();
   const [open, setOpen] = useState<Citation | null>(null);
   if (!citations.length) return null;
   return (
@@ -31,13 +39,13 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
             key={`${c.n}-${c.chunkId}`}
             testID={`citation-${c.n}`}
             accessibilityRole="button"
-            accessibilityLabel={t("documents.openPassage", { label: citationLabel(c) })}
+            accessibilityLabel={t("documents.openPassage", { label: citationLabel(c, words) })}
             onPress={() => (onOpen ? onOpen(c) : setOpen(c))}
             style={[styles.chip, { backgroundColor: theme.surface2, borderColor: theme.border }]}
           >
             <Text style={[styles.chipText, { color: theme.text2 }]}>
               {cited ? `[${c.n}] ` : ""}
-              {citationLabel(c)}
+              {citationLabel(c, words)}
             </Text>
           </Pressable>
         ))}
@@ -49,6 +57,7 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
 
 export function PassageSheet({ citation, theme, onClose }: { citation: Citation; theme: Theme; onClose: () => void }) {
   const { t } = useTranslation();
+  const words = usePageWords();
   const [text, setText] = useState<string>(citation.snippet);
   useEffect(() => {
     let alive = true;
@@ -68,7 +77,7 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
       <Pressable style={styles.backdrop} onPress={onClose}>
         <Pressable testID="passage-sheet" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
           <GlassFill />
-          <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation)}</Text>
+          <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation, words)}</Text>
           <ScrollView style={styles.scroll}>
             <Text style={[styles.body, { color: theme.text }]}>{text}</Text>
           </ScrollView>

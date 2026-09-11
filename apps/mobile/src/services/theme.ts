@@ -5,22 +5,36 @@ import { dark, light, MAX_TEXT_SCALE, type Theme, type ThemeMode } from "@inborn
 let override: ThemeMode = "system";
 const listeners = new Set<() => void>();
 
-/** One switch for the whole app: native screens that read useColorScheme() (Chat, Chats) follow it through Appearance; react-native-web has no setColorScheme, so there the override applies to the shell's own screens. */
+/**
+ * The one theme source (QA B14): every surface resolves `override` first and the system scheme only under "system".
+ * Native `useColorScheme()` alone is not enough: on Android a uiMode change reports the system scheme even while
+ * AppCompat holds the app in night mode, so screens reading it directly split from the ones reading the override.
+ */
 export function applyThemeMode(mode: ThemeMode): void {
+  const changed = mode !== override;
   override = mode;
-  for (const l of listeners) l();
+  if (changed) for (const l of listeners) l();
   if (typeof Appearance.setColorScheme === "function") Appearance.setColorScheme(mode === "system" ? "unspecified" : mode);
 }
+
+export const themeMode = (): ThemeMode => override;
 
 const subscribe = (l: () => void) => {
   listeners.add(l);
   return () => listeners.delete(l);
 };
 
-export function useTheme(): { theme: Theme; scheme: "dark" | "light" } {
+export type Scheme = "dark" | "light";
+
+export const resolveScheme = (mode: ThemeMode, system: string | null | undefined): Scheme => ((mode === "system" ? system : mode) === "light" ? "light" : "dark");
+
+/** Resolved scheme for hooks and for code that runs before React (the splash's first paint). */
+export const currentScheme = (): Scheme => resolveScheme(override, Appearance.getColorScheme());
+
+export function useTheme(): { theme: Theme; scheme: Scheme } {
   const system = useColorScheme();
   const mode = useSyncExternalStore(subscribe, () => override, () => override);
-  const scheme = (mode === "system" ? system : mode) === "light" ? "light" : "dark";
+  const scheme = resolveScheme(mode, system);
   return { theme: scheme === "light" ? light : dark, scheme };
 }
 

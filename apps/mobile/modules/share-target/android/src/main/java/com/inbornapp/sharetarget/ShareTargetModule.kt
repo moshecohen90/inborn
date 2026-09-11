@@ -37,6 +37,22 @@ class ShareTargetModule : Module() {
 
     Function("hasProcessText") { PendingShare.hasProcessText() }
 
+    /** What the document provider calls a picked content:// item (OpenableColumns); the URI's last segment is only an id. */
+    Function("contentMeta") { uri: String ->
+      val resolver = (appContext.currentActivity ?: appContext.reactContext)?.contentResolver ?: return@Function null
+      val parsed = Uri.parse(uri)
+      var name: String? = null
+      try {
+        resolver.query(parsed, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { c ->
+          val n = c.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+          if (c.moveToFirst() && n >= 0) name = c.getString(n)
+        }
+      } catch (_: Exception) {
+      }
+      val type = try { resolver.getType(parsed) } catch (_: Exception) { null }
+      if (name == null && type == null) null else mapOf("name" to name, "mimeType" to type)
+    }
+
     OnNewIntent { intent ->
       val activity = appContext.currentActivity
       val payload = (if (activity != null) payloadOf(activity, intent) else null) ?: PendingShare.take()

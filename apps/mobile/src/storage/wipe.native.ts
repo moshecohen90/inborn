@@ -1,6 +1,7 @@
 import * as SQLite from "expo-sqlite";
 import * as SecureStore from "expo-secure-store";
 import { Directory, File, Paths } from "expo-file-system";
+import { keepOnWipe } from "@inborn/core";
 import { DB_NAME } from "./schema";
 import { wipeSecureItems } from "./secureItems";
 
@@ -14,8 +15,6 @@ export interface WipeReport {
   keptModels: number;
 }
 
-const isModel = (name: string) => /\.gguf$/i.test(name);
-
 /** Emergency wipe (spec §5.7): encrypted DB, every Keychain item (key, passcode) and every file in the app's documents; no recovery. */
 export async function wipe(opts: WipeOptions): Promise<WipeReport> {
   const report: WipeReport = { deletedFiles: 0, keptModels: 0 };
@@ -24,8 +23,8 @@ export async function wipe(opts: WipeOptions): Promise<WipeReport> {
   for (const dir of [new Directory(Paths.document), new Directory(Paths.cache)]) {
     if (!dir.exists) continue;
     for (const entry of dir.list()) {
-      const name = entry.name;
-      if (!opts.models && isModel(name)) {
+      /* The vault directory (shards, companions, vault.json) counts as models too, not only a top-level .gguf (QA F2). */
+      if (keepOnWipe({ name: entry.name, directory: entry instanceof Directory }, !opts.models)) {
         report.keptModels++;
         continue;
       }

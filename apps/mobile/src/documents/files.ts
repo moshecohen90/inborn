@@ -7,6 +7,10 @@ export function documentsDir(): { uri: string } {
   return { uri: "blob:" };
 }
 
+/** Blob URIs are session-scoped already; nothing to re-base. */
+export const resolveDocUri = (stored: string): string => stored;
+export const storedDocPath = (uri: string): string => uri;
+
 export function registerBlob(blob: Blob, name: string): string {
   const uri = `blob:inborn/${Date.now()}-${Math.random().toString(36).slice(2)}/${encodeURIComponent(name)}`;
   blobs.set(uri, blob);

@@ -139,6 +139,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "./plugins/withUploadSigning",
     /* Spec floor is Android 8.0 (docs/qa/release-checklist.md T30). */
     ["./plugins/withMinSdk", { minSdkVersion: 26 }],
+    /* The stored theme decides the night mode before the first paint; the dark ground is the FARADAY bg token (packages/ui tokens.ts). */
+    ["./plugins/withStoredNightMode", { darkBackground: "#0A0D11" }],
   ],
 });
 

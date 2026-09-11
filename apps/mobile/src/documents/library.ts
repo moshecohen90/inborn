@@ -19,7 +19,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
-import { copyIntoLibrary, deleteFile, readHead, sha256Of, sizeOf } from "./files";
+import { copyIntoLibrary, deleteFile, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 
 /** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
@@ -101,7 +101,14 @@ export class DocumentLibrary {
     }
     for (const d of await this.store.listDocuments()) {
       /* A crash mid-index leaves "indexing"; it resumes from the committed page on the next tap. */
-      this.docs.set(d.id, d.status === "indexing" ? { ...d, status: "cancelled" } : d);
+      const doc = d.status === "indexing" ? { ...d, status: "cancelled" as const } : d;
+      const uri = doc.uri ? storedDocPath(doc.uri) : doc.uri;
+      /* Records written before round 9 hold an absolute URI of a container that may be gone (QA F11); re-based once, then kept relative. */
+      if (uri !== doc.uri) {
+        const migrated = { ...doc, uri };
+        this.docs.set(d.id, migrated);
+        void this.store.putDocument(migrated);
+      } else this.docs.set(d.id, doc);
     }
     await this.refreshEmbedder();
     this.notify();
@@ -307,7 +314,7 @@ export class DocumentLibrary {
 
   /* A copy made a moment ago can still read back as 0 bytes on Android; a non-empty file gets one more try. */
   private async openWithRetry(extractor: TextExtractor, doc: DocumentRecord): Promise<OpenedDocument> {
-    const source = { uri: doc.uri ?? "", name: doc.name, kind: doc.kind, bytes: doc.bytes };
+    const source = { uri: doc.uri ? resolveDocUri(doc.uri) : "", name: doc.name, kind: doc.kind, bytes: doc.bytes };
     try {
       return await extractor.open(source);
     } catch (e: unknown) {

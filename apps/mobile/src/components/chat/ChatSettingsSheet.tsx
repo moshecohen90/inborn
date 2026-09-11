@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BUILT_IN_PERSONAS, type Persona } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
@@ -51,7 +51,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
           <Text style={[type.monoLabel, { color: theme.text2 }]}>{modelLabel(modelId)}</Text>
         </View>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chatSettings.persona")}</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.personas}>
+        <View style={styles.personas}>
           {personas.map((p) => {
             const active = (draft.personaId ?? BUILT_IN_PERSONAS[0]!.id) === p.id;
             return (
@@ -61,7 +61,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
               </Pressable>
             );
           })}
-        </ScrollView>
+        </View>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chatSettings.systemPrompt")}</Text>
         <TextInput
           testID="system-prompt"
@@ -77,7 +77,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
             <Text style={[type.body, { color: thinkingAvailable ? theme.text : theme.text3 }]}>{t("chatSettings.thinking")}</Text>
             <Text style={[type.caption, { color: theme.text3 }]}>{thinkingAvailable ? t("chatSettings.thinkingHint") : t("chatSettings.thinkingOff", { model: modelLabel(modelId) })}</Text>
           </View>
-          <Toggle testID="thinking-switch" value={thinkingAvailable && draft.thinking} disabled={!thinkingAvailable} onChange={(thinking) => setDraft((d) => ({ ...d, thinking }))} />
+          <Toggle testID="thinking-switch" label={t("chatSettings.thinking")} value={thinkingAvailable && draft.thinking} disabled={!thinkingAvailable} onChange={(thinking) => setDraft((d) => ({ ...d, thinking }))} />
         </View>
         <Pressable testID="settings-done" accessibilityRole="button" onPress={done} style={[shape.control, { backgroundColor: theme.ctaFill, alignSelf: "flex-end" }]}>
           <Text style={[type.body, type.strong, { color: theme.ctaText }]}>{t("chats.save")}</Text>
@@ -90,8 +90,9 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
 const styles = StyleSheet.create({
   body: { paddingHorizontal: 12, gap: 10, paddingBottom: 8 },
   modelChip: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 6 },
-  personas: { gap: 8, paddingVertical: 2 },
-  personaChip: { flexDirection: "row", gap: 8, minHeight: 36, paddingLeft: 6, paddingRight: 14 },
+  /* Chips wrap instead of scrolling off the edge (QA F9: the last chip was clipped). */
+  personas: { flexDirection: "row", flexWrap: "wrap", gap: 8, paddingVertical: 2 },
+  personaChip: { flexDirection: "row", alignItems: "center", gap: 8, minHeight: 36, paddingLeft: 6, paddingRight: 14, flexShrink: 1 },
   prompt: { minHeight: 96, textAlignVertical: "top" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 12 },
   grow: { flex: 1, gap: 2 },

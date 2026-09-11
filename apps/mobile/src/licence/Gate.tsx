@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
-import { dark, light, radius } from "@inborn/ui";
+import { radius } from "@inborn/ui";
 import { requiredTier, type Feature } from "@inborn/core";
 import { useEntitlement } from "./hooks";
 import { font } from "../services/type";
@@ -18,7 +19,7 @@ export interface GateProps {
 /** `<Gate feature="documents" onUnlock={openPaywall}>…</Gate>`: children render only when the tier allows the feature. */
 export function Gate({ feature, children, fallback, onUnlock }: GateProps) {
   const { t } = useTranslation();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const { theme } = useTheme();
   const { can } = useEntitlement();
   if (can(feature)) return <>{children}</>;
   if (fallback !== undefined) return <>{fallback}</>;

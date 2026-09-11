@@ -273,6 +273,8 @@
   "documents.storage": "{count, plural, =0 {No documents} one {# document} other {# documents}} · {size} on this device",
   "documents.onDevice": "INDEXED ON THIS DEVICE · {store}",
   "documents.pages": "{count, plural, one {# page} other {# pages}}",
+  "documents.sheets": "{count, plural, one {# sheet} other {# sheets}}",
+  "documents.parts": "{count, plural, one {# part} other {# parts}}",
   "documents.empty.title": "No documents yet.",
   "documents.empty.hint": "Add a PDF, Word file, text or a scan. It is read, indexed and searched here. Nothing is uploaded.",
   "documents.strict.title": "Answer only from my documents",
@@ -962,5 +964,8 @@
   "vault.hf.error.server": "huggingface.co answered with an error",
   "vault.hf.error.bad-response": "Unexpected answer from huggingface.co",
   "vault.source.hf": "huggingface.co",
-  "proof.allowlist.hfCdn": "the file bytes of a Hugging Face download, after huggingface.co redirects there"
+  "proof.allowlist.hfCdn": "the file bytes of a Hugging Face download, after huggingface.co redirects there",
+  "documents.cite.page": "p.",
+  "documents.cite.sheet": "sheet ",
+  "documents.cite.part": "part "
 }

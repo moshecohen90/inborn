@@ -1,4 +1,4 @@
-import { InMemoryChatRepository, isLibraryRepository, sortChats, type ChatRepository, type LibraryRepository } from "./repository";
+import { InMemoryChatRepository, isLibraryRepository, sortChats, type ChatRepository, type LibraryRepository, type SearchOptions } from "./repository";
 import type { Chat, ChatMessage, ChatPatch, MemoryFact, MessagePatch, NewChat, NewMessage, SearchHit } from "./types";
 
 export const MEMORY_ENABLED_KEY = "memory.enabled";
@@ -80,8 +80,8 @@ export class ChatStore {
   }
 
   /** Only the persistent side is searchable: incognito chats are not in the index by design. */
-  search(query: string): Promise<SearchHit[]> {
-    return this.persistent.search(query);
+  search(query: string, options?: SearchOptions): Promise<SearchHit[]> {
+    return this.persistent.search(query, options);
   }
 
   /** Facts the model may see for this chat: none in incognito, none when memory is off, persona-scoped otherwise. */

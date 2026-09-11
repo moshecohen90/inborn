@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- Package visibility for the installed synthesisers (Android 11+): the app picks the engine that has a voice instead of binding the default blindly. -->
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.TTS_SERVICE" />
+    </intent>
+  </queries>
+</manifest>

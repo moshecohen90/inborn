@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Linking, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
-import { dark, light, radius, type Theme } from "@inborn/ui";
+import { radius, type Theme } from "@inborn/ui";
 import { delivery, refreshModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
@@ -25,7 +26,7 @@ type Phase =
 /** Web doors (spec §8.9, §14.3): the notice strip, the phone door, the download door and the engine switch. */
 export function WebShell({ children }: { children: ReactNode }) {
   const boot = webBoot();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const { theme } = useTheme();
   const [ready] = useState(() => webReady(boot));
   const [offline, setOffline] = useState<OfflineState>("installing");
 

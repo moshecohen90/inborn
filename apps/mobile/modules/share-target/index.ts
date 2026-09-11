@@ -4,6 +4,7 @@ interface NativeShareTarget {
   consumePending(): Record<string, unknown> | null;
   finishProcessText(text: string | null): boolean;
   hasProcessText(): boolean;
+  contentMeta(uri: string): { name?: string | null; mimeType?: string | null } | null;
   addListener(event: "onShare", listener: (payload: Record<string, unknown>) => void): { remove(): void };
 }
 
@@ -23,3 +24,6 @@ export function onShare(listener: (payload: Record<string, unknown>) => void): (
 export const finishProcessText = (text: string | null): boolean => native?.finishProcessText(text) ?? false;
 
 export const hasProcessText = (): boolean => native?.hasProcessText() ?? false;
+
+/** Android: the display name and MIME type the provider reports for a content:// URI (the SAF picker's URI carries only an id). */
+export const contentMeta = (uri: string): { name?: string | null; mimeType?: string | null } | null => (uri.startsWith("content:") ? (native?.contentMeta(uri) ?? null) : null);

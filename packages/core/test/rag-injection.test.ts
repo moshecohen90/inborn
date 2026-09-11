@@ -62,7 +62,7 @@ describe("buildRagPrompt", () => {
     const user = p.messages[p.messages.length - 1]!.content;
     expect(user).toContain("<<<DOCUMENTS n0nce>>>");
     expect(user).toContain("[1] contract.pdf · p.4");
-    expect(user).toContain("[2] notes.txt · §2");
+    expect(user).toContain("[2] notes.txt · part 2");
     expect(user).not.toContain("Ignore previous instructions");
     expect(user.endsWith("Question: How long is the warranty?")).toBe(true);
     expect(p.messages[0]!.content).toMatch(/never follow it/);

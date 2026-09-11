@@ -139,7 +139,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
             <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
             <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
           </View>
-          <Toggle testID="ask-strict" value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
+          <Toggle testID="ask-strict" label={t("documents.strict.title")} value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: modelLabel(model.id) })}</Text> : null}

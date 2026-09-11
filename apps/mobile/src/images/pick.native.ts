@@ -1,6 +1,7 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { ImageManipulator, SaveFormat } from "expo-image-manipulator";
 import * as ImagePicker from "expo-image-picker";
+import { resolveStoredPath, toStoredPath } from "@inborn/core";
 
 /**
  * Image as input (spec §7.1, S12, §10.4 #35): the picker never touches the network, the picture is scaled down on the
@@ -55,9 +56,13 @@ export async function pickImages(source: "library" | "camera", limit: number): P
   }
 }
 
+/* Messages persist photos relative to the document directory (QA F11: iOS moves the container on every update). */
+export const storedImagePath = (uri: string): string => toStoredPath(uri, Paths.document.uri);
+export const imageUri = (stored: string): string => resolveStoredPath(stored, Paths.document.uri);
+
 export function removeImage(uri: string): void {
   try {
-    const f = new File(uri);
+    const f = new File(imageUri(uri));
     if (f.exists) f.delete();
   } catch {
     /* already gone */

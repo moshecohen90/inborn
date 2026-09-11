@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Platform, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { FlatList, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../../services/theme";
 import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { dark, light, radius } from "@inborn/ui";
+import { radius } from "@inborn/ui";
 import { PRODUCTS, fallbackPrice, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
@@ -11,10 +12,10 @@ import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
 import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
-import { devFileUri } from "../../documents/files";
+import { devFileUri, sizeOf } from "../../documents/files";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
-import { PICK_TYPES, officeLocked, sniffPicked } from "../../documents/office";
+import { PICK_TYPES, officeLocked, pickedName, sniffPicked } from "../../documents/office";
 import { useVault } from "../../vault";
 import { AskDocuments, type AskOutcome } from "./AskDocuments";
 import { DocumentDetails } from "./DocumentDetails";
@@ -33,7 +34,7 @@ export interface DocumentsScreenProps {
 /** S40 Document library: documents with state, strict mode, add file, ask about selected, details. */
 export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: DocumentsScreenProps) {
   const { t } = useTranslation();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const { library, state } = useDocuments();
   const { vault } = useVault();
@@ -91,7 +92,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         for (const d of library.state().documents) if (d.status === "needs-ocr") library.runOcr(d.id);
         await wait();
       }
-      const docs = library.state().documents.map((d) => ({ name: d.name, kind: d.kind, status: d.status, pages: d.pages, indexedPages: d.indexedPages, chunks: d.chunkCount, language: d.language, flagged: d.flaggedLines, ocrPages: d.ocrPages, error: d.error }));
+      const docs = library.state().documents.map((d) => ({ name: d.name, kind: d.kind, status: d.status, pages: d.pages, indexedPages: d.indexedPages, chunks: d.chunkCount, language: d.language, flagged: d.flaggedLines, ocrPages: d.ocrPages, error: d.error, uri: d.uri, bytesOnDisk: d.uri ? sizeOf(d.uri) : 0 }));
       devResults.current = { indexMs: Date.now() - started, embedder: library.state().embedder, store: library.state().storeKind, docs, ocrEngine: ocrEngine(), ocr: devOcrReads };
       writeDevResult(devResults.current);
       if (DEV_AUTOASK) {
@@ -114,7 +115,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     try {
       const picked = await File.pickFileAsync({ multipleFiles: false, mimeTypes: PICK_TYPES });
       if (picked.canceled) return;
-      const name = picked.result.name ?? "document";
+      const name = pickedName(picked.result.uri, picked.result.name);
       /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
       if (proOverride === undefined && officeLocked(tier, sniffPicked(picked.result.uri, name))) {
         setWorkMoment(true);
@@ -162,7 +163,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Toggle testID="documents-strict" value={state.strict} onChange={(v) => library.setStrict(v)} />
+        <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict} onChange={(v) => library.setStrict(v)} />
       </View>
       {workMoment ? (
         <View testID="office-work-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { paywallFor, renderAudit, type AuditLog as AuditLogModel, type AuditVerdict, type Folder } from "@inborn/core";
+import { paywallFor, renderAudit, subjectRef, type AuditLog as AuditLogModel, type AuditVerdict, type Folder } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
@@ -72,7 +72,7 @@ export function AuditLog() {
             {log?.entries
               .slice()
               .reverse()
-              .map((e) => <Row key={e.seq} testID={`audit-entry-${e.seq}`} label={t(`audit.action.${e.action}`)} sub={`${when(e.at)}${e.subject?.title ? ` · ${e.subject.title}` : ""}${e.subject?.recordHash ? ` · ${e.subject.recordHash.slice(0, 12)}…` : ""}`} value={`#${e.seq}`} />)}
+              .map((e) => <Row key={e.seq} testID={`audit-entry-${e.seq}`} label={t(`audit.action.${e.action}`)} sub={`${when(e.at)}${e.subject?.title ? ` · ${e.subject.title}` : subjectRef(e.subject) ? ` · ${subjectRef(e.subject)}` : ""}${e.subject?.recordHash ? ` · ${e.subject.recordHash.slice(0, 12)}…` : ""}`} value={`#${e.seq}`} />)}
           </Section>
           <View style={styles.actions}>
             <Button testID="audit-share" title={t("audit.share")} onPress={() => void (log && shareFile({ filename: `inborn-audit-${picked}.txt`, mimeType: "text/plain", body: renderAudit(log, name) }, t("audit.title")))} />

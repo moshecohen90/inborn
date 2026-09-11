@@ -27,3 +27,5 @@ export * from "./redaction";
 export * from "./device";
 export * from "./voice";
 export * from "./work";
+export * from "./paths/storedPath";
+export * from "./paths/wipePolicy";

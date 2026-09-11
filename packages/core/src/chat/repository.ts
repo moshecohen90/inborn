@@ -34,8 +34,22 @@ export interface ChatRepository {
   updateMessage(chatId: string, messageId: string, patch: MessagePatch): Promise<void>;
   /** Deletes `messageId` and every message after it (edit-and-resend, regenerate). Returns how many went. */
   deleteMessagesFrom(chatId: string, messageId: string): Promise<number>;
-  /** Titles and message text; every whitespace-separated term must match a word prefix (FTS5-like). */
-  search(query: string): Promise<SearchHit[]>;
+  /** Titles and message text; every whitespace-separated term must match a word prefix (FTS5-like). Chats in `hiddenFolderIds` (locked vaults, §7.8) never surface: no title, no snippet. */
+  search(query: string, options?: SearchOptions): Promise<SearchHit[]>;
+}
+
+export interface SearchOptions {
+  /** Folders whose chats are out of scope for this query (a client vault that is not open). */
+  hiddenFolderIds?: Iterable<string>;
+}
+
+/** Ids of the chats a query must not touch: every chat filed in one of the hidden folders. */
+export function searchExclusions(chats: readonly Pick<Chat, "id" | "folderId">[], hiddenFolderIds: Iterable<string> | undefined): Set<string> {
+  const hidden = new Set(hiddenFolderIds ?? []);
+  const out = new Set<string>();
+  if (!hidden.size) return out;
+  for (const c of chats) if (c.folderId && hidden.has(c.folderId)) out.add(c.id);
+  return out;
 }
 
 /** Folders, personas, memory and reports (§5.3 row 1). Persistent only: incognito never writes here. */
@@ -256,11 +270,14 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
     return removed;
   }
 
-  async search(query: string): Promise<SearchHit[]> {
+  async search(query: string, options?: SearchOptions): Promise<SearchHit[]> {
     const terms = searchTerms(query);
     if (!terms.length) return [];
     const hits: SearchHit[] = [];
-    for (const chat of await this.listChats()) {
+    const chats = await this.listChats();
+    const excluded = searchExclusions(chats, options?.hiddenFolderIds);
+    for (const chat of chats) {
+      if (excluded.has(chat.id)) continue;
       if (matchesTerms(chat.title, terms)) hits.push({ chatId: chat.id, title: chat.title, snippet: chat.title });
       for (const m of this.messages.get(chat.id) ?? []) {
         if (matchesTerms(m.content, terms)) hits.push({ chatId: chat.id, title: chat.title, messageId: m.id, snippet: snippetAround(m.content, terms) });

@@ -51,7 +51,7 @@ export function ReportSheet({ message, onClose, onSave, onEmail }: Props) {
         <TextInput testID="report-note" value={note} onChangeText={setNote} placeholder={t("report.notePlaceholder")} placeholderTextColor={theme.text3} multiline style={[shape.field, styles.note, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />
         <View style={styles.switchRow}>
           <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("report.includeMessage")}</Text>
-          <Toggle testID="report-include" value={include} onChange={setInclude} />
+          <Toggle testID="report-include" label={t("report.includeMessage")} value={include} onChange={setInclude} />
         </View>
         <Text style={[type.caption, { color: theme.text3 }]}>{t("report.explain", { device: deviceNoun() })}</Text>
         <View style={styles.actions}>

@@ -99,7 +99,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     }
     let alive = true;
     store
-      .search(q)
+      .search(q, { hiddenFolderIds: work.hiddenFolderIds() })
       .then((h) => {
         if (alive) setHits(h);
       })
@@ -107,7 +107,18 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     return () => {
       alive = false;
     };
-  }, [query, store]);
+    // workVersion: a vault locking or unlocking changes what the query may see.
+  }, [query, store, work, workVersion]);
+
+  /* A chat inside a locked vault never opens from a row or a hit without the vault's code (§7.8); the sheet opens it afterwards. */
+  const pendingOpen = useRef<Chat | null>(null);
+  const openGuarded = (chat: Chat) => {
+    if (!work.isHidden(chat)) return onOpenChat(chat);
+    const folder = folders.find((f) => f.id === chat.folderId);
+    if (!folder) return;
+    pendingOpen.current = chat;
+    setVaultCode({ mode: { kind: "verify", folderName: folder.name }, folder });
+  };
 
   const commitDelete = useCallback(async () => {
     const p = pending.current;
@@ -187,13 +198,13 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     const byChat = new Map<string, { chat: Chat; snippets: string[] }>();
     for (const h of hits) {
       const chat = visible.find((c) => c.id === h.chatId);
-      if (!chat) continue;
+      if (!chat || work.isHidden(chat)) continue;
       const entry = byChat.get(h.chatId) ?? { chat, snippets: [] };
       if (h.messageId && entry.snippets.length < 2) entry.snippets.push(h.snippet);
       byChat.set(h.chatId, entry);
     }
     return [...byChat.values()];
-  }, [hits, visible]);
+  }, [hits, visible, work, workVersion]);
 
   const toggleSelect = (id: string) =>
     setSelected((s) => {
@@ -213,7 +224,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
         testID={`chat-row-${item.id}`}
         accessibilityRole="button"
         accessibilityState={selecting ? { selected: selected.has(item.id) } : undefined}
-        onPress={() => (selecting ? toggleSelect(item.id) : onOpenChat(item))}
+        onPress={() => (selecting ? toggleSelect(item.id) : openGuarded(item))}
         onLongPress={() => (selecting ? undefined : setMenu({ chat: item, renaming: false, title: item.title }))}
         style={({ pressed }) => [styles.row, { borderColor: theme.border, backgroundColor: pressed || item.id === activeChatId ? theme.surface1 : theme.bg }]}
       >
@@ -295,7 +306,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
         <ScrollView contentContainerStyle={styles.list} keyboardShouldPersistTaps="handled">
           {searchResults.length ? (
             searchResults.map(({ chat, snippets }) => (
-              <Pressable key={chat.id} testID={`hit-${chat.id}`} accessibilityRole="button" onPress={() => onOpenChat(chat)} style={({ pressed }) => [styles.row, styles.hit, { borderColor: theme.border, backgroundColor: pressed ? theme.surface1 : "transparent" }]}>
+              <Pressable key={chat.id} testID={`hit-${chat.id}`} accessibilityRole="button" onPress={() => openGuarded(chat)} style={({ pressed }) => [styles.row, styles.hit, { borderColor: theme.border, backgroundColor: pressed ? theme.surface1 : "transparent" }]}>
                 <View style={styles.rowText}>
                   <Text numberOfLines={1} style={[type.body, { color: theme.text }]}>
                     {chat.title || t("newChat.title")}
@@ -515,8 +526,8 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
         onChanged={() => void refresh()}
         canMoveTo={(f) => !work.isHidden({ folderId: f.id })}
         onMoved={(chat, from, to) => {
-          if (to) void work.log(to, "chat.moved-in", { chatId: chat.id, title: chat.title });
-          if (from) void work.log(from, "chat.moved-out", { chatId: chat.id, title: chat.title });
+          if (to) void work.log(to, "chat.moved-in", { chatId: chat.id });
+          if (from) void work.log(from, "chat.moved-out", { chatId: chat.id });
         }}
         extraAction={(f) =>
           work.isVault(f.id) ? (
@@ -539,12 +550,20 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       />
       <VaultCodeSheet
         mode={vaultCode?.mode ?? null}
-        onClose={() => setVaultCode(null)}
+        onClose={() => {
+          pendingOpen.current = null;
+          setVaultCode(null);
+        }}
         onSubmit={async (code) => {
           const v = vaultCode;
           if (!v) return false;
           const ok = v.mode.kind === "verify" ? await work.unlock(v.folder.id, code) : v.mode.kind === "set" ? await work.createVault(v.folder.id, code, v.folder.name) : await work.changeCode(v.folder.id, code);
-          if (ok) setVaultCode(null);
+          if (ok) {
+            setVaultCode(null);
+            const chat = pendingOpen.current;
+            pendingOpen.current = null;
+            if (chat && v.mode.kind === "verify") afterSheetClose(() => onOpenChat(chat));
+          }
           return ok;
         }}
       />
