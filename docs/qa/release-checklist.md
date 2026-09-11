@@ -89,6 +89,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Procedure: `EXPO_PUBLIC_AUTOPROMPT=1`-style loop or a script that sends a prompt every 40 s for 120 min on the floor device, Fast model, screen on. Record every 10 min: `adb shell dumpsys meminfo com.inbornapp.mobile | grep TOTAL`, `adb shell dumpsys battery`, `adb shell dumpsys thermalservice`; iOS: Instruments › Activity Monitor + Energy Log, `pymobiledevice3 developer dvt sysmon`.
 - Pass: zero crashes; RSS growth < 10% between minute 20 and minute 120; thermal "serious" produces the "Slowing down" line and never a kill; battery drain ≤ 0.5%/1,000 tokens; jetsam does not occur (iOS: no `JetsamEvent` in `pymobiledevice3 syslog`).
 - Runs on: D-AND-FLOOR, D-IOS-FLOOR. "Sharp on 8 GB: no jetsam" half: BLOCKED: needs iPhone 15 Pro / Pixel 8.
+- Result 11.9.2026, D-AND-FLOOR, Play versionCode 4, Instant (`soak-run-2026-09-11.md`): **PASS** for crashes (0 crash / ANR / kill, one pid 17:37–20:31, 58 prompts, 12 chats, 3 background returns, Vault + Proof round trips) and memory (PSS max 1,122 MB, minute 20 → 120: PSS −31 %, native heap +5.4 %); skin max 43.3 °C, never a kill; "Slowing down" line not exercised (OxygenOS thermal status quirk); battery drain not measurable (USB-tethered, 100 %). D-IOS-FLOOR: not run.
 
 ## E. Lifecycle (§14.7 line 5)
 
