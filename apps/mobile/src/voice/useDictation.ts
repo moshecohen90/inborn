@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { TranscriptMerger, chooseDictation, joinDictation, type DictationEngine, type LicenceTier } from "@inborn/core";
+import { TranscriptMerger, chooseDictation, joinDictation, shouldRetryDictationStart, type DictationEngine, type LicenceTier } from "@inborn/core";
 import { installOfflineDictation, requestMicPermission, startSystemDictation, systemDictationStatus, systemDictationSupported, type DictationHandle } from "./dictation";
 import { MicRecorder, micAvailable } from "./mic";
 import { getWhisper, whisperInstalled } from "./whisper";
@@ -65,11 +65,12 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     setPhase({ kind: "idle" });
   }, []);
 
-  const startSystem = useCallback(() => {
+  const startSystem = useCallback((attempt = 0) => {
     const merger = new TranscriptMerger(draftRef.current);
     setPhase({ kind: "listening", engine: "system" });
     const startedAt = Date.now();
     let firstInterimMs: number | undefined;
+    let retryPending = false;
     system.current = startSystemDictation(locale, {
       onInterim: (text) => {
         firstInterimMs ??= Date.now() - startedAt;
@@ -81,6 +82,11 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
         setDraft(merger.text());
       },
       onEnd: () => {
+        if (retryPending) {
+          system.current = null;
+          startSystem(attempt + 1);
+          return;
+        }
         const text = merger.finish();
         setDraft(text);
         devVoiceRecord("dictation", { engine: "system", locale, firstInterimMs, totalMs: Date.now() - startedAt, text });
@@ -88,7 +94,13 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
         finishSystem();
       },
       onError: (code, message) => {
-        devVoiceRecord("dictationError", { code, message, afterMs: Date.now() - startedAt });
+        const afterMs = Date.now() - startedAt;
+        devVoiceRecord("dictationError", { code, message, afterMs, attempt });
+        /* The first start after the permission grant loses the audio session to the closing alert; start again, silently. */
+        if (shouldRetryDictationStart({ code, afterMs, attempt })) {
+          retryPending = true;
+          return;
+        }
         if (code === "no-speech" || code === "aborted" || code === "speech-timeout") return;
         if (code === "not-allowed") setProblem({ kind: "permission" });
         /* "client" is what Android's on-device service answers when the locale's pack was never downloaded, even though it lists the locale. */

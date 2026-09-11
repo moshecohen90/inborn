@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chooseDictation, normalizeLocale, pickVoice, speechChunks, speechLanguage } from "../src/voice/speech";
+import { chooseDictation, normalizeLocale, pickVoice, shouldRetryDictationStart, speechChunks, speechLanguage } from "../src/voice/speech";
 import { buildPrompt } from "../src/chat/context";
 import { limits } from "../src/licence/gates";
 
@@ -82,5 +82,18 @@ describe("images through the licence limits and the prompt builder", () => {
     const b = buildPrompt({ system: "s", nCtx: 4096, messages: [{ id: "1", role: "user", content: "look", images: ["file:///a.jpg"] }, { id: "2", role: "assistant", content: "ok" }] });
     expect(b.messages[1]).toEqual({ role: "user", content: "look", images: ["file:///a.jpg"] });
     expect(b.messages[2]).toEqual({ role: "assistant", content: "ok" });
+  });
+});
+
+describe("shouldRetryDictationStart", () => {
+  it("retries once when the audio session was interrupted right after start", () => {
+    expect(shouldRetryDictationStart({ code: "interrupted", afterMs: 207, attempt: 0 })).toBe(true);
+    expect(shouldRetryDictationStart({ code: "interrupted", afterMs: 500, attempt: 0 })).toBe(true);
+  });
+  it("never retries a second time, a late interruption, or another error", () => {
+    expect(shouldRetryDictationStart({ code: "interrupted", afterMs: 207, attempt: 1 })).toBe(false);
+    expect(shouldRetryDictationStart({ code: "interrupted", afterMs: 1800, attempt: 0 })).toBe(false);
+    expect(shouldRetryDictationStart({ code: "service-not-allowed", afterMs: 132, attempt: 0 })).toBe(false);
+    expect(shouldRetryDictationStart({ code: "no-speech", afterMs: 100, attempt: 0 })).toBe(false);
   });
 });
