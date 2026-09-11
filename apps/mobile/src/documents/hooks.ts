@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import type { Citation, DocumentRecord, Message, RagPrompt } from "@inborn/core";
-import { getLibrary, type DocumentLibrary, type LibraryState } from "./library";
+import { peekEngine } from "../engine";
+import { canCiteMarkers, getLibrary, type DocumentLibrary, type LibraryState } from "./library";
 
 /* useSyncExternalStore needs a changing snapshot; a counter bumped per notification is enough (same trick as the vault). */
 let version = 0;
@@ -61,7 +62,7 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict: state.strict }),
+    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict: state.strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
     context: { docIds, strict: state.strict },
   };

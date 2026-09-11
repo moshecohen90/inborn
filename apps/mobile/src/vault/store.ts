@@ -2,6 +2,7 @@ import { Platform } from "react-native";
 import { File } from "expo-file-system";
 import {
   BUNDLED_MANIFEST,
+  DeliveryLanes,
   ENGINE_VERSION,
   NOT_INSTALLED,
   assessGguf,
@@ -36,7 +37,8 @@ export interface StrayFile {
 }
 export const STRAY_PREFIX = "stray:";
 
-export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile };
+/** `importOnly`: this platform's store never carries the file (sharp-phi has no Play pack), so the card offers import instead of a dead Install. */
+export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile; importOnly?: boolean };
 export type ManifestStatus = { ok: true } | { ok: false; problem: string };
 
 /**
@@ -53,6 +55,7 @@ export class VaultStore {
   private listeners = new Set<() => void>();
   private delivery: ModelDelivery;
   private booted: Promise<void> | null = null;
+  private lanes = new DeliveryLanes();
 
   constructor(manifest: CatalogManifest = BUNDLED_MANIFEST, device?: DeviceInfo) {
     const check = loadManifest(manifest);
@@ -221,7 +224,11 @@ export class VaultStore {
   // ---- queries ----------------------------------------------------------------
 
   entries(): VaultEntry[] {
-    const catalog = this.manifest.models.map((model) => ({ model, state: this.states.get(model.id) ?? NOT_INSTALLED, plan: this.manifestStatus.ok ? this.delivery.plan(model) : null }));
+    const catalog = this.manifest.models.map((model) => {
+      const plan = this.manifestStatus.ok ? this.delivery.plan(model) : null;
+      const importOnly = !plan && Platform.OS === "android" && !model.delivery.some((d) => d.kind === "play-asset-pack");
+      return { model, state: this.states.get(model.id) ?? NOT_INSTALLED, plan, importOnly };
+    });
     const imports = Object.values(this.record.imports).map((imp) => ({ model: importedAsModel(imp), state: this.states.get(imp.id) ?? NOT_INSTALLED, plan: null, imported: imp }));
     const strays = this.strays.map((s) => ({ model: strayAsModel(s), state: { kind: "ready", path: s.path, bytes: s.bytes, sha256: "", via: "import" } as InstallState, plan: null, stray: s }));
     return [...catalog, ...imports, ...strays];
@@ -331,11 +338,24 @@ export class VaultStore {
     if (!plan) return this.set2(id, { kind: "failed", via: "https", error: "no-delivery", retryable: false });
     const state = this.dispatch(id, { type: "request", via: plan.via, requiredBytes: requiredFreeBytes(model.bytes), freeBytes: freeDiskBytes() });
     if (state.kind !== "delivering") return state;
+    await this.lanes.acquire(id, model.bytes);
+    if (this.state(id).kind !== "delivering") return this.state(id);
     try {
-      const path = await this.delivery.deliver(model, (e) => this.dispatch(id, e));
+      let lastTick = 0;
+      const path = await this.delivery.deliver(model, (e) => {
+        /* Five parallel downloads tick every 100 ms each; one repaint per file per half second keeps the JS thread free for the small file's verify. */
+        if (e.type === "progress" && e.bytes < e.total && Date.now() - lastTick < PROGRESS_TICK_MS) return;
+        if (e.type === "progress") lastTick = Date.now();
+        this.dispatch(id, e);
+      });
+      this.lanes.release(id);
+      const deliveredAt = Date.now();
       this.dispatch(id, { type: "delivered", bytes: fileSize(new File(path)) });
-      return this.verify(model, path, plan.via);
+      const verified = await this.verify(model, path, plan.via);
+      if (__DEV__) console.log(`[vault] ${id} ${verified.kind} · verified in ${Date.now() - deliveredAt} ms`);
+      return verified;
     } catch (e: unknown) {
+      this.lanes.release(id);
       if (e instanceof PausedError) return this.dispatch(id, { type: "pause" });
       const msg = errorText(e);
       if (msg === "canceled") return this.dispatch(id, { type: "cancel" });
@@ -366,6 +386,7 @@ export class VaultStore {
     const m = this.model(id);
     if (m) await this.delivery.cancel(m);
     this.dispatch(id, { type: "cancel" });
+    this.lanes.release(id);
   }
 
   async remove(id: string): Promise<void> {
@@ -406,10 +427,17 @@ export class VaultStore {
     const verdict = assessGguf(header);
     if (!verdict.ok) return { ok: false, reason: verdict.reason };
     const bytes = fileSize(source);
-    if (freeDiskBytes() < requiredFreeBytes(bytes)) return { ok: false, reason: "no-space" };
+    if (bytes <= 0) return { ok: false, reason: "truncated" };
     const id = `import:${name.replace(/[^a-zA-Z0-9._-]+/g, "_")}`;
     const fileName = `${id.slice("import:".length)}`.replace(/\.gguf$/i, "") + ".gguf";
     const dest = modelFile(fileName);
+    /* The same file again (the dev auto-import on every vault mount, a second tap): keep the verified copy, which may be the one the engine has mapped. */
+    const known = this.record.imports[id];
+    if (known && known.bytes === bytes && dest.exists && fileSize(dest) === bytes) {
+      this.set(id, { kind: "ready", path: dest.uri, bytes, sha256: known.sha256, via: "import" });
+      return { ok: true, model: importedAsModel(known) };
+    }
+    if (freeDiskBytes() < requiredFreeBytes(bytes)) return { ok: false, reason: "no-space" };
     try {
       safeDelete(dest);
       source.copy(dest);
@@ -422,6 +450,9 @@ export class VaultStore {
     for (let i = 0; fileSize(dest) < bytes && i < 600; i++) await new Promise((r) => setTimeout(r, 200));
     if (fileSize(dest) !== bytes) {
       safeDelete(dest);
+      delete this.record.imports[id];
+      this.persist();
+      this.set(id, NOT_INSTALLED);
       return { ok: false, reason: "copy-failed" };
     }
     const sha256 = await fileSha256(dest);
@@ -495,6 +526,8 @@ export function importedAsModel(imp: ImportedModel): CatalogModel {
     minEngine: ENGINE_VERSION,
   };
 }
+
+const PROGRESS_TICK_MS = 500;
 
 const errorText = (e: unknown): string => (e instanceof Error ? e.message : String(e));
 

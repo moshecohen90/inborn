@@ -1,4 +1,5 @@
 import { Directory, File, Paths } from "expo-file-system";
+import { fileSha256 } from "../vault/hash";
 
 /** The app's own copies of imported documents (spec §5.3: "a copy of the document in the app directory"). */
 export function documentsDir(): Directory {
@@ -42,6 +43,8 @@ export function copyIntoLibrary(sourceUri: string, id: string, name: string): st
   new File(sourceUri).copy(dest);
   return dest.uri;
 }
+
+export const sha256Of = (uri: string): Promise<string> => fileSha256(new File(uri));
 
 export function deleteFile(uri: string | undefined): void {
   if (!uri) return;

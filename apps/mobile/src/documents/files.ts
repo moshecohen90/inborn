@@ -1,3 +1,5 @@
+import { sha256 } from "@noble/hashes/sha256";
+
 /** Web + desktop: picked files are Blobs kept by object URL for the session; reading one is a same-origin blob read, not a network call. */
 const blobs = new Map<string, Blob>();
 
@@ -35,6 +37,10 @@ export function sizeOf(uri: string): number {
 /** Browsers cannot copy into an app directory; the blob simply stays registered under its URI. */
 export function copyIntoLibrary(sourceUri: string, _id: string, _name: string): string {
   return sourceUri;
+}
+
+export async function sha256Of(uri: string): Promise<string> {
+  return Array.from(sha256(await readBytes(uri)), (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 export function deleteFile(uri: string | undefined): void {

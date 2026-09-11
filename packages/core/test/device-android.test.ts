@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { AndroidThermal, thermalFromAndroid } from "../src/device";
+import { AndroidThermal, memoryPressureFromAndroid, thermalFromAndroid } from "../src/device";
 
 const cool = { headroom: null, batteryTempC: 24.1, seenCool: false };
 
@@ -37,5 +37,23 @@ describe("thermalFromAndroid", () => {
     expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, seenCool: true, headroom: 1.05 })).toBe("serious");
     expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, seenCool: true, headroom: 1.05, batteryTempC: null })).toBe("critical");
     expect(thermalFromAndroid(AndroidThermal.CRITICAL, { ...cool, headroom: 1.05 })).toBe("serious");
+  });
+});
+
+describe("memoryPressureFromAndroid", () => {
+  const GB = 1024 ** 3;
+  const sharp = 2740938080;
+  it("OnePlus 6T with Sharp resident: 853 MB free is a warning although lowMemory is false", () => {
+    expect(memoryPressureFromAndroid({ availMem: 853 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: false }, sharp)).toBe("warning");
+  });
+  it("the same phone right after the load (3.5 GB free) is normal", () => {
+    expect(memoryPressureFromAndroid({ availMem: 3.5 * GB, threshold: 300 * 1024 ** 2, lowMemory: false }, sharp)).toBe("normal");
+  });
+  it("without a resident model only the system's own lowMemory flag counts", () => {
+    expect(memoryPressureFromAndroid({ availMem: 100 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: false }, null)).toBe("normal");
+    expect(memoryPressureFromAndroid({ availMem: 100 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: true }, null)).toBe("critical");
+  });
+  it("Instant (508 MB) on the same free RAM stays normal", () => {
+    expect(memoryPressureFromAndroid({ availMem: 853 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: false }, 532517120)).toBe("normal");
   });
 });

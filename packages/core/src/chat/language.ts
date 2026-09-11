@@ -53,3 +53,33 @@ export function languageHint(userText: string): string {
 export function answerInLanguageInstruction(language: string): string {
   return `Answer in ${language}.`;
 }
+
+/** ISO 639-1 code the catalog's `goodLanguages` uses for each non-Latin script. */
+const CODE_BY_SCRIPT: Partial<Record<Script, string>> = { hebrew: "he", arabic: "ar", cyrillic: "ru", greek: "el", japanese: "ja", korean: "ko", cjk: "zh" };
+
+export const languageCodeOf = (text: string): string | null => CODE_BY_SCRIPT[scriptOf(text)] ?? null;
+
+export interface LanguageCandidate {
+  id: string;
+  goodLanguages: readonly string[];
+  /** Ready to use now (installed) or still to install; both are offered, the copy differs. */
+  installed: boolean;
+}
+
+export interface LanguageModelHint {
+  code: string;
+  language: string;
+  model: LanguageCandidate;
+}
+
+/**
+ * §7 "recommended model per language": when the user writes in a script the loaded model does not list as a good language
+ * and another chat model on the catalog does, name that model (installed first). Null for Latin scripts and when nothing better exists.
+ */
+export function betterModelForLanguage(userText: string, current: LanguageCandidate | null, candidates: readonly LanguageCandidate[]): LanguageModelHint | null {
+  const code = languageCodeOf(userText);
+  if (!code || !current || current.goodLanguages.includes(code)) return null;
+  const better = candidates.filter((c) => c.id !== current.id && c.goodLanguages.includes(code)).sort((a, b) => Number(b.installed) - Number(a.installed))[0];
+  if (!better) return null;
+  return { code, language: LANGUAGE_BY_SCRIPT[scriptOf(userText)] ?? code, model: better };
+}

@@ -26,12 +26,15 @@ export interface ModelCardProps {
   /** A stray file (QA B17): size + Remove only, never Use. */
   stray?: boolean;
   onRemove?: () => void;
+  /** No store path on this platform for this file (§6.3: Android is Play or import): say so and offer the picker. */
+  importOnly?: boolean;
+  onImport?: () => void;
 }
 
 const deviceWord = (t: (k: string) => string, d: DeviceInfo) => t(`vault.device.${d.deviceClass}`);
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const speed = expectedSpeed(device.chip, model.tier);
@@ -60,6 +63,10 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         return { text: t(state.error === "no-delivery" ? (device.os === "android" ? "vault.state.noDelivery.android" : "vault.state.noDelivery.web") : "vault.state.failed", { error: state.error }), danger: true };
       case "ready":
         return { text: state.via === "bundled" ? t("vault.state.bundled") : active ? t("vault.loaded") : t("vault.installed") };
+      case "not-installed":
+        if (plan) return null;
+        if (importOnly) return { text: t("vault.state.importOnly.android") };
+        return device.os === "android" ? { text: t("vault.state.noDelivery.android") } : null;
       default:
         return null;
     }
@@ -129,6 +136,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
           {state.kind === "not-installed" || state.kind === "needs-space" || state.kind === "corrupt" || state.kind === "failed" ? (
             plan ? (
               <Action testID={`install-${model.id}`} theme={theme} primary onPress={onInstall} label={state.kind === "not-installed" ? t("vault.installFrom", { size: formatModelBytes(model.bytes), origin: plan.origin }) : t("vault.retry")} />
+            ) : onImport ? (
+              <Action testID={`import-${model.id}`} theme={theme} primary onPress={onImport} label={t("vault.import")} />
             ) : null
           ) : null}
           {state.kind === "delivering" && state.paused ? <Action testID={`resume-${model.id}`} theme={theme} primary onPress={onResume} label={t("vault.resume")} /> : null}

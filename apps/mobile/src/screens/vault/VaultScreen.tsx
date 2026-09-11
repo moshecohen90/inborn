@@ -24,6 +24,9 @@ export interface VaultScreenProps {
 }
 
 type Section = { key: string; title: string; data: VaultEntry[]; disabled?: Map<string, "ram" | "engine"> };
+
+/* The headless hooks run once per app run, not on every vault mount (a remount re-imported the loaded model over itself). */
+let devHooksRan = false;
 type Confirm = { entry: VaultEntry };
 
 /** S30 Model vault (spec §8.4): what is installed, what fits this device, download / import / remove. */
@@ -63,7 +66,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
 
   useEffect(() => {
     void vault.ready().then(async () => {
-      if (!devBuild()) return;
+      if (!devBuild() || devHooksRan) return;
+      devHooksRan = true;
       if (DEV_AUTOINSTALL && vault.state(DEV_AUTOINSTALL).kind !== "ready") void vault.install(DEV_AUTOINSTALL);
       for (const name of DEV_AUTOIMPORT) await importUri(new File(Paths.document, name).uri);
     });
@@ -170,6 +174,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             onDetails={() => setDetails(item.model)}
             stray={!!item.stray}
             onRemove={() => void vault.remove(item.model.id)}
+            importOnly={item.importOnly}
+            onImport={item.plan || item.imported || item.stray ? undefined : () => void pickAndImport()}
           />
         )}
         ListFooterComponent={

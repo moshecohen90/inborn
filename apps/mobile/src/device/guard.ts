@@ -3,6 +3,7 @@ import {
   DevicePolicy,
   SpeedWatch,
   defaultOverride,
+  memoryPressureFromAndroid,
   type BatterySignal,
   type DeviceSignals,
   type MemoryPressure,
@@ -31,6 +32,8 @@ import {
   unloadSession,
   type EngineState,
 } from "../engine";
+import { isAndroidSnapshot } from "../../modules/device-guard";
+import { getVault } from "../vault/store";
 import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
 import { MEMORY_RECOVERY_MS, memoryHealthy, readSignals, setCurrentSignals, snapshot, subscribeSignals, type RawSignals } from "./signals";
 /** The guard's own view in the policy's types; mapState.ts turns it into the shell's DeviceState. */
@@ -49,6 +52,7 @@ export interface GuardState {
 }
 
 const DEBOUNCE_MS = 250;
+const PRESSURE_RANK: Record<MemoryPressure, number> = { unknown: 0, normal: 0, warning: 1, critical: 2 };
 const TICK_MS = 5_000;
 /** §6.5: a backgrounded answer on a phone may run this long before it is paused. */
 const BACKGROUND_GRACE_MS = 15_000;
@@ -179,11 +183,26 @@ class DeviceGuard {
     this.schedule();
   }
 
-  /* Memory pressure arrives as an edge; poll the snapshot until the device has looked healthy for MEMORY_RECOVERY_MS. */
+  /** Bytes of the model the engine is mapping or holds mapped, null while nothing is resident (a load that thrashes is caught too). */
+  private residentBytes(): number | null {
+    if (getEngineState() === "unloaded") return null;
+    const id = peekEngine()?.model.id;
+    if (!id) return null;
+    const s = getVault().state(id);
+    return s.kind === "ready" || s.kind === "quarantined" ? s.bytes : null;
+  }
+
+  /* Memory pressure arrives as an edge (onTrimMemory), which Android withholds from the foreground app while it evicts the
+     mapped weights instead; every tick also reads availMem against the resident model (§6.5 Android row). */
   private tick(): void {
+    const s = snapshot();
+    const polled = s && isAndroidSnapshot(s) ? memoryPressureFromAndroid({ availMem: s.availMem, threshold: s.threshold, lowMemory: s.lowMemory }, this.residentBytes()) : "normal";
+    if (this.raw && PRESSURE_RANK[polled] > PRESSURE_RANK[this.raw.memoryPressure]) {
+      this.patch({ memoryPressure: polled });
+      return;
+    }
     if (this.raw && this.memorySince !== null && Date.now() - this.memorySince >= MEMORY_RECOVERY_MS) {
-      const s = snapshot();
-      if (s && memoryHealthy(s)) {
+      if (s && memoryHealthy(s) && polled === "normal") {
         this.memorySince = null;
         this.raw = { ...this.raw, memoryPressure: "normal" };
         setCurrentSignals(this.raw);

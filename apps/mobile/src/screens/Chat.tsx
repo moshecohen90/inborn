@@ -21,6 +21,8 @@ import {
   detectLoop,
   findPersona,
   languageHint,
+  betterModelForLanguage,
+  ramFit,
   limits,
   markdownToText,
   fallbackPrice,
@@ -68,6 +70,7 @@ import { copyText } from "../lib/clipboard";
 import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
+import { getVault } from "../vault/store";
 import { useShortcut } from "../lib/shortcuts";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
@@ -572,6 +575,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const lastUserText = [...rows].reverse().find((r) => r.role === "user")?.content ?? "";
   const wrongScript = (row: Row) => row.role === "assistant" && !!languageHint(lastUserText) && scriptOf(row.content) !== scriptOf(lastUserText);
   const languageName = languageHint(lastUserText).replace(/^The user writes in (\w+).*$/, "$1");
+  /* §7 "recommended model per language": Hebrew on Instant/Fast is gibberish; name the catalog model that lists the language (installed first, else installable and fitting). */
+  const languageOffer = useMemo(() => {
+    if (Platform.OS === "web" || !lastUserText) return null;
+    const vault = getVault();
+    const current = vault.model(model.id);
+    const candidates = vault
+      .entries()
+      .filter((e) => e.model.role === "chat" && !e.stray && (e.state.kind === "ready" || (e.plan && ramFit(e.model, vault.device.ramGB) !== "no")))
+      .map((e) => ({ id: e.model.id, goodLanguages: e.model.goodLanguages, installed: e.state.kind === "ready" }));
+    return betterModelForLanguage(lastUserText, current ? { id: current.id, goodLanguages: current.goodLanguages, installed: true } : null, candidates);
+  }, [lastUserText, model.id]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
@@ -707,6 +721,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {personaName}
           {persona.disclaimer ? ` · ${persona.disclaimer}` : ""}
         </Text>
+      ) : null}
+      {languageOffer && lastAssistant && status.kind === "ready" ? (
+        <View testID="language-hint" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.languageHint", { language: languageOffer.language, model: modelLabel(languageOffer.model.id) })}</Text>
+          <Pressable accessibilityRole="button" onPress={() => onOpenVault?.()} hitSlop={8} style={styles.noticeBtn}>
+            <Text style={[type.caption, { color: theme.accent }]}>{t(languageOffer.model.installed ? "chat.languageHint.use" : "chat.languageHint.install")}</Text>
+          </Pressable>
+        </View>
       ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
