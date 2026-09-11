@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { bootModel, type ModelTier } from "@inborn/core";
 import { getDeviceGuard } from "./guard";
 import { deviceRamGB } from "./signals";
@@ -24,7 +25,8 @@ export function startDeviceGuard(): void {
 
 /** Boot-time RAM floor (§6.5, QA F14): decided before the first load, so a too-big default is never mapped and then evicted. */
 export async function applyBootFloor(): Promise<void> {
-  if (DEV_TIER) return;
+  // The web tier is chosen by the device door; the native vault (expo-file-system paths) does not exist there.
+  if (DEV_TIER || Platform.OS === "web") return;
   const active = getVault().activeModel();
   if (!active) return;
   const instant = resolveTier("instant");
