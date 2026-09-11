@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -8,6 +9,7 @@ import { mergePrefs } from "../services/prefsTypes";
 import { readPrefsRaw } from "../services/prefsStore";
 import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
+import { BannerInsetContext } from "../components/shell/bannerInset";
 import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
 import { Seal } from "../components/Seal";
@@ -50,6 +52,7 @@ function Shell() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const { lock, prefs, captured, openShared } = useAppServices();
+  const [bannerInset, setBannerInset] = useState(0);
   /* Shared text / files (§7.7) land in a fresh chat; whatever screen was up gives way to it. The lock, if on, stays in front. */
   useShareTarget((payload) => {
     closeOpenSheets();
@@ -59,13 +62,15 @@ function Shell() {
   const cover = (lock.covered && prefs.lock.enabled && prefs.lock.hideInSwitcher) || (captured && prefs.lock.screenshotProtection);
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
-        <Stack.Screen name="chats" options={{ animation: "slide_from_left" }} />
-        <Stack.Screen name="paywall" options={{ presentation: "modal" }} />
-        <Stack.Screen name="voice" options={{ presentation: "fullScreenModal", animation: "fade" }} />
-      </Stack>
-      {/* Under the header of whichever screen is up: transient system states never push content around (§8.8). */}
-      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52 }]}>
+      <BannerInsetContext.Provider value={bannerInset}>
+        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
+          <Stack.Screen name="chats" options={{ animation: "slide_from_left" }} />
+          <Stack.Screen name="paywall" options={{ presentation: "modal" }} />
+          <Stack.Screen name="voice" options={{ presentation: "fullScreenModal", animation: "fade" }} />
+        </Stack>
+      </BannerInsetContext.Provider>
+      {/* Under the header of whichever screen is up (§8.8); its measured height reaches screens that keep a row there (QA F13). */}
+      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52 }]} onLayout={(e) => setBannerInset(Math.round(e.nativeEvent.layout.height))}>
         <Banners />
       </View>
       {cover ? <PrivacyCover captured={captured} /> : null}

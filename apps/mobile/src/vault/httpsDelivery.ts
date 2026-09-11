@@ -100,7 +100,8 @@ export class HttpsDelivery implements ModelDelivery {
   }
 
   private async taskFor(model: CatalogModel, shard: ModelPart, url: string, part: File, saved: SavedDownload | undefined, opts: DownloadTaskOptions): Promise<DownloadTask> {
-    if (saved?.url === url && saved.resumeData) return DownloadTask.fromSavable(saved, opts);
+    /* The saved state carries an absolute file URI; iOS moves the container on every update, so the part's current URI replaces it (QA F12). */
+    if (saved?.url === url && saved.resumeData) return DownloadTask.fromSavable({ ...saved, fileUri: part.uri }, opts);
     const have = fileSize(part);
     const head = await this.head(url);
     if (head.total && head.total !== shard.bytes) throw new Error(`size mismatch: ${hostOf(url)} says ${head.total} bytes, catalog ${shard.bytes}`);

@@ -1009,3 +1009,26 @@ simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 
    "state update on a component that hasn't mounted" line did not reproduce in three cold starts with the lock on after the theme change;
    the chat list scrolls to the end once when a stream finishes and again when the keyboard shrinks the list (`Chat.tsx` settle window +
    `onLayout`, `04-n1-after.png`, `23-n1-keyboard.png`).
+8. **F12 · persisted state survives an app update** (`services/prefsStore.native.ts`, `services/prefsTypes.ts` `recoverPrefs` +
+   `isPrefsLike`, `vault/httpsDelivery.ts`). The Play 3 → 4 update on the OnePlus 6T that showed onboarding again did not reproduce on the
+   emulator: `adb install -r` of a rebuilt debug APK (versionCode 1 → 2 → 3, `firstInstallTime` unchanged) opened the lock screen, the passcode
+   unlocked, the chat list held the earlier chat, header SEALED · INSTANT, `prefs.json` unchanged (`f12-06-after-vc3-install-lock.png`,
+   `f12-07-…-unlocked-chat.png`, `f12-08-…-chat-list.png`). Nothing persisted is keyed by version or build, prefs hold no paths, and no boot
+   path resets them; the one hole in the app was that a `prefs.json` the OS left missing, empty or cut short was silently read as "no prefs",
+   the defaults were written back within 5 s by the exit-meter tick, and onboarding came back for good. Now every write also lands in
+   `prefs.bak.json`, a primary that does not parse as prefs (no boolean `onboarded`) falls back to that copy, and an unreadable file is logged
+   as `[prefs] <name> unreadable` so the next real update carries evidence. Paused HTTPS downloads resume on the part's current URI instead
+   of the absolute one saved before an iOS container move (same family as F11). Test: `services/prefsTypes.test.ts` (6 cases). To tell
+   whether Android kept the data directory on the 6T: `adb -s REDACTED-6T shell dumpsys package com.inbornapp.mobile | grep -E
+   "firstInstallTime|lastUpdateTime"` (a first-install time of 14:21 with an update time of 15:33 means the directory survived).
+9. **F13 · the device line stacks above the AI notice** (`components/shell/bannerInset.ts`, `_layout.tsx`, `Chat.tsx`): the §8.8 strip is
+   still drawn under the header of any screen, but its measured height reaches the chat screen through `BannerInsetContext`, which pads its
+   first row by it. Emulator with the memory switch forced by the boot floor below: "Ran out of memory · Switched to Instant · SWITCH BACK"
+   above "This is AI running on your phone…", both fully visible (`f13-f14-03-boot-floor.png`).
+10. **F14 · boot-time RAM floor** (`packages/core/src/device/bootTier.ts` `bootModel` / `bootMinRamGB`, `device/boot.ts` `applyBootFloor`,
+    `guard.ts` `noteBootSwitch`, `signals.ts` `deviceRamGB`): before the first load the default model's minimum RAM (catalog `minRamGB`, or
+    the size rule for imports, which record 0) is compared with the device's RAM; when it does not fit and Instant is installed and smaller,
+    the engine starts on Instant as a session override (the vault default is untouched) and the guard records a memory switch, so the
+    existing line offers "Switch back". Test: `packages/core/test/device-boot-tier.test.ts` (6 cases). Emulator (3.8 GB): a 2.5 GB import as
+    the vault default → `[device] boot floor: import:Phi-4-mini… needs more RAM than this device has (3.8 GB), starting on instant`, Instant
+    loaded in 2.0 s, no 1.2 GB load first (before the fix the same boot started "Loading PHI-4-MINI-INSTRUCT…", `f13-f14-01-boot-floor.png`).

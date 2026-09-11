@@ -53,6 +53,16 @@ export const defaultPrefs = (now: number): Prefs => ({
 });
 
 /** Unknown or missing fields fall back to defaults so an older prefs file never breaks boot. */
+/** A stored value the app can trust as prefs: an object carrying the onboarding flag (partial files and "null" are not). */
+export const isPrefsLike = (raw: unknown): raw is Partial<Prefs> & { onboarded: boolean } => typeof raw === "object" && raw !== null && typeof (raw as { onboarded?: unknown }).onboarded === "boolean";
+
+/** The primary file when it is usable, else the last good copy: a write cut short by the OS never sends the user back to onboarding (QA F12). */
+export function recoverPrefs(primary: unknown, backup: unknown): unknown {
+  if (isPrefsLike(primary)) return primary;
+  if (isPrefsLike(backup)) return backup;
+  return primary ?? backup ?? null;
+}
+
 export function mergePrefs(raw: unknown, now: number): Prefs {
   const d = defaultPrefs(now);
   if (!raw || typeof raw !== "object") return d;
