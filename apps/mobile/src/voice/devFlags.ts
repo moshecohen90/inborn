@@ -12,3 +12,5 @@ export const DEV_AUTOVOICE_TTS: boolean = process.env.EXPO_PUBLIC_AUTOVOICE_TTS 
  * under "live" (the only channel out of a Release build over USB).
  */
 export const DEV_AUTOVOICE_SAY: string | undefined = process.env.EXPO_PUBLIC_AUTOVOICE_SAY || undefined;
+/** EXPO_PUBLIC_AUTOVOICE_LIVE=1: record the live stages without the phone speaking (the sound comes from a person or the Mac). */
+export const DEV_VOICE_LIVE: boolean = DEV_AUTOVOICE_SAY !== undefined || process.env.EXPO_PUBLIC_AUTOVOICE_LIVE === "1";

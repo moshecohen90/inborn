@@ -5,14 +5,18 @@ import XCTest
 /// (";"-separated, written into the .xctestrun EnvironmentVariables), because a device runner has no shared /tmp.
 ///   launch · terminate · sleep:<s> · open:<url> · tap:<id|label> · longpress:<id>[:<s>] · type:<text> · shot:<name> ·
 ///   allow:<s> (taps Allow/OK on system permission alerts for up to <s> seconds) · waitexist:<id>:<s> ·
-///   waitlabel:<id>:<substring>:<s> · value:<id> (logs label + value) · log:<text>
+///   waitlabel:<id>:<substring>:<s> · value:<id> (logs label + value) · log:<text> · env:<KEY>=<value> (app launch environment,
+///   before launch) · say:<s>:<voice>:<text> (logs a SAY marker the Mac turns into `say -v <voice>`, then waits <s>) · home ·
+///   activate · dump (labels of the visible static texts)
 /// Everything is logged into the attachment driver-log.txt; screenshots are attachments too (xcresulttool export).
+/// VOICE_SKTEST=1 opens a runner-side StoreKit session; otherwise the app-side harness (INBORN_SKTEST via env:) owns the store.
 final class VoiceDeviceUITests: XCTestCase {
   var session: SKTestSession?
   var lines: [String] = []
 
   override func setUpWithError() throws {
     continueAfterFailure = true
+    guard ProcessInfo.processInfo.environment["VOICE_SKTEST"] == "1" else { return }
     session = try? SKTestSession(configurationFileNamed: "Inborn")
     session?.disableDialogs = true
     session?.askToBuyEnabled = false
@@ -47,6 +51,21 @@ final class VoiceDeviceUITests: XCTestCase {
         sleep(3)
       case "terminate":
         app.terminate()
+      case "activate":
+        app.activate()
+      case "home":
+        XCUIDevice.shared.press(.home)
+      case "env":
+        let kv = arg.split(separator: "=", maxSplits: 1).map(String.init)
+        if kv.count == 2 { app.launchEnvironment[kv[0]] = kv[1] } else { log("bad env \(arg)") }
+      case "say":
+        let p = arg.split(separator: ":", maxSplits: 2).map(String.init)
+        guard p.count == 3 else { log("bad say \(arg)"); continue }
+        log("SAY \(p[1])|\(p[2])")
+        usleep(UInt32((Double(p[0]) ?? 6) * 1_000_000))
+      case "dump":
+        let labels = app.staticTexts.allElementsBoundByIndex.prefix(40).map { $0.label }
+        log("texts: \(labels.joined(separator: " ¦ "))")
       case "open":
         XCUIDevice.shared.system.open(URL(string: arg)!)
         let open = springboard.buttons["Open"]

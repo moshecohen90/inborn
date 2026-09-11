@@ -54,6 +54,8 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
   const preferRef = useRef(preferWhisper);
   preferRef.current = preferWhisper;
   const recorder = useRef<MicRecorder | null>(null);
+  /* Loudest frame of the last whisper recording (dBFS): the dev proof tells "silent stream" from "too quiet". */
+  const peak = useRef<() => number>(() => -100);
   const abort = useRef<AbortController | null>(null);
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
@@ -114,7 +116,7 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     abort.current = ac;
     try {
       const r = await getWhisper().transcribe(audio.samples, { signal: ac.signal });
-      devVoiceRecord("whisper", { loadMs: getWhisper().loadMs, audioMs: audio.ms, transcribeMs: r.ms, language: r.whisperLanguage, text: r.text });
+      devVoiceRecord("whisper", { loadMs: getWhisper().loadMs, audioMs: audio.ms, peakDb: peak.current(), transcribeMs: r.ms, language: r.whisperLanguage, text: r.text });
       if (!ac.signal.aborted) {
         const text = joinDictation(draftRef.current, r.text);
         setDraft(text);
@@ -129,8 +131,16 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
   }, [setDraft, onFinal]);
 
   const startWhisper = useCallback(async () => {
-    const rec = new MicRecorder({ onFrame: (_f, db) => setLevel(db), onError: (m) => setProblem({ kind: "error", message: m }) });
+    let peakDb = -100;
+    const rec = new MicRecorder({
+      onFrame: (_f, db) => {
+        peakDb = Math.max(peakDb, db);
+        setLevel(db);
+      },
+      onError: (m) => setProblem({ kind: "error", message: m }),
+    });
     recorder.current = rec;
+    peak.current = () => peakDb;
     try {
       /* Warm the model while the user speaks so transcription starts the moment they stop. */
       void getWhisper().load().catch(() => undefined);
