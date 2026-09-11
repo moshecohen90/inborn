@@ -58,23 +58,23 @@ final class SandboxPurchaseUITests: XCTestCase {
     NSLog("[sandbox] tapping %@", button.label)
     button.tap()
 
-    let end = Date().addingTimeInterval(150)
+    /* The sandbox asks for the account password after the tap; a person types it on the phone while this waits. */
+    let end = Date().addingTimeInterval(330)
+    var promptShots = 0
     while Date() < end {
       if app.otherElements["owned"].exists {
         shot("sandbox-02-owned")
         NSLog("[sandbox] owned")
         return
       }
-      if passwordPromptVisible(hosts()) {
-        shot("sandbox-03-prompt")
-        let labels = hosts().flatMap { $0.alerts.allElementsBoundByIndex.map { $0.label } + $0.staticTexts.allElementsBoundByIndex.prefix(12).map { $0.label } }
-        NSLog("[sandbox] prompt visible, not typing: %@", labels.joined(separator: " | "))
-        XCTFail("sign-in / password prompt appeared; stopped without typing")
-        return
+      if passwordPromptVisible(hosts()), promptShots < 3 {
+        promptShots += 1
+        shot("sandbox-03-prompt-\(promptShots)")
+        NSLog("[sandbox] password / sign-in prompt visible, waiting for a person, not typing")
       }
       sleep(3)
     }
     shot("sandbox-04-timeout")
-    XCTFail("no owned state within 150 s after the tap")
+    XCTFail("no owned state within 330 s after the tap")
   }
 }
