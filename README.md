@@ -1018,9 +1018,10 @@ simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 
    the defaults were written back within 5 s by the exit-meter tick, and onboarding came back for good. Now every write also lands in
    `prefs.bak.json`, a primary that does not parse as prefs (no boolean `onboarded`) falls back to that copy, and an unreadable file is logged
    as `[prefs] <name> unreadable` so the next real update carries evidence. Paused HTTPS downloads resume on the part's current URI instead
-   of the absolute one saved before an iOS container move (same family as F11). Test: `services/prefsTypes.test.ts` (6 cases). To tell
-   whether Android kept the data directory on the 6T: `adb -s REDACTED-6T shell dumpsys package com.inbornapp.mobile | grep -E
-   "firstInstallTime|lastUpdateTime"` (a first-install time of 14:21 with an update time of 15:33 means the directory survived).
+   of the absolute one saved before an iOS container move (same family as F11). Test: `services/prefsTypes.test.ts` (6 cases). The lead's
+   read-only check on the 6T afterwards: `dumpsys package com.inbornapp.mobile` → `firstInstallTime=14:21:29`, `lastUpdateTime=15:32:57`,
+   `versionCode=4`, so Android kept the data directory across the Play update and the loss was app-level: exactly the unreadable-primary
+   path this item closes (the backup copy is read, and the `[prefs] … unreadable` line names the file if it happens again).
 9. **F13 · the device line stacks above the AI notice** (`components/shell/bannerInset.ts`, `_layout.tsx`, `Chat.tsx`): the §8.8 strip is
    still drawn under the header of any screen, but its measured height reaches the chat screen through `BannerInsetContext`, which pads its
    first row by it. Emulator with the memory switch forced by the boot floor below: "Ran out of memory · Switched to Instant · SWITCH BACK"
