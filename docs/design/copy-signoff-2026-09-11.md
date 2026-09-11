@@ -65,3 +65,44 @@ the intended tier split so the hint and the gate agree.
 
 Verdict: APPROVED. 6 FIX, 125 KEEP. Placeholders and key names otherwise unchanged; ICU and
 locale-completeness tests pass.
+
+---
+
+# Round 2b - fixes-r7 delta (auto-delete, memory-switch banner, benchmark block)
+
+Date: 2026-09-11. Reviewer: conversion-copywriter. Branch: copy-r2b (from main 7482df8).
+Scope: the 19 new en.json keys from fixes-r7 - `chats.deletesIn`, the two
+`settings.security.autoDelete` sub-lines (+ its label), `state.memorySwitched`, and the 14
+`vault.benchmark.*` keys in the model-details Benchmark block. Judged in render context
+(`Chats.tsx`, `Settings/Settings.tsx`, `components/shell/Banners.tsx`,
+`screens/vault/ModelDetails.tsx`).
+
+Result: 1 FIX, 18 KEEP. `state.memorySwitched` is pinned by `device-policy.test.ts:373`
+("Ran out of memory · Switched to Instant · Switch back") and was left untouched. Gates pass:
+typecheck; test (core 361 incl. the pinned memory assertion, i18n 4/4, mobile 93, ui 11);
+lint clean; pseudo.json regenerated (909 keys).
+
+## Fix applied
+
+| Key | Verdict | Old -> New | Reason |
+|-----|---------|-----------|--------|
+| vault.benchmark.expected | FIX | `Expected {min}–{max} tok/s...` -> `Expected {min}-{max} tok/s...` | The range used an en-dash (U+2013). Canon §14: number ranges take a plain hyphen; en-dashes are a banned AI-tell. |
+
+## Kept as-is (notable)
+
+- **state.memorySwitched** "Ran out of memory · Switched to Instant": pinned wording, correct
+  and on-voice (factual, middot separator, "Instant" hardcoded because the memory switch always
+  targets Instant). Kept verbatim.
+- **chats.deletesIn / autoDelete.on**: ICU plural with a =0 branch, correct; honest and specific
+  ("Pinned chats stay. Incognito chats are never saved."). Kept.
+- **vault.benchmark.none / .run / .failed**: proof-forward and honest ("Nothing leaves this
+  device", "512 prompt tokens, then 128 generated", "Try again with the app in front"). Kept.
+- **benchmark.ttft / .memory** use a "label: value" colon inside a mono technical readout
+  ("First token after a {tokens}-token prompt: {ttft}", "Weights in memory: {size}"). This is a
+  legitimate readout colon (same register as the Proof screen), not the banned teaser colon-intro,
+  and "First token" already follows canon over "TTFT". Kept.
+- **benchmark.result** uses the middot as a multi-field separator (on-brand §9.3). Kept.
+
+## Changed keys (for the i18n stream - new English value)
+
+- vault.benchmark.expected = `Expected {min}-{max} tok/s on this {device}`
