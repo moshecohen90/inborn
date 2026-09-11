@@ -892,6 +892,13 @@ iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).
    English → Vision 1.00, Hebrew → Tesseract 0.92 with the lease text read correctly; "Ask this document" answered "The monthly rent is
    4,500 shekels" from the Hebrew scan. The documents dev proof no longer needs `__DEV__` (its flags are bundle-time), so a Release
    simulator build runs it.
+## TestFlight build 1.0.0 (3) — 11.9.2026
+Everything merged since build 2 (fixes-r5…r8, design-r2, sheets-keyboard, i18n deltas 10–13, copy-r2c, purchases-verify, voice-r2), Instant bundled,
+Tesseract OCR inputs, and the "Ask Inborn" share extension (App Group `group.com.inbornapp.mobile`). Portal prerequisites via the ASC API:
+APP_GROUPS on `com.inbornapp.mobile`, the extension's App ID `com.inbornapp.mobile.share-extension` registered with APP_GROUPS; the App Group
+itself has no ASC API resource (spec has only betaGroups/gameCenterGroups) and was created in the portal UI. Archive/export/upload commands,
+device evidence and the TestFlight state: `docs/qa/ios-build-3-2026-09-11.md`.
+
 ## Quick actions, share targets, Hugging Face search (spec §7.6 / S43, §7.7, §7.2) — branch `fixes-r8`, 11.9.2026
 Three Free-tier features from the MosheAI gap report (`docs/qa/mosheai-gap-2026-09-11.md` rows §7.6, §7.7, §7.2).
 - **Quick actions (S43)** — `packages/core/src/chat/quickActions.ts` (six actions: summarize, rephrase, fix grammar, translate, explain,
