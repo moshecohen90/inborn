@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { betterModelForLanguage, languageCodeOf } from "../src/chat/language";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { betterModelForLanguage, languageCodeOf, LANGUAGE_NAME_BY_CODE } from "../src/chat/language";
 
 const instant = { id: "instant", goodLanguages: ["en", "zh", "es"], installed: true };
 const fast = { id: "fast", goodLanguages: ["en", "zh", "es", "ar", "ru"], installed: false };
@@ -34,5 +36,13 @@ describe("betterModelForLanguage", () => {
   });
   it("is silent without a current model", () => {
     expect(betterModelForLanguage(hebrew, null, all)).toBeNull();
+  });
+});
+
+describe("LANGUAGE_NAME_BY_CODE", () => {
+  it("every code the hint can produce has a language.<code> key in en.json with the English name", () => {
+    const en = JSON.parse(readFileSync(join(__dirname, "../../i18n/locales/en.json"), "utf8")) as Record<string, string>;
+    expect(Object.keys(LANGUAGE_NAME_BY_CODE).sort()).toEqual(["ar", "el", "he", "ja", "ko", "ru", "zh"]);
+    for (const [code, name] of Object.entries(LANGUAGE_NAME_BY_CODE)) expect(en[`language.${code}`], code).toBe(name);
   });
 });

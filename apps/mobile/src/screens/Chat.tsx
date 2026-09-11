@@ -21,6 +21,8 @@ import {
   detectLoop,
   findPersona,
   languageHint,
+  languageCodeOf,
+  LANGUAGE_NAME_BY_CODE,
   betterModelForLanguage,
   ramFit,
   limits,
@@ -574,7 +576,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const lastAssistant = [...rows].reverse().find((r) => r.role === "assistant");
   const lastUserText = [...rows].reverse().find((r) => r.role === "user")?.content ?? "";
   const wrongScript = (row: Row) => row.role === "assistant" && !!languageHint(lastUserText) && scriptOf(row.content) !== scriptOf(lastUserText);
-  const languageName = languageHint(lastUserText).replace(/^The user writes in (\w+).*$/, "$1");
+  const languageCode = languageCodeOf(lastUserText);
+  const languageName = languageCode ? t(`language.${languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[languageCode] ?? languageCode }) : "";
   /* §7 "recommended model per language": Hebrew on Instant/Fast is gibberish; name the catalog model that lists the language (installed first, else installable and fitting). */
   const languageOffer = useMemo(() => {
     if (Platform.OS === "web" || !lastUserText) return null;
@@ -724,7 +727,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       ) : null}
       {languageOffer && lastAssistant && status.kind === "ready" ? (
         <View testID="language-hint" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.languageHint", { language: languageOffer.language, model: modelLabel(languageOffer.model.id) })}</Text>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.languageHint", { language: t(`language.${languageOffer.code}`, { defaultValue: languageOffer.language }), model: modelLabel(languageOffer.model.id) })}</Text>
           <Pressable accessibilityRole="button" onPress={() => onOpenVault?.()} hitSlop={8} style={styles.noticeBtn}>
             <Text style={[type.caption, { color: theme.accent }]}>{t(languageOffer.model.installed ? "chat.languageHint.use" : "chat.languageHint.install")}</Text>
           </Pressable>

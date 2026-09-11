@@ -59,6 +59,9 @@ const CODE_BY_SCRIPT: Partial<Record<Script, string>> = { hebrew: "he", arabic: 
 
 export const languageCodeOf = (text: string): string | null => CODE_BY_SCRIPT[scriptOf(text)] ?? null;
 
+/** Code to English name; the UI resolves `language.<code>` and falls back to this. */
+export const LANGUAGE_NAME_BY_CODE: Readonly<Record<string, string>> = Object.fromEntries((Object.keys(CODE_BY_SCRIPT) as Script[]).map((s) => [CODE_BY_SCRIPT[s]!, LANGUAGE_BY_SCRIPT[s]!]));
+
 export interface LanguageCandidate {
   id: string;
   goodLanguages: readonly string[];
