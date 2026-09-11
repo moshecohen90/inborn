@@ -161,3 +161,38 @@ part of this delta; flag for a future consistency pass.
 - vault.hf.error.gated = `This repository is gated. Add your token and accept its license on huggingface.co`
 - vault.hf.error.rate-limited = `huggingface.co is rate-limiting. Try again in a minute`
 - quick.truncated = `Long text, so only the first {count} characters are used`
+
+---
+
+# Round 2d - fixes-r9 delta (citation unit labels + library row counts)
+
+Date: 2026-09-11. Reviewer: conversion-copywriter. Branch: copy-r2d (from main e1d0929).
+Scope: the 5 new en.json keys from fixes-r9 - documents.cite.page/.sheet/.part (the unit label
+before a citation number) and documents.sheets/.parts (library row counts). Judged in render
+context: the labels feed `citationLabel(c, words)` in `@inborn/core` as
+`{docName} · {glyph}{page}` (see `apps/mobile/src/documents/Citations.tsx`,
+`packages/core/src/rag/citations.ts`).
+
+Result: 0 FIX, 5 KEEP. Gates pass: i18n test 4/4, lint clean. No en.json edit, so pseudo.json
+is unchanged.
+
+## Kept as-is (all 5)
+
+| Key | Verdict | Value | Reason |
+|-----|---------|-------|--------|
+| documents.sheets | KEEP | `{count, plural, one {# sheet} other {# sheets}}` | Exact sibling of `documents.pages`; correct ICU plural. |
+| documents.parts | KEEP | `{count, plural, one {# part} other {# parts}}` | Same pattern; correct. |
+| documents.cite.page | KEEP | `p.` | Compact page abbreviation. The missing trailing space is deliberate: it concatenates to "p.4", pinned by `fixes-r9.test.ts:71` ("contract.pdf · p.4") and matched by the core default `PAGE_WORDS`. Lowercase is correct after the "·" continuation. |
+| documents.cite.sheet | KEEP | `sheet ` | Full word plus a required trailing space (concatenates to "sheet 4"; there is no space in the template). |
+| documents.cite.part | KEEP | `part ` | Same as sheet ("part 3"). |
+
+Note on the asymmetry: page uses the compact "p.N" shorthand while sheet/part spell the word
+with a trailing space. This is a deliberate, code-backed design (the core `PAGE_WORDS` constant
+carries the same three forms, and the model-side prompt label must match the UI label), not an
+inconsistency to fix. Changing "p." to "p. " would desync the UI chip from the prompt label and
+the pinned test.
+
+## Changed keys (for the i18n stream)
+
+None. Translators should keep the trailing space on the sheet/part forms (and add the
+locale-appropriate space to the page form, as the Hebrew example "עמ׳ " in the test already does).
