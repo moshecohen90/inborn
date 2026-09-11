@@ -44,7 +44,7 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
     writeLicenceResult(DEV_RESULT_FILE, { step: "before", tier: state.entitlement.tier, storeReachable: state.storeReachable, fromCache: state.entitlement.fromCache, prices: state.prices });
     if (product === "restore") void manager.restore();
     else if (product === "none") return;
-    else if (state.entitlement.tier === "free") setTimeout(() => void manager.buy(product as ProductId), 1500);
+    else if (state.entitlement.tier === "free" || manager.offers().some((o) => o.productId === product)) setTimeout(() => void manager.buy(product as ProductId), 1500);
   }, [manager, state]);
   useEffect(() => {
     if (!devBuild() || !DEV_AUTOBUY || !state || state.phase !== "ready") return;

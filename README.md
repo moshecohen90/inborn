@@ -843,3 +843,17 @@ Reproduced on a private Pixel 6 API 33 emulator (4 GB guest, 16 GB data partitio
 8. **D17 Hebrew routing hint** (`betterModelForLanguage`, `Chat.tsx`): a non-Latin script the loaded model does not list in `goodLanguages` shows one line under the header naming the catalog model that does (installed first, else installable and fitting): "SHARP handles Hebrew better than this model · Install/Switch" → opens the vault.
 9. **D18 sharp-phi on Android** (`VaultEntry.importOnly`, `ModelCard`): a catalog model without a Play pack reads "Not offered through Google Play. Download the file in your browser, then import it here." with an Import GGUF button; a Play-less build (sideloaded debug) says "Google Play is not available here…" the same way. No dead card.
 10. **Dev hooks** (`VaultScreen`, `store.importFile`): `EXPO_PUBLIC_AUTOINSTALL/AUTOIMPORT` run once per app run, and importing a file already in the vault (same name and size, copy complete) returns the verified record instead of re-copying 640 MB over the file the engine has mapped; a short copy clears its record and state. `scripts/check-store-env.sh` refuses a store build while any `EXPO_PUBLIC_*` dev switch (models base URL, dev host, hooks, Pro override) is set in the environment; the Android dev HTTPS switch itself is `EXPO_PUBLIC_MODELS_BASE_URL` + `__DEV__` only (D8 above).
+
+## Purchases round 2: StoreKit configuration on the iPhone, Play versionCode 3 (branch `purchases-verify`) — 11.9.2026
+Report: `docs/qa/purchases-run-2026-09-11.md` (previous round: `docs/qa/purchases-run-2026-09-06.md`). Proven on Moshe's iPhone 13 Pro without
+UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro → Work upgrade → "You own Pro for Work", Work bought directly, Restore
+(found 0 on an empty session, found 1 after an external purchase), refund → Free. All on the local StoreKit configuration (`environment: "xcode"`).
+- `apps/mobile/ios-dev/StoreKitTestHarness.swift` + `apps/mobile/scripts/ios-add-storekit-harness.rb` (run after `expo prebuild -p ios`, dev builds
+  only; `ios/` is gitignored, so no store build contains it): with `INBORN_SKTEST=<ops>` in the launch environment the app opens an in-process
+  `SKTestSession` on `Inborn.storekit` (ops `clear` · `buy:<sku>` · `refund:<index>` · `dialogs:on`) and writes `Documents/sktest.json`.
+- Launch with `DYLD_FRAMEWORK_PATH=/System/Developer/Library/Frameworks:/System/Developer/Library/PrivateFrameworks` (StoreKitTest links
+  `@rpath/XCTest.framework/XCTest`, which only the developer disk image has) and `--payload-url inborn://paywall`; the bundle-time
+  `EXPO_PUBLIC_AUTOBUY=<sku|restore>` (`ios/.xcode.env.local`) makes the paywall buy or restore by itself and write `Documents/licence-run.json`.
+  Screenshots: `pymobiledevice3 developer dvt screenshot out.png` (no root needed on iOS 17+).
+- Trap: without the session a dev build talks to Apple's real sandbox (the phone has a sandbox account signed in) and shows a "Sandbox" payment
+  sheet that outlives the app; it is hosted by `PassbookUIService` — `xcrun devicectl device process signal --pid <pid> --signal SIGKILL` dismisses it.
