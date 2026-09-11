@@ -844,7 +844,7 @@ Reproduced on a private Pixel 6 API 33 emulator (4 GB guest, 16 GB data partitio
 9. **D18 sharp-phi on Android** (`VaultEntry.importOnly`, `ModelCard`): a catalog model without a Play pack reads "Not offered through Google Play. Download the file in your browser, then import it here." with an Import GGUF button; a Play-less build (sideloaded debug) says "Google Play is not available here…" the same way. No dead card.
 10. **Dev hooks** (`VaultScreen`, `store.importFile`): `EXPO_PUBLIC_AUTOINSTALL/AUTOIMPORT` run once per app run, and importing a file already in the vault (same name and size, copy complete) returns the verified record instead of re-copying 640 MB over the file the engine has mapped; a short copy clears its record and state. `scripts/check-store-env.sh` refuses a store build while any `EXPO_PUBLIC_*` dev switch (models base URL, dev host, hooks, Pro override) is set in the environment; the Android dev HTTPS switch itself is `EXPO_PUBLIC_MODELS_BASE_URL` + `__DEV__` only (D8 above).
 
-## Purchases round 2: StoreKit configuration on the iPhone, Play versionCode 3 (branch `purchases-verify`) — 11.9.2026
+## Purchases round 2: StoreKit configuration on the iPhone, Play versionCode 3 and 4 (branch `purchases-verify`) — 11.9.2026
 Report: `docs/qa/purchases-run-2026-09-11.md` (previous round: `docs/qa/purchases-run-2026-09-06.md`). Proven on Moshe's iPhone 13 Pro without
 UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro → Work upgrade → "You own Pro for Work", Work bought directly, Restore
 (found 0 on an empty session, found 1 after an external purchase), refund → Free. All on the local StoreKit configuration (`environment: "xcode"`).
@@ -858,6 +858,16 @@ UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro →
 - Trap: without the session a dev build talks to Apple's real sandbox (the phone has a sandbox account signed in) and shows a "Sandbox" payment
   sheet that outlives the app; it is hosted by `PassbookUIService` — `xcrun devicectl device process signal --pid <pid> --signal SIGKILL` dismisses it.
 
+- versionCode 4 (main 90a82f9, share target + "Ask Inborn"): same recipe, 2,091,988,850 bytes, sha256 `db345f5d…f4ae`, "1.0.0 (4) internal". On the
+  OnePlus 6T the Play update re-delivers the fast-follow Instant pack (`…/assetpacks/inborn_model/4/4/…`) and both Android surfaces work on the
+  real build: system share sheet → Inborn → Quick actions; select text in Google Docs → ⋮ → Ask Inborn → Fix grammar → Replace puts the corrected
+  text back into Docs' field. "Ask Inborn" only appears in apps that declare the `PROCESS_TEXT` query (Docs, Gmail, Messages, WhatsApp … yes; Keep,
+  Chrome no). Finding: the first launch of (4) showed onboarding again after the update.
+- Driving the 6T when taps are ignored (OnePlus keeps simulated touch behind a security setting we do not change): keys work (`input keyevent
+  KEYCODE_TAB/DPAD_*` + `uiautomator dump` to see the focused node); the floating text-selection toolbar needs `apps/mobile/android-dev/a11y-drive/`,
+  a self-instrumenting test APK that performs accessibility actions by text / content-desc / view id (`am instrument -w -e steps "click:Select all;
+  click:More options;click:Ask Inborn" com.inbornapp.mobile.uitest.test/androidx.test.runner.AndroidJUnitRunner`, log tag `UIDRIVE`). Build it with
+  the app project's gradle wrapper (`assembleDebug assembleDebugAndroidTest`), install both APKs, uninstall both when done.
 ## Fixes round 7: auto-delete, memory switch, benchmark, Hebrew OCR on iOS (branch `fixes-r7`) — 11.9.2026
 Proven on a private Pixel 6 API 33 emulator (4 GB guest, debug APK + Metro on a private port, `scripts/serve-models.mjs` for Fast) and on the
 iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).

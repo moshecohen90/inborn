@@ -27,7 +27,7 @@ The only situations in which anything at all leaves your device are listed in se
 ## 3. The complete list of network activity, by platform
 
 ### Android
-None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list "full network access"). Two things happen through Google Play, not through Inborn:
+None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list "full network access"; the one entry Android's app info may show that Inborn did not declare, "Google Play license check", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
 
 - **Model delivery.** The built-in "Instant" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
 - **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
