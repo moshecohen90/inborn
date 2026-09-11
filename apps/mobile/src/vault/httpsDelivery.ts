@@ -1,13 +1,18 @@
 import { Platform } from "react-native";
 import { DownloadTask, File, type DownloadPauseState, type DownloadTaskOptions } from "expo-file-system";
-import { ALLOWED_MODEL_HOSTS, httpsUrl, modelParts, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
+import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, modelParts, requestBytes, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
 import type { DeliveryContext, DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODEL_HOST, devBuild } from "./devFlags";
+import { hfHeaders, hfSearchAvailable } from "./hf";
+import { recordTransfer } from "../proof/transfers";
 import { fileSize, modelFile, partialFile, safeDelete } from "./paths";
 
 /* Dev bundles may also talk to the local stand-in (scripts/serve-models.mjs); store bundles never (spec §5.1). */
 export const DEV_MODEL_HOSTS: readonly string[] = devBuild() ? ["127.0.0.1", "localhost", "10.0.2.2", ...(DEV_MODEL_HOST ? [DEV_MODEL_HOST] : [])] : [];
-export const allowedHosts = (): readonly string[] => [...ALLOWED_MODEL_HOSTS, ...DEV_MODEL_HOSTS];
+/* huggingface.co joins the list only where the in-app search exists (§7.2: iOS, desktop); Android stays store-only. */
+export const allowedHosts = (): readonly string[] => [...ALLOWED_MODEL_HOSTS, ...(hfSearchAvailable() ? [HF_HOST] : []), ...DEV_MODEL_HOSTS];
+
+const isHf = (model: CatalogModel): boolean => model.delivery.some((d) => d.kind === "hf");
 
 const hostOf = (url: string): string => new URL(url).hostname;
 
@@ -37,7 +42,7 @@ export class HttpsDelivery implements ModelDelivery {
   plan(model: CatalogModel): DeliveryPlan | null {
     const url = this.url(model);
     if (!url || Platform.OS === "web") return null;
-    return { via: "https", origin: hostOf(url), host: hostOf(url), bytes: model.bytes };
+    return { via: isHf(model) ? "hf" : "https", origin: hostOf(url), host: hostOf(url), bytes: model.bytes };
   }
 
   locate(model: CatalogModel): string | null {
@@ -65,9 +70,20 @@ export class HttpsDelivery implements ModelDelivery {
     if (!url) throw new Error(`no allowed https delivery for ${model.id}`);
     const part = partialFile(shard.file);
     const saved = this.ctx.savedDownload(model.id) as SavedDownload | undefined;
-    const opts: DownloadTaskOptions = { sessionType: "background", onProgress: ({ bytesWritten }) => progress(bytesWritten) };
+    /* A gated repository needs the user's token; models.inbornapp.com gets no header at all. */
+    const headers = isHf(model) ? await hfHeaders() : undefined;
+    let written = 0;
+    const opts: DownloadTaskOptions = {
+      sessionType: "background",
+      ...(headers && Object.keys(headers).length ? { headers } : {}),
+      onProgress: ({ bytesWritten }) => {
+        written = bytesWritten;
+        progress(bytesWritten);
+      },
+    };
     const task = await this.taskFor(model, shard, url, part, saved, opts);
     this.tasks.set(model.id, task);
+    const before = fileSize(part);
     try {
       const result = task.state === "paused" ? await task.resumeAsync() : await task.downloadAsync();
       if (!result) {
@@ -78,6 +94,8 @@ export class HttpsDelivery implements ModelDelivery {
       this.finish(shard, part);
     } finally {
       this.tasks.delete(model.id);
+      /* S50 honesty: what this request moved, whether it finished, paused or failed. */
+      recordTransfer({ host: hostOf(url), bytesOut: requestBytes(url), bytesIn: Math.max(0, written - before), purpose: "model" });
     }
   }
 
@@ -98,7 +116,8 @@ export class HttpsDelivery implements ModelDelivery {
 
   /** Real size from a HEAD before anything is written (spec S30 edge cases). */
   private async head(url: string): Promise<{ total: number; etag?: string; acceptRanges: boolean }> {
-    const r = await fetch(url, { method: "HEAD" });
+    const r = await fetch(url, { method: "HEAD", headers: hostOf(url) === HF_HOST ? await hfHeaders() : undefined });
+    recordTransfer({ host: hostOf(url), bytesOut: requestBytes(url, "HEAD"), bytesIn: 0, purpose: "model" });
     if (!r.ok) throw new Error(`HEAD ${r.status} from ${hostOf(url)}`);
     return { total: Number(r.headers.get("content-length") ?? 0), etag: r.headers.get("etag") ?? undefined, acceptRanges: r.headers.get("accept-ranges") === "bytes" };
   }

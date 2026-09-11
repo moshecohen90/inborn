@@ -3,7 +3,7 @@ import { AppState, Platform } from "react-native";
 import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
-import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
+import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
@@ -17,6 +17,7 @@ import { useAppLock, type AppLock } from "../lock/useAppLock";
 import { isCaptured, onCapturedChange, setSecure } from "../../modules/secure-screen";
 import { meterKind, sample, type MeterKind } from "../proof/meterSource";
 import { priorTransfers } from "../proof/webDelivery";
+import { drainTransfers, subscribeTransfers } from "../proof/transfers";
 import type { SealState } from "../components/Seal";
 import { defaultPrefs, mergePrefs, type Prefs } from "./prefsTypes";
 import { deletePrefs, readPrefsRaw, writePrefsRaw } from "./prefsStore";
@@ -30,6 +31,8 @@ export interface ActiveChat {
   key: number;
   /** Persona chosen in the new-chat sheet for a chat that does not exist yet. */
   personaId?: string;
+  /** Text or files another app shared in (§7.7); the chat screen consumes it once it is ready and clears it. */
+  seed?: SharePayload;
 }
 
 /** Filled by the vault stream while the store/system delivers a model (§8.8 "model delivering"). */
@@ -68,6 +71,9 @@ export interface AppServices {
   chatDeleted(id: string): void;
   /** Bumped when chats vanish outside the drawer (auto-delete): a mounted drawer refreshes its list. */
   chatsVersion: number;
+  /** A share-sheet / "Ask Inborn" item: a fresh chat carrying it (§7.7, S43). */
+  openShared(payload: SharePayload): void;
+  seedConsumed(): void;
   /** The vault changed the default model (or one just arrived): pick the engine up again; callers remount the chat. */
   modelChanged(): void;
   delivery: DeliveryState | null;
@@ -276,6 +282,12 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
 
   useEffect(() => networkLog.subscribe(() => setLogTick((n) => n + 1)), [networkLog]);
 
+  // The vault's own requests (model bytes, Hugging Face search) reach the S50 log through the transfer bus.
+  useEffect(() => {
+    for (const r of drainTransfers()) networkLog.record(r);
+    return subscribeTransfers((r) => networkLog.record(r));
+  }, [networkLog]);
+
   // The vault drives the §8.8 "delivering" strip and the seal; on first launch the fast-follow pack hot-swaps the engine when it lands.
   useEffect(() => {
     if (Platform.OS === "web" || !booted) return;
@@ -358,6 +370,13 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
         });
       },
       chatCreated: (id) => setActive((a) => ({ ...a, id })),
+      openShared: (payload) => {
+        setActive((a) => {
+          closeActive(booted.store, a);
+          return { id: null, incognito: false, key: a.key + 1, seed: payload };
+        });
+      },
+      seedConsumed: () => setActive((a) => (a.seed ? { ...a, seed: undefined } : a)),
       chatDeleted: (id) => setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a)),
       chatsVersion,
       modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),

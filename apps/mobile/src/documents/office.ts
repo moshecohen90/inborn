@@ -6,19 +6,7 @@ export const WORK_KINDS: readonly DocKind[] = ["xlsx", "html"];
 
 export const isWorkKind = (kind: DocKind): boolean => WORK_KINDS.includes(kind);
 
-/** What the system picker offers, by MIME; the kind is decided afterwards from the name and the first bytes. */
-export const PICK_TYPES = [
-  "application/pdf",
-  "text/plain",
-  "text/markdown",
-  "text/csv",
-  "text/html",
-  "application/xhtml+xml",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "image/png",
-  "image/jpeg",
-];
+export { PICK_TYPES } from "./pickTypes";
 
 /** Kind of a picked file before it is copied in, so a locked kind never enters the library. */
 export function sniffPicked(uri: string, name: string): DocKind {

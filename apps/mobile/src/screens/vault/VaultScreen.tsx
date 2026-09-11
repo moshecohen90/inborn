@@ -13,9 +13,12 @@ import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { ModelCard } from "./ModelCard";
 import { ModelDetails } from "./ModelDetails";
+import { HfSearch } from "./HfSearch";
+import { hfSearchAvailable } from "../../vault/hf";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { Toggle } from "../../components/shell/primitives";
+import { useOpenSheet } from "../../lib/openSheets";
 
 export interface VaultScreenProps {
   onClose: () => void;
@@ -44,6 +47,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const [benchmarking, setBenchmarking] = useState(false);
   const { library } = useAppServices().store;
   const [confirm, setConfirm] = useState<Confirm | null>(null);
+  const [hfOpen, setHfOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const device = vault.device;
   const active = vault.activeModel();
@@ -167,15 +171,27 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const fits = groups.fits.map((m) => byId.get(m.id)!).filter((e) => !installed(e));
   const tooBig = groups.tooBig.map((x) => byId.get(x.model.id)!).filter((e) => !installed(e));
   const companions = entries.filter((e) => e.model.role !== "chat" && !installed(e));
+  /* Hugging Face picks that are not on the device (cancelled, failed, waiting): they keep a row so Install / Remove stay reachable. */
+  const hfPending = entries.filter((e) => e.hf && !installed(e));
   const sections: Section[] = [
     { key: "on", title: t("vault.onDevice"), data: onDevice },
     ...(fits.length ? [{ key: "fits", title: t("vault.fits", { device: deviceNoun() }), data: fits }] : []),
+    ...(hfPending.length ? [{ key: "hf", title: t("vault.hf.section"), data: hfPending }] : []),
     ...(tooBig.length ? [{ key: "big", title: t("vault.tooBig", { ram: device.ramGB }), data: tooBig, disabled: new Map(groups.tooBig.map((x) => [x.model.id, x.reason])) }] : []),
     ...(companions.length ? [{ key: "companions", title: t("vault.companions"), data: companions }] : []),
   ];
 
+  /* A picked file joins the vault, then the same confirmation sheet as a catalog download names huggingface.co and the size (§5.1). */
+  const pickFromHf = (model: CatalogModel) => {
+    const entry = vault.addHfModel(model);
+    setHfOpen(false);
+    if (entry.state.kind === "ready") return setToast(t("vault.hf.alreadyInstalled", { name: model.name }));
+    setTimeout(() => setConfirm({ entry }), 320);
+  };
+
   const detailsState = details ? vault.state(details.id) : { kind: "not-installed" as const };
 
+  useOpenSheet(confirm !== null, () => setConfirm(null));
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <View style={styles.header}>
@@ -227,7 +243,13 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
               <Icon name="upload" size={18} color={theme.text} />
               <Text style={[type.body, styles.actionText, { color: theme.text }]}>{t("vault.import")}</Text>
             </Pressable>
-            {device.os === "android" ? <Text style={[type.mono, styles.centered, { color: theme.text3 }]}>{t("vault.import.hint.android")}</Text> : null}
+            {hfSearchAvailable() ? (
+              <Pressable testID="search-hf" accessibilityRole="button" onPress={() => setHfOpen(true)} style={[styles.action, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+                <Icon name="chevronRight" size={18} color={theme.text} />
+                <Text style={[type.body, styles.actionText, { color: theme.text }]}>{t("vault.hf.button")}</Text>
+              </Pressable>
+            ) : null}
+            {device.os === "android" || Platform.OS === "android" ? <Text style={[type.mono, styles.centered, { color: theme.text3 }]}>{t("vault.import.hint.android")}</Text> : null}
           </View>
         }
       />
@@ -263,6 +285,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
           </View>
         </View>
       </Modal>
+
+      <HfSearch visible={hfOpen} device={device} theme={theme} onClose={() => setHfOpen(false)} onPick={pickFromHf} />
 
       <ModelDetails
         model={details}

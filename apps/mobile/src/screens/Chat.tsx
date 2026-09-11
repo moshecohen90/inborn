@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AppState, FlatList, Image, Platform, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
@@ -41,9 +41,11 @@ import {
   type Persona,
   type ReportInput,
   type Session,
+  type SharePayload,
   type StoppedBy,
   type Usage,
   reportText,
+  type Delta,
 } from "@inborn/core";
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
@@ -66,6 +68,8 @@ import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSet
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
+import { QuickActionsSheet } from "../components/chat/QuickActionsSheet";
+import { finishProcessText } from "../share";
 import { shape } from "../components/chat/styles";
 import { useType } from "../services/type";
 import { copyText } from "../lib/clipboard";
@@ -77,7 +81,7 @@ import { useShortcut } from "../lib/shortcuts";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
-import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
+import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
 
 type Row = AssistantRow;
@@ -116,6 +120,9 @@ export interface ChatProps {
   /** The shell's seal state ("loading" while the first model pack is still arriving, §8.8). */
   sealState?: SealState;
   sealProgress?: number;
+  /** Text or files another app shared in (§7.7): opens the quick-action sheet / attaches the files once the model is ready. */
+  seed?: SharePayload;
+  onSeedConsumed?: () => void;
 }
 
 /* Android freezes when one Modal opens in the frame another one dismisses; hand over after the 280 ms sheet animation. */
@@ -125,7 +132,7 @@ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images } : {}) });
 
-export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress }: ChatProps) {
+export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
   const fontScale = useFontScale();
   const { t, i18n } = useTranslation();
@@ -173,6 +180,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [preferWhisper, setPreferWhisper] = useState(false);
   const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
   const [readingId, setReadingId] = useState<string | null>(null);
+  /** S43: the text under the quick-action sheet and where it came from ("processText" can hand a result back). */
+  const [quick, setQuick] = useState<{ text: string; source: "message" | "share" | "processText"; replaceable: boolean } | null>(null);
   const dictation = useDictation({ draft, setDraft, tier, locale: i18n.language, preferWhisper });
   /* Attachments key by chat id; a chat that does not exist yet, and every incognito chat, attach under a RAM-only key (§5.7). */
   const draftKey = useRef(`${RAM_ATTACH_PREFIX}draft-${Date.now().toString(36)}`).current;
@@ -572,6 +581,71 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     return () => clearInterval(timer);
   }, [status.kind, busy, pendingImages]);
 
+  /* A shared item (§7.7): files join the library and this chat; text opens the quick-action sheet (S43). Consumed once, when the model is up. */
+  const inFront = useIsFocused();
+  useEffect(() => {
+    if (!seed || status.kind !== "ready" || !inFront) return;
+    onSeedConsumed?.();
+    if (seed.kind === "files") {
+      void (async () => {
+        let attached = 0;
+        for (const f of seed.files) {
+          const doc = await library.importFile(f.uri, f.name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined });
+          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name: f.name }));
+          else {
+            docs.attach(doc.id);
+            attached++;
+          }
+        }
+        if (attached) flash(t("quick.filesAttached", { count: attached }));
+        if (seed.text) setDraft(seed.text);
+      })();
+      return;
+    }
+    /* Only once this screen is in front (the sheet another screen had open is gone): a second Modal presented meanwhile never shows on iOS. */
+    afterSheetClose(() => setQuick({ text: seed.text, source: seed.kind === "processText" ? "processText" : "share", replaceable: seed.kind === "processText" && seed.replaceable }));
+  }, [seed, status.kind, inFront]);
+
+  /* The sheet streams through the same guarded engine as a chat turn; `busy` keeps the composer quiet meanwhile. */
+  const runQuick = (messages: Message[], signal: AbortSignal): AsyncIterable<Delta> => {
+    const s = session.current;
+    const gen = engine.generate(s!, messages, { reasoning: false, maxTokens: 1024, temperature: 0.3 }, signal);
+    setBusy(true);
+    return {
+      [Symbol.asyncIterator]: async function* () {
+        try {
+          for await (const d of gen) yield d;
+        } finally {
+          setBusy(false);
+        }
+      },
+    };
+  };
+  const closeQuick = () => {
+    const q = quick;
+    setQuick(null);
+    if (q?.source === "processText") finishProcessText(null);
+  };
+  const openQuickInChat = async (userTurn: string, result: string | null) => {
+    const q = quick;
+    setQuick(null);
+    if (q?.source === "processText") finishProcessText(null);
+    if (!result) return setDraft(userTurn);
+    try {
+      const chatIdNow = await ensureChat(userTurn);
+      const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: userTurn });
+      const answer = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: result, modelId: model.id });
+      setRows((all) => [...all, user, answer]);
+      requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
+    } catch (e: unknown) {
+      flash(errorText(e));
+    }
+  };
+  const replaceFromQuick = (result: string) => {
+    setQuick(null);
+    if (finishProcessText(result)) flash(t("quick.replaced"));
+  };
+
   const lastUserId = [...rows].reverse().find((r) => r.role === "user")?.id;
   const lastAssistant = [...rows].reverse().find((r) => r.role === "assistant");
   const lastUserText = [...rows].reverse().find((r) => r.role === "user")?.content ?? "";
@@ -905,6 +979,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
                 }}
               />
             ) : null}
+            <SheetItem
+              testID="action-quick"
+              label={t("quick.menu")}
+              hint={t("quick.menuHint")}
+              disabled={busy || status.kind !== "ready"}
+              onPress={() => {
+                const row = actionRow;
+                setActionRow(null);
+                afterSheetClose(() => setQuick({ text: row.role === "assistant" ? markdownToText(row.content) : row.content, source: "message", replaceable: false }));
+              }}
+            />
             {actionRow.role === "user" && actionRow.id === lastUserId ? (
               <SheetItem
                 testID="action-edit"
@@ -979,6 +1064,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ) : null}
       </Sheet>
       <ReportSheet message={reportRow} onClose={() => setReportRow(null)} onSave={saveReport} onEmail={emailReport} />
+      <QuickActionsSheet
+        visible={quick !== null}
+        onClose={closeQuick}
+        text={quick?.text ?? ""}
+        replaceable={!!quick?.replaceable}
+        run={runQuick}
+        busy={busy && quick === null}
+        onReplace={replaceFromQuick}
+        onOpenInChat={(turn, result) => void openQuickInChat(turn, result)}
+        uiLocale={i18n.language}
+        onToast={flash}
+      />
       <AttachSheet
         visible={attachOpen}
         onClose={() => setAttachOpen(false)}

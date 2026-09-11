@@ -5,6 +5,7 @@ import { GlassFill, panelColor, panelStyle } from "../../components/shell/Native
 import { formatBytes, type DocumentRecord } from "@inborn/core";
 import { kindLabel } from "./DocumentRow";
 import { font } from "../../services/type";
+import { useOpenSheet } from "../../lib/openSheets";
 
 export interface DocumentDetailsProps {
   doc: DocumentRecord;
@@ -29,6 +30,7 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
     [t("documents.details.flagged"), String(doc.flaggedLines)],
     [t("documents.details.added"), new Date(doc.addedAt).toLocaleString()],
   ];
+  useOpenSheet(true, onClose);
   return (
     <Modal transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>

@@ -6,6 +6,7 @@ import { GlassFill, panelColor, panelStyle } from "../../components/shell/Native
 import type { LicenceManager, Rejection } from "@inborn/core";
 import { font } from "../../services/type";
 import { useKeyboardLift } from "../../lib/keyboard";
+import { useOpenSheet } from "../../lib/openSheets";
 
 export interface LicenceKeySheetProps {
   manager: LicenceManager;
@@ -31,6 +32,7 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
   };
 
   const lift = useKeyboardLift();
+  useOpenSheet(true, onClose);
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <View style={[styles.backdrop, { paddingBottom: 24 + lift }]}>

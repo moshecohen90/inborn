@@ -5,6 +5,7 @@ import { GlassFill, panelColor, panelStyle } from "../../components/shell/Native
 import { BENCH_PP, benchmarkVerdict, formatModelBytes, ttftForPrompt, type BenchmarkResult, type CatalogModel, type InstallState, type SpeedRange } from "@inborn/core";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { font, useType } from "../../services/type";
+import { useOpenSheet } from "../../lib/openSheets";
 
 export interface ModelDetailsProps {
   model: CatalogModel | null;
@@ -33,8 +34,8 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
   const device = deviceNoun();
   const rows: [string, string][] = model
     ? [
-        [t("vault.details.params"), model.params],
-        [t("vault.details.quant"), model.quant],
+        [t("vault.details.params"), model.params || "—"],
+        [t("vault.details.quant"), model.quant || "—"],
         [t("vault.details.context"), model.contextLength ? t("vault.details.tokens", { count: model.contextLength }) : "—"],
         [t("vault.details.vision"), t(model.vision ? "vault.yes" : "vault.no")],
         [t("vault.details.tools"), t(model.tools ? "vault.yes" : "vault.no")],
@@ -54,6 +55,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
       return new Date(at).toLocaleString();
     }
   };
+  useOpenSheet(model !== null, onClose);
   return (
     <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} />

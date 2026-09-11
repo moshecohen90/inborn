@@ -13,6 +13,8 @@ export default function Index() {
       chatId={s.active.id}
       incognito={s.active.incognito}
       personaId={s.active.personaId}
+      seed={s.active.seed}
+      onSeedConsumed={s.seedConsumed}
       sealState={s.sealState}
       sealProgress={s.delivery && (s.delivery.status === "delivering" || s.delivery.status === "verifying") ? s.delivery.progress : undefined}
       onOpenChats={() => router.push("/chats")}

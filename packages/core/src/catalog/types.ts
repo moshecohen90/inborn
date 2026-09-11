@@ -3,6 +3,8 @@ export type Tier = "instant" | "fast" | "sharp" | "power" | "studio";
 export type ModelRole = "chat" | "embedding" | "speech" | "vision";
 export type Battery = "low" | "medium" | "high" | "highest";
 export type License = "Apache-2.0" | "MIT";
+/** Catalog entries carry one of `License`; imports and Hugging Face files carry whatever the repo declares. */
+export type LicenseTag = License | (string & {});
 
 export type Delivery =
   /** Inside the app bundle (iOS Instant). */
@@ -11,7 +13,9 @@ export type Delivery =
   | { kind: "play-asset-pack"; pack: string; mode: "fast-follow" | "on-demand"; file: string }
   | { kind: "apple-asset-pack"; pack: string }
   /** Resolved against `CatalogManifest.baseUrl`; the only network path outside the stores. */
-  | { kind: "https"; path: string; mirror?: string };
+  | { kind: "https"; path: string; mirror?: string }
+  /** A file the user picked in the in-app Hugging Face search (§7.2, iOS + desktop): `huggingface.co/<repo>/resolve/<revision>/<path>`. */
+  | { kind: "hf"; repo: string; revision: string; path: string };
 
 /** One shard of a split GGUF (llama.cpp `-0000N-of-0000M.gguf` naming); Play packs cap at 1.5 GB (§5.1). */
 export interface ModelPart {
@@ -41,7 +45,7 @@ export interface CatalogModel {
   sha256: string;
   /** Every shard (first one included) when the model ships split; absent for single files. */
   parts?: ModelPart[];
-  license: License;
+  license: LicenseTag;
   /** Below this the model is "Will not run"; between min and recommended it "runs slowly" (§10.2 #11). */
   minRamGB: number;
   recommendedRamGB: number;
