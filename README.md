@@ -845,7 +845,7 @@ Reproduced on a private Pixel 6 API 33 emulator (4 GB guest, 16 GB data partitio
 9. **D18 sharp-phi on Android** (`VaultEntry.importOnly`, `ModelCard`): a catalog model without a Play pack reads "Not offered through Google Play. Download the file in your browser, then import it here." with an Import GGUF button; a Play-less build (sideloaded debug) says "Google Play is not available here…" the same way. No dead card.
 10. **Dev hooks** (`VaultScreen`, `store.importFile`): `EXPO_PUBLIC_AUTOINSTALL/AUTOIMPORT` run once per app run, and importing a file already in the vault (same name and size, copy complete) returns the verified record instead of re-copying 640 MB over the file the engine has mapped; a short copy clears its record and state. `scripts/check-store-env.sh` refuses a store build while any `EXPO_PUBLIC_*` dev switch (models base URL, dev host, hooks, Pro override) is set in the environment; the Android dev HTTPS switch itself is `EXPO_PUBLIC_MODELS_BASE_URL` + `__DEV__` only (D8 above).
 
-## Purchases round 2: StoreKit configuration on the iPhone, Play versionCode 3 and 4 (branch `purchases-verify`) — 11.9.2026
+## Purchases round 2: StoreKit configuration on the iPhone, Play versionCode 3, 4 and 5 (branch `purchases-verify`) — 11.9.2026
 Report: `docs/qa/purchases-run-2026-09-11.md` (previous round: `docs/qa/purchases-run-2026-09-06.md`). Proven on Moshe's iPhone 13 Pro without
 UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro → Work upgrade → "You own Pro for Work", Work bought directly, Restore
 (found 0 on an empty session, found 1 after an external purchase), refund → Free. All on the local StoreKit configuration (`environment: "xcode"`).
@@ -869,6 +869,10 @@ UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro →
   a self-instrumenting test APK that performs accessibility actions by text / content-desc / view id (`am instrument -w -e steps "click:Select all;
   click:More options;click:Ask Inborn" com.inbornapp.mobile.uitest.test/androidx.test.runner.AndroidJUnitRunner`, log tag `UIDRIVE`). Build it with
   the app project's gradle wrapper (`assembleDebug assembleDebugAndroidTest`), install both APKs, uninstall both when done.
+- versionCode 5 (main 07bc402, fixes-r9): 1,870,567,596 bytes, sha256 `861d805d…04eb`, "1.0.0 (5) internal". Trap: `bundleRelease` dies in
+  `:app:signReleaseBundle` with `OutOfMemoryError: Java heap space` under prebuild's default `-Xmx2048m`; run it (or just that task) with
+  `-Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"`. On the 6T the (4)→(5) Play update is a small delta (packs unchanged) and a cold launch
+  opens straight to the chat screen, no onboarding (F12 on a real device); model from `…/assetpacks/inborn_model/5/5/…` in 1.5 s.
 ## Fixes round 7: auto-delete, memory switch, benchmark, Hebrew OCR on iOS (branch `fixes-r7`) — 11.9.2026
 Proven on a private Pixel 6 API 33 emulator (4 GB guest, debug APK + Metro on a private port, `scripts/serve-models.mjs` for Fast) and on the
 iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).
