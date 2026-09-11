@@ -77,6 +77,7 @@ class DeviceGuard {
   private pendingSwitch: { tier: Tier; auto: boolean; restore: boolean } | null = null;
   private triedSwitch: string | null = null;
   private state: GuardState | null = null;
+  private tiers: (() => ModelTier[]) | null = null;
   private readonly listeners = new Set<() => void>();
   private started = false;
   private stopSources: (() => void)[] = [];
@@ -129,6 +130,11 @@ class DeviceGuard {
     this.override = { ...this.override, ...patch };
     savePrefs({ ...this.override, explained: this.explained });
     this.evaluate();
+  };
+
+  /** Which chat tiers are installed right now; the policy never proposes or applies a switch towards a missing one. */
+  setAvailableTiers = (provider: (() => ModelTier[]) | null): void => {
+    this.tiers = provider;
   };
 
   /** Feed the tok/s of every finished answer (Windows throttling stand-in, §6.5). */
@@ -230,6 +236,7 @@ class DeviceGuard {
       backgroundedForMs: this.backgroundedAt === null ? null : now - this.backgroundedAt,
       pausedInBackground: this.pausedInBackground,
       throttling: this.speed.isThrottling(now),
+      ...(this.tiers ? { availableTiers: this.tiers() } : {}),
     };
   }
 

@@ -40,10 +40,17 @@ describe("toDeviceState (§8.8 banner union from the §6.5 policy)", () => {
     expect(charging.battery.charging).toBe(true);
   });
 
-  it("heat: serious offers Instant, critical pauses; memory pauses on a phone", () => {
+  it("heat: serious offers Instant, critical pauses; memory switches to Instant on a phone, pauses when there is nothing to switch to", () => {
     expect(toDeviceState(guardState(signals({ thermal: "serious" }))).recommendation).toEqual({ kind: "switchToInstant", reason: "thermal", auto: false });
     expect(toDeviceState(guardState(signals({ thermal: "critical" }))).recommendation).toEqual({ kind: "pause", reason: "thermal" });
-    expect(toDeviceState(guardState(signals({ memoryPressure: "critical" }))).recommendation).toEqual({ kind: "pause", reason: "memory" });
+    expect(toDeviceState(guardState(signals({ memoryPressure: "critical" }))).recommendation).toEqual({ kind: "switchToInstant", reason: "memory", auto: true });
+    const p = new DevicePolicy();
+    p.update(signals({ memoryPressure: "critical" }), defaultOverride("phone"), 0);
+    p.noteSwitched("fast", "instant", true, "memory");
+    expect(toDeviceState(guardState(signals({ memoryPressure: "critical", currentTier: "instant" }), p)).recommendation).toEqual({ kind: "switchToInstant", reason: "memory", auto: true });
+    expect(toDeviceState(guardState(signals({ currentTier: "instant" }), p)).recommendation).toEqual({ kind: "switchToInstant", reason: "memory", auto: true });
+    expect(toDeviceState(guardState(signals({ memoryPressure: "critical", availableTiers: ["fast"] }))).recommendation).toEqual({ kind: "pause", reason: "memory" });
+    expect(toDeviceState(guardState(signals({ memoryPressure: "critical", currentTier: "instant" }))).recommendation).toEqual({ kind: "pause", reason: "memory" });
   });
 
   it("background pause and the charger's switch back use the additive kinds", () => {

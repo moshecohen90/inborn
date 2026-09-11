@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { Modal, Pressable, SectionList, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, dark, light, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
-import { ENGINE_VERSION, formatModelBytes, groupByFit, paywallFor, type CatalogModel } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, type BenchmarkResult, type CatalogModel } from "@inborn/core";
 import { useEntitlement } from "../../licence";
-import { resetEngine } from "../../engine";
+import { benchmarkModel, resetEngine } from "../../engine";
+import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { ModelCard } from "./ModelCard";
@@ -38,6 +39,9 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const { vault, entries } = useVault();
   const { tier } = useEntitlement();
   const [details, setDetails] = useState<CatalogModel | null>(null);
+  const [benchmark, setBenchmark] = useState<BenchmarkResult | null>(null);
+  const [benchmarking, setBenchmarking] = useState(false);
+  const { library } = useAppServices().store;
   const [confirm, setConfirm] = useState<Confirm | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const device = vault.device;
@@ -86,6 +90,44 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
     vault.setDefault(id);
     await resetEngine();
     onModelChanged?.(id);
+  };
+
+  /* S31: the stored result of the model whose details are open (one per model, in the encrypted settings table). */
+  useEffect(() => {
+    if (!details) return;
+    let alive = true;
+    setBenchmark(null);
+    library
+      .getSetting(benchmarkKey(details.id))
+      .then((raw) => {
+        if (alive) setBenchmark(parseBenchmark(raw));
+      })
+      .catch(() => undefined);
+    return () => {
+      alive = false;
+    };
+  }, [details, library]);
+
+  const runBenchmark = async (model: CatalogModel) => {
+    const loc = vault.locate(model.id);
+    if (!loc || benchmarking) return;
+    setBenchmarking(true);
+    try {
+      const run = await benchmarkModel({ id: model.id, uri: loc.path }, BENCH_PP, BENCH_TG);
+      if (!run) {
+        setToast(t("vault.benchmark.unavailable"));
+        return;
+      }
+      const result: BenchmarkResult = { modelId: model.id, at: Date.now(), loadMs: run.loadMs, promptTokPerSec: run.timings.promptTokPerSec, genTokPerSec: run.timings.genTokPerSec, pp: BENCH_PP, tg: BENCH_TG, memMB: run.memMB, chip: device.chip };
+      await library.setSetting(benchmarkKey(model.id), JSON.stringify(result));
+      setBenchmark(result);
+      if (__DEV__) console.log("[bench]", JSON.stringify({ ...result, expected: expectedSpeed(device.chip, model.tier) ?? null }));
+    } catch (e: unknown) {
+      console.warn("[bench]", e);
+      setToast(t("vault.benchmark.failed"));
+    } finally {
+      setBenchmarking(false);
+    }
   };
 
   useEffect(() => {
@@ -236,6 +278,10 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
           if (details) void vault.remove(details.id);
           setDetails(null);
         }}
+        benchmark={benchmark}
+        expected={details ? expectedSpeed(device.chip, details.tier) : undefined}
+        benchmarking={benchmarking}
+        onBenchmark={Platform.OS === "web" || !details ? undefined : () => void runBenchmark(details)}
       />
     </View>
   );

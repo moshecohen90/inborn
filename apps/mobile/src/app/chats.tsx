@@ -37,6 +37,8 @@ export default function ChatsRoute() {
           }}
           onDeleted={s.chatDeleted}
           onOpenPaywall={() => router.push("/paywall")}
+          autoDeleteDays={s.prefs.autoDeleteDays}
+          version={s.chatsVersion}
         />
       </View>
       <View testID="drawer-footer" style={[styles.footer, { borderTopColor: theme.border, backgroundColor: theme.bg, paddingBottom: insets.bottom + 8 }]}>

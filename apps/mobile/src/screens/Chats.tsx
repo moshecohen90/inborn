@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit } from "@inborn/core";
 import { formatWhen } from "../lib/when";
+import { retentionDaysLeft } from "../services/retention";
 import { useEntitlement } from "../licence";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
@@ -36,6 +37,10 @@ export interface ChatsProps {
   onDeleted: (chatId: string) => void;
   /** Folders and "export all" are §12.3 value moments; the host opens S60. */
   onOpenPaywall?: () => void;
+  /** S52 auto-delete setting (0 = off): rows show "Deletes in N days" (S20). */
+  autoDeleteDays?: number;
+  /** Changes when chats were removed elsewhere (auto-delete); the list reloads. */
+  version?: number;
 }
 
 const UNDO_MS = 5_000;
@@ -44,7 +49,7 @@ type Pending = { chats: Chat[]; timer: ReturnType<typeof setTimeout> };
 type Section = { key: string; title: string; data: Chat[]; folder?: Folder; lockedCount?: number };
 
 /** S20 chats drawer: search with snippets, pinned / folders / recent / archived, swipe actions, bulk delete with undo, S21 new-chat sheet. */
-export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted, onOpenPaywall }: ChatsProps) {
+export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted, onOpenPaywall, autoDeleteDays = 0, version = 0 }: ChatsProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const theme = useTheme();
@@ -83,7 +88,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   }, [store]);
   useEffect(() => {
     refresh().catch((e: unknown) => console.warn("listChats", e));
-  }, [refresh]);
+  }, [refresh, version]);
 
   useEffect(() => {
     const q = query.trim();
@@ -199,7 +204,9 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   const allPersonas = [...BUILT_IN_PERSONAS, ...personas];
   const personaName = (p: Persona) => (p.builtIn ? t(`persona.${p.id.replace("builtin:", "")}`) : p.name);
 
+  const now = Date.now();
   const renderRow = (item: Chat) => {
+    const daysLeft = retentionDaysLeft(item, autoDeleteDays, now);
     const row = (
       <Pressable
         testID={`chat-row-${item.id}`}
@@ -222,6 +229,11 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
             </Text>
           </View>
           {item.incognito ? <Text style={[type.caption, { color: theme.text3 }]}>{t("chats.notSaved")}</Text> : null}
+          {daysLeft !== null ? (
+            <Text testID={`chat-deletes-${item.id}`} style={[type.caption, { color: theme.text3 }]}>
+              {t("chats.deletesIn", { count: daysLeft })}
+            </Text>
+          ) : null}
         </View>
         <Text style={[type.mono, { color: theme.text3 }]}>{formatWhen(item.updatedAt, i18n.language)}</Text>
       </Pressable>

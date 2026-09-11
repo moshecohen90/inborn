@@ -73,6 +73,12 @@ export interface Stats {
   memMB: number;
 }
 
+/** llama.cpp's synthetic benchmark (S31): `pp` prompt tokens processed, then `tg` tokens generated. */
+export interface BenchTimings {
+  promptTokPerSec: number;
+  genTokPerSec: number;
+}
+
 export interface LocalLM {
   readonly id: EngineId;
   capabilities(): Capabilities;
@@ -81,4 +87,6 @@ export interface LocalLM {
   generate(session: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta>;
   embed(texts: string[]): Promise<Float32Array[]>;
   stats(): Stats;
+  /** Engines that can time a synthetic run (llama.rn); absent elsewhere, so S31 hides the button. */
+  bench?(pp: number, tg: number): Promise<BenchTimings>;
 }

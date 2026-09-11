@@ -7,5 +7,6 @@ export * from "./install";
 export * from "./gguf";
 export * from "./resume";
 export * from "./speed";
+export * from "./benchmark";
 export { CATALOG_PUBLIC_KEY } from "./publicKey";
 export * from "./lanes";

@@ -5,7 +5,7 @@ import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
-import { getEngine, isGenerating, resetEngine, subscribeActivity } from "../engine";
+import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
 import { startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
@@ -21,6 +21,7 @@ import type { SealState } from "../components/Seal";
 import { defaultPrefs, mergePrefs, type Prefs } from "./prefsTypes";
 import { deletePrefs, readPrefsRaw, writePrefsRaw } from "./prefsStore";
 import { applyTextScale, applyThemeMode } from "./theme";
+import { RETENTION_TICK_MS, runRetention } from "./retention";
 
 /** `key` remounts the chat screen whenever a different conversation is opened. */
 export interface ActiveChat {
@@ -65,6 +66,8 @@ export interface AppServices {
   newChat(incognito: boolean, personaId?: string): void;
   chatCreated(id: string): void;
   chatDeleted(id: string): void;
+  /** Bumped when chats vanish outside the drawer (auto-delete): a mounted drawer refreshes its list. */
+  chatsVersion: number;
   /** The vault changed the default model (or one just arrived): pick the engine up again; callers remount the chat. */
   modelChanged(): void;
   delivery: DeliveryState | null;
@@ -121,6 +124,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   const [delivery, setDelivery] = useState<DeliveryState | null>(null);
   const [captured, setCaptured] = useState(false);
   const [logTick, setLogTick] = useState(0);
+  const [chatsVersion, setChatsVersion] = useState(0);
   const networkLog = useMemo(() => {
     const log = new NetworkLog();
     for (const r of priorTransfers()) log.record(r);
@@ -128,10 +132,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   }, []);
   const prefsRef = useRef(prefs);
   prefsRef.current = prefs;
+  const activeRef = useRef(active);
+  activeRef.current = active;
   const lastMeterWrite = useRef(0);
   const bootedRef = useRef(booted);
   bootedRef.current = booted;
-  const previousModel = useRef<string | null>(null);
   const swapping = useRef(false);
   const reloadQueued = useRef(false);
 
@@ -192,6 +197,48 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     return onCapturedChange(setCaptured);
   }, []);
 
+  // S52 › Performance feeds the guard (§6.5): "Never switch my model automatically" must actually stop the switches.
+  useEffect(() => {
+    getDeviceGuard().setOverride({ neverSwitchModel: prefs.neverAutoSwitch, autoPowerManagement: prefs.autoPower, profile: prefs.performance });
+  }, [prefs.neverAutoSwitch, prefs.autoPower, prefs.performance]);
+
+  // A guard switch changes the engine's model without a vault event; consumers reading engine.model re-render through this tick.
+  useEffect(() => subscribeEngineState(() => setBooted((b) => (b ? { ...b } : b))), []);
+
+  // §7.5 auto-delete: at start, on every return to the foreground, hourly while open, and at once when the setting changes.
+  const store = booted?.store ?? null;
+  const retentionRun = useRef<Promise<void> | null>(null);
+  useEffect(() => {
+    if (!store) return;
+    const run = () => {
+      const days = prefsRef.current.autoDeleteDays;
+      // Two overlapping runs would open two SQLite transactions on one connection; the next tick re-checks anyway.
+      if (!days || retentionRun.current) return;
+      // The chat on screen is never pulled out from under the user (or a running answer); the next run after leaving it applies.
+      const open = activeRef.current.id;
+      if (__DEV__) console.log(`[retention] run · ${days} day(s) · open chat ${open ?? "none"}`);
+      retentionRun.current = runRetention(store, days, open ? [open] : [])
+        .then((ids) => {
+          if (!ids.length) return;
+          if (__DEV__) console.log(`[retention] deleted ${ids.length} chat(s) older than ${days} day(s): ${ids.join(", ")}`);
+          setChatsVersion((v) => v + 1);
+        })
+        .catch((e: unknown) => console.warn("[retention]", e))
+        .finally(() => {
+          retentionRun.current = null;
+        });
+    };
+    run();
+    const sub = AppState.addEventListener("change", (s) => {
+      if (s === "active") run();
+    });
+    const timer = setInterval(run, RETENTION_TICK_MS);
+    return () => {
+      sub.remove();
+      clearInterval(timer);
+    };
+  }, [store, prefs.autoDeleteDays]);
+
   useEffect(() => {
     let alive = true;
     boot(prefsRef.current)
@@ -242,9 +289,9 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
           ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
           : { name: live.model.name.toUpperCase(), status: "verifying", progress: 1, totalBytes: live.model.bytes };
       setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
-      /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. */
+      /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. A guard switch (§6.5) is a run-time override the vault must not undo. */
       const wanted = vault.activeModel()?.path;
-      if (wanted && bootedRef.current && bootedRef.current.engine.model.uri !== wanted) reloadWhenIdle();
+      if (wanted && bootedRef.current && !hasSessionOverride() && bootedRef.current.engine.model.uri !== wanted) reloadWhenIdle();
     };
     update();
     return vault.subscribe(update);
@@ -312,32 +359,17 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       },
       chatCreated: (id) => setActive((a) => ({ ...a, id })),
       chatDeleted: (id) => setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a)),
+      chatsVersion,
       modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),
       delivery,
       setDelivery,
-      /* The guard records the decision (banner, hysteresis); the vault performs the swap until the guard's resolver exists. */
-      switchToInstant: () => {
-        getDeviceGuard().switchToInstant();
-        const vault = getVault();
-        if (Platform.OS === "web" || vault.state("instant").kind !== "ready") return;
-        const current = vault.activeModel()?.model.id ?? null;
-        if (current === "instant") return;
-        previousModel.current = current;
-        vault.setDefault("instant");
-        void reloadEngine();
-      },
-      switchBack: () => {
-        getDeviceGuard().switchBack();
-        const id = previousModel.current;
-        if (!id || Platform.OS === "web") return;
-        previousModel.current = null;
-        getVault().setDefault(id);
-        void reloadEngine();
-      },
+      /* The guard swaps the engine's model through its resolver for this run only; the vault's default is untouched (§6.5: it returns at the next launch). */
+      switchToInstant: () => getDeviceGuard().switchToInstant(),
+      switchBack: () => getDeviceGuard().switchBack(),
       continueGeneration: () => getDeviceGuard().continueGeneration(),
       wipeAll,
     };
-  }, [booted, prefs, updatePrefs, lock, captured, sealState, networkLog, meter, active, delivery, wipeAll, closeActive, reloadEngine]);
+  }, [booted, prefs, updatePrefs, lock, captured, sealState, networkLog, meter, active, delivery, wipeAll, closeActive, chatsVersion]);
 
   if (!value) return <>{fallback}</>;
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

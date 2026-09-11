@@ -1,7 +1,7 @@
 import { initLlama } from "llama.rn";
 import { isDevice } from "expo-device";
 import { Platform } from "react-native";
-import type { Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+import type { BenchTimings, Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
 
@@ -160,6 +160,21 @@ export class LlamaRnLM implements LocalLM {
 
   stats(): Stats {
     return this.last;
+  }
+
+  /** llama.cpp's own bench (S31): one sequence, one repetition; tracked as in-flight so an unload waits for it. */
+  async bench(pp: number, tg: number): Promise<BenchTimings> {
+    const ctx = this.ctx;
+    if (!ctx) throw new Error("model not loaded");
+    const run = ctx.bench(pp, tg, 1, 1);
+    this.inflight = run;
+    try {
+      const r = await run;
+      if (__DEV__) console.log("[llama.rn] bench", JSON.stringify(r));
+      return { promptTokPerSec: r.speedPp, genTokPerSec: r.speedTg };
+    } finally {
+      this.inflight = null;
+    }
   }
 }
 

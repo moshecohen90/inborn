@@ -857,3 +857,37 @@ UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro →
   Screenshots: `pymobiledevice3 developer dvt screenshot out.png` (no root needed on iOS 17+).
 - Trap: without the session a dev build talks to Apple's real sandbox (the phone has a sandbox account signed in) and shows a "Sandbox" payment
   sheet that outlives the app; it is hosted by `PassbookUIService` — `xcrun devicectl device process signal --pid <pid> --signal SIGKILL` dismisses it.
+
+## Fixes round 7: auto-delete, memory switch, benchmark, Hebrew OCR on iOS (branch `fixes-r7`) — 11.9.2026
+Proven on a private Pixel 6 API 33 emulator (4 GB guest, debug APK + Metro on a private port, `scripts/serve-models.mjs` for Fast) and on the
+iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).
+1. **§7.5 auto-delete after N days** (`packages/core/src/chat/retention.ts`, `src/services/retention.ts`, `AppServices`): the S52 setting
+   was stored and never enforced. `applyRetention` removes every non-pinned, non-incognito chat whose last change is older than N days
+   (inclusive boundary, archived chats included); it runs at boot, on every return to the foreground, every hour while open and at once when the
+   setting changes, one run at a time (two overlapping runs opened two SQLite transactions on one connection and both failed). The chat on
+   screen is skipped until the user leaves it; the drawer re-reads the list after a run (`chatsVersion`) and tags rows "Deletes in N days" /
+   "Deletes when Inborn next opens" (`chats.deletesIn`); the Settings row explains the rule (`settings.security.autoDelete.on/off`).
+   Dev: `EXPO_PUBLIC_AUTODELETE_DAY_MS=60000` shrinks a day to a minute. Emulator: with "1 day" the chat that was open survived three
+   ticks (`[retention] run · open chat <id>`), and the first tick after "New chat" deleted it (`[retention] deleted 1 chat(s)…`), the drawer
+   showing "No chats yet" without a reopen.
+2. **§5.8 / §6.5 memory pressure → Instant** (`src/device/boot.ts`, `src/vault/tiers.native.ts`, `guard.ts`, `mapState.ts`, `policy.ts`):
+   the real boot path registered no model resolver, so the guard's "switch to smaller" had nothing to load; the line read "stopped
+   generation". Now `registerModelResolver` answers with the installed catalog model of the tier and `availableTiers` tells the policy which
+   tiers exist (no Instant installed → stop + unload with "Ran out of memory · answer stopped", the spec fallback). The line reads "Ran out of
+   memory · Switched to Instant · Switch back" and stays as a proposal (`memoryBack`) after memory recovers, because a Switch back during the
+   pressure is re-switched at once. Emulator: Fast loaded on the 4 GB guest → the OS trim (and `am send-trim-memory … RUNNING_CRITICAL`) →
+   `[device] memory · device.memory.switched` → header chip INSTANT, Instant answered the next message, Switch back after the hold → FAST.
+   Also: a rejected `load()` no longer leaves the "loading" mark that quarantines a healthy file at the next boot (`engine.ts`).
+3. **§7.2 / S31 Benchmark on this phone** (`packages/core/src/catalog/benchmark.ts`, `engine.ts` `benchmarkModel`, `llamaRn.ts` `bench`,
+   `ModelDetails`, `VaultScreen`): PP 512 / TG 128 through `llama.rn` `bench`, load time, prompt and generation tok/s, first token after a
+   512-token prompt, weights in memory, the §6.4 expectation for the chip class with a verdict, stored under `benchmark.<model>` in the
+   library settings and shown again on reopen. Emulator (Instant, android-mid): load 3.4 s · prompt 85.2 tok/s · generation 12.2 tok/s ·
+   TTFT 6.0 s · 497 MB · expected 12–20 tok/s → as expected.
+4. **§5.5 / §14 M5 Hebrew OCR on iOS** (`modules/doc-extract/ios/DocExtractModule.swift`, `DocExtract.podspec`): Vision has no Hebrew on
+   iOS 26 (`supportedRecognitionLanguages`), so the module links `libtesseract.xcframework` (Tesseract 4.1, from
+   `INBORN_MODELS_DIR/ocr/ios/`, gitignored) with the `eng`/`heb` traineddata as a resource bundle; a requested script Vision lacks goes to
+   Tesseract and the read that carries the page wins (`engine` in the result, `ocrEngine()` = `vision+tesseract`). Without the files the pod
+   builds Vision-only and warns. Simulator (`EXPO_PUBLIC_AUTOINDEX=heb-scan.png,eng-scan.png`, `AUTOOCR=1`, both fixtures rendered scans):
+   English → Vision 1.00, Hebrew → Tesseract 0.92 with the lease text read correctly; "Ask this document" answered "The monthly rent is
+   4,500 shekels" from the Hebrew scan. The documents dev proof no longer needs `__DEV__` (its flags are bundle-time), so a Release
+   simulator build runs it.

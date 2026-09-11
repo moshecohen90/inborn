@@ -1,3 +1,4 @@
+import { HEADLINE_KEYS } from "@inborn/core";
 import type { GuardState } from "./guard";
 import type { DeviceState, Recommendation } from "./types";
 
@@ -12,7 +13,12 @@ export function toDeviceState(g: GuardState): DeviceState {
       recommendation = { kind: "pause", reason: "thermal" };
       break;
     case "memory":
-      recommendation = r.stopGeneration ? { kind: "pause", reason: "memory" } : { kind: "switchToInstant", reason: "memory", auto: false };
+      /* Phone: "Ran out of memory · Switched to Instant · Switch back" once Instant took over (or is queued for the next message); no Instant installed → the answer just stopped. */
+      if (r.headline === HEADLINE_KEYS.memorySwitched) recommendation = { kind: "switchToInstant", reason: "memory", auto: true };
+      else recommendation = r.stopGeneration ? { kind: "pause", reason: "memory" } : { kind: "switchToInstant", reason: "memory", auto: false };
+      break;
+    case "memoryBack":
+      recommendation = { kind: "switchToInstant", reason: "memory", auto: true };
       break;
     case "paused":
       recommendation = { kind: "paused" };

@@ -39,7 +39,8 @@ export function Banners() {
         },
       },
     });
-  if (rec.kind === "switchToInstant" && rec.auto)
+  if (rec.kind === "switchToInstant" && rec.auto && rec.reason === "memory") rows.push({ key: "memory", tone: "amber", text: t("state.memorySwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
+  else if (rec.kind === "switchToInstant" && rec.auto)
     rows.push({ key: "lowpower", tone: "muted", text: t("state.lowPowerSwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
   else if (rec.kind === "switchToInstant" && rec.reason === "battery" && device.battery.level !== null)
     rows.push({ key: "battery", tone: "muted", text: t("state.batteryOffer", { pct: Math.round(device.battery.level * 100) }), action: { label: t("state.switch"), onPress: switchToInstant } });

@@ -39,6 +39,8 @@ export interface DeviceSignals {
   throttling: boolean;
   /** Thread count the engine would use with nothing throttled. */
   baseThreads: number;
+  /** Chat tiers with an installed model; when given, a switch is only proposed or applied towards one of them. */
+  availableTiers?: ModelTier[];
 }
 
 /** S52 › Performance. Only the critical-heat protection ignores these. */
@@ -59,6 +61,7 @@ export type Status =
   | "thermalCritical"
   | "throttling"
   | "memory"
+  | "memoryBack"
   | "paused";
 
 export type Action = "none" | "suggestSmallerModel" | "switchToSmaller" | "switchBack" | "pauseGeneration" | "unloadModel" | "throttleThreads";

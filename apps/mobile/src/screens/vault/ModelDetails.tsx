@@ -1,8 +1,9 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
-import { formatModelBytes, type CatalogModel, type InstallState } from "@inborn/core";
+import { BENCH_PP, benchmarkVerdict, formatModelBytes, ttftForPrompt, type BenchmarkResult, type CatalogModel, type InstallState, type SpeedRange } from "@inborn/core";
+import { deviceNoun } from "../../lib/deviceNoun";
 import { font, useType } from "../../services/type";
 
 export interface ModelDetailsProps {
@@ -14,13 +15,22 @@ export interface ModelDetailsProps {
   onClose: () => void;
   onSetDefault: () => void;
   onDelete: () => void;
+  /** S31 "Benchmark on this phone": last stored result, the §6.4 expectation for this chip, and the action (absent where the engine cannot bench). */
+  benchmark?: BenchmarkResult | null;
+  expected?: SpeedRange;
+  benchmarking?: boolean;
+  onBenchmark?: () => void;
 }
 
+const seconds = (ms: number): string => `${(ms / 1000).toFixed(ms >= 10_000 ? 0 : 1)} s`;
+const tps = (v: number): string => (v >= 100 ? String(Math.round(v)) : v.toFixed(1));
+
 /** S31: everything about one model (spec §8.4). Numbers live here, not on the cartridge. */
-export function ModelDetails({ model, state, theme, active, isDefault, onClose, onSetDefault, onDelete }: ModelDetailsProps) {
+export function ModelDetails({ model, state, theme, active, isDefault, onClose, onSetDefault, onDelete, benchmark = null, expected, benchmarking = false, onBenchmark }: ModelDetailsProps) {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const installed = state.kind === "ready" || state.kind === "quarantined";
+  const device = deviceNoun();
   const rows: [string, string][] = model
     ? [
         [t("vault.details.params"), model.params],
@@ -35,6 +45,15 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         ...(installed ? [[t("vault.details.path"), state.path] as [string, string]] : []),
       ]
     : [];
+  const verdict = benchmark ? benchmarkVerdict(benchmark.genTokPerSec, expected) : "unknown";
+  const ttft = benchmark ? ttftForPrompt(benchmark.promptTokPerSec, benchmark.pp) : null;
+  const measured = (at: number): string => {
+    try {
+      return new Intl.DateTimeFormat(i18n.language, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(at));
+    } catch {
+      return new Date(at).toLocaleString();
+    }
+  };
   return (
     <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} />
@@ -55,6 +74,33 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
               </Text>
             </View>
           ))}
+          {installed && model?.role === "chat" && onBenchmark ? (
+            <View testID="details-benchmark" style={[styles.bench, { borderColor: theme.border }]}>
+              <Text style={[type.mono, type.monoLabel, { color: theme.text3 }]}>{t("vault.benchmark.title").toUpperCase()}</Text>
+              {benchmark ? (
+                <>
+                  <Text testID="benchmark-result" selectable style={[type.mono, { color: theme.text }]}>
+                    {t("vault.benchmark.result", { load: seconds(benchmark.loadMs), prompt: tps(benchmark.promptTokPerSec), gen: tps(benchmark.genTokPerSec) })}
+                  </Text>
+                  {ttft !== null ? <Text style={[type.mono, { color: theme.text2 }]}>{t("vault.benchmark.ttft", { tokens: BENCH_PP, ttft: seconds(ttft) })}</Text> : null}
+                  {benchmark.memMB !== null ? <Text style={[type.mono, { color: theme.text2 }]}>{t("vault.benchmark.memory", { size: formatModelBytes(benchmark.memMB * 1048576) })}</Text> : null}
+                  {expected ? (
+                    <Text testID="benchmark-verdict" style={[type.mono, { color: verdict === "slower" ? theme.accent : theme.text2 }]}>
+                      {t("vault.benchmark.expected", { min: expected[0], max: expected[1], device })}
+                      {verdict !== "unknown" ? ` · ${t(`vault.benchmark.verdict.${verdict}`)}` : ""}
+                    </Text>
+                  ) : null}
+                  <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.benchmark.measured", { when: measured(benchmark.at) })}</Text>
+                </>
+              ) : (
+                <Text style={[type.mono, { color: theme.text2 }]}>{t("vault.benchmark.none")}</Text>
+              )}
+              <Pressable testID="details-benchmark-run" accessibilityRole="button" disabled={benchmarking} onPress={onBenchmark} style={[styles.benchBtn, { borderColor: theme.border, backgroundColor: theme.surface2, opacity: benchmarking ? 0.6 : 1 }]}>
+                {benchmarking ? <ActivityIndicator size="small" color={theme.text2} /> : null}
+                <Text style={[type.body, styles.body, { color: theme.text }]}>{benchmarking ? t("vault.benchmark.running") : t(benchmark ? "vault.benchmark.again" : "vault.benchmark.run", { device })}</Text>
+              </Pressable>
+            </View>
+          ) : null}
         </ScrollView>
         <View style={styles.actions}>
           {installed && !isDefault ? (
@@ -87,6 +133,8 @@ const styles = StyleSheet.create({
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, maxHeight: "80%", padding: 20, paddingBottom: 32, gap: 10, borderTopWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20 },
   table: { flexGrow: 0 },
   row: { gap: 2 },
+  bench: { gap: 6, paddingTop: 12, marginTop: 4, borderTopWidth: StyleSheet.hairlineWidth },
+  benchBtn: { minHeight: 44, marginTop: 4, paddingHorizontal: 16, borderRadius: radius.control, borderWidth: 1, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 },
   body: { ...font("sans", "500") },
   actions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-end", gap: 8 },
   cta: { minHeight: 44, paddingHorizontal: 16, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },

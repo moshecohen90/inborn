@@ -57,6 +57,7 @@ export const BUTTON_KEYS: Record<Button, string> = {
 const RANK: Record<Status, number> = {
   normal: 0,
   recovered: 1,
+  memoryBack: 1,
   batteryLow: 1,
   throttling: 1,
   charging: 2,
@@ -237,6 +238,12 @@ export class DevicePolicy {
     this.last = null;
   }
 
+  /* A tier nothing is installed for cannot be switched to (Instant not yet delivered): the row falls back to its "already smallest" line. */
+  private target(s: DeviceSignals): ModelTier | null {
+    const below = tierBelow(s.currentTier, s.deviceClass);
+    return below && s.availableTiers && !s.availableTiers.includes(below) ? null : below;
+  }
+
   private batteryLogic(s: DeviceSignals, o: UserOverride): boolean {
     const c = s.deviceClass;
     return o.autoPowerManagement && c !== "desktop" && c !== "browser";
@@ -267,7 +274,7 @@ export class DevicePolicy {
     const level = s.battery.level;
     const charging = isCharging(s);
     if (c === "browser") {
-      if (level !== null && level <= 0.15 && !charging && !m.offered.has("batteryLow") && tierBelow(s.currentTier, c)) return "batteryLow";
+      if (level !== null && level <= 0.15 && !charging && !m.offered.has("batteryLow") && this.target(s)) return "batteryLow";
       return "normal";
     }
     if (this.batteryLogic(s, o)) {
@@ -278,10 +285,12 @@ export class DevicePolicy {
       if (charging && restorable) return "charging";
       if (m.restoredAt !== null && now - m.restoredAt < this.lingerMs) return "charging";
       if (!charging && restorable && level !== null && level > 0.3 && !m.offered.has("recovered")) return "recovered";
-      if (m.batteryStep === 1 && !m.offered.has("batteryLow") && tierBelow(s.currentTier, c)) return "batteryLow";
+      if (m.batteryStep === 1 && !m.offered.has("batteryLow") && this.target(s)) return "batteryLow";
     }
+    /* Memory back: the line the switch left behind stays until the user takes Switch back or dismisses it (§6.5 memory row). */
+    if (mobile && m.autoSwitch?.reason === "memory" && m.autoSwitch.to === s.currentTier && !m.keptSmaller && !m.offered.has("memoryBack")) return "memoryBack";
     /* The speed-drop stand-in is a Windows (no thermal API) row; phones and Macs have real thermal signals. */
-    if ((c === "desktop" || c === "laptop") && s.throttling && !m.offered.has("throttling") && tierBelow(s.currentTier, c)) return "throttling";
+    if ((c === "desktop" || c === "laptop") && s.throttling && !m.offered.has("throttling") && this.target(s)) return "throttling";
     return "normal";
   }
 
@@ -297,6 +306,8 @@ export class DevicePolicy {
         return m.batteryStep === 3;
       case "recovered":
         return !isCharging(s) && (s.battery.level ?? 0) > 0.28;
+      case "memoryBack":
+        return m.autoSwitch?.reason === "memory";
       case "charging":
         return isCharging(s) || (m.restoredAt !== null && now - m.restoredAt < this.lingerMs);
       case "thermalSerious":
@@ -341,7 +352,7 @@ export class DevicePolicy {
       explain: false,
     };
     const level = pct(s.battery.level);
-    const target = tierBelow(s.currentTier, c);
+    const target = this.target(s);
     const targetName = target ? TIER_NAMES[target] : "";
     const line = (key: string, params: Record<string, string | number> = {}) => {
       rec.headline = key;
@@ -470,6 +481,11 @@ export class DevicePolicy {
           line(HEADLINE_KEYS.memoryPropose);
           if (target) button("switchSmaller");
         }
+        break;
+      case "memoryBack":
+        grade("propose", "switchBack", m.autoSwitch?.from ?? null);
+        line(HEADLINE_KEYS.memorySwitched, { model: TIER_NAMES[s.currentTier] });
+        button("switchBack", { model: TIER_NAMES[m.autoSwitch?.from ?? s.currentTier] });
         break;
       case "paused":
         grade("act", "pauseGeneration");

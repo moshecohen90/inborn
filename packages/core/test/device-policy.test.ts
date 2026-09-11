@@ -194,7 +194,31 @@ describe("§6.5 table — heat, memory, background", () => {
     expect(run(p, signals({ memoryPressure: "critical", currentTier: "instant" }), phone(), 1)).toMatchObject({ status: "memory", action: "unloadModel", headline: HEADLINE_KEYS.memorySwitched });
     /* Memory back to normal steps the line down after the hold; plugging in does not undo a memory switch (that promise belongs to the battery sheet). */
     expect(run(p, signals({ charging: true, currentTier: "instant" }), phone(), 60_000).status).toBe("memory");
-    expect(run(p, signals({ charging: true, currentTier: "instant" }), phone(), 90_000).status).toBe("normal");
+    /* The line stays as a proposal so Switch back is reachable once memory is back, when it can succeed; Switch back clears it. */
+    const back = run(p, signals({ charging: true, currentTier: "instant" }), phone(), 90_000);
+    expect(back).toMatchObject({ status: "memoryBack", recommendation: "propose", action: "switchBack", targetTier: "fast", headline: HEADLINE_KEYS.memorySwitched, button: "switchBack", stopGeneration: false });
+    expect(p.accept(91_000)).toEqual({ kind: "switch", tier: "fast" });
+    expect(run(p, signals({ charging: true, currentTier: "fast" }), phone(), 92_000).status).toBe("normal");
+  });
+
+  it("memory line dismissed: hidden for as long as the switch stands, no automatic switch back", () => {
+    const p = new DevicePolicy();
+    run(p, signals({ memoryPressure: "critical" }));
+    p.noteSwitched("fast", "instant", true, "memory");
+    run(p, signals({ currentTier: "instant" }), phone(), 60_000);
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 90_000).status).toBe("memoryBack");
+    p.dismiss();
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 91_000).status).toBe("normal");
+    expect(run(p, signals({ memoryPressure: "critical", currentTier: "instant" }), phone(), 92_000).status).toBe("memory");
+  });
+
+  it("memory pressure with no Instant installed: stop and unload, the line says so, nothing is promised", () => {
+    const r = run(new DevicePolicy(), signals({ memoryPressure: "warning", generating: true, availableTiers: ["fast"] }));
+    expect(r).toMatchObject({ status: "memory", recommendation: "act", action: "unloadModel", targetTier: null, stopGeneration: true, unloadAfterMs: 0, headline: HEADLINE_KEYS.memoryStopped, button: null });
+    /* Installed tiers keep the ordinary row; the battery proposal respects the same rule. */
+    expect(run(new DevicePolicy(), signals({ memoryPressure: "warning", availableTiers: ["instant", "fast"] })).targetTier).toBe("instant");
+    expect(run(new DevicePolicy(), signals({ battery: { level: 0.18, state: "unplugged", lowPowerMode: false }, availableTiers: ["fast"] })).status).toBe("normal");
+    expect(run(new DevicePolicy(), signals({ battery: { level: 0.18, state: "unplugged", lowPowerMode: false }, availableTiers: ["instant", "fast"] })).status).toBe("batteryLow");
   });
 
   it("memory pressure elsewhere: proposal only", () => {

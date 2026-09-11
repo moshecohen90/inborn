@@ -58,6 +58,9 @@ export function createExtractors(): TextExtractor[] {
 }
 
 /** No OCR in the browser tier yet (Tesseract.js ships in a later milestone); scans are reported as "needs OCR". */
+/** Mirrors extract.native.ts for the dev proof file; the browser tier has no OCR (README "Intentionally not built yet"). */
+export const devOcrReads: { engine: string; confidence: number; text: string }[] = [];
+
 export function nativeOcr(): Ocr | null {
   return null;
 }

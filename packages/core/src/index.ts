@@ -13,6 +13,7 @@ export * from "./chat/loop";
 export * from "./chat/export";
 export * from "./chat/language";
 export * from "./chat/safety";
+export * from "./chat/retention";
 export * from "./proof/exitMeter";
 export * from "./proof/allowlist";
 export * from "./lock/policy";

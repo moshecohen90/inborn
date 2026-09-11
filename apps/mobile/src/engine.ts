@@ -1,4 +1,4 @@
-import type { Delta, GenOpts, LocalLM, Message, ModelRef, Session, Tier } from "@inborn/core";
+import type { BenchTimings, Delta, GenOpts, LocalLM, Message, ModelRef, Session, Tier } from "@inborn/core";
 import { createEngine, type Engine } from "./adapters";
 import { getVault } from "./vault/store";
 
@@ -30,6 +30,9 @@ let unloading: Promise<void> | null = null;
 let pauseCheck: (() => boolean) | null = null;
 let pausedByGuard = false;
 let resolveModel: ((tier: Tier) => ModelRef | null) | null = null;
+/* A guard switch (§6.5) lasts for this run only: the vault's default is untouched and comes back at the next launch. */
+let sessionOverride = false;
+let lastLoadMs = 0;
 const running = new Set<AbortController>();
 const stateListeners = new Set<(s: EngineState) => void>();
 const activityListeners = new Set<(busy: boolean) => void>();
@@ -68,9 +71,11 @@ export function loadSession(nCtx = caps.nCtx): Promise<Session> {
     /* A crash inside load() leaves the "loading" mark on disk, which quarantines the file at next boot (§10.1 #8). */
     vault.markLoading(model.id, true);
     /* Never start a load while the previous weights are still being released. */
+    const started = Date.now();
     session = (unloading ?? Promise.resolve())
       .then(() => engine.load(model, { nCtx, threads: caps.threads ?? undefined, gpuLayers: caps.gpuLayers ?? undefined }))
       .then((s) => {
+        lastLoadMs = Date.now() - started;
         vault.markLoading(model.id, false);
         live = s;
         unloadReason = null;
@@ -79,6 +84,8 @@ export function loadSession(nCtx = caps.nCtx): Promise<Session> {
         return s;
       })
       .catch((e: unknown) => {
+        /* A rejection means the process survived: only a crash (no catch runs) may leave the mark and quarantine the file. */
+        vault.markLoading(model.id, false);
         session = null;
         setState("unloaded");
         throw e;
@@ -144,6 +151,10 @@ export function setGenerationCaps(next: Partial<GenerationCaps>): void {
 }
 
 export const getGenerationCaps = (): GenerationCaps => caps;
+/** True while the guard has swapped the engine's model away from the vault's default for this run. */
+export const hasSessionOverride = (): boolean => sessionOverride;
+/** Wall-clock ms of the most recent load. */
+export const getLastLoadMs = (): number => lastLoadMs;
 export const getEngineState = (): EngineState => state;
 export const getUnloadReason = (): UnloadReason | null => unloadReason;
 export const isGenerating = (): boolean => generating > 0;
@@ -182,8 +193,48 @@ export async function switchModel(tier: Tier, load = true): Promise<boolean> {
   await waitIdle();
   await unloadSession("switch");
   engine.model = ref;
+  sessionOverride = true;
   if (load) await loadSession();
   return true;
+}
+
+export interface BenchmarkRun {
+  timings: BenchTimings;
+  /** Cold load before the run; 0 when the weights were already resident. */
+  loadMs: number;
+  memMB: number | null;
+}
+
+/**
+ * S31 "Benchmark on this phone": times `pp` prompt tokens and `tg` generated tokens on `ref`. Another model in use is unloaded
+ * for the run and comes back lazily on the next message; null when the engine cannot bench (web, null engine).
+ */
+export async function benchmarkModel(ref: ModelRef, pp: number, tg: number): Promise<BenchmarkRun | null> {
+  const engine = getRaw();
+  const lm = engine.engine;
+  if (!lm.bench) return null;
+  await waitIdle();
+  const previous = engine.model;
+  const swap = ref.uri !== previous.uri;
+  if (swap) {
+    await unloadSession("switch");
+    engine.model = ref;
+  }
+  if (++generating === 1) for (const l of activityListeners) l(true);
+  try {
+    const resident = live !== null;
+    await loadSession();
+    const loadMs = resident ? 0 : lastLoadMs;
+    const timings = await lm.bench(pp, tg);
+    const memMB = (lm as { devInfo?: { sizeMB?: unknown } }).devInfo?.sizeMB;
+    return { timings, loadMs, memMB: typeof memMB === "number" ? memMB : null };
+  } finally {
+    if (--generating === 0) for (const l of activityListeners) l(false);
+    if (swap) {
+      await unloadSession("switch");
+      engine.model = previous;
+    } else if (live) armIdle();
+  }
 }
 
 /* Every answer goes through here: caps applied, the guard can abort it, a stale session after an unload is replaced by the live one. */
@@ -249,4 +300,5 @@ export async function enableVision(mmprojPath: string): Promise<boolean> {
 export async function resetEngine(): Promise<void> {
   await unloadSession("switch").catch((e: unknown) => console.warn("[inborn] unload", e));
   raw = null;
+  sessionOverride = false;
 }

@@ -1,5 +1,6 @@
 import { DocxExtractor, ExtractError, HtmlExtractor, TextFileExtractor, XlsxExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
 import { closePdf, hasDocExtract, ocrEngine, ocrLanguages, openPdf, pageText, recognizeText, renderPage } from "../../modules/doc-extract";
+import { DEV_AUTOOCR } from "./devFlags";
 import { readBytes } from "./files";
 
 const reasonOf = (e: unknown): ExtractError => {
@@ -51,12 +52,19 @@ export function createExtractors(): TextExtractor[] {
   return [new NativePdfExtractor(), new ImageExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes), new XlsxExtractor(readBytes), new HtmlExtractor(readBytes)];
 }
 
-/** iOS Vision / Android Tesseract, both on the device; null when the native module is missing (Expo Go). */
+/** Dev proofs (simulator, no readable console): the last reads land in Documents/dev-run.json next to the document stats. */
+export const devOcrReads: { engine: string; confidence: number; text: string }[] = [];
+
+/** iOS Vision (+ Tesseract for scripts Vision lacks) / Android Tesseract, all on the device; null when the native module is missing (Expo Go). */
 export function nativeOcr(): Ocr | null {
   if (!hasDocExtract()) return null;
   return {
     id: ocrEngine(),
     languages: ocrLanguages,
-    recognize: (image, languages) => recognizeText(image, languages),
+    recognize: async (image, languages) => {
+      const r = await recognizeText(image, languages);
+      if (DEV_AUTOOCR) devOcrReads.push({ engine: (r as { engine?: string }).engine ?? ocrEngine(), confidence: r.confidence, text: r.text.slice(0, 400) });
+      return r;
+    },
   };
 }

@@ -9,6 +9,7 @@ import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
+import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
 import { devFileUri } from "../../documents/files";
 import { useDocuments } from "../../documents/hooks";
@@ -68,9 +69,9 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     [library, pro, t],
   );
 
-  /* Headless proof (dev bundles only): import fixtures pushed into the document directory, then ask over them. */
+  /* Headless proof: import fixtures pushed into the document directory, then ask over them. The flags are bundle-time and never set for a store build, so a Release simulator build can run it too. */
   useEffect(() => {
-    if (!__DEV__ || devDone.current || (!DEV_AUTOINDEX.length && !DEV_AUTOASK && !DEV_AUTOOCR)) return;
+    if (devDone.current || (!DEV_AUTOINDEX.length && !DEV_AUTOASK && !DEV_AUTOOCR)) return;
     devDone.current = true;
     void (async () => {
       await library.ready();
@@ -91,7 +92,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         await wait();
       }
       const docs = library.state().documents.map((d) => ({ name: d.name, kind: d.kind, status: d.status, pages: d.pages, indexedPages: d.indexedPages, chunks: d.chunkCount, language: d.language, flagged: d.flaggedLines, ocrPages: d.ocrPages, error: d.error }));
-      devResults.current = { indexMs: Date.now() - started, embedder: library.state().embedder, store: library.state().storeKind, docs };
+      devResults.current = { indexMs: Date.now() - started, embedder: library.state().embedder, store: library.state().storeKind, docs, ocrEngine: ocrEngine(), ocr: devOcrReads };
       writeDevResult(devResults.current);
       if (DEV_AUTOASK) {
         if (DEV_AUTOASK_STRICT) library.setStrict(true);

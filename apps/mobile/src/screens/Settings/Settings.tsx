@@ -128,10 +128,14 @@ export function Settings() {
         />
         <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.autoDelete")}</Text>
         <Segmented<AutoDeleteDays>
+          testID="auto-delete"
           options={AUTO_DELETE.map((d) => ({ value: d, label: d === 0 ? t("settings.off") : t("settings.security.days", { count: d }) }))}
           value={prefs.autoDeleteDays}
           onChange={(d) => updatePrefs({ autoDeleteDays: d })}
         />
+        <Text testID="auto-delete-sub" style={[type.bodySmall, { color: theme.text3 }]}>
+          {prefs.autoDeleteDays ? t("settings.security.autoDelete.on", { count: prefs.autoDeleteDays }) : t("settings.security.autoDelete.off")}
+        </Text>
         <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.clipboard")}</Text>
         <Segmented<number>
           options={[
