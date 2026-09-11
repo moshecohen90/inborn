@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../../services/theme";
 import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Icon, dark, light, radius } from "@inborn/ui";
+import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BENCH_PP, BENCH_TG, ENGINE_VERSION, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, type BenchmarkResult, type CatalogModel } from "@inborn/core";
 import { useEntitlement } from "../../licence";
@@ -38,7 +39,7 @@ type Confirm = { entry: VaultEntry };
 export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenProps) {
   const type = useType();
   const { t } = useTranslation();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const { vault, entries } = useVault();
   const { tier } = useEntitlement();
@@ -225,6 +226,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             recommended={item.model.id === recommendedId}
             active={active?.model.id === item.model.id}
             disabledReason={section.disabled?.get(item.model.id)}
+            lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
             onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.() : setConfirm({ entry: item }))}
             onCancel={() => void vault.cancel(item.model.id)}
             onPause={() => void vault.pause(item.model.id)}

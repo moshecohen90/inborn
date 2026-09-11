@@ -43,7 +43,7 @@ export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () 
       {step === 1 ? (
         <View style={styles.row}>
           <Text style={[styles.body, styles.grow, { color: theme.text }]}>{t("wipe.alsoModels")}</Text>
-          <Switch value={models} onValueChange={setModels} trackColor={{ true: theme.danger }} />
+          <Switch accessibilityLabel={t("wipe.alsoModels")} value={models} onValueChange={setModels} trackColor={{ true: theme.danger }} />
         </View>
       ) : null}
       <View style={styles.actions}>

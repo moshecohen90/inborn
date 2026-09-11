@@ -42,9 +42,10 @@ describe("vault audit log (spec §7.5 Work): append-only, hash-chained, never co
     const empty = emptyAuditLog("v1");
     const one = appendAudit(empty, "vault.created", NOW);
     expect(empty.entries).toHaveLength(0);
-    const text = renderAudit(appendAudit(one, "chat.moved-in", NOW + 5000, { chatId: "c", title: "Case 12" }), "Client A");
+    const text = renderAudit(appendAudit(one, "chat.moved-in", NOW + 5000, { chatId: "c1d2e3f4-5555", title: "Case 12" }), "Client A");
     expect(text.split("\n")[0]).toContain('vault "Client A" · 2 entries');
-    expect(text).toContain("2026-09-07T09:00:05.000Z  chat.moved-in · Case 12");
+    expect(text).toContain("2026-09-07T09:00:05.000Z  chat.moved-in · chat c1d2e3f4");
+    expect(text).not.toContain("Case 12");
   });
 
   it("seals at rest under a label-specific key: the licence cache key cannot open an audit file", () => {

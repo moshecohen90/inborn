@@ -5,6 +5,7 @@ import { directionOf, type ChatMessage } from "@inborn/core";
 import { radius } from "@inborn/ui";
 import { useTheme } from "../../lib/theme";
 import { useType } from "../../services/type";
+import { imageUri } from "../../images";
 
 /** Quiet bubble (§9.6): surface-1, radius 14 with a 4 pt bottom corner, no tail, max 85 %, bidi by content. */
 export const UserMessage = memo(function UserMessage({ message, onLongPress }: { message: ChatMessage; onLongPress: () => void }) {
@@ -17,7 +18,7 @@ export const UserMessage = memo(function UserMessage({ message, onLongPress }: {
       {message.images?.length ? (
         <View testID="user-images" style={styles.images}>
           {message.images.map((uri, i) => (
-            <Image key={uri} source={{ uri }} accessibilityLabel={t("chat.image.label", { n: i + 1 })} style={[styles.image, { backgroundColor: theme.surface2 }]} resizeMode="cover" />
+            <Image key={uri} source={{ uri: imageUri(uri) }} accessibilityLabel={t("chat.image.label", { n: i + 1 })} style={[styles.image, { backgroundColor: theme.surface2 }]} resizeMode="cover" />
           ))}
         </View>
       ) : null}

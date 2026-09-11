@@ -4,6 +4,7 @@ import {
   SEARCH_LIMIT,
   matchesTerms,
   newId,
+  searchExclusions,
   searchTerms,
   snippetAround,
   type Capabilities,
@@ -23,6 +24,7 @@ import {
   type NewChat,
   type NewMessage,
   type SearchHit,
+  type SearchOptions,
   type Session,
   type Stats,
   type StoppedBy,
@@ -416,17 +418,18 @@ export class TauriChatRepository implements ChatRepository {
     return removed ?? 0;
   }
 
-  async search(query: string): Promise<SearchHit[]> {
+  async search(query: string, options?: SearchOptions): Promise<SearchHit[]> {
     const terms = searchTerms(query);
     const first = terms[0];
     if (!first) return [];
     const chats = await this.listChats();
+    const excluded = searchExclusions(chats, options?.hiddenFolderIds);
     const titles = new Map(chats.map((c) => [c.id, c.title]));
-    const hits: SearchHit[] = chats.filter((c) => matchesTerms(c.title, terms)).map((c) => ({ chatId: c.id, title: c.title, snippet: c.title }));
+    const hits: SearchHit[] = chats.filter((c) => !excluded.has(c.id) && matchesTerms(c.title, terms)).map((c) => ({ chatId: c.id, title: c.title, snippet: c.title }));
     const rows = this.fts
-      ? await all<SearchRow>(SQL.searchFts, [ftsQuery(terms), SEARCH_LIMIT])
+      ? await all<SearchRow>(SQL.searchFts, [ftsQuery(terms), SEARCH_LIMIT + excluded.size])
       : (await all<SearchRow>(SQL.searchLike, [`%${first}%`, SEARCH_LIMIT * 4])).filter((r) => matchesTerms(r.content, terms));
-    for (const r of rows) hits.push({ chatId: r.chat_id, title: titles.get(r.chat_id) ?? "", messageId: r.id, snippet: snippetAround(r.content, terms) });
+    for (const r of rows) if (!excluded.has(r.chat_id)) hits.push({ chatId: r.chat_id, title: titles.get(r.chat_id) ?? "", messageId: r.id, snippet: snippetAround(r.content, terms) });
     return hits.slice(0, SEARCH_LIMIT);
   }
 }

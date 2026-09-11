@@ -112,10 +112,11 @@ describe("html", () => {
     expect(kindOf("book.xlsx", new Uint8Array([0x50, 0x4b, 0x03, 0x04, 0]))).toBe("xlsx");
     expect(kindOf("book.xlsx", strToU8("nope"))).toBe("xlsx");
   });
-  it("citation glyphs: sheet for workbooks, § for sections", () => {
+  it("citation glyphs: sheet for workbooks, an honest 'part' for sectioned text, p. for real pages", () => {
     expect(pageGlyph("xlsx")).toBe("sheet ");
-    expect(pageGlyph("html")).toBe("§");
-    expect(pageGlyph("docx")).toBe("§");
+    expect(pageGlyph("html")).toBe("part ");
+    expect(pageGlyph("docx")).toBe("part ");
     expect(pageGlyph("pdf")).toBe("p.");
+    expect(pageGlyph("html", { page: "S.", sheet: "Blatt ", part: "Teil " })).toBe("Teil ");
   });
 });

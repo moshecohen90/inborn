@@ -954,3 +954,48 @@ Verified 11.9.2026 (screenshots in the stream's scratch dir; numbers from the Pr
   back). The Settings search field ignores the returned text (it drops the selection when it loses the foreground); a shell-launched
   `am start … ProcessTextActivity` is a task root and is finished before Replace, so test PROCESS_TEXT from a real text field.
   Release APK: `scripts/check-android-permissions.sh` → OK, 9 permissions, no INTERNET, no new permission for the share targets.
+
+## Fixes round 9: QA run 3 follow-ups (branch `fixes-r9`) — 11.9.2026
+Items F1–F11 and N1 of `docs/qa/qa-run-2026-09-11.md`. Pure logic in `packages/core` with tests (`packages/core/test/fixes-r9.test.ts`);
+proven on a private Pixel 6 API 33 emulator (4 GB guest, debug APK + Metro on port 8117, Work and Pro bundles) and on the iPhone 15 Pro
+simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 was held by another stream, so Pixel_6_API_33 stood in.
+1. **F1 · locked vault chats never surface in search** (`packages/core/src/chat/repository.ts` `SearchOptions.hiddenFolderIds` +
+   `searchExclusions`, the in-memory, SQLite/FTS5, IndexedDB and Tauri repositories, `work/store.ts` `hiddenFolderIds`, `Chats.tsx`): the query
+   layer drops every chat whose folder is a locked vault (FTS limit grows by the excluded count so the page stays full), and a search hit or
+   row of a hidden chat opens only after the vault code (`openGuarded` → VaultCodeSheet verify → open). Emulator: vault "Client A" open →
+   "zebra" 2 hits; locked → 1 hit (the non-vault chat), "deposit" → "Nothing found." (`shots 08–10`).
+2. **F11 · document and photo paths survive an iOS container move** (`packages/core/src/paths/storedPath.ts` `toStoredPath` /
+   `resolveStoredPath`, `documents/files.native.ts`, `library.ts` boot migration, `images/pick.native.ts`, `UserMessage.tsx`): paths are stored
+   relative to the document directory and resolved at read time; an absolute `file://` URI from an older container is re-based on its
+   `/Documents/` (`/files/` on Android) tail at boot and written back once. Simulator (`EXPO_PUBLIC_AUTOINDEX=policy.html`, `AUTOASK`,
+   `AUTOASK_STRICT=1`, `Documents/embed.gguf` as the index model): first launch stored `uri: "documents/mtx62qiq-1-6bmnm10u.html"`,
+   725 bytes on disk, 6 chunks, answer "Within 21 days." with 3 citations (`Documents/dev-run.json`); `xcrun simctl install` of the same
+   build moved the data container `6AADAB78…` → `CBC11B6C…` (old path gone); the next launch read the same relative record with 725 bytes
+   on disk, the passage sheet showed "§3 Time limit … within 21 days" and a fresh ask answered "21 days" (search 6 ms · 3 passages ·
+   answer 3.5 s · 48 tok/s). `dev-run.json` `docs[]` now records `uri` and `bytesOnDisk` for this proof.
+3. **F3 · SAF picks keep their display name** (`modules/share-target` `contentMeta(uri)` → `OpenableColumns.DISPLAY_NAME` + MIME,
+   `packages/core/src/rag/extract/sniff.ts` `pickedFileName`: display name → real file name in the URI → MIME extension → magic bytes →
+   "document"; `documents/office.ts` `pickedName`): the office gate runs on the resolved name. Emulator: `budget.xlsx` under Work → chip
+   "budget.xlsx" and imports; under Pro → the Work paywall (`13-xlsx-work.png`, `25-xlsx-pro.png`); `policy.html` under Work → "policy.html".
+4. **F2 · wipe keeps `files/models/`** (`packages/core/src/paths/wipePolicy.ts` `keepOnWipe`, `storage/wipe.native.ts`): with "Also delete
+   downloaded models" off, the `models/` and `assetpacks-joined/` directories and every top-level `*.gguf`/`*.bin` stay. Emulator: 7 entries
+   in `files/models` before and after "Delete everything" (diff empty), documents/work/chats gone, onboarding back.
+5. **F4 · one theme source** (`services/theme.ts` owns the override, `lib/theme.ts` delegates; six screens that read `useColorScheme()`
+   directly now use `useTheme()`; `_layout.tsx` applies the stored mode before the first render; `plugins/withStoredNightMode.js` reads
+   `themeMode` from `prefs.json` in `MainActivity.attachBaseContext` and adds `values-night` splash colours): app Dark + system Light shows no
+   split (`26–28-f4-*.png`), a cold start with the lock on paints the dark splash and a dark window with light status icons (`29-cold-*.png`).
+6. **F5 · read aloud binds an engine that speaks the language** (`modules/read-aloud` Android module: engine list, `isLanguageAvailable`
+   probe with local voices, bound `TextToSpeech(ctx, cb, engine)`; `packages/core/src/voice/ttsEngine.ts` `chooseTtsEngine`: default
+   engine if it reports the language, else Google, else any able engine, else none; `voice/tts.ts` returns `"no-voice"`): no engine ever
+   opens its settings activity. Emulator: English → `Synthesis request for locale eng-USA` from `com.google.android.tts` (`14-read-aloud.png`);
+   Hebrew answer "שלום" → "No voice for this language is installed on this device", nothing launched (`16-hebrew-novoice.png`).
+7. **F6/F7/F8/F9/F10/N1** — vault PRO chip only when the tier locks the model (`ModelCard` `lockedForTier`, no chip on Sharp under Work,
+   `18-vault-work.png`); audit entries carry `chat <8 hex>` instead of the title (`work/audit.ts` `cleanSubject`/`subjectRef`, "Chat moved in ·
+   chat 8ed4bcaa", `17-audit-log.png`); citations read `p. N` for PDFs/scans, `sheet N` for spreadsheets and `part N` otherwise
+   (`rag/citations.ts` `pageUnit`, keys `documents.cite.*`, `documents.parts`/`documents.sheets` on the library row; "policy.html · part 3",
+   `22-citations.png`); every switch has an accessibilityLabel (report-include, thinking, strict, redact kinds, memory, wipe models) and the
+   persona chips wrap (`19-chat-settings.png`, `20-report-sheet.png`); the dev LogBox toast under the lock screen came from Expo's dev-only
+   `DevLoadingView` (`new NativeEventEmitter()` on a legacy module, SDK 57 on RN 0.86) — filtered in `index.ts` for dev bundles, and the
+   "state update on a component that hasn't mounted" line did not reproduce in three cold starts with the lock on after the theme change;
+   the chat list scrolls to the end once when a stream finishes and again when the keyboard shrinks the list (`Chat.tsx` settle window +
+   `onLayout`, `04-n1-after.png`, `23-n1-keyboard.png`).

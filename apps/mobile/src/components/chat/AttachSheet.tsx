@@ -74,7 +74,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <Text style={[type.body, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[type.caption, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Toggle testID="attach-strict" value={strict} onChange={onSetStrict} />
+        <Toggle testID="attach-strict" label={t("documents.strict.title")} value={strict} onChange={onSetStrict} />
       </View>
       <Pressable testID="attach-manage" accessibilityRole="button" onPress={onManage} style={[shape.control, styles.manage, { borderColor: theme.border }]}>
         <Text style={[type.body, { color: theme.text }]}>{t("chat.attach.manage")}</Text>

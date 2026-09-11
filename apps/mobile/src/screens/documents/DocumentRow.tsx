@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Icon, radius, type Theme } from "@inborn/ui";
-import { formatBytes, type DocumentRecord, type IndexProgress } from "@inborn/core";
+import { formatBytes, pageUnit, type DocumentRecord, type IndexProgress } from "@inborn/core";
 import { font } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 
@@ -23,7 +23,7 @@ export const kindLabel = (kind: DocumentRecord["kind"]): string => (kind === "un
 /** One library row (spec S40): type · pages · size, then the state line (Indexed / Indexing 43% / Needs OCR / Failed). */
 export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleSelect, onCancel, onResume, onOcr, ocrAvailable }: DocumentRowProps) {
   const { t } = useTranslation();
-  const pages = doc.pages ? t("documents.pages", { count: doc.pages }) : null;
+  const pages = doc.pages ? t(`documents.${pageUnit(doc.kind)}s`, { count: doc.pages }) : null;
   const meta = [kindLabel(doc.kind), pages, formatBytes(doc.bytes)].filter(Boolean).join(" · ");
   const state = (): { text: string; color: string } => {
     switch (doc.status) {

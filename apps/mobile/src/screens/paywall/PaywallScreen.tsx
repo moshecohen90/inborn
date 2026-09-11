@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../../services/theme";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Icon, dark, light, radius } from "@inborn/ui";
+import { Icon, radius } from "@inborn/ui";
 import { sellable, type ProductId, type Store } from "@inborn/core";
 import { DEV_AUTOBUY, DEV_RESULT_FILE, devBuild } from "../../licence/devFlags";
 import { useLicenceState } from "../../licence/hooks";
@@ -27,7 +28,7 @@ const storeName = (t: (k: string) => string, store: Store | null): string => (st
 export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallScreenProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
-  const theme = useColorScheme() === "light" ? light : dark;
+  const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const { manager, state } = useLicenceState();
   const [keySheet, setKeySheet] = useState(false);

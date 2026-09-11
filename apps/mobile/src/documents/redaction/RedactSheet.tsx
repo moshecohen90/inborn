@@ -94,7 +94,7 @@ export function RedactSheet({ visible, onClose, text, chatKey, locked, price, on
                 <Text style={[type.body, { color: theme.text }]}>{t(`redact.kind.${k}`)}</Text>
                 <Text style={[type.caption, { color: theme.text3 }]}>{k === "name" && !prefs.names.length ? t("redact.names.hint") : t("redact.found", { count: counts[k] ?? 0 })}</Text>
               </View>
-              <Toggle testID={`redact-kind-${k}`} value={kinds[k]} onChange={(v) => toggleKind(k, v)} disabled={k !== "date" && !(counts[k] ?? 0)} />
+              <Toggle testID={`redact-kind-${k}`} label={t(`redact.kind.${k}`)} value={kinds[k]} onChange={(v) => toggleKind(k, v)} disabled={k !== "date" && !(counts[k] ?? 0)} />
             </View>
           ))}
           <View style={[styles.names, { borderColor: theme.border }]}>

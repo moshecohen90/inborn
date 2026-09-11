@@ -13,7 +13,7 @@ export type AuditAction = "vault.created" | "vault.unlocked" | "vault.locked" | 
 export interface AuditSubject {
   chatId?: string;
   documentId?: string;
-  /** Title at the time; a later rename does not rewrite history. */
+  /** The vault's own name at creation. Never a chat title: titles are the first message, and the log holds no content. */
   title?: string;
   /** For exports: the record hash, so the log and the signed file point at each other. */
   recordHash?: string;
@@ -50,9 +50,20 @@ export const auditHead = (log: AuditLog): string => log.entries[log.entries.leng
 /** Returns a new log; the input is not mutated (the app persists the result and updates the vault record's head). */
 export function appendAudit(log: AuditLog, action: AuditAction, now: number, subject?: AuditSubject): AuditLog {
   const prev = log.entries[log.entries.length - 1];
-  const base: Omit<AuditEntry, "hash"> = { seq: (prev?.seq ?? 0) + 1, at: now, vaultId: log.vaultId, action, actor: "device", prevHash: prev?.hash ?? GENESIS_HASH, ...(subject ? { subject } : {}) };
+  const clean = subject ? cleanSubject(action, subject) : undefined;
+  const base: Omit<AuditEntry, "hash"> = { seq: (prev?.seq ?? 0) + 1, at: now, vaultId: log.vaultId, action, actor: "device", prevHash: prev?.hash ?? GENESIS_HASH, ...(clean ? { subject: clean } : {}) };
   return { ...log, entries: [...log.entries, { ...base, hash: entryHash(base) }] };
 }
+
+/** Only the vault's own creation names anything; every other entry refers to chats and documents by id. */
+export function cleanSubject(action: AuditAction, subject: AuditSubject): AuditSubject | undefined {
+  const { title, ...rest } = subject;
+  const kept: AuditSubject = action === "vault.created" && title ? { ...rest, title } : rest;
+  return Object.keys(kept).length ? kept : undefined;
+}
+
+/** Short, stable reference for the UI and the text export: the first 8 characters of the id, never the title. */
+export const subjectRef = (subject: AuditSubject | undefined): string | null => (subject?.chatId ? `chat ${subject.chatId.slice(0, 8)}` : subject?.documentId ? `document ${subject.documentId.slice(0, 8)}` : null);
 
 export type AuditVerdict = { ok: true; entries: number; head: string } | { ok: false; brokenAt: number; reason: "hash" | "link" | "seq" | "vault" };
 
@@ -76,7 +87,8 @@ export function verifyAudit(log: AuditLog, expectedHead?: string): AuditVerdict 
 export function renderAudit(log: AuditLog, vaultName: string): string {
   const lines = [`Inborn audit log · vault "${vaultName}" · ${log.entries.length} entries · head ${auditHead(log).slice(0, 16)}…`, ""];
   for (const e of log.entries) {
-    const what = e.subject?.title ? ` · ${e.subject.title}` : "";
+    const ref0 = subjectRef(e.subject);
+    const what = e.subject?.title ? ` · ${e.subject.title}` : ref0 ? ` · ${ref0}` : "";
     const ref = e.subject?.recordHash ? ` · record ${e.subject.recordHash.slice(0, 16)}…` : "";
     lines.push(`${String(e.seq).padStart(4, " ")}  ${new Date(e.at).toISOString()}  ${e.action}${what}${ref}  ${e.hash.slice(0, 12)}`);
   }

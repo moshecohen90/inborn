@@ -107,6 +107,10 @@ export class WorkStore {
   isHidden(chat: Pick<Chat, "folderId">, now = Date.now()): boolean {
     return this.isVault(chat.folderId) && !this.isOpen(chat.folderId!, now);
   }
+  /** Folders a search must not reach into right now (spec §7.8: a locked vault leaks neither titles nor snippets). */
+  hiddenFolderIds(now = Date.now()): string[] {
+    return this.vaults.filter((v) => !this.isOpen(v.folderId, now)).map((v) => v.folderId);
+  }
 
   /** The app lock engaged: every vault asks for its code again (§7.5). */
   appLocked(): void {
@@ -215,7 +219,7 @@ export class WorkStore {
     const inVault = this.isVault(chat.folderId);
     const vault = inVault ? { folderId: chat.folderId!, name: vaultName ?? chat.folderId!, auditHead: auditHead(await this.readLog(chat.folderId!)) } : undefined;
     const record = signRecord(buildRecord({ chat, messages, app: { name: "Inborn", version: appVersion, platform: Platform.OS }, signer: { algorithm: "Ed25519", publicKeyHex: signingPublicKey(key.seedHex), keyCreatedAt: key.createdAt }, ...(vault ? { vault } : {}), now: Date.now() }), key.seedHex);
-    if (inVault) await this.log(chat.folderId!, "export.signed", { chatId: chat.id, title: chat.title, recordHash: record.contentHash });
+    if (inVault) await this.log(chat.folderId!, "export.signed", { chatId: chat.id, recordHash: record.contentHash });
     const baseName = `inborn-record-${record.contentHash.slice(0, 12)}`;
     return { record, json: JSON.stringify(record, null, 2), markdown: renderRecord(record), baseName };
   }

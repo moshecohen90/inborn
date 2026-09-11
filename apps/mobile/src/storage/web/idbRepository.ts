@@ -2,6 +2,7 @@ import {
   SEARCH_LIMIT,
   matchesTerms,
   newId,
+  searchExclusions,
   searchTerms,
   snippetAround,
   sortChats,
@@ -13,6 +14,7 @@ import {
   type NewChat,
   type NewMessage,
   type SearchHit,
+  type SearchOptions,
 } from "@inborn/core";
 
 export const IDB_NAME = "inborn";
@@ -278,14 +280,16 @@ export class IdbChatRepository implements ChatRepository {
     return keys.length;
   }
 
-  async search(query: string): Promise<SearchHit[]> {
+  async search(query: string, options?: SearchOptions): Promise<SearchHit[]> {
     const terms = searchTerms(query);
     if (!terms.length) return [];
     const hits: SearchHit[] = [];
     const chats = await this.listChats();
+    const excluded = searchExclusions(chats, options?.hiddenFolderIds);
     const tx = this.db.transaction(MESSAGES, "readonly");
     const index = tx.objectStore(MESSAGES).index(BY_CHAT_SEQ);
     for (const chat of chats) {
+      if (excluded.has(chat.id)) continue;
       if (matchesTerms(chat.title, terms)) hits.push({ chatId: chat.id, title: chat.title, snippet: chat.title });
       const rows = (await request(index.getAll(chatRange(chat.id)) as IDBRequest<MessageRow[]>)).sort(bySeq);
       for (const m of rows) {

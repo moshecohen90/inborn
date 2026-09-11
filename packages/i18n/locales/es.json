@@ -257,6 +257,8 @@
   "documents.storage": "{count, plural, =0 {Sin documentos} one {# documento} other {# documentos}} · {size} en este dispositivo",
   "documents.onDevice": "INDEXADO EN ESTE DISPOSITIVO · {store}",
   "documents.pages": "{count, plural, one {# página} other {# páginas}}",
+  "documents.sheets": "{count, plural, one {# sheet} other {# sheets}}",
+  "documents.parts": "{count, plural, one {# part} other {# parts}}",
   "documents.empty.title": "Aún no hay documentos.",
   "documents.empty.hint": "Añade un PDF, un archivo de Word, texto o un escaneo. Se lee, se indexa y se busca aquí. No se sube nada.",
   "documents.strict.title": "Responder solo con mis documentos",
@@ -962,5 +964,8 @@
   "vault.hf.error.server": "huggingface.co respondió con un error",
   "vault.hf.error.bad-response": "Respuesta inesperada de huggingface.co",
   "vault.source.hf": "huggingface.co",
-  "proof.allowlist.hfCdn": "los bytes del archivo de una descarga de Hugging Face, después de que huggingface.co redirija allí"
+  "proof.allowlist.hfCdn": "los bytes del archivo de una descarga de Hugging Face, después de que huggingface.co redirija allí",
+  "documents.cite.page": "p.",
+  "documents.cite.sheet": "sheet ",
+  "documents.cite.part": "part "
 }

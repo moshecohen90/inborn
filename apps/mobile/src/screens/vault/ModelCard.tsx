@@ -17,6 +17,8 @@ export interface ModelCardProps {
   active: boolean;
   /** Greyed row in the "Too big" group; no actions. */
   disabledReason?: "ram" | "engine";
+  /** The PRO chip is a price tag, so it shows only while the current tier cannot install the model (QA F6). */
+  lockedForTier?: boolean;
   onInstall: () => void;
   onCancel: () => void;
   onPause: () => void;
@@ -32,7 +34,7 @@ export interface ModelCardProps {
 }
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const speed = expectedSpeed(device.chip, model.tier);
@@ -101,7 +103,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
           · {imported ? model.name : hf ? `${model.name} · ${model.family}` : `${model.family} ${model.params}`}
         </Text>
-        {model.proOnly ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
+        {model.proOnly && lockedForTier ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
       {recommended && !disabled ? <Text style={[type.monoLabel, { color: theme.accent }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
       {model.goodFor ? (

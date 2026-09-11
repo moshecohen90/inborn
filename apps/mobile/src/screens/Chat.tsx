@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Image, Platform, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AppState, FlatList, Image, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -52,7 +52,7 @@ import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
-import { modelHasVision, pickImages, removeImage, resolveVision, visionInstalled, type PickedImage } from "../images";
+import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionInstalled, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -96,6 +96,8 @@ const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null;
 /** Product ceiling for finishing a reply after the app goes to the background (§10.3 #21). */
 const BACKGROUND_GRACE_MS = 15_000;
 const NOTICE_KEY = "notice.canBeWrong";
+/** How long after a stream ends the list still follows late-measured cells (the ledger row). */
+const SETTLE_MS = 1500;
 const SUGGESTIONS = ["summarize", "translate", "draft"] as const;
 
 export interface ChatProps {
@@ -130,7 +132,7 @@ export const afterSheetClose = (fn: () => void) => setTimeout(fn, 320);
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
-const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images } : {}) });
+const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
@@ -153,6 +155,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const list = useRef<FlatList<Row>>(null);
   const nearBottom = useRef(true);
   const follow = useRef(true);
+  const settleUntil = useRef(0);
   const loadMs = useRef(0);
   const rowsRef = useRef<Row[]>([]);
   const [status, setStatus] = useState<Status>({ kind: "loading" });
@@ -443,6 +446,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       abort.current = null;
       setBusy(false);
       setLiveTps(0);
+      /* The ledger row is measured after `busy` drops, so the follow window stays open a little longer (QA N1: the end sat under the composer). */
+      settleUntil.current = Date.now() + SETTLE_MS;
+      if (follow.current || nearBottom.current) requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
       const last = engine.stats();
       const result = { engine: engine.id, model: model.id, uri: model.uri, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
       if (__DEV__) console.log("[stats]", JSON.stringify(result));
@@ -465,7 +471,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (at >= 0) setRows((all) => all.slice(0, at));
         if (chat?.summaryUpTo && !rowsRef.current.some((r) => r.id === chat.summaryUpTo)) setChat((c) => (c ? { ...c, summary: undefined, summaryUpTo: undefined } : c));
       }
-      const images = pendingImages.map((p) => p.uri);
+      const images = pendingImages.map((p) => storedImagePath(p.uri));
       setPendingImages([]);
       const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text, ...(images.length ? { images } : {}) });
       const pendingId = `pending-${Date.now()}`;
@@ -702,7 +708,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
     setReadingId(row.id);
     const started = Date.now();
-    afterSheetClose(() => void speak(markdownToText(row.content), { uiLocale: i18n.language, onStart: () => devVoiceRecord("readAloud", { ttsStartMs: Date.now() - started, chars: row.content.length }), onDone: () => setReadingId((r) => (r === row.id ? null : r)), onError: () => setReadingId(null) }));
+    afterSheetClose(() =>
+      void speak(markdownToText(row.content), { uiLocale: i18n.language, onStart: () => devVoiceRecord("readAloud", { ttsStartMs: Date.now() - started, chars: row.content.length }), onDone: () => setReadingId((r) => (r === row.id ? null : r)), onError: () => setReadingId(null) }).then((outcome) => {
+        if (outcome !== "no-voice") return;
+        setReadingId(null);
+        flash(t("chat.readAloud.none"));
+      }),
+    );
   };
   const visionReady = visionInstalled();
   const modelSees = modelHasVision(model.id);
@@ -762,6 +774,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   useEffect(() => {
     if (liquidGlass && bottomH && nearBottom.current) list.current?.scrollToEnd({ animated: false });
   }, [bottomH]);
+  const listHeight = useRef(0);
+  /* adjustResize keeps the list's top offset when the keyboard opens, so the last answer would slide under the composer (QA N1). */
+  const onListLayout = (e: LayoutChangeEvent) => {
+    const h = e.nativeEvent.layout.height;
+    if (h < listHeight.current && nearBottom.current) requestAnimationFrame(() => list.current?.scrollToEnd({ animated: false }));
+    listHeight.current = h;
+  };
   const top = (
     <>
       <FloatingToolbar style={styles.header}>
@@ -908,6 +927,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         keyExtractor={(r) => r.id}
         contentContainerStyle={[styles.list, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
         onScroll={onScroll}
+        onLayout={onListLayout}
         scrollEventThrottle={64}
         keyboardShouldPersistTaps="handled"
         /* iOS only, for the floating-bar inset; pinning index 0 while the list is empty would cancel it (QA B10), and on Android the pin holds the view in place while an answer streams. */
@@ -917,7 +937,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           follow.current = false;
         }}
         onContentSizeChange={() => {
-          if (busy && (follow.current || nearBottom.current)) list.current?.scrollToEnd({ animated: false });
+          if ((busy || Date.now() < settleUntil.current) && (follow.current || nearBottom.current)) list.current?.scrollToEnd({ animated: false });
         }}
         ListHeaderComponent={safety ? <SafetyCard resources={safety} onDismiss={() => setSafety(null)} /> : null}
         ListEmptyComponent={
