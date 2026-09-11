@@ -304,16 +304,23 @@ Proven 6.9.2026 on the iPhone 13 Pro (Release, production variant, build 1.0.0 (
 
 IPA 553,951,589 bytes (528 MB; build 1 without the model was ≈40 MB). TestFlight: build 1.0.0 (2), delivery 074f5575, processingState VALID, in the "Inborn internal" group; build 1 expired.
 
-## Status 6.9.2026 (spec §14 table)
-Built and merged: M1 engines (llama.rn / wllama / Rust llama.cpp), M2 vault (signed catalog, PAD packs, resumable downloads, GGUF import),
-M3 chat (Markdown, folders, FTS, personas, memory, incognito, crisis/report), M4 shell (expo-router, onboarding, seal, exit meter, lock,
-FLAG_SECURE, proof, settings), M5a documents + RAG with citations and OCR, M6 licence (StoreKit 2 / Play verification, paywall),
-§6.5 device guard, 6 UI languages, IBM Plex + native chrome, web phase 2 (OPFS, service worker, gate), desktop phase 3 (macOS + Windows
-CI), legal/QA/ops docs, store copy, icon. Store records exist as drafts (Play app 4973506308577999063, ASC app 6809165161); build 1.0.0 (1)
-uploaded to TestFlight on 6.9.2026; build 1.0.0 (2) with Instant inside the app (see "iOS: Instant ships inside the app").
-Open: voice/image on real phones (emulators have no host mic), the full 40-test run (`docs/qa/release-checklist.md`), real Play delivery + sandbox purchases, store
-screenshots, privacy-policy URL + support email + developer name (Moshe), Windows signing, Apple FM adapter.
-
+## Status 11.9.2026 (spec §14 table)
+Built and merged (main): M1 engines (llama.rn / wllama / Rust llama.cpp) with S31 Benchmark, chip classes incl. android-legacy and a boot-time RAM floor;
+M2 vault (signed catalog, PAD packs, resumable downloads, GGUF import, Hugging Face search on iOS, relative stored paths that survive updates);
+M3 chat (Markdown, folders, FTS that never leaks locked vaults, personas, memory, incognito, crisis/report, §7.5 auto-delete enforced, S43 quick
+actions, share targets ACTION_SEND / PROCESS_TEXT "Ask Inborn" / iOS share extension, one-owner SQLite connection with reopen); M4 shell
+(expo-router, onboarding, seal, exit meter, lock, FLAG_SECURE, proof, settings, prefs backup); M5 documents + RAG with honest page/sheet/part
+citations, OCR incl. Hebrew on iOS, voice (dictation, Whisper Pro, hands-free, read-aloud engine choice); M6 licence (StoreKit 2 / Play,
+paywall with Pro AND Work, Work vaults/audit/signed export/redaction); §6.5 device guard; 6 UI languages × 969 keys, all complete;
+web phase 2; desktop phase 3 CI; legal/QA/ops docs; store copy; icon.
+Verified: TestFlight 1.0.0 (3) VALID with the share extension on the iPhone 13 Pro (build 4 = fixes round 9 uploaded 11.9); Play internal
+testing 1.0.0 (5) installed and updated from the store on the OnePlus 6T (fast-follow pack, share sheet, Ask Inborn, update path);
+QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, three passes, F1–F15 fixed in round 9); 2 h 30 soak on the 6T PASS
+(`docs/qa/soak-run-2026-09-11.md`); voice on the real iPhone (`docs/qa/voice-run-2026-09-11.md`); purchases on both stores
+(`docs/qa/purchases-run-2026-09-11.md`); copy sign-off rounds 2a–2d and design sign-off (`docs/design/`).
+Open (Moshe only): store screenshots after his design approval, legal fields (support email, domain, legal name, address), Play payments
+profile, Family Sharing decision, Apple sandbox purchase password, T31 App Privacy Report (phone setting), site deploy + domain, IAP
+submission with 1.0. Declared cuts for 1.0: .sealed backup, side-by-side compare, Shortcuts/widgets/keyboard, Apple FM on device.
 
 ## Voice + image input (M5b, spec §5.6, §7.1, §7.4, §8.2, S44) — status 6.9.2026
 Free = the system's dictation with the on-device flag forced + system read-aloud; Pro = whisper.cpp base on the phone + the hands-free
