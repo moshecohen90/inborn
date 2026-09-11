@@ -7,6 +7,7 @@ import { useKeyboardLift } from "../../lib/keyboard";
 import { sheetGeometry } from "../../lib/keyboardLayout";
 import { font } from "../../services/type";
 import { GlassFill, panelColor, panelStyle } from "./NativeChrome";
+import { useOpenSheet } from "../../lib/openSheets";
 
 /** Bottom sheet (§9.4 radius 20, 280 ms): confirmations, the network log, the passcode entry. */
 export function Sheet({ visible, onClose, title, children, testID }: { visible: boolean; onClose: () => void; title?: string; children: ReactNode; testID?: string }) {
@@ -15,6 +16,7 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
   const lift = useKeyboardLift();
   const { height: windowHeight } = useWindowDimensions();
   const geometry = sheetGeometry({ lift, safeBottom: insets.bottom, safeTop: insets.top, windowHeight, basePadding: 20, share: 0.85 });
+  useOpenSheet(visible, onClose);
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />

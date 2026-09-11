@@ -9,3 +9,4 @@ export * from "./resume";
 export * from "./speed";
 export { CATALOG_PUBLIC_KEY } from "./publicKey";
 export * from "./lanes";
+export * from "./huggingface";

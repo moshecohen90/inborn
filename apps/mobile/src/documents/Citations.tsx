@@ -6,6 +6,7 @@ import { GlassFill, panelColor, panelStyle } from "../components/shell/NativeChr
 import { citationLabel, type Citation } from "@inborn/core";
 import { getLibrary } from "./library";
 import { font } from "../services/type";
+import { useOpenSheet } from "../lib/openSheets";
 
 export interface CitationsProps {
   citations: Citation[];
@@ -61,6 +62,7 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
       alive = false;
     };
   }, [citation.chunkId]);
+  useOpenSheet(true, onClose);
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>

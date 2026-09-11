@@ -11,6 +11,7 @@ import { font } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
+import { useOpenSheet } from "../../lib/openSheets";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -119,6 +120,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const names = docs.map((d) => d.name).join(", ");
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
+  useOpenSheet(true, onClose);
   return (
     <Modal animationType="slide" onRequestClose={onClose}>
       <View testID="ask-sheet" style={[styles.root, { backgroundColor: theme.bg, paddingBottom: lift || insets.bottom }]}>

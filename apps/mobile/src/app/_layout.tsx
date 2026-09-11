@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppServicesProvider, useAppServices } from "../services/AppServices";
@@ -10,6 +10,8 @@ import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
 import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
+import { useShareTarget } from "../share";
+import { closeOpenSheets } from "../lib/openSheets";
 
 export default function RootLayout() {
   /* Plex is the brand (§9.3): nothing draws in a system face while the files register. */
@@ -41,7 +43,14 @@ function Splash() {
 function Shell() {
   const { theme, scheme } = useTheme();
   const insets = useSafeAreaInsets();
-  const { lock, prefs, captured } = useAppServices();
+  const router = useRouter();
+  const { lock, prefs, captured, openShared } = useAppServices();
+  /* Shared text / files (§7.7) land in a fresh chat; whatever screen was up gives way to it. The lock, if on, stays in front. */
+  useShareTarget((payload) => {
+    closeOpenSheets();
+    openShared(payload);
+    if (router.canGoBack()) router.dismissTo("/");
+  });
   const cover = (lock.covered && prefs.lock.enabled && prefs.lock.hideInSwitcher) || (captured && prefs.lock.screenshotProtection);
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>

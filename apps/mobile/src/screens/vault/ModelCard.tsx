@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { expectedSpeed, formatModelBytes, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
+import { expectedSpeed, formatModelBytes, isHfModelId, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
@@ -43,7 +43,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
   const dotColor = state.kind === "ready" ? (active ? theme.sealed : theme.text) : state.kind === "corrupt" || state.kind === "quarantined" ? theme.danger : theme.text3;
   const disabled = !!disabledReason;
   const imported = model.id.startsWith("import:");
-  const tierLabel = (model.tier ?? (imported ? t("vault.imported") : model.role)).toUpperCase();
+  const hf = isHfModelId(model.id);
+  const tierLabel = (model.tier ?? (imported ? t("vault.imported") : hf ? t("vault.hf.label") : model.role)).toUpperCase();
 
   const statusLine = (): { text: string; danger?: boolean } | null => {
     switch (state.kind) {
@@ -100,7 +101,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         <Text style={[styles.dot, { color: dotColor }]}>{dot}</Text>
         <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{tierLabel}</Text>
         <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
-          · {imported ? model.name : `${model.family} ${model.params}`}
+          · {imported ? model.name : hf ? `${model.name} · ${model.family}` : `${model.family} ${model.params}`}
         </Text>
         {model.proOnly ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
@@ -109,7 +110,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}
       <Text style={[type.mono, { color: theme.text3 }]}>
-        {t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant })} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
+        {model.quant ? t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant }) : formatModelBytes(model.bytes)} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>
       <Text style={[type.mono, { color: theme.text3 }]}>
         {disabledReason === "engine"
@@ -145,6 +146,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
           {state.kind === "delivering" || state.kind === "verifying" ? <Action testID={`cancel-${model.id}`} theme={theme} onPress={onCancel} label={t("vault.cancel")} /> : null}
           {state.kind === "ready" && !active ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
           {state.kind === "ready" && active ? <Text style={[type.mono, styles.inUse, { color: theme.sealed }]}>{t("vault.inUse")}</Text> : null}
+          {hf && onRemove && (state.kind === "not-installed" || state.kind === "failed" || state.kind === "corrupt" || state.kind === "needs-space") ? <Action testID={`remove-${model.id}`} theme={theme} onPress={onRemove} label={t("vault.remove")} /> : null}
           <Action testID={`details-${model.id}`} theme={theme} onPress={onDetails} label={t("vault.details")} />
         </View>
       )}

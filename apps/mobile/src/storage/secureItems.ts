@@ -8,6 +8,8 @@ export const SECURE_ITEMS = {
   workVaults: "inborn.work.vaults",
   /** Ed25519 seed that signs exported records (Pro for Work); created at the first signed export. */
   workSigning: "inborn.work.signing",
+  /** Hugging Face access token for gated repositories (§7.2); sent only to huggingface.co when the user downloads. */
+  hfToken: "inborn.hf.token",
 } as const;
 
 export const SECURE_ITEM_LIST: readonly string[] = Object.values(SECURE_ITEMS);

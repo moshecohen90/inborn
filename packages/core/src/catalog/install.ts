@@ -1,5 +1,5 @@
 /** Install state of one catalog model on this device (spec §8.4 states, §10.1 #2/#5/#6/#8). Pure reducer. */
-export type DeliverySource = "bundled" | "play" | "apple" | "https" | "import";
+export type DeliverySource = "bundled" | "play" | "apple" | "https" | "hf" | "import";
 
 export type InstallState =
   | { kind: "not-installed" }

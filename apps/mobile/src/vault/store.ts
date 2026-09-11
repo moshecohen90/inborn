@@ -38,7 +38,7 @@ export interface StrayFile {
 export const STRAY_PREFIX = "stray:";
 
 /** `importOnly`: this platform's store never carries the file (sharp-phi has no Play pack), so the card offers import instead of a dead Install. */
-export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile; importOnly?: boolean };
+export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile; importOnly?: boolean; hf?: boolean };
 export type ManifestStatus = { ok: true } | { ok: false; problem: string };
 
 /**
@@ -76,7 +76,12 @@ export class VaultStore {
     };
     /* Debug APKs cannot reach Play Core; pointing a dev bundle at scripts/serve-models.mjs gives Android the same HTTPS path the other platforms use. */
     this.delivery = Platform.OS === "android" && !(devBuild() && DEV_MODELS_BASE_URL) ? new PlayDelivery() : new HttpsDelivery(ctx);
-    for (const m of this.manifest.models) this.states.set(m.id, NOT_INSTALLED);
+    for (const m of this.deliverable()) this.states.set(m.id, NOT_INSTALLED);
+  }
+
+  /** Catalog models plus the Hugging Face picks (§7.2): everything the platform delivery can fetch and verify. */
+  private deliverable(): CatalogModel[] {
+    return [...this.manifest.models, ...Object.values(this.record.hf)];
   }
 
   /** Scans disk once; safe to await many times. */
@@ -110,7 +115,7 @@ export class VaultStore {
 
   private async scan(): Promise<void> {
     if (Platform.OS === "web") return;
-    for (const model of this.manifest.models) {
+    for (const model of this.deliverable()) {
       const bundled = bundledModelFile(model.id) ?? devBundledStandIn(model.id);
       if (bundled) {
         this.adoptBundled(model, bundled);
@@ -126,11 +131,11 @@ export class VaultStore {
       }
       if (located && !rec) {
         /* Delivered outside this store (fast-follow pack on first launch, a file put in place by hand): verify before trusting. */
-        await this.adopt(model, located, Platform.OS === "android" ? "play" : "https");
+        await this.adopt(model, located, Platform.OS === "android" ? "play" : this.record.hf[model.id] ? "hf" : "https");
         continue;
       }
       if (this.record.downloads[model.id]) {
-        this.states.set(model.id, { kind: "delivering", via: "https", bytes: fileSize(modelFile(`${model.file}.part`)), total: model.bytes, paused: true, waitingForWifi: false, needsConfirmation: false });
+        this.states.set(model.id, { kind: "delivering", via: this.record.hf[model.id] ? "hf" : "https", bytes: fileSize(modelFile(`${model.file}.part`)), total: model.bytes, paused: true, waitingForWifi: false, needsConfirmation: false });
         continue;
       }
       if (rec && !located) delete this.record.installs[model.id];
@@ -229,15 +234,16 @@ export class VaultStore {
       const importOnly = !plan && Platform.OS === "android" && !model.delivery.some((d) => d.kind === "play-asset-pack");
       return { model, state: this.states.get(model.id) ?? NOT_INSTALLED, plan, importOnly };
     });
+    const hf = Object.values(this.record.hf).map((model) => ({ model, state: this.states.get(model.id) ?? NOT_INSTALLED, plan: this.manifestStatus.ok ? this.delivery.plan(model) : null, hf: true }));
     const imports = Object.values(this.record.imports).map((imp) => ({ model: importedAsModel(imp), state: this.states.get(imp.id) ?? NOT_INSTALLED, plan: null, imported: imp }));
     const strays = this.strays.map((s) => ({ model: strayAsModel(s), state: { kind: "ready", path: s.path, bytes: s.bytes, sha256: "", via: "import" } as InstallState, plan: null, stray: s }));
-    return [...catalog, ...imports, ...strays];
+    return [...catalog, ...hf, ...imports, ...strays];
   }
 
   /** Files in the vault folder that no catalog part, import or download owns (QA B17). */
   private scanStrays(): StrayFile[] {
     const known = new Set<string>(["vault.json"]);
-    for (const m of this.manifest.models) for (const p of modelParts(m)) known.add(p.file);
+    for (const m of this.deliverable()) for (const p of modelParts(m)) known.add(p.file);
     for (const imp of Object.values(this.record.imports)) known.add(imp.file);
     const out: StrayFile[] = [];
     try {
@@ -253,7 +259,19 @@ export class VaultStore {
   }
 
   model(id: string): CatalogModel | undefined {
-    return this.manifest.models.find((m) => m.id === id) ?? (this.record.imports[id] ? importedAsModel(this.record.imports[id]!) : undefined);
+    return this.manifest.models.find((m) => m.id === id) ?? this.record.hf[id] ?? (this.record.imports[id] ? importedAsModel(this.record.imports[id]!) : undefined);
+  }
+
+  /** A file picked in the Hugging Face search joins the vault as a not-installed model; Install then runs the usual HTTPS + hash path. */
+  addHfModel(model: CatalogModel): VaultEntry {
+    if (!this.record.hf[model.id]) {
+      this.record.hf[model.id] = model;
+      this.states.set(model.id, NOT_INSTALLED);
+      this.persist();
+      this.notify();
+    }
+    const stored = this.record.hf[model.id]!;
+    return { model: stored, state: this.state(model.id), plan: this.manifestStatus.ok ? this.delivery.plan(stored) : null, hf: true };
   }
 
   /** Bytes the vault holds (catalog files + imports), for the header counter (S30). */
@@ -284,7 +302,7 @@ export class VaultStore {
 
   /** The model the engine loads: the chosen default if installed, else the recommended one, else any installed chat model. */
   activeModel(): { model: CatalogModel; path: string } | null {
-    const order = [this.record.defaultModelId, this.recommendedId(), ...this.manifest.models.map((m) => m.id), ...Object.keys(this.record.imports)];
+    const order = [this.record.defaultModelId, this.recommendedId(), ...this.manifest.models.map((m) => m.id), ...Object.keys(this.record.hf), ...Object.keys(this.record.imports)];
     for (const id of order) {
       if (!id) continue;
       const m = this.model(id);
@@ -407,6 +425,7 @@ export class VaultStore {
       const m = this.model(id);
       if (m) await this.delivery.remove(m);
       delete this.record.installs[id];
+      delete this.record.hf[id];
     }
     if (this.record.defaultModelId === id) delete this.record.defaultModelId;
     this.persist();

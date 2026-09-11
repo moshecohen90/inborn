@@ -1,6 +1,7 @@
 import manifestJson from "./manifest.json";
 import { CATALOG_PUBLIC_KEY } from "./publicKey";
 import { verifyManifest } from "./signature";
+import { hfResolveUrl } from "./huggingface";
 import type { CatalogManifest, CatalogModel, ModelPart } from "./types";
 
 /** The catalog shipped inside the app (Android gets a new one only with an app update, §5.4). */
@@ -34,6 +35,8 @@ export const modelParts = (model: CatalogModel): ModelPart[] => model.parts ?? [
 
 /** Absolute download URL of an `https` delivery, or undefined when the model has none. */
 export function httpsUrl(manifest: CatalogManifest, model: CatalogModel, part?: ModelPart): string | undefined {
+  const hf = model.delivery.find((x) => x.kind === "hf");
+  if (hf) return hfResolveUrl(hf.repo, hf.path, hf.revision);
   const d = model.delivery.find((x) => x.kind === "https");
   if (!d) return undefined;
   const base = manifest.baseUrl.replace(/\/$/, "");

@@ -38,8 +38,8 @@ describe("exit meter", () => {
 describe("network allowlist + log", () => {
   it("android has no host at all, iOS 26 only explicit HF, older iOS also the models host", () => {
     expect(networkAllowlist("android")).toEqual([]);
-    expect(networkAllowlist("ios", 26).map((e) => e.host)).toEqual(["huggingface.co"]);
-    expect(networkAllowlist("ios", 17).map((e) => e.host)).toEqual(["models.inbornapp.com", "huggingface.co"]);
+    expect(networkAllowlist("ios", 26).map((e) => e.host)).toEqual(["huggingface.co", "*.hf.co"]);
+    expect(networkAllowlist("ios", 17).map((e) => e.host)).toEqual(["models.inbornapp.com", "huggingface.co", "*.hf.co"]);
     expect(networkAllowlist("web").every((e) => e.when === "explicit")).toBe(true);
   });
   it("totals the session log and notifies subscribers", () => {

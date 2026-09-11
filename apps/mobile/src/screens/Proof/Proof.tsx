@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import { daysSince, formatBytes, networkAllowlist } from "@inborn/core";
+import { HF_CDN_HOST, HF_HOST, daysSince, formatBytes, networkAllowlist } from "@inborn/core";
 import { radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
@@ -50,7 +50,7 @@ export function Proof() {
         {allow.length === 0 ? <Line text={t("proof.allowlist.none")} /> : null}
         {Platform.OS === "android" ? <Line text={t("proof.allowlist.play")} /> : null}
         {allow.map((a) => (
-          <Line key={a.host} mono={a.host} text={a.host === "huggingface.co" ? t("proof.allowlist.hf") : t("proof.allowlist.models")} />
+          <Line key={a.host} mono={a.host} text={a.host === HF_HOST ? t("proof.allowlist.hf") : a.host === HF_CDN_HOST ? t("proof.allowlist.hfCdn") : t("proof.allowlist.models")} />
         ))}
       </Section>
 

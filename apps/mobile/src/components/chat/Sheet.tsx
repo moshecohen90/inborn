@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import { sheetGeometry } from "../../lib/keyboardLayout";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { GlassFill, panelColor, panelStyle } from "../shell/NativeChrome";
+import { useOpenSheet } from "../../lib/openSheets";
 
 interface SheetProps {
   visible: boolean;
@@ -29,8 +30,10 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   const { height: windowHeight } = useWindowDimensions();
   const geometry = sheetGeometry({ lift, safeBottom: insets.bottom, safeTop: insets.top, windowHeight, basePadding: 16, share: 0.88 });
   const Body = scroll ? ScrollView : View;
+  const presented = usePresentedOrRetry(visible);
+  useOpenSheet(visible, onClose);
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal key={presented.key} visible={visible} transparent animationType="slide" onRequestClose={onClose} onShow={presented.onShow}>
       <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
       <View testID={testID} style={[styles.sheet, panelStyle, geometry, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
         <GlassFill />
@@ -42,6 +45,26 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
       </View>
     </Modal>
   );
+}
+
+const RETRY_MS = 600;
+const RETRY_MAX = 8;
+
+/* iOS drops a Modal presented while another one is still on screen (a sheet of the screen a share just popped, say) and never retries; remounting it after that one is gone does. */
+function usePresentedOrRetry(visible: boolean): { key: number; onShow: () => void } {
+  const [key, setKey] = useState(0);
+  const shown = useRef(false);
+  useEffect(() => {
+    shown.current = false;
+    if (!visible || Platform.OS === "web") return;
+    let tries = 0;
+    const timer = setInterval(() => {
+      if (shown.current || tries++ >= RETRY_MAX) return clearInterval(timer);
+      setKey((k) => k + 1);
+    }, RETRY_MS);
+    return () => clearInterval(timer);
+  }, [visible]);
+  return { key, onShow: () => (shown.current = true) };
 }
 
 /** One tappable line inside a sheet. */

@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 import type { DownloadPauseState } from "expo-file-system";
-import type { DeliverySource } from "@inborn/core";
+import type { CatalogModel, DeliverySource } from "@inborn/core";
 import { recordFile } from "./paths";
 
 /** One installed file the vault knows about (catalog model or import). */
@@ -37,12 +37,14 @@ export interface VaultRecord {
   defaultModelId?: string;
   installs: Record<string, InstalledRecord>;
   imports: Record<string, ImportedModel>;
+  /** Files picked in the Hugging Face search (§7.2), kept in catalog shape so install/verify/list treat them as catalog models. */
+  hf: Record<string, CatalogModel>;
   /** Paused HTTPS downloads that survive a restart (expo-file-system savable state). */
   downloads: Record<string, DownloadPauseState & { etag?: string }>;
   wifiOnly: boolean;
 }
 
-export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, downloads: {}, wifiOnly: true };
+export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, hf: {}, downloads: {}, wifiOnly: true };
 
 /* expo-file-system has no web implementation; the browser tier keeps its model in OPFS (src/web) and the vault stays empty. */
 const noFiles = (): boolean => Platform.OS === "web";
@@ -53,7 +55,7 @@ export function readRecord(): VaultRecord {
     const f = recordFile();
     if (!f.exists) return { ...EMPTY_RECORD };
     const parsed = JSON.parse(f.textSync()) as Partial<VaultRecord>;
-    return { ...EMPTY_RECORD, ...parsed, installs: parsed.installs ?? {}, imports: parsed.imports ?? {}, downloads: parsed.downloads ?? {} };
+    return { ...EMPTY_RECORD, ...parsed, installs: parsed.installs ?? {}, imports: parsed.imports ?? {}, hf: parsed.hf ?? {}, downloads: parsed.downloads ?? {} };
   } catch (e: unknown) {
     console.warn("[vault] record unreadable, starting empty", e);
     return { ...EMPTY_RECORD };

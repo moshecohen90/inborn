@@ -857,3 +857,59 @@ UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro →
   Screenshots: `pymobiledevice3 developer dvt screenshot out.png` (no root needed on iOS 17+).
 - Trap: without the session a dev build talks to Apple's real sandbox (the phone has a sandbox account signed in) and shows a "Sandbox" payment
   sheet that outlives the app; it is hosted by `PassbookUIService` — `xcrun devicectl device process signal --pid <pid> --signal SIGKILL` dismisses it.
+
+## Quick actions, share targets, Hugging Face search (spec §7.6 / S43, §7.7, §7.2) — branch `fixes-r8`, 11.9.2026
+Three Free-tier features from the MosheAI gap report (`docs/qa/mosheai-gap-2026-09-11.md` rows §7.6, §7.7, §7.2).
+- **Quick actions (S43)** — `packages/core/src/chat/quickActions.ts` (six actions: summarize, rephrase, fix grammar, translate, explain,
+  extract tasks; prompt builder fences the text as data, 6 000-char clip on a word boundary), `detectLanguage.ts` (script + stop-word
+  detection for 17 languages; the translate target is the UI language, or English when the text already is the UI language, or Spanish
+  for an English UI) and `apps/mobile/src/components/chat/QuickActionsSheet.tsx`: source preview, six chips, "Detected · Translate to"
+  row (tap cycles the target and restarts a running translation), the result streamed with the loaded model (`reasoning: false`,
+  `maxTokens: 1024`, `temperature: 0.3`, offline), then Stop / Copy / Replace (Android PROCESS_TEXT only) / Open in chat (the action
+  becomes a user turn and the result an assistant turn of the open conversation). Reachable from every message's long-press sheet
+  ("Quick actions") and from every share target.
+- **Share targets (§7.7)** — Android: `apps/mobile/modules/share-target` (own Expo module, no permission): `ACTION_SEND` for text/plain and
+  the document types of `src/documents/pickTypes.json` (the same list drives the picker; `app.config.ts` writes the intent filters), and
+  `ACTION_PROCESS_TEXT` "Ask Inborn" through a transparent standard-launch `ProcessTextActivity` that lives in the caller's task, hands the
+  text to the singleTask MainActivity and, on "Replace", returns `EXTRA_PROCESS_TEXT` with `RESULT_OK` (the app moves back behind the
+  caller). Shared files are copied into `cacheDir/shared/` and attached to a new chat through the documents library; shared text opens the
+  quick-action sheet on a new chat. iOS: `expo-share-intent` 8.0.1 (iOS part only; the Android module is excluded from autolinking) adds
+  the "Ask Inborn" Share Extension target (App Group `group.com.inbornapp.mobile`; text, one URL, one file or image) and `src/app/+native-intent.ts`
+  routes the handoff URL to the chat. `INBORN_IOS_SHARE_EXT=0` at prebuild skips the extension (a provisioning profile without App Groups
+  cannot sign it). Payload parsing is pure: `packages/core/src/chat/shareTarget.ts`.
+- **Hugging Face search (§7.2, iOS only)** — `packages/core/src/catalog/huggingface.ts` (URLs on `huggingface.co` only, search + repo
+  parsing: whole `.gguf` files with an LFS SHA-256, no shards, no `mmproj`; quant and parameter tags from the file name; RAM need =
+  file size + 1 GB rounded up), `apps/mobile/src/vault/hf.ts` (fetch with host assertion, optional token for gated repos in the Keychain,
+  every request recorded to the network log) and `src/screens/vault/HfSearch.tsx` (Vault → "Search Hugging Face"). A picked file becomes
+  a catalog model with the new delivery kind `hf` (`hf:<repo>/<file>` id, `vendor: "Hugging Face"`) that `HttpsDelivery` downloads through
+  the existing controlled path: HEAD size check, `.part` resume, native SHA-256 against the LFS hash, then the usual vault card. Vault copy
+  on Android says the search exists on iOS and desktop because the Android release has no INTERNET permission; the desktop screen is not
+  built in this round. Proof screen (S50): the iOS allowlist now names `huggingface.co` and the `*.hf.co` CDN the redirect lands on, and
+  `src/proof/transfers.ts` feeds HF search bytes and model bytes into the iOS OUT/IN meter (before this round nothing on iOS recorded model
+  downloads there).
+
+Verified 11.9.2026 (screenshots in the stream's scratch dir; numbers from the Proof screen and the app container):
+- **iOS, iPhone 15 Pro simulator (iOS 17.0, Release build):** search "qwen3 0.6b" against the real API (20 repos, downloads and likes),
+  unsloth/Qwen3-0.6B-GGUF expanded to 20 whole GGUF files with size, quant and "Fits your phone"; the confirm sheet names
+  huggingface.co and the size; a 16 MB file (`ggml-org/stories15M_MOE/moe_shakespeare15M.gguf`) downloaded, native SHA-256
+  `d1e0617d…fe1a` equals the LFS hash and the Mac's `shasum`, the card reads "Use this model" and Details shows source huggingface.co.
+  Cancel of a running download and Remove of a pending row work. Proof: OUT 1.47 KB · IN 51.4 MB, allowlist rows huggingface.co and
+  `*.hf.co`, network log with one line per request (HEAD 240 B, search 955 B, repo 7 KB, file 15.6 MB). Share sheet: Safari → share →
+  "Inborn (dev)" → new chat with the quick actions sheet holding the URL; quick actions from a message: Summarize streamed three bullets,
+  Translate to Spanish (detected English), Open in chat appended both turns.
+- **Simulator traps:** (1) build the simulator app with ad-hoc signing (no `CODE_SIGNING_ALLOWED=NO`): without the simulated
+  entitlements `nsurlsessiond` refuses the background session (`NSCocoaErrorDomain 4097`) and every vault download fails with
+  "unknown error"; (2) the simulator's background `URLSession` moves 50–100 KB/s where `curl` on the Mac gets 20 MB/s, so pick a small
+  file for a proof (a device downloads at line speed); (3) a share that arrives while another sheet (a Modal) is open would present a
+  second Modal, which iOS drops, and react-native-screens keeps the popped screen mounted until its sheet is gone. So every sheet and
+  modal registers its close handler (`src/lib/openSheets.ts`, `useOpenSheet`), the share handler in `_layout.tsx` calls
+  `closeOpenSheets()` before it pops to the chat, `Sheet` remounts its Modal every 600 ms (8 tries) until `onShow` fires, and the Chat
+  screen opens the shared-text sheet only once it is in front (`useIsFocused`).
+- **Android, Pixel 3a API 33 emulator (arm64, debug build + Metro, Instant pushed):** `am start -a android.intent.action.SEND -t text/plain
+  --es android.intent.extra.TEXT '…'` opened a new chat with the quick actions sheet on the text (Detected: English, Translate to Spanish);
+  Extract tasks streamed three checkbox lines and Open in chat appended both turns. Files app → shared.txt → Share → Inborn: the file is
+  copied, imported and attached as a chip on a new chat. Text selection in a plain EditText (Contacts, first name) → ⋮ → "Ask Inborn" →
+  the sheet with Replace → Fix grammar → Replace: the field reads the corrected text and Contacts is in front again (Inborn moved its task
+  back). The Settings search field ignores the returned text (it drops the selection when it loses the foreground); a shell-launched
+  `am start … ProcessTextActivity` is a task root and is finished before Replace, so test PROCESS_TEXT from a real text field.
+  Release APK: `scripts/check-android-permissions.sh` → OK, 9 permissions, no INTERNET, no new permission for the share targets.

@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!-- "Ask Inborn" in every app's text-selection menu (spec §7.7 ACTION_PROCESS_TEXT). A standard-launch activity in the
+         caller's task, so the result can travel back ("Replace", S43); the singleTask MainActivity cannot return one. -->
+    <activity
+      android:name="com.inbornapp.sharetarget.ProcessTextActivity"
+      android:label="@string/inborn_process_text_label"
+      android:exported="true"
+      android:excludeFromRecents="true"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <intent-filter>
+        <action android:name="android.intent.action.PROCESS_TEXT" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

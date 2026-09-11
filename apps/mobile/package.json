@@ -47,6 +47,7 @@
     "expo-network": "~57.0.1",
     "expo-router": "~57.0.19",
     "expo-secure-store": "~57.0.3",
+    "expo-share-intent": "8.0.1",
     "expo-sharing": "~57.0.18",
     "expo-speech": "57.0.2",
     "expo-speech-recognition": "57.0.0",
@@ -76,5 +77,14 @@
     "sql.js": "1.13.0",
     "typescript": "5.9.3",
     "vitest": "5.0.0"
+  },
+  "expo": {
+    "autolinking": {
+      "android": {
+        "exclude": [
+          "expo-share-intent"
+        ]
+      }
+    }
   }
 }

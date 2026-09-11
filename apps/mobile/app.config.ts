@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { ConfigContext, ExpoConfig } from "expo/config";
+import PICK_TYPES from "./src/documents/pickTypes.json";
 
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
 const dev = process.env.APP_VARIANT === "development";
@@ -18,6 +19,14 @@ const ggufIntentFilter = {
     { scheme: "file", mimeType: "*/*", pathPattern: ".*\\.gguf" },
   ],
 };
+/* Share target (spec §7.7): text and the document types the app imports arrive through ACTION_SEND; "Ask Inborn" (PROCESS_TEXT) lives in modules/share-target. No permission is involved. */
+const shareIntentFilters = [
+  { action: "SEND", category: ["DEFAULT"], data: [{ mimeType: "text/plain" }] },
+  { action: "SEND", category: ["DEFAULT"], data: PICK_TYPES.map((mimeType) => ({ mimeType })) },
+];
+/* iOS share sheet (S43): expo-share-intent's extension hands the item to the app through the App Group. INBORN_IOS_SHARE_EXT=0 skips the
+   extension target for builds signed with the wildcard development profile only (the App ID needs the App Groups capability). */
+const iosShareExtension = process.env.INBORN_IOS_SHARE_EXT !== "0";
 /* Usage strings for the microphone, speech recognition, camera and photos (spec §11); one file per UI language, English in Info.plist itself. */
 /* Under an "ios" key so Expo never copies them into Android string resources (lintVital rejects untranslated extras). */
 const USAGE = (JSON.parse(readFileSync(path.join(__dirname, "locales/en.json"), "utf8")) as { ios: Record<string, string> }).ios;
@@ -72,7 +81,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       monochromeImage: "./assets/android-icon-monochrome.png",
       backgroundColor: "#0D1115",
     },
-    intentFilters: [ggufIntentFilter],
+    intentFilters: [ggufIntentFilter, ...shareIntentFilters],
     /* Chats, keys and models never leave the device through Google's backup either (spec §10.6 #42). */
     allowBackup: false,
     /* The release manifest is exactly the allowlist in scripts/check-android-permissions.sh; everything a library adds beyond it is removed here (docs/legal/app-privacy-details.md §4.2). */
@@ -99,6 +108,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ["expo-router", { root: "./src/app" }],
     "llama.rn",
+    ...(iosShareExtension
+      ? [
+          [
+            "expo-share-intent",
+            {
+              disableAndroid: true,
+              iosShareExtensionName: "Ask Inborn",
+              iosActivationRules: { NSExtensionActivationSupportsText: true, NSExtensionActivationSupportsWebURLWithMaxCount: 1, NSExtensionActivationSupportsFileWithMaxCount: 1, NSExtensionActivationSupportsImageWithMaxCount: 1 },
+            },
+          ] as [string, Record<string, unknown>],
+        ]
+      : []),
     /* StoreKit 2 + Play Billing (spec §12.4). Purchases are verified in @inborn/core; the plugin only links the native billing SDKs. */
     "expo-iap",
     /* Dev builds only: puts storekit/Inborn.storekit into the Xcode project + a UI test target that drives StoreKit Testing (ios-tests/). */

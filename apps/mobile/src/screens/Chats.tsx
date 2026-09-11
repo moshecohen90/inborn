@@ -26,6 +26,7 @@ import { PersonasSheet } from "./chat/PersonasSheet";
 import { SwipeRow } from "./chat/SwipeRow";
 import { afterSheetClose } from "./Chat";
 import { deviceNoun } from "../lib/deviceNoun";
+import { useOpenSheet } from "../lib/openSheets";
 
 export interface ChatsProps {
   store: ChatStore;
@@ -240,6 +241,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     );
   };
 
+  useOpenSheet(menu !== null, () => setMenu(null));
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <FloatingToolbar style={styles.header}>
