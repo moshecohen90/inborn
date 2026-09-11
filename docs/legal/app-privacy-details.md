@@ -131,6 +131,7 @@ extra permission a library brings is removed in `app.config.ts` → `android.blo
 | `android.permission.RECORD_AUDIO` | dictation, asked on the first mic tap only (§4.2a) |
 | `android.permission.CAMERA` | "Camera" in the attach sheet, asked on that tap only (§4.2a) |
 | `com.inbornapp.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` | defined by androidx.core for the app's own non-exported receivers |
+| `com.android.vending.CHECK_LICENSE` | not declared by the app and absent from the AAB: Google Play adds it to the APKs it builds from the bundle, for its own licensing check (Android's app info shows it as "Google Play license check"); it gives the app no network access |
 
 Never declared: `INTERNET`, storage, `SYSTEM_ALERT_WINDOW`, `ACCESS_WIFI_STATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`,
 `USE_FINGERPRINT`, install-referrer, `POST_NOTIFICATIONS`, `READ_MEDIA_IMAGES`. `android:allowBackup="false"` (spec §10.6 #42):
