@@ -10,6 +10,7 @@ export type ChipClass =
   | "ios-high" // 8 GB: 15 Pro, all 16, 17
   | "ios-flagship" // 12 GB: 17 Pro, Air
   | "android-entry" // ≤4 GB
+  | "android-legacy" // LPDDR4X flagships of 2018–2020 (Snapdragon 845/855/865), any RAM: OnePlus 6T
   | "android-mid" // 6 GB: Pixel 6/7, S21–S23
   | "android-high" // 8 GB: Pixel 8/9, S24/S25, 8 Gen 2/3
   | "android-flagship" // 12 GB+: 8 Elite, Ultra
@@ -20,13 +21,14 @@ export type ChipClass =
 
 export type SpeedRange = readonly [min: number, max: number];
 
-/* tok/s from §6.4 measurements plus the week-0 runs (README): OnePlus 6T 15.8, iPhone 13 Pro 36, headless Chromium 33/7. */
+/* tok/s from §6.4 measurements plus the device runs (README): OnePlus 6T Instant 12–15.5 / Fast 5–5.8 (CPU only), iPhone 13 Pro 36, headless Chromium 33/7. */
 const TABLE: Record<ChipClass, Partial<Record<Tier, SpeedRange>>> = {
   "ios-entry": { instant: [15, 25], fast: [8, 14] },
   "ios-mid": { instant: [25, 36], fast: [15, 24], sharp: [8, 12] },
   "ios-high": { instant: [27, 40], fast: [24, 40], sharp: [13, 18], power: [5, 8] },
   "ios-flagship": { instant: [40, 58], fast: [30, 40], sharp: [15, 20], power: [6, 9] },
   "android-entry": { instant: [6, 12] },
+  "android-legacy": { instant: [12, 18], fast: [5, 7], sharp: [3, 4] },
   "android-mid": { instant: [12, 20], fast: [8, 12], sharp: [5, 8] },
   "android-high": { instant: [18, 28], fast: [10, 14], sharp: [8, 14], power: [4, 5] },
   "android-flagship": { instant: [25, 35], fast: [14, 20], sharp: [10, 15], power: [5, 6] },
@@ -41,19 +43,20 @@ export interface ChipInput {
   ramGB: number;
   appleSilicon?: boolean;
   discreteGpu?: boolean;
-  /** Marketing chip name when known ("Snapdragon 845"); RAM alone rates an 8 GB phone from 2018 as a Pixel 9. */
+  /** Marketing SoC name (androidChipName); RAM alone cannot tell a 2018 flagship from a Pixel 9. */
   chipName?: string | null;
 }
 
-/* Pre-2022 flagships and every Tensor before G3: an 8 GB OnePlus 6T measured 12-15 tok/s on Instant, the "high" row promises 18-28. */
+/* Token generation is memory-bound: pre-2022 flagships and Tensor G1/G2 ship LPDDR4X, so 8 GB of RAM buys no speed (6T: 12-15 tok/s on Instant). */
 const OLD_ANDROID_CHIP = /snapdragon\s+(6\d\d|7\d\d|8[0-9]{2}|8 gen 1)\b|tensor(\s+g[12])?$|exynos\s+(9|2[01])\d\d|kirin|helio|dimensity\s+[1-9]\d{2,3}\b/i;
+export const isLegacyAndroidChip = (chipName: string | null | undefined): boolean => !!chipName && OLD_ANDROID_CHIP.test(chipName);
 
 export function chipClassFor({ os, ramGB, appleSilicon, discreteGpu, chipName }: ChipInput): ChipClass {
   if (os === "web") return "web";
   if (os === "ios") return ramGB >= 12 ? "ios-flagship" : ramGB >= 8 ? "ios-high" : ramGB >= 6 ? "ios-mid" : "ios-entry";
   if (os === "android") {
     const byRam: ChipClass = ramGB >= 12 ? "android-flagship" : ramGB >= 8 ? "android-high" : ramGB >= 6 ? "android-mid" : "android-entry";
-    return chipName && OLD_ANDROID_CHIP.test(chipName) && (byRam === "android-high" || byRam === "android-flagship") ? "android-mid" : byRam;
+    return isLegacyAndroidChip(chipName) && (byRam === "android-high" || byRam === "android-flagship") ? "android-legacy" : byRam;
   }
   if (discreteGpu) return "desktop-gpu";
   return appleSilicon || os === "macos" ? "desktop-apple" : "desktop-cpu";

@@ -1,5 +1,5 @@
 import { memo, useMemo, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View, type TextStyle } from "react-native";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View, type TextStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf, inlineToText, parseMarkdown, type Block, type Inline } from "@inborn/core";
 import { radius } from "@inborn/ui";
@@ -16,6 +16,9 @@ interface MarkdownProps {
   caret?: boolean;
   testID?: string;
 }
+
+/* A selectable TextView on Android tells its parent not to intercept touches, so a horizontal ScrollView under it never scrolls. */
+const SELECTABLE_IN_SCROLLER = Platform.OS !== "android";
 
 /**
  * Native-text Markdown (§7.1). Links are text and never open; nothing here can start a request.
@@ -190,7 +193,7 @@ export function CodeBlock({ lang, text, open, caret }: { lang: string; text: str
         </Pressable>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.codeScroll}>
-        <Text style={[styles.codeText, { color: theme.text }]} selectable>
+        <Text style={[styles.codeText, { color: theme.text }]} selectable={SELECTABLE_IN_SCROLLER}>
           {text}
         </Text>
       </ScrollView>
@@ -216,7 +219,7 @@ function Table({ header, align, rows }: { header: Inline[][]; align: ("left" | "
         {rows.map((row, r) => (
           <View key={r} style={[styles.tr, { borderBottomColor: theme.border }, r === rows.length - 1 ? styles.trLast : null]}>
             {row.map((cell, c) => (
-              <Text key={c} style={[type.bodySmall, styles.td, cellStyle(c), { color: theme.text }]} selectable>
+              <Text key={c} style={[type.bodySmall, styles.td, cellStyle(c), { color: theme.text }]} selectable={SELECTABLE_IN_SCROLLER}>
                 <Inlines nodes={cell} />
               </Text>
             ))}
