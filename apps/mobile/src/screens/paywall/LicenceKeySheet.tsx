@@ -5,6 +5,7 @@ import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import type { LicenceManager, Rejection } from "@inborn/core";
 import { font } from "../../services/type";
+import { useKeyboardLift } from "../../lib/keyboard";
 
 export interface LicenceKeySheetProps {
   manager: LicenceManager;
@@ -29,9 +30,10 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
     }
   };
 
+  const lift = useKeyboardLift();
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
-      <View style={styles.backdrop}>
+      <View style={[styles.backdrop, { paddingBottom: 24 + lift }]}>
         <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface2), borderColor: theme.border }]}>
           <GlassFill />
           <Text style={[styles.title, { color: theme.text }]}>{t("paywall.key.title")}</Text>

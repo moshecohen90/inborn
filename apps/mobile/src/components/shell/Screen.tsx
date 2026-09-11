@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { Icon } from "@inborn/ui";
 
 import { useTheme } from "../../services/theme";
+import { useKeyboardLift } from "../../lib/keyboard";
 import { useType } from "../../services/type";
 import { Mesh, MonoLabel } from "./primitives";
 import { ChromeBar, liquidGlass } from "./NativeChrome";
@@ -68,16 +69,17 @@ interface ScreenProps {
 export function Screen({ children, header, scroll = true, mesh = false, padded = true, style, testID, footer }: ScreenProps) {
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
+  const lift = useKeyboardLift();
   const content = <View style={[padded ? styles.padded : null, style]}>{children}</View>;
   /* Glass only reads as glass with content moving under it: the bar floats over the scroll view, which pads itself by the bar's height. */
   const overlay = liquidGlass && !!header && scroll;
   const barHeight = insets.top + HEADER_HEIGHT;
   return (
-    <View testID={testID} style={[styles.root, { backgroundColor: theme.bg, paddingTop: overlay ? 0 : insets.top }]}>
+    <View testID={testID} style={[styles.root, { backgroundColor: theme.bg, paddingTop: overlay ? 0 : insets.top, paddingBottom: lift }]}>
       {mesh ? <Mesh /> : null}
       {header && !overlay ? <Header {...header} /> : null}
       {scroll ? (
-        <ScrollView style={styles.flex} contentContainerStyle={{ paddingTop: overlay ? barHeight : 0, paddingBottom: insets.bottom + 24 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={styles.flex} contentContainerStyle={{ paddingTop: overlay ? barHeight : 0, paddingBottom: (lift ? 0 : insets.bottom) + 24 }} keyboardShouldPersistTaps="handled">
           {content}
         </ScrollView>
       ) : (
@@ -88,7 +90,7 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
           <Header {...header} />
         </ChromeBar>
       ) : null}
-      {footer ? <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>{footer}</View> : null}
+      {footer ? <View style={[styles.footer, { paddingBottom: (lift ? 0 : insets.bottom) + 12 }]}>{footer}</View> : null}
     </View>
   );
 }

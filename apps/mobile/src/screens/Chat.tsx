@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AppState, FlatList, Image, Platform, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -69,6 +69,7 @@ import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
+import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
 import { RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
@@ -125,6 +126,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const lift = useKeyboardLift();
   const ent = useEntitlements();
   const { tier, can } = useEntitlement();
   const licence = useLicence();
@@ -798,8 +800,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   );
 
   return (
-    // Edge-to-edge Android does not resize the window for the keyboard, so the screen pads itself (§9.6 anchored composer).
-    <KeyboardAvoidingView behavior="padding" style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: liquidGlass ? 0 : insets.top + 8, paddingBottom: insets.bottom }]}>
+    <View style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: liquidGlass ? 0 : insets.top + 8, paddingBottom: lift || insets.bottom }]}>
       {/* Glass only reads as glass with content moving under it (§9.7): on iOS 26 both bars float over the list, which pads itself by their measured heights. */}
       {liquidGlass ? null : top}
       <FlatList
@@ -851,7 +852,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </ChromeBar>
       ) : null}
       {liquidGlass ? (
-        <ChromeBar style={styles.overlayBottom} onLayout={(e) => setBottomH(e.nativeEvent.layout.height)}>
+        <ChromeBar style={[styles.overlayBottom, { bottom: lift }]} onLayout={(e) => setBottomH(e.nativeEvent.layout.height)}>
           {bottom}
         </ChromeBar>
       ) : null}
@@ -1059,7 +1060,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ) : null}
       </Sheet>
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
