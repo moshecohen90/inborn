@@ -105,3 +105,14 @@ export function speechChunks(text: string, max = 240): string[] {
   }
   return out;
 }
+
+/** iOS reports "interrupted" when the just-dismissed permission alert takes the audio session with it. */
+export const DICTATION_START_RETRY_WINDOW_MS = 500;
+
+/**
+ * Whether a failed system-dictation start should be retried silently once: only the audio-session interruption
+ * that lands within the retry window of `start()` (the permission alert closing), and only on the first attempt.
+ */
+export function shouldRetryDictationStart(s: { code: string; afterMs: number; attempt: number }): boolean {
+  return s.code === "interrupted" && s.attempt === 0 && s.afterMs >= 0 && s.afterMs <= DICTATION_START_RETRY_WINDOW_MS;
+}

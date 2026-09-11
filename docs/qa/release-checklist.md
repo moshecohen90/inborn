@@ -277,21 +277,26 @@ Fixtures: `say -v Samantha "…" -o en.aiff && afconvert -f WAVE -d LEI16@16000 
 - Procedure: Free tier, Airplane Mode on. Tap the mic once. Android 13+: with the language pack absent, expect the sheet offering the system pack download or Whisper (PRO); download the pack in Settings › System › Languages › Speech, retry. iOS: Settings › General › Keyboard › Enable Dictation with the on-device language installed. Speak one English sentence, stop, send.
 - Pass: permission prompt only on the first tap; live partial text in the draft, field pulses amber, mic becomes a stop square, "Listening… / Transcribing…" line; the final text is the spoken sentence; `requiresOnDeviceRecognition` is honoured: Airplane Mode never breaks it and the proof screen stays `OUT 0 B`; Android ≤ 12 and the web show the Whisper-only reason, never a network recogniser.
 - Runs on: D-AND-FLOOR (Android 11 → Whisper-only path), a 13+ phone for the system path (BLOCKED: needs Pixel 8 until one arrives), D-IOS-FLOOR.
+- 11.9.2026 iPhone 13 Pro, zero hands (`docs/qa/voice-run-2026-09-11.md`): permission alert answered by the runner; iOS refused with "Assets are not installed, Siri or Dictation is disabled" (on-device English dictation is off on that phone), the offline-missing sheet + Whisper·PRO shown as specified; the first-ever tap after Allow ended in `interrupted`; fixed on `voice-r2` (one silent retry within 500 ms of start), phone re-check owed. Real spoken words through the system engine still need the phone's dictation setting on.
 
 ### T42 Whisper dictation (Pro)
 - Procedure: Pro tier (dev: `EXPO_PUBLIC_PRO=1`); `speech-whisper-base` installed (Play pack `inborn_model_speech` / HTTPS / dev `Documents/whisper.bin`). Long-press the mic → choose Whisper. Speak the EN clip text, then the HE clip text.
 - Pass: whisper loads (< 1 s warm), listening → transcribing → draft; EN transcript has 0 content-word errors on the fixture sentence; HE is accepted as "usable for commands" (report the WER, do not fail on it); no audio file is written anywhere in the container (`find … -newer marker -name '*.wav' -o -name '*.pcm'` empty); Free tier sees Whisper tagged PRO and the paywall on tap.
 - Runs on: D-AND-FLOOR, D-IOS-FLOOR; emulator/simulator only through the AUTOVOICE replay (dev bundle).
+- 11.9.2026 iPhone 13 Pro: Free tier → PRO tag → paywall proven; Pro (StoreKit harness) → whisper UI listening/stop/transcribing proven; whisper base Metal load 19.0 s cold, 11.2 s clip in 649 ms; transcript empty because the Mac's speaker at 45 % was too faint for the phone's mic (not a pipeline failure: same clips 0 WER on the emulator). WER on the phone still open.
 
 ### T43 Hands-free voice mode (S44, Pro)
 - Procedure: open `/voice`; say a short question; do not touch; after the answer say a second question; then tap once during the spoken answer; then stay silent for five rounds; also press Home mid-answer.
 - Pass: listen → transcribe → think → speak → listen with the seal + level wave; the answer is spoken sentence by sentence through the system voice (never a network voice: check `pickVoice` result in the ledger/dev log and the proof meter); tap interrupts; five silent rounds end the session; Home pauses it and it resumes only on return; turns are saved to the chat and never in incognito; whisper is unloaded on exit (`[inborn]` log / memory drop).
 - Runs on: D-AND-FLOOR, D-IOS-FLOOR.
+- 11.9.2026 iPhone 13 Pro: the loop ran on the phone with the real mic and speaker (LISTENING → TRANSCRIBING → THINKING → SPEAKING → LISTENING, End → ENDED; answer 1.8 s, speech 106 ms after the text) but on a hallucinated transcript (faint input); interrupt / five silent rounds / Home / incognito / unload not driven yet (`steps-C`, driver has `home` + `activate`).
 
 ### T44 Read aloud
+
 - Procedure: long-press an answer with three sentences and a code block → "Read aloud"; tap "Stop reading" mid-way; enable VoiceOver/TalkBack and repeat.
 - Pass: spoken one sentence per utterance, code is skipped or read as "code block", Stop stops within a sentence, the action is announced by the screen reader, no audio focus is kept after Stop.
 - Runs on: both floor devices.
+- 11.9.2026 iPhone 13 Pro: PASS for the mechanics: Read aloud → first audio 334 ms (`readAloud.ttsStartMs`), row reads "Stop reading" while speaking; code block / VoiceOver halves not driven.
 
 ## P. Photos (§7.1, §7.2) — added 7.9.2026
 

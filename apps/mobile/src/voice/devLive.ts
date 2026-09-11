@@ -1,12 +1,12 @@
 import * as Speech from "expo-speech";
 import { writeDevResult } from "../adapters/devModel";
-import { DEV_AUTOVOICE_SAY } from "./devFlags";
+import { DEV_AUTOVOICE_SAY, DEV_VOICE_LIVE } from "./devFlags";
 
 const live: Record<string, unknown> = {};
 
-/** Merges one section into dev-run.json (see DEV_AUTOVOICE_SAY); a no-op unless the phrase is set at bundle time. */
+/** Merges one section into dev-run.json (see DEV_VOICE_LIVE); a no-op unless a live flag is set at bundle time. */
 export function devVoiceRecord(section: string, data: unknown): void {
-  if (!DEV_AUTOVOICE_SAY) return;
+  if (!DEV_VOICE_LIVE) return;
   live[section] = data;
   live.at = new Date().toISOString();
   try {
