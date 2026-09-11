@@ -257,8 +257,8 @@
   "documents.storage": "{count, plural, =0 {書類なし} other {書類 # 件}} · この端末に {size}",
   "documents.onDevice": "この端末で索引化 · {store}",
   "documents.pages": "{count, plural, other {# ページ}}",
-  "documents.sheets": "{count, plural, one {# sheet} other {# sheets}}",
-  "documents.parts": "{count, plural, one {# part} other {# parts}}",
+  "documents.sheets": "{count, plural, other {# シート}}",
+  "documents.parts": "{count, plural, other {# パート}}",
   "documents.empty.title": "まだ書類はありません。",
   "documents.empty.hint": "PDF、Wordファイル、テキスト、スキャンを追加してください。読み取り、索引化、検索はすべてここで行われます。何もアップロードされません。",
   "documents.strict.title": "自分の書類だけから答える",
@@ -966,6 +966,6 @@
   "vault.source.hf": "huggingface.co",
   "proof.allowlist.hfCdn": "Hugging Faceダウンロードのファイル本体。huggingface.co からのリダイレクト先",
   "documents.cite.page": "p.",
-  "documents.cite.sheet": "sheet ",
-  "documents.cite.part": "part "
+  "documents.cite.sheet": "シート",
+  "documents.cite.part": "パート"
 }

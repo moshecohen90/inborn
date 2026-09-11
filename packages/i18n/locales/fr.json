@@ -257,8 +257,8 @@
   "documents.storage": "{count, plural, =0 {Aucun document} one {# document} other {# documents}} · {size} sur cet appareil",
   "documents.onDevice": "INDEXÉ SUR CET APPAREIL · {store}",
   "documents.pages": "{count, plural, one {# page} other {# pages}}",
-  "documents.sheets": "{count, plural, one {# sheet} other {# sheets}}",
-  "documents.parts": "{count, plural, one {# part} other {# parts}}",
+  "documents.sheets": "{count, plural, one {# feuille} other {# feuilles}}",
+  "documents.parts": "{count, plural, one {# partie} other {# parties}}",
   "documents.empty.title": "Aucun document pour l'instant.",
   "documents.empty.hint": "Ajoutez un PDF, un fichier Word, du texte ou un scan. Il est lu, indexé et interrogé ici. Rien n'est envoyé.",
   "documents.strict.title": "Répondre uniquement d'après mes documents",
@@ -965,7 +965,7 @@
   "vault.hf.error.bad-response": "Réponse inattendue de huggingface.co",
   "vault.source.hf": "huggingface.co",
   "proof.allowlist.hfCdn": "les octets du fichier d'un téléchargement Hugging Face, après redirection par huggingface.co",
-  "documents.cite.page": "p.",
-  "documents.cite.sheet": "sheet ",
-  "documents.cite.part": "part "
+  "documents.cite.page": "p. ",
+  "documents.cite.sheet": "feuille ",
+  "documents.cite.part": "partie "
 }
