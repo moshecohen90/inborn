@@ -18,7 +18,8 @@ import {
 import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
-import { copyIntoLibrary, deleteFile, readHead, sizeOf } from "./files";
+import { findDuplicate } from "./dedupe";
+import { copyIntoLibrary, deleteFile, readHead, sha256Of, sizeOf } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 
 /** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
@@ -39,6 +40,9 @@ export interface LibraryState {
   redactDates: boolean;
 }
 
+/** Instant never places [n] marks (models run D15); every larger tier and import is asked to. */
+export const canCiteMarkers = (modelId: string | undefined): boolean => modelId !== "instant";
+
 export interface AskOptions {
   docIds?: string[];
   strict?: boolean;
@@ -46,6 +50,8 @@ export interface AskOptions {
   nCtx?: number;
   systemPrompt?: string;
   answerLanguage?: string;
+  /** False for Instant: it never places [n] marks, so the prompt does not ask and the chips show as plain sources (models run D15). */
+  citeMarkers?: boolean;
 }
 
 export interface AskResult {
@@ -199,9 +205,19 @@ export class DocumentLibrary {
     try {
       const kind = assertImportable(name, bytes, readHead(sourceUri));
       const uri = copyIntoLibrary(sourceUri, id, name);
-      doc = { ...base, kind, uri };
+      /* File.copy() can return before Android has written every byte (vault D5); the hash must cover the whole file. */
+      for (let i = 0; sizeOf(uri) < bytes && i < 100; i++) await new Promise((r) => setTimeout(r, 50));
+      const sha256 = await sha256Of(uri);
+      /* The same file picked twice is one document (models run D16): keep the indexed copy, drop the new one. */
+      const twin = findDuplicate(this.docs.values(), sha256, bytes);
+      if (twin) {
+        if (uri !== twin.uri) deleteFile(uri);
+        return twin;
+      }
+      doc = { ...base, kind, uri, sha256 };
     } catch (e: unknown) {
       const reason = (e as Partial<ExtractError>).reason ?? "corrupt";
+      if (!(e as Partial<ExtractError>).reason) console.warn("[documents] import failed", e);
       doc = { ...base, status: reason === "empty" ? "empty" : "failed", error: reason };
     }
     this.docs.set(id, doc);
@@ -352,7 +368,7 @@ export class DocumentLibrary {
     const started = Date.now();
     const hits = docIds.length ? await retriever.retrieve(question, { docIds }) : [];
     const retrieveMs = Date.now() - started;
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict: o.strict ?? this.prefs.strict, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage });
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict: o.strict ?? this.prefs.strict, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers });
     return { prompt, retrieveMs };
   }
 

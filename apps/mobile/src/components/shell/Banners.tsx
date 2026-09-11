@@ -45,6 +45,7 @@ export function Banners() {
     rows.push({ key: "battery", tone: "muted", text: t("state.batteryOffer", { pct: Math.round(device.battery.level * 100) }), action: { label: t("state.switch"), onPress: switchToInstant } });
   if (delivery && delivery.status === "delivering")
     rows.push({ key: "delivery", tone: "muted", text: t("state.delivering", { name: delivery.name, pct: Math.round(delivery.progress * 100), size: formatBytes(delivery.totalBytes) }) });
+  else if (delivery && delivery.status === "verifying") rows.push({ key: "delivery", tone: "muted", text: t("state.verifying", { name: delivery.name, size: formatBytes(delivery.totalBytes) }) });
 
   if (rows.length === 0) return null;
   return (

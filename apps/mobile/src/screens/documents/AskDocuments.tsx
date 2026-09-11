@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { NOT_FOUND_TOKEN, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
+import { modelLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
-import { getLibrary } from "../../documents/library";
+import { canCiteMarkers, getLibrary } from "../../documents/library";
 import { font } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -70,7 +71,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setPhase({ kind: "loading" });
       const s = (session.current ??= await loadSession());
       setPhase({ kind: "retrieving" });
-      const { prompt, retrieveMs } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language });
+      const { prompt, retrieveMs } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id) });
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
       if (prompt.noAnswer) {
         setNotFound(true);
@@ -139,7 +140,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           <Toggle testID="ask-strict" value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
-          {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: model.id.toUpperCase() })}</Text> : null}
+          {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: modelLabel(model.id) })}</Text> : null}
           {phase.kind === "retrieving" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text> : null}
           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{phase.error}</Text> : null}
           {notFound ? (
@@ -149,7 +150,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           ) : null}
           {answer ? (
             <View style={styles.assistant}>
-              <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: model.id.toUpperCase() })}</Text>
+              <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: modelLabel(model.id) })}</Text>
               <Text testID="ask-answer" style={[styles.body, { color: theme.text }]}>
                 {answer}
                 {phase.kind === "answering" ? <Text style={{ color: theme.text2 }}>▍</Text> : null}

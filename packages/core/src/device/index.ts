@@ -1,4 +1,4 @@
 export * from "./types";
 export { DevicePolicy, HEADLINE_KEYS, BUTTON_KEYS, TIER_NAMES, tierBelow, defaultOverride } from "./policy";
 export { SpeedWatch } from "./speed";
-export { AndroidThermal, thermalFromAndroid, type AndroidThermalContext } from "./android";
+export { AndroidThermal, RESIDENT_HEADROOM, memoryPressureFromAndroid, thermalFromAndroid, type AndroidMemoryContext, type AndroidThermalContext } from "./android";

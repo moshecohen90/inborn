@@ -34,7 +34,7 @@ export interface ActiveChat {
 /** Filled by the vault stream while the store/system delivers a model (§8.8 "model delivering"). */
 export interface DeliveryState {
   name: string;
-  status: "idle" | "delivering" | "done" | "failed";
+  status: "idle" | "delivering" | "verifying" | "done" | "failed";
   progress: number;
   totalBytes: number;
 }
@@ -240,7 +240,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
         ? null
         : live.state.kind === "delivering"
           ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
-          : { name: live.model.name.toUpperCase(), status: "delivering", progress: 1, totalBytes: live.model.bytes };
+          : { name: live.model.name.toUpperCase(), status: "verifying", progress: 1, totalBytes: live.model.bytes };
       setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
       /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. */
       const wanted = vault.activeModel()?.path;
@@ -293,7 +293,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       lock,
       captured,
       /* No model yet and a pack on its way: the seal shows "delivering" until the engine hot-swaps (§8.8). */
-      sealState: booted.engine.model.id === "null" && delivery?.status === "delivering" ? "loading" : sealState,
+      sealState: booted.engine.model.id === "null" && (delivery?.status === "delivering" || delivery?.status === "verifying") ? "loading" : sealState,
       setSealState,
       networkLog,
       meter,
