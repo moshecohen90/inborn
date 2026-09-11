@@ -106,3 +106,58 @@ lint clean; pseudo.json regenerated (909 keys).
 ## Changed keys (for the i18n stream - new English value)
 
 - vault.benchmark.expected = `Expected {min}-{max} tok/s on this {device}`
+
+---
+
+# Round 2c - fixes-r8 delta (quick actions / share target, Hugging Face search)
+
+Date: 2026-09-11. Reviewer: conversion-copywriter. Branch: copy-r2c (from main a25f5c2).
+Scope: the 58 new/changed en.json keys from fixes-r8 - `quick.*` (S43 quick-actions and share
+target), the 11 new `language.*` names (en/es/pt/de/fr/it/hi/tr/pl/vi/id), `vault.hf.*` (the
+Hugging Face search screen), `vault.source.hf`, `proof.allowlist.hfCdn`, and the changed value
+`proof.connections`. Judged in render context (`QuickActionsSheet.tsx`, `Chat.tsx`,
+`vault/HfSearch.tsx`, `Proof/Proof.tsx`). HF honesty claims checked against spec §7 line 39
+(App Privacy Report disclosure, gated-with-token, Android import fallback) - all accurate.
+
+Result: 3 FIX, 55 KEEP. Gates pass: typecheck; test (core 383, i18n 4/4, mobile 93, ui 11);
+lint clean; pseudo.json regenerated (964 keys).
+
+## Fixes applied
+
+| Key | Verdict | Old -> New | Reason |
+|-----|---------|-----------|--------|
+| vault.hf.error.gated | FIX | `...is gated: add your token and accept its licence on huggingface.co` -> `...is gated. Add your token and accept its license on huggingface.co` | Two fixes: colon-intro -> period (short-sentence voice, cf. round-1 #11 "Ended:"), and British "licence" -> American "license" to match the app's house style (vault.details.license, about.licenses, licenses.*, and this feature's own vault.hf.licence all use "License"). |
+| vault.hf.error.rate-limited | FIX | `huggingface.co is rate-limiting; try again in a minute` -> `huggingface.co is rate-limiting. Try again in a minute` | Semicolon -> period (same fix class as round-1 #6-10). |
+| quick.truncated | FIX | `Long text: only the first {count} characters are used` -> `Long text, so only the first {count} characters are used` | The "Label: detail" colon reads as a caption teaser; a single flowing sentence matches the round-1 "Ended:" fix. |
+
+## Kept as-is (notable)
+
+- **vault.hf.explain / tokenSet / proof.allowlist.hfCdn**: proof-forward and accurate per spec
+  §7 line 39 - searching hits {host} only while searching, the file comes from the CDN, both
+  appear in App Privacy Report "on purpose", the token lives in the Keychain and is "sent only to
+  huggingface.co". Strong, honest claims that the architecture actually backs. Kept.
+- **The six S43 actions** (Summarize, Rephrase, Fix grammar, Translate, Explain, Extract tasks):
+  match the spec's list "סכם, נסח מחדש, תקן, תרגם, הסבר, חלץ משימות" in meaning and order.
+  "Fix grammar" concretizes "תקן" and matches quick.menuHint. Kept.
+- **Label:value colons kept** (quick.detected "Detected: {language}", quick.detectedNone
+  "Language: not sure yet", vault.hf.licence "License: {license}"): these are field readouts, not
+  teaser intros (same register as the kept "Weights in memory: {size}" from round 2b).
+- **vault.hf.stats** "{downloads} downloads · {likes} likes": no ICU plural, deliberately. The
+  values are compact-formatted and this mirrors Hugging Face's own fixed stat labels; a rare
+  "1 downloads" on an obscure repo is consistent with the platform and not worth diverging.
+- **proof.connections** "CONNECTIONS {count} this session": mono telemetry readout, no plural
+  needed (same style as "OUT {out} · IN {in}"). Kept.
+- **quick.target** "Translate to {language} ›" and the "›" chevron: a navigation affordance, not
+  a prose arrow (cf. the kept "‹" in templates.back). Kept.
+
+## Out-of-scope observation (pre-existing, not touched)
+
+Two older paywall keys still use British "licence" (paywall.store.licenceKey "licence key",
+paywall.key.title "Have a licence key?") against the app's American "license" house style. Not
+part of this delta; flag for a future consistency pass.
+
+## Changed keys (for the i18n stream - new English values)
+
+- vault.hf.error.gated = `This repository is gated. Add your token and accept its license on huggingface.co`
+- vault.hf.error.rate-limited = `huggingface.co is rate-limiting. Try again in a minute`
+- quick.truncated = `Long text, so only the first {count} characters are used`
