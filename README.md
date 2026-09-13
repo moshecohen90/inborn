@@ -902,6 +902,10 @@ iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).
    English → Vision 1.00, Hebrew → Tesseract 0.92 with the lease text read correctly; "Ask this document" answered "The monthly rent is
    4,500 shekels" from the Hebrew scan. The documents dev proof no longer needs `__DEV__` (its flags are bundle-time), so a Release
    simulator build runs it.
+## TestFlight build 1.0.0 (4) — archived 11.9.2026, uploaded 13.9.2026
+fixes-r9 (F1–F15, incl. the F11 relative-document-paths data-loss fix) on top of build 3; same recipe, share extension included.
+`modules/read-aloud` and `withStoredNightMode` are Android-only (no-ops on iOS). Record: `docs/qa/ios-build-4-2026-09-13.md`.
+
 ## TestFlight build 1.0.0 (3) — 11.9.2026
 Everything merged since build 2 (fixes-r5…r8, design-r2, sheets-keyboard, i18n deltas 10–13, copy-r2c, purchases-verify, voice-r2), Instant bundled,
 Tesseract OCR inputs, and the "Ask Inborn" share extension (App Group `group.com.inbornapp.mobile`). Portal prerequisites via the ASC API:
