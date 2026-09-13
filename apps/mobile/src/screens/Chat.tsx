@@ -76,7 +76,7 @@ import { useType } from "../services/type";
 import { copyText } from "../lib/clipboard";
 import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
-import { modelLabel } from "../lib/models";
+import { modelLabel, describeLoad } from "../lib/models";
 import { getVault } from "../vault/store";
 import { useShortcut } from "../lib/shortcuts";
 import { useKeyboardLift } from "../lib/keyboard";
@@ -233,7 +233,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       .then((s) => {
         if (!alive) return;
         loadMs.current = Date.now() - started;
-        console.log(`[inborn] ${engine.id} loaded ${model.uri} in ${loadMs.current} ms`);
+        const line = describeLoad(engine.id, model.id, model.uri, loadMs.current);
+        if (line) console.log(line);
         session.current = s;
         setStatus({ kind: "ready" });
       })

@@ -17,3 +17,12 @@ export function importDisplayName(id: string): string {
 
 export const modelLabel = (id: string): string => NAMES[id] ?? (id.startsWith(IMPORT_PREFIX) ? importDisplayName(id).toUpperCase() : id.toUpperCase());
 export const modelNames = (): Record<string, string> => ({ ...NAMES });
+
+/** The engine used when no model is installed yet (packages/core NullLM); it answers with one fixed line and loads nothing. */
+export const NULL_MODEL_ID = "null";
+
+/** The chat's load log line, naming its subject; null for the no-model engine, which has nothing to report (QA F16). Shape `<engine> loaded … in N ms` is what scripts/web-smoke.mjs reads. */
+export function describeLoad(engineId: string, modelId: string, uri: string, ms: number): string | null {
+  if (modelId === NULL_MODEL_ID || engineId === NULL_MODEL_ID) return null;
+  return `[inborn] ${engineId} loaded model ${modelLabel(modelId)} (${modelId}) from ${uri} in ${ms} ms`;
+}

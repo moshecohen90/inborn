@@ -1054,3 +1054,10 @@ simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 
     the next send logged `[storage] chat database handle died underneath, reopening: Call to function 'NativeDatabase.prepareAsync' has been
     rejected.` (the QA run's exact text), the answer streamed, and the drawer listed the chat (`f15-01-send-after-dead-handle.png`,
     `f15-02-chat-list-after-reopen.png`).
+12. **F16 · the launch log names what loaded, and says nothing when nothing did** (`lib/models.ts` `describeLoad`, `Chat.tsx`).
+    The Play build logged `[inborn] null loaded bundled://null in 90 ms` right after `Running main`: the Chat warm-up logs the
+    engine id and model URI, and the no-model engine (`NullLM`, id `null`, uri `bundled://null`) is what a fresh install runs until
+    the bundled Instant model is registered. The warm-up itself is harmless for that engine (in-memory, no file, `markLoading`
+    finds no install record), so the fix is in the line: `describeLoad` returns nothing for the null engine and otherwise reads
+    `[inborn] llama.rn loaded model INSTANT (instant) from file:///…/instant.gguf in 1498 ms` (shape kept for `scripts/web-smoke.mjs`).
+    2 unit tests. Emulator cold start (development build, Pixel 6 API 33): no `null loaded` line; the named line above appears.
