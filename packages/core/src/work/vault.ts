@@ -67,3 +67,15 @@ export function closeVault(session: VaultSession, folderId: string): VaultSessio
   return next;
 }
 export const closeAllVaults = (): VaultSession => new Map();
+
+export type VaultAction = "open" | "move-in" | "move-out" | "rename" | "delete" | "unvault" | "change-code";
+export type VaultVerdict = "allow" | "verify" | "deny";
+
+/**
+ * §7.8: nothing reads, moves, renames, deletes or unvaults a locked vault without its code (QA F1/F17); an open vault or a
+ * plain folder needs nothing. Moving a chat into a locked vault stays refused: the mover would lose sight of it at once.
+ */
+export function guardVaultAction(vault: { isVault: boolean; isOpen: boolean }, action: VaultAction): VaultVerdict {
+  if (!vault.isVault || vault.isOpen) return "allow";
+  return action === "move-in" ? "deny" : "verify";
+}

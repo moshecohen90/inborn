@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Image, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -451,7 +451,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       setLiveTps(0);
       /* The ledger row is measured after `busy` drops, so the follow window stays open a little longer (QA N1: the end sat under the composer). */
       settleUntil.current = Date.now() + SETTLE_MS;
-      if (follow.current || nearBottom.current) requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
+      /* Not the animated scrollToEnd: its stale last-cell target overrode the pins and left the end a line under the composer with the keyboard up (QA N1). */
+      if (follow.current || nearBottom.current) requestAnimationFrame(pinToEnd);
       const last = engine.stats();
       const result = { engine: engine.id, model: model.id, uri: model.uri, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
       if (__DEV__) console.log("[stats]", JSON.stringify(result));
@@ -780,12 +781,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (liquidGlass && bottomH && nearBottom.current) list.current?.scrollToEnd({ animated: false });
   }, [bottomH]);
   const listHeight = useRef(0);
-  /* adjustResize keeps the list's top offset when the keyboard opens, so the last answer would slide under the composer (QA N1). */
+  /* Android clamps a far offset to the real end, while scrollToEnd's last-cell frame lags a streaming cell by one layout and landed a line short with the keyboard up (QA N1); larger offsets overflow the native int. Twice, so the clamp sees the frame that just grew. */
+  const pinToEnd = () => {
+    const once = () => (Platform.OS === "android" ? list.current?.scrollToOffset({ offset: 1e6, animated: false }) : list.current?.scrollToEnd({ animated: false }));
+    once();
+    requestAnimationFrame(once);
+  };
+  const following = () => follow.current || nearBottom.current;
+  /* The keyboard lift shrinks the list but keeps its top offset, so the last answer would slide under the composer (QA N1). */
   const onListLayout = (e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
-    if (h < listHeight.current && nearBottom.current) requestAnimationFrame(() => list.current?.scrollToEnd({ animated: false }));
+    const shrank = h < listHeight.current;
     listHeight.current = h;
+    if (shrank && following()) pinToEnd();
   };
+  useEffect(() => {
+    if (Platform.OS === "web") return;
+    const sub = Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow", () => {
+      settleUntil.current = Date.now() + SETTLE_MS;
+      if (following()) pinToEnd();
+    });
+    return () => sub.remove();
+  }, []);
   const top = (
     <>
       <FloatingToolbar style={styles.header}>
@@ -943,7 +960,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           follow.current = false;
         }}
         onContentSizeChange={() => {
-          if ((busy || Date.now() < settleUntil.current) && (follow.current || nearBottom.current)) list.current?.scrollToEnd({ animated: false });
+          if ((busy || Date.now() < settleUntil.current) && following()) pinToEnd();
         }}
         ListHeaderComponent={safety ? <SafetyCard resources={safety} onDismiss={() => setSafety(null)} /> : null}
         ListEmptyComponent={

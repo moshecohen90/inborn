@@ -190,6 +190,12 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           ) : embedState.kind === "verifying" ? (
             <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.verifying")}</Text>
           ) : (
+            <>
+            {embedState.kind === "needs-space" ? (
+              <Text testID="embedder-needs-space" style={[styles.mono, { color: theme.danger }]}>{t("vault.state.needsSpace", { size: formatBytes(embedState.requiredBytes - embedState.freeBytes) })}</Text>
+            ) : embedState.kind === "failed" ? (
+              <Text testID="embedder-failed" style={[styles.mono, { color: theme.danger }]}>{t(embedState.error === "no-delivery" ? (Platform.OS === "android" ? "vault.state.noDelivery.android" : "vault.state.noDelivery.web") : "vault.state.failed", { error: embedState.error })}</Text>
+            ) : null}
             <Pressable
               testID="embedder-install"
               accessibilityRole="button"
@@ -198,6 +204,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
             >
               <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
             </Pressable>
+            </>
           )}
         </View>
       ) : null}

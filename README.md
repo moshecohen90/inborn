@@ -1068,3 +1068,48 @@ simulator (iOS 17.0, Release build with `ios/.xcode.env.local`). Pixel_4_API_33 
     finds no install record), so the fix is in the line: `describeLoad` returns nothing for the null engine and otherwise reads
     `[inborn] llama.rn loaded model INSTANT (instant) from file:///…/instant.gguf in 1498 ms` (shape kept for `scripts/web-smoke.mjs`).
     2 unit tests. Emulator cold start (development build, Pixel 6 API 33): no `null loaded` line; the named line above appears.
+
+## Fixes round 10: QA run 3 pass 3 follow-ups (branch `fixes-r10`) — 14.9.2026
+Items F17, F18, N1 and observations O1–O3 of `docs/qa/qa-run-2026-09-11.md` "Pass 3". Pure logic with tests
+(`apps/mobile/src/storage/reopen.test.ts`, `packages/core/test/fixes-r10.test.ts`); proven on a private Pixel 6 API 33 emulator
+(4 GB guest, debug APK, Metro on port 8121, Work tier, models from a private `serve-models` on 8791).
+1. **F18 · native SIGABRT in libexpo-sqlite on close** (`storage/reopen.ts`, `reopeningDb.ts`, `sqliteRepository.ts`). Two causes, both
+   closed. (a) The chat DB uses FTS5, and FTS5 keeps its own prepared statements on the connection. expo-sqlite's `closeDatabase` walks
+   `sqlite3_next_stmt` and finalizes every statement it finds (`finalizeUnusedStatementsBeforeClosing`, default on), then `sqlite3_close`
+   disconnects the FTS5 virtual table, which finalizes the same statements again: double free → "Scudo ERROR: invalid chunk state when
+   deallocating" (`exsqlite3_free ← exsqlite3_finalize ← exsqlite3_close`). The chat DB is now opened with
+   `finalizeUnusedStatementsBeforeClosing: false` and `useNewConnection: true` (its own native connection, so a garbage-collected wrapper of
+   a shared one can never release it under a statement). A/B on the emulator with the same JS: default option → tombstone on the second
+   dev close; with the option off → 30 closes, no tombstone. (b) A close could still overlap a statement on another `Dispatchers.IO` thread.
+   `ReopeningHandle` now gates both directions: every statement is tracked per connection, `close()` / `closeUnderneath()` wait for the
+   in-flight set to drain (bounded by `DRAIN_TIMEOUT_MS` 5 s, reported as `drained=false`) before `closeAsync`, and a statement that arrives
+   while a close runs waits for it (then reopens after a dev close, or rejects with `CLOSED_MESSAGE` after the terminal close on wipe /
+   `store.close()`; nothing ever reopens after a terminal close). The snapshot is synchronous: no await sits between the gate checks and
+   the tracking, so a statement is either in the set a close waits for or behind the close. Dev hooks: `EXPO_PUBLIC_DEAD_DB_AFTER_MS=N`
+   closes the handle underneath the repository every N ms (repeating), and `EXPO_PUBLIC_DEAD_DB_MID_STATEMENT=1` makes each tick fire
+   only while a statement is in flight; both log `[storage] dev: closing … (firing n, in flight k)` and `handle closed (firing n, waited
+   for W in-flight, drained=B)`. Emulator (mid-statement mode, closes during a streaming answer and during chat list queries): 30 firings,
+   28 with 1–3 statements in flight, all drained, 28 `[storage] reopened` lines, 0 undrained, tombstones 8 before and 8 after, no
+   `am_crash`, answer streamed to the end (`fixes-r10/shots/a-03-fixed-final.png`), chats intact (`b-01-drawer-after-storm.png`). Tests: 8
+   new cases in `reopen.test.ts` (drain, late statement waits then rejects, closeUnderneath reopens, twice on the same dead handle closes
+   once, hung statement times out, concurrent closes share one drain, dead-handle error during the terminal close never reopens, close
+   during a reopen).
+2. **F17 · every action on a locked vault asks for the code** (`packages/core/src/work/vault.ts` `guardVaultAction`: allow when not a
+   vault or open; `move-in` denied; `open`, `move-out`, `rename`, `delete`, `unvault`, `change-code` verify; `Chats.tsx` `guarded()` routes the
+   verdict through the same VaultCodeSheet verify as F1 and runs the pending action after the sheet closes; `FolderSheet.tsx` `beforeAction`
+   for rename / delete / move-out). Emulator: locked "Client A" → Unvault → "Vault passcode" sheet (`b-03`); wrong code → "Wrong passcode",
+   still LOCKED · 1 chat (`b-04`, `b-05`); right code → unvaulted, chat back as a plain row (`b-06`, `b-07`); rename and delete of the locked
+   vault ask too (`b-08`, `b-10`); audit "Chain verified · 4 entries" incl. "Vault unlocked" (`b-11-audit-log.png`). Test: 4 cases.
+3. **N1 · the list stays pinned to the end while streaming with the keyboard up** (`Chat.tsx` `pinToEnd`): Android clamps a far
+   `scrollToOffset` to the real end, while `scrollToEnd` targets the last cell's frame from the previous layout and landed a line short
+   with the keyboard open; the pin is applied on `keyboardDidShow`, on every content-size change while streaming or settling, when the
+   list shrinks, and once more at stream end (the animated `scrollToEnd` there overrode the pins). Emulator, keyboard shown
+   (`mInputShown=true`) throughout a 20-item answer: last line and LEDGER above the composer at 5/10/25/45 s (`n1g-*.png`).
+4. **O1** the drawer search field sits below the device banner (`Chats.tsx` reads `BannerInsetContext` from F13; with the thermal banner
+   forced, search at y 348 under the banner ending at 316, `o1-drawer-banner.png`). **O2** Documents shows the vault's own "Free up N"
+   line above Install when space is short (`DocumentsScreen.tsx`; with 0.9 GB free of the 2.26 GB required: "Free up 1.28 GB",
+   `o2-needs-space.png`) and the ask-error text goes through `documents.error.*`. **O3** the Documents library re-checks the embedder when
+   the vault reports it ready (`embedder.native.ts` `watchEmbedder`, `library.ts` boot): installed from the Model vault with Documents
+   closed, reopening Documents showed the empty library with no embedder card and no relaunch (`o3-documents-after-vault-install.png`).
+   Seen on the way, not fixed: with `/data` at 100 % the 5 s prefs tick throws ENOSPC from `prefsStore.native.ts` `writePrefsRaw` as an
+   uncaught error (dev red box).
