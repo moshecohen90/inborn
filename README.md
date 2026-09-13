@@ -445,13 +445,13 @@ The iOS build needs `patches/expo-modules-core@57.0.15.patch` (Xcode 26.2's Swif
 - **Web** (headless Chromium): the whole flow (onboarding → chat → drawer → settings light/dark → storage → about → licences → language/pseudo →
   proof → network log → cold-reload lock → wrong then right passcode → deep links → wipe→onboarding), 0 console errors.
 
-## Intentionally not built yet (one list, 6.9.2026)
-Apple FM adapter (simulator-only so far), voice + image input (M5b, on `voice-m5b`), OCR in the browser tier, NativeWind styling (tokens
-exist), encrypted backup + device-to-device transfer, keyboard extension, custom quick actions, advanced engine controls (LAN, multi-model,
-speculative decoding, GPU / context tuning), Shortcuts / widgets, and every Work-only capability (profession packs, client vaults, redaction,
-XLSX intake, audit log, signed export, team keys). Nothing in this list is named on the paywall or in the store copy; the voice lines are the
-one exception and are marked (`VOICE_LINES` in `packages/core/src/licence/gates.ts`, `voice_lines` in `docs/store/listing.*.json`) so they can
-be pulled in one commit if M5b misses 1.0.
+## Intentionally not built for 1.0 (one list, 11.9.2026)
+Apple FM adapter on device (simulator-only, not sold), encrypted `.sealed` backup + device-to-device transfer (§5.3), side-by-side model
+compare (§7.1), keyboard extension, Shortcuts / widgets (§7.7), OCR in the browser tier, NativeWind styling (tokens exist), advanced engine
+controls (LAN, multi-model, speculative decoding, GPU / context tuning), Whisper small for Hebrew. Nothing in this list is named on the
+paywall, in the store copy or in the legal docs. Everything that was on the 6.9 list and is now built: voice + image input, quick actions,
+share targets, Benchmark, Hugging Face search (iOS), and the whole Work tier (profession packs, client vaults, redaction, XLSX/HTML intake,
+audit log, signed export).
 
 ## Integration round 2 (documents ↔ chat, value moments, legal, shell events) — 6.9.2026
 The cross-stream wiring no stream owned, on branch `integrate-r2`:

@@ -33,7 +33,7 @@ What the app must display (all already in the spec):
 - S01 Welcome: one disclosure line, e.g. "Inborn is an AI assistant that runs on this phone. It is software, not a person, and it can be wrong."
 - Every persona header carries "AI" and the model name (S-chat header chip, §10.5 #38).
 - The first three conversations show the dismissible "can be wrong" notice.
-- Shortcuts, widgets and the keyboard extension label output as AI-generated where they display text outside the app.
+- Text handed to other apps (share sheet result, "Ask Inborn" Replace, iOS share extension) carries no AI label by design: the user chose to insert it. Shortcuts, widgets and a keyboard extension are not part of 1.0; if added, they label output as AI-generated where they display text outside the app.
 
 ### Art. 50(2): mark synthetic output in a machine-readable way
 

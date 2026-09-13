@@ -28,7 +28,7 @@ Rule from the spec: anything we bundle or serve from our CDN makes us a distribu
 | Speech-to-text (alt) | Parakeet (Core ML) | CC-BY-4.0 (NVIDIA) | NVIDIA | Attribution with the CC-BY text; **CC-BY is fine for a closed app** (attribution only) | planned |
 | TTS (desktop Pro) | Kokoro-82M (ONNX) | Apache-2.0 | hexgrad | Attribution. **Do not ship espeak-ng (GPL-3) as G2P**; use misaki (MIT) or another permissive G2P | planned |
 | VAD | Silero VAD | MIT | Silero team | Copyright notice | planned |
-| Platform | Apple Foundation Models | Apple platform terms | Apple | Not redistributed; Acceptable Use Requirements apply (no medical/legal/financial autonomous outputs, no adult content, no dependency loops). Not used in Work medical/legal flows | shipped on iOS 26 |
+| Platform | Apple Foundation Models | Apple platform terms | Apple | Not redistributed; Acceptable Use Requirements apply (no medical/legal/financial autonomous outputs, no adult content, no dependency loops). Not used in Work medical/legal flows | not shipped in 1.0 (adapter exists for the iOS 26 simulator only; declared cut) |
 | Platform | Gemini Nano (AICore) | Google platform terms | Google | Not redistributed; foreground only | planned |
 
 Not in the default catalogue and why (spec §11.4): Gemma ≤3 / 3n / EmbeddingGemma / ShieldGemma (Gemma Terms of Use: use restrictions must be passed on as enforceable terms and a copy delivered; gated on HF); Llama 3.x/4 (Llama Community License: "Built with Llama" notice, derivative naming, AUP); LFM2/LFM2.5 (free below US$10M annual revenue, review at growth); Mistral models under MRL (non-commercial). Gemma 4 is Apache-2.0 and may be offered as an alternative at Sharp/Power (§6.1). Any of these appearing in the catalogue re-opens this document.
