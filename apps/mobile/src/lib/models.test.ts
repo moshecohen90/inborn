@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { importDisplayName, modelLabel } from "./models";
+import { describeLoad, importDisplayName, modelLabel } from "./models";
 
 describe("modelLabel", () => {
   it("catalog ids keep their friendly names", () => {
@@ -22,5 +22,15 @@ describe("importDisplayName", () => {
   });
   it("keeps a name that is only a quant tag", () => {
     expect(importDisplayName("import:Q4_K_M.gguf")).toBe("Q4 K M");
+  });
+});
+
+describe("describeLoad (QA F16)", () => {
+  it("names the engine, the model and the file", () => {
+    expect(describeLoad("llama.rn", "instant", "file:///x/instant.gguf", 1498)).toBe("[inborn] llama.rn loaded model INSTANT (instant) from file:///x/instant.gguf in 1498 ms");
+  });
+  it("says nothing for the no-model engine", () => {
+    expect(describeLoad("null", "null", "bundled://null", 90)).toBeNull();
+    expect(describeLoad("llama.rn", "null", "bundled://null", 90)).toBeNull();
   });
 });
