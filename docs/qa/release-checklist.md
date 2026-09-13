@@ -57,12 +57,14 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 
 ### T06 Download cancelled
 - Pass: partial file removed, space reclaimed (check Vault storage numbers), no orphan in the app container (`xcrun devicectl device copy from` the container listing, or `adb shell run-as … ls files/`).
+- Result 13.9.2026, E-P6-36 + S-IOS (iPhone 15 Pro sim), dev builds (`qa-run-2026-09-11.md` § Round 4): **PASS**. Emulator: Fast cancelled at 41 % and 47 % → `.gguf.part` gone within 1 s, `df` used −236 MB, `vault.json` `downloads: {}` (`shots/14-fast-cancelled.png`); simulator: cancelled at 12 % → "1 KB in the vault", `Documents/models/` = `vault.json` only (`ios-shots/a13-t06-cancelled.png`). D-AND-FLOOR: WAIVER (no install/uninstall on the founder's phone).
 
 ### T07 Storage full before / during download and during DB write
 - Spec: §10.1 #5, #6, §10.3 #22.
 - Procedure: fill the device to < 1 GB free (`adb shell fallocate -l …` in the app's files dir via run-as; simulator: create a large file in the container); attempt a 1.28 GB download; then chat 20 messages.
 - Pass: download refused with the "needs X GB, you have Y" message before starting; mid-download ENOSPC pauses with a clear message, no corrupt file; DB writes fail gracefully (WAL), integrity check on next open passes.
 - Runs on: E-P6-36 (easy to fill), S-IOS-17.
+- Result 13.9.2026, E-P6-36, dev build (`qa-run-2026-09-11.md` § Round 4, F13/F14): **FAIL**. Before: 1.0 GB free → "Free up 2.1 GB" + "Try again", no request sent (PASS half, `shots/16-t07-needs-space.png`). During: ENOSPC mid-download shows the raw native error, header free-space stale; resume after freeing is byte-exact (`Range: bytes=264294400-`, `shots/18-t07-enospc-2.png`, `27-t07-resumed.png`). DB write on a full disk: assistant row renders "cannot rollback - no transaction is active", `writePrefsRaw` throws ENOSPC uncaught every 5 s (`prefsStore.native.ts:25`), 3 exchanges lost silently after recovery, `state.storageFull` banner never appears (`shots/21-t07-send-full-disk-15s.png`, `22-crop.png`, `25-t07-chat-reopened.png`). Fix F13 before release. S-IOS-17: WAIVER (simulator reports the host's free space).
 
 ### T08 Wrong hash / corrupt / truncated / wrong-format model
 - Spec: §10.1 #8, §10.9 #61.
@@ -103,6 +105,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Procedure: trigger a call (second phone) during streaming; lock the screen during streaming.
 - Pass: same outcome as T12; DB consistent; audio session (if TTS active) yields to the call.
 - Runs on: D-AND-FLOOR, D-IOS-FLOOR.
+- Result 13.9.2026, E-P6-36 + S-IOS (iPhone 15 Pro sim), dev builds (`qa-run-2026-09-11.md` § Round 4): **PASS**. Emulator: `adb emu gsm call/accept/cancel` during streaming → heads-up call, streaming continued (~1 tok/s while the call was active), full speed after hang-up (`shots/t13-call-sheet.png`); `KEYCODE_SLEEP` 25 s → "Paused while Inborn was in the background. The partial answer is kept." + CONTINUE, row "The system stopped generation · Continue", CONTINUE resumed, partial kept in the DB (`shots/35-t13-paused-banner.png`, `36-t13-continued.png`). Simulator: Home 30 s → same strip and row; row Continue resumes but leaves the strip up (F17 Low, `ios-shots/d02-row-continue-8s.png`). TTS-yields half not exercised. D-AND-FLOOR / D-IOS-FLOOR: WAIVER (never lock the founder's phones).
 
 ## F. Lock and wipe (§14.7 line 6)
 
@@ -131,16 +134,19 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Spec: §5.5, §10.4 #30.
 - Pass: progressive indexing with visible progress; questions answerable on the indexed part; citation opens the passage; no crash on a 200-page file on the floor device.
 - Runs on: both floor devices.
+- Result 13.9.2026, E-P6-36 (Pro flag) + S-IOS (iPhone 15 Pro sim), dev builds (`qa-run-2026-09-11.md` § Round 4): **PASS**. `manual-200.pdf` (200 pages): emulator "Indexing 2 % · page 4 of 200" → "Indexed · 400 passages" with Cancel throughout (11 min, `shots/43-t17-indexing-*.png`, `44-t17-indexed.png`); ask "code word for page 150" → "umber150" with SOURCES p.150 first, chip opens the p.150 passage (`shots/53-t17-answer.png`, `54-t17-passage.png`). Simulator: 261 s, 400 chunks, same answer, search 305 ms · 46.5 tok/s (`ios-shots/e01-docs-indexing.png`, `e03-after-ask.png`, `dev-run.json`). No crash. F18 Low: Ask sheet prints `**` literally. D-AND-FLOOR: WAIVER (embedder not installed on the phone; installing = 262 MB Play download on the founder's device).
 
 ### T18 Scanned PDF → OCR; Hebrew/RTL PDF; mixed scripts
 - Spec: §10.4 #30, #31.
 - Pass: "no text layer" detected and OCR offered with progress and cancel; Hebrew reading order preserved; citation text not reversed.
 - Runs on: D-IOS-FLOOR (Vision), D-AND-FLOOR (ML Kit bundled).
+- Result 13.9.2026, E-P6-36 + S-IOS (iPhone 15 Pro sim), dev builds (`qa-run-2026-09-11.md` § Round 4): **PASS**. Emulator: scans detected as "Scanned. Run OCR on this phone?", OCR → "Indexed · 1 passage", Tesseract `eng+heb` (`shots/55-t18-scan-en-row.png`, `58-t18-ocr-done.png`); Hebrew scan answers "The deposit amount is 9,000 shekels.", passage in logical order and RTL-rendered (`shots/62-t18-he-answer.png`, `63-t18-he-passage.png`); `lease-hebrew.pdf` 4 passages, mixed-script page correct (`shots/66/67-t18-lease-passage*.png`). Simulator: Vision (en, conf 1.0) + Tesseract (he, conf 0.92), text exact (`dev-run.json`, `ios-shots/f02-docs-bottom.png`). OCR progress/cancel not observable on 1-page scans (< 2 s). D-AND-FLOOR: WAIVER (as T17).
 
 ### T19 Corrupt, 0-byte, password-protected, 100 MB paste
 - Spec: §10.4 #30, #33.
 - Pass: specific errors, no crash; encrypted PDF refused with explanation; huge paste truncated with notice.
 - Runs on: all.
+- Result 13.9.2026, E-P6-36 + S-IOS (iPhone 15 Pro sim), dev builds (`qa-run-2026-09-11.md` § Round 4): **PASS**. Both platforms: 0 B → "No text in this file", corrupt/truncated → "The file is damaged or not what its name says.", RC4-locked → "Password-protected files cannot be read.", no crash (`shots/70-t19-rows.png`, `ios-shots/f01-docs-top.png`). 20 KB shared text → "Long text, so only the first 5995 characters are used" (`shots/72-t19-share-paste20.png`); 100 MB paste rests on the code caps (6,000 chars quick actions with notice, 50,000 share import without notice) since `am start` rejects a 200 KB extra. F19 Low: 0-byte message is the generic one, not `documents.error.empty`. D-AND-FLOOR: WAIVER (keys-only picker cannot reach Downloads).
 
 ## I. Purchases (§14.7 line 9)
 
@@ -182,6 +188,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Procedure: enable the screen reader; send a prompt producing ~1,000 tokens; navigate away and back.
 - Pass: announcements per sentence in a polite queue; no focus theft; "read latest answer" action works; streaming region marked live/updatesFrequently.
 - Runs on: D-IOS-FLOOR (VoiceOver), D-AND-FLOOR (TalkBack).
+- Result 13.9.2026, E-P6-36 with TalkBack, dev build (`qa-run-2026-09-11.md` § Round 4, F15): **FAIL**. During a ~1,000-token answer TalkBack logged only `windowContentChanged`, no speech; the assistant row's description is "INSTANT · ON-DEVICE AI" only; away-and-back gives no announcement; code has no live region / `announceForAccessibility` / read-latest action (`shots/80-t26-talkback-on.png`, `81-t26-streaming.png`, `83-t26-back.png`). Not a release blocker. TalkBack disabled and settings restored. iOS: WAIVER (no VoiceOver in the simulator; no settings changes on the founder's iPhone), same code evidence.
 
 ### T27 Reduced motion and light theme
 - Spec: §9, D7, §14.7 last line.
@@ -191,6 +198,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 ### T28 Hardware keyboard (iPad / tablet): Enter vs Shift+Enter
 - Spec: §10.8 #55.
 - Runs on: iPad simulator (iOS 26), E-P6-36 with `adb shell input keyevent` or a Bluetooth keyboard.
+- Result 13.9.2026, E-P6-36 (`hw.keyboard=yes`) + S-IOS (iPhone 15 Pro sim, `typeKey`), dev builds (`qa-run-2026-09-11.md` § Round 4, F16): **FAIL**. Android: Enter → newline, Shift+Enter → newline, nothing sends (`shots/73-t28-enter.png`, `74-t28-shift-enter.png`); iOS: Return and Shift+Return neither insert a newline nor send (`ios-shots/a05-t28-return.png`, `a06-t28-shift-return.png`); no Settings › Chat option, Composer has no `onKeyPress` / `submitBehavior`. Not a release blocker (keyboard extension is cut for 1.0, this row is not).
 
 ## K. Zero-network proof (§14.7 lines 11–12)
 
@@ -228,6 +236,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Procedure: on E-P6-36 exercise the foreground service (T12), notifications permission prompt at first download, predictive back, edge-to-edge insets.
 - Pass: no policy warnings in Play Console pre-launch report; UI not hidden under system bars.
 - Runs on: E-P6-36.
+- Result 13.9.2026, E-P6-36, dev build (`qa-run-2026-09-11.md` § Round 4): **PASS** with notes. Merged manifest targetSdk 36 / minSdk 26; `enableOnBackInvokedCallback="false"` so predictive back is opted out (legacy arrow, `startBackNavigation`/`finishBackNavigation`, `shots/84-t34-back-mid.png`, `85-t34-back-done.png`); no `POST_NOTIFICATIONS`, so no permission prompt and no notification at first download; edge-to-edge insets correct on chat, drawer, vault, documents and the composer above the keyboard (`shots/06-chat-root.png`, `09-vault.png`, `19-t07-chat-full-disk.png`). Play pre-launch report half not run (no upload this round).
 
 ### T35 iOS 26 Liquid Glass and iOS 17/18 fallback; privacy manifest report
 - Procedure: run on S-IOS-26.3 and S-IOS-17.0 and S-IOS-18.0; in Xcode, Product › Archive › Generate Privacy Report.
