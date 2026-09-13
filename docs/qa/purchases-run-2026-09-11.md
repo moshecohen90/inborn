@@ -13,6 +13,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | E. Play internal release versionCode 4 (main 90a82f9: share target + "Ask Inborn") | DONE: AAB 2,091,988,850 bytes, 9 permissions, no INTERNET, uploaded as "1.0.0 (4) internal" (edit 08048933420369955521) |
 | F. Both new Android surfaces on the real Play build (6T updated to (4) by Play) | DONE: share text from the system share sheet → Inborn quick-actions sheet → Fix grammar; select text in Google Docs → ⋮ → **Ask Inborn** → Fix grammar → **Replace** → the corrected text is back in Docs' field |
 | G. Play internal release versionCode 5 (main 07bc402, fixes-r9) + launch check on the 6T | DONE: AAB 1,870,567,596 bytes, 9 permissions, no INTERNET, "1.0.0 (5) internal"; the Play update on the 6T opens straight to the chat screen, no onboarding (F12 on the real device) |
+| H. vc5 sanity on the 6T (13.9, MosheAI ask after fixes-r9 touched storage) | DONE: chat + follow-up survive `am force-stop`, Vault / Settings / Proof (OUT 0 B) open, logcat has no `[storage]`, `[prefs]`, ANR or crash line |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -153,6 +154,34 @@ Gradle (no xcodebuild alive, `--no-daemon`, `~/.gradle-pr2`): the first `bundleR
 | upload | edit `05949408492873814732`, bundle versionCode 5 (sha256 matches), track `internal` **"1.0.0 (5) internal"** `completed`, committed 20:25 |
 
 **6T update and launch (F12 on the real device).** Play showed "Update" at 20:39 (`46-play-vc5.png`), pressed by keyboard focus (`47-play-updating.png`, "2%"), `versionCode=5` installed by `com.android.vending` 20:41:03 (a small delta this time: the asset packs did not change, so Play did not re-download them). Cold launch (`force-stop` + launcher intent): **the app opened straight to the chat screen** — top bar Chats · SEALED · INSTANT, the "This is AI…" notice, empty chat "Nothing leaves this phone." with the three suggestions and the composer (`48-vc5-launch.png`) — **no onboarding, no lock prompt (the lock switch was left off on 11.9)**, so the finding from F.1 (onboarding shown again after the (3)→(4) update) does not reproduce on (4)→(5) with fixes-r9. Logcat for the launch: `[inborn] engine model instant from …/assetpacks/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf`, `[inborn] llama.rn loaded … in 1507 ms`, no `[prefs]` line (nothing to repair), no `AndroidRuntime` error. One line worth a glance by the persona/voice owner: `[inborn] null loaded bundled://null in 90 ms` right after "Running main". Phone returned to the launcher home screen with 1.0.0 (5) installed (`49-home.png`).
+
+## H. vc5 sanity on the OnePlus 6T after fixes-r9 (storage) — 13.9.2026 21:58–22:06
+
+Installed Play build 1.0.0 (5), phone on its launcher before and after (qa-r4 was not on it: `mCurrentFocus` = launcher at 21:58 and 22:06), driven with keys only. Evidence `purchases-r2/6t/50-h-answer1.png` … `57-h-proof.png`, full log `6t/logcat-h.txt` (`logcat -c` before the first launch).
+
+| step | result | evidence |
+|---|---|---|
+| cold launch → new chat → "Name three colours" → Send | streams **"Here are three colors: 1. Blue 2. Red 3. Yellow"** (INSTANT · ON-DEVICE AI, LEDGER toggle under it) | `50-h-answer1.png` |
+| follow-up "Which of them is the warmest" | **"Red is generally considered the warmest color … Blue is considered the coolest … Yellow is a neutral color …"** | `51-h-answer2.png` |
+| `am force-stop com.inbornapp.mobile` → relaunch | opens on a fresh empty chat (by design); **Chats** panel lists **"Name three colours · 10:00 PM"** under RECENT (and the Friday chat "Give me a JSON object describing" from the vc3/vc4 days, so the (3)→(4) onboarding re-show in F.1 did not lose data) | `52-h-relaunch.png`, `53-h-chats.png` |
+| reopen the chat | both turns and both answers are there, unchanged | `54-h-reopened.png` |
+| Vault (`inborn://vault`) | "Model vault · 508 MB in the vault · 19 GB free", INSTANT Qwen3.5 0.8B **Loaded · In use** | `55-h-vault.png` |
+| Settings (`inborn://settings`) | opens (APPEARANCE · Theme: System / Dark …) | `56-h-settings.png` |
+| Proof (`inborn://proof`) | **SEALED · ON-DEVICE · OUT 0 B · IN 0 B · CONNECTIONS 0 this session**, allowlist "none · the app has no internet permission", Internet "none (not in the manifest)" | `57-h-proof.png` |
+| HOME | launcher in front, app left installed | — |
+
+Vault, Settings and Proof were opened by deep link (the Chats panel's TAB order loops between the suggestion chips when the keyboard is up; DPAD_UP + DPAD_LEFT reaches the Chats button, which is how the panel was opened for the chat check).
+
+Logcat (whole session, 21:58–22:06): `[storage]` 0 lines, `[prefs]` 0 lines, "ANR in" 0, "FATAL EXCEPTION" 0. The six lines that matter:
+
+```
+09-13 21:58:22.345 ActivityManager: Force stopping com.inbornapp.mobile appid=11422 user=0: from pid 5075
+09-13 21:58:25.997 ReactNativeJS: [inborn] engine model instant from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf
+09-13 21:58:28.503 ReactNativeJS: [inborn] llama.rn loaded …/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf in 2506 ms
+09-13 22:00:57.668 ActivityManager: Force stopping com.inbornapp.mobile appid=11422 user=0: from pid 6225      ← after both answers
+09-13 22:01:02.087 ReactNativeJS: [inborn] engine model instant from …/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf
+09-13 22:01:03.693 ReactNativeJS: [inborn] llama.rn loaded …/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf in 1606 ms
+```
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
