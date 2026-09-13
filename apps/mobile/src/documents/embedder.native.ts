@@ -27,3 +27,11 @@ export function resolveEmbedder(): ResolvedEmbedder | null {
 export function installEmbedder(): Promise<unknown> {
   return getVault().install(EMBED_MODEL_ID);
 }
+
+/** Fires when the index model becomes ready in the vault (installed from any screen), so the library can pick it up without a relaunch. */
+export function watchEmbedder(onReady: () => void): () => void {
+  const vault = getVault();
+  return vault.subscribe(() => {
+    if (vault.state(EMBED_MODEL_ID).kind === "ready") onReady();
+  });
+}

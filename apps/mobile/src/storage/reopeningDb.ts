@@ -1,5 +1,5 @@
 import type * as SQLite from "expo-sqlite";
-import { ReopeningHandle } from "./reopen";
+import { ReopeningHandle, type CloseReport } from "./reopen";
 
 type Db = SQLite.SQLiteDatabase;
 
@@ -8,12 +8,7 @@ export class ReopeningDatabase {
   private readonly handle: ReopeningHandle<Db>;
 
   constructor(db: Db, open: () => Promise<Db>, onReopen?: (error: unknown) => void) {
-    this.handle = new ReopeningHandle(db, open, onReopen);
-  }
-
-  /** The raw handle, for a transaction body: statements inside must not reopen half way, the whole body reruns instead. */
-  raw(): Db {
-    return this.handle.get();
+    this.handle = new ReopeningHandle(db, open, onReopen, (dead) => dead.closeAsync());
   }
 
   execAsync(source: string): Promise<void> {
@@ -32,11 +27,26 @@ export class ReopeningDatabase {
     return this.handle.run((db) => db.getAllAsync<T>(source, ...(params as SQLite.SQLiteVariadicBindParams)));
   }
 
+  /** The body gets the raw handle: statements inside must not reopen half way, the whole body reruns instead. */
   withTransactionAsync(task: (db: Db) => Promise<void>): Promise<void> {
     return this.handle.run((db) => db.withTransactionAsync(() => task(db)));
   }
 
-  closeAsync(): Promise<void> {
-    return this.handle.get().closeAsync();
+  /** Waits for in-flight statements before the native close (QA F18); nothing runs on this repository afterwards. */
+  closeAsync(): Promise<CloseReport> {
+    return this.handle.close();
+  }
+
+  get closed(): boolean {
+    return this.handle.isClosed;
+  }
+
+  get inFlight(): number {
+    return this.handle.inFlightCount;
+  }
+
+  /** Dev hook: closes the live handle under the repository after the in-flight statements drain; the next statement reopens. */
+  closeUnderneath(): Promise<CloseReport> {
+    return this.handle.closeUnderneath();
   }
 }

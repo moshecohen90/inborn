@@ -20,10 +20,12 @@ interface Props {
   canMoveTo?: (folder: Folder) => boolean;
   /** After a move (for the vault audit log): previous folder, new folder or null for the root. */
   onMoved?: (chat: Chat, from: string | undefined, to: string | null) => void;
+  /** Work stream: a locked vault asks for its code before the action runs (QA F17); default runs at once. */
+  beforeAction?: (folder: Folder, action: "rename" | "delete" | "move-out", run: () => void) => void;
 }
 
 /** Folder management and "Move to folder" (§8.3 S20). Gating is decided by the caller; the sheet only does the work. */
-export function FolderSheet({ mode, onClose, store, onChanged, extraAction, canMoveTo, onMoved }: Props) {
+export function FolderSheet({ mode, onClose, store, onChanged, extraAction, canMoveTo, onMoved, beforeAction }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -55,19 +57,27 @@ export function FolderSheet({ mode, onClose, store, onChanged, extraAction, canM
     await refresh();
     onChanged();
   };
+  const guard = (folderId: string | undefined, action: "rename" | "delete" | "move-out", run: () => void) => {
+    const folder = folders.find((f) => f.id === folderId);
+    if (folder && beforeAction) beforeAction(folder, action, run);
+    else run();
+  };
   const move = async (folderId: string | null) => {
     if (mode?.kind !== "move") return;
     if (folderId === (mode.chat.folderId ?? null)) return onClose();
-    await store.updateChat(mode.chat.id, { folderId });
-    onMoved?.(mode.chat, mode.chat.folderId, folderId);
-    onChanged();
-    onClose();
+    const chat = mode.chat;
+    guard(chat.folderId, "move-out", () => {
+      void store.updateChat(chat.id, { folderId }).then(() => {
+        onMoved?.(chat, chat.folderId, folderId);
+        onChanged();
+        onClose();
+      });
+    });
   };
-  const remove = async (id: string) => {
-    await store.library.deleteFolder(id);
-    await refresh();
-    onChanged();
-  };
+  const remove = (id: string) =>
+    guard(id, "delete", () => {
+      void store.library.deleteFolder(id).then(refresh).then(onChanged);
+    });
 
   return (
     <Sheet visible={mode !== null} onClose={onClose} title={mode?.kind === "move" ? t("folders.moveTitle") : t("folders.title")} testID="folder-sheet">
@@ -79,10 +89,10 @@ export function FolderSheet({ mode, onClose, store, onChanged, extraAction, canM
           <View key={f.id} style={styles.manageRow}>
             <Text style={[type.body, styles.grow, { color: theme.text }]}>{f.name}</Text>
             {extraAction?.(f)}
-            <Pressable testID={`folder-rename-${f.id}`} accessibilityRole="button" onPress={() => setDraft({ id: f.id, name: f.name })} hitSlop={6} style={styles.textBtn}>
+            <Pressable testID={`folder-rename-${f.id}`} accessibilityRole="button" onPress={() => guard(f.id, "rename", () => setDraft({ id: f.id, name: f.name }))} hitSlop={6} style={styles.textBtn}>
               <Text style={[type.caption, { color: theme.accent }]}>{t("chats.rename")}</Text>
             </Pressable>
-            <Pressable testID={`folder-delete-${f.id}`} accessibilityRole="button" onPress={() => void remove(f.id)} hitSlop={6} style={styles.textBtn}>
+            <Pressable testID={`folder-delete-${f.id}`} accessibilityRole="button" onPress={() => remove(f.id)} hitSlop={6} style={styles.textBtn}>
               <Text style={[type.caption, { color: theme.danger }]}>{t("chats.delete")}</Text>
             </Pressable>
           </View>

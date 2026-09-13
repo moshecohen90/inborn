@@ -112,6 +112,11 @@ export class DocumentLibrary {
     }
     await this.refreshEmbedder();
     this.notify();
+    const mod = await import("./embedder");
+    /* The model can land from the vault screen or a dev hook; without this the first ask kept failing with `no-embedder` until a relaunch. */
+    if ("watchEmbedder" in mod) (mod as { watchEmbedder: (cb: () => void) => void }).watchEmbedder(() => {
+      if (this.embedder.kind === "missing") void this.refreshEmbedder();
+    });
   }
 
   async refreshEmbedder(): Promise<void> {

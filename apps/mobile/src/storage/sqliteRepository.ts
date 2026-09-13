@@ -89,11 +89,17 @@ export async function databaseKeyHex(): Promise<string> {
 
 const describe = errorChain;
 
-/* Dev bundles can close the chat handle underneath the repository after N ms (EXPO_PUBLIC_DEAD_DB_AFTER_MS) to drive the reopen path on an emulator. */
+/* Dev bundles close the chat handle underneath the repository every N ms (EXPO_PUBLIC_DEAD_DB_AFTER_MS) to drive the reopen path on an
+   emulator; with EXPO_PUBLIC_DEAD_DB_MID_STATEMENT=1 each firing waits for a statement to be in flight first, so the close gate is what runs. */
 const DEV_DEAD_DB_MS = __DEV__ ? Number(process.env.EXPO_PUBLIC_DEAD_DB_AFTER_MS ?? NaN) : NaN;
+const DEV_DEAD_DB_MID_STATEMENT = __DEV__ && process.env.EXPO_PUBLIC_DEAD_DB_MID_STATEMENT === "1";
 
 async function openKeyed(keyHex: string): Promise<SQLite.SQLiteDatabase> {
-  const db = await SQLite.openDatabaseAsync(DB_NAME);
+  /* Own native connection: without it Android hands every open of this name the same cached NativeDatabase, and the GC of any
+     other JS wrapper of it resets the native binding under a running statement (QA F15). Never let expo-sqlite finalize "unused"
+     statements before closing: sqlite3_next_stmt also lists FTS5's internal ones, which FTS5 finalizes again inside sqlite3_close
+     (the QA F18 double free). The JS gate keeps our own statements out of a close. */
+  const db = await SQLite.openDatabaseAsync(DB_NAME, { useNewConnection: true, finalizeUnusedStatementsBeforeClosing: false });
   try {
     await db.execAsync(`PRAGMA key = "x'${keyHex}'";`);
     await db.getFirstAsync("SELECT count(*) AS n FROM sqlite_master");
@@ -223,9 +229,29 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
     };
     const owned = new ReopeningDatabase(db, reopen, (e) => console.warn(`[storage] chat database handle died underneath, reopening: ${describe(e)}`));
     if (Number.isFinite(DEV_DEAD_DB_MS) && DEV_DEAD_DB_MS > 0) {
-      setTimeout(() => {
-        console.log(`[storage] dev: closing the chat handle underneath the repository after ${DEV_DEAD_DB_MS} ms`);
-        void owned.raw().closeAsync().catch((e: unknown) => console.warn("[storage] dev close", e));
+      let firing = 0;
+      let armed = false;
+      const fire = () => {
+        const n = ++firing;
+        armed = false;
+        console.log(`[storage] dev: closing the chat handle underneath the repository after ${DEV_DEAD_DB_MS} ms (firing ${n}, in flight ${owned.inFlight})`);
+        owned
+          .closeUnderneath()
+          .then((r) => console.log(`[storage] dev: handle closed (firing ${n}, waited for ${r.waitedFor} in-flight, drained=${r.drained})`))
+          .catch((e: unknown) => console.warn("[storage] dev close", describe(e)));
+      };
+      const timer = setInterval(() => {
+        if (owned.closed) return clearInterval(timer);
+        if (!DEV_DEAD_DB_MID_STATEMENT) return fire();
+        if (armed) return;
+        armed = true;
+        const poll = setInterval(() => {
+          if (!armed) return clearInterval(poll);
+          if (owned.inFlight > 0) {
+            clearInterval(poll);
+            fire();
+          }
+        }, 5);
       }, DEV_DEAD_DB_MS);
     }
     return new SqliteChatRepository(owned, fts, version);
@@ -503,7 +529,8 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
     await this.db.runAsync(SQL.deleteReport, id);
   }
 
-  close(): Promise<void> {
-    return this.db.closeAsync();
+  async close(): Promise<void> {
+    const r = await this.db.closeAsync();
+    if (!r.drained) console.warn(`[storage] closed with ${r.waitedFor} statement(s) still in flight after the drain timeout`);
   }
 }

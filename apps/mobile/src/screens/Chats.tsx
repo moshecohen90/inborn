@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput,
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
-import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit } from "@inborn/core";
+import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit, type VaultAction } from "@inborn/core";
 import { formatWhen } from "../lib/when";
 import { retentionDaysLeft } from "../services/retention";
 import { useEntitlement } from "../licence";
@@ -28,6 +28,7 @@ import { SwipeRow } from "./chat/SwipeRow";
 import { afterSheetClose } from "./Chat";
 import { deviceNoun } from "../lib/deviceNoun";
 import { useOpenSheet } from "../lib/openSheets";
+import { useBannerInset } from "../components/shell/bannerInset";
 
 export interface ChatsProps {
   store: ChatStore;
@@ -70,6 +71,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [showArchived, setShowArchived] = useState(false);
   const [folderMode, setFolderMode] = useState<{ kind: "move"; chat: Chat } | { kind: "manage" } | null>(null);
+  const bannerInset = useBannerInset();
   const { work, version: workVersion } = useWork();
   const workGate = useWorkGate();
   const [vaultCode, setVaultCode] = useState<{ mode: VaultCodeMode; folder: Folder } | null>(null);
@@ -110,14 +112,22 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
     // workVersion: a vault locking or unlocking changes what the query may see.
   }, [query, store, work, workVersion]);
 
-  /* A chat inside a locked vault never opens from a row or a hit without the vault's code (§7.8); the sheet opens it afterwards. */
-  const pendingOpen = useRef<Chat | null>(null);
+  /* Nothing reads or changes a locked vault without its code (§7.8, QA F1/F17): the verify sheet runs the action afterwards. */
+  const pendingAction = useRef<(() => void) | null>(null);
+  const guarded = (folder: Folder, action: VaultAction, run: () => void, closeSheet = false) => {
+    const verdict = guardVaultAction({ isVault: work.isVault(folder.id), isOpen: work.isOpen(folder.id) }, action);
+    if (verdict === "deny") return;
+    if (verdict === "allow") return run();
+    pendingAction.current = run;
+    if (closeSheet) {
+      setFolderMode(null);
+      afterSheetClose(() => setVaultCode({ mode: { kind: "verify", folderName: folder.name }, folder }));
+    } else setVaultCode({ mode: { kind: "verify", folderName: folder.name }, folder });
+  };
   const openGuarded = (chat: Chat) => {
     if (!work.isHidden(chat)) return onOpenChat(chat);
     const folder = folders.find((f) => f.id === chat.folderId);
-    if (!folder) return;
-    pendingOpen.current = chat;
-    setVaultCode({ mode: { kind: "verify", folderName: folder.name }, folder });
+    if (folder) guarded(folder, "open", () => onOpenChat(chat));
   };
 
   const commitDelete = useCallback(async () => {
@@ -285,6 +295,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
           <Text style={[type.bodySmall, { color: theme.text2 }]}>{selecting ? t("chats.cancel") : t("chats.select")}</Text>
         </Pressable>
       </FloatingToolbar>
+      {bannerInset ? <View testID="banner-inset" style={{ height: bannerInset }} /> : null}
       <TextInput testID="chats-search" value={query} onChangeText={setQuery} placeholder={t("chats.search")} placeholderTextColor={theme.text3} style={[shape.field, styles.search, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} accessibilityLabel={t("chats.search")} />
       {!selecting ? (
         <View style={styles.actions}>
@@ -529,13 +540,15 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
           if (to) void work.log(to, "chat.moved-in", { chatId: chat.id });
           if (from) void work.log(from, "chat.moved-out", { chatId: chat.id });
         }}
+        /* The code sheet replaces the folder sheet; a manage action reopens it afterwards so the outcome is in view. */
+        beforeAction={(f, action, run) => guarded(f, action, action === "move-out" ? run : () => { setFolderMode({ kind: "manage" }); run(); }, true)}
         extraAction={(f) =>
           work.isVault(f.id) ? (
             <>
-              <Pressable testID={`vault-code-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => { setFolderMode(null); afterSheetClose(() => setVaultCode({ mode: { kind: "change", folderName: f.name }, folder: f })); }}>
+              <Pressable testID={`vault-code-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => { setFolderMode(null); afterSheetClose(() => guarded(f, "change-code", () => setVaultCode({ mode: { kind: "change", folderName: f.name }, folder: f }))); }}>
                 <Text style={[type.caption, { color: theme.accent }]}>{t("vaults.code")}</Text>
               </Pressable>
-              <Pressable testID={`vault-remove-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => void work.removeVault(f.id).then(() => refresh())}>
+              <Pressable testID={`vault-remove-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => guarded(f, "unvault", () => void work.removeVault(f.id).then(() => refresh()).then(() => setFolderMode({ kind: "manage" })), true)}>
                 <Text style={[type.caption, { color: theme.danger }]}>{t("vaults.unvault")}</Text>
               </Pressable>
             </>
@@ -551,7 +564,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
       <VaultCodeSheet
         mode={vaultCode?.mode ?? null}
         onClose={() => {
-          pendingOpen.current = null;
+          pendingAction.current = null;
           setVaultCode(null);
         }}
         onSubmit={async (code) => {
@@ -560,9 +573,9 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
           const ok = v.mode.kind === "verify" ? await work.unlock(v.folder.id, code) : v.mode.kind === "set" ? await work.createVault(v.folder.id, code, v.folder.name) : await work.changeCode(v.folder.id, code);
           if (ok) {
             setVaultCode(null);
-            const chat = pendingOpen.current;
-            pendingOpen.current = null;
-            if (chat && v.mode.kind === "verify") afterSheetClose(() => onOpenChat(chat));
+            const run = pendingAction.current;
+            pendingAction.current = null;
+            if (run && v.mode.kind === "verify") afterSheetClose(run);
           }
           return ok;
         }}

@@ -144,7 +144,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: modelLabel(model.id) })}</Text> : null}
           {phase.kind === "retrieving" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text> : null}
-          {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{phase.error}</Text> : null}
+          {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
           {notFound ? (
             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
               {t("documents.notFound")}
