@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from "react";
-import { AccessibilityInfo, Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, Animated, Easing, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { citationsForAnswer, directionOf, type ChatMessage } from "@inborn/core";
 import { Citations } from "../../documents/Citations";
@@ -33,20 +33,21 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
   const header = t("chat.modelLabel", { model: modelLabel(row.modelId ?? "") });
   useStreamAnnouncements(row);
   const firstLine = firstLineForSpeech(row.content);
+  const summary = {
+    accessible: true,
+    accessibilityLabel: firstLine ? `${header} · ${firstLine}` : header,
+    accessibilityActions: [{ name: "readAnswer", label: t("chat.a11y.readAnswer") }],
+    onAccessibilityAction: (e: { nativeEvent: { actionName: string } }) => {
+      if (e.nativeEvent.actionName === "readAnswer" && row.content) AccessibilityInfo.announceForAccessibility(row.content);
+    },
+  };
+  /* iOS merges an accessible row into one element and hides Continue, Regenerate and the chips (QA O12); Android keeps the children, so the row itself carries the summary there (QA T26). */
+  const onHeader = Platform.OS === "ios";
   return (
-    <Pressable
-      testID="assistant-message"
-      onLongPress={onLongPress}
-      delayLongPress={350}
-      accessibilityRole="text"
-      accessibilityLabel={firstLine ? `${header} · ${firstLine}` : header}
-      accessibilityActions={[{ name: "readAnswer", label: t("chat.a11y.readAnswer") }]}
-      onAccessibilityAction={(e) => {
-        if (e.nativeEvent.actionName === "readAnswer" && row.content) AccessibilityInfo.announceForAccessibility(row.content);
-      }}
-      style={styles.root}
-    >
-      <Text style={[type.monoLabel, { color: theme.text3 }]}>{header}</Text>
+    <Pressable testID="assistant-message" onLongPress={onLongPress} delayLongPress={350} {...(onHeader ? { accessible: false } : summary)} style={styles.root}>
+      <Text {...(onHeader ? summary : {})} style={[type.monoLabel, { color: theme.text3 }]}>
+        {header}
+      </Text>
       {row.reasoning ? (
         <Pressable testID="reasoning-toggle" accessibilityRole="button" accessibilityState={{ expanded: showReasoning }} onPress={() => setShowReasoning((s) => !s)} style={styles.reasoningToggle}>
           <Icon name={showReasoning ? "chevronDown" : "chevronRight"} size={14} color={theme.text3} />

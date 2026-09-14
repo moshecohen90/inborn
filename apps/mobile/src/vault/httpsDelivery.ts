@@ -75,6 +75,12 @@ export class HttpsDelivery implements ModelDelivery {
     const url = this.url(model, shard);
     if (!url) throw new Error(`no allowed https delivery for ${model.id}`);
     const part = partialFile(shard.file);
+    /* Every byte already here (a verify that failed after the transfer, QA F20): rename, never fetch from 0 again. */
+    if (fileSize(part) === shard.bytes) {
+      this.ctx.saveDownload(model.id, null);
+      await this.finish(shard, part);
+      return;
+    }
     const saved = this.ctx.savedDownload(model.id) as SavedDownload | undefined;
     /* A gated repository needs the user's token; models.inbornapp.com gets no header at all. */
     const headers = isHf(model) ? await hfHeaders() : undefined;

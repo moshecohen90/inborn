@@ -22,7 +22,7 @@ export const isStorageFull = (): boolean => full;
 export function reportStorageFull(): void {
   if (!full) {
     full = true;
-    console.warn(`[storage] disk full · ${freeDiskBytes()} bytes free`);
+    console.warn(`[storage] disk full · ${freeDiskBytes()} bytes usable (f_bavail; df also counts the root reserve)`);
     publish();
   }
   if (!poller) poller = setInterval(check, POLL_MS);
