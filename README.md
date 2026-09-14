@@ -1184,3 +1184,19 @@ behaviour itself was not verified on a device. New i18n keys: `chat.a11y.readLat
    and vault card) end `[vault] embed-nomic ready · verified in 839 / 770 ms`, `files/models` holds the final file and no `.part`
    (`o10-01-vault-ready.png`, `o10-02-documents-no-card.png`). `vault/store.ts` `importFile` awaits `File.copy()` for the same reason.
 Tests: `packages/core/test/fixes-r10.test.ts` (+2, `space-check`), `apps/mobile/src/documents/watchEmbedder.test.ts` (new, 1). No new i18n keys.
+
+### Fixes round 10d: QA pass-4b O12, the F20 delivery test, O14 (`fixes-r10`)
+
+1. **O12 · VoiceOver reaches the row's inline controls again** (`components/chat/AssistantMessage.tsx`): on iOS the row Pressable is
+   `accessible={false}` and the T26 summary label plus the "Read this answer" action sit on the header text, so Continue, Regenerate, the
+   reasoning toggle, LEDGER and citation chips stay separate elements; on Android the row keeps the label itself (an unlabelled accessible
+   row would otherwise read every child text as its description) and the children were already separate nodes. iPhone 15 Pro simulator
+   (iOS 17.0, Debug sim build, `idb ui describe-all`): a stopped answer lists `StaticText "INSTANT · ON-DEVICE AI · 1. As"`, `StaticText
+   "Stopped"`, `Button "Continue"`, `Button "LEDGER"` as four elements (`o12-ios-tree.json`, `ios-03-stopped.png`). Pixel 6 emulator
+   (uiautomator): `assistant-message` `content-desc="INSTANT · ON-DEVICE AI · 1. abacache"` with `regenerate` and `ledger-toggle` as its own
+   focusable child buttons (`o12-android-tree.xml`, `o12-android-stopped.png`).
+2. **F20 · delivery unit tests** (`vault/httpsDelivery.test.ts`, new, 3 tests over an in-memory File/DownloadTask): a completed download
+   lands the final file with no `.part` and no resume record; Try again with a full-size `.part` renames it without a GET (that path was
+   `resumePlan` "done" → fresh download from byte 0; `deliverPart` now short-circuits when the part already has every byte); Try again with
+   a partial `.part` resumes from its last byte.
+3. **O14** (`services/storageFull.ts`): the log reads `[storage] disk full · N bytes usable (f_bavail; df also counts the root reserve)`.
