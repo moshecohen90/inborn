@@ -54,6 +54,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const active = vault.activeModel();
   const recommendedId = vault.recommendedId();
 
+  useEffect(() => vault.recheckSpace(), [vault]);
 
   useEffect(() => {
     if (!toast) return;

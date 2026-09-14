@@ -113,15 +113,15 @@ export class DocumentLibrary {
     await this.refreshEmbedder();
     this.notify();
     const mod = await import("./embedder");
-    /* The model can land from the vault screen or a dev hook; without this the first ask kept failing with `no-embedder` until a relaunch. */
-    if ("watchEmbedder" in mod) (mod as { watchEmbedder: (cb: () => void) => void }).watchEmbedder(() => {
-      if (this.embedder.kind === "missing") void this.refreshEmbedder();
-    });
+    /* The model can land or leave from the vault screen or a dev hook; without this the first ask kept failing with `no-embedder` until a relaunch (and a removal kept "ready", QA O9). */
+    if ("watchEmbedder" in mod) (mod as { watchEmbedder: (cb: () => void) => void }).watchEmbedder(() => void this.refreshEmbedder());
   }
 
   async refreshEmbedder(): Promise<void> {
     const mod = await import("./embedder");
     const resolved = "resolveEmbedderAsync" in mod ? await (mod as { resolveEmbedderAsync: () => Promise<ResolvedEmbedder | null> }).resolveEmbedderAsync() : resolveEmbedder();
+    const previous = this.embedderRef;
+    if (previous && previous.path !== resolved?.path) void previous.embedder.unload().catch(() => undefined);
     this.embedderRef = resolved;
     this.retriever = null;
     this.embedder = resolved ? { kind: "ready", path: resolved.path } : { kind: "missing" };

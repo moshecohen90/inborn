@@ -96,6 +96,8 @@ export class HttpsDelivery implements ModelDelivery {
         this.ctx.saveDownload(model.id, { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() });
         throw new PausedError();
       }
+      this.ctx.saveDownload(model.id, null);
+      await this.finish(shard, part);
     } catch (e: unknown) {
       /* A full disk is a pause with a reason: the part and the resume state stay so "Try again" continues from the same byte (QA R4-F14). */
       if (isNoSpaceError(e)) {
@@ -107,8 +109,6 @@ export class HttpsDelivery implements ModelDelivery {
         throw new NoSpaceError();
       }
       throw e;
-      this.ctx.saveDownload(model.id, null);
-      this.finish(shard, part);
     } finally {
       this.tasks.delete(model.id);
       /* S50 honesty: what this request moved, whether it finished, paused or failed. */
@@ -141,10 +141,11 @@ export class HttpsDelivery implements ModelDelivery {
   }
 
   /** Bytes are complete: rename .part into place; the caller hashes it (spec §5.4) before it is "ready". */
-  private finish(shard: ModelPart, part: File): void {
+  private async finish(shard: ModelPart, part: File): Promise<void> {
     const final = modelFile(shard.file);
     safeDelete(final);
-    part.move(final);
+    /* SDK 57 File.move() is a promise; hashing before it settles read ENOENT on a busy disk (QA O10). */
+    await part.move(final);
   }
 
   async pause(model: CatalogModel): Promise<void> {

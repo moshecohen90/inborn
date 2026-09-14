@@ -17,7 +17,7 @@ export interface ResolvedEmbedder {
 export function resolveEmbedder(): ResolvedEmbedder | null {
   const vault = getVault();
   const state = vault.state(EMBED_MODEL_ID);
-  if (state.kind === "ready") return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, state.path), path: state.path };
+  if (state.kind === "ready" && new File(state.path).exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, state.path), path: state.path };
   const dev = new File(Paths.document, DEV_EMBED_FILE);
   if (dev.exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, dev.uri), path: dev.uri };
   return null;
@@ -28,10 +28,18 @@ export function installEmbedder(): Promise<unknown> {
   return getVault().install(EMBED_MODEL_ID);
 }
 
-/** Fires when the index model becomes ready in the vault (installed from any screen), so the library can pick it up without a relaunch. */
-export function watchEmbedder(onReady: () => void): () => void {
-  const vault = getVault();
-  return vault.subscribe(() => {
-    if (vault.state(EMBED_MODEL_ID).kind === "ready") onReady();
+const readyPath = (): string | null => {
+  const s = getVault().state(EMBED_MODEL_ID);
+  return s.kind === "ready" ? s.path : null;
+};
+
+/** Fires when the index model appears in or leaves the vault (installed or removed from any screen), so the library follows without a relaunch. */
+export function watchEmbedder(onChange: () => void): () => void {
+  let last = readyPath();
+  return getVault().subscribe(() => {
+    const now = readyPath();
+    if (now === last) return;
+    last = now;
+    onChange();
   });
 }
