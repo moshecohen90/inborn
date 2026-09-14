@@ -918,6 +918,10 @@ iPhone 17 Pro simulator (iOS 26.3, Release build with `ios/.xcode.env.local`).
    English → Vision 1.00, Hebrew → Tesseract 0.92 with the lease text read correctly; "Ask this document" answered "The monthly rent is
    4,500 shekels" from the Hebrew scan. The documents dev proof no longer needs `__DEV__` (its flags are bundle-time), so a Release
    simulator build runs it.
+## TestFlight build 1.0.0 (5) — 14.9.2026
+fixes-r10 rounds 10–10d (F17/F18/N1, full disk, screen-reader announcements, O12 iOS VoiceOver row, httpsDelivery fixes) on top of build 4;
+same recipe, share extension included; `modules/hardware-keys` is Android-only. Record: `docs/qa/ios-build-5-2026-09-14.md`.
+
 ## TestFlight build 1.0.0 (4) — archived 11.9.2026, uploaded 13.9.2026
 fixes-r9 (F1–F15, incl. the F11 relative-document-paths data-loss fix) on top of build 3; same recipe, share extension included.
 `modules/read-aloud` and `withStoredNightMode` are Android-only (no-ops on iOS). Record: `docs/qa/ios-build-4-2026-09-13.md`.
