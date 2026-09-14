@@ -5,6 +5,7 @@ interface NativeVault {
   sha256File(path: string): Promise<string>;
   excludeFromBackup(path: string): boolean;
   socModel?(): string | null;
+  usableDiskBytes?(): number;
 }
 
 /** iOS + Android; on the web every call falls back (RAM unknown, hashing done in JS by the caller). */
@@ -26,6 +27,11 @@ export async function sha256File(path: string): Promise<string> {
 /** Android 12+ `Build.SOC_MODEL` ("SM8550"); null elsewhere. */
 export function socModel(): string | null {
   return native?.socModel?.() ?? null;
+}
+
+/** Android: bytes this app may still write (statvfs f_bavail); null where expo's own number is right. */
+export function usableDiskBytes(): number | null {
+  return native?.usableDiskBytes?.() ?? null;
 }
 
 export function excludeFromBackup(path: string): boolean {

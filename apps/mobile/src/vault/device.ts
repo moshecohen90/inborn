@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 import * as Device from "expo-device";
 import { Paths } from "expo-file-system";
 import { androidChipName, chipClassFor, marketingRamGB, type ChipClass, type DeviceClass, type DeviceProfile } from "@inborn/core";
-import { socModel, totalMemoryBytes } from "../../modules/vault-native";
+import { socModel, totalMemoryBytes, usableDiskBytes } from "../../modules/vault-native";
 import { DEV_RAM_GB, devBuild } from "./devFlags";
 
 export interface DeviceInfo extends DeviceProfile {
@@ -38,8 +38,11 @@ export function readDevice(pro = false): DeviceInfo {
 }
 
 export function freeDiskBytes(): number {
+  /* Web has no real filesystem (availableDiskSpace reads 0); OPFS quota is handled by its own door, so free space never gates the web chat (QA R4-F13). */
+  if (Platform.OS === "web") return Number.MAX_SAFE_INTEGER;
   try {
-    return Paths.availableDiskSpace;
+    const bytes = usableDiskBytes() ?? Paths.availableDiskSpace;
+    return typeof bytes === "number" && Number.isFinite(bytes) ? bytes : Number.MAX_SAFE_INTEGER;
   } catch {
     return Number.MAX_SAFE_INTEGER;
   }

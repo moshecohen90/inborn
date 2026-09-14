@@ -6,6 +6,7 @@ import { formatBytes } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
 import { useAppServices } from "../../services/AppServices";
+import { useStorageFull } from "../../services/storageFull";
 import { Mono } from "./primitives";
 import { emitShortcut } from "../../lib/shortcuts";
 import { font } from "../../services/type";
@@ -16,11 +17,12 @@ export function Banners() {
   const { theme } = useTheme();
   const router = useRouter();
   const device = useDeviceState();
+  const storageFull = useStorageFull();
   const { delivery, switchToInstant, switchBack, continueGeneration } = useAppServices();
   const rows: { key: string; tone: "amber" | "danger" | "muted"; text: string; action?: { label: string; onPress: () => void }; icon?: string }[] = [];
 
   const rec = device.recommendation;
-  if (rec.kind === "storageFull")
+  if (rec.kind === "storageFull" || storageFull)
     rows.push({ key: "storage", tone: "amber", icon: "▲", text: t("state.storageFull"), action: { label: t("state.manageStorage"), onPress: () => router.push("/settings/storage") } });
   if (device.thermal === "critical" || (rec.kind === "pause" && rec.reason === "thermal"))
     rows.push({ key: "thermal-critical", tone: "danger", text: t("state.thermalCritical"), action: { label: t("state.continue"), onPress: continueGeneration } });

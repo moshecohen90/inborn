@@ -268,6 +268,8 @@ export class DevicePolicy {
     const mobile = c === "phone" || c === "tablet";
     if (s.thermal === "critical" || m.criticalPending) return "thermalCritical";
     if (s.memoryPressure === "warning" || s.memoryPressure === "critical") return "memory";
+    /* A run started in the foreground is the continue (the row's own button on iOS never reaches the strip, QA R4-F17). */
+    if (m.pausedPending && s.generating && s.backgroundedForMs === null) m.pausedPending = false;
     if (m.pausedPending || (mobile && s.pausedInBackground)) return "paused";
     if (mobile && s.generating && s.backgroundedForMs !== null && s.backgroundedForMs >= this.backgroundGraceMs) return "paused";
     if (s.thermal === "serious") return "thermalSerious";

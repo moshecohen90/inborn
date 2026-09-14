@@ -10,6 +10,7 @@ import {
   loadManifest,
   modelParts,
   pickDefault,
+  isNoSpaceError,
   requiredFreeBytes,
   transition,
   type CatalogManifest,
@@ -23,7 +24,8 @@ import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
 import { fileGgufHeader, fileSha256 } from "./hash";
-import { DEV_MODEL_HOSTS, HttpsDelivery, PausedError } from "./httpsDelivery";
+import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError } from "./httpsDelivery";
+import { reportStorageFull } from "../services/storageFull";
 import { pickModelLocation, type ModelLocation } from "./locate";
 import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vaultDir } from "./paths";
 import { PlayDelivery } from "./playDelivery";
@@ -375,6 +377,10 @@ export class VaultStore {
     } catch (e: unknown) {
       this.lanes.release(id);
       if (e instanceof PausedError) return this.dispatch(id, { type: "pause" });
+      if (e instanceof NoSpaceError || isNoSpaceError(e)) {
+        reportStorageFull();
+        return this.dispatch(id, { type: "no-space", requiredBytes: requiredFreeBytes(model.bytes), freeBytes: freeDiskBytes() });
+      }
       const msg = errorText(e);
       if (msg === "canceled") return this.dispatch(id, { type: "cancel" });
       return this.dispatch(id, { type: "error", error: msg, retryable: msg !== "play-unavailable" });

@@ -1,5 +1,7 @@
 import { File, Paths } from "expo-file-system";
+import { isNoSpaceError } from "@inborn/core";
 import { recoverPrefs } from "./prefsTypes";
+import { onSpaceBack, reportStorageFull } from "./storageFull";
 
 export const PREFS_FILE = "prefs.json";
 /* Written after every successful primary write; read only when prefs.json is missing or does not parse (QA F12). */
@@ -20,8 +22,11 @@ export function readPrefsRaw(): unknown {
   return recoverPrefs(readJson(file()), readJson(backup()));
 }
 
-export function writePrefsRaw(value: unknown): void {
-  const json = JSON.stringify(value);
+/* The value a full disk refused; written by the next call or once the disk has room (QA R4-F13). */
+let unsaved: string | null = null;
+let retryArmed = false;
+
+function writeBoth(json: string): void {
   file().write(json);
   try {
     backup().write(json);
@@ -30,6 +35,35 @@ export function writePrefsRaw(value: unknown): void {
   }
 }
 
+export function writePrefsRaw(value: unknown): void {
+  const json = JSON.stringify(value);
+  try {
+    writeBoth(json);
+    unsaved = null;
+  } catch (e: unknown) {
+    if (!isNoSpaceError(e)) throw e;
+    if (unsaved === null) console.warn("[prefs] disk full, prefs kept in memory until space returns");
+    unsaved = json;
+    reportStorageFull();
+    if (!retryArmed) {
+      retryArmed = true;
+      onSpaceBack(flushUnsaved);
+    }
+  }
+}
+
+function flushUnsaved(): void {
+  if (unsaved === null) return;
+  try {
+    writeBoth(unsaved);
+    unsaved = null;
+    console.log("[prefs] written after the disk had room again");
+  } catch (e: unknown) {
+    if (!isNoSpaceError(e)) console.warn("[prefs] retry failed", e);
+  }
+}
+
 export function deletePrefs(): void {
+  unsaved = null;
   for (const f of [file(), backup()]) if (f.exists) f.delete();
 }

@@ -47,6 +47,9 @@ class VaultNativeModule : Module() {
     }
 
     /* Marketing chip names come from the SoC id (S01 "Runs on"); older Android has no public field, so null. */
+    /* f_bavail, not expo's File.getFreeSpace (f_bfree): the root reserve is not the app's to write, and it read as 144 MB on a disk the app found full (QA R4-F13). */
+    Function("usableDiskBytes") { context.filesDir.usableSpace.toDouble() }
+
     Function("socModel") { if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Build.SOC_MODEL else null }
 
     /* Android excludes app files from backup through dataExtractionRules in the manifest, not per file. */

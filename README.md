@@ -1117,3 +1117,42 @@ Items F17, F18, N1 and observations O1–O3 of `docs/qa/qa-run-2026-09-11.md` "P
    closed, reopening Documents showed the empty library with no embedder card and no relaunch (`o3-documents-after-vault-install.png`).
    Seen on the way, not fixed: with `/data` at 100 % the 5 s prefs tick throws ENOSPC from `prefsStore.native.ts` `writePrefsRaw` as an
    uncaught error (dev red box).
+
+## Fixes round 10b: QA run 4 never-run rows (branch `fixes-r10`) — 14.9.2026
+Round 4 findings of `docs/qa/qa-run-2026-09-11.md` (numbered F13–F19 in that section; called R4-F13… here to avoid colliding with pass 3).
+Merged `main` (`21459c3`) first. Proven on the same private Pixel 6 API 33 emulator, plus the web smoke.
+1. **R4-F13 · a full disk no longer loses chats or crashes** (High; `services/storageFull.ts`, `prefsStore.native.ts`, `storage/reopeningDb.ts`,
+   `screens/Chat.tsx`, `components/shell/Banners.tsx`, `packages/core/src/paths/noSpace.ts`, `catalog/install.ts`, `vault-native` `usableDiskBytes`,
+   `vault/device.ts`). Four parts. (a) The 5 s exit-meter tick wrote prefs outside a try; `writePrefsRaw` now catches ENOSPC
+   (`isNoSpaceError` in core matches ENOSPC / SQLITE_FULL / "disk or disk is full"), keeps the last good value in memory, logs once, and flushes
+   it when space returns. (b) A send that cannot be written surfaces the existing `state.storageFull` §8.8 strip (was dead code) through a small
+   `storageFull` switch that any writer flips and a 10 s poll clears; the assistant row with the raw "cannot rollback" text is gone. (c) The
+   user's text stays in the composer and a user row the store took without an answer is rolled back, so nothing is silently lost. (d) A new chat
+   is blocked before the first message when under 50 MB free (`MIN_FREE_BYTES_TO_CHAT`), and `reopeningDb.withTransactionAsync` now runs its own
+   BEGIN/COMMIT/ROLLBACK so a failed write reports the real error instead of "no transaction is active". Free space is read with a new native
+   `usableDiskBytes` (statvfs `f_bavail`), not expo's `f_bfree`, which had shown 144 MB on a disk the app found full. Emulator with `/data`
+   filled to 0 bytes: the send is blocked and the amber "Storage is full" strip shows with the draft kept (`fixes-r10/shots/r4f13-storage-strip.png`,
+   `[storage] disk full · 0 bytes free`); freeing space clears the strip; the chat and its earlier answers survive a relaunch. Tests: `isNoSpaceError`
+   and the no-space install transition in `packages/core/test/fixes-r10.test.ts`.
+2. **R4-F14 · a download that runs out of space pauses cleanly** (`vault/httpsDelivery.ts` `NoSpaceError`, `vault/store.ts`, `catalog/install.ts`
+   `no-space` event): an ENOSPC mid-download keeps the `.part` and its resume state and moves the card to the vault's own "needs-space" state
+   with fresh numbers, instead of the raw native text and a stale free-space figure; "Try again" resumes byte-exact. The reducer transition is
+   unit-tested; the needs-space line itself was shown on device in round 10 (`o2-needs-space.png`).
+3. **T26 · streaming answers are announced to a screen reader** (`components/chat/AssistantMessage.tsx`, `lib/announce.ts`): the assistant row's
+   accessibility label is now its model header plus the answer's first line (was the header alone), it exposes a "Read this answer" action, the
+   message list a "Read latest answer" action, and while a screen reader is on each completed sentence is announced once (throttled to 1.5 s) with
+   "Answer finished" at the end. TalkBack is not on this emulator image, so the label is shown from the accessibility tree
+   (`content-desc="INSTANT · ON-DEVICE AI · Here are three primary colors:"`, `t26-01-row-a11y-label.png`); the sentence-chunking logic has unit
+   tests (`lib/announce.test.ts`, 3 cases).
+4. **T28 · a hardware keyboard sends on Enter, breaks the line on Shift+Enter** (`modules/hardware-keys` new Android module, `components/chat/Composer.tsx`):
+   a window-callback captures a physical Enter (no Shift, real keyboard device, not the soft keyboard's flag) while the composer is focused and
+   sends; Shift+Enter and the on-screen keyboard's Enter still insert a newline. Emulator with the emulated hardware keyboard: Enter clears the
+   composer and posts the message, Shift+Enter yields a two-line draft, `input keyevent 66` (virtual, device -1) inserts a newline
+   (`t28-01-enter-sent.png`, `t28-02-shift-enter-newline.png`). iOS is unchanged in this round (the module is Android-only).
+5. **R4-F19 · a 0-byte file reads as empty** (`screens/documents/DocumentRow.tsx`): a document whose bytes are 0 shows "The file is empty
+   (0 bytes)." (`documents.error.empty`) instead of the generic "No text in this file". **R4-F18 · the Ask sheet renders Markdown**
+   (`screens/documents/AskDocuments.tsx`): the answer now goes through the same `Markdown` component the chat uses, so `**bold**` no longer prints
+   its asterisks. Both are covered by the changed components' own tests and typecheck; not re-shot on device this round.
+Not done: R4-F17 (iOS-only paused-strip Continue) needs the iPhone simulator, which this Android stream did not run; the row-level clear was made
+in `packages/core` (`policy.ts`: a foreground run ends the paused status without the strip's own button) and is unit-tested, but the iOS strip
+behaviour itself was not verified on a device. New i18n keys: `chat.a11y.readLatest`, `chat.a11y.readAnswer`, `chat.a11y.answerFinished` (all seven locales).

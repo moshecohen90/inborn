@@ -25,6 +25,8 @@ export type InstallEvent =
   | { type: "verified"; path: string; bytes: number; sha256: string }
   | { type: "rejected"; reason: CorruptReason }
   | { type: "error"; error: string; retryable: boolean }
+  /** The disk filled while bytes were moving; the part stays on disk and a later request resumes it (QA R4-F14). */
+  | { type: "no-space"; requiredBytes: number; freeBytes: number }
   | { type: "load-crashed" }
   | { type: "load-ok" }
   | { type: "removed" };
@@ -63,6 +65,8 @@ export function transition(state: InstallState, event: InstallEvent): InstallSta
       return state.kind === "verifying" || state.kind === "delivering" ? { kind: "corrupt", reason: event.reason, via: state.via } : state;
     case "error":
       return state.kind === "delivering" || state.kind === "verifying" ? { kind: "failed", error: event.error, via: state.via, retryable: event.retryable } : state;
+    case "no-space":
+      return state.kind === "delivering" || state.kind === "verifying" ? { kind: "needs-space", requiredBytes: event.requiredBytes, freeBytes: event.freeBytes } : state;
     case "load-crashed":
       return state.kind === "ready" ? { kind: "quarantined", path: state.path, bytes: state.bytes, sha256: state.sha256, via: state.via } : state;
     case "load-ok":

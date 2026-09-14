@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 import { DownloadTask, File, type DownloadPauseState, type DownloadTaskOptions } from "expo-file-system";
-import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, modelParts, requestBytes, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
+import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, isNoSpaceError, modelParts, requestBytes, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
 import type { DeliveryContext, DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODEL_HOST, devBuild } from "./devFlags";
 import { hfHeaders, hfSearchAvailable } from "./hf";
@@ -17,6 +17,12 @@ const isHf = (model: CatalogModel): boolean => model.delivery.some((d) => d.kind
 const hostOf = (url: string): string => new URL(url).hostname;
 
 type SavedDownload = DownloadPauseState & { etag?: string };
+
+export class NoSpaceError extends Error {
+  constructor() {
+    super("no-space");
+  }
+}
 
 export class PausedError extends Error {
   constructor() {
@@ -90,6 +96,17 @@ export class HttpsDelivery implements ModelDelivery {
         this.ctx.saveDownload(model.id, { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() });
         throw new PausedError();
       }
+    } catch (e: unknown) {
+      /* A full disk is a pause with a reason: the part and the resume state stay so "Try again" continues from the same byte (QA R4-F14). */
+      if (isNoSpaceError(e)) {
+        try {
+          this.ctx.saveDownload(model.id, { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() });
+        } catch {
+          /* the record is best effort on a disk this full */
+        }
+        throw new NoSpaceError();
+      }
+      throw e;
       this.ctx.saveDownload(model.id, null);
       this.finish(shard, part);
     } finally {
