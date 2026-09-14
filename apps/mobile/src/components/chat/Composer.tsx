@@ -1,4 +1,4 @@
-import { useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf } from "@inborn/core";
@@ -6,6 +6,7 @@ import { Icon, radius } from "@inborn/ui";
 import { useFontScale, useTheme } from "../../lib/theme";
 import { useType } from "../../services/type";
 import { DISABLED_OPACITY } from "../shell/primitives";
+import { captureHardwareEnter } from "../../../modules/hardware-keys";
 
 interface ComposerProps {
   value: string;
@@ -41,6 +42,15 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
   const canSend = !!value.trim() && !disabled && !busy;
+  /* A physical keyboard's Enter sends while the field has focus; Shift+Enter still breaks the line (QA T28). Latest props through a ref: the capture is armed once per focus. */
+  const enter = useRef({ canSend, onSend });
+  enter.current = { canSend, onSend };
+  useEffect(() => {
+    if (!focused) return;
+    return captureHardwareEnter(() => {
+      if (enter.current.canSend) enter.current.onSend();
+    });
+  }, [focused]);
   const listening = mic === "listening";
   const micBusy = mic === "starting" || mic === "transcribing";
   return (

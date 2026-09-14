@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from "react";
-import { Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { citationsForAnswer, directionOf, type ChatMessage } from "@inborn/core";
 import { Citations } from "../../documents/Citations";
@@ -9,6 +9,7 @@ import { Ledger } from "./Ledger";
 import { Markdown } from "./Markdown";
 import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
+import { firstLineForSpeech, nextAnnouncement } from "../../lib/announce";
 
 export type AssistantRow = ChatMessage & { streaming?: boolean; error?: string; loop?: boolean };
 
@@ -29,9 +30,23 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
   const [showReasoning, setShowReasoning] = useState(false);
   const dir = directionOf(row.content || row.reasoning || "");
   const waiting = !!row.streaming && !row.content && !row.reasoning;
+  const header = t("chat.modelLabel", { model: modelLabel(row.modelId ?? "") });
+  useStreamAnnouncements(row);
+  const firstLine = firstLineForSpeech(row.content);
   return (
-    <Pressable testID="assistant-message" onLongPress={onLongPress} delayLongPress={350} accessibilityRole="text" style={styles.root}>
-      <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chat.modelLabel", { model: modelLabel(row.modelId ?? "") })}</Text>
+    <Pressable
+      testID="assistant-message"
+      onLongPress={onLongPress}
+      delayLongPress={350}
+      accessibilityRole="text"
+      accessibilityLabel={firstLine ? `${header} · ${firstLine}` : header}
+      accessibilityActions={[{ name: "readAnswer", label: t("chat.a11y.readAnswer") }]}
+      onAccessibilityAction={(e) => {
+        if (e.nativeEvent.actionName === "readAnswer" && row.content) AccessibilityInfo.announceForAccessibility(row.content);
+      }}
+      style={styles.root}
+    >
+      <Text style={[type.monoLabel, { color: theme.text3 }]}>{header}</Text>
       {row.reasoning ? (
         <Pressable testID="reasoning-toggle" accessibilityRole="button" accessibilityState={{ expanded: showReasoning }} onPress={() => setShowReasoning((s) => !s)} style={styles.reasoningToggle}>
           <Icon name={showReasoning ? "chevronDown" : "chevronRight"} size={14} color={theme.text3} />
@@ -66,6 +81,56 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
     </Pressable>
   );
 });
+
+const ANNOUNCE_MIN_MS = 1500;
+
+/* A live region would re-read the whole growing answer at every token; a screen reader hears each finished sentence once, at most every 1.5 s, and "Answer finished" at the end (QA T26). */
+function useStreamAnnouncements(row: AssistantRow): void {
+  const { t } = useTranslation();
+  const announcedUpTo = useRef(0);
+  const lastAt = useRef(0);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const streamed = useRef(false);
+  const [reader, setReader] = useState(false);
+  useEffect(() => {
+    void AccessibilityInfo.isScreenReaderEnabled().then(setReader);
+    const sub = AccessibilityInfo.addEventListener("screenReaderChanged", setReader);
+    return () => sub.remove();
+  }, []);
+  useEffect(() => {
+    if (!reader) return;
+    if (row.streaming) {
+      streamed.current = true;
+      const next = nextAnnouncement(row.content, announcedUpTo.current);
+      if (!next || timer.current) return;
+      const fire = () => {
+        timer.current = null;
+        const chunk = nextAnnouncement(row.content, announcedUpTo.current);
+        if (!chunk) return;
+        announcedUpTo.current = chunk.upTo;
+        lastAt.current = Date.now();
+        if (chunk.text) AccessibilityInfo.announceForAccessibility(chunk.text);
+      };
+      const wait = ANNOUNCE_MIN_MS - (Date.now() - lastAt.current);
+      if (wait <= 0) fire();
+      else timer.current = setTimeout(fire, wait);
+      return;
+    }
+    if (!streamed.current) return;
+    streamed.current = false;
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    const rest = nextAnnouncement(`${row.content}\n`, announcedUpTo.current)?.text ?? "";
+    announcedUpTo.current = row.content.length;
+    AccessibilityInfo.announceForAccessibility(rest ? `${rest} ${t("chat.a11y.answerFinished")}` : t("chat.a11y.answerFinished"));
+  }, [reader, row.content, row.streaming, t]);
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
+}
 
 function CitationChips({ content, citations }: { content: string; citations: NonNullable<ChatMessage["citations"]> }) {
   const { shown, cited } = citationsForAnswer(content, citations);

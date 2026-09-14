@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { NOT_FOUND_TOKEN, type Citation, type DocumentRecord, type Session } from "@inborn/core";
+import { NOT_FOUND_TOKEN, directionOf, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { modelLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
+import { Markdown } from "../../components/chat/Markdown";
 import { canCiteMarkers, getLibrary } from "../../documents/library";
 import { font } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
@@ -153,10 +154,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           {answer ? (
             <View style={styles.assistant}>
               <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: modelLabel(model.id) })}</Text>
-              <Text testID="ask-answer" style={[styles.body, { color: theme.text }]}>
-                {answer}
-                {phase.kind === "answering" ? <Text style={{ color: theme.text2 }}>▍</Text> : null}
-              </Text>
+              <Markdown testID="ask-answer" source={answer} direction={directionOf(answer)} caret={phase.kind === "answering"} />
             </View>
           ) : null}
           {phase.kind === "done" && !notFound ? <Citations citations={citations.shown} cited={citations.cited} /> : null}

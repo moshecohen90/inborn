@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -46,6 +46,7 @@ import {
   type Usage,
   reportText,
   type Delta,
+  isNoSpaceError,
 } from "@inborn/core";
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
@@ -58,6 +59,7 @@ import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
 import { UserMessage } from "../components/chat/UserMessage";
 import { Composer } from "../components/chat/Composer";
+import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
 import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, useRedaction } from "../documents";
@@ -153,6 +155,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
   const stopReason = useRef<StoppedBy | "loop" | null>(null);
+  const noSpace = useRef(false);
   const chatRef = useRef<string | null>(chatId);
   const list = useRef<FlatList<Row>>(null);
   const nearBottom = useRef(true);
@@ -443,8 +446,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: reason === "loop" } : x)));
       }
     } catch (e: unknown) {
-      const error = errorText(e);
-      patch((x) => ({ ...x, streaming: false, error }));
+      /* A full disk is the strip's news, never an assistant row: the unsaved answer leaves with its pending row (QA R4-F13). */
+      if (isNoSpaceError(e)) {
+        reportStorageFull();
+        noSpace.current = true;
+        if (existingMessageId) patch((x) => ({ ...x, streaming: false }));
+        else setRows((all) => all.filter((x) => x.id !== targetId));
+      } else {
+        const error = errorText(e);
+        patch((x) => ({ ...x, streaming: false, error }));
+      }
     } finally {
       abort.current = null;
       setBusy(false);
@@ -463,7 +474,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const submit = async (input: string) => {
     const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
     if (!text || !session.current || busy) return;
+    if (!chatRef.current && chatBlockedByStorage()) return;
     setDraft("");
+    noSpace.current = false;
+    let userId: string | null = null;
     const editing = editingId;
     setEditingId(null);
     if (detectCrisis(text)) setSafety(crisisResources(getLocales()[0]?.regionCode ?? undefined));
@@ -478,6 +492,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const images = pendingImages.map((p) => storedImagePath(p.uri));
       setPendingImages([]);
       const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text, ...(images.length ? { images } : {}) });
+      userId = user.id;
       const pendingId = `pending-${Date.now()}`;
       setRows((all) => [...all, user, { id: pendingId, chatId: chatIdNow, role: "assistant", content: "", modelId: model.id, createdAt: Date.now(), streaming: true }]);
       nearBottom.current = true;
@@ -485,7 +500,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
       const history: Message[] = wire(rowsRef.current).map(toMessage);
       await generate(chatIdNow, history, pendingId, "");
+      if (noSpace.current) throw new Error("no-space");
     } catch (e: unknown) {
+      if (noSpace.current || isNoSpaceError(e)) {
+        /* The turn comes back to the composer whole; a user row the store took without its answer goes (best effort on a disk this full). */
+        reportStorageFull();
+        if (userId) {
+          const id = userId;
+          setRows((all) => all.filter((x) => x.id !== id));
+          if (chatRef.current) void store.deleteMessagesFrom(chatRef.current, id).catch(() => undefined);
+        }
+        setDraft(input);
+        setBusy(false);
+        return;
+      }
       flash(errorText(e));
       /* A message the store could not take stays in the composer instead of vanishing with the toast (QA F15). */
       if (!rowsRef.current.some((r) => r.role === "user" && r.content === text)) setDraft(input);
@@ -953,6 +981,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         onLayout={onListLayout}
         scrollEventThrottle={64}
         keyboardShouldPersistTaps="handled"
+        accessibilityActions={[{ name: "readLatest", label: t("chat.a11y.readLatest") }]}
+        onAccessibilityAction={(e) => {
+          if (e.nativeEvent.actionName === "readLatest" && lastAssistant?.content) AccessibilityInfo.announceForAccessibility(lastAssistant.content);
+        }}
         /* iOS only, for the floating-bar inset; pinning index 0 while the list is empty would cancel it (QA B10), and on Android the pin holds the view in place while an answer streams. */
         maintainVisibleContentPosition={rows.length && Platform.OS === "ios" ? { minIndexForVisible: 0 } : undefined}
         /* The user's own drag decides whether the answer is followed (§9.6, 100 px): the animated send scroll lands short while the new cells are unmeasured, so `nearBottom` alone goes stale. */

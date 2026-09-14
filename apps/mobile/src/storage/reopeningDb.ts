@@ -28,8 +28,18 @@ export class ReopeningDatabase {
   }
 
   /** The body gets the raw handle: statements inside must not reopen half way, the whole body reruns instead. */
+  /* Not expo's withTransactionAsync: SQLite already rolled back a write that hit a full disk, and its unconditional ROLLBACK then replaced the real error with "cannot rollback - no transaction is active" (QA R4-F13). */
   withTransactionAsync(task: (db: Db) => Promise<void>): Promise<void> {
-    return this.handle.run((db) => db.withTransactionAsync(() => task(db)));
+    return this.handle.run(async (db) => {
+      await db.execAsync("BEGIN");
+      try {
+        await task(db);
+        await db.execAsync("COMMIT");
+      } catch (e: unknown) {
+        await db.execAsync("ROLLBACK").catch(() => undefined);
+        throw e;
+      }
+    });
   }
 
   /** Waits for in-flight statements before the native close (QA F18); nothing runs on this repository afterwards. */

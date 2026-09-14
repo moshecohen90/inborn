@@ -41,7 +41,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
       case "cancelled":
         return { text: t("documents.state.cancelled", { page: doc.indexedPages, pages: doc.pages }), color: theme.text2 };
       case "empty":
-        return { text: t("documents.state.empty"), color: theme.danger };
+        return { text: t(doc.bytes === 0 ? "documents.error.empty" : "documents.state.empty"), color: theme.danger };
       case "failed":
         return { text: t(`documents.error.${doc.error ?? "corrupt"}`, { defaultValue: t("documents.state.failed", { error: doc.error ?? "" }) }), color: theme.danger };
     }
