@@ -1,4 +1,4 @@
-# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3, 4 and 5
+# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 6
 
 Branch `purchases-verify` (merged with `main` at 0e4dba0). Continues `purchases-run-2026-09-06.md` (Play purchase proven on the OnePlus 11, ASC products READY_TO_SUBMIT).
 Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/purchases-r2/` (file names below; copy before the session directory is cleaned).
@@ -14,6 +14,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | F. Both new Android surfaces on the real Play build (6T updated to (4) by Play) | DONE: share text from the system share sheet → Inborn quick-actions sheet → Fix grammar; select text in Google Docs → ⋮ → **Ask Inborn** → Fix grammar → **Replace** → the corrected text is back in Docs' field |
 | G. Play internal release versionCode 5 (main 07bc402, fixes-r9) + launch check on the 6T | DONE: AAB 1,870,567,596 bytes, 9 permissions, no INTERNET, "1.0.0 (5) internal"; the Play update on the 6T opens straight to the chat screen, no onboarding (F12 on the real device) |
 | H. vc5 sanity on the 6T (13.9, MosheAI ask after fixes-r9 touched storage) | DONE: chat + follow-up survive `am force-stop`, Vault / Settings / Proof (OUT 0 B) open, logcat has no `[storage]`, `[prefs]`, ANR or crash line |
+| I. Play internal release versionCode 6 (main 70e1cfa, fixes-r10 incl. hardware-keys) + 6T sanity (14.9) | DONE: AAB 2,092,019,571 bytes, 9 permissions, no INTERNET, "1.0.0 (6) internal"; on the 6T: Instant answer, assistant row a11y label carries the answer, soft Enter newlines + Send, Fast pack delivered by Play (25 chunks, FAST loaded), YOU OWN PRO + "Purchase restored" |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -183,6 +184,36 @@ Logcat (whole session, 21:58–22:06): `[storage]` 0 lines, `[prefs]` 0 lines, "
 09-13 22:01:03.693 ReactNativeJS: [inborn] llama.rn loaded …/inborn_model/5/5/assets/Qwen3.5-0.8B-Q4_K_M.gguf in 1606 ms
 ```
 
+## I. Play internal release versionCode 6 (fixes-r10) and the sanity run on the 6T — 14.9.2026 03:43–03:53, 07:52–08:03
+
+Built from `main` 70e1cfa (fixes-r10 rounds 10/10b/10c; `main` 5bb8b64 merged afterwards adds only a docs/qa file, so the uploaded bundle is code-identical to it). **Clean prebuild** (`rm -rf android` first, mandatory because round 10b added the native module `modules/hardware-keys`, which an incremental prebuild leaves out of the module registry), `INBORN_PACKS=instant,fast INBORN_VERSION_CODE=6`, `scripts/check-store-env.sh` clean, then `bundleRelease --no-daemon` in `~/.gradle-pr2` with `-Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` from the start (the G trap): BUILD SUCCESSFUL in 2m 25s, no xcodebuild at any time.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, 2,092,019,571 bytes |
+| sha256 | `847bac90ce3e288ef58863b687503e1d8f31ad493679bb31b4f40b45fb6142c8` |
+| `bundletool validate` | OK; `inborn_model` fast-follow (532,517,120 B) + `inborn_model_fast` on-demand (1,280,835,840 B) |
+| manifest | versionCode 6, versionName 1.0.0; 9 `uses-permission`, no INTERNET; `modules/hardware-keys` has an empty manifest (adds nothing) |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, **HardwareKeys**, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| upload | edit `00845605017362204929`, bundle versionCode 6 (sha256 matches), track `internal` **"1.0.0 (6) internal"** `completed`, committed 03:53 |
+
+**6T update and sanity** (evidence `6t/58-play-vc6.png` … `68-home.png`, log `6t/logcat-i.txt`; launcher before and after, no other stream on the phone): Play showed "Update" (07:52), pressed by keyboard focus, `versionCode=6` installed by `com.android.vending` 07:54:35.
+
+| step | result | evidence |
+|---|---|---|
+| cold launch → "What is the capital of France" | **INSTANT · ON-DEVICE AI — "The capital of France is Paris."** | `60-vc6-answer.png` |
+| assistant row a11y label (`uiautomator dump`, `resource-id="assistant-message"`) | `content-desc="INSTANT · ON-DEVICE AI · The capital of France is Paris."` — the answer's first line is in the label | dump in this section |
+| soft Enter in the composer | `input keyevent KEYCODE_ENTER` (virtual device, so `HardwareKeysModule.isHardware()` is false, same path as the on-screen keyboard's Enter): composer text became `line one⏎` and then `line one⏎line two`, field grew to two lines; no send happened. No physical keyboard on the 6T, so the hardware-Enter path itself is not testable here | `61-vc6-enter.png` |
+| Send on the two-line message | sent (composer empty), answer streamed (the 0.8B model riffed on "Line one / Line two" as names, expected for such input) | `62-vc6-two-line-sent.png` |
+| Vault → FAST → "Install · 1.2 GB from Google Play" | first press opens the confirm sheet **"Download Fast? Google Play will download 1.2 GB. Inborn itself opens no connection."** (Cancel / Download); Download → "Delivering FAST · 10% of 1.19 GB", `model-status-fast` "10% · 122 MB of 1.2 GB" with Cancel | `64-vc6-fast-press.png`, `64-vc6-fast-delivering.png` |
+| Fast delivered | PlayCore `Extraction finished for chunk 0 … 24 of slice inborn_model_fast … session 9` (08:01:38–08:02:40), `AssetPackServiceImpl : notifyModuleCompleted` 08:02:44, `[inborn] engine model fast from …/assetpacks/inborn_model_fast/6/6/assets/Qwen3.5-2B-Q4_K_M.gguf`, `llama.rn loaded model FAST` 08:02:48; vault "1.7 GB in the vault · 17 GB free", Instant **Installed**, Fast **Loaded**. About 2 min on Wi-Fi, no wake-lock line for the app | `67-vc6-fast-done.png` |
+| paywall (`inborn://paywall`) | **YOU OWN PRO**, Work card "PRO FOR WORK · ₪149.90 · one-time purchase · Upgrade to Work" | `65-vc6-paywall.png` |
+| Restore purchases | **"Purchase restored"** (`paywall-status`) | `66-vc6-restore.png` |
+| HOME | launcher, 1.0.0 (6) installed with both packs | `68-home.png` |
+
+Logcat for the whole sanity (07:54–08:03): `[storage]` 0, `[prefs]` 0, "ANR in" 0, "FATAL EXCEPTION" 0, no wake-lock line for the app.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -193,4 +224,4 @@ Logcat (whole session, 21:58–22:06): `[storage]` 0 lines, `[prefs]` 0 lines, "
 
 ## Devices, processes
 
-iPhone: only `com.inbornapp.mobile` (proof bundles, 5 installs) and `com.inbornapp.mobile.uitests.xctrunner` (once, Task D) installed, both uninstalled at the end; exceptions, each once and documented: `AppStore` and `PassbookUIService` killed to dismiss the stuck sandbox sheet (Task A), the DDI's `testmanagerd` killed to clear the UI-Automation passcode prompt (Task D, lead's decision); later Moshe himself enabled UI Automation (left on); nothing typed by me, phone on the home screen with no sheet or prompt (`12-final-phone.png`, 14:21). No simulator, emulator or Metro started. 6T at the end: only `com.inbornapp.mobile` (Play, versionCode 5) installed, the accessibility driver uninstalled, launcher home screen. xcodebuild and gradle ran one after the other, never together; gradle with `--no-daemon` in `GRADLE_USER_HOME=~/.gradle-pr2` (APFS clone).
+iPhone: only `com.inbornapp.mobile` (proof bundles, 5 installs) and `com.inbornapp.mobile.uitests.xctrunner` (once, Task D) installed, both uninstalled at the end; exceptions, each once and documented: `AppStore` and `PassbookUIService` killed to dismiss the stuck sandbox sheet (Task A), the DDI's `testmanagerd` killed to clear the UI-Automation passcode prompt (Task D, lead's decision); later Moshe himself enabled UI Automation (left on); nothing typed by me, phone on the home screen with no sheet or prompt (`12-final-phone.png`, 14:21). No simulator, emulator or Metro started. 6T at the end: only `com.inbornapp.mobile` (Play, versionCode 6, Instant + Fast packs) installed, the accessibility driver uninstalled, launcher home screen. xcodebuild and gradle ran one after the other, never together; gradle with `--no-daemon` in `GRADLE_USER_HOME=~/.gradle-pr2` (APFS clone).
