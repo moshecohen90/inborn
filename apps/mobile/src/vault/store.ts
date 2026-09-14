@@ -58,6 +58,7 @@ export class VaultStore {
   private delivery: ModelDelivery;
   private booted: Promise<void> | null = null;
   private lanes = new DeliveryLanes();
+  private spacePoll: ReturnType<typeof setInterval> | null = null;
 
   constructor(manifest: CatalogManifest = BUNDLED_MANIFEST, device?: DeviceInfo) {
     const check = loadManifest(manifest);
@@ -106,7 +107,20 @@ export class VaultStore {
 
   private set(id: string, state: InstallState): void {
     this.states.set(id, state);
+    if (state.kind === "needs-space" && !this.spacePoll) this.spacePoll = setInterval(() => this.recheckSpace(), SPACE_POLL_MS);
     this.notify();
+  }
+
+  /** "Free up N" follows the disk: the line updates or clears as space comes back, without another Install tap (QA O11). */
+  recheckSpace(): void {
+    const ids = [...this.states].filter(([, s]) => s.kind === "needs-space").map(([id]) => id);
+    if (!ids.length) {
+      if (this.spacePoll) clearInterval(this.spacePoll);
+      this.spacePoll = null;
+      return;
+    }
+    const freeBytes = freeDiskBytes();
+    for (const id of ids) this.dispatch(id, { type: "space-check", freeBytes });
   }
 
   private dispatch(id: string, event: InstallEvent): InstallState {
@@ -465,7 +479,7 @@ export class VaultStore {
     if (freeDiskBytes() < requiredFreeBytes(bytes)) return { ok: false, reason: "no-space" };
     try {
       safeDelete(dest);
-      source.copy(dest);
+      await source.copy(dest);
     } catch (e: unknown) {
       console.warn("[vault] import copy failed", e);
       return { ok: false, reason: "copy-failed" };
@@ -553,6 +567,7 @@ export function importedAsModel(imp: ImportedModel): CatalogModel {
 }
 
 const PROGRESS_TICK_MS = 500;
+const SPACE_POLL_MS = 5_000;
 
 const errorText = (e: unknown): string => (e instanceof Error ? e.message : String(e));
 

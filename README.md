@@ -1156,3 +1156,26 @@ Merged `main` (`21459c3`) first. Proven on the same private Pixel 6 API 33 emula
 Not done: R4-F17 (iOS-only paused-strip Continue) needs the iPhone simulator, which this Android stream did not run; the row-level clear was made
 in `packages/core` (`policy.ts`: a foreground run ends the paused status without the strip's own button) and is unit-tested, but the iOS strip
 behaviour itself was not verified on a device. New i18n keys: `chat.a11y.readLatest`, `chat.a11y.readAnswer`, `chat.a11y.answerFinished` (all seven locales).
+
+### Fixes round 10b, part 2: QA pass-4a observations O9–O11 (`fixes-r10`)
+
+1. **O9 · Documents follows a removal too** (`documents/embedder.native.ts`, `documents/library.ts`): `watchEmbedder` now fires whenever the
+   index model's ready path changes (installed *or* removed from the vault, any screen), the library re-resolves on every such change and
+   unloads the embedder that left; `resolveEmbedder` also refuses a "ready" vault entry whose file is gone. Emulator, one process (pid 6504):
+   Documents with no card → Model vault › Details › Remove → Documents shows "DOCUMENT INDEX MODEL · Install · 262 MB" again
+   (`o9-01-documents-ready-no-card.png`, `o9-03-documents-card-after-removal.png`).
+2. **O11 · "Free up N" follows the disk** (`packages/core/catalog/install.ts` new `space-check` event, `vault/store.ts` `recheckSpace()`,
+   `DocumentsScreen.tsx`, `VaultScreen.tsx`): while any model sits in `needs-space` the store re-reads the free bytes every 5 s (one statfs) and
+   both screens re-check on mount; the line updates its number while space is still short and clears to a plain Install once there is room.
+   Emulator: `/data` filled to 1.0 GB free → Install tap → "Free up 1.25 GB" on the Documents card / "Free up 1.3 GB" on the vault card; fill
+   removed → both lines gone within 2–4 s with no tap and no navigation (`o11-01-documents-needs-space.png`, `o11-02-documents-cleared-same-screen.png`,
+   `o11-03-vault-needs-space.png`, `o11-04-vault-cleared.png`).
+3. **O10 · the verify-after-download ENOENT** (`vault/httpsDelivery.ts`): found. SDK 57's `File.move()` returns a promise; `finish()` called it
+   without awaiting, so the hash could open the final path before the rename settled on a busy disk (the fill had just been deleted in the
+   QA run). The rename is awaited now. The same review found a worse regression from round 10b's own R4-F14 edit: the `.part` → final rename and
+   the resume-record reset had landed after a `throw` inside the new catch block, so no HTTPS download could ever verify. Both fixed; the
+   repo now compiles with `allowUnreachableCode: false` (`tsconfig.base.json`, `apps/mobile/tsconfig.json`), which flags that shape as a
+   typecheck error (verified: the round 10b file fails with TS7027, the fixed one passes). Emulator: two full 262 MB installs (Documents card
+   and vault card) end `[vault] embed-nomic ready · verified in 839 / 770 ms`, `files/models` holds the final file and no `.part`
+   (`o10-01-vault-ready.png`, `o10-02-documents-no-card.png`). `vault/store.ts` `importFile` awaits `File.copy()` for the same reason.
+Tests: `packages/core/test/fixes-r10.test.ts` (+2, `space-check`), `apps/mobile/src/documents/watchEmbedder.test.ts` (new, 1). No new i18n keys.

@@ -78,3 +78,16 @@ describe("policy: the row's Continue clears the paused strip (QA R4-F17)", () =>
     expect(p.update(signals({ generating: true, backgroundedForMs: 17_000 }), o, 2).status).toBe("paused");
   });
 });
+
+describe("install: needs-space follows the disk (QA O11)", () => {
+  const GB = 1024 ** 3;
+  const needs: InstallState = { kind: "needs-space", requiredBytes: 3 * GB, freeBytes: 2 * GB };
+  it("clears to not-installed once the device has room, and refreshes the number while it has not", () => {
+    expect(transition(needs, { type: "space-check", freeBytes: 3 * GB })).toBe(NOT_INSTALLED);
+    expect(transition(needs, { type: "space-check", freeBytes: 2.5 * GB })).toEqual({ kind: "needs-space", requiredBytes: 3 * GB, freeBytes: 2.5 * GB });
+  });
+  it("leaves every other state alone", () => {
+    const ready: InstallState = { kind: "ready", path: "/x", bytes: 1, sha256: "a", via: "https" };
+    for (const s of [NOT_INSTALLED, ready]) expect(transition(s, { type: "space-check", freeBytes: 0 })).toBe(s);
+  });
+});

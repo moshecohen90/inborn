@@ -55,6 +55,8 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     void library.ready();
   }, [library]);
 
+  useEffect(() => vault.recheckSpace(), [vault]);
+
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(null), 4000);
