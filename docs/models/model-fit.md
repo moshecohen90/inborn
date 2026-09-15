@@ -54,7 +54,7 @@ here needs `node scripts/sign-catalog.mjs`.
 | math | good | Strong only in thinking mode (Qwen3.5 card AIME/MATH split); non-thinking is good, not best. |
 | en, zh | native | As above. |
 | es, fr, de, pt, it, ja, ko, ru, ar | good | Qwen3.5 card multilingual table for 4B. |
-| he | good | The only catalog model whose Hebrew is fluent enough to rely on (v1 catalog already listed it; spot checks on the 4B at Q4). This is the judgement the Hebrew recommendation rests on and the least certain "good" in the map: a dedicated Hebrew model (spec §7.8 names DictaLM) would beat it. |
+| he | basic | **Downgraded from good on 15.9.2026** after the on-device spot check below: better than Fast (on topic, mostly readable) but not fluent; every one of three prompts had a garbled clause or a wrong meaning. No catalog model is `good` at Hebrew until a dedicated one (spec §7.8 names DictaLM) enters the catalog. |
 
 ## Sharp (Phi) · Phi-4-mini-instruct Q4_K_M (2.49 GB)
 
@@ -69,9 +69,28 @@ here needs `node scripts/sign-catalog.mjs`.
 | zh, ja, ko, ru, ar, he | basic | Listed as supported by the card, but the card itself warns of lower quality outside English; Hebrew is on the list, hence basic rather than none. |
 | vision | – | No image input (`vision: false`). |
 
+## Sharp · Hebrew spot check (15.9.2026, round 11b)
+
+Pixel_6_API_33 emulator, 7.6 GB guest RAM, CPU only, Sharp = Qwen3.5-4B Q4_K_M from the local model server, non-thinking mode,
+three prompts sent through `Documents/dev-prompt.txt`. Screenshots in `docs/models/fit-check/`.
+
+| Prompt | What came back | Verdict |
+|---|---|---|
+| A paragraph: כתוב פסקה של כ-100 מילים על החשיבות של שינה טובה לבריאות (`he-paragraph.png`) | On topic, right length, mostly readable. Grammar slips: "מתייצב הורמונים", "המוח מנקות את חומרים", the non-word "לנירמון", the Anglicism "הקונצנטרציה"; the closing sentence is nonsense ("והצבת גיבוי של מקלחת מידע, היא אחד המדעי החשובים"). | Readable, not fluent. |
+| A question with a list: מהם היתרונות של לימוד שפה חדשה? ענה ברשימה של חמישה יתרונות (`he-list.png`) | Correct format, five numbered items. Items 1–3 are fine ("מחשבת ביקורתית" should be "חשיבה ביקורתית"); item 4 is nonsense ("הופכת את החיים לקולניים ופונקציונליים יותר"); item 5 ends in a non-word ("האומה המטרתנית"). | 3 of 5. |
+| A short translation to Hebrew: "The meeting was moved to Thursday morning because two of the managers are traveling. Please confirm that the new time works for you." (`he-translate.png`) | "האישור עבר למחרת בבוקר מכיוון ששנה מתכנסים נוסעים. אנא תאשר שהזמן החדש מתאים לך." The first sentence changes the meaning (meeting → confirmation, Thursday → the next morning, "two managers" → "a year gathering travellers"); the second is correct. | Wrong meaning in 1 of 2 sentences. |
+
+Speed: 4.5 tok/s, TTFT 6.5–25 s on this emulator (CPU only; a real 8 GB phone runs the 4B faster).
+
+**Verdict: not reliably good.** Sharp is clearly better than Fast in Hebrew (Fast drifts and errs more, Instant is gibberish:
+`he-instant-card.png`), but a user who relies on it will get a wrong translation or a garbled sentence in every few replies.
+Catalog v2 therefore rates Sharp `he: basic`, the chat card says "FAST handles Hebrew better than INSTANT, but not fluently."
+and the vault tag says "NOTHING ON THIS PHONE IS GOOD AT CHAT IN HEBREW · CLOSEST: FAST" instead of RECOMMENDED. Re-run
+this check when a Hebrew-tuned model (DictaLM-class) or a larger Qwen quant enters the catalog.
+
 ## Least certain judgements (for review)
 
-1. Sharp · Hebrew `good` (a dedicated Hebrew model would be better; keep until one enters the catalog).
+1. Sharp · Hebrew `basic` (spot-checked above; a native speaker may judge some replies acceptable, but "good" would promise fluency the model does not deliver).
 2. Fast · Arabic `good` (borderline with basic at Q4).
 3. Instant · Japanese and Korean `basic` (downgraded from the v1 "good" list; a native speaker should confirm).
 4. Phi · European languages `good` (the card's multilingual numbers are aggregates, not per language).

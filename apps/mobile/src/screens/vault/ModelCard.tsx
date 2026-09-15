@@ -7,6 +7,7 @@ import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { modelLabel } from "../../lib/models";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -16,7 +17,8 @@ export interface ModelCardProps {
   theme: Theme;
   recommended: boolean;
   /** Why the RECOMMENDED tag sits here (§7.8): the use and language it was chosen for. */
-  recommendedFor?: { use: UseCase; languageCode: string };
+  /** `weak`: even this top pick is basic/none or weak for the pair; the tag then says so and names this card as the closest. */
+  recommendedFor?: { use: UseCase; languageCode: string; weak?: boolean };
   active: boolean;
   /** Greyed row in the "Too big" group; no actions. */
   disabledReason?: "ram" | "engine";
@@ -109,9 +111,14 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
         {model.proOnly && lockedForTier ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
       {recommended && !disabled ? (
-        <Text testID={`recommended-${model.id}`} style={[type.monoLabel, { color: theme.accent }]}>
+        <Text testID={recommendedFor?.weak ? `recommended-none-${model.id}` : `recommended-${model.id}`} style={[type.monoLabel, { color: recommendedFor?.weak ? theme.text2 : theme.accent }]}>
           {recommendedFor
-            ? t("models.recommendedFor", { device: deviceNoun(), use: t(`use.${recommendedFor.use}`).toUpperCase(), language: t(`language.${recommendedFor.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[recommendedFor.languageCode] ?? recommendedFor.languageCode }).toUpperCase() })
+            ? t(recommendedFor.weak ? "models.recommendedNone" : "models.recommendedFor", {
+                device: deviceNoun(),
+                model: modelLabel(model.id),
+                use: t(`use.${recommendedFor.use}`).toUpperCase(),
+                language: t(`language.${recommendedFor.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[recommendedFor.languageCode] ?? recommendedFor.languageCode }).toUpperCase(),
+              })
             : t("models.recommended", { device: deviceNoun() })}
         </Text>
       ) : null}

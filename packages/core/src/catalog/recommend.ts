@@ -61,6 +61,10 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
 
 export const recommendModel = (input: RecommendInput): ModelRecommendation | null => rankModels(input)[0] ?? null;
 
+/** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. */
+export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
+  (r.reason.languageCode !== null && (r.reason.languageTier === "basic" || r.reason.languageTier === "none")) || r.reason.useTier === "weak";
+
 export interface AdviceInput extends RecommendInput {
   /** The loaded model; no advice without one or when it carries no fit block (imports). */
   current: CatalogModel | null | undefined;

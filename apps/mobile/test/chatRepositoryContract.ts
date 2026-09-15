@@ -97,6 +97,24 @@ export function describeChatRepositoryContract(name: string, open: OpenRepositor
       await expect(repo.updateChat(chat.id, {})).resolves.toBeUndefined();
     });
 
+    it("keeps the §7.8 advice snooze list on the chat row; null and [] clear it; copies never alias", async () => {
+      const repo = await open({ now: clock() });
+      const chat = await repo.createChat({ modelId: "instant", title: "t" });
+      expect((await repo.getChat(chat.id))?.adviceSnoozed).toBeUndefined();
+      const keys = ["instant>fast|lang:he|", "fast>sharp-phi||use:code"];
+      await repo.updateChat(chat.id, { adviceSnoozed: keys });
+      const stored = await repo.getChat(chat.id);
+      expect(stored?.adviceSnoozed).toEqual(keys);
+      keys.push("mutated");
+      expect((await repo.getChat(chat.id))?.adviceSnoozed).toHaveLength(2);
+      expect((await repo.listChats()).find((c) => c.id === chat.id)?.adviceSnoozed).toHaveLength(2);
+      await repo.updateChat(chat.id, { adviceSnoozed: [] });
+      expect((await repo.getChat(chat.id))?.adviceSnoozed).toBeUndefined();
+      await repo.updateChat(chat.id, { adviceSnoozed: ["a"] });
+      await repo.updateChat(chat.id, { adviceSnoozed: null });
+      expect((await repo.getChat(chat.id))?.adviceSnoozed).toBeUndefined();
+    });
+
     it("keeps archived chats in the list, sorted after pinned by recency", async () => {
       const repo = await open({ now: clock() });
       const a = await repo.createChat({ modelId: "instant", title: "a" });

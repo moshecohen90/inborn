@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, adviseModel, detectUse, looksLikeCode, looksLikeMath, rankModels, recommendModel, type CatalogModel, type DeviceProfile, type RecommendInput } from "../src/index";
+import { BUNDLED_MANIFEST, adviseModel, detectUse, looksLikeCode, looksLikeMath, rankModels, recommendModel, recommendationIsWeak, type CatalogModel, type DeviceProfile, type RecommendInput } from "../src/index";
 
 const catalog = BUNDLED_MANIFEST.models;
 const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
@@ -14,18 +14,32 @@ describe("recommendModel (spec §7.8: use + language + device)", () => {
     expect(r.model.id).toBe("fast");
     expect(r.reason).toEqual({ use: "chat", useTier: "best", languageCode: "en", languageTier: "native", ramFit: "well", installed: false });
   });
-  it("Hebrew chat on an 8 GB phone: Sharp, the only model rated good for Hebrew", () => {
-    expect(ids(rankModels(input({ languageCode: "he" })))).toEqual(["sharp", "fast", "sharp-phi", "instant"]);
+  it("Hebrew chat on an 8 GB phone: every model is basic at best, so use and the §6.3 default decide: Fast, then Sharp; Instant (none) last", () => {
+    expect(ids(rankModels(input({ languageCode: "he" })))).toEqual(["fast", "sharp", "sharp-phi", "instant"]);
+    expect(recommendationIsWeak(recommendModel(input({ languageCode: "he" }))!)).toBe(true);
   });
   it("code on an 8 GB phone: Phi first, Sharp second; math the same", () => {
     expect(ids(rankModels(input({ use: "code" }))).slice(0, 2)).toEqual(["sharp-phi", "sharp"]);
     expect(recommendModel(input({ use: "math" }))!.model.id).toBe("sharp-phi");
   });
-  it("code in Hebrew: language ranks first, so Sharp beats Phi", () => {
-    expect(recommendModel(input({ use: "code", languageCode: "he" }))!.model.id).toBe("sharp");
+  it("code in Hebrew: Hebrew is basic on Fast, Sharp and Phi alike, so the use decides: Phi", () => {
+    expect(recommendModel(input({ use: "code", languageCode: "he" }))!.model.id).toBe("sharp-phi");
+    /* Arabic is where Sharp's language tier still ranks first over Phi's code tier. */
+    expect(recommendModel(input({ use: "code", languageCode: "ar" }))!.model.id).toBe("sharp");
   });
   it("a 4 GB phone only ever hears about Instant, whatever the use or language", () => {
     expect(ids(rankModels(input({ device: phone(4), languageCode: "he", use: "code" })))).toEqual(["instant"]);
+  });
+  it("says so when even the top pick is weak: code in Hebrew on a 4 GB phone is Instant, and Instant is not good at it", () => {
+    const top = recommendModel(input({ device: phone(4), languageCode: "he", use: "code" }))!;
+    expect(top.model.id).toBe("instant");
+    expect(recommendationIsWeak(top)).toBe(true);
+    expect(recommendationIsWeak(recommendModel(input({ device: phone(4), languageCode: "en", use: "chat" }))!)).toBe(false);
+    expect(recommendationIsWeak(recommendModel(input({ device: phone(8), languageCode: "ar", use: "code" }))!)).toBe(false);
+    expect(recommendationIsWeak(recommendModel(input({ device: phone(8), languageCode: "he", use: "code" }))!)).toBe(true);
+    /* Weak on one dimension only is still weak: Hebrew is basic on Fast even though chat is best. */
+    expect(recommendationIsWeak(recommendModel(input({ device: phone(4), languageCode: "he", use: "chat" }))!)).toBe(true);
+    expect(recommendationIsWeak(recommendModel(input({ device: phone(4), languageCode: null, use: "code" }))!)).toBe(true);
   });
   it("an unknown language does not rank: use decides", () => {
     expect(recommendModel(input({ languageCode: null, use: "translate" }))!.model.id).toBe("sharp");
@@ -35,18 +49,18 @@ describe("recommendModel (spec §7.8: use + language + device)", () => {
     expect(recommendModel(input({ installed: ["sharp"] }))!.model.id).toBe("sharp");
     expect(recommendModel(input({ installed: ["sharp"] }))!.reason.installed).toBe(true);
   });
-  it("on a 6 GB phone a model that runs slowly loses the tie to one that runs well, but not the language", () => {
+  it("on a 6 GB phone a model that runs slowly loses the tie to one that runs well, but not the use", () => {
     expect(recommendModel(input({ device: phone(6) }))!.model.id).toBe("fast");
-    const he = recommendModel(input({ device: phone(6), languageCode: "he" }))!;
-    expect(he.model.id).toBe("sharp");
-    expect(he.reason.ramFit).toBe("slowly");
+    const code = recommendModel(input({ device: phone(6), use: "code" }))!;
+    expect(code.model.id).toBe("sharp-phi");
+    expect(code.reason.ramFit).toBe("slowly");
   });
   it("desktop 16 GB English chat: Sharp (§6.3 default tier is Power, Sharp is the closest in the catalog)", () => {
     expect(recommendModel(input({ device: desktop(16) }))!.model.id).toBe("sharp");
   });
   it("an entry above the engine version or without a fit block is never recommended", () => {
     const future = catalog.map((m) => (m.id === "sharp" ? { ...m, minEngine: 99 } : m));
-    expect(recommendModel(input({ catalog: future, languageCode: "he" }))!.model.id).toBe("fast");
+    expect(recommendModel(input({ catalog: future, languageCode: "ar" }))!.model.id).toBe("fast");
     const stripped = catalog.map((m) => (m.id === "sharp" ? { ...m, fit: undefined } : m));
     expect(ids(rankModels(input({ catalog: stripped })))).not.toContain("sharp");
     expect(recommendModel(input({ catalog: [] }))).toBeNull();
@@ -55,28 +69,42 @@ describe("recommendModel (spec §7.8: use + language + device)", () => {
 
 describe("adviseModel (the chat card)", () => {
   const advise = (currentId: string, over: Partial<RecommendInput>) => adviseModel({ ...input(over), current: byId(currentId) });
-  it("Hebrew on Instant with Fast installed: switch to Fast now, Sharp named as best", () => {
+  it("Hebrew on Instant with Fast installed: switch to Fast now (basic: better, not fluent); no 'best' line because nothing here is good", () => {
     const a = advise("instant", { languageCode: "he", installed: ["instant", "fast"] })!;
     expect(a.better.model.id).toBe("fast");
     expect(a.better.reason.installed).toBe(true);
     expect(a.language).toEqual({ code: "he", from: "none", to: "basic" });
     expect(a.use).toBeUndefined();
-    expect(a.best?.model.id).toBe("sharp");
+    expect(a.best).toBeUndefined();
     expect(a.key).toBe("instant>fast|lang:he|");
   });
-  it("Hebrew on Instant with nothing else installed: install Sharp (best), no secondary line", () => {
+  it("Hebrew on Instant with nothing else installed: install Fast (basic, the §6.3 default), no secondary line", () => {
     const a = advise("instant", { languageCode: "he", installed: ["instant"] })!;
-    expect(a.better.model.id).toBe("sharp");
+    expect(a.better.model.id).toBe("fast");
     expect(a.best).toBeUndefined();
-    expect(a.language).toEqual({ code: "he", from: "none", to: "good" });
+    expect(a.language).toEqual({ code: "he", from: "none", to: "basic" });
   });
-  it("silent when the current model is good enough: English chat on Fast, Hebrew on Sharp", () => {
+  it("Arabic on Instant: Fast is good at it (basic → good), installed or not; no 'best' line since Fast is the top pick", () => {
+    const a = advise("instant", { languageCode: "ar", installed: ["instant", "fast"] })!;
+    expect(a.better.model.id).toBe("fast");
+    expect(a.language).toEqual({ code: "ar", from: "basic", to: "good" });
+    expect(a.best).toBeUndefined();
+    expect(advise("instant", { languageCode: "ar", installed: ["instant"] })!.better.model.id).toBe("fast");
+  });
+  it("silent when the current model is good enough, and when Hebrew is basic everywhere (Fast, Sharp, Phi): no switch improves it", () => {
     expect(advise("fast", { languageCode: "en" })).toBeNull();
+    expect(advise("sharp", { languageCode: "ar" })).toBeNull();
+    expect(advise("fast", { languageCode: "he", installed: ["fast", "sharp"] })).toBeNull();
     expect(advise("sharp", { languageCode: "he" })).toBeNull();
     expect(advise("instant", { languageCode: "en", use: "chat" })).toBeNull();
   });
   it("silent when nothing better fits this device: Hebrew on Instant on a 4 GB phone", () => {
     expect(advise("instant", { languageCode: "he", device: phone(4) })).toBeNull();
+  });
+  it("4 GB, code in Hebrew: Fast and Sharp may be on disk, but they do not fit, so no switch is suggested", () => {
+    expect(advise("instant", { languageCode: "he", use: "code", device: phone(4), installed: ["instant", "fast", "sharp", "sharp-phi"] })).toBeNull();
+    /* Fast on a 4 GB phone (imported earlier, RAM freed): Instant is the only fit and is worse on both, so still nothing. */
+    expect(advise("fast", { languageCode: "he", use: "code", device: phone(4), installed: ["instant", "fast"] })).toBeNull();
   });
   it("code on Fast: Phi is better at code (installed first: Sharp when only Sharp is there)", () => {
     const a = advise("fast", { use: "code", installed: ["fast", "sharp"] })!;
@@ -91,14 +119,14 @@ describe("adviseModel (the chat card)", () => {
     expect(a.better.model.id).toBe("sharp-phi");
     expect(a.language).toBeUndefined();
     expect(a.use?.to).toBe("best");
-    /* Phi-installed user writing Hebrew prose: Phi is basic; Sharp (good) is the only gain, Instant/Fast never. */
-    const b = advise("sharp-phi", { use: "writing", languageCode: "he", installed: ["sharp-phi"] })!;
+    /* Phi-installed user writing Arabic prose: Phi is basic; Sharp (good) is the only gain, Instant/Fast never. */
+    const b = advise("sharp-phi", { use: "writing", languageCode: "ar", installed: ["sharp-phi"] })!;
     expect(b.better.model.id).toBe("sharp");
   });
   it("both dimensions at once carry both reasons and one key", () => {
     const a = advise("instant", { use: "code", languageCode: "he", installed: ["instant", "sharp"] })!;
     expect(a.better.model.id).toBe("sharp");
-    expect(a.language?.to).toBe("good");
+    expect(a.language?.to).toBe("basic");
     expect(a.use?.to).toBe("good");
     expect(a.key).toBe("instant>sharp|lang:he|use:code");
   });

@@ -26,10 +26,11 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
     const tampered = { ...BUNDLED_MANIFEST, models: BUNDLED_MANIFEST.models.map((m) => (m.id === "instant" ? { ...m, fit: { ...m.fit!, languages: { ...m.fit!.languages, he: "native" as const } } } : m)) };
     expect(verifyManifest(tampered, CATALOG_PUBLIC_KEY)).toBe(false);
   });
-  it("the judgements the product relies on: Hebrew climbs Instant → Fast → Sharp, Phi is the code and math model", () => {
+  it("the judgements the product relies on: no catalog model is good at Hebrew (Sharp spot-checked 15.9.2026: better than Fast, not fluent), Phi is the code and math model", () => {
     expect(fit("instant").languages.he).toBe("none");
     expect(fit("fast").languages.he).toBe("basic");
-    expect(fit("sharp").languages.he).toBe("good");
+    expect(fit("sharp").languages.he).toBe("basic");
+    expect(fit("sharp-phi").languages.he).toBe("basic");
     expect(fit("sharp-phi").uses.code).toBe("best");
     expect(fit("sharp-phi").uses.math).toBe("best");
     expect(fit("sharp-phi").uses.translate).toBe("weak");
