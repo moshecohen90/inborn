@@ -28,6 +28,12 @@ describe("exit meter", () => {
     expect(formatBytes(12.4 * 1024 * 1024)).toBe("12.4 MB");
     expect(formatBytes(2.71 * 1024 ** 3)).toBe("2.71 GB");
     expect(formatBytes(1.28 * 1024 ** 3)).toBe("1.28 GB");
+    // whole-number values keep their significant zeros (QA F21: 849 MB once printed as "81 MB")
+    expect(formatBytes(500 * 1024 * 1024)).toBe("500 MB");
+    expect(formatBytes(100 * 1024 * 1024)).toBe("100 MB");
+    expect(formatBytes(849 * 1024 * 1024)).toBe("849 MB");
+    expect(formatBytes(10 * 1024 * 1024)).toBe("10 MB");
+    expect(formatBytes(2.5 * 1024 ** 3)).toBe("2.5 GB");
   });
   it("counts whole days since install", () => {
     expect(daysSince(0, 41 * 86_400_000 + 5)).toBe(41);

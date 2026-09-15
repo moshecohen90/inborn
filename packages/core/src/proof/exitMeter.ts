@@ -39,7 +39,7 @@ export function formatBytes(n: number): string {
     i++;
   }
   const digits = v >= 100 ? 0 : v >= 10 ? 1 : 2;
-  const s = i === 0 ? String(Math.round(v)) : v.toFixed(digits).replace(/\.?0+$/, "");
+  const s = i === 0 ? String(Math.round(v)) : v.toFixed(digits).replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
   return `${s} ${UNITS[i]}`;
 }
 
