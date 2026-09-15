@@ -25,11 +25,15 @@ export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, on
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
   const language = advice.language ? languageName(advice.language.code) : "";
   const useName = (use: string) => t(`use.${use}`);
+  /* "basic" never says "handles Hebrew better" alone: the offer is better than nothing, not fluent (§7.8). */
+  const gap = advice.language ? (advice.language.to === "basic" ? "basic" : languageRank(advice.language.to) - languageRank(advice.language.from) >= 2 ? "big" : "small") : "small";
   const reason =
     advice.language && advice.use
-      ? t("chat.modelAdvice.both", { better, current, language, use: advice.use.use })
+      ? gap === "basic"
+        ? `${t("chat.modelAdvice.language", { better, current, language, gap })} ${t("chat.modelAdvice.use", { better, current, use: advice.use.use })}`
+        : t("chat.modelAdvice.both", { better, current, language, use: advice.use.use })
       : advice.language
-        ? t("chat.modelAdvice.language", { better, current, language, gap: languageRank(advice.language.to) - languageRank(advice.language.from) >= 2 ? "big" : "small" })
+        ? t("chat.modelAdvice.language", { better, current, language, gap })
         : t("chat.modelAdvice.use", { better, current, use: advice.use?.use ?? "chat" });
   const bestReason = advice.language ? language : useName(advice.use?.use ?? "chat");
   const installed = advice.better.reason.installed;

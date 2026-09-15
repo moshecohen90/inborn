@@ -71,7 +71,8 @@ import { useBannerInset } from "../components/shell/bannerInset";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
-import { adviceToShow, dismissAdvice } from "../lib/modelAdviceMemory";
+import { adviceToShow } from "../lib/modelAdviceMemory";
+import { isDictatedSend } from "../lib/dictatedDraft";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -143,6 +144,8 @@ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
+const NO_SNOOZE: readonly string[] = [];
+
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, onSwitchModel, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
   const fontScale = useFontScale();
@@ -196,7 +199,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [readingId, setReadingId] = useState<string | null>(null);
   /** S43: the text under the quick-action sheet and where it came from ("processText" can hand a result back). */
   const [quick, setQuick] = useState<{ text: string; source: "message" | "share" | "processText"; replaceable: boolean } | null>(null);
-  const dictation = useDictation({ draft, setDraft, tier, locale: i18n.language, preferWhisper });
+  /* What dictation last produced; submit() compares it with the sent text so a dictated message counts as the "voice" use (§7.8). */
+  const dictatedDraft = useRef<string | null>(null);
+  const onDictated = useCallback((text: string) => {
+    dictatedDraft.current = text;
+  }, []);
+  const [lastDictated, setLastDictated] = useState(false);
+  const dictation = useDictation({ draft, setDraft, tier, locale: i18n.language, preferWhisper, onFinal: onDictated });
   /* Attachments key by chat id; a chat that does not exist yet, and every incognito chat, attach under a RAM-only key (§5.7). */
   const draftKey = useRef(`${RAM_ATTACH_PREFIX}draft-${Date.now().toString(36)}`).current;
   const [docKey, setDocKey] = useState<string>(chatId ? (incognito ? `${RAM_ATTACH_PREFIX}${chatId}` : chatId) : draftKey);
@@ -482,6 +491,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (!text || !session.current || busy) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
     setDraft("");
+    setLastDictated(isDictatedSend(dictatedDraft.current, text));
+    dictatedDraft.current = null;
     noSpace.current = false;
     let userId: string | null = null;
     const editing = editingId;
@@ -700,7 +711,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const languageName = languageCode ? t(`language.${languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[languageCode] ?? languageCode }) : "";
   /* §7.8 recommendation by use + language + device: the fit map decides, the vault knows what is installed and what fits. */
   const adviceLanguage = lastUserText ? detectLanguage(lastUserText) : null;
-  const use = detectUse({ text: lastUserText, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
+  const use = detectUse({ text: lastUserText, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated });
   const advice = useMemo(() => {
     if (Platform.OS === "web" || !lastUserText) return null;
     const vault = getVault();
@@ -710,14 +721,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       .map((e) => e.model.id);
     return adviseModel({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
   }, [lastUserText, model.id, use, adviceLanguage]);
-  const [adviceTick, setAdviceTick] = useState(0);
   const shownAdvice = useRef<string | null>(null);
   const adviceChat = chatRef.current ?? draftKey;
-  shownAdvice.current = adviceToShow(adviceChat, advice?.key ?? null, shownAdvice.current);
+  const adviceSnoozed = chat?.adviceSnoozed ?? NO_SNOOZE;
+  shownAdvice.current = adviceToShow(adviceChat, advice?.key ?? null, shownAdvice.current, adviceSnoozed);
   const adviceShown = advice && shownAdvice.current === advice.key && lastAssistant && status.kind === "ready" ? advice : null;
-  const notNow = () => {
-    if (advice) dismissAdvice(adviceChat, advice.key);
-    setAdviceTick(adviceTick + 1);
+  /* "Not now", Switch and Install all snooze the reason on the chat row, so it survives relaunch (§7.8). */
+  const snoozeAdvice = (key: string) => {
+    const id = chatRef.current;
+    if (!id) return;
+    const next = [...adviceSnoozed.filter((k) => k !== key), key];
+    setChat((c) => (c ? { ...c, adviceSnoozed: next } : c));
+    void store.updateChat(id, { adviceSnoozed: next });
   };
   const weakLanguage = useMemo(() => {
     if (Platform.OS === "web" || !adviceLanguage) return null;
@@ -901,14 +916,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           theme={theme}
           locked={!!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.better.model.proOnly })}
           onSwitch={(id) => {
-            dismissAdvice(adviceChat, adviceShown.key);
+            snoozeAdvice(adviceShown.key);
             onSwitchModel?.(id);
           }}
           onInstall={() => {
-            dismissAdvice(adviceChat, adviceShown.key);
+            snoozeAdvice(adviceShown.key);
             onOpenVault?.();
           }}
-          onNotNow={notNow}
+          onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
       ) : null}
       {notice && status.kind === "ready" ? (

@@ -107,6 +107,12 @@ ALTER TABLE messages ADD COLUMN citations_json TEXT;
 ALTER TABLE messages ADD COLUMN images_json TEXT;
 `,
   },
+  {
+    version: 5,
+    sql: `
+ALTER TABLE chats ADD COLUMN advice_snoozed TEXT;
+`,
+  },
 ];
 
 export const SCHEMA_VERSION = MIGRATIONS[MIGRATIONS.length - 1]!.version;

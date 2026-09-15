@@ -24,6 +24,8 @@ export interface Chat {
   /** "Summarize and continue" (§8.2 S11): the summary replaces every message up to and including `summaryUpTo`. */
   summary?: string;
   summaryUpTo?: string;
+  /** §7.8 advice keys the user answered "Not now" to in this chat; the card never returns for them. */
+  adviceSnoozed?: string[];
 }
 
 /** One stored turn. Distinct from the engine's wire `Message` (role + content only). */
@@ -86,6 +88,8 @@ export type ChatPatch = {
   thinking?: boolean;
   summary?: string | null;
   summaryUpTo?: string | null;
+  /** Full list replaces; null or [] clears. */
+  adviceSnoozed?: string[] | null;
 };
 
 export interface SearchHit {

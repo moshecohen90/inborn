@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { adviceToShow, dismissAdvice, resetAdviceMemory } from "./modelAdviceMemory";
+import { adviceToShow, resetAdviceMemory } from "./modelAdviceMemory";
 
-describe("advice memory (§7.8: once per reason, Not now snoozes per chat)", () => {
+describe("advice memory (§7.8: once per reason; Not now is the chat's snooze list)", () => {
   beforeEach(resetAdviceMemory);
   it("shows a new reason, keeps it while it holds, and never brings it back once it went away", () => {
     expect(adviceToShow("c1", "instant>fast|lang:he|", null)).toBe("instant>fast|lang:he|");
@@ -14,10 +14,11 @@ describe("advice memory (§7.8: once per reason, Not now snoozes per chat)", () 
     expect(adviceToShow("c1", "b", "a")).toBe("b");
     expect(adviceToShow("c2", "a", null)).toBe("a");
   });
-  it("Not now hides the reason for the rest of the chat even while it still holds", () => {
+  it("a key snoozed on the chat row stays hidden even while it holds and even on a fresh run", () => {
     adviceToShow("c1", "a", null);
-    dismissAdvice("c1", "a");
-    expect(adviceToShow("c1", "a", "a")).toBeNull();
-    expect(adviceToShow("c2", "a", null)).toBe("a");
+    expect(adviceToShow("c1", "a", "a", ["a"])).toBeNull();
+    resetAdviceMemory();
+    expect(adviceToShow("c1", "a", null, ["x", "a"])).toBeNull();
+    expect(adviceToShow("c1", "b", null, ["a"])).toBe("b");
   });
 });

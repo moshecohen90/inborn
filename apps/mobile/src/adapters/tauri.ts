@@ -188,6 +188,7 @@ type ChatRow = {
   thinking: number | null;
   summary: string | null;
   summary_up_to: string | null;
+  advice_snoozed: string | null;
 };
 type MessageRow = {
   id: string;
@@ -221,6 +222,7 @@ const toChat = (r: ChatRow): Chat => ({
   ...(r.thinking !== null && r.thinking !== undefined ? { thinking: !!r.thinking } : {}),
   ...(r.summary ? { summary: r.summary } : {}),
   ...(r.summary_up_to ? { summaryUpTo: r.summary_up_to } : {}),
+  ...(r.advice_snoozed ? { adviceSnoozed: JSON.parse(r.advice_snoozed) as string[] } : {}),
 });
 
 const toMessage = (r: MessageRow): ChatMessage => ({
@@ -336,6 +338,7 @@ export class TauriChatRepository implements ChatRepository {
     if (patch.systemPrompt !== undefined) columns.push(["system_prompt", patch.systemPrompt]);
     if (patch.summary !== undefined) columns.push(["summary", patch.summary]);
     if (patch.summaryUpTo !== undefined) columns.push(["summary_up_to", patch.summaryUpTo]);
+    if (patch.adviceSnoozed !== undefined) columns.push(["advice_snoozed", patch.adviceSnoozed?.length ? JSON.stringify(patch.adviceSnoozed) : null]);
     if (!columns.length) return;
     const sets = columns.map(([name]) => `${name} = ?`).join(", ");
     await run(`UPDATE chats SET ${sets} WHERE id = ?`, [...columns.map(([, v]) => v), id]);

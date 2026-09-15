@@ -128,6 +128,7 @@ export interface InMemoryOptions {
   newId?: () => string;
 }
 
+const cloneChat = (c: Chat): Chat => ({ ...c, ...(c.adviceSnoozed ? { adviceSnoozed: [...c.adviceSnoozed] } : {}) });
 const cloneMessage = (m: ChatMessage): ChatMessage => ({ ...m, ...(m.usage ? { usage: { ...m.usage } } : {}), ...(m.citations ? { citations: m.citations.map((c) => ({ ...c })) } : {}), ...(m.images ? { images: [...m.images] } : {}) });
 
 /** Applies a ChatPatch to a chat object in place; shared by the RAM store and tests. */
@@ -143,6 +144,10 @@ export function applyChatPatch(chat: Chat, patch: ChatPatch): void {
     if (v === undefined) continue;
     if (v === null) delete chat[key];
     else chat[key] = v;
+  }
+  if (patch.adviceSnoozed !== undefined) {
+    if (patch.adviceSnoozed?.length) chat.adviceSnoozed = [...patch.adviceSnoozed];
+    else delete chat.adviceSnoozed;
   }
   for (const key of ["pinned", "archived"] as const) if (!chat[key]) delete chat[key];
 }
@@ -165,12 +170,12 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
   }
 
   async listChats(): Promise<Chat[]> {
-    return sortChats([...this.chats.values()].map((c) => ({ ...c })));
+    return sortChats([...this.chats.values()].map(cloneChat));
   }
 
   async getChat(id: string): Promise<Chat | undefined> {
     const chat = this.chats.get(id);
-    return chat ? { ...chat } : undefined;
+    return chat ? cloneChat(chat) : undefined;
   }
 
   async createChat(input: NewChat): Promise<Chat> {
@@ -190,7 +195,7 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
     };
     this.chats.set(chat.id, chat);
     this.messages.set(chat.id, []);
-    return { ...chat };
+    return cloneChat(chat);
   }
 
   async renameChat(id: string, title: string): Promise<void> {

@@ -63,7 +63,7 @@ export function openIdb(name = IDB_NAME, factory: IDBFactory = indexedDB): Promi
 const chatRange = (chatId: string, fromSeq = -Infinity) => IDBKeyRange.bound([chatId, fromSeq], [chatId, Infinity]);
 const bySeq = (a: MessageRow, b: MessageRow) => a.createdAt - b.createdAt || (a.seq ?? 0) - (b.seq ?? 0);
 
-const OPTIONAL_CHAT = ["personaId", "pinned", "archived", "folderId", "systemPrompt", "thinking", "summary", "summaryUpTo"] as const;
+const OPTIONAL_CHAT = ["personaId", "pinned", "archived", "folderId", "systemPrompt", "thinking", "summary", "summaryUpTo", "adviceSnoozed"] as const;
 const OPTIONAL_MESSAGE = ["reasoning", "reasoningMs", "modelId", "stopped", "stoppedBy", "usage", "citations", "images"] as const;
 
 /** Rows come back without `undefined` keys or stale flags, matching the SQL repositories' `toChat`. */
@@ -72,8 +72,8 @@ function toChat(row: Chat): Chat {
   for (const key of OPTIONAL_CHAT) {
     const v = row[key];
     // `thinking` is tri-state (undefined = engine default), so false stays; the two flags read as absent when off.
-    if (v === undefined || v === null || v === "" || (v === false && key !== "thinking")) continue;
-    Object.assign(chat, { [key]: v });
+    if (v === undefined || v === null || v === "" || (v === false && key !== "thinking") || (Array.isArray(v) && !v.length)) continue;
+    Object.assign(chat, { [key]: Array.isArray(v) ? [...v] : v });
   }
   return chat;
 }
@@ -100,6 +100,10 @@ function applyChatPatch(chat: Chat, patch: ChatPatch): Chat {
     if (v === undefined) continue;
     if (v === null) delete next[key];
     else next[key] = v;
+  }
+  if (patch.adviceSnoozed !== undefined) {
+    if (patch.adviceSnoozed?.length) next.adviceSnoozed = [...patch.adviceSnoozed];
+    else delete next.adviceSnoozed;
   }
   return toChat(next);
 }

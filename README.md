@@ -1246,3 +1246,25 @@ Verify (private Pixel_6_API_33 emulator, `-port 5630 -memory 7600` so Fast passe
    "RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH" (`14`); Code → Sharp (Phi) carries the tag (`16`); Code in Hebrew → Sharp (`17`).
 Not in this round: dictation is not yet reported as the "voice" use by the chat (the map and `detectUse` support it; the composer does not
 flag a dictated message); the snooze memory lives for the app run, not in the chat record.
+### Round 11b (same branch) — honest tag, dictated use, persisted snooze, Sharp Hebrew spot check — 15.9.2026
+- **Honest tag** (`recommendationIsWeak` in `recommend.ts`): when even the top pick is basic/none for the language or weak for the use,
+  the vault card says `NOTHING ON THIS PHONE IS GOOD AT CHAT IN HEBREW · CLOSEST: FAST` (new key `models.recommendedNone`, testID
+  `recommended-none-<id>`) instead of RECOMMENDED. The chat card never suggested a switch that does not improve the weak dimension; a
+  4 GB test now pins it (Fast/Sharp on disk but not fitting → no card).
+- **Dictated = voice** (`lib/dictatedDraft.ts`, `Chat.tsx`): `useDictation`'s `onFinal` text is remembered; `submit()` marks the send
+  dictated when that text is still inside what was sent and passes `dictated` into `detectUse`.
+- **Snooze on the chat row**: `Chat.adviceSnoozed?: string[]` / `ChatPatch.adviceSnoozed` (null or [] clears); migration v5
+  `ALTER TABLE chats ADD COLUMN advice_snoozed TEXT` (SQLCipher + Tauri, JSON, null when empty), IndexedDB field; Not now / Switch /
+  Install write it, so "Not now" survives relaunch for that chat. `modelAdviceMemory` keeps only "seen once" per app run.
+  Contract test case (all three repositories) + Tauri v4 → v5 migration test.
+- **Sharp Hebrew spot check** (`docs/models/model-fit.md`, shots `docs/models/fit-check/`): a paragraph, a five-item list and a short
+  translation on Sharp; each reply had a garbled clause or a wrong meaning (the translation changed "meeting on Thursday" into
+  "confirmation the next morning"). Verdict: better than Fast, not fluent → catalog v2 re-signed with `sharp.he = basic`; no model is
+  good at Hebrew. Copy: "FAST handles Hebrew better than INSTANT, but not fluently." (`chat.modelAdvice.language`, new `basic` branch;
+  non-English locales fall back to "better" until i18n-delta16 translates it).
+- **Tests**: core 444, mobile 134 (+ `dictatedDraft`, `modelAdviceMemory`, contract, Tauri migration). Gates all pass.
+- **Verify** (same private emulator recipe, Metro restarted after edits because `CI=1` disables watch): Sharp installed from the local
+  server (two shards verified); vault Best for Chat · Hebrew → Fast tagged "NOTHING … CLOSEST: FAST", Code · Hebrew → "CLOSEST: SHARP (PHI)";
+  Hebrew on Instant → "FAST handles Hebrew better than INSTANT, but not fluently." + Switch to FAST + Not now; Not now → force-stop →
+  relaunch → same chat → another Hebrew message → no card (weak line stays); a new chat shows the card again.
+

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, type BenchmarkResult, type CatalogModel, type UseCase } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -191,6 +191,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   onDevice.sort(byRank);
   fits.sort(byRank);
   const recommendedId = ranked[0]?.model.id;
+  const recommendedWeak = !!ranked[0] && recommendationIsWeak(ranked[0]);
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
   const sections: Section[] = [
     { key: "on", title: t("vault.onDevice"), data: onDevice },
@@ -253,7 +254,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             device={device}
             theme={theme}
             recommended={item.model.id === recommendedId}
-            recommendedFor={{ use: bestUse, languageCode: bestLanguage }}
+            recommendedFor={{ use: bestUse, languageCode: bestLanguage, weak: recommendedWeak }}
             active={active?.model.id === item.model.id}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
