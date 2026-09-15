@@ -19,7 +19,9 @@ export interface ModelAdviceCardProps {
 /** §7.8 "recommended model": one compact card that says in plain words why another model would serve this chat better. */
 export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, onNotNow }: ModelAdviceCardProps) {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // CJK full stops carry their own spacing; a joining space after 。 reads as a typo.
+  const joiner = /^(ja|zh|ko)/.test(i18n.language) ? "" : " ";
   const current = modelLabel(advice.current.id);
   const better = modelLabel(advice.better.model.id);
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
@@ -30,7 +32,7 @@ export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, on
   const reason =
     advice.language && advice.use
       ? gap === "basic"
-        ? `${t("chat.modelAdvice.language", { better, current, language, gap })} ${t("chat.modelAdvice.use", { better, current, use: advice.use.use })}`
+        ? `${t("chat.modelAdvice.language", { better, current, language, gap })}${joiner}${t("chat.modelAdvice.use", { better, current, use: advice.use.use })}`
         : t("chat.modelAdvice.both", { better, current, language, use: advice.use.use })
       : advice.language
         ? t("chat.modelAdvice.language", { better, current, language, gap })
