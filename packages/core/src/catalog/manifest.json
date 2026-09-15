@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 1,
-  "publishedAt": "2026-09-05",
+  "version": 2,
+  "publishedAt": "2026-09-15",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -31,9 +31,35 @@
         "es",
         "fr",
         "de",
-        "pt",
-        "ja"
+        "pt"
       ],
+      "fit": {
+        "uses": {
+          "chat": "good",
+          "writing": "weak",
+          "summarize": "good",
+          "translate": "weak",
+          "code": "weak",
+          "documents": "weak",
+          "voice": "good",
+          "math": "weak"
+        },
+        "languages": {
+          "en": "native",
+          "zh": "native",
+          "es": "good",
+          "fr": "good",
+          "de": "good",
+          "pt": "good",
+          "it": "basic",
+          "ja": "basic",
+          "ko": "basic",
+          "ru": "basic",
+          "ar": "basic",
+          "he": "none"
+        },
+        "weakAt": "Hebrew and other non-Latin scripts, code, math, long documents."
+      },
       "delivery": [
         {
           "kind": "bundled",
@@ -81,11 +107,39 @@
         "fr",
         "de",
         "pt",
+        "it",
         "ja",
         "ko",
-        "ar",
-        "ru"
+        "ru",
+        "ar"
       ],
+      "fit": {
+        "uses": {
+          "chat": "best",
+          "writing": "good",
+          "summarize": "good",
+          "translate": "good",
+          "code": "weak",
+          "documents": "good",
+          "voice": "best",
+          "math": "weak"
+        },
+        "languages": {
+          "en": "native",
+          "zh": "native",
+          "es": "good",
+          "fr": "good",
+          "de": "good",
+          "pt": "good",
+          "it": "good",
+          "ja": "good",
+          "ko": "good",
+          "ru": "good",
+          "ar": "good",
+          "he": "basic"
+        },
+        "weakAt": "Code, math, Hebrew; questions across many long documents."
+      },
       "delivery": [
         {
           "kind": "play-asset-pack",
@@ -141,13 +195,40 @@
         "fr",
         "de",
         "pt",
+        "it",
         "ja",
         "ko",
-        "ar",
         "ru",
-        "it",
+        "ar",
         "he"
       ],
+      "fit": {
+        "uses": {
+          "chat": "best",
+          "writing": "best",
+          "summarize": "best",
+          "translate": "best",
+          "code": "good",
+          "documents": "best",
+          "voice": "best",
+          "math": "good"
+        },
+        "languages": {
+          "en": "native",
+          "zh": "native",
+          "es": "good",
+          "fr": "good",
+          "de": "good",
+          "pt": "good",
+          "it": "good",
+          "ja": "good",
+          "ko": "good",
+          "ru": "good",
+          "ar": "good",
+          "he": "good"
+        },
+        "weakAt": "Slower and warmer than Fast; hard math needs thinking mode."
+      },
       "delivery": [
         {
           "kind": "play-asset-pack",
@@ -191,8 +272,40 @@
       "goodFor": "Reasoning, math and code. No photos.",
       "battery": "high",
       "goodLanguages": [
-        "en"
+        "en",
+        "es",
+        "fr",
+        "de",
+        "pt",
+        "it"
       ],
+      "fit": {
+        "uses": {
+          "chat": "good",
+          "writing": "good",
+          "summarize": "good",
+          "translate": "weak",
+          "code": "best",
+          "documents": "good",
+          "voice": "good",
+          "math": "best"
+        },
+        "languages": {
+          "en": "native",
+          "es": "good",
+          "fr": "good",
+          "de": "good",
+          "pt": "good",
+          "it": "good",
+          "zh": "basic",
+          "ja": "basic",
+          "ko": "basic",
+          "ru": "basic",
+          "ar": "basic",
+          "he": "basic"
+        },
+        "weakAt": "No photos; most languages other than English; translation."
+      },
       "delivery": [
         {
           "kind": "https",
@@ -326,5 +439,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "23c20820f94caf0513ad17c2ada4bfe5c14dba50b0e8012303b16ada0d195248e01381fe3f464e0a577113d8406b9977ee6515aa23c046db6b94519beb1d870b"
+  "signature": "dc41a0a6586fd3e904948cceb073a88b799861f1f10a81728a940be3415c5012c2f0f35913667593f1afed39684b214d820fa41f652885c285d6b0eecfb97602"
 }

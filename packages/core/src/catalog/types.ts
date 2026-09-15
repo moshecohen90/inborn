@@ -24,6 +24,24 @@ export interface ModelPart {
   sha256: string;
 }
 
+/** What a user decided to do (§6.1 fit map, §7.8 recommendation by use + language). */
+export type UseCase = "chat" | "writing" | "summarize" | "translate" | "code" | "documents" | "voice" | "math";
+export const USE_CASES: readonly UseCase[] = ["chat", "writing", "summarize", "translate", "code", "documents", "voice", "math"];
+export type UseTier = "best" | "good" | "weak";
+export const USE_TIERS: readonly UseTier[] = ["best", "good", "weak"];
+export type LanguageTier = "native" | "good" | "basic" | "none";
+export const LANGUAGE_TIERS: readonly LanguageTier[] = ["native", "good", "basic", "none"];
+/** Every chat model rates at least these ISO 639-1 codes; more may be listed. */
+export const FIT_LANGUAGES: readonly string[] = ["en", "he", "ar", "ru", "es", "fr", "de", "pt", "ja", "ko", "zh"];
+
+/** Honest per-model map (sources in docs/models/model-fit.md); the chat and the vault recommend from it, never from tier alone. */
+export interface ModelFit {
+  uses: Record<UseCase, UseTier>;
+  languages: Record<string, LanguageTier>;
+  /** One plain line the cartridge shows as "Weak at". */
+  weakAt: string;
+}
+
 export interface CatalogModel {
   id: string;
   role: ModelRole;
@@ -55,7 +73,10 @@ export interface CatalogModel {
   /** Plain-language "what it is good for" shown on the cartridge (§6.1). */
   goodFor: string;
   battery: Battery;
+  /** Codes rated native or good in `fit.languages`; kept as a flat list for the Details row and older readers. */
   goodLanguages: string[];
+  /** Chat models carry one; companions and imports do not. */
+  fit?: ModelFit;
   delivery: Delivery[];
   proOnly: boolean;
   /** Catalog engine ABI the app must have to run this file ("Update the app to run this"). */

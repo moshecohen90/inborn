@@ -21,13 +21,38 @@
 <div class="note"><p><strong>מה לא בברירת המחדל ולמה.</strong> Gemma 4 עברה ל‑Apache‑2.0 באפריל 2026 ומביאה ראייה ושמע, אבל קובץ ה‑E2B שוקל 3.11 GB (5.1B פרמטרים בפועל), גדול מדי לרמת Fast; היא מוצעת כחלופה ברמת Sharp/Power. Llama 3.2 דורשת כיתוב "Built with Llama" ועותק רישיון בתוך האפליקציה, ולכן היא חלופה ולא ברירת מחדל. LFM2.5 חינמי רק מתחת להכנסה של 10 מיליון דולר בשנה; מותר עכשיו אבל מסומן לבדיקה בגדילה. אף מודל "uncensored" לא נכנס לקטלוג (ראו §11).</p></div>
 
 <h4>מה המשתמש רואה על כל מחסנית (בלי מספרי פרמטרים)</h4>
-<p>רוב המשתמשים לא יודעים מה זה 4B או Q4_K_M, ולא צריכים. כל מחסנית מציגה שם, שורת "למה זה טוב" באנגלית פשוטה, תג סוללה ולמי היא מומלצת; המודל שנבחר אוטומטית לפי המכשיר (§6.3) נושא תג RECOMMENDED FOR THIS PHONE, והפרטים הטכניים, כולל "שפות טובות", נשארים ב‑Details (S31).</p>
+<p>רוב המשתמשים לא יודעים מה זה 4B או Q4_K_M, ולא צריכים. כל מחסנית מציגה שם, שורת "למה זה טוב" באנגלית פשוטה, תג סוללה, מפת ההתאמה שלה (במה היא טובה, באילו שפות, ובמה היא חלשה; הטבלה הבאה) ולמי היא מומלצת. התג RECOMMENDED נושא את הסיבה שבגללה נבחר: <span class="ltr">RECOMMENDED ON THIS PHONE · CHAT IN HEBREW</span>, לפי כלל ההמלצה של §7.8 (שימוש + שפה + מכשיר); בורר "Best for…" בראש הכספת (שימוש, שפה) מזיז את התג ואת סדר המחסניות. הפרטים הטכניים נשארים ב‑Details (S31), ושם רשימת השפות מופיעה עם הדרגה של כל שפה.</p>
 <table><thead><tr><th>מחסנית</th><th>השורה שהמשתמש רואה</th><th>תג סוללה</th><th>מומלץ ל</th></tr></thead><tbody>
 <tr><td>Instant</td><td class="ltr">Quick answers, rewrites, summaries. Lightest on battery.</td><td>Low</td><td>טלפונים עם 4–6 GB, ווב בטלפון, סוללה נמוכה</td></tr>
 <tr><td>Fast</td><td class="ltr">Everyday assistant: writing, questions, translation. Best balance on this phone.</td><td>Medium</td><td>ברירת המחדל בטלפון 6–8 GB</td></tr>
 <tr><td>Sharp</td><td class="ltr">Complex tasks: analysis, code, long documents, photos. Slower, runs warmer.</td><td>High</td><td>טלפון 8 GB+, טאבלט, כל דסקטופ (Pro)</td></tr>
 <tr><td>Power</td><td class="ltr">Best quality, for desktop and the newest phones. Slowest.</td><td>Highest</td><td>דסקטופ 16 GB, iPhone 17 Pro (Pro)</td></tr>
 </tbody></table>
+<h4>מפת ההתאמה: לכל מודל, במה הוא טוב ובאילו שפות</h4>
+<p>הקטלוג החתום נושא לכל מודל צ'אט בלוק <span class="ltr">fit</span>: דרגה לכל שימוש (<span class="ltr">best / good / weak</span>), דרגה לכל שפה (<span class="ltr">native / good / basic / none</span>, לפחות 11 שפות: EN, HE, AR, RU, ES, FR, DE, PT, JA, KO, ZH) ושורת "חלש ב". הדרגות שמרניות ומתייחסות לקובץ ה‑GGUF המדויק שבקטלוג (Q4_K_M), לא למודל בדיוק מלא; המקור של כל שיפוט מתועד ב‑<span class="ltr">docs/models/model-fit.md</span>, וכל שינוי במפה הוא שינוי בקטלוג שדורש חתימה מחדש. הטבלה הזו היא העתק המפה מהקטלוג (גרסה 2).</p>
+<div class="tw">
+<table>
+<thead><tr><th>מחסנית</th><th>צ'אט</th><th>כתיבה</th><th>סיכום</th><th>תרגום</th><th>קוד</th><th>מסמכים</th><th>הכתבה</th><th>מתמטיקה</th><th>חלש ב</th></tr></thead>
+<tbody>
+<tr><td>Instant</td><td>טוב</td><td>חלש</td><td>טוב</td><td>חלש</td><td>חלש</td><td>חלש</td><td>טוב</td><td>חלש</td><td>עברית וכתבים לא‑לטיניים, קוד, מתמטיקה, מסמכים ארוכים</td></tr>
+<tr><td>Fast</td><td>מצוין</td><td>טוב</td><td>טוב</td><td>טוב</td><td>חלש</td><td>טוב</td><td>מצוין</td><td>חלש</td><td>קוד, מתמטיקה, עברית; שאלות על הרבה מסמכים ארוכים</td></tr>
+<tr><td>Sharp</td><td>מצוין</td><td>מצוין</td><td>מצוין</td><td>מצוין</td><td>טוב</td><td>מצוין</td><td>מצוין</td><td>טוב</td><td>איטי וחם יותר מ‑Fast; מתמטיקה קשה דורשת מצב חשיבה</td></tr>
+<tr><td>Sharp (Phi)</td><td>טוב</td><td>טוב</td><td>טוב</td><td>חלש</td><td>מצוין</td><td>טוב</td><td>טוב</td><td>מצוין</td><td>בלי תמונות; רוב השפות מלבד אנגלית; תרגום</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tw">
+<table>
+<thead><tr><th>מחסנית</th><th>שפת אם</th><th>טוב</th><th>בסיסי</th><th>לא</th></tr></thead>
+<tbody>
+<tr><td>Instant</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT</td><td class="ltr">IT, JA, KO, RU, AR</td><td class="ltr">HE</td></tr>
+<tr><td>Fast</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT, IT, JA, KO, RU, AR</td><td class="ltr">HE</td><td>—</td></tr>
+<tr><td>Sharp</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT, IT, JA, KO, RU, AR, HE</td><td>—</td><td>—</td></tr>
+<tr><td>Sharp (Phi)</td><td class="ltr">EN</td><td class="ltr">ES, FR, DE, PT, IT</td><td class="ltr">ZH, JA, KO, RU, AR, HE</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p>"שפות טובות" (Details, S31) נגזרת מהמפה: שפת אם + טוב. מודל מיובא או קובץ מ‑Hugging Face מגיע בלי מפה, ולכן אף פעם לא ממליצים עליו ולא נגדו.</p>
 <h3>6.2 מודלים נלווים</h3>
 <div class="tw compact">
 <table>
@@ -56,6 +81,7 @@
 </tbody>
 </table>
 </div>
+<p>הטבלה קובעת את רצפת הזיכרון ואת רמת ברירת המחדל של המכשיר. בתוך מה שהמכשיר מריץ, המודל <em>המומלץ</em> נבחר לפי מפת ההתאמה (§6.1) וכלל §7.8: קודם השפה שהמשתמש כותב בה, אחר כך השימוש, אחר כך "רץ טוב" לעומת "רץ לאט", אחר כך מה שכבר מותקן, ורק בסוף הרמה שהטבלה הזו מציינת. כך טלפון 8 GB בעברית מקבל Sharp מומלץ, ובאנגלית Fast.</p>
 <p><strong>רצפת התמיכה הרשמית:</strong> iPhone עם 6 GB (iPhone 13 Pro ומעלה, iPhone 15 ומעלה) ו‑Android 8+ עם 6 GB, arm64, ומעבד מדור Snapdragon 8 Gen 2 / Tensor G3 / Dimensity 9200. רצפת ההתקנה: iOS 17 (מכשירי A12 ומעלה) ו‑Android 8; מכשירים חלשים יותר יכולים להתקין ולהריץ Instant, אבל דף החנות והאפליקציה אומרים בכנות מה לצפות.</p>
 
 <h3>6.4 מהירויות נמדדות (להצגת "צפוי על המכשיר שלך")</h3>

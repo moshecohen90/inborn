@@ -6,7 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, type BenchmarkResult, type CatalogModel } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, type BenchmarkResult, type CatalogModel, type UseCase } from "@inborn/core";
+import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
 import { useAppServices } from "../../services/AppServices";
@@ -35,13 +36,22 @@ type Section = { key: string; title: string; data: VaultEntry[]; disabled?: Map<
 let devHooksRan = false;
 type Confirm = { entry: VaultEntry };
 
+/** The "Best for" language picker starts on the app language when the catalog rates it, else English. */
+const startLanguage = (locale: string): string => {
+  const base = locale.split("-")[0]?.toLowerCase() ?? "en";
+  return FIT_LANGUAGES.includes(base) ? base : "en";
+};
+
 /** S30 Model vault (spec §8.4): what is installed, what fits this device, download / import / remove. */
 export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenProps) {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const { vault, entries } = useVault();
+  const [bestUse, setBestUse] = useState<UseCase>("chat");
+  const [bestLanguage, setBestLanguage] = useState(() => startLanguage(i18n.language));
+  const [picker, setPicker] = useState<"use" | "language" | null>(null);
   const { tier } = useEntitlement();
   const [details, setDetails] = useState<CatalogModel | null>(null);
   const [benchmark, setBenchmark] = useState<BenchmarkResult | null>(null);
@@ -52,7 +62,6 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const [toast, setToast] = useState<string | null>(null);
   const device = vault.device;
   const active = vault.activeModel();
-  const recommendedId = vault.recommendedId();
 
   useEffect(() => vault.recheckSpace(), [vault]);
 
@@ -175,6 +184,14 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const companions = entries.filter((e) => e.model.role !== "chat" && !installed(e));
   /* Hugging Face picks that are not on the device (cancelled, failed, waiting): they keep a row so Install / Remove stay reachable. */
   const hfPending = entries.filter((e) => e.hf && !installed(e));
+  /* §7.8: the RECOMMENDED tag and the order inside each group follow the fit map for the chosen use + language on this device. */
+  const ranked = rankModels({ use: bestUse, languageCode: bestLanguage, device, installed: entries.filter((e) => e.state.kind === "ready").map((e) => e.model.id), catalog: vault.manifest.models });
+  const rankOf = new Map(ranked.map((r, i) => [r.model.id, i]));
+  const byRank = (a: VaultEntry, b: VaultEntry) => (rankOf.get(a.model.id) ?? 99) - (rankOf.get(b.model.id) ?? 99);
+  onDevice.sort(byRank);
+  fits.sort(byRank);
+  const recommendedId = ranked[0]?.model.id;
+  const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
   const sections: Section[] = [
     { key: "on", title: t("vault.onDevice"), data: onDevice },
     ...(fits.length ? [{ key: "fits", title: t("vault.fits", { device: deviceNoun() }), data: fits }] : []),
@@ -211,6 +228,17 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
           {t("vault.manifest.bad")}
         </Text>
       )}
+      <View testID="best-for" style={styles.bestFor}>
+        <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("vault.bestFor").toUpperCase()}</Text>
+        <Pressable testID="best-for-use" accessibilityRole="button" onPress={() => setPicker("use")} style={[styles.pick, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+          <Text style={[type.bodySmall, { color: theme.text }]}>{t(`use.${bestUse}`)}</Text>
+          <Icon name="chevronDown" size={14} color={theme.text2} />
+        </Pressable>
+        <Pressable testID="best-for-language" accessibilityRole="button" onPress={() => setPicker("language")} style={[styles.pick, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+          <Text style={[type.bodySmall, { color: theme.text }]}>{t("vault.bestFor.in", { language: languageName(bestLanguage) })}</Text>
+          <Icon name="chevronDown" size={14} color={theme.text2} />
+        </Pressable>
+      </View>
       <SectionList
         sections={sections}
         keyExtractor={(e) => e.model.id}
@@ -225,6 +253,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             device={device}
             theme={theme}
             recommended={item.model.id === recommendedId}
+            recommendedFor={{ use: bestUse, languageCode: bestLanguage }}
             active={active?.model.id === item.model.id}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
@@ -291,6 +320,33 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
 
       <HfSearch visible={hfOpen} device={device} theme={theme} onClose={() => setHfOpen(false)} onPick={pickFromHf} />
 
+      <Sheet visible={picker === "use"} onClose={() => setPicker(null)} title={t("vault.bestFor.use")} testID="best-for-use-sheet">
+        {USE_CASES.map((u) => (
+          <SheetItem
+            key={u}
+            testID={`best-for-use-${u}`}
+            label={t(`use.${u}`)}
+            onPress={() => {
+              setBestUse(u);
+              setPicker(null);
+            }}
+          />
+        ))}
+      </Sheet>
+      <Sheet visible={picker === "language"} onClose={() => setPicker(null)} title={t("vault.bestFor.language")} testID="best-for-language-sheet">
+        {FIT_LANGUAGES.map((code) => (
+          <SheetItem
+            key={code}
+            testID={`best-for-language-${code}`}
+            label={languageName(code)}
+            onPress={() => {
+              setBestLanguage(code);
+              setPicker(null);
+            }}
+          />
+        ))}
+      </Sheet>
+
       <ModelDetails
         model={details}
         state={detailsState}
@@ -323,6 +379,8 @@ const styles = StyleSheet.create({
   headerBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   centered: { textAlign: "center", paddingHorizontal: 16, paddingTop: 4 },
   sectionHeader: { paddingTop: 14, paddingBottom: 8 },
+  bestFor: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 10 },
+  pick: { flexDirection: "row", alignItems: "center", gap: 4, minHeight: 32, paddingHorizontal: 10, borderWidth: 1, borderRadius: radius.chip },
   list: { paddingHorizontal: 16, paddingBottom: 96 },
   footer: { gap: 8, paddingTop: 12 },
   action: { height: 44, borderWidth: 1, borderRadius: radius.control, flexDirection: "row", gap: 8, alignItems: "center", justifyContent: "center" },

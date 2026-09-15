@@ -23,8 +23,10 @@ import {
   languageHint,
   languageCodeOf,
   LANGUAGE_NAME_BY_CODE,
-  betterModelForLanguage,
-  ramFit,
+  adviseModel,
+  detectLanguage,
+  detectUse,
+  languageTierOf,
   limits,
   markdownToText,
   fallbackPrice,
@@ -68,6 +70,8 @@ import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/Nat
 import { useBannerInset } from "../components/shell/bannerInset";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
+import { ModelAdviceCard } from "../components/chat/ModelAdvice";
+import { adviceToShow, dismissAdvice } from "../lib/modelAdviceMemory";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -122,6 +126,8 @@ export interface ChatProps {
   onOpenVault?: () => void;
   /** S44 hands-free voice mode (Pro). */
   onOpenVoice?: (chatId: string | null, incognito: boolean) => void;
+  /** §7.8 advice card "Switch": the vault's default changes and this chat remounts on the new model. */
+  onSwitchModel?: (id: string) => void;
   /** The shell's seal state ("loading" while the first model pack is still arriving, §8.8). */
   sealState?: SealState;
   sealProgress?: number;
@@ -137,7 +143,7 @@ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
-export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
+export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, onSwitchModel, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
   const fontScale = useFontScale();
   const { t, i18n } = useTranslation();
@@ -692,17 +698,32 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const wrongScript = (row: Row) => row.role === "assistant" && !!languageHint(lastUserText) && scriptOf(row.content) !== scriptOf(lastUserText);
   const languageCode = languageCodeOf(lastUserText);
   const languageName = languageCode ? t(`language.${languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[languageCode] ?? languageCode }) : "";
-  /* §7 "recommended model per language": Hebrew on Instant/Fast is gibberish; name the catalog model that lists the language (installed first, else installable and fitting). */
-  const languageOffer = useMemo(() => {
+  /* §7.8 recommendation by use + language + device: the fit map decides, the vault knows what is installed and what fits. */
+  const adviceLanguage = lastUserText ? detectLanguage(lastUserText) : null;
+  const use = detectUse({ text: lastUserText, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
+  const advice = useMemo(() => {
     if (Platform.OS === "web" || !lastUserText) return null;
     const vault = getVault();
-    const current = vault.model(model.id);
-    const candidates = vault
+    const installed = vault
       .entries()
-      .filter((e) => e.model.role === "chat" && !e.stray && (e.state.kind === "ready" || (e.plan && ramFit(e.model, vault.device.ramGB) !== "no")))
-      .map((e) => ({ id: e.model.id, goodLanguages: e.model.goodLanguages, installed: e.state.kind === "ready" }));
-    return betterModelForLanguage(lastUserText, current ? { id: current.id, goodLanguages: current.goodLanguages, installed: true } : null, candidates);
-  }, [lastUserText, model.id]);
+      .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
+      .map((e) => e.model.id);
+    return adviseModel({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
+  }, [lastUserText, model.id, use, adviceLanguage]);
+  const [adviceTick, setAdviceTick] = useState(0);
+  const shownAdvice = useRef<string | null>(null);
+  const adviceChat = chatRef.current ?? draftKey;
+  shownAdvice.current = adviceToShow(adviceChat, advice?.key ?? null, shownAdvice.current);
+  const adviceShown = advice && shownAdvice.current === advice.key && lastAssistant && status.kind === "ready" ? advice : null;
+  const notNow = () => {
+    if (advice) dismissAdvice(adviceChat, advice.key);
+    setAdviceTick(adviceTick + 1);
+  };
+  const weakLanguage = useMemo(() => {
+    if (Platform.OS === "web" || !adviceLanguage) return null;
+    const tier = languageTierOf(getVault().model(model.id) ?? {}, adviceLanguage);
+    return tier === "none" || tier === "basic" ? adviceLanguage : null;
+  }, [adviceLanguage, model.id]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
@@ -863,19 +884,32 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {statusLine}
         </Text>
       ) : null}
+      {weakLanguage && status.kind === "ready" ? (
+        <Text testID="model-weak-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
+          {t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
+        </Text>
+      ) : null}
       {persona.disclaimer || settings.personaId !== DEFAULT_PERSONA_ID ? (
         <Text testID="persona-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
           {personaName}
           {persona.disclaimer ? ` · ${persona.disclaimer}` : ""}
         </Text>
       ) : null}
-      {languageOffer && lastAssistant && status.kind === "ready" ? (
-        <View testID="language-hint" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.languageHint", { language: t(`language.${languageOffer.code}`, { defaultValue: languageOffer.language }), model: modelLabel(languageOffer.model.id) })}</Text>
-          <Pressable accessibilityRole="button" onPress={() => onOpenVault?.()} hitSlop={8} style={styles.noticeBtn}>
-            <Text style={[type.caption, { color: theme.accent }]}>{t(languageOffer.model.installed ? "chat.languageHint.use" : "chat.languageHint.install")}</Text>
-          </Pressable>
-        </View>
+      {adviceShown ? (
+        <ModelAdviceCard
+          advice={adviceShown}
+          theme={theme}
+          locked={!!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.better.model.proOnly })}
+          onSwitch={(id) => {
+            dismissAdvice(adviceChat, adviceShown.key);
+            onSwitchModel?.(id);
+          }}
+          onInstall={() => {
+            dismissAdvice(adviceChat, adviceShown.key);
+            onOpenVault?.();
+          }}
+          onNotNow={notNow}
+        />
       ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>

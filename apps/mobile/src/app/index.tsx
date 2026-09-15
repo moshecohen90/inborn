@@ -1,6 +1,8 @@
 import { Redirect, useRouter } from "expo-router";
 import { useAppServices } from "../services/AppServices";
 import { Chat } from "../screens/Chat";
+import { resetEngine } from "../engine";
+import { getVault } from "../vault/store";
 
 export default function Index() {
   const s = useAppServices();
@@ -23,6 +25,13 @@ export default function Index() {
       onOpenDocuments={() => router.push("/documents")}
       onOpenPaywall={() => router.push("/paywall")}
       onOpenVault={() => router.push("/vault")}
+      onSwitchModel={(id) => {
+        getVault().setDefault(id);
+        void resetEngine().then(() => {
+          s.modelChanged();
+          s.reloadChat();
+        });
+      }}
       onOpenVoice={(chatId, incognito) => router.push({ pathname: "/voice", params: { ...(chatId ? { chat: chatId } : {}), ...(incognito ? { incognito: "1" } : {}) } })}
     />
   );

@@ -76,6 +76,8 @@ export interface AppServices {
   seedConsumed(): void;
   /** The vault changed the default model (or one just arrived): pick the engine up again; callers remount the chat. */
   modelChanged(): void;
+  /** The §7.8 advice card switched the default model: the same chat remounts and loads it. */
+  reloadChat(): void;
   delivery: DeliveryState | null;
   setDelivery(d: DeliveryState | null): void;
   /** §8.8: hand the chat to Instant while the device is hot / low; `switchBack` returns to the model in use before. */
@@ -383,6 +385,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       chatDeleted: (id) => setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a)),
       chatsVersion,
       modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),
+      reloadChat: () => setActive((a) => ({ ...a, key: a.key + 1 })),
       delivery,
       setDelivery,
       /* The guard swaps the engine's model through its resolver for this run only; the vault's default is untouched (§6.5: it returns at the next launch). */

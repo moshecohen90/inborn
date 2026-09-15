@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { expectedSpeed, formatModelBytes, isHfModelId, ramFit, type CatalogModel, type InstallState } from "@inborn/core";
+import { LANGUAGE_NAME_BY_CODE, expectedSpeed, formatModelBytes, isHfModelId, ramFit, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
+import { FitMap } from "./FitMap";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
@@ -14,6 +15,8 @@ export interface ModelCardProps {
   device: DeviceInfo;
   theme: Theme;
   recommended: boolean;
+  /** Why the RECOMMENDED tag sits here (§7.8): the use and language it was chosen for. */
+  recommendedFor?: { use: UseCase; languageCode: string };
   active: boolean;
   /** Greyed row in the "Too big" group; no actions. */
   disabledReason?: "ram" | "engine";
@@ -34,7 +37,7 @@ export interface ModelCardProps {
 }
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, active, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const speed = expectedSpeed(device.chip, model.tier);
@@ -105,10 +108,17 @@ export function ModelCard({ model, state, plan, device, theme, recommended, acti
         </Text>
         {model.proOnly && lockedForTier ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
-      {recommended && !disabled ? <Text style={[type.monoLabel, { color: theme.accent }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
+      {recommended && !disabled ? (
+        <Text testID={`recommended-${model.id}`} style={[type.monoLabel, { color: theme.accent }]}>
+          {recommendedFor
+            ? t("models.recommendedFor", { device: deviceNoun(), use: t(`use.${recommendedFor.use}`).toUpperCase(), language: t(`language.${recommendedFor.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[recommendedFor.languageCode] ?? recommendedFor.languageCode }).toUpperCase() })
+            : t("models.recommended", { device: deviceNoun() })}
+        </Text>
+      ) : null}
       {model.goodFor ? (
         <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
       ) : null}
+      {model.fit ? <FitMap fit={model.fit} theme={theme} testID={`fit-${model.id}`} /> : null}
       <Text style={[type.mono, { color: theme.text3 }]}>
         {model.quant ? t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant }) : formatModelBytes(model.bytes)} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>

@@ -1204,3 +1204,45 @@ Tests: `packages/core/test/fixes-r10.test.ts` (+2, `space-check`), `apps/mobile/
    `resumePlan` "done" → fresh download from byte 0; `deliverPart` now short-circuits when the part already has every byte); Try again with
    a partial `.part` resumes from its last byte.
 3. **O14** (`services/storageFull.ts`): the log reads `[storage] disk full · N bytes usable (f_bavail; df also counts the root reserve)`.
+
+## Fixes round 11: model recommendation by use + language (branch `fixes-r11`) — 15.9.2026
+Moshe, 15.9.2026: "recommend a model by USE and by LANGUAGE, with a MAP of what every model is good at and in which languages, so we mediate honestly."
+Spec §6.1 (fit map), §6.3 (recommended within the device floor), §7.8 (recommendation rule, chat card, vault "Best for").
+- **Catalog v2** (`packages/core/src/catalog/manifest.json`, re-signed with `scripts/sign-catalog.mjs`): every chat model carries `fit`
+  = `uses` (chat, writing, summarize, translate, code, documents, voice, math → best / good / weak), `languages` (≥ en, he, ar, ru,
+  es, fr, de, pt, ja, ko, zh → native / good / basic / none) and `weakAt`; `goodLanguages` is now derived (native + good). Sources
+  of every judgement: `docs/models/model-fit.md`. Schema + derivation checked by `packages/core/test/catalog-fit.test.ts` (6 tests).
+- **Core** (`packages/core/src/catalog/fit.ts`, `recommend.ts`): `rankModels` / `recommendModel({ use, languageCode, device,
+  installed, catalog })` → best model + structured reason (use tier, language tier, RAM fit, installed); `adviseModel({ current, … })`
+  → the chat card (only when the loaded model is basic/none for the language or weak for the use, and something on this device does
+  better on that dimension without doing worse on the other; installed model first, top-ranked named as "best"); `detectUse` (documents
+  › quick action › code/math in the text › dictation › persona › chat). `packages/core/test/catalog-recommend.test.ts` (21 tests).
+- **Chat** (`screens/Chat.tsx`, `components/chat/ModelAdvice.tsx`, `lib/modelAdviceMemory.ts`): the one-line language strip is
+  replaced by a card that says why in plain words, with Switch (installed: the vault default changes and the same chat remounts on the
+  new model, `AppServices.reloadChat`) or Install · size (opens the vault; PRO tag when locked), a "best here" line, and Not now; each
+  reason shows once per chat and Not now snoozes it for the rest of the chat (per app run). A caption under the header says
+  "INSTANT is weak in Hebrew" while the detected language is basic/none for the loaded model. Nothing shows when nothing better fits.
+- **Vault** (`screens/vault/FitMap.tsx`, `ModelCard.tsx`, `VaultScreen.tsx`, `ModelDetails.tsx`): every cartridge shows its fit map
+  (Good at · Best/Good/Weak, Languages · Native/Good/Basic/No, Weak at); "Best for" pickers (use, language; default chat in the app
+  language) rank the cartridges inside each group and move the RECOMMENDED tag, whose line now reads
+  "RECOMMENDED ON THIS PHONE · CHAT IN HEBREW"; Details lists every language with its tier.
+- **Spec**: §6.1 fit-map tables (uses + languages, copied from catalog v2), §6.3 "recommended within the floor", §7.8 rule + card + vault.
+- **Tests**: core 441 (+27: `catalog-fit` 6, `catalog-recommend` 21), mobile 128 (+3 `lib/modelAdviceMemory.test.ts`); i18n 4, ui 11.
+  Gates: `pn typecheck`, `pn test`, `pn lint`, `pn --filter @inborn/mobile export:web`, `pn web:build`, `pn web:smoke` (first visit 11.8 s,
+  18.4 tok/s; offline 1.7 s; three doors) all pass.
+
+Verify (private Pixel_6_API_33 emulator, `-port 5630 -memory 7600` so Fast passes the boot floor, debug APK from this worktree, Metro
+`--port 8137` with `EXPO_PUBLIC_MODELS_BASE_URL=http://127.0.0.1:8794/v1 EXPO_PUBLIC_DEV_RAM_GB=8 EXPO_PUBLIC_AUTOPROMPT=file`,
+`scripts/serve-models.mjs` on 8794 over `adb reverse`, Hebrew through `Documents/dev-prompt.txt`; shots in the fixes-r11 scratch dir):
+1. Hebrew on Instant, nothing else installed → header "INSTANT is weak in Hebrew"; card "SHARP handles Hebrew much better than INSTANT." ·
+   Install SHARP · 2.6 GB · PRO · Not now (`01-hebrew-instant.png`). Not now → card gone; a second Hebrew message → still gone, weak line stays
+   (`02`, `03`).
+2. Fast installed from the local server (1,280,835,840 bytes verified in the vault, `13-fast-installed.png`) → Hebrew on Instant: "FAST handles
+   Hebrew better than INSTANT." + "SHARP is the best here for Hebrew · 2.6 GB" + Switch to FAST (`20-hebrew-on-instant.png`). Switch → same chat,
+   FAST loaded in 2.9 s, header now FAST, card "SHARP handles Hebrew better than FAST." · Install (`21-after-switch.png`); Hebrew answered by
+   FAST at 7.0 tok/s (`22`); English on FAST → no card, no weak line (`23`); a JavaScript question on FAST → "SHARP (PHI) is better at code than
+   FAST." · Install SHARP (PHI) · 2.3 GB (`24-code-on-fast.png`).
+3. Vault: fit map on every cartridge (`10-vault-top.png`); with Fast installed, "Best for Chat in English" puts Fast first with
+   "RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH" (`14`); Code → Sharp (Phi) carries the tag (`16`); Code in Hebrew → Sharp (`17`).
+Not in this round: dictation is not yet reported as the "voice" use by the chat (the map and `detectUse` support it; the composer does not
+flag a dictated message); the snooze memory lives for the app run, not in the chat record.
