@@ -53,7 +53,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: "./assets/icon.png",
   ios: {
     bundleIdentifier: "com.inbornapp.mobile",
-    buildNumber: "5",
+    buildNumber: "6",
     supportsTablet: true,
     /* Icon Composer bundle: Xcode 26 renders Liquid Glass + the iOS 18 light/dark/tinted fallbacks from its layers. */
     icon: "../../design/icon/Inborn.icon",
