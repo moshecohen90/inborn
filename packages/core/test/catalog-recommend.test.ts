@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, adviseModel, detectUse, looksLikeCode, looksLikeMath, rankModels, recommendModel, recommendationIsWeak, type CatalogModel, type DeviceProfile, type RecommendInput } from "../src/index";
+import { BUNDLED_MANIFEST, adviseModel, detectUse, looksLikeCode, looksLikeMath, modelShortfall, rankModels, recommendModel, recommendationIsWeak, type CatalogModel, type DeviceProfile, type RecommendInput } from "../src/index";
 
 const catalog = BUNDLED_MANIFEST.models;
 const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
@@ -187,5 +187,22 @@ describe("detectUse", () => {
     expect(detectUse({ text: "hello", personaId: "custom:1", personaIcon: "code" })).toBe("code");
     expect(detectUse({ text: "hello", personaId: "builtin:tutor" })).toBe("chat");
     expect(detectUse({ text: "hello" })).toBe("chat");
+  });
+});
+
+describe("modelShortfall (QA F23: the browser tier states what it cannot offer)", () => {
+  it("names the pair the loaded model is weak at, whichever dimension fails", () => {
+    expect(modelShortfall(byId("instant"), "chat", "he")).toEqual({ use: "chat", languageCode: "he" });
+    expect(modelShortfall(byId("instant"), "code", "en")).toEqual({ use: "code", languageCode: "en" });
+    expect(modelShortfall(byId("fast"), "chat", "he")).toEqual({ use: "chat", languageCode: "he" });
+  });
+  it("is null when the loaded model is up to the job", () => {
+    expect(modelShortfall(byId("instant"), "chat", "en")).toBeNull();
+    expect(modelShortfall(byId("sharp"), "writing", "fr")).toBeNull();
+  });
+  it("says nothing without a model, a fit block or a detected language", () => {
+    expect(modelShortfall(null, "chat", "he")).toBeNull();
+    expect(modelShortfall(byId("instant"), "chat", null)).toBeNull();
+    expect(modelShortfall({ ...byId("instant"), fit: undefined }, "chat", "he")).toBeNull();
   });
 });

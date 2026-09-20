@@ -1,19 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { Theme } from "@inborn/ui";
+import { joinList } from "@inborn/i18n";
 import { LANGUAGE_NAME_BY_CODE, LANGUAGE_TIERS, USE_CASES, USE_TIERS, type LanguageTier, type ModelFit, type UseTier } from "@inborn/core";
 import { useType } from "../../services/type";
 
 export interface FitMapProps {
   fit: ModelFit;
   theme: Theme;
+  /** The localized "weak at" line; the manifest's English only when a caller has no catalog copy for this model. */
+  weakAt?: string;
   testID?: string;
 }
 
 /** §6.1 fit map on the cartridge: what the model is good at, in which languages, and what it is weak at, one tier per line. */
-export function FitMap({ fit, theme, testID }: FitMapProps) {
+export function FitMap({ fit, theme, weakAt, testID }: FitMapProps) {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const join = (names: readonly string[]) => joinList(i18n.language, names);
   const useRows = USE_TIERS.map((tier) => [tier, USE_CASES.filter((u) => fit.uses[u] === tier).map((u) => t(`use.${u}`))] as const).filter(([, names]) => names.length);
   /* A script variant that agrees with its plain language ("zh-Hant" native next to "zh" native) says nothing new on the cartridge. */
   const codes = Object.keys(fit.languages).filter((c) => !c.includes("-") || fit.languages[c] !== fit.languages[c.split("-")[0]!]);
@@ -24,16 +28,16 @@ export function FitMap({ fit, theme, testID }: FitMapProps) {
       <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("vault.fit.uses").toUpperCase()}</Text>
       {useRows.map(([tier, names]) => (
         <Text key={tier} style={[type.mono, { color: theme.text2 }]}>
-          <Text style={{ color: colorOf(tier) }}>{t(`vault.fit.tier.${tier}`)}</Text> · {names.join(", ")}
+          <Text style={{ color: colorOf(tier) }}>{t(`vault.fit.tier.${tier}`)}</Text> · {join(names)}
         </Text>
       ))}
       <Text style={[type.monoLabel, styles.gap, { color: theme.text3 }]}>{t("vault.fit.languages").toUpperCase()}</Text>
       {langRows.map(([tier, names]) => (
         <Text key={tier} style={[type.mono, { color: theme.text2 }]}>
-          <Text style={{ color: colorOf(tier) }}>{t(`vault.fit.tier.${tier}`)}</Text> · {names.join(", ")}
+          <Text style={{ color: colorOf(tier) }}>{t(`vault.fit.tier.${tier}`)}</Text> · {join(names)}
         </Text>
       ))}
-      <Text style={[type.mono, styles.gap, { color: theme.text2 }]}>{t("vault.fit.weakAt", { text: fit.weakAt })}</Text>
+      <Text style={[type.mono, styles.gap, { color: theme.text2 }]}>{t("vault.fit.weakAt", { text: weakAt ?? fit.weakAt })}</Text>
     </View>
   );
 }

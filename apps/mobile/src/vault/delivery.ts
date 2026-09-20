@@ -30,3 +30,10 @@ export interface DeliveryContext {
   savedDownload: (id: string) => unknown;
   saveDownload: (id: string, state: unknown | null) => void;
 }
+
+/**
+ * Play Core only binds inside an app Play itself installed; a sideload, an emulator without Play services or a stripped
+ * build gets a bind failure instead of a pack, and the message it throws is raw Java (QA F26).
+ */
+const PLAY_UNAVAILABLE = /play-unavailable|failed to bind|service is not (?:available|connected)|api not available|play store/i;
+export const isPlayUnavailable = (message: string): boolean => PLAY_UNAVAILABLE.test(message);

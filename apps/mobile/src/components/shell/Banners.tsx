@@ -9,6 +9,7 @@ import { useAppServices } from "../../services/AppServices";
 import { useStorageFull } from "../../services/storageFull";
 import { Mono } from "./primitives";
 import { emitShortcut } from "../../lib/shortcuts";
+import { ownsPausedTurn, usePausedTurn } from "../../lib/pausedTurn";
 import { font } from "../../services/type";
 
 /** §8.8 system-wide states as one strip under the header. Policy comes from useDeviceState(); this is only how it looks. */
@@ -18,7 +19,9 @@ export function Banners() {
   const router = useRouter();
   const device = useDeviceState();
   const storageFull = useStorageFull();
-  const { delivery, switchToInstant, switchBack, continueGeneration } = useAppServices();
+  const { active, delivery, switchToInstant, switchBack, continueGeneration } = useAppServices();
+  /* The guard's paused flag is app-wide; the partial answer it kept belongs to one chat (QA F28). */
+  const pausedHere = ownsPausedTurn(usePausedTurn(), active.id);
   const rows: { key: string; tone: "amber" | "danger" | "muted"; text: string; action?: { label: string; onPress: () => void }; icon?: string }[] = [];
 
   const rec = device.recommendation;
@@ -28,7 +31,7 @@ export function Banners() {
     rows.push({ key: "thermal-critical", tone: "danger", text: t("state.thermalCritical"), action: { label: t("state.continue"), onPress: continueGeneration } });
   else if (device.thermal === "serious") rows.push({ key: "thermal", tone: "amber", text: t("state.thermalSerious"), action: { label: t("state.switchToInstant"), onPress: switchToInstant } });
   if (rec.kind === "pause" && rec.reason === "memory") rows.push({ key: "memory", tone: "danger", text: t("state.memoryStopped"), action: { label: t("state.continue"), onPress: continueGeneration } });
-  if (rec.kind === "paused")
+  if (rec.kind === "paused" && pausedHere)
     rows.push({
       key: "paused",
       tone: "muted",

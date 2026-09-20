@@ -349,7 +349,7 @@ voice mode. Photos (§7.1: Free one per message, Pro several) go to the Qwen3.5 
   projector `vision-qwen35` (mmproj F16, 205 MB, Play pack `inborn_model_vision` / HTTPS / dev `Documents/mmproj.gguf`) is attached with
   `initMultimodal` (512 image tokens; `ctx_shift: false` at load) and the message goes as OAI content parts. Rows are disabled with the
   reason when the projector is missing or the model has no vision (Phi).
-- **Strings / permissions**: `apps/mobile/locales/<lang>.json` (`ios` section) → Info.plist + `InfoPlist.strings` for de/es/fr/ja/pt-BR
+- **Strings / permissions**: `apps/mobile/locales/<lang>.json` (`ios` section) → Info.plist + `InfoPlist.strings` for de/es/fr/ja/pt-BR/ko/zh-Hant
   (`CFBundleLocalizations`); Android gets `RECORD_AUDIO` + `CAMERA` and the `RecognitionService` queries block; the release APK still
   passes `scripts/check-android-permissions.sh` (no INTERNET). Store answers in `docs/legal/app-privacy-details.md` §4.2a.
 - Dev proof: `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav EXPO_PUBLIC_AUTOVOICE_TTS=1` transcribes WAVs pushed into Documents and writes
@@ -695,7 +695,7 @@ Verified: `plutil -lint` on the plist, `NOTICE.json` parses; licence inventory f
 `design/store/` renders the six store screens per language from the real app, not mockups:
 ```
 node design/store/build.mjs            # dev APK, store-build APK (no INTERNET), iOS simulator app → design/store/raw/
-node design/store/capture.mjs          # Pixel_6_API_33 + iPhone 15 Pro Max (iOS 17.0) + iPad Pro 13" (iOS 17.5), en + ja/de/fr/es/pt-BR
+node design/store/capture.mjs          # Pixel_6_API_33 + iPhone 15 Pro Max (iOS 17.0) + iPad Pro 13" (iOS 17.5), en + ja/de/fr/es/pt-BR/ko/zh-Hant
 node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/<set>/NN-<screen>.png + out/preview.html
 ```
 - Copy comes from `docs/store/listing.<locale>.json` (`screenshots[]`), fonts from `design/store/fonts/` (IBM Plex Sans/Mono/Sans JP TTFs
@@ -1268,3 +1268,120 @@ flag a dictated message); the snooze memory lives for the app run, not in the ch
   Hebrew on Instant → "FAST handles Hebrew better than INSTANT, but not fluently." + Switch to FAST + Not now; Not now → force-stop →
   relaunch → same chat → another Hebrew message → no card (weak line stays); a new chat shows the card again.
 
+
+## Fixes round 12: QA run 3 pass 5 follow-ups (branch `fixes-r12`) — 20.9.2026
+Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
+- **F22 · a browser download that stored the right bytes could still read as "stored file does not match"**
+  (`apps/mobile/public/model-worker.js`, `src/web/opfs.ts`, `src/web/boot.ts`, `src/web/WebShell.tsx`). Root cause: the worker
+  announced `done` while its `FileSystemSyncAccessHandle` was still open (the `finally` closed it), and `WebModelDelivery` terminates
+  the worker the instant that message arrives, so the close that publishes the file's size to `getFile()` could be cut short; the door
+  then re-read the file once, did not find it ready, and called a sha256-verified download a failure. (The worker hashes every byte
+  before it says done, so a file that reads as "does not match" is never a bad download, only one the page looked at too early.)
+  The worker now closes the file, waits until a fresh handle reports the full size (`awaitPublished`) and only then writes the meta
+  and posts `done` (same order for `paused` and `error`, so a resume state always describes bytes that are on record), and the door
+  re-reads through `readyModelStatus` / `settleModelStatus` instead of failing on the first miss. `src/web/modelWorkerDownload.test.ts`
+  (6 tests) drives the shipped worker against a fake OPFS that only publishes a file when its handle closes.
+- **F23 · the browser tier said nothing about a model that cannot do the job** (`screens/Chat.tsx`,
+  `packages/core/src/catalog/recommend.ts`). The web holds the single model boot picked and offers no install and no switch
+  (`screens/vault/VaultEntry.web.tsx`), so the advice card with Switch / Install stays phone-and-desktop only; the two platform guards
+  also hid the honest part. The "INSTANT is weak in Hebrew" caption is no longer platform-gated, and a new grey line under it states the
+  same verdict the vault's picker gives, with no action: `NOTHING ON THIS BROWSER IS GOOD AT CHAT IN HEBREW · CLOSEST: INSTANT`
+  (`models.recommendedNone`, testID `model-none-line`). New pure helper `modelShortfall(current, use, languageCode)`.
+- **F24 · onboarding said "Fast (1.3 GB)", everywhere else 1.2 GB** (`screens/Onboarding/ModelChoice.tsx`, all seven locale files):
+  `onboarding.model.fast` is now `Fast ({size})` and the size comes from the catalog entry, like every other size in the app. A locale
+  test refuses a digit in that key, so the number cannot drift back into the copy.
+- **F25 · the drawer meter printed `NULL · OUT 226 KB` with no model installed** (`app/chats.tsx`, `lib/models.ts`): new `meterLabel`
+  gives the friendly model name, or the localized "No model on this device" for the null engine; imports no longer show their raw id.
+- **F26 · the Instant row in the vault** (`vault/playDelivery.ts`, `vault/delivery.ts`, `vault/store.ts`). As filed the finding does not
+  reproduce: `model-card-instant` is rendered whether or not the file is present, third in "Fits your phone" behind two tall cards, which
+  is why the pass read it as missing. What was really wrong is what the row said. On a build Play did not install, Play Core cannot bind,
+  and the boot scan's fast-follow install turned that into raw Java text — "Could not install: Failed to bind to the service." — behind a
+  "Try again" that could never work. A Play failure to bind is now recognised (`isPlayUnavailable`), takes Play delivery out of the run,
+  and lands in the existing `no-delivery` state, so the row reads "Google Play is not available here. Import a model file instead." with
+  an Import GGUF button. The brief's other route, an https Install on Android, is not open to us: `app.config.ts` strips
+  `android.permission.INTERNET` from every non-development build (spec §5.1, D3), so a download button there would be the dead UI F23
+  asks us to avoid.
+- **O18 · the model-details sheet said "GOOD LANGUAGES" over a list that includes every tier** (`vault.details.languages`
+  in all seven locale files). Since the fit map landed, the row reads "Hebrew (No)" and "Italian (Basic)" too, so the heading is
+  now the tier-neutral "Languages" and the tiers in the row carry the meaning.
+- **Dictated drafts now have a device-level proof** (`voice/devFlags.ts`, `voice/useDictation.ts`, `screens/Chat.tsx`). Every
+  final transcript, system or whisper, now leaves `useDictation` through one `deliver()`; the dev-only hook
+  `EXPO_PUBLIC_AUTOVOICE_DICTATE=1` sends an `EXPO_PUBLIC_AUTOVOICE` fixture through that same path and submits it, so §7.8's
+  "a dictated draft is the voice use" can be exercised where there is no speech service. The classification goes into
+  `dev-run.json` because no screen names it: every model in the catalog is good at voice, so the advice card never has a reason
+  to mention it, and `detectUse` ranks code and math above dictation, so a spoken code question reads as code, not voice.
+- **F28 · the "Paused while Inborn was in the background" banner outlived its answer** (`lib/pausedTurn.ts`,
+  `screens/Chat.tsx`, `components/shell/Banners.tsx`, `device/guard.ts`). The guard's paused status is one app-wide latch that
+  only Continue or a dismiss clears, and `Banners` rendered it from `device.recommendation` with nothing tying it to a
+  conversation, so it followed the user into every later chat and sat over empty ones. The chat that owns the partial answer is
+  now recorded when a generation ends (`afterGeneration`), the banner only renders where `ownsPausedTurn` says it belongs, and
+  once the partial is released the guard drops the latch instead of masking the other §8.8 lines.
+- **F27 · TAB focus trap between the empty-chat suggestion chips: not reproduced.** On Android 11 and Android 13, from the top
+  of the screen and from the composer, with and without a draft, the ring is composer → mic → send → the three chips → Chats →
+  model chip → attach → composer, and it wraps. Send is skipped only while the draft is empty, because it is disabled then.
+## i18n: Korean + Traditional Chinese (branch `i18n-ko-zhhant`) — 20.9.2026
+The launch set of `docs/research/launch-languages-2026-09.md` §1 is eight languages; six shipped. This adds the last two.
+- **Locales**: `packages/i18n/locales/ko.json` and `zh-Hant.json`, 1000 keys each, the same count as the other six. Translated against
+  the render site, not the English string: Korean is 해요체 throughout (labels stay noun-form, the way Korean UI reads), Traditional
+  Chinese uses Taiwan vocabulary (軟體 / 裝置 / 設定 / 隱私 / 飛航模式 / 低耗電模式) and Apple's own Taiwanese strings for system paths
+  ("設定 → 隱私權與安全性 → App 隱私權報告"). `Instant` / `Fast` / `Sharp`, `PRO`, `WORK`, `GGUF`, `Face ID` and the host names stay Latin.
+- **The `{device}` argument** is a bare noun (`phone` / `tablet` / `computer` / `browser`), so both files wrap it in an ICU select the way
+  `ja.json` does — "이 휴대폰" / "這支手機" — instead of dropping an English word into the sentence. Korean and Chinese have one CLDR plural
+  category, so every `plural` is `other` (with `=0` kept where English has it). Placeholders and ICU argument names are unchanged, which is
+  what `packages/i18n/test/locales.test.ts` pins.
+- **Korean particles**: model, file and language names are Latin and unpredictable, so sentences are built to avoid a particle right after
+  the placeholder; where one is unavoidable the `(으)로` / `을(를)` form is used, the standard Korean localisation convention.
+- **Registered** in `packages/i18n/src/index.ts` (`Locale`, `LAUNCH_LOCALES`, `LOCALE_NAMES` → 한국어 / 繁體中文, `resources`) and in
+  `apps/mobile/app.config.ts` (`locales` map + `CFBundleLocalizations`), with `apps/mobile/locales/{ko,zh-Hant}.json` carrying the four iOS
+  usage strings. The picker, the web export and the desktop shell all read `LAUNCH_LOCALES`, so no other registration point exists; the
+  answer-language list in `Settings/Language.tsx` already carried `ko` and `zh-Hant`. The registry key is `zh-Hant`, not `zh-TW`: that is
+  what the answer list, `packages/core` and iOS `.lproj` already use.
+- **Store copy**: `docs/store/listing.ko.json` and `listing.zh-Hant.json`, same shape as the other six.
+  `node docs/store/scripts/check-store-copy.mjs` passes for all eight with zero warnings. The Apple keyword field is byte-limited, and a
+  CJK character costs three bytes, so both keyword lines lean on the Latin model names (gguf, qwen, gemma, mistral, phi, pdf, deepseek) and
+  use 3-character-or-longer native phrases, which is also what the checker requires.
+- **Proven on the emulator** (Pixel_6_API_33, 4 GB, debug APK + Metro on a private port, `EXPO_PUBLIC_DEV_RAM_GB=8`,
+  shots in `docs/qa/i18n-ko-zhhant/`): onboarding, chat, the model-advice card, the vault and settings in both languages.
+  The `{device}` select resolves ("이 휴대폰" / "這支手機"), the fit map and both plural forms render, and nothing is clipped at
+  the default text size. The advice card was triggered per language: Korean on Instant is `basic`, so `chat.modelWeak` +
+  `chat.modelAdvice.language` show ("INSTANT는 한국어에 약해요" / "FAST가 INSTANT보다 한국어를 잘 다뤄요."); Instant is
+  native at Chinese, so the zh-Hant card was raised with a Hebrew message instead ("INSTANT 的希伯來文能力較弱" +
+  the `basic` branch "FAST 處理希伯來文比 INSTANT 好，但還稱不上流利。"), which also shows a right-to-left answer inside an
+  LTR Chinese UI without breaking the layout.
+- **Korean particles, fixed from the screenshots**: `은/는` and `이/가` depend on the sound before them, and every model label
+  here reads vowel-final in Korean, so `chat.modelWeak` and the two battery lines take `는`, the three keys whose argument can
+  be an imported GGUF name take the `은(는)` variable form, and `chat.modelAdvice.best`, `desktop.update.available` and
+  `vault.import.unsupportedArch` were rewritten so no particle follows a placeholder at all.
+- **Not done here**: `design/store/compose.mjs` has no Korean or Traditional Chinese font. `design/store/capture.mjs` now carries the ko and
+  zh-Hant prompt fixtures, but composing those two locales needs IBM Plex Sans KR and TC in `design/store/fonts/` first.
+- **Collides with `fixes-r12`, which is not on `main` yet**: that branch edits two values in all seven existing locale files, and it
+  branched before ko and zh-Hant existed, so whoever merges both must add the same two edits here or the ICU test goes red.
+  `vault.details.languages` loses "Good" (ja becomes 言語) → ko `"언어"`, zh-Hant `"語言"`. `onboarding.model.fast` becomes
+  `"Fast ({size})"`, gaining a placeholder → ko and zh-Hant both `"Fast ({size})"`. The second one is the red test: the locale
+  suite requires every file to carry exactly en's placeholders, and today's en has none there. Neither edit can be made on this
+  branch first, because against today's `main` it is this branch that would fail.
+- **Pre-existing, not this branch**: each model's `goodFor` and `fit.weakAt` come from the signed catalog
+  (`packages/core/src/catalog/manifest.json`) and are English only, so the vault card shows two English sentences in ko and
+  zh-Hant exactly as it already does in ja, de, fr, es and pt-BR. Localising them means localising the signed catalog.
+
+## i18n: localized model copy + CJK list joins (branch `i18n-model-copy`) — 20.9.2026
+Closes the gap the previous section left open: every model's plain-language "good at / weak at" now reads in the user's
+language, and the fit-map rows stop joining Japanese and Chinese words with a Latin comma.
+- **The catalog stays signed and English.** `packages/core/src/catalog/manifest.json` is untouched. Each entry's `goodFor`
+  and `fit.weakAt` gained a locale key instead — `models.copy.<catalog id>.goodFor` and `models.copy.<catalog id>.weakAt`,
+  11 keys per file (four chat models plus the embedding, speech and vision companions, which have no `weakAt`) — and
+  `modelCopy(t, model)` in `apps/mobile/src/lib/models.ts` resolves them, falling back to the manifest line for imported and
+  Hugging Face files, which carry no key. `apps/mobile/test/modelCopy.test.ts` pins `en.json` to the manifest word for word,
+  so a catalog edit that forgets the locale files goes red rather than shipping two different sentences.
+- **Translated in context** (de, fr, es, ja, pt-BR, ko, zh-Hant), against the cartridge, not the English string: `Instant`,
+  `Fast` and `Sharp` stay Latin, "thinking mode" reuses each file's own `chatSettings.thinking` wording (Nachdenken /
+  Réflexion / Pensar / 思考モード / 생각 표시 / 思考過程), and "on this phone" became a device-neutral noun, since the same card
+  renders in the browser and on the desktop.
+- **`joinList(locale, items)`** (`packages/i18n/src/list.ts`) replaces every user-facing `join(", ")`: the fit-map use and
+  language rows, the model-details languages and source rows, and the document names on the Ask sheet. `Intl.ListFormat` is
+  deliberately not used — for these data rows every style it offers inserts a word or the wrong mark (zh-Hant `A、B和C`,
+  ko `A, B 및 C`, de `A, B und C`, ja `unit` gives `A B C`) — and Hermes ships none, which would make the phone and the
+  browser disagree. `packages/i18n/test/list.test.ts` pins ja / zh-Hant / zh → `、` and ko / en / de / pt-BR → `, `.
+- **Proven on the emulator** (Pixel_6_API_33, 4 GB, debug APK + Metro on a private port, shots in `docs/qa/i18n-model-copy/`):
+  the vault card and the details sheet in zh-Hant, ja and de show the localized tagline and "weak at" line, the ja and
+  zh-Hant tier rows and the details languages row join with `、`, and `en` is unchanged word for word.
