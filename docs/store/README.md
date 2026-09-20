@@ -1,9 +1,10 @@
 # Inborn store listings
 
-Ready-to-paste store copy for App Store Connect and Google Play Console, six launch
-languages (D13): `en`, `ja`, `de`, `fr`, `es`, `pt-BR`. One file per language:
-`listing.<locale>.json`. English is the master; the other five are native adaptations,
-register-checked, not literal translations.
+Ready-to-paste store copy for App Store Connect and Google Play Console, eight launch
+languages (D13): `en`, `ja`, `de`, `fr`, `es`, `pt-BR`, `ko`, `zh-Hant`. One file per
+language: `listing.<locale>.json`. English is the master; the other seven are native
+adaptations, register-checked, not literal translations. `zh-Hant` serves the Taiwan and
+Hong Kong storefronts and uses Taiwan vocabulary (軟體, 裝置, 設定, 隱私).
 
 Every claim here is provable by the shipped app: no INTERNET permission on Android,
 nothing leaves the device, one-time purchase, no account. Do not add a claim the app
@@ -15,7 +16,7 @@ cannot demonstrate.
 node docs/store/scripts/check-store-copy.mjs
 ```
 
-It reads all six files and fails (exit 1) on any overflow, on a space after a comma in the
+It reads all eight files and fails (exit 1) on any overflow, on a space after a comma in the
 keyword field, on a keyword phrase of two characters or fewer, on a duplicate keyword, and
 warns if a keyword repeats a word already in the app name or subtitle. It counts characters
 by Unicode code point for text fields and by UTF-8 bytes for the Apple keyword field, because
@@ -100,9 +101,10 @@ which are already indexed through the name and subtitle. `{{IOS_PROMO}}` is 152 
 ## Voice lines (M5b, decide before submission)
 
 Voice (system dictation + read-aloud free; Whisper dictation + hands-free Pro) is built on the
-`voice-m5b` branch in parallel. Every sentence in the six listings that depends on it is listed
+`voice-m5b` branch in parallel. Every sentence in the eight listings that depends on it is listed
 verbatim under the `voice_lines` key of that listing file (`apple.description`, `apple.whats_new`,
-`google.full_description`, and the keyword `voice` / `sprache` / `voix` / `voz` / `音声入力`, which is
+`google.full_description`, and the keyword `voice` / `sprache` / `voix` / `voz` / `音声入力` /
+`음성입력` / `語音輸入`, which is
 also `{{IOS_KEYWORDS}}` in `docs/build.py`). If M5b misses 1.0, delete exactly those sentences and
 keywords, and the `VOICE_LINES` bullet in `packages/core/src/licence/gates.ts`, in one commit.
 Every other sentence names a capability that ships on `main` today.
@@ -112,7 +114,7 @@ Every other sentence names a capability that ships on `main` today.
 Three variants each for the Apple subtitle and the Play short description live in
 `listing.en.json` under `ab_variants`, each with a one-line hypothesis. Run them in English
 only: the launch audience is global and English-first (spec 3.2), and store-experiment traffic
-is too thin to split six ways. Localize the winner into the other five locales after the test.
+is too thin to split eight ways. Localize the winner into the other seven locales after the test.
 
 - **Apple subtitle:** test through Product Page Optimization (up to three treatments against
   the current subtitle). The three test: keyword-max (the spec default) vs proof-benefit vs
