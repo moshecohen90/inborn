@@ -1,6 +1,6 @@
 import { classifyDevice, readDeviceSignals, type DeviceGate } from "./deviceGate";
 import { WebModelDelivery, fetchManifest, pickModel, type WebModelSource } from "./modelDelivery";
-import { modelStatus, opfsSupported, type ModelStatus } from "./opfs";
+import { modelStatus, opfsSupported, readyModelStatus, type ModelStatus } from "./opfs";
 import { chromePromptApiAvailable } from "./chromeNano";
 import { readEnginePref, type WebEngine } from "./prefs";
 
@@ -42,10 +42,10 @@ export function prepareWebBoot(): Promise<WebBoot> {
   return pending;
 }
 
-/** After a finished download: re-read the file state so createEngine() sees the model. */
-export async function refreshModelStatus(): Promise<ModelStatus> {
+/** After a finished download: re-read the file state so createEngine() sees the model, waiting out the OPFS publish before giving a verdict. */
+export async function settleModelStatus(): Promise<ModelStatus> {
   const b = webBoot();
-  b.status = b.source ? await modelStatus(b.source.file) : { kind: "missing" };
+  b.status = b.source ? await readyModelStatus(b.source.file) : { kind: "missing" };
   return b.status;
 }
 

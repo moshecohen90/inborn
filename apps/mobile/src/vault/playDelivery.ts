@@ -1,7 +1,7 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { modelParts, type CatalogModel, type Delivery, type InstallEvent } from "@inborn/core";
 import { AssetPackErrorCode, AssetPackStatus, addPackListener, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
-import type { DeliveryPlan, ModelDelivery } from "./delivery";
+import { isPlayUnavailable, type DeliveryPlan, type ModelDelivery } from "./delivery";
 
 type PlayPack = Extract<Delivery, { kind: "play-asset-pack" }>;
 
@@ -10,8 +10,11 @@ const packsOf = (model: CatalogModel): PlayPack[] => model.delivery.filter((d): 
 
 /** Play Asset Delivery: Play downloads (cellular consent, resume, retries are Play's), the app only shows state (spec §5.1, S32). */
 export class PlayDelivery implements ModelDelivery {
+  /* Once Play has refused to bind, every pack on this device is out of reach for this run: the vault offers import instead of a dead Install. */
+  private unavailable = false;
+
   plan(model: CatalogModel): DeliveryPlan | null {
-    return packsOf(model).length && hasAssetPacks() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+    return !this.unavailable && packsOf(model).length && hasAssetPacks() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
   }
 
   locate(model: CatalogModel): string | null {
@@ -36,6 +39,17 @@ export class PlayDelivery implements ModelDelivery {
   }
 
   async deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+    try {
+      return await this.deliverPacks(model, emit);
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : String(e);
+      if (!isPlayUnavailable(message)) throw e;
+      this.unavailable = true;
+      throw new Error("play-unavailable", { cause: e });
+    }
+  }
+
+  private async deliverPacks(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
     const packs = packsOf(model);
     if (!packs.length) throw new Error(`${model.id} has no Play pack`);
     const located = this.locate(model);

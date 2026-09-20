@@ -26,4 +26,5 @@ export type WorkerMessage =
   | { type: "done"; have: number; sha256: string; verified: boolean }
   | { type: "paused"; have: number }
   | { type: "error"; message: string };
+export function awaitPublished(dir: FileSystemDirectoryHandle, file: string, bytes: number, tries?: number, delayMs?: number): Promise<boolean>;
 export function download(job: DownloadJob, post: (m: WorkerMessage) => void, signal: AbortSignal): Promise<void>;

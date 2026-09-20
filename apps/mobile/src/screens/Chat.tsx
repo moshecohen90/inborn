@@ -27,6 +27,7 @@ import {
   detectLanguage,
   detectUse,
   languageTierOf,
+  modelShortfall,
   limits,
   markdownToText,
   fallbackPrice,
@@ -712,6 +713,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   /* §7.8 recommendation by use + language + device: the fit map decides, the vault knows what is installed and what fits. */
   const adviceLanguage = lastUserText ? detectLanguage(lastUserText) : null;
   const use = detectUse({ text: lastUserText, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated });
+  /* The card offers Switch and Install, which only a phone or desktop vault can carry out; the browser tier holds the single model boot picked (screens/vault/VaultEntry.web.tsx). */
   const advice = useMemo(() => {
     if (Platform.OS === "web" || !lastUserText) return null;
     const vault = getVault();
@@ -735,10 +737,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     void store.updateChat(id, { adviceSnoozed: next });
   };
   const weakLanguage = useMemo(() => {
-    if (Platform.OS === "web" || !adviceLanguage) return null;
+    if (!adviceLanguage) return null;
     const tier = languageTierOf(getVault().model(model.id) ?? {}, adviceLanguage);
     return tier === "none" || tier === "basic" ? adviceLanguage : null;
   }, [adviceLanguage, model.id]);
+  /* §6.3 mediate honestly: a browser user cannot switch, so instead of the card they get the same verdict the vault's picker gives, with no action. */
+  const noBetterHere = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
@@ -902,6 +906,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {weakLanguage && status.kind === "ready" ? (
         <Text testID="model-weak-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
           {t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
+        </Text>
+      ) : null}
+      {noBetterHere && status.kind === "ready" ? (
+        <Text testID="model-none-line" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
+          {t("models.recommendedNone", {
+            device: deviceNoun(),
+            model: modelLabel(model.id),
+            use: t(`use.${noBetterHere.use}`).toUpperCase(),
+            language: t(`language.${noBetterHere.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[noBetterHere.languageCode] ?? noBetterHere.languageCode }).toUpperCase(),
+          })}
         </Text>
       ) : null}
       {persona.disclaimer || settings.personaId !== DEFAULT_PERSONA_ID ? (

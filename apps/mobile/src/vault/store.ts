@@ -397,7 +397,9 @@ export class VaultStore {
       }
       const msg = errorText(e);
       if (msg === "canceled") return this.dispatch(id, { type: "cancel" });
-      return this.dispatch(id, { type: "error", error: msg, retryable: msg !== "play-unavailable" });
+      /* Play cannot serve this build at all (QA F26): the vault says so in its own words and offers import, instead of a raw Play message behind a Try again that can never work. */
+      if (msg === "play-unavailable") return this.dispatch(id, { type: "error", error: "no-delivery", retryable: false });
+      return this.dispatch(id, { type: "error", error: msg, retryable: true });
     }
   }
 

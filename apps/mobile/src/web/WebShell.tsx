@@ -3,7 +3,7 @@ import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { delivery, refreshModelStatus, webBoot, webReady, type WebBoot } from "./boot";
+import { delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
@@ -114,7 +114,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
     running.current = false;
     if (end.type === "done") {
       recordWebTransfer({ host: new URL(source.url, location.origin).host, bytesOut: 0, bytesIn: end.have, at: Date.now(), purpose: "model" });
-      const status = await refreshModelStatus();
+      const status = await settleModelStatus();
       if (status.kind === "ready") onReady();
       else setPhase({ kind: "error", message: "stored file does not match" });
     }

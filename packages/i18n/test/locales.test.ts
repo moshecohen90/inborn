@@ -41,3 +41,13 @@ describe("locales", () => {
     }
   });
 });
+
+describe("sizes in copy (QA F24)", () => {
+  it("the onboarding offer takes its size from the catalog, so no locale spells a number", () => {
+    for (const f of files) {
+      const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+      expect({ file: f, fast: d["onboarding.model.fast"] }, `${f}:onboarding.model.fast`).toEqual({ file: f, fast: expect.stringMatching(/\{size\}/) });
+      expect(d["onboarding.model.fast"], `${f}:onboarding.model.fast`).not.toMatch(/\d/);
+    }
+  });
+});
