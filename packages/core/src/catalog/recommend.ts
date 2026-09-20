@@ -61,7 +61,7 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
 
 export const recommendModel = (input: RecommendInput): ModelRecommendation | null => rankModels(input)[0] ?? null;
 
-/** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. */
+/** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. An unrated language (tier null) is never a claim either way. */
 export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
   (r.reason.languageCode !== null && (r.reason.languageTier === "basic" || r.reason.languageTier === "none")) || r.reason.useTier === "weak";
 

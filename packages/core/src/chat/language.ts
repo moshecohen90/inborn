@@ -59,8 +59,29 @@ const CODE_BY_SCRIPT: Partial<Record<Script, string>> = { hebrew: "he", arabic: 
 
 export const languageCodeOf = (text: string): string | null => CODE_BY_SCRIPT[scriptOf(text)] ?? null;
 
+/* Simplified and Traditional forms of eighty very common characters, paired by index; a Han text uses one side or the other. */
+const SIMPLIFIED_FORMS = "们这国说为时会个来对学发点无长东车门马鸟见语请谢关开书电话买卖从众与业义习乡写农让认识议论讲变边过进远连运还达适选经两确气么儿万号岁员图团园处备头医应战报术体湾";
+const TRADITIONAL_FORMS = "們這國說為時會個來對學發點無長東車門馬鳥見語請謝關開書電話買賣從眾與業義習鄉寫農讓認識議論講變邊過進遠連運還達適選經兩確氣麼兒萬號歲員圖團園處備頭醫應戰報術體灣";
+const SIMPLIFIED_ONLY = new Set([...SIMPLIFIED_FORMS]);
+const TRADITIONAL_ONLY = new Set([...TRADITIONAL_FORMS]);
+
+/** Which Chinese script a Han text is written in; null when it uses no character that tells the two apart. */
+export function chineseScriptOf(text: string): "zh-Hans" | "zh-Hant" | null {
+  let hans = 0;
+  let hant = 0;
+  for (const ch of text) {
+    if (SIMPLIFIED_ONLY.has(ch)) hans++;
+    else if (TRADITIONAL_ONLY.has(ch)) hant++;
+  }
+  return hans === hant ? null : hans > hant ? "zh-Hans" : "zh-Hant";
+}
+
 /** Code to English name; the UI resolves `language.<code>` and falls back to this. */
-export const LANGUAGE_NAME_BY_CODE: Readonly<Record<string, string>> = Object.fromEntries((Object.keys(CODE_BY_SCRIPT) as Script[]).map((s) => [CODE_BY_SCRIPT[s]!, LANGUAGE_BY_SCRIPT[s]!]));
+export const LANGUAGE_NAME_BY_CODE: Readonly<Record<string, string>> = {
+  ...Object.fromEntries((Object.keys(CODE_BY_SCRIPT) as Script[]).map((s) => [CODE_BY_SCRIPT[s]!, LANGUAGE_BY_SCRIPT[s]!])),
+  "zh-Hans": "Chinese (Simplified)",
+  "zh-Hant": "Chinese (Traditional)",
+};
 
 export interface LanguageCandidate {
   id: string;
