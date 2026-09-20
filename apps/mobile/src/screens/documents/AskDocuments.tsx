@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
 import { NOT_FOUND_TOKEN, directionOf, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
@@ -118,7 +119,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   }, []);
 
   const busy = phase.kind === "loading" || phase.kind === "retrieving" || phase.kind === "answering";
-  const names = docs.map((d) => d.name).join(", ");
+  const names = joinList(i18n.language, docs.map((d) => d.name));
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
   useOpenSheet(true, onClose);

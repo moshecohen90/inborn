@@ -7,7 +7,7 @@ import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
-import { modelLabel } from "../../lib/models";
+import { modelCopy, modelLabel } from "../../lib/models";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -42,6 +42,7 @@ export interface ModelCardProps {
 export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
+  const copy = modelCopy(t, model);
   const speed = expectedSpeed(device.chip, model.tier);
   const fit = ramFit(model, device.ramGB);
   const dot = state.kind === "ready" ? (active ? "●" : "◉") : state.kind === "quarantined" || state.kind === "corrupt" ? "⊗" : "○";
@@ -122,10 +123,12 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
             : t("models.recommended", { device: deviceNoun() })}
         </Text>
       ) : null}
-      {model.goodFor ? (
-        <Text style={[type.bodySmall, { color: theme.text }]}>{model.goodFor}</Text>
+      {copy.goodFor ? (
+        <Text testID={`model-goodfor-${model.id}`} style={[type.bodySmall, { color: theme.text }]}>
+          {copy.goodFor}
+        </Text>
       ) : null}
-      {model.fit ? <FitMap fit={model.fit} theme={theme} testID={`fit-${model.id}`} /> : null}
+      {model.fit ? <FitMap fit={model.fit} weakAt={copy.weakAt} theme={theme} testID={`fit-${model.id}`} /> : null}
       <Text style={[type.mono, { color: theme.text3 }]}>
         {model.quant ? t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant }) : formatModelBytes(model.bytes)} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>

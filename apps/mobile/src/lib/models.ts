@@ -1,4 +1,4 @@
-import { BUNDLED_MANIFEST } from "@inborn/core";
+import { BUNDLED_MANIFEST, type CatalogModel, type ModelFit } from "@inborn/core";
 
 /** Friendly model names for chips and labels (§8.2: "friendly name only, no size"), taken from the catalog so the chip never disagrees with the vault. */
 const NAMES: Record<string, string> = Object.fromEntries(BUNDLED_MANIFEST.models.map((m) => [m.id, m.name.toUpperCase()]));
@@ -28,4 +28,22 @@ export const meterLabel = (modelId: string, noModel: string): string => (modelId
 export function describeLoad(engineId: string, modelId: string, uri: string, ms: number): string | null {
   if (modelId === NULL_MODEL_ID || engineId === NULL_MODEL_ID) return null;
   return `[inborn] ${engineId} loaded model ${modelLabel(modelId)} (${modelId}) from ${uri} in ${ms} ms`;
+}
+
+/** Anything with a `t`: the resolver is called from components and from plain functions alike. */
+export type Translate = (key: string, options?: Record<string, unknown>) => string;
+
+/** The plain-language catalog copy, in the user's language. */
+export interface ModelCopy {
+  goodFor: string;
+  weakAt: string;
+}
+
+/* The manifest is signed, so its English text cannot be translated in place; the locale files carry a key per catalog id
+   and the manifest line is the fallback for imported and Hugging Face files, which have no key. */
+export function modelCopy(t: Translate, model: Pick<CatalogModel, "id" | "goodFor"> & { fit?: Pick<ModelFit, "weakAt"> }): ModelCopy {
+  return {
+    goodFor: model.goodFor ? t(`models.copy.${model.id}.goodFor`, { defaultValue: model.goodFor }) : "",
+    weakAt: model.fit?.weakAt ? t(`models.copy.${model.id}.weakAt`, { defaultValue: model.fit.weakAt }) : "",
+  };
 }
