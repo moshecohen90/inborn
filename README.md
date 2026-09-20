@@ -1429,7 +1429,7 @@ Catalog is now **v3, published 20.9.2026**, re-signed with `scripts/sign-catalog
   (Fast 2/2/3, Sharp 2.5/2.5/2.5) do not support, and §7.8 ranks language before use — so an Arabic user gets Fast recommended
   for code and writing. It is item 1 of the "least certain judgements" list in `docs/models/model-fit.md`.
 
-## Fixes round 14: F33, the vault deep link crashed the app on the way back (branch `fixes-r14`) — 20.9.2026
+## Fixes round 14: F33, the vault deep link crashed the app on the way back, plus the pass-6 lows (branch `fixes-r14`) — 20.9.2026
 The Play-internal release vc7 died on the OnePlus 6T during soak run 3 with
 `java.lang.NullPointerException: Attempt to invoke virtual method 'int android.view.View.getVisibility()' on a null object
 reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`, 153 ms after the BACK that popped `/vault`.
@@ -1459,3 +1459,14 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
 - **Green on the patched release build.** Same emulator, the patched `assembleRelease` APK installed over the unfixed one: the
   mandated sequence ten times (HOME → 60 s → launcher relaunch → 10 s → `am start -a android.intent.action.VIEW -d
   inborn://vault` while a chat is foregrounded → BACK) and the seeded 25-cycle run, both `done; fatals=0`.
+- **F30 · Settings printed `NULL` for the chat model** (`screens/Settings/Settings.tsx`). Root cause: the row rendered
+  `engine.model.id.toUpperCase()`, and with no model installed that id is the NullLM's `"null"`. It now goes through
+  `meterLabel`, the resolver F25 gave the drawer, so the row reads "No model on this device" in the user's language.
+- **F31 · model details listed Chinese three times** (`packages/core/src/catalog/fit.ts`, `screens/vault/ModelDetails.tsx`,
+  `screens/vault/FitMap.tsx`). Root cause: the languages row mapped every key of `fit.languages`, and since round 13 that
+  includes the `zh-Hans` and `zh-Hant` script variants, so Fast printed Chinese, Chinese (Simplified) and Chinese (Traditional)
+  at the same tier. The cartridge already hid a variant that agreed with its plain language; that rule is now the exported
+  `distinctLanguageCodes` and the details sheet uses it too, so a variant shows up only when its tier differs.
+- **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
+  labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
+  "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.

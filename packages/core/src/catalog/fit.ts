@@ -12,6 +12,10 @@ export const languageTierOf = (model: Pick<CatalogModel, "fit">, code: string | 
   code && model.fit ? (model.fit.languages[code] ?? model.fit.languages[baseLanguageOf(code)] ?? null) : null;
 export const useTierOf = (model: Pick<CatalogModel, "fit">, use: UseCase): UseTier | null => model.fit?.uses[use] ?? null;
 
+/** Codes a reader should see: a script variant that repeats its plain language's tier says nothing new (QA F31). */
+export const distinctLanguageCodes = (languages: Readonly<Record<string, LanguageTier>>): string[] =>
+  Object.keys(languages).filter((c) => !c.includes("-") || languages[c] !== languages[baseLanguageOf(c)]);
+
 /** The flat `goodLanguages` list a fit block implies (native or good, catalog order); script variants stay out, older readers match on the plain code. */
 export const goodLanguagesOf = (fit: ModelFit): string[] => Object.entries(fit.languages).filter(([c, t]) => !c.includes("-") && (t === "native" || t === "good")).map(([c]) => c);
 

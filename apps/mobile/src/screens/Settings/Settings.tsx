@@ -15,6 +15,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Row, Section, Segmented } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
 import { WipeSheet } from "./WipeSheet";
+import { meterLabel } from "../../lib/models";
 import { lockCopy, timeoutLabel } from "../Onboarding/LockOffer";
 import { useType } from "../../services/type";
 
@@ -149,7 +150,7 @@ export function Settings() {
       </Section>
 
       <Section title={t("settings.chat")}>
-        <Row label={t("settings.chat.model")} value={engine.model.id.toUpperCase()} onPress={() => router.push("/vault")} chevron />
+        <Row label={t("settings.chat.model")} value={meterLabel(engine.model.id, t("onboarding.model.none"))} onPress={() => router.push("/vault")} chevron />
         <Row label={t("settings.chat.haptics")} toggle={prefs.haptics} onToggle={(v) => updatePrefs({ haptics: v })} />
         <Row label={t("settings.chat.sounds")} sub={t("settings.chat.soundsSub")} toggle={false} onToggle={() => undefined} disabled />
       </Section>

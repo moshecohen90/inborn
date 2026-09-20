@@ -51,3 +51,17 @@ describe("sizes in copy (QA F24)", () => {
     }
   });
 });
+
+describe("ledger labels in CJK locales (QA F32)", () => {
+  /* MS and TOK / S stay Latin units in ja and ko; only the word "token" is translated, and zh-Hant had kept all three English. */
+  const tokenLabels = ["ledger.msPerToken", "ledger.ttft", "ledger.tokens"] as const;
+  it("translates the word token rather than leaving the English label", () => {
+    for (const f of ["ja.json", "ko.json", "zh-Hant.json"]) {
+      const l = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+      for (const k of tokenLabels) {
+        expect(l[k], `${f} ${k}`).not.toBe(en[k]);
+        expect(l[k], `${f} ${k}`).toMatch(/[぀-ヿ一-鿿가-힯]/);
+      }
+    }
+  });
+});
