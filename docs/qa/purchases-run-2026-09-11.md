@@ -15,6 +15,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | G. Play internal release versionCode 5 (main 07bc402, fixes-r9) + launch check on the 6T | DONE: AAB 1,870,567,596 bytes, 9 permissions, no INTERNET, "1.0.0 (5) internal"; the Play update on the 6T opens straight to the chat screen, no onboarding (F12 on the real device) |
 | H. vc5 sanity on the 6T (13.9, MosheAI ask after fixes-r9 touched storage) | DONE: chat + follow-up survive `am force-stop`, Vault / Settings / Proof (OUT 0 B) open, logcat has no `[storage]`, `[prefs]`, ANR or crash line |
 | I. Play internal release versionCode 6 (main 70e1cfa, fixes-r10 incl. hardware-keys) + 6T sanity (14.9) | DONE: AAB 2,092,019,571 bytes, 9 permissions, no INTERNET, "1.0.0 (6) internal"; on the 6T: Instant answer, assistant row a11y label carries the answer, soft Enter newlines + Send, Fast pack delivered by Play (25 chunks, FAST loaded), YOU OWN PRO + "Purchase restored" |
+| J. Play internal release versionCode 7 (main ff39f94, fixes-r13) + 6T sanity (20.9) | DONE: AAB 1,870,640,031 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (7) internal" (edit 08066290382974104798); on the 6T, updated by Play with both model packs intact: Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. Delivered through Play rather than bundletool because the app uses Play app signing (see J) |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -213,6 +214,37 @@ Built from `main` 70e1cfa (fixes-r10 rounds 10/10b/10c; `main` 5bb8b64 merged af
 | HOME | launcher, 1.0.0 (6) installed with both packs | `68-home.png` |
 
 Logcat for the whole sanity (07:54–08:03): `[storage]` 0, `[prefs]` 0, "ANR in" 0, "FATAL EXCEPTION" 0, no wake-lock line for the app.
+
+## J. Play internal release versionCode 7 (fixes-r13) and the sanity run on the 6T — 20.9.2026 20:14–21:20
+
+Built from `main` ff39f94 (merge of fixes-r13: catalog v3 from the measured tiers, unknown languages, zh-Hant/zh-Hans) in a fresh worktree `android-vc7`, so the prebuild was clean by construction (no `android/` directory existed). `pn install --frozen-lockfile`, `scripts/check-store-env.sh` → "store env clean", prebuild with `INBORN_MODELS_DIR=…/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=7`. Gradle `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` (the G trap avoided from the start) with a private `GRADLE_USER_HOME` inside the session scratch (APFS clone of `~/.gradle-pr2`): **BUILD SUCCESSFUL in 5m 18s**, 1105 tasks. `gradlew --stop` was never run; another stream's gradle daemon on a different `GRADLE_USER_HOME` was alive throughout and untouched. No xcodebuild ran in this stream; the lead was told the minute gradle finished so the iOS stream could start.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, 1,870,640,031 bytes |
+| sha256 | `37c97d3446d0d408b2163bc19981d4f13b00d5127394e119355759f695f0cdd1` |
+| `bundletool validate` (1.18.3) | OK; asset packs `inborn_model` **fast-follow** (`Qwen3.5-0.8B-Q4_K_M.gguf` 532,517,120 B) and `inborn_model_fast` **on-demand** (`Qwen3.5-2B-Q4_K_M.gguf` 1,280,835,840 B) |
+| manifest | `versionCode="7" versionName="1.0.0"`, package `com.inbornapp.mobile`, compileSdk 36; 3 × `android.intent.action.SEND`, `ProcessTextActivity` with `PROCESS_TEXT`, `<queries>` for `TTS_SERVICE` |
+| module registry (dex strings, `base/dex/classes*.dex`) | AssetPacks, DeviceGuard, DocExtract, **HardwareKeys**, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| upload | `--next-version-code` returned 7 before the upload; edit `08066290382974104798`, bundle versionCode 7 with **the same sha256 as the local file**, track `internal` **"1.0.0 (7) internal"** `completed`, committed 20:46 |
+
+**Why the 6T was updated through Play and not through bundletool.** The brief asked for a bundletool install from the AAB while keeping the model packs. On this app the two are mutually exclusive, and the check that settles it is worth recording. The app uses **Play app signing**: the installed `base.apk` pulled off the phone verifies as `CN=Android, OU=Android, O=Google Inc.` with certificate SHA-256 `a79f4b8baf28f9d5238c1f8accb33170acaaaca3a76860bf176b7c6869aa51a1`, while our upload key `inborn-upload` is `E7:02:C9:A9:19:C8:85:BC:E7:6C:C6:A0:D7:94:70:F0:AD:91:75:AF:49:3B:21:B7:32:02:57:4D:D2:CC:ED:CD`. Any APK bundletool builds from our AAB carries the upload-key signature, so installing it over the Play build is refused, and the only way through would have been an uninstall — which wipes the chat DB, the Pro entitlement cache and both model packs (1.7 GB to re-download). The Play update path preserves all of it and is also the path a real tester takes, so it is both cheaper and better evidence. It is what vc5 and vc6 used.
+
+**Update and sanity** (evidence `soak3/run3/71-vc7-launch.png` … `82-attach-sheet.png`, logcat `soak3/run3/logcat.txt`; launcher in front before the run). Play showed **Update** on `market://details?id=com.inbornapp.mobile` within a minute of the commit; pressed at 20:47, `versionCode=7` installed by `com.android.vending` at **20:49:10**, a small delta because the asset packs did not change.
+
+| step | result | evidence |
+|---|---|---|
+| cold launch (`force-stop` + launcher intent) | opens straight to the chat screen — Chats · SEALED · INSTANT, the "This is AI…" notice, empty chat "Nothing leaves this phone." with the three suggestions and the composer. **No onboarding, no lock prompt** | `71-vc7-launch.png` |
+| model packs after the update | both survived: vault lists **INSTANT · Qwen3.5 0.8B** in use and **FAST · Qwen3.5 2B "Installed"** with "Use this model"; nothing re-downloaded | `74-vc7-vault.png` |
+| chat on Instant | "What is the capital of France?" → **"The capital of France is Paris."**, assistant row `content-desc="INSTANT · ON-DEVICE AI · The capital of France is Paris."`, 6 s | `73-vc7-answer-instant.png` |
+| model switch → Fast, chat on Fast | chip reads **FAST**, "Name three colours." answered in 12 s, `content-desc="FAST · ON-DEVICE AI · 1. Blue"` | `75-vc7-answer-fast.png` |
+| paywall (`inborn://paywall`) | **YOU OWN PRO** — "Unlocked on every device that uses this Google Play account."; Work card "PRO FOR WORK · ₪149.90 · one-time purchase". Restore was not needed | `76-vc7-paywall.png` |
+| proof (`inborn://proof`) | **SEALED · ON-DEVICE**, since install · 9 days, **OUT 0 B · IN 0 B**, **CONNECTIONS 0 this session**, allowlist "none · the app has no internet permission", Internet "none (not in the manifest)", **TRACKERS 0** | `77-vc7-proof.png` |
+
+The vault card also shows the fixes-r13 catalog v3 copy on this build: FAST carries "RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH", "~5-7 tok/s on your phone", and the tiered language row "Native · English, Chinese, Arabic / Basic · German, Korean / **No · Hebrew**" under the tier-neutral heading.
+
+The soak that follows this sanity is `docs/qa/soak-run-3-2026-09-20.md`.
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
