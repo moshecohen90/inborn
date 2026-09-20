@@ -205,4 +205,12 @@ describe("modelShortfall (QA F23: the browser tier states what it cannot offer)"
     expect(modelShortfall(byId("instant"), "chat", null)).toBeNull();
     expect(modelShortfall({ ...byId("instant"), fit: undefined }, "chat", "he")).toBeNull();
   });
+  it("says nothing about a language the fit map never rated, even when the use is weak", () => {
+    for (const code of ["id", "tr", "pl", "hi", "vi"]) {
+      expect(modelShortfall(byId("instant"), "chat", code), code).toBeNull();
+      expect(modelShortfall(byId("instant"), "code", code), code).toBeNull();
+    }
+    /* A rated language keeps the line: the use is the failing dimension and Indonesian is not being blamed for it. */
+    expect(modelShortfall(byId("instant"), "code", "de")).toEqual({ use: "code", languageCode: "de" });
+  });
 });

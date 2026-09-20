@@ -125,6 +125,8 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
 export function modelShortfall(current: CatalogModel | null | undefined, use: UseCase, languageCode: string | null): { use: UseCase; languageCode: string } | null {
   if (!current?.fit || !languageCode) return null;
   const languageTier = languageTierOf(current, languageCode);
+  /* The line names the language, so an unrated one would turn a weak *use* into a claim about a language we never measured. */
+  if (languageTier === null) return null;
   const weak = useTierOf(current, use) === "weak" || languageTier === "basic" || languageTier === "none";
   return weak ? { use, languageCode } : null;
 }

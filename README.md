@@ -1385,3 +1385,33 @@ language, and the fit-map rows stop joining Japanese and Chinese words with a La
 - **Proven on the emulator** (Pixel_6_API_33, 4 GB, debug APK + Metro on a private port, shots in `docs/qa/i18n-model-copy/`):
   the vault card and the details sheet in zh-Hant, ja and de show the localized tagline and "weak at" line, the ja and
   zh-Hant tier rows and the details languages row join with `、`, and `en` is unchanged word for word.
+
+## Fixes round 13: the launch-language measurements reach the catalog (branch `fixes-r13`) — 20.9.2026
+Work items 1, 4, 5 and 6 of `docs/research/launch-languages-2026-09.md` §7, against catalog v2 (15.9.2026).
+Catalog is now **v3, published 20.9.2026**, re-signed with `scripts/sign-catalog.mjs`.
+- **The tiers were model-card guesses where a device run disagreed** (`packages/core/src/catalog/manifest.json`,
+  `docs/models/model-fit.md`, `docs/spec-src/06-models.html` §6.1). Root cause: catalog v2 rated every language from the
+  Qwen3.5 card's multilingual table, and the 20.9 run of 132 real generations (§3.1) contradicts it in ten cells. Fast `de`
+  good → **basic** (three of three paragraph samples opened *"Gutem Schlaf ist"*, a case error), Fast `ko` good → basic,
+  Fast `he` basic → **none**, Fast `ar` good → native, Instant `de` / `fr` / `es` good → basic, Instant `zh` native → good,
+  Sharp `ja` / `ko` / `ru` good → **native** (3/3/3 each). `goodLanguages` follows the map, and both doc tables were rewritten
+  to cite the measured P/L/T score instead of the model card.
+- **An unrated language was a negative claim** (`packages/core/src/catalog/fit.ts`, `recommend.ts`). Root cause:
+  `languageTierOf` read `model.fit.languages[code] ?? "none"`, so `id`, `tr`, `pl`, `hi` and `vi` — which no fit block rates —
+  resolved to the worst tier, and an Indonesian user (3/3/2.5 on Sharp) was told nothing on the phone is good at Indonesian.
+  Unrated now returns `null`, the same "unknown" an imported model already carried: no weak-language caption, no grey
+  `models.recommendedNone` tag, no advice card, and no effect on the ranking. `modelShortfall` returns null for an unrated
+  language too, so a weak *use* on the web tier cannot borrow the language's name for a claim we never measured.
+- **Traditional Chinese was not representable** (`fit.ts`, `chat/language.ts`, `chat/detectLanguage.ts`, `manifest.json`,
+  `screens/vault/FitMap.tsx`). Root cause: `validateFit` enforced `/^[a-z]{2}$/` on fit keys and `detectLanguage` collapsed both
+  scripts to `zh`, so a launch language had no tier of its own. Keys now accept a BCP-47 script subtag, the script-tagged tier
+  wins with the plain code as fallback (`baseLanguageOf`), `chineseScriptOf` splits the two scripts on eighty character pairs,
+  and the manifest rates `zh-Hans` and `zh-Hant` from the §3.1 rows. `goodLanguages` stays plain codes so an older reader still
+  matches on `zh`, and the cartridge hides a script variant that agrees with its own language.
+- **Proven on the emulator** (Pixel_6_API_33, 6 GB, the debug APK driven from Metro on a private port, shots in
+  `docs/qa/fixes-r13/`): a German prompt on Fast shows the caption "FAST is weak in German" and the card
+  "SHARP handles German better than FAST." with Switch to SHARP (`de-fast-steers-to-sharp.png`); the same Fast model answering
+  an Indonesian prompt shows no caption, no grey tag and no card (`id-no-caption-no-tag.png`).
+- **One tier to decide before Arabic ships.** Fast `ar` native now sits above Sharp `ar` good, which the measurements
+  (Fast 2/2/3, Sharp 2.5/2.5/2.5) do not support, and §7.8 ranks language before use — so an Arabic user gets Fast recommended
+  for code and writing. It is item 1 of the "least certain judgements" list in `docs/models/model-fit.md`.
