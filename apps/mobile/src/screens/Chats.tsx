@@ -9,6 +9,7 @@ import { retentionDaysLeft } from "../services/retention";
 import { useEntitlement } from "../licence";
 import { modelLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
+import { listClipping } from "../lib/listClipping";
 import { useTheme } from "../lib/theme";
 import { useKeyboardLift } from "../lib/keyboard";
 import { getEngine } from "../engine";
@@ -337,6 +338,7 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
         </ScrollView>
       ) : (
         <SectionList
+          {...listClipping}
           sections={sections}
           keyExtractor={(c) => c.id}
           stickySectionHeadersEnabled={false}

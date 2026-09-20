@@ -19,6 +19,7 @@ import { HfSearch } from "./HfSearch";
 import { hfSearchAvailable } from "../../vault/hf";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { listClipping } from "../../lib/listClipping";
 import { Toggle } from "../../components/shell/primitives";
 import { useOpenSheet } from "../../lib/openSheets";
 
@@ -241,6 +242,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         </Pressable>
       </View>
       <SectionList
+        {...listClipping}
         sections={sections}
         keyExtractor={(e) => e.model.id}
         stickySectionHeadersEnabled={false}

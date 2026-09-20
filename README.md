@@ -1428,3 +1428,45 @@ Catalog is now **v3, published 20.9.2026**, re-signed with `scripts/sign-catalog
 - **One tier to decide before Arabic ships.** Fast `ar` native now sits above Sharp `ar` good, which the measurements
   (Fast 2/2/3, Sharp 2.5/2.5/2.5) do not support, and §7.8 ranks language before use — so an Arabic user gets Fast recommended
   for code and writing. It is item 1 of the "least certain judgements" list in `docs/models/model-fit.md`.
+
+## Fixes round 14: F33, the vault deep link crashed the app on the way back, plus the pass-6 lows (branch `fixes-r14`) — 20.9.2026
+The Play-internal release vc7 died on the OnePlus 6T during soak run 3 with
+`java.lang.NullPointerException: Attempt to invoke virtual method 'int android.view.View.getVisibility()' on a null object
+reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`, 153 ms after the BACK that popped `/vault`.
+- **Android's list clipping mutated a view tree react-native-screens was in the middle of attaching**
+  (`apps/mobile/src/lib/listClipping.ts` — new, applied in `screens/Chat.tsx`, `screens/Chats.tsx`,
+  `screens/vault/VaultScreen.tsx`, `screens/documents/DocumentsScreen.tsx`). Root cause: every route in this app is opaque and
+  `activityState` is always 2, so `ScreenStack.onUpdate` keeps only the top fragment — pushing `/vault` destroys the chat's
+  fragment and popping back makes `FragmentStateManager.createView` re-attach the whole chat subtree in one
+  `dispatchAttachedToWindow` walk. React Native's `removeClippedSubviews`, which `FlatList` and `SectionList` turn on by default
+  on Android, adds and removes row views directly on the scroll content `ViewGroup` from inside `onAttachedToWindow`, so a row
+  disappears from the `mChildren` array that the walk above it already snapshotted and the next slot reads back null.
+- **The fix is to stop the mutation, not to catch the NPE.** `listClipping` is one shared `removeClippedSubviews: false` prop
+  spread onto the four long lists that can be mounted when a screen is popped back to. Nothing in the render path changes; only
+  the off-screen row recycling that RN performs behind Fabric's back is disabled.
+- **Upstream, this is known and unfixed.** [react-native-screens#2989](https://github.com/software-mansion/react-native-screens/issues/2989)
+  is the same stack with no repro; in [#4677](https://github.com/software-mansion/react-native-screens/issues/4677) the
+  maintainer confirms that `Screen.startTransitionRecursive` marks the outgoing subtree with `startViewTransition`, that AOSP
+  keeps `mParent` set on transitioning views, and that "I don't think there is much we can do about it in stack v4"; the
+  core-side fix for exactly this `removeClippedSubviews` interaction,
+  [facebook/react-native#47634](https://github.com/facebook/react-native/pull/47634), was closed unmerged. Upgrading
+  react-native-screens does not help: 4.28.0's #4571 only touches translucent/form-sheet routes, which this app has none of.
+- **The crash never reproduced headlessly.** About 75 pop cycles on Pixel_2_API_30 (Android 11, 4 GB) against the *unfixed*
+  release APK — the exact soak sequence ten times, 40 aggressive push/pop cycles at animation scale 0, and a seeded 12-message
+  chat with a 10 s dwell — all ended with 0 FATAL. The frame depths in the 6T stack (4×3521 + 1×3522) map through a real
+  `dumpsys` hierarchy onto the scroll content `ReactViewGroup`, which is what identifies the mutating group; the fix rests on
+  that localisation and the upstream confirmations rather than on a red-to-green reproduction.
+- **Green on the patched release build.** Same emulator, the patched `assembleRelease` APK installed over the unfixed one: the
+  mandated sequence ten times (HOME → 60 s → launcher relaunch → 10 s → `am start -a android.intent.action.VIEW -d
+  inborn://vault` while a chat is foregrounded → BACK) and the seeded 25-cycle run, both `done; fatals=0`.
+- **F30 · Settings printed `NULL` for the chat model** (`screens/Settings/Settings.tsx`). Root cause: the row rendered
+  `engine.model.id.toUpperCase()`, and with no model installed that id is the NullLM's `"null"`. It now goes through
+  `meterLabel`, the resolver F25 gave the drawer, so the row reads "No model on this device" in the user's language.
+- **F31 · model details listed Chinese three times** (`packages/core/src/catalog/fit.ts`, `screens/vault/ModelDetails.tsx`,
+  `screens/vault/FitMap.tsx`). Root cause: the languages row mapped every key of `fit.languages`, and since round 13 that
+  includes the `zh-Hans` and `zh-Hant` script variants, so Fast printed Chinese, Chinese (Simplified) and Chinese (Traditional)
+  at the same tier. The cartridge already hid a variant that agreed with its plain language; that rule is now the exported
+  `distinctLanguageCodes` and the details sheet uses it too, so a variant shows up only when its tier differs.
+- **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
+  labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
+  "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.

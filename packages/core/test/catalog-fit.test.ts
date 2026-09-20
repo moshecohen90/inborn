@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, FIT_LANGUAGES, USE_CASES, baseLanguageOf, goodLanguagesOf, languageTierOf, useTierOf, validateFit, verifyManifest, CATALOG_PUBLIC_KEY, type CatalogModel, type ModelFit } from "../src/index";
+import { BUNDLED_MANIFEST, FIT_LANGUAGES, USE_CASES, baseLanguageOf, distinctLanguageCodes, goodLanguagesOf, languageTierOf, useTierOf, validateFit, verifyManifest, CATALOG_PUBLIC_KEY, type CatalogModel, type ModelFit } from "../src/index";
 
 const chat = BUNDLED_MANIFEST.models.filter((m) => m.role === "chat");
 const byId = (id: string): CatalogModel => BUNDLED_MANIFEST.models.find((m) => m.id === id)!;
@@ -81,5 +81,22 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
     expect(useTierOf({}, "chat")).toBeNull();
     expect(languageTierOf(chat[0]!, "tr")).toBeNull();
     expect(languageTierOf(chat[0]!, null)).toBeNull();
+  });
+});
+
+describe("distinctLanguageCodes (QA F31: one Chinese row, not three)", () => {
+  it("drops a script variant that repeats its plain language's tier", () => {
+    expect(distinctLanguageCodes({ zh: "native", "zh-Hans": "native", "zh-Hant": "native" })).toEqual(["zh"]);
+    expect(distinctLanguageCodes({ zh: "good", "zh-Hant": "good" })).toEqual(["zh"]);
+  });
+  it("keeps a script variant that disagrees, and every plain language", () => {
+    expect(distinctLanguageCodes({ zh: "good", "zh-Hant": "basic" })).toEqual(["zh", "zh-Hant"]);
+    expect(distinctLanguageCodes({ en: "native", he: "basic" })).toEqual(["en", "he"]);
+  });
+  it("keeps a script variant whose plain language is unrated", () => {
+    expect(distinctLanguageCodes({ "zh-Hant": "good" })).toEqual(["zh-Hant"]);
+  });
+  it("shows one Chinese row for every chat model in the shipping catalog", () => {
+    for (const m of chat) expect(distinctLanguageCodes(fit(m.id).languages).filter((c) => c.startsWith("zh")), m.id).toEqual(["zh"]);
   });
 });

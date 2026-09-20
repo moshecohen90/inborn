@@ -13,6 +13,7 @@ import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../
 import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
 import { devFileUri, sizeOf } from "../../documents/files";
+import { listClipping } from "../../lib/listClipping";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
 import { PICK_TYPES, officeLocked, pickedName, sniffPicked } from "../../documents/office";
@@ -211,6 +212,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         </View>
       ) : null}
       <FlatList
+        {...listClipping}
         data={state.documents}
         keyExtractor={(d) => d.id}
         contentContainerStyle={styles.list}
