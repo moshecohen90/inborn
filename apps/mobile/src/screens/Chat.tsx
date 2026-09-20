@@ -74,6 +74,7 @@ import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSet
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
+import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -1060,6 +1061,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {liquidGlass ? null : top}
       <FlatList
         ref={list}
+        {...listClipping}
         data={rows}
         keyExtractor={(r) => r.id}
         contentContainerStyle={[styles.list, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
