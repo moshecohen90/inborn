@@ -72,6 +72,14 @@ const COPY = {
     prompt: "Compare cha e cafe em uma tabela pequena: cafeina e tempo de preparo. Depois um trecho Python de duas linhas que imprima a data de hoje.",
     question: "Quando termina o contrato de aluguel e qual e o valor do deposito caucao?",
   },
+  ko: {
+    prompt: "차와 커피를 작은 표로 비교해 주세요: 카페인과 우리는 시간. 그다음 오늘 날짜를 출력하는 두 줄짜리 파이썬 코드도요.",
+    question: "임대차 계약은 언제 끝나고 보증금은 얼마인가요?",
+  },
+  "zh-Hant": {
+    prompt: "用一個小表格比較茶和咖啡：咖啡因和沖泡時間。然後給我兩行印出今天日期的 Python 程式碼。",
+    question: "租約什麼時候到期？押金是多少？",
+  },
 };
 
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);

@@ -30,7 +30,7 @@ const iosShareExtension = process.env.INBORN_IOS_SHARE_EXT !== "0";
 /* Usage strings for the microphone, speech recognition, camera and photos (spec §11); one file per UI language, English in Info.plist itself. */
 /* Under an "ios" key so Expo never copies them into Android string resources (lintVital rejects untranslated extras). */
 const USAGE = (JSON.parse(readFileSync(path.join(__dirname, "locales/en.json"), "utf8")) as { ios: Record<string, string> }).ios;
-const LOCALES = Object.fromEntries(["de", "es", "fr", "ja", "pt-BR"].map((l) => [l, `./locales/${l}.json`]));
+const LOCALES = Object.fromEntries(["de", "es", "fr", "ja", "pt-BR", "ko", "zh-Hant"].map((l) => [l, `./locales/${l}.json`]));
 
 /* The proof screen shows the commit the build came from so a reader can match it against the published hash (S50). */
 const commit = (() => {
@@ -67,7 +67,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       /* Only HTTPS via the OS for the model download: exempt, so TestFlight never blocks on export compliance. */
       ITSAppUsesNonExemptEncryption: false,
       ...USAGE,
-      CFBundleLocalizations: ["en", "de", "es", "fr", "ja", "pt-BR"],
+      CFBundleLocalizations: ["en", "de", "es", "fr", "ja", "pt-BR", "ko", "zh-Hant"],
     },
   },
   locales: LOCALES,

@@ -349,7 +349,7 @@ voice mode. Photos (§7.1: Free one per message, Pro several) go to the Qwen3.5 
   projector `vision-qwen35` (mmproj F16, 205 MB, Play pack `inborn_model_vision` / HTTPS / dev `Documents/mmproj.gguf`) is attached with
   `initMultimodal` (512 image tokens; `ctx_shift: false` at load) and the message goes as OAI content parts. Rows are disabled with the
   reason when the projector is missing or the model has no vision (Phi).
-- **Strings / permissions**: `apps/mobile/locales/<lang>.json` (`ios` section) → Info.plist + `InfoPlist.strings` for de/es/fr/ja/pt-BR
+- **Strings / permissions**: `apps/mobile/locales/<lang>.json` (`ios` section) → Info.plist + `InfoPlist.strings` for de/es/fr/ja/pt-BR/ko/zh-Hant
   (`CFBundleLocalizations`); Android gets `RECORD_AUDIO` + `CAMERA` and the `RecognitionService` queries block; the release APK still
   passes `scripts/check-android-permissions.sh` (no INTERNET). Store answers in `docs/legal/app-privacy-details.md` §4.2a.
 - Dev proof: `EXPO_PUBLIC_AUTOVOICE=en.wav,he.wav EXPO_PUBLIC_AUTOVOICE_TTS=1` transcribes WAVs pushed into Documents and writes
@@ -695,7 +695,7 @@ Verified: `plutil -lint` on the plist, `NOTICE.json` parses; licence inventory f
 `design/store/` renders the six store screens per language from the real app, not mockups:
 ```
 node design/store/build.mjs            # dev APK, store-build APK (no INTERNET), iOS simulator app → design/store/raw/
-node design/store/capture.mjs          # Pixel_6_API_33 + iPhone 15 Pro Max (iOS 17.0) + iPad Pro 13" (iOS 17.5), en + ja/de/fr/es/pt-BR
+node design/store/capture.mjs          # Pixel_6_API_33 + iPhone 15 Pro Max (iOS 17.0) + iPad Pro 13" (iOS 17.5), en + ja/de/fr/es/pt-BR/ko/zh-Hant
 node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/<set>/NN-<screen>.png + out/preview.html
 ```
 - Copy comes from `docs/store/listing.<locale>.json` (`screenshots[]`), fonts from `design/store/fonts/` (IBM Plex Sans/Mono/Sans JP TTFs
@@ -1319,3 +1319,47 @@ Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
 - **F27 · TAB focus trap between the empty-chat suggestion chips: not reproduced.** On Android 11 and Android 13, from the top
   of the screen and from the composer, with and without a draft, the ring is composer → mic → send → the three chips → Chats →
   model chip → attach → composer, and it wraps. Send is skipped only while the draft is empty, because it is disabled then.
+## i18n: Korean + Traditional Chinese (branch `i18n-ko-zhhant`) — 20.9.2026
+The launch set of `docs/research/launch-languages-2026-09.md` §1 is eight languages; six shipped. This adds the last two.
+- **Locales**: `packages/i18n/locales/ko.json` and `zh-Hant.json`, 1000 keys each, the same count as the other six. Translated against
+  the render site, not the English string: Korean is 해요체 throughout (labels stay noun-form, the way Korean UI reads), Traditional
+  Chinese uses Taiwan vocabulary (軟體 / 裝置 / 設定 / 隱私 / 飛航模式 / 低耗電模式) and Apple's own Taiwanese strings for system paths
+  ("設定 → 隱私權與安全性 → App 隱私權報告"). `Instant` / `Fast` / `Sharp`, `PRO`, `WORK`, `GGUF`, `Face ID` and the host names stay Latin.
+- **The `{device}` argument** is a bare noun (`phone` / `tablet` / `computer` / `browser`), so both files wrap it in an ICU select the way
+  `ja.json` does — "이 휴대폰" / "這支手機" — instead of dropping an English word into the sentence. Korean and Chinese have one CLDR plural
+  category, so every `plural` is `other` (with `=0` kept where English has it). Placeholders and ICU argument names are unchanged, which is
+  what `packages/i18n/test/locales.test.ts` pins.
+- **Korean particles**: model, file and language names are Latin and unpredictable, so sentences are built to avoid a particle right after
+  the placeholder; where one is unavoidable the `(으)로` / `을(를)` form is used, the standard Korean localisation convention.
+- **Registered** in `packages/i18n/src/index.ts` (`Locale`, `LAUNCH_LOCALES`, `LOCALE_NAMES` → 한국어 / 繁體中文, `resources`) and in
+  `apps/mobile/app.config.ts` (`locales` map + `CFBundleLocalizations`), with `apps/mobile/locales/{ko,zh-Hant}.json` carrying the four iOS
+  usage strings. The picker, the web export and the desktop shell all read `LAUNCH_LOCALES`, so no other registration point exists; the
+  answer-language list in `Settings/Language.tsx` already carried `ko` and `zh-Hant`. The registry key is `zh-Hant`, not `zh-TW`: that is
+  what the answer list, `packages/core` and iOS `.lproj` already use.
+- **Store copy**: `docs/store/listing.ko.json` and `listing.zh-Hant.json`, same shape as the other six.
+  `node docs/store/scripts/check-store-copy.mjs` passes for all eight with zero warnings. The Apple keyword field is byte-limited, and a
+  CJK character costs three bytes, so both keyword lines lean on the Latin model names (gguf, qwen, gemma, mistral, phi, pdf, deepseek) and
+  use 3-character-or-longer native phrases, which is also what the checker requires.
+- **Proven on the emulator** (Pixel_6_API_33, 4 GB, debug APK + Metro on a private port, `EXPO_PUBLIC_DEV_RAM_GB=8`,
+  shots in `docs/qa/i18n-ko-zhhant/`): onboarding, chat, the model-advice card, the vault and settings in both languages.
+  The `{device}` select resolves ("이 휴대폰" / "這支手機"), the fit map and both plural forms render, and nothing is clipped at
+  the default text size. The advice card was triggered per language: Korean on Instant is `basic`, so `chat.modelWeak` +
+  `chat.modelAdvice.language` show ("INSTANT는 한국어에 약해요" / "FAST가 INSTANT보다 한국어를 잘 다뤄요."); Instant is
+  native at Chinese, so the zh-Hant card was raised with a Hebrew message instead ("INSTANT 的希伯來文能力較弱" +
+  the `basic` branch "FAST 處理希伯來文比 INSTANT 好，但還稱不上流利。"), which also shows a right-to-left answer inside an
+  LTR Chinese UI without breaking the layout.
+- **Korean particles, fixed from the screenshots**: `은/는` and `이/가` depend on the sound before them, and every model label
+  here reads vowel-final in Korean, so `chat.modelWeak` and the two battery lines take `는`, the three keys whose argument can
+  be an imported GGUF name take the `은(는)` variable form, and `chat.modelAdvice.best`, `desktop.update.available` and
+  `vault.import.unsupportedArch` were rewritten so no particle follows a placeholder at all.
+- **Not done here**: `design/store/compose.mjs` has no Korean or Traditional Chinese font. `design/store/capture.mjs` now carries the ko and
+  zh-Hant prompt fixtures, but composing those two locales needs IBM Plex Sans KR and TC in `design/store/fonts/` first.
+- **Collides with `fixes-r12`, which is not on `main` yet**: that branch edits two values in all seven existing locale files, and it
+  branched before ko and zh-Hant existed, so whoever merges both must add the same two edits here or the ICU test goes red.
+  `vault.details.languages` loses "Good" (ja becomes 言語) → ko `"언어"`, zh-Hant `"語言"`. `onboarding.model.fast` becomes
+  `"Fast ({size})"`, gaining a placeholder → ko and zh-Hant both `"Fast ({size})"`. The second one is the red test: the locale
+  suite requires every file to carry exactly en's placeholders, and today's en has none there. Neither edit can be made on this
+  branch first, because against today's `main` it is this branch that would fail.
+- **Pre-existing, not this branch**: each model's `goodFor` and `fit.weakAt` come from the signed catalog
+  (`packages/core/src/catalog/manifest.json`) and are English only, so the vault card shows two English sentences in ko and
+  zh-Hant exactly as it already does in ja, de, fr, es and pt-BR. Localising them means localising the signed catalog.

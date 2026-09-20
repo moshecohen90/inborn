@@ -8,10 +8,12 @@ import de from "../locales/de.json";
 import fr from "../locales/fr.json";
 import es from "../locales/es.json";
 import ptBR from "../locales/pt-BR.json";
+import ko from "../locales/ko.json";
+import zhHant from "../locales/zh-Hant.json";
 import pseudo from "../locales/pseudo.json";
 
-export type Locale = "en" | "ja" | "de" | "fr" | "es" | "pt-BR" | "pseudo";
-export const LAUNCH_LOCALES: readonly Locale[] = ["en", "ja", "de", "fr", "es", "pt-BR"];
+export type Locale = "en" | "ja" | "de" | "fr" | "es" | "pt-BR" | "ko" | "zh-Hant" | "pseudo";
+export const LAUNCH_LOCALES: readonly Locale[] = ["en", "ja", "de", "fr", "es", "pt-BR", "ko", "zh-Hant"];
 export const RTL_LOCALES: ReadonlySet<string> = new Set(["he", "ar", "fa", "ur"]);
 
 /** Each language's own name for the picker (Hermes has no Intl.DisplayNames, so this is the source, not a fallback). */
@@ -22,6 +24,8 @@ export const LOCALE_NAMES: Readonly<Record<Locale, string>> = {
   fr: "Français",
   es: "Español",
   "pt-BR": "Português (Brasil)",
+  ko: "한국어",
+  "zh-Hant": "繁體中文",
   pseudo: "Pseudo (QA)",
 };
 
@@ -35,6 +39,8 @@ const resources: Record<string, { translation: Record<string, string> }> = {
   fr: { translation: fr },
   es: { translation: es },
   "pt-BR": { translation: ptBR },
+  ko: { translation: ko },
+  "zh-Hant": { translation: zhHant },
   pseudo: { translation: pseudo },
 };
 
