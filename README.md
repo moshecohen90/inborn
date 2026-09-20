@@ -1301,3 +1301,21 @@ Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
   an Import GGUF button. The brief's other route, an https Install on Android, is not open to us: `app.config.ts` strips
   `android.permission.INTERNET` from every non-development build (spec §5.1, D3), so a download button there would be the dead UI F23
   asks us to avoid.
+- **O18 · the model-details sheet said "GOOD LANGUAGES" over a list that includes every tier** (`vault.details.languages`
+  in all seven locale files). Since the fit map landed, the row reads "Hebrew (No)" and "Italian (Basic)" too, so the heading is
+  now the tier-neutral "Languages" and the tiers in the row carry the meaning.
+- **Dictated drafts now have a device-level proof** (`voice/devFlags.ts`, `voice/useDictation.ts`, `screens/Chat.tsx`). Every
+  final transcript, system or whisper, now leaves `useDictation` through one `deliver()`; the dev-only hook
+  `EXPO_PUBLIC_AUTOVOICE_DICTATE=1` sends an `EXPO_PUBLIC_AUTOVOICE` fixture through that same path and submits it, so §7.8's
+  "a dictated draft is the voice use" can be exercised where there is no speech service. The classification goes into
+  `dev-run.json` because no screen names it: every model in the catalog is good at voice, so the advice card never has a reason
+  to mention it, and `detectUse` ranks code and math above dictation, so a spoken code question reads as code, not voice.
+- **F28 · the "Paused while Inborn was in the background" banner outlived its answer** (`lib/pausedTurn.ts`,
+  `screens/Chat.tsx`, `components/shell/Banners.tsx`, `device/guard.ts`). The guard's paused status is one app-wide latch that
+  only Continue or a dismiss clears, and `Banners` rendered it from `device.recommendation` with nothing tying it to a
+  conversation, so it followed the user into every later chat and sat over empty ones. The chat that owns the partial answer is
+  now recorded when a generation ends (`afterGeneration`), the banner only renders where `ownsPausedTurn` says it belongs, and
+  once the partial is released the guard drops the latch instead of masking the other §8.8 lines.
+- **F27 · TAB focus trap between the empty-chat suggestion chips: not reproduced.** On Android 11 and Android 13, from the top
+  of the screen and from the composer, with and without a draft, the ring is composer → mic → send → the three chips → Chats →
+  model chip → attach → composer, and it wraps. Send is skipped only while the draft is empty, because it is disabled then.

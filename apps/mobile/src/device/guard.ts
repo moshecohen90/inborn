@@ -34,6 +34,7 @@ import {
 } from "../engine";
 import { isAndroidSnapshot } from "../../modules/device-guard";
 import { getVault } from "../vault/store";
+import { getPausedTurn, subscribePausedTurn } from "../lib/pausedTurn";
 import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
 import { MEMORY_RECOVERY_MS, memoryHealthy, readSignals, setCurrentSignals, snapshot, subscribeSignals, type RawSignals } from "./signals";
 /** The guard's own view in the policy's types; mapState.ts turns it into the shell's DeviceState. */
@@ -121,6 +122,13 @@ class DeviceGuard {
     if (this.policy.current?.button === "continue") this.accept();
   };
 
+  /* The paused status latches until Continue, so once the partial answer it kept is gone it would sit on every later chat and mask the other §8.8 lines (QA F28). */
+  dismissPaused = (): void => {
+    if (this.policy.current?.status !== "paused") return;
+    this.policy.dismiss();
+    this.evaluate();
+  };
+
   ackExplain = (): void => {
     this.explain = false;
     this.publish();
@@ -179,6 +187,9 @@ class DeviceGuard {
           this.schedule();
         }),
         subscribeEngineState(() => this.publish()),
+        subscribePausedTurn(() => {
+          if (getPausedTurn() === null) this.dismissPaused();
+        }),
       );
       const mobile = raw.deviceClass === "phone" || raw.deviceClass === "tablet";
       setPauseCheck(() => mobile && this.backgroundedAt !== null && Date.now() - this.backgroundedAt >= BACKGROUND_GRACE_MS);

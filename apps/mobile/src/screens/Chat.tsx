@@ -55,7 +55,7 @@ import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engi
 import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
-import { DEV_AUTOVOICE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
+import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
 import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionInstalled, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
@@ -74,6 +74,7 @@ import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSet
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
+import { noteGenerationEnded } from "../lib/pausedTurn";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -101,7 +102,7 @@ const AUTOPROMPT_ENV = process.env.EXPO_PUBLIC_AUTOPROMPT ?? "";
 const AUTOPROMPT = AUTOPROMPT_ENV === "1" ? "Explain in about 150 words why the sky is blue." : AUTOPROMPT_ENV.length > 1 && AUTOPROMPT_ENV !== "file" ? AUTOPROMPT_ENV : null;
 /* EXPO_PUBLIC_AUTOPROMPT=file: a phone whose touch input adb cannot reach (OnePlus 6T) takes each prompt from Documents/dev-prompt.txt instead; the file is consumed once submitted. */
 const AUTOPROMPT_FILE = AUTOPROMPT_ENV === "file" ? "dev-prompt.txt" : null;
-const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null;
+const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null || DEV_AUTOVOICE_DICTATE;
 /** Product ceiling for finishing a reply after the app goes to the background (§10.3 #21). */
 const BACKGROUND_GRACE_MS = 15_000;
 const NOTICE_KEY = "notice.canBeWrong";
@@ -441,9 +442,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         citations = undefined;
         patch((x) => ({ ...x, content: prefix + reply }));
       }
+      let keptId: string | null = null;
       if (!reply && !reasoning && stopped && !existingMessageId) {
         setRows((all) => all.filter((x) => x.id !== targetId));
       } else if (existingMessageId) {
+        keptId = existingMessageId;
         await store.updateMessage(chatIdNow, existingMessageId, { content: prefix + reply, stopped: !!stopped, ...(stoppedBy ? { stoppedBy } : {}), ...(usage ? { usage } : {}) });
         patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: reason === "loop", ...(usage ? { usage } : {}) }));
       } else {
@@ -460,7 +463,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ...(citations?.length ? { citations } : {}),
         });
         setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: reason === "loop" } : x)));
+        keptId = saved.id;
       }
+      /* The "paused in the background" line belongs to the turn the grace cut, not to the app: without an owner it followed the user into every later chat (QA F28). */
+      noteGenerationEnded({ chatId: chatIdNow, guardStopped, keptId });
     } catch (e: unknown) {
       /* A full disk is the strip's news, never an assistant row: the unsaved answer leaves with its pending row (QA R4-F13). */
       if (isNoSpaceError(e)) {
@@ -492,8 +498,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (!text || !session.current || busy) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
     setDraft("");
-    setLastDictated(isDictatedSend(dictatedDraft.current, text));
+    const dictated = isDictatedSend(dictatedDraft.current, text);
+    setLastDictated(dictated);
     dictatedDraft.current = null;
+    /* No screen names the voice use on its own: every model in the catalog is good at it, so the advice card never has a reason to. */
+    if (DEV_RESULTS) writeDevResult({ send: { dictated, use: detectUse({ text, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated }) } });
     noSpace.current = false;
     let userId: string | null = null;
     const editing = editingId;
@@ -539,6 +548,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
   };
   const send = () => submit(draft);
+  /* The dev voice hook runs once, when the model is ready; these keep it on the live send path instead of that render's. */
+  const submitRef = useRef(submit);
+  submitRef.current = submit;
+  const dictationRef = useRef(dictation);
+  dictationRef.current = dictation;
 
   const regenerate = async (row: Row) => {
     const id = chatRef.current;
@@ -824,8 +838,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await getWhisper().load();
         whisperLoadMs = getWhisper().loadMs;
         for (const name of DEV_AUTOVOICE) {
-          const r = await getWhisper().transcribeFile(new File(Paths.document, name).uri);
-          results.push({ file: name, ...r });
+          const uri = new File(Paths.document, name).uri;
+          /* Through the composer, not past it: this is the only way the "voice" use can be reached without a speech service. */
+          if (DEV_AUTOVOICE_DICTATE) {
+            const spoken = await dictationRef.current?.dictateFile(uri);
+            results.push({ file: name, text: spoken, dictated: true });
+            if (!alive) return;
+            if (spoken) await submitRef.current?.(spoken);
+          } else {
+            const r = await getWhisper().transcribeFile(uri);
+            results.push({ file: name, ...r });
+          }
           if (!alive) return;
         }
         let ttsStartMs: number | undefined;
