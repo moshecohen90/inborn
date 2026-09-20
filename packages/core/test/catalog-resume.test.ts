@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { acceptsResume, backoffMs, checkSpace, formatModelBytes, resumePlan, shouldWait } from "../src/index";
+import { BUNDLED_MANIFEST, acceptsResume, backoffMs, checkSpace, formatModelBytes, resumePlan, shouldWait } from "../src/index";
 
 const GB = 1024 ** 3;
 const url = "https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf";
@@ -54,5 +54,13 @@ describe("space, network and backoff (spec §10.1 #4/#5/#6)", () => {
     expect(formatModelBytes(1280835840)).toBe("1.2 GB");
     expect(formatModelBytes(2740937888)).toBe("2.6 GB");
     expect(formatModelBytes(12 * GB)).toBe("12 GB");
+  });
+});
+
+describe("the onboarding offer's size (QA F24)", () => {
+  it("comes from the catalog and agrees with the vault card", () => {
+    const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast")!;
+    expect(fast.bytes).toBe(1_280_835_840);
+    expect(formatModelBytes(fast.bytes)).toBe("1.2 GB");
   });
 });

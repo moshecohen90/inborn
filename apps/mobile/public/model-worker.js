@@ -161,11 +161,29 @@ async function writeJson(dir, name, value) {
     access.write(bytes, { at: 0 });
     access.flush();
   } finally {
-    access.close();
+    await access.close();
   }
 }
 
 const removeQuietly = (dir, name) => dir.removeEntry(name).catch(() => undefined);
+
+/**
+ * Waits until a file this worker closed is readable at its full size from a fresh handle. Closing a sync access handle
+ * publishes the bytes asynchronously, and the page terminates this worker the moment it hears "done", so the wait
+ * belongs here rather than in the door, which would otherwise read a file that is not there yet (QA F22).
+ * @returns {Promise<boolean>} false when it never became visible in time; the caller still reports what it wrote.
+ */
+export async function awaitPublished(dir, file, bytes, tries = 40, delayMs = 50) {
+  for (let i = 0; i < tries; i++) {
+    try {
+      if ((await (await dir.getFileHandle(file)).getFile()).size === bytes) return true;
+    } catch {
+      /* not published yet, or the lock is still coming down */
+    }
+    await new Promise((r) => setTimeout(r, delayMs));
+  }
+  return false;
+}
 
 /**
  * Downloads `url` into OPFS `models/<file>`, resuming a partial file, verifying sha256 when one is given.
@@ -182,6 +200,13 @@ export async function download(job, post, signal) {
   let have = access.getSize();
   let lastCheckpoint = have;
   let lastProgress = 0;
+  let open = true;
+  /* Everything this file wrote becomes visible to getFile() only once the access handle is closed, so closing is part of finishing, not of cleanup. */
+  const closeAccess = async () => {
+    if (!open) return;
+    open = false;
+    await access.close();
+  };
   const saveState = () => writeJson(dir, stateName(job.file), { url: job.url, have, hash: hasher.exportState() });
 
   try {
@@ -236,11 +261,16 @@ export async function download(job, post, signal) {
       access.flush();
       throw new Error("checksum mismatch: the file on this origin is not the one in the manifest");
     }
+    /* The meta file is the "ready" marker, so it may only be written once the model file itself is closed and visible at its full size. */
+    await closeAccess();
+    await awaitPublished(dir, job.file, have);
     await writeJson(dir, metaName(job.file), { url: job.url, bytes: have, sha256: digest, verified: !!job.sha256, at: new Date().toISOString() });
     await removeQuietly(dir, stateName(job.file));
     post({ type: "done", have, sha256: digest, verified: !!job.sha256 });
   } catch (e) {
-    access.flush();
+    if (open) access.flush();
+    /* Same reason as the success path: the resume state must describe a file whose bytes are already committed. */
+    await closeAccess();
     if (signal.aborted) {
       await saveState();
       post({ type: "paused", have });
@@ -249,7 +279,7 @@ export async function download(job, post, signal) {
       post({ type: "error", message: e instanceof Error ? e.message : String(e) });
     }
   } finally {
-    access.close();
+    await closeAccess();
   }
 }
 

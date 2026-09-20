@@ -118,6 +118,17 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
   };
 }
 
+/**
+ * What the loaded model is not good at, for a tier that can neither install nor switch (the browser holds one model):
+ * the same verdict `recommendationIsWeak` gives the vault picker, stated instead of offered. Null when it is up to the job.
+ */
+export function modelShortfall(current: CatalogModel | null | undefined, use: UseCase, languageCode: string | null): { use: UseCase; languageCode: string } | null {
+  if (!current?.fit || !languageCode) return null;
+  const languageTier = languageTierOf(current, languageCode);
+  const weak = useTierOf(current, use) === "weak" || languageTier === "basic" || languageTier === "none";
+  return weak ? { use, languageCode } : null;
+}
+
 export interface UseSignals {
   text: string;
   personaId?: string | null;

@@ -3,6 +3,7 @@ import { AppState, Platform } from "react-native";
 import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
+import { forgetPausedChat } from "../lib/pausedTurn";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
@@ -382,7 +383,10 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
         });
       },
       seedConsumed: () => setActive((a) => (a.seed ? { ...a, seed: undefined } : a)),
-      chatDeleted: (id) => setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a)),
+      chatDeleted: (id) => {
+        forgetPausedChat(id);
+        setActive((a) => (a.id === id ? { id: null, incognito: false, key: a.key + 1 } : a));
+      },
       chatsVersion,
       modelChanged: () => setBooted((b) => (b ? { ...b, engine: getEngine() } : b)),
       reloadChat: () => setActive((a) => ({ ...a, key: a.key + 1 })),

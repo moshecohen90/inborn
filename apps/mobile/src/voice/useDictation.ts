@@ -4,6 +4,7 @@ import { installOfflineDictation, requestMicPermission, startSystemDictation, sy
 import { MicRecorder, micAvailable } from "./mic";
 import { getWhisper, whisperInstalled } from "./whisper";
 import { devUtter, devVoiceRecord } from "./devLive";
+import { DEV_AUTOVOICE_DICTATE } from "./devFlags";
 
 export type DictationPhase = { kind: "idle" } | { kind: "starting" } | { kind: "listening"; engine: DictationEngine } | { kind: "transcribing" };
 
@@ -28,6 +29,8 @@ export interface DictationController {
   stop: () => void;
   /** Android 13+: opens the system's offline pack download for the locale. */
   installOffline: (locale: string) => Promise<void>;
+  /** Dev builds only: transcribe a WAV and hand it to the composer as if it had been spoken; null when the hook is off. */
+  dictateFile: (uri: string) => Promise<string | null>;
 }
 
 interface Options {
@@ -60,6 +63,15 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
 
+  /* Every final transcript leaves through here, so the dev hook below travels the same path as the mic (QA round 12). */
+  const deliver = useCallback(
+    (text: string) => {
+      setDraft(text);
+      onFinal?.(text);
+    },
+    [setDraft, onFinal],
+  );
+
   const finishSystem = useCallback(() => {
     system.current = null;
     setPhase({ kind: "idle" });
@@ -88,9 +100,8 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
           return;
         }
         const text = merger.finish();
-        setDraft(text);
         devVoiceRecord("dictation", { engine: "system", locale, firstInterimMs, totalMs: Date.now() - startedAt, text });
-        onFinal?.(text);
+        deliver(text);
         finishSystem();
       },
       onError: (code, message) => {
@@ -110,7 +121,7 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
       },
     });
     devUtter("dictation");
-  }, [locale, setDraft, onFinal, tier, finishSystem]);
+  }, [locale, setDraft, deliver, tier, finishSystem]);
 
   const stopWhisper = useCallback(async () => {
     const rec = recorder.current;
@@ -129,18 +140,14 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     try {
       const r = await getWhisper().transcribe(audio.samples, { signal: ac.signal });
       devVoiceRecord("whisper", { loadMs: getWhisper().loadMs, audioMs: audio.ms, peakDb: peak.current(), transcribeMs: r.ms, language: r.whisperLanguage, text: r.text });
-      if (!ac.signal.aborted) {
-        const text = joinDictation(draftRef.current, r.text);
-        setDraft(text);
-        onFinal?.(text);
-      }
+      if (!ac.signal.aborted) deliver(joinDictation(draftRef.current, r.text));
     } catch (e: unknown) {
       setProblem({ kind: "error", message: e instanceof Error ? e.message : String(e) });
     } finally {
       abort.current = null;
       setPhase({ kind: "idle" });
     }
-  }, [setDraft, onFinal]);
+  }, [deliver]);
 
   const startWhisper = useCallback(async () => {
     let peakDb = -100;
@@ -225,5 +232,28 @@ export function useDictation({ draft, setDraft, tier, locale, preferWhisper, onF
     await installOfflineDictation(loc);
   }, []);
 
-  return { phase, level, problem, clearProblem: () => setProblem(null), toggle, stop, installOffline };
+  /**
+   * Dev builds only: a fixture takes the place of the microphone. The transcript is merged into the draft and announced
+   * exactly as a spoken one is, so the send that follows counts as dictated (§7.8) on a device with no speech service.
+   */
+  const dictateFile = useCallback(
+    async (uri: string): Promise<string | null> => {
+      if (!DEV_AUTOVOICE_DICTATE) return null;
+      setPhase({ kind: "transcribing" });
+      try {
+        const r = await getWhisper().transcribeFile(uri);
+        const text = joinDictation(draftRef.current, r.text);
+        deliver(text);
+        return text;
+      } catch (e: unknown) {
+        setProblem({ kind: "error", message: e instanceof Error ? e.message : String(e) });
+        return null;
+      } finally {
+        setPhase({ kind: "idle" });
+      }
+    },
+    [deliver],
+  );
+
+  return { phase, level, problem, clearProblem: () => setProblem(null), toggle, stop, installOffline, dictateFile };
 }

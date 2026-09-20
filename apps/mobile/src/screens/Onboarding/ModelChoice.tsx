@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { formatBytes } from "@inborn/core";
+import { BUNDLED_MANIFEST, formatBytes, formatModelBytes } from "@inborn/core";
 
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
@@ -12,6 +12,9 @@ import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useInstalledModel } from "../../vault";
 import { modelFileSize } from "./modelSize";
 import { font, useType } from "../../services/type";
+
+/* The size on the offer card is the catalog's, never a number typed into a locale file: the two disagreed until QA F24. */
+const OFFERED = BUNDLED_MANIFEST.models.find((m) => m.id === "fast");
 
 /** S02: the app already knows what fits; chat starts now with the built-in model, a bigger one is an offer, not a gate. */
 export function ModelChoice() {
@@ -41,17 +44,19 @@ export function ModelChoice() {
           {ready ? t("onboarding.model.instantLine", { size: size ? formatBytes(size) : "0.5 GB" }) : t("onboarding.model.noneLine")}
         </Text>
       </View>
-      <View testID="model-offer-card" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-        <MonoLabel>{t("onboarding.model.offer")}</MonoLabel>
-        <Text style={[type.heading, { color: theme.text }]}>{t("onboarding.model.fast")}</Text>
-        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.fastLine")}</Text>
-        {Platform.OS === "android" ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.playLine")}</Text> : null}
-        <View style={styles.switchRow}>
-          <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("settings.downloads.wifiOnly")}</Text>
-          <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} label={t("settings.downloads.wifiOnly")} />
+      {OFFERED ? (
+        <View testID="model-offer-card" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+          <MonoLabel>{t("onboarding.model.offer")}</MonoLabel>
+          <Text style={[type.heading, { color: theme.text }]}>{t("onboarding.model.fast", { size: formatModelBytes(OFFERED.bytes) })}</Text>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.fastLine")}</Text>
+          {Platform.OS === "android" ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.playLine")}</Text> : null}
+          <View style={styles.switchRow}>
+            <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("settings.downloads.wifiOnly")}</Text>
+            <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} label={t("settings.downloads.wifiOnly")} />
+          </View>
+          <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
         </View>
-        <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
-      </View>
+      ) : null}
     </Screen>
   );
 }

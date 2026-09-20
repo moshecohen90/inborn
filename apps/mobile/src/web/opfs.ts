@@ -58,6 +58,16 @@ export async function modelStatus(file: string): Promise<ModelStatus> {
   return size > 0 ? { kind: "partial", have: size } : { kind: "missing" };
 }
 
+/** Same verdict, but allowing for the moment OPFS needs to publish a file a worker has just closed (QA F22): a verified download must not read as a failure. */
+export async function readyModelStatus(file: string, tries = 10, delayMs = 200): Promise<ModelStatus> {
+  let status = await modelStatus(file);
+  for (let i = 1; i < tries && status.kind !== "ready"; i++) {
+    await new Promise((r) => setTimeout(r, delayMs));
+    status = await modelStatus(file);
+  }
+  return status;
+}
+
 /** The GGUF as a disk-backed File; wllama reads it in slices, so nothing is copied into JS memory here. */
 export async function modelFile(file: string): Promise<File> {
   const dir = await modelsDir(false);

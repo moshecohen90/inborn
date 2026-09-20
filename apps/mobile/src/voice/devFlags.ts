@@ -7,6 +7,13 @@
 export const DEV_AUTOVOICE: string[] = (process.env.EXPO_PUBLIC_AUTOVOICE ?? "").split(",").filter(Boolean);
 export const DEV_AUTOVOICE_TTS: boolean = process.env.EXPO_PUBLIC_AUTOVOICE_TTS === "1";
 /**
+ * EXPO_PUBLIC_AUTOVOICE_DICTATE=1: each AUTOVOICE fixture is transcribed into the composer through the dictation
+ * controller and sent, instead of being transcribed on the side. It is the only way to reach §7.8's "a dictated draft
+ * is the voice use" where there is no speech service: an emulator, a simulator, or a phone whose mic the harness
+ * cannot open without a person speaking.
+ */
+export const DEV_AUTOVOICE_DICTATE: boolean = process.env.EXPO_PUBLIC_AUTOVOICE_DICTATE === "1";
+/**
  * EXPO_PUBLIC_AUTOVOICE_SAY: a phrase the phone speaks through its own speaker ~1 s after every listener opens, so a
  * real microphone hears real audio on a phone nobody is talking to; each stage then lands in Documents/dev-run.json
  * under "live" (the only channel out of a Release build over USB).

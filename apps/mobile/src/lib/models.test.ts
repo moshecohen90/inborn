@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { describeLoad, importDisplayName, modelLabel } from "./models";
+import { describeLoad, importDisplayName, meterLabel, modelLabel } from "./models";
 
 describe("modelLabel", () => {
   it("catalog ids keep their friendly names", () => {
@@ -32,5 +32,16 @@ describe("describeLoad (QA F16)", () => {
   it("says nothing for the no-model engine", () => {
     expect(describeLoad("null", "null", "bundled://null", 90)).toBeNull();
     expect(describeLoad("llama.rn", "null", "bundled://null", 90)).toBeNull();
+  });
+});
+
+describe("meterLabel (QA F25)", () => {
+  it("names the loaded model", () => {
+    expect(meterLabel("instant", "No model on this device")).toBe("INSTANT");
+    expect(meterLabel("import:Phi-4-mini-instruct-Q4_K_M.gguf", "No model on this device")).toBe("PHI-4-MINI-INSTRUCT");
+  });
+  it("says no model instead of printing the null engine's id", () => {
+    expect(meterLabel("null", "No model on this device")).toBe("No model on this device");
+    expect(meterLabel("null", "Kein Modell auf diesem Gerät")).toBe("Kein Modell auf diesem Gerät");
   });
 });

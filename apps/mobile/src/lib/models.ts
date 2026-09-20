@@ -21,6 +21,9 @@ export const modelNames = (): Record<string, string> => ({ ...NAMES });
 /** The engine used when no model is installed yet (packages/core NullLM); it answers with one fixed line and loads nothing. */
 export const NULL_MODEL_ID = "null";
 
+/** Subject of the drawer's exit readout: the loaded model, or the caller's localized "no model" wording, never the raw id (QA F25). */
+export const meterLabel = (modelId: string, noModel: string): string => (modelId === NULL_MODEL_ID ? noModel : modelLabel(modelId));
+
 /** The chat's load log line, naming its subject; null for the no-model engine, which has nothing to report (QA F16). Shape `<engine> loaded … in N ms` is what scripts/web-smoke.mjs reads. */
 export function describeLoad(engineId: string, modelId: string, uri: string, ms: number): string | null {
   if (modelId === NULL_MODEL_ID || engineId === NULL_MODEL_ID) return null;
