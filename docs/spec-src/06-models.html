@@ -29,13 +29,15 @@
 <tr><td>Power</td><td class="ltr">Best quality, for desktop and the newest phones. Slowest.</td><td>Highest</td><td>דסקטופ 16 GB, iPhone 17 Pro (Pro)</td></tr>
 </tbody></table>
 <h4>מפת ההתאמה: לכל מודל, במה הוא טוב ובאילו שפות</h4>
-<p>הקטלוג החתום נושא לכל מודל צ'אט בלוק <span class="ltr">fit</span>: דרגה לכל שימוש (<span class="ltr">best / good / weak</span>), דרגה לכל שפה (<span class="ltr">native / good / basic / none</span>, לפחות 11 שפות: EN, HE, AR, RU, ES, FR, DE, PT, JA, KO, ZH) ושורת "חלש ב". הדרגות שמרניות ומתייחסות לקובץ ה‑GGUF המדויק שבקטלוג (Q4_K_M), לא למודל בדיוק מלא; המקור של כל שיפוט מתועד ב‑<span class="ltr">docs/models/model-fit.md</span>, וכל שינוי במפה הוא שינוי בקטלוג שדורש חתימה מחדש. הטבלה הזו היא העתק המפה מהקטלוג (גרסה 2).</p>
+<p>הקטלוג החתום נושא לכל מודל צ'אט בלוק <span class="ltr">fit</span>: דרגה לכל שימוש (<span class="ltr">best / good / weak</span>), דרגה לכל שפה (<span class="ltr">native / good / basic / none</span>, לפחות 11 שפות: EN, HE, AR, RU, ES, FR, DE, PT, JA, KO, ZH) ושורת "חלש ב". הדרגות שמרניות ומתייחסות לקובץ ה‑GGUF המדויק שבקטלוג (Q4_K_M), לא למודל בדיוק מלא; המקור של כל שיפוט מתועד ב‑<span class="ltr">docs/models/model-fit.md</span>, וכל שינוי במפה הוא שינוי בקטלוג שדורש חתימה מחדש. הטבלה הזו היא העתק המפה מהקטלוג (גרסה 3).</p>
+<p>מפתח שפה הוא קוד <span class="ltr">ISO 639-1</span>, ואפשר עם תת‑תג כתב בתקן <span class="ltr">BCP-47</span> (<span class="ltr">zh-Hans</span>, <span class="ltr">zh-Hant</span>) — הדרגה עם תת‑תג הכתב גוברת, והקוד הפשוט הוא ברירת המחדל. שפה שאינה מופיעה באף מפתח היא <strong>לא ידועה</strong>, לא <span class="ltr">none</span>: האפליקציה לא ממליצה עליה ולא נגדה, לא מציגה כיתוב "חלש ב…" ולא תג אפור. כך משתמש אינדונזית — שפה שקיבלה <span class="ltr">3/3/2.5</span> ב‑Sharp — לא נענה ש"שום דבר בטלפון הזה לא טוב באינדונזית".</p>
+<p>גרסה 3 (20.9.2026) החליפה את שיפוטי כרטיסי המודל במדידה: 132 תשובות אמת על אמולטור <span class="ltr">Pixel_6_API_33</span>, 18 שפות × 3 משימות × 3 רמות, כל תשובה נקראה ונוקדה 0–3. הריצה, הציונים והמגבלות ב‑<span class="ltr">docs/research/launch-languages-2026-09.md</span>.</p>
 <div class="tw">
 <table>
 <thead><tr><th>מחסנית</th><th>צ'אט</th><th>כתיבה</th><th>סיכום</th><th>תרגום</th><th>קוד</th><th>מסמכים</th><th>הכתבה</th><th>מתמטיקה</th><th>חלש ב</th></tr></thead>
 <tbody>
-<tr><td>Instant</td><td>טוב</td><td>חלש</td><td>טוב</td><td>חלש</td><td>חלש</td><td>חלש</td><td>טוב</td><td>חלש</td><td>עברית וכתבים לא‑לטיניים, קוד, מתמטיקה, מסמכים ארוכים</td></tr>
-<tr><td>Fast</td><td>מצוין</td><td>טוב</td><td>טוב</td><td>טוב</td><td>חלש</td><td>טוב</td><td>מצוין</td><td>חלש</td><td>קוד, מתמטיקה, עברית; שאלות על הרבה מסמכים ארוכים</td></tr>
+<tr><td>Instant</td><td>טוב</td><td>חלש</td><td>טוב</td><td>חלש</td><td>חלש</td><td>חלש</td><td>טוב</td><td>חלש</td><td>עברית וכתבים לא‑לטיניים; גרמנית, צרפתית וספרדית מעבר לתשובה קצרה; קוד, מתמטיקה, מסמכים ארוכים</td></tr>
+<tr><td>Fast</td><td>מצוין</td><td>טוב</td><td>טוב</td><td>טוב</td><td>חלש</td><td>טוב</td><td>מצוין</td><td>חלש</td><td>קוד, מתמטיקה, עברית; פרוזה בגרמנית ותרגום לקוריאנית; שאלות על הרבה מסמכים ארוכים</td></tr>
 <tr><td>Sharp</td><td>מצוין</td><td>מצוין</td><td>מצוין</td><td>מצוין</td><td>טוב</td><td>מצוין</td><td>מצוין</td><td>טוב</td><td>איטי וחם יותר מ‑Fast; מתמטיקה קשה דורשת מצב חשיבה; עברית טובה מ‑Fast אך לא שוטפת</td></tr>
 <tr><td>Sharp (Phi)</td><td>טוב</td><td>טוב</td><td>טוב</td><td>חלש</td><td>מצוין</td><td>טוב</td><td>טוב</td><td>מצוין</td><td>בלי תמונות; רוב השפות מלבד אנגלית; תרגום</td></tr>
 </tbody>
@@ -45,14 +47,15 @@
 <table>
 <thead><tr><th>מחסנית</th><th>שפת אם</th><th>טוב</th><th>בסיסי</th><th>לא</th></tr></thead>
 <tbody>
-<tr><td>Instant</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT</td><td class="ltr">IT, JA, KO, RU, AR</td><td class="ltr">HE</td></tr>
-<tr><td>Fast</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT, IT, JA, KO, RU, AR</td><td class="ltr">HE</td><td>—</td></tr>
-<tr><td>Sharp</td><td class="ltr">EN, ZH</td><td class="ltr">ES, FR, DE, PT, IT, JA, KO, RU, AR</td><td class="ltr">HE</td><td>—</td></tr>
+<tr><td>Instant</td><td class="ltr">EN</td><td class="ltr">ZH (ZH‑HANT), PT</td><td class="ltr">ES, FR, DE, IT, JA, KO, RU, AR</td><td class="ltr">HE</td></tr>
+<tr><td>Fast</td><td class="ltr">EN, ZH (ZH‑HANS, ZH‑HANT), AR</td><td class="ltr">ES, FR, PT, IT, JA, RU</td><td class="ltr">DE, KO</td><td class="ltr">HE</td></tr>
+<tr><td>Sharp</td><td class="ltr">EN, ZH (ZH‑HANS, ZH‑HANT), JA, KO, RU</td><td class="ltr">ES, FR, DE, PT, IT, AR</td><td class="ltr">HE</td><td>—</td></tr>
 <tr><td>Sharp (Phi)</td><td class="ltr">EN</td><td class="ltr">ES, FR, DE, PT, IT</td><td class="ltr">ZH, JA, KO, RU, AR, HE</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
-<p>"שפות טובות" (Details, S31) נגזרת מהמפה: שפת אם + טוב. מודל מיובא או קובץ מ‑Hugging Face מגיע בלי מפה, ולכן אף פעם לא ממליצים עליו ולא נגדו.</p>
+<p>"שפות טובות" (Details, S31) נגזרת מהמפה: שפת אם + טוב, בקודים פשוטים בלבד (וריאנט כתב שמסכים עם השפה שלו לא מוצג פעמיים בכרטיס). מודל מיובא או קובץ מ‑Hugging Face מגיע בלי מפה, ולכן אף פעם לא ממליצים עליו ולא נגדו — וכך גם שפה שלא דורגה.</p>
+<p><strong>מה שהמדידה שינתה, ולמה זה חשוב למוצר:</strong> גרמנית ב‑Fast ירדה ל‑<span class="ltr">basic</span> (הפסקה נפתחה בשלוש מתוך שלוש דגימות ב‑<span class="ltr">"Gutem Schlaf ist"</span>, שגיאת יחסה), ולכן כרטיס הצ'אט אומר עכשיו <span class="ltr">"SHARP handles German better than FAST"</span> והתג <span class="ltr">RECOMMENDED</span> בכספת עובר ל‑Sharp. עברית ב‑Fast ירדה ל‑<span class="ltr">none</span>, ולכן ההצעה בעברית היא Sharp ולא Fast. יפנית, קוריאנית ורוסית ב‑Sharp עלו ל‑<span class="ltr">native</span> (3/3/3 כל אחת).</p>
 <h3>6.2 מודלים נלווים</h3>
 <div class="tw compact">
 <table>
@@ -81,7 +84,7 @@
 </tbody>
 </table>
 </div>
-<p>הטבלה קובעת את רצפת הזיכרון ואת רמת ברירת המחדל של המכשיר. בתוך מה שהמכשיר מריץ, המודל <em>המומלץ</em> נבחר לפי מפת ההתאמה (§6.1) וכלל §7.8: קודם השפה שהמשתמש כותב בה, אחר כך השימוש, אחר כך "רץ טוב" לעומת "רץ לאט", אחר כך מה שכבר מותקן, ורק בסוף הרמה שהטבלה הזו מציינת. כך טלפון 8 GB באנגלית מקבל Fast מומלץ, ובקוד Sharp (Phi). כשגם המדורג הראשון חלש לצמד (שפה <span class="ltr">basic</span>/<span class="ltr">none</span> או שימוש <span class="ltr">weak</span>) התג לא אומר "מומלץ" אלא את האמת: <span class="ltr">NOTHING ON THIS PHONE IS GOOD AT CHAT IN HEBREW · CLOSEST: FAST</span>. זה המצב בעברית בקטלוג v2: אף מודל אינו "טוב" בעברית (Sharp נבדק על מכשיר ב‑15.9.2026 ודורג <span class="ltr">basic</span>, ראו <span class="ltr">docs/models/model-fit.md</span>).</p>
+<p>הטבלה קובעת את רצפת הזיכרון ואת רמת ברירת המחדל של המכשיר. בתוך מה שהמכשיר מריץ, המודל <em>המומלץ</em> נבחר לפי מפת ההתאמה (§6.1) וכלל §7.8: קודם השפה שהמשתמש כותב בה, אחר כך השימוש, אחר כך "רץ טוב" לעומת "רץ לאט", אחר כך מה שכבר מותקן, ורק בסוף הרמה שהטבלה הזו מציינת. כך טלפון 8 GB באנגלית מקבל Fast מומלץ, ובקוד Sharp (Phi). כשגם המדורג הראשון חלש לצמד (שפה <span class="ltr">basic</span>/<span class="ltr">none</span> או שימוש <span class="ltr">weak</span>) התג לא אומר "מומלץ" אלא את האמת: <span class="ltr">NOTHING ON THIS PHONE IS GOOD AT CHAT IN HEBREW · CLOSEST: FAST</span>. זה המצב בעברית בקטלוג v3: אף מודל אינו "טוב" בעברית (Sharp דורג <span class="ltr">basic</span> ו‑Fast <span class="ltr">none</span>, ולכן השורה היא <span class="ltr">CLOSEST: SHARP</span>; ראו <span class="ltr">docs/models/model-fit.md</span>). לעומת זאת בשפה שלא דורגה כלל אין תג כזה ואין כיתוב — אין טענה לשני הכיוונים.</p>
 <p><strong>רצפת התמיכה הרשמית:</strong> iPhone עם 6 GB (iPhone 13 Pro ומעלה, iPhone 15 ומעלה) ו‑Android 8+ עם 6 GB, arm64, ומעבד מדור Snapdragon 8 Gen 2 / Tensor G3 / Dimensity 9200. רצפת ההתקנה: iOS 17 (מכשירי A12 ומעלה) ו‑Android 8; מכשירים חלשים יותר יכולים להתקין ולהריץ Instant, אבל דף החנות והאפליקציה אומרים בכנות מה לצפות.</p>
 
 <h3>6.4 מהירויות נמדדות (להצגת "צפוי על המכשיר שלך")</h3>

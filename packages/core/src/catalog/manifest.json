@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 2,
-  "publishedAt": "2026-09-15",
+  "version": 3,
+  "publishedAt": "2026-09-20",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -28,9 +28,6 @@
       "goodLanguages": [
         "en",
         "zh",
-        "es",
-        "fr",
-        "de",
         "pt"
       ],
       "fit": {
@@ -46,10 +43,11 @@
         },
         "languages": {
           "en": "native",
-          "zh": "native",
-          "es": "good",
-          "fr": "good",
-          "de": "good",
+          "zh": "good",
+          "zh-Hant": "good",
+          "es": "basic",
+          "fr": "basic",
+          "de": "basic",
           "pt": "good",
           "it": "basic",
           "ja": "basic",
@@ -58,7 +56,7 @@
           "ar": "basic",
           "he": "none"
         },
-        "weakAt": "Hebrew and other non-Latin scripts, code, math, long documents."
+        "weakAt": "Hebrew and other non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
       },
       "delivery": [
         {
@@ -105,11 +103,9 @@
         "zh",
         "es",
         "fr",
-        "de",
         "pt",
         "it",
         "ja",
-        "ko",
         "ru",
         "ar"
       ],
@@ -127,18 +123,20 @@
         "languages": {
           "en": "native",
           "zh": "native",
+          "zh-Hans": "native",
+          "zh-Hant": "native",
           "es": "good",
           "fr": "good",
-          "de": "good",
+          "de": "basic",
           "pt": "good",
           "it": "good",
           "ja": "good",
-          "ko": "good",
+          "ko": "basic",
           "ru": "good",
-          "ar": "good",
-          "he": "basic"
+          "ar": "native",
+          "he": "none"
         },
-        "weakAt": "Code, math, Hebrew; questions across many long documents."
+        "weakAt": "Code, math, Hebrew; German prose and Korean translation; questions across many long documents."
       },
       "delivery": [
         {
@@ -215,14 +213,16 @@
         "languages": {
           "en": "native",
           "zh": "native",
+          "zh-Hans": "native",
+          "zh-Hant": "native",
           "es": "good",
           "fr": "good",
           "de": "good",
           "pt": "good",
           "it": "good",
-          "ja": "good",
-          "ko": "good",
-          "ru": "good",
+          "ja": "native",
+          "ko": "native",
+          "ru": "native",
           "ar": "good",
           "he": "basic"
         },
@@ -438,5 +438,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "b898e30f6e629db3210aaa0af4a53c62b2ebec05bee9b33c41c1a008fdf0d8ac442e2fc52bb820c2ceef74ba9dd27cfdeef7e3008b2ae2b441bfc8e856c5e003"
+  "signature": "1081ecd078ab674d8f59e27597b2a07f33541090ccb99ed0628ccb12d537d9b77f25c3f608f3d84392264453ad21518d779f1ad6c55ffae6e86e267f0bfc3202"
 }

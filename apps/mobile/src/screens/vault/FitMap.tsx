@@ -19,7 +19,9 @@ export function FitMap({ fit, theme, weakAt, testID }: FitMapProps) {
   const { t, i18n } = useTranslation();
   const join = (names: readonly string[]) => joinList(i18n.language, names);
   const useRows = USE_TIERS.map((tier) => [tier, USE_CASES.filter((u) => fit.uses[u] === tier).map((u) => t(`use.${u}`))] as const).filter(([, names]) => names.length);
-  const langRows = LANGUAGE_TIERS.map((tier) => [tier, Object.keys(fit.languages).filter((c) => fit.languages[c] === tier).map((c) => t(`language.${c}`, { defaultValue: LANGUAGE_NAME_BY_CODE[c] ?? c }))] as const).filter(([, names]) => names.length);
+  /* A script variant that agrees with its plain language ("zh-Hant" native next to "zh" native) says nothing new on the cartridge. */
+  const codes = Object.keys(fit.languages).filter((c) => !c.includes("-") || fit.languages[c] !== fit.languages[c.split("-")[0]!]);
+  const langRows = LANGUAGE_TIERS.map((tier) => [tier, codes.filter((c) => fit.languages[c] === tier).map((c) => t(`language.${c}`, { defaultValue: LANGUAGE_NAME_BY_CODE[c] ?? c }))] as const).filter(([, names]) => names.length);
   const colorOf = (tier: UseTier | LanguageTier): string => (tier === "best" || tier === "native" ? theme.sealed : tier === "good" ? theme.text : tier === "none" ? theme.danger : theme.text3);
   return (
     <View testID={testID} style={styles.map}>

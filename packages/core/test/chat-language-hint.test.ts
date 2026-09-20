@@ -42,7 +42,8 @@ describe("betterModelForLanguage", () => {
 describe("LANGUAGE_NAME_BY_CODE", () => {
   it("every code the hint can produce has a language.<code> key in en.json with the English name", () => {
     const en = JSON.parse(readFileSync(join(__dirname, "../../i18n/locales/en.json"), "utf8")) as Record<string, string>;
-    expect(Object.keys(LANGUAGE_NAME_BY_CODE).sort()).toEqual(["ar", "el", "he", "ja", "ko", "ru", "zh"]);
+    /* The two Chinese scripts are named here as well: detectLanguage returns them and the fit map can rate them apart. */
+    expect(Object.keys(LANGUAGE_NAME_BY_CODE).sort()).toEqual(["ar", "el", "he", "ja", "ko", "ru", "zh", "zh-Hans", "zh-Hant"]);
     for (const [code, name] of Object.entries(LANGUAGE_NAME_BY_CODE)) expect(en[`language.${code}`], code).toBe(name);
   });
 });

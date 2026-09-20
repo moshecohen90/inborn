@@ -61,7 +61,7 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
 
 export const recommendModel = (input: RecommendInput): ModelRecommendation | null => rankModels(input)[0] ?? null;
 
-/** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. */
+/** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. An unrated language (tier null) is never a claim either way. */
 export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
   (r.reason.languageCode !== null && (r.reason.languageTier === "basic" || r.reason.languageTier === "none")) || r.reason.useTier === "weak";
 
@@ -125,6 +125,8 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
 export function modelShortfall(current: CatalogModel | null | undefined, use: UseCase, languageCode: string | null): { use: UseCase; languageCode: string } | null {
   if (!current?.fit || !languageCode) return null;
   const languageTier = languageTierOf(current, languageCode);
+  /* The line names the language, so an unrated one would turn a weak *use* into a claim about a language we never measured. */
+  if (languageTier === null) return null;
   const weak = useTierOf(current, use) === "weak" || languageTier === "basic" || languageTier === "none";
   return weak ? { use, languageCode } : null;
 }

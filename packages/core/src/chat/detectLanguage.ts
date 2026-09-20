@@ -1,4 +1,5 @@
-import { languageCodeOf } from "./language";
+import { LANGUAGE_NAME_BY_CODE, chineseScriptOf, languageCodeOf } from "./language";
+import { baseLanguageOf } from "../catalog/fit";
 
 /** The 18 UI languages of spec §7.8, as ISO 639-1 codes with their English names (the translation picker and the detector share this list). */
 export const TRANSLATION_LANGUAGES: readonly { code: string; name: string }[] = [
@@ -21,7 +22,8 @@ export const TRANSLATION_LANGUAGES: readonly { code: string; name: string }[] = 
   { code: "id", name: "Indonesian" },
 ];
 
-export const languageNameOf = (code: string): string => TRANSLATION_LANGUAGES.find((l) => l.code === code)?.name ?? code;
+/** Script variants the detector returns are named here, not listed above: they describe a text, they are not extra translation targets. */
+export const languageNameOf = (code: string): string => TRANSLATION_LANGUAGES.find((l) => l.code === code)?.name ?? LANGUAGE_NAME_BY_CODE[code] ?? code;
 
 /* Function words that almost never overlap between the Latin-script launch languages; three hits decide. */
 const STOPWORDS: Record<string, readonly string[]> = {
@@ -46,6 +48,8 @@ const DEVANAGARI = /[ऀ-ॿ]/u;
 export function detectLanguage(text: string): string | null {
   if (DEVANAGARI.test(text)) return "hi";
   const byScript = languageCodeOf(text);
+  /* The two Chinese scripts are separate launch languages, so say which one when the characters tell them apart. */
+  if (byScript === "zh") return chineseScriptOf(text) ?? "zh";
   if (byScript) return byScript === "el" ? null : byScript;
   const words = text.toLowerCase().split(/[^\p{L}']+/u).filter(Boolean);
   if (words.length < 3) return null;
@@ -69,6 +73,7 @@ export function detectLanguage(text: string): string | null {
 /** Target for "Translate": the app language, unless the text is already in it, then English (and Spanish when the app is English). */
 export function pickTranslationTarget(detected: string | null, uiLocale: string): string {
   const ui = uiLocale.split("-")[0]?.toLowerCase() ?? "en";
-  if (detected !== ui) return TRANSLATION_LANGUAGES.some((l) => l.code === ui) ? ui : "en";
+  /* Compare on the plain language: "zh-Hant" into a Chinese UI is still Chinese into Chinese. */
+  if (!detected || baseLanguageOf(detected) !== ui) return TRANSLATION_LANGUAGES.some((l) => l.code === ui) ? ui : "en";
   return ui === "en" ? "es" : "en";
 }
