@@ -74,3 +74,4 @@ export function biometricLabel(t: (k: MessageKey) => string, kind: BiometricKind
 
 export { installed as intlPolyfills } from "./intl";
 export { i18next };
+export { joinList, listSeparator } from "./list";

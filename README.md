@@ -1363,3 +1363,25 @@ The launch set of `docs/research/launch-languages-2026-09.md` §1 is eight langu
 - **Pre-existing, not this branch**: each model's `goodFor` and `fit.weakAt` come from the signed catalog
   (`packages/core/src/catalog/manifest.json`) and are English only, so the vault card shows two English sentences in ko and
   zh-Hant exactly as it already does in ja, de, fr, es and pt-BR. Localising them means localising the signed catalog.
+
+## i18n: localized model copy + CJK list joins (branch `i18n-model-copy`) — 20.9.2026
+Closes the gap the previous section left open: every model's plain-language "good at / weak at" now reads in the user's
+language, and the fit-map rows stop joining Japanese and Chinese words with a Latin comma.
+- **The catalog stays signed and English.** `packages/core/src/catalog/manifest.json` is untouched. Each entry's `goodFor`
+  and `fit.weakAt` gained a locale key instead — `models.copy.<catalog id>.goodFor` and `models.copy.<catalog id>.weakAt`,
+  11 keys per file (four chat models plus the embedding, speech and vision companions, which have no `weakAt`) — and
+  `modelCopy(t, model)` in `apps/mobile/src/lib/models.ts` resolves them, falling back to the manifest line for imported and
+  Hugging Face files, which carry no key. `apps/mobile/test/modelCopy.test.ts` pins `en.json` to the manifest word for word,
+  so a catalog edit that forgets the locale files goes red rather than shipping two different sentences.
+- **Translated in context** (de, fr, es, ja, pt-BR, ko, zh-Hant), against the cartridge, not the English string: `Instant`,
+  `Fast` and `Sharp` stay Latin, "thinking mode" reuses each file's own `chatSettings.thinking` wording (Nachdenken /
+  Réflexion / Pensar / 思考モード / 생각 표시 / 思考過程), and "on this phone" became a device-neutral noun, since the same card
+  renders in the browser and on the desktop.
+- **`joinList(locale, items)`** (`packages/i18n/src/list.ts`) replaces every user-facing `join(", ")`: the fit-map use and
+  language rows, the model-details languages and source rows, and the document names on the Ask sheet. `Intl.ListFormat` is
+  deliberately not used — for these data rows every style it offers inserts a word or the wrong mark (zh-Hant `A、B和C`,
+  ko `A, B 및 C`, de `A, B und C`, ja `unit` gives `A B C`) — and Hermes ships none, which would make the phone and the
+  browser disagree. `packages/i18n/test/list.test.ts` pins ja / zh-Hant / zh → `、` and ko / en / de / pt-BR → `, `.
+- **Proven on the emulator** (Pixel_6_API_33, 4 GB, debug APK + Metro on a private port, shots in `docs/qa/i18n-model-copy/`):
+  the vault card and the details sheet in zh-Hant, ja and de show the localized tagline and "weak at" line, the ja and
+  zh-Hant tier rows and the details languages row join with `、`, and `en` is unchanged word for word.

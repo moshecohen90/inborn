@@ -1,6 +1,7 @@
 import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
+import { joinList } from "@inborn/i18n";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BENCH_PP, benchmarkVerdict, formatModelBytes, ttftForPrompt, type BenchmarkResult, type CatalogModel, type InstallState, type SpeedRange } from "@inborn/core";
 import { deviceNoun } from "../../lib/deviceNoun";
@@ -32,6 +33,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
   const { t, i18n } = useTranslation();
   const installed = state.kind === "ready" || state.kind === "quarantined";
   const device = deviceNoun();
+  const join = (items: readonly string[]) => joinList(i18n.language, items);
   const rows: [string, string][] = model
     ? [
         [t("vault.details.params"), model.params || "—"],
@@ -39,9 +41,9 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         [t("vault.details.context"), model.contextLength ? t("vault.details.tokens", { count: model.contextLength }) : "—"],
         [t("vault.details.vision"), t(model.vision ? "vault.yes" : "vault.no")],
         [t("vault.details.tools"), t(model.tools ? "vault.yes" : "vault.no")],
-        [t("vault.details.languages"), model.fit ? Object.entries(model.fit.languages).map(([c, tier]) => `${t(`language.${c}`, { defaultValue: c })} (${t(`vault.fit.tier.${tier}`)})`).join(", ") : model.goodLanguages.length ? model.goodLanguages.join(", ") : "—"],
+        [t("vault.details.languages"), model.fit ? join(Object.entries(model.fit.languages).map(([c, tier]) => `${t(`language.${c}`, { defaultValue: c })} (${t(`vault.fit.tier.${tier}`)})`)) : model.goodLanguages.length ? join(model.goodLanguages) : "—"],
         [t("vault.details.license"), model.license],
-        [t("vault.details.source"), installed ? t(`vault.source.${state.via}`) : model.delivery.map((d) => d.kind).join(", ")],
+        [t("vault.details.source"), installed ? t(`vault.source.${state.via}`) : join(model.delivery.map((d) => d.kind))],
         [t("vault.details.sha"), installed ? state.sha256 : model.sha256],
         ...(installed ? [[t("vault.details.path"), state.path] as [string, string]] : []),
       ]
