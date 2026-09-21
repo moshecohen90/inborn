@@ -208,8 +208,14 @@ java -jar $BT dump manifest --bundle=$AAB --module=inborn_model            # <di
 java -jar $BT build-apks --bundle=$AAB --output=/tmp/inborn.apks --local-testing
 java -jar $BT install-apks --apks=/tmp/inborn.apks --device-id=<serial>    # slow USB? see below
 BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB          # OK: no INTERNET permission.
-../../../scripts/check-android-bundle.sh $AAB                             # OK: OCR data in, iOS assets out.
+../../../scripts/check-android-bundle.sh $AAB                             # OK: OCR data + every pack in, iOS assets out.
 ```
+A **store bundle is built with `INBORN_PACKS` unset**, which is every pack of `ALL_PACKS` (`app.config.ts`): `instant`,
+`fast`, `embed`, `speech`, `vision` and the two `sharp` shards, ~5.2 GB of models. `INBORN_PACKS=instant,fast` and the like
+exist only to shorten an internal build, and a device that installs one cannot reach Sharp, dictation or image input at all
+— the app has no INTERNET permission, so Play is the only way a model gets to it. `check-android-bundle.sh` reads the pack
+list out of `ALL_PACKS` and fails the bundle when one is missing. Play's limits: base + install-time ≤ 4 GB, fast-follow +
+on-demand ≤ 30 GB, **each pack ≤ 1.5 GB** — which is why Sharp ships as two `llama-gguf-split` shards, one pack each.
 `install-apks` pushes the 532 MB pack APK into `/sdcard/Android/data/com.inbornapp.mobile/files/local_testing/`; on a slow
 USB link push `asset-slices/inborn_model-master.apk` from the `.apks` zip there yourself. First launch: Play Core's local
 testing service delivers the pack (`FakeAssetPackService … notifyModuleCompleted` in logcat); every launch after that logs
