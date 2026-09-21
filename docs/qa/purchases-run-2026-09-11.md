@@ -333,6 +333,101 @@ The soak that follows this sanity is `docs/qa/soak-run-4-2026-09-21.md`: **48 F3
 for 5 h 39 min, zero Inborn crashes — and `dumpsys dropbox` still holds only the two versionCode 7 crash entries
 and none for versionCode 8.**
 
+## L. Play internal release versionCode 9 (fixes-r15 + fixes-r16) and the real vc8 → vc9 update path on the 6T — 21.9.2026 11:52–12:39
+
+Built from `main` f27a8c5 (merge of fixes-r15: Android bundle without iOS binaries, the F27 TAB trap, Play packs kept
+across updates; on top of fixes-r16) in a fresh worktree `android-vc9`, so the prebuild was clean by construction —
+no `android/` directory existed and the build script removes one anyway. `pn install --frozen-lockfile`,
+`scripts/check-store-env.sh` → "store env clean: no EXPO_PUBLIC_* dev switch set", prebuild with
+`INBORN_MODELS_DIR=…/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=9`. Gradle `bundleRelease --no-daemon
+-PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` in the session scratch (APFS clone of `~/.gradle-pr2`): **BUILD SUCCESSFUL in 3 m 21 s**, 1105
+actionable tasks, 1105 executed. `gradlew --stop` was never run. `pgrep -fl xcodebuild` was empty before gradle
+started and no xcodebuild ran beside it.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **1,870,641,095 bytes** (vc8 was 2,092,078,443) |
+| sha256 | `67cc2aad9687596a7ba416b02e3f79a97cb3f70fbdaac1c8d35394455a4beb58` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL`, SHA-256 `E7:02:C9:A9:…:ED:CD` |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`, sha256 `a099cfa1…028e29`) | **OK**; `inborn_model` **fast-follow** (`Qwen3.5-0.8B-Q4_K_M.gguf` 532,517,120 B) and `inborn_model_fast` **on-demand** (`Qwen3.5-2B-Q4_K_M.gguf` 1,280,835,840 B), both byte-identical to vc6, vc7 and vc8 |
+| **entries under `base/assets/ios`** | **0** — round 15 finding A holds in the shipped artifact (vc8 had 257) |
+| module sizes, uncompressed | base 197,537,563 B / 1451 entries · `inborn_model` 532,518,071 B · `inborn_model_fast` 1,280,836,794 B · 2,063,211,981 B over 1491 entries in total |
+| `base/assets` | 12,720,769 B / 118 entries (vc8: 451,697,441 B) |
+| manifest | `versionCode="9" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26, compileSdk 36 |
+| module registry (dex strings, `base/dex/classes*.dex`) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| the round 14/15/16 fixes are in the artifact | the Hermes bundle inside the AAB carries `removeClippedSubviews` (r14), `nextFocusForward` (r15 F27), `requestKnownPacks` (r15 pack retention) and `planDocsTurn` / `documents.noneAttached` (r16); the dex carries the `dangerouslyForceOverride` / `enableCustomFocusSearchOnClippedElementsAndroid` strings of `withScrollFocusEscape` |
+| upload | `--next-version-code` returned **9** before the upload; edit `09099726880344100841`, bundle versionCode 9 with **the same sha256 as the local file**, track `internal` release **"1.0.0 (9)"** `completed` |
+
+`play-upload.mjs` names a release after its versionCode unless `--name` is passed, so the first commit produced a
+release called "9"; a second edit, `16893204149433844248`, renamed it **"1.0.0 (9)"** to match vc3 … vc8.
+
+### The vc9 bundle ships no Tesseract OCR data
+
+`unzip -l` of the AAB finds **zero** `traineddata` entries, and `base/assets` is 12,720,769 B against the
+17,792,265 B round 15 recorded — the 5.07 MB difference is exactly `eng.traineddata` (4,113,088 B) plus
+`heb.traineddata` (961,404 B). `DocExtractModule.kt:171` reads the data with `assets.list("tessdata")`, so on vc9
+`bundledLanguages()` is empty and `tessFor` fails `ERR_NO_OCR`: **OCR of scanned PDFs and images is unavailable on
+this build**, where vc8 had it.
+
+The cause is in `main`, not in this release. Round 15 replaced the `ocr/` assets source root with a `Sync` task
+staging the one named path, registered as
+`assets.srcDir(stageTessData.map { it.destinationDir })` (`apps/mobile/modules/doc-extract/android/build.gradle`).
+That provider does not carry the task dependency: in this build `:doc-extract:stageOcrTessData` **never ran** (0
+lines in `gradle.log`), `:doc-extract:mergeReleaseAssets` ran over an empty directory, and
+`modules/doc-extract/android/build/generated/ocrAssets` was never created. `.models/ocr/tessdata/` holds both files
+and the module logged no "no OCR data at …" warning, so the path resolved — only the staging never happened.
+
+Round 15 never proved the final formulation from clean. Its `build-release.log` ran `stageOcrTessData` under the
+*first* formulation and failed `:doc-extract:generateReleaseLintModel` validation; after the change to
+`assets.srcDir(provider)` every later log (`build-release2.log`, `build-verify.log`, `c-build-vc9fixed.log`) has zero
+`stageOcrTessData` lines and shows `:doc-extract:mergeReleaseAssets UP-TO-DATE`, reusing the staged output the first
+run had left on disk. `rm -rf android` does not clear `modules/doc-extract/android/build`, so that worktree kept it;
+a fresh worktree has nothing to reuse. Fix belongs in a round 17: make the merge and lint tasks depend on the Sync
+task explicitly.
+
+### The real Play update path, vc8 → vc9, on the OnePlus 6T
+
+Round 15 uninstalled Inborn from the phone, so the vc8 baseline was rebuilt **through the Play Store app** rather
+than with adb: `market://details?id=com.inbornapp.mobile` → Install (278 MB offered), base APK 246,433,498 B and
+277,778,188 B in total, `versionCode=8` installed by `com.android.vending` at **11:57:38**. Onboarding was walked
+with keys only: Instant delivered as a fast-follow pack ("Delivering INSTANT · 508 MB", done by 11:58:47), the
+"Prove it to yourself" step answered **"17 times 23 equals 391."** on INSTANT with **OUT 0 B · IN 0 B**, and the
+lock step was passed without enabling anything. Fast was then installed from the vault — confirm sheet "Download
+Fast? Google Play will download 1.2 GB. Inborn itself opens no connection." → Download, "Delivering FAST · 1.19 GB",
+vault **"1.7 GB in the vault"** at 12:06 — and Fast answered "Three colours are red, blue, and green." in 14 s.
+
+vc9 was uploaded at 12:12 and the Play page offered Update within minutes. The first press, **12:16:56**, produced
+the section-K symptom, `AssetModuleException: Request to PGS failed because all packs are unavailable`; the second,
+**12:17:59**, went straight through. vc9 was installed by `com.android.vending` at **12:24:02** —
+`firstInstallTime` stayed **11:57:38** and `lastUpdateTime` moved to 12:24:02, so this was an update in place, no
+uninstall, and the chat database, the Pro entitlement and both model packs are the ones vc8 left behind. Play's own
+processing cost **6 minutes** here, not the half hour vc8 needed.
+
+**Round 15 finding C is proven on the real update path.** Nothing was tapped in the vault.
+
+| step | result | evidence |
+|---|---|---|
+| cold launch after the update | opens straight to chat — Chats · SEALED · INSTANT, the "This is AI running on your phone" notice, the empty chat and the composer. **No onboarding, no lock prompt.** pid 28601 | `20-vc9-launch.png` |
+| About | **VERSION 1.0.0 (9)**, commit **f27a8c59b3b6** = `main` f27a8c5 | `23-vc9-about.png` |
+| **the vault after the update** | **"1.7 GB in the vault · 14 GB free"**, Fast reads **Loaded · In use**, and there is **no `install-fast` node and no "Install" text anywhere on the screen**. vc8 in section K showed "508 MB in the vault" and an `install-fast` offer of "Install · 1.2 GB from Google Play" at this exact point | `21-vc9-vault.png`, `vault-vc9.xml` |
+| what did it, in the log | opening the vault fired `AssetPackServiceImpl : onRequestDownloadInfo()` at **12:26:01**; **two seconds later**, 12:26:03, `[inborn] engine model fast from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_fast/9/9/assets/Qwen3.5-2B-Q4_K_M.gguf` — the versionCode-9 path, reached with no download. A 1.2 GB fetch cannot happen in two seconds; `requestKnownPacks` re-bound bytes that were already on the phone | `logcat-update.txt` |
+| chat on Fast | chip **FAST**, "Name three colours." answered in 15 s, `content-desc="FAST · ON-DEVICE AI · The three colours are red, blue, and green."` | `24-vc9-fast-answer.png` |
+| proof (`inborn://proof`) | **SEALED · ON-DEVICE**, since install · 0 days, **OUT 0 B · IN 0 B**, **CONNECTIONS 0 this session**, allowlist "none · the app has no internet permission", **TRACKERS 0** | `22-vc9-proof.png` |
+| paywall (`inborn://paywall`) | **YOU OWN PRO** — "Unlocked on every device that uses this Google Play account."; Work card "PRO FOR WORK · ₪149.90 · one-time purchase"; Restore purchases present | `22-vc9-paywall.png` |
+
+`inborn://about` is not a route ("That screen does not exist."); About is reached from the bottom of Settings.
+
+**F27 is fixed on the floor device.** The trap section K reproduced on vc8 — sixteen consecutive TAB stops inside the
+suggestion chips — is gone. Eighteen TABs on a fresh empty chat give two identical nine-stop rings and reach
+`composer-input` at tab 9 and again at tab 18: `open-chats → model-chip → attach → mic → (notice) Dismiss →
+suggestion-summarize → suggestion-translate → suggestion-draft → composer-input`. Six non-chip stops follow the
+first chip, where vc8 had zero. **F28 still passes**: no "Paused while Inborn was in the background" banner on the
+returned chat or on a new one.
+
+The soak that follows this sanity is `docs/qa/soak-run-5-2026-09-21.md`.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -344,3 +439,8 @@ and none for versionCode 8.**
 ## Devices, processes
 
 iPhone: only `com.inbornapp.mobile` (proof bundles, 5 installs) and `com.inbornapp.mobile.uitests.xctrunner` (once, Task D) installed, both uninstalled at the end; exceptions, each once and documented: `AppStore` and `PassbookUIService` killed to dismiss the stuck sandbox sheet (Task A), the DDI's `testmanagerd` killed to clear the UI-Automation passcode prompt (Task D, lead's decision); later Moshe himself enabled UI Automation (left on); nothing typed by me, phone on the home screen with no sheet or prompt (`12-final-phone.png`, 14:21). No simulator, emulator or Metro started. 6T at the end: only `com.inbornapp.mobile` (Play, versionCode 6, Instant + Fast packs) installed, the accessibility driver uninstalled, launcher home screen. xcodebuild and gradle ran one after the other, never together; gradle with `--no-daemon` in `GRADLE_USER_HOME=~/.gradle-pr2` (APFS clone).
+
+After section L (21.9, 14:56): the 6T holds only `com.inbornapp.mobile`, **Play versionCode 9**, Instant and
+Fast packs present, Pro owned; the app is force-stopped and the phone is on its launcher home screen. Nothing was
+uninstalled and no setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the
+session scratch; `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it.
