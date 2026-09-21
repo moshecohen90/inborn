@@ -637,10 +637,14 @@ packs since fixes-r4a (`inborn_model_sharp` 1.40 GB + `inborn_model_sharp_2` 1.3
 "Android release blockers"). All seven packs: Instant 0.53 + Fast 1.28 + embed 0.27 + speech 0.15 + vision 0.20 + Sharp
 1.40 + 1.34 = 5.18 GB, every tier stays on Play; the full AAB is base (~60 MB) + 5.18 GB.
 
-**Pack subset.** `INBORN_PACKS=instant,fast` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all six: instant, fast, embed, sharp, speech, vision)
-limits what `plugins/withAssetPacks.js` declares. The internal-testing bundle ships Instant (fast-follow, 532 MB) and
-Fast (on-demand, 1.28 GB). `INBORN_VERSION_CODE` sets `android.versionCode` (Play refuses a code it already has;
-`node scripts/play-upload.mjs --next-version-code` prints the next free one).
+**Pack subset.** `INBORN_PACKS=instant,fast,embed` (keys of `ALL_PACKS` in `apps/mobile/app.config.ts`; unset = all six: instant, fast, embed, sharp, speech, vision)
+limits what `plugins/withAssetPacks.js` declares. **Any build that goes to a store track ships at least
+`instant,fast,embed`**: the embed pack is the document index model, and without it document indexing and the OCR of scans
+answer `onError(-2)` (MODULE_UNAVAILABLE) on the device — vc8 to vc10 shipped without it (round 17, closed by vc11), and
+`scripts/check-android-bundle.sh` now fails a bundle that is missing any of the three. The bundle then ships Instant
+(fast-follow, 532 MB), Fast (on-demand, 1.28 GB) and embed (on-demand, 274 MB). `INBORN_VERSION_CODE` sets
+`android.versionCode` (Play refuses a code it already has; `node scripts/play-upload.mjs --next-version-code` prints the
+next free one).
 
 **Upload key.** `~/.inborn/keys/inborn-upload.jks` (PKCS12, alias `inborn-upload`, RSA 2048, valid to 2056), created
 with `keytool -genkeypair`; its password is the Keychain item `inborn-upload-key` (accounts `store-password` and
@@ -657,12 +661,12 @@ already has access to the Inborn app.
 
 ```
 cd apps/mobile
-INBORN_MODELS_DIR=/Users/moshecohen/dev/inborn/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=$(node ../../scripts/play-upload.mjs --next-version-code) \
+INBORN_MODELS_DIR=/Users/moshecohen/dev/inborn/.models INBORN_PACKS=instant,fast,embed INBORN_VERSION_CODE=$(node ../../scripts/play-upload.mjs --next-version-code) \
   npx expo prebuild -p android --no-install
 cd android && eval "$(../../../scripts/play-signing-env.sh)" && ./gradlew bundleRelease -PreactNativeArchitectures=arm64-v8a
 AAB=app/build/outputs/bundle/release/app-release.aab; BT=/Users/moshecohen/dev/inborn/.tools/bundletool-all-1.18.3.jar
 java -jar $BT validate --bundle=$AAB && BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB
-../../../scripts/check-android-bundle.sh $AAB          # both traineddata present, no base/assets/ios
+../../../scripts/check-android-bundle.sh $AAB          # both traineddata, all three asset packs, no base/assets/ios
 INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts/play-upload.mjs --aab $AAB --track internal --status completed
 ```
 One-time products (Pro / Pro launch / Work / Work upgrade) live in Play through `scripts/play-products.mjs` (same
@@ -1553,6 +1557,12 @@ unavailable on Android, where vc8 had it.
   pack (`bundletool validate` on vc8 and vc9 lists `base`, `inborn_model`, `inborn_model_fast` only), so OCR has never been
   reachable on the internal track. A production build with `INBORN_PACKS` unset ships all packs. **Proving OCR on a real
   device needs an internal build with `INBORN_PACKS=instant,fast,embed`.**
+- **Closed by vc11** (`docs/qa/purchases-run-2026-09-11.md` section N, 21.9): Play internal 1.0.0 (11) is the first store
+  build that carries `inborn_model_embed`. On the 6T, updated through the Play Store app, "Install · 262 MB" now delivers
+  the pack (`onNotifyModuleCompleted(inborn_model_embed)` where vc10 logged `onError(-2)`), the round-17 scan OCRs to
+  OCR PAGES 1 · tesseract / PASSAGES 1 and its recognized text answers a question in chat with a citation to the scan.
+  `scripts/check-android-bundle.sh` now also fails a bundle that is missing any of the three packs, so the recipe cannot
+  silently regress again.
 - **iOS is untouched.** This round changes Android build configuration only: `apps/mobile/modules/doc-extract/android/build.gradle`
   and `scripts/check-android-bundle.sh`. The podspec still symlinks `vendor/libtesseract.xcframework` and `vendor/tessdata`
   out of `INBORN_MODELS_DIR/ocr`, and no iOS build was run or needed.

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Release gate: the bundle carries the Tesseract OCR data and nothing from the iOS side of INBORN_MODELS_DIR/ocr.
-# vc9 shipped with zero traineddata entries because the staging task never ran (round 17).
+# Release gate: the bundle carries the Tesseract OCR data, nothing from the iOS side of INBORN_MODELS_DIR/ocr,
+# and the three asset packs a store build must deliver.
+# vc9 shipped with zero traineddata entries because the staging task never ran (round 17); vc8..vc10 shipped
+# without inborn_model_embed because INBORN_PACKS left it out, so document indexing and OCR were unreachable.
 # Usage: scripts/check-android-bundle.sh <app.aab>
 set -euo pipefail
 f="${1:-}"; [ -f "$f" ] || { echo "usage: $0 <app.aab>"; exit 2; }
@@ -18,6 +20,16 @@ for lang in eng heb; do
   fi
 done
 
+for pack in inborn_model inborn_model_fast inborn_model_embed; do
+  n="$(awk -v p="$pack/" 'index($4, p) == 1 {n++; s+=$1} END {print n+0" "s+0}' <<<"$list")"
+  read -r entries bytes <<<"$n"
+  if [ "$entries" -gt 0 ]; then
+    echo "OK: asset pack $pack ($entries entries, $bytes B)"
+  else
+    echo "FAIL: asset pack $pack is missing; build with INBORN_PACKS=instant,fast,embed (or unset)."; fail=1
+  fi
+done
+
 ios="$(grep -cE "[[:space:]]base/assets/ios/" <<<"$list" || true)"
 if [ "$ios" -gt 0 ]; then
   echo "FAIL: $ios entries under base/assets/ios — the iOS tesseract xcframework rode in as Android assets."; fail=1
@@ -26,4 +38,4 @@ else
 fi
 
 [ "$fail" = 0 ] || exit 1
-echo "OK: bundle carries both OCR language files and no iOS assets."
+echo "OK: bundle carries both OCR language files, all three asset packs and no iOS assets."
