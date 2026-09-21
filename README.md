@@ -139,7 +139,7 @@ Zero internet sockets on the process for the whole run (`lsof -a -p <pid> -i`, p
 ## Device guard: battery, heat, memory (spec §6.5, §5.7–5.8, §10.2–10.3)
 One policy engine decides what the phone does when it gets hot, low or tight on memory, and one status line under the seal says so.
 - `packages/core/src/device/` — pure: `DevicePolicy.update(signals, override, now)` → `{status, headline (i18n key), recommendation propose|act, action,
-  button, targetTier, threads, gpuLayers, maxTokens (1,024 / 512), contextCap (4K / 2K under 6 GB), pauseDownloads, pauseIndexing, sealGlow,
+  button, targetTier, threads, gpuLayers, maxTokens (the 1,024 ceiling / 512 saving), contextCap (4K / 2K under 6 GB), pauseDownloads, pauseIndexing, sealGlow,
   confirmLongAnswer, stopGeneration, unloadAfterMs, explain}`, exactly the §6.5 table per device class (phone/tablet, laptop on battery,
   desktop on mains, browser) with its priority rule (critical heat › memory › serious heat › <5 % › Low Power/<10 % › proposals). Hysteresis: 2
   battery points, a 20 s hold before heat/memory lines step down, one proposal per step. `SpeedWatch` is the Windows stand-in (35 % drop in 60 s).
@@ -153,6 +153,8 @@ One policy engine decides what the phone does when it gets hot, low or tight on 
   brings the previous one back on the charger. `useDeviceState()` hands the shell `{battery, thermal, memoryPressure, powerSource, recommendation}`
   plus `accept()` / `dismiss()` / `ackExplain()` / `setOverride()`; `useEngineState()` says whether the weights are resident (seal state).
   `src/engine.ts` wraps every `generate()` so a session unloaded by the guard reloads on the next message.
+- The guard's `maxTokens` is a **ceiling**, not the length of an answer: since round 19 each turn asks for what its own question deserves
+  (`packages/core/src/chat/length.ts`, `ANSWER_CEILING` 1,024 / `SAVING_CEILING` 512 live there) and `src/engine.ts` clamps it to the guard's cap.
 - Dev switch: `EXPO_PUBLIC_DEVICE_TIER=fast` makes a dev build pretend to run the Fast tier with the one model file, so every row can be driven.
 
 Verified 6.9.2026 on Pixel_3a_API_33 (arm64, 4 GB) through the guard's `[device]` log lines:
@@ -995,7 +997,8 @@ Three Free-tier features from the MosheAI gap report (`docs/qa/mosheai-gap-2026-
   detection for 17 languages; the translate target is the UI language, or English when the text already is the UI language, or Spanish
   for an English UI) and `apps/mobile/src/components/chat/QuickActionsSheet.tsx`: source preview, six chips, "Detected · Translate to"
   row (tap cycles the target and restarts a running translation), the result streamed with the loaded model (`reasoning: false`,
-  `maxTokens: 1024`, `temperature: 0.3`, offline), then Stop / Copy / Replace (Android PROCESS_TEXT only) / Open in chat (the action
+  `maxTokens` from the action's own length plan (round 19: `planAnswerLength`, the 1,024 ceiling for a rewrite or a translation), `temperature: 0.3`,
+  offline), then Stop / Copy / Replace (Android PROCESS_TEXT only) / Open in chat (the action
   becomes a user turn and the result an assistant turn of the open conversation). Reachable from every message's long-press sheet
   ("Quick actions") and from every share target.
 - **Share targets (§7.7)** — Android: `apps/mobile/modules/share-target` (own Expo module, no permission): `ACTION_SEND` for text/plain and
@@ -1514,6 +1517,76 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
 - **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
+
+## Fixes round 19: the model dug into every question, however small (branch `fixes-r19`) — 22.9.2026
+**F38** (Moshe, 22.9.2026 01:00, watching the OnePlus 6T during soak 6): *"when the bot answers it really digs / rambles"*.
+In `docs/qa/soak-run-5-2026-09-21.md`'s successor run, on the release build 1.0.0 (13) with Instant resident, **"What is 2
+plus 2?" cost 20–21 s** (≈200 predicted tokens at ~11 tok/s) and the **third and fourth ask of the same question in the same
+chat ran to the 1,024-token cap** (85–86 s, `complete=0`).
+
+**Root cause.** Nothing in a turn ever said how long its answer should be. The default persona's whole prompt was "You are a
+helpful, concise assistant."; every path handed llama.rn the same `n_predict` (`maxTokens` 1,024, or the guard's 512 in power
+saving); the loop guard (`packages/core/src/chat/loop.ts`) only stops literal n-gram repeats, and a model that elaborates
+instead of repeating never trips it. So a 0.8B model answered a one-line arithmetic question with the budget of an essay,
+and once its own long answers were in the context it kept going until the cap stopped it.
+
+**Fix** — `packages/core/src/chat/length.ts`, one plan per turn, shaping the **request** twice and never the answer:
+
+| what the turn is | tokens | the line added to the system prompt, last |
+|---|---|---|
+| short factual ask (a question on one line, or a phrase ≤ 8 words) | 224 | "Answer in one to three sentences: give the answer first, then stop…" |
+| chat, math, documents | 512 | "Keep the answer as short as the question allows, a paragraph at most…" |
+| draft, translation, code, writing, summarize, `Continue` | 1,024 | "Give the whole answer the task needs, then stop…" |
+| hands-free (read aloud) | 160, never above 320 | "Answer in one or two short spoken sentences and stop." |
+| "in about N words" / N sentences / N paragraphs | N × 3 + 64, clamped | …"The user asked for about N words; match that length." |
+
+What the user says wins over the heuristic: `detectExplicitLength` reads a number with a unit word in the eight shipped
+locales and Hebrew, plus "in detail" / "briefly" families. Everything else is script-agnostic on purpose — it counts words
+and characters and looks for a question mark in any script — so a Hebrew, Japanese or Korean question is judged exactly like
+an English one and an unlisted language lands on `moderate`, never on a clipped answer.
+
+Wired through core, so there is no second mechanism: `composeSystemPrompt` gained a `length` block that goes last, after the
+language hint; `Chat.tsx` (typed turn), `QuickActionsSheet`/`runQuick`, `useHandsFree` and `AskDocuments` all call
+`planAnswerLength`; `ANSWER_CEILING` / `SAVING_CEILING` moved beside it and `device/policy.ts` imports them, so the guard's
+cap is still the ceiling and `src/engine.ts` still clamps every turn to it (`Math.min(opts.maxTokens, caps.maxTokens)`).
+The desktop and web tiers run this same JS (Tauri shell, Expo web export), so they are covered by the same change; their
+adapters' `?? 1024` defaults are now `?? ANSWER_CEILING`. 20 tests in `packages/core/test/fixes-r19.test.ts`.
+
+**Proof, Android emulator** (`inborn_r19`, a Pixel_6_API_33 clone, arm64, 4 GB, headless on port 5570; release AAB built with
+`INBORN_PACKS=instant`, versionCode 19, delivered through bundletool `--local-testing`, so Instant comes from the real asset
+pack at `files/assetpacks/inborn_model/19/19/assets/Qwen3.5-0.8B-Q4_K_M.gguf`). Same emulator, same model, before = `origin/main`
+9520fb7, after = this branch; prompts driven through `EXPO_PUBLIC_AUTOPROMPT=file`, numbers from `Documents/dev-run.json`.
+Screenshots in `docs/qa/fixes-r19/`.
+
+| scenario | before | after |
+|---|---|---|
+| (i) "What is 2 plus 2?" ×4 in one **fresh** chat | 1 word each, 0.3 / 0.5 / 0.9 / 0.8 s | 8 words each, 1.8 / 0.9 / 1.2 / 1.3 s |
+| (i′) the same four asks in a chat that already holds one long turn | **46 / 44 / 42 / 40 words**, 4.7 / 4.5 / 4.4 / 4.2 s | **5 / 5 / 5 / 5 words**, 2.6 / 0.7 / 0.9 / 0.8 s |
+| (ii) "Summarize the causes of World War One in about 200 words." | 222 words, 14.3 s | **217 words**, 13.7 s — not truncated |
+| (iii) "Write a formal letter to my landlord about a broken heater" | 179 words, 10.7 s | 93 words, 7.5 s — subject, salutation, body, sign-off, complete |
+| (iv) Hebrew short question, "מה הבירה של צרפת?" | 5 words, 1.4 s | 5 words, 2.1 s |
+| "Why is the sky blue?" | 89 words + an invented `nature.com` URL, 6.1 s | 39 words, 4.0 s |
+| "What is the capital of Australia?" | 6 words, 0.6 s | 7 words, 0.6 s |
+| Hebrew "מה זה בינה מלאכותית?" | 83 words **with a four-bullet loop** ("אם כן / אם לא" repeated), 14.8 s | 22 words, 5.5 s |
+| "How does a refrigerator work?" | 144 words, 10.7 s | 30 words, 3.5 s |
+
+The ledger on that last pair is the mechanism in one line: **before 101 + 194 tokens in 10.6 s, after 137 + 33 tokens in 3.5 s**
+(`a-15-fridge-ledger-before.png`, `a-16-fridge-ledger-after.png`). The prompt grew by the 36 tokens of the length line and the answer fell by 161.
+
+**Honest about the repro.** Scenario (i) as Moshe saw it does **not** reproduce on this emulator: on a fresh chat the unfixed
+build already answered "2 plus 2" in one word, 0.3–0.9 s, nowhere near the cap. What does reproduce is the same behaviour one
+step along — as soon as the chat holds any earlier content, the unfixed build spent 40+ words and 4+ s on the same question,
+and on open questions it ran to 89–144 words with fabrications and a bullet loop. The 6T's 85 s runs happened in a chat that
+also had a **document attached**, which needs the `embed` pack and is not reachable on an `INBORN_PACKS=instant` build; that
+exact state stays **unverified here**. Sampling is unseeded, so no single answer is deterministic on either build.
+
+**iPhone 15 Pro simulator** (shared JS): release build of this branch (`Inborndev`, iPhone 15 Pro / iOS 18.1, `9162F167…`, Instant bundled in the app at
+`Inborndev.app/instant.gguf`), scenario (i) once through the same `EXPO_PUBLIC_AUTOPROMPT=file` hook in the simulator's data
+container: **13 / 4 / 11 / 11 words** in **2.0 / 0.9 / 1.4 / 1.1 s** at 48–50 tok/s (`i-01-four-asks-after.png`). Simulator shut
+down afterwards; `xcrun simctl list devices booted` lists nothing.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core **493**, 473 + the 20 new, mobile 169, i18n 10, ui 11 — **683** tests),
+`pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines, first visit 10.9 s, 31.2 tok/s), `pn desktop:check` 0 (7 Rust tests).
 
 ## Fixes round 18: dictation crashed on Android, image input was Instant-only, Sharp's estimate on legacy chips (branch `fixes-r18`) — 21.9.2026
 Three findings from the Play vc12 run (`docs/qa/purchases-run-2026-09-11.md` section O). All three are root-fixed here and
