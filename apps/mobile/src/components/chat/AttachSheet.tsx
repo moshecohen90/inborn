@@ -25,12 +25,15 @@ interface Props {
   onPhoto?: (source: "library" | "camera") => void;
   photoNote?: string;
   photoDisabled?: boolean;
+  /** The model that can look at photos is not the resident one (QA F36): one tap loads it and the rows come back. */
+  onUseVisionModel?: () => void;
+  visionModel?: string;
   /** Opens the profession-pack templates library (§7.6, Work); the Work stream gates it inside. */
   onTemplates?: () => void;
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onImport, onTemplates }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -43,6 +46,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <Text style={[type.monoLabel, styles.sectionLabel, { color: theme.text3 }]}>{t("chat.attach.photos")}</Text>
           <SheetItem testID="attach-photo" label={t("chat.attach.photo")} hint={photoNote} disabled={photoDisabled} onPress={() => onPhoto("library")} trailing={<Icon name="image" size={18} color={theme.text2} />} />
           <SheetItem testID="attach-camera" label={t("chat.attach.camera")} disabled={photoDisabled} onPress={() => onPhoto("camera")} trailing={<Icon name="camera" size={18} color={theme.text2} />} />
+          {onUseVisionModel && visionModel ? <SheetItem testID="attach-use-vision" label={t("chat.attach.useVisionModel", { model: visionModel })} onPress={onUseVisionModel} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
         </View>
       ) : null}
       {onImport ? <SheetItem testID="attach-import" label={t("chat.attach.import")} hint={t("chat.attach.importHint")} onPress={onImport} trailing={<Icon name="upload" size={18} color={theme.text2} />} /> : null}

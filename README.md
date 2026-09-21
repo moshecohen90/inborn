@@ -1515,6 +1515,87 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
 
+## Fixes round 18: dictation crashed on Android, image input was Instant-only, Sharp's estimate on legacy chips (branch `fixes-r18`) — 21.9.2026
+Three findings from the Play vc12 run (`docs/qa/purchases-run-2026-09-11.md` section O). All three are root-fixed here and
+each is proven on the OnePlus 6T (`REDACTED-6T`, Snapdragon 845, Android 11).
+
+- **F35 · the microphone killed the app about 24 s into hands-free** (`patches/@fugood__react-native-audio-pcm-stream@1.1.4.patch`,
+  `apps/mobile/src/voice/mic.native.ts`, `packages/core/src/voice/micSession.ts`). Root cause is in the stream module's
+  Android side, and it is a genuine race, not a misuse: `stop()` is a `@ReactMethod` that only sets `isRecording = false`
+  and returns, so JS is told the recorder is down while the reader thread is still unwinding; that thread's `finally`
+  then runs `recorder.release(); recorder = null;` **on the field**, which by then points at the recorder the next
+  `init()` has already created. The hands-free listener re-opens the microphone every 12 s of silence, so the third open
+  died on `AudioRecord.release()` of a null (`RNLiveAudioStreamModule.java:115`), 3/3 times on vc11 and vc12.
+  The patch gives the thread a **local** reference to the recorder it started, so it can never release a later one; makes
+  `isRecording` volatile; checks `getRecordingState()` before `stop()` so an already-stopped recorder is not an exception;
+  and turns `stop()` into a promise that resolves only after `join()`, with `init()` doing the same join first, so a new
+  recorder is never built over a live thread. On our side `MicRecorder.start`/`stop` run through one process-wide queue
+  (`serialQueue`) and a four-state machine (`nextMicState`, `micShouldStart`, `micShouldStop`), so an overlapping start
+  cannot even be attempted; 10 unit tests in `packages/core/test/voice-mic-session.test.ts`.
+- **F36 · only Instant can look at a photo** (`packages/core/src/catalog/manifest.json` v4 re-signed,
+  `apps/mobile/src/images/vision*.ts`, `screens/Chat.tsx`, `components/chat/AttachSheet.tsx`, the `models.copy.*` and
+  `chat.vision.*` keys in all nine locales). One `mmproj` is built for one embedding width and the one we ship is
+  Instant's (`n_embd` 1024); Fast (2048) and Sharp (2560) answer "Failed to initialize multimodal context" and the
+  picture was dropped in silence while the cartridge promised photos. The catalog now says so: `vision: false` on Fast
+  and Sharp, "No photos" first in their **Weak at** line, "The only model here that can look at a photo" on Instant, and
+  the vision companion reads "Lets Instant look at your photos on this device". The engine holds one model at a time
+  (`src/engine.ts`, one load per app run), so a turn cannot be routed through Instant behind the user's back; instead the
+  attach sheet says "FAST cannot look at photos. INSTANT is the one model here that can." and carries a one-tap **Use
+  INSTANT for photos** row, and a picture that reaches a model without the projector is answered honestly in the chat
+  ("I cannot look at pictures. INSTANT is the model on this device that can see a photo.") beside a **Switch to INSTANT**
+  button, never dropped. Pictures in older turns are stripped from the prompt instead of refusing the whole chat.
+- **F37 · Sharp measured 0.5 tok/s on a 2018 flagship while its card promised 3–4** (`packages/core/src/catalog/speed.ts`,
+  `catalog/pick.ts`, `catalog/recommend.ts`, `screens/vault/ModelCard.tsx`). The `android-legacy` row now carries the
+  measured number (`sharp: [0.4, 0.6]`, vc12 ledger: 1,820 ms/token, TTFT 32.9 s). `tooSlowHere(chip, tier)` marks any
+  row whose ceiling is under `USABLE_TOKENS_PER_SEC` (1.5); `DeviceProfile` gained the optional chip class so
+  `rankModels` can drop such a tier from the recommendation entirely. Sharp stays in **Fits your phone** with its Install
+  button, and the card reads `~0.4-0.6 tok/s on your phone · Too slow to use on this phone`.
+
+**Proof on the OnePlus 6T.** Play's vc12 was uninstalled and a **debug build of this branch (versionCode 13) driven from
+Metro on a private port 8137** took its place, because `Documents/whisper.bin` and `Documents/instant.gguf` (the dev
+stand-ins) need a debuggable app, and the Pro override `EXPO_PUBLIC_PRO` is compiled out of release bundles. `inborn://voice`
+reaches the hands-free screen without the paywall, which is what made a headless proof possible at all.
+
+| F35 | control (branch JS and native reverted to `origin/main`) | fixed |
+|---|---|---|
+| build | same debug APK, `RNLiveAudioStreamModule.java` restored from `origin/main` | patched class in `classes2.dex` (`strings` finds `stopAndJoin`, `recordingThread`) |
+| listen cycles before it died | **3** — `set()` 20:29:23.036, 35.119, 47.168 | **15** across three sessions, none died |
+| the race, in the log | `set()` 20:29:47.168 **then** `stop(270)` .169: the new recorder was built while the old thread still ran | `stop(273)` .621/.700/.701 **then** `set()` .718 — teardown finishes first, every time |
+| outcome | `FATAL EXCEPTION: Thread-14 · NullPointerException … AudioRecord.release() … RNLiveAudioStreamModule.java:115`, process gone, phone back at the launcher | pid **14119 → 14119** over 135 s, then 20326 and 20333 over 95 s each, **0 FATAL**, 0 `AudioRecord.release` NPEs |
+| screen | force-finished | alive: `voice-screen`, `voice-seal`, `whisper 394 ms`, "Ended. Nothing was heard for a while." — the reducer's own silence ceiling, not a crash |
+
+RECORD_AUDIO was granted with `pm grant` for the runs and **revoked again** afterwards (`granted=false`), as vc12 left it.
+
+**iPhone 15 Pro simulator**, because the fix changes shared JS (`mic.native.ts` runs on both platforms; the module patch is
+Android-only). Debug build of this branch from this worktree (`Inborndev`, bundle id unchanged) on Metro, `Documents/whisper.bin`
+copied into the data container, microphone granted with `simctl privacy grant`. `inborn://voice` at 21:27:39, screen read at
+21:28:54: pid **48237 → 48237**, no red box, `[voice] whisper loaded … in 22411 ms (gpu false: Metal is not supported in
+simulator)`, and the screen alive on "Ended. Nothing was heard for a while." The simulator was shut down afterwards.
+
+**F36 and F37 on the same phone**, with Instant, Fast and the vision projector installed through the dev HTTPS delivery
+(`scripts/serve-models.mjs` on 8791 over `adb reverse`, `EXPO_PUBLIC_MODELS_BASE_URL`, vault commands through
+`Documents/dev-vault.txt`), fixture: a 1024 × 640 PNG with a red circle, a blue square and a green triangle.
+
+| check | what the phone showed |
+|---|---|
+| vault header | `RUNS ON: ANDROID-LEGACY · 8 GB` |
+| Sharp card (F37) | `~0.4-0.6 tok/s on your phone · Too slow to use on this phone`, under **FITS YOUR PHONE**, `Install · 2.6 GB` still offered; Sharp-Phi the same |
+| recommendation (F37) | `RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH` sits on **FAST**; Sharp carries no recommendation |
+| attach sheet, Fast resident (F36) | Photo and Camera disabled, hint `FAST cannot look at photos. INSTANT is the one model here that can.`, plus the row `Use INSTANT for photos` (`attach-use-vision`) |
+| that row, one tap | model chip FAST → INSTANT, `llama.rn loaded model INSTANT … in 3354 ms` |
+| Instant + the picture | `n_embd=1024`, "Multimodal context initialized successfully", answer: *"Red Circle … Blue Square … Green Triangle"* |
+| Fast + the same picture | assistant: *"I cannot look at pictures. INSTANT is the model on this device that can see a photo. Switch to it and send the picture again."*, with `vision-offer` reading "Photos need INSTANT, not FAST." and a **Switch to INSTANT** button; one tap loaded Instant |
+| cartridge copy | Fast **Weak at: No photos; code, math, Hebrew; …**; Sharp **Weak at: No photos; slower and warmer than Fast; …**; Instant "The only model here that can look at a photo"; vision companion "Lets Instant look at your photos on this device." |
+
+Gates on this branch: `pn typecheck` exit 0, `pn test` exit 0 (core **473**, mobile 169, i18n 10, ui 11 — 663 tests),
+`pn lint` exit 0. The catalog is re-signed (`node scripts/sign-catalog.mjs --check` → "manifest signature OK").
+
+**What the phone holds now.** A **release APK of this branch, versionCode 13** (debug keystore, self-contained, launches
+without Metro — onboarding reads `RUNS ON: SNAPDRAGON 845 · 8 GB`), app force-stopped, phone on its launcher, RECORD_AUDIO
+revoked, no `adb reverse` left. Play's vc12 and its seven packs went with the uninstall and **cannot be restored from this
+Mac**: the OnePlus ignores injected touches in the Play Store app (our own app accepts them, Play does not, and TAB/ENTER
+lands on the wrong view), so pressing **Install** on the Play page is a human step.
+
 ## Fixes round 17: the OCR data never reached a clean Android bundle (branch `fixes-r17`) — 21.9.2026
 The vc9 stream found it in the artifact it had just uploaded (`docs/qa/purchases-run-2026-09-11.md` section L): `unzip -l`
 of the vc9 AAB has **zero** `traineddata` entries. `DocExtractModule.kt:171` reads the language files with

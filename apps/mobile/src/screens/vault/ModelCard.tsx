@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { LANGUAGE_NAME_BY_CODE, expectedSpeed, formatModelBytes, isHfModelId, ramFit, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
+import { LANGUAGE_NAME_BY_CODE, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
 import { FitMap } from "./FitMap";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
@@ -44,6 +44,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
   const { t } = useTranslation();
   const copy = modelCopy(t, model);
   const speed = expectedSpeed(device.chip, model.tier);
+  /* Installable, but the measured rate on this chip class is not worth waiting for: the card says so beside the number (QA F37). */
+  const tooSlow = tooSlowHere(device.chip, model.tier);
   const fit = ramFit(model, device.ramGB);
   const dot = state.kind === "ready" ? (active ? "●" : "◉") : state.kind === "quarantined" || state.kind === "corrupt" ? "⊗" : "○";
   const dotColor = state.kind === "ready" ? (active ? theme.sealed : theme.text) : state.kind === "corrupt" || state.kind === "quarantined" ? theme.danger : theme.text3;
@@ -140,7 +142,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
             : speed
               ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() })
               : t("vault.speedUnknown", { device: deviceNoun() })}
-        {!disabled && fit === "slowly" ? ` · ${t("vault.runsSlowly", { ram: device.ramGB })}` : ""}
+        {!disabled && tooSlow ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : !disabled && fit === "slowly" ? ` · ${t("vault.runsSlowly", { ram: device.ramGB })}` : ""}
       </Text>
       {progress > 0 ? (
         <View style={[styles.bar, { backgroundColor: theme.well }]}>

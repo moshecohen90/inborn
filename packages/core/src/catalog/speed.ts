@@ -21,14 +21,15 @@ export type ChipClass =
 
 export type SpeedRange = readonly [min: number, max: number];
 
-/* tok/s from §6.4 measurements plus the device runs (README): OnePlus 6T Instant 12–15.5 / Fast 5–5.8 (CPU only), iPhone 13 Pro 36, headless Chromium 33/7. */
+/* tok/s from §6.4 measurements plus the device runs (README): OnePlus 6T Instant 12–15.5 / Fast 5–5.8 / Sharp 0.5 (CPU only), iPhone 13 Pro 36, headless Chromium 33/7. */
 const TABLE: Record<ChipClass, Partial<Record<Tier, SpeedRange>>> = {
   "ios-entry": { instant: [15, 25], fast: [8, 14] },
   "ios-mid": { instant: [25, 36], fast: [15, 24], sharp: [8, 12] },
   "ios-high": { instant: [27, 40], fast: [24, 40], sharp: [13, 18], power: [5, 8] },
   "ios-flagship": { instant: [40, 58], fast: [30, 40], sharp: [15, 20], power: [6, 9] },
   "android-entry": { instant: [6, 12] },
-  "android-legacy": { instant: [12, 18], fast: [5, 7], sharp: [3, 4] },
+  /* Sharp measured 0.5 tok/s on the 6T (Play vc12, 21.9.2026): a 4B at Q4 does not fit in an LPDDR4X phone's bandwidth. */
+  "android-legacy": { instant: [12, 18], fast: [5, 7], sharp: [0.4, 0.6] },
   "android-mid": { instant: [12, 20], fast: [8, 12], sharp: [5, 8] },
   "android-high": { instant: [18, 28], fast: [10, 14], sharp: [8, 14], power: [4, 5] },
   "android-flagship": { instant: [25, 35], fast: [14, 20], sharp: [10, 15], power: [5, 6] },
@@ -63,3 +64,15 @@ export function chipClassFor({ os, ramGB, appleSilicon, discreteGpu, chipName }:
 }
 
 export const expectedSpeed = (chip: ChipClass, tier: Tier | undefined): SpeedRange | undefined => (tier ? TABLE[chip][tier] : undefined);
+
+/** Under this a reply is not worth waiting for: 100 tokens takes over a minute (§6.4 "expected on your device"). */
+export const USABLE_TOKENS_PER_SEC = 1.5;
+
+/**
+ * "Installable, but too slow to use here": the measured ceiling for this tier on this chip class is below what a
+ * person will sit through. The vault still offers the model; the recommendation never picks it (QA F37).
+ */
+export function tooSlowHere(chip: ChipClass | undefined, tier: Tier | undefined): boolean {
+  const range = chip && tier ? expectedSpeed(chip, tier) : undefined;
+  return !!range && range[1] < USABLE_TOKENS_PER_SEC;
+}
