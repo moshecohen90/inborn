@@ -4,8 +4,9 @@ Functional pass of the build 10 archive on Moshe's iPhone 13 Pro (iOS 26.6.1, ud
 immediately after the upload. Every launch below is the `.app` from
 `/Users/moshecohen/dev/inborn-wt/ios-build-10/apps/mobile/ios/build/Inborn.xcarchive`, the same archive whose IPA went to
 TestFlight — `CFBundleVersion` 10, `CFBundleShortVersionString` 1.0.0, signed `Apple Development: Moshe Cohen`, team
-NGCHN95667, archive commit `b6e2ee1`. The phone's own About screen confirms it: **`1.0.0 (10)` · `b6e2ee1621d2`**. Build
-and upload: `docs/qa/ios-build-10-2026-09-22.md`.
+NGCHN95667, archive commit `b6e2ee1` (= `main` `5338fb3` plus the buildNumber line; `main` has since moved to `0a2656d`
+on documentation commits only, so this is the current shipped code). The phone's own About screen confirms it:
+**`1.0.0 (10)` · `b6e2ee1621d2`**. Build and upload: `docs/qa/ios-build-10-2026-09-22.md`.
 
 **Bottom line: build 10 is healthy on the real phone.** It installs, launches, adopts the bundled Instant model, draws
 all eleven deep-linked screens, loads the model in the chat without a redbox, opens the hands-free screen and holds it
