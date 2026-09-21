@@ -505,6 +505,104 @@ were left. The 6T holds only `com.inbornapp.mobile`, **Play versionCode 10**, In
 the app is force-stopped and the phone is on its launcher. Nothing was uninstalled, no setting was changed, the phone was
 never locked or unlocked.
 
+## N. Play internal release versionCode 11 (the embed pack) and the OCR proof on the 6T — 21.9.2026 16:06–17:00
+
+The release that puts the document index model into the Android bundle, so document indexing and the OCR of scans are
+reachable from a Play install for the first time. Round 17 (section M) found every internal build so far was made with
+`INBORN_PACKS=instant,fast`, which leaves `inborn_model_embed` out: "Install · 262 MB" on the Documents screen answered
+`AssetPackServiceImpl: onError(-2)` (MODULE_UNAVAILABLE).
+
+**Build.** Fresh worktree `android-vc11` off `origin/main` (50b50f5), `pn install --frozen-lockfile`, `.models` symlinked
+to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build` removed.
+`scripts/check-store-env.sh` clean, prebuild with `INBORN_MODELS_DIR=…/.models INBORN_PACKS=instant,fast,embed
+INBORN_VERSION_CODE=11` — which declared three pack modules, each asset a symlink into `.models` — then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` (APFS clone of `~/.gradle-pr2`) in the session scratch. **BUILD SUCCESSFUL in 3 m 30 s**, 1108
+actionable tasks, 1108 executed. `gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty before it started and
+no xcodebuild ran beside it.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **2,125,769,716 bytes** (vc10 was 1,873,100,969; the delta is the embed pack) |
+| sha256 | `738a0935bea34ce7e3f687bd687e9d78d5f8416f080f339b62da9bd323181818` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| **asset packs** | **three** — see the pack table below (vc8…vc10 had two) |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0** on this AAB; **exit 1** on the shipped vc10 AAB, naming the missing `inborn_model_embed` |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK** |
+| module sizes, uncompressed | base 202,612,260 B / 1453 entries · `inborn_model` 532,518,071 B · `inborn_model_fast` 1,280,836,794 B · `inborn_model_embed` 274,291,515 B |
+| `base/assets` | 17,795,396 B / 120 entries (vc10: 17,795,262 B / 120 — one byte of `app.config`, the new commit hash) |
+| manifest | `versionCode="11" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26 |
+| commit baked into `app.config` | `50b50f5a0dc0` — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pnpm lint`, `pnpm test` (core 461, mobile 169, i18n 10, ui 11) and `pnpm typecheck` all exit 0 |
+
+| asset pack | delivery | asset | uncompressed |
+|---|---|---|---|
+| `inborn_model` | fast-follow | `Qwen3.5-0.8B-Q4_K_M.gguf` | 532,518,071 B |
+| `inborn_model_fast` | on-demand | `Qwen3.5-2B-Q4_K_M.gguf` | 1,280,836,794 B |
+| **`inborn_model_embed`** | **on-demand** | `nomic-embed-text-v1.5.f16.gguf` | **274,291,515 B** |
+
+The embed pack's GGUF in the AAB is byte-identical to `.models/nomic-embed-text-v1.5.f16.gguf` (sha256 `f7af6f66…`), and
+both `traineddata` files still carry the round-17 digests (`7d4322bd…`, `11f9e43a…`).
+
+**Upload.** `--next-version-code` returned **11**; edit **`08321992585409943482`**, bundle versionCode 11 with the same
+sha256 as the local file, track `internal` release **"1.0.0 (11)"** `completed`, committed.
+
+**The vc10 → vc11 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc10, app
+force-stopped, on its launcher. The first **Update** press at **16:19:20** answered "all packs are unavailable" — Play had
+not finished publishing the new pack set; the second press, **16:24:51**, started the download within a minute
+(16:25:43). Play re-fetched both existing packs for the new version code (`inborn_model_fast` 1,280,876,968 B,
+`inborn_model` 532,558,250 B; 1,886,676,695 B for the package). `versionCode=11` at **16:31:47**,
+`installerPackageName=com.android.vending`, `lastUpdateTime=2026-09-21 16:31:31`, `firstInstallTime` still 11:57:38 (the
+vc8 install from section L), so this was an update in place and nothing was uninstalled.
+
+- **About** reads **1.0.0 (11)** with the commit **`50b50f5a0dc0`** (`docs/qa/android-vc11/a-01`), the commit baked into
+  the bundle's `app.config`.
+- **Fast survived the update** a third time on the real Play path: the vault reads **"1.7 GB in the vault · 15 GB free"**,
+  the FAST card is **Loaded · In use**, and the vault's whole accessibility tree has no Download, Install or Delivering
+  node (`a-02`). Fast loaded from `files/assetpacks/inborn_model_fast/11/11/assets/Qwen3.5-2B-Q4_K_M.gguf` in 1,667 ms.
+- **The index model installs from Play — the gap vc11 closes.** The Documents screen offered **"Install · 262 MB"**
+  (`b-01`); pressing it downloaded the pack (`15% · 40.7 MB of 262 MB` → `62%` → `87%`, `b-02`) and PlayCore logged
+  **`AssetPackServiceImpl : onNotifyModuleCompleted(inborn_model_embed, sessionId=32)`** at 16:33:57. The embedder card
+  is then gone from the screen (`b-04`) — on vc10 the same press logged `onError(-2)` MODULE_UNAVAILABLE.
+- **OCR of a scan, end to end.** The round-17 fixture (1650 × 1200, 300 dpi, three English lines, one Hebrew line, grain,
+  0.4° skew) was shared in with `ACTION_SEND` and attached to a fresh chat (`b-08`). Import read no text layer —
+  `[documents] inborn-ocr-proof.png: needs-ocr · 1/1 pages · 0 chunks · 100 ms` — and the row offered **"Scanned. Run OCR
+  on this phone?" · Run OCR** (`b-09`). Run OCR → `indexed · 1/1 pages · 1 chunks · 2211 ms` and **"Indexed · 1 passage"**.
+  Details (`b-11`): TYPE **IMAGE** · PAGES **1** · PASSAGES **1** · LANGUAGE **English / Latin** · INDEX MODEL
+  **embed-nomic** · **OCR PAGES 1 · tesseract** · INSTRUCTION-LIKE LINES 0.
+- **The recognized text answers a question in chat.** With the scan attached, "Which locker holds the storeroom key" →
+  **"According to the document [1], the storeroom key is kept in locker 47."** with the citation **`[1]
+  inborn-ocr-proof.png · p.1`** (`b-13`, 40 s). "The storeroom key is kept in locker 47." exists only as pixels in the
+  fixture, so the sentence came through Tesseract and the embedder.
+- **A three-page PDF cites the right page.** `handbook.pdf` (the pass-7 fixture, one distinct fact per page) shared in
+  warm → `indexed · 3/3 pages · 3 chunks · 5716 ms` (`b-14`). "How many crates were counted at the Reykjavik depot" →
+  **"According to passage [1], the Reykjavik depot inventory was counted on March 14, 2031, and the count came to 5,842
+  crates."**, citation **`[1] handbook.pdf · p.2`** (`b-15`, 77 s) — the fact and the page are both page two's.
+  The library then holds both documents, indexed (`b-16`).
+- **F33 × 5** (HOME → 60 s → launcher relaunch → `inborn://vault` → BACK, on a chat with six messages): all five cycles
+  **OK**, pid **6903** unchanged through every one, `fatal_delta=0` and `procdied_delta=0` each time. Across the whole
+  324,915-line app log and 6,755-line events log of the run: **0 `FATAL EXCEPTION`, 0 `am_proc_died` for the app,
+  0 ANRs.** The three pids the run saw (19951, 6902, 6903) are the launch after the update and the two force-stops this
+  run made on purpose.
+
+**Driving note for the next round: how a file gets into the app from `adb`.** `ACTION_SEND` with a MediaStore URI
+(`content://media/external/images/media/<id>`) and `--grant-read-uri-permission` imports **nothing**: the shell's grant is
+never created (`dumpsys activity permissions` lists none for the app), so `ShareTargetModule.copyIntoCache` has its
+`openInputStream` throw and returns null — the chat opens with no attachment and no error. Pushing the file to
+`/sdcard/Android/data/com.inbornapp.mobile/files/` and sharing that `file://` URI works, cold and warm, because the app
+may read its own external files directory without any permission. This is the same wall QA pass 7 hit as F29.
+
+**State left behind.** Both test documents were deleted from the library (Documents reads "No documents · 0 B on this
+device"), and the two pushed fixtures and the MediaStore row the run created were removed from
+`/sdcard/Android/data/com.inbornapp.mobile/files/` and `/sdcard/Pictures`. The three chats the run created were left. The
+6T holds only `com.inbornapp.mobile`, **Play versionCode 11**, Instant, Fast **and the embed pack** present, Pro owned;
+the app is force-stopped and the phone is on its launcher home screen. Nothing was uninstalled, no setting was changed,
+the phone was never locked or unlocked.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -527,3 +625,10 @@ present, Pro owned; the document library is empty again and the pushed scan is g
 force-stopped and the phone is on its launcher home screen. Nothing was uninstalled and no setting was changed. Gradle ran
 once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the session scratch; `pgrep -fl xcodebuild` was empty before it
 started and no xcodebuild ran beside it. No emulator, simulator or browser was started and the iPhone was not touched.
+
+After section N (21.9, 17:00): the 6T holds only `com.inbornapp.mobile`, **Play versionCode 11**, Instant, Fast and the
+**embed** pack present, Pro owned; the document library is empty again and the two pushed fixtures and the MediaStore row
+the run created are gone; the app is force-stopped and the phone is on its launcher home screen. Nothing was uninstalled
+and no setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the session scratch;
+`pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it. No emulator, simulator or browser was
+started and the iPhone was not touched.
