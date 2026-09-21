@@ -1,4 +1,4 @@
-# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 6
+# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 8
 
 Branch `purchases-verify` (merged with `main` at 0e4dba0). Continues `purchases-run-2026-09-06.md` (Play purchase proven on the OnePlus 11, ASC products READY_TO_SUBMIT).
 Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/purchases-r2/` (file names below; copy before the session directory is cleaned).
@@ -16,6 +16,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | H. vc5 sanity on the 6T (13.9, MosheAI ask after fixes-r9 touched storage) | DONE: chat + follow-up survive `am force-stop`, Vault / Settings / Proof (OUT 0 B) open, logcat has no `[storage]`, `[prefs]`, ANR or crash line |
 | I. Play internal release versionCode 6 (main 70e1cfa, fixes-r10 incl. hardware-keys) + 6T sanity (14.9) | DONE: AAB 2,092,019,571 bytes, 9 permissions, no INTERNET, "1.0.0 (6) internal"; on the 6T: Instant answer, assistant row a11y label carries the answer, soft Enter newlines + Send, Fast pack delivered by Play (25 chunks, FAST loaded), YOU OWN PRO + "Purchase restored" |
 | J. Play internal release versionCode 7 (main ff39f94, fixes-r13) + 6T sanity (20.9) | DONE: AAB 1,870,640,031 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (7) internal" (edit 08066290382974104798); on the 6T, updated by Play with both model packs intact: Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. Delivered through Play rather than bundletool because the app uses Play app signing (see J) |
+| K. Play internal release versionCode 8 (main 543a5af, fixes-r14 incl. the F33 fix) + 6T sanity (21.9) | DONE: AAB 2,092,078,443 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (8) internal" (edit 09760590197853827663); About on the 6T reads 1.0.0 (8) / 543a5af3671b. Play withheld the install for ~30 min while it published the asset packs ("all packs are unavailable"). Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. **Fast is reported as not installed after the update and has to be re-requested**, though the bytes are still on the device. Soak run 4 that follows: 48 F33 pop cycles, 48 OK, one process 5 h 39 min, no dropbox entry for v8 |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -245,6 +246,92 @@ Built from `main` ff39f94 (merge of fixes-r13: catalog v3 from the measured tier
 The vault card also shows the fixes-r13 catalog v3 copy on this build: FAST carries "RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH", "~5-7 tok/s on your phone", and the tiered language row "Native · English, Chinese, Arabic / Basic · German, Korean / **No · Hebrew**" under the tier-neutral heading.
 
 The soak that follows this sanity is `docs/qa/soak-run-3-2026-09-20.md`.
+
+## K. Play internal release versionCode 8 (fixes-r14) and the sanity run on the 6T — 21.9.2026 00:51–02:05
+
+Built from `main` 543a5af (merge of fixes-r14: F33 list clipping during screen re-attach, plus F30–F32) in a fresh
+worktree `android-vc8`, so the prebuild was clean by construction. `pn install --frozen-lockfile`,
+`scripts/check-store-env.sh` → "store env clean", prebuild with `INBORN_MODELS_DIR=…/.models
+INBORN_PACKS=instant,fast INBORN_VERSION_CODE=8`. Gradle `bundleRelease --no-daemon
+-PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` in the session scratch (APFS clone of `~/.gradle-pr2`): **BUILD SUCCESSFUL in 3m 18s**, 1105
+tasks. `gradlew --stop` was never run and no other stream's daemon was touched. No xcodebuild ran in this stream.
+The shipped app code is identical to `main` c9c1752 — `git diff 543a5af c9c1752 -- apps/mobile/src packages` is
+empty — so the uploaded bundle is code-identical to current main.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, 2,092,078,443 bytes |
+| sha256 | `5a93a1b1cd6dc5d4529e46a11346540faad10badcb16581596b6e31a7d3d68b6` |
+| `bundletool validate` (1.18.3) | OK; asset packs `inborn_model` **fast-follow** (`Qwen3.5-0.8B-Q4_K_M.gguf` 532,517,120 B) and `inborn_model_fast` **on-demand** (`Qwen3.5-2B-Q4_K_M.gguf` 1,280,835,840 B), both byte-identical to vc6 and vc7 |
+| manifest | `versionCode="8" versionName="1.0.0"`, package `com.inbornapp.mobile`, compileSdk 36 |
+| module registry (dex strings, `base/dex/classes*.dex`) | AssetPacks, DeviceGuard, DocExtract, **HardwareKeys**, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| the F33 fix is in the artifact | all four lists (`screens/Chat.tsx`, `screens/Chats.tsx`, `screens/vault/VaultScreen.tsx`, `screens/documents/DocumentsScreen.tsx`) spread `listClipping`, `removeClippedSubviews` is present in the Hermes bundle inside the AAB, and `src/lib/listClipping.test.ts` is 2/2 green |
+| upload | `--next-version-code` returned 8 before the upload; edit `09760590197853827663`, bundle versionCode 8 with **the same sha256 as the local file**, track `internal` **"1.0.0 (8) internal"** `completed` |
+
+**bundletool lives in the repo at `.tools/bundletool-all-1.18.3.jar`.** I did not find it and fetched 1.18.3
+into the session scratch instead; the two files are byte-identical
+(`a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29`), so the validation above is the same tool
+sections I and J used. Pass it as `BUNDLETOOL=.tools/bundletool-all-1.18.3.jar` to
+`scripts/check-android-permissions.sh`, which needs it for an AAB.
+
+**The base module ships about 229 MB of iOS binaries.** `base/assets/ios/libtesseract.xcframework` carries four
+copies of `libtesseract` (ios-arm64, ios simulator, maccatalyst, macos) inside the Android bundle, none of which
+Android can load. Base totals 636 MB against 1.81 GB of models. That is most of the 220 MB gap between vc8 and
+vc7 and it is paid by every Android download. Not changed in this release; recorded for whoever trims the bundle
+before 1.0.
+
+**Play refused the install for half an hour: the asset packs were not published yet.** The Play page offered
+Update within a minute of the commit, but pressing it only ever produced
+
+```
+Requesting installation of asset modules: [inborn_model_fast, inborn_model]
+AssetModuleService gRPC failure requesting asset module info
+AssetModuleException: Request to PGS failed because all packs are unavailable.
+```
+
+and the queued download never started — at 01:19:58 and again at 01:40:55. The publishing API said the release
+was live (`tracks/internal` → "1.0.0 (8)", `completed`) the whole time, so this is Google still processing the
+2.09 GB bundle's asset packs, not a bad upload. The phone was not at fault: Wi-Fi up, screen on, 100% on the
+charger, 16 GB free, Play not background-restricted, no stuck install session. The third press, at 01:45, went
+straight through: 246 MB base APK, 277 MB total, versionCode 8 installed by `com.android.vending` at **01:46:49**.
+vc7's two-minute turnaround was a smaller bundle following an identical predecessor; budget half an hour here.
+
+**bundletool install was not an option, same as vc7.** An APK bundletool builds from our AAB carries the
+upload-key signature and cannot install over a Play-signed build; the only way through is an uninstall, which
+wipes the chat DB, the Pro entitlement cache and both model packs. Section J settles this. The Play update path
+preserves all of it and is what a real tester takes.
+
+**Sanity on the 6T** (evidence in the session scratch `soak4/run4/`, screenshots `90-play-vc8.png` …
+`104b-vc8-about.png`, logcat `logcat-soak.txt`; launcher in front before the run).
+
+| step | result | evidence |
+|---|---|---|
+| cold launch (`force-stop` + launcher intent) | opens straight to chat — Chats · SEALED · INSTANT, the "This is AI…" notice, empty chat "Nothing leaves this phone." with the three suggestions and the composer. **No onboarding, no lock prompt** | `95-vc8-launch.png` |
+| About | **VERSION 1.0.0 (8)**, commit **543a5af3671b** | `104b-vc8-about.png` |
+| chat on Instant | "What is the capital of France?" → **"The capital of France is Paris."** in 8 s, row `content-desc="INSTANT · ON-DEVICE AI · The capital of France is Paris."` | `96-vc8-answer-instant.png` |
+| model packs after the update | **Instant survived, Fast did not.** The vault read "508 MB in the vault" and the Fast card offered `install-fast` "Install · 1.2 GB from Google Play", although PlayCore had logged `onNotifyModuleCompleted` for both packs | `97-vc8-vault.png`, `97f-vc8-fast-status.png` |
+| Fast re-install | the confirm sheet reads "Download Fast? Google Play will download 1.2 GB. Inborn itself opens no connection." (Cancel / Download); Download completed **instantly**, vault jumped to "1.7 GB in the vault". The bytes were never gone — the on-demand pack simply has to be re-requested after a version bump | `98-vc8-fast-confirm.png`, `99-vc8-fast-delivering.png` |
+| chat on Fast | chip **FAST**, "Name three colours." in 13 s, `content-desc="FAST · ON-DEVICE AI · Blue, Red, and Green."` | `100-vc8-answer-fast.png` |
+| paywall (`inborn://paywall`) | **YOU OWN PRO** — "Unlocked on every device that uses this Google Play account."; Work card "PRO FOR WORK · ₪149.90 · one-time purchase". Restore not needed | `101-vc8-paywall.png` |
+| proof (`inborn://proof`) | **SEALED · ON-DEVICE**, since install · 9 days, **OUT 0 B · IN 0 B**, **CONNECTIONS 0 this session**, allowlist "none · the app has no internet permission", **TRACKERS 0** | `102-vc8-proof.png` |
+
+"since install · 9 days" and the surviving chat history confirm the update preserved app data.
+
+**A user-visible consequence of the Fast finding:** after every version update the vault will tell the user that
+Fast needs a 1.2 GB download from Google Play, when in fact the pack is already on the device and comes back
+instantly. Worth a card.
+
+**F28 passes, F27 does not.** Finish a turn, background 3 s later, return, new chat → no "Paused while Inborn was
+in the background" banner (F28, PASS). But the F27 TAB focus trap on an empty chat **reproduces on this phone**,
+against the README's round-13 claim that it was not reproducible: sixteen consecutive TAB stops inside the
+suggestion chips with `composer-input` present in the tree throughout. Full ring in
+`docs/qa/soak-run-4-2026-09-21.md`.
+
+The soak that follows this sanity is `docs/qa/soak-run-4-2026-09-21.md`: **48 F33 pop cycles, 48 OK, one process
+for 5 h 39 min, zero Inborn crashes — and `dumpsys dropbox` still holds only the two versionCode 7 crash entries
+and none for versionCode 8.**
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
