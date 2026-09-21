@@ -9,6 +9,7 @@ version = '0.0.1'
 /* Tesseract language files come from INBORN_MODELS_DIR/ocr (tessdata/eng.traineddata, heb.traineddata), gitignored like the GGUFs. */
 def modelsDir = System.getenv("INBORN_MODELS_DIR") ?: "${rootDir}/../../../.models"
 def tessData = file("${modelsDir}/ocr/tessdata")
+def ocrAssets = layout.buildDirectory.dir("generated/ocrAssets")
 /* Never the whole ocr/ folder as an assets root: the podspec keeps ios/libtesseract.xcframework beside tessdata and it
    rode into the AAB as base/assets/ios (229 MB of Mach-O, vc8). Only this one named path is staged, so a new ocr/ sibling
    cannot reach Android at all. */
@@ -17,11 +18,24 @@ def stageTessData = tasks.register("stageOcrTessData", Sync) {
     include "*.traineddata"
     into "tessdata"
   }
-  into layout.buildDirectory.dir("generated/ocrAssets")
+  into ocrAssets
 }
 
-if (!tessData.isDirectory()) {
-  logger.warn("[doc-extract] no OCR data at ${tessData}; scans will report 'OCR unavailable'")
+/* Separate from the Sync so it runs even when the staging is UP-TO-DATE: a bundle whose OCR data silently went
+   missing is unshippable (vc9 shipped one), so the build stops here instead. */
+def verifyTessData = tasks.register("verifyOcrAssets") {
+  dependsOn stageTessData
+  outputs.upToDateWhen { false }
+  doLast {
+    def staged = ocrAssets.get().dir("tessdata").asFile
+    def got = (staged.listFiles() ?: new File[0]).collect { it.name }.findAll { it.endsWith(".traineddata") }.sort()
+    if (got != ["eng.traineddata", "heb.traineddata"]) {
+      throw new GradleException(
+        "[doc-extract] OCR language files are missing: staged ${got} into ${staged} from ${tessData}.\n" +
+        "Point INBORN_MODELS_DIR at a models directory holding ocr/tessdata/eng.traineddata and heb.traineddata; " +
+        "without them assets.list(\"tessdata\") is empty on the device and every scan fails ERR_NO_OCR.")
+    }
+  }
 }
 
 android {
@@ -32,8 +46,7 @@ android {
   }
   sourceSets {
     main {
-      /* The provider carries the task dependency, so every consumer (merge, package, lint) waits for the staging. */
-      assets.srcDir(stageTessData.map { it.destinationDir })
+      assets.srcDir(ocrAssets)
     }
   }
   packagingOptions {
@@ -41,6 +54,16 @@ android {
     resources.excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/NOTICE']
   }
 }
+
+/* srcDir() alone does NOT carry the producing task: under it :doc-extract:stageOcrTessData never ran on a clean
+   build and vc9 shipped with zero traineddata entries. Every task that reads the assets directory names it. */
+tasks.matching {
+  (it.name.startsWith("merge") || it.name.startsWith("package")) && it.name.endsWith("Assets")
+}.configureEach { dependsOn(verifyTessData) }
+tasks.matching {
+  it.name.endsWith("LintModel") || it.name.startsWith("lintAnalyze") || it.name.startsWith("lintVital")
+}.configureEach { dependsOn(verifyTessData) }
+tasks.named("preBuild") { dependsOn(verifyTessData) }
 
 dependencies {
   // Text layer of PDFs (Apache-2.0); PdfRenderer only rasterizes.

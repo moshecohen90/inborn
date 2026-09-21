@@ -428,6 +428,83 @@ returned chat or on a new one.
 
 The soak that follows this sanity is `docs/qa/soak-run-5-2026-09-21.md`.
 
+## M. Play internal release versionCode 10 (fixes-r17) and the vc9 → vc10 update path on the 6T — 21.9.2026 15:05–15:58
+
+The release that puts the Tesseract OCR data back into the Android bundle. Root cause, fix and the artifact table are in
+README "Fixes round 17"; this section records the release and what the phone did.
+
+**Build.** Fresh worktree `fixes-r17` off `origin/main` (7c1d47d), `pn install --frozen-lockfile`, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build` removed so nothing
+stale could be reused — the mistake that invalidated round 15's proof. `scripts/check-store-env.sh` clean, prebuild with
+`INBORN_MODELS_DIR=…/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=10`, then `bundleRelease --no-daemon
+-PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` (APFS clone of `~/.gradle-pr2`) in the session scratch. **BUILD SUCCESSFUL in 3 m 29 s**, 1107
+actionable tasks, 1107 executed, `:doc-extract:stageOcrTessData` and `:doc-extract:verifyOcrAssets` both present.
+`gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **1,873,100,969 bytes** (vc9 was 1,870,641,095) |
+| sha256 | `593cbb5e297183824eeb746fed3af26b1b01b5d7030196043918508b86cddbda` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL`; `jarsigner -verify` → "jar verified" |
+| **`traineddata` entries** | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B (vc9 had none) |
+| **entries under `base/assets/ios`** | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0** on this AAB; **exit 1** on the shipped vc9 AAB, naming both missing language files |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**; `inborn_model` fast-follow (532,517,120 B) and `inborn_model_fast` on-demand (1,280,835,840 B), both byte-identical to vc6…vc9 |
+| module sizes, uncompressed | base 202,611,998 B / 1453 entries · `inborn_model` 532,518,071 B · `inborn_model_fast` 1,280,836,794 B |
+| `base/assets` | 17,795,262 B / 120 entries (vc9: 12,720,769 B / 118) — the delta is the two language files plus one byte in `app.config` |
+| manifest | `versionCode="10" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26, compileSdk 36 |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pnpm typecheck`, `pnpm test` (core 461, mobile 169, i18n 10, ui 11) and `pnpm lint` all exit 0 |
+
+**Upload.** `--next-version-code` returned **10**; edit **`15899917972752807139`**, bundle versionCode 10 with the same
+sha256 as the local file, track `internal` release **"1.0.0 (10)"** `completed`. `--name "1.0.0 (10)"` was passed on the
+upload, so unlike vc9 no second edit was needed to rename the release.
+
+**The vc9 → vc10 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc9, app
+force-stopped, on its launcher. `market://details?id=com.inbornapp.mobile` offered **Update** at 15:21:43 and the download
+started within 30 s; no wait for the packs to publish was needed. `versionCode=10` at **15:27:43**,
+`installerPackageName=com.android.vending`, `lastUpdateTime=2026-09-21 15:27:25`, `firstInstallTime` still 11:57:38 (the
+vc8 install from section L), so this was an update in place and nothing was uninstalled.
+
+- **About** reads **1.0.0 (10)** with the short hash **`ed3636aa25ed`** (`docs/qa/fixes-r17/a-01`), the commit the bundle
+  was built at.
+- **Fast survived the update** (round 15 finding C, now on the real Play path a second time): the vault reads
+  **"1.7 GB in the vault · 15 GB free"**, the FAST card is **Loaded · In use**, and the whole accessibility tree of the
+  vault screen has no Download, Install or Delivering node (`a-02`). The Instant fast-follow pack was re-delivered by Play
+  right after the update (`onNotifyModuleCompleted(inborn_model)`, 532,558,250 B). Fast then answered **"Here are three
+  colours: 1. Red 2. Blue 3. Green"** in 16 s (`a-03`), loading from
+  `files/assetpacks/inborn_model_fast/10/10/assets/Qwen3.5-2B-Q4_K_M.gguf` in 35 ms.
+- **The OCR data is on the phone.** `base.apk` pulled from `/data/app/…` (70,243,831 B, `aapt2 dump badging` →
+  `versionCode='10'`) carries `assets/tessdata/eng.traineddata` and `heb.traineddata`, and their sha256 —
+  `7d4322bd…70b2` and `11f9e43a…04db` — are identical to `.models/ocr/tessdata` and to the uploaded AAB. That path is
+  exactly what `DocExtractModule.kt:171` `assets.list("tessdata")` reads.
+- **The OCR *run* is blocked on the internal build, for an unrelated reason.** A 1650 × 1200 300-dpi scanned-style PNG
+  (three English lines, one Hebrew line, grain and a 0.4° skew; `b-00`) was pushed to the phone and shared in with
+  `ACTION_SEND`. It opened a fresh chat with the file attached (`b-01`) and was imported into the library, but the row
+  says **"Install the document index model first."** and its details read **PASSAGES 0 · OCR PAGES 0 · INDEX MODEL —**
+  (`b-02`, `b-03`). Indexing is what calls OCR, and it needs `embed-nomic` (262 MB), delivered on Android as the
+  `inborn_model_embed` Play pack, which `INBORN_PACKS=instant,fast` leaves out of the bundle: pressing "Install · 262 MB"
+  logs `AssetPackServiceImpl: onError(-2)` (MODULE_UNAVAILABLE). The question "Which locker holds the storeroom key" was
+  therefore answered from the model's own weights, not from the page — correct behaviour for an unindexed attachment, and
+  no evidence either way about OCR. vc8 and vc9 list the same three modules in `bundletool validate`, so no internal build
+  has ever been able to reach OCR. **An internal build with `INBORN_PACKS=instant,fast,embed` is needed to prove it on a
+  device.**
+- **F27** (hardware-keyboard escape from the empty chat's suggestion chips) on vc10: from `composer-input`, 12 TAB presses
+  with one serialised `uiautomator dump` each walk `… suggestion-summarize → suggestion-translate → suggestion-draft →
+  composer-input → open-chats → model-chip → attach`. Four non-chip stops after the first chip, the composer reached at
+  tab 9 — **PASS** (`c-01`). The driver's DPAD escape still works.
+- **F33 × 5** (HOME → 60 s → launcher relaunch → `inborn://vault` → BACK, on a chat with six messages): all five cycles
+  **OK**, pid **6579** unchanged through every one, `fatal_delta=0` and `procdied_delta=0` each time. Across the whole
+  103,496-line app log and 774-line events log of the run: **0 `FATAL EXCEPTION`, 0 `am_proc_died` for the app, 0 ANRs.**
+
+**State left behind.** The imported test document was deleted from the library (Documents reads "No documents · 0 B on this
+device"), and the pushed PNG and its MediaStore row were removed from `/sdcard/Pictures`. The four chats the run created
+were left. The 6T holds only `com.inbornapp.mobile`, **Play versionCode 10**, Instant and Fast packs present, Pro owned;
+the app is force-stopped and the phone is on its launcher. Nothing was uninstalled, no setting was changed, the phone was
+never locked or unlocked.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -444,3 +521,9 @@ After section L (21.9, 14:56): the 6T holds only `com.inbornapp.mobile`, **Play 
 Fast packs present, Pro owned; the app is force-stopped and the phone is on its launcher home screen. Nothing was
 uninstalled and no setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the
 session scratch; `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it.
+
+After section M (21.9, 15:58): the 6T holds only `com.inbornapp.mobile`, **Play versionCode 10**, Instant and Fast packs
+present, Pro owned; the document library is empty again and the pushed scan is gone from `/sdcard/Pictures`; the app is
+force-stopped and the phone is on its launcher home screen. Nothing was uninstalled and no setting was changed. Gradle ran
+once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the session scratch; `pgrep -fl xcodebuild` was empty before it
+started and no xcodebuild ran beside it. No emulator, simulator or browser was started and the iPhone was not touched.
