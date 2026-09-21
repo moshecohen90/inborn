@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
-import { SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, composeSystemPrompt, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
+import { SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, composeSystemPrompt, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
 import { useDeviceState } from "../device/useDeviceState";
 import { UtteranceListener } from "./mic";
@@ -8,8 +8,6 @@ import { speak, stopSpeaking } from "./tts";
 import { getWhisper } from "./whisper";
 import { devUtter, devVoiceRecord } from "./devLive";
 
-/** Answers stay short in a spoken exchange (S44); the loop never waits on a 1,024-token reply. */
-const VOICE_MAX_TOKENS = 160;
 
 export interface HandsFreeTimings {
   transcribeMs?: number;
@@ -131,12 +129,14 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           const id = await ensureChat(effect.text);
           if (id) await store.appendMessage({ chatId: id, role: "user", content: effect.text });
           const turns: Message[] = stateRef.current.turns.map((t) => ({ role: t.role, content: t.text }));
-          const system = composeSystemPrompt({ baseline: `${SAFETY_BASELINE}\n${VOICE_SYSTEM_HINT}`, languageHint: languageHint(effect.text) });
+          /* Answers stay short in a spoken exchange (S44); the loop never waits on a 1,024-token reply (F38). */
+          const length = planAnswerLength({ text: effect.text, use: "voice", spoken: true });
+          const system = composeSystemPrompt({ baseline: `${SAFETY_BASELINE}\n${VOICE_SYSTEM_HINT}`, languageHint: languageHint(effect.text), length: length.instruction });
           const session = await loadSession();
-          const prompt = buildPrompt({ system, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx: session.nCtx, reserve: VOICE_MAX_TOKENS });
+          const prompt = buildPrompt({ system, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx: session.nCtx, reserve: length.maxTokens });
           let reply = "";
           const { engine } = getEngine();
-          for await (const d of engine.generate(session, prompt.messages, { reasoning: false, maxTokens: VOICE_MAX_TOKENS, temperature: 0.6 }, ac.signal)) {
+          for await (const d of engine.generate(session, prompt.messages, { reasoning: false, maxTokens: length.maxTokens, temperature: 0.6 }, ac.signal)) {
             if (d.text) {
               reply += d.text;
               const snapshot = reply;

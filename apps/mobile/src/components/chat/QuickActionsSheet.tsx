@@ -18,7 +18,8 @@ export interface QuickActionsSheetProps {
   /** "Replace" is offered only for Android PROCESS_TEXT from an editable field. */
   replaceable?: boolean;
   /** Streams one answer from the loaded model; the sheet owns the abort signal. */
-  run: (messages: Message[], signal: AbortSignal) => AsyncIterable<Delta>;
+  /** `turn` carries the action and the text so the caller can plan the answer's length (F38). */
+  run: (messages: Message[], signal: AbortSignal, turn: { action: QuickActionId; text: string }) => AsyncIterable<Delta>;
   /** The chat is busy with its own answer: chips wait. */
   busy: boolean;
   onReplace?: (result: string) => void;
@@ -69,7 +70,7 @@ export function QuickActionsSheet({ visible, onClose, text, replaceable, run, bu
     setStreaming(true);
     let out = "";
     try {
-      for await (const d of run(buildQuickActionMessages({ action: next, text: clipped.text, targetLanguage }), ac.signal)) {
+      for await (const d of run(buildQuickActionMessages({ action: next, text: clipped.text, targetLanguage }), ac.signal, { action: next, text: clipped.text })) {
         if (d.text) {
           out += d.text;
           const snapshot = out;

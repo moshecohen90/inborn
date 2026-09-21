@@ -1,7 +1,7 @@
 /* wllama's package "main" points at its TypeScript sources; esm/ carries the built JS plus .d.ts. */
 import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
-import type { Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
+import { ANSWER_CEILING, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
 
 /* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
@@ -82,7 +82,7 @@ export class WllamaLM implements LocalLM {
       messages: messages.map(toWllamaMessage),
       stream: true,
       abortSignal: signal,
-      max_tokens: opts.maxTokens ?? 1024,
+      max_tokens: opts.maxTokens ?? ANSWER_CEILING,
       temperature: opts.temperature ?? 0.7,
       top_p: opts.topP ?? 0.9,
       stop: opts.stop,

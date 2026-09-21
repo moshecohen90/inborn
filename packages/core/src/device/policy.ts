@@ -1,3 +1,4 @@
+import { ANSWER_CEILING, SAVING_CEILING } from "../chat/length";
 import type { Action, Button, GuardDeviceClass, DeviceSignals, Grade, ModelTier, PolicyOptions, Recommendation, Status, UserOverride } from "./types";
 
 /** Product names on the cartridges (§6.1); they are not translated. */
@@ -69,8 +70,6 @@ const RANK: Record<Status, number> = {
   thermalCritical: 8,
 };
 
-const ANSWER_CAP = 1024;
-const SAVING_CAP = 512;
 
 type Accepted = { kind: "none" } | { kind: "switch"; tier: ModelTier } | { kind: "continue" } | { kind: "answerAnyway" };
 
@@ -343,7 +342,7 @@ export class DevicePolicy {
       targetTier: null,
       threads: s.thermal === "fair" ? Math.max(1, base - 1) : base,
       gpuLayers: null,
-      maxTokens: ANSWER_CAP,
+      maxTokens: ANSWER_CEILING,
       contextCap: s.ramGB !== null && s.ramGB < 6 ? 2048 : 4096,
       pauseDownloads: false,
       pauseIndexing: false,
@@ -370,7 +369,7 @@ export class DevicePolicy {
       rec.targetTier = tier;
     };
     const saving = () => {
-      rec.maxTokens = SAVING_CAP;
+      rec.maxTokens = SAVING_CEILING;
       rec.pauseDownloads = true;
       rec.pauseIndexing = true;
       rec.sealGlow = false;
