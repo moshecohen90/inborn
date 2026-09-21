@@ -1,7 +1,7 @@
 import LiveAudioStream from "@fugood/react-native-audio-pcm-stream";
 import { Paths } from "expo-file-system";
 import { Platform } from "react-native";
-import { DEFAULT_VAD, EnergyVad, rmsDb, type VadConfig, type VadEvent } from "@inborn/core";
+import { DEFAULT_VAD, EnergyVad, micShouldStart, micShouldStop, nextMicState, rmsDb, serialQueue, type MicSessionState, type VadConfig, type VadEvent } from "@inborn/core";
 
 /** whisper.cpp wants 16 kHz mono; Android's VOICE_RECOGNITION source (6) skips the OS's music-oriented processing. */
 export const SAMPLE_RATE = 16_000;
@@ -19,6 +19,9 @@ export interface MicOptions {
 }
 
 let listeners = 0;
+/* The native module owns one global recorder and its `stop` only resolves once the reader thread released it: every
+   start and stop of every MicRecorder queues here, so a restart can never overlap the previous teardown (QA F35). */
+const queue = serialQueue();
 
 /* base64 → bytes without Buffer (Hermes has atob). */
 function decodeBase64(b64: string): Uint8Array {
@@ -37,27 +40,43 @@ export class MicRecorder {
   static current: MicRecorder | null = null;
   private frames: MicFrame[] = [];
   private running = false;
+  private state: MicSessionState = "idle";
   private startedAt = 0;
 
   constructor(private readonly opts: MicOptions = {}) {}
 
   async start(): Promise<void> {
-    if (MicRecorder.current && MicRecorder.current !== this) await MicRecorder.current.stop();
+    return queue(() => this.openMic());
+  }
+
+  private async openMic(): Promise<void> {
+    const other = MicRecorder.current;
+    if (other && other !== this) await other.closeMic();
+    if (!micShouldStart(this.state)) return;
+    this.state = nextMicState(this.state, "start");
     MicRecorder.current = this;
     this.frames = [];
     this.startedAt = Date.now();
-    LiveAudioStream.init({
-      sampleRate: SAMPLE_RATE,
-      channels: 1,
-      bitsPerSample: 16,
-      audioSource: Platform.OS === "android" ? 6 : undefined,
-      bufferSize: FRAME_SAMPLES * 2,
-      /* The module insists on a wav path; the file is never read and lives in the cache. */
-      wavFile: `${Paths.cache.uri.replace(/^file:\/\//, "")}/mic-${Date.now()}.wav`,
-    } as Parameters<typeof LiveAudioStream.init>[0]);
-    if (!listeners++) LiveAudioStream.on("data", onData);
-    this.running = true;
-    LiveAudioStream.start();
+    try {
+      await LiveAudioStream.init({
+        sampleRate: SAMPLE_RATE,
+        channels: 1,
+        bitsPerSample: 16,
+        audioSource: Platform.OS === "android" ? 6 : undefined,
+        bufferSize: FRAME_SAMPLES * 2,
+        /* The module insists on a wav path; the file is never read and lives in the cache. */
+        wavFile: `${Paths.cache.uri.replace(/^file:\/\//, "")}/mic-${Date.now()}.wav`,
+      } as Parameters<typeof LiveAudioStream.init>[0]);
+      if (!listeners++) LiveAudioStream.on("data", onData);
+      this.running = true;
+      await LiveAudioStream.start();
+    } catch (e: unknown) {
+      this.state = nextMicState(this.state, "failed");
+      this.running = false;
+      if (MicRecorder.current === this) MicRecorder.current = null;
+      throw e;
+    }
+    this.state = nextMicState(this.state, "started");
   }
 
   /** Called by the module-level data listener; frames go to the current owner only. */
@@ -75,15 +94,21 @@ export class MicRecorder {
     return this.running;
   }
 
-  /** Stops the microphone; the buffered audio stays readable through `take()`. */
+  /** Stops the microphone and waits for the native side to release it; the buffered audio stays readable through `take()`. */
   async stop(): Promise<void> {
-    if (!this.running) return;
+    return queue(() => this.closeMic());
+  }
+
+  private async closeMic(): Promise<void> {
+    if (!micShouldStop(this.state)) return;
+    this.state = nextMicState(this.state, "stop");
     this.running = false;
     try {
       await LiveAudioStream.stop();
     } catch (e: unknown) {
       this.opts.onError?.(e instanceof Error ? e.message : String(e));
     }
+    this.state = nextMicState(this.state, "stopped");
     if (MicRecorder.current === this) MicRecorder.current = null;
   }
 

@@ -1,0 +1,132 @@
+diff --git a/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java b/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
+index 6d7d17d3adbf3d081d1f59468225c4a1e7dd1f65..eada9424577318c0067034dbf258495f9d5f361e 100644
+--- a/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
++++ b/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
+@@ -26,8 +26,9 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+     private int audioSource;
+ 
+     private AudioRecord recorder = null;
++    private Thread recordingThread = null;
+     private int bufferSize;
+-    private boolean isRecording;
++    private volatile boolean isRecording;
+ 
+     public RNLiveAudioStreamModule(ReactApplicationContext reactContext) {
+         super(reactContext);
+@@ -41,6 +42,10 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+ 
+     @ReactMethod
+     public void init(ReadableMap options, Promise promise) {
++        /* A hands-free listener re-inits every utterance; without this the previous reader thread would release the
++           recorder this call is about to create and the next read() would hit null (QA F35). */
++        stopAndJoin();
++
+         sampleRateInHz = 44100;
+         if (options.hasKey("sampleRate")) {
+             sampleRateInHz = options.getInt("sampleRate");
+@@ -75,11 +80,18 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+         }
+ 
+         int recordingBufferSize = bufferSize * 3;
+-        recorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, recordingBufferSize);
++        try {
++            recorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, recordingBufferSize);
++        } catch (Exception e) {
++            recorder = null;
++            promise.reject("AudioRecord initialization failed", e);
++            return;
++        }
+ 
+         if (recorder.getState() != AudioRecord.STATE_INITIALIZED) {
+-            promise.reject("AudioRecord initialization failed");
++            recorder.release();
+             recorder = null;
++            promise.reject("AudioRecord initialization failed");
+         } else {
+             promise.resolve(null);
+         }
+@@ -89,18 +101,28 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+     public void start() {
+         if (recorder == null || isRecording) return;
+         isRecording = true;
+-        recorder.startRecording();
++        /* The thread owns this reference: the field may already point at the next session's recorder by the time
++           the loop unwinds, and releasing that one is what crashed the app. */
++        final AudioRecord active = recorder;
++        final int frameBytes = bufferSize;
++        try {
++            active.startRecording();
++        } catch (Exception e) {
++            isRecording = false;
++            Log.e("RNLiveAudioStream", "startRecording failed", e);
++            return;
++        }
+ 
+-        Thread recordingThread = new Thread(new Runnable() {
++        recordingThread = new Thread(new Runnable() {
+             public void run() {
+                 try {
+                     int bytesRead;
+                     int count = 0;
+                     String base64Data;
+-                    byte[] buffer = new byte[bufferSize];
++                    byte[] buffer = new byte[frameBytes];
+ 
+                     while (isRecording) {
+-                        bytesRead = recorder.read(buffer, 0, buffer.length);
++                        bytesRead = active.read(buffer, 0, buffer.length);
+ 
+                         // skip first 2 buffers to eliminate "click sound"
+                         if (bytesRead > 0 && ++count > 2) {
+@@ -108,12 +130,15 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+                             eventEmitter.emit("data", base64Data);
+                         }
+                     }
+-                    recorder.stop();
+                 } catch (Exception e) {
+-                    e.printStackTrace();
++                    Log.e("RNLiveAudioStream", "recording loop", e);
+                 } finally {
+-                    recorder.release();
+-                    recorder = null;
++                    try {
++                        if (active.getRecordingState() == AudioRecord.RECORDSTATE_RECORDING) active.stop();
++                    } catch (Exception e) {
++                        Log.e("RNLiveAudioStream", "stop", e);
++                    }
++                    active.release();
+                 }
+             }
+         });
+@@ -121,8 +146,30 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+         recordingThread.start();
+     }
+ 
++    /** Resolves only once the reader thread has stopped and released the recorder, so the next init() is safe. */
+     @ReactMethod
+-    public void stop() {
++    public void stop(Promise promise) {
++        stopAndJoin();
++        promise.resolve(null);
++    }
++
++    private void stopAndJoin() {
+         isRecording = false;
++        Thread thread = recordingThread;
++        recordingThread = null;
++        if (thread != null) {
++            try {
++                /* One blocking read() is at most a buffer period; 2 s is a ceiling, not an expected wait. */
++                thread.join(2000);
++            } catch (InterruptedException e) {
++                Thread.currentThread().interrupt();
++            }
++        }
++        /* Released by the thread (or never started); a stale reference here is what init() must not reuse. */
++        if (thread != null || recorder != null) {
++            AudioRecord stale = recorder;
++            recorder = null;
++            if (thread == null && stale != null) stale.release();
++        }
+     }
+ }
