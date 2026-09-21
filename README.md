@@ -324,10 +324,21 @@ by the XCTest passcode sheet and stays open for build 6. TestFlight 1.0.0 (6) VA
 turn (blocked by the phone's UI-Automation passcode sheet, not the app) (`docs/qa/ios-build-6-2026-09-20.md`,
 `docs/qa/ios-device-pass-6-2026-09-20.md`). TestFlight 1.0.0 (7) VALID 21.9 01:24 from `main` 7419104, buildNumber 7
 (`docs/qa/ios-build-7-2026-09-21.md`); real-iPhone pass 7: 11 routes PASS, 0 crashes, chat turn NOT RUN for the same passcode-sheet reason
-(`docs/qa/ios-device-pass-7-2026-09-21.md`). Open Moshe item from that build: the App Manager ASC API key cannot export with
-cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin key was used instead. Play internal testing 1.0.0 (6) active
+(`docs/qa/ios-device-pass-7-2026-09-21.md`). TestFlight 1.0.0 (8) VALID 21.9 12:14 from `main` f27a8c5, buildNumber 8
+(`docs/qa/ios-build-8-2026-09-21.md`); real-iPhone pass 8: the same 11 routes PASS plus two screens shown for the first time — the empty
+chat with its suggestion chips and the documents screen past onboarding — 0 crashes, chat turn still NOT RUN for the same passcode-sheet
+reason (`docs/qa/ios-device-pass-8-2026-09-21.md`). Open Moshe item, unchanged since build 6: the App Manager ASC API key cannot export
+with cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin key was used for builds 6–8. Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
-from `main` 543a5af with the F33 fix (section K). QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
+from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
+versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
+the first internal build to ship the document-index-model pack (section N). Fixes round 15 (`main` f27a8c5): the Android bundle no longer
+carries 229 MB of iOS Mach-O, Fast survives a Play update without a re-download, and F27 (a hardware-keyboard focus trap in the empty
+chat's suggestion chips) is fixed on the floor device. Fixes round 16: strict "Answer only from my documents" now refuses instead of
+answering from the model when nothing is attached (F34). Fixes round 17: round 15's OCR claim was wrong — a clean build shipped zero
+Tesseract language files; the fix names the missing Gradle task dependency, adds a `verifyOcrAssets` gate and
+`scripts/check-android-bundle.sh` so it cannot recur silently, and versionCode 11 proves OCR of a scan end to end on the 6T through a
+real Play install, with the recognized text answering a chat question with a citation. QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
 passes 4a–4d and 5 found F17–F29, fixed in fixes rounds 10, 10b, 10c, 10d and 12 (incl. the web tier's §7.8 mediation and the model-download
 race, F22/F23); pass 6 (20.9, `main` ff39f94): 28/29 PASS, the document-import row (4d) NOT RUN, three low findings F30–F32 fixed in fixes
 round 14. Soak run 1 (11.9, 2 h 30 on the 6T): PASS
@@ -338,15 +349,21 @@ taken right after a background return), 2 h 41 min, 47 prompts attempted / 44 an
 (`README.md` section "Fixes round 14", `main` 543a5af) found F33's root cause to be Android list clipping (`removeClippedSubviews`)
 mutating a view tree react-native-screens was re-attaching; fixed in `apps/mobile/src/lib/listClipping.ts` on the four long lists, plus
 F30–F32. Soak run 4 (21.9, vc8, `docs/qa/soak-run-4-2026-09-21.md`): PASS, 48 F33 pop cycles with zero crashes, one process for the whole
-5 h 39 min run, F27 reproduced as FAIL (not fixed), F28 PASS retested. Launch-language decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
+5 h 39 min run, F27 reproduced as FAIL (not fixed), F28 PASS retested. Soak run 5 (21.9, vc9, `docs/qa/soak-run-5-2026-09-21.md`): PASS,
+26 F33 pop cycles with zero crashes, one process for 2 h 31 min — the build reached the phone through a real Play update from vc8 rather
+than an adb install; F27 retested fixed (two clean nine-stop TAB rings reaching the composer), Fast survived the update with no
+re-download, F28 PASS. Launch-language decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
 (English, Japanese, German, Spanish, French, Portuguese-Brazil, Korean, Traditional Chinese); Indonesian, Simplified Chinese, Gulf Arabic
 and Italian for wave 2; Hebrew needs its own model (`DictaLM-3.0-1.7B-Instruct`) and ships the quarter after launch, not at 1.0. Voice on
 the real iPhone (`docs/qa/voice-run-2026-09-11.md`); purchases on both stores (`docs/qa/purchases-run-2026-09-11.md`); copy sign-off
 rounds 2a–2d and design sign-off (`docs/design/`).
 Open (Moshe only): store screenshots after his design approval, legal fields (support email, domain, legal name, address), Play payments
 profile, Family Sharing decision, Apple sandbox purchase password, T31 App Privacy Report (phone setting), site deploy + domain, IAP
-submission with 1.0; F27's fix approach (switch the accessibility driver to DPAD or fix the focus trap) and a re-run of the 2-hour soak;
-the Arabic tier ranking question in `docs/models/model-fit.md`'s "least certain judgements" list. Declared cuts for 1.0: .sealed backup,
+submission with 1.0; install TestFlight 1.0.0 (8) and run one live chat turn on the iPhone (the UI-Automation passcode sheet blocks the
+driver, only Moshe's passcode clears it); the ASC App Manager API key still cannot export with cloud-managed certificates (403
+FORBIDDEN_ERROR) — the Admin key was used for builds 6–8; a share-in via a MediaStore `content://` URI from the shell imports nothing and
+the share module swallows the read failure (`docs/qa/purchases-run-2026-09-11.md` section N, open, low); the Arabic tier ranking question
+in `docs/models/model-fit.md`'s "least certain judgements" list. Declared cuts for 1.0: .sealed backup,
 side-by-side compare, Shortcuts/widgets/keyboard, Apple FM on device.
 
 ## Voice + image input (M5b, spec §5.6, §7.1, §7.4, §8.2, S44) — status 6.9.2026
