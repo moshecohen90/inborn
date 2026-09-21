@@ -32,6 +32,7 @@ import {
   markdownToText,
   fallbackPrice,
   paywallFor,
+  planAnswerLength,
   planSummary,
   scriptOf,
   titleFromFirstMessage,
@@ -42,6 +43,7 @@ import {
   type CrisisResource,
   type Message,
   type Persona,
+  type QuickActionId,
   type ReportInput,
   type Session,
   type SharePayload,
@@ -405,7 +407,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
-      const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser) });
+      /* F38: how long this answer should be, as one line in the prompt and a cap for this turn. "Continue" asks for the rest, so it gets the ceiling. */
+      const length = planAnswerLength({
+        text: lastUser,
+        use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
+        continuing: !!existingMessageId,
+      });
+      const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -422,7 +430,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
         }
       }
-      const opts = { reasoning: thinkingAvailable && settings.thinking, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
+      const opts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
       /* Photos in the prompt (§7.1): the one projector we ship fits Instant's embedding width, so any other model
          would answer as if the picture were not there (QA F36). Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
@@ -713,9 +721,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [seed, status.kind, inFront]);
 
   /* The sheet streams through the same guarded engine as a chat turn; `busy` keeps the composer quiet meanwhile. */
-  const runQuick = (messages: Message[], signal: AbortSignal): AsyncIterable<Delta> => {
+  const runQuick = (messages: Message[], signal: AbortSignal, turn: { action: QuickActionId; text: string }): AsyncIterable<Delta> => {
     const s = session.current;
-    const gen = engine.generate(s!, messages, { reasoning: false, maxTokens: 1024, temperature: 0.3 }, signal);
+    const length = planAnswerLength({ text: turn.text, use: detectUse({ text: turn.text, quickAction: turn.action }) });
+    const gen = engine.generate(s!, messages, { reasoning: false, maxTokens: length.maxTokens, temperature: 0.3 }, signal);
     setBusy(true);
     return {
       [Symbol.asyncIterator]: async function* () {

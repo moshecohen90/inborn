@@ -1,4 +1,4 @@
-import type { BenchTimings, Delta, GenOpts, LocalLM, Message, ModelRef, Session, Tier } from "@inborn/core";
+import { ANSWER_CEILING, type BenchTimings, type Delta, type GenOpts, type LocalLM, type Message, type ModelRef, type Session, type Tier } from "@inborn/core";
 import { createEngine, type Engine } from "./adapters";
 import { getVault } from "./vault/store";
 
@@ -26,7 +26,7 @@ let state: EngineState = "unloaded";
 let unloadReason: UnloadReason | null = null;
 let generating = 0;
 let idleTimer: ReturnType<typeof setTimeout> | null = null;
-let caps: GenerationCaps = { maxTokens: 1024, threads: null, gpuLayers: null, nCtx: 4096 };
+let caps: GenerationCaps = { maxTokens: ANSWER_CEILING, threads: null, gpuLayers: null, nCtx: 4096 };
 let lastGuardStop = false;
 let unloading: Promise<void> | null = null;
 let pauseCheck: (() => boolean) | null = null;

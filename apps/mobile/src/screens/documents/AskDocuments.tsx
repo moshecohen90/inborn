@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { NOT_FOUND_TOKEN, directionOf, type Citation, type DocumentRecord, type Session } from "@inborn/core";
+import { NOT_FOUND_TOKEN, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { modelLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -74,7 +74,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setPhase({ kind: "loading" });
       const s = (session.current ??= await loadSession());
       setPhase({ kind: "retrieving" });
-      const { prompt, retrieveMs } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id) });
+      /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
+      const length = planAnswerLength({ text, use: "documents" });
+      const { prompt, retrieveMs } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
       if (prompt.noAnswer) {
         setNotFound(true);
@@ -87,7 +89,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       const started = Date.now();
       let reply = "";
       let tps = 0;
-      for await (const d of engine.generate(s, prompt.messages, { reasoning: false, maxTokens: 400 }, ac.signal)) {
+      for await (const d of engine.generate(s, prompt.messages, { reasoning: false, maxTokens: length.maxTokens }, ac.signal)) {
         if (d.text) {
           reply += d.text;
           setAnswer(reply);

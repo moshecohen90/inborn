@@ -38,9 +38,11 @@ export interface SystemPromptParts {
   /** "Answer in Hebrew" style hint (§10.5 #40). */
   languageHint?: string | undefined;
   baseline?: string | undefined;
+  /** How long this one answer should be (`planAnswerLength`); it goes last, nearest the question. */
+  length?: string | undefined;
 }
 
-/** Layers: safety baseline → persona → chat prompt → memory facts → language hint. Empty parts vanish. */
+/** Layers: safety baseline → persona → chat prompt → memory facts → language hint → answer length. Empty parts vanish. */
 export function composeSystemPrompt(parts: SystemPromptParts): string {
   const blocks: string[] = [];
   if (parts.baseline) blocks.push(parts.baseline);
@@ -49,6 +51,7 @@ export function composeSystemPrompt(parts: SystemPromptParts): string {
   const facts = (parts.memory ?? []).filter((f) => f.enabled && f.content.trim());
   if (facts.length) blocks.push(`Facts about the user (they can edit these in Memory):\n${facts.map((f) => `- ${f.content.trim()}`).join("\n")}`);
   if (parts.languageHint) blocks.push(parts.languageHint);
+  if (parts.length?.trim()) blocks.push(parts.length.trim());
   return blocks.join("\n\n");
 }
 
