@@ -1488,6 +1488,75 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
 
+## Fixes round 17: the OCR data never reached a clean Android bundle (branch `fixes-r17`) — 21.9.2026
+The vc9 stream found it in the artifact it had just uploaded (`docs/qa/purchases-run-2026-09-11.md` section L): `unzip -l`
+of the vc9 AAB has **zero** `traineddata` entries. `DocExtractModule.kt:171` reads the language files with
+`assets.list("tessdata")`, so on vc9 `bundledLanguages()` is empty and `tessFor` fails `ERR_NO_OCR` — OCR of scans was
+unavailable on Android, where vc8 had it.
+- **Root cause: `assets.srcDir(provider)` does not carry the producing task.** Round 15 staged
+  `INBORN_MODELS_DIR/ocr/tessdata/*.traineddata` into `build/generated/ocrAssets` with a `Sync` task and registered the
+  directory as `assets.srcDir(stageTessData.map { it.destinationDir })`. A `TaskProvider.map` of a plain getter is not a
+  task output, so Gradle wired no dependency: on a clean build `:doc-extract:stageOcrTessData` never ran,
+  `:doc-extract:mergeReleaseAssets` merged an empty directory, and the bundle came out without the data and without a
+  warning.
+- **The fix names the dependency** (`apps/mobile/modules/doc-extract/android/build.gradle`). The assets source is now the
+  plain `build/generated/ocrAssets` directory, and every task that reads it says so: `merge*Assets`, `package*Assets`, the
+  lint-model and lint-analysis tasks (declaring only the merge tasks failed `:doc-extract:generateReleaseLintModel`
+  validation on Gradle 9.3.1, which is why round 15 moved to the provider in the first place) and `preBuild`.
+- **A build can no longer produce a bundle without OCR.** `verifyOcrAssets` runs after the staging, is never up-to-date, and
+  throws a `GradleException` naming `INBORN_MODELS_DIR` unless both `eng.traineddata` and `heb.traineddata` are staged. It
+  is deliberately a second task: the `Sync` skips its own checks when it is UP-TO-DATE, which is exactly the state that hid
+  this.
+- **And the artifact is checked too.** `scripts/check-android-bundle.sh <aab>` asserts `base/assets/tessdata/eng.traineddata`
+  and `heb.traineddata` are present and that nothing sits under `base/assets/ios`; it is in the release recipe beside
+  `check-android-permissions.sh`. Run against the shipped vc9 bundle it exits 1 on both language files, against vc10 it
+  exits 0.
+- **Correction to round 15, finding A.** That section says the Tesseract data was still in the bundle and that the provider
+  "carries the task dependency". Neither held. Its `build-release2.log`, `build-verify.log` and `c-build-vc9fixed.log` all
+  show `:doc-extract:mergeReleaseAssets UP-TO-DATE` with no `stageOcrTessData` line: the staged directory left behind by the
+  **first** formulation was still on disk in that worktree, and `rm -rf android` does not remove
+  `modules/doc-extract/android/build`. The iOS half of round 15 A stands — `base/assets/ios` is 0 in vc9 and in vc10.
+- **Proof, clean build.** Fresh worktree off `origin/main`, no `android/` directory and no
+  `modules/doc-extract/android/build`, `INBORN_MODELS_DIR=…/.models INBORN_PACKS=instant,fast INBORN_VERSION_CODE=10`,
+  `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"`
+  with a private `GRADLE_USER_HOME` (APFS clone of `~/.gradle-pr2`). `pgrep -fl xcodebuild` was empty before and during;
+  `gradlew --stop` was never run. **BUILD SUCCESSFUL in 3 m 29 s**, 1107 actionable tasks, 1107 executed, with
+  `:doc-extract:stageOcrTessData` and `:doc-extract:verifyOcrAssets` both in the log.
+
+| check | vc9 (`main`) | vc10 (`fixes-r17`) |
+|---|---|---|
+| AAB | 1,870,641,095 B | **1,873,100,969 B** (+2,459,874 B compressed) |
+| sha256 | `67cc2aad…4beb58` | `593cbb5e297183824eeb746fed3af26b1b01b5d7030196043918508b86cddbda` |
+| `base/assets/tessdata/*.traineddata` | **0 entries** | **2** — `eng` 4,113,088 B, `heb` 961,404 B |
+| entries under `base/assets/ios` | 0 | **0** |
+| `base/assets` | 118 entries / 12,720,769 B | **120 entries / 17,795,262 B** |
+| `bundletool validate` | OK | **OK** — `inborn_model` fast-follow, `inborn_model_fast` on-demand, both GGUFs byte-identical (532,517,120 / 1,280,835,840 B) |
+| manifest | versionCode 9 | versionCode **10**, versionName 1.0.0, `com.inbornapp.mobile`, minSdk 26, compileSdk 36 |
+| `scripts/check-android-permissions.sh` | 9, no INTERNET | **"OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)."** |
+| `scripts/check-android-bundle.sh` | **exit 1**, both language files reported missing | **exit 0** |
+| module registry (dex strings) | nine | **nine** — AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative |
+
+  Diffing the two `base/assets` listings gives exactly the two language files plus one byte in `app.config` (the version
+  code is one character longer). Signed `CN=Inborn Upload Key, O=Inborn, C=IL`, SHA-256 digests, `jarsigner -verify` says
+  "jar verified". Gates on this worktree: `pnpm typecheck`, `pnpm test` (core 461, mobile 169, i18n 10, ui 11) and
+  `pnpm lint` all exit 0.
+- **The data is byte-identical end to end.** `eng.traineddata` `7d4322bd…70b2` and `heb.traineddata` `11f9e43a…04db` in
+  `.models/ocr/tessdata`, in the uploaded AAB, and in the 70,243,831-byte `base.apk` that Play generated and installed on
+  the OnePlus 6T — where they sit at `assets/tessdata/`, the exact path `assets.list("tessdata")` reads.
+- **The OCR run itself could not be exercised on an internal build, for a separate reason.** Indexing a document is what
+  calls the OCR engine, and indexing needs the document index model (`embed-nomic`, 262 MB), which Android delivers as the
+  `inborn_model_embed` Play asset pack. `INBORN_PACKS=instant,fast` — the internal-testing pack set used for vc8, vc9 and
+  vc10 — leaves that pack out of the bundle, so the Documents screen's "Install · 262 MB" answers `AssetPackServiceImpl:
+  onError(-2)` (MODULE_UNAVAILABLE) and every imported document stays at "Install the document index model first." A
+  scan shared into the app is imported and listed, and its details read PASSAGES 0 · OCR PAGES 0 · INDEX MODEL —, so the
+  question it answers comes from the model, not the page. This is not new in vc10: no internal build has ever shipped that
+  pack (`bundletool validate` on vc8 and vc9 lists `base`, `inborn_model`, `inborn_model_fast` only), so OCR has never been
+  reachable on the internal track. A production build with `INBORN_PACKS` unset ships all packs. **Proving OCR on a real
+  device needs an internal build with `INBORN_PACKS=instant,fast,embed`.**
+- **iOS is untouched.** This round changes Android build configuration only: `apps/mobile/modules/doc-extract/android/build.gradle`
+  and `scripts/check-android-bundle.sh`. The podspec still symlinks `vendor/libtesseract.xcframework` and `vendor/tessdata`
+  out of `INBORN_MODELS_DIR/ocr`, and no iOS build was run or needed.
+
 ## Fixes round 16: strict documents mode answered from the model when nothing was attached (F34) (branch `fixes-r16`) — 21.9.2026
 QA pass 7 (`docs/qa/qa-run-2026-09-11.md`, row 4) found the "Answer only from my documents" switch doing nothing whenever the
 chat had no indexed document attached: the model answered from its own weights, confidently wrong about a place that does not
@@ -1571,7 +1640,8 @@ Three findings from soak run 4 (`docs/qa/soak-run-4-2026-09-21.md`) and section 
 | `scripts/check-android-permissions.sh` | 9 declared, no INTERNET | **"OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)."** |
 
   sha256 of the new AAB: `38511d83494a1fa5d60a366a6126300507e8c1d3d1ca0b4725596ee8d413008a`.
-- **OCR still finds its data.** The shipped path `base/assets/tessdata/…` is exactly what the module reads:
+- **OCR still finds its data.** *(Wrong — see round 17: this was measured against a staged directory an earlier build had
+  left on disk, and vc9 shipped with no `traineddata` at all.)* The shipped path `base/assets/tessdata/…` is exactly what the module reads:
   `DocExtractModule.kt:171` `assets.list("tessdata")`, `:175` `assets.open("tessdata/$name")`, `:182` the language list. The
   debug APK built from the same gradle file carries `assets/tessdata/eng.traineddata` and `heb.traineddata` and zero
   `assets/ios` entries.
