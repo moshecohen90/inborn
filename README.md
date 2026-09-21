@@ -10,6 +10,7 @@ Spec and demo: `docs/inborn-spec.html`, `docs/inborn-demo.html` (Hebrew, RTL).
 - `packages/i18n` — i18next + ICU; `locales/en.json` is the single source. Adding a language = one JSON file.
 - `packages/ui` — FARADAY tokens (dark + light, default follows the device) and a Tailwind/NativeWind preset.
 - `scripts/check-android-permissions.sh` — release gate: fails if the Android build declares INTERNET.
+- `scripts/check-android-bundle.sh` — release gate: fails if an AAB has no `base/assets/tessdata/{eng,heb}.traineddata` (no OCR) or any `base/assets/ios` entry.
 - `scripts/serve-web.mjs` — static host for the web export with COOP/COEP, a `'self'`-only CSP and Range support; `scripts/web-smoke.mjs` — headless proof of the browser tier.
 
 ## Run
@@ -207,6 +208,7 @@ java -jar $BT dump manifest --bundle=$AAB --module=inborn_model            # <di
 java -jar $BT build-apks --bundle=$AAB --output=/tmp/inborn.apks --local-testing
 java -jar $BT install-apks --apks=/tmp/inborn.apks --device-id=<serial>    # slow USB? see below
 BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB          # OK: no INTERNET permission.
+../../../scripts/check-android-bundle.sh $AAB                             # OK: OCR data in, iOS assets out.
 ```
 `install-apks` pushes the 532 MB pack APK into `/sdcard/Android/data/com.inbornapp.mobile/files/local_testing/`; on a slow
 USB link push `asset-slices/inborn_model-master.apk` from the `.apks` zip there yourself. First launch: Play Core's local
@@ -660,6 +662,7 @@ INBORN_MODELS_DIR=/Users/moshecohen/dev/inborn/.models INBORN_PACKS=instant,fast
 cd android && eval "$(../../../scripts/play-signing-env.sh)" && ./gradlew bundleRelease -PreactNativeArchitectures=arm64-v8a
 AAB=app/build/outputs/bundle/release/app-release.aab; BT=/Users/moshecohen/dev/inborn/.tools/bundletool-all-1.18.3.jar
 java -jar $BT validate --bundle=$AAB && BUNDLETOOL=$BT ../../../scripts/check-android-permissions.sh $AAB
+../../../scripts/check-android-bundle.sh $AAB          # both traineddata present, no base/assets/ios
 INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts/play-upload.mjs --aab $AAB --track internal --status completed
 ```
 One-time products (Pro / Pro launch / Work / Work upgrade) live in Play through `scripts/play-products.mjs` (same
