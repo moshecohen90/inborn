@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 3,
-  "publishedAt": "2026-09-20",
+  "version": 4,
+  "publishedAt": "2026-09-21",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -23,7 +23,7 @@
       "contextLength": 262144,
       "vision": true,
       "tools": true,
-      "goodFor": "Quick answers, rewrites, summaries. Lightest on battery.",
+      "goodFor": "Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.",
       "battery": "low",
       "goodLanguages": [
         "en",
@@ -94,7 +94,7 @@
       "minRamGB": 6,
       "recommendedRamGB": 6,
       "contextLength": 262144,
-      "vision": true,
+      "vision": false,
       "tools": true,
       "goodFor": "Everyday assistant: writing, questions, translation. Best balance on this phone.",
       "battery": "medium",
@@ -136,7 +136,7 @@
           "ar": "native",
           "he": "none"
         },
-        "weakAt": "Code, math, Hebrew; German prose and Korean translation; questions across many long documents."
+        "weakAt": "No photos; code, math, Hebrew; German prose and Korean translation; questions across many long documents."
       },
       "delivery": [
         {
@@ -182,9 +182,9 @@
       "minRamGB": 6,
       "recommendedRamGB": 8,
       "contextLength": 262144,
-      "vision": true,
+      "vision": false,
       "tools": true,
-      "goodFor": "Complex tasks: analysis, code, long documents, photos. Slower, runs warmer.",
+      "goodFor": "Complex tasks: analysis, code, long documents. Slower, runs warmer.",
       "battery": "high",
       "goodLanguages": [
         "en",
@@ -226,7 +226,7 @@
           "ar": "good",
           "he": "basic"
         },
-        "weakAt": "Slower and warmer than Fast; hard math needs thinking mode; Hebrew is better than Fast but not fluent."
+        "weakAt": "No photos; slower and warmer than Fast; hard math needs thinking mode; Hebrew is better than Fast but not fluent."
       },
       "delivery": [
         {
@@ -417,7 +417,7 @@
       "contextLength": 0,
       "vision": true,
       "tools": false,
-      "goodFor": "Lets Instant, Fast and Sharp look at your photos on this device.",
+      "goodFor": "Lets Instant look at your photos on this device.",
       "battery": "medium",
       "goodLanguages": [
         "en"
@@ -438,5 +438,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "1081ecd078ab674d8f59e27597b2a07f33541090ccb99ed0628ccb12d537d9b77f25c3f608f3d84392264453ad21518d779f1ad6c55ffae6e86e267f0bfc3202"
+  "signature": "64658d3330038bf2b056eee52a7fd0a87951ef0950a9b760ec6fc3726f22e4e59613b2a82ea9008f9cae00ee5369fbc09379e708f60b3f92c091cdd620ebe407"
 }

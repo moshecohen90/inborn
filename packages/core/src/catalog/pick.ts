@@ -1,3 +1,4 @@
+import type { ChipClass } from "./speed";
 import type { CatalogModel, Tier } from "./types";
 
 /** Device floor and default by RAM (spec §6.3). */
@@ -10,6 +11,8 @@ export interface DeviceProfile {
   pro?: boolean;
   /** Discrete GPU memory on desktops; 24 GB opens Studio. */
   gpuGB?: number;
+  /** Speed class of the chip; without it the recommendation cannot tell a tier that is merely slow from one that is unusable here. */
+  chip?: ChipClass;
 }
 
 export type RamFit = "well" | "slowly" | "no";

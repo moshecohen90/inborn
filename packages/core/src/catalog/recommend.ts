@@ -1,5 +1,6 @@
 import { languageRank, languageTierOf, useRank, useTierOf } from "./fit";
 import { TIER_ORDER, defaultTier, maxTier, ramFit, type DeviceProfile, type RamFit } from "./pick";
+import { tooSlowHere } from "./speed";
 import { ENGINE_VERSION, type CatalogModel, type LanguageTier, type UseCase, type UseTier } from "./types";
 import type { QuickActionId } from "../chat/quickActions";
 
@@ -38,7 +39,8 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
   const wanted = TIER_ORDER.indexOf(defaultTier(device));
   const engine = input.engineVersion ?? ENGINE_VERSION;
   const rows = input.catalog
-    .filter((m) => m.role === "chat" && m.fit && m.tier && m.minEngine <= engine && tierIndex(m) <= ceiling && ramFit(m, device.ramGB) !== "no")
+    /* A tier that measures below a usable rate on this chip class is still installable, never recommended (QA F37). */
+    .filter((m) => m.role === "chat" && m.fit && m.tier && m.minEngine <= engine && tierIndex(m) <= ceiling && ramFit(m, device.ramGB) !== "no" && !tooSlowHere(device.chip, m.tier))
     .map((model): ModelRecommendation => ({
       model,
       reason: { use, useTier: useTierOf(model, use)!, languageCode, languageTier: languageTierOf(model, languageCode), ramFit: ramFit(model, device.ramGB), installed: input.installed.includes(model.id) },

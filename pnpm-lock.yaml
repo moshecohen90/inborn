@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@fugood/react-native-audio-pcm-stream@1.1.4':
+    hash: 0d4a1a2bc31a22e0c0069a04fcd8d8e2356a13090c8614bca23193155c3bbe0a
+    path: patches/@fugood__react-native-audio-pcm-stream@1.1.4.patch
   expo-modules-core@57.0.15:
     hash: 8b05ddbc79426bf6291d00f57ca6e251fd52d7576c0e30247b2186b426f938f1
     path: patches/expo-modules-core@57.0.15.patch
@@ -51,7 +54,7 @@ importers:
         version: 6.3.13
       '@fugood/react-native-audio-pcm-stream':
         specifier: 1.1.4
-        version: 1.1.4
+        version: 1.1.4(patch_hash=0d4a1a2bc31a22e0c0069a04fcd8d8e2356a13090c8614bca23193155c3bbe0a)
       '@inborn/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -6307,7 +6310,7 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
 
-  '@fugood/react-native-audio-pcm-stream@1.1.4': {}
+  '@fugood/react-native-audio-pcm-stream@1.1.4(patch_hash=0d4a1a2bc31a22e0c0069a04fcd8d8e2356a13090c8614bca23193155c3bbe0a)': {}
 
   '@humanfs/core@0.19.2':
     dependencies:

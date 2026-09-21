@@ -56,7 +56,7 @@ import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
-import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionInstalled, type PickedImage } from "../images";
+import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -203,6 +203,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
+  /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
+  const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -388,8 +390,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let citations: Citation[] | undefined;
     const started = Date.now();
     const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === targetId ? fn(x) : x)));
-    const answerWithoutModel = async (key: string) => {
-      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key), modelId: model.id });
+    const answerWithoutModel = async (key: string, values?: Record<string, unknown>) => {
+      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id });
       setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
     };
     try {
@@ -421,10 +423,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
       }
       const opts = { reasoning: thinkingAvailable && settings.thinking, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
-      /* Photos in the prompt (§7.1): attach the projector once per resident model; without it the text still goes through. */
+      /* Photos in the prompt (§7.1): the one projector we ship fits Instant's embedding width, so any other model
+         would answer as if the picture were not there (QA F36). Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
-        const mmproj = resolveVision();
-        if (!mmproj || !(await enableVision(mmproj))) flash(t("chat.attach.visionMissing", { size: "205 MB" }));
+        const mmproj = modelHasVision(model.id) ? resolveVision() : null;
+        if (!mmproj || !(await enableVision(mmproj))) {
+          const canSee = visionChatModel();
+          if (lastUserAt >= 0 && history[lastUserAt]!.images?.length) {
+            const offer = !modelHasVision(model.id) && canSee ? "switch" : "companion";
+            await answerWithoutModel(offer === "switch" ? "chat.vision.needsOther" : "chat.vision.companionMissing", { seer: canSee ? modelLabel(canSee.id) : "" });
+            setVisionOffer(offer);
+            return;
+          }
+          /* Only older turns carry pictures; the model that could see them already answered for them. */
+          messages = messages.map(({ images: _drop, ...rest }) => rest);
+        }
       }
       for await (const d of engine.generate(s, messages, opts, ac.signal)) {
         if (d.reasoning) {
@@ -827,6 +840,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   };
   const visionReady = visionInstalled();
   const modelSees = modelHasVision(model.id);
+  /* Instant is the only card the shipped projector fits; the sheet and the offer both name it (QA F36). */
+  const seer = useMemo(() => (modelSees ? null : visionChatModel()), [modelSees]);
+  const seerLabel = seer ? modelLabel(seer.id) : "";
+  const seerReady = seer ? getVault().state(seer.id).kind === "ready" : false;
+  const useSeer = () => {
+    setAttachOpen(false);
+    setVisionOffer(null);
+    afterSheetClose(() => (seer && seerReady ? onSwitchModel?.(seer.id) : onOpenVault?.()));
+  };
   const imageLimit = limits(tier).imagesPerMessage;
   const addPhoto = (source: "library" | "camera") => {
     setAttachOpen(false);
@@ -983,6 +1005,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
+      ) : null}
+      {visionOffer ? (
+        <View testID="vision-offer" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t(visionOffer === "switch" ? "chat.vision.offer" : "chat.vision.offerCompanion", { model: modelLabel(model.id), seer: seerLabel })}</Text>
+          <Pressable testID="vision-offer-action" accessibilityRole="button" onPress={useSeer} hitSlop={8} style={styles.noticeBtn}>
+            <Text style={[type.caption, { color: theme.accent }]}>{seerReady ? t("chat.modelAdvice.switch", { model: seerLabel }) : t("voice.openVault")}</Text>
+          </Pressable>
+        </View>
       ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
@@ -1289,7 +1319,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => setTemplatesOpen(true));
         }}
         photoDisabled={!visionReady || !modelSees}
-        photoNote={!modelSees ? t("chat.attach.noVision", { model: modelLabel(model.id) }) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: modelLabel(model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: modelLabel(model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
       />
       <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />
       <RedactSheet
