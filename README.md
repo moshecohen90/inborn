@@ -1332,6 +1332,8 @@ Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
 - **F27 · TAB focus trap between the empty-chat suggestion chips: not reproduced.** On Android 11 and Android 13, from the top
   of the screen and from the composer, with and without a draft, the ring is composer → mic → send → the three chips → Chats →
   model chip → attach → composer, and it wraps. Send is skipped only while the draft is empty, because it is disabled then.
+  It did reproduce on the real OnePlus 6T, in soak run 2 (`docs/qa/soak-run-2026-09-20.md`) and soak run 4
+  (`docs/qa/soak-run-4-2026-09-21.md`); round 15 below fixes it.
 ## i18n: Korean + Traditional Chinese (branch `i18n-ko-zhhant`) — 20.9.2026
 The launch set of `docs/research/launch-languages-2026-09.md` §1 is eight languages; six shipped. This adds the last two.
 - **Locales**: `packages/i18n/locales/ko.json` and `zh-Hant.json`, 1000 keys each, the same count as the other six. Translated against
@@ -1471,8 +1473,8 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
 
-## Fixes round 15: the Android bundle carried iOS binaries, and F27 on the floor device (branch `fixes-r15`) — 21.9.2026
-Two findings from soak run 4 (`docs/qa/soak-run-4-2026-09-21.md`) and section K of `docs/qa/purchases-run-2026-09-11.md`.
+## Fixes round 15: the Android bundle carried iOS binaries, Fast lost after every update, and F27 on the floor device (branch `fixes-r15`) — 21.9.2026
+Three findings from soak run 4 (`docs/qa/soak-run-4-2026-09-21.md`) and section K of `docs/qa/purchases-run-2026-09-11.md`.
 
 ### The Android bundle shipped 229 MB of iOS Mach-O
 - **Root cause: the whole `ocr/` folder was an Android assets source root**
@@ -1558,3 +1560,43 @@ and from there translate and draft for ever. Round 13 closed F27 against an emul
 ```
   Shots: `docs/qa/fixes-r15/f27-empty-chat.png`, `f27-tab07-draft-focused.png`, `f27-tab08-composer-focused.png` (the amber
   focus border on the composer and the soft keyboard up).
+
+### After every Play update the vault asked for a 1.2 GB download it already had
+Section K of `docs/qa/purchases-run-2026-09-11.md` (line 314): on the vc7 → vc8 update the vault read "508 MB in the vault"
+and the Fast card offered `install-fast` "Install · 1.2 GB from Google Play", yet Download **finished instantly** because
+the bytes had never left the phone. The same happened on vc6 → vc7. MosheAI called it a release blocker.
+- **Root cause: Play stores each asset pack under the app's versionCode, so every update unbinds it.** The engine line in
+  logcat shows the path shape: `files/assetpacks/inborn_model_fast/9/9/assets/Qwen3.5-2B-Q4_K_M.gguf` — pack, versionCode,
+  pack version. After an update `AssetPackManager.getPackLocation` returns null for an on-demand pack until the app asks for
+  it again, and `PlayDelivery.locate` (`apps/mobile/src/vault/playDelivery.ts`) is built on exactly that call. `VaultStore.scan`
+  then took "not located" for "not installed", **deleted the install record** and set `not-installed`, which is the Install
+  offer with the full catalog size behind it.
+- **Why Instant survived and Fast did not.** The tail of `scan` already re-requested packs, but only where
+  `d.mode === "fast-follow"` — Instant. Fast, Sharp, the embedder, speech and vision are on-demand and were left to the user.
+- **The fix extends that one mechanism instead of adding another** (`apps/mobile/src/vault/store.ts`): `requestKnownPacks()`
+  asks Play for every pack that is fast-follow **or** that the vault's own record says this device was delivered
+  (`installs[id].via === "play"`), and `scan` no longer deletes a Play record just because the pack is unbound — that record
+  is the app's only memory that the bytes are there. It runs at the end of the boot scan and again when the vault opens
+  (`apps/mobile/src/screens/vault/VaultScreen.tsx`). Play serves a pack it still holds without downloading anything; a pack
+  that is genuinely gone is re-fetched for a model the user had already chosen, under Play's own Wi-Fi and cellular-consent
+  rules. Nothing asks for a model this device never had, so no boot starts an unasked download.
+- **Unit test**: `apps/mobile/src/vault/store.test.ts`, five cases over a faked Play delivery — the unbound pack is
+  re-requested and lands `ready`, the record survives the unbound boot, a model this device never had is left alone, an
+  HTTPS file that is really gone still loses its record, and the vault-open path re-asks. Against the pre-fix `store.ts`
+  three of the five fail (`expected [ 'instant' ] to include 'fast'`).
+- **Proof on the OnePlus 6T** (`REDACTED-6T`, release AABs installed with `bundletool build-apks --local-testing`; the local
+  Play Core stub reproduces the fault exactly, and its `FakeAssetPackService : startDownload` lines are what proves who asked):
+
+| step | build | vault header | Fast card |
+|---|---|---|---|
+| Fast installed | vc8 (`12b0d9f`) | 1.7 GB in the vault | installed, `docs/qa/fixes-r15/c-vc8-fast-installed.png` |
+| version bump, no fix | vc9 (`12b0d9f`) | **508 MB in the vault** | **"Install · 1.2 GB from Google Play"**, `c-vc9-unfixed-install-offer.png` |
+| version bump, fixed | vc9 (this branch) | **1.7 GB in the vault** | FAST · Loaded · In use, `c-vc9-fixed-vault.png` |
+
+  On the fixed build nothing was tapped: the app itself logged `FakeAssetPackService : startDownload([inborn_model_fast])`
+  at 11:22:37, `ExtractChunkTaskHandler` reported the chunk extracted at 11:23:02, and the engine loaded
+  `files/assetpacks/inborn_model_fast/9/9/assets/Qwen3.5-2B-Q4_K_M.gguf` in 2,430 ms. "Name three colours." then answered
+  **"Red, Blue, and Green."** with the FAST chip (`c-vc9-fixed-fast-answer.png`), and a second cold launch stayed at
+  1.7 GB with no Install button anywhere in the vault.
+- **Not covered**: a phone whose record the *shipping* vc8 already deleted has nothing left to re-request, so its first
+  launch on the fix still offers Install — one tap, and Play returns the bytes instantly. Every update after that is clean.

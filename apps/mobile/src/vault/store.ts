@@ -154,7 +154,9 @@ export class VaultStore {
         this.states.set(model.id, { kind: "delivering", via: this.record.hf[model.id] ? "hf" : "https", bytes: fileSize(modelFile(`${model.file}.part`)), total: model.bytes, paused: true, waitingForWifi: false, needsConfirmation: false });
         continue;
       }
-      if (rec && !located) delete this.record.installs[model.id];
+      /* Play unbinds every on-demand pack from the app on a version update while the bytes stay on the phone;
+         forgetting the record here is what made the vault offer a fresh 1.2 GB download (purchases run §K). */
+      if (rec && !located && rec.via !== "play") delete this.record.installs[model.id];
       this.states.set(model.id, NOT_INSTALLED);
     }
     for (const imp of Object.values(this.record.imports)) {
@@ -165,10 +167,21 @@ export class VaultStore {
     this.strays = this.scanStrays();
     this.persist();
     this.notify();
-    /* Play delivers fast-follow packs by itself after install; asking once makes local testing and a slow first launch behave the same (S02). */
+    this.requestKnownPacks();
+  }
+
+  /**
+   * Asks Play for the packs this device should already have: fast-follow ones Play delivers by itself after an install
+   * (S02), and any pack the vault recorded as delivered, which every app update unbinds (purchases run §K). Both are one
+   * request away from bytes that are on the phone, and Play serves them without downloading again. Runs on the boot scan
+   * and on vault open.
+   */
+  requestKnownPacks(): void {
     for (const model of this.manifest.models) {
+      if (this.states.get(model.id)?.kind !== "not-installed") continue;
       const fastFollow = model.delivery.some((d) => d.kind === "play-asset-pack" && d.mode === "fast-follow");
-      if (fastFollow && this.states.get(model.id)?.kind === "not-installed" && this.delivery.plan(model)?.via === "play") void this.install(model.id);
+      const delivered = this.record.installs[model.id]?.via === "play";
+      if ((fastFollow || delivered) && this.delivery.plan(model)?.via === "play") void this.install(model.id);
     }
   }
 
