@@ -8,7 +8,21 @@ version = '0.0.1'
 
 /* Tesseract language files come from INBORN_MODELS_DIR/ocr (tessdata/eng.traineddata, heb.traineddata), gitignored like the GGUFs. */
 def modelsDir = System.getenv("INBORN_MODELS_DIR") ?: "${rootDir}/../../../.models"
-def ocrAssets = file("${modelsDir}/ocr")
+def tessData = file("${modelsDir}/ocr/tessdata")
+/* Never the whole ocr/ folder as an assets root: the podspec keeps ios/libtesseract.xcframework beside tessdata and it
+   rode into the AAB as base/assets/ios (229 MB of Mach-O, vc8). Only this one named path is staged, so a new ocr/ sibling
+   cannot reach Android at all. */
+def stageTessData = tasks.register("stageOcrTessData", Sync) {
+  from(tessData) {
+    include "*.traineddata"
+    into "tessdata"
+  }
+  into layout.buildDirectory.dir("generated/ocrAssets")
+}
+
+if (!tessData.isDirectory()) {
+  logger.warn("[doc-extract] no OCR data at ${tessData}; scans will report 'OCR unavailable'")
+}
 
 android {
   namespace "com.inbornapp.docextract"
@@ -18,11 +32,8 @@ android {
   }
   sourceSets {
     main {
-      if (ocrAssets.isDirectory()) {
-        assets.srcDirs += ocrAssets
-      } else {
-        logger.warn("[doc-extract] no OCR data at ${ocrAssets}; scans will report 'OCR unavailable'")
-      }
+      /* The provider carries the task dependency, so every consumer (merge, package, lint) waits for the staging. */
+      assets.srcDir(stageTessData.map { it.destinationDir })
     }
   }
   packagingOptions {

@@ -141,6 +141,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ["./plugins/withMinSdk", { minSdkVersion: 26 }],
     /* The stored theme decides the night mode before the first paint; the dark ground is the FARADAY bg token (packages/ui tokens.ts). */
     ["./plugins/withStoredNightMode", { darkBackground: "#0A0D11" }],
+    /* A hardware keyboard's TAB must be able to leave a list (QA F27); React Native's own scroll-view focus search cannot. */
+    "./plugins/withScrollFocusEscape",
   ],
 });
 

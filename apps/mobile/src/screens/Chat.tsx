@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, findNodeHandle, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -163,6 +163,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
   const { engine, model } = getEngine();
   const inputRef = useRef<TextInput | null>(null);
+  /* F27: the empty chat's TAB order was whatever Android's geometric focus search produced. It is declared here
+     instead — chip → chip → composer. Focus can only leave the list at all because of plugins/withScrollFocusEscape. */
+  const chipRefs = useRef<(View | null)[]>([]);
+  const [chipNext, setChipNext] = useState<(number | undefined)[]>([]);
+  useEffect(() => {
+    if (Platform.OS !== "android") return;
+    const next = SUGGESTIONS.map((_, i) => findNodeHandle((i + 1 < SUGGESTIONS.length ? chipRefs.current[i + 1] : inputRef.current) ?? null) ?? undefined);
+    setChipNext((prev) => (prev.length === next.length && prev.every((v, i) => v === next[i]) ? prev : next));
+  });
   const focused = useRef(true);
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
@@ -1091,8 +1100,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
               {incognito ? t("chat.incognito.headline") : t("onboarding.headline", { device: deviceNoun() })}
             </Text>
             <View style={styles.suggestions}>
-              {SUGGESTIONS.map((s) => (
-                <Pressable key={s} testID={`suggestion-${s}`} accessibilityRole="button" onPress={() => setDraft(t(`chat.suggest.${s}.prompt`))} style={[shape.chip, styles.suggestion, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+              {SUGGESTIONS.map((s, i) => (
+                <Pressable
+                  key={s}
+                  ref={(v) => {
+                    chipRefs.current[i] = v;
+                  }}
+                  nextFocusForward={chipNext[i]}
+                  testID={`suggestion-${s}`}
+                  accessibilityRole="button"
+                  onPress={() => setDraft(t(`chat.suggest.${s}.prompt`))}
+                  style={[shape.chip, styles.suggestion, { backgroundColor: theme.surface2, borderColor: theme.border }]}
+                >
                   <Text style={[type.bodySmall, { color: theme.text2 }]}>{t(`chat.suggest.${s}`)}</Text>
                 </Pressable>
               ))}

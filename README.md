@@ -1470,3 +1470,91 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
 - **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
+
+## Fixes round 15: the Android bundle carried iOS binaries, and F27 on the floor device (branch `fixes-r15`) — 21.9.2026
+Two findings from soak run 4 (`docs/qa/soak-run-4-2026-09-21.md`) and section K of `docs/qa/purchases-run-2026-09-11.md`.
+
+### The Android bundle shipped 229 MB of iOS Mach-O
+- **Root cause: the whole `ocr/` folder was an Android assets source root**
+  (`apps/mobile/modules/doc-extract/android/build.gradle`). The module did `assets.srcDirs += file("$INBORN_MODELS_DIR/ocr")`,
+  which makes every child of that folder an Android asset. `ocr/` held only `tessdata/` until 20.9, when iOS build 6 put
+  `ocr/ios/libtesseract.xcframework` beside it for the podspec to symlink — and vc8 shipped its four slices (ios-arm64,
+  simulator, maccatalyst, macos) as **257 entries under `base/assets/ios/`**, none of which Android can load.
+- **The exclusion is now structural, not a filter.** A `Sync` task stages the one named path
+  `INBORN_MODELS_DIR/ocr/tessdata/*.traineddata` into `build/generated/ocrAssets/tessdata`, and that directory is the assets
+  source. A new sibling under `ocr/` cannot reach Android at all, because nothing but `tessdata` is ever named. The source is
+  registered as `assets.srcDir(stageTessData.map { it.destinationDir })`, so the provider carries the task dependency and
+  merge, package **and lint** all wait for the staging (declaring only the merge tasks failed
+  `:doc-extract:generateReleaseLintModel` validation on Gradle 9.3.1).
+- **Proof, built exactly as section K records it**: clean `rm -rf android`, prebuild with `INBORN_MODELS_DIR=…/.models
+  INBORN_PACKS=instant,fast INBORN_VERSION_CODE=9`, then `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a
+  -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private `GRADLE_USER_HOME` in the session scratch.
+  `gradlew --stop` was never run and no xcodebuild ran beside it. **BUILD SUCCESSFUL in 1 m 51 s**, 1105 tasks.
+  Nothing was uploaded to Play.
+
+| check | vc8 (`main`) | fixes-r15 |
+|---|---|---|
+| AAB | 2,092,078,443 B | **1,873,100,390 B** — 218,978,053 B smaller |
+| entries under `base/assets/ios` | **257** | **0** |
+| `base/assets` uncompressed | 451,697,441 B | **17,792,265 B** |
+| base module uncompressed | 636,516,916 B | 202,609,000 B |
+| Tesseract data | `base/assets/tessdata/{eng,heb}.traineddata` | same two entries, 4,113,088 + 961,404 B |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | OK | **OK** — `inborn_model` fast-follow, `inborn_model_fast` on-demand, both GGUFs byte-identical (532,517,120 / 1,280,835,840 B) |
+| manifest | versionCode 8 | versionCode **9**, versionName 1.0.0, `com.inbornapp.mobile`, minSdk 26, compileSdk 36 |
+| `scripts/check-android-permissions.sh` | 9 declared, no INTERNET | **"OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)."** |
+
+  sha256 of the new AAB: `38511d83494a1fa5d60a366a6126300507e8c1d3d1ca0b4725596ee8d413008a`.
+- **OCR still finds its data.** The shipped path `base/assets/tessdata/…` is exactly what the module reads:
+  `DocExtractModule.kt:171` `assets.list("tessdata")`, `:175` `assets.open("tessdata/$name")`, `:182` the language list. The
+  debug APK built from the same gradle file carries `assets/tessdata/eng.traineddata` and `heb.traineddata` and zero
+  `assets/ios` entries.
+- **iOS is untouched.** `git diff origin/main -- apps/mobile/modules/doc-extract/ios apps/mobile/ios` is empty; the podspec
+  still symlinks `vendor/libtesseract.xcframework` and `vendor/tessdata` out of `INBORN_MODELS_DIR/ocr`, the way
+  `docs/qa/ios-build-6-2026-09-20.md` line 28 describes. Only the Android side stopped taking the folder wholesale.
+
+### F27 · a hardware keyboard could not leave the empty chat's suggestion chips
+Reproduced first on the **shipped vc8 build** on the OnePlus 6T (Android 11, 1080×2340 at 450 dpi = 384 dp), fresh empty chat
+via `inborn://`, `input keyevent TAB` with one serialised `uiautomator dump` per press:
+`composer-input → mic → Dismiss → suggestion-summarize → suggestion-translate → suggestion-draft → translate → draft → …`
+and from there translate and draft for ever. Round 13 closed F27 against an emulator; the floor device disagrees.
+- **Root cause is React Native's scroll view, not our layout** (`ReactScrollView.java:488`, RN 0.86.3). Under the default
+  feature flag `enableCustomFocusSearchOnClippedElementsAndroid`, `focusSearch` computes the correct next focus with
+  `super.focusSearch`, **throws it away** whenever `findViewById(nextFocus.getId())` says it is not one of its own
+  descendants, and substitutes `ReactScrollViewHelper.findNextFocusableView`, which asks Fabric for the next focusable
+  *inside the scroll view*. The chips are the chat list's `ListEmptyComponent`, so every TAB that should leave the list is
+  rewritten back into it.
+- **Measured on the device, not inferred.** With an explicit `nextFocusForward` from chip to chip the prop is honoured
+  (draft → summarize, a target inside the scroll view). The same prop pointing at `composer-input` (react tag 202) or at
+  `open-chats` (tag 58) is ignored and focus falls back to the chip cycle. Both of those are outside the scroll view; that is
+  the only difference between the two runs. Android logged no "couldn't find view with id", so the ids resolve.
+  Why the emulator escaped it in rounds 12 and 13 was not established, and is not needed: the fix is proven on the device
+  that shows the defect.
+- **Fix, part 1 — focus can leave a list again** (`apps/mobile/plugins/withScrollFocusEscape.js`, new, registered in
+  `apps/mobile/app.config.ts`). `MainApplication.onCreate` turns that one flag off for the whole app. `loadReactNative`
+  already installs the stable overrides through `DefaultNewArchitectureEntryPoint.load`, and a second
+  `ReactNativeFeatureFlags.override` throws "Feature flags cannot be overridden more than once", so the plugin uses
+  `dangerouslyForceOverride` with `ReactNativeNewArchitectureFeatureFlagsDefaults` — the exact set the stable release level
+  installs, since `ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android` is that class with nothing added and is final —
+  plus the one flag. The clipped-element search this disables has nothing to find here anyway: fixes round 14 set
+  `removeClippedSubviews: false` on all four long lists. The plugin throws at prebuild if `MainApplication.kt` ever changes
+  shape.
+- **Fix, part 2 — the order is declared** (`apps/mobile/src/screens/Chat.tsx`). The chips chain
+  `nextFocusForward` summarize → translate → draft → `composer-input`, with the handles resolved by `findNodeHandle` once the
+  refs are attached. Android only: `chipNext` stays empty on iOS, so no prop reaches the iOS render and no iOS pixel moves.
+  `apps/mobile/src/types/react-native-focus.d.ts` declares `nextFocusForward` on `ViewProps`, which RN 0.86 has in its Flow
+  props and in `ReactViewManager` but omits from its `.d.ts`.
+- **Green on the 6T**, debug APK of this branch driven from Metro, keys only, one serialised dump per press. Fresh empty chat
+  opened with `inborn://`; eighteen TABs give two identical nine-stop rings, `composer-input` reached each time, no cycle:
+```
+ 1 model-chip            10 model-chip
+ 2 attach                11 attach
+ 3 mic                   12 mic
+ 4 (notice) Dismiss      13 (notice) Dismiss
+ 5 suggestion-summarize  14 suggestion-summarize
+ 6 suggestion-translate  15 suggestion-translate
+ 7 suggestion-draft      16 suggestion-draft
+ 8 composer-input        17 composer-input
+ 9 open-chats            18 open-chats
+```
+  Shots: `docs/qa/fixes-r15/f27-empty-chat.png`, `f27-tab07-draft-focused.png`, `f27-tab08-composer-focused.png` (the amber
+  focus border on the composer and the soft keyboard up).
