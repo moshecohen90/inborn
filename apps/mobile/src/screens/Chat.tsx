@@ -76,6 +76,7 @@ import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
+import { planDocsTurn } from "../lib/docsGate";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -378,20 +379,30 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let citations: Citation[] | undefined;
     const started = Date.now();
     const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === targetId ? fn(x) : x)));
+    const answerWithoutModel = async (key: string) => {
+      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key), modelId: model.id });
+      setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
+    };
     try {
       const facts = await store.memoryFor(chatIdNow, persona.id);
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
+      /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
+      const turn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready }) : { kind: "model" as const };
+      /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
+      if (turn.kind === "refuse") {
+        await answerWithoutModel(turn.messageKey);
+        return;
+      }
       const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser) });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
-      /* Attached documents (§7.3, §8.5): retrieve, fence, cite; "Continue" keeps the passages the partial answer already saw. */
-      if (docs.ready && !existingMessageId && lastUser) {
+      /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
+      if (turn.kind === "retrieve") {
         try {
           const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system);
           if (rag.prompt.noAnswer) {
-            const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t("documents.notFound"), modelId: model.id });
-            setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
+            await answerWithoutModel("documents.notFound");
             return;
           }
           messages = rag.prompt.messages;
@@ -1007,7 +1018,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {tier === "free" ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.photoLimit")}</Text> : null}
         </View>
       ) : null}
-      {attachedNames.length ? (
+      {attachedNames.length || docs.strict ? (
         <View testID="attached-docs" style={styles.chips}>
           {docs.documents.map((d) => (
             <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: d.name })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
