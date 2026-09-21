@@ -1482,3 +1482,54 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
 - **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
+
+## Fixes round 16: strict documents mode answered from the model when nothing was attached (F34) (branch `fixes-r16`) — 21.9.2026
+QA pass 7 (`docs/qa/qa-run-2026-09-11.md`, row 4) found the "Answer only from my documents" switch doing nothing whenever the
+chat had no indexed document attached: the model answered from its own weights, confidently wrong about a place that does not
+exist, and nothing on screen said the switch was on.
+- **Root cause: the whole documents branch hung off `docs.ready`** (`apps/mobile/src/screens/Chat.tsx`), and
+  `useDocumentContext` sets `ready` from `library.attachedTo(chatId)`, so it is false for every fresh chat and for every chat
+  the user has just detached a document from. With `ready` false the retrieval call, the `noAnswer` check and
+  `t("documents.notFound")` were all skipped and the turn fell through to `engine.generate`. The strict switch had no say in
+  that condition at all, and the "DOCS ONLY" tag rendered only inside the attachment chip row, so with nothing attached the
+  chat showed no strict indicator either.
+- **The fix decides the turn before anything reaches the model** (`apps/mobile/src/lib/docsGate.ts` — new, used in
+  `screens/Chat.tsx`). `planDocsTurn({ strict, hasAttachment, hasIndex })` returns `retrieve` only when an attached document
+  has passages, `model` when the switch is off, and otherwise `refuse` with the message key to answer with. Strict with nothing
+  attached answers `documents.noneAttached`, the new key; strict with an attachment that has no index yet answers
+  `documents.notFound`. The non-strict path is untouched, and "Continue" still resumes a partial answer with the passages it
+  already saw, so the gate only decides fresh turns.
+- **Retrieval may not simply be widened instead.** `DocumentLibrary.ask` falls back to *every* indexed document when it is
+  handed no ids, so relaxing the old condition to `docs.ready || docs.strict` would have answered a chat with nothing attached
+  out of the user's whole library. The gate is what keeps "attached" meaning attached.
+- **New copy in all nine locale files** (`packages/i18n/locales/*.json`): `documents.noneAttached` — "No document is attached
+  to this chat. Attach one, or turn off “Answer only from my documents”." Each locale quotes its own wording of the switch;
+  `pseudo.json` was regenerated with `node scripts/pseudo.mjs`.
+- **The DOCS ONLY tag now follows the switch, not the attachments** (`screens/Chat.tsx`): the chip row renders whenever
+  `docs.strict` is on, so a chat with nothing attached still says it is in documents-only mode.
+- **Unit test** `apps/mobile/src/lib/docsGate.test.ts`: strict with nothing attached refuses with `documents.noneAttached`,
+  strict with an unindexed attachment refuses with `documents.notFound`, an indexed attachment retrieves with or without
+  strict, and no strict means the model answers. Gates on this worktree: `pnpm typecheck`, `pnpm test`
+  (core 461, mobile 164, i18n 10, ui 11) and `pnpm lint` all exit 0.
+- **Proof on the Android emulator** (AVD `Pixel_6_API_33`, `-memory 4096`, guest `MemTotal 4,000,208 kB`, debug APK from this
+  worktree, Instant / Qwen3.5-0.8B-Q4_K_M, Metro on the private port 8171, `EXPO_PUBLIC_TIER=work`,
+  `EXPO_PUBLIC_AUTOINDEX=handbook.pdf`; `docs/qa/fixes-r16/a-01…a-03`). Strict on from `documents.json` before the first
+  launch, nothing attached: "What is the capital of Atlantis?" answered **"No document is attached to this chat. Attach one,
+  or turn off “Answer only from my documents”."** with the DOCS ONLY tag on screen and no attachment chip. The 3-page
+  `handbook.pdf` then imported and indexed (`[documents] handbook.pdf: indexed · 3/3 pages · 3 chunks · 2489 ms`) and attached:
+  the same question answered **"I could not find that in your documents."**, and "How many crates were counted at the Reykjavik
+  depot?" answered **"5,842"** with one chip, `handbook.pdf · p.2`. The logs show the model was never asked on the two refused
+  turns — `[stats] … tokPerSec 0, ttftMs 0, ctxUsed 0, elapsedMs 49` and `elapsedMs 204`, with no `[llama.rn] timings` line —
+  while the cited answer has `timings … prompt_n 484, predicted_n 4`.
+- **Proof on the iPhone 15 Pro simulator** (`12114C34-288A-4AAB-B50A-693DC6775C60`, iOS 17.0, Debug build for the
+  simulator from this worktree, Instant on Metal, Metro on 8081, same env; `docs/qa/fixes-r16/i-01…i-03`). The app was
+  reinstalled first so the library started empty, and the same three steps gave the same three answers: the
+  `documents.noneAttached` line with DOCS ONLY on screen and nothing attached, then "I could not find that in your
+  documents." once `handbook.pdf` was attached (`indexed · 3/3 pages · 3 chunks · 1585 ms`), then "Five, 842 crates were
+  counted at the Reykjavik depot." with one chip, `handbook.pdf · p.2`. Same signature in the logs: `[stats] … tokPerSec
+  0, elapsedMs 49` and `elapsedMs 64` with no `timings` for the two refusals, `prompt_n 480, predicted_n 16` for the cited
+  answer. The Instant model spells the figure as "Five, 842" rather than "5,842"; that is the bundled model's wording of
+  the right number from the right page, unchanged by this round.
+- **Harness notes.** `idb ui tap` still needs `--duration 0.15` for the onboarding buttons (pass-7 O39), and the attach
+  sheet dismisses by tapping the backdrop above it rather than its full-screen Close node. `EXPO_PUBLIC_AUTOINDEX`
+  re-imports on every Documents mount (O43), so the library was opened exactly once per platform.
