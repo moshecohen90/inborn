@@ -304,7 +304,7 @@ Proven 6.9.2026 on the iPhone 13 Pro (Release, production variant, build 1.0.0 (
 
 IPA 553,951,589 bytes (528 MB; build 1 without the model was ≈40 MB). TestFlight: build 1.0.0 (2), delivery 074f5575, processingState VALID, in the "Inborn internal" group; build 1 expired.
 
-## Status 20.9.2026 (spec §14 table)
+## Status 21.9.2026 (spec §14 table)
 Built and merged (main): M1 engines (llama.rn / wllama / Rust llama.cpp) with S31 Benchmark, chip classes incl. android-legacy and a boot-time RAM floor;
 M2 vault (signed catalog, PAD packs, resumable downloads, GGUF import, Hugging Face search on iOS, relative stored paths that survive updates);
 M3 chat (Markdown, folders, FTS that never leaks locked vaults, personas, memory, incognito, crisis/report, §7.5 auto-delete enforced, S43 quick
@@ -318,13 +318,25 @@ model-fit mediation (catalog v3 with measured per-language tiers, the chat advic
 desktop phase 3 CI; legal/QA/ops docs; store copy in all 8 languages; icon.
 Verified: TestFlight 1.0.0 (5) VALID in the internal group (fixes rounds 10–10d), proven on a real iPhone over USB on 20.9 — exit meter
 OUT 0 B, paywall prices read from the App Store, 0 crashes (`docs/qa/ios-device-pass-5-2026-09-20.md`); the chat turn itself was blocked
-by the XCTest passcode sheet and stays open for build 6. Play internal testing 1.0.0 (6) active (`docs/qa/purchases-run-2026-09-11.md`
-section I); versionCode 7 build **in progress (20.9)**. QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
+by the XCTest passcode sheet and stays open for build 6. TestFlight 1.0.0 (6) VALID 20.9, real-iPhone pass 6 all PASS except the live chat
+turn (blocked by the phone's UI-Automation passcode sheet, not the app) (`docs/qa/ios-build-6-2026-09-20.md`,
+`docs/qa/ios-device-pass-6-2026-09-20.md`). TestFlight 1.0.0 (7) VALID 21.9 01:24 from `main` 7419104, buildNumber 7
+(`docs/qa/ios-build-7-2026-09-21.md`); real-iPhone pass 7: 11 routes PASS, 0 crashes, chat turn NOT RUN for the same passcode-sheet reason
+(`docs/qa/ios-device-pass-7-2026-09-21.md`). Open Moshe item from that build: the App Manager ASC API key cannot export with
+cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin key was used instead. Play internal testing 1.0.0 (6) active
+(`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
+from `main` 543a5af with the F33 fix (section K). QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
 passes 4a–4d and 5 found F17–F29, fixed in fixes rounds 10, 10b, 10c, 10d and 12 (incl. the web tier's §7.8 mediation and the model-download
-race, F22/F23); pass 6 **in progress (20.9)** on `main` ff39f94. Soak run 1 (11.9, 2 h 30 on the 6T): PASS
+race, F22/F23); pass 6 (20.9, `main` ff39f94): 28/29 PASS, the document-import row (4d) NOT RUN, three low findings F30–F32 fixed in fixes
+round 14. Soak run 1 (11.9, 2 h 30 on the 6T): PASS
 (`docs/qa/soak-run-2026-09-11.md`). Soak run 2 (20.9): 0 crashes over 2 h 30, but not a valid continuous-use soak — F27 (a hardware-keyboard
-focus trap on the empty-chat screen) cut the prompt load off after 51 minutes (`docs/qa/soak-run-2026-09-20.md`). Soak run 3 **in progress
-(20.9)** on versionCode 7. Launch-language decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
+focus trap on the empty-chat screen) cut the prompt load off after 51 minutes (`docs/qa/soak-run-2026-09-20.md`). Soak run 3 (20.9, vc7,
+`docs/qa/soak-run-3-2026-09-20.md`): FAIL on M7 — one crash at minute 45 (F33, a react-native-screens NPE after a deep link to `/vault`
+taken right after a background return), 2 h 41 min, 47 prompts attempted / 44 answered / 0 send failures. Fixes round 14
+(`README.md` section "Fixes round 14", `main` 543a5af) found F33's root cause to be Android list clipping (`removeClippedSubviews`)
+mutating a view tree react-native-screens was re-attaching; fixed in `apps/mobile/src/lib/listClipping.ts` on the four long lists, plus
+F30–F32. Soak run 4 (21.9, vc8, `docs/qa/soak-run-4-2026-09-21.md`): PASS, 48 F33 pop cycles with zero crashes, one process for the whole
+5 h 39 min run, F27 reproduced as FAIL (not fixed), F28 PASS retested. Launch-language decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
 (English, Japanese, German, Spanish, French, Portuguese-Brazil, Korean, Traditional Chinese); Indonesian, Simplified Chinese, Gulf Arabic
 and Italian for wave 2; Hebrew needs its own model (`DictaLM-3.0-1.7B-Instruct`) and ships the quarter after launch, not at 1.0. Voice on
 the real iPhone (`docs/qa/voice-run-2026-09-11.md`); purchases on both stores (`docs/qa/purchases-run-2026-09-11.md`); copy sign-off
