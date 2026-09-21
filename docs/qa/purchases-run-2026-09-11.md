@@ -1,4 +1,4 @@
-# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 8
+# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 12
 
 Branch `purchases-verify` (merged with `main` at 0e4dba0). Continues `purchases-run-2026-09-06.md` (Play purchase proven on the OnePlus 11, ASC products READY_TO_SUBMIT).
 Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/purchases-r2/` (file names below; copy before the session directory is cleaned).
@@ -17,6 +17,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | I. Play internal release versionCode 6 (main 70e1cfa, fixes-r10 incl. hardware-keys) + 6T sanity (14.9) | DONE: AAB 2,092,019,571 bytes, 9 permissions, no INTERNET, "1.0.0 (6) internal"; on the 6T: Instant answer, assistant row a11y label carries the answer, soft Enter newlines + Send, Fast pack delivered by Play (25 chunks, FAST loaded), YOU OWN PRO + "Purchase restored" |
 | J. Play internal release versionCode 7 (main ff39f94, fixes-r13) + 6T sanity (20.9) | DONE: AAB 1,870,640,031 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (7) internal" (edit 08066290382974104798); on the 6T, updated by Play with both model packs intact: Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. Delivered through Play rather than bundletool because the app uses Play app signing (see J) |
 | K. Play internal release versionCode 8 (main 543a5af, fixes-r14 incl. the F33 fix) + 6T sanity (21.9) | DONE: AAB 2,092,078,443 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (8) internal" (edit 09760590197853827663); About on the 6T reads 1.0.0 (8) / 543a5af3671b. Play withheld the install for ~30 min while it published the asset packs ("all packs are unavailable"). Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. **Fast is reported as not installed after the update and has to be re-requested**, though the bytes are still on the device. Soak run 4 that follows: 48 F33 pop cycles, 48 OK, one process 5 h 39 min, no dropbox entry for v8 |
+| O. Play internal release versionCode 12 — the production pack set (21.9) | DONE: AAB **5,117,797,242 bytes** built with `INBORN_PACKS` unset, **all seven asset packs**, uploaded as "1.0.0 (12) internal" (edit 06260306700914179612). On the 6T through Play: **Sharp** installs from two packs and answers, **speech** and **vision** install, and a photo is described correctly. Two findings for Moshe: the shipped vision projector fits **Instant only** (Fast and Sharp cannot load it), and hands-free dictation crashes in `react-native-live-audio-stream`, so Whisper was never exercised. Sections L–O below have no rows of their own |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -603,6 +604,196 @@ device"), and the two pushed fixtures and the MediaStore row the run created wer
 the app is force-stopped and the phone is on its launcher home screen. Nothing was uninstalled, no setting was changed,
 the phone was never locked or unlocked.
 
+## O. Play internal release versionCode 12 — every asset pack, built with `INBORN_PACKS` unset — 21.9.2026 17:51–20:00
+
+The first Android bundle that carries the **production** pack set. Every internal build before this one was made with an
+`INBORN_PACKS` subset (`instant,fast` up to vc10, `instant,fast,embed` for vc11), so Sharp, Whisper and the vision
+projector had never been built, uploaded or delivered to a device at all. The app has no INTERNET permission, so Play is
+the only road those models can travel: a Pro user on an internal build could not reach them by any other path.
+
+**The rule this run writes down.** A store bundle is built with `INBORN_PACKS` **unset** — which is every pack of
+`ALL_PACKS` in `apps/mobile/app.config.ts`. `scripts/check-android-bundle.sh` now reads the pack list out of `ALL_PACKS`
+itself (a `sed` over the `const ALL_PACKS = {` block) and fails the bundle when one of them is missing, so a new pack
+cannot be added to the app without the release gate seeing it, and a subset build can no longer be uploaded by accident.
+README's PAD section carries the same rule plus Play's three size limits.
+
+**Build.** Fresh worktree `android-vc12` off `origin/main` (**bab755b**), `pn install --frozen-lockfile`, `.models`
+symlinked to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build`
+removed. `scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=12` and
+**no `INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` (APFS clone of `~/.gradle-pr2`) in the session scratch. **BUILD SUCCESSFUL in 4 m 11 s**, 1112
+actionable tasks, 1112 executed. `gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty before it started and
+no xcodebuild ran beside it.
+
+Before the build, every model file `ALL_PACKS` names was confirmed present in `.models` at its catalog size — none was
+missing, so no pack was skipped.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,797,242 bytes** (4.77 GiB; vc11 was 2,125,769,716) |
+| sha256 | `4b8ca8c705af53ca66aae3491d5e1066645bca770ad852fc07cb8d3b34510e1b` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| **asset packs** | **seven** — see the pack table below (vc11 had three, vc8…vc10 two) |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` (extended) | **exit 0** on this AAB, all seven packs named OK; **exit 1** on the shipped vc11 AAB, naming `inborn_model_speech`, `inborn_model_vision`, `inborn_model_sharp`, `inborn_model_sharp_2` as missing |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base 202,612,790 B / 1453 entries; the seven packs below |
+| `base/assets` | 17,795,926 B / 120 entries (vc11: 17,795,396 B / 120) |
+| manifest | `versionCode="12" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26 |
+| commit baked into `app.config` | `bab755bb1e82` — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pn lint` exit 0; `pn test` exit 0 (core 461, mobile 169, i18n 10, ui 11 — 651 tests) |
+
+| asset pack | delivery | asset | asset bytes | module bytes | catalog model |
+|---|---|---|---|---|---|
+| `inborn_model` | fast-follow | `Qwen3.5-0.8B-Q4_K_M.gguf` | 532,517,120 | 532,518,071 | `instant` (Instant) |
+| `inborn_model_fast` | on-demand | `Qwen3.5-2B-Q4_K_M.gguf` | 1,280,835,840 | 1,280,836,794 | `fast` (Fast) |
+| `inborn_model_embed` | on-demand | `nomic-embed-text-v1.5.f16.gguf` | 274,290,560 | 274,291,515 | `embed-nomic` (Document index) |
+| **`inborn_model_speech`** | **on-demand** | `ggml-base.bin` | **147,951,465** | 147,952,421 | `speech-whisper-base` (Voice input) |
+| **`inborn_model_vision`** | **on-demand** | `mmproj-Qwen3.5-0.8B-F16.gguf` | **204,987,232** | 204,988,188 | `vision-qwen35` (Photo understanding) |
+| **`inborn_model_sharp`** | **on-demand** | `Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf` | **1,401,058,176** | 1,401,059,131 | `sharp` shard 1 of 2 |
+| **`inborn_model_sharp_2`** | **on-demand** | `Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf` | **1,339,879,904** | 1,339,880,861 | `sharp` shard 2 of 2 |
+
+Play's limits, all met: base + install-time is **202,612,790 B** (no install-time pack) against the 4 GB cap; fast-follow
+plus on-demand is **5,181,520,297 B** (4.83 GiB) against 30 GB; the largest single pack is `inborn_model_sharp` at
+**1,401,058,176 B** (1.30 GiB) against the 1.5 GB per-pack cap — which is why Sharp is split into two shards, and the two
+shards together are exactly the catalog's 2,740,938,080 B for `sharp`.
+
+Every pack asset is byte-identical to its source in `.models`: `Qwen3.5-4B-…-00001` `49bd3df5…`, `-00002` `1f4a1a6d…`,
+`ggml-base.bin` `60ed5bc3…`, `mmproj-Qwen3.5-0.8B-F16.gguf` `56e4c6cf…`, each sha256 the same read out of the AAB and out
+of `.models`.
+
+**Upload.** `--next-version-code` returned **12**; edit **`06260306700914179612`**, bundle versionCode 12 with the same
+sha256 as the local file (`4b8ca8c7…`), track `internal` release **"1.0.0 (12)"** `completed`, committed. The upload of
+4.77 GiB took about 35 minutes over 80 chunks of 64 MiB; the last chunk's response came back as a `fetch failed` once
+while Play was still processing the bundle, and the uploader's own probe-and-resume retry carried it through without
+re-sending what Google had already stored.
+
+**The vc11 → vc12 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc11, app
+force-stopped, on its launcher, **15,901,540 KB (15.2 GB) free on `/data`**. The first **Update** press at **18:20:16**
+answered "all packs are unavailable" — Play had not finished publishing the new pack set, the same first-attempt
+behaviour vc11 saw. The second press, **18:24:48**, started the download within a minute (18:25:40). `versionCode=12` at
+**18:30:58**, `installerPackageName=com.android.vending`, `lastUpdateTime=2026-09-21 18:30:40`, `firstInstallTime` still
+11:57:38 (the vc8 install from section L), so this was an update in place and nothing was uninstalled.
+
+Play re-fetched the three packs the device already had, for the new version code: `inborn_model_fast` 1,280,876,968 B,
+`inborn_model_embed` 274,334,128 B and `inborn_model` (11 chunks), each ending in
+`onNotifyModuleCompleted(…, sessionId=36/37/38)` between 18:31:26 and 18:31:41. The four **new** packs were not fetched
+by the update — they are on-demand, and the vault has to ask for them, which is exactly what the rest of this section does.
+
+- **About** reads **1.0.0 (12)** with the commit **`bab755bb1e82`** (`a-01`), the commit baked into the bundle's
+  `app.config`.
+- **Fast survived the update** a fourth time on the real Play path (round 15 finding C): the vault reads **"1.9 GB in the
+  vault · 15 GB free"**, the FAST card is **Loaded · In use**, the embed card reads **Installed**, and the whole
+  accessibility tree of the vault screen has **no Download, Install or Delivering node** for them (`a-02`).
+- **All three new companions are offered from Play for the first time** (`b-01`, `b-02`): SHARP **"Install · 2.6 GB from
+  Google Play"**, SPEECH **"Install · 141 MB from Google Play"**, VISION **"Install · 195 MB from Google Play"**. On every
+  build up to vc11 these cards had no Play plan at all.
+
+**Sharp — installed from Play, both shards, and it answers.** The first press at **18:37:36** downloaded to **48% ·
+1.2 GB of 2.6 GB** and then failed at **18:40:10** with **`Could not install: -6 · Asset Pack Download Error(-6): Network
+error. Unable to obtain the asset pack details.`** At that exact moment the phone's own Google account token was failing
+(`Auth: ahbr: GetToken failed with status code and recovery intent: BadAuthentication`, 18:40:05–18:40:16, alongside a
+Finsky storage sweep), so Play could not fetch the pack metadata. **Pressing the card again recovered it**: the retry at
+**18:40:33** resumed rather than restarting and reached ready in **159 s**; `inborn_model_sharp_2` downloaded
+1,321,892,683 B and logged `onNotifyModuleCompleted(inborn_model_sharp_2, sessionId=40)` at **18:44:11**. A PAD `-6` on a
+multi-GB pack is worth one retry before it means anything.
+
+- The vault line goes **1.9 GB → 4.5 GB in the vault** (`b-04`), the 2.6 GB Sharp adds.
+- Pressing **Use** loaded it: `[inborn] llama.rn loaded model SHARP (sharp) from
+  file:///data/user/0/com.inbornapp.mobile/files/assetpacks-joined/sharp/Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf in
+  **4540 ms**` — the `assetpacks-joined` directory is `playDelivery.locate`'s `linkInto`, which joins two separate Play
+  packs into the one directory llama.cpp needs to find shard 2 beside shard 1. **The two-pack shard split works on a real
+  Play install.**
+- "Name the three primary colours and one fruit that is each of them." → **"Red: Strawberry · Blue: Blueberry · Yellow:
+  Lemon"** (`b-06`).
+- **Ledger** (`b-07`): MODEL **SHARP**, QUANT Q4_K, CONTEXT 142 / 4096, MS/TOKEN **1820 ms**, **TOK/S 0.5**, FIRST TOKEN
+  **32,912 ms**, TOKENS 109 + 33, GENERATION **65.9 s**. The vault card estimates "~3-4 tok/s on your phone"; the measured
+  rate on this 2018 phone is **0.5 tok/s**, roughly seven times slower than the card promises.
+
+**Speech (Whisper) — the pack arrives and the app binds it; a transcription could NOT be proven.** The card installed in
+**25 s** (`onNotifyModuleCompleted(inborn_model_speech, sessionId=41)` 18:51:25) and reads **Installed** (`c-01`).
+`inborn://voice` then renders the **live hands-free screen** — `voice-screen`, `voice-seal`, `voice-wave`, phase
+**LISTENING**, "Say something. Everything stays on this phone." — instead of the "Voice input needs the transcription
+model" screen with its Open-vault button. That branch is `ready = whisperInstalled()`, i.e. `getVault().state(
+"speech-whisper-base").kind === "ready"` with a real path, so **the vault resolved the model inside the Play pack**.
+`RNWhisper: Loaded native library` follows.
+
+**Transcription is blocked by a crash that has nothing to do with the packs.** `RECORD_AUDIO` was `granted=false` on this
+phone, so the recorder could not open at all (`AudioRecord: AudioFlinger could not create record track, status: -1`) and
+the screen sat in LISTENING forever. Granted (`pm grant`, and **revoked again afterwards** — the permission is
+`granted=false` again now, as it was before), the mic path **crashes the app**, three times out of three, about 24 s after
+the screen opens:
+
+```
+FATAL EXCEPTION: Thread-14
+java.lang.NullPointerException: Attempt to invoke virtual method 'void android.media.AudioRecord.release()' on a null object reference
+	at com.imxiqi.rnliveaudiostream.RNLiveAudioStreamModule$1.run(RNLiveAudioStreamModule.java:115)
+```
+
+The hands-free listener restarts the recorder about every 12 s; on the second or third restart `stop()` and `start()`
+interleave across three threads (`AudioRecord: stop(261): mActive:1 / :0 / :0`) and the reader thread dereferences a
+`recorder` that the stopping thread has already nulled. Whisper never gets asked for anything: **no whisper model load
+appears anywhere in the run's 34,794 log lines**, only the JNI library. So for the speech pack this run proves
+**delivery + binding**, and **NOT RUN: whisper decoding audio**, because `react-native-live-audio-stream` kills the
+process before the engine is used. That crash is present on vc11 too — it is not caused by this release — and it means
+dictation and hands-free are unusable on this device today, whichever build is installed.
+
+**Vision — installed from Play and it describes a photo, but the shipped projector only fits Instant.** The card
+installed in **25 s** (`onNotifyModuleCompleted(inborn_model_vision, sessionId=42)` 19:02:24) and reads **Installed**
+(`d-01`); the vault line goes **4.5 GB → 4.8 GB**. A 1024 × 640 fixture — a red circle on the left, a blue square in the
+middle, a green triangle on the right, nothing else — was pushed to `/sdcard/Pictures`, picked through the system photo
+picker and attached to a chat (`d-02`).
+
+| resident model | `n_embd` | `mtmd` init with `mmproj-Qwen3.5-0.8B-F16.gguf` | what the model answered |
+|---|---|---|---|
+| **Instant** (Qwen3.5 0.8B) | 1024 | **"Multimodal context initialized successfully"** | **"The picture shows three shapes: 1. A red circle on the left. 2. A blue square in the middle. 3. A green triangle on the right."** (`d-04`) |
+| Fast (Qwen3.5 2B) | 2048 | **"Failed to initialize multimodal context with mmproj"** | "I cannot see the image you are referring to." (`d-03`) |
+| Sharp (Qwen3.5 4B) | 2560 | **"Failed to initialize multimodal context with mmproj"** | not waited for (0.5 tok/s) |
+
+The projector is loaded straight out of the pack —
+`/data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_vision/12/12/assets/mmproj-Qwen3.5-0.8B-F16.gguf` — so
+**the vision pack itself is proven end to end**: Play delivers it, the vault binds it, llama.rn attaches it and the model
+reads a picture it has never seen. Instant's ledger for that turn: 135 + 49 tokens, 13.3 tok/s, first token 49,871 ms
+(the image encode), generation 53.6 s.
+
+**But `vision-qwen35` is a 0.8B projector, and the catalog sells it as "Lets Instant, Fast and Sharp look at your photos
+on this device."** Two of those three cannot load it: the embedding widths do not match, `mtmd` refuses, and the failure
+is silent to the user beyond a flash — the message is sent without the picture and the model answers that it cannot see
+anything. **Photo input on Android works only when Instant is the resident model.** This is a product decision for Moshe
+(ship a projector per model family, or say "Instant only" on the card); it is not a packaging bug and it does not block
+this release, which is the first build where the pack reaches a device at all.
+
+**F33 × 5** (HOME → 60 s → launcher relaunch → `inborn://vault` → BACK, on a chat with six messages, Fast resident):
+all five cycles **OK**, pid **18500** unchanged through every one, `fatal_delta=0` and `procdied_delta=0` each time
+(19:47:54, 19:49:45, 19:51:35, 19:53:25, 19:55:15). The only `FATAL EXCEPTION` in the 60,095-line app log of that window
+is at 19:41:41 in pid 10208 — the `uiautomator` driver colliding with itself
+(`UiAutomationService … already registered!`), not the app. **0 ANRs.** The three `am_proc_died` entries in the
+19,396-line events log are at 18:53:52, 18:56:43 and 18:58:51 — the three hands-free mic crashes above, all before F33
+started.
+
+**Disk on the 6T.**
+
+| moment | free on `/data` |
+|---|---|
+| before the update | 15,901,540 KB (15.2 GB) |
+| after the vc12 update | 13,690,552 KB (13.1 GB) |
+| after Sharp | 13,222,364 KB (12.6 GB) |
+| end of run (Sharp + speech + vision in) | 12,872,052 KB (12.3 GB) |
+
+Removing Fast from the vault was never needed.
+
+**State left behind.** The pushed fixture and the MediaStore row the run created are gone from `/sdcard/Pictures` (the
+`Pictures/InbornQA/` folder with `house-exif.jpg`, `house.heic` and `huge.png` is the 11.9 QA run's, left untouched).
+`RECORD_AUDIO` is `granted=false` again, exactly as the run found it. The resident model is **Fast**, as it was before the
+run. The chats the run created were left. The 6T holds only `com.inbornapp.mobile`, **Play versionCode 12**, with
+**Instant, Fast, embed, Sharp (both shards), speech and vision** installed — all six packs, 4.8 GB in the vault — Pro
+owned; the app is force-stopped and the phone is on its launcher home screen. Nothing was uninstalled, no phone setting
+was changed, the phone was never locked or unlocked.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -632,3 +823,11 @@ the run created are gone; the app is force-stopped and the phone is on its launc
 and no setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME` inside the session scratch;
 `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it. No emulator, simulator or browser was
 started and the iPhone was not touched.
+
+After section O (21.9, 20:00): the 6T holds only `com.inbornapp.mobile`, **Play versionCode 12**, with **all six packs**
+installed — Instant, Fast, embed, **Sharp (both shards), speech and vision** — 4.8 GB in the vault, Pro owned; the
+resident model is Fast, as before the run. The pushed image fixture and its MediaStore row are gone and `RECORD_AUDIO` is
+`granted=false` again, as the run found it. The app is force-stopped and the phone is on its launcher home screen.
+Nothing was uninstalled and no phone setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME`
+inside the session scratch; `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it. No
+emulator, simulator or browser was started and the iPhone was not touched.
