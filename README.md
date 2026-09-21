@@ -1344,6 +1344,8 @@ Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
 - **F27 · TAB focus trap between the empty-chat suggestion chips: not reproduced.** On Android 11 and Android 13, from the top
   of the screen and from the composer, with and without a draft, the ring is composer → mic → send → the three chips → Chats →
   model chip → attach → composer, and it wraps. Send is skipped only while the draft is empty, because it is disabled then.
+  It did reproduce on the real OnePlus 6T, in soak run 2 (`docs/qa/soak-run-2026-09-20.md`) and soak run 4
+  (`docs/qa/soak-run-4-2026-09-21.md`); round 15 below fixes it.
 ## i18n: Korean + Traditional Chinese (branch `i18n-ko-zhhant`) — 20.9.2026
 The launch set of `docs/research/launch-languages-2026-09.md` §1 is eight languages; six shipped. This adds the last two.
 - **Locales**: `packages/i18n/locales/ko.json` and `zh-Hant.json`, 1000 keys each, the same count as the other six. Translated against
@@ -1533,3 +1535,130 @@ exist, and nothing on screen said the switch was on.
 - **Harness notes.** `idb ui tap` still needs `--duration 0.15` for the onboarding buttons (pass-7 O39), and the attach
   sheet dismisses by tapping the backdrop above it rather than its full-screen Close node. `EXPO_PUBLIC_AUTOINDEX`
   re-imports on every Documents mount (O43), so the library was opened exactly once per platform.
+## Fixes round 15: the Android bundle carried iOS binaries, Fast lost after every update, and F27 on the floor device (branch `fixes-r15`) — 21.9.2026
+Three findings from soak run 4 (`docs/qa/soak-run-4-2026-09-21.md`) and section K of `docs/qa/purchases-run-2026-09-11.md`.
+
+### The Android bundle shipped 229 MB of iOS Mach-O
+- **Root cause: the whole `ocr/` folder was an Android assets source root**
+  (`apps/mobile/modules/doc-extract/android/build.gradle`). The module did `assets.srcDirs += file("$INBORN_MODELS_DIR/ocr")`,
+  which makes every child of that folder an Android asset. `ocr/` held only `tessdata/` until 20.9, when iOS build 6 put
+  `ocr/ios/libtesseract.xcframework` beside it for the podspec to symlink — and vc8 shipped its four slices (ios-arm64,
+  simulator, maccatalyst, macos) as **257 entries under `base/assets/ios/`**, none of which Android can load.
+- **The exclusion is now structural, not a filter.** A `Sync` task stages the one named path
+  `INBORN_MODELS_DIR/ocr/tessdata/*.traineddata` into `build/generated/ocrAssets/tessdata`, and that directory is the assets
+  source. A new sibling under `ocr/` cannot reach Android at all, because nothing but `tessdata` is ever named. The source is
+  registered as `assets.srcDir(stageTessData.map { it.destinationDir })`, so the provider carries the task dependency and
+  merge, package **and lint** all wait for the staging (declaring only the merge tasks failed
+  `:doc-extract:generateReleaseLintModel` validation on Gradle 9.3.1).
+- **Proof, built exactly as section K records it**: clean `rm -rf android`, prebuild with `INBORN_MODELS_DIR=…/.models
+  INBORN_PACKS=instant,fast INBORN_VERSION_CODE=9`, then `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a
+  -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private `GRADLE_USER_HOME` in the session scratch.
+  `gradlew --stop` was never run and no xcodebuild ran beside it. **BUILD SUCCESSFUL in 1 m 51 s**, 1105 tasks.
+  Nothing was uploaded to Play.
+
+| check | vc8 (`main`) | fixes-r15 |
+|---|---|---|
+| AAB | 2,092,078,443 B | **1,873,100,390 B** — 218,978,053 B smaller |
+| entries under `base/assets/ios` | **257** | **0** |
+| `base/assets` uncompressed | 451,697,441 B | **17,792,265 B** |
+| base module uncompressed | 636,516,916 B | 202,609,000 B |
+| Tesseract data | `base/assets/tessdata/{eng,heb}.traineddata` | same two entries, 4,113,088 + 961,404 B |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | OK | **OK** — `inborn_model` fast-follow, `inborn_model_fast` on-demand, both GGUFs byte-identical (532,517,120 / 1,280,835,840 B) |
+| manifest | versionCode 8 | versionCode **9**, versionName 1.0.0, `com.inbornapp.mobile`, minSdk 26, compileSdk 36 |
+| `scripts/check-android-permissions.sh` | 9 declared, no INTERNET | **"OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)."** |
+
+  sha256 of the new AAB: `38511d83494a1fa5d60a366a6126300507e8c1d3d1ca0b4725596ee8d413008a`.
+- **OCR still finds its data.** The shipped path `base/assets/tessdata/…` is exactly what the module reads:
+  `DocExtractModule.kt:171` `assets.list("tessdata")`, `:175` `assets.open("tessdata/$name")`, `:182` the language list. The
+  debug APK built from the same gradle file carries `assets/tessdata/eng.traineddata` and `heb.traineddata` and zero
+  `assets/ios` entries.
+- **iOS is untouched.** `git diff origin/main -- apps/mobile/modules/doc-extract/ios apps/mobile/ios` is empty; the podspec
+  still symlinks `vendor/libtesseract.xcframework` and `vendor/tessdata` out of `INBORN_MODELS_DIR/ocr`, the way
+  `docs/qa/ios-build-6-2026-09-20.md` line 28 describes. Only the Android side stopped taking the folder wholesale.
+
+### F27 · a hardware keyboard could not leave the empty chat's suggestion chips
+Reproduced first on the **shipped vc8 build** on the OnePlus 6T (Android 11, 1080×2340 at 450 dpi = 384 dp), fresh empty chat
+via `inborn://`, `input keyevent TAB` with one serialised `uiautomator dump` per press:
+`composer-input → mic → Dismiss → suggestion-summarize → suggestion-translate → suggestion-draft → translate → draft → …`
+and from there translate and draft for ever. Round 13 closed F27 against an emulator; the floor device disagrees.
+- **Root cause is React Native's scroll view, not our layout** (`ReactScrollView.java:488`, RN 0.86.3). Under the default
+  feature flag `enableCustomFocusSearchOnClippedElementsAndroid`, `focusSearch` computes the correct next focus with
+  `super.focusSearch`, **throws it away** whenever `findViewById(nextFocus.getId())` says it is not one of its own
+  descendants, and substitutes `ReactScrollViewHelper.findNextFocusableView`, which asks Fabric for the next focusable
+  *inside the scroll view*. The chips are the chat list's `ListEmptyComponent`, so every TAB that should leave the list is
+  rewritten back into it.
+- **Measured on the device, not inferred.** With an explicit `nextFocusForward` from chip to chip the prop is honoured
+  (draft → summarize, a target inside the scroll view). The same prop pointing at `composer-input` (react tag 202) or at
+  `open-chats` (tag 58) is ignored and focus falls back to the chip cycle. Both of those are outside the scroll view; that is
+  the only difference between the two runs. Android logged no "couldn't find view with id", so the ids resolve.
+  Why the emulator escaped it in rounds 12 and 13 was not established, and is not needed: the fix is proven on the device
+  that shows the defect.
+- **Fix, part 1 — focus can leave a list again** (`apps/mobile/plugins/withScrollFocusEscape.js`, new, registered in
+  `apps/mobile/app.config.ts`). `MainApplication.onCreate` turns that one flag off for the whole app. `loadReactNative`
+  already installs the stable overrides through `DefaultNewArchitectureEntryPoint.load`, and a second
+  `ReactNativeFeatureFlags.override` throws "Feature flags cannot be overridden more than once", so the plugin uses
+  `dangerouslyForceOverride` with `ReactNativeNewArchitectureFeatureFlagsDefaults` — the exact set the stable release level
+  installs, since `ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android` is that class with nothing added and is final —
+  plus the one flag. The clipped-element search this disables has nothing to find here anyway: fixes round 14 set
+  `removeClippedSubviews: false` on all four long lists. The plugin throws at prebuild if `MainApplication.kt` ever changes
+  shape.
+- **Fix, part 2 — the order is declared** (`apps/mobile/src/screens/Chat.tsx`). The chips chain
+  `nextFocusForward` summarize → translate → draft → `composer-input`, with the handles resolved by `findNodeHandle` once the
+  refs are attached. Android only: `chipNext` stays empty on iOS, so no prop reaches the iOS render and no iOS pixel moves.
+  `apps/mobile/src/types/react-native-focus.d.ts` declares `nextFocusForward` on `ViewProps`, which RN 0.86 has in its Flow
+  props and in `ReactViewManager` but omits from its `.d.ts`.
+- **Green on the 6T**, debug APK of this branch driven from Metro, keys only, one serialised dump per press. Fresh empty chat
+  opened with `inborn://`; eighteen TABs give two identical nine-stop rings, `composer-input` reached each time, no cycle:
+```
+ 1 model-chip            10 model-chip
+ 2 attach                11 attach
+ 3 mic                   12 mic
+ 4 (notice) Dismiss      13 (notice) Dismiss
+ 5 suggestion-summarize  14 suggestion-summarize
+ 6 suggestion-translate  15 suggestion-translate
+ 7 suggestion-draft      16 suggestion-draft
+ 8 composer-input        17 composer-input
+ 9 open-chats            18 open-chats
+```
+  Shots: `docs/qa/fixes-r15/f27-empty-chat.png`, `f27-tab07-draft-focused.png`, `f27-tab08-composer-focused.png` (the amber
+  focus border on the composer and the soft keyboard up).
+
+### After every Play update the vault asked for a 1.2 GB download it already had
+Section K of `docs/qa/purchases-run-2026-09-11.md` (line 314): on the vc7 → vc8 update the vault read "508 MB in the vault"
+and the Fast card offered `install-fast` "Install · 1.2 GB from Google Play", yet Download **finished instantly** because
+the bytes had never left the phone. The same happened on vc6 → vc7. MosheAI called it a release blocker.
+- **Root cause: Play stores each asset pack under the app's versionCode, so every update unbinds it.** The engine line in
+  logcat shows the path shape: `files/assetpacks/inborn_model_fast/9/9/assets/Qwen3.5-2B-Q4_K_M.gguf` — pack, versionCode,
+  pack version. After an update `AssetPackManager.getPackLocation` returns null for an on-demand pack until the app asks for
+  it again, and `PlayDelivery.locate` (`apps/mobile/src/vault/playDelivery.ts`) is built on exactly that call. `VaultStore.scan`
+  then took "not located" for "not installed", **deleted the install record** and set `not-installed`, which is the Install
+  offer with the full catalog size behind it.
+- **Why Instant survived and Fast did not.** The tail of `scan` already re-requested packs, but only where
+  `d.mode === "fast-follow"` — Instant. Fast, Sharp, the embedder, speech and vision are on-demand and were left to the user.
+- **The fix extends that one mechanism instead of adding another** (`apps/mobile/src/vault/store.ts`): `requestKnownPacks()`
+  asks Play for every pack that is fast-follow **or** that the vault's own record says this device was delivered
+  (`installs[id].via === "play"`), and `scan` no longer deletes a Play record just because the pack is unbound — that record
+  is the app's only memory that the bytes are there. It runs at the end of the boot scan and again when the vault opens
+  (`apps/mobile/src/screens/vault/VaultScreen.tsx`). Play serves a pack it still holds without downloading anything; a pack
+  that is genuinely gone is re-fetched for a model the user had already chosen, under Play's own Wi-Fi and cellular-consent
+  rules. Nothing asks for a model this device never had, so no boot starts an unasked download.
+- **Unit test**: `apps/mobile/src/vault/store.test.ts`, five cases over a faked Play delivery — the unbound pack is
+  re-requested and lands `ready`, the record survives the unbound boot, a model this device never had is left alone, an
+  HTTPS file that is really gone still loses its record, and the vault-open path re-asks. Against the pre-fix `store.ts`
+  three of the five fail (`expected [ 'instant' ] to include 'fast'`).
+- **Proof on the OnePlus 6T** (`REDACTED-6T`, release AABs installed with `bundletool build-apks --local-testing`; the local
+  Play Core stub reproduces the fault exactly, and its `FakeAssetPackService : startDownload` lines are what proves who asked):
+
+| step | build | vault header | Fast card |
+|---|---|---|---|
+| Fast installed | vc8 (`12b0d9f`) | 1.7 GB in the vault | installed, `docs/qa/fixes-r15/c-vc8-fast-installed.png` |
+| version bump, no fix | vc9 (`12b0d9f`) | **508 MB in the vault** | **"Install · 1.2 GB from Google Play"**, `c-vc9-unfixed-install-offer.png` |
+| version bump, fixed | vc9 (this branch) | **1.7 GB in the vault** | FAST · Loaded · In use, `c-vc9-fixed-vault.png` |
+
+  On the fixed build nothing was tapped: the app itself logged `FakeAssetPackService : startDownload([inborn_model_fast])`
+  at 11:22:37, `ExtractChunkTaskHandler` reported the chunk extracted at 11:23:02, and the engine loaded
+  `files/assetpacks/inborn_model_fast/9/9/assets/Qwen3.5-2B-Q4_K_M.gguf` in 2,430 ms. "Name three colours." then answered
+  **"Red, Blue, and Green."** with the FAST chip (`c-vc9-fixed-fast-answer.png`), and a second cold launch stayed at
+  1.7 GB with no Install button anywhere in the vault.
+- **Not covered**: a phone whose record the *shipping* vc8 already deleted has nothing left to re-request, so its first
+  launch on the fix still offers Install — one tap, and Play returns the bytes instantly. Every update after that is clean.
