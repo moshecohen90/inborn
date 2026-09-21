@@ -197,7 +197,7 @@ Ads: No. Government app: No. Financial features: No. Health apps: No (the crisis
 | 5.1.4 Kids | Not a Kids app |
 | 3.1.1 In-app purchase | Pro/Work via StoreKit only; Family Sharing enabled for Pro |
 | 4.2 Minimum functionality / June 2026 "apps that do not add value" | The proof screen, vault, documents and the no-network design are the documented differentiation (spec §11.2 last row applies to Apple too) |
-| 2.5.x Foundation Models Acceptable Use | FM used only as accelerator; excluded from Work medical/legal personas; family-safe on |
+| 2.5.x Foundation Models Acceptable Use | Not applicable in 1.0: Apple Foundation Models are not used (declared cut, README "Intentionally not built for 1.0"); every answer comes from the open-weight model in the vault. Re-check if FM is adopted later |
 
 ## 6. App Review notes (paste into ASC "Notes" and Play "Instructions for review")
 
