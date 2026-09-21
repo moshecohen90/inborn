@@ -1552,11 +1552,15 @@ cap is still the ceiling and `src/engine.ts` still clamps every turn to it (`Mat
 The desktop and web tiers run this same JS (Tauri shell, Expo web export), so they are covered by the same change; their
 adapters' `?? 1024` defaults are now `?? ANSWER_CEILING`. 20 tests in `packages/core/test/fixes-r19.test.ts`.
 
-**Proof, Android emulator** (`inborn_r19`, a Pixel_6_API_33 clone, arm64, 4 GB, headless on port 5570; release AAB built with
+**Proof, Android emulator** (the `Pixel_6_API_33` image, arm64, `-memory 4096`, headless on port 5570; release AAB built with
 `INBORN_PACKS=instant`, versionCode 19, delivered through bundletool `--local-testing`, so Instant comes from the real asset
 pack at `files/assetpacks/inborn_model/19/19/assets/Qwen3.5-0.8B-Q4_K_M.gguf`). Same emulator, same model, before = `origin/main`
 9520fb7, after = this branch; prompts driven through `EXPO_PUBLIC_AUTOPROMPT=file`, numbers from `Documents/dev-run.json`.
-Screenshots in `docs/qa/fixes-r19/`.
+Screenshots in `docs/qa/fixes-r19/`. The run used a throwaway clone of that AVD so nothing of another stream's state was
+touched; the clone was deleted afterwards, so **re-run this on `Pixel_6_API_33` itself**. It has to be a `google_apis`
+image, not `google_apis_playstore`: a release APK is not debuggable, so `Documents/dev-prompt.txt` and `dev-run.json` are
+only reachable through `adb root`, which a Play-Store image refuses (that rules out `Pixel_2_API_30`). `adb shell setenforce 0`
+is also needed once, or SELinux denies Play Core's FakeAssetPackService the read of the local-testing pack APK on API 33.
 
 | scenario | before | after |
 |---|---|---|
