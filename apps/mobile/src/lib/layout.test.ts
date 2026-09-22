@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { DESKTOP_MIN, WIDE_MIN, hasPanel, isWide, layoutModeFor } from "./layout";
+import { COLUMN_WIDTH, DESKTOP_MIN, PANEL_WIDTH, SIDEBAR_WIDTH, WIDE_MIN, hasPanel, isWide, layoutModeFor } from "./layout";
 
 describe("layout mode", () => {
   it("keeps every phone width on the phone shell", () => {
@@ -33,6 +33,16 @@ describe("layout mode", () => {
       expect(w.width).toBeGreaterThanOrEqual(w.minWidth);
       expect(w.height).toBeGreaterThanOrEqual(w.minHeight);
       expect(layoutModeFor(w.minWidth)).toBe("desktop");
+    }
+  });
+
+  it("holds the minimum at the narrowest width §8.9's own parts fit in (F47)", () => {
+    const conf = JSON.parse(readFileSync(join(__dirname, "../../../desktop/src-tauri/tauri.conf.json"), "utf8")) as { app: { windows: { minWidth: number }[] } };
+    for (const w of conf.app.windows) {
+      /* The complement of the row above: the minimum is the exact width at which the panel starts fitting. */
+      expect(layoutModeFor(w.minWidth - 1)).not.toBe("desktop");
+      expect(SIDEBAR_WIDTH + COLUMN_WIDTH).toBeLessThanOrEqual(w.minWidth);
+      expect(SIDEBAR_WIDTH + PANEL_WIDTH).toBeLessThanOrEqual(w.minWidth);
     }
   });
 

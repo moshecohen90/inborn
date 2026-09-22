@@ -33,6 +33,7 @@ import {
 } from "@inborn/core";
 import { FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "../storage/schema";
 import { emitShortcut, type Shortcut } from "../lib/shortcuts";
+import { dispatchViewportResize } from "../lib/viewportResize";
 import type { Engine } from "./index";
 import { reportRepair } from "../storage/repairNotice";
 
@@ -498,6 +499,10 @@ function installDesktopEvents(): void {
     // The engine is chosen once per run (engine.ts); a first import becomes usable by reloading the page.
     if (!vaultModel && payload) window.location.reload();
   });
+  /* The WKWebView behind this window fires neither `resize` nor `visualViewport.resize` when the Tauri window is
+     resized, so `Dimensions` — and with it every `useWindowDimensions` consumer, the §8.9 shell included — would
+     stay frozen at the width of the first paint. Tauri's own resize event is the one that does arrive. */
+  void listen("tauri://resize", () => dispatchViewportResize(window, new Event("resize")));
   for (const name of ["inborn:import-failed", "inborn:documents-dropped", "inborn:seal", "inborn:update"]) {
     void listen<unknown>(name, ({ payload }) => {
       if (name === "inborn:import-failed") console.warn("[tauri] import failed:", payload);

@@ -32,3 +32,16 @@ export function matchKey(e: KeyEventLike): Shortcut | null {
       return null;
   }
 }
+
+/**
+ * Which of those the webview itself must act on.
+ *
+ * A desktop build carries the whole map on its menu accelerators, so handling them here too would fire each
+ * shortcut twice — except Esc, which macOS reserves and no accelerator can hold. The menu binds Stop to ⌘.
+ * instead, and Esc is a §9.7 desktop key, so this is the one binding the webview keeps under Tauri.
+ */
+export function webviewShortcut(e: KeyEventLike, menuOwnsAccelerators: boolean): Shortcut | null {
+  const id = matchKey(e);
+  if (!id) return null;
+  return menuOwnsAccelerators && e.key !== "Escape" ? null : id;
+}
