@@ -30,5 +30,6 @@ jobs:
       - run: pnpm --filter @inborn/mobile exec expo prebuild -p android --no-install
       # verifyOcrAssets is a release gate over INBORN_MODELS_DIR, which CI deliberately does not have; it guards
       # assets, never a permission, and it still runs on every build that actually ships.
-      - run: apps/mobile/android/gradlew -p apps/mobile/android --no-daemon :app:processReleaseManifest -x :doc-extract:verifyOcrAssets
+      - run: ./gradlew --no-daemon :app:processReleaseManifest -x :doc-extract:verifyOcrAssets
+        working-directory: apps/mobile/android
       - run: bash scripts/check-android-permissions.sh apps/mobile/android/app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml
