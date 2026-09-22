@@ -1,0 +1,26 @@
+# iOS 17 floor after prebuild (gap #18) — 22.9.2026, worktree fixes-r25
+
+$ INBORN_IOS_SHARE_EXT=0 expo prebuild -p ios --no-install   # apps/mobile
+
+$ cat ios/Podfile.properties.json
+{
+  "expo.jsEngine": "hermes",
+  "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true",
+  "ios.deploymentTarget": "17.0",
+  "expo.inlineModules.watchedDirectories": "[]",
+  "expo.inlineModules.xcodeProjectTargets": "{\"mainTarget\":\"Inborn\",\"targets\":[]}",
+  "expo.sqlite.useSQLCipher": "true"
+}
+
+$ grep -n "platform :ios" ios/Podfile
+27:platform :ios, podfile_properties['ios.deploymentTarget'] || '16.4'
+
+$ grep -n IPHONEOS_DEPLOYMENT_TARGET ios/Inborn.xcodeproj/project.pbxproj
+350:				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+383:				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+455:				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+508:				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+
+# 350/383 = PBXNativeTarget "Inborn" Debug/Release (Expo ios.deploymentTarget)
+# 455/508 = PBXProject "Inborn" Debug/Release (plugins/withProjectDeploymentTarget)
+# Before this round all four read 16.4 and the Podfile fell through to its own 16.4 default.

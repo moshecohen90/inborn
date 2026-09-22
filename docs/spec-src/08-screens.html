@@ -268,7 +268,7 @@ OUT <b>0 B</b> · IN 2.71 GB · CONNECTIONS 0 open
 NETWORK ALLOWLIST   none by default · the store delivers models
                     huggingface.co only when you ask · then it shows in App Privacy Report, on purpose
                     iOS 17–25 / desktop: models.{{DOMAIN}}, on request
-LAST DELIVERY       qwen3.5-2b-q4_k_m.gguf · 1.28 GB · Apple-hosted asset pack · sha256 ✓ · 2026-08-14
+LAST DELIVERY       qwen3.5-2b-q4_k_m.gguf · 1.28 GB · models.{{DOMAIN}} · sha256 ✓ · 2026-08-14
 PERMISSIONS         Internet: none (Android manifest) · Microphone (off) · Camera (off)
 TRACKERS            0 (Exodus report ↗)
 BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
@@ -333,11 +333,11 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 │ │ ✓ Advanced controls│ │
 │ └────────────────────┘ │
 │ [ Unlock Pro ]  (cta)  │
-│ Restore · Family Sharing (iOS) │
+│ Restore                │
 │ <i>Everything runs on your device. Nothing changes about privacy.</i> │
 └────────────────────────┘</div>
 <dl class="grid">
-<dt>elements</dt><dd>כותרת, שורת עיקרון, כרטיס אחד עם מחיר מקומי (StoreKit/Play מספקים), רשימת ערך, כפתור, Restore, הערת Family Sharing (iOS: כן; Play: Family Library לא כולל IAP, נאמר כדי למנוע בקשות החזר), וכרטיס Work שני עם התג "For professionals". בטלפון Pro הוא הכרטיס הראשי ו‑Work העוגן מתחתיו: רוב מי שמגיע לפייוול בטלפון הוא צרכן, ו‑Work ב‑69.99 גם גורם ל‑19.99 להיראות זול (עיגון מחיר). בדסקטופ הסדר הפוך, Work ראשון, כי שם יושב הקהל המקצועי. המחיר כתוב "$19.99 · one-time purchase", לא "once".</dd>
+<dt>elements</dt><dd>כותרת, שורת עיקרון, כרטיס אחד עם מחיר מקומי (StoreKit/Play מספקים), רשימת ערך, כפתור, Restore, הערת Family Sharing (iOS: השורה קוראת את דגל <span class="ltr">isFamilyShareable</span> החי; מכיוון ש‑Family Sharing כבוי ב‑1.0 היא אומרת “Family Sharing is not enabled for this product yet.”; Play: Family Library לא כולל IAP, נאמר כדי למנוע בקשות החזר), וכרטיס Work שני עם התג "For professionals". בטלפון Pro הוא הכרטיס הראשי ו‑Work העוגן מתחתיו: רוב מי שמגיע לפייוול בטלפון הוא צרכן, ו‑Work ב‑69.99 גם גורם ל‑19.99 להיראות זול (עיגון מחיר). בדסקטופ הסדר הפוך, Work ראשון, כי שם יושב הקהל המקצועי. המחיר כתוב "$19.99 · one-time purchase", לא "once".</dd>
 <dt>states</dt><dd>Pending (Ask to Buy); רכישה קיימת (מסך "You own Pro"); החזר/ביטול (revocationDate): הפיצ'רים ננעלים, הנתונים נשארים; אין חנות (מצב טיסה): "Purchases need a connection once" והפיצ'רים שכבר נרכשו עובדים מהמטמון החתום.</dd>
 <dt>edge cases</dt><dd>מחיר אזורי; קודי הצעה; שדרוג ל‑Work כ‑SKU נפרד ל‑Pro owners; מכשיר jailbroken: אין חסימה, אימות JWS מקומי.</dd>
 </dl>

@@ -1,8 +1,9 @@
-# Round 25 · every new string in every shipped locale, and every removed string gone from all of them
+# Round 25 · every new or rewritten string in every shipped locale, and every removed string gone from all of them
+# Regenerated after the merge with origin/main 6fd5494.
 
-New keys: 15 · locales: 9
+Keys checked: 16 · locales: 9
 
-## de — 1039 keys total, 0 missing, 0 stale
+## de — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         Familienfreundlicher Modus
    settings.chat.familySafeSub      Hält sexuell explizite, drastische und selbstverletzende Inhalte aus Antworten heraus. Er verringert sie, erwischt aber nicht alles.
    chat.familySafe.refused          Dabei helfe ich nicht, solange der familienfreundliche Modus an ist. Du kannst ihn unter Einstellungen → Chat ausschalten.
@@ -10,6 +11,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             Vom familienfreundlichen Modus ersetzt
    ledger.safety                    SICHERHEIT
    ledger.safety.familySafe         familienfreundlich · ersetzt
+   storage.backup                   Chats sind mit einem Schlüssel verschlüsselt, der dieses Gerät nie verlässt — ein wiederhergestelltes Backup kann sie nicht öffnen. Modelle werden ebenfalls nicht gesichert. Exportiere einen Chat, bevor du das Gerät wechselst.
    storage.backup.android           Android sichert nichts, was diese App speichert: weder Chats noch Modelle. Lösch die App oder setz das Telefon zurück, und deine Chats sind weg.
    licenses.view                    Lizenz ansehen
    licenses.sheet.title             Lizenz von {name}
@@ -19,7 +21,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         Inborns Quellcode ist nicht veröffentlicht. Diese Kennung ist unsere Angabe, nicht deine Prüfung. Alles unter SELBST PRÜFEN kommt ohne sie aus.
    proof.build.line                 gebaut {date}
 
-## en — 1039 keys total, 0 missing, 0 stale
+## en — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         Family-safe mode
    settings.chat.familySafeSub      Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.
    chat.familySafe.refused          I won't help with that while Family-safe mode is on. You can turn it off in Settings → Chat.
@@ -27,6 +29,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             Replaced by Family-safe mode
    ledger.safety                    SAFETY
    ledger.safety.familySafe         family-safe · replaced
+   storage.backup                   Chats are encrypted with a key that never leaves this device, so a restored backup cannot open them. Models are not backed up either. Export a chat before you move to a new device.
    storage.backup.android           Android backs up nothing this app stores: not chats, not models. Delete the app or reset the phone and your chats are gone.
    licenses.view                    View licence
    licenses.sheet.title             {name} licence
@@ -36,7 +39,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         Inborn's source code is not published, so this identifier is ours to state rather than yours to check. Everything under CHECK FOR YOURSELF works without it.
    proof.build.line                 built {date}
 
-## es — 1039 keys total, 0 missing, 0 stale
+## es — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         Modo apto para todos
    settings.chat.familySafeSub      Mantiene fuera de las respuestas el contenido sexual explícito, la violencia gráfica y la autolesión. Lo reduce; no lo atrapa todo.
    chat.familySafe.refused          Con eso no ayudo mientras el modo apto para todos esté activado. Puedes desactivarlo en Ajustes → Chat.
@@ -44,6 +47,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             Sustituida por el modo apto para todos
    ledger.safety                    SEGURIDAD
    ledger.safety.familySafe         apto para todos · sustituida
+   storage.backup                   Los chats van cifrados con una clave que nunca sale de este dispositivo, así que una copia restaurada no puede abrirlos. Los modelos tampoco se copian. Exporta una conversación antes de cambiar de dispositivo.
    storage.backup.android           Android no hace copia de seguridad de nada que guarde esta app: ni chats ni modelos. Borra la app o restablece el teléfono y tus chats desaparecen.
    licenses.view                    Ver la licencia
    licenses.sheet.title             Licencia de {name}
@@ -53,7 +57,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         El código fuente de Inborn no está publicado: este identificador es algo que declaramos nosotros, no algo que compruebes tú. Todo lo de COMPRUÉBALO TÚ MISMO funciona sin él.
    proof.build.line                 compilado el {date}
 
-## fr — 1039 keys total, 0 missing, 0 stale
+## fr — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         Mode tout public
    settings.chat.familySafeSub      Tient le contenu sexuellement explicite, les scènes crues et l'automutilation hors des réponses. Il en réduit la quantité, il n'attrape pas tout.
    chat.familySafe.refused          Je n'aide pas là-dessus tant que le mode tout public est actif. Vous pouvez le désactiver dans Réglages → Chat.
@@ -61,6 +65,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             Remplacée par le mode tout public
    ledger.safety                    SÉCURITÉ
    ledger.safety.familySafe         tout public · remplacée
+   storage.backup                   Les chats sont chiffrés avec une clé qui ne quitte jamais cet appareil : une sauvegarde restaurée ne peut pas les ouvrir. Les modèles ne sont pas sauvegardés non plus. Exportez une conversation avant de changer d'appareil.
    storage.backup.android           Android ne sauvegarde rien de ce que cette app stocke : ni les chats, ni les modèles. Supprimez l'app ou réinitialisez le téléphone et vos chats disparaissent.
    licenses.view                    Voir la licence
    licenses.sheet.title             Licence de {name}
@@ -70,7 +75,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         Le code source d'Inborn n'est pas publié : cet identifiant est notre déclaration, pas votre vérification. Tout ce qui est sous VÉRIFIEZ PAR VOUS-MÊME s'en passe.
    proof.build.line                 compilé le {date}
 
-## ja — 1039 keys total, 0 missing, 0 stale
+## ja — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         ファミリーセーフモード
    settings.chat.familySafeSub      性的に露骨な内容、過度に残酷な描写、自傷の手引きを回答から遠ざけます。減らすことはできますが、すべてを防げるわけではありません。
    chat.familySafe.refused          ファミリーセーフモードがオンの間、その内容にはお答えできません。設定 → チャットでオフにできます。
@@ -78,6 +83,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             ファミリーセーフモードにより差し替え
    ledger.safety                    セーフティ
    ledger.safety.familySafe         ファミリーセーフ · 差し替え
+   storage.backup                   チャットはこの端末から出ない鍵で暗号化されているため、バックアップから復元しても開けません。モデルもバックアップされません。機種変更の前にチャットを書き出してください。
    storage.backup.android           Android はこのアプリが保存するものを一切バックアップしません。チャットもモデルもです。アプリを削除するか端末を初期化すると、チャットは失われます。
    licenses.view                    ライセンスを読む
    licenses.sheet.title             {name} のライセンス
@@ -87,7 +93,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         Inborn のソースコードは公開していません。この識別子は当社が示すものであって、あなたが検証できるものではありません。「自分で確かめる」の内容はこれがなくても確かめられます。
    proof.build.line                 ビルド日 {date}
 
-## ko — 1039 keys total, 0 missing, 0 stale
+## ko — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         가족 안심 모드
    settings.chat.familySafeSub      성적으로 노골적인 내용, 잔혹한 묘사, 자해 방법을 답변에서 걸러내요. 줄여 주기는 하지만 전부를 막지는 못해요.
    chat.familySafe.refused          가족 안심 모드가 켜져 있는 동안에는 그건 도와드리지 않아요. 설정 → 채팅에서 끌 수 있어요.
@@ -95,6 +101,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             가족 안심 모드가 대체한 답변
    ledger.safety                    안전
    ledger.safety.familySafe         가족 안심 · 대체됨
+   storage.backup                   채팅은 이 기기를 벗어나지 않는 키로 암호화돼 있어서, 백업을 복원해도 열 수 없어요. 모델도 백업되지 않아요. 기기를 바꾸기 전에 채팅을 내보내 주세요.
    storage.backup.android           안드로이드는 이 앱이 저장하는 것을 백업하지 않아요. 채팅도, 모델도요. 앱을 지우거나 기기를 초기화하면 채팅은 사라져요.
    licenses.view                    라이선스 보기
    licenses.sheet.title             {name} 라이선스
@@ -104,7 +111,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         Inborn의 소스 코드는 공개돼 있지 않아요. 이 식별자는 저희가 밝히는 값일 뿐, 직접 확인할 수 있는 값은 아니에요. ‘직접 확인하기’의 내용은 이것 없이도 확인할 수 있어요.
    proof.build.line                 {date} 빌드
 
-## pseudo — 1039 keys total, 0 missing, 0 stale
+## pseudo — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         [Fàmïlÿ-sàfé môdé~~~~~~~]
    settings.chat.familySafeSub      [Kééps séxüàllÿ éxplïçït, gràphïç àñd sélf-hàrm çôñtéñt ôüt ôf àñswérs. Ît rédüçés thàt çôñtéñt; ït çàññôt çàtçh àll ôf ït.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
    chat.familySafe.refused          [Î wôñ't hélp wïth thàt whïlé Fàmïlÿ-sàfé môdé ïs ôñ. Yôü çàñ türñ ït ôff ïñ Séttïñgs → Chàt.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
@@ -112,6 +119,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             [Réplàçéd bÿ Fàmïlÿ-sàfé môdé~~~~~~~~~~~~]
    ledger.safety                    [SÅFÉTY~~~]
    ledger.safety.familySafe         [fàmïlÿ-sàfé · réplàçéd~~~~~~~~~]
+   storage.backup                   [Chàts àré éñçrÿptéd wïth à kéÿ thàt ñévér léàvés thïs dévïçé, sô à réstôréd bàçküp çàññôt ôpéñ thém. Môdéls àré ñôt bàçkéd üp éïthér. Éxpôrt à çhàt béfôré ÿôü môvé tô à ñéw dévïçé.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
    storage.backup.android           [Åñdrôïd bàçks üp ñôthïñg thïs àpp stôrés: ñôt çhàts, ñôt môdéls. Délété thé àpp ôr rését thé phôñé àñd ÿôür çhàts àré gôñé.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
    licenses.view                    [Vïéw lïçéñçé~~~~~]
    licenses.sheet.title             [{name} lïçéñçé~~~~]
@@ -121,7 +129,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         [Îñbôrñ's sôürçé çôdé ïs ñôt püblïshéd, sô thïs ïdéñtïfïér ïs ôürs tô stàté ràthér thàñ ÿôürs tô çhéçk. Évérÿthïñg üñdér CHÉCK FÖR YÖÜRSÉLF wôrks wïthôüt ït.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]
    proof.build.line                 [büïlt {date}~~~]
 
-## pt-BR — 1039 keys total, 0 missing, 0 stale
+## pt-BR — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         Modo para toda a família
    settings.chat.familySafeSub      Mantém conteúdo sexual explícito, violência gráfica e automutilação fora das respostas. Ele reduz isso; não pega tudo.
    chat.familySafe.refused          Nisso eu não ajudo enquanto o modo para toda a família estiver ligado. Você pode desligá-lo em Ajustes → Chat.
@@ -129,6 +137,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             Substituída pelo modo para toda a família
    ledger.safety                    SEGURANÇA
    ledger.safety.familySafe         toda a família · substituída
+   storage.backup                   Os chats são criptografados com uma chave que nunca sai deste aparelho, então um backup restaurado não consegue abri-los. Os modelos também não entram no backup. Exporte uma conversa antes de trocar de aparelho.
    storage.backup.android           O Android não faz backup de nada que este app guarda: nem chats, nem modelos. Apague o app ou resete o celular e seus chats somem.
    licenses.view                    Ver a licença
    licenses.sheet.title             Licença de {name}
@@ -138,7 +147,7 @@ New keys: 15 · locales: 9
    proof.build.notPublished         O código-fonte do Inborn não é publicado: este identificador é algo que nós afirmamos, não algo que você confere. Tudo em CONFIRA VOCÊ MESMO funciona sem ele.
    proof.build.line                 compilado em {date}
 
-## zh-Hant — 1039 keys total, 0 missing, 0 stale
+## zh-Hant — 1043 keys total, 0 missing, 0 stale
    settings.chat.familySafe         闔家安心模式
    settings.chat.familySafeSub      把露骨的性內容、血腥描寫和自傷做法擋在回答之外。它能減少這類內容，但無法全部攔下。
    chat.familySafe.refused          闔家安心模式開著的時候，這件事我不會幫忙。你可以到設定 → 對話關掉它。
@@ -146,6 +155,7 @@ New keys: 15 · locales: 9
    chat.familySafe.note             由闔家安心模式替換
    ledger.safety                    安全
    ledger.safety.familySafe         闔家安心 · 已替換
+   storage.backup                   對話以一把永遠不離開這台裝置的金鑰加密，所以還原備份也打不開。模型同樣不會備份。換裝置前請先匯出對話。
    storage.backup.android           Android 不會備份這個應用程式儲存的任何東西，對話和模型都不會。刪除應用程式或重設手機，對話就不見了。
    licenses.view                    查看授權
    licenses.sheet.title             {name} 的授權

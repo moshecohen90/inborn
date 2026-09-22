@@ -4,36 +4,36 @@
 
 Scope: 7 of 8 workspace projects
 packages/core test$ vitest run
-packages/i18n test$ vitest run
 packages/ui test$ vitest run
+packages/i18n test$ vitest run
 packages/i18n test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24a/packages/i18n
 packages/core test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24a/packages/core
 packages/ui test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24a/packages/ui
 packages/ui test:  Test Files  1 passed (1)
 packages/ui test:       Tests  11 passed (11)
-packages/ui test:    Start at  17:08:29
-packages/ui test:    Duration  345ms (transform 55%, import 38%, tests 5%, worker 2%)
+packages/ui test:    Start at  17:22:45
+packages/ui test:    Duration  178ms (transform 63%, import 18%, worker 10%, tests 9%)
 packages/ui test: Done
 packages/i18n test:  Test Files  4 passed (4)
 packages/i18n test:       Tests  10 passed (10)
-packages/i18n test:    Start at  17:08:29
-packages/i18n test:    Duration  1.36s (tests 74%, transform 17%, import 9%, worker 1%)
+packages/i18n test:    Start at  17:22:45
+packages/i18n test:    Duration  779ms (tests 79%, transform 11%, import 7%, worker 3%)
 packages/i18n test: Done
-packages/core test:  Test Files  64 passed (64)
-packages/core test:       Tests  582 passed (582)
-packages/core test:    Start at  17:08:29
-packages/core test:    Duration  3.61s (transform 48%, import 35%, tests 15%, worker 2%)
-packages/core test:   Transform  transforming modules took 13.21s · 48% of tracked time, re-done on every run
+packages/core test:  Test Files  65 passed (65)
+packages/core test:       Tests  593 passed (593)
+packages/core test:    Start at  17:22:45
+packages/core test:    Duration  2.26s (transform 45%, import 39%, tests 14%, worker 2%)
+packages/core test:   Transform  transforming modules took 7.03s · 45% of tracked time, re-done on every run
 packages/core test:              persist transforms across runs with fsModuleCache: true
 packages/core test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
 packages/core test: Done
 apps/mobile test$ vitest run
 apps/mobile test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24a/apps/mobile
-apps/mobile test:  Test Files  35 passed (35)
-apps/mobile test:       Tests  228 passed (228)
-apps/mobile test:    Start at  17:08:33
-apps/mobile test:    Duration  2.41s (transform 76%, tests 12%, import 11%, worker 1%)
-apps/mobile test:   Transform  transforming modules took 14.56s · 76% of tracked time, re-done on every run
+apps/mobile test:  Test Files  39 passed (39)
+apps/mobile test:       Tests  249 passed (249)
+apps/mobile test:    Start at  17:22:47
+apps/mobile test:    Duration  1.36s (transform 60%, import 20%, tests 18%, worker 2%)
+apps/mobile test:   Transform  transforming modules took 5.54s · 60% of tracked time, re-done on every run
 apps/mobile test:              persist transforms across runs with fsModuleCache: true
 apps/mobile test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
 apps/mobile test: Done

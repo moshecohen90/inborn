@@ -3,8 +3,7 @@
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-# The sources were renamed to *-src and the outputs live beside them; the script still named the old paths and
-# exited on the first one, so nobody could rebuild the spec after an edit (found rebuilding for round 25).
+# Outputs are the tracked docs/inborn-*.html, so OUT is docs/ itself.
 SPEC = os.path.join(ROOT, 'spec-src')
 OUT = ROOT
 os.makedirs(OUT, exist_ok=True)

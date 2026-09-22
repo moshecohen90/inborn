@@ -1,0 +1,62 @@
+# INTERNET-permission CI gate (gap #6) — 22.9.2026, worktree fixes-r25
+
+The exact three commands the ci.yml job runs, executed locally with NO models present and no signing key.
+
+## 1. Green: the release manifest the app ships
+$ pnpm --filter @inborn/mobile exec expo prebuild -p android --no-install
+withAssetPacks: skipping inborn_model (missing /Users/moshecohen/dev/inborn-wt/fixes-r25/.models/Qwen3.5-0.8B-Q4_K_M.gguf; set INBORN_MODELS_DIR)
+withAssetPacks: skipping inborn_model_fast (missing /Users/moshecohen/dev/inborn-wt/fixes-r25/.models/Qwen3.5-2B-Q4_K_M.gguf; set INBORN_MODELS_DIR)
+withAssetPacks: skipping inborn_model_embed (missing /Users/moshecohen/dev/inborn-wt/fixes-r25/.models/nomic-embed-text-v1.5.f16.gguf; set INBORN_MODELS_DIR)
+$ apps/mobile/android/gradlew -p apps/mobile/android --no-daemon :app:processReleaseManifest -x :doc-extract:verifyOcrAssets
+BUILD SUCCESSFUL in 34s
+140 actionable tasks: 112 executed, 28 up-to-date
+$ bash scripts/check-android-permissions.sh apps/mobile/android/app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml
+uses-permission: name='android.permission.RECORD_AUDIO'
+uses-permission: name='android.permission.USE_BIOMETRIC'
+uses-permission: name='android.permission.VIBRATE'
+uses-permission: name='com.android.vending.BILLING'
+uses-permission: name='android.permission.CAMERA'
+uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+uses-permission: name='android.permission.FOREGROUND_SERVICE'
+uses-permission: name='android.permission.FOREGROUND_SERVICE_DATA_SYNC'
+uses-permission: name='com.inbornapp.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+OK: no INTERNET permission; every declared permission is in the allowlist (9 declared).
+exit=0
+
+## 2. Red: the same three commands with APP_VARIANT=development
+Watching the gate fail on the real path, not on a fixture. The development variant empties
+`android.blockedPermissions` (app.config.ts), so every permission the dependencies contribute survives the merge:
+INTERNET among them, from the openiap-google wrapper the Play Billing plugin pulls in.
+
+  $ APP_VARIANT=development expo prebuild -p android --no-install
+  $ ./gradlew --no-daemon :app:processReleaseManifest        # BUILD SUCCESSFUL
+  $ bash scripts/check-android-permissions.sh .../merged_manifests/release/processReleaseManifest/AndroidManifest.xml
+  uses-permission: name='android.permission.INTERNET'
+  uses-permission: name='android.permission.READ_EXTERNAL_STORAGE'
+  uses-permission: name='android.permission.RECORD_AUDIO'
+  uses-permission: name='android.permission.SYSTEM_ALERT_WINDOW'
+  uses-permission: name='android.permission.USE_BIOMETRIC'
+  uses-permission: name='android.permission.USE_FINGERPRINT'
+  uses-permission: name='android.permission.VIBRATE'
+  uses-permission: name='android.permission.WRITE_EXTERNAL_STORAGE'
+  uses-permission: name='com.android.vending.BILLING'
+  uses-permission: name='android.permission.CAMERA'
+  uses-permission: name='android.permission.ACCESS_WIFI_STATE'
+  uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+  uses-permission: name='android.permission.FOREGROUND_SERVICE'
+  uses-permission: name='android.permission.FOREGROUND_SERVICE_DATA_SYNC'
+  uses-permission: name='android.permission.WAKE_LOCK'
+  uses-permission: name='android.permission.RECEIVE_BOOT_COMPLETED'
+  uses-permission: name='com.inbornapp.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+  uses-permission: name='com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE'
+  FAIL: android.permission.INTERNET is declared. Release builds must not have it.
+  exit=1
+
+That listing is also the answer to the spec's wrong reason in gap #25: the wrapper does declare INTERNET, and
+`blockedPermissions` is what removes it. Eight other permissions are stripped the same way.
+
+## 3. The near-miss the gate now refuses
+The pre-merge `apps/mobile/android/app/src/main/AndroidManifest.xml` lists INTERNET with tools:node="remove" and
+nothing else outside the allowlist, so a gate that read it would pass while no dependency manifest had been merged
+yet. The script now requires a <uses-sdk> block and no tools namespace, which only the merged file has, and exits 2.
+Covered together with the two sabotage cases by apps/mobile/test/androidPermissionGate.test.ts (5 tests).

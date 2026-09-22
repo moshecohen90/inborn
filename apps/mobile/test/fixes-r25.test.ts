@@ -65,8 +65,17 @@ describe("F52 · the Android backup sentence matches allowBackup=\"false\"", () 
     expect(source("screens/Settings/Storage.tsx")).toContain('"storage.backup.android"');
     expect(en["storage.backup.android"]).toMatch(/backs up nothing/i);
   });
-  it("the iOS wording, which is correct, is untouched", () => {
-    expect(en["storage.backup"]).toMatch(/included in your device backup/i);
+  /* The merge with main exposed the same bug one platform over: the policy now says a restored iOS backup
+     cannot open the old chats (the SQLCipher key is WHEN_UNLOCKED_THIS_DEVICE_ONLY), while the screen still
+     said they are "included in your device backup", which a user reads as "a restore brings them back". */
+  it("the non-Android wording says a restored backup cannot open the chats, as the privacy policy does", () => {
+    expect(en["storage.backup"]).toMatch(/never leaves this device/i);
+    expect(en["storage.backup"]).toMatch(/restored backup cannot open/i);
+    expect(en["storage.backup"]).not.toMatch(/included in your device backup/i);
+  });
+  it("all three platform strings exist and say different things", () => {
+    const [android, other, web] = [en["storage.backup.android"]!, en["storage.backup"]!, en["storage.backup.web"]!];
+    expect(new Set([android, other, web]).size).toBe(3);
   });
 });
 

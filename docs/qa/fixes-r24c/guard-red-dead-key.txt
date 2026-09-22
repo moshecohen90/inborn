@@ -1,0 +1,30 @@
+
+> @inborn/mobile@0.0.1 test /Users/moshecohen/dev/inborn-wt/fixes-r24c/apps/mobile
+> vitest run
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24c/apps/mobile
+
+ ❯ test/gates-wired.test.ts (4 tests | 1 failed) 17ms
+   ❯ every gate key is asked by a screen (2)
+     × no key in FEATURES is dead, and no key in UNBUILT_FEATURES is secretly live 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/gates-wired.test.ts > every gate key is asked by a screen > no key in FEATURES is dead, and no key in UNBUILT_FEATURES is secretly live
+AssertionError: expected [ 'keyboardExtension' ] to deeply equal []
+
+
+
+ ❯ test/gates-wired.test.ts:29:18
+     27|     const asked = (f: string) => new RegExp(`["']${f}["']`).test(all);
+     28|     const dead = FEATURE_LIST.filter((f) => !UNBUILT_FEATURES.includes…
+     29|     expect(dead).toEqual([]);
+       |                  ^
+     30|     const live = UNBUILT_FEATURES.filter((f) => asked(f));
+     31|     expect(live, "a key that is now enforced should leave UNBUILT_FEAT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 34 passed (35)

@@ -7,12 +7,12 @@
       Tests  20 passed (20)
 
 === baseline mobile ===
-      Tests  30 passed (30)
+      Tests  31 passed (31)
 
 ### 1. F50 — the family-safe screen always returns clean
 
 === F50 sabotaged ===
-     × screenText returns a clean verdict while the mode is off, whatever the text says 4ms
+     × screenText returns a clean verdict while the mode is off, whatever the text says 3ms
       Tests  1 failed | 21 passed (22)
 
 ### 2. F56 — the Korean and Traditional Chinese crisis phrases are removed
@@ -28,32 +28,32 @@
 === F53 sabotaged ===
      × asks the same question the chat's mic asks 5ms
      × sends a Free user to the paywall rather than rendering the screen 1ms
-      Tests  2 failed | 28 passed (30)
+      Tests  2 failed | 29 passed (31)
 
 ### 4. F54a — a model loses its NOTICE entry
 
 === F54a sabotaged ===
-     × speech-whisper-base (MIT) has a bundled text 12ms
+     × speech-whisper-base (MIT) has a bundled text 3ms
      × whisper's copyright is OpenAI's, not Microsoft's: the map is per model, not per licence 1ms
-      Tests  2 failed | 28 passed (30)
+      Tests  2 failed | 29 passed (31)
 
 ### 5. F54b — the Hugging Face download skips the licence acceptance
 
 === F54b sabotaged ===
-     × a Hugging Face download asks for the licence tap before it starts 4ms
-      Tests  1 failed | 29 passed (30)
+     × a Hugging Face download asks for the licence tap before it starts 3ms
+      Tests  1 failed | 30 passed (31)
 
 ### 6. F52 — Android is told again that its chats are in the device backup
 
 === F52 sabotaged ===
      × Android gets its own string, and it says nothing is backed up 7ms
-      Tests  1 failed | 29 passed (30)
+      Tests  1 failed | 30 passed (31)
 
 ### 7. F51 — the private-repository source link comes back
 
 === F51 sabotaged ===
-     × the Proof screen no longer links to the private repository 10ms
-      Tests  1 failed | 29 passed (30)
+     × the Proof screen no longer links to the private repository 8ms
+      Tests  1 failed | 30 passed (31)
 
 ### 8. everything restored
 
@@ -64,58 +64,95 @@
       Tests  20 passed (20)
 
 === restored mobile ===
-      Tests  30 passed (30)
+      Tests  31 passed (31)
 
 git status --porcelain (only the evidence files this run writes may appear):
- M .gitignore
- M apps/mobile/src/adapters/tauri.ts
- M apps/mobile/src/app/voice.tsx
- M apps/mobile/src/components/chat/AssistantMessage.tsx
- M apps/mobile/src/components/chat/Ledger.tsx
- M apps/mobile/src/screens/About/Licenses.tsx
- M apps/mobile/src/screens/Chat.tsx
- M apps/mobile/src/screens/Proof/Proof.tsx
- M apps/mobile/src/screens/Settings/Settings.tsx
- M apps/mobile/src/screens/Settings/Storage.tsx
- M apps/mobile/src/screens/vault/HfSearch.tsx
- M apps/mobile/src/screens/vault/ModelDetails.tsx
- M apps/mobile/src/screens/voice/HandsFreeScreen.tsx
- M apps/mobile/src/services/prefsTypes.ts
- M apps/mobile/src/storage/web/idbRepository.ts
- M apps/mobile/src/voice/useHandsFree.ts
- M docs/build.py
- M docs/inborn-spec.html
- M docs/legal/app-privacy-details.md
- M docs/legal/privacy-policy.md
- M docs/legal/terms.md
- M docs/spec-src/05-architecture.html
- M docs/spec-src/08-screens.html
- M docs/spec-src/10-edgecases.html
- M docs/spec-src/11-store-legal.html
- M packages/core/src/chat/repository.ts
- M packages/core/src/chat/safety.ts
- M packages/core/src/chat/types.ts
- M packages/core/src/index.ts
- M packages/core/src/licence/index.ts
- M packages/core/src/work/statement.ts
- M packages/i18n/locales/de.json
- M packages/i18n/locales/en.json
- M packages/i18n/locales/es.json
- M packages/i18n/locales/fr.json
- M packages/i18n/locales/ja.json
- M packages/i18n/locales/ko.json
- M packages/i18n/locales/pseudo.json
- M packages/i18n/locales/pt-BR.json
- M packages/i18n/locales/zh-Hant.json
-?? LICENSE
-?? apps/mobile/src/components/LicenceSheet.tsx
-?? apps/mobile/src/lib/modelLicence.ts
-?? apps/mobile/test/fixes-r25.test.ts
-?? docs/legal/model-licences/
-?? docs/legal/verification.md
-?? docs/qa/fixes-r24a/
-?? packages/core/src/chat/contentSafety.ts
-?? packages/core/src/licence/licenceTexts.ts
-?? packages/core/test/chat-content-safety.test.ts
-?? packages/core/test/chat-crisis-languages.test.ts
-?? packages/core/test/licence-texts.test.ts
+M  .github/workflows/ci.yml
+M  .gitignore
+MM README.md
+M  apps/mobile/app.config.ts
+A  apps/mobile/modules/background-task/expo-module.config.json
+A  apps/mobile/modules/background-task/index.ts
+A  apps/mobile/modules/background-task/ios/BackgroundTask.podspec
+A  apps/mobile/modules/background-task/ios/BackgroundTaskModule.swift
+M  apps/mobile/modules/device-guard/ios/DeviceGuard.podspec
+M  apps/mobile/modules/doc-extract/ios/DocExtract.podspec
+M  apps/mobile/modules/secure-screen/ios/SecureScreen.podspec
+M  apps/mobile/modules/vault-native/ios/VaultNative.podspec
+A  apps/mobile/plugins/withProjectDeploymentTarget.js
+M  apps/mobile/src/components/chat/AssistantMessage.tsx
+M  apps/mobile/src/components/chat/AttachSheet.tsx
+M  apps/mobile/src/components/chat/Ledger.tsx
+A  apps/mobile/src/device/bgHold.test.ts
+A  apps/mobile/src/device/bgHold.ts
+M  apps/mobile/src/device/guard.ts
+M  apps/mobile/src/documents/hooks.ts
+M  apps/mobile/src/documents/importPicker.ts
+M  apps/mobile/src/documents/index.ts
+M  apps/mobile/src/documents/office.ts
+M  apps/mobile/src/screens/Chat.tsx
+M  apps/mobile/src/screens/chat/MemorySheet.tsx
+M  apps/mobile/src/screens/documents/DocumentRow.tsx
+M  apps/mobile/src/screens/documents/DocumentsScreen.tsx
+A  apps/mobile/test/androidPermissionGate.test.ts
+M  apps/mobile/test/fixes-r25.test.ts
+A  apps/mobile/test/gates-wired.test.ts
+A  apps/mobile/test/iosDeploymentTarget.test.ts
+M  docs/build.py
+M  docs/demo-src/inborn-demo.src.html
+M  docs/inborn-demo.html
+M  docs/inborn-spec.html
+M  docs/legal/app-privacy-details.md
+M  docs/legal/privacy-policy.md
+M  docs/legal/terms.md
+M  docs/qa/edge-cases-matrix.md
+ M docs/qa/fixes-r24a/README.md
+ M docs/qa/fixes-r24a/locale-keys.txt
+ M docs/qa/fixes-r24a/sabotage.txt
+ M docs/qa/fixes-r24a/tests.txt
+A  docs/qa/fixes-r24c/guard-red-dead-key.txt
+A  docs/qa/fixes-r24c/guard-red-share-target.txt
+A  docs/qa/fixes-r24c/tests-green.txt
+A  docs/qa/fixes-r24c/tier-matrix.md
+A  docs/qa/fixes-r25/ci-permission-gate.txt
+A  docs/qa/fixes-r25/ios-deployment-target.txt
+A  docs/qa/fixes-r25/ios-device-build.txt
+M  docs/qa/qa-run-2026-09-11.md
+M  docs/qa/release-checklist.md
+M  docs/qa/spec-conformance-2026-09-22.md
+M  docs/spec-src/01-summary.html
+M  docs/spec-src/03-brand.html
+M  docs/spec-src/04-platforms.html
+M  docs/spec-src/05-architecture.html
+M  docs/spec-src/06-models.html
+M  docs/spec-src/07-features.html
+M  docs/spec-src/08-screens.html
+M  docs/spec-src/10-edgecases.html
+M  docs/spec-src/11-store-legal.html
+M  docs/spec-src/12-monetization.html
+M  docs/spec-src/14-plan.html
+M  docs/store/listing.de.json
+M  docs/store/listing.en.json
+M  docs/store/listing.es.json
+M  docs/store/listing.fr.json
+M  docs/store/listing.ja.json
+M  docs/store/listing.ko.json
+M  docs/store/listing.pt-BR.json
+M  docs/store/listing.zh-Hant.json
+M  packages/core/src/licence/gates.ts
+M  packages/core/src/licence/index.ts
+A  packages/core/src/licence/intake.ts
+M  packages/core/test/licence-gates.test.ts
+A  packages/core/test/licence-intake.test.ts
+M  packages/i18n/locales/de.json
+M  packages/i18n/locales/en.json
+M  packages/i18n/locales/es.json
+M  packages/i18n/locales/fr.json
+M  packages/i18n/locales/ja.json
+M  packages/i18n/locales/ko.json
+M  packages/i18n/locales/pseudo.json
+M  packages/i18n/locales/pt-BR.json
+M  packages/i18n/locales/zh-Hant.json
+M  scripts/check-android-permissions.sh
+M  scripts/web-smoke.mjs
+?? docs/qa/fixes-r24a/web-smoke.txt

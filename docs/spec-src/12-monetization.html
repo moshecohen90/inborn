@@ -6,7 +6,7 @@
 <table>
 <thead><tr><th>SKU</th><th class="num">מחיר (US)</th><th>סוג</th><th>היכן</th><th class="num">נטו (15%)</th><th>למי</th></tr></thead>
 <tbody>
-<tr><td><strong>Pro</strong></td><td class="num">$19.99</td><td>non‑consumable, universal (iPhone + iPad + Mac App Store), Family Sharing</td><td>App Store, Play, Microsoft Store / Paddle</td><td class="num">$16.99</td><td>הפרטי, הנוסע, החובב</td></tr>
+<tr><td><strong>Pro</strong></td><td class="num">$19.99</td><td>non‑consumable, universal (iPhone + iPad + Mac App Store); Family Sharing כבוי ב‑1.0</td><td>App Store, Play, Microsoft Store / Paddle</td><td class="num">$16.99</td><td>הפרטי, הנוסע, החובב</td></tr>
 <tr><td>Pro · מחיר השקה (30 יום)</td><td class="num">$14.99</td><td>אותו SKU במחיר מבצע</td><td>שתי החנויות</td><td class="num">$12.74</td><td>גל ההשקה וה‑PR</td></tr>
 <tr><td><strong>Work</strong> (הוחלט, משה 3.9.2026)</td><td class="num">$69.99</td><td>non‑consumable; SKU "Work upgrade" ל‑Pro owners ב‑$49.99</td><td>דסקטופ תחילה (Paddle/MS Store/Mac App Store), מובייל אחר כך</td><td class="num">$59.49</td><td>עו"ד, מטפלים, רופאים, רו"ח</td></tr>
 <tr><td>Work Team (5 מושבים)</td><td class="num">$249</td><td>מפתחות רישיון חתומים, אימות אופליין</td><td>Paddle בלבד (חשבונית)</td><td class="num">≈$236 (Paddle ~5%)</td><td>משרדים קטנים, קליניקות</td></tr>
@@ -21,7 +21,7 @@
 <li>Off Grid ב‑69 היא העוגן הגבוה, עם 24 דירוגים ו‑3.0 כוכבים: המחיר לא הבעיה שלה, האמינות כן.</li>
 <li>19.99 יושב מתחת לסף "צריך לחשוב" של רכישה חד‑פעמית באפליקציות פרודוקטיביות, ומעל 9.99 שמסמן "עוד אפליקציה". עם ערך Pro גלוי ומתמשך (מסמכים, קול, גיבוי) הוא נקרא הוגן.</li>
 <li>תמחור אזורי: המחירים בארה"ב הם הבסיס (Pro 19.99, Work 69.99), ולכל שוק אחר נגזר מחיר מקומי מאותו מנגנון של אפליקציות התנ"ך: קובץ המחירים לפי מדינה (<code>fbcloud/functions/src/tools/iap/config/pricing.json</code>) והפונקציה <code>getCountryPrice</code> ב‑<code>country-pricing.config.ts</code>, שמחזיקים יחס מחיר לכל מדינה מול ארה"ב ומטבע פר פלטפורמה. לרכישה חד‑פעמית משתמשים באותו יחס (למשל ברזיל ≈ 36% מארה"ב, מקסיקו ≈ 50%, ניגריה ≈ 14%) ומעגלים למחיר מקומי נאה. חד‑פעמי בלבד, לא מנוי.</li>
-<p><strong>למה Pro בחזית בטלפון ו‑Work בחזית בדסקטופ.</strong> הפייוול נפתח כשמשתמש נוגע בפיצ'ר Pro; בטלפון זה כמעט תמיד צרכן, ולכן Pro הוא הכרטיס הראשי. Work מוצג מתחתיו כעוגן עם התג "For professionals": הוא פונה למי שבאמת צריך כספות ללקוחות ורדקציה, ובאותה הזדמנות גורם ל‑19.99 להיראות זול ליד 69.99 (עיגון מחיר). בדסקטופ, ששם יושב הקהל המקצועי ו‑Work נמכר תחילה, הסדר הפוך. Family Sharing מופיע רק ב‑iOS (עד 6 בני משפחה על רכישה אחת; מופעל פעם אחת ב‑App Store Connect ואי אפשר לכבות אחר כך, דלת חד‑כיוונית); ב‑Play כתוב במפורש ש‑Family Library לא כולל רכישות בתוך האפליקציה, כדי למנוע בקשות החזר.</p>
+<p><strong>למה Pro בחזית בטלפון ו‑Work בחזית בדסקטופ.</strong> הפייוול נפתח כשמשתמש נוגע בפיצ'ר Pro; בטלפון זה כמעט תמיד צרכן, ולכן Pro הוא הכרטיס הראשי. Work מוצג מתחתיו כעוגן עם התג "For professionals": הוא פונה למי שבאמת צריך כספות ללקוחות ורדקציה, ובאותה הזדמנות גורם ל‑19.99 להיראות זול ליד 69.99 (עיגון מחיר). בדסקטופ, ששם יושב הקהל המקצועי ו‑Work נמכר תחילה, הסדר הפוך. Family Sharing <strong>אינו מופעל ב‑1.0</strong> (החלטה 22.9.2026): ההפעלה ב‑App Store Connect היא דלת חד‑כיוונית שאי אפשר לכבות אחר כך, ולכן היא נדחית לגרסה שאחריה. הקוד מוכן ומקבל בעלות משותפת; הפייוול קורא את הדגל החי של StoreKit ומציג בינתיים “Family Sharing is not enabled for this product yet.”. ב‑Play כתוב במפורש ש‑Family Library לא כולל רכישות בתוך האפליקציה, כדי למנוע בקשות החזר.</p>
 </ul>
 
 <h3>12.3 מה נמכר ומה לא (עקרונות הגידור)</h3>
@@ -37,7 +37,7 @@
 <table>
 <thead><tr><th>פלטפורמה</th><th>מנגנון</th><th>אופליין</th><th>הערות</th></tr></thead>
 <tbody>
-<tr><td class="ltr">iOS / macOS (App Store)</td><td class="ltr">StoreKit 2 · Transaction.currentEntitlements · JWS</td><td>כן, מטמון חתום מקומי</td><td>המטמון עשוי להיות ריק עד סנכרון ראשון; "Restore" קורא AppStore.sync(); revocationDate נועל פיצ'רים בלבד; Family Sharing מופעל ב‑ASC</td></tr>
+<tr><td class="ltr">iOS / macOS (App Store)</td><td class="ltr">StoreKit 2 · Transaction.currentEntitlements · JWS</td><td>כן, מטמון חתום מקומי</td><td>המטמון עשוי להיות ריק עד סנכרון ראשון; "Restore" קורא AppStore.sync(); revocationDate נועל פיצ'רים בלבד; Family Sharing <strong>כבוי</strong> בכל ארבעת המוצרים ב‑ASC (החלטה 22.9.2026)</td></tr>
 <tr><td class="ltr">Android (Play)</td><td class="ltr">Play Billing 9.x · queryPurchasesAsync · אימות חתימת RSA עם המפתח הציבורי של האפליקציה</td><td>כן, מטמון של Play</td><td>acknowledge תוך 3 ימים; Family Library לא כולל IAP; Voided Purchases API דורש שרת ולכן לא בשימוש, מסתמכים על queryPurchases שמסיר רכישות שבוטלו</td></tr>
 <tr><td class="ltr">Windows (Microsoft Store)</td><td class="ltr">Windows.Services.Store · StoreContext.GetAppLicenseAsync</td><td>כן, רישיון במטמון</td><td>Add‑on "Pro" / "Work"</td></tr>
 <tr><td class="ltr">Windows / macOS (ישיר)</td><td class="ltr">Paddle license key → קובץ רישיון חתום Ed25519 (מזהה מכשיר, SKU, תאריך)</td><td>כן, אחרי הפעלה אחת</td><td>עד 3 מכשירים; ביטול הפעלה מהאפליקציה; Team = מפתח עם N מושבים</td></tr>
