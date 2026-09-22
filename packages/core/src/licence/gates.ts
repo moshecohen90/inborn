@@ -9,28 +9,18 @@ export const FEATURES = {
   /* Pro (§7.9) */
   documents: "pro",
   ocr: "pro",
+  strictDocuments: "pro",
   unlimitedPersonas: "pro",
   memory: "pro",
   folders: "pro",
   exportAll: "pro",
-  encryptedBackup: "pro",
-  deviceTransfer: "pro",
   neuralVoices: "pro",
   voiceConversation: "pro",
   whisperDictation: "pro",
-  keyboardExtension: "pro",
   customQuickActions: "pro",
   advancedShortcuts: "pro",
-  personaWidgets: "pro",
   macosServices: "pro",
-  lanConnection: "pro",
-  advancedControls: "pro",
-  gpuTuning: "pro",
   customContextLength: "pro",
-  speculativeDecoding: "pro",
-  multiModel: "pro",
-  compareModels: "pro",
-  localServer: "pro",
   calendarContacts: "pro",
   iconPacks: "pro",
   detailedStats: "pro",
@@ -49,6 +39,29 @@ export const FEATURES = {
   teamLicence: "work",
   architectureStatement: "work",
 } as const satisfies Record<string, Exclude<LicenceTier, "free">>;
+
+/**
+ * Keys whose §7 row is real but whose surface is not in this build. They stay so the matrix keeps one machine-readable
+ * home, and `licence-gates.test.ts` fails the moment one of them is neither listed here nor called: a gate nobody asks
+ * is the shape of F42. A key for a capability on README's "intentionally not built for 1.0" list belongs in neither
+ * place — it is deleted, and returns with the feature.
+ */
+export const UNBUILT_FEATURES: readonly Feature[] = [
+  "neuralVoices",
+  "customQuickActions",
+  "advancedShortcuts",
+  "macosServices",
+  "customContextLength",
+  "calendarContacts",
+  "iconPacks",
+  "professionPacks",
+  "recordsDictation",
+  "largeModels",
+  "teamLicence",
+];
+
+/** The Free receipt §7.1 names row by row: model, quantisation, context, ms/token. The rest is `detailedStats` (§7.8). */
+export const FREE_LEDGER_ROWS: readonly string[] = ["model", "quant", "context", "msPerToken"];
 
 export type Feature = keyof typeof FEATURES;
 export const FEATURE_LIST = Object.keys(FEATURES) as Feature[];
