@@ -237,6 +237,7 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
+      ...(input.safety ? { safety: input.safety } : {}),
     };
     this.messages.get(chat.id)!.push(message);
     chat.updatedAt = message.createdAt;
@@ -260,6 +261,7 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
       if (patch.citations.length) message.citations = patch.citations.map((c) => ({ ...c }));
       else delete message.citations;
     }
+    if (patch.safety !== undefined) message.safety = patch.safety;
   }
 
   async deleteMessagesFrom(chatId: string, messageId: string): Promise<number> {

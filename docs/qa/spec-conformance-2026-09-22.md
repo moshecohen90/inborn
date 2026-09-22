@@ -857,6 +857,12 @@ Screens, states and whole subsystems that exist in code and have no device or br
 
 ## Ranked gap list
 
+> **Update, 22.9.2026 evening.** Gaps **1, 3, 16, 19, 20, 21 and 33** were closed in **fixes round 25** (branch
+> `fixes-r24a`, filed as F50–F56). See `README.md` "Fixes round 25", the F50–F56 rows in
+> `docs/qa/qa-run-2026-09-11.md` and the evidence in `docs/qa/fixes-r24a/`. Their rows below are left as
+> written, because the finding is the record; the fix is not in them. **None of the seven was seen on a screen**
+> — that stream had no device, emulator or browser — so every one of them still wants a QA pass.
+
 Severity scale: **blocks-1.0** (the app cannot be submitted, or submitting it would be dishonest) · **should-fix-before-submission** (submittable, but the first reviewer or user who looks will find it) · **1.0.1** (real, not urgent) · **deferred** (a decision already recorded in README or the spec).
 
 Fix size is an estimate of engineering effort: XS under an hour, S half a day, M a day or two, L a week or more.

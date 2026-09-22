@@ -41,7 +41,10 @@ export function Ledger({ message, nCtx, quant, onUnlock }: LedgerProps) {
     ["tokens", t("ledger.tokens"), u ? `${u.promptTokens} + ${u.completionTokens}` : "—"],
     ["time", t("ledger.time"), genMs !== undefined ? `${(genMs / 1000).toFixed(1)} s` : "—"],
   ];
-  const shown = detailed ? rows : rows.filter(([id]) => FREE_LEDGER_ROWS.includes(id));
+  /* F50: the family-safe row is appended after the §7.1 filter, never inside it — why an answer is not the
+     model's own text is not a statistic, and a Free user has the same right to know it. */
+  const shown = detailed ? [...rows] : rows.filter(([id]) => FREE_LEDGER_ROWS.includes(id));
+  if (message.safety === "family-safe") shown.push(["safety", t("ledger.safety"), t("ledger.safety.familySafe")]);
   return (
     <View>
       <Pressable testID="ledger-toggle" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.toggle}>

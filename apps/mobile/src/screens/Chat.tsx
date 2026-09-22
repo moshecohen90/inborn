@@ -35,6 +35,8 @@ import {
   paywallFor,
   planAnswerLength,
   planSummary,
+  safetyBaseline,
+  screenText,
   scriptOf,
   titleFromFirstMessage,
   type Chat as ChatRecord,
@@ -46,6 +48,7 @@ import {
   type Persona,
   type QuickActionId,
   type ReportInput,
+  type SafetyMark,
   type Session,
   type SharePayload,
   type StoppedBy,
@@ -101,6 +104,7 @@ import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
 import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
+import { useAppServices } from "../services/AppServices";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
@@ -164,6 +168,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
   const ent = useEntitlements();
+  /* §11.1 Guideline 1.2 / §11.2 AI-content: family-safe mode, on by default, switched in Settings → Chat. */
+  const familySafe = useAppServices().prefs.contentSafety;
   const { tier, can } = useEntitlement();
   const licence = useLicence();
   const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
@@ -351,9 +357,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   useShortcut("focus-composer", () => focused.current && inputRef.current?.focus());
 
   const budget = useMemo(() => {
-    const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt });
+    const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt });
     return buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: wire(rows), nCtx, scale: tokenScale, reserve: 0 });
-  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale]);
+  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale, familySafe]);
   const level = contextLevel(budget.fullness);
 
   const ensureChat = async (firstText: string): Promise<string> => {
@@ -397,10 +403,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let reasoningStart = 0;
     let reasoningMs: number | undefined;
     let citations: Citation[] | undefined;
+    /* Set while streaming so the abort below is read as a replacement, not as the user's Stop (which would offer "Continue"). */
+    let familySafeHit = false;
     const started = Date.now();
     const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === targetId ? fn(x) : x)));
-    const answerWithoutModel = async (key: string, values?: Record<string, unknown>) => {
-      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id });
+    const answerWithoutModel = async (key: string, values?: Record<string, unknown>, safety?: SafetyMark) => {
+      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id, ...(safety ? { safety } : {}) });
       setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
     };
     try {
@@ -415,13 +423,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
+      /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
+      if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
+        await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
+        return;
+      }
       /* F38: how long this answer should be, as one line in the prompt and a cap for this turn. "Continue" asks for the rest, so it gets the ceiling. */
       const length = planAnswerLength({
         text: lastUser,
         use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
       });
-      const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
+      const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -473,7 +486,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           patch((x) => ({ ...x, content: snapshot }));
           if (tokens % 8 === 0) {
             setLiveTps((tokens * 1000) / Math.max(1, Date.now() - firstAt));
-            if (tokens >= 24 && detectLoop(reply)) {
+            /* F50: catching it mid-stream is what keeps the text off the screen; the check below still catches what the last chunk added. */
+            if (screenText(reply, familySafe).flagged) {
+              familySafeHit = true;
+              ac.abort();
+            } else if (tokens >= 24 && detectLoop(reply)) {
               stopReason.current = "loop";
               ac.abort();
             }
@@ -482,10 +499,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (d.done) usage = d.done;
       }
       const reason = stopReason.current as StoppedBy | "loop" | null;
+      /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
+      const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;
+      if (familySafeReplaced) {
+        reply = t("chat.familySafe.replaced");
+        reasoning = "";
+        reasoningMs = undefined;
+        citations = undefined;
+        patch((x) => ({ ...x, content: prefix + reply, reasoning: "" }));
+      }
       /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
       const guardStopped = wasStoppedByGuard();
-      const stopped = ac.signal.aborted || guardStopped;
+      const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped);
       const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
+      const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
         reply = t("documents.notFound");
@@ -497,8 +524,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         setRows((all) => all.filter((x) => x.id !== targetId));
       } else if (existingMessageId) {
         keptId = existingMessageId;
-        await store.updateMessage(chatIdNow, existingMessageId, { content: prefix + reply, stopped: !!stopped, ...(stoppedBy ? { stoppedBy } : {}), ...(usage ? { usage } : {}) });
-        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: reason === "loop", ...(usage ? { usage } : {}) }));
+        await store.updateMessage(chatIdNow, existingMessageId, { content: prefix + reply, stopped: !!stopped, ...(stoppedBy ? { stoppedBy } : {}), ...(usage ? { usage } : {}), ...(safety ? { safety } : {}) });
+        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: !familySafeReplaced && reason === "loop", ...(usage ? { usage } : {}), ...(safety ? { safety } : {}) }));
       } else {
         const saved = await store.appendMessage({
           chatId: chatIdNow,
@@ -510,9 +537,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           stopped,
           ...(stoppedBy ? { stoppedBy } : {}),
           ...(usage ? { usage } : {}),
+          ...(safety ? { safety } : {}),
           ...(citations?.length ? { citations } : {}),
         });
-        setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: reason === "loop" } : x)));
+        setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: !familySafeReplaced && reason === "loop" } : x)));
         keptId = saved.id;
       }
       /* The "paused in the background" line belongs to the turn the grace cut, not to the app: without an owner it followed the user into every later chat (QA F28). */

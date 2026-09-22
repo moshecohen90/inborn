@@ -17,7 +17,8 @@ import { Sheet } from "../../components/shell/Sheet";
 import { font, useType } from "../../services/type";
 
 const EXODUS = "https://reports.exodus-privacy.eu.org/en/reports/search/com.inbornapp.mobile/";
-const SOURCE = "https://github.com/moshecohen90/inborn";
+/* F51: the "Source code" link went to a private repository and 404'd for every user. There is no published
+   bundle hash either, so this section now offers only what it can actually show. docs/legal/verification.md. */
 
 /** S50: every privacy claim next to the way to verify it. Mono readouts, nothing decorative. */
 export function Proof() {
@@ -81,7 +82,9 @@ export function Proof() {
 
       <Section title={t("proof.build")}>
         <Line mono={`${version} (${build}) · ${extra.commit ?? "unknown"}`} text={t("proof.build.line", { date: extra.builtAt ?? "" })} testID="proof-build" />
-        <Button title={t("proof.source")} variant="link" onPress={() => void Linking.openURL(SOURCE)} />
+        <Text testID="proof-source-note" style={[type.bodySmall, { color: theme.text3 }]}>
+          {t("proof.build.notPublished")}
+        </Text>
       </Section>
 
       <View style={styles.actions}>

@@ -11,6 +11,7 @@ import { deviceNoun } from "../../lib/deviceNoun";
 import type { DeviceInfo } from "../../vault";
 import { HfRequestError, hfRepoInfo, hfSearch, readHfToken, writeHfToken, type HfError } from "../../vault/hf";
 import { useOpenSheet } from "../../lib/openSheets";
+import { LicenceSheet, type LicenceSubject } from "../../components/LicenceSheet";
 
 export interface HfSearchProps {
   visible: boolean;
@@ -39,6 +40,8 @@ export function HfSearch({ visible, device, theme, onClose, onPick }: HfSearchPr
   const [token, setToken] = useState("");
   const [hasToken, setHasToken] = useState(false);
   const [tokenOpen, setTokenOpen] = useState(false);
+  /* F54 · §11.4: someone else's weights are not downloaded until their licence has been shown and accepted. */
+  const [pending, setPending] = useState<{ model: CatalogModel; subject: LicenceSubject } | null>(null);
   const abort = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -174,7 +177,15 @@ export function HfSearch({ visible, device, theme, onClose, onPick }: HfSearchPr
                                       {[formatModelBytes(file.bytes), file.quant, fit.text].filter(Boolean).join(" · ")}
                                     </Text>
                                   </View>
-                                  <Pressable testID={`hf-pick-${file.path}`} accessibilityRole="button" onPress={() => onPick(hfFileAsModel(f.info, file))} style={[styles.pick, fit.ok ? { backgroundColor: theme.ctaFill } : { borderWidth: 1, borderColor: theme.border }]}>
+                                  <Pressable
+                                    testID={`hf-pick-${file.path}`}
+                                    accessibilityRole="button"
+                                    onPress={() => {
+                                      const model = hfFileAsModel(f.info, file);
+                                      setPending({ model, subject: { name: f.info.id, license: model.license, licenseUrl: `https://${HF_HOST}/${f.info.id}` } });
+                                    }}
+                                    style={[styles.pick, fit.ok ? { backgroundColor: theme.ctaFill } : { borderWidth: 1, borderColor: theme.border }]}
+                                  >
                                     <Text style={[type.caption, type.strong, { color: fit.ok ? theme.ctaText : theme.text }]}>{t("vault.hf.download")}</Text>
                                   </Pressable>
                                 </View>
@@ -193,6 +204,16 @@ export function HfSearch({ visible, device, theme, onClose, onPick }: HfSearchPr
               })
             : null}
         </ScrollView>
+        <LicenceSheet
+          visible={pending !== null}
+          subject={pending?.subject ?? null}
+          onClose={() => setPending(null)}
+          onAccept={() => {
+            const model = pending?.model;
+            setPending(null);
+            if (model) onPick(model);
+          }}
+        />
       </View>
     </Modal>
   );

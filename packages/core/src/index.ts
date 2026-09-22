@@ -17,6 +17,7 @@ export * from "./chat/detectLanguage";
 export * from "./chat/quickActions";
 export * from "./chat/shareTarget";
 export * from "./chat/safety";
+export * from "./chat/contentSafety";
 export * from "./chat/retention";
 export * from "./proof/exitMeter";
 export * from "./proof/allowlist";
