@@ -387,7 +387,25 @@ loads it and it answers at 13.2 tok/s. **Fixed in round 23**, where the pass's "
 dominant one: the guard read RAM as raw GiB while the rest of the app read the marketed size, and Fast's 6 GB minimum sat exactly
 between the two, so the boot-time RAM floor started Instant on a phone the catalog recommends Fast for. Both that and the
 system-wide subscription are fixed and proved on the same phone; the two cosmetic knock-ons are filed as F45 and F46 and fixed in
-the same round. Play internal testing 1.0.0 (6) active
+the same round. **TestFlight 1.0.0 (13) VALID 22.9 19:00 from `main` 239a268, buildNumber 13**
+(`docs/qa/ios-build-13-2026-09-22.md`) — the first TestFlight binary carrying rounds 23–30, and the pass that proves
+**F43 on the shipped build** rather than on a locally built Release app: on the same phone, the same vault and the same
+prefs that build 12 ran on, build 13 **boots straight into Fast** with no banner on any screen, llama.cpp opens
+`Qwen3.5-2B-Q4_K_M.gguf` and `n_ctx` is 4096 where build 12 was capped at 2048
+(`docs/qa/ios-device-pass-13-2026-09-22.md`). **25 PASS, 0 FAIL of the 25 rows that need no tap**, 0 error lines across
+every device launch, 0 crash reports, and a **30-minute soak** on one process that caught the 10-minute idle unload
+firing on an iPhone for the first time — resident memory drops 1.39 GB when it fires, the header still reads FAST, and
+the footprint then moves under 1.4 MB across the remaining twenty minutes with the anonymous peak identical at all seven
+samples. Two further round-23/25 fixes are confirmed on the binary: `inborn:///voice` now redirects to the paywall
+(**F53**) and the paywall's "No subscription. No account. Yours forever." is legible again (**F45**). App Store Connect
+reports `minOsVersion` **17.0** against build 12's 16.4 — commit 3346f27, gap #18 — so this is the first build that will
+not install on iOS 16, which belongs in the release notes. **Still open and needing Moshe:** the four tap rows (a
+model's Details sheet incl. F46's SOURCE line, the vault below the fold, a chat turn on Fast, a second throughput
+sample) — the XCUITest runner is built and both sessions are patched and ready, and the run stopped on the phone's
+"Enter iPhone Passcode for 'XCTest' · Enable UI Automation" prompt. Two release-pipeline defects came out of the run and
+are filed as **F90** (a stale locked `signing_temp` keychain kills `-exportArchive` with an unexplained
+`errSecInternalComponent`) and **F91** (`asc-key-env.sh --cleanup` deletes every stream's staged key, not its own).
+Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
