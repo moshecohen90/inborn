@@ -195,7 +195,7 @@ Ads: No. Government app: No. Financial features: No. Health apps: No (the crisis
 | 5.1.1(i) Privacy policy link | in listing and in-app Settings |
 | 5.1.2(i) Consent before sharing personal data with third-party AI (Nov 2025 update) | Not applicable: no third-party AI, nothing shared. Say so in review notes |
 | 5.1.4 Kids | Not a Kids app |
-| 3.1.1 In-app purchase | Pro/Work via StoreKit only; Family Sharing enabled for Pro |
+| 3.1.1 In-app purchase | Pro/Work via StoreKit only; Family Sharing is an **open decision for Moshe** — a one-way door in App Store Connect — and is not enabled for 1.0 unless he turns it on; the paywall's own footer says so ("Family Sharing is not enabled for this product yet.", `docs/qa/ios-device-pass-9-2026-09-21.md` row 9b) |
 | 4.2 Minimum functionality / June 2026 "apps that do not add value" | The proof screen, vault, documents and the no-network design are the documented differentiation (spec §11.2 last row applies to Apple too) |
 | 2.5.x Foundation Models Acceptable Use | Not applicable in 1.0: Apple Foundation Models are not used (declared cut, README "Intentionally not built for 1.0"); every answer comes from the open-weight model in the vault. Re-check if FM is adopted later |
 
