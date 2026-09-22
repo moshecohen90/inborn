@@ -1,5 +1,6 @@
 import StoreKitTest
 import XCTest
+import UIKit
 
 /// Real-phone voice driver (M5b verification): the step list comes from the VOICE_STEPS environment variable
 /// (";"-separated, written into the .xctestrun EnvironmentVariables), because a device runner has no shared /tmp.
@@ -8,6 +9,7 @@ import XCTest
 ///   waitlabel:<id>:<substring>:<s> · value:<id> (logs label + value) · log:<text> · env:<KEY>=<value> (app launch environment,
 ///   before launch) · say:<s>:<voice>:<text> (logs a SAY marker the Mac turns into `say -v <voice>`, then waits <s>) · home ·
 ///   activate · swipeup:<n> · swipedown:<n> · scrollto:<id>[:<max swipes>] · dump (labels of the visible static texts)
+/// paste:<id>:<text> (pasteboard + long-press Paste; the only way to enter Hebrew without changing a keyboard setting)
 /// Everything is logged into the attachment driver-log.txt; screenshots are attachments too (xcresulttool export).
 /// VOICE_SKTEST=1 opens a runner-side StoreKit session; otherwise the app-side harness (INBORN_SKTEST via env:) owns the store.
 final class VoiceDeviceUITests: XCTestCase {
@@ -131,6 +133,19 @@ final class VoiceDeviceUITests: XCTestCase {
         a.name = arg
         a.lifetime = .keepAlways
         add(a)
+      case "paste":
+        /* Hebrew has no HID mapping on the phone's active layout, so typeText drops it; the pasteboard is the only
+           way in that does not change a keyboard setting on Moshe's phone. */
+        let p = arg.split(separator: ":", maxSplits: 1).map(String.init)
+        guard p.count == 2 else { log("bad paste \(arg)"); continue }
+        UIPasteboard.general.string = p[1]
+        let el = find(app, p[0])
+        if el.waitForExistence(timeout: 8) {
+          el.tap(); usleep(600_000)
+          el.press(forDuration: 1.4); usleep(900_000)
+          let paste = app.menuItems["Paste"].exists ? app.menuItems["Paste"] : springboard.menuItems["Paste"]
+          if paste.exists { paste.tap(); log("pasted into \(p[0])") } else { log("no Paste menu item for \(p[0])") }
+        } else { log("no element \(p[0])") }
       case "log":
         log(arg)
       default:
