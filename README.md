@@ -366,7 +366,17 @@ attach sheet with Instant resident) are now **PASS**. Final: **28 PASS, 0 FAIL, 
 model's Details sheet) stays NOT RUN, because the phone locked itself before the third runner session could start
 (`docs/qa/ios-device-pass-11-2026-09-22.md`). The App Manager ASC API key cannot export with cloud-managed
 certificates (403 FORBIDDEN_ERROR), which is why builds 6–11 were signed with the Admin key; since 22.9 that key is the
-release default and nothing is open on it (see "iOS release: which App Store Connect key"). Play internal testing 1.0.0 (6) active
+release default and nothing is open on it (see "iOS release: which App Store Connect key"). **TestFlight 1.0.0 (12) VALID 22.9
+14:28 from `main` 9da93a2, buildNumber 12** (`docs/qa/ios-build-12-2026-09-22.md`) — the change since build 11 is the round-21
+shared-shell work that merged above c7f57c0: F40/F41 (llama.rn out of the browser bundle, the download door out of the desktop
+shell), F42 (the §8.9 wide-screen layout, sidebar, command palette, shortcuts), the CDN web allowlist and the OPFS publish
+waits. Real-iPhone pass 12 (`docs/qa/ios-device-pass-12-2026-09-22.md`): the archive installed **in place over 1.0.0 (11) and
+the 1.2 GB Fast model survived byte-for-byte**, all eleven deep-linked screens drew the **phone** shell with no sidebar and no
+command palette (F42 is width-gated at 760 pt and the phone is 390 pt, portrait-locked), 0 error lines across 14 launches, 0
+crash reports, memory flat, and the F42, F39 and F38 strings are all verified in the shipped Hermes bundle. One inherited state
+to know about: the CDN run left **Fast selected**, so the device guard shows "Ran out of memory · Switched to Instant" on every
+screen and falls back to Instant — correct §6.5 behaviour on a 6 GB phone, not a build-12 regression, with two cosmetic
+knock-ons noted in the pass doc. Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
@@ -436,8 +446,10 @@ smallest. CORS is proven for the browser's ranged fetch. The web tier downloads 
 (`NSCocoaErrorDomain 4097`) — a simulator limit, not the app. Details and the re-verify command: `docs/ops/cdn-r2.md`.
 Open (Moshe only): a model's Details sheet on the real iPhone (row 13c) still needs one more accepted "Enter iPhone Passcode
 for 'XCTest' · Enable UI Automation" sheet — the rest of the tap-driven backlog (live chat turn, attach sheet, vault below the
-fold) is now proven; the real-iPhone CDN download proof (Fast/Sharp/vision-projector/document-index over `models.inbornapp.com`,
-which only a physical device can finish — the simulator's `nsurlsessiond` cannot) is pending, being run now; Cloudflare-side
+fold) is now proven; the real-iPhone CDN download proof is **done and passed** — Moshe's iPhone pulled Fast, 1.2 GB, from
+`models.inbornapp.com` in 151 s, the app's own sha256 check passed and it answered a chat turn with the downloaded model
+(`docs/qa/cdn-iphone-2026-09-22.md`); the submission candidates are now **TestFlight 1.0.0 (12)** and **Play versionCode 16**,
+both from `main` **9da93a2**; Cloudflare-side
 privacy/support pages are not deployed yet (the site stays parked until design approval); Play Console fields (privacy URL,
 sign-in details, IARC rating, target audience, data safety declaration, contact details) and ASC privacy/support URLs + review
 information; the 8 legal placeholders (support email, legal name, address and the rest of `docs/legal/`); store screenshots
