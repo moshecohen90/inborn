@@ -13,10 +13,22 @@ jobs:
       - run: pnpm test
       - run: pnpm lint
       - run: pnpm --filter @inborn/mobile exec expo export -p web
+  # The zero-INTERNET claim (spec §5.1, decision D3) is one permission in one merged manifest, and it is made to two
+  # app stores and in the privacy policy. The merged release manifest is all the gate needs, so this job builds no APK,
+  # holds no signing key and downloads no models.
   android-permission-gate:
-    # TODO enable once a release APK/AAB is produced in CI (EAS build or local gradle); the script works locally today.
-    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash scripts/check-android-permissions.sh build/app-release.apk
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20.19.4, cache: pnpm }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21" }
+      - uses: gradle/actions/setup-gradle@v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @inborn/mobile exec expo prebuild -p android --no-install
+      # verifyOcrAssets is a release gate over INBORN_MODELS_DIR, which CI deliberately does not have; it guards
+      # assets, never a permission, and it still runs on every build that actually ships.
+      - run: apps/mobile/android/gradlew -p apps/mobile/android --no-daemon :app:processReleaseManifest -x :doc-extract:verifyOcrAssets
+      - run: bash scripts/check-android-permissions.sh apps/mobile/android/app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml
