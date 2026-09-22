@@ -201,6 +201,32 @@ describe("§6.5 table — heat, memory, background", () => {
     expect(run(p, signals({ charging: true, currentTier: "fast" }), phone(), 92_000).status).toBe("normal");
   });
 
+  /* QA F43: the boot-time RAM floor reads the model's minimum before anything is mapped; nothing ever ran out of memory. */
+  it("the boot-time RAM floor says the model does not fit, not that memory ran out", () => {
+    const p = new DevicePolicy();
+    p.noteSwitched("fast", "instant", true, "fit");
+    const r = run(p, signals({ currentTier: "instant" }), phone(), 1);
+    expect(r).toMatchObject({ status: "memoryBack", recommendation: "propose", action: "switchBack", targetTier: "fast", headline: HEADLINE_KEYS.fitSwitched, button: "switchBack", stopGeneration: false });
+    expect(r.headlineParams).toEqual({ model: "Fast", to: "Instant" });
+    expect(r.buttonParams).toEqual({ model: "Fast" });
+    expect(en[HEADLINE_KEYS.fitSwitched]).toBeTypeOf("string");
+    expect(en[HEADLINE_KEYS.fitSwitched]).not.toMatch(/ran out/i);
+    /* Switch back clears it, and a real eviction still gets the out-of-memory wording. */
+    expect(p.accept(2)).toEqual({ kind: "switch", tier: "fast" });
+    expect(run(p, signals({ currentTier: "fast" }), phone(), 3).status).toBe("normal");
+    const q = new DevicePolicy();
+    q.noteSwitched("fast", "instant", true, "memory");
+    expect(run(q, signals({ currentTier: "instant" }), phone(), 1).headline).toBe(HEADLINE_KEYS.memorySwitched);
+  });
+
+  it("a fit switch is dismissable and does not come back on its own", () => {
+    const p = new DevicePolicy();
+    p.noteSwitched("fast", "instant", true, "fit");
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 1).status).toBe("memoryBack");
+    p.dismiss();
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 2).status).toBe("normal");
+  });
+
   it("memory line dismissed: hidden for as long as the switch stands, no automatic switch back", () => {
     const p = new DevicePolicy();
     run(p, signals({ memoryPressure: "critical" }));

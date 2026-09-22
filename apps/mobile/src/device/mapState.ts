@@ -18,7 +18,8 @@ export function toDeviceState(g: GuardState): DeviceState {
       else recommendation = r.stopGeneration ? { kind: "pause", reason: "memory" } : { kind: "switchToInstant", reason: "memory", auto: false };
       break;
     case "memoryBack":
-      recommendation = { kind: "switchToInstant", reason: "memory", auto: true };
+      /* The boot-time RAM floor and a real eviction leave the same standing line; only the first is not an out-of-memory event. */
+      recommendation = { kind: "switchToInstant", reason: r.headline === HEADLINE_KEYS.fitSwitched ? "fit" : "memory", auto: true };
       break;
     case "paused":
       recommendation = { kind: "paused" };
