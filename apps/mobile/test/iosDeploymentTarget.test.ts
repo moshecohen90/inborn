@@ -52,6 +52,6 @@ describe("iOS deployment target", () => {
 
   it("is the floor the release checklist tests and the privacy policy names", () => {
     expect(read(path.join(ROOT, "docs/qa/release-checklist.md"))).toContain("Minimum OS floor: Android 8 (API 26) and iOS 17");
-    expect(read(path.join(ROOT, "docs/legal/privacy-policy.md"))).toContain("Model delivery, iOS 17 to 25");
+    expect(read(path.join(ROOT, "docs/legal/privacy-policy.md"))).toContain("every supported iOS version (iOS 17 and later)");
   });
 });
