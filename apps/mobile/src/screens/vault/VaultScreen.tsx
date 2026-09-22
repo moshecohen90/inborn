@@ -58,7 +58,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const [details, setDetails] = useState<CatalogModel | null>(null);
   const [benchmark, setBenchmark] = useState<BenchmarkResult | null>(null);
   const [benchmarking, setBenchmarking] = useState(false);
-  const { library } = useAppServices().store;
+  const { store, prefs, updatePrefs } = useAppServices();
+  const { library } = store;
   const [confirm, setConfirm] = useState<Confirm | null>(null);
   const [hfOpen, setHfOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -310,7 +311,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
           {confirm?.entry.plan?.via === "https" ? (
             <View style={styles.switchRow}>
               <Text style={[type.body, { color: theme.text }]}>{t("vault.confirm.wifiOnly")}</Text>
-              <Toggle testID="wifi-only" value={vault.wifiOnly()} onChange={(v) => vault.setWifiOnly(v)} />
+              <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} />
             </View>
           ) : null}
           <View style={styles.sheetActions}>

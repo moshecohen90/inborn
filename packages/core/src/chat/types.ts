@@ -80,7 +80,10 @@ export interface NewMessage {
   safety?: SafetyMark;
 }
 
-export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "stoppedBy" | "usage" | "citations" | "images" | "safety">>;
+export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "usage" | "citations" | "images" | "safety">> & {
+  /** `null` clears it, the way ChatPatch clears its optional fields: an answer that finished is no longer stopped by anyone. */
+  stoppedBy?: StoppedBy | null;
+};
 
 /** `null` clears an optional field (folder, persona, summary…); `undefined` leaves it alone. */
 export type ChatPatch = {

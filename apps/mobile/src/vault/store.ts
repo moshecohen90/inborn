@@ -23,6 +23,7 @@ import {
 import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
+import { networkKind } from "./network";
 import { fileGgufHeader, fileSha256 } from "./hash";
 import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError } from "./httpsDelivery";
 import { reportStorageFull } from "../services/storageFull";
@@ -59,6 +60,8 @@ export class VaultStore {
   private booted: Promise<void> | null = null;
   private lanes = new DeliveryLanes();
   private spacePoll: ReturnType<typeof setInterval> | null = null;
+  /* The stricter default until AppServices has read the user's prefs: no cellular gigabyte is spent by a race. */
+  private wifiOnlyPref = true;
 
   constructor(manifest: CatalogManifest = BUNDLED_MANIFEST, device?: DeviceInfo) {
     const check = loadManifest(manifest);
@@ -69,7 +72,8 @@ export class VaultStore {
     this.record = readRecord();
     const ctx = {
       manifest: this.manifest,
-      wifiOnly: () => this.record.wifiOnly,
+      wifiOnly: () => this.wifiOnlyPref,
+      network: networkKind,
       savedDownload: (id: string) => this.record.downloads[id],
       saveDownload: (id: string, state: unknown | null) => {
         if (state) this.record.downloads[id] = state as VaultRecord["downloads"][string];
@@ -320,12 +324,13 @@ export class VaultStore {
   }
 
   wifiOnly(): boolean {
-    return this.record.wifiOnly;
+    return this.wifiOnlyPref;
   }
 
+  /** Mirrors S52 › Downloads › "Wi-Fi only" (AppServices pushes it): the setting is stored once, in the app prefs. */
   setWifiOnly(v: boolean): void {
-    this.record.wifiOnly = v;
-    this.persist();
+    if (this.wifiOnlyPref === v) return;
+    this.wifiOnlyPref = v;
     this.notify();
   }
 

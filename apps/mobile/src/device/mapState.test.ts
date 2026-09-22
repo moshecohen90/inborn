@@ -20,7 +20,7 @@ const signals = (over: Partial<DeviceSignals> = {}): DeviceSignals => ({
 
 function guardState(s: DeviceSignals, policy = new DevicePolicy()): GuardState {
   const recommendation: Recommendation = policy.update(s, defaultOverride(s.deviceClass), 0);
-  return { battery: s.battery, thermal: s.thermal, memoryPressure: s.memoryPressure, powerSource: s.powerSource, recommendation, deviceClass: s.deviceClass, ramGB: s.ramGB, override: defaultOverride(s.deviceClass), engine: "loaded", explain: false };
+  return { battery: s.battery, thermal: s.thermal, memoryPressure: s.memoryPressure, powerSource: s.powerSource, recommendation, deviceClass: s.deviceClass, ramGB: s.ramGB, override: defaultOverride(s.deviceClass), engine: "loaded", explain: null };
 }
 
 describe("toDeviceState (§8.8 banner union from the §6.5 policy)", () => {

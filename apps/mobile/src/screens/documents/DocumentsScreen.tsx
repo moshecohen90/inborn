@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { FlatList, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../services/theme";
 import { File } from "expo-file-system";
@@ -18,6 +18,9 @@ import { listClipping } from "../../lib/listClipping";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
 import { PICK_TYPES, pickedName, sniffPicked } from "../../documents/office";
+import { planDrop } from "../../documents/dropped";
+import { openDropped } from "../../documents/drop";
+import { droppedPaths, subscribeDroppedPaths, takeDroppedPaths } from "../../documents/dropQueue";
 import { useVault } from "../../vault";
 import { AskDocuments, type AskOutcome } from "./AskDocuments";
 import { DocumentDetails } from "./DocumentDetails";
@@ -136,6 +139,32 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       console.warn("[documents] pick", e);
     }
   };
+
+  /* §8.9, gap 30: files dropped on the desktop window land here, whichever screen was up when they were dropped. */
+  const waiting = useSyncExternalStore(subscribeDroppedPaths, droppedPaths, () => droppedPaths());
+  const importing = useRef(false);
+  useEffect(() => {
+    if (!waiting.length || importing.current) return;
+    importing.current = true;
+    void (async () => {
+      try {
+        const paths = takeDroppedPaths();
+        const opened = (await Promise.all(paths.map(openDropped))).filter((o): o is NonNullable<typeof o> => o !== null);
+        const plan = planDrop(opened, proOverride === undefined ? tier : "pro", state.documents.length);
+        const byPath = new Map(opened.map((o) => [o.path, o.uri]));
+        for (const file of plan.accept) {
+          const uri = byPath.get(file.path);
+          if (uri) await importUri(uri, file.name);
+        }
+        /* Say what was left out rather than letting a file vanish into the window (the drop is a gesture, not a dialog). */
+        if (plan.rejected.some((r) => r.reason === "work-only")) setWorkMoment(true);
+        else if (plan.rejected.some((r) => r.reason === "over-free-limit")) onUnlock?.();
+        if (plan.rejected.length) setToast(t("documents.drop.skipped", { names: plan.rejected.map((r) => r.name).join(", ") }));
+      } finally {
+        importing.current = false;
+      }
+    })();
+  }, [waiting, importUri, onUnlock, proOverride, state.documents.length, t, tier]);
 
   const toggle = (id: string) =>
     setSelected((s) => {

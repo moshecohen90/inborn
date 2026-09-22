@@ -7,6 +7,7 @@ import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
 import { useAppServices } from "../../services/AppServices";
 import { useStorageFull } from "../../services/storageFull";
+import { dismissRepair, useRepairOutcome } from "../../storage/repairNotice";
 import { Mono } from "./primitives";
 import { emitShortcut } from "../../lib/shortcuts";
 import { ownsPausedTurn, usePausedTurn } from "../../lib/pausedTurn";
@@ -19,12 +20,22 @@ export function Banners() {
   const router = useRouter();
   const device = useDeviceState();
   const storageFull = useStorageFull();
+  const repair = useRepairOutcome();
   const { active, delivery, switchToInstant, switchBack, continueGeneration } = useAppServices();
   /* The guard's paused flag is app-wide; the partial answer it kept belongs to one chat (QA F28). */
   const pausedHere = ownsPausedTurn(usePausedTurn(), active.id);
   const rows: { key: string; tone: "amber" | "danger" | "muted"; text: string; action?: { label: string; onPress: () => void }; icon?: string }[] = [];
 
   const rec = device.recommendation;
+  /* The database was damaged. The app kept the old file and said so, because a silent recovery reads as "my chats are gone". */
+  if (repair)
+    rows.push({
+      key: "repair",
+      tone: "amber",
+      icon: "▲",
+      text: repair.kind === "started-fresh" ? t("state.dbStartedFresh") : t("state.dbRepaired", { count: repair.lost }),
+      action: { label: t("safety.dismiss"), onPress: dismissRepair },
+    });
   if (rec.kind === "storageFull" || storageFull)
     rows.push({ key: "storage", tone: "amber", icon: "▲", text: t("state.storageFull"), action: { label: t("state.manageStorage"), onPress: () => router.push("/settings/storage") } });
   if (device.thermal === "critical" || (rec.kind === "pause" && rec.reason === "thermal"))

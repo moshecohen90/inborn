@@ -53,7 +53,8 @@ describe("the document intake doors", () => {
   });
 
   it("no other module calls library.importFile behind the gate's back", () => {
-    const callers = sources.filter((s) => /\.importFile\(/.test(s.src) && !/\bDEV_|devFileUri/.test(s.src)).map((s) => s.path);
+    /* A test drives the library directly on purpose (documents/incognito.test.ts); a door is production code. */
+    const callers = sources.filter((s) => !/\.test\.tsx?$/.test(s.path) && /\.importFile\(/.test(s.src) && !/\bDEV_|devFileUri/.test(s.src)).map((s) => s.path);
     for (const c of callers) expect(doors, `${c} calls importFile`).toContain(c);
   });
 });

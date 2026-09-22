@@ -51,8 +51,8 @@ export interface GuardState {
   ramGB: number | null;
   override: UserOverride;
   engine: EngineState;
-  /** First automatic switch of the run: the shell shows the explainer sheet once, then calls ackExplain(). */
-  explain: boolean;
+  /** §8.8 row 4c: set on the first automatic battery switch of the install; the shell shows the sheet, then calls ackExplain(). */
+  explain: { from: ModelTier; to: ModelTier } | null;
 }
 
 const DEBOUNCE_MS = 250;
@@ -72,7 +72,7 @@ class DeviceGuard {
   private raw: RawSignals | null = null;
   private override: UserOverride = defaultOverride("phone");
   private explained = false;
-  private explain = false;
+  private explain: { from: ModelTier; to: ModelTier } | null = null;
   private backgroundedAt: number | null = null;
   private memorySince: number | null = null;
   private debounce: ReturnType<typeof setTimeout> | null = null;
@@ -135,7 +135,7 @@ class DeviceGuard {
   };
 
   ackExplain = (): void => {
-    this.explain = false;
+    this.explain = null;
     this.publish();
   };
 
@@ -301,7 +301,7 @@ class DeviceGuard {
     }
     if (rec.explain && !this.explained) {
       this.explained = true;
-      this.explain = true;
+      this.explain = { from: s.currentTier, to: rec.targetTier ?? "instant" };
       savePrefs({ ...this.override, explained: true });
     }
     if (rec.recommendation === "act" && rec.action === "switchToSmaller" && rec.targetTier && rec.targetTier !== "apple") {

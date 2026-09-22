@@ -24,6 +24,9 @@ export interface SignedRecord {
   format: "inborn.signed-record";
   version: 1;
   exportedAt: number;
+  /** EU AI Act Art. 50(2) machine-readable marking, same claim the Markdown/JSON/text exports carry. */
+  aiGenerated: true;
+  generator: string;
   app: { name: "Inborn"; version: string; platform: string };
   signer: { algorithm: "Ed25519"; publicKeyHex: string; keyCreatedAt: number };
   chat: { id: string; title: string; createdAt: number; updatedAt: number; modelId: string };
@@ -51,6 +54,8 @@ export function buildRecord(input: RecordInput): UnsignedRecord {
     format: "inborn.signed-record",
     version: 1,
     exportedAt: input.now,
+    aiGenerated: true,
+    generator: `${input.app.name} (on-device AI)`,
     app: input.app,
     signer: input.signer,
     chat: { id: input.chat.id, title: input.chat.title, createdAt: input.chat.createdAt, updatedAt: input.chat.updatedAt, modelId: input.chat.modelId },

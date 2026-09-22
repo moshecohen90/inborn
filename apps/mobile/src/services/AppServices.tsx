@@ -4,6 +4,8 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
+import { getLibrary } from "../documents/library";
+import { setClipboardExpiry } from "../lib/clipboard";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
@@ -192,6 +194,16 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     applyTextScale(prefs.textScale);
   }, [prefs.textScale]);
 
+  // S52 › Security › clipboard expiry (§7.5): the copy helper holds the setting, so every copy site inherits it.
+  useEffect(() => {
+    setClipboardExpiry(prefs.clipboardExpirySec);
+  }, [prefs.clipboardExpirySec]);
+
+  // Downloads › Wi-Fi only (§10.1 #4): one setting, wherever it was toggled, and the downloader is the one that reads it.
+  useEffect(() => {
+    getVault().setWifiOnly(prefs.wifiOnly);
+  }, [prefs.wifiOnly]);
+
   useEffect(() => {
     if (prefs.locale && i18next.isInitialized && i18next.language !== prefs.locale) void i18next.changeLanguage(prefs.locale);
   }, [prefs.locale]);
@@ -343,8 +355,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
 
   const closeActive = useCallback(
     (store: ChatStore, a: ActiveChat) => {
-      // An incognito chat is gone the moment the user leaves it (spec §5.7), not just when the app exits.
-      if (a.incognito && a.id) store.deleteChat(a.id).catch((e: unknown) => console.warn("deleteChat", e));
+      // Leaving an incognito chat ends the session (spec §5.7), not just closing the app: the chat, the RAM
+      // repository behind it and every document that session held go together, here and nowhere else.
+      if (!a.incognito) return;
+      store.endSession();
+      getLibrary().endSession();
     },
     [],
   );
@@ -383,7 +398,8 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       openShared: (payload) => {
         setActive((a) => {
           closeActive(booted.store, a);
-          return { id: null, incognito: false, key: a.key + 1, seed: payload };
+          /* Shared text arriving during an incognito session stays in it (§5.7); it does not quietly start saving. */
+          return { id: null, incognito: a.incognito, key: a.key + 1, seed: payload };
         });
       },
       seedConsumed: () => setActive((a) => (a.seed ? { ...a, seed: undefined } : a)),

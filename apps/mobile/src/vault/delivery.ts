@@ -1,4 +1,4 @@
-import type { CatalogManifest, CatalogModel, DeliverySource, InstallEvent } from "@inborn/core";
+import type { CatalogManifest, CatalogModel, DeliverySource, InstallEvent, NetworkKind } from "@inborn/core";
 
 /** What the vault tells the user before a single byte moves (spec §5.1: "exactly which host and why"). */
 export interface DeliveryPlan {
@@ -26,6 +26,8 @@ export interface ModelDelivery {
 export interface DeliveryContext {
   manifest: CatalogManifest;
   wifiOnly: () => boolean;
+  /** The path the next byte would take; the Wi-Fi-only rule of §10.1 #4 is decided against this, not against a guess. */
+  network: () => Promise<NetworkKind>;
   /** Paused-download state persisted across restarts, keyed by model id. */
   savedDownload: (id: string) => unknown;
   saveDownload: (id: string, state: unknown | null) => void;

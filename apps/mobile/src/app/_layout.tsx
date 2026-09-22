@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -9,12 +9,15 @@ import { mergePrefs } from "../services/prefsTypes";
 import { readPrefsRaw } from "../services/prefsStore";
 import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
+import { DeviceExplainSheet } from "../components/shell/DeviceExplainSheet";
 import { BANNER_TOP, BannerInsetContext } from "../components/shell/bannerInset";
 import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
 import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
 import { useShareTarget } from "../share";
+import { useDocumentDrop } from "../documents/drop";
+import { queueDroppedPaths } from "../documents/dropQueue";
 import { closeOpenSheets } from "../lib/openSheets";
 import { WideShell } from "../components/shell/WideShell";
 import { CommandPalette } from "../components/shell/CommandPalette";
@@ -85,6 +88,16 @@ function Shell() {
     openShared(payload);
     if (router.canGoBack()) router.dismissTo("/");
   });
+  /* §8.9: a file dropped anywhere on the desktop window is a document; the library screen takes it from here. */
+  useDocumentDrop(
+    useCallback(
+      (paths: string[]) => {
+        queueDroppedPaths(paths);
+        router.push("/documents");
+      },
+      [router],
+    ),
+  );
   const cover = (lock.covered && prefs.lock.enabled && prefs.lock.hideInSwitcher) || (captured && prefs.lock.screenshotProtection);
   const stack = (
     <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
@@ -109,6 +122,8 @@ function Shell() {
         <Banners />
       </View>
       {wide ? <CommandPalette visible={palette} onClose={() => setPalette(false)} /> : null}
+      {/* §8.8 row 4c: app-wide, like the strip above it — the switch happens wherever the user is. */}
+      <DeviceExplainSheet />
       {cover ? <PrivacyCover captured={captured} /> : null}
       {lock.locked ? <LockScreen /> : null}
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />

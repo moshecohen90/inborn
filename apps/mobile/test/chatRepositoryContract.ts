@@ -138,6 +138,18 @@ export function describeChatRepositoryContract(name: string, open: OpenRepositor
       await expect(repo.updateMessage(chat.id, "nope", { content: "x" })).rejects.toThrow(/unknown message/);
     });
 
+    it("clears stoppedBy when an answer that was written through mid-stream finishes after all (F65)", async () => {
+      const repo = await open({ now: clock() });
+      const chat = await repo.createChat({ modelId: "instant" });
+      /* The partial write marks the row a system stop so a kill leaves it resumable; the turn then ended normally. */
+      const m = await repo.appendMessage({ chatId: chat.id, role: "assistant", content: "half", stopped: true, stoppedBy: "system", modelId: "instant" });
+      await repo.updateMessage(chat.id, m.id, { content: "half and the rest", stopped: false, stoppedBy: null });
+      const row = (await repo.listMessages(chat.id))[0]!;
+      expect(row.content).toBe("half and the rest");
+      expect(row.stopped).toBeFalsy();
+      expect(row.stoppedBy).toBeUndefined();
+    });
+
     it("deletes several chats at once with their messages", async () => {
       const repo = await open({ now: clock() });
       const a = await repo.createChat({ modelId: "instant", title: "a" });

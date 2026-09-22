@@ -2227,6 +2227,67 @@ Metal engine (159.6 tok/s, TTFT 66 ms), the §8.9 sidebar at the default 1120×7
 rebuild with the Keychain item's `mdat` unchanged. Zero `SecurityAgent` events, zero `SecurityAgent` windows,
 the frontmost app never ours.
 
+## Fixes round 26: twelve mechanisms that shipped without a reader (branch `fixes-r24b`) — 22.9.2026
+
+Twelve gaps from `docs/qa/spec-conformance-2026-09-22.md` — its ranked #5, #7, #10, #11, #12, #13, #17, #30, #32
+and the three incognito rows — filed as **F57–F65 and F69–F71** in `docs/qa/qa-run-2026-09-11.md`.
+
+Eight of the twelve have the same shape, and it is worth naming because it will happen again: **a mechanism
+built, translated into all eight locales, and read by nothing.** `shouldWait()` had no call site. `ackExplain()`
+had no caller. `ChatStore.endSession()` had no caller. `rec.explain` was computed and latched for a sheet that
+did not exist. `inborn:documents-dropped` was emitted and relayed to a listener that was never written. A
+settings row wrote `prefs.clipboardExpirySec` to a store nothing read. Every one of them passes a unit test of
+its own logic, and none of them worked. So every fix in this round ships with a test that fails when the
+**wiring** is removed, not only when the logic is — `docs/qa/fixes-r24b/sabotage.txt` has each guard watched
+going red with its fix taken out, one at a time, including four that are nothing but wiring.
+
+**The one that could have cost a user everything: F58.** `sqliteRepository.ts` answered "not a database" with
+`deleteDatabaseAsync`, and `store.rs` answered it with `remove_file` over the database and its WAL. On an app
+whose whole promise is that chats live only on this device, that is not a recovery; it is the loss, performed
+silently. A file that opened but failed `PRAGMA quick_check` was not noticed at all. Now:
+
+| where | what happens |
+|---|---|
+| `packages/core/src/storage/integrity.ts` | the pure part: which SQLite errors mean the file is unusable, how to read `quick_check`, and a salvage that lists a table by row id and retries a failed page **row by row**, so only the rows a broken page actually holds are lost. A table it cannot even list is reported, not passed over |
+| phones (`storage/sqliteRepository.ts`, `storage/dbFile.native.ts`) | the damaged file is moved to `inborn.db.corrupt-<stamp>`, one kept copy at a time; a fresh keyed file is migrated, given FTS and the shared document schema, filled by the salvage parents-first, then promoted onto the real name |
+| desktop (`src-tauri/src/store.rs`) | the same quarantine instead of the delete, reported to the webview through `db_open` |
+| the user | the §8.8 strip, in all eight languages: `state.dbRepaired` with the number of entries that could not be read, or `state.dbStartedFresh` when the file would not open at all. Never nothing |
+
+A row copied into the fresh file has to satisfy the schema it lands in, so a message whose chat did not survive
+fails its foreign key and is **counted as lost** rather than dropped in silence. Tested against a real SQLite
+(sql.js) with the driver made to throw on chosen rows, which is exactly what a corrupt page looks like from JS.
+
+**The rest, in one line each.** F57 clipboard expiry now runs, on every platform's pasteboard, and never wipes
+text it did not put there. F59 the first automatic model switch finally explains itself, in a sheet that offers
+"Don't switch automatically", and the once-per-install latch is no longer spent by an unrelated status change.
+F60 Wi-Fi-only is one preference read by the one thing that downloads, parking before each shard and waking on
+Pause or Cancel instead of on a timer. F61 one inference queue for the process, so a chat turn, a documents ask
+and a quick action can no longer reach the same context. F62 the Work signed record carries the AI Act Art.
+50(2) marking **inside the hashed content**. F63 the desktop window minimum is 1040×720, and a test reads
+`tauri.conf.json` so the two numbers cannot drift from `DESKTOP_MIN` again. F64 a dropped folder is walked in
+Rust, a new `documents_read` refuses any path the window did not itself hand over, and the Documents screen
+imports what the tier allows and names what it skipped. F65 an answer is written through every 1.5 s, so a
+jetsam kill leaves it on disk. F69–F71 an incognito document lives in a RAM store behind the same
+`EmbeddingStore` interface and never reaches the encrypted file, leaving the chat ends both sessions, and a
+share arriving mid-session stays incognito.
+
+**Counts.** The round added 79 JS tests (742 on `main` before it, 821 on the branch). After merging `main` at
+`f85c527` the branch stands at **942 JS tests** (core 616, mobile 305, i18n 10, ui 11) and 13 Rust tests, with
+`pnpm lint` and `pnpm typecheck` clean and `pnpm web:smoke` passing on the real export. Green runs, before and
+after the merge: `docs/qa/fixes-r24b/tests.txt`.
+
+**Two things the merge changed on purpose.** `main` moved the Work formats into core as `WORK_DOC_KINDS` and
+added `fileIntake`, "the one answer for every file that enters the library, whatever door it came through" —
+so the round's own `documents/workKinds.ts` was deleted and the drop planner now asks `fileIntake` instead of
+re-deciding the tier rules itself. A drop is a door like the picker and the share sheet. `main`'s own guard
+(`test/gates-wired.test.ts`) was narrowed to production sources, because it was reading the round's incognito
+test as a fourth door.
+
+**What is not proven.** No phone, no emulator and no desktop build were available to this stream, so nothing
+here was seen running on a device: the pasteboards themselves, the `expo-network` reading, the SQLite file
+moves in `dbFile.native.ts`, the rendered explainer sheet and a real OS drag are all covered by tests and
+review only.
+
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
 to 16 words a short factual ask, so *"How do I set up SSH keys on my Mac?"* was given the short plan — 224 tokens and the
