@@ -51,11 +51,9 @@ export function Storage() {
         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
         <Row label={t("storage.reports")} value={size(sizes?.reports)} />
       </Section>
-      <Text style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{Platform.OS === "web" ? t("storage.backup.web") : t("storage.backup")}</Text>
+      <Text testID="storage-backup" style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{t(Platform.OS === "web" ? "storage.backup.web" : Platform.OS === "android" ? "storage.backup.android" : "storage.backup")}</Text>
       <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("storage.noSync")}</Text>
       <Section title={t("storage.actions")}>
-        <Row label={t("storage.exportAll")} sub={t("storage.pro")} disabled />
-        <Row label={t("storage.transfer")} sub={t("storage.pro")} disabled />
         <Row testID="storage-delete-chats" label={t("storage.deleteChats")} onPress={() => setConfirmChats(true)} danger chevron />
         <Row testID="storage-delete-all" label={t("storage.deleteEverything")} sub={t("wipe.row")} onPress={() => setWipeOpen(true)} danger chevron />
       </Section>

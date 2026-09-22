@@ -1,5 +1,4 @@
-import { can, kindOf, limits, type DocKind, type LicenceTier } from "@inborn/core";
-import { isWorkKind } from "./workKinds";
+import { fileIntake, kindOf, type DocKind, type LicenceTier } from "@inborn/core";
 
 /** One dropped path with its first bytes, so the kind is sniffed the same way a picked file is (§8.9, gap 30). */
 export interface DroppedEntry {
@@ -25,23 +24,24 @@ export interface DropPlan {
 export const nameOfPath = (path: string): string => path.split(/[\\/]/).pop() ?? path;
 
 /**
- * Decides a drop before a byte is copied: unsupported files are named rather than silently dropped, Excel and HTML
- * stay Work (§7.3 row 8), and Free keeps its single attachment instead of importing ten and refusing them one by one.
+ * Decides a drop before a byte is copied: unsupported files are named rather than silently dropped, and the licence
+ * answer comes from `fileIntake`, so Free keeps its single attachment instead of importing ten and refusing them one
+ * by one, and Excel and HTML stay Work (§7.3 row 8).
  */
 export function planDrop(entries: readonly DroppedEntry[], tier: LicenceTier, attachedCount = 0): DropPlan {
   const plan: DropPlan = { accept: [], rejected: [] };
-  let room = Math.max(0, limits(tier).filesPerChat - attachedCount);
   for (const { path, head } of entries) {
     const name = nameOfPath(path);
     /* Same sniff as the attach sheet's picker (office.sniffPicked), so a drop and a pick never disagree about a file. */
     const kind = kindOf(name, head);
-    if (kind === "unknown") plan.rejected.push({ name, reason: "unsupported" });
-    else if (isWorkKind(kind) && !can(tier, "officeIngest")) plan.rejected.push({ name, reason: "work-only" });
-    else if (room <= 0) plan.rejected.push({ name, reason: "over-free-limit" });
-    else {
-      plan.accept.push({ path, name, kind });
-      room--;
+    if (kind === "unknown") {
+      plan.rejected.push({ name, reason: "unsupported" });
+      continue;
     }
+    /* One intake authority for every door (licence/intake.ts); a drop that decided for itself would be the fourth. */
+    const verdict = fileIntake(tier, kind, attachedCount + plan.accept.length);
+    if (verdict.kind === "paywall") plan.rejected.push({ name, reason: verdict.moment === "office" ? "work-only" : "over-free-limit" });
+    else plan.accept.push({ path, name, kind });
   }
   return plan;
 }

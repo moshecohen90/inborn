@@ -3,8 +3,9 @@
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SPEC = os.path.join(ROOT, 'spec')
-OUT = os.path.join(ROOT, 'out')
+# Outputs are the tracked docs/inborn-*.html, so OUT is docs/ itself.
+SPEC = os.path.join(ROOT, 'spec-src')
+OUT = ROOT
 os.makedirs(OUT, exist_ok=True)
 
 BRAND = 'Inborn'
@@ -97,7 +98,7 @@ open(os.path.join(OUT, 'inborn-spec.artifact.html'), 'w', encoding='utf-8').writ
 open(os.path.join(OUT, 'inborn-spec.html'), 'w', encoding='utf-8').write(wrap(spec, 'he', 'rtl'))
 
 # ---- demo ----
-demo_src = os.path.join(ROOT, 'demo', 'inborn-demo.src.html')
+demo_src = os.path.join(ROOT, 'demo-src', 'inborn-demo.src.html')
 if os.path.exists(demo_src):
     demo = apply(open(demo_src, encoding='utf-8').read()) + comments_layer('demo')
     spec_url = os.environ.get('SPEC_URL', '')

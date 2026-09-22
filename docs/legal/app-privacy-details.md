@@ -7,7 +7,7 @@ Spec basis: §11.1, §11.2, §11.5, §10.10 #64, #67. Verified 5 September 2026 
 **Answer: "Data Not Collected."** Concretely: to "Do you or your third-party partners collect data from this app?" answer **No**. No data types, no purposes, no tracking.
 
 Why this is honest, per Apple's definitions:
-- Apple defines *collect* as "transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time." The app transmits nothing except, on iOS 17–25, the HTTPS request for a model file the user tapped. Apple's page says explicitly that an IP address "sent on a server call and not retained" need not be disclosed. We keep no request logs (Cloudflare R2, no logpush).
+- Apple defines *collect* as "transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time." The app transmits nothing except the HTTPS request for a model file the user tapped Install on — on iOS, iPadOS, Windows, macOS and the web tier, on every version we support, from `models.{{DOMAIN}}` (Android has no `INTERNET` permission at all and gets its models through Play). We do not use Apple-hosted Background Assets, so that host does appear in the App Privacy Report while the download runs. Apple's page says explicitly that an IP address "sent on a server call and not retained" need not be disclosed. We keep no request logs (Cloudflare R2, no logpush).
 - "Data that is processed only on device is not 'collected'." Chats, documents, embeddings, reports: all on device.
 - Purchases: "You are not responsible for disclosing data collected by Apple." StoreKit transactions are Apple's.
 - Crash and usage diagnostics: only via the OS opt-in, collected by Apple. Not ours.
@@ -90,12 +90,12 @@ Apple's tiers since 31 January 2026: 4+, 9+, **13+**, 16+, 18+. Apple's announce
 | Horror/fear themes | None | |
 | Medical/treatment information (new "medical or wellness" question) | Infrequent/Mild | Users ask health questions; the model answers with disclaimers; no dosing tools, no diagnosis feature |
 | Alcohol, tobacco, drug use or references | Infrequent/Mild | Conversational references possible |
-| Sexual content or nudity | None | Family-safe default; no image generation |
+| Sexual content or nudity | None | Family-safe mode on by default; no image generation |
 | Gambling (simulated or real) | None | |
 | Contests | None | |
 | Unrestricted web access | No | The app has no browser and no INTERNET path on Android |
 | User-generated content / messaging between users | No | Single-user, local; no user-to-user communication |
-| In-app controls / parental controls (new) | Yes: content filter on by default; no account-level parental control | Describe family-safe mode |
+| In-app controls / parental controls (new) | Yes: content filter on by default; no account-level parental control | Family-safe mode, Settings → Chat. What it is, stated the same way everywhere: a safety clause added to the on-device system prompt, plus an on-device phrase check of the request and of the finished answer, which replaces an answer that gets through. It reduces this content and does not eliminate it. It is not a classifier model, and an adult can switch it off |
 | App capabilities: AI chatbot | Yes, generative text, on-device | Answer the chatbot capability question honestly (spec: "unrestricted generative text") |
 | Loot boxes | No | |
 | Made for Kids | No | |
@@ -158,7 +158,7 @@ Requirements from Play's policy page and how Inborn meets each:
 | Requirement | Inborn |
 |---|---|
 | "Apps that generate content using AI must contain in-app user reporting or flagging features that allow users to report or flag offensive content to developers without needing to exit the app." | S13 Report on every AI message; saves locally, optional "Email report"; works offline (Play does not require that the report be transmitted, only that the flow exists in-app) |
-| Developers must prevent generation of prohibited content (CSAM, non-consensual sexual deepfakes, scam voice/video, harmful-behaviour encouragement, deceptive election content, bullying, sexually gratifying apps, forged official documents, malicious code) | Safety system prompt, family-safe classifier default, catalogue of officially safety-tuned models only, no image/voice cloning features, no "uncensored" claims anywhere (spec §2.3, §10.5 #36, #41) |
+| Developers must prevent generation of prohibited content (CSAM, non-consensual sexual deepfakes, scam voice/video, harmful-behaviour encouragement, deceptive election content, bullying, sexually gratifying apps, forged official documents, malicious code) | Safety system prompt; family-safe mode on by default, which screens the request before generation and the answer after it (on-device phrase check, not a classifier); catalogue of officially safety-tuned models only; no image/voice cloning features; no "uncensored" claims anywhere (spec §2.3, §10.5 #36, #41) |
 | Developers are responsible for outputs | Reports reviewed by us when emailed; catalogue prompt updated by app update |
 | July 2026 update: user-data requirements "also apply to third-party AI integrations" | Not applicable: no third-party AI service; nothing is sent anywhere |
 
@@ -190,7 +190,7 @@ Ads: No. Government app: No. Financial features: No. Health apps: No (the crisis
 
 | Guideline | Status |
 |---|---|
-| 1.2 User-generated content (Apple extended it to AI chatbot output): filtering, reporting, blocking, contact | Family-safe filter; S13 report; report reasons include "block persona"; support email in Settings |
+| 1.2 User-generated content (Apple extended it to AI chatbot output): filtering, reporting, blocking, contact | Family-safe mode on by default (Settings → Chat), which screens the request and the answer on the device and replaces what it catches; S13 report; report reasons include "block persona"; support email in Settings |
 | 2.3.6 Accurate age rating | §3 above |
 | 5.1.1(i) Privacy policy link | in listing and in-app Settings |
 | 5.1.2(i) Consent before sharing personal data with third-party AI (Nov 2025 update) | Not applicable: no third-party AI, nothing shared. Say so in review notes |

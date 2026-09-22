@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
-import { PRODUCTS, fallbackPrice, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
+import { PRODUCTS, fallbackPrice, fileIntake, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
@@ -17,7 +17,7 @@ import { devFileUri, sizeOf } from "../../documents/files";
 import { listClipping } from "../../lib/listClipping";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
-import { PICK_TYPES, officeLocked, pickedName, sniffPicked } from "../../documents/office";
+import { PICK_TYPES, pickedName, sniffPicked } from "../../documents/office";
 import { planDrop } from "../../documents/dropped";
 import { openDropped } from "../../documents/drop";
 import { droppedPaths, subscribeDroppedPaths, takeDroppedPaths } from "../../documents/dropQueue";
@@ -27,6 +27,7 @@ import { DocumentDetails } from "./DocumentDetails";
 import { DocumentRow } from "./DocumentRow";
 import { font } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
+import { ProTag } from "../../components/chat/Sheet";
 
 export interface DocumentsScreenProps {
   onClose: () => void;
@@ -49,6 +50,9 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
   const [workMoment, setWorkMoment] = useState(false);
   const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
   const addLocked = paywallFor(tier, { kind: "document", existing: state.documents.length }) && proOverride === undefined;
+  /* §7.3: "answer only from my documents" and on-device OCR are both Pro rows; the headless override stands in for a licence. */
+  const strictLocked = proOverride === undefined && !can("strictDocuments");
+  const ocrLocked = proOverride === undefined && !can("ocr");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [details, setDetails] = useState<DocumentRecord | null>(null);
   const [ask, setAsk] = useState<{ docs: DocumentRecord[]; auto?: string } | null>(null);
@@ -124,8 +128,10 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       if (picked.canceled) return;
       const name = pickedName(picked.result.uri, picked.result.name);
       /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
-      if (proOverride === undefined && officeLocked(tier, sniffPicked(picked.result.uri, name))) {
-        setWorkMoment(true);
+      const verdict = fileIntake(tier, sniffPicked(picked.result.uri, name), state.documents.length);
+      if (proOverride === undefined && verdict.kind === "paywall") {
+        if (verdict.moment === "office") setWorkMoment(true);
+        else onUnlock?.();
         return;
       }
       await importUri(picked.result.uri, name);
@@ -197,7 +203,8 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict} onChange={(v) => library.setStrict(v)} />
+        {strictLocked ? <ProTag onPress={() => onUnlock?.()} /> : null}
+        <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.() : library.setStrict(v))} />
       </View>
       {workMoment ? (
         <View testID="office-work-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
@@ -263,8 +270,9 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
             onToggleSelect={() => toggle(item.id)}
             onCancel={() => library.cancel(item.id)}
             onResume={() => library.resume(item.id)}
-            onOcr={() => library.runOcr(item.id)}
+            onOcr={() => (ocrLocked ? onUnlock?.() : library.runOcr(item.id))}
             ocrAvailable={ocrAvailable}
+            ocrLocked={ocrLocked}
           />
         )}
       />

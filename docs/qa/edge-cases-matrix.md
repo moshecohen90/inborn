@@ -2,77 +2,83 @@
 
 Every numbered case in spec §10 (70 rows) mapped to the tests in `release-checklist.md`. The **Status** column was first filled by the QA run of 6.9.2026 (`qa-run-2026-09-06.md`); the lead updates it per milestone (values: `todo`, `partial`, `done`, `n/a-<platform>`), with the PR or commit in **Evidence**.
 
+**Regenerated 22.9.2026** against `docs/qa/spec-conformance-2026-09-22.md` §10 (the audit's per-case classification, itself built from grep, file reading and the existing QA record — the same evidence base this matrix draws on). The prior version had not been touched since 6.9/13.9: 43 of 70 rows were blank, 16 were factually wrong (test ids pointing at unrelated tests, or a status the code no longer matches), and open defect **F43** (jetsam mid-generation loses the partial answer) was absent. Status mapping from the audit's classes: `PROVEN` → `done`; `PARTIAL` and `UNPROVEN`/`IMPLEMENTED-UNPROVEN` → `partial` (built, not proven on real hardware — see Evidence for what proof is missing); `MISSING` → `todo`; `DEFERRED-BY-DECISION` → `n/a-deferred`. Test id(s) are cited only where the audit's evidence names one; a blank cell means no test currently exercises that case, not that the case is closed.
+
 | # | Case (short) | Spec | Test id(s) | Status | Evidence |
 |---|---|---|---|---|---|
-| 1 | First launch without a model: Instant bundled / fast-follow | §10.1 | T01, T02, T03 | partial | T01 PASS on Pixel_6_API_36/qa_ps16k via Play local testing (fast-follow delivered on first launch); T02 FAIL: no instant.gguf in the iOS bundle — qa-run-2026-09-06.md |
-| 2 | Download interrupted (close, disconnect, lock) | §10.1 | T05 | partial | T05 PASS network-cut case: server cut at 20 MB, app resumed with Range bytes=20000000- (206); app-kill/lock cases not run |
-| 3 | 429 / Hugging Face down / corporate firewall / China | §10.1 | T04 (mirror list), T08 (manual import) | | |
-| 4 | Expensive cellular / Low Data Mode | §10.1 | T04 (size before download, Wi-Fi-only default) | | |
-| 5 | Wrong or huge model size | §10.1 | T04, T07 | partial | T04: size + host shown before download; hash verified against the catalog |
-| 6 | Storage full (before/during/after, DB write, OS update) | §10.1 | T07 | todo | T07 not run |
-| 7 | SD card / external storage (Android) | §10.1 | T08 (SAF import location) | | |
-| 8 | Corrupt / truncated / wrong-format file | §10.1 | T08 | done | T08 PASS: random .gguf via picker → "Not a valid GGUF file." (Android); byte-flipped file under the catalog name → "Try again" (iOS) |
-| 9 | Catalogue model the engine cannot run | §10.1 | T40 (minEngineVersion) | | |
-| 10 | Gated / licensed models (HF token, Gemma, Llama) | §10.1 | T04 (licence acceptance tap), T37 (Licences screen) | | |
-| 11 | Model does not fit RAM | §10.2 | T36 | done | T36 partial: 4 GB emulator shows only Instant; Fast/Sharp "TOO BIG FOR 4 GB" |
-| 12 | jetsam mid-generation / large model | §10.2 | T11 | | |
-| 13 | Weak Android (4–6 GB, no dotprod) | §10.2 | T36 | partial | T36: API 26 arm64 2 GB installs and launches; chat not run there |
-| 14 | Old iPhone (3–4 GB) and OS floor | §10.2 | T36 | partial | see #13; iOS 17 simulator only |
-| 15 | 16 KB pages | §10.2 | T33 | FAIL | T33: libtesseract/leptonica/jpeg/pngx LOAD segments 4 KB-aligned; OS compatibility dialog on the 16 KB emulator — blocker 1 |
-| 16 | GPU/NPU backend failure | §10.2 | T11 (acceleration tag), T33 | | |
-| 17 | Rooted / jailbroken device | §10.2 | T23 (no Play Integrity dependence) | | |
-| 18 | Heat and sustained load | §10.2 | T11 | | |
-| 19 | Low battery / Low Power / Battery Saver | §10.2 | T11 | | |
-| 20 | Charging during generation | §10.2 | T11 | | |
-| 21 | Background mid-generation / lock / call | §10.3 | T12, T13 | FAIL | T12: partial kept after Home but no Continue control and no foreground service (qa_ps16k) |
-| 22 | Killed during DB write / migration | §10.3 | T07, T40 | | |
-| 23 | Concurrent generations (two chats, Shortcut, widget) | §10.3 | T12 (queue), T14 (Shortcut under lock) | | |
-| 24 | Model switch / delete while in use; download ends mid-chat | §10.3 | T04, T06 | | |
-| 25 | Shortcut while locked or in incognito | §10.3 | T14, T16 | | |
-| 26 | OS/app update changes engine or format | §10.3 | T40 | | |
-| 27 | Apple FM changes with OS, modelNotReady, guardrail refusals, 4,096 window, locale | §10.3 | T09, T10 | | |
-| 28 | Apple Intelligence off / ineligible / China / EU limits | §10.3 | T10 | | |
-| 29 | Gemini Nano / AICore unavailable or downloading | §10.3 | (Phase 4) no test yet; add when integrated | | |
-| 30 | Huge / scanned / protected PDF, DOCX tracked changes, XLSX, images in docs | §10.4 | T17, T18, T19 | | |
-| 31 | Non-English, mixed scripts, RTL PDF, vertical CJK | §10.4 | T18 | | |
-| 32 | Conversation beyond context window | §10.4 | T11 (token meter, sliding window, summary) | | |
-| 33 | Huge paste / clipboard images / 100 MB via share sheet | §10.4 | T19 | | |
-| 34 | Prompt injection through documents | §10.4 | T17 (tool calls need confirmation; documents are data) | | |
-| 35 | Images: HEIC/HDR/Live, huge, EXIF, sensitive screenshots, camera denied | §10.4 | T19 (extend when image input ships in M5) | | |
-| 36 | Harmful / hateful / sexual / dangerous output | §10.5 | T37, T38 | partial | T38: refusal on the self-harm prompt; broader harmful-output set not run |
-| 37 | Medical, legal, financial, mental-health requests; crisis language | §10.5 | T38 | done | T38 PASS: crisis card (988) shown, non-blocking, inside incognito |
-| 38 | Hallucination and over-confidence ("can be wrong") | §10.5 | T37 | done | T37: disclosure lines present on welcome and chat |
-| 39 | Ignores system prompt, loops, does not stop | §10.5 | T38 | done | T38 PASS: n-gram loop guard stopped a looping answer, offered Regenerate |
-| 40 | Wrong language or script in the answer | §10.5 | T38 | done | T38 PASS: Hebrew question answered in Hebrew |
-| 41 | "Uncensored" expectations vs store policy | §10.5 | T37 (copy check), store listing review | todo | copy review not done in this run |
-| 42 | iCloud/Google backup of models and chats | §10.6 | T39 | FAIL | T39: allowBackup="true", no dataExtractionRules/fullBackupContent — blocker 3 |
-| 43 | New phone / restore / transfer | §10.6 | T39, T21 | | |
-| 44 | Same Apple ID on several devices, no cloud sync | §10.6 | T21 (copy states "no cloud sync") | | |
-| 45 | Shared device / family member finds the app | §10.6 | T14, T16 | done | T14 PASS (passcode lock, FLAG_SECURE), T16 PASS (incognito writes nothing to the DB) |
-| 46 | User deletes the app | §10.6 | T15 (storage warning + export offer) | partial | T15 PASS wipe → onboarding; passcode hash survives the wipe (B7); storage warning/export offer not checked |
-| 47 | Data Protection: locked device while background download finishes | §10.6 | T05 (lock case), T39 | | |
-| 48 | Offline Pro verification without a server | §10.7 | T20, T23 | | |
-| 49 | Restore, Family Sharing, refunds, cancellation | §10.7 | T21, T22 | | |
-| 50 | Price changes, regions, offer codes, Work upgrade | §10.7 | T20 (Work upgrade SKU visible only to Pro owners) | | |
-| 51 | Piracy / cracked IAP on jailbreak | §10.7 | T23 (local JWS check, no Play Integrity) | | |
-| 52 | Interrupted purchase (Ask to Buy, pending, disconnect) | §10.7 | T20 | | |
-| 53 | VoiceOver/TalkBack during streaming | §10.8 | T26 | partial | T26: every interactive element labelled on iOS; 2 unlabelled switches on Android; screen-reader streaming run needs a phone |
-| 54 | Dynamic Type with code/tables; RTL with LTR code; screen reader on Markdown | §10.8 | T24, T25, T26 | partial | T25 PASS 200 % on both; T24 forced RTL mirrors correctly, but no he/ar locale ships |
-| 55 | Hardware keyboard Enter vs Shift+Enter | §10.8 | T28 | | |
-| 56 | Very long single message; scroll jumps | §10.8 | T26 (1,000-token answer), T11 | | |
-| 57 | Screenshots and recording of sensitive chats | §10.9 | T14 (switcher), plus FLAG_SECURE / isCaptured check in T14 | done | T14: SECURE window flag set, screencap black with screenshot protection on |
-| 58 | Clipboard leaks | §10.9 | T37 (copy with expiry, localOnly) | todo | clipboard expiry not run |
-| 59 | Crash logs containing prompt text | §10.9 | T11 (inspect any crash log for user content) | | |
-| 60 | Third-party SDK adding network calls | §10.9 | T29, T30, T31, T32 | partial | T29 0 trackers (exodus signatures); T30 FAIL extra permissions (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, WAKE_LOCK, RECEIVE_BOOT_COMPLETED, BIND_GET_INSTALL_REFERRER_SERVICE); T32 PASS 0 sockets / OUT 0 B over 30 min |
-| 61 | Model supply-chain integrity (malicious GGUF) | §10.9 | T08, T40 | done | T08: corrupted catalog file caught by the sha256 check before load |
-| 62 | Local-network features on hostile Wi-Fi | §10.9 | (Pro LAN feature, later) no test yet; add with the feature | | |
-| 63 | Sideload / alternative stores (EU) and notarization | §10.9 | T30 (same claims), age-rating declarations in `app-privacy-details.md` | | |
-| 64 | Children and age rating | §10.10 | store questionnaires (`docs/legal/app-privacy-details.md` §3, §4.4), T37 | | |
-| 65 | Regulated professionals (Work) | §10.10 | T37 (verify banner), architecture statement PDF | | |
-| 66 | Clock / time-zone / DST changes for auto-delete and reminders | §10.10 | T40 (monotonic timers; add explicit case: change device time during a 24 h auto-delete) | | |
-| 67 | App Review testers without network or model | §10.10 | T02, review notes in `app-privacy-details.md` §6 | partial | T02: iOS reviewers get no model in the bundle today |
-| 68 | First update that changes the manifest signature | §10.10 | T40 | | |
-| 69 | Expectation of cloud speed | §10.10 | T01/T02 (honest speed estimate in onboarding) | done | T01/T02: onboarding shows "RUNS ON: <chip> · <RAM>" and "~N tok/s" in the vault |
-| 70 | Widgets / Live Activities showing partial answers on the lock screen | §10.10 | T14 (no previews while locked; Live Activity shows progress only) | | |
+| 1 | Built-in Instant on first launch | §10.1 | T01, T02, T03 | partial | `plugins/withBundledModel.js:14`; `ios-device-pass-12` row 0 (`instant.gguf` 532,517,120 B) + T01 Play fast-follow. Only the accelerator clause is unproven; the core requirement is proven |
+| 2 | Interrupted download resume | §10.1 | T05 | partial | `httpsDelivery.ts:89,131-135`; `catalog/resume.ts:21-39`; T05 + R4-F14 byte-exact. iOS 26 Apple-hosted packs do not exist yet — `privacy-policy.md:38` no longer promises them (fixed 22.9); no progress notification |
+| 3 | 429 / host down / firewall | §10.1 | — | partial | host allowlist `manifest.ts:16-29`; `vault/hf.ts:44-63`; `cdn-iphone` rows 2-3. No mirror list; no manual import on web |
+| 4 | Expensive cellular / Low Data Mode | §10.1 | — | todo | Play consent `playDelivery.ts:92-100`; policy `resume.ts:52-58`. **`shouldWait()` has zero production call sites** — Wi-Fi-only is inert off Android (gap 11); `isExpensive`/`isConstrained`/`isActiveNetworkMetered`: 0 occurrences |
+| 5 | Wrong or huge model size | §10.1 | T04, T07 | done | real HEAD at `httpsDelivery.ts:141-147`; free-space block `install.ts:38-46`; R4-F20b, `cdn-iphone` rows 2/5/6. Mismatch branch untested |
+| 6 | Storage full / ENOSPC during a DB write | §10.1 | T07 | partial | `paths/noSpace.ts`; WAL `schema.ts:5`; R4-F13 PASS with `/data` really filled. `ACTION_DEVICE_STORAGE_LOW` absent — only a 10 s poll, so pausing happens after ENOSPC |
+| 7 | SD card / external storage (Android) | §10.1 | T08 | todo | vault hard-wired internal `vault/paths.ts:6-13`; `ACTION_OPEN_DOCUMENT_TREE` 0 hits. Nothing built, and no deferring sentence exists anywhere |
+| 8 | Corrupt / truncated / wrong-format file | §10.1 | T08 | partial | GGUF sniffing `catalog/gguf.ts:171-218`; quarantine marker `vault/record.ts:14-16`, never auto-loaded `store.ts:346-352`; T08 rejects a random file. The quarantine path has never run anywhere; tensor count parsed but never validated |
+| 9 | Catalogue model the engine cannot run | §10.1 | T40 | todo | `minEngine` at `catalog/types.ts:82,97` → `pick.ts:76`. T40 BLOCKED (not run) since 6.9; no manifest entry sets `minEngine > 1`, so the path is unreachable in the shipped catalog |
+| 10 | Gated / licensed models (HF token, Gemma, Llama) | §10.1 | T04, T37 | partial | token + Keychain `vault/hf.ts:21-41`; licences screen. No acceptance gate before download; `grep "accept.*licen"` = 0 |
+| 11 | Model does not fit RAM | §10.2 | T36 | partial | `pick.ts:23-44,71-81`; context cap `policy.ts:346`; T36 on a 4 GB profile. Not the spec's estimate (no weights+KV+activations+baseline); no expert override; the context reduction is silent |
+| 12 | jetsam mid-generation / large model | §10.2 | — | todo | memory warnings both platforms; `lib/pausedTurn.ts`; R-B8 on the real 6T. `use_mlock: true` (`adapters/llamaRn.ts:48`) is the opposite of the spec's mmap guidance; partial answer written only after the stream ends. **Open defect F43** |
+| 13 | Weak Android (4–6 GB, no dotprod) | §10.2 | T36 | partial | minSdk 26; `android-legacy` class `catalog/speed.ts:13-60`; real 6T §P. arm64-only is not pinned in any tracked config; no Play device exclusions; no dotprod/i8mm detection |
+| 14 | Old iPhone (3–4 GB) and OS floor | §10.2 | T36 | partial | 1B-for-4 GB satisfied. Ships iOS 16.4 (`Podfile:27`, 4× `IPHONEOS_DEPLOYMENT_TARGET = 16.4`) while §6.3, `release-checklist.md:246` and `privacy-policy.md:39` all say 17 (gap 18) |
+| 15 | 16 KB pages | §10.2 | B1 | partial | B1: 45/45 `.so` aligned 0x4000, `zipalign -c -P 16` OK, OnePlus 11 and ps16k emulator launch clean (7.9.2026). Not re-run since the bundle gained three asset packs; no CI alignment gate |
+| 16 | GPU/NPU backend failure | §10.2 | — | todo | real probe only on web `wllama.ts:20-33`. No native probe (`llamaRn.ts:46` hard-codes `n_gpu_layers: 99`); no acceleration tag; no override |
+| 17 | Rooted / jailbroken device | §10.2 | — | partial | no Play Integrity or root detection by design; offline verification carried the real refund in `purchases-run-2026-09-06.md` §3.5–3.7. No run on an actually rooted device |
+| 18 | Heat and sustained load | §10.2 | — | partial | `device/android.ts:20-33`; `policy.ts:434-452`; strings exact. Never observed: the 6T reports Thermal Status 6 permanently; soaks show a frozen skin sensor |
+| 19 | Low battery / Low Power / Battery Saver | §10.2 | — | todo | detection + policy + heavy unit coverage. `pauseDownloads`, `pauseIndexing`, `confirmLongAnswer`, `sealGlow` are computed and read by nothing. Every soak ran plugged in at 100% |
+| 20 | Charging during generation | §10.2 | — | partial | charger-independent thermal path; restore hint. Combination never observed |
+| 21 | Background mid-generation / lock / call | §10.3 | — | partial | 15 s grace `Chat.tsx:114,317-333`; R-B8 partial kept and resumed on the real 6T. `beginBackgroundTask` = 0 hits; no `<service>` and no `FOREGROUND_SERVICE`. `release-checklist.md:101` states a bar the build cannot meet (gap 15) |
+| 22 | Killed during a DB write or migration | §10.3 | — | partial | WAL; atomic migrations `sqliteRepository.ts:114-126`; R4-F13/F15. No `integrity_check`, no Repair path; corruption is answered by `deleteDatabaseAsync` — silent total data loss (gap 7) |
+| 23 | Concurrent generations, one queue | §10.3 | — | todo | `adapters/llamaRn.ts:15,98` `inflight` is overwritten per call; serialization is per-surface `busy` only. No queue, no priorities, no timeout. The spec's "Waiting for the current answer" string exists in no locale |
+| 24 | Model switch / delete while in use | §10.3 | T04, T06 | partial | wait-then-switch `engine.ts:189-199`; delete blocked while loaded; nine mid-stream reloads, 0 crashes. Spec wants cancel-with-confirmation and an offer to reload; the build does both silently |
+| 25 | Shortcut while locked or incognito | §10.3 | T14, T16 | n/a-deferred | `README.md:596-598` cuts Shortcuts/widgets. Live analogue: `AppServices.tsx:386` hard-codes `incognito: false`, so a share-in drops the user out of an incognito session |
+| 26 | OS/app update changes the engine | §10.3 | T40 | partial | `ENGINE_VERSION` gate; re-verify on byte change; seven consecutive real Play updates on the 6T. No in-app release notes though `release-checklist.md:277` makes them a pass criterion; models never re-hashed after an engine bump |
+| 27 | Apple FM states | §10.3 | T09, T10 | n/a-deferred | `README.md:597`; `adapters/appleFm.ts` is a throwing stub, not registered. The team owns no Apple-Intelligence device |
+| 28 | Apple Intelligence off / ineligible | §10.3 | T10 | n/a-ios | "Apple Intelligence" / "Apple FM" → 0 hits in all locales, `docs/legal/`, the site. Vacuously true — nothing built for 1.0 |
+| 29 | Gemini Nano / AICore unavailable | §10.3 | — | todo | 0 hits for AICore / Gemini Nano / BACKGROUND_USE_BLOCKED. Not a declared cut — `docs/legal/licenses.md:32` still ships it as "planned"; needs a deferring sentence or a test |
+| 30 | Huge / scanned / protected PDF, DOCX, XLSX | §10.4 | T17, T18, T19 | partial | streaming per-page index; encrypted refused both platforms; tracked changes `docx.ts:19`; real 6T OCR §N. Images inside documents unhandled; no iOS column reading order; OCR progress/cancel not observable |
+| 31 | Non-English / RTL / CJK documents | §10.4 | T18 | partial | tokenizer-aware chunking; per-language recommendation; T18 Hebrew scan OCR'd in correct logical order. The embedder is English-only (`manifest.json:318-337`); only `eng`+`heb` OCR packs ship with no download mechanism; vertical CJK absent |
+| 32 | Conversation beyond context window | §10.4 | T11 | partial | meter, thresholds, sliding window with pinned system prompt, summary machinery. The summary is manual; no marker in the transcript; zero QA coverage anywhere |
+| 33 | Huge paste / 100 MB via share sheet | §10.4 | T19 | partial | 6,000-char quick-action cap with a message; 200 MB file cap; real 6T PROCESS_TEXT → Replace into Google Docs. The 50,000-char share cap is silent; the 100 MB case never run; a `content://media/…` share imports nothing with no error |
+| 34 | Prompt injection through documents | §10.4 | T17 | partial | `rag/injection.ts:8-27,51-58` — 13 patterns, per-request nonce fence, declared in the system prompt. Only one emulator hidden-div probe; never faced an adversarial document outside unit tests. Tool calls do not exist in 1.0, so that clause is vacuous |
+| 35 | Images: HEIC / EXIF / huge / denied | §10.4 | T45 | done | `images/pick.native.ts:10,29-45`; T45 on the real 6T — 0 EXIF tags, 24.8 MB PNG → 632,777 B JPEG. Camera-denied branch never exercised |
+| 36 | Harmful / hateful / dangerous output | §10.5 | T37, T38 | todo | report on every message; local list; safety system prompt. No on-device safety classifier exists (`grep shieldgemma\|familySafe\|classifier` = 0) and no guardrail settings, yet three shipped documents said both exist (gap 1, being corrected). T37 was a FAIL on a simulator |
+| 37 | Medical / legal / crisis | §10.5 | T38 | partial | `chat/safety.ts:4-56` — 9 languages, 18 regions; non-blocking card. No built-in persona carries a disclaimer; no Work "verify before use" banner in chat; `ko` and `zh-Hant` ship with no crisis list (1.0.1 #33) |
+| 38 | Hallucinations / "can be wrong" | §10.5 | T37 | partial | dismissible persisted notice; citations; model label; real-iPhone rows. Model size deliberately not shown (`lib/models.ts:3` cites §8.2) — §8.2 and §10.5 contradict each other |
+| 39 | Loops and system-prompt leaks | §10.5 | T38 | partial | n-gram guard `chat/loop.ts:18-44`; real 6T "The model started repeating itself · Regenerate". No repeat penalty; stop sequences plumbed but always empty; "reset persona" does not exist |
+| 40 | Wrong language or script | §10.5 | T38 | done | `chat/language.ts:46-50` → system prompt; bidi rendering; Hebrew answer intact on the 6T. No Arabic or CJK answer-language run |
+| 41 | "Uncensored" expectations vs store policy | §10.5 | — | partial | 7 first-party models, all Apache-2.0 or MIT; store copy in 8 locales has 0 hits for uncensored/unfiltered/jailbreak. No QA row records the copy review; no automated gate protects the listings |
+| 42 | iCloud/Google backup of models and chats | §10.6 | T39 | partial | `app.config.ts:86 allowBackup: false`, R-B3 PASS on the merged release manifest; iOS exclusion `VaultNativeModule.swift:36`. No device proof of `isExcludedFromBackup`; `Storage.tsx:54` and `privacy-policy.md:72` corrected 22.9 to stop claiming Android chats are in the device backup (gap 16) |
+| 43 | New phone / restore / transfer | §10.6 | T39, T21 | partial | model re-download and Pro restore both proven twice. Chats cannot restore: Android has no backup and the iOS key is `WHEN_UNLOCKED_THIS_DEVICE_ONLY`. The answer (passphrase export via Settings → Export) is the current state, corrected in `privacy-policy.md` 22.9 |
+| 44 | Same account, several devices, no cloud sync | §10.6 | T21 | partial | "There is no cloud sync. Another device starts empty." shipped and drawn on the iPhone. No QA row quotes the sentence |
+| 45 | Shared device / family member finds the app | §10.6 | T14, T16 | partial | lock offer; FLAG_SECURE; incognito never persists; Work vault code. "Hide app" guidance absent; T14/T16 never run on a phone; open F17 — Unvault bypasses a locked vault's code |
+| 46 | User deletes the app | §10.6 | T15 | partial | warning string; export row. The export row is disabled behind Pro, so the offer is cosmetic; never checked in QA |
+| 47 | Data Protection under lock | §10.6 | T05, T39 | todo | `NSFileProtection` / `completeUntilFirstUserAuthentication` / `FileProtectionType` → 0 hits anywhere. Every secret is `WHEN_UNLOCKED_THIS_DEVICE_ONLY`, stricter than the spec but incompatible with the background download that really does run under lock |
+| 48 | Offline Pro verification + 30-day grace | §10.7 | T20, T23 | partial | JWS chained to a pinned root `apple.ts:41-45,106-139`; `GRACE_DAYS = 30`; `testOfflineCacheGrantsPro` PASS; real Play order acknowledged. The offline half is simulator-only; T23 never ran on a phone |
+| 49 | Restore, Family Sharing, refunds | §10.7 | T21, T22 | partial | family-shared ownership accepted; `revocationDate` locks and deletes nothing; proven twice. Family Sharing is off on all four ASC products (open decision, §12.1); `paywall.revoked` is translated into 8 languages and rendered nowhere |
+| 50 | Prices, regions, offer codes, Work upgrade | §10.7 | T20 | done | `entitlement.ts:60-66`; real Play "Upgrade to Work · ₪149.90" after the live purchase. Regional-price policy is an open decision, not a code gap |
+| 51 | Piracy / cracked IAP on jailbreak | §10.7 | T23 | done | the local key check was demonstrably the deciding gate on a real phone (`untrusted-root` → unlock) |
+| 52 | Interrupted purchase (Ask to Buy) | §10.7 | T20 | partial | `manager.ts:240-243,264-288` finishes on next `start()`; unit test only. Never executed anywhere: `askToBuyEnabled = false` in all three XCUITest harnesses |
+| 53 | VoiceOver/TalkBack during streaming | §10.8 | T26 | partial | `lib/announce.ts:4-24`; polite per-sentence with a 1,500 ms floor. The only real screen-reader run is pre-fix and FAIL; no post-fix run; no 1,000-token run |
+| 54 | Dynamic Type + RTL + Markdown | §10.8 | T24, T25 | partial | horizontal scroll for code and tables; real font scale; T25 PASS at 200%. T24 is FAIL as written — no RTL locale ships; only `debug.force_rtl` (gap 23). All proof is simulator/emulator |
+| 55 | Hardware keyboard Enter vs Shift+Enter | §10.8 | T28 | partial | `modules/hardware-keys/index.ts:8` Android only; F27 fixed and re-proven on the 6T. The setting the spec requires does not exist; iPad, the platform the case names, has no module |
+| 56 | Very long single message | §10.8 | — | partial | FlatList; `listClipping.ts` forces `removeClippedSubviews:false` after F33. Android gets neither anchoring nor recycling. No test anywhere for a 10K-token message |
+| 57 | Screenshots and recording | §10.9 | T14 | partial | FLAG_SECURE opt-in; `isCaptured`; privacy cover; honest copy. Emulator only; `isCaptured` → blur never exercised; switcher thumbnail explicitly never captured |
+| 58 | Clipboard leaks | §10.9 | T37 | todo | `lib/clipboard.ts` is a bare `setStringAsync`; its own comment defers expiry to M6. `prefs.clipboardExpirySec` is written by a live Off/60 s control (`Settings.tsx:146-147`) and read by nothing — a shipped security promise the code does not keep (gap 5) |
+| 59 | Crash logs containing prompt text | §10.9 | — | partial | no third-party crash SDK in any lockfile; TRACKERS 0 on both real devices. No scrubbing mechanism and no lint rule — the guarantee rests on discipline |
+| 60 | Third-party SDK adding network calls | §10.9 | T29, T30, T32 | partial | `scripts/check-android-permissions.sh` is correct; T32 PASS (0 sockets, 30 min mitmproxy); allowlist published. `.github/workflows/ci.yml:16-22` has `android-permission-gate: if: false` — the gate is not in CI (gap 6). The iOS/desktop egress test does not exist |
+| 61 | Model supply-chain integrity | §10.9 | T08, T40 | partial | Ed25519 manifest, host allowlist, per-shard sha256, pinned engine versions; `cdn-iphone` row 6 hash identical to the catalog. Zero fuzzing; no sandboxed GGUF parsing; no CVE process recorded |
+| 62 | Local-network features on hostile Wi-Fi | §10.9 | — | n/a-deferred | `README.md:596-599` cuts LAN; Android has no INTERNET permission at all |
+| 63 | Sideload / alternative stores (EU) / notarization | §10.9 | — | todo | nothing in `docs/legal/` covers it. A docs-only deliverable that was never written |
+| 64 | Children and age rating | §10.10 | — | partial | full 13+/Teen answers in `app-privacy-details.md:79-101`. Answers a parental-controls question about a content filter that is not in the build (gap 1, being corrected) |
+| 65 | Regulated professionals (Work) | §10.10 | — | partial | `work/packs.ts:57` FORBIDDEN_CLAIMS with tests; pack declarations before use; signed export. No real-device QA row for the Work tier anywhere; the verify reminder is one-time, not a persistent banner |
+| 66 | Clock / timezone / DST changes | §10.10 | — | todo | re-checks on start, foreground and hourly. `chat/retention.ts:14-16` is pure wall clock: move the clock forward and chats delete early and irreversibly. No test |
+| 67 | App Review testers with no network | §10.10 | T02 | done | `ios-build-12` bundles `instant.gguf` 532,517,120 B; llama.cpp loads it from `Inborn.app` on the phone; Android fast-follow T01. Only `{{TESTER}}` / `{{PRIVACY_URL}}` placeholders to fill |
+| 68 | First manifest-signature change | §10.10 | T40 | partial | `schema: 1`, `version: 4`; per-model `minEngine` floor asserted in tests. `manifest.ts:17` hard-rejects any other schema; one compiled key with no rotation overlap; no rotation plan |
+| 69 | Expectation of cloud speed | §10.10 | T01, T02 | partial | honest device line; speed ranges incl. `android-legacy`; F37 closed on the 6T. **Open defect U11**: Fast measured 13.2 tok/s where its card promises ~15–24. The pre-made demo does not exist |
+| 70 | Widgets / Live Activities | §10.10 | — | n/a-deferred | `README.md:596-598` |
 
-Gaps to close as features land: #29 (Gemini Nano), #35 image input, #62 LAN, #66 explicit clock-change case. Each needs a test id added to `release-checklist.md` in the same PR that ships the feature.
+## Totals (22.9.2026)
+
+11 done · 41 partial · 12 todo · 4 n/a-deferred · 2 n/a-ios (vacuous, nothing built for 1.0) = 70. Matches the audit's own count (11 IMPLEMENTED+PROVEN · 8 IMPLEMENTED-UNPROVEN · 41 PARTIAL · 6 MISSING · 4 DEFERRED — the 8 UNPROVEN and 6 MISSING here fold into `partial`/`todo` per this matrix's four-value vocabulary).
+
+Gaps to close as features land: #29 (Gemini Nano), #62 (LAN), #66 (explicit clock-change case). Each needs a test id added to `release-checklist.md` in the same PR that ships the feature. Open defects referenced above: **F43** (#12, jetsam loses the partial answer — new, not in any prior QA doc), **F17** (#45, Unvault bypasses a locked vault's code), **U11** (#69, Fast under-speed). Full gap detail and fix sizing: `docs/qa/spec-conformance-2026-09-22.md`.

@@ -40,3 +40,25 @@ test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fin
 
 Note: cargo keys off mtime, so a script that restores a sabotaged file from a copy must touch it,
 or the next run measures the sabotaged binary.
+
+=== After merging origin/main f85c527 ===
+$ pnpm lint
+> eslint .
+
+$ pnpm typecheck  → 0 errors
+$ pnpm -r --if-present test
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  11 passed (11)
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  10 passed (10)
+packages/core test:  Test Files  68 passed (68)
+packages/core test:       Tests  616 passed (616)
+apps/mobile test:  Test Files  48 passed (48)
+apps/mobile test:       Tests  305 passed (305)
+$ cargo test --offline
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+$ MODELS_DIR=~/dev/inborn/.models pnpm web:smoke  (after pnpm web:build)
+PASS: first visit ready 12819 ms · 30.3 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 1723 ms · 27 tok/s · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> airplane-test -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door, phone door, no-space door

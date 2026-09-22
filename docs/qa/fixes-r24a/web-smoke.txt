@@ -1,0 +1,107 @@
+
+> inborn@ web:smoke /Users/moshecohen/dev/inborn-wt/fixes-r24a
+> node scripts/web-smoke.mjs
+
+{
+  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "dist": "/Users/moshecohen/dev/inborn-wt/fixes-r24a/apps/web/dist",
+  "url": "http://127.0.0.1:63057",
+  "isolation": true,
+  "serviceWorker": true,
+  "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "first": {
+    "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.Preparing offline mode… · Chats are saved in this browser's storage without the app's encryption. Clear site data to remove them.Get the app",
+    "storageBefore": 2735,
+    "resumedFrom": "Resume · 13 MB of 533 MB",
+    "modelStepReady": "READY NOWInstant · built in0.5 GB · works offline · answers in seconds. Quick answers, rewrites, summaries. Lightest on battery.",
+    "screenshotOnboarding": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-onboarding.png",
+    "onboarding": [
+      "onboarding-welcome",
+      "onboarding-model",
+      "airplane-test",
+      "onboarding-sealed",
+      "onboarding-lock"
+    ],
+    "readyMs": 13506,
+    "sessionLoadMs": 1456,
+    "downloadRequests": [
+      "GET /models/instant.gguf",
+      "GET /models/instant.gguf [bytes=13303808-]"
+    ],
+    "crossOriginIsolated": true,
+    "webgpu": false,
+    "storageAfter": 571001713,
+    "persisted": false,
+    "tokPerSec": 18.2,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "modelChip": "INSTANT",
+    "engineLoadMs": 1447,
+    "threads": 6,
+    "gpuLayers": 0,
+    "offlineState": "Works offline · Chats are saved in this browser's storage without the app's encryption. Clear site data to remove them.",
+    "memoryMB": null,
+    "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke.png",
+    "vaultDoor": "Stored in this browser's private storage. Clearing site data removes it.",
+    "vaultScreenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-vault.png",
+    "consoleErrors": [],
+    "hosts": [
+      "127.0.0.1:63057"
+    ]
+  },
+  "offline": {
+    "readyMs": 1616,
+    "sessionLoadMs": 1433,
+    "tokPerSec": 24.4,
+    "tokens": "14 / 4096",
+    "answer": "The Moon is the only planet of the solar system visible from Earth.",
+    "modelChip": "INSTANT",
+    "engineLoadMs": 1396,
+    "threads": 6,
+    "gpuLayers": 0,
+    "requests": [
+      "GET /",
+      "GET /fonts/IBMPlexSans-Regular.woff2",
+      "GET /fonts/IBMPlexMono-Regular.woff2",
+      "GET /_expo/static/js/web/index-e85b6b1452033016acf5d61d7f406cdc.js",
+      "GET /models/manifest.json",
+      "GET /fonts/IBMPlexSans-SemiBold.woff2",
+      "GET /fonts/IBMPlexSans-Medium.woff2",
+      "GET /fonts/IBMPlexMono-Medium.woff2",
+      "HEAD /models/nomic-embed-text-v1.5.f16.gguf",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET /wllama/wllama.wasm"
+    ],
+    "hosts": [
+      "127.0.0.1:63057"
+    ],
+    "navigatorOnLine": false,
+    "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-offline.png",
+    "consoleErrors": [
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    ]
+  },
+  "phone": {
+    "door": "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience.",
+    "getApp": true,
+    "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-phone.png"
+  },
+  "noSpace": {
+    "text": "Not enough space in this browser: 801 MB needed, 105 MB free.",
+    "buttonDisabled": true,
+    "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-nospace.png"
+  }
+}
+PASS: first visit ready 13506 ms · 18.2 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 1616 ms · 24.4 tok/s · context 14 / 4096 · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> airplane-test -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 801 MB needed, 105 MB free."

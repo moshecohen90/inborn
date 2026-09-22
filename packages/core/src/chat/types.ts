@@ -47,7 +47,12 @@ export interface ChatMessage {
   citations?: Citation[];
   /** Photos the user attached (file URIs inside the app's own images directory, EXIF stripped, §10.4 #35). */
   images?: string[];
+  /** Family-safe mode replaced this answer (§11.1 Guideline 1.2); the ledger row says so. */
+  safety?: SafetyMark;
 }
+
+/** Why an answer is not the model's own text. One value for now; the column is a string so a later reason costs no migration. */
+export type SafetyMark = "family-safe";
 
 export interface NewChat {
   modelId: string;
@@ -72,9 +77,10 @@ export interface NewMessage {
   usage?: Usage;
   citations?: Citation[];
   images?: string[];
+  safety?: SafetyMark;
 }
 
-export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "usage" | "citations" | "images">> & {
+export type MessagePatch = Partial<Pick<ChatMessage, "content" | "reasoning" | "reasoningMs" | "stopped" | "usage" | "citations" | "images" | "safety">> & {
   /** `null` clears it, the way ChatPatch clears its optional fields: an answer that finished is no longer stopped by anyone. */
   stoppedBy?: StoppedBy | null;
 };

@@ -72,6 +72,6 @@ export function architectureStatement(input: StatementInput): string {
     ``,
     `This statement describes the software's architecture as built. It is not a certification of compliance with any law or standard (including health-privacy, legal-privilege or financial-records rules), not a security audit, and not a substitute for the professional's own duties over the device, its passcodes and its backups. Model output can be wrong and must be reviewed by a qualified person before use.`,
     ``,
-    `Source: the app's open-source core and the published build hash allow the claims above to be checked independently.`,
+    `Checking this independently: the network claims above can be verified from outside the app (the Android build declares no INTERNET permission; the iOS App Privacy Report and any firewall show the same). The application's own source code is not published, and this build is not reproducible from it, so neither is offered as evidence here.`,
   ].join("\n");
 }

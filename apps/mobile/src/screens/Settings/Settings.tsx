@@ -151,6 +151,13 @@ export function Settings() {
 
       <Section title={t("settings.chat")}>
         <Row label={t("settings.chat.model")} value={meterLabel(engine.model.id, t("onboarding.model.none"))} onPress={() => router.push("/vault")} chevron />
+        <Row
+          testID="row-family-safe"
+          label={t("settings.chat.familySafe")}
+          sub={t("settings.chat.familySafeSub")}
+          toggle={prefs.contentSafety}
+          onToggle={(v) => updatePrefs({ contentSafety: v })}
+        />
         <Row label={t("settings.chat.haptics")} toggle={prefs.haptics} onToggle={(v) => updatePrefs({ haptics: v })} />
         <Row label={t("settings.chat.sounds")} sub={t("settings.chat.soundsSub")} toggle={false} onToggle={() => undefined} disabled />
       </Section>

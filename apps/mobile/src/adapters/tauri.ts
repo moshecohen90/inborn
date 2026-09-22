@@ -380,6 +380,7 @@ export class TauriChatRepository implements ChatRepository {
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
+      ...(input.safety ? { safety: input.safety } : {}),
     };
     // The touch goes first: zero changed rows means no such chat, and the batch's transaction never inserts an orphan.
     const [touched] = await batch([

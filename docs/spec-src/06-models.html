@@ -7,8 +7,8 @@
 <thead><tr><th>רמה</th><th>שם בממשק</th><th>מודל ברירת מחדל</th><th class="num">קובץ</th><th>רישיון</th><th>ראייה</th><th>מיועד ל</th><th>שכבה</th></tr></thead>
 <tbody>
 <tr><td class="ltr">T0</td><td><strong>Instant</strong></td><td class="ltr">Qwen3.5-0.8B</td><td class="num">533 MB</td><td class="ltr">Apache-2.0</td><td>כן (mmproj)</td><td>מכשירי 4–6 GB, תשובות מהירות, ווב בטלפון</td><td><span class="pill free">Free</span></td></tr>
-<tr><td class="ltr">T1</td><td><strong>Fast</strong></td><td class="ltr">Qwen3.5-2B</td><td class="num">1.28 GB</td><td class="ltr">Apache-2.0</td><td>כן</td><td>ברירת המחדל בטלפון 6–8 GB</td><td><span class="pill free">Free</span></td></tr>
-<tr><td class="ltr">T2</td><td><strong>Sharp</strong></td><td class="ltr">Qwen3.5-4B</td><td class="num">2.74 GB</td><td class="ltr">Apache-2.0</td><td>כן</td><td>טלפון 8 GB+, טאבלט, כל דסקטופ</td><td><span class="pill pro">Pro</span></td></tr>
+<tr><td class="ltr">T1</td><td><strong>Fast</strong></td><td class="ltr">Qwen3.5-2B</td><td class="num">1.28 GB</td><td class="ltr">Apache-2.0</td><td>לא</td><td>ברירת המחדל בטלפון 6–8 GB</td><td><span class="pill free">Free</span></td></tr>
+<tr><td class="ltr">T2</td><td><strong>Sharp</strong></td><td class="ltr">Qwen3.5-4B</td><td class="num">2.74 GB</td><td class="ltr">Apache-2.0</td><td>לא</td><td>טלפון 8 GB+, טאבלט, כל דסקטופ</td><td><span class="pill pro">Pro</span></td></tr>
 <tr><td class="ltr">T2</td><td>Sharp (חלופה)</td><td class="ltr">Phi-4-mini 3.8B</td><td class="num">2.49 GB</td><td class="ltr">MIT</td><td>לא</td><td>חשיבה, מתמטיקה, קוד</td><td><span class="pill pro">Pro</span></td></tr>
 <tr><td class="ltr">T2</td><td>Sharp (חלופה)</td><td class="ltr">SmolLM3-3B</td><td class="num">1.92 GB</td><td class="ltr">Apache-2.0</td><td>לא</td><td>מתכון פתוח לגמרי, 128K הקשר</td><td><span class="pill pro">Pro</span></td></tr>
 <tr><td class="ltr">T3</td><td><strong>Power</strong></td><td class="ltr">Qwen3.5-9B</td><td class="num">≈5.5 GB</td><td class="ltr">Apache-2.0</td><td>כן</td><td>דסקטופ 16 GB, iPhone 17 Pro (12 GB) בגבול</td><td><span class="pill pro">Pro</span></td></tr>
@@ -18,6 +18,7 @@
 </tbody>
 </table>
 </div>
+<div class="note"><p><strong>ראייה — החלטה, 22.9.2026.</strong> בעמודת “ראייה” רק <strong>Instant</strong> מסומן כן. ה‑projector היחיד שנשלח בקטלוג הוא <span class="ltr">mmproj-Qwen3.5-0.8B-F16</span>, ורוחב ה‑embedding שלו מתאים ל‑Instant בלבד; Fast ו‑Sharp לא יכולים לטעון אותו, ולכן <span class="ltr">manifest.json</span> מציב אצלם <span class="ltr">vision: false</span>. זה תיקון F36: גיליון הצירוף מנטרל תמונה ומצלמה כשהמודל השוכן אינו Instant ומציע לעבור אליו. רמות T3/T4 שמסומנות כן הן תכנון ולא נשלחות ב‑1.0. פתיחת ראייה ל‑Fast ול‑Sharp דורשת projector תואם לכל אחד מהם.</p></div>
 <div class="note"><p><strong>מה לא בברירת המחדל ולמה.</strong> Gemma 4 עברה ל‑Apache‑2.0 באפריל 2026 ומביאה ראייה ושמע, אבל קובץ ה‑E2B שוקל 3.11 GB (5.1B פרמטרים בפועל), גדול מדי לרמת Fast; היא מוצעת כחלופה ברמת Sharp/Power. Llama 3.2 דורשת כיתוב "Built with Llama" ועותק רישיון בתוך האפליקציה, ולכן היא חלופה ולא ברירת מחדל. LFM2.5 חינמי רק מתחת להכנסה של 10 מיליון דולר בשנה; מותר עכשיו אבל מסומן לבדיקה בגדילה. אף מודל "uncensored" לא נכנס לקטלוג (ראו §11).</p></div>
 
 <h4>מה המשתמש רואה על כל מחסנית (בלי מספרי פרמטרים)</h4>

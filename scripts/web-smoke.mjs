@@ -167,7 +167,7 @@ async function waitForEngine(page, out, consoleLines, t0) {
   out.sessionLoadMs = Number(loadMs);
 }
 
-/** Types a prompt, sends it, waits for the ledger under the answer (only rendered once streaming ends), reads tok/s + TTFT from it. */
+/** Types a prompt, sends it, waits for the ledger under the answer (only rendered once streaming ends), reads the Free ledger rows from it. */
 async function chat(page, out, prompt, loadedLines) {
   const input = page.getByTestId("composer-input");
   await input.fill(prompt);
@@ -176,15 +176,17 @@ async function chat(page, out, prompt, loadedLines) {
   await ledgerToggle.waitFor({ timeout: ANSWER_TIMEOUT_MS });
   await ledgerToggle.click();
   await page.getByTestId("ledger").last().waitFor({ timeout: 10_000 });
-  out.tokPerSec = Number(await page.getByTestId("ledger-tokPerSec").last().textContent());
-  out.ttftMs = Number.parseInt((await page.getByTestId("ledger-ttft").last().textContent()) ?? "", 10);
-  out.tokens = ((await page.getByTestId("ledger-tokens").last().textContent()) ?? "").trim();
+  // Free shows §7.1's four rows only (model, quant, context, ms/token); tok/s is derived, TTFT is not shown.
+  const msPerToken = Number.parseInt((await page.getByTestId("ledger-msPerToken").last().textContent()) ?? "", 10);
+  out.tokPerSec = msPerToken > 0 ? Math.round(10_000 / msPerToken) / 10 : 0;
+  out.tokens = ((await page.getByTestId("ledger-context").last().textContent()) ?? "").trim();
+  if ((await page.getByTestId("ledger-detail-pro").count()) === 0) throw new Error("free ledger is missing the Pro detail row");
   out.answer = ((await page.getByTestId("assistant-text").last().textContent()) ?? "").trim();
   out.modelChip = ((await page.getByTestId("model-chip").textContent()) ?? "").trim();
   const loaded = loadedLines.map((l) => LOADED_RE.exec(l)).find(Boolean);
   if (loaded) Object.assign(out, { engineLoadMs: Number(loaded[1]), threads: Number(loaded[2]), gpuLayers: Number(loaded[4]) });
   if (!out.answer) throw new Error("empty answer");
-  if (!(out.tokPerSec > 0) || !Number.isFinite(out.ttftMs)) throw new Error(`ledger did not report usage: tok/s=${out.tokPerSec} ttft=${out.ttftMs}`);
+  if (!(out.tokPerSec > 0)) throw new Error(`ledger did not report usage: ms/token=${msPerToken}`);
 }
 
 /* The catalog host is not a foreign host when the run points the manifest at it: that download IS what is being proven.
@@ -348,8 +350,8 @@ if (failure) {
 }
 const f = result.first;
 const o = result.offline;
-console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · TTFT ${f.ttftMs} ms · tokens ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
-if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · TTFT ${o.ttftMs} ms · tokens ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
+console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · context ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
+if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · context ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
 console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);

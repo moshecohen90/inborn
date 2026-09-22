@@ -13,19 +13,20 @@ Audited against `main` @ `274e730` on 22.9.2026. Read-only: no build, no emulato
 
 ‏**הדוגמה החדה ביותר.** גיליון ההסבר של "החלפה אוטומטית ראשונה" (§8.8 שורה 4c): `policy.ts` מחשב את ההמלצה, `guard.ts` נועל אותה, `ackExplain()` קיים כדי לסגור אותה, וארבעה מפתחות תרגום נשלחים בכל שמונה השפות. בדקתי בעצמי: אף רכיב לא קורא לאף אחד מהם. זה F42 עם שובל נייר גדול יותר מאשר ל‑F42 עצמו.
 
-‏**שלושה דברים שחוסמים 1.0.**
+‏**תשעה דברים חוסמים 1.0. אלה הארבעה החמורים.**
 
 ‏1. אנחנו מצהירים בפני אפל, בפני גוגל ובפני המשתמשים שיש מסנן family‑safe שמופעל כברירת מחדל. הוא לא קיים בקוד. זו הצהרה שקרית במדיניות פרטיות שפורסמה, ובתשובה שלנו לכלל 1.2 של אפל.
 ‏2. אף הגשה בקונסולות לא בוצעה. כל התשובות כתובות ומנומקות; אף אחת לא הוגשה. דירוג IARC הוא חסם קשיח — מאז יולי 2026 גוגל לא מקבלת אפליקציה בלי דירוג.
 ‏3. מדיניות הפרטיות מתארת נתיב הורדה שהאפליקציה לא משתמשת בו. היא מבטיחה Background Assets מתארחים אצל אפל ב‑iOS 26, ו‑QA תיעד אייפון אמיתי מוריד 1.2 ג'יגה מ‑`models.inbornapp.com`. זו בדיוק הטענה המרכזית של המוצר, סותרת את עצמה בכלי שהבוחן מסתכל בו.
+‏4. אינקוגניטו לא שומר מסמך מצורף ב‑RAM בלבד. בדקתי בעצמי: `documents/db.native.ts:45-47` תמיד מחזיר את מאגר ה‑SQLCipher, ואין שום ענף לאינקוגניטו. שורת המסמך, עותק הקובץ והווקטורים שורדים את הסשן. שורות הצ'אט עצמן מטופלות נכון, ולכן נתיב המסמכים הוא החור היחיד — וזה בדיוק מה ש‑§7.5 מוכר כיתרון.
 
 ‏**המספר שביקשת לבדוק.** עמודת ההודעות בדסקטופ היא 680 בקוד, וזה תואם גם ל‑§8.9 וגם ל‑§9.3. ה‑760 נשאר רק בדמו. צריך לתקן את הדמו, לא את הקוד.
 
 ‏**מה שאי אפשר להוכיח.** אפליקציית הדסקטופ מעולם לא הופעלה. מסך S21 לא מופיע באף מסמך QA. מסך S32 לא קיים בכלל. ביומטריה מעולם לא נרשמה באף ריצה. אנימציית סגירת החותם מעולם לא נצפתה, לא במכשיר ולא בסימולטור. כל באנרי החום והסוללה נראו רק דרך תצוגת ה‑`__DEV__`.
 
-‏**מה שעובד ומוכח.** ההיעדר של הרשאת INTERNET באנדרואיד מוכח על מכשיר אמיתי בשלוש דרכים בלתי תלויות. אימות הרכישה האופליין הוכח בדרך הקשה: רכישה אמיתית נדחתה כי המפתח היה ריק, וגוגל החזירה את הכסף אוטומטית. לוח הצבעים תואם ב‑21 מתוך 22 ערכים, והחריג היחיד הוא תיקון נגישות שהקוד צודק בו והמפרט טועה.
+‏**מה שעובד ומוכח.** מפת ההתאמה של §6.1 מדויקת לחלוטין: כל 32 תאי הציונים וכל ארבע שורות השפה תואמות למניפסט החתום v4 בלי הבדל אחד, וכל 12 מחרוזות הסטטוס של §6.5 מאומתות מילה במילה בבדיקות. ההיעדר של הרשאת INTERNET באנדרואיד מוכח על מכשיר אמיתי בשלוש דרכים בלתי תלויות. אימות הרכישה האופליין הוכח בדרך הקשה: רכישה אמיתית נדחתה כי המפתח היה ריק, וגוגל החזירה את הכסף אוטומטית. לוח הצבעים תואם ב‑21 מתוך 22 ערכים, והחריג היחיד הוא תיקון נגישות שהקוד צודק בו והמפרט טועה.
 
-‏**ההמלצה.** לא להגיש לפני שסוגרים את שמונת הפריטים ב‑blocks‑1.0. חמישה מהם הם עבודת מסמכים של שעה עד יום, לא עבודת הנדסה.
+‏**ההמלצה.** לא להגיש לפני שסוגרים את תשעת הפריטים ב‑blocks‑1.0. חמישה מהם הם עבודת מסמכים של שעה עד יום, לא עבודת הנדסה.
 
 
 ## Why this audit exists
@@ -58,20 +59,20 @@ Where a claim is load-bearing I verified it personally rather than trusting the 
 
 ## Coverage and counts
 
-496 requirement clauses were extracted from the nine spec files and classified.
+507 requirement clauses were extracted from the nine spec files and classified.
 
 | Spec section | Clauses | PROVEN | UNPROVEN | PARTIAL | MISSING | DEFERRED |
 |---|---:|---:|---:|---:|---:|---:|
-| §4 platforms, §5 architecture, §6 models, §7 features | 100 | 49 | 6 | 29 | 12 | 4 |
+| §4 platforms, §5 architecture, §6 models, §7 features | 111 | 49 | 8 | 32 | 18 | 4 |
 | §8 screens (S01–S60, §8.8, §8.9) | 164 | 40 | 25 | 56 | 37 | 6 |
 | §9 design system | 61 | 30 | 2 | 17 | 9 | 2 |
 | §10 edge cases (70 rows) | 70 | 11 | 8 | 41 | 6 | 4 |
 | §11 store and legal, §12 monetization | 101 | 48 | 11 | 27 | 9 | 4 |
-| **Total** | **496** | **178** | **52** | **170** | **73** | **20** |
+| **Total** | **507** | **178** | **54** | **173** | **79** | **20** |
 
 Three clauses are not applicable (§9.10's Claude design skills, which the spec itself says were not installed, and two store items with no code surface).
 
-Read the two large columns together. **178 clauses are proven on real hardware, which is a genuinely strong result** for a product this size. But **170 are partial and 73 are absent**, and the great majority of those are small, specific omissions inside clauses that are otherwise built. That is the shape of this codebase: very little is wrong, a great deal is three-quarters finished, and almost none of the remainder was noticed before now.
+Read the two large columns together. **178 clauses are proven on real hardware, which is a genuinely strong result** for a product this size. But **173 are partial and 79 are absent**, and the great majority of those are small, specific omissions inside clauses that are otherwise built. That is the shape of this codebase: very little is wrong, a great deal is three-quarters finished, and almost none of the remainder was noticed before now.
 
 §8 carries most of the damage: 37 missing clauses out of 164. That is expected, because §8 is where the spec is most granular, and it is where F42 came from.
 
@@ -160,9 +161,12 @@ Spec: `docs/spec-src/05-architecture.html` (121 lines).
 | §5.6 TTS: system voices free and offline; Kokoro-82M as a Pro desktop upgrade | PROVEN / DEFERRED | system voices ship | `grep kokoro\|espeak\|misaki` = **0**, so the espeak-ng GPL-3 trap is genuinely avoided |
 | §5.6 continuous hands-free with Silero VAD as a Pro feature | PARTIAL | `core/voice/vad.ts` with an adaptive floor and 12/6 dB hysteresis; full four-phase loop read off a real iPhone | **The `/voice` route itself is ungated** (`src/app/voice.tsx` renders the screen with no paywall check, verified), while the chat entry point is gated |
 | §5.7 app lock with biometrics and a passcode fallback, blocking the app-switcher view | PARTIAL | `lock/useAppLock.ts`; `lock/PrivacyCover.tsx`; FLAG_SECURE via `SecureScreenModule.kt:17` | **Biometrics were never enrolled in any QA run**, on any device, simulator or emulator |
-| §5.7 screenshot blocking: Android FLAG_SECURE, iOS `UIScreen.isCaptured` with an honest explanation | PARTIAL | both implemented; `en.json:678` is honest about the iOS limit | Emulator only; `isCaptured` → blur never exercised |
+| §5.7 screenshot blocking **(Pro)**: Android FLAG_SECURE, iOS `UIScreen.isCaptured` with an honest explanation | PARTIAL — **the spec is wrong, not the code** | both implemented; `en.json:678` is honest about the iOS limit. `packages/core/test/licence-entitlement.test.ts:123` **asserts** that `screenshotBlock` and `panicWipe` are absent from `FEATURES`, i.e. never gated | §5.7 labels both Pro; §7 labels them Free; the code ships them Free and a test locks that. Emulator only; `isCaptured` → blur never exercised |
 | §5.7 panic wipe of DB, key and documents, with N-failed-attempts and a lock-screen shortcut | PARTIAL | `Settings/WipeSheet.tsx` with two confirmations; `lock/useAppLock.ts:82-84`; 1200 ms long-press on the lock screen | The wipe run checked chats, keys and models but not memory; the attempt counter never triggered |
-| §5.7 incognito: no DB, no search index, no backup or export, no widgets, memory neither read nor written, RAM-only document indexing, dedicated icon | PROVEN in code | `chat/store.ts:92-102` throws on remember; `sqliteRepository.ts:272` refuses the rows | Never run on a real device. **`AppServices.tsx:386` hard-codes `incognito: false` for share-ins**, dropping the user out of an incognito session |
+| §5.7 incognito: chat rows never written to the DB or the search index | UNPROVEN | `chat/store.ts:11-13,86-89`; `sqliteRepository.ts:272` refuses incognito rows outright | Correct in code; simulator and emulator only, never a real device |
+| §5.7 incognito: **an attached document is indexed in RAM only** | MISSING | Verified: `documents/db.native.ts:45-47` — `openRagStore()` always returns the SQLCipher store and `ragStoreKind()` hard-returns `"sqlcipher"`; there is no incognito branch. `library.ts:236,334` call `putDocument` into it unconditionally | The document row, the copied file and the vectors all persist after an incognito session. This is a stated privacy promise and §7.5 sells it as a differentiator |
+| §5.7 incognito: cleared on close, or on moving to the background per a setting | PARTIAL | `chat/store.ts:123 endSession()` — verified to have **zero callers** anywhere in the tree; no such preference exists in `prefsTypes.ts` | The outcome holds today only because the process exits |
+| §5.7 incognito: memory neither read nor written; dedicated icon | UNPROVEN | `chat/store.ts:91-104` throws on remember | Unit-level only. **`AppServices.tsx:386` hard-codes `incognito: false` for share-ins**, dropping the user out of an incognito session |
 | §5.7 KV cache and buffers zeroed after every incognito session | MISSING | `grep "kv cache\|kvCache\|zeroize\|wipeMemory"` = 0 | |
 | §5.7 **model unloaded after 10 minutes of inactivity** | PROVEN in code | `apps/mobile/src/engine.ts:19` `IDLE_UNLOAD_MS = 10 * 60_000`, with a `__DEV__` override for testing | Exact. No device row records an idle unload |
 | §5.7 core open source under a permissive licence, bundle hash published per release | MISSING | no `LICENSE` file; repo private; `Proof.tsx:82-83` prints a git commit | Gap 3 |
@@ -172,6 +176,7 @@ Spec: `docs/spec-src/05-architecture.html` (121 lines).
 | §5.8 KV cache limited to 2–4K tokens on phones, raised for Pro on 8 GB+ | PARTIAL | `device/policy.ts:346` `contextCap: ramGB < 6 ? 2048 : 4096` | Exactly the spec's range. The Pro increase on 8 GB+ is not implemented, and the reduction is silent |
 | §6.5 device guard: battery, thermal and memory table | PROVEN in code | `packages/core/src/device/policy.ts` (504 lines, 56 tests in `device-policy.test.ts`); all twelve English status strings match the spec verbatim | **No component reads the recommendation.** ~31 `device.*` keys × 8 locales are dead, and no genuine thermal event has ever occurred in QA |
 | §5.9 desktop shell, Rust engine, updater, signing and notarization | PARTIAL | the whole shell exists: `src-tauri/src/{shell,engine,models,licence,updater}.rs` | **Never launched.** No ARM64 Windows job. F41 (a blank window) was found by reading code, not by running it |
+| Nine technologies the spec names by product and the code does not contain | MISSING | Silero VAD (`voice/vad.ts:57` ships an energy VAD), Kokoro-82M, Apple SpeechAnalyzer (`dictation.native.ts` ships SFSpeechRecognizer), Core ML (`whisper.native.ts:51` sets `useCoreMLIos: false`), sqlite-vec, mammoth (`rag/extract/docx.ts:2` is hand-written), ML Kit OCR (Tesseract 4.9 instead, because ML Kit has no Hebrew), Qwen3-Embedding-0.6B and all-MiniLM, desktop OCR | **None of the nine is on any cut list.** Several substitutions are good engineering (Tesseract for Hebrew, brute-force cosine at this scale); the problem is that the spec still sells the original names |
 | §5.10 i18n with ICU MessageFormat, pseudo-localization, RTL checked in Hebrew and Arabic in every PR | PARTIAL | 8 shipped locales at full key parity plus `pseudo.json`; a pseudo-localization generator exists | **No Hebrew or Arabic locale ships**, and the RTL switch is `__DEV__`-only (`Settings.tsx:206-207`). The rule as written is unexecutable, and `qa-run-2026-09-06.md:76` T24 records exactly that |
 
 ## §6 — Models
@@ -187,6 +192,11 @@ Spec: `docs/spec-src/06-models.html` (143 lines). The catalog is `packages/core/
 | **iOS 17 install floor** | MISSING | ships **16.4**: `Podfile:27` and four `IPHONEOS_DEPLOYMENT_TARGET = 16.4` entries; no `ios.deploymentTarget` in any tracked config | `release-checklist.md:246` and `privacy-policy.md:39` both repeat iOS 17 |
 | Measured speeds match the ranges shown on the cards | PARTIAL | `catalog/speed.ts:13-60` with an `android-legacy` class; F37 closed on the 6T ("Too slow to use on this phone") | **Open defect U11: Fast measured 13.2 tok/s against a card promising ~15-24** |
 | Companion models: embedder, speech, vision projector | PARTIAL | `embed-nomic` 274 MB, `speech-whisper-base` 148 MB, `vision-qwen35` 200 MB all ship | The multilingual Pro embedder and the small-device embedder do not; the shipped embedder is English-only |
+| §6.1 the fit map: 32 use-grade cells and 4 language rows | PROVEN | every cell matches signed manifest v4 with **zero differences**, asserted by `packages/core/test/catalog-fit.test.ts` | The most precisely conformant block in the whole audit |
+| §6.1 catalog version label | MISSING / stale | `manifest.json:3` is `4`; the spec says "version 3"; `docs/model-fit.md:3` also says 3 | A three-way disagreement about the version of the signed artifact |
+| §6.4 chip speed classes | PARTIAL | `catalog/speed.ts:26-39` ships 12 classes | **Six shipped classes appear nowhere in §6.4**, including `android-legacy` at 0.4-0.6 tok/s — the class that produced F37 on the floor device. `USABLE_TOKENS_PER_SEC = 1.5` is also code-only |
+| §6.4 battery cost of 0.3-0.5% per 1,000 tokens, heat derate of 15-40% after 5-10 minutes | MISSING | no per-token battery model exists; `speed.ts:3-5` mentions the derate in a comment only | The §6.1 battery tags are hand-authored, not computed |
+| §6.2 companion models: Qwen3-Embedding-0.6B, all-MiniLM, whisper small, Parakeet, Kokoro, Gemma 4 | MISSING | zero hits repo-wide for all six | Only `embed-nomic`, `speech-whisper-base` and `vision-qwen35` ship |
 | §6.5 the full battery / thermal / memory table | PROVEN in code, UNPROVEN in behaviour | `device/policy.ts` implements every row with 56 tests; all twelve English status strings are verbatim | Thresholds: `batteryLow: 1`, `batteryCritical: 4`, `thermalSerious: 5`, `thermalCritical: 8`, `contextCap` 2048/4096. **No genuine thermal event has ever occurred in QA** and no component reads the recommendation |
 
 ## §7 — Feature matrix
@@ -206,7 +216,9 @@ The gating surface is `packages/core/src/licence/gates.ts` (`FEATURES`, `limits(
 | OCR is more generous than the matrix | PARTIAL | `DocumentsScreen.tsx:235` gates OCR on `Platform.OS !== "web"` with no `paywallFor` call |
 | §7.8 recommendation by use and language | PROVEN | `catalog/recommend.ts`; `VaultScreen.tsx:190-196`; on the real iPhone: `RECOMMENDED ON THIS iPhone · … IN English` |
 | The Work tier has no real-device coverage | UNPROVEN | only the Work **SKU** was exercised in the purchase runs; no QA run covers vaults, packs, redaction or signed records on hardware |
-| Spec-internal tier conflicts | — | Screenshot blocking appears as both Pro and Free; XLSX appears as both Pro and Work. Both need a decision before conformance can be judged |
+| **Eleven rows where the enforced tier is not the spec's tier** | PARTIAL | OCR spec Pro → **no gate** (`gates.ts:11` dead, `DocumentRow.tsx:79` calls `runOcr` unguarded) · strict documents mode spec Pro → no gate (`DocumentsScreen.tsx:169`) · XLSX spec Pro → Work (`documents/office.ts:6`) · CSV spec Pro → no gate · DOCX spec Work → no gate · file picker spec Pro → Free (`importPicker.ts:10` gates on count) · camera spec Pro → Free (`AttachSheet.tsx:48`) · memory read/edit/delete spec Pro → Free (`MemorySheet.tsx:79-141`) · detailed stats spec Pro → Free (`Ledger.tsx:18`) · screenshot blocking and panic wipe spec Pro → Free **and a test locks it** |
+| A share-target bypass defeats two gates | MISSING gate | `Chat.tsx:710-722` imports and attaches with no `paywallFor` and no office-kind check | Walks past both the Free file cap and the Work document gate |
+| Spec-internal tier conflicts | — | Screenshot blocking appears as Pro in §5.7 and Free in §7 (**the code and its test say Free, so the spec is the error**); XLSX appears as both Pro and Work; the Free file-attach row needs the system picker that a Pro row claims to gate |
 
 ## §8 — Screens (S01–S60, §8.8, §8.9)
 
@@ -766,6 +778,22 @@ Every row is a concrete number the spec states and the code contradicts. "Code w
 | 24 | Context warn threshold | 80% | `CONTEXT_WARN = 0.8` | `chat/context.ts:7` | **Agree**, never triggered (max observed ≈43%) |
 | 25 | Auto-scroll window | 100px | 100 | `Chat.tsx:667-670` | **Agree** |
 | 26 | Sidebar width | 280px | `SIDEBAR_WIDTH = 280` | `lib/layout.ts:10` | **Agree** |
+| 27 | Free-space rule | size × 1.1 everywhere | mobile `max(×1.1, +2 GiB)`, desktop `+512 MiB`, web `+256 MiB` | `install.ts:38`, `models.rs:15`, `opfs.ts:5` | Three different rules for one stated number |
+| 28 | Fit multiplier | size × 1.4 + KV cache, against **available** memory | `bytes/GB + 1`, against **total installed** RAM | `catalog/huggingface.ts:105-108`, `catalog/pick.ts:23-27` | Neither the multiplier nor the KV term exists |
+| 29 | Catalog version | 3 | `4` | `manifest.json:3` | `docs/model-fit.md:3` also says 3. Three-way disagreement |
+| 30 | Sharp whole-model hash | a final hash over the whole model | the `sha256` field carries **shard 1's** hash | `manifest.json` sharp entry, `store.ts:235` | Per-shard verification is real; the final whole-model check is not |
+| 31 | nomic-embed display size | 274 MB | `274,290,560 B`, rendered as **262 MB** | `manifest.json:327` | Decimal in the spec, binary in the UI. Same for Instant (533 vs 508) and Sharp (2.74 GB vs 2.6 GB) |
+| 32 | whisper base | 142 MB | `147,951,465 B` = 148 MB decimal | `manifest.json:365` | `whisper.native.ts:8` repeats the spec's 142 |
+| 33 | Vision projector | ≈300-600 MB | `204,987,232 B` = 205 MB | `manifest.json:412` | 32% below the stated floor |
+| 34 | Desktop models | 7-9B, and 30B on a 24 GB GPU | catalog tops out at 4B | `catalog/manifest.json` | The Power and Studio tiers are deferred; §4.2's whole desktop argument rests on models that do not exist |
+| 35 | Shard downloads | parts in parallel | strictly sequential | `httpsDelivery.ts:59-70` | Three model lanes run in parallel (`lanes.ts:19`); shards within a model do not |
+| 36 | Retry backoff after a drop | 2 / 4 / 8 → 60 s | `backoffMs` exists, is unit-tested, and is **never called** | `catalog/resume.ts:62` | There is no automatic retry after a disconnect |
+| 37 | Unused-model sweep | 60 days | no constant exists | `vault/record.ts:13` writes `lastLoadedAt` and nothing reads it | |
+| 38 | R2 catalog cost | 60 GB ≈ $1/month | 8 objects, 7.15 GB ≈ $0.11/month | `docs/ops/cdn-r2.md:120-123` | The spec sized a catalog five times larger than the one that ships |
+| 39 | Release checklist | 40 items | 57 tests | `docs/qa/release-checklist.md:1` | §5.9 points at a document that outgrew the number |
+| 40 | Launch languages | 6 (D13) | 8 | `packages/i18n/src/index.ts:16` | D13 was never amended; key count is 1,027, not the stated ~1,000 |
+| 41 | Background grace | §5.8 and §6.5 say 15 s; §8.2 says 15-30 s | 15 s | `Chat.tsx:114` | The spec disagrees with itself |
+| 42 | Device-policy tests | README says 41 | 56 | `packages/core/test/device-*.test.ts` | |
 
 ## Places where the spec contradicts itself
 
@@ -782,6 +810,17 @@ These are not code defects. Each needs one decision, and until it is made no imp
 9. **AI Act timing.** §11.3 presents 2.12.2026 as a cushion; `docs/legal/ai-act-notes.md:24` explicitly corrects it — "Art. 50(1) and Art. 50(2) must be satisfied from the first EU release". The note is the authority and the spec HTML was never updated.
 10. **Technical numbers on the vault cartridge.** §8.4 says numbers belong only in Details; the section's own wireframe at `08-screens.html:176-177` draws params, bytes, quantisation and tok/s on the cartridge. The code follows the wireframe.
 11. **"Verify after download" as a visible indicator (§8.4) vs verification being unconditional.** The behaviour is right; the promised string does not exist.
+12. **Screenshot blocking and the lock-screen quick wipe: Pro (§5.7) or Free (§7).** The code ships them Free and `packages/core/test/licence-entitlement.test.ts:123` asserts they are never gated. Here the spec is the error, and it should be corrected before anyone builds the gate.
+13. **Apple Foundation Models' phase.** §6.1 sells it as a shipping built-in tier, §4.5 lists the adapter in P1, and §4.1 and §14.5 place it in P4. The spec cannot decide.
+14. **Web chat storage: OPFS (§5.3 table) or in-memory / IndexedDB (§5.3 prose).** The code ships IndexedDB, unencrypted, and discloses it.
+15. **Models excluded from backup (§5.3) vs chats included in the backup (§10 case 42)** on a build where `allowBackup="false"` means neither is.
+16. **Kokoro: desktop-only (§5.6), platform-free (§7.4), or a phone voice picker (§8.5 S44).** Three placements for a component that does not ship.
+17. **The 200+ page progressive-indexing story (§5.5) vs the 20-page Free cap (§7.3).** A free user never reaches the scenario §5.5 describes.
+18. **"Without a citation the model says it found nothing" (§5.5)** is stated unconditionally, but the behaviour only exists in strict mode, which ships **off**.
+19. **"(OCR if scanned)" as an automatic pipeline step (§5.5)** vs the shipped "Run OCR on this phone?" prompt.
+20. **§6.1's own headline example** says the line reads `CLOSEST: FAST` and then, one clause later, `CLOSEST: SHARP`. The device shows FAST.
+21. **One status line at a time (§6.5)** vs `Banners.tsx:25-56`, where several rows stack.
+22. **`release-checklist.md:213` defines the permission pass as "no ACCESS_NETWORK_STATE"**, while the shipping gate allows it (`check-android-permissions.sh:15`) and every AAB declares it. A QA document that cannot be satisfied by the build it gates.
 
 ## Claims the product ships that the code does not support
 
@@ -818,6 +857,12 @@ Screens, states and whole subsystems that exist in code and have no device or br
 
 ## Ranked gap list
 
+> **Update, 22.9.2026 evening.** Gaps **1, 3, 16, 19, 20, 21 and 33** were closed in **fixes round 25** (branch
+> `fixes-r24a`, filed as F50–F56). See `README.md` "Fixes round 25", the F50–F56 rows in
+> `docs/qa/qa-run-2026-09-11.md` and the evidence in `docs/qa/fixes-r24a/`. Their rows below are left as
+> written, because the finding is the record; the fix is not in them. **None of the seven was seen on a screen**
+> — that stream had no device, emulator or browser — so every one of them still wants a QA pass.
+
 Severity scale: **blocks-1.0** (the app cannot be submitted, or submitting it would be dishonest) · **should-fix-before-submission** (submittable, but the first reviewer or user who looks will find it) · **1.0.1** (real, not urgent) · **deferred** (a decision already recorded in README or the spec).
 
 Fix size is an estimate of engineering effort: XS under an hour, S half a day, M a day or two, L a week or more.
@@ -833,7 +878,8 @@ Fix size is an estimate of engineering effort: XS under an hour, S half a day, M
 | 5 | **A shipped Settings security control that does nothing.** | §7.5 clipboard expiry | `Settings.tsx:140-148` offers Off / 60 s and writes `prefs.clipboardExpirySec`; `lib/clipboard.ts` ignores it and its own comment defers expiry to M6 | Implement the timer, or remove the control. **S** |
 | 6 | **The zero-INTERNET CI gate is disabled.** | §5.1 "שער CI" | `.github/workflows/ci.yml:16-18` `android-permission-gate: if: false` with a TODO. The script works and has passed on real builds; the gate is a human running it per release | Produce an APK in CI and flip the flag, or make the release script refuse to upload without it. **S**. The whole privacy claim rests on one permission |
 | 7 | **No database integrity check and no Repair path; corruption is answered by deletion.** | §10.3 case 22 | `sqliteRepository.ts:213-217` catches "not a database" and calls `deleteDatabaseAsync` — silent, total, irreversible loss of every chat on an app whose promise is that chats live only here. T40 never ran | Add `quick_check` on open, a Repair path and an export-before-wipe prompt. **M** |
-| 8 | **Family Sharing is promised in three places and off in App Store Connect.** | §12.1, §12.4 | Code is complete and correct; the switch is a one-way door on Moshe's decision list; the real iPhone displays "Family Sharing is not enabled for this product yet." | Decide and flip, or remove the promise from `terms.md:26` and `listing.en.json:56`. **XS** plus a decision |
+| 8 | **Incognito does not keep an attached document in RAM.** | §5.7 "מסמך שצורף מאונדקס ב-RAM בלבד" | Verified: `documents/db.native.ts:45-47` always returns the SQLCipher store and `ragStoreKind()` hard-returns `"sqlcipher"`; `library.ts:236,334` write through it unconditionally. The document row, the copied file and the vectors all survive the session. `chat/store.ts:123 endSession()` has zero callers, so "cleared on close" holds only because the process exits | Route incognito imports to `MemoryEmbeddingStore` and call `endSession()`. **S**. This is a privacy promise §7.5 sells as a differentiator, and chat rows are handled correctly, which makes the document path the one hole |
+| 9 | **Family Sharing is promised in three places and off in App Store Connect.** | §12.1, §12.4 | Code is complete and correct; the switch is a one-way door on Moshe's decision list; the real iPhone displays "Family Sharing is not enabled for this product yet." | Decide and flip, or remove the promise from `terms.md:26` and `listing.en.json:56`. **XS** plus a decision |
 
 ### should-fix-before-submission
 
@@ -855,7 +901,9 @@ Fix size is an estimate of engineering effort: XS under an hour, S half a day, M
 | 22 | **Catalog and spec disagree on vision.** | §6.1 "ראייה: כן" | `manifest.json` sets `vision: false` on Fast and Sharp; only Instant has a matching projector (F36) | Fix the spec table or ship the projectors. **S** |
 | 23 | **No Hebrew or Arabic locale ships and the RTL switch is `__DEV__`-only**, so §5.10's "checked in Hebrew and Arabic in every PR" is unexecutable. `qa-run-2026-09-06.md:76` T24 records exactly that | §5.10 | 8 Latin/CJK locales at full key parity; `debug.force_rtl` behind `__DEV__` | Either ship one RTL locale or restate the rule as a pseudo-RTL check. **M** |
 | 24 | **The clearance is done and no trademark is filed.** | §11.6 "הגשה לפני כל פרסום" | Two clean TMview runs and a costed filing plan. **Zero applications, no attorney engagement, no first-use record, and the monthly watch plist was never installed** | File before the first public listing. **S** plus roughly $2,000 |
-| 25 | **`openiap-google` declares INTERNET and is stripped only by `tools:node="remove"`.** | §11.2 | The end state is right and proven; the spec's stated reason ("the Billing library's manifest has no INTERNET") is wrong about the wrapper we actually ship | Note it in the spec and keep the permission gate in CI (see gap 6). **XS** |
+| 25 | **Nine named technologies are absent and on no cut list.** | §5.5, §5.6, §4.5 | Silero VAD, Kokoro-82M, Apple SpeechAnalyzer, Core ML, sqlite-vec, mammoth, ML Kit OCR, the Qwen3 and MiniLM embedders, desktop OCR. Several substitutions are better engineering than the spec's choice, notably Tesseract for Hebrew and brute-force cosine at this scale | Correct the spec or add them to the cut list. **S**, documentation only. Today the spec sells nine components the product does not contain |
+| 26 | **The spec, not the code, is wrong about two Pro labels.** | §5.7 screenshot blocking and lock-screen quick wipe | `licence-entitlement.test.ts:123` asserts both are absent from `FEATURES`, and §7 agrees they are Free | Fix §5.7 before someone builds a gate that a passing test forbids. **XS** |
+| 27 | **`openiap-google` declares INTERNET and is stripped only by `tools:node="remove"`.** | §11.2 | The end state is right and proven; the spec's stated reason ("the Billing library's manifest has no INTERNET") is wrong about the wrapper we actually ship | Note it in the spec and keep the permission gate in CI (see gap 6). **XS** |
 
 ### 1.0.1
 
@@ -875,7 +923,10 @@ Fix size is an estimate of engineering effort: XS under an hour, S half a day, M
 | 37 | Web: no 2px amber focus ring and no `@media (hover:hover)` gate in the app build (both exist only in the marketing site); the WebGPU probe is read into `gate.webgpu` and consumed by nothing; no size choice on the first download | **S** |
 | 38 | Paddle licence keys are not device-bound by signature, the 3-device limit is enforced nowhere, and deactivation does not exist (`grep -ri deactivat` = 0 across the whole tree) | **M** |
 | 39 | No offer codes on any platform, and the spec's 20–30% cross-store discount exists as a sentence with no artifact | **S** |
-| 40 | 22 gate keys in `licence/gates.ts` have zero call sites | **S** |
+| 40 | 23 of 39 gate keys in `licence/gates.ts` have zero call sites. Roughly half map to declared cuts; the rest still gate features the matrix sells, including four Work keys (`professionPacks`, `recordsDictation`, `largeModels`, `teamLicence`) | **S** |
+| 41 | No golden screenshots anywhere in the repo, so there is no visual-regression baseline; the crash-report path is a `mailto:` body rather than a file | **M** |
+| 42 | No `eas.json`: the spec's EAS build path was silently replaced by local gradle and xcodebuild, and the substitution is recorded nowhere | **XS** |
+| 43 | No string-extraction step and no translation pipeline; `pseudo.mjs` is a manual script with no workflow and no assertion | **S** |
 
 ### deferred
 

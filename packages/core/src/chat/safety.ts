@@ -8,6 +8,8 @@ const PHRASES: Record<string, readonly string[]> = {
   de: ["mich umbringen", "selbstmord", "mir das leben nehmen", "sterben will", "will sterben", "will nicht mehr leben", "mich verletzen"],
   pt: ["me matar", "tirar minha vida", "acabar com a minha vida", "quero morrer", "não quero mais viver", "me machucar"],
   ja: ["自殺", "死にたい", "死のう", "消えたい", "自傷"],
+  ko: ["자살", "죽고 싶", "죽고싶", "살고 싶지 않", "자해", "목숨을 끊", "사라지고 싶"],
+  "zh-Hant": ["自殺", "自杀", "想死", "不想活", "自殘", "結束生命", "了結自己"],
   ar: ["انتحار", "أريد أن أموت", "أؤذي نفسي"],
   ru: ["покончить с собой", "самоубийство", "хочу умереть"],
 };
@@ -41,6 +43,16 @@ const BY_REGION: Record<string, CrisisResource[]> = {
   BR: [{ name: "CVV", phone: "188" }],
   PT: [{ name: "SOS Voz Amiga", phone: "213544545" }],
   JP: [{ name: "よりそいホットライン", phone: "0120279338" }],
+  /* 109 replaced 129 and 1393 in 2024 and 1577-0199 is no longer published; only lines findahelpline.com still lists ship here. */
+  KR: [
+    { name: "자살예방 상담전화 109", phone: "109" },
+    { name: "한국생명의전화", phone: "15889191" },
+  ],
+  TW: [
+    { name: "安心專線", phone: "1925" },
+    { name: "生命線協談專線", phone: "1995" },
+  ],
+  HK: [{ name: "撒瑪利亞防止自殺會", phone: "23892222" }],
   MX: [{ name: "Línea de la Vida", phone: "8009112000" }],
   IN: [{ name: "Tele-MANAS", phone: "14416" }],
 };
