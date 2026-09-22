@@ -818,31 +818,6 @@ Every model file `ALL_PACKS` names was present in `.models` at its catalog size 
 | sha256 | `de73d737ed2e79716f2f6286c409a416cae739a1eaebfda46e84c7ec2acabfe1` |
 | signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
 | asset packs | **seven**, the same set and delivery types as vc12 — see the pack table |
-## Q. Play internal release versionCode 14 — the F38 answer-length policy on the real Play path — 22.9.2026
-
-The release that carries **round 19** (F38, `packages/core/src/chat/length.ts`) to a device through Google Play, as an
-**update in place over vc13** rather than a fresh install. Round 19 was proven on an emulator with an
-`INBORN_PACKS=instant` build, which cannot reach the state Moshe actually complained about — a chat that also holds an
-attached document. This run retests F38 on the OnePlus 6T, on the store bundle, with every pack installed.
-
-> Section P (vc13) is not on `main` yet; it lives on branch `android-vc13`. This section is written after O and reads
-> P's conventions from that branch.
-
-**Build.** Fresh worktree `android-vc14` off `origin/main` (**fc7b3ee**), `pn install --frozen-lockfile` 0, `.models`
-symlinked to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build`
-removed. `scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=14` and
-**no `INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
---no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
-`GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 7 m 56 s**, 1112 actionable tasks, 1112 executed.
-`gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty and `ios-build-10/xcodebuild.running` absent before it
-started.
-
-| check | result |
-|---|---|
-| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,808,142 bytes** (4.77 GiB; vc13 was 5,117,801,881, +6,261) |
-| sha256 | `a2b1bd0938dceaa04f392a9dd49ac10a4a7ccb06c16c2a9a996d210fd8bacd26` |
-| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
-| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, the same set as vc12 and vc13 |
 | `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
 | entries under `base/assets/ios` | **0** |
 | `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
@@ -1055,6 +1030,35 @@ this device" again; the chats the run created were left. Nothing else was uninst
 the phone was never locked or unlocked.
 
 **vc13 is left installed on purpose**: vc14 will arrive over it as a Play update.
+
+## Q. Play internal release versionCode 14 — the F38 answer-length policy on the real Play path — 22.9.2026
+
+The release that carries **round 19** (F38, `packages/core/src/chat/length.ts`) to a device through Google Play, as an
+**update in place over vc13** rather than a fresh install. Round 19 was proven on an emulator with an
+`INBORN_PACKS=instant` build, which cannot reach the state Moshe actually complained about — a chat that also holds an
+attached document. This run retests F38 on the OnePlus 6T, on the store bundle, with every pack installed.
+
+> Written while section P (vc13) was still on its branch; both are on `main` now, P directly above.
+
+**Build.** Fresh worktree `android-vc14` off `origin/main` (**fc7b3ee**), `pn install --frozen-lockfile` 0, `.models`
+symlinked to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build`
+removed. `scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=14` and
+**no `INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 7 m 56 s**, 1112 actionable tasks, 1112 executed.
+`gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty and `ios-build-10/xcodebuild.running` absent before it
+started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,808,142 bytes** (4.77 GiB; vc13 was 5,117,801,881, +6,261) |
+| sha256 | `a2b1bd0938dceaa04f392a9dd49ac10a4a7ccb06c16c2a9a996d210fd8bacd26` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, the same set as vc12 and vc13 |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
 | module sizes, uncompressed | base 202,650,086 B / 1453 entries; the seven packs below |
 | `base/assets` | 17,832,886 B / 120 entries (vc13: 17,810,826 / 120) |
 | manifest | `versionCode="14" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26 |
