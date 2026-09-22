@@ -26,6 +26,7 @@ import {
   adviseModel,
   detectLanguage,
   detectUse,
+  fileIntake,
   languageTierOf,
   modelShortfall,
   limits,
@@ -98,7 +99,7 @@ import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
-import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
+import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
 
 type Row = AssistantRow;
@@ -403,7 +404,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
     };
     try {
-      const facts = await store.memoryFor(chatIdNow, persona.id);
+      /* Memory is Pro (§7.6): a lapsed licence stops the model seeing the facts, it does not delete them. */
+      const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -709,9 +711,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (seed.kind === "files") {
       void (async () => {
         let attached = 0;
+        let blocked: "document" | "office" | null = null;
         for (const f of seed.files) {
-          const doc = await library.importFile(f.uri, f.name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined });
-          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name: f.name }));
+          /* The share sheet is a door into the library like any other: same tier gate, same format gate (QA F72). */
+          const name = sharedName(f.uri, f.name, f.mimeType);
+          const verdict = fileIntake(tier, sniffPicked(f.uri, name), docs.documents.length + attached);
+          if (verdict.kind === "paywall") {
+            blocked ??= verdict.moment;
+            continue;
+          }
+          const doc = await library.importFile(f.uri, name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined });
+          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name }));
           else {
             docs.attach(doc.id);
             attached++;
@@ -719,6 +729,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (attached) flash(t("quick.filesAttached", { count: attached }));
         if (seed.text) setDraft(seed.text);
+        if (blocked) {
+          flash(t(blocked === "office" ? "quick.fileWork" : "quick.filePro"));
+          afterSheetClose(() => onOpenPaywall?.());
+        }
       })();
       return;
     }
@@ -812,11 +826,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
+  const strictLocked = paywallFor(tier, { kind: "feature", feature: "strictDocuments" });
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
       void pickIntoLibrary(library, tier, docs.documents.length).then((r) => {
-        if (r.kind === "paywall") onOpenPaywall?.();
+        if (r.kind === "paywall") {
+          flash(t(r.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+          onOpenPaywall?.();
+        }
         else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
         else if (r.kind === "imported") docs.attach(r.id);
       }, (e: unknown) => flash(errorText(e)));
@@ -1185,7 +1203,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           item.role === "user" ? (
             <UserMessage message={redaction.display(item)} onLongPress={() => setActionRow(item)} />
           ) : (
-            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} />
+            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} onUnlock={() => onOpenPaywall?.()} />
           )
         }
       />
@@ -1328,6 +1346,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         attachedIds={docs.context.docIds}
         strict={docs.strict}
         onSetStrict={docs.setStrict}
+        strictLocked={strictLocked}
+        onUnlock={() => {
+          setAttachOpen(false);
+          afterSheetClose(() => onOpenPaywall?.());
+        }}
         onAttach={docs.attach}
         onImport={importFile}
         onDetach={docs.detach}

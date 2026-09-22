@@ -21,7 +21,8 @@ interface Props {
 
 /**
  * Transparent memory panel (§8.5 S42): every "fact about me" is visible, editable and deletable, with its source chat,
- * a switch per persona and a master switch. Pro-gated: the free tier sees the panel but cannot add facts.
+ * a switch per persona and a master switch. Pro-gated (§7.6): the free tier sees the panel and can delete, but every
+ * write — add, edit, or switching memory on — opens the paywall. Deleting your own data is never sold (§7.5).
  */
 export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
   const type = useType();
@@ -77,7 +78,9 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
           </View>
           {locked ? <ProTag onPress={unlock} /> : null}
           <Toggle
-            testID="memory-master" label={t("memory.master")} value={enabled} onChange={(on) => {
+            testID="memory-master" label={t("memory.master")} value={enabled && !locked} onChange={(on) => {
+              /* Turning memory ON is the Pro capability; turning it off is a privacy control and never costs money (§7.5). */
+              if (on && locked) return unlock();
               setEnabled(on);
               void store.setMemoryEnabled(on);
             }} />
@@ -92,7 +95,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
                 {f.personaId ? ` · ${personas.find((p) => p.id === f.personaId) ? personaName(personas.find((p) => p.id === f.personaId)!) : ""}` : ""}
               </Text>
               <View style={styles.factActions}>
-                <Pressable testID={`memory-edit-${f.id}`} accessibilityRole="button" onPress={() => setEditing({ id: f.id, content: f.content })} hitSlop={6} style={styles.textBtn}>
+                <Pressable testID={`memory-edit-${f.id}`} accessibilityRole="button" onPress={() => (locked ? unlock() : setEditing({ id: f.id, content: f.content }))} hitSlop={6} style={styles.textBtn}>
                   <Text style={[type.caption, { color: theme.accent }]}>{t("memory.edit")}</Text>
                 </Pressable>
                 <Pressable testID={`memory-delete-${f.id}`} accessibilityRole="button" onPress={() => void store.library.deleteMemory(f.id).then(refresh)} hitSlop={6} style={styles.textBtn}>
@@ -100,7 +103,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
                 </Pressable>
               </View>
             </View>
-            <Toggle label={f.content} value={f.enabled} onChange={(on) => void store.library.updateMemory(f.id, { enabled: on }).then(refresh)} />
+            <Toggle label={f.content} value={f.enabled && !locked} onChange={(on) => (on && locked ? unlock() : void store.library.updateMemory(f.id, { enabled: on }).then(refresh))} />
           </View>
         ))}
         {!facts.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("memory.empty")}</Text> : null}
@@ -128,8 +131,9 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
             <Toggle
               testID={`memory-persona-${p.id}`}
               label={personaName(p)}
-              value={perPersona[p.id] ?? true}
+              value={(perPersona[p.id] ?? true) && !locked}
               onChange={(on) => {
+                if (on && locked) return unlock();
                 setPerPersona((f) => ({ ...f, [p.id]: on }));
                 void store.setMemoryEnabledFor(p.id, on);
               }}

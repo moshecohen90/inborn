@@ -20,10 +20,11 @@ interface Props {
   onLongPress: () => void;
   onContinue?: () => void;
   onRegenerate?: () => void;
+  onUnlock?: () => void;
 }
 
 /** Flat, full-width answer (§9.6): mono label, Markdown body, collapsed reasoning and ledger, states for stopped / loop / error. */
-export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quant, onLongPress, onContinue, onRegenerate }: Props) {
+export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quant, onLongPress, onContinue, onRegenerate, onUnlock }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
         </View>
       ) : null}
       {!row.streaming && row.content && row.citations?.length ? <CitationChips content={row.content} citations={row.citations} /> : null}
-      {!row.streaming && row.content ? <Ledger message={row} nCtx={nCtx} quant={quant} /> : null}
+      {!row.streaming && row.content ? <Ledger message={row} nCtx={nCtx} quant={quant} onUnlock={onUnlock} /> : null}
     </Pressable>
   );
 });
