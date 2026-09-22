@@ -1,4 +1,4 @@
-# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 16
+# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 17
 
 Branch `purchases-verify` (merged with `main` at 0e4dba0). Continues `purchases-run-2026-09-06.md` (Play purchase proven on the OnePlus 11, ASC products READY_TO_SUBMIT).
 Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/purchases-r2/` (file names below; copy before the session directory is cleaned).
@@ -1358,7 +1358,7 @@ About / Proof / vault / attach / F39 rows. Moshe reclaimed the phone at 15:30 an
 Pixel 6 API 33 emulator. He freed the phone again at **16:47**, and the second sitting (16:48-18:15) took the rows
 the emulator cannot answer: the vault after the update, Play billing, and soak run 9.
 
-**The phone has since moved on.** `android-vc17` took the 6T the same evening and Play updated it in place to **versionCode 17** at 20:13:38 (that stream's rows and soak 10 are on branch `android-vc17`, commits 9c4802e and e90a0a7). Every row below was captured while 1.0.0 (16) was the installed build; the device does not still hold it.
+**The phone has since moved on.** `android-vc17` took the 6T the same evening and Play updated it in place to **versionCode 17** at 20:13:38 (**section T** below, with soak run 10 in `docs/qa/soak-run-10-2026-09-22.md`). Every row below was captured while 1.0.0 (16) was the installed build; the device does not still hold it.
 
 ### Build
 
@@ -1373,33 +1373,6 @@ scratch.
 | sha256 | `5dea312ce28dab5d372a2c6c8213d31c0dee2dd1c476d5813407be4cb7d247a1` |
 | signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
 | asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc15 set |
-
-## T. Play internal release versionCode 17 — the Android submission candidate from `main` 239a268 — 22.9.2026
-
-The build proposed for the Android submission, rebuilt from `main` **239a268** (the merge that closed the desktop
-Tauri work, F47–F49 and F81–F83). It was uploaded to the internal track and **Google Play updated the OnePlus 6T in
-place from vc16 to vc17**; every row below is from that build, on that phone. The Pixel 6 API 33 emulator belonged
-to another stream for the whole of this run, so this pass has no device-tier half — `docs/qa/android-vc17/README.md`
-says exactly which vc16 rows were not restated.
-
-### Build
-
-Fresh worktree `android-vc17` off `origin/main` **239a268**, `pn install --frozen-lockfile` 0, `.models` symlinked to
-`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
-`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=17` and **no
-`INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
---no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a
-private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 12 m 57 s**, 1112 tasks, **all 1112
-executed** — a cold `GRADLE_USER_HOME` downloads the distribution and reuses nothing, which is the whole of the gap
-to vc16's 7 m 12 s. `gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild`
-was empty before it started.
-
-| check | result |
-|---|---|
-| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,857,219 bytes** (4.77 GiB; vc16 was 5,117,817,952, +39,267) |
-| sha256 | `980cef327854eca08c9a0ca485402d5fd58c236445506526da597090d4f843cd` |
-| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
-| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc16 set |
 | `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
 | entries under `base/assets/ios` | **0** |
 | `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
@@ -1540,6 +1513,36 @@ lands on the newest answer's toggle directly because the list is at the bottom w
 Same lesson as §R's fourth note, one layer down: a driver step that cannot verify *which* object it acted on will
 eventually report a measurement of something else.
 
+## T. Play internal release versionCode 17 — the Android submission candidate from `main` 239a268 — 22.9.2026
+
+The build proposed for the Android submission, rebuilt from `main` **239a268** (the merge that closed the desktop
+Tauri work, F47–F49 and F81–F83). It was uploaded to the internal track and **Google Play updated the OnePlus 6T in
+place from vc16 to vc17**; every row below is from that build, on that phone. The Pixel 6 API 33 emulator belonged
+to another stream for the whole of this run, so this pass has no device-tier half — `docs/qa/android-vc17/README.md`
+says exactly which vc16 rows were not restated.
+
+### Build
+
+Fresh worktree `android-vc17` off `origin/main` **239a268**, `pn install --frozen-lockfile` 0, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
+`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=17` and **no
+`INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a
+private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 12 m 57 s**, 1112 tasks, **all 1112
+executed** — a cold `GRADLE_USER_HOME` downloads the distribution and reuses nothing, which is the whole of the gap
+to vc16's 7 m 12 s. `gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild`
+was empty before it started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,857,219 bytes** (4.77 GiB; vc16 was 5,117,817,952, +39,267) |
+| sha256 | `980cef327854eca08c9a0ca485402d5fd58c236445506526da597090d4f843cd` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc16 set |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
 | module sizes, uncompressed | base **202,765,631 B / 1453 entries**; the seven packs unchanged from §R's table |
 | `base/assets` | **17,948,433 B / 120 entries** (vc16: 17,844,575 / 120) |
 | manifest | `versionCode="17" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
