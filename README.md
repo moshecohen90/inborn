@@ -3059,9 +3059,13 @@ asks for. Docs, a site page and one behaviour. F92–F96.
 `check.mjs` 7 pages clean.
 
 **Not done:** no device or emulator was touched, so the filled screens are proven by the rendered Markdown and by the
-built bundle, not by a screenshot of the phone. `proof.html` also claims the store delivers models on "iOS 26 or
-later" while the privacy policy says we fetch from our own host on every supported iOS version; that contradiction is
-outside F92–F96 and is left for whoever owns the site copy.
+built bundle, not by a screenshot of the phone.
+
+**Also fixed, outside F92–F96:** `proof.html` and `support.html` claimed the operating system delivers models on
+"iOS 26 or later", which contradicted the privacy policy's "every supported iOS version (iOS 17 and later)… fetches
+that one file over HTTPS from `models.inbornapp.com`" and the App Privacy details' "we do not use Apple-hosted
+Background Assets". Both pages now say what the app does: Play delivers on Android, and every supported iOS version
+and desktop fetches from our host.
 
 ### Decisions for Moshe (round 31)
 1. **The legal identity is decided by Moshe, 22.9.2026: do it like the Tanach apps' policies.** Owner and service
