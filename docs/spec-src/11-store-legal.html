@@ -8,7 +8,7 @@
 <li><strong>תווית פרטיות:</strong> "Data Not Collected". "Collect" פירושו שידור מחוץ למכשיר לגישה שלנו או של שותפים. זה אפשרי רק עם אפס SDK יוצא; Apple דחתה אפליקציות שהצהירו "לא אוסף" בזמן ש‑SDK של analytics רץ. דיאגנוסטיקה ברמת OS היא איסוף של Apple, לא שלנו.</li>
 <li><strong>Privacy manifest</strong> (<code>PrivacyInfo.xcprivacy</code>): הצהרת required‑reason APIs: מקום בדיסק (E174.1, 85F4.1), UserDefaults (CA92.1), חותמות זמן קבצים (C617.1, 3B52.1 לבורר הקבצים), boot time (35F9.1); llama.rn לא מצרף מניפסט משלו ולכן האפליקציה מצהירה במקומו (הרשימה נגזרה מהמניפסטים שבפועל ב‑node_modules, ראו docs/legal/app-privacy-details.md); <code>NSPrivacyTracking = false</code>; SBOM לספריות נייטיב.</li>
 <li><strong>Foundation Models acceptable use:</strong> אין פלטים רפואיים/משפטיים/כספיים/תעסוקתיים לא מדויקים או אוטונומיים, אין תוכן למבוגרים, אין "dependency or spiraling". לכן Apple FM לא משמש בזרימות Work רפואיות/משפטיות ולא בשום נתיב "לא מסונן".</li>
-<li><strong>רכישות:</strong> non‑consumable Pro עם Family Sharing מופעל ב‑App Store Connect; JWS מאומת על המכשיר; revocationDate נועל פיצ'רים ולא נתונים; Small Business Program (15%) מתחת למיליון דולר בשנה.</li>
+<li><strong>רכישות:</strong> non‑consumable Pro; Family Sharing כבוי ב‑1.0 (החלטה תלויה במשה, §12.1 — ההפעלה ב‑App Store Connect היא דלת חד‑כיוונית); JWS מאומת על המכשיר; revocationDate נועל פיצ'רים ולא נתונים; Small Business Program (15%) מתחת למיליון דולר בשנה.</li>
 <li><strong>גיבוי iCloud:</strong> מודלים מוחרגים (isExcludedFromBackup), תוכן משתמש לא מוחרג.</li>
 <li><strong>Siri AI Extensions (iOS 27):</strong> אפליקציות צ'אטבוט יכולות להירשם להפעלה מ‑Siri; עוקבים אחרי תיעוד App Intents ונרשמים ראשונים.</li>
 </ul>
@@ -58,7 +58,7 @@
 <li>גילוי AI ב‑onboarding ובכותרות פרסונה; הודעת "can be wrong".</li>
 <li>URL מדיניות פרטיות בשתי החנויות ובאפליקציה; "Data Not Collected"; Data Safety "No data collected/shared"; privacy manifest; אפס SDK עם רשת.</li>
 <li>מסך רישיונות מודלים + קובצי NOTICE; "Built with Llama" אם Llama בקטלוג (לא); זרימת תנאי Gemma; gating ל‑HF.</li>
-<li>non‑consumable Pro, Family Sharing (iOS), מטמון זכאות אופליין, Restore, טיפול בביטול; Play acknowledge; בלי שרת.</li>
+<li>non‑consumable Pro (Family Sharing כבוי ב‑1.0), מטמון זכאות אופליין, Restore, טיפול בביטול; Play acknowledge; בלי שרת.</li>
 <li>גיבוי: מודלים מוחרגים, שיחות כלולות ומוצפנות; ייצוא במשפט‑סיסמה למעבר.</li>
 <li>בטיחות: family‑safe כברירת מחדל, כרטיס משבר, הצהרות רפואה/משפט, שליטה בלולאות ועצירה.</li>
 <li>Android: 16 KB, target API 36, דפוס foreground service, אימות מפתחים.</li>

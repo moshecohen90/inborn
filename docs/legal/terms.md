@@ -23,7 +23,7 @@ You may not: redistribute the app or its Pro/Work features; remove or bypass lic
 
 **One purchase, one store.** A Pro or Work purchase is tied to the store account that bought it (Apple ID, Google account, Microsoft account, or Paddle licence). It unlocks the app on all your devices that use that same store account and platform family. It does not transfer across stores: an App Store purchase does not unlock the Windows app, and vice versa. There is no user account that could link them, by design. If you own Pro on one store and want it on another, write to support with your receipt for a discount code.
 
-**Family Sharing (Apple only).** Pro is enabled for Apple Family Sharing: up to six members of your Apple family group can use it at no extra charge. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account.
+**Family sharing.** Pro is **not** enabled for Apple Family Sharing in this release, and the paywall says so on screen. If we enable it later, one purchase will cover up to six members of your Apple family group; enabling it is a one-way change we would announce in the release notes. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account either way.
 
 **Offline entitlement.** The app verifies your purchase on the device using the store's signed receipt and caches it, so Pro keeps working without internet. If the store cannot be reached, the last known entitlement is honoured for 30 days. If a purchase is refunded or revoked, Pro features lock; your data is never deleted.
 
