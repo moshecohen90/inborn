@@ -1582,6 +1582,12 @@ uninstall, no `bundletool install`, no `adb install`: the Play Store app was dri
 containment rule — TAB until the focused node's bounds enclose the Update label's bounds. The press was made
 **21 minutes after the commit**, and the **first** press started the download.
 
+**The recipe, now that four releases agree: wait past 20 minutes after the commit, then press once.** vc15 pressed
+at ~33 minutes and landed first time; vc17 pressed at 21 minutes and landed first time; vc16 pressed at ~10 minutes,
+got nothing, and needed a second press at ~20 minutes. The failed press is not a flaky button — it is Play not
+having finished publishing the packs, and it costs a wasted attempt plus a poll that has to be recorded UNCLEAR.
+Waiting is cheaper than retrying.
+
 | stage | time |
 |---|---|
 | Update label found at `[718,630][851,687]` — the same bounds as vc15 and vc16 — focused after **7** TABs, ENTER | 19:50:46 |
@@ -1593,11 +1599,19 @@ Play re-delivered **every** pack again rather than a delta — `pkg_bytes=509547
 which is why this update took 1,340 s against vc16's 665 s. A new versionCode gives every asset pack a new version;
 this is the expected cost of a release, not a fault.
 
-**A driver repair this run needed.** `drv/play-keys.sh` can no longer drive the Play Store: `lib.sh`'s `key()` gained
-a guard that suppresses any press unless **Inborn** holds window focus, which is exactly right inside the app and
-exactly wrong on Play's page — it relaunches Inborn instead of pressing Update. `drv/play-keys17.sh` keeps the guard
-and points it at `com.android.vending`. The general shape is the one §R already recorded: a safety check scoped to
-one app silently breaks every driver that legitimately drives another.
+**A driver repair this run needed.** `drv/play-keys.sh` cannot drive the Play Store. `lib.sh`'s `key()` carries a
+guard — written after an earlier run typed into two of Moshe's own apps, and already in place before today — that
+suppresses any press unless **Inborn** holds window focus, and then *relaunches Inborn*. Inside the app that is
+exactly right; on Play's page it eats every press. `drv/play-keys17.sh` keeps the containment walk and points the
+guard at `com.android.vending`.
+
+Two things make this worth reading rather than just fixing. First, **the tooling already had a working path and
+nothing said so**: `play-press.sh` and `play-update.sh` sit in the same directory, call `input keyevent` directly and
+never source `lib.sh`, which is why §S's Play walk worked; `play-keys.sh` is the odd file out. Second, the right fix
+is not a fourth copy — `lib.sh` now takes a `FOCUS_PKG` that defaults to `$PKG`, so a caller driving another app aims
+the guard instead of duplicating `key()`, and the not-ours branch now **fails the press instead of relaunching**,
+which is the behaviour that was actually swallowing them. The general shape is the one §R recorded: a safety check
+scoped to one app silently breaks every driver that legitimately drives another.
 
 ### The rows, all on the updated build
 
