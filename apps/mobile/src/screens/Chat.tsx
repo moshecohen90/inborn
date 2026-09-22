@@ -744,7 +744,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       void (async () => {
         let attached = 0;
         for (const f of seed.files) {
-          const doc = await library.importFile(f.uri, f.name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined });
+          const doc = await library.importFile(f.uri, f.name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined, incognito });
           if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name: f.name }));
           else {
             docs.attach(doc.id);
@@ -849,7 +849,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
-      void pickIntoLibrary(library, tier, docs.documents.length).then((r) => {
+      void pickIntoLibrary(library, tier, docs.documents.length, incognito).then((r) => {
         if (r.kind === "paywall") onOpenPaywall?.();
         else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
         else if (r.kind === "imported") docs.attach(r.id);

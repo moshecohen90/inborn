@@ -15,6 +15,7 @@ import {
   type RagPrompt,
   type TextExtractor,
 } from "@inborn/core";
+import { MemoryEmbeddingStore, SplitEmbeddingStore } from "@inborn/core";
 import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
@@ -82,6 +83,9 @@ export class DocumentLibrary {
   private running = false;
   private listeners = new Set<() => void>();
   private prefs: DocumentPrefs = readPrefs();
+  /* §5.7: a document added inside an incognito session is owned by RAM for as long as the session lasts. */
+  private ram = new MemoryEmbeddingStore();
+  private ramDocs = new Set<string>();
   private booted: Promise<void> | null = null;
   private storeKind: string = ragStoreKind();
   embedder: EmbedderStatus = { kind: "loading" };
@@ -91,14 +95,15 @@ export class DocumentLibrary {
   }
 
   private async boot(): Promise<void> {
+    let saved: EmbeddingStore;
     try {
-      this.store = await openRagStore();
+      saved = await openRagStore();
     } catch (e: unknown) {
       console.warn("[documents] store unavailable, keeping the index in memory for this run", e);
-      const { MemoryEmbeddingStore } = await import("@inborn/core");
-      this.store = new MemoryEmbeddingStore();
+      saved = new MemoryEmbeddingStore();
       this.storeKind = "memory";
     }
+    this.store = new SplitEmbeddingStore(saved, this.ram, (id) => this.ramDocs.has(id));
     for (const d of await this.store.listDocuments()) {
       /* A crash mid-index leaves "indexing"; it resumes from the committed page on the next tap. */
       const doc = d.status === "indexing" ? { ...d, status: "cancelled" as const } : d;
@@ -208,9 +213,11 @@ export class DocumentLibrary {
   // ---- import -------------------------------------------------------------------
 
   /** Copies the file in, sniffs it, records it and queues indexing. Failures are recorded on the document, never thrown. */
-  async importFile(sourceUri: string, name: string, opts: { ocr?: boolean; pageCap?: number } = {}): Promise<DocumentRecord> {
+  async importFile(sourceUri: string, name: string, opts: { ocr?: boolean; pageCap?: number; incognito?: boolean } = {}): Promise<DocumentRecord> {
     await this.ready();
     const id = newId();
+    /* Claimed before the first write: every putDocument and putChunks for this id then routes to RAM (§5.7). */
+    if (opts.incognito) this.ramDocs.add(id);
     const bytes = sizeOf(sourceUri);
     const base: DocumentRecord = { id, name, kind: "unknown", bytes, pages: 0, addedAt: Date.now(), status: "queued", indexedPages: 0, chunkCount: 0, flaggedLines: 0, ocrPages: 0 };
     let doc: DocumentRecord;
@@ -359,6 +366,30 @@ export class DocumentLibrary {
     for (const chatId of Object.keys(this.prefs.attachments)) this.detach(chatId, id);
     deleteFile(doc?.uri);
     await this.store?.deleteDocument(id);
+    this.retriever?.invalidate();
+    this.notify();
+  }
+
+  /** True while this document exists only in RAM, because it was added inside an incognito session. */
+  isIncognito(id: string): boolean {
+    return this.ramDocs.has(id);
+  }
+
+  /**
+   * The incognito session ended (§5.7): every document it held goes, with its file, its chunks and its vectors.
+   * Nothing to unwind on disk, because nothing of it was ever written there.
+   */
+  endSession(): void {
+    if (!this.ramDocs.size) return;
+    for (const id of this.ramDocs) {
+      this.cancel(id);
+      deleteFile(this.docs.get(id)?.uri);
+      this.docs.delete(id);
+      this.progress.delete(id);
+      for (const chatId of Object.keys(this.prefs.attachments)) this.detach(chatId, id);
+    }
+    this.ramDocs.clear();
+    this.ram.clear();
     this.retriever?.invalidate();
     this.notify();
   }

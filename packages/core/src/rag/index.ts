@@ -12,6 +12,7 @@ export { indexDocument, chunkId, IndexCancelled, type IndexOptions } from "./ind
 export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "./retriever";
 export { LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX } from "./embedder";
 export { MemoryEmbeddingStore, type StoreSnapshot } from "./store";
+export { SplitEmbeddingStore } from "./splitStore";
 export { SqlEmbeddingStore, RAG_SCHEMA_SQL, RAG_SQL, int8ToBase64, base64ToInt8, type SqlDriver, type SqlValue } from "./sql";
 export { kindOf, assertImportable, looksLikeText, looksLikeHtml, pickedFileName, MAX_DOCUMENT_BYTES, type PickedMeta } from "./extract/sniff";
 export { TextFileExtractor, decodeText, paginate, csvToText, TEXT_PAGE_CHARS } from "./extract/text";

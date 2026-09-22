@@ -4,6 +4,7 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
+import { getLibrary } from "../documents/library";
 import { setClipboardExpiry } from "../lib/clipboard";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
@@ -354,8 +355,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
 
   const closeActive = useCallback(
     (store: ChatStore, a: ActiveChat) => {
-      // An incognito chat is gone the moment the user leaves it (spec §5.7), not just when the app exits.
-      if (a.incognito && a.id) store.deleteChat(a.id).catch((e: unknown) => console.warn("deleteChat", e));
+      // Leaving an incognito chat ends the session (spec §5.7), not just closing the app: the chat, the RAM
+      // repository behind it and every document that session held go together, here and nowhere else.
+      if (!a.incognito) return;
+      store.endSession();
+      getLibrary().endSession();
     },
     [],
   );
@@ -394,7 +398,8 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       openShared: (payload) => {
         setActive((a) => {
           closeActive(booted.store, a);
-          return { id: null, incognito: false, key: a.key + 1, seed: payload };
+          /* Shared text arriving during an incognito session stays in it (§5.7); it does not quietly start saving. */
+          return { id: null, incognito: a.incognito, key: a.key + 1, seed: payload };
         });
       },
       seedConsumed: () => setActive((a) => (a.seed ? { ...a, seed: undefined } : a)),
