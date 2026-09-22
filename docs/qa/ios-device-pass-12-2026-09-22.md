@@ -11,7 +11,7 @@ NGCHN95667, archive commit `9da93a296bbe` = `origin/main`. The phone's own About
 installs **in place over 1.0.0 (11) without losing the 1.2 GB Fast model**, launches, draws all eleven deep-linked
 screens in the phone layout with no sidebar and no command palette, loads a model in the chat without a redbox, opens
 the hands-free screen and holds it for 75 s, survives a background/foreground round trip without restarting, holds its
-memory flat, prints no error line in any of the 14 launches, and produced zero crash reports. **28 PASS, 0 FAIL, 0 NOT RUN of 28 rows** across the four result tables — the first iOS pass with nothing left open.
+memory flat, prints no error line in any of the 16 device launches, and produced zero crash reports. **28 PASS, 0 FAIL, 0 NOT RUN of 28 rows** across the four result tables — the first iOS pass with nothing left open.
 
 **Moshe granted the UI-Automation sheet once at 14:42, so the tap rows are not open this time.** The XCUITest driver
 then drove the shipped build hands-free in two sessions: it opened **two model Details sheets** (row 13c, the one row
@@ -19,11 +19,13 @@ pass 11 had to leave NOT RUN), scrolled the vault past the fold to **Sharp** (ro
 **a real chat turn on the 1.2 GB Fast model** downloaded from the CDN — `The capital of France is Paris.` at 13.2 tok/s.
 Both open rows from pass 11 are now closed.
 
-**One thing is different from pass 11 and it is not a build-12 regression:** the app shows an amber
-**"Ran out of memory · Switched to Instant · SWITCH BACK"** line on every screen at launch. Pass 11 ran before the CDN
-run installed Fast; the CDN run left **Fast selected** on this 6 GB phone, and build 12 inherited that state. **One tap
-on SWITCH BACK clears it and Fast loads and answers normally** — the live session below proves that. Section "The memory
-banner" has the evidence.
+**One thing is different from pass 11, and it is a real defect — filed as F43, not as inherited state.** The app shows
+an amber **"Ran out of memory · Switched to Instant · SWITCH BACK"** line at launch on every screen. The app had not run
+out of memory: its own footprint was 223 MB and the engine never opened the Fast file on any of the 16 device launches, so the
+switch happened before any load was attempted. The device log shows why — a **system-wide** critical memory-pressure
+event, which the iOS guard forwards as if it were this app's own. One tap on SWITCH BACK loads Fast and it answers
+normally. Root cause, evidence and the exact reproduction: **F43** in `docs/qa/qa-run-2026-09-11.md`; the short version
+is in "The memory banner" below.
 
 Screenshots in `docs/qa/ios-device-pass-12/` are 231×500 copies; the 1170×2532 originals and all logs stay in the
 session scratch dir and are not committed.
@@ -51,12 +53,12 @@ this pass.
 | 0 | the archive is build 12 and complete | **PASS** — CFBundleVersion 12 / 1.0.0 on the app and on `PlugIns/AskInborn.appex`; `instant.gguf` 532,517,120 B; `tessdata` holds `eng` + `heb`; App Group in both signed entitlements; `ExpoBattery` ×3 in the binary; `extra.commit` 9da93a296bbe | build doc, `archive-verify.txt` |
 | 1 | install the archive's `.app` over 1.0.0 (11) | **PASS** — "App installed", bundle `com.inbornapp.mobile`, 14:16:59 → 14:17:16 (**17 s** over USB, the same as builds 10 and 11) | `install.json`, `install.log`, `install-times.txt` |
 | 1b | the vault survives the update | **PASS** — `vault.json` **byte-identical** before and after; Fast 1,280,835,840 B `via:"https"` still recorded, Instant still `via:"bundled"`; Privacy & storage reads Models **1.19 GB** | `vault-before.json`, `vault-after.json`, `r-15-settings-storage.png` |
-| 2 | launch, process alive | **PASS** — every one of the 14 launches in this pass came up and was still listed in `devicectl device info processes` when it was sampled; the idle launch held pid **10373** across five and a half minutes | `routes.txt`, `idle-run.txt` |
+| 2 | launch, process alive | **PASS** — every one of the 16 device launches in this pass came up and was still listed in `devicectl device info processes` when it was sampled; the idle launch held pid **10373** across five and a half minutes | `routes.txt`, `idle-run.txt` |
 | 3 | bundled Instant still adopted | **PASS** — `vault.json` `instant`: `via:"bundled"`, `Qwen3.5-0.8B-Q4_K_M.gguf`, 532,517,120 B, sha256 `bd258782…dc517`, identical to `packages/core/src/catalog/manifest.json` | `vault-after.json` |
 | 4 | deep link to every main screen | **PASS** — 11 routes, each launched with its own URL, held 11 s, screenshotted and sampled alive (pids 10360–10370). Every screenshot shows its own screen. Route table below | `r-10…r-20-*.png`, `routes.txt` |
 | 4b | the chat draws, chips included | **PASS** — `inborn:///` on the onboarded install draws the chat: header `Chats · SEALED · INSTANT`, the sealed ring over "Nothing leaves this phone.", and **all three** suggestion chips — Summarize text, Translate, Draft a message. Message box with the `+` attach button, mic and send below | `r-10-root.png` |
 | 4c | the chat settles after the model loads | **PASS** — settled at t+11 s, and the t+11 s and t+32 s frames are **identical below the status bar** (content sha `71a04d2fe18b9887` both), the only pixels that moved in the whole 1170×2532 frame being the clock digits (difference bbox `(137, 59, 245, 97)`). The log holds **0** error lines and llama.cpp logs the real load: `llama_model_loader: loaded meta data with 46 key-value pairs and 320 tensors from …/Inborn.app/instant.gguf`, `CPU_Mapped model buffer size = 198.93 MiB`, `MTL0_Mapped model buffer size = 497.39 MiB` (53 `llama_model_loader:` lines, log 45,833 bytes against build 11's 45,703) | `r-22a-chat-t11.png`, `r-22-chat-loaded.png`, `log-chat-loaded.txt` |
-| 5 | nothing new in the console | **PASS** — a grep for error / exception / fatal / redbox over **every** log from **all 14 launches** (11 routes, the chat-settle run and the hands-free run, plus the idle launch) returns **0 matches**. llama.cpp's load logging appears only in the launches that loaded a model | `log-*.txt` |
+| 5 | nothing new in the console | **PASS** — a grep for error / exception / fatal / redbox over **every** log from **all 16 device launches** (11 routes, the chat-settle run, the hands-free run, the idle launch, the final About check and the F43 relaunch) returns **0 matches**. llama.cpp's load logging appears only in the launches that loaded a model | `log-*.txt` |
 | 6 | the phone shell is unchanged by F42 | **PASS** — all eleven screens drew the phone layout: no sidebar, no `ChatsPane`, no command palette, no side panel. This is by construction (`layoutModeFor` returns `"phone"` below 760 pt; the phone is 390 pt and portrait-locked) and it is what the screenshots show. Compared screen by screen against pass 11: same sections, same controls, same order, same copy, same prices. Section "Layout against pass 11" has the two honest pixel differences | `r-10…r-20-*.png`, pass-11 shots |
 | 7 | background → foreground round trip | **PASS** — app backgrounded by activating SpringBoard with `--no-kill-existing` (nothing killed): home screen drawn with the Inborn icon on it, pid **10373** still alive. Re-activated and the tool reported the **same pid** 10373, back on the screen it left. Resumed, not restarted | `29-before-background.png`, `30-backgrounded.png`, `31-foregrounded.png`, `idle-run.txt` |
 | 7b | memory after idle, model resident | **PASS** — same pid 10373 at all three samples, the app sitting in the chat with the Instant model loaded. Phys footprint rose **+0.67 %** across the interval that spans the background/foreground round trip and **+0.06 %** over the next two and a half minutes; the anonymous peak **did not move at all** (delta exactly 0 B). Table below | `idle-run.txt`, `sysmon-*.json`, `32-after-idle-3min.png` |
@@ -75,33 +77,35 @@ this pass.
 | 13 | round 20 (F39) is still in this binary | **PASS** — all four regex sources from `packages/core/src/chat/length.ts` present in `main.jsbundle`, each exactly once, compared byte-for-byte against the source: `EXPLAIN_STARTS` (219 chars), `EXPLAIN_NOT` (204), `EXPLAIN_MARKS` (834) as UTF-16LE, `CHOICE_MARK` (23) as UTF-8 — the identical counts build 11 recorded | `f39-regex-check.txt` |
 | 13b | round 19 (F38) is still in this binary | **PASS** — all five round-19 length-instruction strings present once each: `Answer in one to three sentences…`, `Answer in one or two short spoken sentences and stop`, `Keep the answer as short as the question allows, a paragraph at most`, `Give the whole answer the task needs, then stop`, `The user asked for about ` | `f42-check.txt` |
 
-## The memory banner
+## The memory banner — F43
 
 Every screen carries an amber line at launch: **"Ran out of memory · Switched to Instant"** with a **SWITCH BACK**
-action. It looks alarming, so here is exactly what it is.
+action. The full write-up is **F43** in `docs/qa/qa-run-2026-09-11.md`. The short version, with what this pass measured:
 
-**It is the device guard working, and it is recoverable in one tap.** `packages/core/src/device/policy.ts` raises the
-`memory` status only while `signals.memoryPressure` is `"warning"` or `"critical"`, and on iOS that value comes from a
-real memory reading, not from a stored flag — there is nothing about it in `prefs.json`, which this pass read off the
-phone in full. When it fires, the guard drops the active model to Instant (`tierBelow` sends a phone straight to
-Instant) and leaves the line up with a way back.
+**The app had not run out of memory.** Its phys footprint was **223 MB** across the whole pass, and a `grep` over every
+one of the **16** device launch logs finds `instant.gguf` (4 loads) and **never** `Qwen3.5-2B-Q4_K_M.gguf`. The engine never attempted the
+Fast model, so this is the guard switching **ahead of** a load, not a load that failed.
 
-**The way back works.** In the live session the driver tapped SWITCH BACK on the chat screen. Fifty seconds later the
-banner was **gone from the accessibility dump entirely**, the chat header had changed from `INSTANT` to **`FAST`**, and
-the next question was answered by Fast with the ledger naming it. So this is a conservative reading at launch, not a
-phone that cannot run the model.
+**Fast runs on this phone.** In the live session the driver tapped SWITCH BACK. Fifty seconds later the banner was
+**absent from the accessibility dump**, the header read **`FAST`**, and the next question was answered by Fast at
+**13.2 tok/s** with the ledger naming it. The CDN run had already shown the same thing on build 11 at 13:48.
 
-**Pass 11 did not show it because pass 11 ran before Fast existed on this phone.** The CDN run
-(`docs/qa/cdn-iphone-2026-09-22.md`) installed Fast, 1.2 GB, later the same day on build 11 and left it **selected**.
-Build 12 inherited that selection, and a 2B model at 1.2 GB on a 6 GB iPhone 13 Pro is the case the §6.5 memory row was
-written for. The vault shows FAST as `Loaded · In use` while the chat header shows `INSTANT`, which is the guard being
-honest about the selection and the resident model separately.
+**The trigger is a system-wide signal.** A controlled cold relaunch at 14:57 with the device syslog running caught it:
+`14:57:51.333 duetexpertd ATXMemoryPressureMonitor: received memory pressure warning of type: critical`, then
+`14:57:55.344 SpringBoard Sending launch request … com.inbornapp.mobile` — the pressure event is about the **phone**
+and it landed **4.0 s before Inborn started**. `DeviceGuardModule.swift` subscribes to exactly that system-wide source
+and forwards it as this app's `memoryPressure`.
 
-**Three things for whoever owns this, none of them blocking.** The guard re-fires on every cold launch, so a user who
-chose Fast meets the line every time they open the app and has to tap SWITCH BACK again. On the hands-free screen the
-banner sits under a headline it clips: the title renders as "Voice input needs the" with the rest of the sentence cut
-(`r-24-voice-t12.png`). On the paywall it takes the slot where "No subscription. No account. Yours forever." sits in
-pass 11, so that promise is off screen while the banner is up (`r-17-paywall.png`).
+**The line staying up is by design, not a second bug.** After `MEMORY_RECOVERY_MS` (30 s) the status becomes
+`memoryBack`, which `policy.ts` deliberately renders with the same headline until the user acts. The controlled
+relaunch confirms it: banner at t+6 s, still there at t+90 s.
+
+**Two cosmetic knock-ons.** On the hands-free screen the banner clips its own headline, which renders as "Voice input
+needs the" with the rest of the sentence cut (`r-24-voice-t12.png`). On the paywall it takes the slot holding "No
+subscription. No account. Yours forever." (`r-17-paywall.png`).
+
+Nothing here blocks the build: the app falls back safely, never crashed, and recovers on one tap.
+Evidence: `f43-banner-t06.png`, `f43-banner-t90.png`, `live-v11-after-switchback.png`, `live-v14-ledger.png`.
 
 ## Live rows (Moshe pressed the automation sheet once, 22.9 14:42)
 
