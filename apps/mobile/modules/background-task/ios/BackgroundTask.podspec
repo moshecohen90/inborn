@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-  s.name           = 'SecureScreen'
+  s.name           = 'BackgroundTask'
   s.version        = '0.0.1'
-  s.summary        = 'Screen-capture detection for Inborn'
-  s.description    = 'Reports UIScreen.isCaptured so sensitive content can be hidden while the screen is mirrored or recorded.'
+  s.summary        = 'UIApplication background-task holds for Inborn'
+  s.description    = 'Wraps beginBackgroundTask/endBackgroundTask so an answer that is still streaming when the app leaves the screen gets its grace window instead of being suspended.'
   s.author         = 'Inborn'
   s.homepage       = 'https://inbornapp.com'
   s.license        = 'MIT'

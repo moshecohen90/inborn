@@ -98,7 +98,9 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 ### T12 Background mid-generation
 - Spec: §10.3 #21, §6.5.
 - Procedure: ask for a 600-token answer; press Home at token ~50; wait 20 s; return.
-- Pass: iOS finishes up to 15 s then saves partial and shows "Continue"; Android short-lived foreground service with notification finishes or saves partial; no lost text; no background inference beyond the budget (verify with `adb shell dumpsys activity services` that the service stopped).
+- Pass, iOS: the answer keeps streaming off-screen for up to 15 s, then saves the partial and shows "Continue". The app holds one UIApplication background task while it does (`modules/background-task`, round 27) and gives it back the moment the answer ends or the app returns — a hold that outlives its answer is a failure even when the text is right.
+- Pass, Android: the same outcome with **no service of ours at any point**. Android does not suspend the process, so the grace rides on the token stream (`engine.ts` `setPauseCheck`) and round 27 decided against a foreground service; `adb shell dumpsys activity services com.inbornapp.mobile` listing one is the failure, not the absence.
+- Pass, both: no lost text; no inference past the budget.
 - Runs on: both floor devices.
 
 ### T13 Incoming call and screen lock mid-generation

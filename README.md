@@ -1770,6 +1770,90 @@ Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn te
 ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines). `pn desktop:build:app` also
 returned 0, but the built app is deliberately not launched here — see the QA note.
 
+## Fixes round 27: three promises the code did not keep (branch `fixes-r25`) — 22.9.2026
+**F66, F67, F68** — gaps #15, #18 and #6 of `docs/qa/spec-conformance-2026-09-22.md`. They are one shape three
+times: something we tell users or a store reviewer, against a number or a switch in generated or disabled code that
+nothing ever compared it to.
+
+### F66 — the 15-second background grace was not real on iOS
+§10.3 #21 and §6.5 promise that an answer still streaming when the app leaves the screen gets up to 15 s to finish,
+then keeps its partial text and offers *Continue*. iOS suspends a process within seconds of it leaving the screen,
+so on a phone that budget simply stopped being spent: `grep beginBackgroundTask` over the whole tree returned
+nothing, and T12's pass bar in `docs/qa/release-checklist.md` stated an outcome no build could produce.
+
+`apps/mobile/modules/background-task/` wraps UIApplication's background task. `apps/mobile/src/device/bgHold.ts`
+decides when one is held, from the only two facts that decide it — off-screen, and still generating — and the guard
+syncs it from the three events it already subscribes to (app state, engine activity, expiry), so a hold cannot
+outlive the answer it was taken for. Three things are worth knowing about the edges:
+
+- **When iOS takes its time back before the grace is up**, the answer stops with its partial text kept and is
+  reported as the *same* pause the grace raises, so the chat offers Continue through `wasStoppedByGuard()` and
+  `notePausedTurn` — the path that already existed, not a second one.
+- **Asking for more time in the background episode the OS just reclaimed** is how an app gets killed, so it is
+  latched off until the app is in front again.
+- **The native side claims its token before `beginBackgroundTask` can expire it**, so the race where the expiration
+  handler finds nothing to end cannot leave a task running and the app killed for it.
+
+Built for the real phone: an unsigned arm64 `iphoneos` build carries `_TtC14BackgroundTask20BackgroundTaskModule` and
+the selectors `beginBackgroundTaskWithName:expirationHandler:`, `endBackgroundTask:` and `backgroundTimeRemaining` in
+its binary, and Expo's autolinking registered the module in `ExpoModulesProvider.swift`
+(`docs/qa/fixes-r25/ios-device-build.txt`). **The hold's runtime effect on a backgrounded phone is not proven here.**
+Driving the iPhone needs the *"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"* sheet, which only Moshe can
+accept and whose grant does not persist, so release-checklist T12 stays open for the next pass he is present for.
+
+### Android takes no foreground service for 1.0 — decided, not deferred
+The spec row promised one ("foreground service קצר-חיים עם התראה"); it is now restated. Three reasons:
+
+| | |
+|---|---|
+| it is not needed | Android does not suspend the process when the app leaves the screen. It pauses JS *timers*, which is exactly why the grace has always been enforced on the token stream in `engine.ts` (`setPauseCheck`, asked once per streamed token) rather than on a `setTimeout` |
+| it already works without one | release-checklist T13, 13.9.2026: `KEYCODE_SLEEP` for 25 s on the E-P6-36 emulator gave "Paused while Inborn was in the background. The partial answer is kept." with CONTINUE, the partial in the database, and CONTINUE resumed |
+| it costs and buys nothing | a persistent notification on screen for a fifteen-second window, and since Android 14 a `dataSync` service needs a Play Console declaration with a video justification and carries a 6 h / 24 h budget |
+
+What a service *would* cover is a low-memory kill of a backgrounded app, and that is gap #32 — the assistant row is
+written only when the stream ends — which is filed separately and not solved by a notification.
+
+### F67 — every build shipped at iOS 16.4 against a declared iOS 17 floor
+§6.3, T36 (which *tests* the floor at iOS 17), `docs/legal/privacy-policy.md` and the store listing all say 17.
+`ios/` is generated and gitignored, so the number that actually shipped was visible only in App Store Connect,
+where builds 6 through 12 read `minOsVersion 16.4`. Two podspecs we own were lower still: `SecureScreen` at 15.1.
+
+Fixed with the key Expo already owns rather than a plugin of our own — `ios.deploymentTarget` in `app.config.ts`,
+which `@expo/prebuild-config`'s default chain applies to `ios/Podfile.properties.json` and to the app target's build
+configurations. It leaves the *project-level* pair at the template's 16.4, which any target added later would
+inherit, so `plugins/withProjectDeploymentTarget.js` carries the same number down to them. Proved by running
+the build rather than by reading the config: all four pbxproj entries and the Podfile property read 17.0 after
+prebuild (`docs/qa/fixes-r25/ios-deployment-target.txt`), and the `Info.plist` of the arm64 app `xcodebuild` produces
+reads `MinimumOSVersion 17.0` (`docs/qa/fixes-r25/ios-device-build.txt`). Three tests hold the config, every podspec
+and the two documents to one number, so the next drift fails on a laptop instead of in App Store Connect.
+
+### F68 — the zero-INTERNET CI gate was switched off
+`android-permission-gate: if: false`, with a TODO saying it needed a release APK. So the one check behind decision
+D3 was a human remembering to run a script on an artifact nobody else could see, while two store questionnaires and
+the privacy policy assert the result. Worse, for a guard: it had only ever been watched pass.
+
+Nothing has to be built. The merged release manifest is the artifact that decides the answer, and gradle writes it
+from `:app:processReleaseManifest` with no signing key, no models and no build-tools.
+`scripts/check-android-permissions.sh` now takes that file alongside an APK or AAB, and **refuses a pre-merge
+manifest** rather than passing it: `app/src/main/AndroidManifest.xml` lists INTERNET as `tools:node="remove"` and
+nothing else outside the allowlist, so a gate pointed at it would go green while no dependency manifest had been
+merged yet. The merger's injected `<uses-sdk>` and dropped `tools` namespace tell the two files apart.
+
+The workflow itself runs on `v*` release tags and manual dispatch only (Moshe's rule 17.9.2026: no CI on every push);
+the gate runs in every release run, and before a release it is also run by hand with
+`scripts/check-android-permissions.sh` on the merged manifest.
+
+**Watched fail on the real path**, not on a fixture: the same three commands with `APP_VARIANT=development`, which
+empties `android.blockedPermissions`, produce a manifest carrying 18 permissions with INTERNET among them, and the
+gate exits 1 (`docs/qa/fixes-r25/ci-permission-gate.txt`). That listing also settles gap #25 — the INTERNET does
+come from the `openiap-google` wrapper, so the spec's stated reason is wrong and `blockedPermissions` is what
+removes it, along with eight others.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 214,
+i18n 10, ui 11 — **758** tests, 16 new), `pn lint` 0. Plus three that only this round's work exercises:
+`expo prebuild -p ios` then `pod install` then `xcodebuild -sdk iphoneos` 0 with 0 errors, and the Android
+permission gate green on a real merged release manifest and red on a sabotaged one.
+
 ## Fixes round 23: the guard dropped a model that fits (branch `fixes-r23`) — 22.9.2026
 **F43, F45, F46** — the three findings the real-iPhone pass 12 left open
 (`docs/qa/ios-device-pass-12-2026-09-22.md`). On Moshe's iPhone 13 Pro, with the 1.2 GB Fast model downloaded from
