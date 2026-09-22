@@ -3,10 +3,7 @@
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-# docs/spec and docs/demo were renamed to spec-src and demo-src on 3.9.2026 (commit 077aacf,
-# the Autark -> Inborn rename); this script was never updated and has failed with a missing-file
-# exit ever since (verified 22.9.2026 -- every "rebuilt from docs/build.py" commit message since
-# then was wrong). Final HTML lives directly in docs/, not docs/out/, so OUT = ROOT.
+# Outputs are the tracked docs/inborn-*.html, so OUT is docs/ itself.
 SPEC = os.path.join(ROOT, 'spec-src')
 OUT = ROOT
 os.makedirs(OUT, exist_ok=True)
