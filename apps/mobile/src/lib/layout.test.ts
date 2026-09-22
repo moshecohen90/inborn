@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { DESKTOP_MIN, WIDE_MIN, hasPanel, isWide, layoutModeFor } from "./layout";
 
@@ -19,6 +21,18 @@ describe("layout mode", () => {
     for (const w of [DESKTOP_MIN, 1120, 1280, 1440, 1920]) {
       expect(layoutModeFor(w)).toBe("desktop");
       expect(hasPanel(layoutModeFor(w))).toBe(true);
+    }
+  });
+
+  it("lets no Tauri window shrink below the width the desktop shell needs (F63)", () => {
+    const conf = JSON.parse(readFileSync(join(__dirname, "../../../desktop/src-tauri/tauri.conf.json"), "utf8")) as { app: { windows: { width: number; height: number; minWidth: number; minHeight: number }[] } };
+    for (const w of conf.app.windows) {
+      expect(w.minWidth).toBe(DESKTOP_MIN);
+      expect(w.minHeight).toBe(720);
+      /* A window that opens narrower than its own minimum is a window the shell never sees at its design size. */
+      expect(w.width).toBeGreaterThanOrEqual(w.minWidth);
+      expect(w.height).toBeGreaterThanOrEqual(w.minHeight);
+      expect(layoutModeFor(w.minWidth)).toBe("desktop");
     }
   });
 
