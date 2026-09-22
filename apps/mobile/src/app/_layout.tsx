@@ -9,6 +9,7 @@ import { mergePrefs } from "../services/prefsTypes";
 import { readPrefsRaw } from "../services/prefsStore";
 import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
+import { DeviceExplainSheet } from "../components/shell/DeviceExplainSheet";
 import { BANNER_TOP, BannerInsetContext } from "../components/shell/bannerInset";
 import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
@@ -109,6 +110,8 @@ function Shell() {
         <Banners />
       </View>
       {wide ? <CommandPalette visible={palette} onClose={() => setPalette(false)} /> : null}
+      {/* §8.8 row 4c: app-wide, like the strip above it — the switch happens wherever the user is. */}
+      <DeviceExplainSheet />
       {cover ? <PrivacyCover captured={captured} /> : null}
       {lock.locked ? <LockScreen /> : null}
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />

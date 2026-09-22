@@ -170,7 +170,9 @@ export class DevicePolicy {
     }
     m.status = status;
     const rec = this.render(status, s, o, now);
-    if (rec.recommendation === "act" && rec.action === "switchToSmaller" && rec.targetTier && !m.explained) {
+    /* §8.8 row 4c: the sheet belongs to the battery / Low Power switch. A memory eviction has its own amber line, and
+       consuming the once-per-install explainer on it would mean the user never sees why the battery rule swapped a model. */
+    if (rec.recommendation === "act" && rec.action === "switchToSmaller" && rec.targetTier && status !== "memory" && !m.explained) {
       rec.explain = true;
       m.explained = true;
     }
