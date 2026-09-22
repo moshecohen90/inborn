@@ -2101,6 +2101,24 @@ the same. `web:smoke` passes with six PASS lines on the merged tree.
    whether "reduces" is enough for the 13+ rating you want.
 3. **`storage.exportAll` and `storage.transfer` are now unreachable.** Removing the rows is right for 1.0. If
    `.sealed` backup returns, the rows and their nine translations come back with it.
+
+**Decided by Moshe, 22.9.2026 18:05 (stream `docs-decisions`):**
+- **Item 1, the source claim, is decided: source-available.** The repository goes public under the existing
+  `LICENSE` at release, not before and not by this stream. `docs/legal/verification.md`'s "repository is
+  private" status line still holds until that publish actually happens.
+- **Item 2, family-safe, is decided: the phrase screen is enough for 1.0.** No ShieldGemma or other classifier
+  upgrade before launch; §11.1's answer to both stores stays as written.
+- **Trademark (§11.6, ranked gap #24) is decided: filing waits until after launch.** Not before the first
+  public store listing, as the gap list assumed — the clearance and the costed plan stand, ready whenever
+  Moshe wants to spend the ≈$2,000 and engage counsel.
+- **Document tiers (§7.3 row 1) are decided: one attachment per chat is enough for Free.** Verbatim: "one file
+  free; if they want another file they must remove the previous one or so. Not greedy, this is v1, we will
+  adjust by traffic and demand later; make it sensible." The code and §7.3 already matched this before today;
+  what changed is the copy shown when a Free user tries to add a second file (`quick.filePro`, all locales) now
+  says to remove the current file or get Pro for a library, instead of only restating the cap.
+- **Item 2 from the store-console list (ranked gap #2, filing itself) stays open**, waiting on the report table
+  Moshe asked for before he works through it.
+
 ## Fixes round 28: the share sheet handed out the paid document features (branch `fixes-r24c`) — 22.9.2026
 From the spec-conformance audit's §7 section: one bypass, eleven rows where the enforced tier was not the spec's
 tier, and 23 of 39 gate keys that no screen ever asked. F72–F76.
@@ -2855,3 +2873,36 @@ audit against `main`). Docs only: no app code changed, no device or emulator use
 verified against the code — that verification is engineering work for the stream that owns `packages/core`. The three
 Moshe-only decisions above are recorded, not resolved. `docs/qa/edge-cases-matrix.md`'s new evidence is transcribed from
 the audit's classification, not re-run on hardware; the matrix still needs a real re-run at the next milestone.
+
+## Fixes round 29: the three Moshe-only decisions above, decided, plus the document-tier copy (branch `docs-decisions`) — 22.9.2026
+
+Two of the three decisions this README and `14-plan.html` §14.8 recorded as open are now decided — see "Decided by
+Moshe, 22.9.2026 18:05" above — and a fourth decision (document tiers) closed the copy gap it left. Docs-only, no app
+code beyond one i18n string and its test; no device, emulator or browser.
+
+- **§14.8's "החלטות למשה" list updated to match.** `docs/spec-src/14-plan.html`: **#3** (verifiable client) now reads
+  decided — source-available, repo public under the existing `LICENSE` at release, this stream does not publish it.
+  **#24** (trademark) now reads decided — filing waits until after launch. **#2** (store-console filings) is
+  unchanged and still marked open, per instruction, pending the report table.
+- **§7.3's three self-contradictions the `fixes-r24c` tier matrix listed (`docs/qa/fixes-r24c/tier-matrix.md`) are now
+  resolved in the spec table itself, not only in a QA note:** row 1 (one free attachment) now states in the note that
+  adding a different file means removing the current one, or Pro for a library, quoting Moshe's own wording for why
+  it's one file and not more; the "table understanding" row now shows CSV as Pro (inside the document library) and
+  XLSX as Work separately, instead of one Work badge covering a format that is not actually Work-gated; the system
+  file picker row is corrected from Pro to Free, matching what `fileIntake`/`limits().filesPerChat` have always done
+  — Pro was never enforced there and gating it would make row 1's Free attachment unreachable.
+- **The paywall copy for the second-file moment was silent about what to do.** `quick.filePro` (fired from
+  `Chat.tsx`'s share-in path and `importFile`, both going through `fileIntake`/`pickIntoLibrary`) said only "Free
+  attaches one file per chat" — true, but not what Moshe asked for: it must say to remove the current file to add
+  another, or get Pro for a library. Rewritten in `en.json` and all 8 other locales (de/es/fr/ja/ko/pt-BR/zh-Hant),
+  `pseudo.json` regenerated from `scripts/pseudo.mjs`. A removal affordance already existed and needed no build: the
+  attached-file chip in `Chat.tsx` (`attached-chip-<id>`) calls `docs.detach(id)` on tap. New test, "document paywall
+  copy tells the user what to do (QA F77)" in `packages/i18n/test/locales.test.ts`, pins that every real locale's
+  string both mentions Pro and is long enough to be doing more than restating the cap. **F77 may collide with an F
+  number a parallel stream claims at merge**; renumber on merge if so.
+
+**Proof:** `docs/qa/docs-decisions/` (test run below); `python3 docs/build.py` rebuilds `docs/inborn-spec.html` clean
+from the `07-features.html` and `14-plan.html` edits.
+
+**Not done:** no device, emulator or browser touched this round, so the chip-removal affordance is confirmed by
+reading `Chat.tsx`, not by tapping it on a phone.

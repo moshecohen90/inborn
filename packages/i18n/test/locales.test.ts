@@ -52,6 +52,21 @@ describe("sizes in copy (QA F24)", () => {
   });
 });
 
+describe("document paywall copy tells the user what to do (QA F77)", () => {
+  /* Free keeps one attached file at a chat (§7.3 row 1, decided 22.9.2026): the toast that fires on a second file
+     must say to remove the current one to add another, or get Pro for a library — not just restate the limit. */
+  const cjk = new Set(["ja.json", "ko.json", "zh-Hant.json"]);
+  it("quick.filePro names both the removal and the Pro library, in every real locale", () => {
+    for (const f of files) {
+      if (f === "pseudo.json") continue;
+      const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+      const msg = d["quick.filePro"]!;
+      expect(msg.length, `${f} quick.filePro`).toBeGreaterThanOrEqual(cjk.has(f) ? 25 : 60);
+      expect(msg, `${f} quick.filePro`).toMatch(/pro/i);
+    }
+  });
+});
+
 describe("ledger labels in CJK locales (QA F32)", () => {
   /* MS and TOK / S stay Latin units in ja and ko; only the word "token" is translated, and zh-Hant had kept all three English. */
   const tokenLabels = ["ledger.msPerToken", "ledger.ttft", "ledger.tokens"] as const;

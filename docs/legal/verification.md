@@ -1,9 +1,11 @@
 # What a user can verify about Inborn, and what they cannot
 
-**Status, 22.9.2026: the repository is private.** Until Moshe decides otherwise (see README
-"Decisions for Moshe"), nothing the app, the store listings or the legal documents publish may claim
-that the source is public, open source, or that a build can be reproduced from it. This file lists what
-is true instead, so every one of those texts can be written from one place.
+**Status, 22.9.2026 evening: the repository is still private, but its future is decided.** Moshe decided
+the "verifiable client" claim resolves as source-available (see README "Decisions for Moshe," 18:05):
+the repository goes public under the existing `LICENSE` at release, not before, and not published by any
+automated stream. Until that publish actually happens, nothing the app, the store listings or the legal
+documents publish may claim that the source is public, open source, or that a build can be reproduced
+from it. This file lists what is true instead, so every one of those texts can be written from one place.
 
 ## Verifiable today, by anyone, with no cooperation from us
 
