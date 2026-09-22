@@ -11,12 +11,19 @@ NGCHN95667, archive commit `9da93a296bbe` = `origin/main`. The phone's own About
 installs **in place over 1.0.0 (11) without losing the 1.2 GB Fast model**, launches, draws all eleven deep-linked
 screens in the phone layout with no sidebar and no command palette, loads a model in the chat without a redbox, opens
 the hands-free screen and holds it for 75 s, survives a background/foreground round trip without restarting, holds its
-memory flat, prints no error line in any of the 14 launches, and produced zero crash reports.
+memory flat, prints no error line in any of the 14 launches, and produced zero crash reports. **28 PASS, 0 FAIL, 0 NOT RUN of 28 rows** across the four result tables — the first iOS pass with nothing left open.
+
+**Moshe granted the UI-Automation sheet once at 14:42, so the tap rows are not open this time.** The XCUITest driver
+then drove the shipped build hands-free in two sessions: it opened **two model Details sheets** (row 13c, the one row
+pass 11 had to leave NOT RUN), scrolled the vault past the fold to **Sharp** (row U5, also open since pass 11), and ran
+**a real chat turn on the 1.2 GB Fast model** downloaded from the CDN — `The capital of France is Paris.` at 13.2 tok/s.
+Both open rows from pass 11 are now closed.
 
 **One thing is different from pass 11 and it is not a build-12 regression:** the app shows an amber
-**"Ran out of memory · Switched to Instant · SWITCH BACK"** line on every screen. Pass 11 ran before the CDN run
-installed Fast; the CDN run left **Fast selected** on this 6 GB phone, and build 12 inherited that state. Section
-"The memory banner" below has the evidence and what it means.
+**"Ran out of memory · Switched to Instant · SWITCH BACK"** line on every screen at launch. Pass 11 ran before the CDN
+run installed Fast; the CDN run left **Fast selected** on this 6 GB phone, and build 12 inherited that state. **One tap
+on SWITCH BACK clears it and Fast loads and answers normally** — the live session below proves that. Section "The memory
+banner" has the evidence.
 
 Screenshots in `docs/qa/ios-device-pass-12/` are 231×500 copies; the 1170×2532 originals and all logs stay in the
 session scratch dir and are not committed.
@@ -70,26 +77,92 @@ this pass.
 
 ## The memory banner
 
-Every screen in this pass carries an amber line: **"Ran out of memory · Switched to Instant"** with a **SWITCH BACK**
-action. It is worth being precise about what it is, because it looks alarming and is not a build-12 defect.
+Every screen carries an amber line at launch: **"Ran out of memory · Switched to Instant"** with a **SWITCH BACK**
+action. It looks alarming, so here is exactly what it is.
 
-**It is the device guard working, not a fault in this build.** `packages/core/src/device/policy.ts` raises the
+**It is the device guard working, and it is recoverable in one tap.** `packages/core/src/device/policy.ts` raises the
 `memory` status only while `signals.memoryPressure` is `"warning"` or `"critical"`, and on iOS that value comes from a
-real memory signal, not from a stored flag — there is nothing about it in `prefs.json`, which this pass read off the
+real memory reading, not from a stored flag — there is nothing about it in `prefs.json`, which this pass read off the
 phone in full. When it fires, the guard drops the active model to Instant (`tierBelow` sends a phone straight to
-Instant) and leaves the line up with a way back. The app then behaved correctly the whole pass: it loaded
-`instant.gguf` out of the app bundle, answered, and never crashed.
+Instant) and leaves the line up with a way back.
+
+**The way back works.** In the live session the driver tapped SWITCH BACK on the chat screen. Fifty seconds later the
+banner was **gone from the accessibility dump entirely**, the chat header had changed from `INSTANT` to **`FAST`**, and
+the next question was answered by Fast with the ledger naming it. So this is a conservative reading at launch, not a
+phone that cannot run the model.
 
 **Pass 11 did not show it because pass 11 ran before Fast existed on this phone.** The CDN run
-(`docs/qa/cdn-iphone-2026-09-22.md`) installed Fast, 1.2 GB, later the same day on build 11 and left it **selected and
-loaded**. Build 12 inherited that selection. A 2B model at 1.2 GB resident on a 6 GB iPhone 13 Pro is exactly the case
-the §6.5 memory row was written for. The vault still shows FAST as `Loaded · In use` while the chat header shows
-`INSTANT`, which is the guard's fallback being honest about the selection and the resident model separately.
+(`docs/qa/cdn-iphone-2026-09-22.md`) installed Fast, 1.2 GB, later the same day on build 11 and left it **selected**.
+Build 12 inherited that selection, and a 2B model at 1.2 GB on a 6 GB iPhone 13 Pro is the case the §6.5 memory row was
+written for. The vault shows FAST as `Loaded · In use` while the chat header shows `INSTANT`, which is the guard being
+honest about the selection and the resident model separately.
 
-**Two cosmetic consequences, both worth a look by whoever owns the banner.** On the hands-free screen the banner sits
-under a headline it clips: the title renders as "Voice input needs the" with the rest of the sentence cut
-(`r-24-voice-t12.png`). On the paywall the banner takes the slot where "No subscription. No account. Yours forever."
-sits in pass 11, so that promise is not on screen while the banner is up (`r-17-paywall.png`). Neither blocks anything.
+**Three things for whoever owns this, none of them blocking.** The guard re-fires on every cold launch, so a user who
+chose Fast meets the line every time they open the app and has to tap SWITCH BACK again. On the hands-free screen the
+banner sits under a headline it clips: the title renders as "Voice input needs the" with the rest of the sentence cut
+(`r-24-voice-t12.png`). On the paywall it takes the slot where "No subscription. No account. Yours forever." sits in
+pass 11, so that promise is off screen while the banner is up (`r-17-paywall.png`).
+
+## Live rows (Moshe pressed the automation sheet once, 22.9 14:42)
+
+The rows below needed taps, and taps need the phone's **"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"**
+sheet, which only Moshe can accept and whose grant does not persist. He accepted it at 14:42 and the XCUITest driver
+then drove the **installed 1.0.0 (12) archive** hands-free in two sessions. The runner was **rebuilt from
+`apps/mobile/ios-tests` for this pass** (`xcodebuild build-for-testing`, exit 0, 0 errors, 2 min 40 s), so it carries
+the `swipeup` / `swipedown` / `scrollto` steps that pass 11 could only note as missing. Driver:
+`ios-tests/VoiceDeviceUITests.swift`, one `VOICE_STEPS` list per session.
+
+### The trap that cost two sessions, worth recording
+
+The first run of each session drove the **wrong binary**. A `build-for-testing` `.xctestrun` lists
+`__TESTROOT__/Debug-iphoneos/Inborn.app` in `DependentProductPaths`, and XCUITest **installs every dependent product**
+— so it replaced the shipped Release app on the phone with the Debug one, which has no embedded JS bundle and came up
+on a redbox: *"No script URL provided. Make sure the packager is running or you have embedded a JS bundle in your
+application bundle."* Setting `UITargetAppPath` to the archive is **not** enough on its own.
+
+The fix is one line in the `.xctestrun` patcher: drop `Debug-iphoneos/Inborn.app` and `Debug-iphoneos/AskInborn.appex`
+from `DependentProductPaths` so only the runner is installed and the shipped archive stays. The Release `.app` was then
+reinstalled and `vault.json` was re-read to prove the detour cost nothing: **Fast's record is byte-identical** through
+it — same 1,280,835,840 B, same sha256, same `installedAt` — the only field that moved in the whole file being
+Instant's `lastLoadedAt`, because this pass loaded Instant.
+
+### Session A, 14:47:57 → 14:48:55 — the vault rows
+
+| # | check | result | evidence |
+|---|---|---|---|
+| 14 | **a model's Details sheet** — NOT RUN since build 7 | **PASS, closed** — the FAST card's Details button opened the sheet on the real phone: `Fast · Qwen3.5 2B`, `1.2 GB · qwen35`, PARAMETERS `2B`, QUANTIZATION `Q4_K_M`, MAX CONTEXT `262,144 tokens`, PHOTOS `No`, TOOLS `Yes`, the full twelve-language list, LICENSE `Apache-2.0`, SOURCE **`models.inbornapp.com`**, SHA-256 `aaf42c8b…99223`, LOCATION the real container path `…/Documents/models/Qwen3.5-2B-Q4_K_M.gguf`, BENCHMARK "Not measured yet. 512 prompt tokens, then 128 generated. Nothing leaves this device.", `Set as default`, and the footer **"In use · cannot delete while loaded"**. The sheet's SHA-256 and SOURCE match the signed catalog and the CDN run's own record exactly | `live-v02-details-fast.png`, driver log |
+| 14b | the Details sheet for a model that is **not** installed | **PASS** — `Sharp · Qwen3.5 4B`, `2.6 GB`, 4B / Q4_K_M / 262,144 tokens, PHOTOS `No`, TOOLS `Yes`, Hebrew `(Basic)` where Fast says `(No)`, LICENSE `Apache-2.0`, SHA-256 `49bd3df5…72975`. No LOCATION row and no "in use" footer, as expected for a model with no bytes on the device | `live-v04-details-sharp.png`, driver log |
+| 15 | **the vault below the fold** — open since pass 11 | **PASS, closed** — the new `scrollto` step reached `model-card-sharp` **after one swipe**, where pass 11 could only tap a fit map and gave up. The FAST card's full prose was on the frame above it: "Weak at: No photos; code, math, Hebrew; German prose and Korean translation; questions across many long documents." | `live-v01-vault-top.png`, `live-v03-vault-sharp.png`, driver log |
+| 15b | the vault header reads the real device | **PASS** — `1.2 GB in the vault · 79 GB free · RUNS ON: IOS-MID · 6 GB`, and FAST carries `RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH`, `Loaded`, `In use` | driver log dump |
+
+### Session B, 14:49:23 → 14:52:10 — a chat turn on Fast
+
+| # | check | result | evidence |
+|---|---|---|---|
+| 16 | **SWITCH BACK recovers the chosen model** | **PASS** — before the tap the dump holds `Ran out of memory · Switched to Instant` and the header reads `INSTANT`. Fifty seconds after the tap the banner is **absent from the dump** and the header reads **`FAST`**. The 1.2 GB model loaded on demand with no redbox and no crash | `live-v10-chat-before.png`, `live-v11-after-switchback.png`, driver log |
+| 17 | **a real chat turn on the CDN-downloaded Fast model** | **PASS** — `What is the capital of France?` typed into the composer and sent, answered **`FAST · ON-DEVICE AI · The capital of France is Paris.`** One sentence, 6 completion tokens — the short budget F38 asks for on a factual question, now measured on Fast rather than Instant | `live-v12-typed.png`, `live-v13-answer.png`, driver log |
+| 17b | the ledger on that message | **PASS** — MODEL **`FAST`**, QUANT `Q4_K`, CONTEXT `144 / 2048`, MS/TOKEN `76 ms`, TOK/S **`13.2`**, FIRST TOKEN `683 ms`, TOKENS IN + OUT `138 + 6`, GENERATION `1.1 s` | `live-v14-ledger.png`, driver log |
+
+### Fast, measured against its own card
+
+| | Fast, this run | Instant, pass 11 | Fast's vault card |
+|---|---|---|---|
+| tok/s | **13.2** | 24.3 | **~15-24 tok/s on your phone** |
+| first token | 683 ms | 775 ms | — |
+| whole answer | 1.1 s | 1.0 s | — |
+| completion tokens | 6 | 6 | — |
+
+**Fast measured 13.2 tok/s where its card promises "~15-24 tok/s on your phone".** That is below the bottom of the
+stated range, on a single six-token sample, taken while the guard had just been overridden — so it establishes
+direction, not magnitude, exactly as the Android vc15 run said of its own numbers. It is the same class of gap F37
+fixed on Android, where Sharp's card claimed "~3-4 tok/s" and the phone did 0.5. Worth one more sample before anyone
+changes the card.
+
+### One product observation from the Details sheets
+
+Sharp's Details sheet on the **iPhone** lists SOURCE as `play-asset-pack, play-asset-pack, https`. Two of those three
+are Google Play delivery mechanisms and mean nothing on iOS; the honest line for an iPhone is the https one. Not a
+build defect and nothing is broken by it, but it is user-visible text in a screen whose whole job is provenance.
 
 ## Layout against pass 11
 
@@ -146,3 +219,30 @@ unmeasured: `sysmon process` does not expose it.
 The archive is a store-configuration Release build, so every headless hook is dead (`EXPO_PUBLIC_AUTOPROMPT`,
 `AUTOINDEX`, `AUTOASK`, `AUTOVOICE` are inlined empty by Metro; the `__DEV__`-gated ones never fire). XCUITest — and
 Moshe's passcode, once, while a runner starts — remains the only way in.
+
+| # | what | state after this pass |
+|---|---|---|
+| U2 | **a model's Details sheet** | **CLOSED 22.9 14:48** — two sheets opened on the real phone, Fast and Sharp (rows 14, 14b). This was the last row pass 11 left NOT RUN |
+| U5 | **the vault below the fold** | **CLOSED 22.9 14:48** — `scrollto` reached the Sharp card after one swipe (row 15). The rebuilt runner carries the scroll steps pass 11 lacked |
+| U10 | **a chat turn on the CDN-downloaded Fast model** | **CLOSED 22.9 14:51** — Fast loaded on demand and answered, with the ledger naming it (rows 16, 17, 17b) |
+| U3 | share sheet / share extension | **open** — tap-driven by definition (Safari → Share → Inborn); the `.appex` is confirmed inside the installed bundle |
+| U6 | hands-free with Whisper installed | **open** — this build again proved the screen and its no-model state; installing the 142 MB Whisper model is a tap in the vault |
+| U7 | thermal state under load | **open** — not exposed by `sysmon process` |
+| U11 | a second Fast throughput sample | **open** — 13.2 tok/s against a card that says ~15-24 is one sample; see "Fast, measured against its own card" |
+
+## Process audit
+
+On the Mac: one `xcodebuild archive`, two `-exportArchive` (the first killed by a full disk), two `altool` calls, one
+`xcodebuild build-for-testing`, and six `xcodebuild test-without-building` runs — three that failed on the
+UI-Automation sheet or the Debug-app trap, and the two that carry the evidence, plus one aborted on a stale result
+bundle. Every PID this pass started was killed by PID, never by name. No simulator was booted, and at the end of the
+run no `.p8` exists anywhere and `~/.appstoreconnect/private_keys` is empty.
+
+On the phone: **Inborn 1.0.0 (12) is left installed**, from the shipped archive, reinstalled after the Debug detour.
+The test runner XCUITest installs and manages itself is also present, as it was before this pass began. No setting was
+changed, no permission sheet was accepted beyond the one UI-Automation grant Moshe entered himself, nothing was locked
+or unlocked by this run, no system process was killed, and no other app was opened. The app's own data — the vault with
+Fast in it, the chats — is what earlier runs and this driver created.
+
+Screenshots in `docs/qa/ios-device-pass-12/` are 231×500 copies; the 1170×2532 originals, the xcodebuild logs and the
+`.xcresult` bundles stay in the session scratch dir and are not committed.

@@ -373,10 +373,14 @@ shell), F42 (the §8.9 wide-screen layout, sidebar, command palette, shortcuts),
 waits. Real-iPhone pass 12 (`docs/qa/ios-device-pass-12-2026-09-22.md`): the archive installed **in place over 1.0.0 (11) and
 the 1.2 GB Fast model survived byte-for-byte**, all eleven deep-linked screens drew the **phone** shell with no sidebar and no
 command palette (F42 is width-gated at 760 pt and the phone is 390 pt, portrait-locked), 0 error lines across 14 launches, 0
-crash reports, memory flat, and the F42, F39 and F38 strings are all verified in the shipped Hermes bundle. One inherited state
-to know about: the CDN run left **Fast selected**, so the device guard shows "Ran out of memory · Switched to Instant" on every
-screen and falls back to Instant — correct §6.5 behaviour on a 6 GB phone, not a build-12 regression, with two cosmetic
-knock-ons noted in the pass doc. Play internal testing 1.0.0 (6) active
+crash reports, memory flat, and the F42, F39 and F38 strings are all verified in the shipped Hermes bundle. **28 PASS, 0 FAIL, 0
+NOT RUN of 28 rows — the first iOS pass with nothing left open**: Moshe granted the UI-Automation sheet once at 14:42 and the
+rebuilt XCUITest runner closed the last two rows outstanding since build 7 (a model's Details sheet, and the vault below the
+fold), and ran a chat turn on the CDN-downloaded 1.2 GB Fast model, which answered correctly at 13.2 tok/s against a card that
+promises ~15-24 (carried as a card-accuracy follow-up, the same class as F37). One inherited state to know about: the CDN run
+left **Fast selected**, so at launch the device guard shows "Ran out of memory · Switched to Instant" and falls back to Instant
+— correct §6.5 behaviour on a 6 GB phone, not a build-12 regression, and **one tap on SWITCH BACK restores Fast**, proven live;
+two cosmetic knock-ons are noted in the pass doc. Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
