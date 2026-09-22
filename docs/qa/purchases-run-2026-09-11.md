@@ -1358,6 +1358,8 @@ About / Proof / vault / attach / F39 rows. Moshe reclaimed the phone at 15:30 an
 Pixel 6 API 33 emulator. He freed the phone again at **16:47**, and the second sitting (16:48-18:15) took the rows
 the emulator cannot answer: the vault after the update, Play billing, and soak run 9.
 
+**The phone has since moved on.** `android-vc17` took the 6T the same evening and Play updated it in place to **versionCode 17** at 20:13:38 (that stream's rows and soak 10 are on branch `android-vc17`, commits 9c4802e and e90a0a7). Every row below was captured while 1.0.0 (16) was the installed build; the device does not still hold it.
+
 ### Build
 
 Worktree `android-vc16` off `origin/main` **9da93a2**, `.models` symlinked to `/Users/moshecohen/dev/inborn/.models`,
