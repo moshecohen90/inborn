@@ -1,0 +1,121 @@
+### 0. baseline, nothing broken
+
+=== baseline core ===
+      Tests  22 passed (22)
+
+=== baseline core crisis ===
+      Tests  20 passed (20)
+
+=== baseline mobile ===
+      Tests  30 passed (30)
+
+### 1. F50 — the family-safe screen always returns clean
+
+=== F50 sabotaged ===
+     × screenText returns a clean verdict while the mode is off, whatever the text says 4ms
+      Tests  1 failed | 21 passed (22)
+
+### 2. F56 — the Korean and Traditional Chinese crisis phrases are removed
+
+=== F56 sabotaged ===
+     × ko: detects the crisis phrase 3ms
+     × zh-Hant: detects the crisis phrase 0ms
+     × also covers Korean self-harm and Chinese 想死, which the store questionnaires name 0ms
+      Tests  3 failed | 17 passed (20)
+
+### 3. F53 — the /voice paywall redirect is deleted
+
+=== F53 sabotaged ===
+     × asks the same question the chat's mic asks 5ms
+     × sends a Free user to the paywall rather than rendering the screen 1ms
+      Tests  2 failed | 28 passed (30)
+
+### 4. F54a — a model loses its NOTICE entry
+
+=== F54a sabotaged ===
+     × speech-whisper-base (MIT) has a bundled text 12ms
+     × whisper's copyright is OpenAI's, not Microsoft's: the map is per model, not per licence 1ms
+      Tests  2 failed | 28 passed (30)
+
+### 5. F54b — the Hugging Face download skips the licence acceptance
+
+=== F54b sabotaged ===
+     × a Hugging Face download asks for the licence tap before it starts 4ms
+      Tests  1 failed | 29 passed (30)
+
+### 6. F52 — Android is told again that its chats are in the device backup
+
+=== F52 sabotaged ===
+     × Android gets its own string, and it says nothing is backed up 7ms
+      Tests  1 failed | 29 passed (30)
+
+### 7. F51 — the private-repository source link comes back
+
+=== F51 sabotaged ===
+     × the Proof screen no longer links to the private repository 10ms
+      Tests  1 failed | 29 passed (30)
+
+### 8. everything restored
+
+=== restored core ===
+      Tests  22 passed (22)
+
+=== restored core crisis ===
+      Tests  20 passed (20)
+
+=== restored mobile ===
+      Tests  30 passed (30)
+
+git status --porcelain (only the evidence files this run writes may appear):
+ M .gitignore
+ M apps/mobile/src/adapters/tauri.ts
+ M apps/mobile/src/app/voice.tsx
+ M apps/mobile/src/components/chat/AssistantMessage.tsx
+ M apps/mobile/src/components/chat/Ledger.tsx
+ M apps/mobile/src/screens/About/Licenses.tsx
+ M apps/mobile/src/screens/Chat.tsx
+ M apps/mobile/src/screens/Proof/Proof.tsx
+ M apps/mobile/src/screens/Settings/Settings.tsx
+ M apps/mobile/src/screens/Settings/Storage.tsx
+ M apps/mobile/src/screens/vault/HfSearch.tsx
+ M apps/mobile/src/screens/vault/ModelDetails.tsx
+ M apps/mobile/src/screens/voice/HandsFreeScreen.tsx
+ M apps/mobile/src/services/prefsTypes.ts
+ M apps/mobile/src/storage/web/idbRepository.ts
+ M apps/mobile/src/voice/useHandsFree.ts
+ M docs/build.py
+ M docs/inborn-spec.html
+ M docs/legal/app-privacy-details.md
+ M docs/legal/privacy-policy.md
+ M docs/legal/terms.md
+ M docs/spec-src/05-architecture.html
+ M docs/spec-src/08-screens.html
+ M docs/spec-src/10-edgecases.html
+ M docs/spec-src/11-store-legal.html
+ M packages/core/src/chat/repository.ts
+ M packages/core/src/chat/safety.ts
+ M packages/core/src/chat/types.ts
+ M packages/core/src/index.ts
+ M packages/core/src/licence/index.ts
+ M packages/core/src/work/statement.ts
+ M packages/i18n/locales/de.json
+ M packages/i18n/locales/en.json
+ M packages/i18n/locales/es.json
+ M packages/i18n/locales/fr.json
+ M packages/i18n/locales/ja.json
+ M packages/i18n/locales/ko.json
+ M packages/i18n/locales/pseudo.json
+ M packages/i18n/locales/pt-BR.json
+ M packages/i18n/locales/zh-Hant.json
+?? LICENSE
+?? apps/mobile/src/components/LicenceSheet.tsx
+?? apps/mobile/src/lib/modelLicence.ts
+?? apps/mobile/test/fixes-r25.test.ts
+?? docs/legal/model-licences/
+?? docs/legal/verification.md
+?? docs/qa/fixes-r24a/
+?? packages/core/src/chat/contentSafety.ts
+?? packages/core/src/licence/licenceTexts.ts
+?? packages/core/test/chat-content-safety.test.ts
+?? packages/core/test/chat-crisis-languages.test.ts
+?? packages/core/test/licence-texts.test.ts

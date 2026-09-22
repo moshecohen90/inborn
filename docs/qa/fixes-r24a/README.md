@@ -8,8 +8,8 @@ claim), **16** (Android backup copy), **19** (`/voice` tier gate), **20** (model
 
 | File | What it proves |
 |---|---|
-| `tests.log` | `pnpm test`, `pnpm typecheck`, `pnpm lint` on the finished branch. 831 tests pass (core 582, mobile 228, i18n 10, ui 11), against 742 on `main` |
-| `sabotage.log` | The negative control. Each of the seven fixes is broken in turn and the test that guards it is shown going red, then restored. A guard nobody has watched fail is not a guard |
+| `tests.txt` | `pnpm test`, `pnpm typecheck`, `pnpm lint` on the finished branch. 831 tests pass (core 582, mobile 228, i18n 10, ui 11), against 742 on `main` |
+| `sabotage.txt` | The negative control. Each of the seven fixes is broken in turn and the test that guards it is shown going red, then restored. A guard nobody has watched fail is not a guard |
 | `family-safe-transcript.txt` | F50 run end to end through the shipped core modules and the real repository: the clause the prompt gains, the verdict on the request, the verdict on the answer, and what the database is left holding |
 | `family-safe-transcript.mjs` | The script that produced it. `npx tsx docs/qa/fixes-r24a/family-safe-transcript.mjs` |
 | `locale-keys.txt` | All 15 new strings in all 9 locale files, and all 4 removed strings gone from all 9 |
