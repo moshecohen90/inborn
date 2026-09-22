@@ -7,7 +7,7 @@ import XCTest
 ///   allow:<s> (taps Allow/OK on system permission alerts for up to <s> seconds) · waitexist:<id>:<s> ·
 ///   waitlabel:<id>:<substring>:<s> · value:<id> (logs label + value) · log:<text> · env:<KEY>=<value> (app launch environment,
 ///   before launch) · say:<s>:<voice>:<text> (logs a SAY marker the Mac turns into `say -v <voice>`, then waits <s>) · home ·
-///   activate · dump (labels of the visible static texts)
+///   activate · swipeup:<n> · swipedown:<n> · scrollto:<id>[:<max swipes>] · dump (labels of the visible static texts)
 /// Everything is logged into the attachment driver-log.txt; screenshots are attachments too (xcresulttool export).
 /// VOICE_SKTEST=1 opens a runner-side StoreKit session; otherwise the app-side harness (INBORN_SKTEST via env:) owns the store.
 final class VoiceDeviceUITests: XCTestCase {
@@ -79,6 +79,23 @@ final class VoiceDeviceUITests: XCTestCase {
         if el.waitForExistence(timeout: 8) { el.press(forDuration: Double(p.count > 1 ? p[1] : "1.2") ?? 1.2) } else { log("no element \(p[0])") }
       case "type":
         app.typeText(arg)
+      case "swipeup":
+        let n = Int(arg) ?? 1
+        for _ in 0..<n { app.swipeUp(); usleep(700_000) }
+      case "swipedown":
+        let n = Int(arg) ?? 1
+        for _ in 0..<n { app.swipeDown(); usleep(700_000) }
+      case "scrollto":
+        /* XCUITest refuses to tap a plain View, so a card below the fold is reached by swiping until it is hittable. */
+        let p2 = arg.split(separator: ":").map(String.init)
+        let maxN = Int(p2.count > 1 ? p2[1] : "8") ?? 8
+        var found = false
+        for i in 0..<maxN {
+          let e = find(app, p2[0])
+          if e.exists && e.isHittable { found = true; log("scrollto \(p2[0]) after \(i) swipes"); break }
+          app.swipeUp(); usleep(800_000)
+        }
+        if !found { log("scrollto TIMEOUT \(p2[0])") }
       case "sleep":
         usleep(UInt32((Double(arg) ?? 1) * 1_000_000))
       case "allow":
