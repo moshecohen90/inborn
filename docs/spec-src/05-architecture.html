@@ -50,7 +50,7 @@
 <tbody>
 <tr><td>שיחות, הודעות, תיקיות, פרסונות, הגדרות</td><td>SQLite (expo-sqlite עם SQLCipher בנייטיב; SQLite ב‑Rust בדסקטופ; OPFS בווב)</td><td>מפתח DB אקראי של 256 ביט ב‑Secure Enclave / Android Keystore / Windows Hello‑DPAPI, נפתח בביומטריה כשמנעול האפליקציה פעיל. ב‑iOS גם <code>NSFileProtectionComplete</code>.</td></tr>
 <tr><td>מסמכים שיובאו, chunks, וקטורים</td><td>אותו DB (sqlite-vec) + עותק המסמך בתיקיית האפליקציה</td><td>מוצפן עם ה‑DB; ניתן למחיקה פר מסמך</td></tr>
-<tr><td>קבצי מודל (GGUF)</td><td>תיקיית אפליקציה ייעודית</td><td>לא מוצפנים (ציבוריים ממילא), <strong>מוחרגים מגיבוי</strong> (iOS <code>isExcludedFromBackup</code>, Android <code>fullBackupContent</code>/<code>dataExtractionRules</code>), נבדקים ב‑sha256 מול המניפסט</td></tr>
+<tr><td>קבצי מודל (GGUF)</td><td>תיקיית אפליקציה ייעודית</td><td>לא מוצפנים (ציבוריים ממילא), <strong>מוחרגים מגיבוי</strong> (iOS <code>isExcludedFromBackup</code>; באנדרואיד <code>android:allowBackup="false"</code> מוציא מהגיבוי את כל מה שהאפליקציה שומרת, שיחות כלולות — ראו §10.6 #42), נבדקים ב‑sha256 מול המניפסט</td></tr>
 <tr><td>שיחות אינקוגניטו</td><td>RAM בלבד</td><td>לא נכתבות לדיסק, נמחקות בסגירה או במעבר לרקע לפי הגדרה</td></tr>
 <tr><td>ייצוא</td><td>קובץ <code>.sealed</code> שהמשתמש בוחר לו יעד</td><td>libsodium secretstream + Argon2id על משפט‑סיסמה; מכיל שיחות, פרסונות והגדרות, בלי מודלים</td></tr>
 <tr><td>מפתח Pro</td><td>Keychain / Keystore / DPAPI</td><td>ראו §12.4 אימות אופליין</td></tr>
@@ -96,7 +96,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <tr><td>מחיקת חירום (Panic wipe)</td><td>מוחק DB + מפתח + מסמכים; מודלים לפי בחירה. אפשרות "מחק אחרי N ניסיונות כושלים" ואפשרות מחיקה מהירה מהמסך הנעול (Pro)</td><td>אישור כפול, ללא שחזור</td></tr>
 <tr><td>אינקוגניטו</td><td>שיחה ב‑RAM בלבד: לא נכתבת ל‑DB, לא לאינדקס החיפוש, לא לגיבוי/ייצוא, לא לווידג'טים ול‑Shortcuts; הזיכרון לא נקרא ולא נכתב; מסמך שצורף מאונדקס ב‑RAM בלבד; נמחקת בסגירה או במעבר לרקע לפי הגדרה; אייקון ייעודי</td><td>חינם</td></tr>
 <tr><td>ניקוי זיכרון</td><td>KV cache ו‑buffers מאופסים אחרי כל סשן אינקוגניטו; המודל נפרק אחרי 10 דקות חוסר פעילות (חוסך גם סוללה)</td><td></td></tr>
-<tr><td>ניתוח בדיקות</td><td>קוד פתוח לליבה (מנוע, אחסון, רשת) תחת רישיון מתירני, hash של ה‑bundle מפורסם לכל גרסה</td><td>ראו §16 החלטה על היקף הקוד הפתוח</td></tr>
+<tr><td>ניתוח בדיקות</td><td><strong>ל‑1.0: המאגר פרטי, אין hash מפורסם, ואין בנייה משחזרת.</strong> מה שכן ניתן לאימות מבחוץ: היעדר הרשאת INTERNET באנדרואיד (דף ההרשאות ב‑Play, <code>aapt2 dump permissions</code>), App Privacy Report ב‑iOS, וכל firewall. הקובץ <code>LICENSE</code> הוא רישיון source‑available (קריאה, בנייה ופרסום ממצאים; לא הפצה), ולא רישיון קוד פתוח</td><td>הניסוח המותר בכל טקסט שיוצא החוצה: <code>docs/legal/verification.md</code>. §16 עדיין פתוח: קוד פתוח / source‑available / לוותר על הטענה</td></tr>
 </tbody>
 </table>
 </div>

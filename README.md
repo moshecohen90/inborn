@@ -1917,6 +1917,97 @@ build, not in the phone's state.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 198, i18n 10,
 ui 11 — **742** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+## Fixes round 25: the family-safe filter we promised two app stores did not exist (branch `fixes-r24a`) — 22.9.2026
+Seven ranked gaps from `docs/qa/spec-conformance-2026-09-22.md` — **1, 3, 16, 19, 20, 21, 33** — filed as
+**F50–F56**. Six are small. The first is not, and the reason it is first is not its size.
+
+**F50 · the filter that was declared and not built.** Four published documents said a content filter is on by
+default: the privacy policy §9, the terms §4, `app-privacy-details.md` (our literal answer to Apple's
+parental-controls question, "Yes: content filter on by default"), and our Guideline 1.2 answer. There was no
+classifier, no mode, no setting and no pref. Not a missing feature — a false statement in a published policy.
+
+The gap offered two ways out: build an on-device classifier (**L**), or delete the claim and re-answer both
+questionnaires (**S**). What ships is a third, cheaper than the first and honest about being so:
+
+| part | what it does |
+|---|---|
+| a clause in the system prompt | asks the model not to produce the content at all, while the mode is on |
+| a phrase check of the **request** | refuses an explicit ask before a single token is generated, so the mode is free when it fires |
+| the same check of the **answer** | run mid-stream on the same 8-token beat as the loop detector, so the text does not finish arriving, and again on the finished reply |
+
+The patterns are phrase-shaped on purpose. Single words — "violence", "sex", "suicide", "overdose" — appear in
+ordinary history, medicine and news answers, and a filter that flags the bombing of Dresden is switched off by
+every user on the first day, which is the same as having none. Fourteen such sentences across the eight
+languages are pinned as a complement test. Two false positives were caught by writing that test rather than
+after shipping: `\b` let "bomb-proof argument" match the weapon pattern, and the German pattern only knew the
+nominative "steifer", not the "steifen" a real sentence uses.
+
+It reaches both answer surfaces (`screens/Chat.tsx` and `voice/useHandsFree.ts` — a spoken turn is refused
+before anything is synthesised aloud). `prefs.contentSafety` defaults on, switches in **Settings → Chat**, and
+comes back on for a prefs file written before it existed. A replaced answer carries `safety: "family-safe"`
+through all four repositories, and says so under the answer and on the ledger. **It is not a classifier and
+every sentence we publish now says that**, in the same words, in the policy, the terms, the store answers and
+§11.1 / §11.2 / §11.4 / §11.5 / edge case 64. That single-answer requirement was the actual demand of gap 1.
+
+**F51 · the source we told people to read.** The Proof screen's "Source code ↗" opened a private repository and
+404'd for every user who tapped it; the build line told them to "match it against the published hash" with no
+hash published and no reproducible build; the terms claimed an MIT open-source core; the policy §10 and the Work
+architecture statement said the same. The repository had no `LICENSE` at all. Now: a **source-available**
+licence (read, build, publish findings; no redistribution — explicitly not an open-source licence), and
+`docs/legal/verification.md` as the one place that says what a user really can check (Android permissions from
+the Play page or `aapt2`, the iOS App Privacy Report, any firewall, the in-app airplane test) and what they
+cannot. The four texts were rewritten from it, and a test fails on any `en.json` string that offers our source
+or a hash to match.
+
+**F52 · `allowBackup="false"` versus what the app told Android users.** One sentence for every platform said
+chats are in the device backup. On Android nothing the app stores is backed up at all, so a user who reset
+their phone on the strength of that sentence lost every chat. Platform-specific string, and the policy now
+splits the two.
+
+**F53 · `/voice` was free by URL.** The chat's mic asked `paywallFor`; the route asked nothing, so a deep link
+or a restored route opened a Pro screen. It now asks the same question, and renders nothing while the
+entitlement is loading rather than existing for one frame.
+
+**F54 · nobody's licence obligations were discharged.** The Licences screen showed a name, an attribution and a
+link. Apache-2.0 §4(d) and MIT both want the text to travel with the distribution, and on an app whose promise
+is that it works with no network, a link discharges nothing. The canonical Apache-2.0 and MIT texts now ship
+inside the bundle (`docs/legal/model-licences/`, mirrored byte for byte into `packages/core`, with a test that
+fails on drift), a **View licence** control opens the full text from the model card and every Licences row, and
+MIT's copyright line is filled per component — Phi reads Microsoft's, Whisper reads OpenAI's. A Hugging Face
+download now opens the same sheet with an **accept** button and starts only on that tap.
+
+**F55 · two greyed rows selling 1.0 cuts**, one labelled "Export all (encrypted)" while nothing encrypts. Gone,
+and their strings deleted from all nine locales rather than left unread — the dead-translation pattern the
+conformance audit exists to catch.
+
+**F56 · two of our eight languages had no crisis card.** A user writing 죽고 싶어요 or 我不想活了 got nothing.
+Phrases for `ko` and `zh-Hant`, hotlines for KR, TW and HK. Every number was checked live against
+findahelpline.com, **and one was wrong before it shipped**: the draft carried 1577-0199 for Korea, which 109
+replaced in 2024 and which is no longer published. Swapped for 한국생명의전화 1588-9191.
+
+**One bug found on the way.** `docs/build.py` still named `docs/spec` and `docs/demo`; the sources were renamed
+to `*-src` and the script exits on the first missing file, so **the spec has not been rebuildable from source**
+for some time. Fixed; `docs/inborn-spec.html` regenerates to the tracked bytes plus this round's amendments.
+
+**Proof** — 831 tests pass (core 582, mobile 228, i18n 10, ui 11; 742 on `main`), and `docs/qa/fixes-r24a/`
+carries the run, a full end-to-end transcript of the family-safe path through the real modules and repository,
+the locale coverage, and a **negative control**: each of the seven fixes broken in turn with its guard shown
+going red, then restored. **No device, emulator, simulator or browser was available to this stream** — the
+emulator and the 6T belong to `android-vc16b` — so none of the seven screens was seen. The evidence README
+lists each unseen item and what it would take; the one worth a real pass is what ~245 extra prompt characters
+do to a 0.8B model's answers and time-to-first-token.
+
+### Decisions for Moshe (round 25)
+1. **The source claim.** The app now says the source is not published. Three ways to close it for good: publish
+   under a real open-source licence; publish under the new source-available `LICENSE`; or drop the claim from
+   the positioning entirely. Until one is chosen, `docs/legal/verification.md` is what every text may say.
+2. **Family-safe: phrase check or classifier.** What ships reduces this content and does not eliminate it, and
+   says so everywhere. Upgrading to ShieldGemma costs the Gemma terms, an acceptance screen and a second model
+   download per language; an Apache-2.0 classifier costs about a week and a few hundred megabytes. Your call
+   whether "reduces" is enough for the 13+ rating you want.
+3. **`storage.exportAll` and `storage.transfer` are now unreachable.** Removing the rows is right for 1.0. If
+   `.sealed` backup returns, the rows and their nine translations come back with it.
+
 ## Fixes round 24: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
 **F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
 entering a password and WITHOUT you moving my mouse all the time."* Two walls stood between an agent and the
