@@ -1,3 +1,4 @@
+import { ALLOWED_MODEL_HOSTS } from "@inborn/core";
 import { classifyDevice, readDeviceSignals, type DeviceGate } from "./deviceGate";
 import { WebModelDelivery, fetchManifest, pickModel, type WebModelSource } from "./modelDelivery";
 import { modelStatus, opfsSupported, readyModelStatus, type ModelStatus } from "./opfs";
@@ -19,8 +20,8 @@ export const delivery = new WebModelDelivery();
 let boot: WebBoot | null = null;
 let pending: Promise<WebBoot> | null = null;
 
-/** Catalog hosts allowed besides our own origin (spec §5.1 allowlist); empty until the catalog host exists. */
-export const ALLOWED_MODEL_ORIGINS: readonly string[] = [];
+/** Catalog hosts allowed besides our own origin (spec §5.1 allowlist), from the one list the native tiers also use. */
+export const ALLOWED_MODEL_ORIGINS: readonly string[] = ALLOWED_MODEL_HOSTS.map((h) => `https://${h}`);
 
 export function webBoot(): WebBoot {
   if (!boot) throw new Error("web boot not awaited; call prepareWebBoot() first");
