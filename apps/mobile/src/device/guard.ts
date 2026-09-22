@@ -34,6 +34,8 @@ import {
   type EngineState,
 } from "../engine";
 import { isAndroidSnapshot } from "../../modules/device-guard";
+import { backgroundTask, onBackgroundTaskExpire } from "../../modules/background-task";
+import { createBackgroundHold } from "./bgHold";
 import { getVault } from "../vault/store";
 import { getPausedTurn, subscribePausedTurn } from "../lib/pausedTurn";
 import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
@@ -83,6 +85,8 @@ class DeviceGuard {
   private readonly listeners = new Set<() => void>();
   private started = false;
   private stopSources: (() => void)[] = [];
+  /* iOS suspends a backgrounded app within seconds, so BACKGROUND_GRACE_MS is only real while this hold is live. */
+  private readonly bgHold = createBackgroundHold(backgroundTask, "inborn.answer");
 
   subscribe = (l: () => void): (() => void) => {
     this.listeners.add(l);
@@ -172,20 +176,33 @@ class DeviceGuard {
           const bg = s !== "active";
           if (bg && this.backgroundedAt === null) {
             this.backgroundedAt = Date.now();
+            this.bgHold.sync(true, isGenerating());
+            if (__DEV__ && isGenerating()) console.log(`[inborn] background hold ${this.bgHold.token() === null ? "refused" : "taken"}`);
             noteBackground();
           } else if (!bg && this.backgroundedAt !== null) {
             this.backgroundedAt = null;
+            this.bgHold.sync(false, isGenerating());
             this.pausedInBackground = consumePausedByGuard();
             noteForeground();
           }
           this.schedule();
         }).remove,
         subscribeActivity((busy) => {
+          this.bgHold.sync(this.backgroundedAt !== null, busy);
           if (!busy) {
             this.noteSpeed(peekEngine()?.engine.stats().tokPerSec ?? 0);
             void this.applyPendingSwitch();
           }
           this.schedule();
+        }),
+        /* iOS wants its time back, possibly before the grace is up: stop with a partial answer rather than be killed
+           mid-token, and report it as the same pause the grace raises so the chat offers Continue. */
+        onBackgroundTaskExpire(() => {
+          this.bgHold.expire();
+          if (!isGenerating()) return;
+          stopGeneration();
+          this.pausedInBackground = true;
+          this.evaluate();
         }),
         subscribeEngineState(() => this.publish()),
         subscribePausedTurn(() => {
