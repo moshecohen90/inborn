@@ -3,8 +3,8 @@
 Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 22 September 2026.
 
 Effective date: 22 September 2026
-Licensor: Moshe Cohen, [address removed] ("we", "us")
-Contact: support@inbornapp.com
+Licensor: Cohen Apps ("we", "us")
+Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
 
 These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.
 
@@ -84,7 +84,7 @@ If you use the iOS or macOS version from the App Store: Apple is not a party to 
 
 ## 13. Governing law and disputes
 
-These terms are governed by the laws of Israel, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to support@inbornapp.com; most issues are resolved there.
+These terms are governed by Israeli law, and the competent court in Israel has exclusive jurisdiction, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to support@inbornapp.com; most issues are resolved there.
 
 ## 14. Changes
 

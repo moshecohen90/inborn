@@ -1203,3 +1203,8 @@ AssertionError: expected '- **Incognito chats** are held in mem…' not to match
 undefined
 /Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile:
  ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/legal-texts.test.ts
+
+== 22.9, second pass: the no-postal-address guard, watched red with the address put back ==
+     × no legal text carries a postal address, and none asks the reader to visit one 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 38 passed (39)

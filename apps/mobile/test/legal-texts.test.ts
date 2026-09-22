@@ -43,6 +43,7 @@ describe("F92 · no placeholder reaches a screen or a page", () => {
       expect(read(file), file).not.toMatch(/Status: DRAFT|Not yet published|class="ph"/);
     }
     expect(read("apps/site/dist/privacy.html")).toContain("support@inbornapp.com");
+    expect(read("apps/site/dist/privacy.html")).toContain("+1-440-847-8502");
   });
 
   /* The one token that survives on purpose: the model licence texts carry it and `licenceText()` fills it at render. */
@@ -66,15 +67,25 @@ describe("F92 · no placeholder reaches a screen or a page", () => {
     expect(body).toContain("support@inbornapp.com");
   });
 
+  /* The identity Moshe settled on 22.9: the Tanach apps' shape — a service-provider name, an email and a phone,
+     and no postal address anywhere, because there is no reception to send anyone to. */
   it("the values Moshe had to supply are in the texts, not only in the README", () => {
     const privacy = read("docs/legal/privacy-policy.md");
     const terms = read("docs/legal/terms.md");
-    for (const value of ["Moshe Cohen", "[address removed]", "support@inbornapp.com", "22 September 2026"]) {
+    for (const value of ["Cohen Apps", "support@inbornapp.com", "+1-440-847-8502", "22 September 2026"]) {
       expect(privacy, value).toContain(value);
     }
-    expect(terms).toContain("governed by the laws of Israel");
+    expect(terms).toContain("governed by Israeli law, and the competent court in Israel has exclusive jurisdiction");
     expect(terms).toContain("https://inbornapp.com/privacy");
+    expect(terms).toContain("+1-440-847-8502");
     expect(privacy).toContain("models.inbornapp.com");
+  });
+
+  it("no legal text carries a postal address, and none asks the reader to visit one", () => {
+    for (const file of [...LEGAL_MD, ...SITE_PAGES]) {
+      expect(read(file), file).not.toMatch(/postal address|Rabbi Meir Street|mailing address|in person at/i);
+    }
+    expect(read("docs/legal/privacy-policy.md")).toMatch(/no physical reception/);
   });
 });
 

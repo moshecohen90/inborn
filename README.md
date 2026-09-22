@@ -3023,8 +3023,9 @@ asks for. Docs, a site page and one behaviour. F92–F96.
 - **F92 — twelve placeholders on a screen a reviewer opens.** `docs/legal/privacy-policy.md` and `terms.md` are
   imported by `Legal.tsx` and rendered as they are, so every unfilled token went to the device. They are filled:
   `SUPPORT_EMAIL` = support@inbornapp.com, `DOMAIN` = inbornapp.com, `PRIVACY_URL` = https://inbornapp.com/privacy,
-  `GOVERNING_LAW` = Israel, `EFFECTIVE_DATE` = 22 September 2026, `DEVELOPER_LEGAL_NAME` = Moshe Cohen,
-  `POSTAL_ADDRESS` = [address removed]. Same values in `app-privacy-details.md`,
+  `GOVERNING_LAW` = Israeli law with exclusive jurisdiction in the competent court in Israel, `EFFECTIVE_DATE` =
+  22 September 2026, `DEVELOPER_LEGAL_NAME` = Cohen Apps. There is no `POSTAL_ADDRESS`: the line is deleted and
+  contact is an email and a phone number, the way the Tanach apps' policies do it. Same values in `app-privacy-details.md`,
   `licenses.md` and `NOTICE.json`; `{{TESTER}}` is gone, because a reviewer's own sandbox account buys the
   non-consumable and no licence-tester account is needed. Both "Status: DRAFT / Not yet published" lines are out of
   the shipped texts. `{{COPYRIGHT}}` stays in `docs/legal/model-licences/mit.txt`: `licenceText()` fills it per model.
@@ -3054,7 +3055,7 @@ asks for. Docs, a site page and one behaviour. F92–F96.
 `main`), `F95-red.txt` (both new incognito assertions failing with the unconditional copy restored).
 `F92-web-bundle.txt` greps the built web bundle, the same artefact shape MosheAI grepped inside `main.jsbundle` and
 `index.android.bundle`: `{{COPYRIGHT}}` twice and no other token, no `Status: DRAFT`. Gates: typecheck, lint,
-**990 tests** (core 616, mobile 352, i18n 11, ui 11), `web:build`, `web:smoke` 6/6 PASS, `apps/site/build.mjs` +
+**991 tests** (core 616, mobile 353, i18n 11, ui 11), `web:build`, `web:smoke` 6/6 PASS, `apps/site/build.mjs` +
 `check.mjs` 7 pages clean.
 
 **Not done:** no device or emulator was touched, so the filled screens are proven by the rendered Markdown and by the
@@ -3063,6 +3064,9 @@ later" while the privacy policy says we fetch from our own host on every support
 outside F92–F96 and is left for whoever owns the site copy.
 
 ### Decisions for Moshe (round 31)
-1. **The legal name and postal address are filled with the values on the Play developer account** — Moshe Cohen,
-   [address removed] — pending his word. He was asked; nothing else in the round waits on
-   it, and changing them later is two lines in `docs/legal/privacy-policy.md` and `terms.md` plus a rebuild.
+1. **The legal identity is decided by Moshe, 22.9.2026: do it like the Tanach apps' policies.** Owner and service
+   provider is **Cohen Apps**, not a personal name. **No postal address anywhere** — the `{{POSTAL_ADDRESS}}` line
+   is deleted, not filled, and no text asks a reader to visit or write to one. Contact is
+   support@inbornapp.com or +1-440-847-8502, with the same sentence those documents carry: there is no physical
+   reception and no in-person service. Governing law is Israeli law with exclusive jurisdiction in the competent
+   court in Israel. Effective date 22 September 2026. A test fails if a postal address returns to any legal text.

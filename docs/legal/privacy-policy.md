@@ -3,7 +3,7 @@
 Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 22 September 2026.
 
 Effective date: 22 September 2026
-Publisher: Moshe Cohen (the developer account shown on the store listing)
+Publisher: Cohen Apps (the developer account shown on the store listing)
 Contact: support@inbornapp.com
 
 ---
@@ -94,6 +94,7 @@ We will post changes here with a new effective date, and describe them in the ap
 
 ## 12. Contact
 
-Moshe Cohen
-[address removed]
-support@inbornapp.com
+Cohen Apps
+
+Reach us by email at support@inbornapp.com or by phone on +1-440-847-8502. We have no physical reception and offer no
+in-person service.
