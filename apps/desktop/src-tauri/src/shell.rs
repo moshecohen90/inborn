@@ -77,6 +77,9 @@ fn build_menu(app: &App) -> tauri::Result<Menu<tauri::Wry>> {
   let focus = MenuItemBuilder::with_id("focus-composer", t("desktop.menu.focusComposer")).accelerator("CmdOrCtrl+L").build(handle)?;
   let search = MenuItemBuilder::with_id("search", t("desktop.menu.search")).accelerator("CmdOrCtrl+F").build(handle)?;
   let stop = MenuItemBuilder::with_id("stop", t("desktop.menu.stop")).accelerator("CmdOrCtrl+.").build(handle)?;
+  let palette = MenuItemBuilder::with_id("palette", t("desktop.menu.palette")).accelerator("CmdOrCtrl+K").build(handle)?;
+  let toggle_sidebar = MenuItemBuilder::with_id("toggle-sidebar", t("desktop.menu.toggleSidebar")).accelerator("CmdOrCtrl+\\").build(handle)?;
+  let model_picker = MenuItemBuilder::with_id("model-picker", t("desktop.menu.modelPicker")).accelerator("CmdOrCtrl+M").build(handle)?;
   let import = MenuItemBuilder::with_id("import-gguf", t("desktop.menu.importGguf")).accelerator("CmdOrCtrl+Shift+O").build(handle)?;
   let updates = MenuItemBuilder::with_id("check-updates", t("desktop.menu.checkUpdates")).build(handle)?;
 
@@ -100,9 +103,13 @@ fn build_menu(app: &App) -> tauri::Result<Menu<tauri::Wry>> {
     .separator()
     .item(&focus)
     .item(&search)
+    .item(&palette)
     .item(&stop)
     .build()?;
   let window = SubmenuBuilder::new(handle, t("desktop.menu.window"))
+    .item(&toggle_sidebar)
+    .item(&model_picker)
+    .separator()
     .item(&PredefinedMenuItem::minimize(handle, None)?)
     .item(&PredefinedMenuItem::maximize(handle, None)?)
     .separator()
@@ -168,7 +175,7 @@ pub fn install(app: &mut App) -> tauri::Result<()> {
     "tray-new-chat" => shortcut(app, "new-chat"),
     "import-gguf" => models::import_via_dialog(app),
     "check-updates" => crate::updater::check_from_menu(app.clone()),
-    id @ ("new-chat" | "new-incognito" | "toggle-incognito" | "focus-composer" | "search" | "stop") => shortcut(app, id),
+    id @ ("new-chat" | "new-incognito" | "toggle-incognito" | "focus-composer" | "search" | "stop" | "palette" | "toggle-sidebar" | "model-picker") => shortcut(app, id),
     _ => {}
   });
   if let Some(window) = app.get_webview_window("main") {

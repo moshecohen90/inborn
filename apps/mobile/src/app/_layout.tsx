@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -16,6 +16,13 @@ import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
 import { useShareTarget } from "../share";
 import { closeOpenSheets } from "../lib/openSheets";
+import { WideShell } from "../components/shell/WideShell";
+import { CommandPalette } from "../components/shell/CommandPalette";
+import { SIDEBAR_WIDTH, isWide } from "../lib/layout";
+import { useLayoutMode } from "../lib/useLayout";
+import { useDesktopKeys } from "../components/shell/useDesktopKeys";
+import { useShortcut } from "../lib/shortcuts";
+import { closeSidePanel } from "../lib/sidePanel";
 
 /* The stored theme is applied before the first paint (QA B14): the splash, the lock screen and the status bar never show the system scheme first. */
 applyThemeMode(mergePrefs(readPrefsRaw(), Date.now()).themeMode);
@@ -53,6 +60,21 @@ function Shell() {
   const router = useRouter();
   const { lock, prefs, captured, openShared } = useAppServices();
   const [bannerInset, setBannerInset] = useState(0);
+  const mode = useLayoutMode();
+  const wide = isWide(mode);
+  const [sidebar, setSidebar] = useState(true);
+  const [palette, setPalette] = useState(false);
+  useDesktopKeys(wide);
+  useShortcut("palette", () => wide && setPalette((p) => !p));
+  useShortcut("toggle-sidebar", () => wide && setSidebar((v) => !v));
+  /* Esc is Stop; with the palette up it is also the way out of it. */
+  useShortcut("stop", () => setPalette(false));
+  /* A window narrowed back to the phone shell has nowhere to put either of them. */
+  useEffect(() => {
+    if (wide) return;
+    setPalette(false);
+    closeSidePanel();
+  }, [wide]);
   /* Shared text / files (§7.7) land in a fresh chat; whatever screen was up gives way to it. The lock, if on, stays in front. */
   useShareTarget((payload) => {
     closeOpenSheets();
@@ -60,19 +82,29 @@ function Shell() {
     if (router.canGoBack()) router.dismissTo("/");
   });
   const cover = (lock.covered && prefs.lock.enabled && prefs.lock.hideInSwitcher) || (captured && prefs.lock.screenshotProtection);
+  const stack = (
+    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
+      <Stack.Screen name="chats" options={{ animation: "slide_from_left" }} />
+      <Stack.Screen name="paywall" options={{ presentation: "modal" }} />
+      <Stack.Screen name="voice" options={{ presentation: "fullScreenModal", animation: "fade" }} />
+    </Stack>
+  );
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <BannerInsetContext.Provider value={bannerInset}>
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>
-          <Stack.Screen name="chats" options={{ animation: "slide_from_left" }} />
-          <Stack.Screen name="paywall" options={{ presentation: "modal" }} />
-          <Stack.Screen name="voice" options={{ presentation: "fullScreenModal", animation: "fade" }} />
-        </Stack>
+        {wide ? (
+          <WideShell mode={mode} sidebar={sidebar}>
+            {stack}
+          </WideShell>
+        ) : (
+          stack
+        )}
       </BannerInsetContext.Provider>
-      {/* Under the header of whichever screen is up (§8.8); its measured height reaches screens that keep a row there (QA F13). */}
-      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52 }]} onLayout={(e) => setBannerInset(Math.round(e.nativeEvent.layout.height))}>
+      {/* Under the header of whichever screen is up (§8.8); its measured height reaches screens that keep a row there (QA F13). Beside a sidebar it sits over the column, not over the list. */}
+      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52, left: wide && sidebar ? SIDEBAR_WIDTH : 0 }]} onLayout={(e) => setBannerInset(Math.round(e.nativeEvent.layout.height))}>
         <Banners />
       </View>
+      {wide ? <CommandPalette visible={palette} onClose={() => setPalette(false)} /> : null}
       {cover ? <PrivacyCover captured={captured} /> : null}
       {lock.locked ? <LockScreen /> : null}
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />
@@ -83,5 +115,5 @@ function Shell() {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   splash: { flex: 1, alignItems: "center", justifyContent: "center" },
-  banners: { position: "absolute", left: 0, right: 0 },
+  banners: { position: "absolute", right: 0 },
 });

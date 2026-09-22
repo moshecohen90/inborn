@@ -136,6 +136,9 @@ runs only on click. Windows ships as an NSIS `.exe` for the Microsoft Store list
 | warm relaunch | 484 ms | **48 ms** | **156.5 tok/s** (170 tokens), prompt 600 tok/s |
 
 Zero internet sockets on the process for the whole run (`lsof -a -p <pid> -i`, polled every 0.5 s); `inborn.db` is SQLCipher (no SQLite header).
+
+The window's own layout (sidebar, message column, document panel, command palette, the Cmd/Ctrl accelerators) arrived
+with fixes round 22 below; it is shared with the browser tier and switches on window width, not on the platform.
 ## Device guard: battery, heat, memory (spec §6.5, §5.7–5.8, §10.2–10.3)
 One policy engine decides what the phone does when it gets hot, low or tight on memory, and one status line under the seal says so.
 - `packages/core/src/device/` — pure: `DevicePolicy.update(signals, override, now)` → `{status, headline (i18n key), recommendation propose|act, action,
@@ -1605,6 +1608,55 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
 - **F32 · the Traditional Chinese ledger was English** (`packages/i18n/locales/zh-Hant.json`). Root cause: the three ledger
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
+
+## Fixes round 22: wide screens rendered the phone shell (branch `desktop-layout`) — 22.9.2026
+**F42** (Moshe, 22.9.2026): *"on large screens like desktop the app must have a desktop design, not a mobile one,
+depending on the screen size."* The web export and the Tauri window stretched the phone shell across the window — one
+column at any width, the header's "Chats" button as the only door to the chat list, bottom sheets rising from the edge
+of a 1,440 px window. Spec §8.9 and §9.7 had described the desktop shell since the first draft; nothing rendered it.
+
+**Fix** — one threshold table, `apps/mobile/src/lib/layout.ts` (pure, so vitest can read it; the `useWindowDimensions`
+hooks sit in `lib/useLayout.ts`): `phone` under 760 pt, `wide` from 760, `desktop` from 1,040 — the §9.7 window
+minimum, and the width at which the document panel fits beside a full column.
+
+| mode | shell |
+|---|---|
+| `phone` | exactly what shipped to the stores; the app is portrait-locked, so no phone reaches 760 pt |
+| `wide` | permanent 280 px sidebar + message column |
+| `desktop` | sidebar + 680 px column + 340 px document/citation panel |
+
+What the wide shell contains. The **sidebar** is the chats drawer itself, mounted permanently: the route body moved into
+`components/shell/ChatsPane.tsx` so the pushed route and the sidebar render the same pane, `/chats` redirects to `/`
+when a sidebar is up (the demo's desktop frame does the same), and `Chats` gained one prop, `embedded`, which drops the
+close ✕ and nothing else. Its footer carries Model vault and Documents beside Settings and Proof, so the five §8.9
+sections are all reachable there; the phone drawer's footer is untouched. The **chat** keeps the §8.9 measure — stream
+and composer centred at 680 px, the header's back button replaced by a spacer so the seal stays centred. The
+**document/citation panel** reuses what was already there: `Citations` has carried an `onOpen` hook documented as "the
+desktop side panel, for instance" since the documents milestone, and `PassageSheet`'s body became `PassagePanel` so the
+sheet and the panel render one passage view. **Sheets** become centred 560 px dialogs with a fade in both `Sheet`
+primitives: a window with a sidebar has no bottom edge for a sheet to rise from.
+
+**Keyboard** (browser and desktop only). `lib/desktopKeys.ts` maps Cmd/Ctrl+N (Shift: incognito), +K palette, +F search,
++M model picker, +\ toggle sidebar and Esc stop onto the `lib/shortcuts.ts` bus the Tauri menu has used since phase 3,
+so no screen needed new wiring. The three new ids became menu items with the same accelerators
+(`apps/desktop/src-tauri/src/shell.rs`), and the browser binding is skipped inside Tauri so a chord never fires twice.
+Cmd+N and Cmd+M cannot be taken from a browser (new window / minimise survive `preventDefault`); in the app the menu
+owns them. The **command palette** (`components/shell/CommandPalette.tsx`) is one field with no animation over the six
+sidebar screens and the recent chats.
+
+**One bug found on the way.** `chatCreated` never bumped `chatsVersion`, so a chats list that stays mounted — the
+sidebar is the first one in the app — did not show a chat the moment its first message created it. The phone never saw
+it because its drawer reloads on every mount. One line in `services/AppServices.tsx`.
+
+**Proof.** The real deployable web build served by `scripts/serve-web.mjs` and driven headless by
+`docs/qa/desktop-layout/shots.mjs` (one Chromium, closed at the end, Instant answering from OPFS): eight screenshots at
+1280×800, 1440×900, 900×800 and 390×844 plus the built macOS app, in `docs/qa/desktop-layout/`, written up in
+`docs/qa/desktop-layout-2026-09-22.md` — which also lists what differs from the demo (the demo's column is 760 px, the
+spec's is 680) and what is not proven here (no citation screenshot: web indexing needs the `nomic-embed` GGUF, which is
+not on this machine; no phone, emulator or simulator was used).
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179, i18n 10,
+ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines), `pn desktop:build:app` 0.
 
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up

@@ -92,6 +92,8 @@ import { useEntitlements } from "../lib/entitlements";
 import { modelLabel, describeLoad } from "../lib/models";
 import { getVault } from "../vault/store";
 import { useShortcut } from "../lib/shortcuts";
+import { COLUMN_WIDTH } from "../lib/layout";
+import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
@@ -182,6 +184,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const noSpace = useRef(false);
   const chatRef = useRef<string | null>(chatId);
   const list = useRef<FlatList<Row>>(null);
+  /* §8.9: on a wide window the sidebar is the chats door and the stream is a centred column; the phone shell is untouched. */
+  const wide = useWide();
   const nearBottom = useRef(true);
   const follow = useRef(true);
   const settleUntil = useRef(0);
@@ -334,6 +338,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current?.abort();
   });
   useShortcut("search", () => focused.current && onOpenChats());
+  useShortcut("model-picker", () => focused.current && setSettingsOpen(true));
   useShortcut("continue", () => {
     if (!focused.current || busy) return;
     const last = [...rowsRef.current].reverse().find((r) => r.role === "assistant");
@@ -949,9 +954,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const top = (
     <>
       <FloatingToolbar style={styles.header}>
-        <Pressable testID="open-chats" accessibilityRole="button" onPress={onOpenChats} hitSlop={8} style={styles.headerBtn}>
-          <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
-        </Pressable>
+        {wide ? (
+          <View style={styles.headerBtn} />
+        ) : (
+          <Pressable testID="open-chats" accessibilityRole="button" onPress={onOpenChats} hitSlop={8} style={styles.headerBtn}>
+            <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
+          </Pressable>
+        )}
         <View style={styles.sealWrap}>
           <Seal size={28} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={busy || summarizing} label={sealLabel} />
           {compactChrome(fontScale * type.scale) ? null : (
@@ -1114,6 +1123,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     </>
   );
 
+  const bottomBlock = wide ? <View style={styles.column}>{bottom}</View> : bottom;
+
   return (
     <View style={[styles.root, { backgroundColor: incognito ? theme.well : theme.bg, paddingTop: liquidGlass ? 0 : insets.top + 8, paddingBottom: lift || insets.bottom }]}>
       {/* Glass only reads as glass with content moving under it (§9.7): on iOS 26 both bars float over the list, which pads itself by their measured heights. */}
@@ -1123,7 +1134,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         {...listClipping}
         data={rows}
         keyExtractor={(r) => r.id}
-        contentContainerStyle={[styles.list, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
+        contentContainerStyle={[styles.list, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
         onScroll={onScroll}
         onLayout={onListLayout}
         scrollEventThrottle={64}
@@ -1176,7 +1187,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           )
         }
       />
-      {liquidGlass ? null : bottom}
+      {liquidGlass ? null : bottomBlock}
       {liquidGlass ? (
         <ChromeBar style={[styles.overlayTop, { paddingTop: insets.top + 8 }]} onLayout={(e) => setTopH(e.nativeEvent.layout.height)}>
           {top}
@@ -1184,7 +1195,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       ) : null}
       {liquidGlass ? (
         <ChromeBar style={[styles.overlayBottom, { bottom: lift }]} onLayout={(e) => setBottomH(e.nativeEvent.layout.height)}>
-          {bottom}
+          {bottomBlock}
         </ChromeBar>
       ) : null}
 
@@ -1435,6 +1446,8 @@ const styles = StyleSheet.create({
   noticeBtn: { minHeight: 28, justifyContent: "center" },
   grow: { flex: 1 },
   list: { padding: 16, gap: 14, flexGrow: 1, justifyContent: "flex-end" },
+  /* §8.9 text measure: the stream and the composer keep 680 px however wide the window is. */
+  column: { width: "100%", maxWidth: COLUMN_WIDTH, alignSelf: "center" },
   empty: { alignItems: "center", gap: 12, marginBottom: 32 },
   headline: { textAlign: "center" },
   suggestions: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 8 },
