@@ -40,6 +40,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 - Procedure: install from Play Internal testing track on D-AND-FLOOR; confirm fast-follow pack arrives from the real store (`adb shell dumpsys package com.inbornapp.mobile | grep -i asset` and the in-app Downloads screen); install from TestFlight on D-IOS-FLOOR.
 - Pass: model pack present without the app opening a socket (see T32); TestFlight build launches offline.
 - Runs on: both floor devices, after Moshe creates the store records.
+- **Wait at least 20 minutes after the Play edit commits before pressing Update in the Play app** — Play is still publishing the asset packs, and an earlier press fails silently with "all packs are unavailable" and looks like a broken button; 20 minutes is a floor, not a guarantee (vc18 was still refused at 28 minutes and needed a second press after Play's own "Can't install", §U of `purchases-run-2026-09-11.md`).
 
 ## B. Model download (§14.7 line 2)
 

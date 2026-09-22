@@ -1647,6 +1647,211 @@ defect — driver work for the next run. The ledger, by contrast, is clean: six 
 failure line in `events.log`. The six turns with no ledger row are the depth fillers, which the driver never
 ledgers.
 
+## U. Play internal release versionCode 18 — the Android submission candidate from `main` 8033dce — 22.9.2026
+
+The build proposed for the Android submission, rebuilt from `main` **8033dce** — the first Android build that carries
+**fixes round 31 (F92–F96)**, the round MosheAI's sixth verdict forced: `vc17`'s in-app Legal screens rendered raw
+`{{…}}` tokens and claimed a published open-source core and a Secure Enclave the code never asks for. It was uploaded
+to the internal track and **Google Play updated the OnePlus 6T in place from vc17 to vc18**; every row below is from
+that build, on that phone. Three rows are new for this pass and exist only because of round 31: **L1** reads the whole
+Legal text off the device, **L2** walks the document intake gate, **H1** asks the same Hebrew question three times.
+
+### Build
+
+Fresh worktree `android-vc18` off `origin/main` **8033dce**, `pn install --frozen-lockfile` 0, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
+`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=18` and **no
+`INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a
+private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 8 m 20 s**, 1112 tasks, all 1112 executed.
+`gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild` was empty before it
+started, and 191 GB were free on `/`.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,857,900 bytes** (4.77 GiB; vc17 was 5,117,857,219, +681) |
+| sha256 | `9afa707cfd9cf88079d6724247a2669e37a6891e69fdd894bca673f609367875` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc17 set |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base **202,767,863 B / 1453 entries**; the seven packs unchanged from §R's table |
+| `base/assets` | **17,950,665 B / 120 entries** (vc17: 17,948,433 / 120) |
+| manifest | `versionCode="18" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
+| commit baked into `app.config` | **8033dce21dfc** — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` (gap #6 gate) | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pn typecheck` **0**, `pn test` **0** (991 tests: core 616, mobile 353, ui 11, i18n 11), `pn lint` **0** |
+
+Play's limits, all met: base + install-time **202,767,863 B** against the 4 GB cap; fast-follow plus on-demand
+**5,181,526,981 B** (4.83 GiB) against 30 GB; the largest single pack `inborn_model_sharp` at **1,401,059,131 B**
+against the 1.5 GB per-pack cap.
+
+### The upload, which this time needed nothing
+
+`scripts/play-upload.mjs` (`INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account`), internal track, release name
+**"1.0.0 (18)"**, edit **17790831570751799592**. **The 4.77 GiB upload did not drop.** Six releases running — vc13,
+vc14, vc15, vc16 and both vc17 attempts — had dropped their connection at exactly offset **5,100,273,664** and
+recovered from the script's own retry; this one uploaded straight through, and `:commit` returned on the **first**
+attempt at 22:10:21. The stock `scripts/play-upload.mjs` was enough; vc17's patient copy was not needed.
+
+Read back from a fresh edit, Play holds `bundle vc18 sha256=9afa707c…367875`, equal to the local file, and the
+internal track lists `{"name":"1.0.0 (18)","versionCodes":["18"],"status":"completed"}`. The drop is therefore not a
+property of the bundle's size, which barely moved — it is Play's side of the connection, and it is not reliable in
+either direction.
+
+### The update on the phone: two hours, one failed install, and a driver that misread a real download
+
+The phone held Play's **vc17** (`firstInstallTime=2026-09-21 22:59:16`). No uninstall, no `bundletool install`, no
+`adb install`: the Play Store app was driven by keys only, with §Q's containment rule — TAB until the focused node's
+bounds enclose the Update label's bounds. The label sat at `[718,630][851,687]` and took **7 TABs** every time, the
+same as vc15, vc16 and vc17.
+
+| stage | time | verdict |
+|---|---|---|
+| press 1, 81 seconds after the commit | 22:11:42 | Play: "all packs are unavailable" |
+| press 2 | 22:13:14 | same |
+| press 3 | 22:21:30 | same |
+| press 4 | 22:29:47 | same |
+| press 5 | 22:38:04 | driver said the same — **and was wrong**, see below |
+| a 4.8 GB download ran to `SUCCEEDED` | 22:38:02 → 22:40:58 | it was **not** the update |
+| Play's own page, opened at 23:00 | — | **"Can't install com.inbornapp.mobile"** |
+| press 6, after dismissing that dialog | 23:01:58 | **DOWNLOAD-STARTED** 23:02:30 |
+| `versionCode=18`, `installerPackageName=com.android.vending`, `lastUpdateTime` 23:15:44, `firstInstallTime` unchanged | 23:16:00 | **805 s** after the download started |
+
+**The download at 22:38 was the running vc17 app refetching its own asset pack, not the update.** Publishing vc18
+gives every asset pack a new version, which invalidated the packs the installed vc17 was holding; the app asked Play
+for them, Play answered `AssetModuleException: Request to PGS failed because all packs are unavailable`, and then
+delivered `inborn_model_sharp` and `inborn_model_sharp_2` — `download_request_id=115`, `artifact_id=inborn_model_sharp_2`,
+1,321,892,683 bytes — to the **old** build. The app update itself never started, and when it was finally attempted it
+ended in Play's generic "Can't install … Try again". The retry after dismissing that dialog worked on the first press.
+
+**A driver lesson, and it is the same one §R and §T each recorded once.** `play-keys17.sh` decides what happened by
+grepping 30 seconds of `logcat` for "all packs are unavailable" **first** and the download markers second. On press 5
+both were in the buffer — the app's failed pack request and a real download — so the driver reported
+`PACKS-STILL-UNAVAILABLE` over a download that was running at 25%. Nothing was lost, because the retry loop was
+stopped by hand once the progress lines were read directly; had it run, its next attempt would have `am force-stop`ped
+the Play Store in the middle of the transfer. **A detector that tests for failure before success will call every
+mixed buffer a failure**, and this one is scoped to the wrong package: the error line belongs to Inborn, not to the
+Play update. The fix for the next release is to match the error only when no `RM: receive resource status` progress
+line for the package is newer than it.
+
+### The rows, all on the updated build
+
+| # | proof | result | shot |
+|---|---|---|---|
+| U1 | About | **1.0.0 (18)** and commit **8033dce21dfc** (= `main` 8033dce) | `a-01-about-1-0-0-18.png` |
+| U2 | Proof screen | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, allowlist `none · the app has no internet permission`, "Google Play delivers models; Inborn never opens a socket" | `a-02-proof-out-0b.png` |
+| U3 | every pack survived the update | a 22-screen sweep of the whole vault found **zero `install-` nodes**. `use-` nodes for fast, sharp, embed-nomic, speech-whisper-base and vision-qwen35; Instant has none because Instant was the model in use. `4.8 GB in the vault · 12 GB free · RUNS ON: ANDROID-LEGACY · 8 GB` | `b-01-vault-top.png`, `b-02-vault-all-packs.png` |
+| U4 | attach sheet | `attach-templates`, `attach-photo`, `attach-camera`, `attach-use-vision`, `attach-import`, `attach-strict`, `attach-manage`, and the honest row *"FAST cannot look at photos. INSTANT is the one model here that can."* | `d-01-attach-sheet.png` |
+| U5 | real Play billing | paywall reads **YOU OWN PRO**, "Unlocked on every device that uses this Google Play account", and the only offer is **Upgrade to Work · ₪149.90 · one-time purchase** — the local currency, from the real Play account | `f-01-paywall-owns-pro.png` |
+| U6 | Restore purchases | `paywall-status` reads **"Purchase restored"** while the card stays YOU OWN PRO | `f-02-restore-purchase-restored.png` |
+| U7 | §5.7 incognito, paired | **PASS.** Control `MARLINSPIKE` and incognito `QUILLONBRAE` both answered and both listed; after `am force-stop` + relaunch the control is still listed (1 row) and **`QUILLONBRAE` is gone** (0 rows). New codewords, because vc17's `KESTREL` is still on this phone and would have made the control meaningless | `g-01` … `g-05` |
+
+**F39 answer lengths, three turns.** The control is the row that matters: the short factual ask is **six words and
+one sentence**, as on vc14 through vc17, so the short-ask rule survived the release.
+
+| ask | model | s | words | sentences | shape |
+|---|---|---|---|---|---|
+| "What is the capital of France?" | Instant | 16 | **6** | 1 | prose |
+| "How do I set up SSH keys on my Mac?" | Instant | 13 | **70** | 2 | prose |
+| "How do I set up SSH keys on my Mac?" | Fast | 49 | **73** | 4 | prose |
+
+### L1 — the Legal screens, read off the phone
+
+Round 31's whole point, so it is read rather than assumed: both documents were walked to the bottom and **every line
+of on-screen text collected**, not one screenful.
+
+**A scroll finding first, because the row depends on it.** Neither `DPAD_DOWN` nor `PAGE_DOWN` moves the Legal screen
+— it is prose with nothing focusable in it, so there is no focus for the ring to carry — and a reader that assumed
+either would have reported "no `{{` found" after seeing the first screen of thirty. **`input swipe` does scroll this
+phone**, which is worth recording next to "taps are ignored": the two are not the same injection path. The driver
+probes all three and reports which one moved the text.
+
+| # | document | read | result |
+|---|---|---|---|
+| **L1a** | Privacy (`legal-privacy`) | **52 lines, 1,298 words** | **PASS.** `{{` **0**, `Status: DRAFT` **0**, and §12 Contact reads **Cohen Apps** / *"Reach us by email at support@inbornapp.com or by phone on +1-440-847-8502. We have no physical reception and offer no in-person service."* |
+| **L1b** | Terms (`legal-terms`) | **46 lines, 1,444 words** | **FAIL → F97.** `{{` **0** and `Status: DRAFT` **0**, so the placeholder half is clean — but **"Cohen Apps" 0** and **"+1-440-847-8502" 0**. `legalBody()` renders from the first `##`, and the terms' whole identity block sits above it |
+
+Shots: `l1-01-legal-privacy.png`, `l1-02-legal-privacy-contact.png`, `l1-03-legal-terms.png`,
+`l1-04-legal-terms-bottom-no-owner.png`. Full device reads: `legal-privacy-on-device.txt`,
+`legal-terms-on-device.txt`. Source-level proof: `f97-legalbody-proof.txt`.
+
+**And a check that had to be repaired before it meant anything.** Grepping the shipped `index.android.bundle` for
+these strings returns **nothing** — not because they are absent, but because the legal texts contain `§`, `–` and
+`→`, so Hermes stores each of them as **UTF-16**. Read that way the bundle holds `Cohen Apps` ×3, `+1-440-847-8502`
+×2, `We have no physical reception` ×2, `source-available` ×1, and **zero** `Status: DRAFT`, `Secure Enclave` or
+`open-source core`. The only `{{…}}` tokens left in the whole bundle are `{{COPYRIGHT}}`, which `licenceText()`
+fills per model, and the lowercase field names of the app's own document templates (`{{client_name}}`,
+`{{patient_ref}}` …). An ASCII grep over a Hermes bundle silently misses every string that carries a `§`
+(`bundle-legal-grep.txt`).
+
+### L2 — a second file on a chat, on an account that owns Pro
+
+| # | step | result | shot |
+|---|---|---|---|
+| L2a | share `inborn-l2-first.pdf` into a fresh chat | attached, `Indexed · 1 passage` | `l2-01-first-pdf-attached.png` |
+| L2b | share `inborn-l2-second.pdf` into the same chat | **also attached** — no gate, no paywall | `l2-02-second-pdf.png`, `l2-04-attach-sheet-after.png` |
+| L2c | share `inborn-l2-work.html`, a Work format | **"Excel and HTML files need Pro for Work"** and the paywall opens | `l2-03-work-format-gate.png` |
+
+**L2b is the tier behaving correctly, not the gate failing, and the row says so rather than claiming a pass it did
+not earn.** The one-file cap is `paywallFor(tier, { kind: "document", existing })`, and
+`limits(tier).filesPerChat` is `1` for **free** and `Infinity` for everything above it
+(`packages/core/src/licence/gates.ts:84`). This Google Play account **owns Pro** — row U5 photographs it — so a
+second file is exactly what this phone should accept, and "the Pro message did not appear" here is a statement about
+the account, not about the code. The free-tier string itself is guarded by
+`packages/i18n/test/locales.test.ts:59`, which asserts in every real locale that `quick.filePro` names both removing
+the current file and the Pro library.
+
+What this phone **can** reach is the sibling gate one line down in `fileIntake()`: it owns Pro and not Work, so a
+Work format is refused with the message above and the paywall behind it. That is a real intake gate firing on a real
+tier boundary, caught on screen. The toast lives **1,400 ms** (`Chat.tsx:260`) and a `uiautomator` dump on this phone
+takes longer than that, so it was captured with a 26-frame `screencap` burst instead; the frame kept is the crossfade
+in which both the message and the rising paywall are legible.
+
+### H1 — the same Hebrew question, three times, on Fast
+
+vc17 answered "Answer in Hebrew: what is the meaning of the word shalom?" **in English**, twice, where vc16 answered
+in Hebrew, and §T left that as sampling rather than a defect. This pass asks the question **in Hebrew itself**, three
+times, in three fresh chats.
+
+**It could not be typed.** `adb shell input text` cannot enter non-ASCII on Android 11, which is why every earlier run
+asked for Hebrew in English — a limitation this repo's soak docs have recorded five times. The text is therefore
+handed to the app the way another app would hand it over: `ACTION_SEND text/plain`. The quick-actions sheet opens on
+it, and with **no action chosen** `quick-open-chat` puts the text in the composer verbatim
+(`Chat.tsx openQuickInChat`: `if (!result) return setDraft(userTurn)`), after which the send key does the rest. Both
+ends were read back each time: `quick-source` and then `composer-input` carried
+`ענה בעברית: מה פירוש המילה שלום?` exactly.
+
+| sample | s | words | Hebrew chars | Latin letters | language |
+|---|---|---|---|---|---|
+| 1 | 41 | 22 | 81 | **0** | **Hebrew** |
+| 2 | 6 | 22 | 84 | **0** | **Hebrew** |
+| 3 | 6 | 6 | 24 | **0** | **Hebrew** |
+
+**3 of 3 in Hebrew, so no F row.** Not one Latin letter appears in any of the three answers. This is the first time
+the question has been put to the phone in Hebrew at all, so it does not settle what vc17 did with the English-language
+instruction — it answers the question the row was actually asked to answer: given a Hebrew prompt, this build replies
+in Hebrew. Shots `h-01` … `h-03`.
+
+**What the three answers say is a different matter, and it is weak.** Sample 1 defines שלום as offering a favour to a
+stranger; sample 3 answers *"שלום מלך המדבר, אהבתי את החיים!"*, which is not an answer to the question. That is the
+2B model's substance on a language it is not recommended for — the vault card for Fast reads `CHAT IN ENGLISH` — and
+it is the same small-model quality §R recorded for answer content. It is not filed as a defect, and the samples are
+in the table so nobody has to take that on trust.
+
+**Soak run 11** ran after the rows: `docs/qa/soak-run-11-2026-09-22.md`. **Half an hour**, 23:55:00–00:25:02, not the
+usual hour — the brief's own rule, because the Play update cost two hours and the rows ended at 23:53. **7 prompts,
+7 completed, 0 timeouts, 0 send failures, 5 F33 cycles all OK, one process (pid 29163) for the whole run, 0 FATAL /
+ANR / SIGSEGV naming the app in a 56,894-line device buffer, 0 `am_crash` / `am_anr` in the events buffer and no
+dropbox entry.** The proof screen read `OUT 0 B · IN 0 B` again afterwards. The single open reading is **Fast's
+tok/s: 2.7, 4.8, 5.1**, where its card promises `~5-7` and soak 10 measured 5.7–6.6. Nothing in
+`239a268..8033dce` touches the engine, the catalog or `speed.ts`, the three readings *rise* through the run, and turn
+1 was the first inference 41 minutes after a 4.8 GB install — so it is recorded with that context and **not** filed
+as a regression, and the next soak is told to warm up before it takes the first reading.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).

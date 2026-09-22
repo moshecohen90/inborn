@@ -427,7 +427,19 @@ Proof reads OUT 0 B · IN 0 B, a 22-screen vault sweep found no `install-` node 
 shows YOU OWN PRO with the Work upgrade at ₪149.90 and Restore answers "Purchase restored", §5.7 incognito passes
 paired on real hardware, and soak run 10 is an hour of continuous use (`docs/qa/soak-run-10-2026-09-22.md`); its
 upload had to be done twice because `:commit` answered 400 for eleven minutes and took the first edit down with a
-good 4.77 GiB bundle already hashed by Play. Fixes round 15 (`main` f27a8c5): the Android bundle no longer
+good 4.77 GiB bundle already hashed by Play. **Release 1.0.0 (18) — versionCode 18 released 22.9 from `main` 8033dce (section U), the Android
+submission candidate**, the first Android build carrying fixes round 31 (F92–F96, the legal texts): delivered as a
+real Play update in place over vc17, About reads 1.0.0 (18) / 8033dce21dfc, Proof reads OUT 0 B · IN 0 B, the vault
+sweep again finds no `install-` node, real Play billing shows YOU OWN PRO with the Work upgrade at ₪149.90 and
+Restore answers "Purchase restored", §5.7 incognito passes paired again, and soak run 11 is half an hour of
+continuous use (`docs/qa/soak-run-11-2026-09-22.md`). Three rows are new. **L1** reads both Legal screens off the
+phone: the Privacy screen is clean and names Cohen Apps, support@inbornapp.com and +1-440-847-8502, while the Terms
+screen names **no licensor, no phone and no effective date** because `legalBody()` cuts everything above the first
+`##` heading — filed as **F97**, and not fixed here. **L2** shows the document intake gate refusing a Work format
+("Excel and HTML files need Pro for Work"); the one-file Pro cap cannot be reached on this phone because the account
+owns Pro. **H1** asks "what does shalom mean" in Hebrew three times on Fast — a prompt no earlier run could type,
+delivered through ACTION_SEND — and gets Hebrew back **3 of 3**. The upload needed no retry at all this time, the
+first since vc12; the Play update instead cost two hours and one "Can't install". Fixes round 15 (`main` f27a8c5): the Android bundle no longer
 carries 229 MB of iOS Mach-O, Fast survives a Play update without a re-download, and F27 (a hardware-keyboard focus trap in the empty
 chat's suggestion chips) is fixed on the floor device. Fixes round 16: strict "Answer only from my documents" now refuses instead of
 answering from the model when nothing is attached (F34). Fixes round 17: round 15's OCR claim was wrong — a clean build shipped zero
