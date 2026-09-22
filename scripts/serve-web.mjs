@@ -7,6 +7,8 @@
  *
  * /models/instant.gguf resolves to $MODELS_DIR/instant.gguf, else to $MODELS_DIR/$INSTANT_GGUF (a dev alias).
  * /models/manifest.json describes the served models the way the catalog will (id, bytes, sha256, delivery url);
+ * MODELS_ORIGIN points those urls at the real catalog host instead of this server, which is how the browser tier
+ * is proven against models.inbornapp.com (the same variable already opens connect-src for it).
  * the sha256 is computed once per file and kept in a `<file>.sha256` sidecar next to it.
  * DIST=/path serves another export (default apps/mobile/dist; apps/web/dist is the deployable build with the service worker).
  * ISOLATION=off drops COOP/COEP to exercise the single-thread fallback.
@@ -57,14 +59,14 @@ export function modelSha256(file) {
 }
 
 /** The dev catalog: every alias that resolves to a file, in the shape apps/mobile/src/web/modelDelivery.ts reads. */
-export function modelsManifest({ modelsDir, aliases }) {
+export function modelsManifest({ modelsDir, aliases, modelsOrigin = "" }) {
   const tiers = { instant: "instant", fast: "fast", sharp: "sharp", power: "power" };
   const models = [];
   for (const name of Object.keys(aliases)) {
     const file = resolveFile(`/models/${name}`, { dist: "", modelsDir, aliases });
     if (!file) continue;
     const id = name.replace(/\.gguf$/, "");
-    models.push({ id, tier: tiers[id] ?? "instant", name: id[0].toUpperCase() + id.slice(1), file: name, bytes: statSync(file).size, sha256: modelSha256(file), delivery: [{ kind: "cdn", url: `/models/${name}` }] });
+    models.push({ id, tier: tiers[id] ?? "instant", name: id[0].toUpperCase() + id.slice(1), file: name, bytes: statSync(file).size, sha256: modelSha256(file), delivery: [{ kind: "cdn", url: modelsOrigin ? `${modelsOrigin}/v1/${path.basename(file)}` : `/models/${name}` }] });
   }
   return { version: 1, publishedAt: new Date().toISOString(), models, signature: "" };
 }

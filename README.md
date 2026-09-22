@@ -422,9 +422,13 @@ decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measu
 and Italian for wave 2; Hebrew needs its own model (`DictaLM-3.0-1.7B-Instruct`) and ships the quarter after launch, not at 1.0. Voice on
 the real iPhone (`docs/qa/voice-run-2026-09-11.md`); purchases on both stores (`docs/qa/purchases-run-2026-09-11.md`); copy sign-off
 rounds 2a–2d and design sign-off (`docs/design/`).
-Open (Moshe only): the domain `inbornapp.com` is still unregistered — the catalog's host allowlist is `models.inbornapp.com`, so on iOS
-(no Play Asset Delivery equivalent) Fast, Sharp, the vision projector and the document-index pack cannot be downloaded until it is bought;
-install TestFlight 1.0.0 (11) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
+The model CDN is **live** since 22.9: `inbornapp.com` on Cloudflare Registrar, R2 bucket `inborn-models` behind
+`models.inbornapp.com`, all 8 catalog objects (7.15 GB) published and verified by `scripts/publish-models.mjs` — size,
+`Accept-Ranges`, a ranged read of the first and last MiB hashed against the local file, and a full sha256 on the two
+smallest. CORS is proven for the browser's ranged fetch. The web tier downloads Instant from it, verifies it and answers
+(`web:smoke`); the iOS **simulator** cannot, because its `nsurlsessiond` refuses the app's background session
+(`NSCocoaErrorDomain 4097`) — a simulator limit, not the app. Details and the re-verify command: `docs/ops/cdn-r2.md`.
+Open (Moshe only): install TestFlight 1.0.0 (11) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
 Enable UI Automation" sheet once while a runner is starting (which then unblocks the whole tap-driven backlog: model Details sheet, the
 attach sheet, the vault below the fold, hands-free with Whisper installed) or by tapping through it by hand; store screenshots after
 his design approval; legal fields (support email, domain, legal name, address); Play payments profile; Family Sharing decision and regional

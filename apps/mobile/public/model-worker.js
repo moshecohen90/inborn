@@ -173,7 +173,7 @@ const removeQuietly = (dir, name) => dir.removeEntry(name).catch(() => undefined
  * belongs here rather than in the door, which would otherwise read a file that is not there yet (QA F22).
  * @returns {Promise<boolean>} false when it never became visible in time; the caller still reports what it wrote.
  */
-export async function awaitPublished(dir, file, bytes, tries = 40, delayMs = 50) {
+export async function awaitPublished(dir, file, bytes, tries = 400, delayMs = 50) {
   for (let i = 0; i < tries; i++) {
     try {
       if ((await (await dir.getFileHandle(file)).getFile()).size === bytes) return true;

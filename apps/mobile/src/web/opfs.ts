@@ -58,8 +58,10 @@ export async function modelStatus(file: string): Promise<ModelStatus> {
   return size > 0 ? { kind: "partial", have: size } : { kind: "missing" };
 }
 
-/** Same verdict, but allowing for the moment OPFS needs to publish a file a worker has just closed (QA F22): a verified download must not read as a failure. */
-export async function readyModelStatus(file: string, tries = 10, delayMs = 200): Promise<ModelStatus> {
+/** Same verdict, but allowing for the moment OPFS needs to publish a file a worker has just closed (QA F22): a verified download must not read as a failure.
+ * A gigabyte-scale file on a loaded machine can take many seconds to become visible, and the old two-second budget turned a
+ * finished, hash-checked download into "stored file does not match" (seen once in three runs against the real CDN). */
+export async function readyModelStatus(file: string, tries = 100, delayMs = 200): Promise<ModelStatus> {
   let status = await modelStatus(file);
   for (let i = 1; i < tries && status.kind !== "ready"; i++) {
     await new Promise((r) => setTimeout(r, delayMs));

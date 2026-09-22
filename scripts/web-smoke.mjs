@@ -187,7 +187,10 @@ async function chat(page, out, prompt, loadedLines) {
   if (!(out.tokPerSec > 0) || !Number.isFinite(out.ttftMs)) throw new Error(`ledger did not report usage: tok/s=${out.tokPerSec} ttft=${out.ttftMs}`);
 }
 
-const foreignHosts = (hosts) => [...hosts].filter((h) => h !== origin);
+/* The catalog host is not a foreign host when the run points the manifest at it: that download IS what is being proven.
+   The offline pass keeps the stricter rule, since a cached model must need no network at all. */
+const catalogHost = defaults.modelsOrigin ? new URL(defaults.modelsOrigin).host : "";
+const foreignHosts = (hosts, allowCatalog = false) => [...hosts].filter((h) => h !== origin && !(allowCatalog && h === catalogHost));
 
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
@@ -252,7 +255,7 @@ try {
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (out.consoleErrors.some((l) => /^pageerror/.test(l))) throw new Error(`page errors: ${out.consoleErrors.join(" | ")}`);
     out.hosts = [...hosts];
-    if (foreignHosts(hosts).length) throw new Error(`the page talked to ${foreignHosts(hosts).join(", ")}; only ${origin} is allowed`);
+    if (foreignHosts(hosts, true).length) throw new Error(`the page talked to ${foreignHosts(hosts, true).join(", ")}; only ${[origin, catalogHost].filter(Boolean).join(" and ")} is allowed`);
     if (out.crossOriginIsolated !== defaults.isolation) throw new Error(`crossOriginIsolated=${out.crossOriginIsolated} with ISOLATION=${defaults.isolation ? "on" : "off"}`);
     if (!defaults.isolation && out.threads !== 1) throw new Error(`expected the single-thread fallback, got threads=${out.threads}`);
     await page.close();
