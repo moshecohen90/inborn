@@ -329,7 +329,8 @@ localized); web phase 2; desktop phase 3 CI; legal/QA/ops docs; store copy in al
 carries iOS Mach-O, Fast survives a Play update, F27 fixed on the floor device); round 16 (F34, strict documents mode refuses instead of
 answering from the model with nothing attached); round 17 (`verifyOcrAssets` gate + `check-android-bundle.sh`, OCR restored); round 18 (F35 the
 hands-free microphone race, F36 honest photo-input routing to Instant only, F37 Sharp's speed card corrected on legacy chips); round 19 (F38,
-`packages/core/src/chat/length.ts`, an answer-length policy shared by every tier).
+`packages/core/src/chat/length.ts`, an answer-length policy shared by every tier); round 20 (F39, `isExplanatoryAsk` in the same file, keeps a
+how-to or comparison on its use's own moderate length instead of the short-question rule cutting it to three sentences).
 Verified: TestFlight 1.0.0 (5) VALID in the internal group (fixes rounds 10–10d), proven on a real iPhone over USB on 20.9 — exit meter
 OUT 0 B, paywall prices read from the App Store, 0 crashes (`docs/qa/ios-device-pass-5-2026-09-20.md`); the chat turn itself was blocked
 by the XCTest passcode sheet and stays open for build 6. TestFlight 1.0.0 (6) VALID 20.9, real-iPhone pass 6 all PASS except the live chat
@@ -349,8 +350,14 @@ unlike round 18 (an Android-only patch) it reaches this binary: all five `length
 Real-iPhone pass 10: **23 PASS, 0 FAIL, 5 NOT RUN across the three result tables (28 rows total)** — memory fell rather than rose across
 the background/foreground round trip, the F38 strings are confirmed on the phone, and the 5 NOT RUN rows are the same tap-behind-the-
 passcode-sheet set as build 9 plus "the policy changing a real answer on this phone", which needs the same live chat turn
-(`docs/qa/ios-device-pass-10-2026-09-22.md`). Open Moshe item, unchanged since build 6: the App Manager ASC API key cannot export
-with cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin key was used for builds 6–10. Play internal testing 1.0.0 (6) active
+(`docs/qa/ios-device-pass-10-2026-09-22.md`). TestFlight 1.0.0 (11) VALID 22.9 06:08 from `main` c7f57c0, buildNumber 11
+(`docs/qa/ios-build-11-2026-09-22.md`) — the only change since build 10 is round 20 (F39, `isExplanatoryAsk`), and all four of its
+regex tables are verified in the shipped Hermes bundle. Real-iPhone pass 11: **24 PASS, 0 FAIL, 5 NOT RUN of 29 rows across the
+three result tables** — the F39 tables are confirmed in the bundle this phone ran, and all 5 NOT RUN rows sit behind the same
+UI-Automation passcode sheet as every build since 7 (a live chat turn, and the three tap/scroll-only rows that follow from it:
+the vault below the fold, a model's Details sheet, the attach sheet) (`docs/qa/ios-device-pass-11-2026-09-22.md`). Open Moshe item,
+unchanged since build 6: the App Manager ASC API key cannot export with cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin
+key was used for builds 6–11. Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
@@ -362,7 +369,11 @@ width; versionCode 13 released 22.9 from `main` 9e1157f with fixes round 18, on 
 (dictation stays alive on the release build, 5 mic open/close cycles, 0 crashes), F36 (the attach sheet is honest about which model can see
 a photo) and F37 (Sharp's card now tells the truth on this phone) are all proven through the real Play path, plus a repeat OCR proof through
 the `embed` pack; versionCode 14 released 22.9 from `main` fc7b3ee with fixes round 19 (F38), delivered as a real Play update in place over
-vc13 (section Q). Fixes round 15 (`main` f27a8c5): the Android bundle no longer
+vc13 (section Q); versionCode 15 released 22.9 from `main` c7f57c0 with fixes round 20 (F39), delivered as a real Play update in
+place over vc14 (section R) — this run measured the vc14 baseline and the vc15 fix on the same phone and the same driver before and
+after the update, and found the short-question control unchanged (still one sentence, ~5-6 words) while explanatory asks trended
+longer on both Instant and Fast; a repeated Fast sample taken twice 14 minutes apart on vc15 itself (93 vs 52 words) shows the numbers
+establish direction, not magnitude. Fixes round 15 (`main` f27a8c5): the Android bundle no longer
 carries 229 MB of iOS Mach-O, Fast survives a Play update without a re-download, and F27 (a hardware-keyboard focus trap in the empty
 chat's suggestion chips) is fixed on the floor device. Fixes round 16: strict "Answer only from my documents" now refuses instead of
 answering from the model when nothing is attached (F34). Fixes round 17: round 15's OCR claim was wrong — a clean build shipped zero
@@ -376,7 +387,12 @@ instead of silently dropping the photo; F37, Sharp's speed card corrected to the
 Fixes round 19 (`packages/core/src/chat/length.ts`, F38): nothing previously told a turn how long its answer should be, so a 0.8B model
 answered "What is 2 plus 2?" with the budget of an essay; a single `planAnswerLength` plan (224/512/1,024/160 tokens by turn shape, or an
 explicit word/sentence count the user asked for) is threaded through every tier — mobile, web and desktop share the same core — and shapes
-the *request*, never truncates the *answer*. QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
+the *request*, never truncates the *answer*. Fixes round 20 (`packages/core/src/chat/length.ts`, F39): round 19's `isShortAsk` counted any
+one-line question up to 16 words as short, so a how-to like "How do I set up SSH keys on my Mac?" got the same three-sentence budget as
+"What is 2 plus 2?"; `isExplanatoryAsk` now runs ahead of that rule and keeps a how-to, comparison or explanation on its use's own
+`moderate` plan (512 tokens) via three small tables (Latin-script question words, CJK/Hebrew markers, a short-exception list so "How much
+does it cost?" still counts as short) covering the eight shipped locales plus Hebrew; an explicit length still wins and real one-liners are
+unchanged. QA retest 11.9 (`docs/qa/qa-run-2026-09-11.md`, passes 1–3, F1–F15 fixed in round 9);
 passes 4a–4d and 5 found F17–F29, fixed in fixes rounds 10, 10b, 10c, 10d and 12 (incl. the web tier's §7.8 mediation and the model-download
 race, F22/F23); pass 6 (20.9, `main` ff39f94): 28/29 PASS, the document-import row (4d) NOT RUN, three low findings F30–F32 fixed in fixes
 round 14. Soak run 1 (11.9, 2 h 30 on the 6T): PASS
@@ -394,7 +410,10 @@ re-download, F28 PASS. Soak run 6 (22.9, vc13, after a fresh Play install, `docs
 pop cycles, zero crashes, one process for 1 h 12 min, zero dropbox entries for versionCode 13 — but six of seventeen prompt turns ran past
 the driver's wait (83–139 s); Moshe watched one of them on the phone at 01:00 and filed it as F38. Soak run 7 (22.9, vc14, delivered as a
 real Play update over vc13, `docs/qa/soak-run-7-2026-09-22.md`): PASS, **26/26 prompts completed, 0 timeouts**, 12 F33 cycles all OK, one pid
-for the whole hour, 0 crashes — and it corrects soak 6's six timeouts (see "Correction 22.9" below "Fixes round 19"). Launch-language
+for the whole hour, 0 crashes — and it corrects soak 6's six timeouts (see "Correction 22.9" below "Fixes round 19"). Soak run 8 (22.9,
+vc15, delivered as a real Play update over vc14, `docs/qa/soak-run-8-2026-09-22.md`): PASS in two half-hour windows, Fast then Instant,
+after the first window's model switch silently failed and had to be re-run — together **26/26 prompts completed, 0 timeouts**, 12 F33
+cycles all OK, one pid (29368) across both windows, 0 FATAL/ANR and no dropbox entry belonging to versionCode 15. Launch-language
 decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
 (English, Japanese, German, Spanish, French, Portuguese-Brazil, Korean, Traditional Chinese); Indonesian, Simplified Chinese, Gulf Arabic
 and Italian for wave 2; Hebrew needs its own model (`DictaLM-3.0-1.7B-Instruct`) and ships the quarter after launch, not at 1.0. Voice on
@@ -402,10 +421,10 @@ the real iPhone (`docs/qa/voice-run-2026-09-11.md`); purchases on both stores (`
 rounds 2a–2d and design sign-off (`docs/design/`).
 Open (Moshe only): the domain `inbornapp.com` is still unregistered — the catalog's host allowlist is `models.inbornapp.com`, so on iOS
 (no Play Asset Delivery equivalent) Fast, Sharp, the vision projector and the document-index pack cannot be downloaded until it is bought;
-install TestFlight 1.0.0 (10) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
+install TestFlight 1.0.0 (11) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
 Enable UI Automation" sheet once while a runner is starting (which then unblocks the whole tap-driven backlog: model Details sheet, the
 attach sheet, the vault below the fold, hands-free with Whisper installed) or by tapping through it by hand; the ASC App Manager API key
-still cannot export with cloud-managed certificates (403 FORBIDDEN_ERROR) — the Admin key was used for builds 6–10; store screenshots after
+still cannot export with cloud-managed certificates (403 FORBIDDEN_ERROR) — the Admin key was used for builds 6–11; store screenshots after
 his design approval; legal fields (support email, domain, legal name, address); Play payments profile; Family Sharing decision and regional
 price policy (store conversion vs the country-ratio table); submit the four IAPs with app version 1.0; a share-in via a MediaStore
 `content://` URI from the shell imports nothing and the share module swallows the read failure silently — real but low severity, carried as
