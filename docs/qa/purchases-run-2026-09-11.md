@@ -1175,6 +1175,176 @@ belonging to versionCode 14**.
 
 **Gate:** `COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm@10.34.5 lint` exit **0**.
 
+## R. Play internal release versionCode 15 — round 20 (F39) on the real Play path — 22.9.2026
+
+The release that carries **round 20** (F39, `isExplanatoryAsk` in `packages/core/src/chat/length.ts`) to a device
+through Google Play, as an **update in place over vc14**. Round 20 was proven on an emulator with an
+`INBORN_PACKS=instant` build; this run retests it on the OnePlus 6T, on the store bundle, with every pack installed —
+and, unlike section Q, it measures the **vc14 baseline on the same phone before the update**, so the before/after pair
+is one device, one driver, one afternoon.
+
+**Build.** Fresh worktree `android-vc15` off `origin/main` (**c7f57c0**), `pn install --frozen-lockfile` 0, `.models`
+symlinked to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build`
+removed. `scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=15` and
+**no `INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 8 m 29 s**. `gradlew --stop` was never run;
+`pgrep -f xcodebuild` was empty and `ios-build-11/xcodebuild.running` absent before it started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,810,222 bytes** (4.77 GiB; vc14 was 5,117,808,142, +2,080) |
+| sha256 | `ad27d8573c6b726ff8eed8b3f3d6fb9b5fa1c316402ba5023d7ac649f4f65cc9` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, the same set as vc12–vc14 |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base 202,646,091 B / 1453 entries; the seven packs below |
+| `base/assets` | 17,828,891 B / 120 entries (vc14: 17,832,886 / 120) |
+| manifest | `versionCode="15" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26 |
+| commit baked into `app.config` | `c7f57c0ebe31` — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gate | `pn lint` exit **0** |
+
+**Round 20 is in the artifact, and finding it needs UTF-16.** The Hermes bundle inside the AAB
+(`base/assets/index.android.bundle`, 5,277,380 bytes) carries every literal F39 introduced — `walk me through`,
+`pros and cons`, `advantages and disadvantages`, `how it works`, `how does it work`, `what's the difference`,
+`difference between`, `comparison between`, `explain|explanation`, `how (?:much|many|old|far|long|tall|big|heavy)`,
+`\bshould i\b[^?]*\bor\b`, and the Hebrew, Japanese, Korean and Chinese tables (`מה ההבדל`, `ספר לי על`,
+`יתרונות וחסרונות`, `מה קורה אם`, `どうやって`, `어떻게`, `為什麼`) — one occurrence each. Round 19's four
+`LENGTH_INSTRUCTIONS` strings and the round-17/18 strings are all still there, once each.
+
+**The trap worth recording:** Hermes stores any string holding a non-ASCII character as **UTF-16**, and F39's three
+tables all carry CJK and Hebrew. `strings`, plain `grep` and `grep -a` therefore find **none** of the ASCII halves of
+those regexes and report the feature missing on a bundle that contains it. The gate
+(`scratchpad/android-vc15/f39-strings.sh`) counts every literal in **both** encodings; `\bshould i\b[^?]*\bor\b` is the
+one F39 literal that is pure ASCII, and it is the only one a naive grep finds.
+
+| asset pack | delivery | asset | asset bytes | module bytes |
+|---|---|---|---|---|
+| `inborn_model` | fast-follow | `Qwen3.5-0.8B-Q4_K_M.gguf` | 532,517,120 | 532,518,071 |
+| `inborn_model_fast` | on-demand | `Qwen3.5-2B-Q4_K_M.gguf` | 1,280,835,840 | 1,280,836,794 |
+| `inborn_model_embed` | on-demand | `nomic-embed-text-v1.5.f16.gguf` | 274,290,560 | 274,291,515 |
+| `inborn_model_speech` | on-demand | `ggml-base.bin` | 147,951,465 | 147,952,421 |
+| `inborn_model_vision` | on-demand | `mmproj-Qwen3.5-0.8B-F16.gguf` | 204,987,232 | 204,988,188 |
+| `inborn_model_sharp` | on-demand | `Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf` | 1,401,058,176 | 1,401,059,131 |
+| `inborn_model_sharp_2` | on-demand | `Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf` | 1,339,879,904 | 1,339,880,861 |
+
+Play's limits, all met: base + install-time **202,646,091 B** against the 4 GB cap; fast-follow plus on-demand
+**5,181,526,981 B** (4.83 GiB) against 30 GB; the largest single pack `inborn_model_sharp` at **1,401,058,176 B**
+(1.30 GiB) against the 1.5 GB per-pack cap.
+
+**Upload.** `scripts/play-upload.mjs` with the service account from the keychain
+(`INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account`), internal track, release name **"1.0.0 (15)"**.
+Edit **14440618357465592616**. The 4.77 GiB resumable upload dropped its connection at offset **5,100,273,664** — the
+identical offset vc13 and vc14 failed at, for the third release running — but this time `play-upload.mjs`'s own retry
+recovered it and vc13's `upload-patient.mjs` was not needed. `tracks.update` then `commit` both returned 200. Read back
+from a fresh edit, the internal track lists `{"name":"1.0.0 (15)","versionCodes":["15"],"status":"completed"}` and
+Play's own sha256 for the artifact equals the local one.
+
+**The update on the 6T, in place through the Play Store.** The phone (`REDACTED-6T`, Android 11) held Play's **vc14**
+with all seven packs. No uninstall, no `bundletool install`, no `adb install`: the Play Store app was driven by keys
+only, with section Q's containment rule — TAB until the focused node's bounds enclose the Update label's bounds.
+It took **seven** TABs again, and unlike vc14 the **first** press started the download: Play had already published the
+packs by the time it was pressed, about 33 minutes after the commit.
+
+| stage | time |
+|---|---|
+| Update label found at `[718,630][851,687]`, focused after 7 TABs, ENTER | 07:01:18 |
+| download starts (first press, no "packs unavailable") | 07:01:50 |
+| `versionCode=15`, `installerPackageName=com.android.vending`, `lastUpdateTime` 07:08:28 | 07:08:39 |
+| app relaunched, Instant pack re-delivered, delivery banner gone | 07:11:14 |
+
+Play re-delivered **every** pack again, not a delta — a new versionCode gives every asset pack a new version — and the
+vault was back to **4.8 GB in the vault · 12 GB free** when the banner cleared.
+
+**The other proofs, all on the updated build.**
+
+| proof | result | shot |
+|---|---|---|
+| About | **1.0.0 (15)** and commit **c7f57c0ebe31** | `a-01-about-1-0-0-15.png` |
+| Proof screen | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, allowlist `none · the app has no internet permission` | `a-02-proof-out-0b.png` |
+| every pack still installed after the update | **zero `install-` nodes anywhere in the vault.** Fast `Loaded · In use`; Instant, embedding-nomic, speech-whisper-base, vision-qwen35 and Sharp all `Installed` with a `Use this model` button; sharp-phi correctly `Not offered through Google Play` (a browser import, not one of the seven packs). `4.8 GB in the vault · 12 GB free` | `b-01-vault-top.png`, `b-06-vault-use-vision-qwen35.png`, `b-07-vault-use-sharp.png`, `b-02-vault-all-packs.png` |
+| F33 ×5 | 5 / 5 **OK**: pid **29368** at both ends of all five cycles, `fatal_delta=0`, `procdied_delta=0` | `f33-proofs.csv` |
+| crash sweep over the proofs window | 13,207 app-scoped log lines, **0** FATAL/ANR/SIGSEGV/`am_crash`; **0** `am_anr` and **0** `am_proc_died` for the app in the events log | |
+
+Round 15 C is the test that matters in that table: a Play update must not turn an installed pack back into an Install
+offer. It did not.
+
+**F39, the headline.** vc14 (round 19, no `isExplanatoryAsk`) was measured on this phone **before** the update; vc15
+(round 20) **after** it, same phone, same driver, a fresh chat for every scenario. Seconds are to the last change in
+the answer text; words and sentences are counted from every TextView under the message, read by scrolling the message
+from its top when it is longer than one screen.
+
+| scenario | model | vc14 s | vc14 words | vc14 sentences | vc15 s | vc15 words | vc15 sentences |
+|---|---|---|---|---|---|---|---|
+| "How do I set up SSH keys on my Mac?" | Instant | 9 | 59 | 4 | 5 | **64** | 2 |
+| "Why is the sky blue?" | Instant | 6 | 34 | 1 | 7 | **51** | 1 |
+| "What is the capital of France?" | Instant | 3 | 6 | 1 | 5 | **6** | 1 |
+| "What is 2 plus 2?" (1) | Instant | 3 | 4 | 1 | 3 | **5** | 1 |
+| "What is 2 plus 2?" (2) | Instant | 3 | 5 | 1 | 3 | **5** | 1 |
+| "How do I set up SSH keys on my Mac?" | Fast | 12 | 66 | 3 | 12 | **93** | 5 |
+| "How do I set up SSH keys on my Mac?" (second Fast sample) | Fast | — | — | — | 15 | **52** | 3 |
+
+The Fast how-to as it appears on the phone is `c-01-f39-ssh-fast.png`.
+
+**The honest reading: the control holds, the explanatory asks trend longer, and the size of that trend is not
+established by one sample per cell.** The two short factual asks are the control and they behaved exactly as they must:
+"What is the capital of France?" is one sentence and six words on both builds, and "What is 2 plus 2?" is one sentence
+and about five words on both. **F39 widened the explanatory door without letting the short-ask rule go** — that is the
+part this run does prove, and it is the part that could have regressed.
+
+The explanatory asks moved the way F39 intends: on Instant the how-to goes from 59 words to 64 and the sky question
+from 34 to 51, and on Fast the how-to goes from 66 words and three sentences to 93 and five. **But the last row is the
+caveat that governs the rest of the table.** The Fast how-to was measured twice on vc15, fourteen minutes apart on the
+same build and the same model, and answered **93 words once and 52 the other time**. vc14's 66 sits between them. A
+run-to-run spread that wide is larger than every vc14→vc15 difference in the table, so these numbers establish the
+*direction* and cannot establish the *magnitude*. Anyone who wants the magnitude needs repeats per cell, not one shot.
+
+Why the effect is small at all: neither budget ever binds here. Without F39 a one-line how-to gets the `short` plan,
+224 tokens; with F39 it keeps `moderate`, 512. An answer of 55–95 words spends roughly 75–130 tokens, far below both,
+so what actually changes is the instruction line the model reads, not a cap it hits. That is the same shape of finding
+section Q recorded for F38 and it should be read the same way.
+
+Two things the numbers do not say. **No answer on either build produced numbered steps**; all seven how-to answers are
+prose, and F39 does not promise a shape. And the answers are **wrong on both builds** — vc14's Instant answer invents
+an `ssh-keygen -f <your-email>` flag, vc15's Instant answer sends the reader to `/home/[yourname]/SSH`, vc15's Fast
+answer puts SSH settings in Terminal preferences, and during the mislabelled first pass one repeat of "What is 2 plus
+2?" answered *"4 plus 2 equals 6."* That is small-model quality, not answer length, and F39 neither causes nor fixes it.
+
+**Soak run 8** ran after the proofs: `docs/qa/soak-run-8-2026-09-22.md`. It is two half-hour windows, 07:52–08:22 on
+Fast and 08:38–09:08 on Instant, because the first one was executed while the model switch was silently failing (see
+the driver repairs below) and had to be re-run; both are reported. **26 prompts, 26 completed, 0 timeouts, 0 send
+failures, 12 F33 cycles all OK, 0 FATAL, 0 ANR, no dropbox entry belonging to versionCode 15, and one process — pid
+29368 — from the proofs at 07:11 through to 09:08.**
+
+**Driver repairs this run needed, all in the session scratch copy under `android-vc15/drv/`.** Four faults cost this
+run two baseline attempts, one mislabelled F39 pass and one whole soak, and are worth knowing before the next release:
+
+1. **About one `uiautomator dump` in three is killed outright on this phone** — it prints `Killed` and exits 0, so an
+   empty screen is indistinguishable from a real one. `lib.sh`'s `dump()` now retries a short result up to four times
+   instead of believing it.
+2. **`focus_tab` TABbed 40 times on the screen before the one it wanted.** The `inborn://chats` deep link can take well
+   over the old 3 s to swap screens; `focus_tab` now waits for the wanted node to exist and gives up in seconds when it
+   does not, and `s-newchat.sh` was rewritten to poll for `new-chat`, to stop pressing BACK first (BACK on the chat
+   root exits the app), and to return immediately when the app is already on an untouched chat.
+3. **The app can end up with no focused node at all.** Every TAB is then a no-op and every send fails at
+   `focus_composer` while the screen looks perfectly normal; only `am force-stop` plus a relaunch brings the focus ring
+   back. `focus_composer` now detects a dead ring and revives the app itself.
+4. **The fix for (2) silently broke every model switch, and `s-model.sh` reported the failure as success.** The vault
+   scrolls, so `use-instant` is genuinely absent from the accessibility tree until TAB walks it into view; the new
+   "does the node exist yet" pre-check returned early and `s-model.sh` logged its old fallback line, *"no use-instant
+   reachable (already in use)"*. The first F39 pass on vc15 and the **whole of the first soak** therefore ran on Fast
+   while the logs claimed Instant. Both were re-run after the fix. `focus_tab`'s wait is now only a head start and
+   never a verdict, and **`s-model.sh` reads the model chip back and fails loudly when it does not match**. The lesson
+   is the general one: a driver step that cannot verify its own effect will eventually report a run that never
+   happened.
+
+**Gate:** `COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm@10.34.5 lint` exit **0**.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
