@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { BUNDLED_MANIFEST, type CatalogModel } from "@inborn/core";
+import { BUNDLED_MANIFEST, WIFI_ONLY_ABOVE_BYTES, type CatalogModel, type NetworkKind } from "@inborn/core";
 
 /* An in-memory vault directory: File objects share one map of uri → bytes, and the download task writes into it. */
 const disk = new Map<string, number>();
@@ -66,10 +66,21 @@ const TOTAL = model.bytes;
 const FINAL = `/vault/${model.file}`;
 const PART = `${FINAL}.part`;
 
-function delivery() {
+/** `net` and `wifiOnly` are what the §10.1 #4 gate reads; the poll is 1 ms so a parked download is testable. */
+function delivery(options: { wifiOnly?: boolean; network?: NetworkKind } = {}) {
   const saved = new Map<string, unknown>();
-  const ctx = { manifest: BUNDLED_MANIFEST, wifiOnly: () => false, savedDownload: (id: string) => saved.get(id), saveDownload: (id: string, s: unknown) => (s === null ? saved.delete(id) : saved.set(id, s)) };
-  return { d: new HttpsDelivery(ctx), saved };
+  const net = { kind: options.network ?? "wifi", reads: 0 };
+  const ctx = {
+    manifest: BUNDLED_MANIFEST,
+    wifiOnly: () => options.wifiOnly ?? false,
+    network: async () => {
+      net.reads++;
+      return net.kind;
+    },
+    savedDownload: (id: string) => saved.get(id),
+    saveDownload: (id: string, s: unknown) => (s === null ? saved.delete(id) : saved.set(id, s)),
+  };
+  return { d: new HttpsDelivery(ctx, 1), saved, net };
 }
 
 beforeEach(() => {
@@ -108,5 +119,68 @@ describe("HttpsDelivery.deliverPart (QA F20)", () => {
     expect(gets).toEqual([{ url: `${BUNDLED_MANIFEST.baseUrl}/${model.file}`, from: 24_981_504 }]);
     expect(disk.get(FINAL)).toBe(TOTAL);
     expect(disk.has(PART)).toBe(false);
+  });
+});
+
+describe("Wi-Fi-only downloads (spec §10.1 #4, F60)", () => {
+  const settle = () => new Promise((r) => setTimeout(r, 10));
+
+  it("takes Wi-Fi straight away and asks the network only once", async () => {
+    const { d, net } = delivery({ wifiOnly: true, network: "wifi" });
+    const events: string[] = [];
+    expect(await d.deliver(model, (e) => events.push(e.type))).toBe(FINAL);
+    expect(events).not.toContain("waiting-for-wifi");
+    expect(net.reads).toBe(1);
+    expect(gets).toHaveLength(1);
+  });
+
+  it("parks a 1.2 GB model on cellular, says so once, and fetches nothing until Wi-Fi arrives", async () => {
+    expect(model.bytes).toBeGreaterThan(WIFI_ONLY_ABOVE_BYTES);
+    const { d, net } = delivery({ wifiOnly: true, network: "cellular" });
+    const events: string[] = [];
+    const done = d.deliver(model, (e) => events.push(e.type));
+    await settle();
+    expect(events.filter((e) => e === "waiting-for-wifi")).toHaveLength(1);
+    expect(gets).toEqual([]);
+    expect(disk.has(PART)).toBe(false);
+    net.kind = "wifi";
+    expect(await done).toBe(FINAL);
+    expect(gets).toHaveLength(1);
+    expect(disk.get(FINAL)).toBe(TOTAL);
+  });
+
+  it("spends the data plan when the user turned the switch off", async () => {
+    const { d } = delivery({ wifiOnly: false, network: "cellular" });
+    const events: string[] = [];
+    expect(await d.deliver(model, (e) => events.push(e.type))).toBe(FINAL);
+    expect(events).not.toContain("waiting-for-wifi");
+    expect(gets).toHaveLength(1);
+  });
+
+  it("waits on an unknown path too: a VPN or a tether bills like cellular", async () => {
+    const { d, net } = delivery({ wifiOnly: true, network: "unknown" });
+    const done = d.deliver(model, () => undefined);
+    await settle();
+    expect(gets).toEqual([]);
+    net.kind = "ethernet";
+    expect(await done).toBe(FINAL);
+  });
+
+  it("with no path at all it waits whatever the switch says", async () => {
+    const { d, net } = delivery({ wifiOnly: false, network: "none" });
+    const done = d.deliver(model, () => undefined);
+    await settle();
+    expect(gets).toEqual([]);
+    net.kind = "cellular";
+    expect(await done).toBe(FINAL);
+  });
+
+  it("Cancel while parked ends the wait instead of leaving it on the clock", async () => {
+    const { d } = delivery({ wifiOnly: true, network: "cellular" });
+    const done = d.deliver(model, () => undefined).catch((e: unknown) => (e as Error).message);
+    await settle();
+    await d.cancel(model);
+    expect(await done).toBe("paused");
+    expect(gets).toEqual([]);
   });
 });

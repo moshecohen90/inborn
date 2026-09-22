@@ -41,10 +41,9 @@ export interface VaultRecord {
   hf: Record<string, CatalogModel>;
   /** Paused HTTPS downloads that survive a restart (expo-file-system savable state). */
   downloads: Record<string, DownloadPauseState & { etag?: string }>;
-  wifiOnly: boolean;
 }
 
-export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, hf: {}, downloads: {}, wifiOnly: true };
+export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, hf: {}, downloads: {} };
 
 /* expo-file-system has no web implementation; the browser tier keeps its model in OPFS (src/web) and the vault stays empty. */
 const noFiles = (): boolean => Platform.OS === "web";

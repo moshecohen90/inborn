@@ -198,6 +198,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     setClipboardExpiry(prefs.clipboardExpirySec);
   }, [prefs.clipboardExpirySec]);
 
+  // Downloads › Wi-Fi only (§10.1 #4): one setting, wherever it was toggled, and the downloader is the one that reads it.
+  useEffect(() => {
+    getVault().setWifiOnly(prefs.wifiOnly);
+  }, [prefs.wifiOnly]);
+
   useEffect(() => {
     if (prefs.locale && i18next.isInitialized && i18next.language !== prefs.locale) void i18next.changeLanguage(prefs.locale);
   }, [prefs.locale]);

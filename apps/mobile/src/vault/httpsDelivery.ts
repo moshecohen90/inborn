@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 import { DownloadTask, File, type DownloadPauseState, type DownloadTaskOptions } from "expo-file-system";
-import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, isNoSpaceError, modelParts, requestBytes, resumePlan, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
+import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, isNoSpaceError, modelParts, requestBytes, resumePlan, shouldWait, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
 import type { DeliveryContext, DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODEL_HOST, devBuild } from "./devFlags";
 import { hfHeaders, hfSearchAvailable } from "./hf";
@@ -30,6 +30,9 @@ export class PausedError extends Error {
   }
 }
 
+/** How often a parked download looks at the network again; short enough that a Wi-Fi join is not felt as a stall. */
+export const WIFI_POLL_MS = 5_000;
+
 /**
  * Resumable HTTPS delivery for iOS, desktop and the web (spec §5.4, §10.1 #2). Pause/resume uses the platform's
  * resume data and survives a restart through the vault record; after a dropped connection Android continues from
@@ -37,8 +40,14 @@ export class PausedError extends Error {
  */
 export class HttpsDelivery implements ModelDelivery {
   private tasks = new Map<string, DownloadTask>();
+  /** Models parked on the Wi-Fi rule: the value wakes the wait early (a cancel, or a pause the user asked for). */
+  private waiting = new Map<string, () => void>();
+  private stopped = new Set<string>();
 
-  constructor(private readonly ctx: DeliveryContext) {}
+  constructor(
+    private readonly ctx: DeliveryContext,
+    private readonly wifiPollMs: number = WIFI_POLL_MS,
+  ) {}
 
   private url(model: CatalogModel, part?: ModelPart): string | null {
     const url = httpsUrl(this.ctx.manifest, model, part);
@@ -65,15 +74,16 @@ export class HttpsDelivery implements ModelDelivery {
         done += shard.bytes;
         continue;
       }
-      await this.deliverPart(model, shard, (bytes) => emit({ type: "progress", bytes: done + bytes, total: model.bytes }));
+      await this.deliverPart(model, shard, emit, (bytes) => emit({ type: "progress", bytes: done + bytes, total: model.bytes }));
       done += shard.bytes;
     }
     return modelFile(model.file).uri;
   }
 
-  private async deliverPart(model: CatalogModel, shard: ModelPart, progress: (bytes: number) => void): Promise<void> {
+  private async deliverPart(model: CatalogModel, shard: ModelPart, emit: (e: InstallEvent) => void, progress: (bytes: number) => void): Promise<void> {
     const url = this.url(model, shard);
     if (!url) throw new Error(`no allowed https delivery for ${model.id}`);
+    await this.waitForWifi(model, shard, emit);
     const part = partialFile(shard.file);
     /* Every byte already here (a verify that failed after the transfer, QA F20): rename, never fetch from 0 again. */
     if (fileSize(part) === shard.bytes) {
@@ -138,6 +148,36 @@ export class HttpsDelivery implements ModelDelivery {
     return File.createDownloadTask(url, part, opts);
   }
 
+  /**
+   * §10.1 #4: a model over 100 MB does not spend the user's data plan. The card says "Waiting for Wi-Fi" and the
+   * bytes wait, here rather than in Play's downloader, so iOS and the desktop honour the switch Android already did.
+   */
+  private async waitForWifi(model: CatalogModel, shard: ModelPart, emit: (e: InstallEvent) => void): Promise<void> {
+    let announced = false;
+    while (shouldWait(shard.bytes, await this.ctx.network(), this.ctx.wifiOnly())) {
+      if (!announced) {
+        announced = true;
+        emit({ type: "waiting-for-wifi" });
+      }
+      let wake = (): void => undefined;
+      const slept = new Promise<void>((resolve) => {
+        const timer = setTimeout(resolve, this.wifiPollMs);
+        wake = () => {
+          clearTimeout(timer);
+          resolve();
+        };
+      });
+      this.waiting.set(model.id, wake);
+      try {
+        await slept;
+      } finally {
+        this.waiting.delete(model.id);
+      }
+      /* Cancel and pause both leave the queue through the same door: nothing was written, so there is nothing to keep. */
+      if (this.stopped.delete(model.id)) throw new PausedError();
+    }
+  }
+
   /** Real size from a HEAD before anything is written (spec S30 edge cases). */
   private async head(url: string): Promise<{ total: number; etag?: string; acceptRanges: boolean }> {
     const r = await fetch(url, { method: "HEAD", headers: hostOf(url) === HF_HOST ? await hfHeaders() : undefined });
@@ -155,11 +195,20 @@ export class HttpsDelivery implements ModelDelivery {
   }
 
   async pause(model: CatalogModel): Promise<void> {
+    this.stopWaiting(model.id);
     const t = this.tasks.get(model.id);
     if (t?.state === "active") await t.pauseAsync();
   }
 
+  private stopWaiting(id: string): void {
+    const wake = this.waiting.get(id);
+    if (!wake) return;
+    this.stopped.add(id);
+    wake();
+  }
+
   async cancel(model: CatalogModel): Promise<void> {
+    this.stopWaiting(model.id);
     const t = this.tasks.get(model.id);
     if (t) {
       t.cancel();
