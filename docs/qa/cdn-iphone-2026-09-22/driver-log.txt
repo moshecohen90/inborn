@@ -1,0 +1,58 @@
+1790072442617 42 steps; storekit session absent
+1790072442617 > log:CDN-START
+1790072442617 CDN-START
+1790072442617 > launch
+1790072447935 > sleep:10
+1790072457938 > open:inborn:/vault
+1790072460236 > sleep:8
+1790072468241 > shot:cdn-00-vault-top
+1790072468383 > value:vault-storage
+1790072469657 value vault-storage: label='1 KB in the vault · 80 GB free · RUNS ON: IOS-MID · 6 GB' value=''
+1790072469657 > scrollto:install-fast:16
+1790072469657 unknown step scrollto:install-fast:16
+1790072469658 > shot:cdn-01-fast-card
+1790072469793 > value:install-fast
+1790072471133 value install-fast: label='Install · 1.2 GB from models.inbornapp.com' value=''
+1790072471133 > tap:install-fast
+1790072473311 > sleep:4
+1790072477313 > shot:cdn-02-confirm
+1790072477458 > value:confirm-text
+1790072478560 value confirm-text: label='Inborn will download 1.2 GB from models.inbornapp.com. This is the only time it talks to the internet, and only because you tapped Install. It will show in your App Privacy Report.' value=''
+1790072478560 > tap:confirm-download
+1790072480433 > sleep:15
+1790072495435 > value:model-status-fast
+1790072496651 value model-status-fast: label='8% · 99 MB of 1.2 GB' value=''
+1790072496651 > shot:cdn-03-start
+1790072496769 > sleep:45
+1790072541773 > value:model-status-fast
+1790072542975 value model-status-fast: label='35% · 430 MB of 1.2 GB' value=''
+1790072542975 > shot:cdn-04-progress
+1790072543102 > waitlabel:model-status-fast:Installed:1200
+1790073743389 TIMEOUT model-status-fast never contained 'Installed' (label='Loaded')
+1790073743391 > value:model-status-fast
+1790073744611 value model-status-fast: label='Loaded' value=''
+1790073744611 > shot:cdn-05-installed
+1790073744742 > dump:vault-after
+1790073748015 texts: Model vault ¦ 1.2 GB in the vault · 79 GB free · RUNS ON: IOS-MID · 6 GB ¦ BEST FOR ¦ Model vault ¦ 1.2 GB in the vault · 79 GB free · RUNS ON: IOS-MID · 6 GB ¦ BEST FOR ¦ ON THIS DEVICE ¦ ● ¦ FAST ¦ · Qwen3.5 2B ¦ RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH ¦ Everyday assistant: writing, questions, translation. Best balance on this phone. ¦ GOOD AT ¦ Best · Chat, Voice notes ¦ Good · Writing, Summaries, Translation, Documents ¦ Weak · Code, Math & reasoning ¦ LANGUAGES ¦ Native · English, Chinese, Arabic ¦ Good · Spanish, French, Portuguese, Italian, Japanese, Russian ¦ Basic · German, Korean ¦ No · Hebrew ¦ Weak at: No photos; code, math, Hebrew; German prose and Korean translation; questions across many long documents. ¦ 1.2 GB · Q4_K_M · Battery: Medium ¦ ~15-24 tok/s on your phone ¦ Loaded ¦ In use ¦ ◉ ¦ INSTANT ¦ · Qwen3.5 0.8B ¦ Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery. ¦ GOOD AT ¦ Good · Chat, Summaries, Voice notes ¦ Weak · Writing, Translation, Code, Documents, Math & reasoning ¦ LANGUAGES ¦ Native · English ¦ Good · Chinese, Portuguese ¦ Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic ¦ No · Hebrew ¦ Weak at: Hebrew and other non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. ¦ 508 MB · Q4_K_M · Battery: Low
+1790073748016 > log:CDN-DOWNLOAD-END
+1790073748016 CDN-DOWNLOAD-END
+1790073748016 > scrollto:use-fast:4
+1790073748016 unknown step scrollto:use-fast:4
+1790073748016 > tap:use-fast
+1790073756401 no element use-fast
+1790073756401 > sleep:10
+1790073766406 > shot:cdn-06-use-fast
+1790073766546 > tap:close-vault
+1790073768600 > sleep:6
+1790073774604 > shot:cdn-07-chat
+1790073774744 > tap:composer-input
+1790073776362 > sleep:2
+1790073778366 > type:What is the capital of France? Answer in one sentence.
+1790073779672 > sleep:2
+1790073781677 > tap:send
+1790073783341 > sleep:45
+1790073828346 > shot:cdn-08-answer
+1790073828498 > dump:chat-after
+1790073829169 texts:  ¦  ¦ SEALED ¦ This is AI running on your phone. It can be wrong. Check important facts. ¦ SEALED ¦ This is AI running on your phone. It can be wrong. Check important facts. ¦ What is the capital of France? Answer in one sentence. ¦ What is the capital of France? Answer in one sentence. ¦ FAST · ON-DEVICE AI · The capital of France is Paris. ¦ The capital of France is Paris. ¦ What is the capital of France? Answer in one sentence. ¦ FAST · ON-DEVICE AI · The capital of France is Paris. ¦ The capital of France is Paris. ¦ LEDGER ¦ LEDGER
+1790073829169 > log:CDN-END
+1790073829169 CDN-END
