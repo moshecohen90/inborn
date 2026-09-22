@@ -35,21 +35,14 @@ pub struct Statement {
 }
 
 fn key_hex() -> Result<String, String> {
-  let entry = keyring::Entry::new(KEYCHAIN_SERVICE, KEYCHAIN_ACCOUNT).map_err(|e| e.to_string())?;
-  match entry.get_password() {
-    Ok(existing) if existing.len() == 64 => Ok(existing),
-    Ok(_) | Err(keyring::Error::NoEntry) => {
-      let bytes: [u8; 32] = rand::random();
-      let hex: String = bytes.iter().map(|b| format!("{b:02x}")).collect();
-      entry.set_password(&hex).map_err(|e| e.to_string())?;
-      Ok(hex)
-    }
-    Err(e) => Err(e.to_string()),
-  }
+  crate::secrets::hex(KEYCHAIN_SERVICE, KEYCHAIN_ACCOUNT, 32)
 }
 
 fn db_path(app: &AppHandle) -> Result<PathBuf, String> {
-  let dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
+  let dir = match crate::secrets::data_dir_override() {
+    Some(dir) => dir,
+    None => app.path().app_data_dir().map_err(|e| e.to_string())?,
+  };
   std::fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
   Ok(dir.join(DB_FILE))
 }

@@ -5,6 +5,9 @@ mod dev;
 mod engine;
 mod licence;
 mod models;
+#[cfg(all(feature = "qa", unix))]
+mod qa;
+mod secrets;
 mod shell;
 mod store;
 mod strings;
@@ -13,7 +16,13 @@ mod updater;
 use tauri::{Manager, RunEvent};
 
 fn main() {
-  tauri::Builder::default()
+  #[allow(unused_mut)]
+  let mut builder = tauri::Builder::default();
+  #[cfg(all(feature = "qa", unix))]
+  {
+    builder = builder.plugin(qa::plugin());
+  }
+  builder
     .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_window_state::Builder::new().build())
     .plugin(tauri_plugin_updater::Builder::new().build())
@@ -22,6 +31,16 @@ fn main() {
     .manage(shell::Seal::default())
     .setup(|app| {
       shell::install(app)?;
+      #[cfg(all(feature = "qa", unix))]
+      {
+        app.manage(qa::Qa::default());
+        // Accessory: the QA window renders and is captured without the app ever stealing the Mac's focus.
+        #[cfg(target_os = "macos")]
+        if std::env::var_os("INBORN_QA_SOCKET").is_some() {
+          app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+        }
+        qa::install(&app.handle().clone());
+      }
       Ok(())
     })
     .invoke_handler(tauri::generate_handler![
@@ -54,6 +73,8 @@ fn main() {
       updater::updater_check,
       updater::updater_install,
       dev::dev_write_result,
+      #[cfg(all(feature = "qa", unix))]
+      qa::qa_result,
     ])
     .build(tauri::generate_context!())
     .expect("error while building Inborn")

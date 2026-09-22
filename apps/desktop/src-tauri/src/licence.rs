@@ -24,21 +24,14 @@ pub struct StoredLicence {
 }
 
 fn keychain_hex(account: &str, bytes: usize) -> Result<String, String> {
-  let entry = keyring::Entry::new(KEYCHAIN_SERVICE, account).map_err(|e| e.to_string())?;
-  match entry.get_password() {
-    Ok(existing) if existing.len() == bytes * 2 => Ok(existing),
-    Ok(_) | Err(keyring::Error::NoEntry) => {
-      let random: Vec<u8> = (0..bytes).map(|_| rand::random::<u8>()).collect();
-      let hex: String = random.iter().map(|b| format!("{b:02x}")).collect();
-      entry.set_password(&hex).map_err(|e| e.to_string())?;
-      Ok(hex)
-    }
-    Err(e) => Err(e.to_string()),
-  }
+  crate::secrets::hex(KEYCHAIN_SERVICE, account, bytes)
 }
 
 fn data_file(app: &AppHandle, name: &str) -> Result<PathBuf, String> {
-  let dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
+  let dir = match crate::secrets::data_dir_override() {
+    Some(dir) => dir,
+    None => app.path().app_data_dir().map_err(|e| e.to_string())?,
+  };
   std::fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
   Ok(dir.join(name))
 }

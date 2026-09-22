@@ -80,35 +80,60 @@ socket (WebKit XPC). `inborn.db` starts with random bytes, not `SQLite format 3`
 `com.inbornapp.desktop / chat-db-key` in the login Keychain. Screenshot: the header reads `tauri · 156.5 tok/s · TTFT 48 ms`.
 RSS after the run ≈125 MB plus the mmap'd model.
 
-## QA launches without keychain prompts
-The chat database is SQLCipher; its key is a login-Keychain item, service **`com.inbornapp.desktop`**, account
-**`chat-db-key`** (`src-tauri/src/store.rs`). A Keychain item's ACL names the application that created it, and an
-ad-hoc signature (`"signingIdentity": "-"` in `tauri.conf.json`) identifies an app only by its own code hash — so a
-rebuilt `Inborn.app` is a stranger to the item and macOS asks for the login password on launch:
-*"Inborn wants to use your confidential information stored in chat-db-key"*.
+## QA launches without keychain prompts, and without a mouse
 
-`corepack pnpm desktop:build:app` and `desktop:build` now go through `scripts/with-signing-identity.sh`, which
-exports `APPLE_SIGNING_IDENTITY` from the first **Apple Development** identity in `security find-identity -v -p
-codesigning`. That signature's designated requirement is identifier + team, which does not change between builds, so
-one "Always Allow" holds for every rebuild after it. Set `APPLE_SIGNING_IDENTITY` yourself to pick another
-certificate; with no identity on the Mac the ad-hoc signature applies again and the prompt returns.
+Two different people launch a freshly built `Inborn.app`: Moshe, who rebuilds his own app and wants his chats; and an
+agent, which must prove a build while he is working on the same Mac and may not put a dialog on his screen or move his
+pointer. They need different answers, so there are two.
 
-Already holding a prompt from an older ad-hoc build, or signing a QA build with a different certificate? Re-create
-the item with the new binary in its ACL, keeping the existing key so the chats stay readable (never echo `$KEY`):
+**Why anything is needed.** The chat database is SQLCipher and the licence cache is sealed; their keys are login-Keychain
+items under service **`com.inbornapp.desktop`** (`chat-db-key`, `licence-cache-key`, `licence-device-id` —
+`src/secrets.rs`). A keychain item's ACL names the code identity that created it. `tauri.conf.json` signs dev builds
+ad-hoc (`"signingIdentity": "-"`), and an ad-hoc signature identifies an app only by its own code hash, so every rebuild
+is a stranger to the item and macOS asks for the login password: *"Inborn wants to use your confidential information
+stored in chat-db-key"*. That single dialog is why F41 and F42 shipped with **runtime proof NOT RUN**.
+
+**Moshe's build: a stable code identity.** `corepack pnpm desktop:build:app` and `desktop:build` go through
+`scripts/with-signing-identity.sh`, which exports `APPLE_SIGNING_IDENTITY` from the first **Apple Development** identity
+in `security find-identity -v -p codesigning`. That certificate's designated requirement is identifier + team, which does
+not change between builds, so the item the first signed launch creates keeps trusting every later one. Set
+`APPLE_SIGNING_IDENTITY` yourself to pick another certificate. It only holds for items **created under that identity**:
+an item left over from ad-hoc builds still asks, and the cure is to delete it and let the signed app make its own
+(`security delete-generic-password -s com.inbornapp.desktop -a chat-db-key`, plus `-a licence-cache-key`; the dev chats
+in `~/Library/Application Support/com.inbornapp.desktop/inborn.db*` go with it). Deleting does not prompt — only reading
+a secret does. A Developer ID release build has always had a stable requirement and never prompted.
+
+**QA builds: no keychain at all.** A signing certificate is not something CI or an unattended agent can rely on, and
+"probably no dialog" is not good enough when the rule is zero. `corepack pnpm desktop:build:qa` builds
+`--features qa`, and in that build only, `INBORN_QA_KEY_FILE` names a JSON file that holds the same secrets
+(`src/secrets.rs`, mode 0600). With it set the keychain is never opened, so no ACL can be wrong and no dialog can fire —
+on any Mac, signed or not, first build or fiftieth. The feature is absent from every shipped build, so there is no such
+file path in production. `desktop:check` runs the Rust tests both ways.
+
+### Driving the window: the QA control socket
+
+macOS has no WKWebView WebDriver — `tauri-driver` supports Linux and Windows only ([Tauri WebDriver
+docs](https://v2.tauri.app/develop/tests/webdriver/)); the alternatives are a paid cross-platform fork or an embedded
+WebDriver server inside the app, which is a large dependency in the shipped binary for a QA need. So the `qa` feature
+carries a small one of our own: `src/qa.rs` binds the **Unix socket** named by `INBORN_QA_SOCKET` and answers one JSON
+line per request — `ping`, `eval` (runs a snippet in the webview through `Webview::eval` and returns its value, which
+comes back by the page invoking `qa_result`), `quit`. A unix socket, not a port, so the macOS firewall has nothing to ask
+about either. Both the socket and the command exist only under `--features qa`, and only when the variable is set.
+
+Setting `INBORN_QA_SOCKET` also puts the app on `NSApplicationActivationPolicyAccessory`, so the window renders and can
+be photographed while the Mac's focus never moves.
 
 ```
-APP=apps/desktop/src-tauri/target/release/bundle/macos/Inborn.app/Contents/MacOS/inborn-desktop
-KEY=$(security find-generic-password -s com.inbornapp.desktop -a chat-db-key -w)   # prompts once
-security delete-generic-password -s com.inbornapp.desktop -a chat-db-key
-security add-generic-password -s com.inbornapp.desktop -a chat-db-key -w "$KEY" -T "$APP" -T /usr/bin/security
-unset KEY
+corepack pnpm desktop:build:qa                                  # ad-hoc signed on purpose: the QA path must not need a certificate
+node apps/desktop/scripts/qa-drive.mjs start                    # launches it; prints pid, socket, key file, log
+node apps/desktop/scripts/qa-drive.mjs eval 'return document.title'
+node apps/desktop/scripts/qa-drive.mjs shot /tmp/window.png     # screencapture -l <our window id>: never the screen
+node apps/desktop/scripts/qa-drive.mjs stop
+node apps/desktop/scripts/qa-desktop-run.mjs --out docs/qa/desktop-run-2026-09-22   # the whole proof in one command
 ```
 
-There is no item yet on a clean machine — the first launch creates one and never prompts; drop the two `find`/`KEY`
-lines and pass a fresh `-w "$(openssl rand -hex 32)"` (64 hex characters is what `key_hex()` expects). Resetting
-instead of preserving: `security delete-generic-password -s com.inbornapp.desktop -a chat-db-key` and delete
-`~/Library/Application Support/com.inbornapp.desktop/inborn.db*` — the dev chats are gone with it. Developer ID
-release builds (`scripts/release-macos.sh`) have always had a stable requirement and never prompted.
+Window ids come from `CGWindowListCopyWindowInfo` (`scripts/qa-windows.swift`) — metadata, no input events and no
+accessibility access. Nothing in this path types, clicks or activates anything.
 
 ## Packaging and distribution
 - **macOS**: `scripts/release-macos.sh` — Developer ID Application signature with hardened runtime, notarytool
