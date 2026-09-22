@@ -1518,6 +1518,85 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
 
+## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
+**F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
+to 16 words a short factual ask, so *"How do I set up SSH keys on my Mac?"* was given the short plan — 224 tokens and the
+line "Answer in one to three sentences". A how-to, an explanation, a comparison or a procedure is one line long but its
+answer is not, and three sentences of it is not an answer. On the emulator the unfixed build spent 47 words of prose on
+that question and never listed a step.
+
+**Root cause.** Round 19 shaped the request by **counting** — words, characters, a question mark — precisely so that a
+Hebrew or Japanese question would be judged like an English one. Counting cannot tell *"What is the capital of France?"*
+from *"How do I set up SSH keys on my Mac?"*: both are one line and both end in a question mark. Length was being read
+off the question's size when it belongs to the question's **kind**.
+
+**Fix** — `isExplanatoryAsk` in `packages/core/src/chat/length.ts`, checked before the counting rule. When it fires, the
+turn keeps its use's own length (`moderate`, 512 tokens, "Keep the answer as short as the question allows, a paragraph at
+most") instead of being shortened. Three small tables, not a language model:
+
+| table | read where | what is in it |
+|---|---|---|
+| `EXPLAIN_STARTS` | the start of the line, after any opening punctuation | Latin-script question words that only ever open a sentence: how do / how to / how does / how can / how should / how would / how did, why do / why is / why are / why did, `wie` `warum` `wieso` `weshalb`, `comment` `pourquoi`, `cómo` `como` `por qué` `porque` |
+| `EXPLAIN_MARKS` | anywhere in the line | explain, walk me through, step by step, tell me about, what happens if / when, what is the difference, difference between, compare, pros and cons, and their German, Spanish, French and Portuguese equivalents — plus the CJK and Hebrew markers, which are read anywhere because those languages put the question word mid-sentence (`Macでどうやって…`, `Mac에서 … 어떻게`, `如何在 Mac 上…`) |
+| `EXPLAIN_NOT` | the start of the line | the few openings of those same question words that really are one-liners, so they keep the short plan: how much / how many / how old / how far, `wie viel` `wie alt` `wie heißt`, `cómo se llama`, `comment s'appelle` |
+
+Two details the tests pin. `\b` is useless outside ASCII in JavaScript, so the Hebrew openings carry their own letter
+guard (`[^א-ת]`) — without it *"מי היה שלמה המלך?"* matches `למה` and a factual question becomes a how-to. And Spanish and
+French questions open with `¿` or a quote, so the start anchor skips leading punctuation.
+
+Nothing above the heuristic moved: an explicit "briefly" or "in one sentence" still wins, a drafted document is still
+long, a hands-free turn is still spoken, and the device guard still clamps every plan. `LENGTH_INSTRUCTIONS` is unchanged
+— no test asked for a new line. 12 tests in `packages/core/test/fixes-r20.test.ts`.
+
+**The plan, deterministically** (`planAnswerLength(… use: "chat")` on both trees — this is the mechanism, and it is the
+only part of this round that is not sampling):
+
+| prompt | before | after |
+|---|---|---|
+| How do I set up SSH keys on my Mac? | short / 224 | **moderate / 512** |
+| Why is the sky blue? | short / 224 | **moderate / 512** |
+| What is the capital of France? | short / 224 | short / 224 |
+| What is 2 plus 2? | short / 224 | short / 224 |
+
+**Proof, Android emulator.** The `Pixel_6_API_33` AVD itself this time (`google_apis`, `PlayStore.enabled = false`), arm64,
+`-memory 4096`, headless on port 5584; release AAB built with `INBORN_PACKS=instant`, versionCode 20, delivered through
+bundletool `--local-testing`, so Instant comes from the real asset pack. Same emulator, same model; before = `origin/main`
+8729992, after = this branch. Prompts through `EXPO_PUBLIC_AUTOPROMPT=file`, numbers from `Documents/dev-run.json`.
+Screenshots in `docs/qa/fixes-r20/`.
+
+| scenario | before | after |
+|---|---|---|
+| "How do I set up SSH keys on my Mac?" | 47 words in 5.0 s, **one prose paragraph, no steps** | **84 words in 7.4 s, numbered 1.–4.** (resampled: 84 words, 9.6 s, numbered again) |
+| "Why is the sky blue?" | 50 words, 4.4 s | 38 words, 4.3 s |
+| "What is the capital of France?" | 6 words, 2.3 s | 16 words, 3.9 s — **one sentence**; resampled twice: 6 words / 1.1 s and 6 words / 0.8 s |
+| "What is 2 plus 2?" ×2 in one chat | 5 words each, 1.4 / 0.8 s | 5 words each, 1.3 / 1.0 s |
+
+**Honest about the run.** Sampling is unseeded, so no single answer is deterministic on either build — the plan table
+above is the claim, the device table is what one sample of it looked like. Two rows are worth saying out loud. The sky
+question shows **no visible win**: the unfixed build already happened to answer it in a reasonable paragraph, and 50 → 38
+words is noise, not the fix. And answer **quality is unchanged** — both builds invent the same nonsense for SSH (a
+fictional `mac-ssh` utility, `ssh-keygen -x` / `-H`); this round buys the answer its shape and its budget, not
+correctness from a 0.8B model. The capital-of-France answer at 16 words on the first after-sample was resampled precisely
+because a grown answer there would have meant the fix leaked; two further samples came back at 6 words, and the plan is
+`short` / 224 either way.
+
+**iPhone 15 Pro simulator** (shared JS): release build of this branch, Instant bundled at `Inborndev.app/instant.gguf`,
+the SSH question through the same `EXPO_PUBLIC_AUTOPROMPT=file` hook: **88 words in 4.2 s at 48.4 tok/s, TTFT 1.69 s**
+(`i-01-ssh-after.png`), sequential instructions in prose rather than a numbered list — the moderate budget is plainly in
+force, the numbered shape is not guaranteed run to run. Simulator shut down afterwards; `xcrun simctl list devices booted`
+lists nothing.
+
+**Not verified here.** The same-question-in-a-documents-chat state the 6T was in during soak 6 still needs the `embed`
+pack and is out of reach on an `INBORN_PACKS=instant` build, exactly as in round 19. No physical device was used in this
+round, so nothing is claimed about the OnePlus 6T or a real iPhone.
+
+**Build trap worth recording.** `INBORN_MODELS_DIR` has to be exported for the **gradle** step too, not only for
+`expo prebuild`: without it `:doc-extract:verifyOcrAssets` fails in a worktree that has no `.models` of its own. The
+round-19 recipe above only sets it on the prebuild line.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core **505**, 493 + the 12 new, mobile 169, i18n 10, ui 11 — **695** tests),
+`pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines, first visit 10.7 s, 31.5 tok/s), `pn desktop:check` 0 (7 Rust tests).
+
 ## Fixes round 19: the model dug into every question, however small (branch `fixes-r19`) — 22.9.2026
 **F38** (Moshe, 22.9.2026 01:00, watching the OnePlus 6T during soak 6): *"when the bot answers it really digs / rambles"*.
 In `docs/qa/soak-run-5-2026-09-21.md`'s successor run, on the release build 1.0.0 (13) with Instant resident, **"What is 2
