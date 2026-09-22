@@ -37,6 +37,7 @@ export const HEADLINE_KEYS = {
   thermalStoppedComputer: "device.thermal.stoppedComputer",
   throttling: "device.throttling",
   memorySwitched: "device.memory.switched",
+  fitSwitched: "device.fit.switched",
   memoryStopped: "device.memory.stopped",
   memoryPropose: "device.memory.propose",
   paused: "device.paused",
@@ -71,13 +72,16 @@ const RANK: Record<Status, number> = {
 };
 
 
+/** Why a model was swapped automatically: a flat battery, this device running out of memory, or the chosen model never fitting its RAM. */
+export type SwitchReason = "battery" | "memory" | "fit";
+
 type Accepted = { kind: "none" } | { kind: "switch"; tier: ModelTier } | { kind: "continue" } | { kind: "answerAnyway" };
 
 interface Memory {
   status: Status;
   candidate: Status;
   candidateSince: number;
-  autoSwitch: { from: ModelTier; to: ModelTier; reason: "battery" | "memory" } | null;
+  autoSwitch: { from: ModelTier; to: ModelTier; reason: SwitchReason } | null;
   keptSmaller: boolean;
   userSwitchedBack: boolean;
   offered: Set<Status>;
@@ -106,6 +110,8 @@ const fresh = (): Memory => ({
   explained: false,
   longAnswerAllowedUntil: 0,
 });
+
+const switchedForMemory = (a: Memory["autoSwitch"]): boolean => a?.reason === "memory" || a?.reason === "fit";
 
 const pct = (level: number | null): number => Math.round((level ?? 0) * 100);
 const isCharging = (s: DeviceSignals): boolean => s.battery.state === "charging" || s.battery.state === "full" || s.powerSource === "ac";
@@ -218,7 +224,7 @@ export class DevicePolicy {
   }
 
   /** The engine switched models. `auto` records the switch so charging can bring the previous model back. */
-  noteSwitched(from: ModelTier, to: ModelTier, auto: boolean, reason: "battery" | "memory" = "battery"): void {
+  noteSwitched(from: ModelTier, to: ModelTier, auto: boolean, reason: SwitchReason = "battery"): void {
     const m = this.mem;
     if (auto) {
       m.autoSwitch = { from: m.autoSwitch?.from ?? from, to, reason };
@@ -289,7 +295,7 @@ export class DevicePolicy {
       if (m.batteryStep === 1 && !m.offered.has("batteryLow") && this.target(s)) return "batteryLow";
     }
     /* Memory back: the line the switch left behind stays until the user takes Switch back or dismisses it (§6.5 memory row). */
-    if (mobile && m.autoSwitch?.reason === "memory" && m.autoSwitch.to === s.currentTier && !m.keptSmaller && !m.offered.has("memoryBack")) return "memoryBack";
+    if (mobile && switchedForMemory(m.autoSwitch) && m.autoSwitch!.to === s.currentTier && !m.keptSmaller && !m.offered.has("memoryBack")) return "memoryBack";
     /* The speed-drop stand-in is a Windows (no thermal API) row; phones and Macs have real thermal signals. */
     if ((c === "desktop" || c === "laptop") && s.throttling && !m.offered.has("throttling") && this.target(s)) return "throttling";
     return "normal";
@@ -308,7 +314,7 @@ export class DevicePolicy {
       case "recovered":
         return !isCharging(s) && (s.battery.level ?? 0) > 0.28;
       case "memoryBack":
-        return m.autoSwitch?.reason === "memory";
+        return switchedForMemory(m.autoSwitch);
       case "charging":
         return isCharging(s) || (m.restoredAt !== null && now - m.restoredAt < this.lingerMs);
       case "thermalSerious":
@@ -483,11 +489,15 @@ export class DevicePolicy {
           if (target) button("switchSmaller");
         }
         break;
-      case "memoryBack":
+      case "memoryBack": {
+        const from = TIER_NAMES[m.autoSwitch?.from ?? s.currentTier];
         grade("propose", "switchBack", m.autoSwitch?.from ?? null);
-        line(HEADLINE_KEYS.memorySwitched, { model: TIER_NAMES[s.currentTier] });
-        button("switchBack", { model: TIER_NAMES[m.autoSwitch?.from ?? s.currentTier] });
+        /* The boot-time RAM floor never saw the device run out of memory; it read the model's minimum and never mapped it (QA F43). */
+        if (m.autoSwitch?.reason === "fit") line(HEADLINE_KEYS.fitSwitched, { model: from, to: TIER_NAMES[s.currentTier] });
+        else line(HEADLINE_KEYS.memorySwitched, { model: TIER_NAMES[s.currentTier] });
+        button("switchBack", { model: from });
         break;
+      }
       case "paused":
         grade("act", "pauseGeneration");
         rec.stopGeneration = true;

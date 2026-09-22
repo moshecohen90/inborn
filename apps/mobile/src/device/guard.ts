@@ -10,6 +10,7 @@ import {
   type ModelTier,
   type PowerSource,
   type Recommendation,
+  type SwitchReason,
   type ThermalState,
   type Tier,
   type UserOverride,
@@ -140,9 +141,9 @@ class DeviceGuard {
     this.evaluate();
   };
 
-  /** The boot-time RAM floor started Instant instead of the vault default (§6.5): the line reads as a memory switch and offers the way back. */
+  /** The boot-time RAM floor started Instant instead of the vault default (§6.5): the line says the model does not fit and offers the way back. */
   noteBootSwitch = (from: ModelTier): void => {
-    this.policy.noteSwitched(from, "instant", true, "memory");
+    this.policy.noteSwitched(from, "instant", true, "fit");
     this.evaluate();
   };
 
@@ -298,14 +299,14 @@ class DeviceGuard {
   }
 
   /* Model switches wait for the answer in flight (§6.5: "from the next message"). */
-  private queueSwitch(tier: Tier, auto: boolean, restore: boolean, reason: "battery" | "memory" = "battery", from?: ModelTier): void {
+  private queueSwitch(tier: Tier, auto: boolean, restore: boolean, reason: SwitchReason = "battery", from?: ModelTier): void {
     this.pendingSwitch = { tier, auto, restore };
     this.switchReason = reason;
     this.switchFrom = from ?? tierOf(peekEngine()?.model.id ?? "instant");
     if (!isGenerating()) void this.applyPendingSwitch();
   }
 
-  private switchReason: "battery" | "memory" = "battery";
+  private switchReason: SwitchReason = "battery";
   private switchFrom: ModelTier = "instant";
   private switching = false;
   private pausedInBackground = false;

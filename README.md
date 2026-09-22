@@ -1824,6 +1824,43 @@ event only while `os_proc_available_memory()` is at or below **150 MB**. That is
 `IOS_HEADROOM_BYTES`, the number `memoryHealthy()` was already using to decide the same question, now named once and
 shared. The protections are unchanged when the app itself is genuinely near its jetsam limit.
 
+### The line the guard leaves behind, when nothing actually went wrong
+
+§6.5 keeps the `memoryBack` line standing until the user acts, deliberately: an eviction is a fact the user should see,
+not a toast that scrolls past. That is right when the device really ran out. It is not right when the boot-time RAM
+floor merely decided a model does not fit — nothing was evicted, nothing was even mapped, and "Ran out of memory" is
+then a false statement about the phone, latched on screen for the rest of the session. Both root causes above reached
+that same line; the fixes stop this phone from reaching it, but any phone that genuinely does not fit its chosen model
+still will.
+
+So the switch now records **why**. `SwitchReason` in `policy.ts` gains `"fit"` beside `"battery"` and `"memory"`, and
+`noteBootSwitch` in `apps/mobile/src/device/guard.ts` uses it. The row's *behaviour* is unchanged and stays unchanged on
+purpose — it stands until SWITCH BACK or a dismiss, because the user's own choice of model was overridden and they must
+be able to see that and undo it. What follows the reason is the sentence and the tone:
+
+| reason | the line | tone |
+|---|---|---|
+| `memory` — the device ran out, mid-session | "Ran out of memory · Switched to Instant" | amber |
+| `fit` — the boot floor, before anything was loaded | "Not enough memory for the model you chose · Started on Instant" | muted |
+
+Core gets the parameterised form for the desktop policy row, `device.fit.switched` — "Not enough memory for {model} ·
+Started on {to}" — in all nine locales.
+
+### What was not measured, and why the third path is still settled
+
+One more path could reach this banner and was asked about by name: the boot read in `signals.ts` compares
+`os_proc_available_memory()` against 150 MB, and a launch that read under that floor would demote the model the same
+way. **The literal value could not be sampled on the phone.** Printing it needs a JS hook, and a `--dev` bundle embedded
+in this Release app redboxes with "Cannot create devtools websocket connections in embedded environments", while the
+shipping bundle has no console to read it from. That attempt failed and is reported as failed.
+
+It is settled indirectly, and the argument is tight. `memoryHealthy()` and that 150 MB floor are **unchanged by this
+round** — the fix did not touch either — and the fixed build raised **no banner on three cold launches** with Fast
+selected under ordinary load. `memoryHealthy(snap)` was therefore true on each, so `os_proc_available_memory()` was
+above 150 MB at boot on this phone every time. That path is not the cause here, and the floor is not too high here. What
+stays unproven is the margin — how close to 150 MB the number actually runs — which needs a real sample on a loaded
+phone before that floor is ever treated as a tuning knob.
+
 ### F45 — the banner hid content on screens that did not pad for it
 
 The strip is an absolute overlay drawn from `app/_layout.tsx` at `insets.top + 52`, over whatever screen is up. QA F13
@@ -1835,7 +1872,10 @@ cut) and on the paywall it took the slot holding "No subscription. No account. Y
 and every screen container now reserves the height: `components/shell/Screen.tsx` (the 18 routes built on it, scrolling
 and not), `VaultScreen`, `DocumentsScreen`, `PaywallScreen`, and `HandsFreeScreen` — which pads rather than inserting a
 child, because its root is `justify-content: space-between` and a fourth flex item would redistribute the layout. Chat
-and Chats moved onto the shared component, so there is one spacer in the app and one `banner-inset` testID.
+and Chats moved onto the shared component, so there is one spacer in the app and one `banner-inset` testID. The
+geometry itself is a pure module, `lib/bannerGeometry.ts`, so the arithmetic that was wrong on the first attempt is
+pinned by six tests — including the one that catches it: reserving the strip's height alone leaves the first line
+covered, because the strip ends `BANNER_TOP + height` below the safe area.
 
 ### F46 — Play sources listed on an iPhone, twice
 
@@ -1864,18 +1904,19 @@ never locked or unlocked, and no setting was changed.
 | # | check | result | evidence |
 |---|---|---|---|
 | 1 | cold launch with Fast selected, three times | **PASS** — no memory banner on any launch, chat header reads **FAST**, and the log opens `Qwen3.5-2B-Q4_K_M.gguf` ×1 and `instant.gguf` ×0 each time. Pass 12 on the same phone, same vault: the banner on every launch, `instant.gguf` ×4 and the Fast file **×0** across 16 launches | `after-01-chat-coldlaunch-fast.png` |
-| 2 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
-| 3 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
-| 4 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
-| 5 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
-| 6 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
+| 2 | Fast **answers**, with no tap on SWITCH BACK | **PASS** — the XCUITest driver asked "What is the capital of France?" on a cold launch of the fixed build and the chat returned `FAST · ON-DEVICE AI · The capital of France is Paris.` The ledger reads `MODEL FAST · QUANT Q4_K · CONTEXT 144 / 4096 · MS/TOKEN 77 · TOK/S 13.1 · FIRST TOKEN 680 ms · TOKENS IN+OUT 138 + 6`. Pass 12 reached 13.2 tok/s on the same phone and the same model, but only after tapping SWITCH BACK past the banner | `after-08`, `after-09` |
+| 3 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
+| 4 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
+| 5 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
+| 6 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
+| 7 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
 
 **The A/B is on one photograph.** `before-01-build12-banner-on-relaunch.png` is the About screen of the *reinstalled*
 shipped 1.0.0 (12), taken after all of the above: the same phone, the same vault, the banner back. The fix is in the
 build, not in the phone's state.
 
-Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 521, mobile 190, i18n 10,
-ui 11 — **732** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 198, i18n 10,
+ui 11 — **742** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
 ## Fixes round 24: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
 **F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
 entering a password and WITHOUT you moving my mouse all the time."* Two walls stood between an agent and the
