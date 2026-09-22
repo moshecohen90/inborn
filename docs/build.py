@@ -3,7 +3,7 @@
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SPEC = os.path.join(ROOT, 'spec')
+SPEC = os.path.join(ROOT, 'spec-src')
 OUT = os.path.join(ROOT, 'out')
 os.makedirs(OUT, exist_ok=True)
 

@@ -1,0 +1,15 @@
+
+> @inborn/mobile@0.0.1 test /Users/moshecohen/dev/inborn-wt/fixes-r24c/apps/mobile
+> vitest run
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r24c/apps/mobile
+
+ ❯ test/gates-wired.test.ts (4 tests | 1 failed) 24ms
+   ❯ the document intake doors (2)
+     × every file that reaches importFile came through fileIntake 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/gates-wired.test.ts > the document intake doors > every file that reaches importFile came through fileIntake
+AssertionError: screens/Chat.tsx imports a file without asking fileIntake: expected 'import { useCallback, useEffect, useM…' to contain 'fileIntake'

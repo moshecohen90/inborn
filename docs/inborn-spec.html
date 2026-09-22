@@ -511,7 +511,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1769">
+<section class="sec" data-tier="rec" data-words="1770">
 <h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית<span class="tierpill">RECOMMENDED</span><span class="h2min">~9 min</span></h2>
 <p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
 
@@ -606,8 +606,8 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <thead><tr><th>מנגנון</th><th>מימוש</th><th>הערה</th></tr></thead>
 <tbody>
 <tr><td>מנעול אפליקציה</td><td>Face ID / Touch ID / Android BiometricPrompt / Windows Hello, עם נפילה לקוד; חוסם גם את תצוגת ה‑app switcher (מסך הסתרה)</td><td>ברירת מחדל: כבוי, מוצע בסוף ה‑onboarding</td></tr>
-<tr><td>חסימת צילומי מסך</td><td>Android <code>FLAG_SECURE</code>; iOS אין API לחסימה, אבל מזהים <code>UIScreen.isCaptured</code> ומסתירים תוכן בזמן שיקוף/הקלטה</td><td>Pro; מסביר בכנות ש‑iOS לא מאפשר חסימה מלאה</td></tr>
-<tr><td>מחיקת חירום (Panic wipe)</td><td>מוחק DB + מפתח + מסמכים; מודלים לפי בחירה. אפשרות "מחק אחרי N ניסיונות כושלים" ואפשרות מחיקה מהירה מהמסך הנעול (Pro)</td><td>אישור כפול, ללא שחזור</td></tr>
+<tr><td>חסימת צילומי מסך</td><td>Android <code>FLAG_SECURE</code>; iOS אין API לחסימה, אבל מזהים <code>UIScreen.isCaptured</code> ומסתירים תוכן בזמן שיקוף/הקלטה</td><td>חינם (כמו §7.5); מסביר בכנות ש‑iOS לא מאפשר חסימה מלאה</td></tr>
+<tr><td>מחיקת חירום (Panic wipe)</td><td>מוחק DB + מפתח + מסמכים; מודלים לפי בחירה. אפשרות "מחק אחרי N ניסיונות כושלים" ואפשרות מחיקה מהירה מהמסך הנעול</td><td>אישור כפול, ללא שחזור</td></tr>
 <tr><td>אינקוגניטו</td><td>שיחה ב‑RAM בלבד: לא נכתבת ל‑DB, לא לאינדקס החיפוש, לא לגיבוי/ייצוא, לא לווידג'טים ול‑Shortcuts; הזיכרון לא נקרא ולא נכתב; מסמך שצורף מאונדקס ב‑RAM בלבד; נמחקת בסגירה או במעבר לרקע לפי הגדרה; אייקון ייעודי</td><td>חינם</td></tr>
 <tr><td>ניקוי זיכרון</td><td>KV cache ו‑buffers מאופסים אחרי כל סשן אינקוגניטו; המודל נפרק אחרי 10 דקות חוסר פעילות (חוסך גם סוללה)</td><td></td></tr>
 <tr><td>ניתוח בדיקות</td><td>קוד פתוח לליבה (מנוע, אחסון, רשת) תחת רישיון מתירני, hash של ה‑bundle מפורסם לכל גרסה</td><td>ראו §16 החלטה על היקף הקוד הפתוח</td></tr>

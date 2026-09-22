@@ -1917,6 +1917,83 @@ build, not in the phone's state.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 198, i18n 10,
 ui 11 — **742** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+## Fixes round 28: the share sheet handed out the paid document features (branch `fixes-r24c`) — 22.9.2026
+From the spec-conformance audit's §7 section: one bypass, eleven rows where the enforced tier was not the spec's
+tier, and 23 of 39 gate keys that no screen ever asked. F72–F76.
+
+**The bypass.** `Chat.tsx` took each file out of a share payload and called `library.importFile` directly, while
+the attach sheet's own picker went through `pickIntoLibrary`, which asked both document gates. So the Free cap of
+one file per chat (§7.3 row 1) and the Work formats (§7.3 row 8) held at one door and not at the other — and the
+open door is the share sheet, which §7.7 calls the cheapest acquisition surface we have. A Free user could share
+in ten files; a Pro user could share in a spreadsheet the picker refuses.
+
+**The fix is one function, not a second copy of the checks.** `packages/core/src/licence/intake.ts`:
+
+```ts
+fileIntake(tier, kind, attachedCount) -> { ok } | { paywall, moment: "document" | "office" }
+```
+
+Every door calls it — the picker, the S40 library, the share path — and `apps/mobile/test/gates-wired.test.ts`
+fails if a fourth module ever calls `library.importFile` without it. The count is answered before the kind, so a
+Free user's second spreadsheet opens the paywall on the cap it actually hit.
+
+A shared file is worse than a picked one in one way: the name comes from the sender, and `.docx` and `.xlsx` are
+the same ZIP magic bytes. `sharedName()` runs the sender's name and MIME type through the existing
+`pickedFileName` — the helper QA F3 built for Android's SAF ids — so an extensionless share of an Excel MIME type
+resolves to `blob.xlsx` and is refused.
+
+**The eleven tier rows.** Four needed code, two needed the spec corrected, five were already right.
+
+| §7 row | spec | was | now |
+|---|---|---|---|
+| OCR on device (§7.3 row 3) | Pro | ungated | `ocr` gate wired; the action reads `Run OCR · PRO` |
+| "Answer only from my documents" (§7.3 row 4) | Pro | ungated, on two switches | new `strictDocuments` gate, on the switches **and** on the prompt |
+| Memory (§7.6) | Pro | only *add* was gated | every write is Pro; deleting is never sold |
+| Detailed statistics (§7.8) | Free basic · Pro detailed | all eight rows free | §7.1's four rows are Free, the rest are `detailedStats` |
+| Screenshot blocking, lock-screen wipe (§5.7 vs §7.5) | **Free** | Free, and a test locks it | **the spec was wrong**: §5.7 corrected |
+| XLSX, file picker, camera, CSV, DOCX | see below | — | unchanged; the code already matched |
+
+Two of these are gates on the chrome only if you stop at the switch. Strict mode is read at prompt time from
+`state.strict`, and memory is read by `store.memoryFor()` on every turn, so a user who turned either on while
+subscribed kept the Pro behaviour after the licence lapsed. Both are now masked at the read: one line in
+`documents/hooks.ts`, one at the `memoryFor` call site. A lapsed licence stops changing answers, and deletes
+nothing.
+
+Memory draws a line rather than gating the panel: every **write** is Pro — add, edit, turning it on, re-enabling a
+fact — and every **delete** stays free, because §7 opens by pointing out that a privacy app which charges for
+privacy gets called a scam in its own reviews. Turning memory off is free; only turning it on is sold.
+
+**Three places where the spec contradicts itself** got a decision in code and none in the §7 tables, which this
+branch did not touch. Each is a one-line reversal if Moshe disagrees, and all three are written out in
+`docs/qa/fixes-r24c/tier-matrix.md`: CSV and DOCX are **Free to attach** (§7.3 row 1 names them, which is more
+specific than row 5's "table understanding" and row 8's vault import); XLSX and HTML are **Work** (row 8 names
+them by format, and the shipping code already said so); the system picker stays **Free**, because row 1's Free
+attachment has no other way in and gating the picker would make that row unreachable.
+
+**The dead keys.** 23 of 39 gate keys had no call site — F42's shape in the licensing layer. The 11 whose features
+`README.md:596-599` declares "intentionally not built for 1.0" are deleted and return with their features. Three
+were wired by this round. The 11 that remain unbuilt but are still sold by §7 are named in `UNBUILT_FEATURES`, and
+the new guard fails if a key is neither called nor on that list — and equally if a key on the list turns out to be
+enforced.
+
+**Both guards were watched failing before they were watched passing.** With the share fix removed:
+`screens/Chat.tsx imports a file without asking fileIntake`. With one unwired key added back:
+`expected [ 'keyboardExtension' ] to deeply equal []`. Logs in `docs/qa/fixes-r24c/`.
+
+**Found on the way.** `python3 docs/build.py` has been unable to build the spec since commit `077aacf` renamed
+`docs/spec` to `docs/spec-src` without updating the script's `SPEC` constant: it exited `missing
+…/docs/spec/00-head.html`. One line. It still writes into `docs/out/`, so publishing `docs/inborn-spec.html` is a
+copy, and the demo half of the script is skipped silently for the same rename — left for whoever owns the demo.
+
+**What is not proven.** Nothing in this round was seen on a phone, a simulator, an emulator or a browser: no
+device was available to this stream. The gates are pure functions with a full tier × kind matrix in tests, and the
+wiring is held by a source scan, but the paywall each gate opens, the `PRO` chips, and the shortened ledger are
+unobserved. The next device pass should read: share an `.xlsx` from Files as a Free user, share a second PDF into
+a chat that already has one, open the ledger, tap the strict switch.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 534, mobile 202, i18n
+10, ui 11 — **757** tests), `pn lint` 0.
+
 ## Fixes round 24: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
 **F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
 entering a password and WITHOUT you moving my mouse all the time."* Two walls stood between an agent and the
