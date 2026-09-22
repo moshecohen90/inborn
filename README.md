@@ -1794,6 +1794,13 @@ outlive the answer it was taken for. Three things are worth knowing about the ed
 - **The native side claims its token before `beginBackgroundTask` can expire it**, so the race where the expiration
   handler finds nothing to end cannot leave a task running and the app killed for it.
 
+Built for the real phone: an unsigned arm64 `iphoneos` build carries `_TtC14BackgroundTask20BackgroundTaskModule` and
+the selectors `beginBackgroundTaskWithName:expirationHandler:`, `endBackgroundTask:` and `backgroundTimeRemaining` in
+its binary, and Expo's autolinking registered the module in `ExpoModulesProvider.swift`
+(`docs/qa/fixes-r25/ios-device-build.txt`). **The hold's runtime effect on a backgrounded phone is not proven here.**
+Driving the iPhone needs the *"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"* sheet, which only Moshe can
+accept and whose grant does not persist, so release-checklist T12 stays open for the next pass he is present for.
+
 ### Android takes no foreground service for 1.0 — decided, not deferred
 The spec row promised one ("foreground service קצר-חיים עם התראה"); it is now restated. Three reasons:
 
@@ -1815,9 +1822,10 @@ Fixed with the key Expo already owns rather than a plugin of our own — `ios.de
 which `@expo/prebuild-config`'s default chain applies to `ios/Podfile.properties.json` and to the app target's build
 configurations. It leaves the *project-level* pair at the template's 16.4, which any target added later would
 inherit, so `plugins/withProjectDeploymentTarget.js` carries the same number down to them. Proved by running
-prebuild, not by reading the config: all four pbxproj entries and the Podfile property read 17.0
-(`docs/qa/fixes-r25/ios-deployment-target.txt`). Three tests hold the config, every podspec and the two documents to
-one number, so the next drift fails on a laptop instead of in App Store Connect.
+the build rather than by reading the config: all four pbxproj entries and the Podfile property read 17.0 after
+prebuild (`docs/qa/fixes-r25/ios-deployment-target.txt`), and the `Info.plist` of the arm64 app `xcodebuild` produces
+reads `MinimumOSVersion 17.0` (`docs/qa/fixes-r25/ios-device-build.txt`). Three tests hold the config, every podspec
+and the two documents to one number, so the next drift fails on a laptop instead of in App Store Connect.
 
 ### F68 — the zero-INTERNET CI gate was switched off
 `android-permission-gate: if: false`, with a TODO saying it needed a release APK. So the one check behind decision
@@ -1836,6 +1844,11 @@ empties `android.blockedPermissions`, produce a manifest carrying 18 permissions
 gate exits 1 (`docs/qa/fixes-r25/ci-permission-gate.txt`). That listing also settles gap #25 — the INTERNET does
 come from the `openiap-google` wrapper, so the spec's stated reason is wrong and `blockedPermissions` is what
 removes it, along with eight others.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 214,
+i18n 10, ui 11 — **758** tests, 16 new), `pn lint` 0. Plus three that only this round's work exercises:
+`expo prebuild -p ios` then `pod install` then `xcodebuild -sdk iphoneos` 0 with 0 errors, and the Android
+permission gate green on a real merged release manifest and red on a sabotaged one.
 
 ## Fixes round 23: the guard dropped a model that fits (branch `fixes-r23`) — 22.9.2026
 **F43, F45, F46** — the three findings the real-iPhone pass 12 left open
