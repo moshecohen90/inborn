@@ -250,7 +250,8 @@ export class InMemoryChatRepository implements ChatRepository, LibraryRepository
     if (patch.reasoning !== undefined) message.reasoning = patch.reasoning;
     if (patch.reasoningMs !== undefined) message.reasoningMs = patch.reasoningMs;
     if (patch.stopped !== undefined) message.stopped = patch.stopped;
-    if (patch.stoppedBy !== undefined) message.stoppedBy = patch.stoppedBy;
+    if (patch.stoppedBy === null) delete message.stoppedBy;
+    else if (patch.stoppedBy !== undefined) message.stoppedBy = patch.stoppedBy;
     if (patch.usage !== undefined) message.usage = { ...patch.usage };
     if (patch.images !== undefined) {
       if (patch.images.length) message.images = [...patch.images];
