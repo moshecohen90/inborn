@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -16,6 +16,8 @@ import { LockScreen } from "../lock/LockScreen";
 import { Seal } from "../components/Seal";
 import { WebShell } from "../web/WebShell";
 import { useShareTarget } from "../share";
+import { useDocumentDrop } from "../documents/drop";
+import { queueDroppedPaths } from "../documents/dropQueue";
 import { closeOpenSheets } from "../lib/openSheets";
 import { WideShell } from "../components/shell/WideShell";
 import { CommandPalette } from "../components/shell/CommandPalette";
@@ -86,6 +88,16 @@ function Shell() {
     openShared(payload);
     if (router.canGoBack()) router.dismissTo("/");
   });
+  /* §8.9: a file dropped anywhere on the desktop window is a document; the library screen takes it from here. */
+  useDocumentDrop(
+    useCallback(
+      (paths: string[]) => {
+        queueDroppedPaths(paths);
+        router.push("/documents");
+      },
+      [router],
+    ),
+  );
   const cover = (lock.covered && prefs.lock.enabled && prefs.lock.hideInSwitcher) || (captured && prefs.lock.screenshotProtection);
   const stack = (
     <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.bg } }}>

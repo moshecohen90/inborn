@@ -1,11 +1,10 @@
 import { kindOf, pickedFileName, type DocKind, type LicenceTier, can } from "@inborn/core";
+import { isWorkKind } from "./workKinds";
 import { contentMeta } from "../../modules/share-target";
 import { readHead } from "./files";
 
-/** Office intake (spec §7.3 row 8, §7.9): Excel and HTML are Work; a Word file stays the Free single attachment of row 1. */
-export const WORK_KINDS: readonly DocKind[] = ["xlsx", "html"];
-
-export const isWorkKind = (kind: DocKind): boolean => WORK_KINDS.includes(kind);
+/* The pure half lives in workKinds.ts so the drop planner can read it without this file's native imports. */
+export { WORK_KINDS, isWorkKind } from "./workKinds";
 
 export { PICK_TYPES } from "./pickTypes";
 

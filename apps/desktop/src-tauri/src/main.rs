@@ -29,6 +29,7 @@ fn main() {
     .manage(engine::Engine::start())
     .manage(store::Store::default())
     .manage(shell::Seal::default())
+    .manage(shell::Dropped::default())
     .setup(|app| {
       shell::install(app)?;
       #[cfg(all(feature = "qa", unix))]
@@ -69,6 +70,7 @@ fn main() {
       models::models_pick,
       models::models_remove,
       shell::seal_state,
+      shell::documents_read,
       shell::desktop_info,
       updater::updater_check,
       updater::updater_install,
