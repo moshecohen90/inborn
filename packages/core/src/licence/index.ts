@@ -2,6 +2,7 @@ export * from "./types";
 export * from "./entitlement";
 export * from "./gates";
 export * from "./moments";
+export * from "./intake";
 export * from "./cache";
 export * from "./manager";
 export { verifyAppleJws, decodeAppleJws, type AppleVerifyOptions } from "./apple";
