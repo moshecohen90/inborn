@@ -3,7 +3,11 @@ import { MemoryEmbeddingStore, hashEmbedder, type DocKind, type OpenedDocument, 
 
 /* The saved library: what would be inside the SQLCipher database. The test asserts on it directly. */
 const saved = new MemoryEmbeddingStore();
+/* The device's disk, by path. `LIBRARY` is the document directory that survives a launch; `INCOGNITO` is the cache
+   directory the session owns (F95): a file there must never outlive its session, crash or no crash. */
 const files = new Map<string, string>();
+const LIBRARY = "/library/";
+const INCOGNITO = "/cache/incognito/";
 
 vi.mock("./db", () => ({ openRagStore: async () => saved, ragStoreKind: () => "sqlcipher" }));
 vi.mock("./embedder", () => ({ resolveEmbedder: () => ({ path: "/embed.gguf", embedder: hashEmbedder(64) }) }));
@@ -21,10 +25,15 @@ vi.mock("./extract", () => ({
   ],
 }));
 vi.mock("./files", () => ({
-  copyIntoLibrary: (uri: string, id: string, name: string) => {
-    const stored = `/library/${id}-${name}`;
+  copyIntoLibrary: (uri: string, id: string, name: string, opts: { incognito?: boolean } = {}) => {
+    const stored = `${opts.incognito ? INCOGNITO : LIBRARY}${id}-${name}`;
     files.set(stored, files.get(uri) ?? "");
     return stored;
+  },
+  sweepIncognitoFiles: () => {
+    const orphans = [...files.keys()].filter((k) => k.startsWith(INCOGNITO));
+    for (const k of orphans) files.delete(k);
+    return orphans.length;
   },
   deleteFile: (uri: string | undefined) => void (uri && files.delete(uri)),
   readHead: () => new TextEncoder().encode("plain text"),
@@ -94,18 +103,43 @@ describe("incognito documents live in RAM only (spec §5.7, F69/F70)", () => {
     const chatKey = `${RAM_ATTACH_PREFIX}chat-1`;
     library.attach(chatKey, secret.id);
     library.attach("chat-2", kept.id);
-    const storedUri = library.document(secret.id)?.uri;
-    expect(storedUri && files.has(storedUri)).toBe(true);
+    const storedUri = library.document(secret.id)!.uri!;
+    /* The complement of the old assertion: the copy the extractor reads is in the session's cache directory, and the
+       document library, which survives the session, never holds it. */
+    expect(storedUri.startsWith(INCOGNITO)).toBe(true);
+    expect([...files.keys()].filter((k) => k.startsWith(LIBRARY))).toEqual([library.document(kept.id)!.uri]);
 
     library.endSession();
 
     expect(library.state().documents.map((d) => d.name)).toEqual(["warranty.txt"]);
     expect(library.document(secret.id)).toBeUndefined();
     expect(library.isIncognito(secret.id)).toBe(false);
-    expect(storedUri && files.has(storedUri)).toBe(false);
+    expect(files.has(storedUri)).toBe(false);
     expect(library.attachedTo(chatKey)).toEqual([]);
     expect(library.attachedTo("chat-2").map((d) => d.id)).toEqual([kept.id]);
     expect((await saved.listDocuments()).map((d) => d.name)).toEqual(["warranty.txt"]);
+  });
+
+  it("a crash mid-session leaves the file behind, and the next launch deletes it before the library opens", async () => {
+    const crashed = new DocumentLibrary();
+    const secret = await importInto(crashed, "offer.txt", "the offer price is four million", true);
+    const storedUri = crashed.document(secret.id)!.uri!;
+    /* No endSession: this is the process dying with the session open. */
+    expect(files.has(storedUri)).toBe(true);
+
+    const relaunched = new DocumentLibrary();
+    await relaunched.ready();
+
+    expect(files.has(storedUri)).toBe(false);
+    expect([...files.keys()].some((k) => k.startsWith(INCOGNITO))).toBe(false);
+  });
+
+  it("a saved import still goes to the library, so the sweep cannot be a blanket delete", async () => {
+    const library = new DocumentLibrary();
+    const kept = await importInto(library, "warranty.txt", "the warranty lasts two years", false);
+    expect(library.document(kept.id)!.uri!.startsWith(LIBRARY)).toBe(true);
+    await new DocumentLibrary().ready();
+    expect(files.has(library.document(kept.id)!.uri!)).toBe(true);
   });
 
   it("a session with nothing incognito in it ends without touching anything", async () => {

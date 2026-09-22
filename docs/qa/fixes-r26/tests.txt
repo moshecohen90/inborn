@@ -1,0 +1,39 @@
+
+> inborn@ test /Users/moshecohen/dev/inborn-wt/fixes-r26
+> pnpm -r --if-present test
+
+Scope: 7 of 8 workspace projects
+packages/core test$ vitest run
+packages/i18n test$ vitest run
+packages/ui test$ vitest run
+packages/core test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/packages/core
+packages/ui test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/packages/ui
+packages/i18n test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/packages/i18n
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  11 passed (11)
+packages/ui test:    Start at  21:42:28
+packages/ui test:    Duration  141ms (transform 71%, import 17%, tests 8%, worker 4%)
+packages/ui test: Done
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  11 passed (11)
+packages/i18n test:    Start at  21:42:28
+packages/i18n test:    Duration  852ms (tests 86%, transform 8%, import 4%, worker 1%)
+packages/i18n test: Done
+packages/core test:  Test Files  68 passed (68)
+packages/core test:       Tests  616 passed (616)
+packages/core test:    Start at  21:42:27
+packages/core test:    Duration  2.16s (transform 46%, import 36%, tests 16%, worker 2%)
+packages/core test:   Transform  transforming modules took 7.12s · 46% of tracked time, re-done on every run
+packages/core test:              persist transforms across runs with fsModuleCache: true
+packages/core test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+packages/core test: Done
+apps/mobile test$ vitest run
+apps/mobile test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile
+apps/mobile test:  Test Files  50 passed (50)
+apps/mobile test:       Tests  352 passed (352)
+apps/mobile test:    Start at  21:42:30
+apps/mobile test:    Duration  1.37s (transform 56%, import 23%, tests 18%, worker 2%)
+apps/mobile test:   Transform  transforming modules took 4.85s · 56% of tracked time, re-done on every run
+apps/mobile test:              persist transforms across runs with fsModuleCache: true
+apps/mobile test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+apps/mobile test: Done

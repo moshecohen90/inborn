@@ -1,0 +1,1205 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile
+
+ ❯ test/legal-texts.test.ts (38 tests | 18 failed) 39ms
+   ❯ F92 · no placeholder reaches a screen or a page (18)
+     × docs/legal/app-privacy-details.md has no unfilled token 4ms
+     × docs/legal/licenses.md has no unfilled token 1ms
+     × docs/legal/privacy-policy.md has no unfilled token 1ms
+     × docs/legal/terms.md has no unfilled token 0ms
+     × every page the site serves is free of tokens and of the draft notice 1ms
+     × docs/legal/privacy-policy.md no longer opens with a draft notice 1ms
+     × docs/legal/terms.md no longer opens with a draft notice 0ms
+     × docs/legal/privacy-policy.md renders on the device with every value filled 1ms
+     × docs/legal/terms.md renders on the device with every value filled 0ms
+     × the values Moshe had to supply are in the texts, not only in the README 3ms
+   ❯ F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it (14)
+     × docs/legal/privacy-policy.md claims no source the reader cannot open 0ms
+     × apps/site/src/pages/proof.html claims no source the reader cannot open 0ms
+     × apps/site/src/pages/support.html claims no source the reader cannot open 0ms
+     × all three texts that contradicted each other now say the same thing 1ms
+     × the site still tells the reader where support lives 1ms
+   ❯ F94 · the policy describes the key store the code actually asks for (4)
+     × so no shipped text may promise them 1ms
+     × what the policy names is what the code asks for 0ms
+   ❯ F95 · the policy's incognito sentence matches what the code does with an attached file (2)
+     × it no longer says a file is never written to disk 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 18 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/app-privacy-details.md has no unfilled token
+AssertionError: expected [ '{{DOMAIN}}', …(4) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "{{DOMAIN}}",
++   "{{PRIVACY_URL}}",
++   "{{PRIVACY_URL}}",
++   "{{TESTER}}",
++   "{{PRIVACY_URL}}",
++ ]
+
+ ❯ test/legal-texts.test.ts:31:73
+     29| describe("F92 · no placeholder reaches a screen or a page", () => {
+     30|   it.each(LEGAL_MD)("%s has no unfilled token", (file) => {
+     31|     expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0])…
+       |                                                                         ^
+     32|   });
+     33|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/licenses.md has no unfilled token
+AssertionError: expected [ '{{DOMAIN}}' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "{{DOMAIN}}",
++ ]
+
+ ❯ test/legal-texts.test.ts:31:73
+     29| describe("F92 · no placeholder reaches a screen or a page", () => {
+     30|   it.each(LEGAL_MD)("%s has no unfilled token", (file) => {
+     31|     expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0])…
+       |                                                                         ^
+     32|   });
+     33|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md has no unfilled token
+AssertionError: expected [ Array(13) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "{{…}}",
++   "{{EFFECTIVE_DATE}}",
++   "{{DEVELOPER_LEGAL_NAME}}",
++   "{{SUPPORT_EMAIL}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{SUPPORT_EMAIL}}",
++   "{{DEVELOPER_LEGAL_NAME}}",
++   "{{POSTAL_ADDRESS}}",
++   "{{SUPPORT_EMAIL}}",
++ ]
+
+ ❯ test/legal-texts.test.ts:31:73
+     29| describe("F92 · no placeholder reaches a screen or a page", () => {
+     30|   it.each(LEGAL_MD)("%s has no unfilled token", (file) => {
+     31|     expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0])…
+       |                                                                         ^
+     32|   });
+     33|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md has no unfilled token
+AssertionError: expected [ '{{…}}', '{{EFFECTIVE_DATE}}', …(5) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "{{…}}",
++   "{{EFFECTIVE_DATE}}",
++   "{{DEVELOPER_LEGAL_NAME}}",
++   "{{SUPPORT_EMAIL}}",
++   "{{PRIVACY_URL}}",
++   "{{GOVERNING_LAW: Israel proposed}}",
++   "{{SUPPORT_EMAIL}}",
++ ]
+
+ ❯ test/legal-texts.test.ts:31:73
+     29| describe("F92 · no placeholder reaches a screen or a page", () => {
+     30|   it.each(LEGAL_MD)("%s has no unfilled token", (file) => {
+     31|     expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0])…
+       |                                                                         ^
+     32|   });
+     33|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > every page the site serves is free of tokens and of the draft notice
+AssertionError: apps/site/dist/privacy.html: expected [ Array(13) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "{{…}}",
++   "{{EFFECTIVE_DATE}}",
++   "{{DEVELOPER_LEGAL_NAME}}",
++   "{{SUPPORT_EMAIL}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{DOMAIN}}",
++   "{{SUPPORT_EMAIL}}",
++   "{{DEVELOPER_LEGAL_NAME}}",
++   "{{POSTAL_ADDRESS}}",
++   "{{SUPPORT_EMAIL}}",
++ ]
+
+ ❯ test/legal-texts.test.ts:42:81
+     40|     expect(SITE_DIST.length).toBeGreaterThan(3);
+     41|     for (const file of SITE_DIST) {
+     42|       expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0…
+       |                                                                                 ^
+     43|       expect(read(file), file).not.toMatch(/Status: DRAFT|Not yet publ…
+     44|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md no longer opens with a draft notice
+AssertionError: expected '# Inborn Privacy Policy\n\n**Status: …' not to match /Status: DRAFT|Not yet published/
+
+- Expected:
+/Status: DRAFT|Not yet published/
+
++ Received:
+"# Inborn Privacy Policy
+
+**Status: DRAFT for store submission and the website. Not yet published. Placeholders in `{{…}}` are filled at launch.**
+Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 5 September 2026.
+
+Effective date: `{{EFFECTIVE_DATE}}`
+Publisher: `{{DEVELOPER_LEGAL_NAME}}` (the developer account shown on the store listing)
+Contact: `{{SUPPORT_EMAIL}}`
+
+---
+
+## 1. The short version
+
+Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. **We do not collect, receive, store, sell or share any personal data.** There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection.
+
+The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full.
+
+## 2. What Inborn does not do
+
+- It does not create or require an account. No email, phone number, or sign-in of any kind.
+- It does not send your messages, prompts, documents, images, voice, or model outputs anywhere.
+- It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else.
+- It does not assign you a device identifier or send a \"ping\" of any kind.
+- It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted.
+- It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share.
+
+## 3. The complete list of network activity, by platform
+
+### Android
+None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
+
+- **Model delivery.** The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
+- **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
+
+### iOS and iPadOS
+The app itself opens no connection by default.
+
+- **Model delivery, every supported iOS version (iOS 17 and later).** The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from `models.{{DOMAIN}}`, hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. **Your iOS App Privacy Report will show `models.{{DOMAIN}}` while that download runs**, and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships.
+- **Hugging Face (optional, explicit).** If you choose to search or import a model from Hugging Face, the app tells you first, and `huggingface.co` will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download.
+- **Purchases.** Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details.
+
+### Windows and macOS
+- **Model delivery.** A model download you start fetches one file from `models.{{DOMAIN}}`, exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all.
+- **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
+
+### Web version
+The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
+
+### Marketing website
+`{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.
+
+## 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf
+
+When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies:
+
+- Apple: https://www.apple.com/legal/privacy/
+- Google: https://policies.google.com/privacy
+- Microsoft: https://privacy.microsoft.com/privacystatement
+- Paddle: https://www.paddle.com/legal/privacy
+
+We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs.
+
+## 5. Support email
+
+If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app.
+
+## 6. Your data on the device, and how to export or delete it
+
+- Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
+- **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
+- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. **Conversations are not restored to a new device.** On Android the app sets `allowBackup=\"false\"`, so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them.
+- **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
+- **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
+- **Incognito chats** are held in memory only and are never written to disk.
+
+## 7. GDPR and UK GDPR
+
+Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider.
+
+## 8. California (CCPA/CPRA) and other US state laws
+
+We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
+
+## 9. Children
+
+Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
+
+## 10. Security
+
+No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+
+## 11. Changes
+
+We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app.
+
+## 12. Contact
+
+`{{DEVELOPER_LEGAL_NAME}}`
+`{{POSTAL_ADDRESS}}`
+`{{SUPPORT_EMAIL}}`
+"
+
+ ❯ test/legal-texts.test.ts:59:28
+     57|
+     58|   it.each(SHIPPED)("%s no longer opens with a draft notice", (file) =>…
+     59|     expect(read(file)).not.toMatch(/Status: DRAFT|Not yet published/);
+       |                            ^
+     60|   });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md no longer opens with a draft notice
+AssertionError: expected '# Inborn Terms of Use and End User Li…' not to match /Status: DRAFT|Not yet published/
+
+- Expected:
+/Status: DRAFT|Not yet published/
+
++ Received:
+"# Inborn Terms of Use and End User Licence Agreement
+
+**Status: DRAFT. Not yet published. Needs a lawyer's pass on governing law and consumer-law wording per launch country. Placeholders in `{{…}}`.**
+Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 5 September 2026.
+
+Effective date: `{{EFFECTIVE_DATE}}`
+Licensor: `{{DEVELOPER_LEGAL_NAME}}` (\"we\", \"us\")
+Contact: `{{SUPPORT_EMAIL}}`
+
+These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.
+
+## 1. Licence
+
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+
+You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
+
+## 2. Free, Pro and Work
+
+- **Free** is a complete product: unlimited chat with the built-in model, no message caps, no watermarks, no ads.
+- **Pro** is a one-time purchase (US$19.99 list price; local prices vary) that permanently unlocks additional local features on the store where you bought it. It is a non-consumable purchase: no subscription, no renewal, no recurring charge.
+- **Work** is a one-time purchase (US$69.99 list price; US$49.99 as an upgrade for Pro owners) that unlocks professional features. **Work Team** licences (5 seats) are sold through Paddle to organisations.
+
+**One purchase, one store.** A Pro or Work purchase is tied to the store account that bought it (Apple ID, Google account, Microsoft account, or Paddle licence). It unlocks the app on all your devices that use that same store account and platform family. It does not transfer across stores: an App Store purchase does not unlock the Windows app, and vice versa. There is no user account that could link them, by design. If you own Pro on one store and want it on another, write to support with your receipt for a discount code.
+
+**Family sharing.** Pro is **not** enabled for Apple Family Sharing in this release, and the paywall says so on screen. If we enable it later, one purchase will cover up to six members of your Apple family group; enabling it is a one-way change we would announce in the release notes. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account either way.
+
+**Offline entitlement.** The app verifies your purchase on the device using the store's signed receipt and caches it, so Pro keeps working without internet. If the store cannot be reached, the last known entitlement is honoured for 30 days. If a purchase is refunded or revoked, Pro features lock; your data is never deleted.
+
+**Restore.** Use \"Restore purchases\" in Settings on any device signed into the same store account.
+
+## 3. Payments and refunds
+
+Payments are processed by the store (Apple, Google, Microsoft) or by Paddle as merchant of record. We do not receive or store your payment details. **Refunds are handled by the store you bought from**, under its refund policy:
+
+- App Store: https://support.apple.com/HT204084
+- Google Play: https://support.google.com/googleplay/answer/2479637
+- Microsoft Store: https://support.microsoft.com/account-billing
+- Paddle: https://www.paddle.com/legal/checkout-buyer-terms
+
+Prices may change; a price change never affects a purchase already made. Launch and promotional prices are time-limited and stated at the point of purchase.
+
+## 4. AI output: what you are agreeing to
+
+Inborn runs artificial-intelligence language models on your device. **You are talking to software, not a person.** The models are third-party open-weight models (listed in Settings → Licences) that we have not trained and cannot fully control.
+
+- **Outputs can be wrong.** The AI can produce inaccurate, incomplete, outdated, biased or fabricated statements, including invented facts, citations, laws, dosages, prices and code. Treat every answer as a draft to verify, never as a fact.
+- **No professional advice.** Nothing the app produces is medical, legal, financial, tax, psychological or other professional advice, and no professional relationship is created by using it. For decisions that matter, consult a qualified professional. If you are in crisis, contact local emergency services or a crisis line; the app shows local resources when it detects such language, but it is not a crisis service.
+- **You are responsible for use of outputs.** You decide what to do with what the model writes, and you are responsible for checking it and for how you use it, including compliance with your professional obligations (for example, the duty to verify AI output that bar associations and regulators impose on lawyers).
+- **Prohibited uses.** You may not use Inborn to generate content that is illegal where you are, that sexualises minors, that facilitates fraud, harassment, violence or self-harm, or that infringes others' rights. Family-safe mode is on by default; turning it off does not change these rules.
+- **Reporting.** Every AI message has a \"Report\" action. Reports are saved on your device; nothing is sent unless you choose to email it to us.
+- **Marking.** Text you export from the app is marked as AI-generated in the file's metadata and header. Do not remove that marking where the law requires it to stay (for example, when publishing AI text on matters of public interest in the EU).
+
+## 5. Third-party models and licences
+
+The models bundled with or downloadable through Inborn are licensed by their authors under open licences (Apache-2.0, MIT and others), listed with links in Settings → Licences and in the `NOTICE` file. Those licences govern your use of the model weights. Models you import yourself from Hugging Face or elsewhere are your responsibility: the app shows you the licence when it can, but you accept the model author's terms, not ours.
+
+## 6. Your content
+
+Everything you type, import or generate stays on your device and belongs to you. We claim no rights in it and, because we never receive it, we cannot access, review, moderate, restore or delete it. **Back up what matters to you** (Settings → Export, or your device backup). If you lose your device, your passphrase, or wipe the app, we cannot recover anything.
+
+## 7. Privacy
+
+Our Privacy Policy (`{{PRIVACY_URL}}`) is part of these terms. In one sentence: nothing leaves your device, and the only network activity is the model download you start or the store's own delivery.
+
+## 8. Updates and availability
+
+We may update the app, its models and its catalogue. An update may change or remove models that no longer run on the current engine; the app will tell you before it deletes anything. We may stop distributing the app or a platform version; features you have paid for keep working on the version you have installed, but we cannot guarantee availability forever on future operating systems.
+
+## 9. Disclaimer of warranties
+
+The app is provided \"as is\" and \"as available\". To the fullest extent permitted by law we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, accuracy of AI output, and non-infringement. We do not warrant that the app will be error-free, that any model will run on your device at any particular speed, or that outputs will be suitable for any purpose. Nothing in these terms limits statutory consumer rights that cannot be waived, including under EU and UK consumer law and the Israeli Consumer Protection Law.
+
+## 10. Limitation of liability
+
+To the fullest extent permitted by law, we are not liable for indirect, incidental, special, consequential or punitive damages, or for loss of data, profits or goodwill, arising from your use of the app or reliance on its outputs. Our total liability for any claim is limited to the amount you paid us for the app in the 12 months before the claim (or US$20 if you paid nothing). Nothing excludes liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded.
+
+## 11. Termination
+
+You may stop using the app at any time by deleting it. We may terminate your licence if you materially breach these terms. Termination does not entitle you to a refund except where the law or the store's policy provides one.
+
+## 12. Apple-specific terms
+
+If you use the iOS or macOS version from the App Store: Apple is not a party to these terms and has no obligation to provide maintenance or support; Apple is not responsible for any product warranty, claim, or intellectual-property claim relating to the app, to the extent the law allows; you confirm you are not in a country subject to a US government embargo and not on any US restricted-party list; and Apple and its subsidiaries are third-party beneficiaries of these terms with the right to enforce them against you.
+
+## 13. Governing law and disputes
+
+These terms are governed by the laws of `{{GOVERNING_LAW: Israel proposed}}`, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to `{{SUPPORT_EMAIL}}`; most issues are resolved there.
+
+## 14. Changes
+
+We may update these terms; the effective date at the top changes when we do, and the app's release notes will mention material changes. Continued use after a change means you accept it.
+"
+
+ ❯ test/legal-texts.test.ts:59:28
+     57|
+     58|   it.each(SHIPPED)("%s no longer opens with a draft notice", (file) =>…
+     59|     expect(read(file)).not.toMatch(/Status: DRAFT|Not yet published/);
+       |                            ^
+     60|   });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md renders on the device with every value filled
+AssertionError: expected '## 1. The short version\n\nInborn is …' not to match /\{\{|Status: DRAFT/
+
+- Expected:
+/\{\{|Status: DRAFT/
+
++ Received:
+"## 1. The short version
+
+Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. **We do not collect, receive, store, sell or share any personal data.** There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection.
+
+The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full.
+
+## 2. What Inborn does not do
+
+- It does not create or require an account. No email, phone number, or sign-in of any kind.
+- It does not send your messages, prompts, documents, images, voice, or model outputs anywhere.
+- It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else.
+- It does not assign you a device identifier or send a \"ping\" of any kind.
+- It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted.
+- It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share.
+
+## 3. The complete list of network activity, by platform
+
+### Android
+None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
+
+- **Model delivery.** The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
+- **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
+
+### iOS and iPadOS
+The app itself opens no connection by default.
+
+- **Model delivery, every supported iOS version (iOS 17 and later).** The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from `models.{{DOMAIN}}`, hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. **Your iOS App Privacy Report will show `models.{{DOMAIN}}` while that download runs**, and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships.
+- **Hugging Face (optional, explicit).** If you choose to search or import a model from Hugging Face, the app tells you first, and `huggingface.co` will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download.
+- **Purchases.** Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details.
+
+### Windows and macOS
+- **Model delivery.** A model download you start fetches one file from `models.{{DOMAIN}}`, exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all.
+- **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
+
+### Web version
+The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
+
+### Marketing website
+`{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.
+
+## 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf
+
+When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies:
+
+- Apple: https://www.apple.com/legal/privacy/
+- Google: https://policies.google.com/privacy
+- Microsoft: https://privacy.microsoft.com/privacystatement
+- Paddle: https://www.paddle.com/legal/privacy
+
+We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs.
+
+## 5. Support email
+
+If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app.
+
+## 6. Your data on the device, and how to export or delete it
+
+- Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
+- **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
+- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. **Conversations are not restored to a new device.** On Android the app sets `allowBackup=\"false\"`, so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them.
+- **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
+- **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
+- **Incognito chats** are held in memory only and are never written to disk.
+
+## 7. GDPR and UK GDPR
+
+Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider.
+
+## 8. California (CCPA/CPRA) and other US state laws
+
+We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
+
+## 9. Children
+
+Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
+
+## 10. Security
+
+No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+
+## 11. Changes
+
+We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app.
+
+## 12. Contact
+
+`{{DEVELOPER_LEGAL_NAME}}`
+`{{POSTAL_ADDRESS}}`
+`{{SUPPORT_EMAIL}}`"
+
+ ❯ test/legal-texts.test.ts:65:22
+     63|   it.each(SHIPPED)("%s renders on the device with every value filled",…
+     64|     const body = legalBody(read(file));
+     65|     expect(body).not.toMatch(/\{\{|Status: DRAFT/);
+       |                      ^
+     66|     expect(body).toContain("support@inbornapp.com");
+     67|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md renders on the device with every value filled
+AssertionError: expected '## 1. Licence\n\nWe grant you a perso…' not to match /\{\{|Status: DRAFT/
+
+- Expected:
+/\{\{|Status: DRAFT/
+
++ Received:
+"## 1. Licence
+
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+
+You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
+
+## 2. Free, Pro and Work
+
+- **Free** is a complete product: unlimited chat with the built-in model, no message caps, no watermarks, no ads.
+- **Pro** is a one-time purchase (US$19.99 list price; local prices vary) that permanently unlocks additional local features on the store where you bought it. It is a non-consumable purchase: no subscription, no renewal, no recurring charge.
+- **Work** is a one-time purchase (US$69.99 list price; US$49.99 as an upgrade for Pro owners) that unlocks professional features. **Work Team** licences (5 seats) are sold through Paddle to organisations.
+
+**One purchase, one store.** A Pro or Work purchase is tied to the store account that bought it (Apple ID, Google account, Microsoft account, or Paddle licence). It unlocks the app on all your devices that use that same store account and platform family. It does not transfer across stores: an App Store purchase does not unlock the Windows app, and vice versa. There is no user account that could link them, by design. If you own Pro on one store and want it on another, write to support with your receipt for a discount code.
+
+**Family sharing.** Pro is **not** enabled for Apple Family Sharing in this release, and the paywall says so on screen. If we enable it later, one purchase will cover up to six members of your Apple family group; enabling it is a one-way change we would announce in the release notes. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account either way.
+
+**Offline entitlement.** The app verifies your purchase on the device using the store's signed receipt and caches it, so Pro keeps working without internet. If the store cannot be reached, the last known entitlement is honoured for 30 days. If a purchase is refunded or revoked, Pro features lock; your data is never deleted.
+
+**Restore.** Use \"Restore purchases\" in Settings on any device signed into the same store account.
+
+## 3. Payments and refunds
+
+Payments are processed by the store (Apple, Google, Microsoft) or by Paddle as merchant of record. We do not receive or store your payment details. **Refunds are handled by the store you bought from**, under its refund policy:
+
+- App Store: https://support.apple.com/HT204084
+- Google Play: https://support.google.com/googleplay/answer/2479637
+- Microsoft Store: https://support.microsoft.com/account-billing
+- Paddle: https://www.paddle.com/legal/checkout-buyer-terms
+
+Prices may change; a price change never affects a purchase already made. Launch and promotional prices are time-limited and stated at the point of purchase.
+
+## 4. AI output: what you are agreeing to
+
+Inborn runs artificial-intelligence language models on your device. **You are talking to software, not a person.** The models are third-party open-weight models (listed in Settings → Licences) that we have not trained and cannot fully control.
+
+- **Outputs can be wrong.** The AI can produce inaccurate, incomplete, outdated, biased or fabricated statements, including invented facts, citations, laws, dosages, prices and code. Treat every answer as a draft to verify, never as a fact.
+- **No professional advice.** Nothing the app produces is medical, legal, financial, tax, psychological or other professional advice, and no professional relationship is created by using it. For decisions that matter, consult a qualified professional. If you are in crisis, contact local emergency services or a crisis line; the app shows local resources when it detects such language, but it is not a crisis service.
+- **You are responsible for use of outputs.** You decide what to do with what the model writes, and you are responsible for checking it and for how you use it, including compliance with your professional obligations (for example, the duty to verify AI output that bar associations and regulators impose on lawyers).
+- **Prohibited uses.** You may not use Inborn to generate content that is illegal where you are, that sexualises minors, that facilitates fraud, harassment, violence or self-harm, or that infringes others' rights. Family-safe mode is on by default; turning it off does not change these rules.
+- **Reporting.** Every AI message has a \"Report\" action. Reports are saved on your device; nothing is sent unless you choose to email it to us.
+- **Marking.** Text you export from the app is marked as AI-generated in the file's metadata and header. Do not remove that marking where the law requires it to stay (for example, when publishing AI text on matters of public interest in the EU).
+
+## 5. Third-party models and licences
+
+The models bundled with or downloadable through Inborn are licensed by their authors under open licences (Apache-2.0, MIT and others), listed with links in Settings → Licences and in the `NOTICE` file. Those licences govern your use of the model weights. Models you import yourself from Hugging Face or elsewhere are your responsibility: the app shows you the licence when it can, but you accept the model author's terms, not ours.
+
+## 6. Your content
+
+Everything you type, import or generate stays on your device and belongs to you. We claim no rights in it and, because we never receive it, we cannot access, review, moderate, restore or delete it. **Back up what matters to you** (Settings → Export, or your device backup). If you lose your device, your passphrase, or wipe the app, we cannot recover anything.
+
+## 7. Privacy
+
+Our Privacy Policy (`{{PRIVACY_URL}}`) is part of these terms. In one sentence: nothing leaves your device, and the only network activity is the model download you start or the store's own delivery.
+
+## 8. Updates and availability
+
+We may update the app, its models and its catalogue. An update may change or remove models that no longer run on the current engine; the app will tell you before it deletes anything. We may stop distributing the app or a platform version; features you have paid for keep working on the version you have installed, but we cannot guarantee availability forever on future operating systems.
+
+## 9. Disclaimer of warranties
+
+The app is provided \"as is\" and \"as available\". To the fullest extent permitted by law we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, accuracy of AI output, and non-infringement. We do not warrant that the app will be error-free, that any model will run on your device at any particular speed, or that outputs will be suitable for any purpose. Nothing in these terms limits statutory consumer rights that cannot be waived, including under EU and UK consumer law and the Israeli Consumer Protection Law.
+
+## 10. Limitation of liability
+
+To the fullest extent permitted by law, we are not liable for indirect, incidental, special, consequential or punitive damages, or for loss of data, profits or goodwill, arising from your use of the app or reliance on its outputs. Our total liability for any claim is limited to the amount you paid us for the app in the 12 months before the claim (or US$20 if you paid nothing). Nothing excludes liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded.
+
+## 11. Termination
+
+You may stop using the app at any time by deleting it. We may terminate your licence if you materially breach these terms. Termination does not entitle you to a refund except where the law or the store's policy provides one.
+
+## 12. Apple-specific terms
+
+If you use the iOS or macOS version from the App Store: Apple is not a party to these terms and has no obligation to provide maintenance or support; Apple is not responsible for any product warranty, claim, or intellectual-property claim relating to the app, to the extent the law allows; you confirm you are not in a country subject to a US government embargo and not on any US restricted-party list; and Apple and its subsidiaries are third-party beneficiaries of these terms with the right to enforce them against you.
+
+## 13. Governing law and disputes
+
+These terms are governed by the laws of `{{GOVERNING_LAW: Israel proposed}}`, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to `{{SUPPORT_EMAIL}}`; most issues are resolved there.
+
+## 14. Changes
+
+We may update these terms; the effective date at the top changes when we do, and the app's release notes will mention material changes. Continued use after a change means you accept it."
+
+ ❯ test/legal-texts.test.ts:65:22
+     63|   it.each(SHIPPED)("%s renders on the device with every value filled",…
+     64|     const body = legalBody(read(file));
+     65|     expect(body).not.toMatch(/\{\{|Status: DRAFT/);
+       |                      ^
+     66|     expect(body).toContain("support@inbornapp.com");
+     67|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > the values Moshe had to supply are in the texts, not only in the README
+AssertionError: Moshe Cohen: expected '# Inborn Privacy Policy\n\n**Status: …' to contain 'Moshe Cohen'
+
+- Expected
++ Received
+
+- Moshe Cohen
++ # Inborn Privacy Policy
++
++ **Status: DRAFT for store submission and the website. Not yet published. Placeholders in `{{…}}` are filled at launch.**
++ Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 5 September 2026.
++
++ Effective date: `{{EFFECTIVE_DATE}}`
++ Publisher: `{{DEVELOPER_LEGAL_NAME}}` (the developer account shown on the store listing)
++ Contact: `{{SUPPORT_EMAIL}}`
++
++ ---
++
++ ## 1. The short version
++
++ Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. **We do not collect, receive, store, sell or share any personal data.** There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection.
++
++ The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full.
++
++ ## 2. What Inborn does not do
++
++ - It does not create or require an account. No email, phone number, or sign-in of any kind.
++ - It does not send your messages, prompts, documents, images, voice, or model outputs anywhere.
++ - It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else.
++ - It does not assign you a device identifier or send a "ping" of any kind.
++ - It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted.
++ - It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share.
++
++ ## 3. The complete list of network activity, by platform
++
++ ### Android
++ None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list "full network access"; the one entry Android's app info may show that Inborn did not declare, "Google Play license check", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
++
++ - **Model delivery.** The built-in "Instant" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
++ - **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
++
++ ### iOS and iPadOS
++ The app itself opens no connection by default.
++
++ - **Model delivery, every supported iOS version (iOS 17 and later).** The "Instant" model ships inside the app, so the first chat needs no download. If you tap "Install" on a larger model in the Vault, the app fetches that one file over HTTPS from `models.{{DOMAIN}}`, hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. **Your iOS App Privacy Report will show `models.{{DOMAIN}}` while that download runs**, and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships.
++ - **Hugging Face (optional, explicit).** If you choose to search or import a model from Hugging Face, the app tells you first, and `huggingface.co` will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download.
++ - **Purchases.** Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details.
++
++ ### Windows and macOS
++ - **Model delivery.** A model download you start fetches one file from `models.{{DOMAIN}}`, exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all.
++ - **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
++
++ ### Web version
++ The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
++
++ ### Marketing website
++ `{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.
++
++ ## 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf
++
++ When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies:
++
++ - Apple: https://www.apple.com/legal/privacy/
++ - Google: https://policies.google.com/privacy
++ - Microsoft: https://privacy.microsoft.com/privacystatement
++ - Paddle: https://www.paddle.com/legal/privacy
++
++ We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs.
++
++ ## 5. Support email
++
++ If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a "Report a problem" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app.
++
++ ## 6. Your data on the device, and how to export or delete it
++
++ - Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
++ - **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
++ - Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. **Conversations are not restored to a new device.** On Android the app sets `allowBackup="false"`, so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them.
++ - **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
++ - **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
++ - **Incognito chats** are held in memory only and are never written to disk.
++
++ ## 7. GDPR and UK GDPR
++
++ Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider.
++
++ ## 8. California (CCPA/CPRA) and other US state laws
++
++ We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our "Do Not Sell or Share My Personal Information" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
++
++ ## 9. Children
++
++ Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
++
++ ## 10. Security
++
++ No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
++
++ ## 11. Changes
++
++ We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app.
++
++ ## 12. Contact
++
++ `{{DEVELOPER_LEGAL_NAME}}`
++ `{{POSTAL_ADDRESS}}`
++ `{{SUPPORT_EMAIL}}`
++
+
+ ❯ test/legal-texts.test.ts:73:30
+     71|     const terms = read("docs/legal/terms.md");
+     72|     for (const value of ["Moshe Cohen", "[address removed]
+     73|       expect(privacy, value).toContain(value);
+       |                              ^
+     74|     }
+     75|     expect(terms).toContain("governed by the laws of Israel");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/privacy-policy.md claims no source the reader cannot open
+AssertionError: docs/legal/privacy-policy.md still claims "published open-source": expected 'published open-source' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"published open-source"
+
+ ❯ test/legal-texts.test.ts:89:60
+     87|   it.each(WATCHED)("%s claims no source the reader cannot open", (file…
+     88|     const hit = FORBIDDEN.exec(read(file));
+     89|     expect(hit?.[0], `${file} still claims "${hit?.[0]}"`).toBeUndefin…
+       |                                                            ^
+     90|   });
+     91|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/proof.html claims no source the reader cannot open
+AssertionError: apps/site/src/pages/proof.html still claims "read in code rather than believed": expected 'read in code rather than believed' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"read in code rather than believed"
+
+ ❯ test/legal-texts.test.ts:89:60
+     87|   it.each(WATCHED)("%s claims no source the reader cannot open", (file…
+     88|     const hit = FORBIDDEN.exec(read(file));
+     89|     expect(hit?.[0], `${file} still claims "${hit?.[0]}"`).toBeUndefin…
+       |                                                            ^
+     90|   });
+     91|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/support.html claims no source the reader cannot open
+AssertionError: apps/site/src/pages/support.html still claims "open-source core": expected 'open-source core' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"open-source core"
+
+ ❯ test/legal-texts.test.ts:89:60
+     87|   it.each(WATCHED)("%s claims no source the reader cannot open", (file…
+     88|     const hit = FORBIDDEN.exec(read(file));
+     89|     expect(hit?.[0], `${file} still claims "${hit?.[0]}"`).toBeUndefin…
+       |                                                            ^
+     90|   });
+     91|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > all three texts that contradicted each other now say the same thing
+AssertionError: expected '# Inborn Terms of Use and End User Li…' to match /Inborn is not open source: its source…/
+
+- Expected:
+/Inborn is not open source: its source code is not public/
+
++ Received:
+"# Inborn Terms of Use and End User Licence Agreement
+
+**Status: DRAFT. Not yet published. Needs a lawyer's pass on governing law and consumer-law wording per launch country. Placeholders in `{{…}}`.**
+Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 5 September 2026.
+
+Effective date: `{{EFFECTIVE_DATE}}`
+Licensor: `{{DEVELOPER_LEGAL_NAME}}` (\"we\", \"us\")
+Contact: `{{SUPPORT_EMAIL}}`
+
+These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.
+
+## 1. Licence
+
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+
+You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
+
+## 2. Free, Pro and Work
+
+- **Free** is a complete product: unlimited chat with the built-in model, no message caps, no watermarks, no ads.
+- **Pro** is a one-time purchase (US$19.99 list price; local prices vary) that permanently unlocks additional local features on the store where you bought it. It is a non-consumable purchase: no subscription, no renewal, no recurring charge.
+- **Work** is a one-time purchase (US$69.99 list price; US$49.99 as an upgrade for Pro owners) that unlocks professional features. **Work Team** licences (5 seats) are sold through Paddle to organisations.
+
+**One purchase, one store.** A Pro or Work purchase is tied to the store account that bought it (Apple ID, Google account, Microsoft account, or Paddle licence). It unlocks the app on all your devices that use that same store account and platform family. It does not transfer across stores: an App Store purchase does not unlock the Windows app, and vice versa. There is no user account that could link them, by design. If you own Pro on one store and want it on another, write to support with your receipt for a discount code.
+
+**Family sharing.** Pro is **not** enabled for Apple Family Sharing in this release, and the paywall says so on screen. If we enable it later, one purchase will cover up to six members of your Apple family group; enabling it is a one-way change we would announce in the release notes. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account either way.
+
+**Offline entitlement.** The app verifies your purchase on the device using the store's signed receipt and caches it, so Pro keeps working without internet. If the store cannot be reached, the last known entitlement is honoured for 30 days. If a purchase is refunded or revoked, Pro features lock; your data is never deleted.
+
+**Restore.** Use \"Restore purchases\" in Settings on any device signed into the same store account.
+
+## 3. Payments and refunds
+
+Payments are processed by the store (Apple, Google, Microsoft) or by Paddle as merchant of record. We do not receive or store your payment details. **Refunds are handled by the store you bought from**, under its refund policy:
+
+- App Store: https://support.apple.com/HT204084
+- Google Play: https://support.google.com/googleplay/answer/2479637
+- Microsoft Store: https://support.microsoft.com/account-billing
+- Paddle: https://www.paddle.com/legal/checkout-buyer-terms
+
+Prices may change; a price change never affects a purchase already made. Launch and promotional prices are time-limited and stated at the point of purchase.
+
+## 4. AI output: what you are agreeing to
+
+Inborn runs artificial-intelligence language models on your device. **You are talking to software, not a person.** The models are third-party open-weight models (listed in Settings → Licences) that we have not trained and cannot fully control.
+
+- **Outputs can be wrong.** The AI can produce inaccurate, incomplete, outdated, biased or fabricated statements, including invented facts, citations, laws, dosages, prices and code. Treat every answer as a draft to verify, never as a fact.
+- **No professional advice.** Nothing the app produces is medical, legal, financial, tax, psychological or other professional advice, and no professional relationship is created by using it. For decisions that matter, consult a qualified professional. If you are in crisis, contact local emergency services or a crisis line; the app shows local resources when it detects such language, but it is not a crisis service.
+- **You are responsible for use of outputs.** You decide what to do with what the model writes, and you are responsible for checking it and for how you use it, including compliance with your professional obligations (for example, the duty to verify AI output that bar associations and regulators impose on lawyers).
+- **Prohibited uses.** You may not use Inborn to generate content that is illegal where you are, that sexualises minors, that facilitates fraud, harassment, violence or self-harm, or that infringes others' rights. Family-safe mode is on by default; turning it off does not change these rules.
+- **Reporting.** Every AI message has a \"Report\" action. Reports are saved on your device; nothing is sent unless you choose to email it to us.
+- **Marking.** Text you export from the app is marked as AI-generated in the file's metadata and header. Do not remove that marking where the law requires it to stay (for example, when publishing AI text on matters of public interest in the EU).
+
+## 5. Third-party models and licences
+
+The models bundled with or downloadable through Inborn are licensed by their authors under open licences (Apache-2.0, MIT and others), listed with links in Settings → Licences and in the `NOTICE` file. Those licences govern your use of the model weights. Models you import yourself from Hugging Face or elsewhere are your responsibility: the app shows you the licence when it can, but you accept the model author's terms, not ours.
+
+## 6. Your content
+
+Everything you type, import or generate stays on your device and belongs to you. We claim no rights in it and, because we never receive it, we cannot access, review, moderate, restore or delete it. **Back up what matters to you** (Settings → Export, or your device backup). If you lose your device, your passphrase, or wipe the app, we cannot recover anything.
+
+## 7. Privacy
+
+Our Privacy Policy (`{{PRIVACY_URL}}`) is part of these terms. In one sentence: nothing leaves your device, and the only network activity is the model download you start or the store's own delivery.
+
+## 8. Updates and availability
+
+We may update the app, its models and its catalogue. An update may change or remove models that no longer run on the current engine; the app will tell you before it deletes anything. We may stop distributing the app or a platform version; features you have paid for keep working on the version you have installed, but we cannot guarantee availability forever on future operating systems.
+
+## 9. Disclaimer of warranties
+
+The app is provided \"as is\" and \"as available\". To the fullest extent permitted by law we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, accuracy of AI output, and non-infringement. We do not warrant that the app will be error-free, that any model will run on your device at any particular speed, or that outputs will be suitable for any purpose. Nothing in these terms limits statutory consumer rights that cannot be waived, including under EU and UK consumer law and the Israeli Consumer Protection Law.
+
+## 10. Limitation of liability
+
+To the fullest extent permitted by law, we are not liable for indirect, incidental, special, consequential or punitive damages, or for loss of data, profits or goodwill, arising from your use of the app or reliance on its outputs. Our total liability for any claim is limited to the amount you paid us for the app in the 12 months before the claim (or US$20 if you paid nothing). Nothing excludes liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded.
+
+## 11. Termination
+
+You may stop using the app at any time by deleting it. We may terminate your licence if you materially breach these terms. Termination does not entitle you to a refund except where the law or the store's policy provides one.
+
+## 12. Apple-specific terms
+
+If you use the iOS or macOS version from the App Store: Apple is not a party to these terms and has no obligation to provide maintenance or support; Apple is not responsible for any product warranty, claim, or intellectual-property claim relating to the app, to the extent the law allows; you confirm you are not in a country subject to a US government embargo and not on any US restricted-party list; and Apple and its subsidiaries are third-party beneficiaries of these terms with the right to enforce them against you.
+
+## 13. Governing law and disputes
+
+These terms are governed by the laws of `{{GOVERNING_LAW: Israel proposed}}`, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to `{{SUPPORT_EMAIL}}`; most issues are resolved there.
+
+## 14. Changes
+
+We may update these terms; the effective date at the top changes when we do, and the app's release notes will mention material changes. Continued use after a change means you accept it.
+"
+
+ ❯ test/legal-texts.test.ts:93:41
+     91|
+     92|   it("all three texts that contradicted each other now say the same th…
+     93|     expect(read("docs/legal/terms.md")).toMatch(/Inborn is not open so…
+       |                                         ^
+     94|     expect(read("docs/legal/privacy-policy.md")).toMatch(/Inborn's sou…
+     95|     expect(read("apps/site/src/pages/support.html")).toMatch(/source i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > the site still tells the reader where support lives
+AssertionError: expected '<!-- meta: {"title": "Support", "h1":…' to contain 'mailto:support@inbornapp.com'
+
+- Expected
++ Received
+
+- mailto:support@inbornapp.com
++ <!-- meta: {"title": "Support", "h1": "Support", "description": "How to get help with Inborn: the in-app Report action, common fixes for models, speed and purchases, refunds through your store, and how to reach us."} -->
++ <article class="prose">
++ <p>There is no account and no server, so most things you can do yourself, on the device, in a few taps. What is here: the Report action, the fixes people ask about most, and how to reach a person.</p>
++
++ <h2 id="report">Report a problem from the app</h2>
++ <p>Every AI message has a <strong>Report</strong> action, and Settings has <strong>Report a problem</strong>. Both work offline. A report is saved on your device and nothing is sent automatically; the app shows you the file, and you decide whether to email it from your own mail app. You choose what it contains. It never includes your conversations unless you attach them yourself.</p>
++
++ <h2 id="common">Common questions</h2>
++ <h3>The model will not load, or the app says it needs more memory</h3>
++ <p>Each model lists the memory it needs. Close other apps, or pick a smaller model in the Vault. The built-in Instant model runs on every supported device.</p>
++ <h3>It is slow</h3>
++ <p>Speed depends on the model and the chip. The Vault shows the expected tokens per second for each model on your exact device; the Ledger under every answer shows what it actually measured. A smaller model is faster, a larger one is sharper. Warm devices throttle; let the phone cool.</p>
++ <h3>Pro is not showing after a reinstall or a new phone</h3>
++ <p>Settings → <strong>Restore purchases</strong>, signed in to the same store account you bought with. A purchase belongs to that store: an App Store purchase does not unlock the Windows app, and vice versa. If you own Pro on one store and want it on another, write to us with your receipt for a discount code.</p>
++ <h3>I want a refund</h3>
++ <p>Refunds are handled by the store you bought from, under its policy: <a href="https://support.apple.com/HT204084" rel="noopener">App Store</a>, <a href="https://support.google.com/googleplay/answer/2479637" rel="noopener">Google Play</a>, <a href="https://support.microsoft.com/account-billing" rel="noopener">Microsoft Store</a>, <a href="https://www.paddle.com/legal/checkout-buyer-terms" rel="noopener">Paddle</a>. We do not hold your payment details and cannot refund directly.</p>
++ <h3>I want to delete my data</h3>
++ <p>Delete any conversation, delete everything from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. We hold no copy, so there is nothing to delete on our side.</p>
++ <h3>I want to export my data</h3>
++ <p>Settings → Export lets you export any conversation, or everything, to a file you control. Exported text is marked as AI-generated in its header and metadata.</p>
++ <h3>Does the model download reveal anything about me?</h3>
++ <p>On Android and on iOS 26 or later the store does the download, not the app. Elsewhere a download you start is one HTTPS request for one file: it carries your IP address, like any download, and no identifier. Details in the <a href="/privacy#3-the-complete-list-of-network-activity-by-platform">privacy policy</a>.</p>
++
++ <h2 id="contact">Reach a person</h2>
++ <!-- Support address: to be confirmed by Moshe before launch; do not invent one. Bug tracker link goes live with the open-source core release. -->
++ <p><span class="label">Email</span><mark class="ph" title="Published with the 1.0 release">Support address published with version 1.0</mark></p>
++ <p><span class="label">Bugs</span>The open-source core will accept bug reports on its public issue tracker from the 1.0 release. Until then, use Report a problem in the app and email us the file.</p>
++ <p class="small">When you email us, we process your address and what you wrote, only to answer you, and delete the thread within 90 days after the issue is closed. That is the one place we ever hold personal data; see <a href="/privacy#5-support-email">section 5 of the privacy policy</a>.</p>
++ </article>
++
+
+ ❯ test/legal-texts.test.ts:101:54
+     99|   /* The complement: the sentence that IS allowed must still be there,…
+    100|   it("the site still tells the reader where support lives", () => {
+    101|     expect(read("apps/site/src/pages/support.html")).toContain("mailto…
+       |                                                      ^
+    102|   });
+    103| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > so no shipped text may promise them
+AssertionError: docs/legal/privacy-policy.md: expected '# Inborn Privacy Policy\n\n**Status: …' not to match /Secure Enclave|StrongBox|hardware-ba…/i
+
+- Expected:
+/Secure Enclave|StrongBox|hardware-backed/i
+
++ Received:
+"# Inborn Privacy Policy
+
+**Status: DRAFT for store submission and the website. Not yet published. Placeholders in `{{…}}` are filled at launch.**
+Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 5 September 2026.
+
+Effective date: `{{EFFECTIVE_DATE}}`
+Publisher: `{{DEVELOPER_LEGAL_NAME}}` (the developer account shown on the store listing)
+Contact: `{{SUPPORT_EMAIL}}`
+
+---
+
+## 1. The short version
+
+Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. **We do not collect, receive, store, sell or share any personal data.** There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection.
+
+The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full.
+
+## 2. What Inborn does not do
+
+- It does not create or require an account. No email, phone number, or sign-in of any kind.
+- It does not send your messages, prompts, documents, images, voice, or model outputs anywhere.
+- It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else.
+- It does not assign you a device identifier or send a \"ping\" of any kind.
+- It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted.
+- It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share.
+
+## 3. The complete list of network activity, by platform
+
+### Android
+None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
+
+- **Model delivery.** The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
+- **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
+
+### iOS and iPadOS
+The app itself opens no connection by default.
+
+- **Model delivery, every supported iOS version (iOS 17 and later).** The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from `models.{{DOMAIN}}`, hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. **Your iOS App Privacy Report will show `models.{{DOMAIN}}` while that download runs**, and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships.
+- **Hugging Face (optional, explicit).** If you choose to search or import a model from Hugging Face, the app tells you first, and `huggingface.co` will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download.
+- **Purchases.** Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details.
+
+### Windows and macOS
+- **Model delivery.** A model download you start fetches one file from `models.{{DOMAIN}}`, exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all.
+- **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
+
+### Web version
+The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
+
+### Marketing website
+`{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.
+
+## 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf
+
+When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies:
+
+- Apple: https://www.apple.com/legal/privacy/
+- Google: https://policies.google.com/privacy
+- Microsoft: https://privacy.microsoft.com/privacystatement
+- Paddle: https://www.paddle.com/legal/privacy
+
+We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs.
+
+## 5. Support email
+
+If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app.
+
+## 6. Your data on the device, and how to export or delete it
+
+- Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
+- **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
+- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. **Conversations are not restored to a new device.** On Android the app sets `allowBackup=\"false\"`, so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them.
+- **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
+- **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
+- **Incognito chats** are held in memory only and are never written to disk.
+
+## 7. GDPR and UK GDPR
+
+Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider.
+
+## 8. California (CCPA/CPRA) and other US state laws
+
+We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
+
+## 9. Children
+
+Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
+
+## 10. Security
+
+No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+
+## 11. Changes
+
+We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app.
+
+## 12. Contact
+
+`{{DEVELOPER_LEGAL_NAME}}`
+`{{POSTAL_ADDRESS}}`
+`{{SUPPORT_EMAIL}}`
+"
+
+ ❯ test/legal-texts.test.ts:123:83
+    121|
+    122|   it("so no shipped text may promise them", () => {
+    123|     for (const file of [...LEGAL_MD, ...SITE_PAGES]) expect(read(file)…
+       |                                                                                   ^
+    124|   });
+    125|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > what the policy names is what the code asks for
+AssertionError: expected '# Inborn Privacy Policy\n\n**Status: …' to match /iOS Keychain, with the `WhenUnlockedT…/
+
+- Expected:
+/iOS Keychain, with the `WhenUnlockedThisDeviceOnly` attribute/
+
++ Received:
+"# Inborn Privacy Policy
+
+**Status: DRAFT for store submission and the website. Not yet published. Placeholders in `{{…}}` are filled at launch.**
+Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 5 September 2026.
+
+Effective date: `{{EFFECTIVE_DATE}}`
+Publisher: `{{DEVELOPER_LEGAL_NAME}}` (the developer account shown on the store listing)
+Contact: `{{SUPPORT_EMAIL}}`
+
+---
+
+## 1. The short version
+
+Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. **We do not collect, receive, store, sell or share any personal data.** There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection.
+
+The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full.
+
+## 2. What Inborn does not do
+
+- It does not create or require an account. No email, phone number, or sign-in of any kind.
+- It does not send your messages, prompts, documents, images, voice, or model outputs anywhere.
+- It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else.
+- It does not assign you a device identifier or send a \"ping\" of any kind.
+- It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted.
+- It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share.
+
+## 3. The complete list of network activity, by platform
+
+### Android
+None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
+
+- **Model delivery.** The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
+- **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
+
+### iOS and iPadOS
+The app itself opens no connection by default.
+
+- **Model delivery, every supported iOS version (iOS 17 and later).** The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from `models.{{DOMAIN}}`, hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. **Your iOS App Privacy Report will show `models.{{DOMAIN}}` while that download runs**, and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships.
+- **Hugging Face (optional, explicit).** If you choose to search or import a model from Hugging Face, the app tells you first, and `huggingface.co` will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download.
+- **Purchases.** Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details.
+
+### Windows and macOS
+- **Model delivery.** A model download you start fetches one file from `models.{{DOMAIN}}`, exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all.
+- **Purchases.** Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards.
+
+### Web version
+The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as `models.{{DOMAIN}}`, the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts.
+
+### Marketing website
+`{{DOMAIN}}` uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts.
+
+## 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf
+
+When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies:
+
+- Apple: https://www.apple.com/legal/privacy/
+- Google: https://policies.google.com/privacy
+- Microsoft: https://privacy.microsoft.com/privacystatement
+- Paddle: https://www.paddle.com/legal/privacy
+
+We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs.
+
+## 5. Support email
+
+If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app.
+
+## 6. Your data on the device, and how to export or delete it
+
+- Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
+- **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
+- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. **Conversations are not restored to a new device.** On Android the app sets `allowBackup=\"false\"`, so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them.
+- **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
+- **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
+- **Incognito chats** are held in memory only and are never written to disk.
+
+## 7. GDPR and UK GDPR
+
+Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider.
+
+## 8. California (CCPA/CPRA) and other US state laws
+
+We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
+
+## 9. Children
+
+Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
+
+## 10. Security
+
+No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+
+## 11. Changes
+
+We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app.
+
+## 12. Contact
+
+`{{DEVELOPER_LEGAL_NAME}}`
+`{{POSTAL_ADDRESS}}`
+`{{SUPPORT_EMAIL}}`
+"
+
+ ❯ test/legal-texts.test.ts:129:21
+    127|     expect(code).toContain("WHEN_UNLOCKED_THIS_DEVICE_ONLY");
+    128|     const privacy = read("docs/legal/privacy-policy.md");
+    129|     expect(privacy).toMatch(/iOS Keychain, with the `WhenUnlockedThisD…
+       |                     ^
+    130|     expect(privacy).toMatch(/Android Keystore/);
+    131|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/18]⎯
+
+ FAIL  test/legal-texts.test.ts > F95 · the policy's incognito sentence matches what the code does with an attached file > it no longer says a file is never written to disk
+AssertionError: expected '- **Incognito chats** are held in mem…' not to match /never written to disk/
+
+- Expected:
+/never written to disk/
+
++ Received:
+"- **Incognito chats** are held in memory only and are never written to disk."
+
+ ❯ test/legal-texts.test.ts:137:22
+    135|   it("it no longer says a file is never written to disk", () => {
+    136|     const line = read("docs/legal/privacy-policy.md").split("\n").find…
+    137|     expect(line).not.toMatch(/never written to disk/);
+       |                      ^
+    138|     expect(line).toMatch(/held in a temporary location for the length …
+    139|     expect(line).toMatch(/deleted when the session ends/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/18]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  18 failed | 20 passed (38)
+   Start at  21:41:56
+   Duration  205ms (tests 46%, import 28%, transform 24%, worker 2%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/legal-texts.test.ts

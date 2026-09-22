@@ -3013,3 +3013,56 @@ from the `07-features.html` and `14-plan.html` edits.
 
 **Not done:** no device, emulator or browser touched this round, so the chip-removal affordance is confirmed by
 reading `Chat.tsx`, not by tapping it on a phone.
+
+## Fixes round 31: the legal texts shipped with their placeholders still in them (branch `fixes-r26`) — 22.9.2026
+
+MosheAI's sixth verdict, §3: TestFlight 13 and Play `vc17` both carry raw `{{…}}` in the Privacy and Terms screens,
+the privacy policy promises a published open-source core the terms deny, and it names a Secure Enclave the code never
+asks for. Docs, a site page and one behaviour. F92–F96.
+
+- **F92 — twelve placeholders on a screen a reviewer opens.** `docs/legal/privacy-policy.md` and `terms.md` are
+  imported by `Legal.tsx` and rendered as they are, so every unfilled token went to the device. They are filled:
+  `SUPPORT_EMAIL` = support@inbornapp.com, `DOMAIN` = inbornapp.com, `PRIVACY_URL` = https://inbornapp.com/privacy,
+  `GOVERNING_LAW` = Israel, `EFFECTIVE_DATE` = 22 September 2026, `DEVELOPER_LEGAL_NAME` = Moshe Cohen,
+  `POSTAL_ADDRESS` = [address removed]. Same values in `app-privacy-details.md`,
+  `licenses.md` and `NOTICE.json`; `{{TESTER}}` is gone, because a reviewer's own sandbox account buys the
+  non-consumable and no licence-tester account is needed. Both "Status: DRAFT / Not yet published" lines are out of
+  the shipped texts. `{{COPYRIGHT}}` stays in `docs/legal/model-licences/mit.txt`: `licenceText()` fills it per model.
+- **F93 — three texts, three different answers about the source.** All of them now say what
+  `docs/legal/verification.md` allows while the repository is private: the policy's §10 drops the "published
+  open-source core so that anyone can verify the claims", terms §1 spells out source-available, the site's support
+  page stops promising a public issue tracker and gives the support address, and `proof.html` stops offering claims
+  that "can be read in code rather than believed". The licences page no longer calls the core open source under MIT;
+  `NOTICE.json` carries the real licence name.
+- **F94 — the policy named a key store the app never asks for.** A grep over `apps/mobile/src`,
+  `apps/desktop/src-tauri/src` and `packages/core/src` returns nothing for `SecureEnclave`, `kSecAttrTokenID` or
+  `StrongBox`. What the code does: `SecureStore` with `WHEN_UNLOCKED_THIS_DEVICE_ONLY` (iOS Keychain, Android
+  Keystore) and the OS keychain on desktop. §6 says exactly that, and "hardware-backed keys" is out of §10.
+- **F95 — an incognito attachment was copied into the document library.** `library.ts` called `copyIntoLibrary`
+  unconditionally, so the file sat in `Documents/documents/` for the session while the policy said incognito is
+  "never written to disk", and a crash left it there for good. An incognito import now lands in
+  `Paths.cache/incognito/`, `endSession` deletes it as before, and `DocumentLibrary.boot()` sweeps that directory on
+  every launch, so a killed session cannot leave one behind. The policy line now says what happens: held for the
+  session, never in the library, deleted at the end, swept on the next launch.
+- **F96 — the F51 guard watched `en.json` and nothing else.** `apps/mobile/test/legal-texts.test.ts` (38 tests) reads
+  the shipped files themselves: every markdown under `docs/legal`, every page under `apps/site/src/pages`, the site
+  the generator actually produces (it runs `build()` and scans `dist`), the body `legalBody()` hands the screen, and
+  the source trees behind the key claim. `legalBody` moved to its own module so the test can render it without
+  pulling React Native in.
+
+**Proof:** `docs/qa/fixes-r26/`. Watched red before green: `F92-F94-red.txt` (18 of 38 failing against the texts on
+`main`), `F95-red.txt` (both new incognito assertions failing with the unconditional copy restored).
+`F92-web-bundle.txt` greps the built web bundle, the same artefact shape MosheAI grepped inside `main.jsbundle` and
+`index.android.bundle`: `{{COPYRIGHT}}` twice and no other token, no `Status: DRAFT`. Gates: typecheck, lint,
+**990 tests** (core 616, mobile 352, i18n 11, ui 11), `web:build`, `web:smoke` 6/6 PASS, `apps/site/build.mjs` +
+`check.mjs` 7 pages clean.
+
+**Not done:** no device or emulator was touched, so the filled screens are proven by the rendered Markdown and by the
+built bundle, not by a screenshot of the phone. `proof.html` also claims the store delivers models on "iOS 26 or
+later" while the privacy policy says we fetch from our own host on every supported iOS version; that contradiction is
+outside F92–F96 and is left for whoever owns the site copy.
+
+### Decisions for Moshe (round 31)
+1. **The legal name and postal address are filled with the values on the Play developer account** — Moshe Cohen,
+   [address removed] — pending his word. He was asked; nothing else in the round waits on
+   it, and changing them later is two lines in `docs/legal/privacy-policy.md` and `terms.md` plus a rebuild.

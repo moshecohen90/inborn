@@ -7,14 +7,14 @@ Spec basis: §11.1, §11.2, §11.5, §10.10 #64, #67. Verified 5 September 2026 
 **Answer: "Data Not Collected."** Concretely: to "Do you or your third-party partners collect data from this app?" answer **No**. No data types, no purposes, no tracking.
 
 Why this is honest, per Apple's definitions:
-- Apple defines *collect* as "transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time." The app transmits nothing except the HTTPS request for a model file the user tapped Install on — on iOS, iPadOS, Windows, macOS and the web tier, on every version we support, from `models.{{DOMAIN}}` (Android has no `INTERNET` permission at all and gets its models through Play). We do not use Apple-hosted Background Assets, so that host does appear in the App Privacy Report while the download runs. Apple's page says explicitly that an IP address "sent on a server call and not retained" need not be disclosed. We keep no request logs (Cloudflare R2, no logpush).
+- Apple defines *collect* as "transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time." The app transmits nothing except the HTTPS request for a model file the user tapped Install on — on iOS, iPadOS, Windows, macOS and the web tier, on every version we support, from `models.inbornapp.com` (Android has no `INTERNET` permission at all and gets its models through Play). We do not use Apple-hosted Background Assets, so that host does appear in the App Privacy Report while the download runs. Apple's page says explicitly that an IP address "sent on a server call and not retained" need not be disclosed. We keep no request logs (Cloudflare R2, no logpush).
 - "Data that is processed only on device is not 'collected'." Chats, documents, embeddings, reports: all on device.
 - Purchases: "You are not responsible for disclosing data collected by Apple." StoreKit transactions are Apple's.
 - Crash and usage diagnostics: only via the OS opt-in, collected by Apple. Not ours.
 - Support email: happens outside the app in the user's mail client; even inside Apple's optional-disclosure test (infrequent, optional, user-provided with consent, not primary functionality) it would be exempt.
 - Third-party SDKs: none with network access, so nothing to declare on their behalf. Keep it that way: any SDK addition re-opens this section (spec §10.9 #60).
 
-Also in App Store Connect: **Privacy Policy URL** = `{{PRIVACY_URL}}` (required by Guideline 5.1.1 even with zero collection); **App Review notes** (see §6).
+Also in App Store Connect: **Privacy Policy URL** = `https://inbornapp.com/privacy` (required by Guideline 5.1.1 even with zero collection); **App Review notes** (see §6).
 
 ## 2. PrivacyInfo.xcprivacy (app-level privacy manifest)
 
@@ -111,7 +111,7 @@ Region note: Apple assigns ratings per country; a few regions may show 12 or 16 
 | Does your app collect or share any of the required user data types? | **No** | Nothing leaves the device; Play Asset Delivery and Play Billing traffic is Google Play's, not the app's (Play's help page: data collected by Google Play services on Google's behalf is not the developer's disclosure) |
 | Is all of the user data collected by your app encrypted in transit? | not asked (only shown when data is collected) | Should the form still show it, answer Yes: the only transfer that exists anywhere (iOS/desktop model download) is HTTPS |
 | Do you provide a way for users to request that their data is deleted? | not asked / Yes | Settings → Storage → Delete all, Emergency Wipe, uninstall; described in the privacy policy §6 |
-| Privacy policy URL | `{{PRIVACY_URL}}` | Required for every app, including zero-collection apps |
+| Privacy policy URL | `https://inbornapp.com/privacy` | Required for every app, including zero-collection apps |
 | Data types table | empty | |
 
 Store result: "No data collected" and "No data shared". The spec's line "encryption at rest, deletion mechanism" describes what we *do*; the form only asks about them when data is collected, so they live in the policy text instead.
@@ -201,7 +201,7 @@ Ads: No. Government app: No. Financial features: No. Health apps: No (the crisis
 
 ## 6. App Review notes (paste into ASC "Notes" and Play "Instructions for review")
 
-> Inborn runs an open-weight language model entirely on the device. Reviewers can test it in Airplane Mode: the built-in "Instant" model is inside the app bundle (iOS) / delivered by Play as an asset pack (Android), so no download or account is required. There is no server, no login, no analytics SDK; on Android the manifest has no INTERNET permission. To test the required reporting flow: long-press any AI answer → Report → choose a reason → Save. Reports are stored on the device and can optionally be emailed from Settings → Reports. To test the purchase: sandbox/licence-tester account `{{TESTER}}`, product `pro` (non-consumable). The privacy policy is at Settings → Privacy and at `{{PRIVACY_URL}}`.
+> Inborn runs an open-weight language model entirely on the device. Reviewers can test it in Airplane Mode: the built-in "Instant" model is inside the app bundle (iOS) / delivered by Play as an asset pack (Android), so no download or account is required. There is no server, no login, no analytics SDK; on Android the manifest has no INTERNET permission. To test the required reporting flow: long-press any AI answer → Report → choose a reason → Save. Reports are stored on the device and can optionally be emailed from Settings → Reports. To test the purchase: the reviewer's own sandbox account buys product `pro` (non-consumable); no licence-tester account is needed. The privacy policy is at Settings → Privacy and at `https://inbornapp.com/privacy`.
 
 ## 7. Sources
 

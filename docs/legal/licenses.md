@@ -8,7 +8,7 @@ Rule from the spec: anything we bundle or serve from our CDN makes us a distribu
 
 **Nothing in the shipped tree conflicts with a closed-source Pro app.** Every runtime component is MIT, Apache-2.0, BSD-2/3, ISC, 0BSD, OFL-1.1 or public domain. Obligations are attribution only (copyright notice + licence text; Apache-2.0 additionally requires passing along NOTICE files and marking modified files, and we modify none). Four items need care and are called out in §5: copyleft components that must never be linked (espeak-ng GPL-3), a dual-licensed dev dependency where we elect BSD (node-forge), MPL-2.0 build tools that never ship, and the model families the spec keeps out of the default catalogue (Gemma terms, Llama Community License, LFM, MRL).
 
-## 2. Models (shipped or served from `models.{{DOMAIN}}`)
+## 2. Models (shipped or served from `models.inbornapp.com`)
 
 | Tier / role | Model | Licence | Rights holder / attribution line | Obligations as distributor | Status |
 |---|---|---|---|---|---|

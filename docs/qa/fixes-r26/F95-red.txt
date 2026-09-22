@@ -1,0 +1,66 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile
+
+stdout | src/documents/incognito.test.ts > incognito documents live in RAM only (spec §5.7, F69/F70) > ending the session takes the incognito document, its file and its attachment; the saved library is untouched
+[documents] warranty.txt: indexed · 1/1 pages · 1 chunks · 0 ms (0 ms/page)
+
+stdout | src/documents/incognito.test.ts > incognito documents live in RAM only (spec §5.7, F69/F70) > ending the session takes the incognito document, its file and its attachment; the saved library is untouched
+[documents] offer.txt: indexed · 1/1 pages · 1 chunks · 0 ms (0 ms/page)
+
+stdout | src/documents/incognito.test.ts > incognito documents live in RAM only (spec §5.7, F69/F70) > a crash mid-session leaves the file behind, and the next launch deletes it before the library opens
+[documents] offer.txt: indexed · 1/1 pages · 1 chunks · 0 ms (0 ms/page)
+
+ ❯ src/documents/incognito.test.ts (6 tests | 2 failed) 68ms
+   ❯ incognito documents live in RAM only (spec §5.7, F69/F70) (6)
+     × ending the session takes the incognito document, its file and its attachment; the saved library is untouched 15ms
+     × a crash mid-session leaves the file behind, and the next launch deletes it before the library opens 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/incognito.test.ts > incognito documents live in RAM only (spec §5.7, F69/F70) > ending the session takes the incognito document, its file and its attachment; the saved library is untouched
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/documents/incognito.test.ts:109:45
+    107|     /* The complement of the old assertion: the copy the extractor rea…
+    108|        document library, which survives the session, never holds it. */
+    109|     expect(storedUri.startsWith(INCOGNITO)).toBe(true);
+       |                                             ^
+    110|     expect([...files.keys()].filter((k) => k.startsWith(LIBRARY))).toE…
+    111|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/documents/incognito.test.ts > incognito documents live in RAM only (spec §5.7, F69/F70) > a crash mid-session leaves the file behind, and the next launch deletes it before the library opens
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/documents/incognito.test.ts:133:34
+    131|     await relaunched.ready();
+    132|
+    133|     expect(files.has(storedUri)).toBe(false);
+       |                                  ^
+    134|     expect([...files.keys()].some((k) => k.startsWith(INCOGNITO))).toB…
+    135|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  21:40:11
+   Duration  470ms (transform 64%, import 18%, tests 17%, worker 1%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fixes-r26/apps/mobile:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/documents/incognito.test.ts

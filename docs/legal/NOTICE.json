@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Inborn third-party notices",
-  "description": "Source of truth for the in-app Licences screen (spec §11.4). Groups: model, engine, library, font. scope: shipped = in the store binary or bundled asset; catalogue = served from models.{{DOMAIN}} or delivered by Play/Apple asset packs; planned = in the spec, not yet integrated; build-only = never ships (listed for completeness of the audit). Regenerate the js entries from `pnpm licenses list --prod --json` at every release.",
+  "description": "Source of truth for the in-app Licences screen (spec §11.4). Groups: model, engine, library, font. scope: shipped = in the store binary or bundled asset; catalogue = served from models.inbornapp.com or delivered by Play/Apple asset packs; planned = in the spec, not yet integrated; build-only = never ships (listed for completeness of the audit). Regenerate the js entries from `pnpm licenses list --prod --json` at every release.",
   "generated": "2026-09-05",
-  "app": { "name": "Inborn", "coreLicense": "MIT", "coreScope": "engine, storage, network, catalogue (spec D4)" },
+  "app": { "name": "Inborn", "coreLicense": "Inborn Source-Available Licence 1.0", "coreScope": "engine, storage, network, catalogue (spec D4)" },
   "components": [
     {
       "id": "qwen3.5-0.8b", "group": "model", "name": "Qwen3.5-0.8B", "version": "GGUF Q4_K_M", "tier": "Instant",
