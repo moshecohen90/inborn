@@ -358,7 +358,13 @@ passcode-sheet set as build 9 plus "the policy changing a real answer on this ph
 regex tables are verified in the shipped Hermes bundle. Real-iPhone pass 11: **24 PASS, 0 FAIL, 5 NOT RUN of 29 rows across the
 three result tables** — the F39 tables are confirmed in the bundle this phone ran, and all 5 NOT RUN rows sit behind the same
 UI-Automation passcode sheet as every build since 7 (a live chat turn, and the three tap/scroll-only rows that follow from it:
-the vault below the fold, a model's Details sheet, the attach sheet) (`docs/qa/ios-device-pass-11-2026-09-22.md`). The App Manager ASC API key cannot export with cloud-managed
+the vault below the fold, a model's Details sheet, the attach sheet). **Update, 22.9 10:49–10:57**: Moshe accepted the sheet
+once and the XCUITest driver then drove the installed build 11 hands-free — a real chat turn (row 6, "What is the capital of
+France?" answered correctly), F39's length policy proven live (row 15c, the same how-to question got the moderate 4-sentence
+budget instead of the factual ask's 1 sentence), and the two below-the-fold rows (13b, Fast's "No photos" prose; 13d, the
+attach sheet with Instant resident) are now **PASS**. Final: **28 PASS, 0 FAIL, 1 NOT RUN of 29 rows** — only row 13c (a
+model's Details sheet) stays NOT RUN, because the phone locked itself before the third runner session could start
+(`docs/qa/ios-device-pass-11-2026-09-22.md`). The App Manager ASC API key cannot export with cloud-managed
 certificates (403 FORBIDDEN_ERROR), which is why builds 6–11 were signed with the Admin key; since 22.9 that key is the
 release default and nothing is open on it (see "iOS release: which App Store Connect key"). Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
@@ -428,15 +434,21 @@ The model CDN is **live** since 22.9: `inbornapp.com` on Cloudflare Registrar, R
 smallest. CORS is proven for the browser's ranged fetch. The web tier downloads Instant from it, verifies it and answers
 (`web:smoke`); the iOS **simulator** cannot, because its `nsurlsessiond` refuses the app's background session
 (`NSCocoaErrorDomain 4097`) — a simulator limit, not the app. Details and the re-verify command: `docs/ops/cdn-r2.md`.
-Open (Moshe only): install TestFlight 1.0.0 (11) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
-Enable UI Automation" sheet once while a runner is starting (which then unblocks the whole tap-driven backlog: model Details sheet, the
-attach sheet, the vault below the fold, hands-free with Whisper installed) or by tapping through it by hand; store screenshots after
-his design approval; legal fields (support email, domain, legal name, address); Play payments profile; Family Sharing decision and regional
-price policy (store conversion vs the country-ratio table); submit the four IAPs with app version 1.0; a share-in via a MediaStore
-`content://` URI from the shell imports nothing and the share module swallows the read failure silently — real but low severity, carried as
-a 1.0.1 card rather than a 1.0 blocker (`docs/qa/purchases-run-2026-09-11.md` section N); the Arabic tier ranking question in
-`docs/models/model-fit.md`'s "least certain judgements" list. Declared cuts for 1.0: .sealed backup,
-side-by-side compare, Shortcuts/widgets/keyboard, Apple FM on device.
+Open (Moshe only): a model's Details sheet on the real iPhone (row 13c) still needs one more accepted "Enter iPhone Passcode
+for 'XCTest' · Enable UI Automation" sheet — the rest of the tap-driven backlog (live chat turn, attach sheet, vault below the
+fold) is now proven; the real-iPhone CDN download proof (Fast/Sharp/vision-projector/document-index over `models.inbornapp.com`,
+which only a physical device can finish — the simulator's `nsurlsessiond` cannot) is pending, being run now; Cloudflare-side
+privacy/support pages are not deployed yet (the site stays parked until design approval); Play Console fields (privacy URL,
+sign-in details, IARC rating, target audience, data safety declaration, contact details) and ASC privacy/support URLs + review
+information; the 8 legal placeholders (support email, legal name, address and the rest of `docs/legal/`); store screenshots
+after his design approval; product decisions — Family Sharing, regional price policy (store conversion vs the country-ratio
+table), Work-tier scope, the 8 launch languages; the desktop `.app` runtime proof (Keychain-prompt fix now gives stable signing
+via `apps/desktop/scripts/with-signing-identity.sh`; a blank window was seen before F41) to run when Moshe is away from the
+Mac; submit the four IAPs with app version 1.0; a share-in via a MediaStore `content://` URI from the shell imports nothing and
+the share module swallows the read failure silently — real but low severity, carried as a 1.0.1 card rather than a 1.0 blocker
+(`docs/qa/purchases-run-2026-09-11.md` section N); the Arabic tier ranking question in `docs/models/model-fit.md`'s "least
+certain judgements" list. The Play payments-profile banner is a self-hold to 16.1.2027, not an open issue. Declared cuts for
+1.0: .sealed backup, side-by-side compare, Shortcuts/widgets/keyboard, Apple FM on device.
 
 ## Voice + image input (M5b, spec §5.6, §7.1, §7.4, §8.2, S44) — status 6.9.2026
 Free = the system's dictation with the on-device flag forced + system read-aloud; Pro = whisper.cpp base on the phone + the hands-free
