@@ -794,6 +794,151 @@ run. The chats the run created were left. The 6T holds only `com.inbornapp.mobil
 owned; the app is force-stopped and the phone is on its launcher home screen. Nothing was uninstalled, no phone setting
 was changed, the phone was never locked or unlocked.
 
+## Q. Play internal release versionCode 14 — the F38 answer-length policy on the real Play path — 22.9.2026
+
+The release that carries **round 19** (F38, `packages/core/src/chat/length.ts`) to a device through Google Play, as an
+**update in place over vc13** rather than a fresh install. Round 19 was proven on an emulator with an
+`INBORN_PACKS=instant` build, which cannot reach the state Moshe actually complained about — a chat that also holds an
+attached document. This run retests F38 on the OnePlus 6T, on the store bundle, with every pack installed.
+
+> Section P (vc13) is not on `main` yet; it lives on branch `android-vc13`. This section is written after O and reads
+> P's conventions from that branch.
+
+**Build.** Fresh worktree `android-vc14` off `origin/main` (**fc7b3ee**), `pn install --frozen-lockfile` 0, `.models`
+symlinked to `/Users/moshecohen/dev/inborn/.models`, no `android/` directory and `modules/doc-extract/android/build`
+removed. `scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=14` and
+**no `INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a private
+`GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 7 m 56 s**, 1112 actionable tasks, 1112 executed.
+`gradlew --stop` was never run; `pgrep -fl xcodebuild` was empty and `ios-build-10/xcodebuild.running` absent before it
+started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,808,142 bytes** (4.77 GiB; vc13 was 5,117,801,881, +6,261) |
+| sha256 | `a2b1bd0938dceaa04f392a9dd49ac10a4a7ccb06c16c2a9a996d210fd8bacd26` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, the same set as vc12 and vc13 |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base 202,650,086 B / 1453 entries; the seven packs below |
+| `base/assets` | 17,832,886 B / 120 entries (vc13: 17,810,826 / 120) |
+| manifest | `versionCode="14" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk 26 |
+| commit baked into `app.config` | `fc7b3ee0c8ff` — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gate | `pn lint` exit **0** |
+
+**Round 19 is in the artifact, not only on the branch.** The Hermes bundle inside the AAB (`base/assets/index.android.bundle`,
+5,281,376 bytes) carries all four `LENGTH_INSTRUCTIONS` strings and the explicit-count line — `Answer in one to three
+sentences`, `Keep the answer as short as the question allows`, `Give the whole answer the task needs`, `Answer in one or
+two short spoken sentences and stop.` and `match that length` — one occurrence each. The round-17/18 strings
+(`Too slow to use on this`, `cannot look at photos`) are still there too.
+
+| asset pack | delivery | asset | asset bytes | module bytes | sha256 vs `.models` |
+|---|---|---|---|---|---|
+| `inborn_model` | fast-follow | `Qwen3.5-0.8B-Q4_K_M.gguf` | 532,517,120 | 532,518,071 | MATCH |
+| `inborn_model_fast` | on-demand | `Qwen3.5-2B-Q4_K_M.gguf` | 1,280,835,840 | 1,280,836,794 | MATCH |
+| `inborn_model_embed` | on-demand | `nomic-embed-text-v1.5.f16.gguf` | 274,290,560 | 274,291,515 | MATCH |
+| `inborn_model_speech` | on-demand | `ggml-base.bin` | 147,951,465 | 147,952,421 | MATCH |
+| `inborn_model_vision` | on-demand | `mmproj-Qwen3.5-0.8B-F16.gguf` | 204,987,232 | 204,988,188 | MATCH |
+| `inborn_model_sharp` | on-demand | `Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf` | 1,401,058,176 | 1,401,059,131 | MATCH |
+| `inborn_model_sharp_2` | on-demand | `Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf` | 1,339,879,904 | 1,339,880,861 | MATCH |
+
+Play's limits, all met: base + install-time **202,650,086 B** against the 4 GB cap; fast-follow plus on-demand
+**5,181,526,981 B** (4.83 GiB) against 30 GB; the largest single pack `inborn_model_sharp` at **1,401,058,176 B**
+(1.30 GiB) against the 1.5 GB per-pack cap.
+**Upload.** `scripts/play-upload.mjs` with the service account from the keychain, internal track, release name
+**"1.0.0 (14)"**. Edit `16023054192311232036`. The 4.77 GiB resumable upload dropped its connection at offset
+`5,100,273,664` — the identical offset vc13's upload failed at — and vc13's `upload-patient.mjs` probe-and-resume
+recovered it after two retries. `tracks.update` then `commit` both returned 200; the internal track lists version
+**14** with status `completed`, and Play's own sha256 for the artifact equals the local one.
+
+**The update on the 6T, in place through the Play Store.** The phone (`REDACTED-6T`, Android 11) held Play's **vc13** with
+all seven packs. No uninstall, no `bundletool install`, no `adb install`: the Play Store app was driven by keys only.
+
+The Update button cannot be reached the way section P describes. P's five TABs land on a different node in this
+listing; what works is TAB until the **focused node's bounds contain the Update label's bounds**, which took **seven**
+TABs here, then ENTER. The first press at **02:35:48** answered *all packs unavailable* — Play had published the
+bundle but not yet the packs. The second press at **02:37:09** started the download.
+
+| stage | time |
+|---|---|
+| first Update press (refused, packs not published) | 02:35:48 |
+| second Update press, download starts | 02:37:09 |
+| Play finishes the 5,135,296,632 B package | 02:49:23 |
+| `versionCode=14`, `installerPackageName=com.android.vending` | 02:49:33 |
+| app relaunched, Instant pack re-delivered, vault back to 4.8 GB | 02:52:35 |
+
+Play re-delivered **every** pack, not a delta: a new versionCode gives every asset pack a new version, so the whole
+5.14 GB came down again. Between 02:49 and 02:52 the vault reported 1.8 GB and a `Delivering INSTANT · 98% of 508 MB`
+banner; by 02:52:35 the banner was gone and the vault read **4.8 GB in the vault · 12 GB free**.
+
+**The other proofs, all on the updated build.**
+
+| proof | result | shot |
+|---|---|---|
+| About | **1.0.0 (14)** and commit **fc7b3ee0c8ff** | `a-01-about-1-0-0-14.png` |
+| Proof screen | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, allowlist `none · the app has no internet permission`, `Internet: none (not in the manifest)`, no trackers | `a-02-proof-out-0b.png` |
+| every pack still installed after the update | **7 model cards, 0 `install-` nodes anywhere in the vault** — Instant `Loaded`; Fast, Sharp, embed-nomic, speech-whisper-base and vision-qwen35 all `Installed`; sharp-phi correctly `Not offered through Google Play` (it is a browser import, not one of the seven packs). `4.8 GB in the vault · 12 GB free` | `b-01-vault-top.png`, `b-02-vault-all-packs.png` |
+| F33 ×5 | 5 / 5 **OK**: pid **18707** at both ends of all five cycles, `fatal_delta=0`, `procdied_delta=0` | `d-02-f33-five-cycles-ok.png` |
+| F35 hands-free on the release build | alive **126 s**, pid 18707 unchanged; `voice-screen` present at every 12 s poll, phase `LISTENING` to t=53 s then `ENDED` on its own silence timeout. Mic granted by `pm grant` for the proof and **revoked after** (`granted=false`) | `d-01-f35-voice-alive.png` |
+
+Round 15 C is the test that matters in that table: a Play update must not turn an installed pack back into an Install
+offer. It did not — but Play did re-download all 5.14 GB, because a new versionCode versions every asset pack.
+
+**F38, the headline.** vc13 (round 18, no answer-length policy) was measured on this phone on Instant before the update;
+vc14 (round 19, `packages/core/src/chat/length.ts`) was measured after it, same phone, same model, same driver.
+Seconds are to the last change in the answer text; words are counted from every TextView under the message, not from
+`content-desc`, which carries only the first paragraph.
+
+| scenario | vc13 seconds | vc13 words | vc14 seconds | vc14 words |
+|---|---|---|---|---|
+| (a) fresh chat, "What is 2 plus 2?" ×4 | 3 / 4 / 3 / 4 | 5 / 1 / 1 / 1 | 5 / 3 / 3 / 3 | 5 / 5 / 5 / 5 |
+| (b) chat holding an attached document, same ask ×4 | 3 / 4 / 5 / 5 | 5 / 5 / 5 / 5 | 4 / 4 / 3 / 4 | 5 / 5 / 5 / 5 |
+| (c) "…in about 200 words." | 37 | 137 | 11 / 21 | 99 / 160 |
+| (d) short question, answer asked for in Hebrew | 16 | 34 | 27 | 24 |
+
+**The honest reading: F38 changes nothing measurable in the case Moshe complained about, because that case was already
+short on vc13.** Every repeat of "What is 2 plus 2?" answers in 3–5 seconds and about five words on both builds, with
+and without a document attached to the chat. vc14's answers are five words every time where vc13 twice collapsed to the
+bare token `4`, which is the policy's "give the answer first, then stop" reading rather than a length change.
+
+**Soak 6's "85 second timeouts" were the driver, not the model.** Soak 6's sender called a turn complete when the last
+assistant line differed from its value before the send and then held still. Two identical answers to the same question
+have the same first line, so the test could never fire on a repeat and every one of them ran to the poll ceiling and was
+logged as a timeout at 83–87 s. Replacing that test with the stop button plus a full-text stability fallback shows the
+same question answering in 3–5 s on vc13 itself. The round-19 notes that cite those numbers as a model problem are
+wrong, and this run is the correction.
+
+**(c) is the one place the policy shows, and it needs a caveat.** The prompt was run twice on vc14. In a chat that
+already held four short turns it produced **99 words in 11 s**; in a fresh chat, **160 words in 21 s**, ending on a
+complete sentence with no truncation. vc13's single run produced **137 words in 37 s** in a chat that also held four
+short turns. The two vc14 numbers are the honest pair: the comparable one is 99 words, the fresh-chat one is 160. All
+three word counts for vc13 and for the first vc14 run were read from what the accessibility tree had on screen, which
+for a long answer is less than the whole message; the 160-word figure is the only one read by scrolling the message
+from its top and collecting every line, so it is the only count that is certainly complete. None of the three answers
+reached 200 words, and none was cut off mid-sentence.
+
+**(d) could not be asked in Hebrew, and the answer is not Hebrew in any useful sense.** `adb shell input text` cannot
+type Hebrew and the release build has no autoprompt hook, so the question was the ASCII sentence *"Answer in Hebrew:
+what is the capital of France?"* on both builds. Both answers are Hebrew-script gibberish — vc13's names Austria and
+Rome, vc14's is not a sentence at all. This is Instant (Qwen3.5 0.8B) doing what its own vault card says it does: under
+LANGUAGES it lists **"No · Hebrew"**. It is not an F38 result and F38 does not claim to fix it.
+
+**Soak run 7** ran for the hour after the proofs: `docs/qa/soak-run-7-2026-09-22.md`. 26 prompts, 26 completed, **0
+timeouts**, 0 send failures, 12 F33 cycles all OK, one pid for the whole hour, 0 FATAL, 0 ANR, and **no dropbox entry
+belonging to versionCode 14**.
+
+**The one process restart in the whole run was the proofs' own microphone revoke**, not a crash:
+`am_kill [0,18707,com.inbornapp.mobile,0,permissions revoked]` at 03:40:52, followed 121 ms later by
+`am_proc_start [0,15910,…]`. Android kills an app when a runtime permission is revoked under it. No `am_crash`, no
+`am_anr`, no new dropbox entry.
+
+**Gate:** `COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm@10.34.5 lint` exit **0**.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
@@ -831,3 +976,13 @@ resident model is Fast, as before the run. The pushed image fixture and its Medi
 Nothing was uninstalled and no phone setting was changed. Gradle ran once, `--no-daemon`, in a private `GRADLE_USER_HOME`
 inside the session scratch; `pgrep -fl xcodebuild` was empty before it started and no xcodebuild ran beside it. No
 emulator, simulator or browser was started and the iPhone was not touched.
+
+After section Q (22.9, 04:50): the 6T holds only `com.inbornapp.mobile`, **Play versionCode 14**, installed by
+`com.android.vending` as an **update in place** over vc13 with **all seven packs** re-delivered — Instant, Fast, embed,
+Sharp (both shards), speech and vision — 4.8 GB in the vault and 12 GB free; the resident model is Instant. The OCR
+fixture the F38 document case pushed to the app's external files directory is deleted; `/sdcard/Pictures/InbornQA/` is
+the 11.9 run's and was left alone. `RECORD_AUDIO` is `granted=false` again, as the run found it. The app is
+force-stopped and the phone is on its launcher home screen. Nothing was uninstalled, no phone setting was changed, the
+phone was never locked or unlocked, and the iPhone was not touched. Gradle ran once, `--no-daemon`, in a private
+`GRADLE_USER_HOME` inside the session scratch; `gradlew --stop` was never run; `pgrep -f xcodebuild` was empty and
+`ios-build-10/xcodebuild.running` absent before it started. No emulator, simulator or browser was started.
