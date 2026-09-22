@@ -38,6 +38,8 @@ llama-cpp-2 = { version = "0.1.156", default-features = false, features = ["meta
 [features]
 # Windows GPU backends, chosen at build time by CI (`--features vulkan` is the universal build, `cuda` the NVIDIA one).
 vulkan = ["llama-cpp-2/vulkan"]
+# QA only (never in a shipped build): the control socket and the `INBORN_QA_KEY_FILE` secret source.
+qa = []
 cuda = ["llama-cpp-2/cuda"]
 
 [profile.release]

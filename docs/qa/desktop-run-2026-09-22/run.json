@@ -1,0 +1,88 @@
+{
+  "startedAt": "2026-09-22T12:47:16.780Z",
+  "prompt": "What is the capital of France? Answer in one sentence.",
+  "steps": [
+    {
+      "name": "launch",
+      "value": {
+        "pid": 8895,
+        "version": "0.0.1",
+        "launcherPid": 8895,
+        "socket": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-qa/control.sock",
+        "keyFile": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-qa/secrets.json",
+        "log": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-qa/app.log"
+      }
+    },
+    {
+      "name": "place",
+      "value": {
+        "height": 720,
+        "scaleFactor": 1,
+        "width": 1120,
+        "x": 468,
+        "y": 304.5
+      }
+    },
+    {
+      "name": "reset",
+      "value": "localStorage cleared, page reloaded"
+    },
+    {
+      "name": "title",
+      "value": "Inborn"
+    },
+    {
+      "name": "body-text-length",
+      "value": 171
+    },
+    {
+      "name": "onboarding:onboarding-continue",
+      "value": "\nNothing leaves this computer.\nAI that runs on your device. No account. No cloud. No trace.\nRUNS ON: 8 CORES\n\nContinue\nT"
+    },
+    {
+      "name": "onboarding:start-chatting",
+      "value": "\nYour model\nREADY NOW\nInstant · built in\n0.5 GB · works offline · answers in seconds. Quick answers, rewrites, summaries"
+    },
+    {
+      "name": "onboarding:airplane-skip",
+      "value": "\nProve it to yourself.\n1. Turn on Airplane Mode.\n\nOFF\nSwitch your device to Airplane Mode, then keep this tab open.\n2. A"
+    },
+    {
+      "name": "onboarding:sealed-start",
+      "value": "\nSEALED · ON-DEVICE\nFrom here on, every answer is made on this computer.\n\nStart\n"
+    },
+    {
+      "name": "onboarding:lock-start",
+      "value": "Lock it?\nRequire a passcode\nYour passcode opens Inborn. Also hides chats in the app switcher.\n\nNo biometrics on this dev"
+    },
+    {
+      "name": "layout",
+      "value": {
+        "height": 688,
+        "sidebar": true,
+        "width": 1120
+      }
+    },
+    {
+      "name": "model-chip",
+      "value": "INSTANT"
+    },
+    {
+      "name": "sent",
+      "value": "What is the capital of France? Answer in one sentence."
+    },
+    {
+      "name": "answer",
+      "value": "The capital of France is Paris."
+    },
+    {
+      "name": "ledger",
+      "value": {
+        "tokPerSec": "159.6",
+        "ttft": "66 ms",
+        "tokens": "157 + 7"
+      }
+    }
+  ],
+  "finishedAt": "2026-09-22T12:47:36.016Z"
+}

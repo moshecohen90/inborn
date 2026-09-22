@@ -1747,6 +1747,55 @@ Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn te
 ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines). `pn desktop:build:app` also
 returned 0, but the built app is deliberately not launched here — see the QA note.
 
+## Fixes round 23: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
+**F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
+entering a password and WITHOUT you moving my mouse all the time."* Two walls stood between an agent and the
+desktop build, and the cost is in the record: F41 and F42 both shipped with **runtime proof NOT RUN**, and the
+round-22 desktop layout was signed off from the browser tier alone.
+
+**Wall 1 — the Keychain.** The SQLCipher key and the licence-cache key live in login-Keychain items whose ACL
+names the code identity that created them. Dev builds are signed ad hoc (`"signingIdentity": "-"`), and an
+ad-hoc signature identifies an app only by its own code hash, so every rebuild was a stranger to the item and
+macOS asked for the login password on launch.
+
+**Wall 2 — no driver.** macOS has no WebDriver for WKWebView: `tauri-driver` supports Linux and Windows only,
+CrabNebula's cross-platform fork is paid, and WebdriverIO's answer is a WebDriver server embedded in the app —
+a large dependency in the shipped binary for a QA need. Driving the window meant a human pointer.
+
+**Fix — two answers, because there are two people.**
+
+| who | mechanism |
+|---|---|
+| Moshe rebuilding his own app | the stable code identity from round 21: `scripts/with-signing-identity.sh` signs with *Apple Development*, whose requirement is identifier + team and does not change between builds. The stale items left by ad-hoc builds were deleted once, so the signed app owns the ones it creates |
+| an agent, or CI, on any Mac | **no Keychain at all**: `src-tauri/src/secrets.rs` is now the one source for every at-rest secret, and under `--features qa` with `INBORN_QA_KEY_FILE` set it reads them from a 0600 file. Nothing to ask about, signed or not, first build or fiftieth |
+
+`src/secrets.rs` also gives a QA build its own data directory beside that key file. Two different keys over one
+`inborn.db` had each build starting the file fresh — QA runs and Moshe's app were wiping each other's chats. The
+model vault stays shared, so a run does not copy 497 MB of GGUF.
+
+**The driving channel.** `src-tauri/src/qa.rs`, compiled only with `--features qa` and opened only when
+`INBORN_QA_SOCKET` names a path: a Unix socket answering one JSON line per request — `ping`, `eval` (runs a
+snippet through `Webview::eval`; the value comes back by the page invoking `qa_result`), `window` (size and
+position, so a run is reproducible), `quit`. A socket rather than a port, so the firewall has nothing to ask
+either. Setting the variable also puts the app on `NSApplicationActivationPolicyAccessory`, so the window
+renders and can be photographed while the Mac's focus never moves. Clients: `scripts/qa-drive.mjs` and
+`scripts/qa-desktop-run.mjs` (the whole proof in one command). Presses are pointer events dispatched in the
+page, window ids come from `CGWindowListCopyWindowInfo` (`scripts/qa-windows.swift`), captures are
+`screencapture -l <our window id>`. Nothing types, clicks or activates anything. The production binary carries
+none of it (`strings`: 0 hits, against 5 in the QA build); `desktop:check` runs the Rust tests both ways.
+
+**One bug found on the way.** macOS marks a window nobody can see as occluded, and WebKit then stops delivering
+animation frames — so onboarding S04's *Start*, which is enabled by the seal animation's completion callback,
+never enabled, and a run behind Moshe's own windows hung there. Timers keep firing, so the QA plugin installs
+one line before the app's bundle: `requestAnimationFrame` backed by `setTimeout`. The shipped bundle keeps real
+animation frames.
+
+**Proof** — `docs/qa/desktop-run-2026-09-22.md`, run with Moshe working on the same Mac and the window fully
+hidden behind his own: launch with no dialog, onboarding S01–S05, "The capital of France is Paris." on the Rust
+Metal engine (159.6 tok/s, TTFT 66 ms), the §8.9 sidebar at the default 1120×720 window, and a relaunch after a
+rebuild with the Keychain item's `mdat` unchanged. Zero `SecurityAgent` events, zero `SecurityAgent` windows,
+the frontmost app never ours.
+
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
 to 16 words a short factual ask, so *"How do I set up SSH keys on my Mac?"* was given the short plan — 224 tokens and the
