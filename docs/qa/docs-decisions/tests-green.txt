@@ -1,0 +1,62 @@
+=== pn typecheck ===
+
+> inborn@ typecheck /Users/moshecohen/dev/inborn-wt/docs-decisions
+> pnpm -r --if-present typecheck
+
+Scope: 7 of 8 workspace projects
+packages/core typecheck$ tsc --noEmit -p tsconfig.json
+packages/i18n typecheck$ tsc --noEmit -p tsconfig.json
+packages/ui typecheck$ tsc --noEmit -p tsconfig.json
+packages/ui typecheck: Done
+packages/i18n typecheck: Done
+packages/core typecheck: Done
+apps/mobile typecheck$ tsc --noEmit -p tsconfig.json
+apps/mobile typecheck: Done
+
+=== pn lint ===
+
+> inborn@ lint /Users/moshecohen/dev/inborn-wt/docs-decisions
+> eslint .
+
+
+=== pn --filter @inborn/i18n test ===
+
+> @inborn/i18n@0.0.1 test /Users/moshecohen/dev/inborn-wt/docs-decisions/packages/i18n
+> vitest run
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/docs-decisions/packages/i18n
+
+
+ Test Files  4 passed (4)
+      Tests  11 passed (11)
+   Start at  18:23:22
+   Duration  429ms (tests 82%, transform 12%, import 5%, worker 1%)
+
+
+=== pn --filter @inborn/mobile test ===
+
+> @inborn/mobile@0.0.1 test /Users/moshecohen/dev/inborn-wt/docs-decisions/apps/mobile
+> vitest run
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/docs-decisions/apps/mobile
+
+
+ Test Files  48 passed (48)
+      Tests  305 passed (305)
+   Start at  18:23:23
+   Duration  1.21s (transform 55%, import 24%, tests 19%, worker 2%)
+
+  Transform  transforming modules took 4.11s · 55% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+
+=== python3 docs/build.py ===
+WARNING unresolved placeholders: ['{{DEMO_URL}}', '{{GUIDE}}']
+WARNING unresolved placeholders: ['{{SPEC_URL}}']
+inborn-demo.artifact.html                  156610 bytes
+inborn-demo.html                           156784 bytes
+inborn-spec.artifact.html                  392941 bytes
+inborn-spec.html                           393115 bytes
