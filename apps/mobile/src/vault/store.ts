@@ -347,7 +347,7 @@ export class VaultStore {
     const s = this.states.get(id);
     const ready = s?.kind === "ready" ? s : null;
     const bundled = ready?.via === "bundled" ? ready.path : null;
-    const dev = !bundled && id === "instant" ? devFallbackFile() : null;
+    const dev = !bundled && id === "instant" && Platform.OS !== "web" ? devFallbackFile() : null;
     return pickModelLocation({ bundled, documents: dev?.exists ? dev.uri : null, downloaded: ready && !bundled ? ready.path : null });
   }
 
