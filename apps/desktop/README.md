@@ -80,11 +80,35 @@ socket (WebKit XPC). `inborn.db` starts with random bytes, not `SQLite format 3`
 `com.inbornapp.desktop / chat-db-key` in the login Keychain. Screenshot: the header reads `tauri · 156.5 tok/s · TTFT 48 ms`.
 RSS after the run ≈125 MB plus the mmap'd model.
 
-Ad-hoc dev builds and the Keychain: each rebuild has a new code hash, so macOS asks for the login password before
-the *next* build may read the key the previous one created (`Inborn wants to use your confidential information…`).
-Allow it with "Always Allow", or reset the dev state: `security delete-generic-password -s com.inbornapp.desktop -a
-chat-db-key` and delete `inborn.db*` (dev chats are gone). Developer ID builds keep a stable designated requirement
-and never prompt.
+## QA launches without keychain prompts
+The chat database is SQLCipher; its key is a login-Keychain item, service **`com.inbornapp.desktop`**, account
+**`chat-db-key`** (`src-tauri/src/store.rs`). A Keychain item's ACL names the application that created it, and an
+ad-hoc signature (`"signingIdentity": "-"` in `tauri.conf.json`) identifies an app only by its own code hash — so a
+rebuilt `Inborn.app` is a stranger to the item and macOS asks for the login password on launch:
+*"Inborn wants to use your confidential information stored in chat-db-key"*.
+
+`corepack pnpm desktop:build:app` and `desktop:build` now go through `scripts/with-signing-identity.sh`, which
+exports `APPLE_SIGNING_IDENTITY` from the first **Apple Development** identity in `security find-identity -v -p
+codesigning`. That signature's designated requirement is identifier + team, which does not change between builds, so
+one "Always Allow" holds for every rebuild after it. Set `APPLE_SIGNING_IDENTITY` yourself to pick another
+certificate; with no identity on the Mac the ad-hoc signature applies again and the prompt returns.
+
+Already holding a prompt from an older ad-hoc build, or signing a QA build with a different certificate? Re-create
+the item with the new binary in its ACL, keeping the existing key so the chats stay readable (never echo `$KEY`):
+
+```
+APP=apps/desktop/src-tauri/target/release/bundle/macos/Inborn.app/Contents/MacOS/inborn-desktop
+KEY=$(security find-generic-password -s com.inbornapp.desktop -a chat-db-key -w)   # prompts once
+security delete-generic-password -s com.inbornapp.desktop -a chat-db-key
+security add-generic-password -s com.inbornapp.desktop -a chat-db-key -w "$KEY" -T "$APP" -T /usr/bin/security
+unset KEY
+```
+
+There is no item yet on a clean machine — the first launch creates one and never prompts; drop the two `find`/`KEY`
+lines and pass a fresh `-w "$(openssl rand -hex 32)"` (64 hex characters is what `key_hex()` expects). Resetting
+instead of preserving: `security delete-generic-password -s com.inbornapp.desktop -a chat-db-key` and delete
+`~/Library/Application Support/com.inbornapp.desktop/inborn.db*` — the dev chats are gone with it. Developer ID
+release builds (`scripts/release-macos.sh`) have always had a stable requirement and never prompted.
 
 ## Packaging and distribution
 - **macOS**: `scripts/release-macos.sh` — Developer ID Application signature with hardened runtime, notarytool

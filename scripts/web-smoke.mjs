@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Headless proof of the browser tier (spec §4.4, §14.3), against the deployable build when apps/web/dist exists:
- *   1. first visit: the download door → download into OPFS (cancel + Range resume on the way) → wllama loads from OPFS → one prompt;
+ *   1. first visit: the download door → download into OPFS (cancel + Range resume on the way) → onboarding S01-S05
+ *      (F40: the model step used to crash the page) → wllama loads from OPFS → one prompt;
  *   2. second visit with the network cut (Playwright setOffline): the service worker boots the page, the model comes from OPFS, chat works;
  *   3. a phone viewport shows the "get the app" door;
  *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled.
@@ -84,6 +85,7 @@ let lastConsole = [];
 /** Wires request/console capture on a page; hosts are what the page talked to, requests the same-origin URLs (path only). */
 function observe(page) {
   const consoleLines = [];
+  const pageErrors = [];
   const hosts = new Set();
   const requests = [];
   const hostOf = (u) => (u.protocol === "blob:" ? hostOf(new URL(u.pathname)) : u.host);
@@ -93,13 +95,21 @@ function observe(page) {
     requests.push(`${r.method()} ${u.protocol === "blob:" ? "blob:(worker)" : u.pathname}${r.headers().range ? ` [${r.headers().range}]` : ""}`);
   });
   page.on("console", (msg) => consoleLines.push(`${msg.type()}: ${msg.text()}`));
-  page.on("pageerror", (e) => consoleLines.push(`pageerror: ${e.message}`));
-  return { consoleLines, hosts, requests };
+  page.on("pageerror", (e) => {
+    consoleLines.push(`pageerror: ${e.message}`);
+    pageErrors.push(e.message);
+  });
+  return { consoleLines, pageErrors, hosts, requests };
+}
+
+/** F40 crashed on a click, so every step of the walk is checked; a dead page must not be waited out for five minutes. */
+function noPageErrors(pageErrors, step) {
+  if (pageErrors.length) throw new Error(`${step}: the page threw ${pageErrors.join(" | ")}`);
 }
 
 /** Polls the captured console for the first line matching `re` (the line may already be there when the wait starts). */
 
-/* The shell sends first visits to onboarding (§8.1); the smoke measures the engine, so it arrives as an onboarded user. */
+/* The door contexts (phone, no-space) never get past the door, so they arrive onboarded; the first visit walks S01-S05 itself. */
 const skipOnboarding = (ctx) =>
   ctx.addInitScript(() => {
     if (!localStorage.getItem("inborn.prefs")) localStorage.setItem("inborn.prefs", JSON.stringify({ onboarded: true }));
@@ -113,6 +123,39 @@ async function waitForConsole(lines, re, timeoutMs) {
     await new Promise((r) => setTimeout(r, 100));
   }
   throw new Error(`console never matched ${re}`);
+}
+
+/**
+ * S01 Welcome -> S02 model -> S03 airplane -> S04 sealed -> S05 lock -> chat (spec §8.1).
+ * F40 (22.9.2026) died on the very first click here: the model step pulled llama.rn's TurboModule into the browser
+ * bundle. The old smoke set `onboarded` and never opened these screens, so the gate stayed green through the bug.
+ */
+async function walkOnboarding(page, out, pageErrors) {
+  const steps = [];
+  const step = async (screen, action) => {
+    await page.getByTestId(screen).waitFor({ timeout: 60_000 });
+    noPageErrors(pageErrors, screen);
+    steps.push(screen);
+    await action();
+    noPageErrors(pageErrors, `${screen} (after the click)`);
+  };
+  await step("onboarding-welcome", () => page.getByTestId("onboarding-continue").click());
+  await step("onboarding-model", async () => {
+    out.modelStepReady = (await page.getByTestId("model-ready-card").textContent()) ?? "";
+    out.screenshotOnboarding = path.join(outDir, "web-smoke-onboarding.png");
+    await page.screenshot({ path: out.screenshotOnboarding });
+    await page.getByTestId("start-chatting").click();
+  });
+  await step("airplane-test", () => page.getByTestId("airplane-skip").click());
+  await step("onboarding-sealed", async () => {
+    const start = page.getByTestId("sealed-start");
+    await start.waitFor({ timeout: 30_000 });
+    /* The ring animates before the button enables; the seal is the screen's whole point, so it is waited for, not forced. */
+    for (let i = 0; i < 100 && (await start.isDisabled()); i++) await new Promise((r) => setTimeout(r, 100));
+    await start.click();
+  });
+  await step("onboarding-lock", () => page.getByTestId("lock-start").click());
+  out.onboarding = steps;
 }
 
 /** Ready = the Chat screen is up and the console says which engine loaded (the status line stays visible with the engine name). */
@@ -149,12 +192,11 @@ const foreignHosts = (hosts) => [...hosts].filter((h) => h !== origin);
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
-  await skipOnboarding(context);
 
-  /* 1. First visit: download door → OPFS → wllama → chat. */
+  /* 1. First visit: download door → OPFS → onboarding S01-S05 → wllama → chat. */
   {
     const page = await context.newPage();
-    const { consoleLines, hosts, requests } = observe(page);
+    const { consoleLines, pageErrors, hosts, requests } = observe(page);
     lastPage = page;
     lastConsole = consoleLines;
     const out = result.first;
@@ -177,6 +219,8 @@ try {
         await resume.click();
       }
     }
+    /* The door reloads the page once the file is in OPFS; onboarding is what the reloaded app opens on. */
+    await walkOnboarding(page, out, pageErrors);
     await waitForEngine(page, out, consoleLines, t0);
     out.downloadRequests = requests.filter((r) => r.includes("/models/instant.gguf"));
     out.crossOriginIsolated = await page.evaluate(() => globalThis.crossOriginIsolated);
@@ -218,7 +262,7 @@ try {
   if (hasServiceWorker) {
     await context.setOffline(true);
     const page = await context.newPage();
-    const { consoleLines, hosts, requests } = observe(page);
+    const { consoleLines, pageErrors, hosts, requests } = observe(page);
     lastPage = page;
     lastConsole = consoleLines;
     const out = result.offline;
@@ -226,6 +270,7 @@ try {
     await page.goto(server.url);
     await waitForEngine(page, out, consoleLines, t0);
     await chat(page, out, PROMPT_OFFLINE, consoleLines);
+    noPageErrors(pageErrors, "offline visit");
     out.requests = requests;
     out.hosts = [...hosts];
     out.navigatorOnLine = await page.evaluate(() => navigator.onLine);
@@ -302,6 +347,7 @@ const f = result.first;
 const o = result.offline;
 console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · TTFT ${f.ttftMs} ms · tokens ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
 if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · TTFT ${o.ttftMs} ms · tokens ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
+console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);

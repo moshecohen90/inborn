@@ -1606,6 +1606,74 @@ reference` at `ViewGroup.dispatchAttachedToWindow` under `ScreenStack.onUpdate`,
   labels that name a token were never translated, unlike `ja` ("MS / トークン") and `ko` ("MS / 토큰"). They now read
   "MS / 詞元", "第一個詞元" and "詞元 輸入 + 輸出", keeping MS and TOK / S as Latin units the way ja and ko do.
 
+## Fixes round 21: the web build crashed on the first onboarding click (branch `web-desktop-check`) — 22.9.2026
+**F40** (found on the real web export, 22.9.2026): after the download door, pressing **Continue** on S01 Welcome left a
+blank page — `pageerror: Cannot read properties of undefined (reading 'get')`. **F41** (found on the real desktop
+`.app`, same day): the Tauri window wore the browser's notice strip and its **download door**, a gate asking for a model
+the Rust vault already holds.
+
+**Root cause, F40.** S02 (`screens/Onboarding/ModelChoice.tsx`) reads `useInstalledModel` from `../../vault`;
+`vault/index.ts` re-exports `resolveEngine` from `vault/resolve.ts`; that imports `adapters/llamaRn.ts`; `llama.rn`
+calls `TurboModuleRegistry.get("RNLlama")` at module scope. react-native-web has no `TurboModuleRegistry`, so the page
+died the moment Metro evaluated that module — one click into onboarding. Harmless on the phones, and the import had
+been there all along.
+
+**Root cause, F41.** `WebShell` is mounted from `app/_layout.tsx` for every web-platform build, and the Tauri shell is
+one. Its doors read `web/boot.ts`, which the desktop never runs (`adapters/prepare.web.ts` sends it to
+`prepareTauri()`), so the desktop was being gated on a boot that had not happened.
+
+**Why the gate missed F40 — the part worth remembering.** `pn web:smoke` covered the download door, OPFS, the offline
+visit, the phone door and the no-space door, and it **passed on the broken build**. Its context set
+`localStorage["inborn.prefs"] = {onboarded:true}` in an init script so it could get to the engine faster, so in its whole
+life it had never opened an onboarding screen. The bug sat on the one path the gate stepped over.
+
+**Fix.**
+
+| finding | change | pinned by |
+|---|---|---|
+| F40 | `apps/mobile/src/vault/resolve.web.ts` — a Metro platform variant returning `null`, keeping `llama.rn` out of the web bundle (same discipline as `screens/vault/VaultEntry.web.tsx`); `vault/store.ts` no longer calls `devFallbackFile()` on the web, which built an `expo-file-system` path under a document directory no browser has | `apps/mobile/test/webBundle.test.ts` |
+| F41 | `apps/mobile/src/web/doors.ts` — `webDoorsApply()` over the existing `isTauri()`; `WebShell` renders `BrowserShell` only when it is true and otherwise passes its children straight through | `apps/mobile/src/web/doors.test.ts` |
+
+**Gate closed twice.** `scripts/web-smoke.mjs` now walks the real first visit — download door → **S01 Welcome → S02
+model → S03 airplane → S04 sealed → S05 lock** → chat → one prompt — and checks for a page error after every screen and
+after every click, so a dead page fails in seconds rather than timing out; `skipOnboarding` survives only on the two
+contexts that never get past the door. And `apps/mobile/test/webBundle.test.ts` needs no browser: it walks every route
+under `src/app` in Metro's web resolution order (`.web.*` wins) and fails if `llama.rn`, `whisper.rn`, `expo-iap`,
+`expo-sqlite`, `expo-speech-recognition` or `@fugood/react-native-audio-pcm-stream` is reachable, printing the chain.
+
+**Negative control, run today.** With `vault/resolve.web.ts` moved aside and the export rebuilt, both tripwires fire:
+
+```
+FAIL: onboarding-welcome (after the click): the page threw Cannot read properties of undefined (reading 'get')
+
+app/onboarding/model.tsx -> screens/Onboarding/ModelChoice.tsx -> vault/index.ts -> vault/resolve.ts
+  -> adapters/llamaRn.ts -> llama.rn
+```
+
+**Proof, headless, at 1280×800** against the rebuilt export served on the port Moshe already has open
+(`http://127.0.0.1:8477`): the download door, **S02 after Continue** (F40's crash site, "READY NOW · Instant · built
+in · 0.5 GB"), and chat answering "The capital of France is Paris." with the chip on INSTANT and the seal shut —
+`docs/qa/fixes-r21/`, write-up `docs/qa/fixes-r21-2026-09-22.md`. `[inborn] wllama loaded … in 1300 ms`, zero page
+errors across the walk. Chrome headless shell with its own profile; nothing was put on his screen.
+
+**The Keychain prompt on rebuilt desktop builds** (the reason the desktop app annoyed him, not a QA finding). The chat
+database is SQLCipher and its key is a login-Keychain item (`com.inbornapp.desktop` / `chat-db-key`). An item's ACL
+names the app that created it, and an ad-hoc signature (`"signingIdentity": "-"`) identifies an app only by its own code
+hash — so every rebuild is a stranger and macOS asks for the login password. `desktop:build:app` and `desktop:build` now
+go through `apps/desktop/scripts/with-signing-identity.sh`, which exports `APPLE_SIGNING_IDENTITY` from the first
+**Apple Development** identity on the Mac; that certificate's designated requirement is identifier + team, so one
+"Always Allow" holds across rebuilds. Recipe for an item an older ad-hoc build already created, with the real service
+and account names, in `apps/desktop/README.md` under "QA launches without keychain prompts".
+
+**NOT RUN.** The desktop shell was **not launched**: Moshe is at this Mac and this stream may not put anything on his
+screen. F41's fix, the signing change and the Keychain behaviour are proven only as code, tests and `desktop:check`;
+the runtime pass is scheduled. No physical phone was used.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile **180** — 169 +
+the 11 new, i18n 10, ui 11 — **706** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines, first
+visit 12.6 s at 30.3 tok/s, offline visit 1.6 s with 0 model fetches), `pn desktop:check` 0 (7 Rust tests). `web:smoke`
+needs `MODELS_DIR=/Users/moshecohen/dev/inborn/.models` in a worktree, which has no `.models` of its own.
+
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
 to 16 words a short factual ask, so *"How do I set up SSH keys on my Mac?"* was given the short plan — 224 tokens and the

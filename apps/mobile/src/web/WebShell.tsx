@@ -12,6 +12,7 @@ import { recordWebTransfer } from "./transfers";
 import { registerServiceWorker, type OfflineState } from "./serviceWorker";
 import { font } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
+import { webDoorsApply } from "./doors";
 
 /** The marketing site (spec §13.4) is a separate origin; this is only a link, never a fetch. */
 export const GET_APP_URL = "https://inbornapp.com/";
@@ -25,6 +26,10 @@ type Phase =
 
 /** Web doors (spec §8.9, §14.3): the notice strip, the phone door, the download door and the engine switch. */
 export function WebShell({ children }: { children: ReactNode }) {
+  return webDoorsApply() ? <BrowserShell>{children}</BrowserShell> : <>{children}</>;
+}
+
+function BrowserShell({ children }: { children: ReactNode }) {
   const boot = webBoot();
   const { theme } = useTheme();
   const [ready] = useState(() => webReady(boot));
