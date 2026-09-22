@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { BannerSpacer } from "../../components/shell/bannerInset";
 import { useTheme } from "../../services/theme";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -90,6 +91,7 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
         </Pressable>
         <View style={styles.headerBtn} />
       </View>
+      <BannerSpacer />
       <ScrollView contentContainerStyle={[styles.list, { paddingBottom: insets.bottom + 24 }]}>
         <Text testID="paywall-title" style={[type.display, { color: theme.text }]}>
           {t("paywall.title")}

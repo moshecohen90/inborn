@@ -4,6 +4,7 @@ import { useTheme } from "../../services/theme";
 import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
 import { PRODUCTS, fallbackPrice, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
@@ -160,6 +161,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.headerBtnText, styles.right, { color: addLocked ? theme.accent : theme.text }]}>{addLocked ? t("documents.addPro") : t("documents.add")}</Text>
         </Pressable>
       </View>
+      <BannerSpacer />
       <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text>
       <View style={[styles.strictRow, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
         <View style={styles.strictText}>

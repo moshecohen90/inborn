@@ -1,9 +1,9 @@
-import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { joinList } from "@inborn/i18n";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
-import { BENCH_PP, benchmarkVerdict, distinctLanguageCodes, formatModelBytes, ttftForPrompt, type BenchmarkResult, type CatalogModel, type InstallState, type SpeedRange } from "@inborn/core";
+import { BENCH_PP, benchmarkVerdict, deliverySources, distinctLanguageCodes, formatModelBytes, ttftForPrompt, type BenchmarkResult, type CatalogModel, type InstallState, type SpeedRange } from "@inborn/core";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { font, useType } from "../../services/type";
 import { useOpenSheet } from "../../lib/openSheets";
@@ -43,7 +43,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         [t("vault.details.tools"), t(model.tools ? "vault.yes" : "vault.no")],
         [t("vault.details.languages"), model.fit ? join(distinctLanguageCodes(model.fit.languages).map((c) => `${t(`language.${c}`, { defaultValue: c })} (${t(`vault.fit.tier.${model.fit!.languages[c]!}`)})`)) : model.goodLanguages.length ? join(model.goodLanguages) : "—"],
         [t("vault.details.license"), model.license],
-        [t("vault.details.source"), installed ? t(`vault.source.${state.via}`) : join(model.delivery.map((d) => d.kind))],
+        [t("vault.details.source"), installed ? t(`vault.source.${state.via}`) : join(deliverySources(model, Platform.OS).map((v) => t(`vault.source.${v}`)))],
         [t("vault.details.sha"), installed ? state.sha256 : model.sha256],
         ...(installed ? [[t("vault.details.path"), state.path] as [string, string]] : []),
       ]

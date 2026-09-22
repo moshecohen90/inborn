@@ -9,7 +9,7 @@ import { mergePrefs } from "../services/prefsTypes";
 import { readPrefsRaw } from "../services/prefsStore";
 import { useAppFonts } from "../services/fonts";
 import { Banners } from "../components/shell/Banners";
-import { BannerInsetContext } from "../components/shell/bannerInset";
+import { BANNER_TOP, BannerInsetContext } from "../components/shell/bannerInset";
 import { PrivacyCover } from "../lock/PrivacyCover";
 import { LockScreen } from "../lock/LockScreen";
 import { Seal } from "../components/Seal";
@@ -105,7 +105,7 @@ function Shell() {
         )}
       </BannerInsetContext.Provider>
       {/* Under the header of whichever screen is up (§8.8); its measured height reaches screens that keep a row there (QA F13). Beside a sidebar it sits over the column, not over the list. */}
-      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + 52, left: wide && sidebar ? SIDEBAR_WIDTH : 0 }]} onLayout={(e) => setBannerInset(Math.round(e.nativeEvent.layout.height))}>
+      <View pointerEvents="box-none" style={[styles.banners, { top: insets.top + BANNER_TOP, left: wide && sidebar ? SIDEBAR_WIDTH : 0 }]} onLayout={(e) => setBannerInset(Math.round(e.nativeEvent.layout.height))}>
         <Banners />
       </View>
       {wide ? <CommandPalette visible={palette} onClose={() => setPalette(false)} /> : null}

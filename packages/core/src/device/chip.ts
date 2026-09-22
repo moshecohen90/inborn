@@ -30,6 +30,12 @@ export function marketingRamGB(bytes: number): number {
   return steps.find((s) => gb <= s + 0.05) ?? Math.round(gb);
 }
 
+/**
+ * The one RAM number every reader uses: the marketed size, never raw GiB. The guard read raw GiB while the vault and
+ * the catalog read the marketed size, which put a "6 GB" phone on both sides of Fast's 6 GB minimum (QA F43).
+ */
+export const ramGBFromBytes = (totalBytes: number | null | undefined): number | null => (totalBytes && totalBytes > 0 ? marketingRamGB(totalBytes) : null);
+
 /** The one RAM label every screen shows (S01 / S02 / S30): the marketed size, never a rounded raw number. */
 export function ramLabel(totalBytes: number | null | undefined): string | null {
   if (!totalBytes || totalBytes <= 0) return null;

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
+import { BannerSpacer } from "../../components/shell/bannerInset";
 import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
@@ -223,6 +224,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         <Text style={[type.title, { color: theme.text }]}>{t("vault.title")}</Text>
         <View style={styles.headerBtn} />
       </View>
+      <BannerSpacer />
       <Text testID="vault-storage" style={[type.mono, styles.centered, { color: theme.text3 }]}>
         {t("vault.storage", { used: formatModelBytes(vault.storageUsedBytes()), free: formatModelBytes(vault.freeDiskBytes()) })} · {t("onboarding.runsOn", { chip: device.chip.toUpperCase(), ram: `${device.ramGB} GB` })}
       </Text>

@@ -70,7 +70,7 @@ import { TemplatesSheet } from "../work";
 import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, useRedaction } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
-import { useBannerInset } from "../components/shell/bannerInset";
+import { BannerSpacer } from "../components/shell/bannerInset";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
@@ -161,7 +161,6 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const bannerInset = useBannerInset();
   const lift = useKeyboardLift();
   const ent = useEntitlements();
   const { tier, can } = useEntitlement();
@@ -979,7 +978,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </Text>
         </Pressable>
       </FloatingToolbar>
-      {bannerInset ? <View testID="banner-inset" style={{ height: bannerInset }} /> : null}
+      <BannerSpacer />
       {incognito ? (
         <Text testID="incognito-badge" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
           {t("chat.incognito.badge")}

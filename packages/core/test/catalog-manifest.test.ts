@@ -5,6 +5,7 @@ import {
   CATALOG_PUBLIC_KEY,
   ENGINE_VERSION,
   canonicalJson,
+  deliverySources,
   findModel,
   httpsUrl,
   loadManifest,
@@ -112,5 +113,39 @@ describe("bundled catalog content (spec §6.1, §6.2)", () => {
     expect(httpsUrl(BUNDLED_MANIFEST, split, split.parts![1])).toBe("https://models.inbornapp.com/v1/sharp/m-00002-of-00002.gguf");
     expect(httpsUrl(BUNDLED_MANIFEST, split)).toBe("https://models.inbornapp.com/v1/sharp/m-00001-of-00002.gguf");
     for (const m of BUNDLED_MANIFEST.models) if (m.parts) expect(m.parts.reduce((n, p) => n + p.bytes, 0), m.id).toBe(m.bytes);
+  });
+});
+
+/*
+ * QA F46: the Details sheet listed the raw delivery kinds, so Sharp read "play-asset-pack, play-asset-pack, https"
+ * on an iPhone — a Play source on a device that has no Play, and the same source twice because the model is split.
+ */
+describe("deliverySources (QA F46)", () => {
+  const sharp = findModel(BUNDLED_MANIFEST, "sharp")!;
+  const fast = findModel(BUNDLED_MANIFEST, "fast")!;
+  const instant = findModel(BUNDLED_MANIFEST, "instant")!;
+  it("leaves Play out on iOS and names each source once", () => {
+    expect(sharp.delivery.filter((d) => d.kind === "play-asset-pack")).toHaveLength(2);
+    expect(deliverySources(sharp, "ios")).toEqual(["https"]);
+    expect(deliverySources(fast, "ios")).toEqual(["https"]);
+    expect(deliverySources(instant, "ios")).toEqual(["bundled", "https"]);
+  });
+  it("keeps Play on Android, deduped, in manifest order", () => {
+    expect(deliverySources(sharp, "android")).toEqual(["play", "https"]);
+    expect(deliverySources(instant, "android")).toEqual(["bundled", "play", "https"]);
+  });
+  it("leaves Play out on the web and on a desktop", () => {
+    for (const os of ["web", "macos", "windows", "linux"] as const) expect(deliverySources(sharp, os)).toEqual(["https"]);
+  });
+  it("maps an Apple pack to Apple only on Apple platforms, and a Hugging Face file to hf", () => {
+    const apple = { ...fast, delivery: [{ kind: "apple-asset-pack", pack: "p" }, ...fast.delivery] } as CatalogModel;
+    expect(deliverySources(apple, "ios")).toEqual(["apple", "https"]);
+    expect(deliverySources(apple, "macos")).toEqual(["apple", "https"]);
+    expect(deliverySources(apple, "android")).toEqual(["play", "https"]);
+    const hf = { ...fast, delivery: [{ kind: "hf", repo: "a/b", revision: "main", path: "m.gguf" }] } as CatalogModel;
+    expect(deliverySources(hf, "ios")).toEqual(["hf"]);
+  });
+  it("names only sources the vault has a label for", () => {
+    for (const m of BUNDLED_MANIFEST.models) for (const os of ["ios", "android", "web"] as const) for (const v of deliverySources(m, os)) expect(["bundled", "play", "apple", "https", "hf", "import"]).toContain(v);
   });
 });

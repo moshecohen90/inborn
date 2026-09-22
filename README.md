@@ -383,8 +383,11 @@ out of memory · Switched to Instant" and refuses the chosen model. The app had 
 223 MB and the engine never opened the Fast file on any of the 16 device launches, so the switch happens ahead of any load. The
 device syslog shows the cause: a **system-wide** critical memory-pressure event landing 4.0 s **before** the app started, which
 `DeviceGuardModule.swift` subscribes to and forwards as if it were this app's own. Fast itself is fine — one tap on SWITCH BACK
-loads it and it answers at 13.2 tok/s. Cause identified, fix open, nothing blocked; two cosmetic knock-ons are noted in the pass
-doc. Play internal testing 1.0.0 (6) active
+loads it and it answers at 13.2 tok/s. **Fixed in round 23**, where the pass's "not fully isolated" second path proved to be the
+dominant one: the guard read RAM as raw GiB while the rest of the app read the marketed size, and Fast's 6 GB minimum sat exactly
+between the two, so the boot-time RAM floor started Instant on a phone the catalog recommends Fast for. Both that and the
+system-wide subscription are fixed and proved on the same phone; the two cosmetic knock-ons are filed as F45 and F46 and fixed in
+the same round. Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
@@ -1766,6 +1769,113 @@ the operator for a password on screen, so the desktop shell stays with the `web-
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179, i18n 10,
 ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines). `pn desktop:build:app` also
 returned 0, but the built app is deliberately not launched here — see the QA note.
+
+## Fixes round 23: the guard dropped a model that fits (branch `fixes-r23`) — 22.9.2026
+**F43, F45, F46** — the three findings the real-iPhone pass 12 left open
+(`docs/qa/ios-device-pass-12-2026-09-22.md`). On Moshe's iPhone 13 Pro, with the 1.2 GB Fast model downloaded from
+`models.inbornapp.com` earlier the same day and left selected, **every cold launch of 1.0.0 (12) drew the amber line
+"Ran out of memory · Switched to Instant · SWITCH BACK" and started Instant** — and one tap on SWITCH BACK then loaded
+Fast, which answered at 13.2 tok/s. The guard was protecting the phone from a model the phone runs.
+
+**The app was never out of memory, and the pass proved it three ways.** Inborn's own footprint was **223 MB** at every
+sample; across 16 launches the logs name `instant.gguf` ×4 and `Qwen3.5-2B-Q4_K_M.gguf` **×0**, so the switch happened
+*ahead of* any load attempt rather than because one failed; and the banner never came back after one tap, which a live
+pressure signal would have re-raised on the next 5 s tick.
+
+### Root cause 1 — two RAM readings, and Fast's minimum sits exactly between them
+
+The app reads installed RAM in two places, and they did not agree:
+
+| reader | code | on this phone |
+|---|---|---|
+| vault, catalog fit, chip class, onboarding | `marketingRamGB(bytes)` — the marketed size | **6** |
+| the device guard, and through it the boot floor | `Math.round(bytes / 2**30 * 10) / 10` — raw GiB | **≈ 5.5** |
+
+A "6 GB" phone reports about 5.5 GiB, and Fast's `minRamGB` is **exactly 6**. So `bootModel()` — the §6.5 boot-time RAM
+floor, which exists so a too-big default is never mapped and then evicted — read 5.5, decided Fast did not fit, started
+Instant and called `noteBootSwitch()`. That is recorded as an automatic *memory* switch, and `policy.ts` renders it with
+the §6.5 memory headline and a way back. Once per cold launch, latching until the user taps SWITCH BACK. Exactly what
+pass 12 saw.
+
+**The phone shows both readings on the same run**, which is why this is not a hypothesis: the vault header says
+`RUNS ON: IOS-MID · 6 GB` — a class `chipClassFor` only assigns at `ramGB >= 6` — while the pass-12 ledger on that same
+launch says `CONTEXT 144 / **2048**`, and `policy.ts` caps context at 2048 only when `ramGB < 6`. Two numbers off one
+device, on opposite sides of the same threshold.
+
+**Fix**: one reading. `ramGBFromBytes` in `packages/core/src/device/chip.ts` wraps `marketingRamGB` with the null
+guard both call sites need, and both `apps/mobile/src/device/signals.ts` and `apps/mobile/src/vault/device.ts` call it.
+Nothing was loosened: Fast's 6 GB minimum stands, and a 4 GB or 3 GB phone still starts on Instant. The regression is
+pinned by asserting the boot floor agrees with `ramFit` for five real phone sizes, so the two can never drift apart
+again.
+
+### Root cause 2 — a phone-wide signal read as this app's
+
+`DeviceGuardModule.swift` created `DispatchSource.makeMemoryPressureSource(eventMask: [.warning, .critical])` and
+forwarded its level verbatim as this process's `memoryPressure`. That source reports **the whole phone**, not the
+process: the pass captured one `ATXMemoryPressureMonitor: received memory pressure warning of type: critical` in the
+device syslog **4.0 s before Inborn was launched at all**, and a 6 GB iPhone with an ordinary set of apps reaches that
+level routinely. Read as this app's state it raises the same memory row and drops the user's model.
+
+**Fix**: iOS memory events now say where they came from — `source: "app"` for
+`UIApplication.didReceiveMemoryWarningNotification`, which is process-scoped, and `source: "system"` for the Dispatch
+source. `memoryPressureFromIos` in `packages/core/src/device/ios.ts` — the counterpart of the `memoryPressureFromAndroid`
+helper that already existed for the same job on the other platform — believes an app event always, and a phone-wide
+event only while `os_proc_available_memory()` is at or below **150 MB**. That is not a new threshold: it is
+`IOS_HEADROOM_BYTES`, the number `memoryHealthy()` was already using to decide the same question, now named once and
+shared. The protections are unchanged when the app itself is genuinely near its jetsam limit.
+
+### F45 — the banner hid content on screens that did not pad for it
+
+The strip is an absolute overlay drawn from `app/_layout.tsx` at `insets.top + 52`, over whatever screen is up. QA F13
+had already introduced `BannerInsetContext`, the strip's measured height, but only Chat and Chats consumed it — so on
+the hands-free screen the banner covered the second line of the screen's own headline ("Voice input needs the", rest
+cut) and on the paywall it took the slot holding "No subscription. No account. Yours forever."
+
+**Fix**: extend that mechanism instead of moving the strip. `components/shell/bannerInset.tsx` exports `<BannerSpacer />`,
+and every screen container now reserves the height: `components/shell/Screen.tsx` (the 18 routes built on it, scrolling
+and not), `VaultScreen`, `DocumentsScreen`, `PaywallScreen`, and `HandsFreeScreen` — which pads rather than inserting a
+child, because its root is `justify-content: space-between` and a fourth flex item would redistribute the layout. Chat
+and Chats moved onto the shared component, so there is one spacer in the app and one `banner-inset` testID.
+
+### F46 — Play sources listed on an iPhone, twice
+
+For a model that is not installed, the Details sheet printed `model.delivery.map(d => d.kind)`: raw internal kind names,
+never translated, never filtered by platform, never deduped. Sharp is split into two Play packs, so on the iPhone its
+SOURCE row read **`play-asset-pack, play-asset-pack, https`**.
+
+**Fix**: `deliverySources(model, os)` in `packages/core/src/catalog/manifest.ts` returns the sources this platform can
+actually use, in manifest order, each named once, as `DeliverySource` values — which are exactly the `vault.source.*`
+keys the sheet already renders for an installed model. Play only on Android, Apple packs only on Apple.
+
+| model | before, on iOS | after, on iOS | after, on Android |
+|---|---|---|---|
+| Sharp | `play-asset-pack, play-asset-pack, https` | `models.inbornapp.com` | `Google Play, models.inbornapp.com` |
+| Fast | `play-asset-pack, https` | `models.inbornapp.com` | `Google Play, models.inbornapp.com` |
+| Instant | `bundled, play-asset-pack, https` | `This app, models.inbornapp.com` | `This app, Google Play, models.inbornapp.com` |
+
+### Proof on Moshe's iPhone 13 Pro
+
+A Release archive of this branch (`xcodebuild ... archive`, exit 0, **0** `error:` lines) was installed over the
+shipped 1.0.0 (12) with the same bundle id and the same signing identity, so the phone kept its data container. The
+**1.2 GB Fast model was untouched**: `vault.json` copied off before and after is identical except for Fast's
+`lastLoadedAt`, which moved only because this build actually loaded Fast. Nothing was re-downloaded, the phone was
+never locked or unlocked, and no setting was changed.
+
+| # | check | result | evidence |
+|---|---|---|---|
+| 1 | cold launch with Fast selected, three times | **PASS** — no memory banner on any launch, chat header reads **FAST**, and the log opens `Qwen3.5-2B-Q4_K_M.gguf` ×1 and `instant.gguf` ×0 each time. Pass 12 on the same phone, same vault: the banner on every launch, `instant.gguf` ×4 and the Fast file **×0** across 16 launches | `after-01-chat-coldlaunch-fast.png` |
+| 2 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
+| 3 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
+| 4 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
+| 5 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
+| 6 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
+
+**The A/B is on one photograph.** `before-01-build12-banner-on-relaunch.png` is the About screen of the *reinstalled*
+shipped 1.0.0 (12), taken after all of the above: the same phone, the same vault, the banner back. The fix is in the
+build, not in the phone's state.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 521, mobile 190, i18n 10,
+ui 11 — **732** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
 
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up

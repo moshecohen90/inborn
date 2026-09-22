@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 import * as Device from "expo-device";
 import { Paths } from "expo-file-system";
-import { androidChipName, chipClassFor, marketingRamGB, type ChipClass, type DeviceClass, type DeviceProfile } from "@inborn/core";
+import { androidChipName, chipClassFor, ramGBFromBytes, type ChipClass, type DeviceClass, type DeviceProfile } from "@inborn/core";
 import { socModel, totalMemoryBytes, usableDiskBytes } from "../../modules/vault-native";
 import { DEV_RAM_GB, devBuild } from "./devFlags";
 
@@ -31,7 +31,7 @@ function deviceClass(): DeviceClass {
 /** Reads once per launch; RAM is the only number §6.3 needs. `EXPO_PUBLIC_DEV_RAM_GB` fakes a device class in dev builds. */
 export function readDevice(pro = false): DeviceInfo {
   const bytes = ramBytes();
-  const ramGB = bytes ? marketingRamGB(bytes) : 8;
+  const ramGB = ramGBFromBytes(bytes) ?? 8;
   const cls = deviceClass();
   const platform = os();
   return { ramGB, deviceClass: cls, pro, os: platform, chip: chipClassFor({ os: platform, ramGB, appleSilicon: platform === "macos", chipName: chipName() }) };

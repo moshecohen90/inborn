@@ -12,6 +12,7 @@ import { useHandsFree } from "../../voice/useHandsFree";
 import { whisperInstalled } from "../../voice/whisper";
 import { readDevice } from "../../vault/device";
 import { Button } from "../../components/shell/primitives";
+import { useBannerPad } from "../../components/shell/bannerInset";
 
 interface Props {
   chatId: string | null;
@@ -28,6 +29,7 @@ export function HandsFreeScreen({ chatId, incognito, onClose, onOpenVault }: Pro
   const { t, i18n } = useTranslation();
   const type = useType();
   const insets = useSafeAreaInsets();
+  const bannerInset = useBannerPad(24);
   const s = useAppServices();
   const theme = dark;
   const model = s.engine.model;
@@ -35,7 +37,7 @@ export function HandsFreeScreen({ chatId, incognito, onClose, onOpenVault }: Pro
   const smallPhone = useMemo(() => readDevice().ramGB <= 6 && model.id !== "instant", [model.id]);
   if (!ready) {
     return (
-      <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 16 }]}>
+      <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24 + bannerInset, paddingBottom: insets.bottom + 16 }]}>
         <Text style={[type.title, styles.center, { color: theme.text }]}>{t("voice.whisperMissing.title")}</Text>
         <Text style={[type.body, styles.center, { color: theme.text2 }]}>{t("voice.whisperMissing.body")}</Text>
         <View style={styles.actions}>
@@ -52,6 +54,7 @@ function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId }: { c
   const { t } = useTranslation();
   const type = useType();
   const insets = useSafeAreaInsets();
+  const bannerInset = useBannerPad(16);
   const s = useAppServices();
   const theme = dark;
   const hf = useHandsFree({ store: s.store, chatId, incognito, modelId, uiLocale, onChatCreated: s.chatCreated });
@@ -74,7 +77,7 @@ function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId }: { c
   const hint = phase === "listening" ? t("voice.tapToFinish") : phase === "speaking" || phase === "thinking" ? t("voice.tapToInterrupt") : "";
   const bars = 9;
   return (
-    <Pressable testID="voice-screen" accessibilityRole="button" accessibilityLabel={hint || label} onPress={hf.tap} style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 16, paddingBottom: insets.bottom + 16 }]}>
+    <Pressable testID="voice-screen" accessibilityRole="button" accessibilityLabel={hint || label} onPress={hf.tap} style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 16 + bannerInset, paddingBottom: insets.bottom + 16 }]}>
       <View style={styles.header}>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("voice.onDevice")}</Text>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{modelLabel(modelId)}</Text>
