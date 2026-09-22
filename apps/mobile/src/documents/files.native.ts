@@ -42,13 +42,37 @@ export function sizeOf(uri: string): number {
   }
 }
 
-/** Copies the picked file under our directory as `<id>.<ext>`; returns the stored (root-relative) location. */
-export function copyIntoLibrary(sourceUri: string, id: string, name: string): string {
+/** Incognito attachments (spec §5.7): a cache directory the OS may reclaim, outside the document library and outside any backup. */
+export function incognitoDir(): Directory {
+  const dir = new Directory(Paths.cache, "incognito");
+  if (!dir.exists) dir.create({ intermediates: true, idempotent: true });
+  return dir;
+}
+
+/**
+ * Copies the picked file as `<id>.<ext>` and returns where it went: the stored (root-relative) location in the
+ * library, or, for an incognito import, the absolute cache path, which `endSession` deletes and `sweepIncognitoFiles`
+ * clears if the app died first.
+ */
+export function copyIntoLibrary(sourceUri: string, id: string, name: string, opts: { incognito?: boolean } = {}): string {
   const ext = name.includes(".") ? name.slice(name.lastIndexOf(".")).toLowerCase() : "";
-  const dest = new File(documentsDir(), `${id}${ext}`);
+  const dest = new File(opts.incognito ? incognitoDir() : documentsDir(), `${id}${ext}`);
   if (dest.exists) dest.delete();
   fileOf(sourceUri).copy(dest);
-  return storedDocPath(dest.uri);
+  return opts.incognito ? dest.uri : storedDocPath(dest.uri);
+}
+
+/** A crash inside an incognito session leaves its copy behind; the next launch deletes it before the library opens. */
+export function sweepIncognitoFiles(): number {
+  try {
+    const dir = incognitoDir();
+    const orphans = dir.list();
+    for (const entry of orphans) entry.delete();
+    return orphans.length;
+  } catch (e: unknown) {
+    console.warn("[documents] incognito sweep", e);
+    return 0;
+  }
 }
 
 export const sha256Of = (uri: string): Promise<string> => fileSha256(fileOf(uri));

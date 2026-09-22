@@ -38,10 +38,13 @@ export function sizeOf(uri: string): number {
   return blobs.get(uri)?.size ?? 0;
 }
 
-/** Browsers cannot copy into an app directory; the blob simply stays registered under its URI. */
-export function copyIntoLibrary(sourceUri: string, _id: string, _name: string): string {
+/** Browsers cannot copy into an app directory; the blob simply stays registered under its URI, incognito or not. */
+export function copyIntoLibrary(sourceUri: string, _id: string, _name: string, _opts: { incognito?: boolean } = {}): string {
   return sourceUri;
 }
+
+/** Nothing of a browser import is on disk, so there is nothing to sweep. */
+export const sweepIncognitoFiles = (): number => 0;
 
 export async function sha256Of(uri: string): Promise<string> {
   return Array.from(sha256(await readBytes(uri)), (b) => b.toString(16).padStart(2, "0")).join("");

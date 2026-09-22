@@ -5,19 +5,13 @@ import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
 import { Mono } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
+import { legalBody } from "./legalBody";
 import privacy from "../../../../../docs/legal/privacy-policy.md";
 import terms from "../../../../../docs/legal/terms.md";
 
 export type LegalDoc = "privacy" | "terms";
 const DOCS: Record<LegalDoc, string> = { privacy, terms };
 export const isLegalDoc = (d: string | undefined): d is LegalDoc => d === "privacy" || d === "terms";
-
-/* The repo copies open with a status block for the lawyer and the store reviewer; the reader gets the text from its first heading. */
-export function legalBody(source: string): string {
-  const lines = source.split("\n");
-  const first = lines.findIndex((l) => /^##\s/.test(l));
-  return (first > 0 ? lines.slice(first) : lines).join("\n").trim();
-}
 
 /** Privacy policy / terms (§11): the same Markdown the stores and the website show, rendered on the device. */
 export function Legal({ doc }: { doc: LegalDoc }) {

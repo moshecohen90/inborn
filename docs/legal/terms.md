@@ -1,17 +1,16 @@
 # Inborn Terms of Use and End User Licence Agreement
 
-**Status: DRAFT. Not yet published. Needs a lawyer's pass on governing law and consumer-law wording per launch country. Placeholders in `{{…}}`.**
-Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 5 September 2026.
+Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 22 September 2026.
 
-Effective date: `{{EFFECTIVE_DATE}}`
-Licensor: `{{DEVELOPER_LEGAL_NAME}}` ("we", "us")
-Contact: `{{SUPPORT_EMAIL}}`
+Effective date: 22 September 2026
+Licensor: Cohen Apps ("we", "us")
+Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
 
 These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.
 
 ## 1. Licence
 
-We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source: its source code is not public, and anything we do publish from it comes under our source-available licence, which grants the right to read and verify the code and nothing more. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
 
 You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
 
@@ -61,7 +60,7 @@ Everything you type, import or generate stays on your device and belongs to you.
 
 ## 7. Privacy
 
-Our Privacy Policy (`{{PRIVACY_URL}}`) is part of these terms. In one sentence: nothing leaves your device, and the only network activity is the model download you start or the store's own delivery.
+Our Privacy Policy (https://inbornapp.com/privacy) is part of these terms. In one sentence: nothing leaves your device, and the only network activity is the model download you start or the store's own delivery.
 
 ## 8. Updates and availability
 
@@ -85,7 +84,7 @@ If you use the iOS or macOS version from the App Store: Apple is not a party to 
 
 ## 13. Governing law and disputes
 
-These terms are governed by the laws of `{{GOVERNING_LAW: Israel proposed}}`, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to `{{SUPPORT_EMAIL}}`; most issues are resolved there.
+These terms are governed by Israeli law, and the competent court in Israel has exclusive jurisdiction, without regard to conflict-of-laws rules. Consumers in the EU, UK and other jurisdictions with mandatory local consumer protection keep the protection of their local law and may bring claims in their local courts. Before any formal claim, write to support@inbornapp.com; most issues are resolved there.
 
 ## 14. Changes
 

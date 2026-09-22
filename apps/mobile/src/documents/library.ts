@@ -20,7 +20,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
-import { copyIntoLibrary, deleteFile, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath } from "./files";
+import { copyIntoLibrary, deleteFile, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 
 /** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
@@ -95,6 +95,9 @@ export class DocumentLibrary {
   }
 
   private async boot(): Promise<void> {
+    /* A session killed mid-incognito cannot run endSession; its copy is deleted here before anything else opens (§5.7, F95). */
+    const orphans = sweepIncognitoFiles();
+    if (orphans) console.log(`[documents] swept ${orphans} incognito file(s) left by a previous run`);
     let saved: EmbeddingStore;
     try {
       saved = await openRagStore();
@@ -223,7 +226,7 @@ export class DocumentLibrary {
     let doc: DocumentRecord;
     try {
       const kind = assertImportable(name, bytes, readHead(sourceUri));
-      const uri = copyIntoLibrary(sourceUri, id, name);
+      const uri = copyIntoLibrary(sourceUri, id, name, { incognito: opts.incognito });
       /* File.copy() can return before Android has written every byte (vault D5); the hash must cover the whole file. */
       for (let i = 0; sizeOf(uri) < bytes && i < 100; i++) await new Promise((r) => setTimeout(r, 50));
       const sha256 = await sha256Of(uri);
@@ -376,8 +379,8 @@ export class DocumentLibrary {
   }
 
   /**
-   * The incognito session ended (§5.7): every document it held goes, with its file, its chunks and its vectors.
-   * Nothing to unwind on disk, because nothing of it was ever written there.
+   * The incognito session ended (§5.7): every document it held goes, with its temporary file, its chunks and its
+   * vectors. Nothing of it reached the library or the database; the copy the extractor read lived in the cache.
    */
   endSession(): void {
     if (!this.ramDocs.size) return;

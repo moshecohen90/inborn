@@ -30,8 +30,8 @@
   </li>
 </ol>
 
-<h2 id="source">Open core and release hashes</h2>
-<p>The engine, storage, network and catalogue core is open source under the MIT licence, so the claims above can be read in code rather than believed. The README states the no-INTERNET rule, and continuous integration fails the build if the permission appears through manifest merging. From version 1.0 this section lists the SHA-256 of every released build so you can compare the binary you installed with the one we published.</p>
+<h2 id="source">The source, and release hashes</h2>
+<p>Inborn's source code is not public, so none of the checks above asks you to read it: every one of them is made from outside the app, on the build you installed. Continuous integration fails the build if the INTERNET permission appears through manifest merging, and the Proof screen names the commit the build came from. From version 1.0 this section lists the SHA-256 of every released build, so a binary you obtained anywhere else can be compared with the one we published.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Version</th><th>Platform</th><th>SHA-256</th></tr></thead>
 <tbody><tr><td class="mono small">1.0</td><td class="mono small">Android · iOS</td><td class="small">Published with the 1.0 release.</td></tr></tbody>
@@ -40,7 +40,7 @@
 <h2 id="what-can-leave">The complete list of what can leave, and when</h2>
 <p>Nothing leaves on its own. These are the only situations in which any bytes go out, and each is either done by the store rather than by Inborn, or started by you with a tap:</p>
 <ul>
-  <li><strong>Model delivery.</strong> On Android, Google Play delivers models as asset packs, the way it delivers an app update. On iOS 26 and later, the operating system delivers them. On iOS 17 to 25 and on desktop, a download you start fetches one file over HTTPS from our model host; that request carries your IP address and nothing else, and no cookie or identifier.</li>
+  <li><strong>Model delivery.</strong> On Android, Google Play delivers models as asset packs, the way it delivers an app update. On every supported iOS version and on desktop, a download you start fetches one file over HTTPS from <span class="mono">models.inbornapp.com</span>; that request carries your IP address and nothing else, and no cookie or identifier. We use no Apple-hosted asset packs.</li>
   <li><strong>Purchases.</strong> Apple, Google, Microsoft or Paddle process the payment. Inborn reads the receipt on the device. We never see your name, email or card.</li>
   <li><strong>Hugging Face import.</strong> Only if you choose it, and the app says so first.</li>
   <li><strong>Support email.</strong> Only if you write to us, from your own mail app, with what you chose to attach.</li>

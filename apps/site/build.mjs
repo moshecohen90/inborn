@@ -106,7 +106,7 @@ function licensesPage() {
   }).join("\n");
   const excluded = notice.excludedByRule.map((e) => `<li><strong>${esc(e.family)}</strong> (${esc(e.license)}): ${esc(e.reason)}.</li>`).join("");
   const body = `<article class="prose">
-<p>${esc(notice.app.name)}'s ${esc(notice.app.coreScope)} core is open source under the ${esc(notice.app.coreLicense)} licence. Everything else it ships with is listed here with its licence, exactly as the in-app Licences screen shows it. Inventory dated ${esc(notice.generated)}.</p>
+<p>${esc(notice.app.name)} itself is not open source: its ${esc(notice.app.coreScope)} core carries the ${esc(notice.app.coreLicense)}, which grants the right to read and verify the code and nothing more. Everything else it ships with is listed here with its licence, exactly as the in-app Licences screen shows it. Inventory dated ${esc(notice.generated)}.</p>
 <p class="small"><span class="label">Scope</span> shipped = inside the store build · catalogue = downloadable through the app · planned = in the specification, not yet integrated · build-only = used to build the app, never shipped.</p>
 ${sections}
 <h2 id="excluded">Not in the catalogue, by rule</h2>
