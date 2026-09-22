@@ -2464,3 +2464,72 @@ the bytes had never left the phone. The same happened on vc6 → vc7. MosheAI ca
   1.7 GB with no Install button anywhere in the vault.
 - **Not covered**: a phone whose record the *shipping* vc8 already deleted has nothing left to re-request, so its first
   launch on the fix still offers Install — one tap, and Play returns the bytes instantly. Every update after that is clean.
+
+## Docs audit follow-up (branch `docs-audit-fixes`) — 22.9.2026
+
+Closes the documentation-only findings assigned from `docs/qa/spec-conformance-2026-09-22.md` (the spec-conformance
+audit against `main`). Docs only: no app code changed, no device or emulator used.
+
+- **Privacy policy told the wrong download story (gap 4).** `docs/legal/privacy-policy.md` promised Apple-hosted
+  Background Assets on iOS 26 with "no domains in your App Privacy Report" — the app does not use Background Assets in
+  this release, and a real iPhone was recorded pulling 1.2 GB from `models.inbornapp.com`. Rewrote the iOS, Windows/macOS
+  and `app-privacy-details.md` sections to describe the CDN path honestly, on every supported OS version, and added the
+  fact that Android has no `INTERNET` permission at all and gets models through Play.
+- **Family Sharing wording, everywhere (gap 9).** The code and the real paywall are correct — Family Sharing is off in
+  App Store Connect, a one-way door pending Moshe's decision — but eight spec/legal/store files still promised it as
+  live: `terms.md`, `app-privacy-details.md`, `08-screens.html` (both the mockup and the `elements` prose), `12-monetization.html`
+  (the SKU table, the tier-order note and the entitlement table), `07-features.html` §7.9, `11-store-legal.html` (the
+  App Store guideline answer and the checklist line), `10-edgecases.html` cases 48–49, `14-plan.html`'s M6 checklist, and
+  all eight `docs/store/listing.*.json` reviewer-notes blocks. All now say Family Sharing is off for 1.0 and point at
+  §12.1 for the open decision.
+- **Backup line corrected (gap 16).** `Storage.tsx`'s Android copy and `privacy-policy.md:72` told Android users their
+  chats were in the device backup; `allowBackup="false"` proves otherwise. Fixed both strings and the edge-case-43 note
+  to say conversations are not restored to a new device — export before switching devices.
+- **Vision column matches the catalog (gap 22).** `06-models.html` §6.1 marked Fast and Sharp "vision: כן"; `manifest.json`
+  ships `vision: false` on both because the only projector in the catalog (`mmproj-Qwen3.5-0.8B-F16`) fits Instant's
+  embedding width alone. Table corrected, note added citing F36 (the attach sheet already disables camera/photo off Instant).
+- **§5.10's RTL rule was unexecutable (gap 23).** No Hebrew or Arabic locale ships in 1.0 (`docs/research/launch-languages-2026-09.md`),
+  so "checked in Hebrew and Arabic in every PR" cannot be run. Replaced it with what's actually enforced today: pseudo-locale
+  on every string/layout PR, manual RTL via the `__DEV__`-only `settings.advanced.rtl` switch on every screen the PR
+  touches, and a rule to revert to real-locale testing once Hebrew or Arabic ships.
+- **`openiap-google`'s INTERNET reasoning (gap 27, was 25).** The end state — the permission is stripped — is right and
+  proven; the spec's stated reason ("the Billing library's manifest has no INTERNET") was wrong about the wrapper we
+  actually ship. `11-store-legal.html` now names `openiap-google` and the `tools:node="remove"` strip, and points at the
+  disabled CI gate (gap 6) as the thing that actually needs closing.
+- **§5.7's two tier labels were backwards (gap 26).** `licence-entitlement.test.ts:123` asserts screenshot blocking and
+  the lock-screen quick wipe are never gated, and §7.5 already lists them Free — §5.7 alone said Pro. The spec was the
+  error, not the code (per the audit: "fix §5.7 before someone builds a gate that a passing test forbids"). Both rows
+  now read Free, with a note citing the test and pointing at §7.9 for the full Free/Pro/Work breakdown.
+- **§7.3 row 5 vs §7.9's Work list.** "Table understanding (CSV/XLSX)" was tagged Pro in the §7.3 feature table while
+  §7.9's Pro-for-Work summary already names XLSX/DOCX/HTML intake as a Work capability. Moved the row to Work to match.
+- **Nine named technologies with no cut-list entry (gap 25).** §5.5/§5.6/§4.5 name `mammoth`, ML Kit Text Recognition,
+  desktop Tesseract, the Qwen3/MiniLM embedders, `sqlite-vec`, Apple `SpeechAnalyzer`, Core ML (Parakeet) and Kokoro-82M
+  as if built; none is verified in the code today and none is on the "Intentionally not built for 1.0" list below. Added
+  an explicit status note at §5.5/§5.6 (and a pointer from §4.5) marking all nine **1.0.1**: verify each against the code
+  before 1.0 ships, or soften the architecture text to a generic capability description until it's built.
+- **`docs/qa/edge-cases-matrix.md` regenerated (gap 14).** The prior version (6.9/13.9) had 43 of 70 rows blank and 16
+  factually wrong, with test-id mappings pointing at unrelated tests and open defect F43 absent entirely. Rebuilt every
+  row from the audit's own per-case §10 classification (which reads the same code and QA record this matrix draws on),
+  mapped to the matrix's `todo`/`partial`/`done`/`n/a-<platform>` vocabulary. New totals: 11 done · 41 partial · 12 todo ·
+  6 n/a. F43, F17 and U11 are now cross-referenced from their rows.
+- **1.0.1 backlog and the three Moshe-only decisions, restated in the spec.** Added `docs/spec-src/14-plan.html` §14.8:
+  the audit's 18-item 1.0.1 list (gaps 26–43) verbatim with fix sizes, plus the three findings no documentation edit can
+  close — **#2** store-console filings (IARC is a hard blocker on the first Play upload), **#3** the verifiable-client
+  claim (open-source the repo and wire a real bundle hash, soften the four strings, or accept the claim stays weak), and
+  **#24** the trademark filing (clearance is done, nothing is filed) — plus two gaps that are on no cut list and aren't a
+  decision either (Gemini Nano on Android, SD-card/SAF storage): each needs a deferring sentence or a build, not silence.
+- **`docs/build.py` was broken since 3.9.2026.** `docs/spec` and `docs/demo` were renamed to `spec-src` and `demo-src`
+  in the Autark→Inborn rename (commit `077aacf`); the build script's `SPEC` and `demo_src` paths were never updated, so
+  every run has exited with `missing docs/spec/00-head.html` ever since — several earlier commit messages claiming
+  "rebuilt from docs/build.py" were not actually run. Fixed both paths and pointed `OUT` at `docs/` directly (where the
+  tracked `inborn-spec.html`/`inborn-demo.html` actually live, not a `docs/out/` that has never existed); the two
+  `*.artifact.html` fragment byproducts are now gitignored. Verified: `python3 docs/build.py` now runs clean and both
+  outputs were rebuilt from this round's `spec-src`/`demo-src` changes.
+- **Demo desktop column: 760px → 680px.** The audit's own live check: the code's `DESKTOP_MIN`/message-column constant is
+  680px and §8.9/§9.3 already say 680 — only `docs/demo-src/inborn-demo.src.html` still said 760 (CSS `max-width` and the
+  desktop notes copy). Fixed both; rebuilt into `docs/inborn-demo.html`.
+
+**Not done in this round (docs-only, no code or device access):** the nine named technologies are marked 1.0.1, not
+verified against the code — that verification is engineering work for the stream that owns `packages/core`. The three
+Moshe-only decisions above are recorded, not resolved. `docs/qa/edge-cases-matrix.md`'s new evidence is transcribed from
+the audit's classification, not re-run on hardware; the matrix still needs a real re-run at the next milestone.

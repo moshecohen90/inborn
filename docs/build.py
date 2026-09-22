@@ -3,8 +3,12 @@
 import os, glob, re, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SPEC = os.path.join(ROOT, 'spec')
-OUT = os.path.join(ROOT, 'out')
+# docs/spec and docs/demo were renamed to spec-src and demo-src on 3.9.2026 (commit 077aacf,
+# the Autark -> Inborn rename); this script was never updated and has failed with a missing-file
+# exit ever since (verified 22.9.2026 -- every "rebuilt from docs/build.py" commit message since
+# then was wrong). Final HTML lives directly in docs/, not docs/out/, so OUT = ROOT.
+SPEC = os.path.join(ROOT, 'spec-src')
+OUT = ROOT
 os.makedirs(OUT, exist_ok=True)
 
 BRAND = 'Inborn'
@@ -97,7 +101,7 @@ open(os.path.join(OUT, 'inborn-spec.artifact.html'), 'w', encoding='utf-8').writ
 open(os.path.join(OUT, 'inborn-spec.html'), 'w', encoding='utf-8').write(wrap(spec, 'he', 'rtl'))
 
 # ---- demo ----
-demo_src = os.path.join(ROOT, 'demo', 'inborn-demo.src.html')
+demo_src = os.path.join(ROOT, 'demo-src', 'inborn-demo.src.html')
 if os.path.exists(demo_src):
     demo = apply(open(demo_src, encoding='utf-8').read()) + comments_layer('demo')
     spec_url = os.environ.get('SPEC_URL', '')

@@ -62,7 +62,7 @@
   models/     מניפסט חתום: שם, sha256, גודל, רישיון, RAM מינימלי, tier
 <b>מסירת מודלים</b>
   Android      Play Asset Delivery (fast-follow + on-demand) · ייבוא SAF · <i>אין הרשאת INTERNET</i>
-  iOS 26+      bundle + Apple-hosted asset packs · iOS 17–25: bundle + CDN
+  iOS          bundle + CDN (models.{{DOMAIN}}), כל הגרסאות הנתמכות · לא Apple-hosted asset packs ב‑1.0
   Desktop/Web  CDN (Cloudflare R2) · ייבוא
 <b>מימושי LocalLM</b>
   iOS/Android  llama.rn        (GGUF)            דרך @react-native-ai/llama
@@ -79,7 +79,7 @@
 <tr><td>רכיבי UI, מסכים, ניווט</td><td class="num">~95%</td><td>טוקני FARADAY מ‑packages/ui ב‑StyleSheet (NativeWind v4 נדחה בינתיים: לא נדרש). קבצי <code>.web.tsx</code> רק ל‑hover, מקלדת ותפריטים.</td></tr>
 <tr><td>מצב הצ'אט, סכמת אחסון, הגדרות</td><td class="num">100%</td><td>SQLite (expo-sqlite עם SQLCipher) בנייטיב, OPFS/IndexedDB בווב, SQLite דרך Rust בדסקטופ, מאחורי ממשק repository אחד.</td></tr>
 <tr><td>קטלוג מודלים, הורדות, אימות hash</td><td class="num">~90%</td><td>ה‑API של הקבצים שונה: expo-file-system / OPFS / Tauri fs.</td></tr>
-<tr><td>RAG (חיתוך, embeddings, חיפוש וקטורי)</td><td class="num">~85%</td><td>sqlite-vec במובייל ובדסקטופ, in‑memory/IndexedDB בווב.</td></tr>
+<tr><td>RAG (חיתוך, embeddings, חיפוש וקטורי)</td><td class="num">~85%</td><td>sqlite-vec במובייל ובדסקטופ, in‑memory/IndexedDB בווב (סטטוס קוד: ראו הערת §5.6 — תשעה מרכיבי RAG/קול נקראים בשם ואינם מאומתים בקוד, פער 25).</td></tr>
 <tr><td>הסקה</td><td>ממשק בלבד</td><td>5 מימושים; צד Rust 1–3K שורות.</td></tr>
 <tr><td>דיבור, בוררי קבצים, share sheet, tray, עדכונים</td><td>פר פלטפורמה</td><td>whisper.rn / SpeechAnalyzer / Transformers.js; קולות מערכת ל‑TTS.</td></tr>
 <tr><td>אריזה, חתימה, CI</td><td>פר פלטפורמה</td><td>EAS למובייל, אחסון סטטי לווב, Tauri bundler + Notarization + חתימת Windows.</td></tr>
