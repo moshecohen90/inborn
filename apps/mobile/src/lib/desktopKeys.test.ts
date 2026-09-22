@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchKey } from "./desktopKeys";
+import { matchKey, webviewShortcut } from "./desktopKeys";
 
 const cmd = (key: string, extra: { shiftKey?: boolean; altKey?: boolean } = {}) => matchKey({ key, metaKey: true, ...extra });
 const ctrl = (key: string, extra: { shiftKey?: boolean; altKey?: boolean } = {}) => matchKey({ key, ctrlKey: true, ...extra });
@@ -39,5 +39,27 @@ describe("desktop key map", () => {
 
   it("leaves the browser's own chords alone", () => {
     for (const key of ["t", "w", "r", "l", "s", "p", "c", "v", "z", "+", "-"]) expect(cmd(key)).toBeNull();
+  });
+});
+
+describe("what the webview keeps when a menu owns the accelerators (F49)", () => {
+  const key = (e: Parameters<typeof webviewShortcut>[0]) => [webviewShortcut(e, false), webviewShortcut(e, true)];
+
+  it("leaves Esc bound on the desktop build, because no macOS accelerator can carry it", () => {
+    expect(key({ key: "Escape" })).toEqual(["stop", "stop"]);
+  });
+
+  it("drops every accelerator the menu already declares, so none of them fires twice", () => {
+    expect(key({ key: "n", metaKey: true })).toEqual(["new-chat", null]);
+    expect(key({ key: "k", metaKey: true })).toEqual(["palette", null]);
+    expect(key({ key: "f", ctrlKey: true })).toEqual(["search", null]);
+    expect(key({ key: "m", metaKey: true })).toEqual(["model-picker", null]);
+    expect(key({ key: "\\", metaKey: true })).toEqual(["toggle-sidebar", null]);
+    expect(key({ key: "n", metaKey: true, shiftKey: true })).toEqual(["new-incognito", null]);
+  });
+
+  it("still says nothing about a key that is not in the map at all", () => {
+    expect(key({ key: "z", metaKey: true })).toEqual([null, null]);
+    expect(key({ key: "Enter" })).toEqual([null, null]);
   });
 });

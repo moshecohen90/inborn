@@ -6,7 +6,7 @@ use std::sync::Mutex;
 use serde::Serialize;
 use tauri::menu::{Menu, MenuBuilder, MenuItem, MenuItemBuilder, PredefinedMenuItem, SubmenuBuilder};
 use tauri::tray::{TrayIcon, TrayIconBuilder};
-use tauri::{App, AppHandle, DragDropEvent, Emitter, Manager, State, WindowEvent};
+use tauri::{App, AppHandle, DragDropEvent, Emitter, Manager, State, WebviewWindow, WindowEvent};
 
 use crate::engine::{Engine, BACKEND};
 use crate::models;
@@ -166,6 +166,31 @@ pub fn quit(app: &AppHandle) {
   app.exit(0);
 }
 
+/// The size a window must open at: never under the configured minimum.
+fn at_least(size: (f64, f64), min: (f64, f64)) -> (f64, f64) {
+  (size.0.max(min.0), size.1.max(min.1))
+}
+
+/// Hold the window to the §9.7 minimum however it got smaller.
+///
+/// AppKit's `contentMinSize` stops a *drag* below the minimum, and nothing else: `tauri-plugin-window-state`
+/// restores the size the window was last closed at by setting it in code, after both `setup` and
+/// `RunEvent::Ready`, so a window saved under an older and smaller minimum reopens under the current one and
+/// nothing ever grows it back. Every way down ends in a resize, which is why this hangs off that event.
+fn hold_to_configured_minimum(window: &WebviewWindow) -> tauri::Result<()> {
+  let app = window.app_handle();
+  let Some(configured) = app.config().app.windows.first() else { return Ok(()) };
+  let (Some(min_width), Some(min_height)) = (configured.min_width, configured.min_height) else { return Ok(()) };
+  let scale = window.scale_factor()?;
+  let now = window.inner_size()?.to_logical::<f64>(scale);
+  let (width, height) = at_least((now.width, now.height), (min_width, min_height));
+  if width > now.width || height > now.height {
+    eprintln!("[inborn] window was {}x{}, under the {min_width}x{min_height} minimum; grown", now.width, now.height);
+    window.set_size(tauri::LogicalSize::new(width, height))?;
+  }
+  Ok(())
+}
+
 pub fn install(app: &mut App) -> tauri::Result<()> {
   app.set_menu(build_menu(app)?)?;
   build_tray(app)?;
@@ -180,7 +205,13 @@ pub fn install(app: &mut App) -> tauri::Result<()> {
   });
   if let Some(window) = app.get_webview_window("main") {
     let handle = app.handle().clone();
+    let minimum = window.clone();
     window.on_window_event(move |event| {
+      if let WindowEvent::Resized(_) = event {
+        if let Err(e) = hold_to_configured_minimum(&minimum) {
+          eprintln!("[inborn] window minimum: {e}");
+        }
+      }
       if let WindowEvent::DragDrop(DragDropEvent::Drop { paths, .. }) = event {
         let (ggufs, documents): (Vec<_>, Vec<_>) = paths.iter().cloned().partition(|p| p.extension().and_then(|e| e.to_str()).is_some_and(|e| e.eq_ignore_ascii_case("gguf")));
         if !documents.is_empty() {
@@ -213,4 +244,22 @@ pub fn desktop_info(app: AppHandle) -> Result<DesktopInfo, String> {
     models_dir: models::vault_dir(&app)?.to_string_lossy().into_owned(),
     os: std::env::consts::OS,
   })
+}
+
+#[cfg(test)]
+mod tests {
+  use super::at_least;
+
+  #[test]
+  fn a_restored_window_under_the_minimum_is_grown_on_both_axes() {
+    assert_eq!(at_least((820.0, 528.0), (1040.0, 720.0)), (1040.0, 720.0));
+    assert_eq!(at_least((1200.0, 528.0), (1040.0, 720.0)), (1200.0, 720.0));
+    assert_eq!(at_least((820.0, 900.0), (1040.0, 720.0)), (1040.0, 900.0));
+  }
+
+  #[test]
+  fn a_window_at_or_above_the_minimum_is_left_exactly_as_it_was() {
+    assert_eq!(at_least((1040.0, 720.0), (1040.0, 720.0)), (1040.0, 720.0));
+    assert_eq!(at_least((1600.0, 1000.0), (1040.0, 720.0)), (1600.0, 1000.0));
+  }
 }
