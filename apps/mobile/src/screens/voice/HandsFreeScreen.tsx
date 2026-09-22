@@ -12,7 +12,7 @@ import { useHandsFree } from "../../voice/useHandsFree";
 import { whisperInstalled } from "../../voice/whisper";
 import { readDevice } from "../../vault/device";
 import { Button } from "../../components/shell/primitives";
-import { useBannerInset } from "../../components/shell/bannerInset";
+import { useBannerPad } from "../../components/shell/bannerInset";
 
 interface Props {
   chatId: string | null;
@@ -29,7 +29,7 @@ export function HandsFreeScreen({ chatId, incognito, onClose, onOpenVault }: Pro
   const { t, i18n } = useTranslation();
   const type = useType();
   const insets = useSafeAreaInsets();
-  const bannerInset = useBannerInset();
+  const bannerInset = useBannerPad(24);
   const s = useAppServices();
   const theme = dark;
   const model = s.engine.model;
@@ -54,7 +54,7 @@ function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId }: { c
   const { t } = useTranslation();
   const type = useType();
   const insets = useSafeAreaInsets();
-  const bannerInset = useBannerInset();
+  const bannerInset = useBannerPad(16);
   const s = useAppServices();
   const theme = dark;
   const hf = useHandsFree({ store: s.store, chatId, incognito, modelId, uiLocale, onChatCreated: s.chatCreated });

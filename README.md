@@ -1853,6 +1853,30 @@ keys the sheet already renders for an installed model. Play only on Android, App
 | Fast | `play-asset-pack, https` | `models.inbornapp.com` | `Google Play, models.inbornapp.com` |
 | Instant | `bundled, play-asset-pack, https` | `This app, models.inbornapp.com` | `This app, Google Play, models.inbornapp.com` |
 
+### Proof on Moshe's iPhone 13 Pro
+
+A Release archive of this branch (`xcodebuild ... archive`, exit 0, **0** `error:` lines) was installed over the
+shipped 1.0.0 (12) with the same bundle id and the same signing identity, so the phone kept its data container. The
+**1.2 GB Fast model was untouched**: `vault.json` copied off before and after is identical except for Fast's
+`lastLoadedAt`, which moved only because this build actually loaded Fast. Nothing was re-downloaded, the phone was
+never locked or unlocked, and no setting was changed.
+
+| # | check | result | evidence |
+|---|---|---|---|
+| 1 | cold launch with Fast selected, three times | **PASS** — no memory banner on any launch, chat header reads **FAST**, and the log opens `Qwen3.5-2B-Q4_K_M.gguf` ×1 and `instant.gguf` ×0 each time. Pass 12 on the same phone, same vault: the banner on every launch, `instant.gguf` ×4 and the Fast file **×0** across 16 launches | `after-01-chat-coldlaunch-fast.png` |
+| 2 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
+| 3 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
+| 4 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
+| 5 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
+| 6 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
+
+**The A/B is on one photograph.** `before-01-build12-banner-on-relaunch.png` is the About screen of the *reinstalled*
+shipped 1.0.0 (12), taken after all of the above: the same phone, the same vault, the banner back. The fix is in the
+build, not in the phone's state.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 521, mobile 190, i18n 10,
+ui 11 — **732** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
 to 16 words a short factual ask, so *"How do I set up SSH keys on my Mac?"* was given the short plan — 224 tokens and the

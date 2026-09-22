@@ -10,7 +10,7 @@ import { useType } from "../../services/type";
 import { Mesh, MonoLabel } from "./primitives";
 import { ChromeBar, liquidGlass } from "./NativeChrome";
 import { Seal, type SealState } from "../Seal";
-import { useBannerInset } from "./bannerInset";
+import { useBannerPad } from "./bannerInset";
 
 interface HeaderProps {
   title?: string;
@@ -71,7 +71,7 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
-  const bannerInset = useBannerInset();
+  const bannerInset = useBannerPad(header ? HEADER_HEIGHT : 0);
   const content = <View style={[padded ? styles.padded : null, style]}>{children}</View>;
   /* Glass only reads as glass with content moving under it: the bar floats over the scroll view, which pads itself by the bar's height. */
   const overlay = liquidGlass && !!header && scroll;
