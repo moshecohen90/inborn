@@ -1622,6 +1622,7 @@ minimum, and the width at which the document panel fits beside a full column.
 | mode | shell |
 |---|---|
 | `phone` | exactly what shipped to the stores; the app is portrait-locked, so no phone reaches 760 pt |
+| — | onboarding, the legal screens and the lock screen stay full-bleed at any width |
 | `wide` | permanent 280 px sidebar + message column |
 | `desktop` | sidebar + 680 px column + 340 px document/citation panel |
 
@@ -1630,7 +1631,8 @@ What the wide shell contains. The **sidebar** is the chats drawer itself, mounte
 when a sidebar is up (the demo's desktop frame does the same), and `Chats` gained one prop, `embedded`, which drops the
 close ✕ and nothing else. Its footer carries Model vault and Documents beside Settings and Proof, so the five §8.9
 sections are all reachable there; the phone drawer's footer is untouched. The **chat** keeps the §8.9 measure — stream
-and composer centred at 680 px, the header's back button replaced by a spacer so the seal stays centred. The
+and composer centred at 680 px, the header's back button replaced by a spacer so the seal stays centred — and put back,
+as the way to reopen the sidebar, whenever Cmd+\\ has hidden it, so the shortcut is never a dead end. The
 **document/citation panel** reuses what was already there: `Citations` has carried an `onOpen` hook documented as "the
 desktop side panel, for instance" since the documents milestone, and `PassageSheet`'s body became `PassagePanel` so the
 sheet and the panel render one passage view. **Sheets** become centred 560 px dialogs with a fade in both `Sheet`

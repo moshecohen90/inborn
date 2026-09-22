@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppServicesProvider, useAppServices } from "../services/AppServices";
@@ -23,6 +23,7 @@ import { useLayoutMode } from "../lib/useLayout";
 import { useDesktopKeys } from "../components/shell/useDesktopKeys";
 import { useShortcut } from "../lib/shortcuts";
 import { closeSidePanel } from "../lib/sidePanel";
+import { toggleSidebar, useSidebarOpen } from "../lib/sidebar";
 
 /* The stored theme is applied before the first paint (QA B14): the splash, the lock screen and the status bar never show the system scheme first. */
 applyThemeMode(mergePrefs(readPrefsRaw(), Date.now()).themeMode);
@@ -61,12 +62,15 @@ function Shell() {
   const { lock, prefs, captured, openShared } = useAppServices();
   const [bannerInset, setBannerInset] = useState(0);
   const mode = useLayoutMode();
-  const wide = isWide(mode);
-  const [sidebar, setSidebar] = useState(true);
+  /* Onboarding and the legal screens own the whole window: a chats sidebar beside a first-run screen would be the shell before the app exists. */
+  const segments = useSegments();
+  const fullBleed = segments[0] === "onboarding" || segments[0] === "legal" || segments[0] === "lock";
+  const wide = isWide(mode) && !fullBleed;
+  const sidebar = useSidebarOpen();
   const [palette, setPalette] = useState(false);
   useDesktopKeys(wide);
   useShortcut("palette", () => wide && setPalette((p) => !p));
-  useShortcut("toggle-sidebar", () => wide && setSidebar((v) => !v));
+  useShortcut("toggle-sidebar", () => wide && toggleSidebar());
   /* Esc is Stop; with the palette up it is also the way out of it. */
   useShortcut("stop", () => setPalette(false));
   /* A window narrowed back to the phone shell has nowhere to put either of them. */

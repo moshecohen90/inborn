@@ -93,6 +93,7 @@ import { modelLabel, describeLoad } from "../lib/models";
 import { getVault } from "../vault/store";
 import { useShortcut } from "../lib/shortcuts";
 import { COLUMN_WIDTH } from "../lib/layout";
+import { setSidebarOpen, useSidebarOpen } from "../lib/sidebar";
 import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
@@ -186,6 +187,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const list = useRef<FlatList<Row>>(null);
   /* §8.9: on a wide window the sidebar is the chats door and the stream is a centred column; the phone shell is untouched. */
   const wide = useWide();
+  const sidebar = useSidebarOpen();
   const nearBottom = useRef(true);
   const follow = useRef(true);
   const settleUntil = useRef(0);
@@ -954,10 +956,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const top = (
     <>
       <FloatingToolbar style={styles.header}>
-        {wide ? (
+        {/* The sidebar is the chats door on a wide window; with it hidden the header takes the job back. */}
+        {wide && sidebar ? (
           <View style={styles.headerBtn} />
         ) : (
-          <Pressable testID="open-chats" accessibilityRole="button" onPress={onOpenChats} hitSlop={8} style={styles.headerBtn}>
+          <Pressable testID="open-chats" accessibilityRole="button" onPress={wide ? () => setSidebarOpen(true) : onOpenChats} hitSlop={8} style={styles.headerBtn}>
             <Text style={[type.body, { color: theme.text2 }]}>{t("chats.title")}</Text>
           </Pressable>
         )}

@@ -18,6 +18,8 @@ edge of a 1,440 px window. Spec §8.9 and §9.7 already described the desktop sh
 
 The app is portrait-locked (`app.config.ts`), so no phone reaches 760 pt: the phone layout is unreachable-by-accident,
 not merely unchanged. A tablet in portrait (820 pt) and a browser window do reach it, which is what §8.9 asks for.
+Onboarding, the legal screens and the lock screen keep the whole window at any width — a chats sidebar beside a
+first-run screen would be the shell before the app exists.
 
 **Sidebar, 280 px** (`components/shell/WideShell.tsx` + `components/shell/ChatsPane.tsx`). The chats drawer that the
 phone pushes as a route is the sidebar's content, mounted permanently: search, New chat / Incognito, pinned, the Work
@@ -28,8 +30,9 @@ sidebar the footer also carries Model vault and Documents, so all five §8.9 sec
 drawer's footer is untouched.
 
 **Message column, 680 px** (`screens/Chat.tsx`). The stream and the composer are centred at the §8.9 text measure; the
-header spans the content area with the phone's "Chats" button replaced by a spacer, so the seal stays centred. Every
-other chat behaviour is the phone's.
+header spans the content area with the phone's "Chats" button replaced by a spacer, so the seal stays centred. Hide the
+sidebar with Cmd+\ and the button comes back and reopens it, so the shortcut is never a dead end (`lib/sidebar.ts`
+holds that one flag outside React so the header can read it). Every other chat behaviour is the phone's.
 
 **Document / citation panel, 340 px, desktop only.** `Citations` already carried an `onOpen` hook documented as "the
 desktop side panel, for instance" — it now opens the passage in the right panel instead of a modal sheet when the
@@ -62,8 +65,8 @@ sidebar and the recent chats, filtered by substring; Enter runs the first hit.
 
 **One bug found on the way.** `chatCreated` never bumped `chatsVersion`, so a chats list that stays mounted — which is
 new, the sidebar is the first one — did not show a chat the moment the first message created it. The phone never saw
-this because its drawer reloads on every mount. Fixed in `services/AppServices.tsx`; screenshot 01 is before the fix in
-spirit (it read "No chats yet."), 05 is after.
+this because its drawer reloads on every mount. One line in `services/AppServices.tsx`; before it, the sidebar in
+screenshot 01 read "No chats yet." beside the answer it had just produced.
 
 ## Proof
 
@@ -80,7 +83,7 @@ MODELS_DIR=/Users/moshecohen/dev/inborn/.models node docs/qa/desktop-layout/shot
 | `docs/qa/desktop-layout/01-desktop-1280x800-chat.png` | 1280×800: sidebar, centred column, header without the back button |
 | `docs/qa/desktop-layout/02-desktop-1280x800-palette.png` | Cmd+K palette: SCREENS + CHATS |
 | `docs/qa/desktop-layout/03-desktop-1280x800-document-panel.png` | three columns: sidebar, chat, document panel |
-| `docs/qa/desktop-layout/04-desktop-1280x800-sidebar-hidden.png` | Cmd+\ with the sidebar hidden |
+| `docs/qa/desktop-layout/04-desktop-1280x800-sidebar-hidden.png` | Cmd+\ with the sidebar hidden; the header's "Chats" button is back to reopen it |
 | `docs/qa/desktop-layout/05-desktop-1440x900-chat.png` | 1440×900: the column stays 680, the sidebar lists the chat |
 | `docs/qa/desktop-layout/06-wide-900x800-chat.png` | 900 px: sidebar, no panel (the `wide` mode) |
 | `docs/qa/desktop-layout/07-phone-390x844-chat.png` | 390×844: the phone shell, unchanged |
