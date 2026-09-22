@@ -1876,6 +1876,77 @@ build, not in the phone's state.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 521, mobile 190, i18n 10,
 ui 11 — **732** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+## Fixes round 26: the desktop shell never followed its own window (branch `desktop-pass-1`) — 22.9.2026
+
+**F47, F48, F49** — the first pass to drive the Mac app against §8.9 and §9.7 rather than a browser at desktop
+widths. Round 24 built the channel that makes this possible; this is the first thing put through it.
+`docs/qa/spec-conformance-2026-09-22.md` could not class a single §8.9 desktop row better than "PROVEN **in a
+browser**", and three of the rows it could not reach were wrong. Moshe worked on the same Mac throughout: no
+dialog, no pointer, no focus change. Full clause table and evidence in `docs/qa/desktop-pass-1/README.md`.
+
+### F48 — the shell was decided once, at the first paint, and never again
+
+The sidebar, the 680 px column, the document panel and the command palette's routing all switch on
+`useWindowDimensions().width`. In the Tauri WKWebView that number never moved. Measured with counters armed in
+the page, over five resizes (1400 → 760 → 700 → 1200 → 1400): `window.innerWidth` and `visualViewport.width`
+tracked the window exactly, **`window` fired 0 resize events and `visualViewport` fired 0**, and the 280 px
+sidebar was still drawn at an `innerWidth` of 700 — the wide shell in a window 60 px below the phone
+threshold.
+
+Two things had to be true at once, which is why neither side looks broken on its own. The WKWebView delivers
+no resize event when the Tauri window is resized; and react-native-web 0.21.2 subscribes `Dimensions` to
+**`visualViewport`'s** resize event whenever that object exists and to `window`'s only when it does not, so
+even a `resize` event dispatched by hand was ignored, and `Dimensions.get()` refreshes once behind a
+`shouldInit` flag. Round 22 could not have caught it: it proved §8.9 in headless Chromium, where `resize`
+fires normally.
+
+The one event the window does deliver is Tauri's own `tauri://resize`. `adapters/tauri.ts` now drives
+`lib/viewportResize.ts::dispatchViewportResize` from it, notifying whichever target this browser's
+`Dimensions` actually subscribed to. After the fix three resizes produced three `visualViewport` resize events
+and the shell was right at 1600, 1040 and 1280 — 280 px sidebar, 680 px column, 340 px panel at 1400.
+
+### F47 — the window opened, and reopened, under the minimum §9.7 gives it
+
+`tauri.conf.json` said `minWidth: 720, minHeight: 480` against §9.7's 1,040×720, and `lib/layout.ts:7` had
+named the right number all along without it ever reaching the window. Asked for 700×460 the app took it and
+drew the phone shell.
+
+The config was half of it. AppKit's `contentMinSize` constrains a drag and not a size set in code, and
+`tauri-plugin-window-state` restores the last size by setting it in code — **after** `setup` and after
+`RunEvent::Ready` both, which is where the first two attempts at this fix sat and did nothing at all. Every
+install already carries a state file written under the old minimum, so those windows would have gone on
+opening under the new one for ever. `shell.rs::hold_to_configured_minimum` therefore hangs off the window's
+own `Resized` event, reads the minimum from the same config the test asserts, and grows a window that is under
+it. From a state file holding 500×400 the app now logs `window was 500x400, under the 1040x720 minimum; grown`
+and comes up at 1040×720. Still unproven: that AppKit refuses a *drag* below it — that needs a pointer.
+
+### F49 — Esc did not stop a running answer
+
+`matchKey` maps Escape to `stop` and `_layout.tsx:74` calls Esc "Stop" in a comment, but `useDesktopKeys`
+returned early on `isTauri()` — the whole map, so the menu's accelerators would not fire twice. macOS reserves
+Esc and no accelerator can carry it, so the menu binds Stop to ⌘. and Esc reached nothing. On one generation
+each: after Esc the stop button was still showing 3.5 s later and the answer had grown from 506 to 3,342
+characters; after the menu's Stop it was gone inside 500 ms, frozen at 5,033. The decision is now
+`webviewShortcut(e, menuOwnsAccelerators)` in `lib/desktopKeys.ts` — under Tauri the webview keeps Esc and
+drops every key the menu declares. Esc now stops a streaming answer within 700 ms and also closes the palette.
+
+### Filed and not fixed
+
+**F77** desktop Settings has none of §8.9's desktop rows (no model location, no Launch at login, no Advanced
+section — so no backend picker, no VRAM offload, no local server). **F78** the desktop paywall's two buy
+buttons are priced and permanently disabled, because the provider is `licence-key` and there is no in-app
+checkout; the Work-first ordering §8.9 asks for is correct, so today it orders two dead cards first. **F79** a
+document dropped on the window goes nowhere — `inborn:documents-dropped` is emitted, relayed and never
+listened to, and folders are not handled at all. **F80** the native Mac app's screenshot-protection row reads
+"Not available in a browser."
+
+### Tests
+
+10 new: 4 in `apps/mobile/test/desktopWindow.test.ts` (3 of them red on the old config), 3 in
+`apps/mobile/src/lib/viewportResize.test.ts`, 3 in `desktopKeys.test.ts` (the double-fire one red without the
+guard), plus 2 in `shell.rs`. `pn test` is 742 — core 521, mobile 200 (190 before this round), i18n 10, ui 11
+— and `cargo test --release` 10.
+
 ## Fixes round 24: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
 **F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
 entering a password and WITHOUT you moving my mouse all the time."* Two walls stood between an agent and the
