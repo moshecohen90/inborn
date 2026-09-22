@@ -8,7 +8,9 @@ hostname are not an implementation detail that can be swapped at run time: chang
 ## State, 22.9.2026: live
 
 The bucket exists, the domain answers, and all eight objects verify. `node scripts/publish-models.mjs --verify-only`
-is the one command that re-proves it; it exits non-zero on any failure.
+is the one command that re-proves it; it exits non-zero on any failure. Both client tiers have pulled a real model
+through it end to end: the browser (`pnpm web:smoke`, below) and Moshe's iPhone
+(`docs/qa/cdn-iphone-2026-09-22.md`).
 
 | object | bytes | checked |
 |---|---|---|
@@ -43,7 +45,13 @@ The iOS **simulator** cannot finish a vault download and this is not ours to fix
 app's background session with `Process with pid N does not have a bundle ID, rejecting connection`
 (`NSCocoaErrorDomain 4097`), whether the app is launched by `simctl` or from the home screen, and across a full
 simulator reboot. The app gets as far as opening a TLS connection to the right catalog URL. A real device is the
-only place that path completes.
+only place that path completes — **and it does**: on 22.9.2026 the iPhone 13 Pro running build 11 pulled the 1.2 GB
+Fast model from this CDN in 151 s (8.5 MB/s), passed its own sha256 check against the signed catalog, loaded the
+model and answered with it. Full run and screenshots: `docs/qa/cdn-iphone-2026-09-22.md`.
+
+One thing to know before driving that flow again: **the app activates a model the moment it finishes installing**, so
+the vault label goes straight to `Loaded`, never `Installed`, and the `use-<id>` button is gone by the time a driver
+looks for it. A step file that waits for `Installed` will wait forever on a download that already succeeded.
 
 ## What is where
 
