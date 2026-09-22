@@ -3,6 +3,8 @@ import { CATALOG_PUBLIC_KEY } from "./publicKey";
 import { verifyManifest } from "./signature";
 import { hfResolveUrl } from "./huggingface";
 import type { CatalogManifest, CatalogModel, ModelPart } from "./types";
+import type { DeliverySource } from "./install";
+import type { ChipInput } from "./speed";
 
 /** The catalog shipped inside the app (Android gets a new one only with an app update, §5.4). */
 export const BUNDLED_MANIFEST = manifestJson as CatalogManifest;
@@ -44,4 +46,19 @@ export function httpsUrl(manifest: CatalogManifest, model: CatalogModel, part?: 
   /* Shards sit next to the first one on the CDN, as they do on disk. */
   const dir = d.path.includes("/") ? d.path.slice(0, d.path.lastIndexOf("/") + 1) : "";
   return `${base}/${dir}${part.file}`;
+}
+
+/**
+ * The sources a model that is not installed yet could arrive by on this platform, in manifest order and each named
+ * once: Play packs exist only on Android and Apple packs only on Apple, and a split model lists one Play pack per
+ * shard (QA F46). `DeliverySource` values are the `vault.source.*` keys the Details sheet renders.
+ */
+export function deliverySources(model: CatalogModel, os: ChipInput["os"]): DeliverySource[] {
+  const out: DeliverySource[] = [];
+  for (const d of model.delivery) {
+    const via: DeliverySource | null =
+      d.kind === "bundled" ? "bundled" : d.kind === "play-asset-pack" ? (os === "android" ? "play" : null) : d.kind === "apple-asset-pack" ? (os === "ios" || os === "macos" ? "apple" : null) : d.kind === "hf" ? "hf" : "https";
+    if (via && !out.includes(via)) out.push(via);
+  }
+  return out;
 }

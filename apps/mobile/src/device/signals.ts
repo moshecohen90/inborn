@@ -1,6 +1,6 @@
 import { Dimensions, Platform } from "react-native";
 import * as Battery from "expo-battery";
-import { thermalFromAndroid, type AndroidThermalContext, type BatterySignal, type BatteryState, type GuardDeviceClass, type MemoryPressure, type PowerSource, type ThermalState } from "@inborn/core";
+import { IOS_HEADROOM_BYTES, memoryPressureFromIos, ramGBFromBytes, thermalFromAndroid, type AndroidThermalContext, type BatterySignal, type BatteryState, type GuardDeviceClass, type MemoryPressure, type PowerSource, type ThermalState } from "@inborn/core";
 import { AndroidTrim, DeviceGuard, isAndroidSnapshot, type AndroidSnapshot, type Snapshot } from "../../modules/device-guard";
 
 /** Raw device signals before the policy: every field falls back to "unknown" where the platform has no API (§6.5 signal table). */
@@ -59,7 +59,7 @@ export const deviceClass = (): GuardDeviceClass => classFromSnapshot(snapshot())
 export const deviceRamGB = (): number | null => ramFromSnapshot(snapshot());
 
 function ramFromSnapshot(s: Snapshot | null): number | null {
-  if (s) return Math.round(((isAndroidSnapshot(s) ? s.totalMem : s.physicalMemory) / 2 ** 30) * 10) / 10;
+  if (s) return ramGBFromBytes(isAndroidSnapshot(s) ? s.totalMem : s.physicalMemory);
   const mem = (globalThis.navigator as Nav | undefined)?.deviceMemory;
   return typeof mem === "number" ? mem : null;
 }
@@ -70,9 +70,9 @@ function baseThreads(): number {
   return web && cores ? Math.max(1, Math.floor(cores / 2)) : 4;
 }
 
-/** Whether a snapshot says memory is fine again (jetsam threshold on Android, 150 MB of process headroom on iOS; unknown counts as fine). */
+/** Whether a snapshot says memory is fine again (jetsam threshold on Android, the process's own headroom on iOS; unknown counts as fine). */
 export function memoryHealthy(s: Snapshot): boolean {
-  return isAndroidSnapshot(s) ? !s.lowMemory : s.availableMemory === null || s.availableMemory > 150 * 1048576;
+  return isAndroidSnapshot(s) ? !s.lowMemory : s.availableMemory === null || s.availableMemory > IOS_HEADROOM_BYTES;
 }
 
 export function snapshot(): Snapshot | null {
@@ -171,7 +171,12 @@ export function subscribeSignals(onPatch: Listener): () => void {
     );
     add(() =>
       dg.addListener("memory", (e) => {
-        const level = e.trimLevel !== undefined ? pressureFromTrim(e.trimLevel) : (e.level ?? null);
+        const level =
+          e.trimLevel !== undefined
+            ? pressureFromTrim(e.trimLevel)
+            : e.level
+              ? memoryPressureFromIos({ source: e.source ?? "app", level: e.level, availableMemory: e.availableMemory ?? null })
+              : null;
         if (level) onPatch({ memoryPressure: level });
       }),
     );

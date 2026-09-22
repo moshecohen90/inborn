@@ -10,6 +10,7 @@ import { useType } from "../../services/type";
 import { Mesh, MonoLabel } from "./primitives";
 import { ChromeBar, liquidGlass } from "./NativeChrome";
 import { Seal, type SealState } from "../Seal";
+import { useBannerInset } from "./bannerInset";
 
 interface HeaderProps {
   title?: string;
@@ -70,6 +71,7 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
+  const bannerInset = useBannerInset();
   const content = <View style={[padded ? styles.padded : null, style]}>{children}</View>;
   /* Glass only reads as glass with content moving under it: the bar floats over the scroll view, which pads itself by the bar's height. */
   const overlay = liquidGlass && !!header && scroll;
@@ -79,11 +81,11 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
       {mesh ? <Mesh /> : null}
       {header && !overlay ? <Header {...header} /> : null}
       {scroll ? (
-        <ScrollView style={styles.flex} contentContainerStyle={{ paddingTop: overlay ? barHeight : 0, paddingBottom: (lift ? 0 : insets.bottom) + 24 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={styles.flex} contentContainerStyle={{ paddingTop: (overlay ? barHeight : 0) + bannerInset, paddingBottom: (lift ? 0 : insets.bottom) + 24 }} keyboardShouldPersistTaps="handled">
           {content}
         </ScrollView>
       ) : (
-        <View style={styles.flex}>{content}</View>
+        <View style={[styles.flex, { paddingTop: bannerInset }]}>{content}</View>
       )}
       {header && overlay ? (
         <ChromeBar style={[styles.overlay, { paddingTop: insets.top }]}>

@@ -36,7 +36,7 @@ export type Snapshot = AndroidSnapshot | IosSnapshot;
 
 export type DeviceGuardEvents = {
   thermal(e: { thermalStatus?: number; thermalState?: number }): void;
-  memory(e: { trimLevel?: number; level?: "warning" | "critical"; availableMemory?: number | null }): void;
+  memory(e: { trimLevel?: number; source?: "app" | "system"; level?: "warning" | "critical"; availableMemory?: number | null }): void;
   power(e: Snapshot): void;
 };
 

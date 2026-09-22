@@ -56,13 +56,14 @@ public class DeviceGuardModule: Module {
       self.sendEvent("power", self.snapshot())
     })
     observers.append(center.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] _ in
-      self?.sendEvent("memory", ["level": "warning", "availableMemory": self?.availableMemory()])
+      self?.sendEvent("memory", ["source": "app", "level": "warning", "availableMemory": self?.availableMemory()])
     })
+    // Phone-wide, not this process: the JS side weighs it against os_proc_available_memory() before believing it (QA F43).
     let source = DispatchSource.makeMemoryPressureSource(eventMask: [.warning, .critical], queue: .main)
     source.setEventHandler { [weak self, weak source] in
       guard let source, !source.isCancelled else { return }
       let level = source.data.contains(.critical) ? "critical" : "warning"
-      self?.sendEvent("memory", ["level": level, "availableMemory": self?.availableMemory()])
+      self?.sendEvent("memory", ["source": "system", "level": level, "availableMemory": self?.availableMemory()])
     }
     source.activate()
     memorySource = source

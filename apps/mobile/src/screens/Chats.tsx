@@ -29,7 +29,7 @@ import { SwipeRow } from "./chat/SwipeRow";
 import { afterSheetClose } from "./Chat";
 import { deviceNoun } from "../lib/deviceNoun";
 import { useOpenSheet } from "../lib/openSheets";
-import { useBannerInset } from "../components/shell/bannerInset";
+import { BannerSpacer } from "../components/shell/bannerInset";
 
 export interface ChatsProps {
   store: ChatStore;
@@ -74,7 +74,6 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [showArchived, setShowArchived] = useState(false);
   const [folderMode, setFolderMode] = useState<{ kind: "move"; chat: Chat } | { kind: "manage" } | null>(null);
-  const bannerInset = useBannerInset();
   const { work, version: workVersion } = useWork();
   const workGate = useWorkGate();
   const [vaultCode, setVaultCode] = useState<{ mode: VaultCodeMode; folder: Folder } | null>(null);
@@ -302,7 +301,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           <Text style={[type.bodySmall, { color: theme.text2 }]}>{selecting ? t("chats.cancel") : t("chats.select")}</Text>
         </Pressable>
       </FloatingToolbar>
-      {bannerInset ? <View testID="banner-inset" style={{ height: bannerInset }} /> : null}
+      <BannerSpacer />
       <TextInput testID="chats-search" value={query} onChangeText={setQuery} placeholder={t("chats.search")} placeholderTextColor={theme.text3} style={[shape.field, styles.search, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} accessibilityLabel={t("chats.search")} />
       {!selecting ? (
         <View style={styles.actions}>
