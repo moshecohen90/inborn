@@ -67,8 +67,9 @@ describe("signed export (spec §7.5 Work): content hash + Ed25519, verifiable wi
     const record = signRecord(unsigned, SEED);
     expect(JSON.parse(JSON.stringify(record))).toMatchObject({ aiGenerated: true, generator: "Inborn (on-device AI)" });
     /* The marking is inside the hash, so stripping it from the file is detected. */
-    const { aiGenerated: _dropped, ...withoutMarking } = record;
-    expect(verifyRecord(withoutMarking)).toEqual({ ok: false, reason: "hash-mismatch" });
+    const withoutMarking: Record<string, unknown> = { ...record };
+    delete withoutMarking.aiGenerated;
+    expect(verifyRecord(withoutMarking as unknown as typeof record)).toEqual({ ok: false, reason: "hash-mismatch" });
     expect(verifyRecord({ ...record, generator: "Something else" })).toEqual({ ok: false, reason: "hash-mismatch" });
     expect(renderRecord(record)).toContain("Generated with Inborn (on-device AI). Verify before use.");
   });

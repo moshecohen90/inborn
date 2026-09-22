@@ -1,4 +1,4 @@
-import { ANSWER_CEILING, type BenchTimings, type Delta, type GenOpts, type LocalLM, type Message, type ModelRef, type Session, type Tier } from "@inborn/core";
+import { ANSWER_CEILING, InferenceQueue, isQueuedAbort, type BenchTimings, type Delta, type GenOpts, type LocalLM, type Message, type ModelRef, type Session, type Tier } from "@inborn/core";
 import { createEngine, type Engine } from "./adapters";
 import { getVault } from "./vault/store";
 
@@ -36,6 +36,8 @@ let resolveModel: ((tier: Tier) => ModelRef | null) | null = null;
 let sessionOverride = false;
 let lastLoadMs = 0;
 const running = new Set<AbortController>();
+/* §10.3 case 23: chat, the documents ask, quick actions and the benchmark share one llama.cpp context, so they take turns on it. */
+const inference = new InferenceQueue();
 const stateListeners = new Set<(s: EngineState) => void>();
 const activityListeners = new Set<(busy: boolean) => void>();
 
@@ -215,7 +217,17 @@ export async function benchmarkModel(ref: ModelRef, pp: number, tg: number): Pro
   const engine = getRaw();
   const lm = engine.engine;
   if (!lm.bench) return null;
-  await waitIdle();
+  /* The bench runs on the same context as an answer (§10.3 case 23), so it waits for its turn like one. */
+  const release = await inference.acquire();
+  try {
+    return await runBenchmark(engine, lm, ref, pp, tg);
+  } finally {
+    release();
+  }
+}
+
+async function runBenchmark(engine: Engine, lm: LocalLM, ref: ModelRef, pp: number, tg: number): Promise<BenchmarkRun | null> {
+  if (!lm.bench) return null;
   const previous = engine.model;
   const swap = ref.uri !== previous.uri;
   if (swap) {
@@ -252,6 +264,15 @@ function guard(): Engine {
     embed: (t) => lm().embed(t),
     stats: () => lm().stats(),
     async *generate(_stale: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta> {
+      /* Waits for whatever is already answering; a send cancelled while it waits yields nothing and never touches the context. */
+      let turn: (() => void) | undefined;
+      try {
+        turn = await inference.acquire(signal);
+      } catch (e: unknown) {
+        if (isQueuedAbort(e)) return;
+        throw e;
+      }
+      const release = turn;
       const s = await loadSession();
       const ac = new AbortController();
       const onAbort = () => ac.abort();
@@ -279,6 +300,7 @@ function guard(): Engine {
           for (const l of activityListeners) l(false);
           if (live) armIdle();
         }
+        release();
       }
     },
   };

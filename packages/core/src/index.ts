@@ -1,5 +1,6 @@
 export * from "./llm/types";
 export { NullLM } from "./llm/null-lm";
+export * from "./llm/inferenceQueue";
 export * from "./catalog";
 export * from "./chat/types";
 export * from "./chat/repository";
