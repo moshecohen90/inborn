@@ -69,7 +69,7 @@ If you write to `{{SUPPORT_EMAIL}}`, we process your email address and whatever 
 
 - Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher; the key lives in the Secure Enclave, Android Keystore or Windows Hello/DPAPI). On iOS the files also use Data Protection.
 - **Web version exception:** in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them.
-- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. Conversations are included in your iCloud or Google device backup, encrypted by the operating system's backup mechanism.
+- Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. On iOS and iPadOS your conversations are included in your iCloud device backup, encrypted by the operating system's backup mechanism. **On Android they are not backed up at all:** the app declares `android:allowBackup="false"`, so nothing it stores reaches Google's backup or a device-to-device transfer. If you delete the app or reset the phone, Android conversations are gone.
 - **Access and portability:** Settings → Export lets you export any conversation, or everything, to a file you control.
 - **Deletion:** delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side.
 - **Incognito chats** are held in memory only and are never written to disk.
@@ -84,11 +84,11 @@ We do not collect personal information as defined by the CCPA, and we do not sel
 
 ## 9. Children
 
-Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device.
+Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. Family-safe mode is on by default and runs entirely on the device: it adds a safety instruction to the model's prompt, and it checks what you ask and what the model answers against a list of explicit phrases, replacing an answer that matches. **It reduces sexual, violent and self-harm content; it does not eliminate it.** An adult can turn it off in Settings → Chat.
 
 ## 10. Security
 
-No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode, emergency wipe, and a published open-source core so that anyone can verify the claims in this policy. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+No server means no server to breach. On the device: encrypted database, hardware-backed keys, optional biometric app lock, optional screenshot blocking, incognito mode and emergency wipe. You do not have to take section 3 on trust: the Android build's permissions can be checked with `aapt2 dump permissions` or on the app's Google Play permissions page, the iOS App Privacy Report lists the domains the app reaches, and any firewall (Little Snitch, NetGuard, Lockdown) shows the same from outside the app. Inborn's own source code is not published, so nothing in this policy asks you to read it.
 
 ## 11. Changes
 
