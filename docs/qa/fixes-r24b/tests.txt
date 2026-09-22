@@ -1,0 +1,42 @@
+Round 26 (stream fixes-r24b) — green run, 22.9.2026
+
+$ pnpm lint
+
+> inborn@ lint /Users/moshecohen/dev/inborn-wt/fixes-r24b
+> eslint .
+
+
+$ pnpm typecheck
+packages/ui typecheck: Done
+packages/i18n typecheck: Done
+packages/core typecheck: Done
+apps/mobile typecheck: Done
+
+$ pnpm -r --if-present test
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  11 passed (11)
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  10 passed (10)
+packages/core test:  Test Files  64 passed (64)
+packages/core test:       Tests  546 passed (546)
+apps/mobile test:  Test Files  43 passed (43)
+apps/mobile test:       Tests  254 passed (254)
+
+$ cargo test --offline (apps/desktop/src-tauri)
+test engine::tests::splits_reasoning_even_when_tags_arrive_in_pieces ... ok
+test engine::tests::plain_text_passes_through ... ok
+test licence::tests::base64_round_trips_every_length ... ok
+test secrets::tests::random_hex_has_two_characters_per_byte ... ok
+test store::tests::quarantine_reports_nothing_kept_when_there_was_no_file ... ok
+test shell::tests::expand_drop_does_not_descend_for_ever ... ok
+test strings::tests::desktop_keys_exist ... ok
+test store::tests::quarantine_keeps_the_unreadable_file_and_only_one_copy ... ok
+test shell::tests::expand_drop_walks_folders_and_keeps_models_apart ... ok
+test store::tests::failed_migration_step_leaves_no_open_transaction ... ok
+test store::tests::migration_batch_and_user_version_roundtrip ... ok
+test store::tests::fts5_is_compiled_in ... ok
+test shell::tests::expand_drop_stops_at_the_file_cap_and_ignores_what_is_not_there ... ok
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+Note: cargo keys off mtime, so a script that restores a sabotaged file from a copy must touch it,
+or the next run measures the sabotaged binary.
