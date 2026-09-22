@@ -88,7 +88,21 @@ MODELS_DIR=/Users/moshecohen/dev/inborn/.models node docs/qa/desktop-layout/shot
 | `docs/qa/desktop-layout/06-wide-900x800-chat.png` | 900 px: sidebar, no panel (the `wide` mode) |
 | `docs/qa/desktop-layout/07-phone-390x844-chat.png` | 390×844: the phone shell, unchanged |
 | `docs/qa/desktop-layout/08-phone-390x844-chats.png` | 390×844: the pushed chats drawer with its ✕, unchanged |
-| `docs/qa/desktop-layout/09-desktop-app-window.png` | the built macOS app at its own default window size |
+| `docs/qa/desktop-layout/09-desktop-app-window.png` | the built macOS app at its default 1120×720 — **blank**, see below |
+| `docs/qa/desktop-layout/10-ab-phone-chat.png` | the phone A/B: the empty chat at 390×844 |
+| `docs/qa/desktop-layout/11-ab-phone-chats.png` | the phone A/B: the chats drawer at 390×844 |
+
+**The phone shell is pixel-identical, measured.** `SHOTS_PHONE_AB=1` takes those last two shots with no prompt sent, so
+the picture is deterministic (an answer's wording changes run to run). The same run against `origin/main` 6899f07 in a
+separate worktree produced **byte-identical files**:
+
+| screen | sha256 (both trees) |
+|---|---|
+| empty chat, 390×844 | `b9c0fac7b09ea6f38718…` |
+| chats drawer, 390×844 | `9aff31497a08365ce90b…` |
+
+The baseline carries the one-file `vault/resolve.web.ts` below and nothing else, because without it `origin/main`'s web
+bundle throws before the first paint and there is no phone screen to compare.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179 — 169 plus
 the 4 layout-mode and 6 key-map tests — i18n 10, ui 11: **705**), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0
@@ -115,3 +129,12 @@ the 4 layout-mode and 6 key-map tests — i18n 10, ui 11: **705**), `pn lint` 0,
   so its own proof could run, to be reconciled at merge.
 - **No phone, emulator or simulator was used**, by instruction. The phone-shell screenshots are the web build at
   390×844, which is the same React tree, not an Android or iOS run.
+- **The desktop app builds and launches, but its window renders blank** — `09-desktop-app-window.png` is a 1120×720
+  window with a title bar and nothing in it. The Rust side is healthy (`metal backend ready` in 107 ms), and the *same*
+  `apps/mobile/dist` bundle renders correctly when served to headless Chrome, so the failure is on the Tauri boot path,
+  which this branch does not touch: its only file outside `lib/`, the shell components and the two `Sheet`s is
+  `vault/resolve.web.ts`, which returns the `null` that `resolve.ts` already returned for `Platform.OS === "web"`.
+  There is no clean baseline to compare against here — a desktop build of `origin/main` is a fresh llama.cpp compile —
+  so this is reported, not diagnosed further. It sits in the same area as F41, the desktop download-door wrap the
+  `web-desktop-check` stream is fixing. **The desktop layout is therefore proven in the browser at desktop widths and
+  in the built app only as far as the window itself.**

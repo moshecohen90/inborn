@@ -1651,11 +1651,14 @@ sidebar is the first one in the app — did not show a chat the moment its first
 it because its drawer reloads on every mount. One line in `services/AppServices.tsx`.
 
 **Proof.** The real deployable web build served by `scripts/serve-web.mjs` and driven headless by
-`docs/qa/desktop-layout/shots.mjs` (one Chromium, closed at the end, Instant answering from OPFS): eight screenshots at
-1280×800, 1440×900, 900×800 and 390×844 plus the built macOS app, in `docs/qa/desktop-layout/`, written up in
-`docs/qa/desktop-layout-2026-09-22.md` — which also lists what differs from the demo (the demo's column is 760 px, the
-spec's is 680) and what is not proven here (no citation screenshot: web indexing needs the `nomic-embed` GGUF, which is
-not on this machine; no phone, emulator or simulator was used).
+`docs/qa/desktop-layout/shots.mjs` (one Chromium, closed at the end, Instant answering from OPFS): screenshots at
+1280×800, 1440×900, 900×800 and 390×844 in `docs/qa/desktop-layout/`, written up in
+`docs/qa/desktop-layout-2026-09-22.md`. **The phone shell is pixel-identical, measured**: the same `SHOTS_PHONE_AB=1`
+run against `origin/main` 6899f07 in a second worktree produced byte-identical PNGs of the empty chat and the chats
+drawer at 390×844. Two things are not proven here and the QA note says so: the citation variant of the panel has no
+screenshot (web indexing needs the `nomic-embed` GGUF, which is not on this machine), and **the built macOS app's window
+renders blank** — Rust healthy, the same bundle fine in a browser, nothing in this branch on the Tauri boot path, same
+area as F41.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179, i18n 10,
 ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines), `pn desktop:build:app` 0.

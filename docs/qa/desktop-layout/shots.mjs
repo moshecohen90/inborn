@@ -70,6 +70,19 @@ try {
   await page.getByTestId("download-model").click();
   await page.getByTestId("composer-input").waitFor({ timeout: 5 * 60_000 });
 
+  /* SHOTS_PHONE_AB: the two phone screens only, with no prompt sent, so the same run on another branch is
+     byte-comparable — an answer's wording changes run to run and a chat screenshot never would be. */
+  if (process.env.SHOTS_PHONE_AB) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await shot(page, "ab-phone-chat.png");
+    await page.getByTestId("open-chats").click();
+    await page.getByTestId("close-chats").waitFor({ timeout: 10_000 });
+    await shot(page, "ab-phone-chats.png");
+    await browser.close();
+    await server.close();
+    process.exit(0);
+  }
+
   await page.getByTestId("composer-input").fill(PROMPT);
   await page.getByTestId("send").click();
   await page.getByTestId("ledger-toggle").last().waitFor({ timeout: 3 * 60_000 });
