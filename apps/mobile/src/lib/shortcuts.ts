@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 /** Desktop menu accelerators (spec §8.9); the same ids may later come from hardware keyboards on tablets. */
-export type Shortcut = "new-chat" | "new-incognito" | "toggle-incognito" | "focus-composer" | "search" | "stop" | "open" | "continue";
+export type Shortcut = "new-chat" | "new-incognito" | "toggle-incognito" | "focus-composer" | "search" | "stop" | "open" | "continue" | "palette" | "toggle-sidebar" | "model-picker";
 
 type Handler = (id: Shortcut) => void;
 const handlers = new Set<Handler>();

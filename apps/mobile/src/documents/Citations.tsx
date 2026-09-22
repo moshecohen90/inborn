@@ -8,6 +8,9 @@ import { citationLabel, type Citation, type PageWords } from "@inborn/core";
 import { getLibrary } from "./library";
 import { font } from "../services/type";
 import { useOpenSheet } from "../lib/openSheets";
+import { hasPanel } from "../lib/layout";
+import { useLayoutMode } from "../lib/useLayout";
+import { openSidePanel } from "../lib/sidePanel";
 
 export interface CitationsProps {
   citations: Citation[];
@@ -28,7 +31,10 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
   const { t } = useTranslation();
   const words = usePageWords();
   const { theme } = useTheme();
+  const mode = useLayoutMode();
   const [open, setOpen] = useState<Citation | null>(null);
+  /* On a desktop window the passage belongs in the right-hand panel (§8.9), not in a sheet over the answer. */
+  const show = onOpen ?? (hasPanel(mode) ? (c: Citation) => openSidePanel({ kind: "citation", citation: c }) : setOpen);
   if (!citations.length) return null;
   return (
     <View testID="citations" style={styles.wrap}>
@@ -40,7 +46,7 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
             testID={`citation-${c.n}`}
             accessibilityRole="button"
             accessibilityLabel={t("documents.openPassage", { label: citationLabel(c, words) })}
-            onPress={() => (onOpen ? onOpen(c) : setOpen(c))}
+            onPress={() => show(c)}
             style={[styles.chip, { backgroundColor: theme.surface2, borderColor: theme.border }]}
           >
             <Text style={[styles.chipText, { color: theme.text2 }]}>
@@ -55,9 +61,8 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
   );
 }
 
-export function PassageSheet({ citation, theme, onClose }: { citation: Citation; theme: Theme; onClose: () => void }) {
-  const { t } = useTranslation();
-  const words = usePageWords();
+/** The stored passage behind a citation; the snippet the answer carried is what shows until the full chunk is read. */
+function usePassageText(citation: Citation): string {
   const [text, setText] = useState<string>(citation.snippet);
   useEffect(() => {
     let alive = true;
@@ -71,6 +76,28 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
       alive = false;
     };
   }, [citation.chunkId]);
+  return text;
+}
+
+/** The same passage as a column, for the desktop shell's right-hand panel (§8.9). */
+export function PassagePanel({ citation }: { citation: Citation }) {
+  const words = usePageWords();
+  const { theme } = useTheme();
+  const text = usePassageText(citation);
+  return (
+    <View testID="passage-panel" style={styles.panel}>
+      <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation, words)}</Text>
+      <ScrollView>
+        <Text style={[styles.body, { color: theme.text }]}>{text}</Text>
+      </ScrollView>
+    </View>
+  );
+}
+
+export function PassageSheet({ citation, theme, onClose }: { citation: Citation; theme: Theme; onClose: () => void }) {
+  const { t } = useTranslation();
+  const words = usePageWords();
+  const text = usePassageText(citation);
   useOpenSheet(true, onClose);
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
@@ -99,6 +126,7 @@ const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.55)", justifyContent: "flex-end" },
   sheet: { maxHeight: "70%", borderTopLeftRadius: radius.card, borderTopRightRadius: radius.card, borderWidth: 1, padding: 20, gap: 12 },
   scroll: { flexGrow: 0 },
+  panel: { flex: 1, gap: 8, paddingHorizontal: 16, paddingBottom: 16 },
   body: { ...font("sans"), fontSize: 16, lineHeight: 25 },
   close: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
   closeText: { ...font("sans", "600"), fontSize: 16 },

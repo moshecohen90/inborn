@@ -35,6 +35,8 @@ export interface ChatsProps {
   store: ChatStore;
   activeChatId: string | null;
   onClose: () => void;
+  /** In the wide shell's sidebar the pane is permanent: no close button, and the header keeps the safe inset of the window, not of a pushed screen. */
+  embedded?: boolean;
   onOpenChat: (chat: Chat) => void;
   onNewChat: (incognito: boolean, personaId?: string) => void;
   onDeleted: (chatId: string) => void;
@@ -52,7 +54,7 @@ type Pending = { chats: Chat[]; timer: ReturnType<typeof setTimeout> };
 type Section = { key: string; title: string; data: Chat[]; folder?: Folder; lockedCount?: number };
 
 /** S20 chats drawer: search with snippets, pinned / folders / recent / archived, swipe actions, bulk delete with undo, S21 new-chat sheet. */
-export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onDeleted, onOpenPaywall, autoDeleteDays = 0, version = 0 }: ChatsProps) {
+export function Chats({ store, activeChatId, onClose, embedded = false, onOpenChat, onNewChat, onDeleted, onOpenPaywall, autoDeleteDays = 0, version = 0 }: ChatsProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const theme = useTheme();
@@ -279,9 +281,13 @@ export function Chats({ store, activeChatId, onClose, onOpenChat, onNewChat, onD
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <FloatingToolbar style={styles.header}>
-        <Pressable testID="close-chats" accessibilityRole="button" accessibilityLabel={t("chats.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
-          <Icon name="x" size={20} color={theme.text2} />
-        </Pressable>
+        {embedded ? (
+          <View style={styles.headerBtn} />
+        ) : (
+          <Pressable testID="close-chats" accessibilityRole="button" accessibilityLabel={t("chats.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
+            <Icon name="x" size={20} color={theme.text2} />
+          </Pressable>
+        )}
         <Text style={[type.title, { color: theme.text }]}>{t("chats.title")}</Text>
         <Pressable
           testID="select-toggle"

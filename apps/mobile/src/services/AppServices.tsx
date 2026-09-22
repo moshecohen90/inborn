@@ -375,7 +375,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
           return { id: null, incognito, key: a.key + 1, ...(personaId ? { personaId } : {}) };
         });
       },
-      chatCreated: (id) => setActive((a) => ({ ...a, id })),
+      chatCreated: (id) => {
+        setActive((a) => ({ ...a, id }));
+        /* A chats list that stays mounted beside the chat (the §8.9 sidebar) has to see the new row; the pushed drawer reloads on mount anyway. */
+        setChatsVersion((v) => v + 1);
+      },
       openShared: (payload) => {
         setActive((a) => {
           closeActive(booted.store, a);

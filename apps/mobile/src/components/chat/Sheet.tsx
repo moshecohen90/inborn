@@ -10,6 +10,7 @@ import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { GlassFill, panelColor, panelStyle } from "../shell/NativeChrome";
 import { useOpenSheet } from "../../lib/openSheets";
+import { useWide } from "../../lib/useLayout";
 
 interface SheetProps {
   visible: boolean;
@@ -31,18 +32,33 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   const geometry = sheetGeometry({ lift, safeBottom: insets.bottom, safeTop: insets.top, windowHeight, basePadding: 16, share: 0.88 });
   const Body = scroll ? ScrollView : View;
   const presented = usePresentedOrRetry(visible);
+  /* §8.9: a window with a sidebar has no bottom edge to rise from — the same sheet is a centred dialog there. */
+  const wide = useWide();
   useOpenSheet(visible, onClose);
+  const inner = (
+    <>
+      <GlassFill />
+      {wide ? null : <View style={[styles.grabber, { backgroundColor: theme.border }]} />}
+      {title ? <Text style={[type.title, styles.title, { color: theme.text }]}>{title}</Text> : null}
+      <Body style={[styles.body, scroll ? styles.shrink : null]} keyboardShouldPersistTaps="handled">
+        {children}
+      </Body>
+    </>
+  );
   return (
-    <Modal key={presented.key} visible={visible} transparent animationType="slide" onRequestClose={onClose} onShow={presented.onShow}>
+    <Modal key={presented.key} visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose} onShow={presented.onShow}>
       <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
-      <View testID={testID} style={[styles.sheet, panelStyle, geometry, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
-        <GlassFill />
-        <View style={[styles.grabber, { backgroundColor: theme.border }]} />
-        {title ? <Text style={[type.title, styles.title, { color: theme.text }]}>{title}</Text> : null}
-        <Body style={[styles.body, scroll ? styles.shrink : null]} keyboardShouldPersistTaps="handled">
-          {children}
-        </Body>
-      </View>
+      {wide ? (
+        <View pointerEvents="box-none" style={styles.centre}>
+          <View testID={testID} style={[styles.dialog, panelStyle, { maxHeight: geometry.maxHeight, backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+            {inner}
+          </View>
+        </View>
+      ) : (
+        <View testID={testID} style={[styles.sheet, panelStyle, geometry, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
+          {inner}
+        </View>
+      )}
     </Modal>
   );
 }
@@ -97,6 +113,8 @@ export function ProTag({ onPress }: { onPress?: () => void } = {}) {
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: "rgba(0,0,0,0.45)" },
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, paddingTop: 8, borderTopWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+  centre: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, alignItems: "center", justifyContent: "center", padding: 24 },
+  dialog: { width: "100%", maxWidth: 560, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderRadius: 20 },
   grabber: { alignSelf: "center", width: 36, height: 4, borderRadius: 2, marginBottom: 8 },
   title: { paddingHorizontal: 20, paddingVertical: 8 },
   body: { paddingHorizontal: 8 },
