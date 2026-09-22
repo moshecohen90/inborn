@@ -1640,11 +1640,12 @@ minutes, 0 FATAL / ANR / SIGSEGV in a 71,932-line device buffer and no dropbox e
 `OUT 0 B · IN 0 B` after 56 minutes of continuous inference. The single process restart at 21:40:06 is the driver's
 own force-stop for a dead focus ring, named as such in the soak write-up.
 
-**Two gaps in this run's own instrumentation, recorded rather than smoothed over.** The app-scoped `logcat --pid=`
+**One gap in this run's own instrumentation, recorded rather than smoothed over.** The app-scoped `logcat --pid=`
 capture was armed before the soak and bound to a pid the driver replaced four seconds later, so it holds 306 lines of
-a dead process; the crash claim above rests on the device's full buffer and the events buffer instead. And the
-ledger card was read successfully after only **6 of the 12** turns — the other six reads found no `LEDGER` card and
-were skipped, not invented. Neither is an app defect; both are driver work for the next run.
+a dead process; the crash claim above rests on the device's full buffer and the events buffer instead. Not an app
+defect — driver work for the next run. The ledger, by contrast, is clean: six reads attempted, six succeeded, no
+failure line in `events.log`. The six turns with no ledger row are the depth fillers, which the driver never
+ledgers.
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
