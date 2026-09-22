@@ -55,6 +55,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: "com.inbornapp.mobile",
     buildNumber: "12",
     supportsTablet: true,
+    /* The floor §6.3, the release checklist and the privacy policy all declare; Expo's Podfile template would leave 16.4. */
+    deploymentTarget: "17.0",
     /* Icon Composer bundle: Xcode 26 renders Liquid Glass + the iOS 18 light/dark/tinted fallbacks from its layers. */
     icon: "../../design/icon/Inborn.icon",
     infoPlist: {
@@ -143,6 +145,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ["./plugins/withStoredNightMode", { darkBackground: "#0A0D11" }],
     /* A hardware keyboard's TAB must be able to leave a list (QA F27); React Native's own scroll-view focus search cannot. */
     "./plugins/withScrollFocusEscape",
+    /* Expo pins ios.deploymentTarget on the app target only; this carries it to the project level too (§6.3, gap #18). */
+    "./plugins/withProjectDeploymentTarget",
   ],
 });
 

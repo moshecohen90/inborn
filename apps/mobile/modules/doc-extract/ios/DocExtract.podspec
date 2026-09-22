@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.license        = 'MIT'
   s.author         = 'Inborn'
   s.homepage       = 'https://inbornapp.com'
-  s.platforms      = { :ios => '16.4' }
+  s.platforms      = { :ios => '17.0' }
   s.swift_version  = '5.9'
   s.source         = { git: '' }
   s.static_framework = true
