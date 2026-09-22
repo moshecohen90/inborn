@@ -63,6 +63,11 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
       ) : null}
       {waiting ? <PulsingDot /> : <Markdown testID="assistant-text" source={row.content} direction={dir} caret={row.streaming} />}
       {row.error ? <Text style={[type.bodySmall, { color: theme.danger }]}>{row.error}</Text> : null}
+      {!row.streaming && row.safety === "family-safe" ? (
+        <Text testID="family-safe-note" style={[type.mono, { color: theme.text3 }]}>
+          {t("chat.familySafe.note")}
+        </Text>
+      ) : null}
       {!row.streaming && (row.stopped || row.loop) ? (
         <View style={styles.stateRow}>
           <Text style={[type.mono, { color: theme.text3 }]}>{row.loop ? t("chat.loopDetected") : row.stoppedBy === "system" ? t("chat.stoppedBySystem") : t("chat.stopped")}</Text>

@@ -26,6 +26,8 @@ export interface Prefs {
   lockReminderShown: boolean;
   autoDeleteDays: AutoDeleteDays;
   clipboardExpirySec: number;
+  /** Family-safe mode (§11.1 Guideline 1.2): on by default, adults may turn it off in Settings. */
+  contentSafety: boolean;
   performance: PerformanceProfile;
   autoPower: boolean;
   neverAutoSwitch: boolean;
@@ -45,6 +47,7 @@ export const defaultPrefs = (now: number): Prefs => ({
   lockReminderShown: false,
   autoDeleteDays: 0,
   clipboardExpirySec: 0,
+  contentSafety: true,
   performance: "balanced",
   autoPower: true,
   neverAutoSwitch: false,

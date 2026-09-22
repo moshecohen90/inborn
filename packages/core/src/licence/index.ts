@@ -2,6 +2,7 @@ export * from "./types";
 export * from "./entitlement";
 export * from "./gates";
 export * from "./moments";
+export { licenceText, hasLicenceText, COPYRIGHT_PLACEHOLDER, type BundledLicenceId } from "./licenceTexts";
 export * from "./cache";
 export * from "./manager";
 export { verifyAppleJws, decodeAppleJws, type AppleVerifyOptions } from "./apple";

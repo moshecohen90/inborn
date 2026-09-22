@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
-import { SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, composeSystemPrompt, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
+import { SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, composeSystemPrompt, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, safetyBaseline, screenText, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
 import { useDeviceState } from "../device/useDeviceState";
 import { UtteranceListener } from "./mic";
@@ -36,6 +36,10 @@ interface Options {
   incognito: boolean;
   modelId: string;
   uiLocale: string;
+  /** Family-safe mode (§11.1 Guideline 1.2). The spoken loop screens the same way the typed one does. */
+  familySafe: boolean;
+  /** What is said instead, already translated: this hook has no `t`. */
+  familySafeText: string;
   onChatCreated?: (id: string) => void;
 }
 
@@ -44,7 +48,7 @@ interface Options {
  * Every turn is saved to the chat like a typed one (never in incognito); the device guard's pause and the
  * background pause the loop, "tap to interrupt" cuts the model off mid-sentence.
  */
-export function useHandsFree({ store, chatId: initialChatId, incognito, modelId, uiLocale, onChatCreated }: Options): HandsFreeController {
+export function useHandsFree({ store, chatId: initialChatId, incognito, modelId, uiLocale, familySafe, familySafeText, onChatCreated }: Options): HandsFreeController {
   const [state, setState] = useState<HandsFreeState>(initialHandsFree);
   const [level, setLevel] = useState(0);
   const [speaking, setSpeaking] = useState(false);
@@ -131,7 +135,14 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           const turns: Message[] = stateRef.current.turns.map((t) => ({ role: t.role, content: t.text }));
           /* Answers stay short in a spoken exchange (S44); the loop never waits on a 1,024-token reply (F38). */
           const length = planAnswerLength({ text: effect.text, use: "voice", spoken: true });
-          const system = composeSystemPrompt({ baseline: `${SAFETY_BASELINE}\n${VOICE_SYSTEM_HINT}`, languageHint: languageHint(effect.text), length: length.instruction });
+          /* F50: the spoken turn is refused before generation, so nothing prohibited is ever synthesised aloud. */
+          if (screenText(effect.text, familySafe).flagged) {
+            generation.current = null;
+            if (id) await store.appendMessage({ chatId: id, role: "assistant", content: familySafeText, modelId, safety: "family-safe" });
+            dispatch({ type: "answer", text: familySafeText });
+            return;
+          }
+          const system = composeSystemPrompt({ baseline: `${safetyBaseline(SAFETY_BASELINE, familySafe)}\n${VOICE_SYSTEM_HINT}`, languageHint: languageHint(effect.text), length: length.instruction });
           const session = await loadSession();
           const prompt = buildPrompt({ system, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx: session.nCtx, reserve: length.maxTokens });
           let reply = "";
@@ -147,7 +158,9 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           if (ac.signal.aborted) return;
           setTimings((t) => ({ ...t, answerMs: Date.now() - started }));
           devVoiceRecord("handsFree.answer", { answerMs: Date.now() - started, text: reply.trim() });
-          if (id && reply.trim()) await store.appendMessage({ chatId: id, role: "assistant", content: reply.trim(), modelId });
+          const replaced = screenText(reply, familySafe).flagged;
+          if (replaced) reply = familySafeText;
+          if (id && reply.trim()) await store.appendMessage({ chatId: id, role: "assistant", content: reply.trim(), modelId, ...(replaced ? { safety: "family-safe" as const } : {}) });
           dispatch({ type: "answer", text: reply });
           return;
         }

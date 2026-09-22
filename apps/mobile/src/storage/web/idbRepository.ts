@@ -226,6 +226,7 @@ export class IdbChatRepository implements ChatRepository {
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
+      ...(input.safety ? { safety: input.safety } : {}),
     });
     const tx = this.db.transaction([CHATS, MESSAGES], "readwrite");
     const chats = tx.objectStore(CHATS);

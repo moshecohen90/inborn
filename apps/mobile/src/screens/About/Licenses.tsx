@@ -1,4 +1,5 @@
-import { Linking, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useLocalSearchParams } from "expo-router";
 import { radius } from "@inborn/ui";
@@ -7,6 +8,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Mono, Section } from "../../components/shell/primitives";
 import notice from "../../../../../docs/legal/NOTICE.json";
 import { font, useType } from "../../services/type";
+import { LicenceSheet, type LicenceSubject } from "../../components/LicenceSheet";
 
 interface Component {
   id: string;
@@ -34,6 +36,8 @@ export function Licenses() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { oss } = useLocalSearchParams<{ oss?: string }>();
+  /* F54: the link was the only way to read a licence, and this app is built to work with no network. */
+  const [showing, setShowing] = useState<LicenceSubject | null>(null);
   const Item = ({ c }: { c: Component }) => (
     <View testID={`licence-${c.id}`} style={[styles.item, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
       <Text style={[type.heading, { color: theme.text }]}>
@@ -48,6 +52,9 @@ export function Licenses() {
           {c.homepage ?? c.licenseUrl}
         </Text>
       ) : null}
+      <Pressable testID={`licence-view-${c.id}`} accessibilityRole="button" hitSlop={6} onPress={() => setShowing({ name: c.name, license: c.license, ...(c.attribution ? { attribution: c.attribution } : {}), ...(c.licenseUrl ? { licenseUrl: c.licenseUrl } : {}) })}>
+        <Text style={[type.bodySmall, type.strong, { color: theme.accent }]}>{t("licenses.view")}</Text>
+      </Pressable>
     </View>
   );
   return (
@@ -68,6 +75,7 @@ export function Licenses() {
         </Section>
       ))}
       <Text style={[type.caption, styles.foot, { color: theme.text3 }]}>{t("licenses.source", { date: (notice as { generated: string }).generated })}</Text>
+      <LicenceSheet visible={showing !== null} subject={showing} onClose={() => setShowing(null)} />
     </Screen>
   );
 }

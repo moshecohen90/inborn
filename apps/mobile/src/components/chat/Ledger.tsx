@@ -33,6 +33,8 @@ export function Ledger({ message, nCtx, quant }: LedgerProps) {
     ["tokens", t("ledger.tokens"), u ? `${u.promptTokens} + ${u.completionTokens}` : "—"],
     ["time", t("ledger.time"), genMs !== undefined ? `${(genMs / 1000).toFixed(1)} s` : "—"],
   ];
+  /* F50: an answer the family-safe screen replaced says so on the receipt, not only in the line above it. */
+  if (message.safety === "family-safe") rows.push(["safety", t("ledger.safety"), t("ledger.safety.familySafe")]);
   return (
     <View>
       <Pressable testID="ledger-toggle" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.toggle}>

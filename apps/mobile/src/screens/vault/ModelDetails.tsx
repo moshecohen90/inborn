@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
@@ -7,6 +8,8 @@ import { BENCH_PP, benchmarkVerdict, deliverySources, distinctLanguageCodes, for
 import { deviceNoun } from "../../lib/deviceNoun";
 import { font, useType } from "../../services/type";
 import { useOpenSheet } from "../../lib/openSheets";
+import { LicenceSheet } from "../../components/LicenceSheet";
+import { licenceSubjectFor } from "../../lib/modelLicence";
 
 export interface ModelDetailsProps {
   model: CatalogModel | null;
@@ -57,6 +60,8 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
       return new Date(at).toLocaleString();
     }
   };
+  /* F54: the licence row named a licence nobody could read; the text now ships with the app (§11.4). */
+  const [licenceOpen, setLicenceOpen] = useState(false);
   useOpenSheet(model !== null, onClose);
   return (
     <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
@@ -78,6 +83,11 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
               </Text>
             </View>
           ))}
+          {model ? (
+            <Pressable testID="details-view-licence" accessibilityRole="button" hitSlop={6} onPress={() => setLicenceOpen(true)} style={styles.licenceBtn}>
+              <Text style={[type.body, styles.body, { color: theme.accent }]}>{t("licenses.view")}</Text>
+            </Pressable>
+          ) : null}
           {installed && model?.role === "chat" && onBenchmark ? (
             <View testID="details-benchmark" style={[styles.bench, { borderColor: theme.border }]}>
               <Text style={[type.mono, type.monoLabel, { color: theme.text3 }]}>{t("vault.benchmark.title").toUpperCase()}</Text>
@@ -128,6 +138,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
           </Pressable>
         </View>
       </View>
+      <LicenceSheet visible={licenceOpen} subject={model ? licenceSubjectFor(model) : null} onClose={() => setLicenceOpen(false)} />
     </Modal>
   );
 }
@@ -138,6 +149,7 @@ const styles = StyleSheet.create({
   table: { flexGrow: 0 },
   row: { gap: 2 },
   bench: { gap: 6, paddingTop: 12, marginTop: 4, borderTopWidth: StyleSheet.hairlineWidth },
+  licenceBtn: { minHeight: 44, justifyContent: "center", alignSelf: "flex-start" },
   benchBtn: { minHeight: 44, marginTop: 4, paddingHorizontal: 16, borderRadius: radius.control, borderWidth: 1, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 },
   body: { ...font("sans", "500") },
   actions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-end", gap: 8 },

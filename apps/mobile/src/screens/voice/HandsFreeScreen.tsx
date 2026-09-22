@@ -47,17 +47,17 @@ export function HandsFreeScreen({ chatId, incognito, onClose, onOpenVault }: Pro
       </View>
     );
   }
-  return <Loop chatId={chatId} incognito={incognito} onClose={onClose} smallPhone={smallPhone} uiLocale={i18n.language} modelId={model.id} />;
+  return <Loop chatId={chatId} incognito={incognito} onClose={onClose} smallPhone={smallPhone} uiLocale={i18n.language} modelId={model.id} familySafe={s.prefs.contentSafety} />;
 }
 
-function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId }: { chatId: string | null; incognito: boolean; onClose: () => void; smallPhone: boolean; uiLocale: string; modelId: string }) {
+function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId, familySafe }: { chatId: string | null; incognito: boolean; onClose: () => void; smallPhone: boolean; uiLocale: string; modelId: string; familySafe: boolean }) {
   const { t } = useTranslation();
   const type = useType();
   const insets = useSafeAreaInsets();
   const bannerInset = useBannerPad(16);
   const s = useAppServices();
   const theme = dark;
-  const hf = useHandsFree({ store: s.store, chatId, incognito, modelId, uiLocale, onChatCreated: s.chatCreated });
+  const hf = useHandsFree({ store: s.store, chatId, incognito, modelId, uiLocale, familySafe, familySafeText: t("chat.familySafe.replaced"), onChatCreated: s.chatCreated });
   const { phase, live, note, turns } = hf.state;
   const [closing, setClosing] = useState(false);
   useEffect(() => {
