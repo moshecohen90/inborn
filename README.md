@@ -450,8 +450,9 @@ after the first window's model switch silently failed and had to be re-run — t
 cycles all OK, one pid (29368) across both windows, 0 FATAL/ANR and no dropbox entry belonging to versionCode 15. Soak run 9 (22.9, **vc16**, the Android submission candidate, delivered as a real Play update over vc15,
 `docs/qa/soak-run-9-2026-09-22.md`): PASS — **15/15 prompts completed, 0 timeouts, 0 send failures**, 12 F33 cycles all OK, one pid
 (25434) for 63 minutes, 0 FATAL/ANR across 39,018 log lines and no dropbox entry naming Inborn at all. It is the first soak to read the
-ledger after **every** answer: Fast measured 6.1-7.0 tok/s against the `~5-7 tok/s` its own vault card promises on this phone, Instant
-14.1-14.2 against `~6-12`, and `ms/token` held steady per model across the hour. Release rows, real Play billing (YOU OWN PRO, Work
+ledger after **every** answer: Fast measured 6.1-7.0 tok/s (median 6.4) against the `~5-7 tok/s` its own vault card promises on this
+phone and Instant 14.1-14.2 against the `12-18` its `android-legacy` row carries, so **neither card overstates**; `ms/token` held
+steady per model across the hour. Release rows, real Play billing (YOU OWN PRO, Work
 upgrade ₪149.90, Restore -> "Purchase restored") and the 4 GB device-tier rows are section S of `docs/qa/purchases-run-2026-09-11.md`;
 the same pass closed §5.7 **incognito** on real hardware for the first time (`docs/qa/qa-run-2026-09-11.md` Pass 8). Launch-language
 decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
