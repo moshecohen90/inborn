@@ -4,6 +4,7 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
+import { setClipboardExpiry } from "../lib/clipboard";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
@@ -191,6 +192,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
   useEffect(() => {
     applyTextScale(prefs.textScale);
   }, [prefs.textScale]);
+
+  // S52 › Security › clipboard expiry (§7.5): the copy helper holds the setting, so every copy site inherits it.
+  useEffect(() => {
+    setClipboardExpiry(prefs.clipboardExpirySec);
+  }, [prefs.clipboardExpirySec]);
 
   useEffect(() => {
     if (prefs.locale && i18next.isInitialized && i18next.language !== prefs.locale) void i18next.changeLanguage(prefs.locale);
