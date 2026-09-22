@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 # Release gate: the Android manifest declares exactly the permissions documented in docs/legal/app-privacy-details.md §4.2
 # (spec §5.1, decision D3: never INTERNET). Any permission outside the allowlist fails the build.
-# Usage: scripts/check-android-permissions.sh <app.apk | app.aab>
+# Usage: scripts/check-android-permissions.sh <app.apk | app.aab | merged AndroidManifest.xml>
+# CI runs it on the merged release manifest, which needs no signing key, no models and no SDK build-tools.
 set -euo pipefail
-f="${1:-}"; [ -f "$f" ] || { echo "usage: $0 <app.apk|app.aab>"; exit 2; }
-sdk="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Library/Android/sdk}}"
-aapt2="$(ls -d "$sdk"/build-tools/*/aapt2 2>/dev/null | sort -V | tail -1)"
-[ -x "$aapt2" ] || { echo "aapt2 not found under $sdk/build-tools"; exit 2; }
+f="${1:-}"; [ -f "$f" ] || { echo "usage: $0 <app.apk|app.aab|AndroidManifest.xml>"; exit 2; }
+if [ "${f##*.}" != "xml" ]; then
+  sdk="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Library/Android/sdk}}"
+  aapt2="$(ls -d "$sdk"/build-tools/*/aapt2 2>/dev/null | sort -V | tail -1)"
+  [ -x "$aapt2" ] || { echo "aapt2 not found under $sdk/build-tools"; exit 2; }
+fi
 
 ALLOWED=(
   com.android.vending.BILLING                                   # Play Billing (spec §12.4)
@@ -22,6 +25,13 @@ ALLOWED=(
 
 case "$f" in
   *.apk) perms="$("$aapt2" dump permissions "$f")" ;;
+  *.xml)
+    # Only the post-merge manifest counts: a library's INTERNET is invisible before the merge, and app.config.ts's
+    # blockedPermissions are still present there as tools:node="remove" lines. The merger injects <uses-sdk> and drops
+    # the tools namespace, which is how the two are told apart — a pre-merge file must fail loudly, never pass quietly.
+    grep -q "<uses-sdk" "$f" && ! grep -q "xmlns:tools" "$f" || {
+      echo "FAIL: $f is not a merged manifest. Use android/app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml"; exit 2; }
+    perms="$(tr -d '\n' < "$f" | grep -o '<uses-permission[^>]*>' | sed -n "s/.*android:name=\"\([^\"]*\)\".*/uses-permission: name='\1'/p")" ;;
   *.aab)
     bt="${BUNDLETOOL:-}"; [ -n "$bt" ] || { echo "AAB needs bundletool: set BUNDLETOOL=/path/bundletool.jar"; exit 2; }
     tmp="$(mktemp -d)"; java -jar "$bt" build-apks --bundle="$f" --output="$tmp/out.apks" --mode=universal >/dev/null

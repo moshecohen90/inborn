@@ -1,11 +1,11 @@
-import { kindOf, pickedFileName, type DocKind, type LicenceTier, can } from "@inborn/core";
+import { WORK_DOC_KINDS, isWorkKind, kindOf, pickedFileName, type DocKind, type LicenceTier, can } from "@inborn/core";
 import { contentMeta } from "../../modules/share-target";
 import { readHead } from "./files";
 
 /** Office intake (spec §7.3 row 8, §7.9): Excel and HTML are Work; a Word file stays the Free single attachment of row 1. */
-export const WORK_KINDS: readonly DocKind[] = ["xlsx", "html"];
+export const WORK_KINDS = WORK_DOC_KINDS;
 
-export const isWorkKind = (kind: DocKind): boolean => WORK_KINDS.includes(kind);
+export { isWorkKind };
 
 export { PICK_TYPES } from "./pickTypes";
 
@@ -21,6 +21,15 @@ export function sniffPicked(uri: string, name: string): DocKind {
 export function pickedName(uri: string, uriName: string | undefined): string {
   const meta = contentMeta(uri);
   return pickedFileName({ uriName: uriName ?? "", displayName: meta?.name, mimeType: meta?.mimeType, head: readHead(uri, 64) });
+}
+
+/**
+ * The name of a file another app shared in (§7.7). The sender supplies the name and the MIME type instead of a content
+ * provider; without an extension `.xlsx` and `.docx` are the same zip header and the Work gate would read the file as
+ * unknown (QA F72).
+ */
+export function sharedName(uri: string, name: string, mimeType?: string | null): string {
+  return pickedFileName({ uriName: name, displayName: name, mimeType, head: readHead(uri, 64) });
 }
 
 /** The value moment: a Free or Pro user picked an Excel or HTML file. */

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DevicePolicy, defaultOverride, type DeviceSignals, type Recommendation } from "@inborn/core";
+import { DevicePolicy, HEADLINE_KEYS, defaultOverride, type DeviceSignals, type Recommendation } from "@inborn/core";
 import { toDeviceState } from "./mapState";
 import type { GuardState } from "./guard";
 
@@ -20,7 +20,7 @@ const signals = (over: Partial<DeviceSignals> = {}): DeviceSignals => ({
 
 function guardState(s: DeviceSignals, policy = new DevicePolicy()): GuardState {
   const recommendation: Recommendation = policy.update(s, defaultOverride(s.deviceClass), 0);
-  return { battery: s.battery, thermal: s.thermal, memoryPressure: s.memoryPressure, powerSource: s.powerSource, recommendation, deviceClass: s.deviceClass, ramGB: s.ramGB, override: defaultOverride(s.deviceClass), engine: "loaded", explain: false };
+  return { battery: s.battery, thermal: s.thermal, memoryPressure: s.memoryPressure, powerSource: s.powerSource, recommendation, deviceClass: s.deviceClass, ramGB: s.ramGB, override: defaultOverride(s.deviceClass), engine: "loaded", explain: null };
 }
 
 describe("toDeviceState (§8.8 banner union from the §6.5 policy)", () => {
@@ -70,5 +70,24 @@ describe("toDeviceState (§8.8 banner union from the §6.5 policy)", () => {
     const d = toDeviceState(guardState(s, p));
     expect(d.recommendation).toEqual({ kind: "none" });
     expect(d.policy?.maxTokens).toBe(512);
+  });
+});
+
+/* QA F43: the shell must not call a boot-time fit decision an out-of-memory event. */
+describe("the boot-time RAM floor (F43)", () => {
+  it("maps to its own reason, so the strip does not say the phone ran out of memory", () => {
+    const policy = new DevicePolicy();
+    policy.noteSwitched("fast", "instant", true, "fit");
+    const s = signals({ currentTier: "instant" });
+    const state = toDeviceState(guardState(s, policy));
+    expect(state.policy?.headline).toBe(HEADLINE_KEYS.fitSwitched);
+    expect(state.recommendation).toEqual({ kind: "switchToInstant", reason: "fit", auto: true });
+  });
+  it("a real eviction still maps to the memory reason", () => {
+    const policy = new DevicePolicy();
+    policy.noteSwitched("fast", "instant", true, "memory");
+    const state = toDeviceState(guardState(signals({ currentTier: "instant" }), policy));
+    expect(state.policy?.headline).toBe(HEADLINE_KEYS.memorySwitched);
+    expect(state.recommendation).toEqual({ kind: "switchToInstant", reason: "memory", auto: true });
   });
 });

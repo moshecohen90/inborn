@@ -24,6 +24,7 @@ function signals(over: Partial<DeviceSignals> & { level?: number | null; chargin
   };
 }
 
+const MINUTE = 60_000;
 const phone = (): UserOverride => defaultOverride("phone");
 const run = (p: DevicePolicy, s: DeviceSignals, o: UserOverride = phone(), now = 0) => p.update(s, o, now);
 
@@ -87,6 +88,28 @@ describe("§6.5 table — phone column", () => {
     const again = run(p, signals({ level: 0.7, lpm: true, currentTier: "instant" }), phone(), 1);
     expect(again).toMatchObject({ status: "lowPower", action: "none", headline: HEADLINE_KEYS.lowPowerSwitched, button: "switchBack", explain: false });
     expect(again.headlineParams.model).toBe("Instant");
+  });
+
+  it("a memory eviction does not spend the one explainer the battery switch is owed (F59)", () => {
+    const p = new DevicePolicy();
+    /* The amber "Ran out of memory · Switched to Instant" line already explains this one. */
+    const evicted = run(p, signals({ memoryPressure: "critical" }));
+    expect(evicted).toMatchObject({ status: "memory", action: "switchToSmaller", explain: false });
+    /* The memory status holds for the recovery window before a lower-ranked one takes over. */
+    run(p, signals(), phone(), MINUTE);
+    run(p, signals(), phone(), 2 * MINUTE);
+    const battery = run(p, signals({ level: 0.09 }), phone(), 3 * MINUTE);
+    expect(battery).toMatchObject({ status: "lowPower", action: "switchToSmaller", explain: true });
+  });
+
+  it("the explainer fires once per install, whichever screen the user is on", () => {
+    const p = new DevicePolicy();
+    expect(run(p, signals({ level: 0.09 })).explain).toBe(true);
+    p.noteSwitched("fast", "instant", true);
+    expect(run(p, signals({ level: 0.09, currentTier: "instant" }), phone(), MINUTE).explain).toBe(false);
+    /* Back on the charger, back on Fast, flat again: still no second sheet. */
+    run(p, signals({ level: 0.9, charging: true, currentTier: "instant" }), phone(), 2 * MINUTE);
+    expect(run(p, signals({ level: 0.09 }), phone(), 3 * MINUTE).explain).toBe(false);
   });
 
   it("Low Power while already on Instant or Apple → only shorter answers and paused downloads", () => {
@@ -199,6 +222,32 @@ describe("§6.5 table — heat, memory, background", () => {
     expect(back).toMatchObject({ status: "memoryBack", recommendation: "propose", action: "switchBack", targetTier: "fast", headline: HEADLINE_KEYS.memorySwitched, button: "switchBack", stopGeneration: false });
     expect(p.accept(91_000)).toEqual({ kind: "switch", tier: "fast" });
     expect(run(p, signals({ charging: true, currentTier: "fast" }), phone(), 92_000).status).toBe("normal");
+  });
+
+  /* QA F43: the boot-time RAM floor reads the model's minimum before anything is mapped; nothing ever ran out of memory. */
+  it("the boot-time RAM floor says the model does not fit, not that memory ran out", () => {
+    const p = new DevicePolicy();
+    p.noteSwitched("fast", "instant", true, "fit");
+    const r = run(p, signals({ currentTier: "instant" }), phone(), 1);
+    expect(r).toMatchObject({ status: "memoryBack", recommendation: "propose", action: "switchBack", targetTier: "fast", headline: HEADLINE_KEYS.fitSwitched, button: "switchBack", stopGeneration: false });
+    expect(r.headlineParams).toEqual({ model: "Fast", to: "Instant" });
+    expect(r.buttonParams).toEqual({ model: "Fast" });
+    expect(en[HEADLINE_KEYS.fitSwitched]).toBeTypeOf("string");
+    expect(en[HEADLINE_KEYS.fitSwitched]).not.toMatch(/ran out/i);
+    /* Switch back clears it, and a real eviction still gets the out-of-memory wording. */
+    expect(p.accept(2)).toEqual({ kind: "switch", tier: "fast" });
+    expect(run(p, signals({ currentTier: "fast" }), phone(), 3).status).toBe("normal");
+    const q = new DevicePolicy();
+    q.noteSwitched("fast", "instant", true, "memory");
+    expect(run(q, signals({ currentTier: "instant" }), phone(), 1).headline).toBe(HEADLINE_KEYS.memorySwitched);
+  });
+
+  it("a fit switch is dismissable and does not come back on its own", () => {
+    const p = new DevicePolicy();
+    p.noteSwitched("fast", "instant", true, "fit");
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 1).status).toBe("memoryBack");
+    p.dismiss();
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 2).status).toBe("normal");
   });
 
   it("memory line dismissed: hidden for as long as the switch stands, no automatic switch back", () => {

@@ -10,8 +10,9 @@ This is the first pass to drive the desktop app against the spec rather than aga
 widths. `docs/qa/spec-conformance-2026-09-22.md` could not class a single §8.9 desktop row better than
 "PROVEN **in a browser**"; the rows below are the app itself.
 
-Three failures were found and fixed on this branch (**F47**, **F48**, **F49**), four are filed and not fixed
-(**F77**–**F80**).
+Three failures were found and fixed on this branch (**F47**, **F48**, **F49**), three are filed and not fixed
+(**F81**–**F83**). A fourth, the dropped document that went nowhere, was **withdrawn** when this branch merged
+`origin/main`: F63 had already built the drop path there. Both rows are kept below with what closed them.
 
 ## The clause table
 
@@ -32,41 +33,49 @@ Three failures were found and fixed on this branch (**F47**, **F48**, **F49**), 
 | §9.7 | desktop window minimum **1040×720** | **FAIL → fixed (F47)** | the window took 700×460 and drew the phone shell — `00-f47-before-700x460-was-accepted.png`. Now the smallest it takes is 1040×720 — `03-f47-at-the-1040x720-minimum.png` |
 | §8.9 | the shell follows the window | **FAIL → fixed (F48)** | five resizes, **zero** DOM resize events, sidebar still 280 px in a 700 px window. Now every resize reaches the app — see F48 |
 | §8.9 | **Tray**: seal state, quick chat, "Quit unloads model" | **needs Moshe** | built (`shell.rs:131-175`), and "Quit unloads model" is real (`main.rs`, `RunEvent::ExitRequested` → `unload_blocking`). Opening a menu-bar menu needs a pointer. **Ask: click the Inborn tray icon and photograph the menu.** |
-| §8.9 | **drag-and-drop of files** into the library | **FAIL (F79)** | `shell.rs:184-196` emits `inborn:documents-dropped`, `adapters/tauri.ts:502` re-dispatches it, and **nothing listens**. A dropped PDF lands nowhere |
-| §8.9 | …**and folders** | **MISSING (F79)** | `shell.rs:185` partitions by the `.gguf` extension only; no `is_dir()`, no recursion |
-| §8.9 | desktop settings: **model location**, **Launch at login (off)** | **FAIL (F77)** | neither row exists. Settings shows the phone's "Storage location · Internal" instead, though the app knows the real path (`desktop_info` → `…/com.inbornapp.desktop/models`) |
-| §8.9 | Advanced: **backend picker**, **VRAM offload**, **local server (Pro)** | **MISSING (F77)** | there is no Advanced section. The backend is chosen at compile time (`engine.rs:22-28`; this build reports `metal`) |
-| §8.9 | Paywall: **Work first on desktop** | **PASS** | `tier-inborn.work` then `tier-inborn.pro` — `07-f78-paywall-work-first-buy-disabled.png` |
+| §8.9 | **drag-and-drop of files** into the library | **FAIL at pass time → closed on main by F63** | on this branch's base the Rust event was emitted, relayed and heard by nothing, so a dropped PDF landed nowhere. `origin/main` added the listener (`documents/drop.web.ts`, wired in `_layout.tsx` through `dropQueue` into `DocumentsScreen`) and the `documents_read` command that serves the bytes the webview cannot read itself. Merged here. **Not re-observed at runtime: a real drag needs a pointer** |
+| §8.9 | …**and folders** | **MISSING at pass time → closed on main by F63** | the drop was partitioned by the `.gguf` extension with no `is_dir()` and no recursion. `shell.rs::expand_drop` now walks a dropped folder (depth 4, 64 files, hidden skipped), covered by its three Rust tests. Same caveat: no pointer, so no live drop |
+| §8.9 | desktop settings: **model location**, **Launch at login (off)** | **FAIL (F81)** | neither row exists. Settings shows the phone's "Storage location · Internal" instead, though the app knows the real path (`desktop_info` → `…/com.inbornapp.desktop/models`) |
+| §8.9 | Advanced: **backend picker**, **VRAM offload**, **local server (Pro)** | **MISSING (F81)** | there is no Advanced section. The backend is chosen at compile time (`engine.rs:22-28`; this build reports `metal`) |
+| §8.9 | Paywall: **Work first on desktop** | **PASS** | `tier-inborn.work` then `tier-inborn.pro` — `07-f82-paywall-work-first-buy-disabled.png` |
 | §8.9 | Paywall: **signed Paddle key, verified offline** | **PARTIAL** | the door is there and opens: "Have a license key?" with `licence-key-input` and `licence-key-redeem` both present in the page. No photograph — see below. A real signed key was never redeemed. **Ask: one test key, or say to mint one.** |
 | §8.9 | Paywall: Microsoft Store / Mac App Store | **DEFERRED** | `licence/provider.web.ts:5-7`, spec §14.4 |
-| §8.9 | …and what the paywall actually offers | **FAIL (F78)** | both buy buttons are priced and permanently disabled: "Unlock Work · $69.99" and "Unlock Pro · $19.99", `aria-disabled="true"` — `07-f78-paywall-work-first-buy-disabled.png` |
+| §8.9 | …and what the paywall actually offers | **FAIL (F82)** | both buy buttons are priced and permanently disabled: "Unlock Work · $69.99" and "Unlock Pro · $19.99", `aria-disabled="true"` — `07-f82-paywall-work-first-buy-disabled.png` |
 | §5 | seal, and nothing leaving | **PASS** | header SEALED, sidebar meter `INSTANT · OUT 0 B`, and Rust's own `seal_state` = `{sealed: true, outBytes: 0}` |
 | §5 | "Nothing leaves this computer." | **PASS** | `01` |
-| §5 | screenshot-protection row | **FAIL (F80)** | the native macOS app says "Not available in a browser." — `05-settings-1120x720.png` |
+| §5 | screenshot-protection row | **FAIL (F83)** | the native macOS app says "Not available in a browser." — `05-settings-1120x720.png` |
 | §7 | tier gating visible on desktop | **PASS** | Folders carries the PRO tag in the sidebar; the paywall opens from it |
 | §5.9 | the Rust engine answers | **PASS** | `[inborn] loaded …/models/instant.gguf (497 MB) in 421 ms · backend=metal gpu=true threads=4 nCtx=4096`, then a streamed answer this pass cancelled on Esc |
 
-## F47 — the window opened, and reopened, below the specified minimum
+## F47 — raising the configured minimum does not reopen an old window at it
 
 §9.7 gives the desktop window a minimum of 1,040×720 and `lib/layout.ts:7` even names it (`DESKTOP_MIN`),
 but `tauri.conf.json` said `minWidth: 720, minHeight: 480`. Asked for 700×460 the old build took it exactly,
 and at that size the app drew the **phone shell** — no sidebar, the header's "Chats" button as the only door
 to the list (`00-f47-before-700x460-was-accepted.png`).
 
-The config was half the fix. AppKit's `contentMinSize` constrains a *drag* and not a size set in code, and
+**The config is F63's, not this branch's.** `origin/main` raised those two numbers to 1040×720 in round 26 and
+pinned them with a test in `lib/layout.test.ts`; this branch merged that and kept it. What is filed here is the
+half that change does not reach, found by driving the built app rather than reading the config.
+
+AppKit's `contentMinSize` constrains a *drag* and not a size set in code, and
 `tauri-plugin-window-state` restores the last size by setting it in code — after `setup` and after
 `RunEvent::Ready` both, which is where the first two attempts at this fix were placed and did nothing. Every
 existing install carries a state file written under the old 720×480 minimum, so on the first launch after the
 change those windows would still have opened under the new one and nothing would ever have grown them back.
 
 Fixed in `shell.rs`: `hold_to_configured_minimum` hangs off the window's own `Resized` event, reads the
-minimum from the same config the test asserts, and grows the window when it is under it. Proven from a state
-file holding 500×400:
+minimum from the same config F63's test asserts, and grows the window when it is under it. So the raised
+number now also reaches a window that was saved under the old one. Proven from a state file holding 500×400:
 
 ```
 [inborn] window was 500x400, under the 1040x720 minimum; grown
 reopened inner = 1040 x 688   (1040 x 720 outer)   sidebar 280   column 680
 ```
+
+Tested by the 2 Rust tests in `shell.rs`, plus two assertions added to F63's own test (`layout.test.ts`) for
+what it did not cover: that one pixel under the minimum is no longer the desktop mode, and that §8.9's sidebar
+with its column, and with its panel, both fit inside the minimum.
 
 **Not proven here:** that AppKit refuses a *drag* below 1,040×720. That needs a pointer. **Ask: drag the
 Inborn window's corner as small as it will go and tell me the size.**
@@ -121,10 +130,9 @@ answer within 700 ms and also closes the command palette.
 
 | # | What | Why not here |
 |---|---|---|
-| **F77** | Desktop Settings has none of §8.9's desktop rows: no model location (the app knows it), no "Launch at login (off)", no Advanced section at all — no backend picker, no VRAM offload, no local server (Pro) | A screen's worth of new product surface, and Launch at login needs an autostart plugin. The backend cannot be a picker while it is a compile-time feature |
-| **F78** | The desktop paywall shows two priced, permanently disabled buy buttons — "Unlock Work · $69.99" and "Unlock Pro · $19.99" — because the provider is `licence-key` and there is no in-app checkout. The only live door is "Have a license key?" | What should stand there instead is a copy and commerce decision, not a QA one |
-| **F79** | A document dropped on the window goes nowhere: `inborn:documents-dropped` is emitted, relayed and never listened to. Folders are not handled at all | The webview cannot read a dropped file's bytes under `default-src 'self'`; it needs a Rust command and an import path, which is a feature |
-| **F80** | The native macOS app's screenshot-protection row reads "Not available in a browser." (`settings.security.screenshots.web`, reached because `Platform.OS === "web"` under Tauri) | One `isTauri()` branch plus a new string in eight locales; the translations want the translation owner, not me |
+| **F81** | Desktop Settings has none of §8.9's desktop rows: no model location (the app knows it), no "Launch at login (off)", no Advanced section at all — no backend picker, no VRAM offload, no local server (Pro) | A screen's worth of new product surface, and Launch at login needs an autostart plugin. The backend cannot be a picker while it is a compile-time feature |
+| **F82** | The desktop paywall shows two priced, permanently disabled buy buttons — "Unlock Work · $69.99" and "Unlock Pro · $19.99" — because the provider is `licence-key` and there is no in-app checkout. The only live door is "Have a license key?" | What should stand there instead is a copy and commerce decision, not a QA one |
+| **F83** | The native macOS app's screenshot-protection row reads "Not available in a browser." (`settings.security.screenshots.web`, reached because `Platform.OS === "web"` under Tauri) | One `isTauri()` branch plus a new string in eight locales; the translations want the translation owner, not me |
 
 ## About the harness
 

@@ -35,6 +35,7 @@ import { FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "../stor
 import { emitShortcut, type Shortcut } from "../lib/shortcuts";
 import { dispatchViewportResize } from "../lib/viewportResize";
 import type { Engine } from "./index";
+import { reportRepair } from "../storage/repairNotice";
 
 type Channel<T> = { onmessage: (message: T) => void };
 interface TauriGlobal {
@@ -273,7 +274,9 @@ export class TauriChatRepository implements ChatRepository {
   ) {}
 
   static async open(): Promise<TauriChatRepository> {
-    await invoke<{ kind: string; fts: boolean }>("db_open");
+    const opened = await invoke<{ kind: string; fts: boolean; quarantined?: string }>("db_open");
+    // The desktop carried the same silent delete the phones had (F58); now it keeps the file and the strip says so.
+    if (opened.quarantined) reportRepair({ kind: "started-fresh", copied: 0, lost: 0, quarantined: opened.quarantined });
     const version = await migrateDesktop();
     let fts = true;
     try {
@@ -378,6 +381,7 @@ export class TauriChatRepository implements ChatRepository {
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations.map((c) => ({ ...c })) } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
+      ...(input.safety ? { safety: input.safety } : {}),
     };
     // The touch goes first: zero changed rows means no such chat, and the batch's transaction never inserts an orphan.
     const [touched] = await batch([

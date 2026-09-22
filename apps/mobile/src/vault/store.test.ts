@@ -61,11 +61,12 @@ vi.mock("./paths", () => ({
 vi.mock("./device", () => ({ readDevice: () => ({ os: "android", chip: "mid" }), freeDiskBytes: () => 64 * 1024 ** 3 }));
 vi.mock("./hash", () => ({ fileGgufHeader: async () => null, fileSha256: async () => fast.sha256 }));
 vi.mock("./devFlags", () => ({ DEV_MODELS_BASE_URL: undefined, devBuild: () => false }));
+vi.mock("./network", () => ({ networkKind: async () => "wifi" }));
 vi.mock("../services/storageFull", () => ({ reportStorageFull: () => undefined }));
 
 const { VaultStore } = await import("./store");
 
-const emptyRecord = (): VaultRecord => ({ version: 1, installs: {}, imports: {}, hf: {}, downloads: {}, wifiOnly: true });
+const emptyRecord = (): VaultRecord => ({ version: 1, installs: {}, imports: {}, hf: {}, downloads: {} });
 const hadFast = (): VaultRecord => ({ ...emptyRecord(), installs: { fast: { file: fast.file, bytes: fast.bytes, sha256: fast.sha256, via: "play", installedAt: 1 } } });
 
 const settled = () => new Promise((r) => setTimeout(r, 0));

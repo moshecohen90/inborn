@@ -16,12 +16,14 @@ export interface DocumentRowProps {
   onResume: () => void;
   onOcr: () => void;
   ocrAvailable: boolean;
+  /** OCR is Pro (§7.3): the action stays visible and opens the paywall instead of running. */
+  ocrLocked?: boolean;
 }
 
 export const kindLabel = (kind: DocumentRecord["kind"]): string => (kind === "unknown" ? "?" : kind.toUpperCase());
 
 /** One library row (spec S40): type · pages · size, then the state line (Indexed / Indexing 43% / Needs OCR / Failed). */
-export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleSelect, onCancel, onResume, onOcr, ocrAvailable }: DocumentRowProps) {
+export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleSelect, onCancel, onResume, onOcr, ocrAvailable, ocrLocked }: DocumentRowProps) {
   const { t } = useTranslation();
   const pages = doc.pages ? t(`documents.${pageUnit(doc.kind)}s`, { count: doc.pages }) : null;
   const meta = [kindLabel(doc.kind), pages, formatBytes(doc.bytes)].filter(Boolean).join(" · ");
@@ -76,7 +78,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
       <View style={styles.actions}>
         {doc.status === "indexing" || doc.status === "queued" ? <Action label={t("documents.cancel")} theme={theme} onPress={onCancel} testID={`doc-cancel-${doc.id}`} /> : null}
         {doc.status === "cancelled" || (doc.status === "failed" && doc.error !== "unsupported" && doc.error !== "corrupt" && doc.error !== "encrypted") ? <Action label={t("documents.resume")} theme={theme} onPress={onResume} testID={`doc-resume-${doc.id}`} /> : null}
-        {doc.status === "needs-ocr" && ocrAvailable ? <Action label={t("documents.runOcr")} theme={theme} onPress={onOcr} testID={`doc-ocr-${doc.id}`} /> : null}
+        {doc.status === "needs-ocr" && ocrAvailable ? <Action label={t(ocrLocked ? "documents.runOcrPro" : "documents.runOcr")} theme={theme} onPress={onOcr} testID={`doc-ocr-${doc.id}`} /> : null}
       </View>
     </Pressable>
   );

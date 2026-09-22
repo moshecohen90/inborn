@@ -29,9 +29,16 @@ import {
   type SearchHit,
   type SearchOptions,
   type StoppedBy,
+  type RepairOutcome,
   type Usage,
+  RAG_SCHEMA_SQL,
+  isUnreadableDatabase,
+  quickCheckProblems,
+  salvage,
 } from "@inborn/core";
 import { SECURE_ITEMS } from "./secureItems";
+import { deleteDatabaseFiles, promoteDatabase, quarantineDatabase, sqlDriverOf } from "./dbFile";
+import { reportRepair } from "./repairNotice";
 import { DB_NAME, FTS_SQL, MIGRATIONS, PRAGMAS_SQL, SQL, ftsQuery, inList } from "./schema";
 import { errorChain } from "./reopen";
 import { ReopeningDatabase } from "./reopeningDb";
@@ -95,12 +102,12 @@ const describe = errorChain;
 const DEV_DEAD_DB_MS = __DEV__ ? Number(process.env.EXPO_PUBLIC_DEAD_DB_AFTER_MS ?? NaN) : NaN;
 const DEV_DEAD_DB_MID_STATEMENT = __DEV__ && process.env.EXPO_PUBLIC_DEAD_DB_MID_STATEMENT === "1";
 
-async function openKeyed(keyHex: string): Promise<SQLite.SQLiteDatabase> {
+async function openKeyed(keyHex: string, name: string = DB_NAME): Promise<SQLite.SQLiteDatabase> {
   /* Own native connection: without it Android hands every open of this name the same cached NativeDatabase, and the GC of any
      other JS wrapper of it resets the native binding under a running statement (QA F15). Never let expo-sqlite finalize "unused"
      statements before closing: sqlite3_next_stmt also lists FTS5's internal ones, which FTS5 finalizes again inside sqlite3_close
      (the QA F18 double free). The JS gate keeps our own statements out of a close. */
-  const db = await SQLite.openDatabaseAsync(DB_NAME, { useNewConnection: true, finalizeUnusedStatementsBeforeClosing: false });
+  const db = await SQLite.openDatabaseAsync(name, { useNewConnection: true, finalizeUnusedStatementsBeforeClosing: false });
   try {
     await db.execAsync(`PRAGMA key = "x'${keyHex}'";`);
     await db.getFirstAsync("SELECT count(*) AS n FROM sqlite_master");
@@ -197,6 +204,44 @@ const toReport = (r: ReportRow): Report => ({
   ...(r.model_id ? { modelId: r.model_id } : {}),
 });
 
+/** Copied parents first, so a row whose owner did not survive fails the foreign key and is counted, not smuggled in. */
+const SALVAGE_TABLES = ["folders", "personas", "chats", "messages", "memory", "settings", "reports", "documents", "chunks", "vectors"] as const;
+
+/** The file a rebuild is assembled in; promoted onto DB_NAME only once the copying is done. */
+const REPAIR_DB_NAME = "inborn-repair.db";
+
+/** SQLite's own check for broken pages. A pragma that cannot run is not evidence of damage, so nothing is rebuilt on it. */
+async function quickCheck(db: SQLite.SQLiteDatabase): Promise<string[]> {
+  try {
+    return quickCheckProblems(await db.getAllAsync<Record<string, unknown>>("PRAGMA quick_check(20)"));
+  } catch (e) {
+    console.warn(`[storage] quick_check did not run: ${describe(e)}`);
+    return [];
+  }
+}
+
+/**
+ * Copies every readable row into a fresh database and puts that one in place, keeping the damaged file. What the
+ * old code did here was delete the file, which on an app whose whole promise is that chats live only on this
+ * device is not a recovery at all.
+ */
+async function rebuild(damaged: SQLite.SQLiteDatabase, key: string, damage: string[]): Promise<{ db: SQLite.SQLiteDatabase; version: number; outcome: RepairOutcome }> {
+  console.warn(`[storage] chat database failed quick_check, rebuilding: ${damage.slice(0, 3).join(" · ")}`);
+  deleteDatabaseFiles(REPAIR_DB_NAME);
+  const fresh = await openKeyed(key, REPAIR_DB_NAME);
+  await migrate(fresh);
+  /* The document index shares this file (documents/db.native.ts), and search is rebuilt by its own insert triggers. */
+  await fresh.execAsync(RAG_SCHEMA_SQL).catch((e: unknown) => console.warn(`[storage] repair: no document index (${describe(e)})`));
+  await fresh.execAsync(FTS_SQL).catch((e: unknown) => console.warn(`[storage] repair: no search index (${describe(e)})`));
+  const report = await salvage(sqlDriverOf(damaged), sqlDriverOf(fresh), SALVAGE_TABLES);
+  await fresh.closeAsync().catch(() => undefined);
+  await damaged.closeAsync().catch(() => undefined);
+  const quarantined = quarantineDatabase(DB_NAME);
+  promoteDatabase(REPAIR_DB_NAME, DB_NAME);
+  const db = await openKeyed(key);
+  return { db, version: await migrate(db), outcome: { kind: "rebuilt", copied: report.copied, lost: report.lost, quarantined } };
+}
+
 /** SQLCipher-encrypted chats + library (expo-sqlite with `useSQLCipher`). Refuses incognito rows outright. */
 export class SqliteChatRepository implements ChatRepository, LibraryRepository {
   private constructor(
@@ -208,15 +253,25 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
   static async open(): Promise<SqliteChatRepository> {
     const key = await databaseKeyHex();
     let db: SQLite.SQLiteDatabase;
+    let repaired: RepairOutcome | null = null;
     try {
       db = await openKeyed(key);
     } catch (e) {
-      // A file the current key cannot open is unreadable forever; start fresh rather than never saving again.
-      if (!/not a database/i.test(describe(e))) throw e;
-      await SQLite.deleteDatabaseAsync(DB_NAME);
+      if (!isUnreadableDatabase(describe(e))) throw e;
+      // Kept, never deleted: this file is the user's only copy, and a key restored later may still open it.
+      repaired = { kind: "started-fresh", copied: 0, lost: 0, quarantined: quarantineDatabase(DB_NAME) };
       db = await openKeyed(key);
     }
-    const version = await migrate(db);
+    let version = await migrate(db);
+    if (!repaired) {
+      const damage = await quickCheck(db);
+      if (damage.length) {
+        const rebuilt = await rebuild(db, key, damage);
+        db = rebuilt.db;
+        version = rebuilt.version;
+        repaired = rebuilt.outcome;
+      }
+    }
     let fts = true;
     try {
       await db.execAsync(FTS_SQL);
@@ -256,6 +311,7 @@ export class SqliteChatRepository implements ChatRepository, LibraryRepository {
         }, 5);
       }, DEV_DEAD_DB_MS);
     }
+    if (repaired) reportRepair(repaired);
     return new SqliteChatRepository(owned, fts, version);
   }
 

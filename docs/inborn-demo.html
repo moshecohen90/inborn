@@ -82,7 +82,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);opacity:1;transition:opacity 180ms var(--eo)}
 .scr[hidden]{display:none}
 .device.desktop .scr{max-width:100%}
-.device.desktop .scr .col{max-width:760px;width:100%;margin:0 auto}
+.device.desktop .scr .col{max-width:680px;width:100%;margin:0 auto}
 
 /* header */
 .hdr{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--bd);background:var(--hdrbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);flex:0 0 auto;z-index:2}
@@ -974,7 +974,7 @@ const NOTES = {
 };
 function renderNotes(scr){
   const n=NOTES[scr]; if(!n) return;
-  $('#notes').innerHTML=`<span class="sn">${n.sn}</span><h3>${n.t}</h3><ul>${n.items.map(i=>`<li>${i}</li>`).join('')}</ul><span class="k">${n.k}</span>${S.device==='desktop'?'<span class="k">DESKTOP · TAURI · SAME CODE</span><ul><li>סרגל צד קבוע, עמודת הודעות 760px, אותם מסכים.</li><li>Windows ו‑macOS מאותו ייצוא ווב; ההסקה נייטיב (Vulkan/CUDA/Metal).</li></ul>':''}`;
+  $('#notes').innerHTML=`<span class="sn">${n.sn}</span><h3>${n.t}</h3><ul>${n.items.map(i=>`<li>${i}</li>`).join('')}</ul><span class="k">${n.k}</span>${S.device==='desktop'?'<span class="k">DESKTOP · TAURI · SAME CODE</span><ul><li>סרגל צד קבוע, עמודת הודעות 680px, אותם מסכים.</li><li>Windows ו‑macOS מאותו ייצוא ווב; ההסקה נייטיב (Vulkan/CUDA/Metal).</li></ul>':''}`;
 }
 
 /* ---------------- events ---------------- */

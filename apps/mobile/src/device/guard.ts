@@ -10,6 +10,7 @@ import {
   type ModelTier,
   type PowerSource,
   type Recommendation,
+  type SwitchReason,
   type ThermalState,
   type Tier,
   type UserOverride,
@@ -33,6 +34,8 @@ import {
   type EngineState,
 } from "../engine";
 import { isAndroidSnapshot } from "../../modules/device-guard";
+import { backgroundTask, onBackgroundTaskExpire } from "../../modules/background-task";
+import { createBackgroundHold } from "./bgHold";
 import { getVault } from "../vault/store";
 import { getPausedTurn, subscribePausedTurn } from "../lib/pausedTurn";
 import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
@@ -48,8 +51,8 @@ export interface GuardState {
   ramGB: number | null;
   override: UserOverride;
   engine: EngineState;
-  /** First automatic switch of the run: the shell shows the explainer sheet once, then calls ackExplain(). */
-  explain: boolean;
+  /** §8.8 row 4c: set on the first automatic battery switch of the install; the shell shows the sheet, then calls ackExplain(). */
+  explain: { from: ModelTier; to: ModelTier } | null;
 }
 
 const DEBOUNCE_MS = 250;
@@ -69,7 +72,7 @@ class DeviceGuard {
   private raw: RawSignals | null = null;
   private override: UserOverride = defaultOverride("phone");
   private explained = false;
-  private explain = false;
+  private explain: { from: ModelTier; to: ModelTier } | null = null;
   private backgroundedAt: number | null = null;
   private memorySince: number | null = null;
   private debounce: ReturnType<typeof setTimeout> | null = null;
@@ -82,6 +85,8 @@ class DeviceGuard {
   private readonly listeners = new Set<() => void>();
   private started = false;
   private stopSources: (() => void)[] = [];
+  /* iOS suspends a backgrounded app within seconds, so BACKGROUND_GRACE_MS is only real while this hold is live. */
+  private readonly bgHold = createBackgroundHold(backgroundTask, "inborn.answer");
 
   subscribe = (l: () => void): (() => void) => {
     this.listeners.add(l);
@@ -130,7 +135,7 @@ class DeviceGuard {
   };
 
   ackExplain = (): void => {
-    this.explain = false;
+    this.explain = null;
     this.publish();
   };
 
@@ -140,9 +145,9 @@ class DeviceGuard {
     this.evaluate();
   };
 
-  /** The boot-time RAM floor started Instant instead of the vault default (§6.5): the line reads as a memory switch and offers the way back. */
+  /** The boot-time RAM floor started Instant instead of the vault default (§6.5): the line says the model does not fit and offers the way back. */
   noteBootSwitch = (from: ModelTier): void => {
-    this.policy.noteSwitched(from, "instant", true, "memory");
+    this.policy.noteSwitched(from, "instant", true, "fit");
     this.evaluate();
   };
 
@@ -171,20 +176,33 @@ class DeviceGuard {
           const bg = s !== "active";
           if (bg && this.backgroundedAt === null) {
             this.backgroundedAt = Date.now();
+            this.bgHold.sync(true, isGenerating());
+            if (__DEV__ && isGenerating()) console.log(`[inborn] background hold ${this.bgHold.token() === null ? "refused" : "taken"}`);
             noteBackground();
           } else if (!bg && this.backgroundedAt !== null) {
             this.backgroundedAt = null;
+            this.bgHold.sync(false, isGenerating());
             this.pausedInBackground = consumePausedByGuard();
             noteForeground();
           }
           this.schedule();
         }).remove,
         subscribeActivity((busy) => {
+          this.bgHold.sync(this.backgroundedAt !== null, busy);
           if (!busy) {
             this.noteSpeed(peekEngine()?.engine.stats().tokPerSec ?? 0);
             void this.applyPendingSwitch();
           }
           this.schedule();
+        }),
+        /* iOS wants its time back, possibly before the grace is up: stop with a partial answer rather than be killed
+           mid-token, and report it as the same pause the grace raises so the chat offers Continue. */
+        onBackgroundTaskExpire(() => {
+          this.bgHold.expire();
+          if (!isGenerating()) return;
+          stopGeneration();
+          this.pausedInBackground = true;
+          this.evaluate();
         }),
         subscribeEngineState(() => this.publish()),
         subscribePausedTurn(() => {
@@ -283,7 +301,7 @@ class DeviceGuard {
     }
     if (rec.explain && !this.explained) {
       this.explained = true;
-      this.explain = true;
+      this.explain = { from: s.currentTier, to: rec.targetTier ?? "instant" };
       savePrefs({ ...this.override, explained: true });
     }
     if (rec.recommendation === "act" && rec.action === "switchToSmaller" && rec.targetTier && rec.targetTier !== "apple") {
@@ -298,14 +316,14 @@ class DeviceGuard {
   }
 
   /* Model switches wait for the answer in flight (§6.5: "from the next message"). */
-  private queueSwitch(tier: Tier, auto: boolean, restore: boolean, reason: "battery" | "memory" = "battery", from?: ModelTier): void {
+  private queueSwitch(tier: Tier, auto: boolean, restore: boolean, reason: SwitchReason = "battery", from?: ModelTier): void {
     this.pendingSwitch = { tier, auto, restore };
     this.switchReason = reason;
     this.switchFrom = from ?? tierOf(peekEngine()?.model.id ?? "instant");
     if (!isGenerating()) void this.applyPendingSwitch();
   }
 
-  private switchReason: "battery" | "memory" = "battery";
+  private switchReason: SwitchReason = "battery";
   private switchFrom: ModelTier = "instant";
   private switching = false;
   private pausedInBackground = false;

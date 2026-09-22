@@ -1770,6 +1770,90 @@ Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn te
 ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines). `pn desktop:build:app` also
 returned 0, but the built app is deliberately not launched here — see the QA note.
 
+## Fixes round 27: three promises the code did not keep (branch `fixes-r25`) — 22.9.2026
+**F66, F67, F68** — gaps #15, #18 and #6 of `docs/qa/spec-conformance-2026-09-22.md`. They are one shape three
+times: something we tell users or a store reviewer, against a number or a switch in generated or disabled code that
+nothing ever compared it to.
+
+### F66 — the 15-second background grace was not real on iOS
+§10.3 #21 and §6.5 promise that an answer still streaming when the app leaves the screen gets up to 15 s to finish,
+then keeps its partial text and offers *Continue*. iOS suspends a process within seconds of it leaving the screen,
+so on a phone that budget simply stopped being spent: `grep beginBackgroundTask` over the whole tree returned
+nothing, and T12's pass bar in `docs/qa/release-checklist.md` stated an outcome no build could produce.
+
+`apps/mobile/modules/background-task/` wraps UIApplication's background task. `apps/mobile/src/device/bgHold.ts`
+decides when one is held, from the only two facts that decide it — off-screen, and still generating — and the guard
+syncs it from the three events it already subscribes to (app state, engine activity, expiry), so a hold cannot
+outlive the answer it was taken for. Three things are worth knowing about the edges:
+
+- **When iOS takes its time back before the grace is up**, the answer stops with its partial text kept and is
+  reported as the *same* pause the grace raises, so the chat offers Continue through `wasStoppedByGuard()` and
+  `notePausedTurn` — the path that already existed, not a second one.
+- **Asking for more time in the background episode the OS just reclaimed** is how an app gets killed, so it is
+  latched off until the app is in front again.
+- **The native side claims its token before `beginBackgroundTask` can expire it**, so the race where the expiration
+  handler finds nothing to end cannot leave a task running and the app killed for it.
+
+Built for the real phone: an unsigned arm64 `iphoneos` build carries `_TtC14BackgroundTask20BackgroundTaskModule` and
+the selectors `beginBackgroundTaskWithName:expirationHandler:`, `endBackgroundTask:` and `backgroundTimeRemaining` in
+its binary, and Expo's autolinking registered the module in `ExpoModulesProvider.swift`
+(`docs/qa/fixes-r25/ios-device-build.txt`). **The hold's runtime effect on a backgrounded phone is not proven here.**
+Driving the iPhone needs the *"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"* sheet, which only Moshe can
+accept and whose grant does not persist, so release-checklist T12 stays open for the next pass he is present for.
+
+### Android takes no foreground service for 1.0 — decided, not deferred
+The spec row promised one ("foreground service קצר-חיים עם התראה"); it is now restated. Three reasons:
+
+| | |
+|---|---|
+| it is not needed | Android does not suspend the process when the app leaves the screen. It pauses JS *timers*, which is exactly why the grace has always been enforced on the token stream in `engine.ts` (`setPauseCheck`, asked once per streamed token) rather than on a `setTimeout` |
+| it already works without one | release-checklist T13, 13.9.2026: `KEYCODE_SLEEP` for 25 s on the E-P6-36 emulator gave "Paused while Inborn was in the background. The partial answer is kept." with CONTINUE, the partial in the database, and CONTINUE resumed |
+| it costs and buys nothing | a persistent notification on screen for a fifteen-second window, and since Android 14 a `dataSync` service needs a Play Console declaration with a video justification and carries a 6 h / 24 h budget |
+
+What a service *would* cover is a low-memory kill of a backgrounded app, and that is gap #32 — the assistant row is
+written only when the stream ends — which is filed separately and not solved by a notification.
+
+### F67 — every build shipped at iOS 16.4 against a declared iOS 17 floor
+§6.3, T36 (which *tests* the floor at iOS 17), `docs/legal/privacy-policy.md` and the store listing all say 17.
+`ios/` is generated and gitignored, so the number that actually shipped was visible only in App Store Connect,
+where builds 6 through 12 read `minOsVersion 16.4`. Two podspecs we own were lower still: `SecureScreen` at 15.1.
+
+Fixed with the key Expo already owns rather than a plugin of our own — `ios.deploymentTarget` in `app.config.ts`,
+which `@expo/prebuild-config`'s default chain applies to `ios/Podfile.properties.json` and to the app target's build
+configurations. It leaves the *project-level* pair at the template's 16.4, which any target added later would
+inherit, so `plugins/withProjectDeploymentTarget.js` carries the same number down to them. Proved by running
+the build rather than by reading the config: all four pbxproj entries and the Podfile property read 17.0 after
+prebuild (`docs/qa/fixes-r25/ios-deployment-target.txt`), and the `Info.plist` of the arm64 app `xcodebuild` produces
+reads `MinimumOSVersion 17.0` (`docs/qa/fixes-r25/ios-device-build.txt`). Three tests hold the config, every podspec
+and the two documents to one number, so the next drift fails on a laptop instead of in App Store Connect.
+
+### F68 — the zero-INTERNET CI gate was switched off
+`android-permission-gate: if: false`, with a TODO saying it needed a release APK. So the one check behind decision
+D3 was a human remembering to run a script on an artifact nobody else could see, while two store questionnaires and
+the privacy policy assert the result. Worse, for a guard: it had only ever been watched pass.
+
+Nothing has to be built. The merged release manifest is the artifact that decides the answer, and gradle writes it
+from `:app:processReleaseManifest` with no signing key, no models and no build-tools.
+`scripts/check-android-permissions.sh` now takes that file alongside an APK or AAB, and **refuses a pre-merge
+manifest** rather than passing it: `app/src/main/AndroidManifest.xml` lists INTERNET as `tools:node="remove"` and
+nothing else outside the allowlist, so a gate pointed at it would go green while no dependency manifest had been
+merged yet. The merger's injected `<uses-sdk>` and dropped `tools` namespace tell the two files apart.
+
+The workflow itself runs on `v*` release tags and manual dispatch only (Moshe's rule 17.9.2026: no CI on every push);
+the gate runs in every release run, and before a release it is also run by hand with
+`scripts/check-android-permissions.sh` on the merged manifest.
+
+**Watched fail on the real path**, not on a fixture: the same three commands with `APP_VARIANT=development`, which
+empties `android.blockedPermissions`, produce a manifest carrying 18 permissions with INTERNET among them, and the
+gate exits 1 (`docs/qa/fixes-r25/ci-permission-gate.txt`). That listing also settles gap #25 — the INTERNET does
+come from the `openiap-google` wrapper, so the spec's stated reason is wrong and `blockedPermissions` is what
+removes it, along with eight others.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 214,
+i18n 10, ui 11 — **758** tests, 16 new), `pn lint` 0. Plus three that only this round's work exercises:
+`expo prebuild -p ios` then `pod install` then `xcodebuild -sdk iphoneos` 0 with 0 errors, and the Android
+permission gate green on a real merged release manifest and red on a sabotaged one.
+
 ## Fixes round 23: the guard dropped a model that fits (branch `fixes-r23`) — 22.9.2026
 **F43, F45, F46** — the three findings the real-iPhone pass 12 left open
 (`docs/qa/ios-device-pass-12-2026-09-22.md`). On Moshe's iPhone 13 Pro, with the 1.2 GB Fast model downloaded from
@@ -1824,6 +1908,43 @@ event only while `os_proc_available_memory()` is at or below **150 MB**. That is
 `IOS_HEADROOM_BYTES`, the number `memoryHealthy()` was already using to decide the same question, now named once and
 shared. The protections are unchanged when the app itself is genuinely near its jetsam limit.
 
+### The line the guard leaves behind, when nothing actually went wrong
+
+§6.5 keeps the `memoryBack` line standing until the user acts, deliberately: an eviction is a fact the user should see,
+not a toast that scrolls past. That is right when the device really ran out. It is not right when the boot-time RAM
+floor merely decided a model does not fit — nothing was evicted, nothing was even mapped, and "Ran out of memory" is
+then a false statement about the phone, latched on screen for the rest of the session. Both root causes above reached
+that same line; the fixes stop this phone from reaching it, but any phone that genuinely does not fit its chosen model
+still will.
+
+So the switch now records **why**. `SwitchReason` in `policy.ts` gains `"fit"` beside `"battery"` and `"memory"`, and
+`noteBootSwitch` in `apps/mobile/src/device/guard.ts` uses it. The row's *behaviour* is unchanged and stays unchanged on
+purpose — it stands until SWITCH BACK or a dismiss, because the user's own choice of model was overridden and they must
+be able to see that and undo it. What follows the reason is the sentence and the tone:
+
+| reason | the line | tone |
+|---|---|---|
+| `memory` — the device ran out, mid-session | "Ran out of memory · Switched to Instant" | amber |
+| `fit` — the boot floor, before anything was loaded | "Not enough memory for the model you chose · Started on Instant" | muted |
+
+Core gets the parameterised form for the desktop policy row, `device.fit.switched` — "Not enough memory for {model} ·
+Started on {to}" — in all nine locales.
+
+### What was not measured, and why the third path is still settled
+
+One more path could reach this banner and was asked about by name: the boot read in `signals.ts` compares
+`os_proc_available_memory()` against 150 MB, and a launch that read under that floor would demote the model the same
+way. **The literal value could not be sampled on the phone.** Printing it needs a JS hook, and a `--dev` bundle embedded
+in this Release app redboxes with "Cannot create devtools websocket connections in embedded environments", while the
+shipping bundle has no console to read it from. That attempt failed and is reported as failed.
+
+It is settled indirectly, and the argument is tight. `memoryHealthy()` and that 150 MB floor are **unchanged by this
+round** — the fix did not touch either — and the fixed build raised **no banner on three cold launches** with Fast
+selected under ordinary load. `memoryHealthy(snap)` was therefore true on each, so `os_proc_available_memory()` was
+above 150 MB at boot on this phone every time. That path is not the cause here, and the floor is not too high here. What
+stays unproven is the margin — how close to 150 MB the number actually runs — which needs a real sample on a loaded
+phone before that floor is ever treated as a tuning knob.
+
 ### F45 — the banner hid content on screens that did not pad for it
 
 The strip is an absolute overlay drawn from `app/_layout.tsx` at `insets.top + 52`, over whatever screen is up. QA F13
@@ -1835,7 +1956,10 @@ cut) and on the paywall it took the slot holding "No subscription. No account. Y
 and every screen container now reserves the height: `components/shell/Screen.tsx` (the 18 routes built on it, scrolling
 and not), `VaultScreen`, `DocumentsScreen`, `PaywallScreen`, and `HandsFreeScreen` — which pads rather than inserting a
 child, because its root is `justify-content: space-between` and a fourth flex item would redistribute the layout. Chat
-and Chats moved onto the shared component, so there is one spacer in the app and one `banner-inset` testID.
+and Chats moved onto the shared component, so there is one spacer in the app and one `banner-inset` testID. The
+geometry itself is a pure module, `lib/bannerGeometry.ts`, so the arithmetic that was wrong on the first attempt is
+pinned by six tests — including the one that catches it: reserving the strip's height alone leaves the first line
+covered, because the strip ends `BANNER_TOP + height` below the safe area.
 
 ### F46 — Play sources listed on an iPhone, twice
 
@@ -1864,19 +1988,20 @@ never locked or unlocked, and no setting was changed.
 | # | check | result | evidence |
 |---|---|---|---|
 | 1 | cold launch with Fast selected, three times | **PASS** — no memory banner on any launch, chat header reads **FAST**, and the log opens `Qwen3.5-2B-Q4_K_M.gguf` ×1 and `instant.gguf` ×0 each time. Pass 12 on the same phone, same vault: the banner on every launch, `instant.gguf` ×4 and the Fast file **×0** across 16 launches | `after-01-chat-coldlaunch-fast.png` |
-| 2 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
-| 3 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
-| 4 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
-| 5 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
-| 6 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
+| 2 | Fast **answers**, with no tap on SWITCH BACK | **PASS** — the XCUITest driver asked "What is the capital of France?" on a cold launch of the fixed build and the chat returned `FAST · ON-DEVICE AI · The capital of France is Paris.` The ledger reads `MODEL FAST · QUANT Q4_K · CONTEXT 144 / 4096 · MS/TOKEN 77 · TOK/S 13.1 · FIRST TOKEN 680 ms · TOKENS IN+OUT 138 + 6`. Pass 12 reached 13.2 tok/s on the same phone and the same model, but only after tapping SWITCH BACK past the banner | `after-08`, `after-09` |
+| 3 | the context cap moved with the RAM reading | **PASS** — llama.cpp logs `n_ctx = 4096` on all three launches, where the pass-12 ledger on this phone read `CONTEXT 144 / 2048`. `policy.ts` caps context at 2048 only below 6 GB, so this is the guard's own `ramGB` crossing from 5.5 to 6 | `log-root*.txt` |
+| 4 | 0 error lines | **PASS** — a grep for error / exception / fatal / redbox over every launch log returns 0 | `log-root*.txt` |
+| 5 | the banner still appears when it should, and hides nothing (F45) | **PASS** — a real `ThermalSerious` condition raised the §8.8 strip ("Slowing down to keep the phone cool · SWITCH TO INSTANT") on four screens. Hands-free shows its whole headline, **"Voice input needs the transcription model"**, where pass 12 showed "Voice input needs the" with the rest cut. The paywall shows **"No subscription. No account. Yours forever."**, which pass 12 lost behind the strip. The vault shows its storage line and Settings its first section | `after-02`…`after-05`, `before-02`, `before-03` |
+| 6 | Sharp's SOURCE row on iOS (F46) | **PASS** — the XCUITest driver opened the Details sheet of the **not-installed** Sharp on the phone and it reads `SOURCE · models.inbornapp.com`, where pass 12 read `play-asset-pack, play-asset-pack, https`. Fast, installed, still reads `models.inbornapp.com` | `after-06`, `after-07`, `before-06` |
+| 7 | the vault survived, and the phone was left as found | **PASS** — Fast still 1,280,835,840 B, sha256 `aaf42c8b…99223`, `via: "https"`, same `installedAt`; the shipped 1.0.0 (12) archive reinstalled (About reads `1.0.0 (12)` · `9da93a296bbe`), phone on the home screen, every forced device condition cleared | `vault-final.json`, `before-01` |
 
 **The A/B is on one photograph.** `before-01-build12-banner-on-relaunch.png` is the About screen of the *reinstalled*
 shipped 1.0.0 (12), taken after all of the above: the same phone, the same vault, the banner back. The fix is in the
 build, not in the phone's state.
 
-Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 521, mobile 190, i18n 10,
-ui 11 — **732** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
-## Fixes round 26: the desktop shell never followed its own window (branch `desktop-pass-1`) — 22.9.2026
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 523, mobile 198, i18n 10,
+ui 11 — **742** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (six PASS lines), `pn desktop:check` 0.
+## Fixes round 29: the desktop shell never followed its own window (branch `desktop-pass-1`) — 22.9.2026
 
 **F47, F48, F49** — the first pass to drive the Mac app against §8.9 and §9.7 rather than a browser at desktop
 widths. Round 24 built the channel that makes this possible; this is the first thing put through it.
@@ -1905,20 +2030,22 @@ The one event the window does deliver is Tauri's own `tauri://resize`. `adapters
 `Dimensions` actually subscribed to. After the fix three resizes produced three `visualViewport` resize events
 and the shell was right at 1600, 1040 and 1280 — 280 px sidebar, 680 px column, 340 px panel at 1400.
 
-### F47 — the window opened, and reopened, under the minimum §9.7 gives it
+### F47 — raising the configured minimum does not reopen an old window at it
 
 `tauri.conf.json` said `minWidth: 720, minHeight: 480` against §9.7's 1,040×720, and `lib/layout.ts:7` had
 named the right number all along without it ever reaching the window. Asked for 700×460 the app took it and
 drew the phone shell.
 
-The config was half of it. AppKit's `contentMinSize` constrains a drag and not a size set in code, and
+Round 26 (F63) raised those two numbers and pinned them with a test; this branch merged that work and keeps
+it. The config is half of it, and the other half is what driving the built app found. AppKit's `contentMinSize` constrains a drag and not a size set in code, and
 `tauri-plugin-window-state` restores the last size by setting it in code — **after** `setup` and after
 `RunEvent::Ready` both, which is where the first two attempts at this fix sat and did nothing at all. Every
 install already carries a state file written under the old minimum, so those windows would have gone on
 opening under the new one for ever. `shell.rs::hold_to_configured_minimum` therefore hangs off the window's
-own `Resized` event, reads the minimum from the same config the test asserts, and grows a window that is under
-it. From a state file holding 500×400 the app now logs `window was 500x400, under the 1040x720 minimum; grown`
-and comes up at 1040×720. Still unproven: that AppKit refuses a *drag* below it — that needs a pointer.
+own `Resized` event, reads the minimum from the same config F63's test asserts, and grows a window that is
+under it, so the raised number reaches a window saved under the old one too. From a state file holding 500×400
+the app now logs `window was 500x400, under the 1040x720 minimum; grown` and comes up at 1040×720. Still
+unproven: that AppKit refuses a *drag* below it — that needs a pointer.
 
 ### F49 — Esc did not stop a running answer
 
@@ -1932,20 +2059,203 @@ drops every key the menu declares. Esc now stops a streaming answer within 700 m
 
 ### Filed and not fixed
 
-**F77** desktop Settings has none of §8.9's desktop rows (no model location, no Launch at login, no Advanced
-section — so no backend picker, no VRAM offload, no local server). **F78** the desktop paywall's two buy
+**F81** desktop Settings has none of §8.9's desktop rows (no model location, no Launch at login, no Advanced
+section — so no backend picker, no VRAM offload, no local server). **F82** the desktop paywall's two buy
 buttons are priced and permanently disabled, because the provider is `licence-key` and there is no in-app
-checkout; the Work-first ordering §8.9 asks for is correct, so today it orders two dead cards first. **F79** a
-document dropped on the window goes nowhere — `inborn:documents-dropped` is emitted, relayed and never
-listened to, and folders are not handled at all. **F80** the native Mac app's screenshot-protection row reads
-"Not available in a browser."
+checkout; the Work-first ordering §8.9 asks for is correct, so today it orders two dead cards first. **F83**
+the native Mac app's screenshot-protection row reads "Not available in a browser."
+
+A fourth row was filed and then **withdrawn**: a document dropped on the window went nowhere on this branch's
+base, and round 26's F64 had already built the listener, the queue and the `documents_read` command that
+serves the bytes. The merge brought it in. It is not re-observed at runtime here, because a real drag needs a
+pointer.
 
 ### Tests
 
-10 new: 4 in `apps/mobile/test/desktopWindow.test.ts` (3 of them red on the old config), 3 in
-`apps/mobile/src/lib/viewportResize.test.ts`, 3 in `desktopKeys.test.ts` (the double-fire one red without the
-guard), plus 2 in `shell.rs`. `pn test` is 742 — core 521, mobile 200 (190 before this round), i18n 10, ui 11
-— and `cargo test --release` 10.
+7 new: 3 in `apps/mobile/src/lib/viewportResize.test.ts`, 3 in `desktopKeys.test.ts` (the double-fire one red
+without the guard), plus 2 in `shell.rs`; and two assertions folded into F63's own `lib/layout.test.ts` rather
+than a second file reading the same config.
+
+Gates on this branch, after merging `main` at `28d5b42`: `pn install --frozen-lockfile` 0, `pn typecheck` 0,
+`pn test` 0 (core 616, mobile 312, i18n 10, ui 11 — **949** tests, 942 on `main` before the merge), `pn lint`
+0, `pn desktop:check` 0 (**17** Rust tests).
+
+## Fixes round 25: the family-safe filter we promised two app stores did not exist (branch `fixes-r24a`) — 22.9.2026
+Seven ranked gaps from `docs/qa/spec-conformance-2026-09-22.md` — **1, 3, 16, 19, 20, 21, 33** — filed as
+**F50–F56**. Six are small. The first is not, and the reason it is first is not its size.
+
+**F50 · the filter that was declared and not built.** Four published documents said a content filter is on by
+default: the privacy policy §9, the terms §4, `app-privacy-details.md` (our literal answer to Apple's
+parental-controls question, "Yes: content filter on by default"), and our Guideline 1.2 answer. There was no
+classifier, no mode, no setting and no pref. Not a missing feature — a false statement in a published policy.
+
+The gap offered two ways out: build an on-device classifier (**L**), or delete the claim and re-answer both
+questionnaires (**S**). What ships is a third, cheaper than the first and honest about being so:
+
+| part | what it does |
+|---|---|
+| a clause in the system prompt | asks the model not to produce the content at all, while the mode is on |
+| a phrase check of the **request** | refuses an explicit ask before a single token is generated, so the mode is free when it fires |
+| the same check of the **answer** | run mid-stream on the same 8-token beat as the loop detector, so the text does not finish arriving, and again on the finished reply |
+
+The patterns are phrase-shaped on purpose. Single words — "violence", "sex", "suicide", "overdose" — appear in
+ordinary history, medicine and news answers, and a filter that flags the bombing of Dresden is switched off by
+every user on the first day, which is the same as having none. Fourteen such sentences across the eight
+languages are pinned as a complement test. Two false positives were caught by writing that test rather than
+after shipping: `\b` let "bomb-proof argument" match the weapon pattern, and the German pattern only knew the
+nominative "steifer", not the "steifen" a real sentence uses.
+
+It reaches both answer surfaces (`screens/Chat.tsx` and `voice/useHandsFree.ts` — a spoken turn is refused
+before anything is synthesised aloud). `prefs.contentSafety` defaults on, switches in **Settings → Chat**, and
+comes back on for a prefs file written before it existed. A replaced answer carries `safety: "family-safe"`
+through all four repositories, and says so under the answer and on the ledger. **It is not a classifier and
+every sentence we publish now says that**, in the same words, in the policy, the terms, the store answers and
+§11.1 / §11.2 / §11.4 / §11.5 / edge case 64. That single-answer requirement was the actual demand of gap 1.
+
+**F51 · the source we told people to read.** The Proof screen's "Source code ↗" opened a private repository and
+404'd for every user who tapped it; the build line told them to "match it against the published hash" with no
+hash published and no reproducible build; the terms claimed an MIT open-source core; the policy §10 and the Work
+architecture statement said the same. The repository had no `LICENSE` at all. Now: a **source-available**
+licence (read, build, publish findings; no redistribution — explicitly not an open-source licence), and
+`docs/legal/verification.md` as the one place that says what a user really can check (Android permissions from
+the Play page or `aapt2`, the iOS App Privacy Report, any firewall, the in-app airplane test) and what they
+cannot. The four texts were rewritten from it, and a test fails on any `en.json` string that offers our source
+or a hash to match.
+
+**F52 · `allowBackup="false"` versus what the app told Android users.** One sentence for every platform said
+chats are in the device backup. On Android nothing the app stores is backed up at all, so a user who reset
+their phone on the strength of that sentence lost every chat. Platform-specific string, and the policy now
+splits the two.
+
+**F53 · `/voice` was free by URL.** The chat's mic asked `paywallFor`; the route asked nothing, so a deep link
+or a restored route opened a Pro screen. It now asks the same question, and renders nothing while the
+entitlement is loading rather than existing for one frame.
+
+**F54 · nobody's licence obligations were discharged.** The Licences screen showed a name, an attribution and a
+link. Apache-2.0 §4(d) and MIT both want the text to travel with the distribution, and on an app whose promise
+is that it works with no network, a link discharges nothing. The canonical Apache-2.0 and MIT texts now ship
+inside the bundle (`docs/legal/model-licences/`, mirrored byte for byte into `packages/core`, with a test that
+fails on drift), a **View licence** control opens the full text from the model card and every Licences row, and
+MIT's copyright line is filled per component — Phi reads Microsoft's, Whisper reads OpenAI's. A Hugging Face
+download now opens the same sheet with an **accept** button and starts only on that tap.
+
+**F55 · two greyed rows selling 1.0 cuts**, one labelled "Export all (encrypted)" while nothing encrypts. Gone,
+and their strings deleted from all nine locales rather than left unread — the dead-translation pattern the
+conformance audit exists to catch.
+
+**F56 · two of our eight languages had no crisis card.** A user writing 죽고 싶어요 or 我不想活了 got nothing.
+Phrases for `ko` and `zh-Hant`, hotlines for KR, TW and HK. Every number was checked live against
+findahelpline.com, **and one was wrong before it shipped**: the draft carried 1577-0199 for Korea, which 109
+replaced in 2024 and which is no longer published. Swapped for 한국생명의전화 1588-9191.
+
+**One bug found on the way.** `docs/build.py` still named `docs/spec` and `docs/demo`; the sources were renamed
+to `*-src` and the script exits on the first missing file, so **the spec has not been rebuildable from source**
+for some time. Fixed; `docs/inborn-spec.html` regenerates to the tracked bytes plus this round's amendments.
+
+**Proof** — 863 tests pass (core 593, mobile 249, i18n 10, ui 11) after merging `origin/main` **6fd5494**,
+which is 773 on its own, and `docs/qa/fixes-r24a/`
+carries the run, a full end-to-end transcript of the family-safe path through the real modules and repository,
+the locale coverage, and a **negative control**: each of the seven fixes broken in turn with its guard shown
+going red, then restored. **No device, emulator, simulator or browser was available to this stream** — the
+emulator and the 6T belong to `android-vc16b` — so none of the seven screens was seen. The evidence README
+lists each unseen item and what it would take; the one worth a real pass is what ~245 extra prompt characters
+do to a 0.8B model's answers and time-to-first-token.
+
+**One more found by the merge with `main` (6fd5494).** Main's audit had corrected the privacy policy to say
+that **conversations are not restored to a new device on any platform** — on iOS the SQLCipher key is
+`WHEN_UNLOCKED_THIS_DEVICE_ONLY`, so a restored iCloud backup holds the ciphertext and cannot open it. The S51
+screen still read "Chats are included in your device backup, encrypted", which a user reads as "a restore brings
+them back". That is F52's bug one platform over, and nothing tied the two texts together, so nobody caught it.
+The non-Android string now says the key never leaves the device and a restored backup cannot open the chats, in
+all eight languages, and a test asserts the three platform strings exist and differ. §5.3 and edge case 42 say
+the same. `web:smoke` passes with six PASS lines on the merged tree.
+
+### Decisions for Moshe (round 25)
+1. **The source claim.** The app now says the source is not published. Three ways to close it for good: publish
+   under a real open-source licence; publish under the new source-available `LICENSE`; or drop the claim from
+   the positioning entirely. Until one is chosen, `docs/legal/verification.md` is what every text may say.
+2. **Family-safe: phrase check or classifier.** What ships reduces this content and does not eliminate it, and
+   says so everywhere. Upgrading to ShieldGemma costs the Gemma terms, an acceptance screen and a second model
+   download per language; an Apache-2.0 classifier costs about a week and a few hundred megabytes. Your call
+   whether "reduces" is enough for the 13+ rating you want.
+3. **`storage.exportAll` and `storage.transfer` are now unreachable.** Removing the rows is right for 1.0. If
+   `.sealed` backup returns, the rows and their nine translations come back with it.
+## Fixes round 28: the share sheet handed out the paid document features (branch `fixes-r24c`) — 22.9.2026
+From the spec-conformance audit's §7 section: one bypass, eleven rows where the enforced tier was not the spec's
+tier, and 23 of 39 gate keys that no screen ever asked. F72–F76.
+
+**The bypass.** `Chat.tsx` took each file out of a share payload and called `library.importFile` directly, while
+the attach sheet's own picker went through `pickIntoLibrary`, which asked both document gates. So the Free cap of
+one file per chat (§7.3 row 1) and the Work formats (§7.3 row 8) held at one door and not at the other — and the
+open door is the share sheet, which §7.7 calls the cheapest acquisition surface we have. A Free user could share
+in ten files; a Pro user could share in a spreadsheet the picker refuses.
+
+**The fix is one function, not a second copy of the checks.** `packages/core/src/licence/intake.ts`:
+
+```ts
+fileIntake(tier, kind, attachedCount) -> { ok } | { paywall, moment: "document" | "office" }
+```
+
+Every door calls it — the picker, the S40 library, the share path — and `apps/mobile/test/gates-wired.test.ts`
+fails if a fourth module ever calls `library.importFile` without it. The count is answered before the kind, so a
+Free user's second spreadsheet opens the paywall on the cap it actually hit.
+
+A shared file is worse than a picked one in one way: the name comes from the sender, and `.docx` and `.xlsx` are
+the same ZIP magic bytes. `sharedName()` runs the sender's name and MIME type through the existing
+`pickedFileName` — the helper QA F3 built for Android's SAF ids — so an extensionless share of an Excel MIME type
+resolves to `blob.xlsx` and is refused.
+
+**The eleven tier rows.** Four needed code, two needed the spec corrected, five were already right.
+
+| §7 row | spec | was | now |
+|---|---|---|---|
+| OCR on device (§7.3 row 3) | Pro | ungated | `ocr` gate wired; the action reads `Run OCR · PRO` |
+| "Answer only from my documents" (§7.3 row 4) | Pro | ungated, on two switches | new `strictDocuments` gate, on the switches **and** on the prompt |
+| Memory (§7.6) | Pro | only *add* was gated | every write is Pro; deleting is never sold |
+| Detailed statistics (§7.8) | Free basic · Pro detailed | all eight rows free | §7.1's four rows are Free, the rest are `detailedStats` |
+| Screenshot blocking, lock-screen wipe (§5.7 vs §7.5) | **Free** | Free, and a test locks it | **the spec was wrong**: §5.7 corrected |
+| XLSX, file picker, camera, CSV, DOCX | see below | — | unchanged; the code already matched |
+
+Two of these are gates on the chrome only if you stop at the switch. Strict mode is read at prompt time from
+`state.strict`, and memory is read by `store.memoryFor()` on every turn, so a user who turned either on while
+subscribed kept the Pro behaviour after the licence lapsed. Both are now masked at the read: one line in
+`documents/hooks.ts`, one at the `memoryFor` call site. A lapsed licence stops changing answers, and deletes
+nothing.
+
+Memory draws a line rather than gating the panel: every **write** is Pro — add, edit, turning it on, re-enabling a
+fact — and every **delete** stays free, because §7 opens by pointing out that a privacy app which charges for
+privacy gets called a scam in its own reviews. Turning memory off is free; only turning it on is sold.
+
+**Three places where the spec contradicts itself** got a decision in code and none in the §7 tables, which this
+branch did not touch. Each is a one-line reversal if Moshe disagrees, and all three are written out in
+`docs/qa/fixes-r24c/tier-matrix.md`: CSV and DOCX are **Free to attach** (§7.3 row 1 names them, which is more
+specific than row 5's "table understanding" and row 8's vault import); XLSX and HTML are **Work** (row 8 names
+them by format, and the shipping code already said so); the system picker stays **Free**, because row 1's Free
+attachment has no other way in and gating the picker would make that row unreachable.
+
+**The dead keys.** 23 of 39 gate keys had no call site — F42's shape in the licensing layer. The 11 whose features
+`README.md:596-599` declares "intentionally not built for 1.0" are deleted and return with their features. Three
+were wired by this round. The 11 that remain unbuilt but are still sold by §7 are named in `UNBUILT_FEATURES`, and
+the new guard fails if a key is neither called nor on that list — and equally if a key on the list turns out to be
+enforced.
+
+**Both guards were watched failing before they were watched passing.** With the share fix removed:
+`screens/Chat.tsx imports a file without asking fileIntake`. With one unwired key added back:
+`expected [ 'keyboardExtension' ] to deeply equal []`. Logs in `docs/qa/fixes-r24c/`.
+
+**Found on the way.** `python3 docs/build.py` has been unable to build the spec since commit `077aacf` renamed
+`docs/spec` to `docs/spec-src` without updating the script's `SPEC` constant: it exited `missing
+…/docs/spec/00-head.html`. One line. It still writes into `docs/out/`, so publishing `docs/inborn-spec.html` is a
+copy, and the demo half of the script is skipped silently for the same rename — left for whoever owns the demo.
+
+**What is not proven.** Nothing in this round was seen on a phone, a simulator, an emulator or a browser: no
+device was available to this stream. The gates are pure functions with a full tier × kind matrix in tests, and the
+wiring is held by a source scan, but the paywall each gate opens, the `PRO` chips, and the shortened ledger are
+unobserved. The next device pass should read: share an `.xlsx` from Files as a Free user, share a second PDF into
+a chat that already has one, open the ledger, tap the strict switch.
+
+Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 534, mobile 202, i18n
+10, ui 11 — **757** tests), `pn lint` 0.
 
 ## Fixes round 24: the desktop app could not be tested without Moshe (branch `desktop-headless-qa`) — 22.9.2026
 **F44** (Moshe, 22.9.2026): *"Desktop: it's not one dialog, it's a million. Find a way to test it WITHOUT me
@@ -1995,6 +2305,67 @@ hidden behind his own: launch with no dialog, onboarding S01–S05, "The capital
 Metal engine (159.6 tok/s, TTFT 66 ms), the §8.9 sidebar at the default 1120×720 window, and a relaunch after a
 rebuild with the Keychain item's `mdat` unchanged. Zero `SecurityAgent` events, zero `SecurityAgent` windows,
 the frontmost app never ours.
+
+## Fixes round 26: twelve mechanisms that shipped without a reader (branch `fixes-r24b`) — 22.9.2026
+
+Twelve gaps from `docs/qa/spec-conformance-2026-09-22.md` — its ranked #5, #7, #10, #11, #12, #13, #17, #30, #32
+and the three incognito rows — filed as **F57–F65 and F69–F71** in `docs/qa/qa-run-2026-09-11.md`.
+
+Eight of the twelve have the same shape, and it is worth naming because it will happen again: **a mechanism
+built, translated into all eight locales, and read by nothing.** `shouldWait()` had no call site. `ackExplain()`
+had no caller. `ChatStore.endSession()` had no caller. `rec.explain` was computed and latched for a sheet that
+did not exist. `inborn:documents-dropped` was emitted and relayed to a listener that was never written. A
+settings row wrote `prefs.clipboardExpirySec` to a store nothing read. Every one of them passes a unit test of
+its own logic, and none of them worked. So every fix in this round ships with a test that fails when the
+**wiring** is removed, not only when the logic is — `docs/qa/fixes-r24b/sabotage.txt` has each guard watched
+going red with its fix taken out, one at a time, including four that are nothing but wiring.
+
+**The one that could have cost a user everything: F58.** `sqliteRepository.ts` answered "not a database" with
+`deleteDatabaseAsync`, and `store.rs` answered it with `remove_file` over the database and its WAL. On an app
+whose whole promise is that chats live only on this device, that is not a recovery; it is the loss, performed
+silently. A file that opened but failed `PRAGMA quick_check` was not noticed at all. Now:
+
+| where | what happens |
+|---|---|
+| `packages/core/src/storage/integrity.ts` | the pure part: which SQLite errors mean the file is unusable, how to read `quick_check`, and a salvage that lists a table by row id and retries a failed page **row by row**, so only the rows a broken page actually holds are lost. A table it cannot even list is reported, not passed over |
+| phones (`storage/sqliteRepository.ts`, `storage/dbFile.native.ts`) | the damaged file is moved to `inborn.db.corrupt-<stamp>`, one kept copy at a time; a fresh keyed file is migrated, given FTS and the shared document schema, filled by the salvage parents-first, then promoted onto the real name |
+| desktop (`src-tauri/src/store.rs`) | the same quarantine instead of the delete, reported to the webview through `db_open` |
+| the user | the §8.8 strip, in all eight languages: `state.dbRepaired` with the number of entries that could not be read, or `state.dbStartedFresh` when the file would not open at all. Never nothing |
+
+A row copied into the fresh file has to satisfy the schema it lands in, so a message whose chat did not survive
+fails its foreign key and is **counted as lost** rather than dropped in silence. Tested against a real SQLite
+(sql.js) with the driver made to throw on chosen rows, which is exactly what a corrupt page looks like from JS.
+
+**The rest, in one line each.** F57 clipboard expiry now runs, on every platform's pasteboard, and never wipes
+text it did not put there. F59 the first automatic model switch finally explains itself, in a sheet that offers
+"Don't switch automatically", and the once-per-install latch is no longer spent by an unrelated status change.
+F60 Wi-Fi-only is one preference read by the one thing that downloads, parking before each shard and waking on
+Pause or Cancel instead of on a timer. F61 one inference queue for the process, so a chat turn, a documents ask
+and a quick action can no longer reach the same context. F62 the Work signed record carries the AI Act Art.
+50(2) marking **inside the hashed content**. F63 the desktop window minimum is 1040×720, and a test reads
+`tauri.conf.json` so the two numbers cannot drift from `DESKTOP_MIN` again. F64 a dropped folder is walked in
+Rust, a new `documents_read` refuses any path the window did not itself hand over, and the Documents screen
+imports what the tier allows and names what it skipped. F65 an answer is written through every 1.5 s, so a
+jetsam kill leaves it on disk. F69–F71 an incognito document lives in a RAM store behind the same
+`EmbeddingStore` interface and never reaches the encrypted file, leaving the chat ends both sessions, and a
+share arriving mid-session stays incognito.
+
+**Counts.** The round added 79 JS tests (742 on `main` before it, 821 on the branch). After merging `main` at
+`f85c527` the branch stands at **942 JS tests** (core 616, mobile 305, i18n 10, ui 11) and 13 Rust tests, with
+`pnpm lint` and `pnpm typecheck` clean and `pnpm web:smoke` passing on the real export. Green runs, before and
+after the merge: `docs/qa/fixes-r24b/tests.txt`.
+
+**Two things the merge changed on purpose.** `main` moved the Work formats into core as `WORK_DOC_KINDS` and
+added `fileIntake`, "the one answer for every file that enters the library, whatever door it came through" —
+so the round's own `documents/workKinds.ts` was deleted and the drop planner now asks `fileIntake` instead of
+re-deciding the tier rules itself. A drop is a door like the picker and the share sheet. `main`'s own guard
+(`test/gates-wired.test.ts`) was narrowed to production sources, because it was reading the round's incognito
+test as a fourth door.
+
+**What is not proven.** No phone, no emulator and no desktop build were available to this stream, so nothing
+here was seen running on a device: the pasteboards themselves, the `expo-network` reading, the SQLite file
+moves in `dbFile.native.ts`, the rendered explainer sheet and a real OS drag are all covered by tests and
+review only.
 
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
@@ -2494,3 +2865,72 @@ the bytes had never left the phone. The same happened on vc6 → vc7. MosheAI ca
   1.7 GB with no Install button anywhere in the vault.
 - **Not covered**: a phone whose record the *shipping* vc8 already deleted has nothing left to re-request, so its first
   launch on the fix still offers Install — one tap, and Play returns the bytes instantly. Every update after that is clean.
+
+## Docs audit follow-up (branch `docs-audit-fixes`) — 22.9.2026
+
+Closes the documentation-only findings assigned from `docs/qa/spec-conformance-2026-09-22.md` (the spec-conformance
+audit against `main`). Docs only: no app code changed, no device or emulator used.
+
+- **Privacy policy told the wrong download story (gap 4).** `docs/legal/privacy-policy.md` promised Apple-hosted
+  Background Assets on iOS 26 with "no domains in your App Privacy Report" — the app does not use Background Assets in
+  this release, and a real iPhone was recorded pulling 1.2 GB from `models.inbornapp.com`. Rewrote the iOS, Windows/macOS
+  and `app-privacy-details.md` sections to describe the CDN path honestly, on every supported OS version, and added the
+  fact that Android has no `INTERNET` permission at all and gets models through Play.
+- **Family Sharing wording, everywhere (gap 9).** The code and the real paywall are correct — Family Sharing is off in
+  App Store Connect, a one-way door pending Moshe's decision — but eight spec/legal/store files still promised it as
+  live: `terms.md`, `app-privacy-details.md`, `08-screens.html` (both the mockup and the `elements` prose), `12-monetization.html`
+  (the SKU table, the tier-order note and the entitlement table), `07-features.html` §7.9, `11-store-legal.html` (the
+  App Store guideline answer and the checklist line), `10-edgecases.html` cases 48–49, `14-plan.html`'s M6 checklist, and
+  all eight `docs/store/listing.*.json` reviewer-notes blocks. All now say Family Sharing is off for 1.0 and point at
+  §12.1 for the open decision.
+- **Backup line corrected (gap 16).** `Storage.tsx`'s Android copy and `privacy-policy.md:72` told Android users their
+  chats were in the device backup; `allowBackup="false"` proves otherwise. Fixed both strings and the edge-case-43 note
+  to say conversations are not restored to a new device — export before switching devices.
+- **Vision column matches the catalog (gap 22).** `06-models.html` §6.1 marked Fast and Sharp "vision: כן"; `manifest.json`
+  ships `vision: false` on both because the only projector in the catalog (`mmproj-Qwen3.5-0.8B-F16`) fits Instant's
+  embedding width alone. Table corrected, note added citing F36 (the attach sheet already disables camera/photo off Instant).
+- **§5.10's RTL rule was unexecutable (gap 23).** No Hebrew or Arabic locale ships in 1.0 (`docs/research/launch-languages-2026-09.md`),
+  so "checked in Hebrew and Arabic in every PR" cannot be run. Replaced it with what's actually enforced today: pseudo-locale
+  on every string/layout PR, manual RTL via the `__DEV__`-only `settings.advanced.rtl` switch on every screen the PR
+  touches, and a rule to revert to real-locale testing once Hebrew or Arabic ships.
+- **`openiap-google`'s INTERNET reasoning (gap 27, was 25).** The end state — the permission is stripped — is right and
+  proven; the spec's stated reason ("the Billing library's manifest has no INTERNET") was wrong about the wrapper we
+  actually ship. `11-store-legal.html` now names `openiap-google` and the `tools:node="remove"` strip, and points at the
+  disabled CI gate (gap 6) as the thing that actually needs closing.
+- **§5.7's two tier labels were backwards (gap 26).** `licence-entitlement.test.ts:123` asserts screenshot blocking and
+  the lock-screen quick wipe are never gated, and §7.5 already lists them Free — §5.7 alone said Pro. The spec was the
+  error, not the code (per the audit: "fix §5.7 before someone builds a gate that a passing test forbids"). Both rows
+  now read Free, with a note citing the test and pointing at §7.9 for the full Free/Pro/Work breakdown.
+- **§7.3 row 5 vs §7.9's Work list.** "Table understanding (CSV/XLSX)" was tagged Pro in the §7.3 feature table while
+  §7.9's Pro-for-Work summary already names XLSX/DOCX/HTML intake as a Work capability. Moved the row to Work to match.
+- **Nine named technologies with no cut-list entry (gap 25).** §5.5/§5.6/§4.5 name `mammoth`, ML Kit Text Recognition,
+  desktop Tesseract, the Qwen3/MiniLM embedders, `sqlite-vec`, Apple `SpeechAnalyzer`, Core ML (Parakeet) and Kokoro-82M
+  as if built; none is verified in the code today and none is on the "Intentionally not built for 1.0" list below. Added
+  an explicit status note at §5.5/§5.6 (and a pointer from §4.5) marking all nine **1.0.1**: verify each against the code
+  before 1.0 ships, or soften the architecture text to a generic capability description until it's built.
+- **`docs/qa/edge-cases-matrix.md` regenerated (gap 14).** The prior version (6.9/13.9) had 43 of 70 rows blank and 16
+  factually wrong, with test-id mappings pointing at unrelated tests and open defect F43 absent entirely. Rebuilt every
+  row from the audit's own per-case §10 classification (which reads the same code and QA record this matrix draws on),
+  mapped to the matrix's `todo`/`partial`/`done`/`n/a-<platform>` vocabulary. New totals: 11 done · 41 partial · 12 todo ·
+  6 n/a. F43, F17 and U11 are now cross-referenced from their rows.
+- **1.0.1 backlog and the three Moshe-only decisions, restated in the spec.** Added `docs/spec-src/14-plan.html` §14.8:
+  the audit's 18-item 1.0.1 list (gaps 26–43) verbatim with fix sizes, plus the three findings no documentation edit can
+  close — **#2** store-console filings (IARC is a hard blocker on the first Play upload), **#3** the verifiable-client
+  claim (open-source the repo and wire a real bundle hash, soften the four strings, or accept the claim stays weak), and
+  **#24** the trademark filing (clearance is done, nothing is filed) — plus two gaps that are on no cut list and aren't a
+  decision either (Gemini Nano on Android, SD-card/SAF storage): each needs a deferring sentence or a build, not silence.
+- **`docs/build.py` was broken since 3.9.2026.** `docs/spec` and `docs/demo` were renamed to `spec-src` and `demo-src`
+  in the Autark→Inborn rename (commit `077aacf`); the build script's `SPEC` and `demo_src` paths were never updated, so
+  every run has exited with `missing docs/spec/00-head.html` ever since — several earlier commit messages claiming
+  "rebuilt from docs/build.py" were not actually run. Fixed both paths and pointed `OUT` at `docs/` directly (where the
+  tracked `inborn-spec.html`/`inborn-demo.html` actually live, not a `docs/out/` that has never existed); the two
+  `*.artifact.html` fragment byproducts are now gitignored. Verified: `python3 docs/build.py` now runs clean and both
+  outputs were rebuilt from this round's `spec-src`/`demo-src` changes.
+- **Demo desktop column: 760px → 680px.** The audit's own live check: the code's `DESKTOP_MIN`/message-column constant is
+  680px and §8.9/§9.3 already say 680 — only `docs/demo-src/inborn-demo.src.html` still said 760 (CSS `max-width` and the
+  desktop notes copy). Fixed both; rebuilt into `docs/inborn-demo.html`.
+
+**Not done in this round (docs-only, no code or device access):** the nine named technologies are marked 1.0.1, not
+verified against the code — that verification is engineering work for the stream that owns `packages/core`. The three
+Moshe-only decisions above are recorded, not resolved. `docs/qa/edge-cases-matrix.md`'s new evidence is transcribed from
+the audit's classification, not re-run on hardware; the matrix still needs a real re-run at the next milestone.

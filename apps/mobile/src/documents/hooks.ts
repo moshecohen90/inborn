@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import type { Citation, DocumentRecord, Message, RagPrompt } from "@inborn/core";
+import { useEntitlement } from "../licence";
 import { peekEngine } from "../engine";
 import { canCiteMarkers, getLibrary, type DocumentLibrary, type LibraryState } from "./library";
 
@@ -51,19 +52,22 @@ export interface DocumentContext {
  */
 export function useDocumentContext(chatId: string | null): DocumentContext {
   const { library, state } = useDocuments();
+  const { can } = useEntitlement();
+  /* §7.3 Pro. Masked here rather than at the switch so a lapsed licence stops changing answers, not just the UI. */
+  const strict = state.strict && can("strictDocuments");
   const key = chatId ?? "";
   const documents = useMemo(() => (chatId ? library.attachedTo(chatId) : []), [library, chatId, state]);
   const docIds = useMemo(() => documents.map((d) => d.id), [documents]);
   const ready = documents.some((d) => d.chunkCount > 0);
   return {
     documents,
-    strict: state.strict,
+    strict,
     setStrict: (v) => library.setStrict(v),
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict: state.strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
+    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
-    context: { docIds, strict: state.strict },
+    context: { docIds, strict },
   };
 }

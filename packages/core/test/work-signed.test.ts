@@ -60,6 +60,20 @@ describe("signed export (spec §7.5 Work): content hash + Ed25519, verifiable wi
     }
   });
 
+  it("carries the AI Act Art. 50(2) marking inside the signed bytes (gap 13)", () => {
+    const unsigned = buildRecord(input);
+    expect(unsigned.aiGenerated).toBe(true);
+    expect(unsigned.generator).toBe("Inborn (on-device AI)");
+    const record = signRecord(unsigned, SEED);
+    expect(JSON.parse(JSON.stringify(record))).toMatchObject({ aiGenerated: true, generator: "Inborn (on-device AI)" });
+    /* The marking is inside the hash, so stripping it from the file is detected. */
+    const withoutMarking: Record<string, unknown> = { ...record };
+    delete withoutMarking.aiGenerated;
+    expect(verifyRecord(withoutMarking as unknown as typeof record)).toEqual({ ok: false, reason: "hash-mismatch" });
+    expect(verifyRecord({ ...record, generator: "Something else" })).toEqual({ ok: false, reason: "hash-mismatch" });
+    expect(renderRecord(record)).toContain("Generated with Inborn (on-device AI). Verify before use.");
+  });
+
   it("renders a readable companion with the signature block and instructions", () => {
     const record = signRecord(buildRecord({ ...input, vault: { folderId: "f1", name: "Client A", auditHead: "cd".repeat(32) } }), SEED);
     const md = renderRecord(record);

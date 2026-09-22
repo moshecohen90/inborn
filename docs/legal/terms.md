@@ -11,9 +11,9 @@ These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to 
 
 ## 1. Licence
 
-We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Parts of Inborn are open source under the MIT licence (the engine, storage, network and catalogue core); those parts remain available to you under that licence regardless of these terms. The user interface, artwork, name and logo are ours and are not open source.
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
 
-You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law; we publish the core precisely so that you can verify our privacy claims.
+You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
 
 ## 2. Free, Pro and Work
 
@@ -23,7 +23,7 @@ You may not: redistribute the app or its Pro/Work features; remove or bypass lic
 
 **One purchase, one store.** A Pro or Work purchase is tied to the store account that bought it (Apple ID, Google account, Microsoft account, or Paddle licence). It unlocks the app on all your devices that use that same store account and platform family. It does not transfer across stores: an App Store purchase does not unlock the Windows app, and vice versa. There is no user account that could link them, by design. If you own Pro on one store and want it on another, write to support with your receipt for a discount code.
 
-**Family Sharing (Apple only).** Pro is enabled for Apple Family Sharing: up to six members of your Apple family group can use it at no extra charge. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account.
+**Family sharing.** Pro is **not** enabled for Apple Family Sharing in this release, and the paywall says so on screen. If we enable it later, one purchase will cover up to six members of your Apple family group; enabling it is a one-way change we would announce in the release notes. **Google Play Family Library does not include in-app purchases**, so Pro on Android is per Google account either way.
 
 **Offline entitlement.** The app verifies your purchase on the device using the store's signed receipt and caches it, so Pro keeps working without internet. If the store cannot be reached, the last known entitlement is honoured for 30 days. If a purchase is refunded or revoked, Pro features lock; your data is never deleted.
 

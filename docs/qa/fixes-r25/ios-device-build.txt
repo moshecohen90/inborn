@@ -1,0 +1,38 @@
+# Real arm64 iphoneos build of the background hold (gap #15) and the iOS 17 floor (gap #18)
+# 22.9.2026, worktree fixes-r25. Unsigned on purpose: CODE_SIGNING_ALLOWED=NO opens no Keychain dialog.
+
+$ pod install                                            # exit 0
+$ xcodebuild build -workspace ios/Inborn.xcworkspace -scheme Inborn \
+      -configuration Debug -sdk iphoneos -destination generic/platform=iOS \
+      -derivedDataPath <scratch>/dd-device CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
+** BUILD SUCCEEDED **
+exit=0, 0 errors
+
+## The module compiled for the device and autolinked itself
+SwiftCompile normal arm64 <repo>/apps/mobile/modules/background-task/ios/BackgroundTaskModule.swift (in target 'BackgroundTask' from project 'Pods')
+
+$ grep -n BackgroundTask "ios/Pods/Target Support Files/Pods-Inborn/ExpoModulesProvider.swift"
+11:internal import BackgroundTask
+52:      (module: BackgroundTaskModule.self, name: nil),
+
+## It is in the binary that would run on the phone
+$ lipo -info Inborn.app/Inborn
+Non-fat file: Inborn.app/Inborn is architecture: arm64
+$ otool -ov Inborn.app/Inborn.debug.dylib | grep BackgroundTaskModule
+name           0x19dbb10 _TtC14BackgroundTask20BackgroundTaskModule
+$ strings -a Inborn.app/Inborn.debug.dylib | grep -E "beginBackgroundTaskWithName|endBackgroundTask|backgroundTimeRemaining"
+backgroundTimeRemaining
+beginBackgroundTaskWithName:expirationHandler:
+endBackgroundTask:
+# Before this round the same grep over the whole tree returned nothing (gap #15).
+
+## The floor the built app declares
+$ plutil -extract MinimumOSVersion raw Inborn.app/Info.plist
+17.0
+# App Store Connect recorded minOsVersion 16.4 for builds 6 through 12.
+
+## NOT proven here
+The hold's runtime effect on a backgrounded phone. Driving the iPhone needs the
+"Enter iPhone Passcode for 'XCTest' - Enable UI Automation" sheet, which only Moshe can accept and whose grant
+does not persist (docs/qa/ios-device-pass-12-2026-09-22.md, 14:42). What the hold decides is covered by the 8
+tests in apps/mobile/src/device/bgHold.test.ts; what it calls is above; the end-to-end T12 row is still open.

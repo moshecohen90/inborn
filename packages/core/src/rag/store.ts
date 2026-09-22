@@ -66,6 +66,13 @@ export class MemoryEmbeddingStore implements EmbeddingStore {
     }
   }
 
+  /** Drops everything at once; the incognito session's whole index goes this way when the session ends (§5.7). */
+  clear(): void {
+    this.docs.clear();
+    this.chunks.clear();
+    this.vectors.clear();
+  }
+
   snapshot(): StoreSnapshot {
     return { documents: [...this.docs.values()], chunks: [...this.chunks.values()], vectors: [...this.vectors.values()].map((v) => ({ ...v, q: Array.from(v.q) })) };
   }

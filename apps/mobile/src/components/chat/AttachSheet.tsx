@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { DocumentRecord } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
-import { Sheet, SheetItem } from "./Sheet";
+import { ProTag, Sheet, SheetItem } from "./Sheet";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
@@ -16,6 +16,9 @@ interface Props {
   attachedIds: string[];
   strict: boolean;
   onSetStrict: (v: boolean) => void;
+  /** "Answer only from my documents" is Pro (§7.3): the switch stays visible and opens the paywall. */
+  strictLocked?: boolean;
+  onUnlock?: () => void;
   onAttach: (docId: string) => void;
   onDetach: (docId: string) => void;
   onManage: () => void;
@@ -33,7 +36,7 @@ interface Props {
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onImport, onTemplates }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, strictLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -78,7 +81,8 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <Text style={[type.body, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[type.caption, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        <Toggle testID="attach-strict" label={t("documents.strict.title")} value={strict} onChange={onSetStrict} />
+        {strictLocked ? <ProTag onPress={onUnlock} /> : null}
+        <Toggle testID="attach-strict" label={t("documents.strict.title")} value={strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.() : onSetStrict(v))} />
       </View>
       <Pressable testID="attach-manage" accessibilityRole="button" onPress={onManage} style={[shape.control, styles.manage, { borderColor: theme.border }]}>
         <Text style={[type.body, { color: theme.text }]}>{t("chat.attach.manage")}</Text>

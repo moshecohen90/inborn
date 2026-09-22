@@ -226,6 +226,7 @@ export class IdbChatRepository implements ChatRepository {
       ...(input.usage ? { usage: { ...input.usage } } : {}),
       ...(input.citations?.length ? { citations: input.citations } : {}),
       ...(input.images?.length ? { images: [...input.images] } : {}),
+      ...(input.safety ? { safety: input.safety } : {}),
     });
     const tx = this.db.transaction([CHATS, MESSAGES], "readwrite");
     const chats = tx.objectStore(CHATS);
@@ -250,7 +251,8 @@ export class IdbChatRepository implements ChatRepository {
     if (patch.reasoning !== undefined) next.reasoning = patch.reasoning;
     if (patch.reasoningMs !== undefined) next.reasoningMs = patch.reasoningMs;
     if (patch.stopped !== undefined) next.stopped = patch.stopped;
-    if (patch.stoppedBy !== undefined) next.stoppedBy = patch.stoppedBy;
+    if (patch.stoppedBy === null) delete next.stoppedBy;
+    else if (patch.stoppedBy !== undefined) next.stoppedBy = patch.stoppedBy;
     if (patch.usage !== undefined) next.usage = { ...patch.usage };
     if (patch.citations !== undefined) {
       if (patch.citations.length) next.citations = patch.citations.map((c) => ({ ...c }));

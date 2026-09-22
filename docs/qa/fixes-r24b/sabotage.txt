@@ -1,0 +1,127 @@
+Watched fail: every guard of round 26, with its fix removed one at a time.
+Run 22.9.2026 in /Users/moshecohen/dev/inborn-wt/fixes-r24b.
+
+### F57 clipboard expiry never schedules the clear
+$ vitest run src/lib/clipboardExpiry.test.ts
+     × 60 s: clears the pasteboard once the timer fires, and asks for exactly 60 s 3ms
+     × a second copy replaces the first timer, so only the newest text is on the clock 1ms
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+exit 1
+
+### F58 salvage loses the whole page instead of retrying row by row
+$ vitest run test/storage-integrity.test.ts
+     × loses only the broken row: the page fails, the rows around it are still read one by one 6ms
+     × a message whose chat did not survive is counted as lost, not dropped in silence 3ms
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+exit 1
+
+### F59 the explainer latch is spent by any status change
+$ vitest run test/device-policy.test.ts
+     × the explainer fires once per install, whichever screen the user is on 4ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 42 passed (43)
+exit 1
+
+### F59 the explainer sheet is not mounted
+$ vitest run src/device/explainSheetWired.test.ts
+     × the sheet is mounted app-wide, not inside one screen 8ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+exit 1
+
+### F60 Wi-Fi only never holds a download back
+$ vitest run test/catalog-resume.test.ts
+     × cellular waits above 100 MB by default, never below it, and no network always waits 3ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+exit 1
+
+### F60 the downloader does not wait for Wi-Fi
+$ vitest run src/vault/httpsDelivery.test.ts
+     × takes Wi-Fi straight away and asks the network only once 9ms
+     × parks a 1.2 GB model on cellular, says so once, and fetches nothing until Wi-Fi arrives 11ms
+     × waits on an unknown path too: a VPN or a tether bills like cellular 12ms
+     × with no path at all it waits whatever the switch says 11ms
+     × Cancel while parked ends the wait instead of leaving it on the clock 12ms
+ Test Files  1 failed (1)
+      Tests  5 failed | 4 passed (9)
+exit 1
+
+### F61 the inference queue lets turns overlap
+$ vitest run test/llm-inference-queue.test.ts
+     × serializes concurrent turns in the order they asked, and never overlaps 7ms
+     × counts what is waiting and what is running 2ms
+     × a turn cancelled while it waits never reaches the context, and the ones behind it still run 2ms
+ Test Files  1 failed (1)
+      Tests  3 failed | 4 passed (7)
+exit 1
+
+### F62 the AI Act marking is not part of the signed content
+$ vitest run test/work-signed.test.ts
+     × carries the AI Act Art. 50(2) marking inside the signed bytes (gap 13) 3ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+exit 1
+
+### F63 the desktop window has no minimum
+$ vitest run src/lib/layout.test.ts
+     × lets no Tauri window shrink below the width the desktop shell needs (F63) 3ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+exit 1
+
+### F64 a dropped spreadsheet is imported instead of being the Work moment
+$ vitest run src/documents/dropped.test.ts
+     × a spreadsheet or a web page dropped by a Pro user is the Work moment, not an import 4ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+exit 1
+
+### F65 nothing of an answer is written through mid-stream
+$ vitest run src/lib/partialAnswer.test.ts
+     × writes the first text at once, so a kill one second in still leaves the answer 4ms
+     × then writes once per interval, not once per token 1ms
+     × never writes before there is text, and never rewrites the same text 0ms
+     × a store that refused the write is not asked again for this answer 0ms
+     × a slow first token does not open the door to a write per token afterwards 1ms
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+exit 1
+
+### F69 an incognito document is written to the saved library
+$ vitest run src/documents/incognito.test.ts
+     × a document added in an incognito chat is never written to the saved library 22ms
+     × ending the session takes the incognito document, its file and its attachment; the saved library is untouched 13ms
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+exit 1
+
+### F71 leaving an incognito chat does not end the document session
+$ vitest run src/services/incognitoExit.test.ts
+     × the exit ends both sessions: the chats in RAM and the documents in RAM 5ms
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+exit 1
+
+Rust (apps/desktop/src-tauri)
+
+### F58 the desktop deletes the unreadable file instead of keeping it
+$ cargo test --offline store::tests::quarantine
+test store::tests::quarantine_reports_nothing_kept_when_there_was_no_file ... ok
+test store::tests::quarantine_keeps_the_unreadable_file_and_only_one_copy ... FAILED
+thread 'store::tests::quarantine_keeps_the_unreadable_file_and_only_one_copy' (134938394) panicked at src/store.rs:221:69:
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+exit 101
+
+### F64 a dropped folder is not walked
+$ cargo test --offline shell::tests::expand_drop
+test shell::tests::expand_drop_does_not_descend_for_ever ... FAILED
+test shell::tests::expand_drop_walks_folders_and_keeps_models_apart ... FAILED
+test shell::tests::expand_drop_stops_at_the_file_cap_and_ignores_what_is_not_there ... FAILED
+thread 'shell::tests::expand_drop_does_not_descend_for_ever' (134938984) panicked at src/shell.rs:341:5:
+thread 'shell::tests::expand_drop_walks_folders_and_keeps_models_apart' (134938986) panicked at src/shell.rs:314:5:
+thread 'shell::tests::expand_drop_stops_at_the_file_cap_and_ignores_what_is_not_there' (134938985) panicked at src/shell.rs:328:5:
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.01s
+exit 101

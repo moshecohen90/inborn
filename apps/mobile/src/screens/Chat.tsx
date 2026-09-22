@@ -26,6 +26,7 @@ import {
   adviseModel,
   detectLanguage,
   detectUse,
+  fileIntake,
   languageTierOf,
   modelShortfall,
   limits,
@@ -34,6 +35,8 @@ import {
   paywallFor,
   planAnswerLength,
   planSummary,
+  safetyBaseline,
+  screenText,
   scriptOf,
   titleFromFirstMessage,
   type Chat as ChatRecord,
@@ -45,6 +48,7 @@ import {
   type Persona,
   type QuickActionId,
   type ReportInput,
+  type SafetyMark,
   type Session,
   type SharePayload,
   type StoppedBy,
@@ -78,6 +82,7 @@ import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
+import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { planDocsTurn } from "../lib/docsGate";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -98,8 +103,9 @@ import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
 import { useEntitlement, useLicence } from "../licence";
-import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, useDocumentContext, useDocuments } from "../documents";
+import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
+import { useAppServices } from "../services/AppServices";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
@@ -163,6 +169,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
   const ent = useEntitlements();
+  /* §11.1 Guideline 1.2 / §11.2 AI-content: family-safe mode, on by default, switched in Settings → Chat. */
+  const familySafe = useAppServices().prefs.contentSafety;
   const { tier, can } = useEntitlement();
   const licence = useLicence();
   const workPrice = (licence?.priceOf(PRODUCTS.work) ?? fallbackPrice(PRODUCTS.work)).display;
@@ -350,9 +358,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   useShortcut("focus-composer", () => focused.current && inputRef.current?.focus());
 
   const budget = useMemo(() => {
-    const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt });
+    const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt });
     return buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: wire(rows), nCtx, scale: tokenScale, reserve: 0 });
-  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale]);
+  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale, familySafe]);
   const level = contextLevel(budget.fullness);
 
   const ensureChat = async (firstText: string): Promise<string> => {
@@ -396,14 +404,39 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let reasoningStart = 0;
     let reasoningMs: number | undefined;
     let citations: Citation[] | undefined;
+    /* Set while streaming so the abort below is read as a replacement, not as the user's Stop (which would offer "Continue"). */
+    let familySafeHit = false;
     const started = Date.now();
-    const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === targetId ? fn(x) : x)));
-    const answerWithoutModel = async (key: string, values?: Record<string, unknown>) => {
-      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id });
-      setRows((all) => all.map((x) => (x.id === targetId ? saved : x)));
+    /* The row changes identity the moment the partial answer is written through, and `patch` must follow it there. */
+    let rowId = targetId;
+    let savedId = existingMessageId ?? null;
+    const partial = new PartialAnswerSaver();
+    const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === rowId ? fn(x) : x)));
+    const answerWithoutModel = async (key: string, values?: Record<string, unknown>, safety?: SafetyMark) => {
+      const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id, ...(safety ? { safety } : {}) });
+      setRows((all) => all.map((x) => (x.id === rowId ? saved : x)));
+    };
+    /* §8.8 row 5a: the answer on screen is also on disk, marked as a system stop, so a jetsam kill leaves it there to Continue. */
+    const writeThrough = async (): Promise<void> => {
+      const content = prefix + reply;
+      try {
+        if (savedId) await store.updateMessage(chatIdNow, savedId, { content, stopped: true, stoppedBy: "system", ...(reasoning ? { reasoning } : {}) });
+        else {
+          const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content, modelId: model.id, stopped: true, stoppedBy: "system", ...(reasoning ? { reasoning } : {}) });
+          savedId = saved.id;
+          setRows((all) => all.map((x) => (x.id === rowId ? { ...x, id: saved.id } : x)));
+          rowId = saved.id;
+        }
+        partial.saved(Date.now(), reply.length);
+      } catch (e: unknown) {
+        /* A disk that will not take the partial is the final write's news (QA R4-F13); the answer keeps streaming. */
+        partial.stop();
+        if (__DEV__) console.warn("[chat] partial answer not saved", e);
+      }
     };
     try {
-      const facts = await store.memoryFor(chatIdNow, persona.id);
+      /* Memory is Pro (§7.6): a lapsed licence stops the model seeing the facts, it does not delete them. */
+      const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -413,13 +446,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
+      /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
+      if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
+        await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
+        return;
+      }
       /* F38: how long this answer should be, as one line in the prompt and a cap for this turn. "Continue" asks for the rest, so it gets the ceiling. */
       const length = planAnswerLength({
         text: lastUser,
         use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
       });
-      const system = composeSystemPrompt({ baseline: SAFETY_BASELINE, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
+      const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -469,9 +507,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           tokens++;
           const snapshot = prefix + reply;
           patch((x) => ({ ...x, content: snapshot }));
+          if (partial.due(Date.now(), reply.length)) await writeThrough();
           if (tokens % 8 === 0) {
             setLiveTps((tokens * 1000) / Math.max(1, Date.now() - firstAt));
-            if (tokens >= 24 && detectLoop(reply)) {
+            /* F50: catching it mid-stream is what keeps the text off the screen; the check below still catches what the last chunk added. */
+            if (screenText(reply, familySafe).flagged) {
+              familySafeHit = true;
+              ac.abort();
+            } else if (tokens >= 24 && detectLoop(reply)) {
               stopReason.current = "loop";
               ac.abort();
             }
@@ -480,10 +523,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (d.done) usage = d.done;
       }
       const reason = stopReason.current as StoppedBy | "loop" | null;
+      /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
+      const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;
+      if (familySafeReplaced) {
+        reply = t("chat.familySafe.replaced");
+        reasoning = "";
+        reasoningMs = undefined;
+        citations = undefined;
+        patch((x) => ({ ...x, content: prefix + reply, reasoning: "" }));
+      }
       /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
       const guardStopped = wasStoppedByGuard();
-      const stopped = ac.signal.aborted || guardStopped;
+      const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped);
       const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
+      const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
         reply = t("documents.notFound");
@@ -491,12 +544,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         patch((x) => ({ ...x, content: prefix + reply }));
       }
       let keptId: string | null = null;
-      if (!reply && !reasoning && stopped && !existingMessageId) {
-        setRows((all) => all.filter((x) => x.id !== targetId));
-      } else if (existingMessageId) {
-        keptId = existingMessageId;
-        await store.updateMessage(chatIdNow, existingMessageId, { content: prefix + reply, stopped: !!stopped, ...(stoppedBy ? { stoppedBy } : {}), ...(usage ? { usage } : {}) });
-        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: reason === "loop", ...(usage ? { usage } : {}) }));
+      if (!reply && !reasoning && stopped && !savedId) {
+        setRows((all) => all.filter((x) => x.id !== rowId));
+      } else if (savedId) {
+        keptId = savedId;
+        /* stopped/stoppedBy are written unconditionally: the write-through marked the row a system stop, and this turn may have ended well. */
+        await store.updateMessage(chatIdNow, savedId, {
+          content: prefix + reply,
+          stopped: !!stopped,
+          stoppedBy: stoppedBy ?? null,
+          ...(reasoning ? { reasoning } : {}),
+          ...(reasoningMs !== undefined ? { reasoningMs } : {}),
+          ...(usage ? { usage } : {}),
+          ...(citations?.length ? { citations } : {}),
+          ...(safety ? { safety } : {}),
+        });
+        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: !familySafeReplaced && reason === "loop", ...(usage ? { usage } : {}), ...(citations?.length ? { citations } : {}), ...(safety ? { safety } : {}) }));
       } else {
         const saved = await store.appendMessage({
           chatId: chatIdNow,
@@ -508,9 +571,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           stopped,
           ...(stoppedBy ? { stoppedBy } : {}),
           ...(usage ? { usage } : {}),
+          ...(safety ? { safety } : {}),
           ...(citations?.length ? { citations } : {}),
         });
-        setRows((all) => all.map((x) => (x.id === targetId ? { ...saved, loop: reason === "loop" } : x)));
+        setRows((all) => all.map((x) => (x.id === rowId ? { ...saved, loop: !familySafeReplaced && reason === "loop" } : x)));
+        rowId = saved.id;
         keptId = saved.id;
       }
       /* The "paused in the background" line belongs to the turn the grace cut, not to the app: without an owner it followed the user into every later chat (QA F28). */
@@ -520,8 +585,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (isNoSpaceError(e)) {
         reportStorageFull();
         noSpace.current = true;
-        if (existingMessageId) patch((x) => ({ ...x, streaming: false }));
-        else setRows((all) => all.filter((x) => x.id !== targetId));
+        if (savedId) patch((x) => ({ ...x, streaming: false }));
+        else setRows((all) => all.filter((x) => x.id !== rowId));
       } else {
         const error = errorText(e);
         patch((x) => ({ ...x, streaming: false, error }));
@@ -709,9 +774,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (seed.kind === "files") {
       void (async () => {
         let attached = 0;
+        let blocked: "document" | "office" | null = null;
         for (const f of seed.files) {
-          const doc = await library.importFile(f.uri, f.name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined });
-          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name: f.name }));
+          /* The share sheet is a door into the library like any other: same tier gate, same format gate (QA F72). */
+          const name = sharedName(f.uri, f.name, f.mimeType);
+          const verdict = fileIntake(tier, sniffPicked(f.uri, name), docs.documents.length + attached);
+          if (verdict.kind === "paywall") {
+            blocked ??= verdict.moment;
+            continue;
+          }
+          const doc = await library.importFile(f.uri, name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined, incognito });
+          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name }));
           else {
             docs.attach(doc.id);
             attached++;
@@ -719,6 +792,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (attached) flash(t("quick.filesAttached", { count: attached }));
         if (seed.text) setDraft(seed.text);
+        if (blocked) {
+          flash(t(blocked === "office" ? "quick.fileWork" : "quick.filePro"));
+          afterSheetClose(() => onOpenPaywall?.());
+        }
       })();
       return;
     }
@@ -812,11 +889,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
+  const strictLocked = paywallFor(tier, { kind: "feature", feature: "strictDocuments" });
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
-      void pickIntoLibrary(library, tier, docs.documents.length).then((r) => {
-        if (r.kind === "paywall") onOpenPaywall?.();
+      void pickIntoLibrary(library, tier, docs.documents.length, incognito).then((r) => {
+        if (r.kind === "paywall") {
+          flash(t(r.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+          onOpenPaywall?.();
+        }
         else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
         else if (r.kind === "imported") docs.attach(r.id);
       }, (e: unknown) => flash(errorText(e)));
@@ -1185,7 +1266,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           item.role === "user" ? (
             <UserMessage message={redaction.display(item)} onLongPress={() => setActionRow(item)} />
           ) : (
-            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} />
+            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} onUnlock={() => onOpenPaywall?.()} />
           )
         }
       />
@@ -1328,6 +1409,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         attachedIds={docs.context.docIds}
         strict={docs.strict}
         onSetStrict={docs.setStrict}
+        strictLocked={strictLocked}
+        onUnlock={() => {
+          setAttachOpen(false);
+          afterSheetClose(() => onOpenPaywall?.());
+        }}
         onAttach={docs.attach}
         onImport={importFile}
         onDetach={docs.detach}
