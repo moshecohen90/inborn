@@ -1507,7 +1507,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <p>נדחו: ui-ux-pro-max (124K★, תבניתי; טוב רק כלוקאפ של פלטות), superdesign (דורש login לענן ומשכפל את הקנבס המובנה), stitch-skills (רק ל‑Google Stitch). סדר העבודה המומלץ בריפו: <code>/impeccable init</code> → <code>shape</code> לכל מסך → בנייה → <code>critique</code>/<code>audit</code>/<code>adapt</code> (נייטיב) → <code>harden</code> → <code>polish</code>; ואת שלושת הווריאנטים של החותם וההזרמה בונים עם <code>/prototype</code> של אמיל.</p>
 
 </section>
-<section class="sec" data-tier="ref" data-words="2336">
+<section class="sec" data-tier="ref" data-words="2361">
 <h2 id="s10"><span class="n">10</span>מקרי קצה ומצבי כשל<span class="tierpill">REFERENCE</span><span class="h2min">~12 min</span></h2>
 <p class="lead">שבעים מקרים, מקובצים לפי מחזור החיים. לכל אחד: מה קורה בשוק היום, ומה האפליקציה שלנו חייבת לעשות. הרשימה הזו היא גם רשימת הבדיקות של §14: כל שורה כאן היא בדיקה שם.</p>
 
@@ -1554,7 +1554,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <table>
 <thead><tr><th class="num">#</th><th>מקרה</th><th>בשוק היום</th><th>התנהגות נדרשת</th></tr></thead>
 <tbody>
-<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (תקציב המערכת ~30 שניות; תקרת המוצר 15 שניות, §6.5) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: foreground service קצר‑חיים עם התראה (dataSync מוגבל ל‑6 שעות ב‑15+), פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
+<tr><td class="num">21</td><td>רקע באמצע יצירה / נעילה / התראה / שיחה נכנסת</td><td>"מפסיק ופורק מודל כשעוברים אפליקציה"; רוצחי סוללה של OEM</td><td>iOS: beginBackgroundTask (תקציב המערכת ~30 שניות; תקרת המוצר 15 שניות, §6.5) לסיום חינני, שמירה חלקית, "Continue"; מסך דולק opt‑in; אין הסקה ארוכה ברקע. Android: ללא foreground service (החלטת 1.0, README “Fixes round 27”): המערכת אינה משעה את התהליך, ולכן תקרת 15 השניות נאכפת על זרם הטוקנים ולא על טיימר JS, והתראה קבועה לחלון של 15 שניות אינה קונה דבר; פטור מאופטימיזציה רק עם הסבר, מדריך חד‑פעמי ל‑Samsung/OnePlus</td></tr>
 <tr><td class="num">22</td><td>האפליקציה נהרגת בזמן כתיבה ל‑DB / migration</td><td></td><td>SQLite WAL, migrations אטומיות עם גיבוי, בדיקת שלמות בפתיחה, נתיב "Repair"</td></tr>
 <tr><td class="num">23</td><td>יצירות מקבילות (שתי שיחות, Shortcut + UI, ווידג'ט, מקלדת)</td><td>Apple FM זורק concurrentRequests; llama.cpp סשן יחיד</td><td>תור הסקה אחד עם עדיפויות; "Waiting for the current answer"; Shortcuts דרך אותו תור עם timeout; הרחבות לא טוענות מודל (מגבלת זיכרון) ומנותבות לאפליקציה דרך App Groups</td></tr>
 <tr><td class="num">24</td><td>החלפת מודל באמצע יצירה; מחיקת מודל בשימוש; הורדה מסתיימת תוך כדי צ'אט</td><td></td><td>בטל‑ואז‑החלף עם אישור; חסימת מחיקה של מודל טעון; הצעת טעינה מחדש בסיום הורדה</td></tr>
