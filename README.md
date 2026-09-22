@@ -403,7 +403,13 @@ vc13 (section Q); versionCode 15 released 22.9 from `main` c7f57c0 with fixes ro
 place over vc14 (section R) — this run measured the vc14 baseline and the vc15 fix on the same phone and the same driver before and
 after the update, and found the short-question control unchanged (still one sentence, ~5-6 words) while explanatory asks trended
 longer on both Instant and Fast; a repeated Fast sample taken twice 14 minutes apart on vc15 itself (93 vs 52 words) shows the numbers
-establish direction, not magnitude. Fixes round 15 (`main` f27a8c5): the Android bundle no longer
+establish direction, not magnitude; **versionCode 17 released 22.9 from `main` 239a268 (section T), the Android
+submission candidate** — delivered as a real Play update in place over vc16, About reads 1.0.0 (17) / 239a268a082b,
+Proof reads OUT 0 B · IN 0 B, a 22-screen vault sweep found no `install-` node after the update, real Play billing
+shows YOU OWN PRO with the Work upgrade at ₪149.90 and Restore answers "Purchase restored", §5.7 incognito passes
+paired on real hardware, and soak run 10 is an hour of continuous use (`docs/qa/soak-run-10-2026-09-22.md`); its
+upload had to be done twice because `:commit` answered 400 for eleven minutes and took the first edit down with a
+good 4.77 GiB bundle already hashed by Play. Fixes round 15 (`main` f27a8c5): the Android bundle no longer
 carries 229 MB of iOS Mach-O, Fast survives a Play update without a re-download, and F27 (a hardware-keyboard focus trap in the empty
 chat's suggestion chips) is fixed on the floor device. Fixes round 16: strict "Answer only from my documents" now refuses instead of
 answering from the model when nothing is attached (F34). Fixes round 17: round 15's OCR claim was wrong — a clean build shipped zero
@@ -459,8 +465,8 @@ Open (Moshe only): a model's Details sheet on the real iPhone (row 13c) still ne
 for 'XCTest' · Enable UI Automation" sheet — the rest of the tap-driven backlog (live chat turn, attach sheet, vault below the
 fold) is now proven; the real-iPhone CDN download proof is **done and passed** — Moshe's iPhone pulled Fast, 1.2 GB, from
 `models.inbornapp.com` in 151 s, the app's own sha256 check passed and it answered a chat turn with the downloaded model
-(`docs/qa/cdn-iphone-2026-09-22.md`); the submission candidates are now **TestFlight 1.0.0 (12)** and **Play versionCode 16**,
-both from `main` **9da93a2**; Cloudflare-side
+(`docs/qa/cdn-iphone-2026-09-22.md`); the submission candidates are now **TestFlight 1.0.0 (12)** from `main` **9da93a2** and
+**Play versionCode 17** from `main` **239a268**; Cloudflare-side
 privacy/support pages are not deployed yet (the site stays parked until design approval); Play Console fields (privacy URL,
 sign-in details, IARC rating, target audience, data safety declaration, contact details) and ASC privacy/support URLs + review
 information; the 8 legal placeholders (support email, legal name, address and the rest of `docs/legal/`); store screenshots

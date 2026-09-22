@@ -1345,6 +1345,144 @@ run two baseline attempts, one mislabelled F39 pass and one whole soak, and are 
 
 **Gate:** `COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm@10.34.5 lint` exit **0**.
 
+## T. Play internal release versionCode 17 — the Android submission candidate from `main` 239a268 — 22.9.2026
+
+The build proposed for the Android submission, rebuilt from `main` **239a268** (the merge that closed the desktop
+Tauri work, F47–F49 and F81–F83). It was uploaded to the internal track and **Google Play updated the OnePlus 6T in
+place from vc16 to vc17**; every row below is from that build, on that phone. The Pixel 6 API 33 emulator belonged
+to another stream for the whole of this run, so this pass has no device-tier half — `docs/qa/android-vc17/README.md`
+says exactly which vc16 rows were not restated.
+
+### Build
+
+Fresh worktree `android-vc17` off `origin/main` **239a268**, `pn install --frozen-lockfile` 0, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
+`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=17` and **no
+`INBORN_PACKS`**, which declared **seven** pack modules, each asset a symlink into `.models`. Then `bundleRelease
+--no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"` with a
+private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 12 m 57 s**, 1112 tasks, **all 1112
+executed** — a cold `GRADLE_USER_HOME` downloads the distribution and reuses nothing, which is the whole of the gap
+to vc16's 7 m 12 s. `gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild`
+was empty before it started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,857,219 bytes** (4.77 GiB; vc16 was 5,117,817,952, +39,267) |
+| sha256 | `980cef327854eca08c9a0ca485402d5fd58c236445506526da597090d4f843cd` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc16 set |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base **202,765,631 B / 1453 entries**; the seven packs unchanged from §R's table |
+| `base/assets` | **17,948,433 B / 120 entries** (vc16: 17,844,575 / 120) |
+| manifest | `versionCode="17" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
+| commit baked into `app.config` | **239a268a082b** — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` (gap #6 gate) | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pn typecheck` **0**, `pn test` **0** (950 tests: core 616, mobile 312, ui 11, i18n 11), `pn lint` **0** |
+
+Play's limits, all met: base + install-time **202,765,631 B** against the 4 GB cap; fast-follow plus on-demand
+**5,181,526,981 B** (4.83 GiB) against 30 GB; the largest single pack `inborn_model_sharp` at **1,401,059,131 B**
+against the 1.5 GB per-pack cap.
+
+### The upload had to be done twice, and the first edit died holding a good bundle
+
+`scripts/play-upload.mjs` with the service account from the keychain, internal track, release name **"1.0.0 (17)"**.
+The 4.77 GiB resumable upload dropped its connection at offset **5,100,273,664** — the same offset as vc13, vc14,
+vc15 and vc16, now **six releases running** — and the script's own retry recovered it both times.
+
+**Attempt 1, edit `17186855055106160949`.** The bundle uploaded and Play returned `versionCode 17` with the sha256
+above, matching the local file; `tracks.update` returned the internal release. Then `commit` returned **400
+`Some of the Android App Bundle uploads are not completed yet`**. That is a message about Play's own asynchronous
+processing, so the commit was retried once a minute. **It failed eleven times**, and by the eleventh the edit itself
+was gone: `GET …/bundles` and `GET …/tracks/internal` on it both answered 400, and a fresh edit showed the live
+internal track still on **vc16**. So an uploaded, hashed, accepted 4.77 GiB bundle was lost with the edit.
+
+**Attempt 2, edit `02581446358610636994`**, run through a patient copy of the uploader (12 chunk attempts,
+15 s × attempt backoff, and a commit that retries twenty times at 20 s instead of once). Same single drop at the
+same offset, same recovery — and **the commit succeeded on the first attempt**, 19:28:38. Read back from a fresh
+edit, Play holds `bundle vc17 sha256=980cef32…f843cd`, equal to the local one, and the internal track lists
+`{"name":"1.0.0 (17)","versionCodes":["17"],"status":"completed"}`.
+
+**The lesson worth keeping:** a 400 on `:commit` is not always worth waiting out. Retrying it for eleven minutes is
+what cost the first edit; re-uploading immediately would have cost the same wall-clock and kept an edit that
+committed at once. The 400 is also not evidence that the bytes were bad — Play had already hashed them correctly.
+
+### The update on the 6T, in place through the Play Store
+
+The phone held Play's **vc16** (`firstInstallTime=2026-09-21 22:59:16`, `lastUpdateTime=2026-09-22 15:08:50`). No
+uninstall, no `bundletool install`, no `adb install`: the Play Store app was driven by keys only, with §Q's
+containment rule — TAB until the focused node's bounds enclose the Update label's bounds. The press was made
+**21 minutes after the commit**, and the **first** press started the download.
+
+| stage | time |
+|---|---|
+| Update label found at `[718,630][851,687]` — the same bounds as vc15 and vc16 — focused after **7** TABs, ENTER | 19:50:46 |
+| download starts (first press, no "packs unavailable") | 19:51:18 |
+| `versionCode=17`, `installerPackageName=com.android.vending`, `lastUpdateTime` 20:13:38, `firstInstallTime` unchanged | 20:13:55, **1,340 s** after the download started |
+| app relaunched, packs re-delivered, delivery banner gone | 20:16:41, 101 s after launch |
+
+Play re-delivered **every** pack again rather than a delta — `pkg_bytes=5095477447` in Finsky's own progress lines —
+which is why this update took 1,340 s against vc16's 665 s. A new versionCode gives every asset pack a new version;
+this is the expected cost of a release, not a fault.
+
+**A driver repair this run needed.** `drv/play-keys.sh` can no longer drive the Play Store: `lib.sh`'s `key()` gained
+a guard that suppresses any press unless **Inborn** holds window focus, which is exactly right inside the app and
+exactly wrong on Play's page — it relaunches Inborn instead of pressing Update. `drv/play-keys17.sh` keeps the guard
+and points it at `com.android.vending`. The general shape is the one §R already recorded: a safety check scoped to
+one app silently breaks every driver that legitimately drives another.
+
+### The rows, all on the updated build
+
+| proof | result | shot |
+|---|---|---|
+| About | **1.0.0 (17)** and commit **239a268a082b** (= `main` 239a268) | `a-01-about-1-0-0-17.png` |
+| Proof screen | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, allowlist `none · the app has no internet permission`, "Google Play delivers models; Inborn never opens a socket" | `a-02-proof-out-0b.png` |
+| every pack still installed after the update (round 15 C) | a 22-screen sweep of the whole vault found **zero `install-` nodes**. `use-` nodes for fast, sharp, embed-nomic, speech-whisper-base and vision-qwen35; Instant has none because it was the model in use. `4.8 GB in the vault · 12 GB free · RUNS ON: ANDROID-LEGACY · 8 GB` | `b-01-vault-top.png`, `b-02-vault-all-packs.png`, `run/vault-sweep.txt` |
+| attach sheet, Fast resident | `attach-templates`, `attach-photo`, `attach-camera`, `attach-use-vision`, `attach-import`, `attach-strict`, `attach-manage`, the honest row *"FAST cannot look at photos. INSTANT is the one model here that can."*, and the imported `inborn-ocr-proof.png` listed *Not indexed yet* | `d-01-attach-sheet.png`, `run/f36-attach-sheet.xml` |
+| real Play billing | paywall reads **YOU OWN PRO**, "Unlocked on every device that uses this Google Play account", and the only offer is **Upgrade to Work · ₪149.90 · one-time purchase** — the local currency, from the real Play account | `f-01-paywall-owns-pro.png`, `run/paywall.xml` |
+| Restore purchases | **"Purchase restored"** | `f-02-restore-purchase-restored.png` |
+| §5.7 incognito, paired | **PASS.** Control `KESTREL` and incognito `ZARFOLIN` both answered and both listed; after `am force-stop` + relaunch the control is still listed and **`ZARFOLIN` is gone**. The paired form is what makes it a test: a run where neither survives proves nothing | `g-01` … `g-05` |
+
+**F39 answer lengths, five turns.** Seconds are to the last change in the answer text; words are counted from the
+full message, scrolled when it is longer than one screen.
+
+| ask | model | s | words | sentences | shape |
+|---|---|---|---|---|---|
+| "What is the capital of France?" | Instant | 8 | **6** | 1 | prose |
+| "How do I set up SSH keys on my Mac?" | Instant | 7 | **96** | 2 | prose |
+| "How do I set up SSH keys on my Mac?" | Fast | 18 | **54** | 3 | prose |
+| "Answer in Hebrew: … the word shalom?" (1) | Fast | 19 | **22** | 1 | prose |
+| "Answer in Hebrew: … the word shalom?" (2) | Fast | 10 | **18** | 0 | prose |
+
+The control is the row that matters: the short factual ask is **six words and one sentence**, exactly as on vc14,
+vc15 and vc16, so the short-ask rule survived the release. The explanatory asks get paragraphs. Their **magnitude is
+still not established** — §R measured the same Fast how-to at 93 and 52 words fourteen minutes apart, and vc17's 54
+sits inside that spread, so nothing here separates build from sampling.
+
+**The Hebrew row, stated plainly.** vc16 answered "Answer in Hebrew: what is the meaning of the word shalom?" **in
+Hebrew** (30 words, 2 sentences). vc17 answered it **in English** — twice, ten minutes apart, on the same model.
+That is a real difference in what the phone showed, and it is **not** a code regression: `git diff 9da93a2..239a268`
+touches no prompt, no length policy and no language code, and the only chat changes in it are `contentSafety.ts`,
+`safety.ts`, `types.ts` and `inferenceQueue.ts`. A 2B model that follows a language instruction sometimes and not
+others is the same small-model behaviour §R recorded for answer quality. No F number was filed; both samples are in
+the table so nobody has to take that on trust.
+
+**Soak run 10** ran after the rows: `docs/qa/soak-run-10-2026-09-22.md`. One hour, 20:43:45–21:43:45, on the updated
+build. **12 prompts, 12 completed, 0 timeouts, 0 send failures, 11 F33 cycles all OK, one process (pid 927) for 56
+minutes, 0 FATAL / ANR / SIGSEGV in a 71,932-line device buffer and no dropbox entry naming the app.** Fast held
+5.7–6.6 tok/s and Instant 13.9–14.2, both inside their vault cards' promises, and the proof screen still read
+`OUT 0 B · IN 0 B` after 56 minutes of continuous inference. The single process restart at 21:40:06 is the driver's
+own force-stop for a dead focus ring, named as such in the soak write-up.
+
+**Two gaps in this run's own instrumentation, recorded rather than smoothed over.** The app-scoped `logcat --pid=`
+capture was armed before the soak and bound to a pid the driver replaced four seconds later, so it holds 306 lines of
+a dead process; the crash claim above rests on the device's full buffer and the events buffer instead. And the
+ledger card was read successfully after only **6 of the 12** turns — the other six reads found no `LEDGER` card and
+were skipped, not invented. Neither is an app defect; both are driver work for the next run.
+
 ## Moshe-only list (unchanged from 7.9 plus one)
 
 1. Play payments profile banner (products cannot be sold until fixed).
