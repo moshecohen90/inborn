@@ -403,7 +403,11 @@ vc13 (section Q); versionCode 15 released 22.9 from `main` c7f57c0 with fixes ro
 place over vc14 (section R) — this run measured the vc14 baseline and the vc15 fix on the same phone and the same driver before and
 after the update, and found the short-question control unchanged (still one sentence, ~5-6 words) while explanatory asks trended
 longer on both Instant and Fast; a repeated Fast sample taken twice 14 minutes apart on vc15 itself (93 vs 52 words) shows the numbers
-establish direction, not magnitude. Fixes round 15 (`main` f27a8c5): the Android bundle no longer
+establish direction, not magnitude. **versionCode 16 released 22.9 from `main` 9da93a2 — the Android submission
+candidate** (section S): the same seven-pack 4.77 GiB bundle, `bundletool validate` rc 0, no INTERNET permission, delivered as a real Play update
+in place over vc15 in 665 s with **every asset pack intact and zero `install-` nodes left in the vault**; About reads 1.0.0 (16) /
+9da93a296bbe, Proof `OUT 0 B · IN 0 B`, and Play billing is live on the phone (YOU OWN PRO, Work upgrade ₪149.90, Restore ->
+"Purchase restored"). Fixes round 15 (`main` f27a8c5): the Android bundle no longer
 carries 229 MB of iOS Mach-O, Fast survives a Play update without a re-download, and F27 (a hardware-keyboard focus trap in the empty
 chat's suggestion chips) is fixed on the floor device. Fixes round 16: strict "Answer only from my documents" now refuses instead of
 answering from the model when nothing is attached (F34). Fixes round 17: round 15's OCR claim was wrong — a clean build shipped zero
@@ -443,7 +447,13 @@ real Play update over vc13, `docs/qa/soak-run-7-2026-09-22.md`): PASS, **26/26 p
 for the whole hour, 0 crashes — and it corrects soak 6's six timeouts (see "Correction 22.9" below "Fixes round 19"). Soak run 8 (22.9,
 vc15, delivered as a real Play update over vc14, `docs/qa/soak-run-8-2026-09-22.md`): PASS in two half-hour windows, Fast then Instant,
 after the first window's model switch silently failed and had to be re-run — together **26/26 prompts completed, 0 timeouts**, 12 F33
-cycles all OK, one pid (29368) across both windows, 0 FATAL/ANR and no dropbox entry belonging to versionCode 15. Launch-language
+cycles all OK, one pid (29368) across both windows, 0 FATAL/ANR and no dropbox entry belonging to versionCode 15. Soak run 9 (22.9, **vc16**, the Android submission candidate, delivered as a real Play update over vc15,
+`docs/qa/soak-run-9-2026-09-22.md`): PASS — **15/15 prompts completed, 0 timeouts, 0 send failures**, 12 F33 cycles all OK, one pid
+(25434) for 63 minutes, 0 FATAL/ANR across 39,018 log lines and no dropbox entry naming Inborn at all. It is the first soak to read the
+ledger after **every** answer: Fast measured 6.1-7.0 tok/s against the `~5-7 tok/s` its own vault card promises on this phone, Instant
+14.1-14.2 against `~6-12`, and `ms/token` held steady per model across the hour. Release rows, real Play billing (YOU OWN PRO, Work
+upgrade ₪149.90, Restore -> "Purchase restored") and the 4 GB device-tier rows are section S of `docs/qa/purchases-run-2026-09-11.md`;
+the same pass closed §5.7 **incognito** on real hardware for the first time (`docs/qa/qa-run-2026-09-11.md` Pass 8). Launch-language
 decision (`docs/research/launch-languages-2026-09.md`): 8 launch languages measured on device
 (English, Japanese, German, Spanish, French, Portuguese-Brazil, Korean, Traditional Chinese); Indonesian, Simplified Chinese, Gulf Arabic
 and Italian for wave 2; Hebrew needs its own model (`DictaLM-3.0-1.7B-Instruct`) and ships the quarter after launch, not at 1.0. Voice on

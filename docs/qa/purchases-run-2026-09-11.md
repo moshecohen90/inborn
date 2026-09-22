@@ -1,4 +1,4 @@
-# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 13
+# Purchases run 2026-09-11 — iPhone StoreKit configuration proof, Play versionCode 3 to 16
 
 Branch `purchases-verify` (merged with `main` at 0e4dba0). Continues `purchases-run-2026-09-06.md` (Play purchase proven on the OnePlus 11, ASC products READY_TO_SUBMIT).
 Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/purchases-r2/` (file names below; copy before the session directory is cleaned).
@@ -19,6 +19,7 @@ Evidence: session scratch `/private/tmp/claude-501/-Users-moshecohen-dev-bibleap
 | K. Play internal release versionCode 8 (main 543a5af, fixes-r14 incl. the F33 fix) + 6T sanity (21.9) | DONE: AAB 2,092,078,443 bytes, 9 permissions, no INTERNET, all nine native modules in the dex, "1.0.0 (8) internal" (edit 09760590197853827663); About on the 6T reads 1.0.0 (8) / 543a5af3671b. Play withheld the install for ~30 min while it published the asset packs ("all packs are unavailable"). Instant and Fast both answer, YOU OWN PRO without a Restore, Proof OUT 0 B. **Fast is reported as not installed after the update and has to be re-requested**, though the bytes are still on the device. Soak run 4 that follows: 48 F33 pop cycles, 48 OK, one process 5 h 39 min, no dropbox entry for v8 |
 | O. Play internal release versionCode 12 — the production pack set (21.9) | DONE: AAB **5,117,797,242 bytes** built with `INBORN_PACKS` unset, **all seven asset packs**, uploaded as "1.0.0 (12) internal" (edit 06260306700914179612). On the 6T through Play: **Sharp** installs from two packs and answers, **speech** and **vision** install, and a photo is described correctly. Two findings for Moshe: the shipped vision projector fits **Instant only** (Fast and Sharp cannot load it), and hands-free dictation crashes in `react-native-live-audio-stream`, so Whisper was never exercised. Sections L–O below have no rows of their own |
 | P. Play internal release versionCode 13 — the round-18 fixes, from a fresh Play install (21.9–22.9) | DONE: AAB **5,117,801,881 bytes** from `main` 9e1157f with `INBORN_PACKS` unset, all seven packs, uploaded as "1.0.0 (13)" (edit 13404118910722444753, **second attempt** — the first lost its edit to expiry on the last chunk). Round-18 APK uninstalled and Play **installed from scratch**; all seven packs delivered, 4.8 GB in the vault. F37 Sharp reads "Too slow to use on this phone" and RECOMMENDED sits on Fast; F36 the attach sheet's honest row switches to Instant, which then describes the fixture through the Play vision pack; F35 hands-free survives five microphone cycles on the release build (whisper decoding speech still NOT RUN); F27 passes; OCR of a scan answers with a citation. Soak 6: 14 F33 cycles, 14 OK, one process 1 h 12 min, 0 crashes, 0 ANRs, no dropbox entry for v13 |
+| S. Play internal release versionCode 16 — the Android submission candidate (22.9) | DONE: AAB **5,117,817,952 bytes** from `main` 9da93a2 with `INBORN_PACKS` unset, all seven packs, no INTERNET, `bundletool validate` rc 0, uploaded as "1.0.0 (16)" (edit 01823738192199699579); Play updated the 6T in place vc15 → vc16 in 665 s with **every pack intact and zero install- nodes in the vault**; About 1.0.0 (16) / 9da93a296bbe, Proof OUT 0 B; **real Play billing: YOU OWN PRO, Work upgrade ₪149.90, Restore → "Purchase restored"**; one hour of continuous use in soak run 9 |
 | D. Real sandbox purchase on the iPhone | REACHED the real Apple sandbox sheet (Inborn Pro, ₪69.90, account tester1@example.com) with UI Automation enabled by Moshe; the runner's Purchase tap works hands-free and the sandbox then asks for the account password; purchase deliberately NOT completed per Moshe (14:20) |
 
 ## A. iPhone StoreKit configuration run (checklist T56 / T57 / T21 / T22, "StoreKit config" halves)
@@ -1344,6 +1345,171 @@ run two baseline attempts, one mislabelled F39 pass and one whole soak, and are 
    happened.
 
 **Gate:** `COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm@10.34.5 lint` exit **0**.
+
+## S. Play internal release versionCode 16 — the Android submission candidate from `main` 9da93a2 — 22.9.2026
+
+The build proposed for the Android submission. Same seven-pack production bundle as vc15, rebuilt from `main`
+**9da93a2** (the merge that closed the R2 CDN and spec-14f work). It was uploaded to the internal track and
+**Google Play updated the OnePlus 6T in place from vc15 to vc16**; every phone row below is from that build,
+delivered that way — no uninstall, no `bundletool install`, no `adb install`.
+
+The pass ran in two sittings. The first (14:00-15:50) built, uploaded, took the Play update and proved the
+About / Proof / vault / attach / F39 rows. Moshe reclaimed the phone at 15:30 and the remaining rows moved to the
+Pixel 6 API 33 emulator. He freed the phone again at **16:47**, and the second sitting (16:48-18:15) took the rows
+the emulator cannot answer: the vault after the update, Play billing, and soak run 9.
+
+### Build
+
+Worktree `android-vc16` off `origin/main` **9da93a2**, `.models` symlinked to `/Users/moshecohen/dev/inborn/.models`,
+prebuild with `INBORN_VERSION_CODE=16` and **no `INBORN_PACKS`** (so all seven pack modules are declared), then
+`bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a` with a private `GRADLE_USER_HOME` in the session
+scratch.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,817,952 bytes** (4.77 GiB; vc15 was 5,117,810,222, +7,730) |
+| sha256 | `5dea312ce28dab5d372a2c6c8213d31c0dee2dd1c476d5813407be4cb7d247a1` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, `inborn_model` fast-follow and the other six on-demand, byte-for-byte the vc12–vc15 set |
+| `traineddata` entries | **2** — `base/assets/tessdata/eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes, uncompressed | base **202,661,773 B / 1453 entries**; the seven packs unchanged from §R's table |
+| `base/assets` | **17,844,575 B / 120 entries** (vc15: 17,828,891 / 120) |
+| manifest | `versionCode="16" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
+| commit baked into `app.config` | **9da93a296bbe** — what About shows |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gate | `pn lint` exit **0** |
+
+Play's limits, all met: base + install-time **202,661,773 B** against the 4 GB cap; fast-follow plus on-demand
+**5,181,526,981 B** (4.83 GiB) against 30 GB; the largest single pack `inborn_model_sharp` at **1,401,059,131 B**
+against the 1.5 GB per-pack cap.
+
+**Upload.** `scripts/play-upload.mjs` with the service account from the keychain, internal track, release name
+**"1.0.0 (16)"**. Edit **01823738192199699579**. The resumable upload dropped its connection at offset
+**5,100,273,664** — the same offset as vc13, vc14 and vc15, now four releases running — and retried twice from the
+script's own recovery; `upload-patient.mjs` was not needed. Read back, the internal track lists
+`{"name":"1.0.0 (16)","versionCodes":["16"],"status":"completed"}` and the commit returned.
+
+### The Play update on the phone
+
+Play was driven by keys only, with section Q's containment rule: TAB until the focused node's bounds enclose the
+Update label's bounds. **The first press did nothing.** Play had not finished publishing the packs, the poll gave up
+still on vc15, and the attempt is recorded as UNCLEAR rather than as a failure.
+
+| stage | time |
+|---|---|
+| attempt 1 — Update label at `[718,630][851,687]`, focused after 6 TABs, ENTER | 14:46:38 → 14:47:01 |
+| attempt 1 verdict — **UNCLEAR**, still `versionCode=15` after the poll | 14:47:33 |
+| attempt 2 — same label, focused after **7** TABs, ENTER | 14:56:56 → 14:57:18 |
+| download starts | 14:57:50 |
+| `versionCode=16` | 15:08:55, **665 s** after the download started |
+
+`dumpsys package` on the updated phone: `versionCode=16 versionName=1.0.0 minSdk=26 targetSdk=36`,
+`installerPackageName=`**`com.android.vending`**, `lastUpdateTime=2026-09-22 15:08:50`, `firstInstallTime=2026-09-21
+22:59:16`.
+
+### On the phone — the rows
+
+| # | proof | result | shot |
+|---|---|---|---|
+| S1 | About | **1.0.0 (16)** and commit **9da93a296bbe** (= `main` 9da93a2) | `a-01-about-1-0-0-16.png` |
+| S2 | Proof screen | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, allowlist `none · the app has no internet permission`, trackers 0 | `a-02-proof-out-0b.png` |
+| S3 | F39 answer lengths, four turns | Instant "capital of France" 5 s / 6 words; Instant "SSH keys on my Mac" 5 s / **46 words**; Fast same question 14 s / **92 words**; Fast Hebrew "shalom" 13 s / 30 words, 2 sentences — an explanatory ask still gets a paragraph and a lookup still gets a line | `c-03-fast-hebrew.png`, `run/f39.csv` |
+| S4 | attach sheet | opens with `attach-templates`, `attach-photo`, `attach-camera`, `attach-use-vision`, `attach-import`, `attach-strict`, `attach-manage`, the honest row *"FAST cannot look at photos. INSTANT is the one model here that can."*, and the previously imported `inborn-ocr-proof.png` listed as *Not indexed yet* | `d-01-attach-sheet.png`, `run/f36-attach-sheet.xml` |
+| S5 | **every pack survived the update** | the whole vault walked in 22 screens: **zero `install-` nodes anywhere**, and a `model-status-` node for all **seven** catalog entries — instant, fast, sharp, sharp-phi, embed-nomic, speech-whisper-base, vision-qwen35. A `use-` node on instant, sharp, embed-nomic, speech-whisper-base and vision-qwen35; **fast has none because fast was the model in use**, which is the same shape the 15:11 sweep showed with the pair reversed. `4.8 GB in the vault · 12 GB free · RUNS ON: ANDROID-LEGACY · 8 GB` | `b-01-vault-top.png`, `b-02-vault-all-packs.png`, `run/vault-sweep.txt` |
+| S6 | the bottom of the vault | SHARP · **Phi-4-mini 3.8B**, `2.3 GB · Q4_K_M · Battery: High`, `~0.4-0.6 tok/s on your phone · Too slow to use on this phone`, and **"Not offered through Google Play. Download the file in your browser, then import it here."** over `Import GGUF`. The one catalog entry with no Play pack behind it renders as an import offer, not as a broken install button | `b-02-vault-all-packs.png` |
+| S7 | Fast's own speed claim against the measurement | the FAST card on this phone reads `1.2 GB · Q4_K_M · Battery: Medium`, **`~5-7 tok/s on your phone`**, `Loaded`, `In use`, `RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH`. Soak run 9 measured Fast on this phone at **7.0–7.2 tok/s** — the top of the range the app promises. The estimate is honest on the legacy tier | `b-01-vault-top.png`, `docs/qa/soak-run-9-2026-09-22.md` |
+| S8 | **paywall, real Play billing** | `inborn://paywall` draws **YOU OWN PRO** · "Unlocked on every device that uses this Google Play account.", and the Work card **PRO FOR WORK · ₪149.90 · one-time purchase** with `Upgrade to Work · ₪149.90` — shekels from Play Billing, not the USD fallback constants. Nodes `owned`, `price-inborn.work.upgrade`, `buy-inborn.work.upgrade`, `restore`, `close-paywall`. Footers: "Family Library does not include in-app purchases.", "One purchase per store…", "Play refunds a purchase the app could not confirm within 3 days." | `f-01-paywall-owns-pro.png` |
+| S9 | **Restore purchases** | focused `restore` by TAB, ENTER → `paywall-status` reads **"Purchase restored"** while the card stays YOU OWN PRO | `f-02-restore-purchase-restored.png` |
+| S10 | one hour of continuous use | soak run 9, see `docs/qa/soak-run-9-2026-09-22.md` | — |
+
+### Incognito on the real phone (§5.7)
+
+`docs/qa/spec-conformance-2026-09-22.md` marks §5.7 *"incognito: chat rows never written to the DB or the search
+index"* **UNPROVEN** — correct in code, but "simulator and emulator only, never a real device". The phone was free,
+so it was run here, **paired**: the same flow twice, once normal and once incognito, so the test could fail.
+
+| # | check | result | shot |
+|---|---|---|---|
+| S11 | the incognito door and its toggle | `new-incognito` on the chats screen opens the new-chat sheet with `incognito-switch` **`checked="true"`** and the line *"Incognito · Not saved, no memory. Gone when you close it."*; the ordinary `new-chat` door opens the same sheet with the switch **`checked="false"`**. Both states read off the node, not assumed | `g-02-incognito-open.png` |
+| S12 | an incognito turn really runs | the chat header reads **`INCOGNITO · NOT SAVED`** beside `SEALED` and `INSTANT`, and the model answered the `ZARFOLIN` prompt on screen. The session is a real chat, not a stub | `g-03-incognito-answer.png` |
+| S13 | **what each chat leaves behind** | both chats are in the list **while the incognito session is alive** (`ZARFOLIN…` = 1 row, `KESTREL…` = 1 row). After `am force-stop` and a relaunch: the normal chat is **still there** and the incognito chat is **gone** — `KESTREL` 1 row, `ZARFOLIN` **0 rows** | `g-04-chatlist-after.png`, `g-05-chatlist-cold.png` |
+
+**PASS, and the control is what makes it one.** The first attempt of this test returned INCONCLUSIVE and was thrown
+away rather than reported: both codewords sat at the *end* of the prompt, the chat list truncates its title to the
+first few words, and so neither chat could ever have been found — a "the incognito chat is not in the list" that
+would have been true no matter what the app did. With the codeword moved to the front, the normal chat is found and
+the incognito one is not, which is the only shape in which this result means anything.
+
+One nuance the run confirms rather than contradicts: the incognito chat **is** listed while its session is live, and
+disappears when the process exits. That matches the audit's own caveat that `chat/store.ts endSession()` has zero
+callers, so today the guarantee is delivered by process death. This run proves the user-visible promise on real
+hardware; it does not prove that closing an incognito chat *without* killing the app clears it, and that remains
+open.
+
+**No purchase was made.** The only billing action was Restore, which re-reads what this Google Play account already
+owns; the Work upgrade button was never pressed and no Play payment sheet was raised.
+
+### On the emulator — what the Pixel 6 API 33 could and could not answer
+
+While the phone was with Moshe, the same AAB was installed on the emulator with
+`bundletool build-apks --local-testing` + `install-apks` from `.tools/bundletool-all-1.18.3.jar` (`vc16.apks`,
+5,369,996,479 B; `build-apks` rc 0, `install-apks` rc 0). Local testing pushes the pack APKs to
+`/sdcard/Android/data/com.inbornapp.mobile/files/local_testing`; bundletool's cleanup step printed
+`run-as: package not debuggable` because the APKs are release-signed, which is expected for this install mode and
+did not stop it.
+
+| # | check | result | shot |
+|---|---|---|---|
+| S-E1 | About on the emulator build | **1.0.0 (16)** | `e-01-about-1-0-0-16.png` |
+| S-E2 | Proof screen | **OUT 0 B · IN 0 B** | `e-02-proof-out-0b.png` |
+| S-E3 | airplane test | the "Prove it to yourself" screen answered `What's 17 × 23?` with **"17 times 23 is 391."** from Instant and the counter read **OUT 0 B · IN 0 B**. The screen says so itself: *"Airplane Mode is off; the counter still shows OUT 0 B."* — **Airplane Mode was never switched on**, because that is a device setting and out of bounds for this run. What this proves is the byte counter at 0 on a connected device, not the airplane path | `e-00-airplane-out-0b.png` |
+| S-E4 | **device tier** | the emulator reports `RUNS ON: ANDROID-ENTRY · 4 GB` against the phone's `ANDROID-LEGACY · 8 GB`, and the same vault renders a different set of offers. **Instant** is `RECOMMENDED ON THIS PHONE`, `508 MB`, `~6-12 tok/s on your phone`. **Fast, Sharp and Sharp (Phi) are all drawn in full — cards, GOOD AT, LANGUAGES, Weak-at — and all three are gated off**: `model-card-fast` ends `1.2 GB · Q4_K_M · Battery: Medium` / **"Will not run on 4 GB"**, `model-card-sharp` `2.6 GB` / "Will not run on 4 GB", `model-card-sharp-phi` `2.3 GB` / "Will not run on 4 GB" plus "Not offered through Google Play". None of the three carries a `model-status-`, `use-` or `install-` node, so there is **no install button to press** — the 4 GB tier explains what it will not run instead of offering a download that would fail. The only installable entries are the three companions, embedding / speech / vision | `e-07-fast-gated-4gb.png`, `e-03-vault-top.png`, `e-04-vault-bottom.png`, `erun/vault-full.txt` |
+
+A note on how S-E4 was established, because the first reading of it was wrong. The 22-screen `vault-sweep.txt`
+lists no `model-status-fast` and no `model-status-sharp`, and that was first written up as "Fast does not appear on
+the 4 GB tier at all". It does appear. The sweep only collects `model-status-` / `use-` / `install-` ids, and a
+gated card has none of those, so its absence from that file says nothing about whether the card is drawn. A second
+walk that captured **every** id and every text (`vault-full.txt`, 26 screens) found `text="FAST"`, `· Qwen3.5 2B`
+and `model-card-fast` with the gate line inside it. A negative claim needs a capture that could have shown the
+positive.
+
+**Play billing on the emulator: what it can and cannot prove.** The image does carry the Play Store —
+`com.android.vending`, `com.google.android.gms` and `sdk_gphone64_arm64-userdebug` — but **no Google account is
+signed in** (`dumpsys account` lists 0). So `BillingClient` has a service to bind to and no account behind it, and
+the paywall was opened to record exactly what the app then does rather than to assert a limitation.
+
+| # | check | result | shot |
+|---|---|---|---|
+| S-E5 | paywall with no Play account | the **Free** card set, not the owned one: `buy-inborn.pro`, `buy-inborn.work`, `price-inborn.pro`, `price-inborn.work`, no `owned` node. Prices fall back to the **USD constants** — PRO **$19.99**, PRO FOR WORK **$69.99** — and the app says so on each card: **"US price shown. The store shows your local price."** `paywall-status` carries **"Purchases need a connection once. What you already own keeps working from the signed cache."** | `e-05-paywall-usd-fallback.png` |
+| S-E6 | Restore with no Play account | pressed `restore`: **"Could not reach the store. Try again when you are online."** The app reports the failure and grants nothing — it does not fall through to a free entitlement and does not claim a restore that did not happen | `e-06-restore-could-not-reach-store.png` |
+
+That is the whole of what the emulator can say about billing, and it is a real result: the fallback copy is honest
+about being a US price, and an unreachable store produces an error rather than a silent grant. What it **cannot**
+prove is a localized Play price, a real entitlement or a real restore — nothing there was stubbed, mocked or
+recorded as a billing success. Rows S8 and S9 are the phone's, where Play Billing is real, and that is the only
+place a working purchase path is claimed.
+
+### Two honest notes on the driver
+
+**One capture was thrown away.** `b-02-vault-all-packs.png` as first taken at 15:12 was not a vault screen at all:
+it was a **Google Play subscription sheet for another of Moshe's own apps**, captured while Inborn was not in the
+foreground, by a `shot.sh` that photographed whatever was on the display. It was deleted rather than committed, and
+`shot.sh` now calls `fg()` first and **refuses to write into the repo unless Inborn holds window focus**. The
+`b-02` in the repo is the 16:50 re-capture, taken with that guard in force.
+
+**The ledger detector was reading the wrong answer, and soak 9 caught it in its first turn.** `s-ledger.sh` used to
+TAB to "the first node whose resource-id is `ledger-toggle`", which on a chat with more than one answer is an
+**older** message. Turn 1 of the first soak attempt printed a card byte-identical to the previous turn's — 11,521 ms
+first token, 12.4 s generation — while the send itself had taken 8 s. The run was stopped at minute 2 and restarted.
+The second attempt, matching the newest toggle by its bounds, cannot converge either: the chat list scrolls under
+the focus ring and the target's bounds move between dumps. What works is one **DPAD_UP from the composer**, which
+lands on the newest answer's toggle directly because the list is at the bottom whenever the composer holds focus.
+Same lesson as §R's fourth note, one layer down: a driver step that cannot verify *which* object it acted on will
+eventually report a measurement of something else.
 
 ## Moshe-only list (unchanged from 7.9 plus one)
 
