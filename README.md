@@ -355,9 +355,9 @@ passcode-sheet set as build 9 plus "the policy changing a real answer on this ph
 regex tables are verified in the shipped Hermes bundle. Real-iPhone pass 11: **24 PASS, 0 FAIL, 5 NOT RUN of 29 rows across the
 three result tables** — the F39 tables are confirmed in the bundle this phone ran, and all 5 NOT RUN rows sit behind the same
 UI-Automation passcode sheet as every build since 7 (a live chat turn, and the three tap/scroll-only rows that follow from it:
-the vault below the fold, a model's Details sheet, the attach sheet) (`docs/qa/ios-device-pass-11-2026-09-22.md`). Open Moshe item,
-unchanged since build 6: the App Manager ASC API key cannot export with cloud-managed certificates (403 FORBIDDEN_ERROR); the Admin
-key was used for builds 6–11. Play internal testing 1.0.0 (6) active
+the vault below the fold, a model's Details sheet, the attach sheet) (`docs/qa/ios-device-pass-11-2026-09-22.md`). The App Manager ASC API key cannot export with cloud-managed
+certificates (403 FORBIDDEN_ERROR), which is why builds 6–11 were signed with the Admin key; since 22.9 that key is the
+release default and nothing is open on it (see "iOS release: which App Store Connect key"). Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
 versionCode 10 released 21.9 from `main` 7c1d47d with the round-17 OCR fix (section M); versionCode 11 released 21.9 from `main` 50b50f5,
@@ -423,8 +423,7 @@ Open (Moshe only): the domain `inbornapp.com` is still unregistered — the cata
 (no Play Asset Delivery equivalent) Fast, Sharp, the vision projector and the document-index pack cannot be downloaded until it is bought;
 install TestFlight 1.0.0 (11) and run one live chat turn on the iPhone — either by accepting the "Enter iPhone Passcode for 'XCTest' ·
 Enable UI Automation" sheet once while a runner is starting (which then unblocks the whole tap-driven backlog: model Details sheet, the
-attach sheet, the vault below the fold, hands-free with Whisper installed) or by tapping through it by hand; the ASC App Manager API key
-still cannot export with cloud-managed certificates (403 FORBIDDEN_ERROR) — the Admin key was used for builds 6–11; store screenshots after
+attach sheet, the vault below the fold, hands-free with Whisper installed) or by tapping through it by hand; store screenshots after
 his design approval; legal fields (support email, domain, legal name, address); Play payments profile; Family Sharing decision and regional
 price policy (store conversion vs the country-ratio table); submit the four IAPs with app version 1.0; a share-in via a MediaStore
 `content://` URI from the shell imports nothing and the share module swallows the read failure silently — real but low severity, carried as
@@ -769,6 +768,37 @@ track `internal` release "1.0.0 (1) internal" status `completed`, committed. Pla
 upload with a Google-generated app signing key. Testers are managed in Play Console → Testing → Internal testing
 (no tester list was created by the script); the full 6-minute build once failed in `:app:signReleaseBundle` while the
 Mac was low on memory and passed on rerun.
+
+## iOS release: which App Store Connect key
+Archive, `-exportArchive`, `altool --validate-app` and `altool --upload-app` all sign through **cloud-managed
+distribution certificates**, and Apple grants those only to an ASC API key whose role is Admin or one that has been
+given the "Access to cloud-managed distribution certificates" checkbox. The App Manager key `inborn-asc-api`
+(`4V4PPDXM5A`) has neither, so it answers 403 FORBIDDEN_ERROR on export, and this Mac holds no local distribution
+identity to fall back on. Builds 6–11 were finished by hand with the Admin key; since 22.9.2026 it is the default.
+
+`scripts/asc-key-env.sh` reads the Admin key (Keychain `store-reviews` / `appstore-analytics-config`, key id
+`REDACTED-ASC-KEY`, the same key the ASO tooling uses), refuses any entry whose `role` is not Admin, writes
+`AuthKey_<kid>.p8` into `~/.appstoreconnect/private_keys` with mode 600 — the only place `altool` reads it from — and
+prints the exports. `--cleanup` deletes every staged `.p8`; run it at the end of a build, as the build records do.
+
+```
+eval "$(../../../scripts/asc-key-env.sh)"
+xcodebuild -exportArchive -archivePath build/Inborn.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/export \
+  -allowProvisioningUpdates -authenticationKeyPath "$INBORN_ASC_KEY_PATH" -authenticationKeyID "$INBORN_ASC_KEY_ID" \
+  -authenticationKeyIssuerID "$INBORN_ASC_ISSUER_ID"
+xcrun altool --validate-app -f build/export/Inborn.ipa -t ios --apiKey "$INBORN_ASC_KEY_ID" --apiIssuer "$INBORN_ASC_ISSUER_ID"
+xcrun altool --upload-app  -f build/export/Inborn.ipa -t ios --apiKey "$INBORN_ASC_KEY_ID" --apiIssuer "$INBORN_ASC_ISSUER_ID"
+../../../scripts/asc-key-env.sh --cleanup
+```
+
+Read-only ASC API work (build status, prices, portal identifiers) may keep the App Manager key:
+`INBORN_ASC_KEYCHAIN=inborn-asc-api:4V4PPDXM5A INBORN_ASC_ALLOW_NON_ADMIN=1 eval "$(scripts/asc-key-env.sh)"`.
+Verified 22.9.2026: the Admin entry answers `GET /v1/builds?filter[app]=6809165161` with HTTP 200 and builds 7–11 VALID.
+
+The alternative, one click for Moshe and not needed once the above is in use: App Store Connect →
+[Users and Access → Integrations → App Store Connect API](https://appstoreconnect.apple.com/access/integrations/api) →
+key `4V4PPDXM5A` → tick **Access to cloud-managed distribution certificates**. That would let `inborn-asc-api` export
+on its own; the recipe would then work with either key.
 
 ## Legal, compliance, QA and launch docs (legal-docs stream)
 Docs only, no app code. Everything the spec promises "lives in the repo" for §10–§11, §13.5, §14.7, §15:
