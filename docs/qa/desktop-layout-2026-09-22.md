@@ -88,7 +88,6 @@ MODELS_DIR=/Users/moshecohen/dev/inborn/.models node docs/qa/desktop-layout/shot
 | `docs/qa/desktop-layout/06-wide-900x800-chat.png` | 900 px: sidebar, no panel (the `wide` mode) |
 | `docs/qa/desktop-layout/07-phone-390x844-chat.png` | 390×844: the phone shell, unchanged |
 | `docs/qa/desktop-layout/08-phone-390x844-chats.png` | 390×844: the pushed chats drawer with its ✕, unchanged |
-| `docs/qa/desktop-layout/09-desktop-app-window.png` | the built macOS app at its default 1120×720 — **blank**, see below |
 | `docs/qa/desktop-layout/10-ab-phone-chat.png` | the phone A/B: the empty chat at 390×844 |
 | `docs/qa/desktop-layout/11-ab-phone-chats.png` | the phone A/B: the chats drawer at 390×844 |
 
@@ -106,7 +105,8 @@ bundle throws before the first paint and there is no phone screen to compare.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179 — 169 plus
 the 4 layout-mode and 6 key-map tests — i18n 10, ui 11: **705**), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0
-(five PASS lines), `pn desktop:build:app` 0.
+(five PASS lines). `pn desktop:build:app` also returned 0 here, but see the note below: the desktop app is not part of
+this branch's proof.
 
 ## Where this differs from the demo, and what is not proven
 
@@ -129,12 +129,13 @@ the 4 layout-mode and 6 key-map tests — i18n 10, ui 11: **705**), `pn lint` 0,
   so its own proof could run, to be reconciled at merge.
 - **No phone, emulator or simulator was used**, by instruction. The phone-shell screenshots are the web build at
   390×844, which is the same React tree, not an Android or iOS run.
-- **The desktop app builds and launches, but its window renders blank** — `09-desktop-app-window.png` is a 1120×720
-  window with a title bar and nothing in it. The Rust side is healthy (`metal backend ready` in 107 ms), and the *same*
-  `apps/mobile/dist` bundle renders correctly when served to headless Chrome, so the failure is on the Tauri boot path,
-  which this branch does not touch: its only file outside `lib/`, the shell components and the two `Sheet`s is
-  `vault/resolve.web.ts`, which returns the `null` that `resolve.ts` already returned for `Platform.OS === "web"`.
-  There is no clean baseline to compare against here — a desktop build of `origin/main` is a fresh llama.cpp compile —
-  so this is reported, not diagnosed further. It sits in the same area as F41, the desktop download-door wrap the
-  `web-desktop-check` stream is fixing. **The desktop layout is therefore proven in the browser at desktop widths and
-  in the built app only as far as the window itself.**
+- **No screenshot of the desktop app, by instruction.** Launching a freshly built `Inborn.app` changes its ad-hoc
+  signature, and the vault key's Keychain ACL then asks the operator for a password on screen. Moshe asked for that to
+  stop, so the desktop shell is out of this branch's proof and belongs to the `web-desktop-check` stream. **The desktop
+  layout is therefore proven in the browser at desktop widths, not in the Tauri window.** The Tauri side of the work —
+  the three menu accelerators in `apps/desktop/src-tauri/src/shell.rs` — is covered by the Rust build and by the fact
+  that the webview binding stands down inside Tauri so a chord never fires twice; neither was exercised in a window.
+  One observation from the single launch made before that instruction arrived, for whoever owns the desktop shell: the
+  window came up **blank** at its default 1120×720 with the Rust side healthy (`metal backend ready` in 107 ms), while
+  the very same `apps/mobile/dist` bundle rendered correctly when served to headless Chrome. That points at the Tauri
+  boot path, which this branch does not touch, in the same area as F41.

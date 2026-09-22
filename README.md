@@ -1656,12 +1656,13 @@ it because its drawer reloads on every mount. One line in `services/AppServices.
 `docs/qa/desktop-layout-2026-09-22.md`. **The phone shell is pixel-identical, measured**: the same `SHOTS_PHONE_AB=1`
 run against `origin/main` 6899f07 in a second worktree produced byte-identical PNGs of the empty chat and the chats
 drawer at 390×844. Two things are not proven here and the QA note says so: the citation variant of the panel has no
-screenshot (web indexing needs the `nomic-embed` GGUF, which is not on this machine), and **the built macOS app's window
-renders blank** — Rust healthy, the same bundle fine in a browser, nothing in this branch on the Tauri boot path, same
-area as F41.
+screenshot (web indexing needs the `nomic-embed` GGUF, which is not on this machine), and **the Tauri window was not
+photographed** — launching a freshly built `Inborn.app` re-signs it ad hoc and the vault key's Keychain ACL then asks
+the operator for a password on screen, so the desktop shell stays with the `web-desktop-check` stream.
 
 Gates on this branch: `pn install --frozen-lockfile` 0, `pn typecheck` 0, `pn test` 0 (core 505, mobile 179, i18n 10,
-ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines), `pn desktop:build:app` 0.
+ui 11 — **705** tests), `pn lint` 0, `pn web:build` 0, `pn web:smoke` 0 (five PASS lines). `pn desktop:build:app` also
+returned 0, but the built app is deliberately not launched here — see the QA note.
 
 ## Fixes round 20: round 19 shortened the wrong questions (branch `fixes-r20`) — 22.9.2026
 **F39** (MosheAI on the round-19 verdict, 22.9.2026 05:10): round 19's `isShortAsk` calls **any** one-line question of up
