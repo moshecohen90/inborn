@@ -1,7 +1,7 @@
 # Models run 2026-09-06/07 — every catalog entry on the OnePlus 6T
 
 Run by the models-verify stream on branch `models-verify` (worktree of `main` at 4992f67 after the merge; measurements taken on cbb3810 + this branch's fixes).
-Device: OnePlus 6T (ONEPLUS A6013, Snapdragon 845, Android 11, 7,818,096 kB RAM = the 8 GB model, `adb -s REDACTED-6T`, taps ignored, driven with key events + two dev file hooks, see "Method").
+Device: OnePlus 6T (ONEPLUS A6013, Snapdragon 845, Android 11, 7,818,096 kB RAM = the 8 GB model, `adb -s <6t-serial>`, taps ignored, driven with key events + two dev file hooks, see "Method").
 Build: `APP_VARIANT=development` debug APK (arm64-v8a) + Metro on a private port over `adb reverse`. The lead's Play release build (1.0.0, Instant asset pack) was reinstalled from `scratchpad/apks/inborn.apks` at the end and left running.
 Evidence: `/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/models-verify/` (screenshots `*.png`, per-prompt `*.json` = `Documents/dev-run.json`, `phi-crash.txt`). Copy before the session directory is cleaned.
 

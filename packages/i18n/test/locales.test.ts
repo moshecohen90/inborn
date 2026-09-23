@@ -42,6 +42,17 @@ describe("locales", () => {
   });
 });
 
+describe("the paywall names only the stores that sell it (MosheAI item 8, 24.9.2026)", () => {
+  /* The app promised Windows and macOS while the site's own Get section said they come after iOS and Android. */
+  it("no locale sells Pro on a desktop store, and the Desktop button's string is gone with the button", () => {
+    for (const f of files) {
+      const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+      expect(d["paywall.noStore"], `${f} paywall.noStore`).not.toMatch(/windows|macos|màçÖS|Wïñdôws/i);
+      expect("paywall.web.desktop" in d, `${f} paywall.web.desktop`).toBe(false);
+    }
+  });
+});
+
 describe("sizes in copy (QA F24)", () => {
   /* Every line of the model step that shows a size takes it from the catalog; a number typed into a locale goes stale in silence. */
   const SIZED = ["onboarding.model.source.bundled", "onboarding.model.source.ready", "onboarding.model.source.play", "onboarding.model.source.playPending", "onboarding.model.source.https", "onboarding.model.download"];

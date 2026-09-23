@@ -1,6 +1,6 @@
 # Acceptance round 43 — the OnePlus 6T
 
-Device: Moshe's OnePlus 6T (`adb -s REDACTED-6T`, Android 11). **His own install was never touched**: it is still
+Device: Moshe's OnePlus 6T (`adb -s <6t-serial>`, Android 11). **His own install was never touched**: it is still
 `com.inbornapp.mobile` versionCode 19, `lastUpdateTime 2026-09-23 12:13:04`, the same before and after this run.
 Everything below ran on a second package of my own, `com.inbornapp.mobile.qa`, built from this branch and
 **uninstalled when the run ended** (`pm list packages | grep inborn` → only `com.inbornapp.mobile`). The phone was

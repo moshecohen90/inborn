@@ -24,7 +24,12 @@ if (!scriptPath) {
   console.error('usage: ios-qa.mjs <script.json> --out <dir> [--device <udid>] [--launch]');
   process.exit(2);
 }
-const device = flag('device', process.env.INBORN_IOS_DEVICE || 'REDACTED-IPHONE');
+// The repo is public: the phone's UDID is never a default in a tracked file (F238).
+const device = flag('device', process.env.INBORN_IOS_DEVICE);
+if (!device) {
+  console.error('no device: pass --device <udid> or set INBORN_IOS_DEVICE');
+  process.exit(2);
+}
 const bundle = flag('bundle', 'com.inbornapp.mobile');
 const outDir = flag('out', join(process.cwd(), 'qa-out'));
 const runId = flag('run', `${basename(scriptPath, '.json')}-${Date.now().toString(36)}`);

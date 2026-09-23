@@ -48,7 +48,8 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
     expect(fit("instant").languages.zh).toBe("good");
     /* Measured 3/3/3 on Sharp: native, not good. */
     for (const l of ["ja", "ko", "ru"]) expect(fit("sharp").languages[l], l).toBe("native");
-    expect(fit("fast").languages.ar).toBe("native");
+    /* Arabic was the one `native` on a single 2/2/3 run whose prose scored 2 (docs/models/model-fit.md); `good` until a second run. */
+    expect(fit("fast").languages.ar).toBe("good");
   });
   it("Traditional and Simplified Chinese are expressible and validate; a bad script subtag is still a problem", () => {
     expect(fit("fast").languages["zh-Hant"]).toBe("native");

@@ -1,6 +1,6 @@
 # Acceptance round 43 — the iPhone 13 Pro
 
-Device: Moshe's iPhone 13 Pro (`devicectl REDACTED-IPHONE`). **Nothing was installed, replaced or removed.**
+Device: Moshe's iPhone 13 Pro (`devicectl <iphone-udid>`). **Nothing was installed, replaced or removed.**
 The phone carries `com.inbornapp.mobile` 1.0.0 (15), the build the `attach-ios` stream left there this evening, and
 it is still exactly that; nothing was uninstalled, no setting was changed, the phone was left on its home screen.
 (COMMON's rule: an uninstall on 23.9 deleted Moshe's chats, documents and vault once already.)

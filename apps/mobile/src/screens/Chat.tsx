@@ -223,6 +223,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [modelSheetOpen, setModelSheetOpen] = useState(false);
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
+  const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
@@ -944,7 +945,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     return tier === "none" || tier === "basic" ? adviceLanguage : null;
   }, [adviceLanguage, model.id]);
   /* §6.3 mediate honestly: a browser user cannot switch, so instead of the card they get the same verdict the vault's picker gives, with no action. */
-  const noBetterHere = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
+  const shortfall = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
+  /* A permanent banner on every turn in a language we rated weak is discouraging, not honest (Moshe, 24.9): the verdict
+     goes through the same once-per-chat memory and snooze the §7.8 advice card uses, so it is said once and dismissible. */
+  const shortfallKey = shortfall ? `none:${shortfall.use}:${shortfall.languageCode}` : null;
+  const shownShortfall = useRef<string | null>(null);
+  shownShortfall.current = adviceToShow(adviceChat, shortfallKey, shownShortfall.current, adviceSnoozed);
+  /* The snooze lives on the chat row, which a chat that has never been saved does not have yet; the local key covers that turn. */
+  const snoozeShortfall = (key: string) => {
+    setShortfallDismissed(key);
+    snoozeAdvice(key);
+  };
+  const noBetterHere = shortfall && shownShortfall.current === shortfallKey && shortfallDismissed !== shortfallKey ? shortfall : null;
   /* An empty chat has no language of its own yet; the sheet's recommendation then answers for the app's own language. */
   const uiLanguageCode = useMemo(() => {
     const base = i18n.language.split("-")[0]?.toLowerCase() ?? "en";
@@ -1188,14 +1200,19 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </View>
       ) : null}
       {noBetterHere && status.kind === "ready" ? (
-        <Text testID="model-none-line" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
-          {t("models.recommendedNone", {
-            device: deviceNoun(),
-            model: modelLabel(model.id),
-            use: t(`use.${noBetterHere.use}`).toUpperCase(),
-            language: t(`language.${noBetterHere.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[noBetterHere.languageCode] ?? noBetterHere.languageCode }).toUpperCase(),
-          })}
-        </Text>
+        <View testID="model-none" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text testID="model-none-line" style={[type.caption, styles.grow, { color: theme.text2 }]}>
+            {t("models.recommendedNone", {
+              device: deviceNoun(),
+              model: modelLabel(model.id),
+              use: t(`use.${noBetterHere.use}`),
+              language: t(`language.${noBetterHere.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[noBetterHere.languageCode] ?? noBetterHere.languageCode }),
+            })}
+          </Text>
+          <Pressable testID="model-none-dismiss" accessibilityRole="button" onPress={() => shortfallKey && snoozeShortfall(shortfallKey)} hitSlop={8} style={styles.noticeBtn}>
+            <Text style={[type.caption, { color: theme.accent }]}>{t("safety.dismiss")}</Text>
+          </Pressable>
+        </View>
       ) : null}
       {persona.disclaimer || settings.personaId !== DEFAULT_PERSONA_ID ? (
         <Text testID="persona-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
@@ -1351,7 +1368,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         {...listClipping}
         data={rows}
         keyExtractor={(r) => r.id}
-        contentContainerStyle={[styles.list, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
+        /* The list hugs the bottom so a conversation grows upward; an empty chat has nothing to hug, and at desktop height that left 380 px of nothing above the seal (QA F235). */
+        contentContainerStyle={[styles.list, rows.length ? null : styles.listEmpty, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
         onScroll={onScroll}
         onLayout={onListLayout}
         scrollEventThrottle={64}
@@ -1688,6 +1706,7 @@ const styles = StyleSheet.create({
   noticeBtn: { minHeight: 28, justifyContent: "center" },
   grow: { flex: 1 },
   list: { padding: 16, gap: 14, flexGrow: 1, justifyContent: "flex-end" },
+  listEmpty: { justifyContent: "center" },
   /* §8.9 text measure: the stream and the composer keep 680 px however wide the window is. */
   column: { width: "100%", maxWidth: COLUMN_WIDTH, alignSelf: "center" },
   empty: { alignItems: "center", gap: 12, marginBottom: 32 },

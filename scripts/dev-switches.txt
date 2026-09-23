@@ -1,0 +1,20 @@
+# Every EXPO_PUBLIC_* switch that changes what a bundle does. Metro inlines them at bundle time, so one left in the
+# building shell ships in a store bundle. Read by scripts/check-store-env.sh and by apps/mobile/app.config.ts, which
+# is the file every build path (prebuild, export, gradle, Xcode) evaluates — one list, both gates.
+EXPO_PUBLIC_DEV_MODEL_HOST
+EXPO_PUBLIC_MODELS_BASE_URL
+EXPO_PUBLIC_DEV_RAM_GB
+EXPO_PUBLIC_AUTOINSTALL
+EXPO_PUBLIC_AUTOIMPORT
+EXPO_PUBLIC_AUTOPROMPT
+EXPO_PUBLIC_AUTOINDEX
+EXPO_PUBLIC_AUTOASK
+EXPO_PUBLIC_AUTOOCR
+EXPO_PUBLIC_AUTOVOICE
+EXPO_PUBLIC_AUTOVOICE_LIVE
+EXPO_PUBLIC_AUTOBUY
+EXPO_PUBLIC_DEVICE_TIER
+EXPO_PUBLIC_PRO
+EXPO_PUBLIC_TIER
+EXPO_PUBLIC_STORE_OFFLINE
+EXPO_PUBLIC_ALLOW_TEST_PURCHASES

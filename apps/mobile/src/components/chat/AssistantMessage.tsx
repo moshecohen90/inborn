@@ -44,33 +44,36 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
   };
   /* iOS merges an accessible row into one element and hides Continue, Regenerate and the chips (QA O12); Android keeps the children, so the row itself carries the summary there (QA T26). */
   const onHeader = Platform.OS === "ios";
+  /* The body mirrors with its own text direction; the label, the disclosures and the state row used to stay hard left,
+     600 px from a right-aligned Hebrew answer (QA F234). One flag mirrors the whole block. */
+  const rtl = dir === "rtl";
   return (
     <Pressable testID="assistant-message" onLongPress={onLongPress} delayLongPress={350} {...(onHeader ? { accessible: false } : summary)} style={styles.root}>
-      <Text {...(onHeader ? summary : {})} style={[type.monoLabel, { color: theme.text3 }]}>
+      <Text {...(onHeader ? summary : {})} style={[type.monoLabel, rtl ? styles.end : null, { color: theme.text3 }]}>
         {header}
       </Text>
       {row.reasoning ? (
-        <Pressable testID="reasoning-toggle" accessibilityRole="button" accessibilityState={{ expanded: showReasoning }} onPress={() => setShowReasoning((s) => !s)} style={styles.reasoningToggle}>
+        <Pressable testID="reasoning-toggle" accessibilityRole="button" accessibilityState={{ expanded: showReasoning }} onPress={() => setShowReasoning((s) => !s)} style={[styles.reasoningToggle, rtl ? styles.rowReverse : null]}>
           <Icon name={showReasoning ? "chevronDown" : "chevronRight"} size={14} color={theme.text3} />
           <Text style={[type.monoLabel, { color: theme.text3 }]}>{row.reasoningMs !== undefined ? t("chat.reasoningTimed", { seconds: (row.reasoningMs / 1000).toFixed(1) }) : t("chat.reasoning")}</Text>
         </Pressable>
       ) : null}
       {row.reasoning && showReasoning ? (
-        <View style={[styles.reasoning, { borderColor: theme.border }]}>
+        <View style={[styles.reasoning, rtl ? styles.reasoningRtl : null, { borderColor: theme.border }]}>
           <Text style={[type.bodySmall, { color: theme.text2, writingDirection: directionOf(row.reasoning), textAlign: directionOf(row.reasoning) === "rtl" ? "right" : "left" }]} selectable>
             {row.reasoning}
           </Text>
         </View>
       ) : null}
       {waiting ? <PulsingDot /> : <Markdown testID="assistant-text" source={row.content} direction={dir} caret={row.streaming} />}
-      {row.error ? <Text style={[type.bodySmall, { color: theme.danger }]}>{row.error}</Text> : null}
+      {row.error ? <Text style={[type.bodySmall, rtl ? styles.end : null, { color: theme.danger }]}>{row.error}</Text> : null}
       {!row.streaming && row.safety === "family-safe" ? (
-        <Text testID="family-safe-note" style={[type.mono, { color: theme.text3 }]}>
+        <Text testID="family-safe-note" style={[type.mono, rtl ? styles.end : null, { color: theme.text3 }]}>
           {t("chat.familySafe.note")}
         </Text>
       ) : null}
       {!row.streaming && (row.stopped || row.loop) ? (
-        <View style={styles.stateRow}>
+        <View style={[styles.stateRow, rtl ? styles.rowReverse : null]}>
           <Text style={[type.mono, { color: theme.text3 }]}>{row.loop ? t("chat.loopDetected") : row.stoppedBy === "system" ? t("chat.stoppedBySystem") : t("chat.stopped")}</Text>
           {row.loop && onRegenerate ? (
             <Pressable testID="regenerate" accessibilityRole="button" onPress={onRegenerate} hitSlop={8} style={styles.inlineBtn}>
@@ -84,7 +87,7 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
         </View>
       ) : null}
       {!row.streaming && row.content && row.citations?.length ? <CitationChips content={row.content} citations={row.citations} /> : null}
-      {!row.streaming && row.content ? <Ledger message={row} nCtx={nCtx} quant={quant} onUnlock={onUnlock} /> : null}
+      {!row.streaming && row.content ? <Ledger message={row} nCtx={nCtx} quant={quant} onUnlock={onUnlock} rtl={rtl} /> : null}
     </Pressable>
   );
 });
@@ -163,8 +166,12 @@ function PulsingDot() {
 
 const styles = StyleSheet.create({
   root: { gap: 6 },
+  /* Only the labels move: the body and the quote rail keep the full column, so nothing re-wraps. */
+  end: { alignSelf: "flex-end", textAlign: "right" },
+  rowReverse: { flexDirection: "row-reverse", alignSelf: "flex-end" },
   reasoningToggle: { minHeight: 28, flexDirection: "row", alignItems: "center", gap: 4, alignSelf: "flex-start" },
   reasoning: { borderLeftWidth: 1, paddingLeft: 10, paddingVertical: 2 },
+  reasoningRtl: { borderLeftWidth: 0, borderRightWidth: 1, paddingLeft: 0, paddingRight: 10 },
   dot: { width: 8, height: 8, borderRadius: 4, marginVertical: 8 },
   stateRow: { flexDirection: "row", alignItems: "center", gap: 12, flexWrap: "wrap" },
   inlineBtn: { minHeight: 28, justifyContent: "center" },

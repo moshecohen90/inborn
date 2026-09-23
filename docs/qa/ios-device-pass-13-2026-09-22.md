@@ -1,6 +1,6 @@
 # iOS device pass — TestFlight build 1.0.0 (13) — 22.9.2026
 
-Functional pass of the build 13 archive on Moshe's iPhone 13 Pro (udid `REDACTED-IPHONE`, on USB) immediately
+Functional pass of the build 13 archive on Moshe's iPhone 13 Pro (udid `<iphone-udid>`, on USB) immediately
 after the upload. Every launch below is the `.app` from
 `/Users/moshecohen/dev/inborn-wt/ios-build-13/apps/mobile/ios/build/Inborn.xcarchive`, the same archive whose IPA went
 to TestFlight — `CFBundleVersion` 13, `CFBundleShortVersionString` 1.0.0, signed `Apple Development: Moshe Cohen`, team

@@ -27,7 +27,6 @@ export const FEATURES = {
   /** Catalog entries flagged `proOnly` (Sharp). */
   proModels: "pro",
   /* Work (§7.9) */
-  professionPacks: "work",
   templates: "work",
   clientVaults: "work",
   redaction: "work",
@@ -54,7 +53,6 @@ export const UNBUILT_FEATURES: readonly Feature[] = [
   "customContextLength",
   "calendarContacts",
   "iconPacks",
-  "professionPacks",
   "recordsDictation",
   "largeModels",
   "teamLicence",
@@ -87,8 +85,8 @@ export function limits(tier: LicenceTier): Limits {
 /**
  * The value lines on each S60 card, in spec order. Only capabilities that ship in this build may appear (§2.3 "proof, not
  * promise"; §12.3): a line here must be backed by a gate above and by code on main. Keys into @inborn/i18n `paywall.pro.*`.
- * Work lines are backed by packages/core/src/work (client vaults, audit log + signed export, profession packs, the
- * architecture statement); redaction and office intake join when the work-docs stream lands.
+ * Work lines are backed by packages/core/src/work (client vaults, audit log + signed export, profession packs — whose
+ * gate is `templates`, the key the sheet actually asks — and the architecture statement).
  */
 export const PAYWALL_BULLETS: Record<"pro" | "work", readonly string[]> = {
   pro: ["documents", "personas", "folders", "models", "voice"],

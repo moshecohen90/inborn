@@ -17,12 +17,13 @@ passcode. It is compiled **only** into builds made with `EXPO_PUBLIC_QA=1`; see 
 # one-off: build the QA app and install it over whatever is on the phone (never uninstall — F144)
 cd apps/mobile
 export INBORN_MODELS_DIR=/Users/moshecohen/dev/inborn/.models MODELS_DIR=$INBORN_MODELS_DIR
+export INBORN_IOS_DEVICE=<iphone-udid>   # `xcrun xctrace list devices`; never a literal in a tracked file (F238)
 export EXPO_PUBLIC_QA=1 EXPO_PUBLIC_AUTOPROMPT=file
 npx expo prebuild -p ios --no-install && (cd ios && pod install)
 xcodebuild -workspace ios/Inborn.xcworkspace -scheme Inborn -configuration Release \
-  -destination "id=REDACTED-IPHONE" -derivedDataPath ios/build/qa \
+  -destination "id=$INBORN_IOS_DEVICE" -derivedDataPath ios/build/qa \
   -allowProvisioningUpdates DEVELOPMENT_TEAM=NGCHN95667 SWIFT_VERSION=5.0 build
-xcrun devicectl device install app --device REDACTED-IPHONE \
+xcrun devicectl device install app --device $INBORN_IOS_DEVICE \
   ios/build/qa/Build/Products/Release-iphoneos/Inborn.app
 
 # then, as often as you like — no rebuild, no prompt, no passcode
