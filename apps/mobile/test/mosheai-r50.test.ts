@@ -36,7 +36,19 @@ describe("item 6 · one line before the first word, not five", () => {
     expect(src).toContain("const [open, setOpen] = useState(false);");
   });
   it("the offline line, the storage notice and the engine switch live behind the disclosure", () => {
-    for (const inside of ['testID="web-offline-state"', 't("webStorageNotice")', 'testID="engine-switch"', 't("web.unknownMemory")']) expect(detail, inside).toContain(inside);
+    for (const inside of ['testID="web-offline-state"', 'testID="web-storage-notice"', 't("webStorageNotice")', 'testID="engine-switch"', 't("web.unknownMemory")']) expect(detail, inside).toContain(inside);
+  });
+  /* §9.2/§9.3 (fix-design): mono and the sealed green are for the state word, not for a sentence about storage. */
+  it("sets the storage caveat as body text, and keeps mono and sealed for the state word alone", () => {
+    const offline = detail.slice(detail.indexOf('testID="web-offline-state"'), detail.indexOf('testID="web-storage-notice"'));
+    expect(offline).toContain("styles.mono");
+    expect(offline).toContain("theme.sealed");
+    expect(offline).not.toContain("webStorageNotice");
+    const caveat = detail.slice(detail.indexOf('testID="web-storage-notice"'), detail.indexOf('chromePromptApi'));
+    expect(caveat).toContain("styles.caption");
+    expect(caveat).toContain("theme.text2");
+    expect(caveat).not.toContain("styles.mono");
+    expect(caveat).not.toContain("theme.sealed");
   });
   /* A phone reader must not have to open a disclosure to learn the browser runs Instant only. */
   it("keeps the phone door out in the open", () => {

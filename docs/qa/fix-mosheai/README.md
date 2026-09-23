@@ -1,11 +1,12 @@
 # fix-mosheai — round 50 evidence (24.9.2026)
 
-Answers the MosheAI review of 24.9. Findings **F225–F238** in `docs/qa/qa-run-2026-09-11.md`; the round write-up is
+Answers the MosheAI review of 24.9. Findings **F225–F239** in `docs/qa/qa-run-2026-09-11.md`; the round write-up is
 `README.md` → "Fixes round 50".
 
 ## How these were taken
 
-`apps/web/dist` built from this branch, served by `node scripts/serve-web.mjs` on port **8933**
+`apps/web/dist` built from this branch, served by `node scripts/serve-web.mjs` on a free local port (**8933**, and
+**8934** for the re-run that produced the `.txt` measurements after the merge)
 (`MODELS_DIR=/Users/moshecohen/dev/inborn/.models`), driven headless with playwright-core on
 `chrome-headless-shell`, viewport height 900, light scheme. The server was killed by its own PID when the pass ended.
 
@@ -29,13 +30,19 @@ here unchanged so the pair is comparable. Their original names are in brackets.
 
 ## Measurements
 
-`walk-1440.log`, `walk-390.log` — the compare header's computed `position` and the viewport y of the header, the
+`walk-1440.txt`, `walk-390.txt` — the compare header's computed `position` and the viewport y of the header, the
 *Client vaults* row and the footnote, before the scroll, after it, and after `position` is forced to `static`.
-`hebrew-1440.log` — the answer block's box against the x of `INSTANT · ON-DEVICE AI`, `LEDGER` and the notice, before
+`hebrew-1440.txt` — the answer block's box against the x of `INSTANT · ON-DEVICE AI`, `LEDGER` and the notice, before
 and after Dismiss.
+`strip-1440.txt`, `strip-390.txt` — the computed font family and colour of the strip's state word and of the storage
+caveat, after the §9.2/§9.3 split.
+
+Measurement files are `.txt`, not `.log`: `.gitignore` line 8 ignores `*.log`, so a cited `.log` would not be in the
+repo at all.
 
 ## Guards watched failing
 
 `guard-red-r50.txt` — the app fixes reverted with `git checkout --` and the suites re-run: **11 failures**
 (`apps/mobile/test/mosheai-r50.test.ts` and the two-store case in `premium-entry.test.ts`), then restored and green.
 `guard-red-device-ids.txt` — the iPhone UDID written back into a tracked doc, `no-device-ids.test.ts` red on it.
+`guard-red-strip-typography.txt` — the strip's offline line put back as one sealed mono paragraph: **2 red**.

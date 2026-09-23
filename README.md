@@ -4188,22 +4188,28 @@ there is one branch to land rather than two that touch the same files.
 The 24.9 MosheAI pass raised 20 items. Three of them belong to other streams (the dead call to action on the live
 site and the four dead buy buttons to `cf-token`; the Work tier on hardware and the iPhone use-pass to
 `work-tier-6t` and `ios-qa-bridge`), and item 14 — F161's residual sentence — was not assigned. This round is the
-other fourteen: **F225–F238** in `docs/qa/qa-run-2026-09-11.md`, evidence in `docs/qa/fix-mosheai/`.
+other fourteen: **F225–F239** in `docs/qa/qa-run-2026-09-11.md`, evidence in `docs/qa/fix-mosheai/`.
 
 - **The paywall's comparison table kept its headers (F225).** 18 rows and `FREE / PRO / WORK` was a plain first row,
   so at 390 you reached *Client vaults with passcodes* and three unlabelled tick columns. The header row is sticky
   inside the card on the platform whose style engine has sticky, with its own background so rows pass under it. The
-  complement is what makes this a proof rather than a claim: in the same session, `position` forced back to `static`
-  puts the columns back to bare (`after/05-paywall-compare-scrolled-nosticky-390.png`). On native phones the header
+  complement is what makes this a proof rather than a claim: at 390 the header measures y 125 on screen with sticky
+  and y −168 off screen with `position` forced back to `static` in the same session. At 1440 the table fits the
+  viewport once scrolled, so the sticky changes nothing there and the review's 1440 claim rested on a scroll that
+  never took — its two "scrolled" shots are byte-identical. On native phones the header
   still scrolls — React Native has no `sticky` outside a `ScrollView`'s own `stickyHeaderIndices`, and the paywall's
   children are conditional, so pinning an index there is a separate change. Said plainly rather than implied.
 - **Five notices before the first word became one (F226).** The strip keeps `web.notice` and folds the offline and
   storage line, the unknown-memory line and the Chrome engine switch behind a `Details` disclosure. The phone door
   stayed out — a phone reader must not open a disclosure to learn the browser runs Instant only — and so did the
-  AI-can-be-wrong strip, which is the one with a Dismiss. 79 px of chrome became 44.
+  AI-can-be-wrong strip, which is the one with a Dismiss. 79 px of chrome became 44. A second pass at `fix-design`'s
+  request splits the offline line: §9.2/§9.3 give mono and the sealed green to the state word, so the storage caveat
+  is sans body in `theme.text2` rather than a mono paragraph wearing the seal colour.
 - **Hebrew: we stopped discouraging it too (F227).** The permanent all-caps verdict on every Hebrew turn now runs
   through the **same** once-per-chat memory and chat-row snooze the §7.8 advice card uses, with a Dismiss and in
-  sentence type. The string's own capitals belong to `review-copy` item 20 and were left for that stream.
+  sentence type. The string's own capitals were `review-copy` item 20 and were left for that stream; round 48 landed
+  them, so on the merged build the line reads "Nothing on this browser is good at Chat in Hebrew. Closest: INSTANT"
+  and disappears for the chat when dismissed.
 - **Two surfaces stopped contradicting each other about what you can buy (F228).** The app sold Pro "in the iOS,
   Android, Windows and macOS apps" while the site says Windows and macOS come after them. Eight locales and pseudo
   now name the two stores that exist, and the Desktop button and its string are gone.
@@ -4228,10 +4234,18 @@ other fourteen: **F225–F238** in `docs/qa/qa-run-2026-09-11.md`, evidence in `
   fails on any of the three, and it caught its first real hit immediately: the key id inside the F238 row itself.
 
 Every behaviour fix carries a guard that was watched failing with the fix reverted
-(`docs/qa/fix-mosheai/guard-red-r50.txt`, 11 red; `guard-red-device-ids.txt` for the identifier scan).
+(`docs/qa/fix-mosheai/guard-red-r50.txt`, 11 red; `guard-red-device-ids.txt` for the identifier scan;
+`guard-red-strip-typography.txt` for the two §9.2/§9.3 cases below).
 
-Gates after merging `origin/main` (rounds 46–49): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
-**1,356 tests** (core 726, mobile 600, ui 13, i18n 17), `pn web:build` + `pn web:smoke` PASS — the smoke now opens
+One follow-up landed after the merge, at `fix-design`'s reading of the spec: the strip's offline line was a single
+mono `Text` that turned `theme.sealed` when ready **and** carried the storage caveat inside it, which is a mono
+paragraph (§9.2) and the sealed green standing for something that is not a seal (§9.3). Split: `web-offline-state`
+keeps the mono and the green for the state word alone, `web-storage-notice` is sans body in `theme.text2`. Measured
+open at both widths — "Works offline" `IBMPlexMono rgb(11, 122, 76)`, the caveat `IBMPlexSans rgb(74, 85, 96)`
+(`docs/qa/fix-mosheai/strip-390.txt`, `strip-1440.txt`).
+
+Gates after merging `origin/main` (rounds 46–49, 47b, 51) and that follow-up: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
+**1,367 tests** (core 726, mobile 611, ui 13, i18n 17), `pn web:build` + `pn web:smoke` PASS — the smoke now opens
 the strip's disclosure before reading the offline state — and `pnpm --filter @inborn/site check` "13 pages: no
 scripts, no external assets, no dead links, CSP present".
 
