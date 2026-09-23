@@ -14,8 +14,9 @@ import { font } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
 import { webDoorsApply } from "./doors";
 
-/** The marketing site (spec §13.4) is a separate origin; this is only a link, never a fetch. */
-export const GET_APP_URL = "https://inbornapp.com/";
+import { GET_APP_URL } from "./links";
+
+export { GET_APP_URL, STORE_LINKS } from "./links";
 
 type Phase =
   | { kind: "idle" }

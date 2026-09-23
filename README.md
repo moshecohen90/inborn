@@ -3406,3 +3406,37 @@ next store submission**, not after. `SITE_ORIGIN` still defaults to the staging 
 flipping it is a deploy decision, not a code one. No device, emulator or phone was touched: the screens are proven in
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
+## Fixes round 39: nothing in the app said Pro existed until it refused you (branch `premium-entry`) — 23.9.2026
+
+F145–F149, filed by Moshe from the browser and the phone: "buttons for premium, to see what's in premium, and tapping
+things that lead to premium according to what we decided" · "the other attach buttons show they are disabled, but why
+doesn't tapping them take me to the paywall?" · "`/paywall` is very strange: only 'Pay once. Own it… Pro is sold in the
+iOS, Android, Windows and macOS apps…'. Where are the prices? Very naked." Three different symptoms of one thing: the
+entitlement mechanism was complete and the *entrances to it* were not.
+
+- **F145 — every refusal opened the same generic price list.** Fourteen doors pushed a bare `router.push("/paywall")`,
+  so the person who had just been refused one specific thing met "Pay once. Own it." and had to work out which of two
+  prices lifted what they tried. `paywallFor` already computed the exact reason; the door threw it away. The moments
+  mechanism is extended rather than doubled: `reasonOf(moment)` and `PAYWALL_REASONS` live next to `paywallFor` in
+  `packages/core/src/licence/moments.ts`, `openPaywall(reason)` is the one door, and S60 opens with
+  `paywall.why.<reason>` above the cards. Proved by tapping, not by reading: the PRO tag on the strict switch lands on
+  `/paywall?reason=strictDocuments` and the screen reads "You asked for answers only from your documents. Pro turns
+  that on."
+- **F146 — a Free user could tick a second document into a chat for nothing.** The picker and the share target both
+  asked `fileIntake`; the attach sheet's own list did not, and `onAttach={docs.attach}` walked straight past the
+  one-file limit §7.3 gives Free. The row now carries the PRO tag and the reason for the limit, stays tappable, and
+  opens S60 with `document`. Detaching is never gated — removing your own data is not something we sell (§7.5).
+- **F147 — no front door.** Settings opens with an "INBORN PRO" section (tier badge, a sub-line per tier, "See what's
+  in Pro"), and the sheet the chat header opens carries the same chip and link (round 40 moved that from Chat settings to
+  the model sheet; both carry it). All of them open S60 with no reason, because nothing was refused.
+- **F148 — the paywall never said what separates the tiers.** `COMPARE_ROWS` / `compareCell()` keep the §7.3 matrix in
+  one machine-readable place and `CompareTable` renders 18 rows across Free / Pro / Work, marking the column you are
+  on. Every cell is computed from the same `can()` / `limits()` the screens ask, so the table cannot promise what the
+  gates refuse; a row for a capability on `UNBUILT_FEATURES` fails the build.
+- **F149 — the browser paywall named no price, and the URL did not resolve.** With no store the screen rendered one
+  sentence and nothing else. It now shows both tiers priced from the catalogue, the value lines, the US-list-price
+  note, three buttons to App Store / Google Play / Desktop, the promise that the browser stays free, and the table.
+  Separately the export is one `index.html` with no rewrite, so `/paywall` was a 404 on any static host: the build now
+  writes `_redirects` and the dev server falls back to `index.html` for extensionless paths, the same rule in both.
+
+Copy in all 9 locales. `pn web:smoke` green. Evidence, before and after at 390 and 1440: `docs/qa/premium-entry/`.
