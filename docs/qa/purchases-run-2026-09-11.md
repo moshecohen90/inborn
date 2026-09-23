@@ -2180,3 +2180,32 @@ fixture was removed from `/sdcard/Pictures` and from MediaStore. The iPhone was 
 (the release bundle, then the driver APK), `--no-daemon`, in a private `GRADLE_USER_HOME` in the session scratch;
 `gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild` was empty before
 either. No emulator, simulator or browser was started.
+
+## X. The Work tier on real hardware — every $69.99 bullet driven on the OnePlus 6T — 24.9.2026
+
+`sellable("work")` has been true since the Work lines landed, and the store has carried the SKU since §S, but nothing
+between the price and the buyer had ever been driven on a phone: the tier's only coverage was T48/T49/T50 on an
+emulator on **11.9**, and `docs/qa/acceptance/README.md` §E still lists client vaults, the audit log and signed
+records as *not verified*. This section closes that gap for everything the card sells.
+
+**The build.** `com.inbornapp.mobile.qa`, `assembleDebug` from branch `work-tier-6t` against Metro on a private port
+with `EXPO_PUBLIC_TIER=work`, installed beside Moshe's Play build, which was never touched and whose vault and chats
+were never opened. The QA package was uninstalled at the end (`pm list packages | grep inborn` → only
+`com.inbornapp.mobile`). The paywall on the QA build reads **YOU OWN PRO FOR WORK** and the compare table's WORK
+column is on for every Work row (`docs/qa/work-tier-6t/w0-paywall-work.png`).
+
+**What the money buys, row by row.** Client vaults with their own passcode (two vaults, lock, wrong code, the other
+vault's code refused); the per-vault hash-chained audit log (verified, broken by a one-byte tamper, verified again,
+exported, and linked to the signed record by content hash); signed verifiable records (VALID and INVALID in the app,
+and the same two verdicts from the published Node recipe run off the device); the four profession packs, used end to
+end; the printable architecture statement, carrying this build's hash, both vault names and the signing public key;
+Excel and HTML import with citations; redaction before sending; strict mode both ways. One partial: asked for a part
+number held in the spreadsheet, INSTANT returns the row label — retrieval was right, the model was not, on a screen
+where the app itself recommends FAST for documents.
+
+**What this package still cannot answer.** It has no Play products, so both tiers render as *" · one-time purchase"*
+with an empty price — the real prices stay §S/§T's rows on the Play build — and it has no Play asset packs, so the
+document index model had to be served from `scripts/serve-models.mjs` over `adb reverse`, and the vision and speech
+companions were not installed at all.
+
+Full table and screenshots: `docs/qa/work-tier-6t/README.md`. Findings: F215–F224 in `docs/qa/qa-run-2026-09-11.md`.
