@@ -22,6 +22,8 @@ import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
 import { copyIntoLibrary, deleteFile, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
+/* The gate owns the reasons, so a new one cannot be reported here and go unhandled there. */
+import type { AttachmentBlock } from "../lib/docsGate";
 
 /** Free tier attaches one file of up to 20 pages (spec §7.3); Pro indexes everything, page by page. */
 export const FREE_PAGE_CAP = 20;
@@ -29,9 +31,6 @@ export const FREE_PAGE_CAP = 20;
 export const RAM_ATTACH_PREFIX = "ram:";
 
 export type EmbedderStatus = { kind: "ready"; path: string } | { kind: "missing" } | { kind: "loading" } | { kind: "failed"; error: string };
-
-/** Why a chat's attachments have nothing to search although none of them is still being read. */
-export type AttachmentBlock = "needs-ocr" | "no-embedder" | null;
 
 export interface AttachmentState {
   hasAttachment: boolean;
@@ -234,7 +233,18 @@ export class DocumentLibrary {
     const docs = this.attachedTo(chatId);
     const indexing = docs.some((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing");
     const hasIndex = docs.some((d) => d.chunkCount > 0);
-    const blocked: AttachmentBlock = hasIndex || indexing ? null : this.embedder.kind === "missing" ? "no-embedder" : docs.some((d) => d.status === "needs-ocr") ? "needs-ocr" : null;
+    const unread = docs.filter((d) => d.chunkCount === 0);
+    const blocked: AttachmentBlock =
+      hasIndex || indexing
+        ? null
+        : this.embedder.kind === "missing"
+          ? "no-embedder"
+          : /* A picture holds no text to index; the answer is the Photo button, not OCR, whether or not OCR already ran. */
+            unread.length > 0 && unread.every((d) => d.kind === "image")
+            ? "image"
+            : docs.some((d) => d.status === "needs-ocr")
+              ? "needs-ocr"
+              : null;
     return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: docs.filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing").length };
   }
 

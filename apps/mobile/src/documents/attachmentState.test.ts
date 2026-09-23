@@ -15,7 +15,7 @@ vi.mock("./extract", () => ({
   nativeOcr: () => null,
   createExtractors: (): TextExtractor[] => [
     {
-      supports: (kind: DocKind) => kind === "txt" || kind === "image",
+      supports: (kind: DocKind) => kind === "txt" || kind === "image" || kind === "pdf",
       open: async (source): Promise<OpenedDocument> => ({
         pages: 1,
         page: async (page: number) => {
@@ -37,7 +37,7 @@ vi.mock("./files", () => ({
   },
   sweepIncognitoFiles: () => 0,
   deleteFile: (uri: string | undefined) => void (uri && files.delete(uri)),
-  readHead: () => new TextEncoder().encode("plain text"),
+  readHead: (uri: string) => new TextEncoder().encode(/\.pdf$/.test(uri) ? "%PDF-1.4" : "plain text"),
   resolveDocUri: (uri: string) => uri,
   /* Content-addressed like the real one, so importing the same file twice really is a duplicate. */
   sha256Of: async (uri: string) => `sha-${files.get(uri) ?? uri}`,
@@ -106,9 +106,21 @@ describe("attachmentState: what the chat may answer from (QA F125/F126)", () => 
     expect(planDocsTurn({ strict: false, ...after })).toEqual({ kind: "retrieve" });
   });
 
+  it("a photo attached as a file is reported as a picture, not as a scan to OCR", async () => {
+    /* On the 6T, OCR on door.jpg finished "empty · 0 chunks": a door has no text, so OCR is a dead end and the Photo button is not. */
+    const library = new DocumentLibrary();
+    await attach(library, "chat-1", "door.jpg", "");
+    await settle(library);
+
+    const state = library.attachmentState("chat-1");
+    expect(state.hasIndex).toBe(false);
+    expect(state.blocked).toBe("image");
+    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.photoNotText" });
+  });
+
   it("a scan that was never OCR'd is reported as needs-ocr, so the turn says so instead of answering", async () => {
     const library = new DocumentLibrary();
-    await attach(library, "chat-1", "scan.txt", "");
+    await attach(library, "chat-1", "scan.pdf", "");
     await settle(library);
 
     const state = library.attachmentState("chat-1");

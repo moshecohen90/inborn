@@ -1,5 +1,5 @@
 import { File } from "expo-file-system";
-import { fileIntake, paywallFor, type LicenceTier } from "@inborn/core";
+import { fileIntake, paywallFor, type DocumentRecord, type IntakeVerdict, type LicenceTier } from "@inborn/core";
 import { FREE_PAGE_CAP, type DocumentLibrary } from "./library";
 import { PICK_TYPES, pickedName, sniffPicked } from "./office";
 import type { PickOutcome } from "./pickOutcome";
@@ -19,4 +19,14 @@ export async function pickIntoLibrary(library: DocumentLibrary, tier: LicenceTie
   const doc = await library.importFile(picked.result.uri, name, { pageCap: tier === "free" ? FREE_PAGE_CAP : undefined, incognito });
   if (doc.status === "failed" || doc.status === "empty") return { kind: "error", error: doc.error ?? doc.status };
   return { kind: "imported", id: doc.id };
+}
+
+/**
+ * Tapping a document already in the library attaches it to the chat: the fourth door in, after the picker, the S40
+ * library and a share-in, and the only one that asked no gate (QA F129). A licence that stops paying keeps whatever the
+ * library already holds, so Free went on attaching the whole shelf, Work formats included.
+ */
+export function planLibraryAttach(tier: LicenceTier, documents: readonly DocumentRecord[], id: string, attachedCount: number): IntakeVerdict {
+  const doc = documents.find((d) => d.id === id);
+  return doc ? fileIntake(tier, doc.kind, attachedCount) : { kind: "ok" };
 }

@@ -35,7 +35,8 @@ describe("planDocsTurn: an attachment is never silently dropped (QA F125/F126)",
   });
 
   it("never answers from the weights with an attachment on screen: the 6T repro", () => {
-    /* door.jpg imported as a file: needs-ocr, 0 passages, strict off. The Play build answered "I don't see an attached photo". */
+    /* door.jpg imported as a file: 0 passages, strict off. The Play build answered "I don't see an attached photo". */
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, blocked: "image" })).toEqual({ kind: "refuse", messageKey: "documents.photoNotText" });
     expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, blocked: "needs-ocr" })).toEqual({ kind: "refuse", messageKey: "documents.needsOcr" });
     /* 40-page PDF sent mid-index, strict off. The Play build invented the access code "NORTGATE". */
     expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false }).kind).not.toBe("model");
@@ -60,6 +61,7 @@ describe("planDocsTurn: an attachment is never silently dropped (QA F125/F126)",
       { strict: true, hasAttachment: true, hasIndex: false },
       { strict: false, hasAttachment: true, hasIndex: false, blocked: "needs-ocr" },
       { strict: false, hasAttachment: true, hasIndex: false, blocked: "no-embedder" },
+      { strict: false, hasAttachment: true, hasIndex: false, blocked: "image" },
     ];
     for (const input of inputs) {
       const turn = planDocsTurn(input);
