@@ -3209,3 +3209,64 @@ tests** (core 616, mobile 362, i18n 11, ui 11).
 one, so the corrected text still has to be copied into the live localizations before submission
 (`docs/qa/store-copy/asc-update.txt`). The guard reads the JSON in this repository; it cannot see what is live in the
 stores. The Play listing is empty, so there was nothing to correct there.
+
+## Fixes round 42: the legal texts come from the site, and the site gets an accessibility statement (branch `legal-from-site`) — 23.9.2026
+
+Moshe: "The privacy policy and terms of use in the app MUST come from the site so we can update them; it must not be
+local on the phone, very important. Also the site needs an accessibility policy." F155–F157.
+
+- **F155 — every legal text in the app was frozen at build time and said nothing about it.** `Legal.tsx` imported
+  `privacy-policy.md` and `terms.md` into the bundle and `Licenses.tsx` imported `NOTICE.json`, each rendered as the
+  document rather than as a copy of one, so correcting a policy meant shipping a store build. Fetching them is the one
+  fix this product cannot take: the Android release manifest declares no `INTERNET` permission at all (D3), which is
+  the proof the whole app rests on. So the site is the source, `https://inbornapp.com/<doc>` is the canonical URL, and
+  the bundled copy stays and is labelled as one. Every legal screen opens with the same block: `OFFLINE COPY ·
+  EFFECTIVE 23 September 2026`, read from the document's own `Effective date:` line (`OFFLINE COPY · INVENTORY
+  2026-09-05` from `NOTICE.json` on the licences screen), a primary **"Read the current version at
+  inbornapp.com/<doc>"** button, and one line saying the website version is the one that applies. The button is
+  `Linking.openURL`: the system browser opens it and no network permission is involved, so Android is unchanged. One
+  link map for all four documents (`apps/mobile/src/lib/legalLinks.ts`), one component for the block
+  (`components/LegalSource.tsx`), and the F97 rule still holds — `Legal.tsx` states no identity of its own, it renders
+  the file's. New keys in all eight locales plus the regenerated pseudo locale.
+- **The fourth document.** `docs/legal/accessibility-policy.md` is new: a public **partial-conformance** statement to
+  WCAG 2.2 AA under the Israeli Equal Rights for Persons with Disabilities Law 5758-1998 and the Service Accessibility
+  Regulations 5773-2013 (IS 5568), and the European Accessibility Act where the app is sold in the EU. The site
+  renders it at `/accessibility` from the same Markdown as `/privacy` and `/terms` and links it from every footer; the
+  app reaches it from About; and `docs/store/listing.*.json` gains a `urls` block carrying the canonical set
+  (marketing, privacy, terms, accessibility, support), which `check-store-copy.mjs` now fails on if a locale drifts.
+  `docs/legal/app-privacy-details.md` §1a is the table of which URL goes into which store field. Spec §11.7 is the new
+  rule; §11.5 item 4 points at it.
+- **Every claim in the statement was checked against the code before it was published.** The security-engineer agent
+  reviewed the draft and struck out seven false sentences, which are corrected, not softened away: the text scale does
+  **not** reach every surface (63 hard-coded `fontSize` values, including code blocks and headings inside an answer);
+  one icon-only checkbox has no label; streaming is announced at most once every 1.5 s, not one sentence at a time;
+  several controls are 28–36 pt, not "never below the platform minimum"; the browser key map is smaller than the
+  desktop menu's; the press animation that honours Reduce Motion is the Android FAB only; and the site does **not**
+  use the app's colour tokens. "Fails the build" became "fails in our test suite" in both places it appeared, because
+  CI runs on release tags only. The statement's §5 now lists eleven measured gaps, including the two the review found
+  that nobody had written down: **there is no way to send a message from a hardware keyboard** (T28, FAIL on both
+  platforms) and the delete/wipe button text is 3.10:1 in the dark theme.
+- **F156 — the website's own tertiary text failed AA, while the statement was about to claim it met the app's rule.**
+  `--text-3` in `apps/site/src/site.css` had drifted to `#667380`: 4.01:1 on `--bg`, 3.90 on `--well`, 3.74 on
+  `--surface-1`, **3.49 on `--surface-2`**, against 4.62–5.30 for the app's tested `#7A8794`. It carries table headers,
+  mono labels, badges and platform tags. Both schemes now equal the tokens, and a new guard reads `site.css` itself,
+  maps all thirteen variables to their token and asserts equality **and** the 4.5:1 ratio, so the site can no longer
+  drift silently.
+- **F157 — the delete/wipe contrast is declared, not quietly fixed.** `onDanger` on `danger` is 3.10:1 in the dark
+  theme and `tokens.test.ts` never covered that pair. Changing a semantic brand colour belongs to the palette owner,
+  not to a legal-text round, so the number is published in §5 of the statement and a guard pins it: the day the colour
+  is fixed, the test fails and forces the gap out of the statement, which is what §7 of the statement promises.
+
+**Proof:** `docs/qa/legal-from-site/` — the app's three legal screens and the licences screen at 390 and 1440, the
+published `/accessibility` page in both schemes at both widths, and `site-licenses-1440-dark-{BEFORE,AFTER}-contrast.png`
+with the computed `th` colour read out of the browser for each (`rgb(102, 115, 128)` → `rgb(122, 135, 148)` on
+`rgb(10, 13, 17)`). `guards-fail.md` has every new guard sabotaged and watched red, including the one that **passed**
+its first sabotage because it matched an import line rather than the rendered element, and was tightened. Gates: lint,
+`check:store`, **1,036 tests** (core 616, mobile 398, i18n 11, ui 11), `apps/site/check.mjs` green on 8 pages.
+
+**Not done:** `inbornapp.com` is not serving this site yet — the site deploys to `inborn-site.pages.dev` and the custom
+domain is still pending (README "Deploy"), so every button added here points at a URL that must resolve **before the
+next store submission**, not after. `SITE_ORIGIN` still defaults to the staging origin for canonicals and the sitemap;
+flipping it is a deploy decision, not a code one. No device, emulator or phone was touched: the screens are proven in
+the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
+screen-reader gap it describes has still not had a listening pass.
