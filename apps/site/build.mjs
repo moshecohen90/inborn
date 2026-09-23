@@ -117,12 +117,12 @@ function legalPage(file) {
   return { title, body: `<article class="prose legal">${notice}${body.replace(/^<h1[^>]*>.*?<\/h1>\n?/, "")}</article>`, h1: title, source: `docs/legal/${file}` };
 }
 
-/* ---------- Licences from NOTICE.json ---------- */
+/* ---------- Licenses from NOTICE.json ---------- */
 
 function licensesPage() {
   const notice = JSON.parse(readFileSync(path.join(repoRoot, "docs/legal/NOTICE.json"), "utf8"));
   const groups = [
-    ["model", "Models", "Open-weight models bundled with the app or served from our model host. Models you import yourself are shown their own licence in the app."],
+    ["model", "Models", "Open-weight models bundled with the app or served from our model host. Models you import yourself are shown their own license in the app."],
     ["engine", "Engines and native components", ""],
     ["library", "Libraries", ""],
     ["font", "Fonts", ""],
@@ -138,19 +138,19 @@ function licensesPage() {
     if (!items.length) return "";
     return `<h2 id="${g}">${title}</h2>${intro ? `<p>${esc(intro)}</p>` : ""}
 <div class="table-wrap"><table>
-<thead><tr><th>Component</th><th>Licence</th><th>Attribution</th><th>Scope</th></tr></thead>
+<thead><tr><th>Component</th><th>License</th><th>Attribution</th><th>Scope</th></tr></thead>
 <tbody>${items.map(row).join("")}</tbody></table></div>`;
   }).join("\n");
   const excluded = notice.excludedByRule.map((e) => `<li><strong>${esc(e.family)}</strong> (${esc(e.license)}): ${esc(e.reason)}.</li>`).join("");
   const body = `<article class="prose">
-<p>${esc(notice.app.name)} itself is not open source: its ${esc(notice.app.coreScope)} core is public at github.com/moshecohen90/inborn under the ${esc(notice.app.coreLicense)}, which grants the right to read, build and verify the code and nothing more. Everything else it ships with is listed here with its licence, exactly as the in-app Licences screen shows it. Inventory dated ${esc(notice.generated)}.</p>
+<p>${esc(notice.app.name)} itself is not open source: its ${esc(notice.app.coreScope)} core is public at github.com/moshecohen90/inborn under the ${esc(notice.app.coreLicense)}, which grants the right to read, build and verify the code and nothing more. Everything else it ships with is listed here with its license, exactly as the in-app Licenses screen shows it. Inventory dated ${esc(notice.generated)}.</p>
 <p class="small"><span class="label">Scope</span> shipped = inside the store build · catalogue = downloadable through the app · planned = in the specification, not yet integrated · build-only = used to build the app, never shipped.</p>
 ${sections}
 <h2 id="excluded">Not in the catalogue, by rule</h2>
-<p>These model families are deliberately not bundled or served, because their licences carry obligations we would have to pass on to you:</p>
+<p>These model families are deliberately not bundled or served, because their licenses carry obligations we would have to pass on to you:</p>
 <ul>${excluded}</ul>
 </article>`;
-  return { title: "Licences", h1: "Third-party licences", body, source: "docs/legal/NOTICE.json" };
+  return { title: "Licenses", h1: "Third-party licenses", body, source: "docs/legal/NOTICE.json" };
 }
 
 /* ---------- Layout ---------- */
@@ -167,10 +167,10 @@ const nav = [
 /* Every legal page the app links out to, so the footer and the app's Legal screen cannot drift apart. */
 export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"];
 
-const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licences", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
+const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licenses", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
 
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
-export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "FAQ"];
+export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
 function tokens() {
@@ -183,6 +183,10 @@ function tokens() {
     SEAL: sealSvg,
     APP_ORIGIN: appOrigin,
     STORE_ROW: storeRow,
+    /* Prose that stops being true on launch day belongs on the flag that already switches the buttons (F214). */
+    STORE_STATE: storesLive
+      ? "Both store listings are public; the links above open the product page."
+      : "Neither store listing is public yet; both links open the real product page the moment it is.",
     FAQ: faqHtml(),
   };
 }
@@ -330,7 +334,7 @@ const FAQ = [
   ["Can I use Inborn for client work?",
     "Yes. Work is a one-time 69.99 USD purchase that adds client vaults, an audit log with signed export, and an architecture statement you can hand to whoever at your firm has to approve software. Because there is no server, client material never leaves the machine you typed it on. You stay responsible for checking AI output under your own professional rules."],
   ["Is Inborn open source?",
-    "No, it's source-available. The code is public at github.com/moshecohen90/inborn, so you can read it, build it and publish what you find, but the licence does not let you redistribute or modify it, which is what open source would require. None of the checks we publish depends on that: every one of them is made from outside the app, on the build you installed, and the Proof screen names the exact commit that build came from."],
+    "No, it's source-available. The code is public at github.com/moshecohen90/inborn, so you can read it, build it and publish what you find, but the license does not let you redistribute or modify it, which is what open source would require. None of the checks we publish depends on that: every one of them is made from outside the app, on the build you installed, and the Proof screen names the exact commit that build came from."],
 ];
 
 const faqHtml = () => FAQ.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
@@ -464,7 +468,7 @@ function llmsTxt(pages) {
 - The four situations in which any bytes leave the device: model delivery (Google Play asset packs on Android, one HTTPS file fetch from models.inbornapp.com on iOS and desktop), a store purchase, an optional Hugging Face import the user starts, and a support email the user writes.
 - Verification, all from outside the app: the airplane-mode test; the Google Play permissions page shows no "full network access"; aapt2 dump permissions on the APK shows no android.permission.INTERNET; the iOS App Privacy Report row stays empty; the in-app Proof screen reads OUT 0 B and CONNECTIONS 0 from the operating system's own counters; a firewall such as NetGuard, Little Snitch or LuLu has nothing to block.
 - Honest limit: a small model on a phone is not a large cloud model. Responses are generated by AI and can be wrong.
-- Inborn is source-available, not open source: the code is public at github.com/moshecohen90/inborn under a licence that permits reading, building and publishing findings but not redistribution; no check we publish depends on reading it.
+- Inborn is source-available, not open source: the code is public at github.com/moshecohen90/inborn under a license that permits reading, building and publishing findings but not redistribution; no check we publish depends on reading it.
 
 ## Product
 
@@ -548,8 +552,8 @@ export function build() {
   const privacy = legalPage("privacy-policy.md");
   add("/privacy", { ...privacy, description: "Inborn privacy policy: conversations, documents and the AI model stay on your device. No accounts, no analytics, no data collection. The complete list of network activity, per platform." });
   const terms = legalPage("terms.md");
-  add("/terms", { ...terms, description: "Inborn terms of use and licence: Free, one-time Pro and Work purchases, refunds through the stores, and what you agree to about AI output." });
-  add("/licenses", { ...licensesPage(), description: "Every model, engine, library and font Inborn ships with, and its licence." });
+  add("/terms", { ...terms, description: "Inborn terms of use and license: Free, one-time Pro and Work purchases, refunds through the stores, and what you agree to about AI output." });
+  add("/licenses", { ...licensesPage(), description: "Every model, engine, library and font Inborn ships with, and its license." });
   const accessibility = legalPage("accessibility-policy.md");
   add("/accessibility", { ...accessibility, description: "Inborn accessibility statement: the standard we work to, what the app and this site do today for text size, contrast, motion, screen readers and keyboards, the gaps we have measured, and how to report one." });
 

@@ -32,7 +32,7 @@ export function TierCard({ offer, price, theme, primary, busy, disabled, onBuy }
       <Text testID={`price-${offer.productId}`} style={[type.title, { color: theme.text }]}>
         {t("paywall.priceLine", { price: price.display })}
       </Text>
-      {price.fromStore ? null : <Text style={[type.mono, { color: theme.text3 }]}>{t("paywall.usdFallback")}</Text>}
+      {price.fromStore ? null : <Text style={[type.mono, { color: theme.text3 }]}>{t("paywall.web.priceNote")}</Text>}
       <View style={styles.bullets}>
         {PAYWALL_BULLETS[offer.tier].map((b) => (
           <View key={b} style={styles.bulletRow}>
