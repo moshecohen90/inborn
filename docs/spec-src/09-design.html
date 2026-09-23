@@ -67,6 +67,7 @@
 <span class="k">radius</span><span>4 (צ'יפים, נקודות מצב) · 10 (כפתורים, שדות) · 14 (כרטיסים, הודעת משתמש) · 20 (sheets, מחסניות מודל) · pill (חותם, גלולות). אלמנטים מקוננים לפי כלל הקונצנטריות של iOS 26: רדיוס פנימי = חיצוני פחות הריפוד.</span>
 <span class="k">spacing</span><span>סולם 4pt: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64. שוליים 16 בטלפון (20 בטלפונים גדולים).</span>
 <span class="k">targets</span><span>שדה הקלדה מינימום 44, כפתור שליחה 44, יעדי מגע 44×44 בכל מקום, גם על מסך ההוכחה.</span>
+<span class="k">מתג on/off</span><span>מסלול <span class="ltr">52×32</span> וכפתור <span class="ltr">24</span>: דלוק = מסלול מלא ב‑<code>ctaFill</code> עם כפתור ב‑<code>ctaText</code> וסימן ✓ בקצה; כבוי = מסלול חלול ב‑<code>well</code> עם מתאר ב‑<code>text3</code> וכפתור אפור בהתחלה. המצב נקרא ממילוי, ממיקום הכפתור ומהסימן — לא מגוון בלבד, ולא מהמתג של הפלטפורמה, שבמצב כבוי צייר בערכה הכהה מסלול ביחס ניגודיות <span class="ltr">1.27:1</span> וכפתור <span class="ltr">1.19:1</span> מול המסלול שלו (QA F102).</span>
 <span class="k">motion</span><span>120ms לחיצה/hover · 180ms מצב · 280ms sheet · 420ms סגירת חותם. ease‑out בכניסה (<code>cubic-bezier(.23,1,.32,1)</code>), ease‑in‑out לתנועה על המסך. אין bounce אלא בסגירת החותם הראשונה וב‑FAB של אנדרואיד.</span>
 </div>
 

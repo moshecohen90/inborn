@@ -24,3 +24,8 @@ export function legalScreen(source: string): LegalScreen {
 export function legalBody(source: string): string {
   return legalScreen(source).body;
 }
+
+/** The date the bundled copy is effective from, so the screen can label itself an offline copy of that version. */
+export function effectiveDate(source: string): string | null {
+  return /^Effective date: *(\S.*)$/m.exec(source)?.[1]?.trim() ?? null;
+}

@@ -1,79 +1,211 @@
-import { useMemo } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { useMemo, useState } from "react";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { BUNDLED_MANIFEST, formatBytes, formatModelBytes } from "@inborn/core";
+import { formatModelBytes, type CatalogModel } from "@inborn/core";
+import { joinList } from "@inborn/i18n";
+import { Icon } from "@inborn/ui";
 
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Button, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
+import { Button, DISABLED_OPACITY, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
-import { useInstalledModel } from "../../vault";
-import { modelFileSize } from "./modelSize";
+import { useVault } from "../../vault";
+import { useEntitlement } from "../../licence";
+import { modelCopy } from "../../lib/models";
+import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelStep";
 import { font, useType } from "../../services/type";
 
-/* The size on the offer card is the catalog's, never a number typed into a locale file: the two disagreed until QA F24. */
-const OFFERED = BUNDLED_MANIFEST.models.find((m) => m.id === "fast");
+const PLATFORM = Platform.OS === "android" ? "android" : Platform.OS === "ios" ? "ios" : "web";
 
-/** S02: the app already knows what fits; chat starts now with the built-in model, a bigger one is an offer, not a gate. */
+/**
+ * S02: the choice between the models, made before a byte moves and only between models this screen can actually deliver
+ * (F120: the old step offered a Fast download it had no way to start, and offered it after the first pack had landed).
+ */
 export function ModelChoice() {
   const type = useType();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const router = useRouter();
-  const { engine, prefs, updatePrefs } = useAppServices();
-  /* Subscribed to the vault: the fast-follow pack lands while this step is up (B16), before the engine has swapped. */
-  const installed = useInstalledModel();
-  const uri = installed?.path ?? engine.model.uri;
-  const size = useMemo(() => modelFileSize(uri), [uri]);
-  const ready = installed !== null || engine.model.id !== "null";
-  const next = () => router.push("/onboarding/airplane");
+  const { prefs, updatePrefs, engine } = useAppServices();
+  /* Subscribed to the vault: a pack landing or a download ticking repaints these cards while the step is up (B16). */
+  const { vault, entries } = useVault();
+  const { tier } = useEntitlement();
+  const [picked, setPicked] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  const step = useMemo(
+    () =>
+      modelStep({
+        platform: PLATFORM,
+        entries,
+        recommendedId: vault.recommendedId(),
+        engineModelId: engine.model.id === "null" ? null : engine.model.id,
+        freeBytes: vault.freeDiskBytes(),
+        ramGB: vault.device.ramGB,
+        languageCode: i18n.language.split("-")[0] ?? null,
+        pro: tier !== "free",
+      }),
+    [entries, vault, engine.model.id, i18n.language, tier],
+  );
+
+  const selectedId = picked ?? step.initialSelection;
+  const selected = step.options.find((o) => o.id === selectedId) ?? null;
+  const modelOf = (id: string) => entries.find((e) => e.model.id === id)!.model;
+
+  const download = async (id: string) => {
+    setFailed(false);
+    /* Chosen now, so the model takes over the moment it verifies, whether that is on this screen or in the chat. */
+    vault.setDefault(id);
+    const end = await vault.install(id);
+    if (end.kind !== "ready" && end.kind !== "delivering" && end.kind !== "verifying") setFailed(true);
+  };
+
+  const start = () => {
+    if (selected?.state.kind === "ready") vault.setDefault(selected.id);
+    router.push("/onboarding/sealed");
+  };
+
   return (
-    <Screen header={{ back: true }} mesh testID="onboarding-model" footer={<Footer ready={ready} onStart={next} onInstantOnly={next} />}>
+    <Screen
+      header={{ back: true }}
+      mesh
+      testID="onboarding-model"
+      footer={
+        <>
+          {selected?.state.kind === "download" ? (
+            <Button
+              testID="download-model"
+              title={t("onboarding.model.download", { name: modelOf(selected.id).name, size: formatModelBytes(selected.bytes) })}
+              onPress={() => void download(selected.id)}
+            />
+          ) : (
+            <Button
+              testID="start-chatting"
+              title={selected?.state.kind === "arriving" ? t("onboarding.model.startWhileDownloading") : t("onboarding.model.start")}
+              onPress={start}
+              disabled={!step.usableNow}
+            />
+          )}
+          {selected?.state.kind === "arriving" ? (
+            <Button testID="cancel-download" title={t("onboarding.model.cancelDownload")} variant="link" onPress={() => void vault.cancel(selected.id)} />
+          ) : null}
+        </>
+      }
+    >
       <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
         {t("onboarding.model.title")}
       </Text>
-      <View testID="model-ready-card" style={[shellStyles.card, { borderColor: theme.sealed, backgroundColor: theme.surface1 }]}>
-        <MonoLabel color={theme.sealed}>{t("onboarding.model.readyNow")}</MonoLabel>
-        <View style={styles.nameRow}>
-          <ChipGlyph size={16} color={theme.text} />
-          <Text style={[type.heading, { color: theme.text }]}>{ready ? t("onboarding.model.instant") : t("onboarding.model.none")}</Text>
-        </View>
-        <Text style={[type.bodySmall, { color: theme.text2 }]}>
-          {ready ? t("onboarding.model.instantLine", { size: size ? formatBytes(size) : "0.5 GB" }) : t("onboarding.model.noneLine")}
-        </Text>
-      </View>
-      {OFFERED ? (
-        <View testID="model-offer-card" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-          <MonoLabel>{t("onboarding.model.offer")}</MonoLabel>
-          <Text style={[type.heading, { color: theme.text }]}>{t("onboarding.model.fast", { size: formatModelBytes(OFFERED.bytes) })}</Text>
-          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.fastLine")}</Text>
-          {Platform.OS === "android" ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.playLine")}</Text> : null}
-          <View style={styles.switchRow}>
-            <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("settings.downloads.wifiOnly")}</Text>
-            <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} label={t("settings.downloads.wifiOnly")} />
+      <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.sub")}</Text>
+
+      <View testID="model-options" style={styles.options}>
+        {step.options.map((option) => (
+          <OptionCard key={option.id} option={option} model={modelOf(option.id)} selected={option.id === selectedId} onSelect={() => setPicked(option.id)} />
+        ))}
+        {step.options.length === 0 ? (
+          <View testID="model-none-card" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+            <Text style={[type.heading, { color: theme.text }]}>{t("onboarding.model.none")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.noneLine")}</Text>
           </View>
-          <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
+        ) : null}
+      </View>
+
+      {step.showPlayNotice ? (
+        <Text testID="play-notice" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("onboarding.model.noInternet")}
+        </Text>
+      ) : null}
+      {failed ? (
+        <Text testID="download-failed" style={[type.bodySmall, { color: theme.danger }]}>
+          {t("onboarding.model.downloadFailed")}
+        </Text>
+      ) : null}
+
+      {/* Its own block, not a row inside the offer card: the switch governs every download, not the card it used to sit in. */}
+      {step.showWifiOnly ? (
+        <View testID="wifi-only-block" style={[shellStyles.well, styles.wifi, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+          <View style={styles.wifiRow}>
+            <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("onboarding.model.wifiOnly")}</Text>
+            <Toggle testID="wifi-only" value={prefs.wifiOnly} onChange={(v) => updatePrefs({ wifiOnly: v })} label={t("onboarding.model.wifiOnly")} />
+          </View>
+          <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.wifiOnlyHint")}</Text>
         </View>
       ) : null}
+
+      <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
     </Screen>
   );
 }
 
-function Footer({ ready, onStart, onInstantOnly }: { ready: boolean; onStart: () => void; onInstantOnly: () => void }) {
-  const { t } = useTranslation();
+function OptionCard({ option, model, selected, onSelect }: { option: ModelOption; model: CatalogModel; selected: boolean; onSelect: () => void }) {
+  const type = useType();
+  const { t, i18n } = useTranslation();
+  const { theme } = useTheme();
+  const state = option.state;
+  const blocked = state.kind === "no-space" || state.kind === "failed";
+  const size = formatModelBytes(option.bytes);
+  const names = languagesLine(option.languages.map((c) => t(`language.${c}`, { defaultValue: c })));
+  const languages = names.more
+    ? t("onboarding.model.languagesMore", { list: joinList(i18n.language, names.list), count: names.more })
+    : t("onboarding.model.languages", { list: joinList(i18n.language, names.list) });
+
   return (
-    <>
-      <Button testID="start-chatting" title={t("onboarding.model.start")} onPress={onStart} disabled={!ready} />
-      <Button title={t("onboarding.model.instantOnly")} variant="link" onPress={onInstantOnly} />
-    </>
+    <Pressable
+      testID={`model-option-${option.id}`}
+      accessibilityRole="radio"
+      accessibilityState={{ selected, disabled: blocked }}
+      disabled={blocked}
+      onPress={onSelect}
+      style={[shellStyles.card, { borderColor: selected ? theme.sealed : theme.border, backgroundColor: theme.surface1, opacity: blocked ? DISABLED_OPACITY : 1 }]}
+    >
+      <View style={styles.head}>
+        <ChipGlyph size={16} color={theme.text} />
+        <Text style={[type.heading, styles.grow, { color: theme.text }]}>{model.name}</Text>
+        {selected ? <Icon name="check" size={18} color={theme.sealed} /> : null}
+      </View>
+      <View style={styles.badges}>
+        {state.kind === "ready" ? <MonoLabel color={theme.sealed}>{t("onboarding.model.readyNow")}</MonoLabel> : null}
+        {option.recommended ? <MonoLabel>{t("models.recommended")}</MonoLabel> : null}
+        {option.betterInLanguage ? (
+          <MonoLabel color={theme.accent}>{t("onboarding.model.betterIn", { language: t(`language.${option.betterInLanguage}`, { defaultValue: option.betterInLanguage }) })}</MonoLabel>
+        ) : null}
+      </View>
+      <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
+      <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model).goodFor}</Text>
+      <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text>
+      {state.kind === "arriving" ? <Progress percent={state.percent} verifying={state.verifying} /> : null}
+      {state.kind === "no-space" ? (
+        <Text testID={`model-nospace-${option.id}`} style={[type.bodySmall, { color: theme.danger }]}>
+          {t("vault.state.needsSpace", { size: formatModelBytes(state.freeUpBytes) })}
+        </Text>
+      ) : null}
+    </Pressable>
+  );
+}
+
+function Progress({ percent, verifying }: { percent: number; verifying: boolean }) {
+  const { t } = useTranslation();
+  const { theme } = useTheme();
+  return (
+    <View style={styles.progress}>
+      <View style={[styles.track, { backgroundColor: theme.well }]}>
+        <View testID="model-progress" style={[styles.fill, { width: `${percent}%`, backgroundColor: theme.sealed }]} />
+      </View>
+      <MonoLabel>{verifying ? t("vault.state.verifying") : `${percent}%`}</MonoLabel>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  nameRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  switchRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingTop: 4 },
+  options: { gap: 12, paddingTop: 4 },
+  head: { flexDirection: "row", alignItems: "center", gap: 8 },
+  badges: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 10 },
   grow: { flex: 1 },
+  wifi: { gap: 8 },
+  wifiRow: { flexDirection: "row", alignItems: "center", gap: 12, minHeight: 44 },
   note: { ...font("sans"), fontSize: 12, lineHeight: 16 },
+  progress: { gap: 6, paddingTop: 4 },
+  track: { height: 6, borderRadius: 3, overflow: "hidden" },
+  fill: { height: 6 },
 });

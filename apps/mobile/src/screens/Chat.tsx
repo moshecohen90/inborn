@@ -24,10 +24,13 @@ import {
   languageCodeOf,
   LANGUAGE_NAME_BY_CODE,
   adviseModel,
+  betterForLanguage,
   detectLanguage,
   detectUse,
   fileIntake,
+  formatModelBytes,
   languageTierOf,
+  FIT_LANGUAGES,
   modelShortfall,
   limits,
   markdownToText,
@@ -43,6 +46,7 @@ import {
   type ChatMessage,
   type ChatStore,
   type Citation,
+  type PaywallReason,
   type CrisisResource,
   type Message,
   type Persona,
@@ -78,6 +82,7 @@ import { BannerSpacer } from "../components/shell/bannerInset";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
+import { ChatModelSheet } from "../components/chat/ChatModelSheet";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
@@ -103,6 +108,7 @@ import { setSidebarOpen, useSidebarOpen } from "../lib/sidebar";
 import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
+import { afterSheetClose } from "../lib/sheetHandover";
 import { useEntitlement, useLicence } from "../licence";
 import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
@@ -137,8 +143,8 @@ export interface ChatProps {
   onNewChat?: (incognito: boolean, personaId?: string) => void;
   /** "Manage documents" in the attach sheet → S40. */
   onOpenDocuments?: () => void;
-  /** Value moments (§12.3): the mic, "remember this", the PRO tags. */
-  onOpenPaywall?: () => void;
+  /** Value moments (§12.3): the mic, "remember this", the PRO tags. Carries why the tap was refused. */
+  onOpenPaywall?: (reason?: PaywallReason) => void;
   /** Companions live in the vault (whisper, the vision projector). */
   onOpenVault?: () => void;
   /** S44 hands-free voice mode (Pro). */
@@ -153,8 +159,7 @@ export interface ChatProps {
   onSeedConsumed?: () => void;
 }
 
-/* Android freezes when one Modal opens in the frame another one dismisses; hand over after the 280 ms sheet animation. */
-export const afterSheetClose = (fn: () => void) => setTimeout(fn, 320);
+export { afterSheetClose };
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
@@ -215,6 +220,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [actionRow, setActionRow] = useState<Row | null>(null);
   const [reportRow, setReportRow] = useState<ChatMessage | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [modelSheetOpen, setModelSheetOpen] = useState(false);
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -349,7 +355,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current?.abort();
   });
   useShortcut("search", () => focused.current && onOpenChats());
-  useShortcut("model-picker", () => focused.current && setSettingsOpen(true));
+  useShortcut("model-picker", () => focused.current && setModelSheetOpen(true));
   useShortcut("continue", () => {
     if (!focused.current || busy) return;
     const last = [...rowsRef.current].reverse().find((r) => r.role === "assistant");
@@ -835,7 +841,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (seed.text) setDraft(seed.text);
         if (blocked) {
           flash(t(blocked === "office" ? "quick.fileWork" : "quick.filePro"));
-          afterSheetClose(() => onOpenPaywall?.());
+          const why = blocked;
+          afterSheetClose(() => onOpenPaywall?.(why));
         }
       })();
       return;
@@ -924,6 +931,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [adviceLanguage, model.id]);
   /* §6.3 mediate honestly: a browser user cannot switch, so instead of the card they get the same verdict the vault's picker gives, with no action. */
   const noBetterHere = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
+  /* An empty chat has no language of its own yet; the sheet's recommendation then answers for the app's own language. */
+  const uiLanguageCode = useMemo(() => {
+    const base = i18n.language.split("-")[0]?.toLowerCase() ?? "en";
+    return FIT_LANGUAGES.includes(base) ? base : "en";
+  }, [i18n.language]);
+  /* §7.8: the loaded model rates this language none/basic. The notice names what does better here and switches or downloads it. */
+  const languageUpgrade = useMemo(() => {
+    if (Platform.OS === "web" || !adviceLanguage) return null;
+    const vault = getVault();
+    const installed = vault
+      .entries()
+      .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
+      .map((e) => e.model.id);
+    return betterForLanguage({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
+  }, [adviceLanguage, model.id, use]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
@@ -931,13 +953,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
   const strictLocked = paywallFor(tier, { kind: "feature", feature: "strictDocuments" });
+  /* Ticking a second document in the sheet is the same door as importing one (QA F146): it went through no gate at all. */
+  const attachLocked = paywallFor(tier, { kind: "document", existing: docs.documents.length });
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
       void pickIntoLibrary(library, tier, docs.documents.length, incognito).then((r) => {
         if (r.kind === "paywall") {
           flash(t(r.moment === "office" ? "quick.fileWork" : "quick.filePro"));
-          onOpenPaywall?.();
+          onOpenPaywall?.(r.moment);
         }
         else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
         else if (r.kind === "imported") docs.attach(r.id);
@@ -950,12 +974,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   };
   const openVoice = () => {
     setMicOpen(false);
-    if (paywallFor(tier, { kind: "feature", feature: "voiceConversation" })) return afterSheetClose(() => onOpenPaywall?.());
+    if (paywallFor(tier, { kind: "feature", feature: "voiceConversation" })) return afterSheetClose(() => onOpenPaywall?.("voiceConversation"));
     afterSheetClose(() => onOpenVoice?.(chatRef.current, incognito));
   };
   const useWhisper = () => {
     setMicOpen(false);
-    if (paywallFor(tier, { kind: "feature", feature: "whisperDictation" })) return afterSheetClose(() => onOpenPaywall?.());
+    if (paywallFor(tier, { kind: "feature", feature: "whisperDictation" })) return afterSheetClose(() => onOpenPaywall?.("whisperDictation"));
     setPreferWhisper(true);
     afterSheetClose(() => dictation.toggle());
   };
@@ -990,7 +1014,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const addPhoto = (source: "library" | "camera") => {
     setAttachOpen(false);
     const room = imageLimit - pendingImages.length;
-    if (room <= 0) return afterSheetClose(() => (tier === "free" ? onOpenPaywall?.() : undefined));
+    if (room <= 0) {
+      if (tier !== "free") return;
+      flash(t("chat.attach.photoLimit"));
+      return afterSheetClose(() => onOpenPaywall?.("photos"));
+    }
     /* iOS refuses to present the picker while the sheet's modal is still dismissing. */
     afterSheetClose(() => {
       void pickImages(source, room).then((r) => {
@@ -1093,7 +1121,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             </Text>
           )}
         </View>
-        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("modelSheet.title")} onPress={() => setModelSheetOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
           <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
             {modelLabel(model.id)}
@@ -1111,10 +1139,33 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {statusLine}
         </Text>
       ) : null}
-      {weakLanguage && status.kind === "ready" ? (
-        <Text testID="model-weak-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
-          {t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
-        </Text>
+      {weakLanguage && status.kind === "ready" && !adviceShown?.language && !noBetterHere ? (
+        <View testID="model-weak" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text testID="model-weak-line" style={[type.caption, styles.grow, { color: theme.text3 }]}>
+            {languageUpgrade
+              ? t("chat.modelWeakBetter", {
+                  model: modelLabel(model.id),
+                  language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }),
+                  better: modelLabel(languageUpgrade.better.model.id),
+                })
+              : t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
+          </Text>
+          {languageUpgrade ? (
+            <Pressable
+              testID="model-weak-action"
+              accessibilityRole="button"
+              hitSlop={8}
+              style={styles.noticeBtn}
+              onPress={() => (languageUpgrade.better.reason.installed ? onSwitchModel?.(languageUpgrade.better.model.id) : setModelSheetOpen(true))}
+            >
+              <Text style={[type.caption, { color: theme.accent }]}>
+                {languageUpgrade.better.reason.installed
+                  ? t("chat.modelAdvice.switch", { model: modelLabel(languageUpgrade.better.model.id) })
+                  : t("chat.modelAdvice.install", { model: modelLabel(languageUpgrade.better.model.id), size: formatModelBytes(languageUpgrade.better.model.bytes) })}
+              </Text>
+            </Pressable>
+          ) : null}
+        </View>
       ) : null}
       {noBetterHere && status.kind === "ready" ? (
         <Text testID="model-none-line" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
@@ -1324,7 +1375,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           item.role === "user" ? (
             <UserMessage message={redaction.display(item)} onLongPress={() => setActionRow(item)} />
           ) : (
-            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} onUnlock={() => onOpenPaywall?.()} />
+            <AssistantMessage row={redaction.display(item)} nCtx={nCtx} quant={quant} onLongPress={() => setActionRow(item)} onContinue={item.id === lastAssistant?.id ? () => void continueRow(item) : undefined} onRegenerate={item.id === lastAssistant?.id ? () => void regenerate(item) : undefined} onUnlock={() => onOpenPaywall?.("detailedStats")} />
           )
         }
       />
@@ -1418,14 +1469,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
                 hint={t("chat.rememberHint")}
                 trailing={ent.pro ? undefined : <ProTag onPress={() => {
                   setActionRow(null);
-                  afterSheetClose(() => onOpenPaywall?.());
+                  afterSheetClose(() => onOpenPaywall?.("memory"));
                 }} />}
                 onPress={() => {
                   const id = chatRef.current;
                   const row = actionRow;
                   setActionRow(null);
                   if (!ent.pro) {
-                    afterSheetClose(() => onOpenPaywall?.());
+                    afterSheetClose(() => onOpenPaywall?.("memory"));
                     return;
                   }
                   if (!id) return;
@@ -1468,11 +1519,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         strict={docs.strict}
         onSetStrict={docs.setStrict}
         strictLocked={strictLocked}
-        onUnlock={() => {
+        attachLocked={attachLocked}
+        onUnlock={(why) => {
           setAttachOpen(false);
-          afterSheetClose(() => onOpenPaywall?.());
+          afterSheetClose(() => onOpenPaywall?.(why));
         }}
-        onAttach={docs.attach}
+        onAttach={(id) => {
+          if (!attachLocked) return docs.attach(id);
+          setAttachOpen(false);
+          flash(t("quick.filePro"));
+          afterSheetClose(() => onOpenPaywall?.("document"));
+        }}
         onImport={importFile}
         onDetach={docs.detach}
         onManage={() => {
@@ -1503,7 +1560,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         price={workPrice}
         onUnlock={() => {
           setRedactOpen(false);
-          afterSheetClose(() => onOpenPaywall?.());
+          afterSheetClose(() => onOpenPaywall?.("redaction"));
         }}
         onApply={(text) => {
           setDraft(text);
@@ -1540,11 +1597,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             <SheetItem
               testID="mic-use-whisper"
               label={t("voice.offlineMissing.whisper")}
-              trailing={dictation.problem.whisperIsPro ? <ProTag onPress={() => { dictation.clearProblem(); afterSheetClose(() => onOpenPaywall?.()); }} /> : undefined}
+              trailing={dictation.problem.whisperIsPro ? <ProTag onPress={() => { dictation.clearProblem(); afterSheetClose(() => onOpenPaywall?.("whisperDictation")); }} /> : undefined}
               onPress={() => {
                 const pro = dictation.problem?.kind === "offline-missing" && dictation.problem.whisperIsPro;
                 dictation.clearProblem();
-                if (pro) return afterSheetClose(() => onOpenPaywall?.());
+                if (pro) return afterSheetClose(() => onOpenPaywall?.("whisperDictation"));
                 if (!whisperInstalled()) return afterSheetClose(() => onOpenVault?.());
                 setPreferWhisper(true);
                 afterSheetClose(() => dictation.toggle());
@@ -1576,6 +1633,19 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </View>
         ) : null}
       </Sheet>
+      <ChatModelSheet
+        visible={modelSheetOpen}
+        onClose={() => setModelSheetOpen(false)}
+        theme={theme}
+        currentId={model.id}
+        use={use}
+        languageCode={adviceLanguage ?? uiLanguageCode}
+        tier={tier}
+        onSwitchModel={onSwitchModel}
+        onOpenVault={onOpenVault}
+        onOpenPaywall={onOpenPaywall}
+        onChatSettings={() => setSettingsOpen(true)}
+      />
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
     </View>
   );

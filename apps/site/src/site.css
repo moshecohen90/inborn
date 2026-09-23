@@ -7,7 +7,7 @@
   --border: #1F262E;
   --text: #EEF2F5;
   --text-2: #9AA6B2;
-  --text-3: #667380;
+  --text-3: #7A8794;
   --accent: #F0B35B;
   --accent-fill: #F0B35B;
   --sealed: #3ECF8E;
@@ -15,6 +15,9 @@
   --cta-fill: #E6EAEE;
   --cta-text: #0A0D11;
   --mark-bg: rgba(240, 179, 91, 0.16);
+  /* The Faraday screen: the site's one piece of ornament, drawn in CSS so the page still fetches nothing. */
+  --mesh: rgba(154, 166, 178, 0.16);
+  --rule: #1F262E;
   color-scheme: dark light;
 }
 @media (prefers-color-scheme: light) {
@@ -26,13 +29,15 @@
     --border: #DDE3E9;
     --text: #12161B;
     --text-2: #4A5560;
-    --text-3: #5C6873;
+    --text-3: #5E6975;
     --accent: #8F5309;
     --sealed: #0B7A4C;
     --danger: #C93A3A;
     --cta-fill: #12161B;
     --cta-text: #F3F5F7;
     --mark-bg: rgba(240, 179, 91, 0.28);
+    --mesh: rgba(18, 22, 27, 0.07);
+    --rule: #DDE3E9;
   }
 }
 
@@ -50,105 +55,225 @@ body {
   color: var(--text);
   font: 400 16px/25px "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* Wide content scrolls inside its own container; the page itself never does. */
+  overflow-x: hidden;
 }
 a { color: inherit; text-decoration: underline; text-decoration-color: var(--text-3); text-underline-offset: 3px; }
 a:hover { text-decoration-color: currentColor; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 code, .mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
 code { font-size: 14px; background: var(--well); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
-pre { margin: 0; background: var(--well); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 13px; line-height: 20px; }
+pre { margin: 12px 0 0; background: var(--well); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 13px; line-height: 20px; }
 pre code { background: none; border: 0; padding: 0; font-size: inherit; }
 .small { font-size: 14px; line-height: 20px; color: var(--text-2); }
 .label {
   display: inline-block; margin-right: 10px;
   font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3);
 }
-.skip { position: absolute; left: -999px; top: 8px; background: var(--cta-fill); color: var(--cta-text); padding: 8px 12px; border-radius: 10px; }
-.skip:focus { left: 8px; z-index: 10; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--cta-fill); color: var(--cta-text); padding: 8px 12px; border-radius: 10px; z-index: 20; }
+.skip:focus { left: 8px; }
 
-/* header / footer */
-.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; }
-.seal { width: 28px; height: 28px; flex: none; }
-.top nav { display: flex; gap: 4px; flex-wrap: wrap; }
-.top nav a { text-decoration: none; padding: 10px 12px; border-radius: 10px; color: var(--text-2); min-height: 44px; display: inline-flex; align-items: center; }
+/* header */
+.top {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  border-bottom: 1px solid var(--rule);
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.seal { width: 26px; height: 26px; flex: none; }
+.top nav { display: flex; gap: 2px; margin-left: auto; }
+.top nav a { text-decoration: none; padding: 10px 12px; border-radius: 10px; color: var(--text-2); min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; }
 .top nav a:hover { color: var(--text); background: var(--surface-1); }
 .top nav a[aria-current="page"] { color: var(--text); }
-.bottom { border-top: 1px solid var(--border); padding: 32px 20px 48px; margin-top: 64px; color: var(--text-2); }
-.footer-links { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-bottom: 12px; }
-.footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
 
 /* content columns (spec §9.3: body 65–72 chars) */
-main { padding: 32px 20px 0; margin: 0 auto; width: 100%; }
-main.narrow { max-width: 720px; }
-main.wide { max-width: 1040px; }
-h1 { font-size: 32px; line-height: 38px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 24px; }
-h2 { font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 48px 0 12px; }
-h3 { font-size: 17px; line-height: 24px; font-weight: 600; margin: 32px 0 8px; }
+main { padding: 0 clamp(16px, 4vw, 40px); margin: 0 auto; width: 100%; }
+main.narrow { max-width: 760px; padding-top: 40px; }
+main.wide { max-width: 1180px; }
+/* Only the landing page opens with a hero that brings its own top space. */
+main.wide > h1:first-child { margin-top: 40px; }
+main.narrow > h1 { margin-top: 0; }
+h1 { font-size: clamp(28px, 4.4vw, 40px); line-height: 1.16; font-weight: 600; letter-spacing: -0.025em; margin: 0 0 24px; }
+h2 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.22; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 12px; }
+h3 { font-size: 17px; line-height: 24px; font-weight: 600; margin: 0 0 8px; }
 p, ul, ol { margin: 0 0 16px; }
 ul, ol { padding-left: 22px; }
 li { margin-bottom: 6px; }
-hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
+.prose h2 { margin-top: 40px; }
+.prose h3 { margin-top: 28px; }
 .prose h2 + p, .prose h3 + p { margin-top: 0; }
 .legal p:first-of-type { color: var(--text-2); }
+.lede-2 { color: var(--text-2); font-size: 17px; line-height: 27px; max-width: 62ch; }
 
 .notice { border: 1px solid var(--border); background: var(--surface-1); border-radius: 14px; padding: 14px 16px; margin: 0 0 32px; color: var(--text-2); font-size: 14px; line-height: 20px; }
 mark.ph { background: var(--mark-bg); color: var(--text); border-radius: 4px; padding: 0 4px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; }
 
 /* tables */
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; margin: 0 0 24px; }
-table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; min-width: 640px; }
-th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; margin: 16px 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+/* A size or a licence broken over two lines reads as two values; the table scrolls in its own box instead. */
+td .mono, td.mono { white-space: nowrap; }
 th { color: var(--text-3); font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-1); }
 tbody tr:last-child td { border-bottom: 0; }
 
-/* landing */
-.hero { padding: 40px 0 24px; }
-.hero .seal { width: 72px; height: 72px; margin-bottom: 24px; }
-.hero h1 { font-size: 40px; line-height: 46px; max-width: 18ch; }
-.hero .lede { font-size: 20px; line-height: 30px; color: var(--text-2); max-width: 56ch; margin-bottom: 24px; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 10px; text-decoration: none; font-weight: 500; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); }
-.btn.primary { background: var(--cta-fill); color: var(--cta-text); border-color: transparent; }
-.btn:hover { filter: brightness(1.08); }
-.readout { display: inline-flex; flex-wrap: wrap; gap: 6px 18px; margin: 24px 0 0; padding: 12px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--well); font: 400 12px/16px "IBM Plex Mono", ui-monospace, monospace; color: var(--text-2); letter-spacing: 0.04em; }
+/* ---------- landing: hero ---------- */
+.hero { position: relative; padding: clamp(48px, 9vw, 104px) 0 clamp(40px, 6vw, 72px); }
+.hero-body { position: relative; z-index: 1; }
+.mesh {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, var(--mesh) 0 1px, transparent 1px 36px),
+    repeating-linear-gradient(0deg, var(--mesh) 0 1px, transparent 1px 36px);
+  -webkit-mask-image: radial-gradient(120% 96% at 22% 8%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(120% 96% at 22% 8%, #000 0%, transparent 70%);
+}
+/* The seal is the product's mark: at desktop widths it holds the right of the hero, set in a port on the panel,
+   instead of the stock illustration this page would otherwise need. */
+.hero-seal { display: none; }
+@media (min-width: 1140px) {
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; column-gap: 48px; align-items: center; }
+  .hero .mesh { grid-area: 1 / 1 / 2 / 3; }
+  .hero-seal {
+    display: grid; place-items: center; position: relative; z-index: 1; justify-self: center;
+    width: 292px; height: 292px; border-radius: 50%; border: 1px solid var(--border);
+    background: radial-gradient(circle at 50% 50%, var(--well) 0%, transparent 72%);
+  }
+  .hero-seal .seal { width: 188px; height: 188px; }
+}
+.eyebrow { font-size: 11px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.04; letter-spacing: -0.035em; margin: 0 0 20px; max-width: 16ch; }
+.hero .lede { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--text-2); max-width: 58ch; margin: 0 0 32px; }
+
+/* The composer is the demonstration, not a decoration: the page hands the typed line straight to the app. */
+.composer { display: flex; gap: 8px; max-width: 680px; background: var(--well); border: 1px solid var(--border); border-radius: 14px; padding: 8px; }
+.composer input {
+  flex: 1 1 auto; min-width: 0; min-height: 48px; padding: 0 14px;
+  background: transparent; border: 0; color: var(--text);
+  font: 400 16px/24px "IBM Plex Sans", system-ui, sans-serif;
+}
+.composer input::placeholder { color: var(--text-3); }
+.composer input:focus { outline: none; }
+.composer:focus-within { border-color: var(--accent); }
+.composer button {
+  flex: none; min-height: 48px; padding: 0 20px; border: 0; border-radius: 10px;
+  background: var(--cta-fill); color: var(--cta-text); cursor: pointer;
+  font: 500 15px/1 "IBM Plex Sans", system-ui, sans-serif;
+}
+.composer button:hover { filter: brightness(1.08); }
+.composer-note { max-width: 62ch; margin: 12px 0 0; }
+.readout {
+  display: inline-flex; flex-wrap: wrap; gap: 6px 18px; margin: 28px 0 0; padding: 12px 18px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--well);
+  font: 400 12px/16px "IBM Plex Mono", ui-monospace, monospace; color: var(--text-2); letter-spacing: 0.04em;
+}
 .readout b { font-weight: 500; color: var(--accent); }
 .readout .ok { color: var(--sealed); }
 
-.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 16px 0 0; }
+/* ---------- landing: bands ---------- */
+/* A numbered rail beside each band, not a stack of centred cards: at 1024+ the page reads as an instrument panel. */
+.band { border-top: 1px solid var(--rule); padding: clamp(40px, 5vw, 64px) 0; display: grid; gap: 20px; }
+.rail { display: flex; align-items: baseline; gap: 10px; }
+.rail .num { font-size: 12px; letter-spacing: 0.1em; color: var(--accent); }
+.rail-k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.band-body > p { max-width: 68ch; }
+
+@media (min-width: 1024px) {
+  .band { grid-template-columns: 148px minmax(0, 1fr); gap: 32px; }
+  .rail { flex-direction: column; align-items: flex-start; gap: 6px; position: sticky; top: 84px; align-self: start; }
+}
+
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); margin: 20px 0 0; }
+/* Four cards in a three-up grid leave an orphan on the second row; these sections have four, so they go two-up. */
+@media (min-width: 760px) { .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
 .card h3 { margin: 6px 0 8px; }
 .card p { margin: 0 0 8px; color: var(--text-2); }
 .card p:last-child { margin: 0; }
-.card .num { font: 400 12px/16px "IBM Plex Mono", ui-monospace, monospace; color: var(--accent); letter-spacing: 0.04em; }
-.card .foot { margin-top: 12px; }
-.card .foot a { color: var(--text); }
+.card .num { font-size: 12px; line-height: 16px; color: var(--accent); letter-spacing: 0.06em; }
+/* A command inside a card wraps rather than hiding its tail behind a scrollbar the reader will not find. */
+.card pre { font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
 
-.tiers .card { display: flex; flex-direction: column; }
-.tiers .price { font-size: 32px; line-height: 38px; font-weight: 600; letter-spacing: -0.02em; margin: 4px 0 2px; }
-.tiers .price small { font-size: 14px; font-weight: 400; color: var(--text-3); letter-spacing: 0; margin-left: 6px; }
-.tiers ul { padding-left: 18px; margin: 12px 0 0; color: var(--text-2); }
-
-.badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
-.badge { display: inline-flex; flex-direction: column; justify-content: center; min-width: 168px; min-height: 56px; padding: 8px 16px; border: 1px dashed var(--border); border-radius: 10px; color: var(--text-3); }
-.badge b { color: var(--text-2); font-weight: 500; }
-.badge span { font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
-
-/* proof steps */
-.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
-.steps > li { counter-increment: step; position: relative; padding: 0 0 24px 44px; }
-.steps > li::before { content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 2px; font: 500 12px/16px "IBM Plex Mono", ui-monospace, monospace; color: var(--accent); letter-spacing: 0.08em; }
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0 0; }
+.steps > li { counter-increment: step; position: relative; padding: 0 0 22px 46px; }
+.steps > li:last-child { padding-bottom: 0; }
+.steps > li::before {
+  content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1px;
+  font: 500 12px/22px "IBM Plex Mono", ui-monospace, monospace; color: var(--accent); letter-spacing: 0.08em;
+}
 .steps h3 { margin: 0 0 6px; }
-.steps p { color: var(--text-2); }
+.steps p { color: var(--text-2); margin: 0; max-width: 66ch; }
 .platform { display: inline-block; margin-left: 8px; font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; vertical-align: middle; }
 
-@media (max-width: 600px) {
-  .top { padding: 12px 16px; }
-  main { padding: 24px 16px 0; }
-  h1 { font-size: 28px; line-height: 34px; }
-  .hero h1 { font-size: 32px; line-height: 38px; }
-  .hero .lede { font-size: 18px; line-height: 27px; }
+.tiers .card { display: flex; flex-direction: column; }
+.tiers .card.featured { border-color: var(--accent); }
+.tiers .price { font-size: 34px; line-height: 40px; font-weight: 600; letter-spacing: -0.03em; margin: 4px 0 2px; color: var(--text); }
+.tiers .price small { font-size: 14px; font-weight: 400; color: var(--text-3); letter-spacing: 0; margin-left: 6px; }
+.tiers ul { padding-left: 18px; margin: 12px 0 0; color: var(--text-2); font-size: 15px; }
+
+/* FAQ: a question is a heading with its whole answer under it, so a chunk lifted out of the page still stands alone. */
+.qa-list { margin-top: 20px; border-top: 1px solid var(--rule); }
+.qa { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+.qa h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.01em; }
+.qa p { margin: 0; color: var(--text-2); max-width: 74ch; }
+
+.stores { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin: 20px 0 16px; max-width: 720px; }
+.store {
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  min-height: 76px; padding: 14px 18px; text-decoration: none;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+}
+.store:hover { border-color: var(--accent); }
+.store-k { font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.store-v { font-size: 16px; font-weight: 500; color: var(--text); }
+.store-n { font-size: 13px; color: var(--text-2); }
+
+/* ---------- blog ---------- */
+.posts { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.post-link {
+  display: flex; flex-direction: column; height: 100%; gap: 8px; text-decoration: none;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+}
+.post-link:hover { border-color: var(--accent); }
+.post-link h2 { font-size: 21px; line-height: 1.24; margin: 0; }
+.post-link p { color: var(--text-2); margin: 0; flex: 1 1 auto; font-size: 15px; line-height: 23px; }
+.post-link .more { font: 500 13px/1 "IBM Plex Sans", system-ui, sans-serif; color: var(--accent); }
+/* The first paragraph answers the title outright: it is marked so a reader and an extractor find it in the same place. */
+.post .answer { font-size: 18px; line-height: 29px; color: var(--text); border-left: 2px solid var(--accent); padding-left: 18px; margin: 0 0 32px; }
+.post p { max-width: 70ch; }
+
+/* ---------- footer ---------- */
+.bottom { border-top: 1px solid var(--rule); padding: 44px clamp(16px, 4vw, 40px) 56px; margin-top: 48px; color: var(--text-2); }
+main.wide + .bottom { margin-top: 0; }
+.footer-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 1180px; margin: 0 auto 28px; }
+.footer-grid > div p { margin: 12px 0 0; max-width: 34ch; }
+.footer-grid nav { display: flex; flex-direction: column; align-items: flex-start; }
+.footer-grid nav .label { margin-bottom: 4px; }
+.footer-grid nav a { min-height: 40px; display: inline-flex; align-items: center; text-decoration: none; color: var(--text-2); font-size: 15px; }
+.footer-grid nav a:hover { color: var(--text); text-decoration: underline; }
+.bottom > p { max-width: 1180px; margin: 0 auto 10px; }
+.readout-line { letter-spacing: 0.08em; color: var(--text-3); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 10px; text-decoration: none; font-weight: 500; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); }
+.btn.primary { background: var(--cta-fill); color: var(--cta-text); border-color: transparent; }
+.btn.compact { min-height: 40px; padding: 0 14px; font-size: 14px; flex: none; }
+.btn:hover { filter: brightness(1.08); }
+
+@media (max-width: 640px) {
+  /* One row cannot hold the brand, three links and the button at 44px each: the nav takes a row of its own. */
+  .top { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
+  .top nav { order: 3; width: 100%; margin-left: 0; border-top: 1px solid var(--rule); padding-top: 4px; }
+  .top nav a { flex: 1 1 0; justify-content: center; padding: 10px 6px; font-size: 14px; }
+  .btn.compact { margin-left: auto; }
+  .composer { flex-wrap: wrap; }
+  .composer input { flex-basis: 100%; }
+  .composer button { width: 100%; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .btn, .top nav a { transition: background-color 120ms cubic-bezier(.23, 1, .32, 1), color 120ms cubic-bezier(.23, 1, .32, 1); }
+  .btn, .top nav a, .card, .store, .post-link { transition: background-color 120ms cubic-bezier(.23, 1, .32, 1), border-color 120ms cubic-bezier(.23, 1, .32, 1), color 120ms cubic-bezier(.23, 1, .32, 1); }
 }

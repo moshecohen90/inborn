@@ -52,6 +52,18 @@ const COUNT_RES: readonly (readonly [RegExp, number])[] = [
   [countRe(PARAGRAPH_UNITS), 80],
 ];
 
+/* Hebrew counts the other way round — "ענה במשפט אחד" is "answer in sentence one" — and spells its small numbers, so the
+   number-then-unit tables above hear nothing and a Hebrew reader gets a longer answer than the same ask in English (F152). */
+const HE_NUMBERS: Record<string, number> = { אחד: 1, אחת: 1, שניים: 2, שתיים: 2, שני: 2, שתי: 2, שלושה: 3, שלוש: 3, ארבעה: 4, ארבע: 4, חמישה: 5, חמש: 5, שישה: 6, שש: 6, שבעה: 7, שבע: 7, שמונה: 8, תשעה: 9, תשע: 9, עשרה: 10, עשר: 10 };
+const HE_NUM = Object.keys(HE_NUMBERS).join("|");
+/* Both orders, because Hebrew writes both ("שלושה משפטים", "משפט אחד"), and its one-letter prefixes are glued to the word. */
+const heCountRe = (units: string) => new RegExp(`(?:^|[^א-ת])[בלכמשהו]?(${HE_NUM})[\\s-]{0,3}(?:${units})|(?:${units})[\\s-]{0,3}(${HE_NUM})(?![א-ת])`);
+const HE_COUNT_RES: readonly (readonly [RegExp, number])[] = [
+  [heCountRe("מילים|מילה"), 1],
+  [heCountRe("משפטים|משפט"), 25],
+  [heCountRe("פסקאות|פסקה"), 80],
+];
+
 /* Asked for more or for less, in the languages we can check; an unlisted one lands on `moderate`, never on a clipped answer. */
 const LONG_MARKS =
   /\b(?:detailed|in detail|in depth|in-depth|comprehensive|thorough|elaborate|at length|explain fully|as much detail|everything you know|long (?:answer|essay|article|letter|post|version|reply))\b|ausführlich|detailliert|detallad|en detalle|détaillé|en détail|detalhad|詳しく|詳細に|자세히|상세히|详细|בפירוט|מפורט|בהרחבה/i;
@@ -95,14 +107,15 @@ const numberOf = (raw: string): number | null => {
     const n = Number(raw);
     return n > 0 ? n : null;
   }
-  return NUMBER_WORDS[raw.toLowerCase()] ?? null;
+  return NUMBER_WORDS[raw.toLowerCase()] ?? HE_NUMBERS[raw] ?? null;
 };
 
 /** What the user said about length themselves. It beats every heuristic below. */
 export function detectExplicitLength(text: string): ExplicitLength | null {
-  for (const [re, perUnit] of COUNT_RES) {
+  for (const [re, perUnit] of [...COUNT_RES, ...HE_COUNT_RES]) {
     const m = re.exec(text);
-    const n = m?.[1] ? numberOf(m[1]) : null;
+    const raw = m?.[1] ?? m?.[2];
+    const n = raw ? numberOf(raw) : null;
     if (n !== null) return { kind: "count", words: n * perUnit };
   }
   if (LONG_MARKS.test(text)) return { kind: "long" };
