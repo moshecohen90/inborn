@@ -1,10 +1,10 @@
-<!-- meta: {"title": "How to choose an on-device AI model", "h1": "How to choose an on-device AI model", "kicker": "Models", "published": "2026-09-23", "description": "Parameters, quantisation and memory decide whether a model runs on your phone. How to read those numbers, what speed to expect, and what each size is honestly good at.", "excerpt": "Model names carry three numbers that decide whether your phone can run them at all. How to read them, the speeds we measured on real devices, and which size is genuinely good at what."} -->
+<!-- meta: {"title": "How to choose an on-device AI model", "h1": "How to choose an on-device AI model", "kicker": "Models", "published": "2026-09-23", "description": "Parameters, quantization and memory decide whether a model runs on your phone. How to read those numbers, what speed to expect, and what each size is honestly good at.", "excerpt": "Model names carry three numbers that decide whether your phone can run them at all. How to read them, the speeds we measured on real devices, and which size is genuinely good at what."} -->
 <article class="prose post">
 <p class="answer">A model runs on your device if its file fits comfortably in memory alongside everything else, which in practice means a 4-bit model of about 0.5 GB on a 3 GB phone, about 1.3 GB on a 6 GB phone, and about 2.7 GB on 8 GB with room to spare. Bigger is better at reasoning and worse at everything else: speed, battery and heat. Pick the largest one that still answers fast enough that you will actually use it.</p>
 
 <h2 id="numbers">The three numbers</h2>
 <p><strong>Parameters</strong> (0.8B, 2B, 4B) are the size of the model's learned weights. More parameters generally means better reasoning, wider world knowledge and better handling of languages outside English. This is the number that most predicts answer quality.</p>
-<p><strong>Quantisation</strong> (Q4_K_M, Q8 and so on) is how many bits each weight is stored in. Full precision is 16 bits; Q4 is roughly four. Dropping to four bits cuts the file to about a quarter, with a quality loss that is small for chat and noticeable for maths and code. Almost everything you will run on a phone is Q4, and that is the right default.</p>
+<p><strong>Quantization</strong> (Q4_K_M, Q8 and so on) is how many bits each weight is stored in. Full precision is 16 bits; Q4 is roughly four. Dropping to four bits cuts the file to about a quarter, with a quality loss that is small for chat and noticeable for math and code. Almost everything you will run on a phone is Q4, and that is the right default.</p>
 <p><strong>File size in bytes</strong> is the number that decides whether it runs at all, because the whole file has to be held in memory while it works. Take the file size, add room for the conversation context, and compare with the memory your device has free rather than the memory it has in total.</p>
 
 <h2 id="speed">The speed you should expect</h2>
@@ -23,13 +23,13 @@
 <p>Time to first token matters as much as throughput. A long document pushed through a small model can take many seconds before the first word appears, because the model has to read the whole thing before it writes anything.</p>
 
 <h2 id="sizes">What each size is actually good at</h2>
-<p><strong>0.8B</strong> is for quick answers, rewrites and summaries, and it is the size that starts instantly and barely touches the battery. It is weak at code, maths and long documents, and outside a handful of languages it gets shaky after a couple of sentences.</p>
+<p><strong>0.8B</strong> is for quick answers, rewrites and summaries, and it is the size that starts instantly and barely touches the battery. It is weak at code, math and long documents, and outside a handful of languages it gets shaky after a couple of sentences.</p>
 <p><strong>2B</strong> is the everyday assistant: writing, general questions, translation into the major languages, and questions about a document. This is the right default on any phone with 6 GB of memory.</p>
 <p><strong>4B</strong> is for analysis, code and long documents. It is slower, it warms the device, and on a phone you feel it. Worth it when the answer matters more than the wait.</p>
-<p>Beyond size there is training. A model tuned for reasoning and maths, such as Phi-4-mini, beats a same-size general model on a logic puzzle and loses to it on translation. There is no single best model at any size, only a best model for what you are about to ask.</p>
+<p>Beyond size there is training. A model tuned for reasoning and math, such as Phi-4-mini, beats a same-size general model on a logic puzzle and loses to it on translation. There is no single best model at any size, only a best model for what you are about to ask.</p>
 
 <h2 id="practice">How to choose in practice</h2>
-<p>Start with the smallest model, use it for a week, and notice where it fails you. If it fails on languages or long documents, go up a size. If it fails on maths and code, change family rather than size. If it never fails, you have saved yourself several gigabytes and a warmer phone.</p>
+<p>Start with the smallest model, use it for a week, and notice where it fails you. If it fails on languages or long documents, go up a size. If it fails on math and code, change family rather than size. If it never fails, you have saved yourself several gigabytes and a warmer phone.</p>
 <p>Inborn shows the expected speed range for each model on your specific device before you install it, and tells you when the model that just answered would be beaten by one you have not installed. That is a better guide than any benchmark table, because the only benchmark that matters is the one running on the hardware in your hand.</p>
 
 <p class="small"><span class="label">Next</span><a href="/blog/why-on-device">Why the AI should run on your device</a> · <a href="/blog/how-the-proof-works">How to prove an AI app sends nothing</a></p>

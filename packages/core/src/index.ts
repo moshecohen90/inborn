@@ -34,3 +34,4 @@ export * from "./paths/storedPath";
 export * from "./paths/wipePolicy";
 export * from "./paths/noSpace";
 export * from "./storage/integrity";
+export * from "./site/origins";
