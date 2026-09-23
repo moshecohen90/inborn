@@ -102,8 +102,9 @@ describe("F92 · no placeholder reaches a screen or a page", () => {
 });
 
 describe("F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it", () => {
-  /* The list `verification.md` forbids while the repository is private. `about.openSource` (the third-party licence
-     screen) and this file's own quotations are the only places the words may appear. */
+  /* The words `verification.md` forbids are forbidden regardless of whether the repository is public or private:
+     the licence is source-available, never "open source". `about.openSource` (the third-party licence screen)
+     and this file's own quotations are the only places the words may appear. */
   const FORBIDDEN = /open[- ]source (?:core|client)|published (?:open[- ]source|core)|our open[- ]source|verify the claims in (?:this|the) (?:policy|source)|reproducible build|read in code rather than believed/i;
   const WATCHED = [...LEGAL_MD.filter((f) => !f.endsWith("verification.md")), ...SITE_PAGES, "packages/core/src/work/statement.ts", "apps/site/build.mjs"];
 
@@ -112,11 +113,14 @@ describe("F93/F96 · every shipped text says source-available, the way docs/lega
     expect(hit?.[0], `${file} still claims "${hit?.[0]}"`).toBeUndefined();
   });
 
-  it("all three texts that contradicted each other now say the same thing", () => {
-    expect(read("docs/legal/terms.md")).toMatch(/Inborn is not open source: its source code is not public/);
-    expect(read("docs/legal/privacy-policy.md")).toMatch(/Inborn's source code is not public/);
-    expect(read("apps/site/src/pages/support.html")).toMatch(/source is not public, so there is no public issue tracker/);
-    expect(read("apps/site/src/pages/proof.html")).toMatch(/Inborn's source code is not public/);
+  it("all four texts that contradicted each other now say the same thing", () => {
+    expect(read("docs/legal/terms.md")).toMatch(/Inborn is not open source: its source code is public at github\.com\/moshecohen90\/inborn/);
+    expect(read("docs/legal/privacy-policy.md")).toMatch(/Inborn's source code is public at github\.com\/moshecohen90\/inborn/);
+    expect(read("apps/site/src/pages/support.html")).toContain("The source is public at");
+    expect(read("apps/site/src/pages/support.html")).toContain("github.com/moshecohen90/inborn");
+    expect(read("apps/site/src/pages/support.html")).toContain("public issue tracker");
+    expect(read("apps/site/src/pages/proof.html")).toMatch(/Inborn's source is public at/);
+    expect(read("apps/site/src/pages/proof.html")).toContain("github.com/moshecohen90/inborn");
   });
 
   /* The complement: the sentence that IS allowed must still be there, or an empty file would pass every check above. */

@@ -56,7 +56,7 @@ describe("F51 · nothing in the app claims a source the reader cannot open", () 
   it("the Work statement says what cannot be checked instead of claiming it can", () => {
     const statement = readFileSync(join(__dirname, "../../../packages/core/src/work/statement.ts"), "utf8");
     expect(statement).not.toContain("open-source core");
-    expect(statement).toContain("not published");
+    expect(statement).toContain("not reproducible");
   });
 });
 

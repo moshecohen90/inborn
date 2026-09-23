@@ -3780,3 +3780,46 @@ went from 1408 px at a 1440 viewport (98 %) to 446 px centred, and the composer'
 37 and 38, which proved the phone matrix — OCR, strict mode, the Work formats, redaction, the photo — on these same
 two phones hours earlier; what this round did not put on a phone, and why, is in
 `docs/qa/acceptance/android/README.md` and `ios/README.md`.
+
+## Fixes round 44: the GitHub link, now that there is one (branch `site-github`) — 23.9.2026
+
+Round 41's "Decision for Moshe" — *the day the repository goes public, the source-available answer and the link go
+in together; one line in `build.mjs` and one FAQ entry* — came due. `github.com/moshecohen90/inborn` is public as of
+this round, verified anonymously both by curl (`https://github.com/moshecohen90/inborn` returns 200) and by the
+unauthenticated API (`"private": false`), under the existing `LICENSE`, the Inborn Source-Available Licence 1.0. It
+was more than one line in the end, because the private-repo wording had spread to every place `docs/legal/verification.md`
+governs, and all of them had to keep saying the same thing or start contradicting each other again.
+
+- **The site.** A `GitHub` link joins the header nav next to Proof/Blog/Support; the footer's small print and the
+  `/support` and `/proof` pages now say the source is public and link to it instead of denying it exists; the FAQ's
+  "Is Inborn open source?" answer explains the actual licence (read it, build it, publish findings; no redistribution
+  or modification, which is why it still isn't open source) instead of saying the code cannot be seen at all;
+  `llms.txt` and the third-party Licences page say the same thing. All of it stays inside the site's own rules — an
+  `<a href>` to an external page is not a fetched asset, so `check.mjs`'s "no external asset" gate does not apply, and
+  the new nav entries get `rel="noopener"` like the other outbound links already on `/support`.
+- **The legal texts and the Work statement.** `terms.md` §1, `privacy-policy.md` §10 and
+  `packages/core/src/work/statement.ts` — the three F51 rewrote on 22.9.2026 when the repository was still private —
+  now say the source is public at the same URL, and still say what publication does not buy: no redistribution, no
+  reproducible-build claim, no bundle-hash match, because none of those became true just because the repository did.
+  `docs/legal/verification.md` itself is rewritten top to bottom as the single source of truth for both states.
+- **The Proof screen.** `packages/i18n/locales/*.json` (all 8 languages plus `pseudo`, regenerated from `en.json`
+  with `node packages/i18n/scripts/pseudo.mjs`) — `proof.build.notPublished` now tells the reader the commit it
+  names can be looked up at `github.com/moshecohen90/inborn`, instead of saying the identifier is ours to state and
+  not theirs to check. The key name stays as it is: renaming it would have touched `Proof.tsx` and every locale for
+  no behavioural gain.
+- **The guard tests.** `apps/mobile/test/legal-texts.test.ts` (F93/F96) asserted the four now-contradicted old
+  sentences verbatim; its `FORBIDDEN` list ("open source", "reproducible build", …) still applies exactly as before,
+  because the licence's terms did not change, only its visibility, so the assertions were updated to the new wording
+  rather than the ban list being loosened. `apps/mobile/test/fixes-r25.test.ts` (F51) had a stale `"not published"`
+  substring check against `statement.ts`; updated to `"not reproducible"`, which the rewritten sentence still says
+  and still means. The store listings (`docs/store/listing.*.json`) do not mention source at all, so `pn check:store`
+  and its standing "open source" ban needed no change.
+- **Verified, not assumed.** `pn typecheck`, `pn test` (`check:store` PASS, core 655, i18n 11, ui 13, mobile 541, all
+  green) and `pn lint` all pass; `node apps/site/build.mjs && node apps/site/check.mjs` builds 12 pages and passes
+  the site's own zero-script/zero-external-asset/no-dead-link gate; `pn web:build` and `pn web:smoke` pass against
+  the unrelated web app, confirming this round did not disturb it. Screenshots at 390 and 1440, taken headlessly
+  (`chrome-headless-shell` against the built `apps/site/dist`, no visible browser) against the rendered `/` and
+  `/proof` pages, are in `docs/qa/site-github/`: `site-footer-faq-get-{390,1440}.png` shows the header's new GitHub
+  link, the rewritten FAQ answer and the footer's new small print in the same shot; `proof-{390,1440}.png` shows
+  `/proof`'s new "The source, and release hashes" section. No phone or emulator was used; nothing in this round
+  touches native code.

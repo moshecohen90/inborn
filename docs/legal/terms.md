@@ -10,7 +10,7 @@ These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to 
 
 ## 1. Licence
 
-We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source: its source code is not public, and anything we do publish from it comes under our source-available licence, which grants the right to read and verify the code and nothing more. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source: its source code is public at github.com/moshecohen90/inborn under our source-available licence, which grants the right to read, build and verify the code and nothing more — not to redistribute, modify or resell it. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
 
 You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
 
