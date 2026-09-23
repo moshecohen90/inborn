@@ -1,0 +1,123 @@
+{
+ "tier": "pro",
+ "dist": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/acceptance/dist-dev-pro",
+ "url": "http://127.0.0.1:8643",
+ "files": {
+  "turbine-report-3pages.pdf": {
+   "chooserOpened": true,
+   "paywall": null,
+   "why": null,
+   "workCard": null,
+   "indexing": {
+    "timedOut": true
+   }
+  },
+  "scan-no-text-layer.pdf": {
+   "chooserOpened": true,
+   "paywall": null,
+   "why": null,
+   "workCard": null,
+   "indexing": {
+    "timedOut": true
+   }
+  },
+  "novara-depot.docx": {
+   "chooserOpened": true,
+   "paywall": null,
+   "why": null,
+   "workCard": null,
+   "indexing": {
+    "status": "indexed",
+    "indexedPages": 1,
+    "pages": 1,
+    "chunks": 1
+   }
+  },
+  "sites.xlsx": {
+   "chooserOpened": true,
+   "paywall": "Pay once. Own it.",
+   "why": "You opened a spreadsheet. Pro for Work reads Excel and HTML files.",
+   "workCard": null
+  },
+  "quarterly-note.html": {
+   "chooserOpened": true,
+   "paywall": "Pay once. Own it.",
+   "why": "You opened a spreadsheet. Pro for Work reads Excel and HTML files.",
+   "workCard": null
+  }
+ },
+ "checks": {
+  "libraryAfterImports": "ATTACH DOCUMENTSTemplatesProfession packs: legal, therapy, medical, accountingPHOTOSPhotoINSTANT cannot look at photos.CameraAdd a file…PDF, Word, Excel, HTML, text, CSV or a photonovara-depot.docxIndexed · 1 passagescan-no-text-layer.pdfNot indexed yetturbine-report-3pages.pdfNot indexed yetAnswer only from my documentsWhen nothing relevant is found, Inborn says so instead of guessing.Manage documents",
+  "askTurbine": {
+   "answer": "The provided documents contain no information regarding the Rakovsky turbine serial number, so I cannot answer your question based on the attached material.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  },
+  "askDepot": {
+   "answer": "The Novara depot holds exactly 1,742 spare bearings.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  },
+  "askFerry": {
+   "answer": "The Arendal ferry did not operate in 2024.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  },
+  "askScan": {
+   "answer": "The Kessler valve inspection at the Novara depot did not pass.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  },
+  "strict": {
+   "paywall": null,
+   "why": null,
+   "before": null,
+   "after": null
+  },
+  "strictOutside": {
+   "answer": "I could not find that in your documents.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  },
+  "strictInside": {
+   "answer": "The Novara depot is managed by Ingrid Halvorsen.",
+   "citation": "SOURCESnovara-depot.docx · part 1",
+   "notFound": null
+  }
+ },
+ "tierChip": null,
+ "pageErrors": [],
+ "documentLines": [
+  "log: [documents] novara-depot.docx: indexed · 1/1 pages · 1 chunks · 1957 ms (1957 ms/page)"
+ ],
+ "consoleErrors": [
+  "error: WebSocket connection to 'ws://127.0.0.1:8643/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:8643/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: WebSocket connection to 'ws://127.0.0.1:8643/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:8643/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. importantForAccessibility importantforaccessibility",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)"
+ ],
+ "shots": [
+  "docs/qa/acceptance/web/A3-pro-import-turbine-report-3pages-pdf-1440.png",
+  "docs/qa/acceptance/web/A3-pro-import-scan-no-text-layer-pdf-1440.png",
+  "docs/qa/acceptance/web/A3-pro-import-novara-depot-docx-1440.png",
+  "docs/qa/acceptance/web/A3-pro-import-sites-xlsx-1440.png",
+  "docs/qa/acceptance/web/A3-pro-import-quarterly-note-html-1440.png",
+  "docs/qa/acceptance/web/A3-pro-library-1440.png",
+  "docs/qa/acceptance/web/A3-pro-ask-turbine-1440.png",
+  "docs/qa/acceptance/web/A3-pro-ask-scan-1440.png",
+  "docs/qa/acceptance/web/A3-pro-strict-1440.png",
+  "docs/qa/acceptance/web/A3-pro-strict-outside-1440.png"
+ ]
+}

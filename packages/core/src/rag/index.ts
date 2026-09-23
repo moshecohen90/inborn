@@ -7,7 +7,7 @@ export { VectorIndex, normalize, quantize, dequantize, cosine, cosineQuantized, 
 export { reciprocalRankFusion, mmr, type Ranked, type MmrCandidate } from "./fusion";
 export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDocuments, fenceMarkers, randomNonce, type StrippedText, type FencedPassage } from "./injection";
 export { buildCitations, citationLabel, citationsForAnswer, citedNumbers, pageGlyph, pageUnit, snippetOf, PAGE_WORDS, type PageUnit, type PageWords } from "./citations";
-export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_BM25, type PromptOptions } from "./prompt";
+export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, NOTHING_RELEVANT_RULE, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_BM25, type PromptOptions } from "./prompt";
 export { indexDocument, chunkId, IndexCancelled, type IndexOptions } from "./indexer";
 export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "./retriever";
 export { LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX } from "./embedder";

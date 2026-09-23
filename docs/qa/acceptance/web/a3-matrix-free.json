@@ -1,0 +1,68 @@
+{
+ "tier": "free",
+ "dist": "apps/web/dist",
+ "url": "http://127.0.0.1:8643",
+ "files": {
+  "turbine-report-3pages.pdf": {
+   "chooserOpened": true,
+   "paywall": null,
+   "why": null,
+   "workCard": null,
+   "indexing": {
+    "status": "indexed",
+    "indexedPages": 3,
+    "pages": 3,
+    "chunks": 3
+   }
+  },
+  "scan-no-text-layer.pdf": {
+   "chooserOpened": false,
+   "paywall": "Pay once. Own it.",
+   "why": "Free keeps one file per chat. Pro opens the whole library.",
+   "workCard": null
+  },
+  "novara-depot.docx": {
+   "chooserOpened": false,
+   "paywall": "Pay once. Own it.",
+   "why": "Free keeps one file per chat. Pro opens the whole library.",
+   "workCard": null
+  },
+  "sites.xlsx": {
+   "chooserOpened": false,
+   "paywall": "Pay once. Own it.",
+   "why": "Free keeps one file per chat. Pro opens the whole library.",
+   "workCard": null
+  },
+  "quarterly-note.html": {
+   "chooserOpened": false,
+   "paywall": "Pay once. Own it.",
+   "why": "Free keeps one file per chat. Pro opens the whole library.",
+   "workCard": null
+  }
+ },
+ "checks": {
+  "libraryAfterImports": "ATTACH DOCUMENTSTemplatesProfession packs: legal, therapy, medical, accountingPHOTOSPhotoINSTANT cannot look at photos.CameraAdd a file…PDF, Word, Excel, HTML, text, CSV or a phototurbine-report-3pages.pdfIndexed · 3 passagesAnswer only from my documentsWhen nothing relevant is found, Inborn says so instead of guessing.PROManage documents",
+  "askTurbine": {
+   "answer": "The Rakovsky turbine serial number is RK-4417.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.1turbine-report-3pages.pdf · p.3turbine-report-3pages.pdf · p.2",
+   "notFound": null
+  },
+  "askDepot": {
+   "answer": "The Novara depot does not hold spare bearings as indicated by the documents; the text only mentions the maintenance budget for the Halden plant.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.3turbine-report-3pages.pdf · p.1turbine-report-3pages.pdf · p.2",
+   "notFound": null
+  },
+  "askFerry": {
+   "answer": "The Arendal ferry did not operate in 2024, as the ferry lines ceased operations that year, resulting in no passengers carrying; the documents provided only cover the 2024-2025 maintenance budget for the Halden plant.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.3turbine-report-3pages.pdf · p.2turbine-report-3pages.pdf · p.1",
+   "notFound": null
+  },
+  "askScan": {
+   "answer": "The Kessler valve inspection passed in March 2019, as noted in the accepted test document associated with the turbine report.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.2turbine-report-3pages.pdf · p.3turbine-report-3pages.pdf · p.1",
+   "notFound": null
+  }
+ },
+ "tierChip": null,
+ "failure": "TimeoutError: locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('attach-strict')\u001b[22m\n"
+}

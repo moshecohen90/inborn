@@ -18,6 +18,7 @@ import { ModelCard } from "./ModelCard";
 import { ModelDetails } from "./ModelDetails";
 import { HfSearch } from "./HfSearch";
 import { hfSearchAvailable } from "../../vault/hf";
+import { chooseFile } from "../../documents/chooseFile";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { listClipping } from "../../lib/listClipping";
@@ -102,8 +103,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
 
   const pickAndImport = async () => {
     try {
-      const picked = await File.pickFileAsync({ multipleFiles: false });
-      if (!picked.canceled) await importUri(picked.result.uri, picked.result.name);
+      const picked = await chooseFile();
+      if (picked) await importUri(picked.uri, picked.name);
     } catch (e: unknown) {
       console.warn("[vault] pick", e);
     }

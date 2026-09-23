@@ -24,14 +24,14 @@ const sources = [...walk(SRC)].map((p) => ({ path: p.slice(SRC.length + 1), src:
 
 describe("F100 · the attach sheet's Add a file opens a chooser in the browser", () => {
   it("the browser has a picker of its own, because expo-file-system's web build only warns", () => {
-    const web = source("documents/importPicker.web.ts");
+    const web = source("documents/chooseFile.web.ts");
     expect(web).toContain('input.type = "file"');
     expect(web, "expo-file-system's web build resolves to nothing").not.toMatch(/from "expo-file-system"/);
   });
 
   it("the click is inside the gesture: nothing is awaited above it", () => {
-    const body = /function chooseFile\(\)[\s\S]*?\n}/.exec(source("documents/importPicker.web.ts"))?.[0] ?? "";
-    expect(body, "chooseFile must exist").toContain("input.click()");
+    const body = /function openChooser\([\s\S]*?\n}/.exec(source("documents/chooseFile.web.ts"))?.[0] ?? "";
+    expect(body, "the chooser must exist").toContain("input.click()");
     expect(body.slice(0, body.indexOf("input.click()")), "an await above the click loses the activation").not.toContain("await ");
   });
 

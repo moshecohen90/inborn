@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { File } from "expo-file-system";
 import { verificationInstructions, verifyRecord, type RecordVerdict } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
@@ -10,6 +9,7 @@ import { Markdown } from "../../components/chat/Markdown";
 import { shape } from "../../components/chat/styles";
 import { useType } from "../../services/type";
 import { useWork } from "../../work";
+import { chooseFile } from "../../documents/chooseFile";
 
 /** Settings → Pro for Work → Verify a signed record: hash + Ed25519 check of a `.json` record, no network (§7.5 Work). Free for everyone: verification must never be gated. */
 export function VerifyRecord() {
@@ -33,8 +33,8 @@ export function VerifyRecord() {
   };
   const pick = async () => {
     try {
-      const picked = await File.pickFileAsync({ multipleFiles: false });
-      if (!picked.canceled) await check(picked.result.textSync());
+      const picked = await chooseFile();
+      if (picked) await check(await picked.text());
     } catch (e: unknown) {
       console.warn("[work] pick record", e);
     }

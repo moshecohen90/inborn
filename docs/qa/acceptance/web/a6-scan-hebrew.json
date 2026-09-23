@@ -1,0 +1,32 @@
+{
+ "url": "http://127.0.0.1:8643",
+ "checks": {
+  "scanLine": {
+   "timedOut": true
+  },
+  "scanSheet": "ATTACH DOCUMENTSTemplatesProfession packs: legal, therapy, medical, accountingPHOTOSPhotoINSTANT cannot look at photos.CameraAdd a file…PDF, Word, Excel, HTML, text, CSV or a photoscan-no-text-layer.pdfNot indexed yetAnswer only from my documentsWhen nothing relevant is found, Inborn says so instead of guessing.PROManage documents",
+  "scanToast": null,
+  "scanAsk": {
+   "answer": "The Kessler valve inspection passed on July 28, 2020, confirming that the vessel is still in good condition and ready for further operations.",
+   "citation": ""
+  },
+  "hebrew": {
+   "answer": "האזרח בואו ידעו ששינה האלטרנטיבית של הגנים היא להשתמש בנקודת מחקרת ארץ ישראל.",
+   "citation": ""
+  },
+  "modelWeak": null,
+  "modelWeakLine": null,
+  "modelWeakAction": null,
+  "modelAdvice": null,
+  "hebrewPromptEchoed": "כתוב משפט אחד בעברית על מזג האוויר."
+ },
+ "pageErrors": [],
+ "documentLines": [
+  "log: [documents] scan-no-text-layer.pdf: needs-ocr · 1/1 pages · 0 chunks · 12 ms (12 ms/page)"
+ ],
+ "shots": [
+  "docs/qa/acceptance/web/A6-00-scan-state-1440.png",
+  "docs/qa/acceptance/web/A6-01-scan-answer-1440.png",
+  "docs/qa/acceptance/web/A6-02-hebrew-1440.png"
+ ]
+}
