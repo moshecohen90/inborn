@@ -22,7 +22,7 @@
   </li>
   <li>
     <h3>The exit meter <span class="platform">In the app</span></h3>
-    <p>The Proof screen inside Inborn shows three numbers from the operating system's own counters: bytes out, bytes in and open connections. Out reads <span class="mono">0 B</span> for the life of the install. In counts the model files the store delivered. The "Airplane test" button on that screen walks you through check 1.</p>
+    <p>The Proof screen inside Inborn shows three numbers from the operating system's own counters: bytes out, bytes in and open connections. Out reads <span class="mono">0 B</span> unless you start a model download yourself. In counts the model files the store delivered. The "Airplane test" button on that screen walks you through check 1.</p>
   </li>
   <li>
     <h3>A firewall <span class="platform">Android · Windows · macOS</span></h3>
@@ -30,12 +30,8 @@
   </li>
 </ol>
 
-<h2 id="source">The source, and release hashes</h2>
-<p>Inborn's source is public at <a href="https://github.com/moshecohen90/inborn" rel="noopener">github.com/moshecohen90/inborn</a>, source-available: you can read it, build it and publish what you find, though not redistribute or modify it. None of the checks above depends on that, though: every one of them is made from outside the app, on the build you installed. Continuous integration fails the build if the INTERNET permission appears through manifest merging, and the Proof screen names the commit the build came from, which you can now look up in the public history. From version 1.0 this section lists the SHA-256 of every released build, so a binary you obtained anywhere else can be compared with the one we published.</p>
-<div class="table-wrap"><table>
-<thead><tr><th>Version</th><th>Platform</th><th>SHA-256</th></tr></thead>
-<tbody><tr><td class="mono small">1.0</td><td class="mono small">Android · iOS</td><td class="small">Published with the 1.0 release.</td></tr></tbody>
-</table></div>
+<h2 id="source">The source</h2>
+<p>Inborn's source is public at <a href="https://github.com/moshecohen90/inborn" rel="noopener">github.com/moshecohen90/inborn</a>, source-available: you can read it, build it and publish what you find, though not redistribute or modify it. None of the checks above depends on that, though: every one of them is made from outside the app, on the build you installed. Continuous integration fails the build if the INTERNET permission appears through manifest merging, and the Proof screen names the commit the build came from, which you can now look up in the public history. We do not publish a per-release hash, because a hash cannot show that a binary came from the source you can read. The checks above do not need one.</p>
 
 <h2 id="what-can-leave">The complete list of what can leave, and when</h2>
 <p>Nothing leaves on its own. These are the only situations in which any bytes go out, and each is either done by the store rather than by Inborn, or started by you with a tap:</p>
