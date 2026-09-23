@@ -3265,6 +3265,87 @@ chip. Spec §7.8 and §8.4 (S30b) updated and rebuilt; five new keys in all eigh
 **Not done:** the switch and download buttons themselves are exercised only by unit tests and source assertions. They
 exist on iOS and Android alone — the browser and desktop shells hold one model by design (§14.3) — and this stream was
 assigned no phone, so no screenshot shows a real one-tap switch or a download started from the sheet.
+## Fixes round 41: the website was a document set, not a landing page (branch `site-landing`) — 23.9.2026
+
+Moshe: "The site must already offer the message line from which the user can start a chat. The home page must be a
+landing page that presents the product: sharp fitting copy and an original, special design. Also a link to GitHub and of
+course to all the stores. Use all your agents for ASO, AEO, SEO." `apps/site` had a thesis page with three cards and a
+store-badge placeholder. It now has a hero the reader can type into, seven numbered sections, ten answer-engine FAQ
+entries, three blog posts, and the structured data and crawler files an engine needs to quote us. Still plain HTML and
+CSS, still zero JavaScript in the output, still zero third-party requests. Full write-up, with the copy sources and
+every claim removed: `docs/marketing/site-2026-09-23.md`. **Nothing was deployed.**
+
+- **The composer is the demonstration.** A zero-JavaScript `GET` form hands the typed line to the web app as `?q=`. The
+  app side reuses the share-target seed that already exists (`openShared` → `active.seed` → `Chat`), so the message
+  survives the download door and onboarding and is waiting in the first chat's composer; only the web stub changed.
+  `apps/mobile/src/share/useShareTarget.ts` reads the parameter once per load and clears it from the address bar with
+  `history.replaceState`, so a reload cannot re-seed a chat the user has moved on from. Six unit tests in
+  `src/share/seedParam.test.ts`. **Run end to end against a real `pn web:build`, not reasoned about:**
+  `docs/qa/site-landing/handoff-1-door.png` is the app opened at `/?q=What%20is%20a%20GGUF%20file%3F`, and
+  `handoff-2-seeded-composer.png` is the composer holding `What is a GGUF file?` with the address bar back to `/`.
+  A `GET` form puts the typed line in the URL and therefore in the app origin's access log; the note under the composer
+  says so, because on this page of all pages that could not ship silently.
+- **`form-action` had to open, and `script-src` had to close.** `public/_headers` said `form-action 'none'`, which would
+  have blocked the composer, and declared no `script-src` at all, so `check.mjs`'s assertion on it passed vacuously.
+  Both are fixed: `script-src 'none'` is explicit and `form-action` names exactly one origin, filled from `APP_ORIGIN`
+  at build time (default `https://app.inbornapp.com`; the web app is not deployed anywhere yet, see the open asks).
+- **JSON-LD ships without weakening the no-script gate.** `<script type="application/ld+json">` is a data block, not a
+  script: WHATWG's "prepare the script element" returns before the Content Security Policy step, so it never executes
+  and never trips `script-src 'none'`. `check.mjs` now allows that one element shape, parses the JSON, requires
+  `@context` to be schema.org, rejects a raw angle bracket inside it, and **fails any page carrying no JSON-LD**;
+  anything else matching `<script` is still fatal. `SoftwareApplication` with three `Offer` nodes, `FAQPage`,
+  `Organization`, `Brand`, `WebSite`, `Blog`, `BlogPosting`, `BreadcrumbList`. No `aggregateRating` until real store
+  ratings exist. The ten FAQ answers live in one array in `build.mjs` and render both the visible list and the graph,
+  so a quoted answer cannot differ from the answer on screen.
+- **Eight claims removed from the old page**, each against the source that contradicted it: the unverified `IN 2.7 GB`
+  readout, Apple Family Sharing (`terms.md` §2 says it is not enabled), SmolLM (not in `manifest.json`), four Pro
+  features listed as if they were free (`licence/gates.ts`), "incognito never touches disk" (F99), bare "no crash
+  reporting", "same speed, same answers" as a general claim, and Work features with no gate behind them. Model sizes
+  and speeds are now the measured ones. `/proof` still carries the same `IN 2.7 GB` figure: **flagged, not changed**,
+  it belongs to that page's round.
+- **No GitHub link, on purpose.** `github.com/moshecohen90/inborn` is private: verified anonymously this round, the URL
+  returns 404 and the unauthenticated API returns `Not Found`. `docs/legal/verification.md` forbids "a source link the
+  reader cannot open" while it stays private, and F99 was the round where exactly these claims had to be stripped from
+  eight store listings. The site says the true thing instead, in the Get section, the footer and the FAQ: the source is
+  not public, which is why no check we publish asks anyone to read it. **Moshe's call:** the day the repository goes
+  public, the link and the source-available answer go in together, one line in `build.mjs` and one FAQ entry.
+- **Store links point at the real product pages and say they are not open yet.** Verified this round: the App Store
+  version for id `6809165161` is `PREPARE_FOR_SUBMISSION` and its page 404s, and `com.inbornapp.mobile` 404s on Play
+  because vc19 went to the internal track, not production. Per the brief both are linked anyway and marked on screen
+  ("Opens at launch"); `STORES_LIVE=1` flips the label. Text tiles rather than the official badge artwork, because
+  Apple's guidelines require a badge to link to a live product page, and because self-hosting is the only badge route
+  that keeps the zero-third-party rule.
+- **Crawlers, sitemap, llms.txt.** `robots.txt` allows everything that can cite us (`GPTBot`, `ClaudeBot`,
+  `Google-Extended`, `PerplexityBot`, `Applebot-Extended`, `CCBot`, and `facebookexternalhit`, whose blocking would
+  kill link previews) and blocks the data resellers. `sitemap.xml` drops `priority` and `changefreq`, which Google
+  ignores, and takes `lastmod` from **git** rather than build time, so the field stays trustworthy. `llms.txt` and
+  `llms-full.txt` are generated from the same page list and cannot drift.
+- **A design derived from the app, not a template.** FARADAY tokens only, no new colours and no images: a CSS Faraday
+  mesh behind the hero, the seal set in a bordered port at 1024 and up, a sticky numbered rail beside every section, and
+  monospace readouts as the recurring device. Fluid type, tables scrolling inside their own box, every control at least
+  44px, and a header that folds to two rows at 640 so the brand, three links and the button all keep their target size.
+  Open Graph cards are real `1200x630` PNGs rendered from the site's own tokens; `og:image` cannot be an SVG, and the
+  old square `icon-512.png` rendered as a thumbnail rather than a card.
+- **The token guard was one page-directory wide.** `apps/mobile/test/legal-texts.test.ts` walked `apps/site/dist` one
+  level deep and allow-listed the single literal `{{SEAL}}`, so the blog posts in their own directory would have gone
+  unwatched and any new token would have failed a test that had nothing to do with it. It now walks dist recursively,
+  covers `src/posts` as well as `src/pages`, and reads the allowed set from `TOKENS` exported by `build.mjs`.
+- **Watched red first.** The `verification.md` guard caught this round's own copy: `how-the-proof-works.html` used the
+  banned phrase "reproducible build" while *denying* the claim, and `pn test` failed on it
+  (`apps/site/src/posts/how-the-proof-works.html still claims "reproducible build"`). The post was rephrased rather than
+  the guard loosened.
+
+Verified: `pn typecheck` 0, `pn lint` 0, `pn test` 0 — core 616, **mobile 374** (362 + 6 new + 6 from the parametrised
+site-page cases), i18n 11, ui 11, plus `check:store`. `pnpm --filter @inborn/site build` renders 11 pages and
+`check.mjs` passes. 32 screenshots at 390 / 768 / 1024 / 1440 in dark and light, before and after, in
+`docs/qa/site-landing/`; the screenshot harness also fails on any request that leaves the origin and reported none at
+any width or scheme.
+
+**Open asks for the lead.** The hero composer needs somewhere to send people: the web app has no deployed origin, and
+`app.inbornapp.com` is the subdomain reserved for it on our own zone. Either point that record at an `apps/web/dist`
+Pages project or build the site with `APP_ORIGIN=…`; until one of those happens the composer's Ask button leads
+nowhere. Flip `STORES_LIVE=1` when both listings resolve, and add
+`<meta name="apple-itunes-app" content="app-id=6809165161">` on the same day.
 ## Fixes round 42: the legal texts come from the site, and the site gets an accessibility statement (branch `legal-from-site`) — 23.9.2026
 
 Moshe: "The privacy policy and terms of use in the app MUST come from the site so we can update them; it must not be
@@ -3325,6 +3406,41 @@ next store submission**, not after. `SITE_ORIGIN` still defaults to the staging 
 flipping it is a deploy decision, not a code one. No device, emulator or phone was touched: the screens are proven in
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
+## Fixes round 39: nothing in the app said Pro existed until it refused you (branch `premium-entry`) — 23.9.2026
+
+F145–F149, filed by Moshe from the browser and the phone: "buttons for premium, to see what's in premium, and tapping
+things that lead to premium according to what we decided" · "the other attach buttons show they are disabled, but why
+doesn't tapping them take me to the paywall?" · "`/paywall` is very strange: only 'Pay once. Own it… Pro is sold in the
+iOS, Android, Windows and macOS apps…'. Where are the prices? Very naked." Three different symptoms of one thing: the
+entitlement mechanism was complete and the *entrances to it* were not.
+
+- **F145 — every refusal opened the same generic price list.** Fourteen doors pushed a bare `router.push("/paywall")`,
+  so the person who had just been refused one specific thing met "Pay once. Own it." and had to work out which of two
+  prices lifted what they tried. `paywallFor` already computed the exact reason; the door threw it away. The moments
+  mechanism is extended rather than doubled: `reasonOf(moment)` and `PAYWALL_REASONS` live next to `paywallFor` in
+  `packages/core/src/licence/moments.ts`, `openPaywall(reason)` is the one door, and S60 opens with
+  `paywall.why.<reason>` above the cards. Proved by tapping, not by reading: the PRO tag on the strict switch lands on
+  `/paywall?reason=strictDocuments` and the screen reads "You asked for answers only from your documents. Pro turns
+  that on."
+- **F146 — a Free user could tick a second document into a chat for nothing.** The picker and the share target both
+  asked `fileIntake`; the attach sheet's own list did not, and `onAttach={docs.attach}` walked straight past the
+  one-file limit §7.3 gives Free. The row now carries the PRO tag and the reason for the limit, stays tappable, and
+  opens S60 with `document`. Detaching is never gated — removing your own data is not something we sell (§7.5).
+- **F147 — no front door.** Settings opens with an "INBORN PRO" section (tier badge, a sub-line per tier, "See what's
+  in Pro"), and the sheet the chat header opens carries the same chip and link (round 40 moved that from Chat settings to
+  the model sheet; both carry it). All of them open S60 with no reason, because nothing was refused.
+- **F148 — the paywall never said what separates the tiers.** `COMPARE_ROWS` / `compareCell()` keep the §7.3 matrix in
+  one machine-readable place and `CompareTable` renders 18 rows across Free / Pro / Work, marking the column you are
+  on. Every cell is computed from the same `can()` / `limits()` the screens ask, so the table cannot promise what the
+  gates refuse; a row for a capability on `UNBUILT_FEATURES` fails the build.
+- **F149 — the browser paywall named no price, and the URL did not resolve.** With no store the screen rendered one
+  sentence and nothing else. It now shows both tiers priced from the catalogue, the value lines, the US-list-price
+  note, three buttons to App Store / Google Play / Desktop, the promise that the browser stays free, and the table.
+  Separately the export is one `index.html` with no rewrite, so `/paywall` was a 404 on any static host: the build now
+  writes `_redirects` and the dev server falls back to `index.html` for extensionless paths, the same rule in both.
+
+Copy in all 9 locales. `pn web:smoke` green. Evidence, before and after at 390 and 1440: `docs/qa/premium-entry/`.
+
 
 ## Fixes round 34: "Add a file" was dead in the browser, and the toggle would not say which side was on (branch `web-bugs`) — 23.9.2026
 
@@ -3383,5 +3499,5 @@ of a sheet item; that library is not in the repo and `pn install --frozen-lockfi
 equivalent proof is the pure unit test on the hand-over, the source guards, and the real-browser click-through of all
 eighteen sheet items.
 
-Tests after the merge of `origin/main`: core 638, mobile 435 (16 of them this round), i18n 11, ui 11, plus
+Tests after the merge of `origin/main`: core 649, mobile 467 (16 of them this round), i18n 11, ui 11, plus
 `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.

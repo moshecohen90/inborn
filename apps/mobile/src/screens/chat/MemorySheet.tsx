@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BUILT_IN_PERSONAS, type Chat, type ChatStore, type MemoryFact, type Persona } from "@inborn/core";
-import { paywallFor } from "@inborn/core";
+import { paywallFor, type PaywallReason } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet } from "../../components/chat/Sheet";
@@ -17,7 +17,7 @@ interface Props {
   onClose: () => void;
   store: ChatStore;
   /** Memory is Pro (§7.9): the panel is visible to everyone, adding a fact opens the paywall on Free. */
-  onUnlock?: () => void;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 /**
@@ -33,7 +33,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
   const locked = paywallFor(tier, { kind: "feature", feature: "memory" });
   const unlock = () => {
     onClose();
-    afterSheetClose(() => onUnlock?.());
+    afterSheetClose(() => onUnlock?.("memory"));
   };
   const [facts, setFacts] = useState<MemoryFact[]>([]);
   const [chats, setChats] = useState<Map<string, Chat>>(new Map());

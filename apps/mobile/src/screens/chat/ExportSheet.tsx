@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { exportChat, paywallFor, type Chat, type ChatStore, type ExportFormat } from "@inborn/core";
+import { exportChat, paywallFor, type Chat, type ChatStore, type ExportFormat, type PaywallReason } from "@inborn/core";
 import { useWork, useWorkGate, WorkTag, type SignedExportFiles } from "../../work";
 import { appVersion } from "../../work/appInfo";
 import { shareFile } from "../../lib/share";
@@ -14,7 +14,7 @@ interface Props {
   onClose: () => void;
   store: ChatStore;
   /** "Export all" is a §12.3 value moment: Free lands on the paywall. */
-  onUnlock?: () => void;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 const FORMATS: ExportFormat[] = ["markdown", "text", "json"];
@@ -32,7 +32,7 @@ export function ExportSheet({ chat, onClose, store, onUnlock }: Props) {
     if (!chat || chat.incognito) return;
     if (gate.signedLocked) {
       onClose();
-      afterSheetClose(() => onUnlock?.());
+      afterSheetClose(() => onUnlock?.("signedExport"));
       return;
     }
     let files = signed;
@@ -55,7 +55,7 @@ export function ExportSheet({ chat, onClose, store, onUnlock }: Props) {
   const runAll = async () => {
     if (allLocked) {
       onClose();
-      afterSheetClose(() => onUnlock?.());
+      afterSheetClose(() => onUnlock?.("exportAll"));
       return;
     }
     const chats = (await store.listChats()).filter((c) => !c.incognito);

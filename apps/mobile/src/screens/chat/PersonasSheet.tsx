@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BUILT_IN_PERSONAS, PERSONA_ICONS, paywallFor, validatePersona, type ChatStore, type Persona, type PersonaIcon, type PersonaInput } from "@inborn/core";
+import { BUILT_IN_PERSONAS, PERSONA_ICONS, paywallFor, validatePersona, type ChatStore, type Persona, type PersonaIcon, type PersonaInput , type PaywallReason } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
 import { PersonaGlyph } from "../../components/chat/PersonaGlyph";
@@ -17,7 +17,7 @@ interface Props {
   /** Fires after any create / edit / delete so the caller can refresh chips. */
   onChanged?: () => void;
   /** The 4th custom persona is a §12.3 value moment: the add row opens the paywall instead. */
-  onUnlock?: () => void;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 type Draft = { id?: string; name: string; icon: PersonaIcon; systemPrompt: string; temperature: string; disclaimer: string };
@@ -41,7 +41,7 @@ export function PersonasSheet({ visible, onClose, store, onChanged, onUnlock }: 
   const locked = paywallFor(tier, { kind: "persona", existing: custom.length });
   const unlock = () => {
     onClose();
-    afterSheetClose(() => onUnlock?.());
+    afterSheetClose(() => onUnlock?.("persona"));
   };
   const edit = (p: Persona) => setDraft({ id: p.id, name: p.name, icon: p.icon, systemPrompt: p.systemPrompt, temperature: p.temperature === undefined ? "" : String(p.temperature), disclaimer: p.disclaimer ?? "" });
 

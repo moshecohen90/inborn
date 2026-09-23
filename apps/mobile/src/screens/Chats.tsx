@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput,
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
-import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit, type VaultAction } from "@inborn/core";
+import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit, type VaultAction , type PaywallReason } from "@inborn/core";
 import { formatWhen } from "../lib/when";
 import { retentionDaysLeft } from "../services/retention";
 import { useEntitlement } from "../licence";
@@ -40,8 +40,8 @@ export interface ChatsProps {
   onOpenChat: (chat: Chat) => void;
   onNewChat: (incognito: boolean, personaId?: string) => void;
   onDeleted: (chatId: string) => void;
-  /** Folders and "export all" are §12.3 value moments; the host opens S60. */
-  onOpenPaywall?: () => void;
+  /** Folders and "export all" are §12.3 value moments; the host opens S60 with the reason. */
+  onOpenPaywall?: (reason?: PaywallReason) => void;
   /** S52 auto-delete setting (0 = off): rows show "Deletes in N days" (S20). */
   autoDeleteDays?: number;
   /** Changes when chats were removed elsewhere (auto-delete); the list reloads. */
@@ -82,7 +82,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
   const [memoryOpen, setMemoryOpen] = useState(false);
   const pending = useRef<Pending | null>(null);
   const foldersGated = paywallFor(tier, { kind: "feature", feature: "folders" });
-  const unlock = () => onOpenPaywall?.();
+  const unlock = (reason: PaywallReason = "folders") => onOpenPaywall?.(reason);
 
   const refresh = useCallback(async () => {
     const [list, dirs, custom] = await Promise.all([store.listChats(), store.library.listFolders(), store.library.listPersonas()]);
@@ -587,9 +587,9 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           return ok;
         }}
       />
-      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={unlock} />
-      <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} onUnlock={unlock} />
-      <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} onUnlock={unlock} />
+      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={(why) => unlock(why)} />
+      <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} onUnlock={(why) => unlock(why)} />
+      <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} onUnlock={(why) => unlock(why)} />
     </View>
   );
 }
