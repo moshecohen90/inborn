@@ -47,7 +47,7 @@ export function AuditLog() {
   const when = (ms: number) => new Intl.DateTimeFormat(i18n.language, { dateStyle: "medium", timeStyle: "short" }).format(new Date(ms));
 
   return (
-    <Screen header={{ back: true, title: t("audit.title") }} testID="audit-log">
+    <Screen header={{ back: true, title: t("audit.title") }} testID="audit-log" card={!picked}>
       {locked ? (
         <View style={[styles.moment, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
           <Text style={[type.bodySmall, styles.grow, { color: theme.text2 }]}>{t("work.moment.vault", { price: gate.price })}</Text>
@@ -55,12 +55,15 @@ export function AuditLog() {
         </View>
       ) : null}
       {!vaults.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("audit.empty")}</Text> : null}
+      {/* With no vault yet the picker was a heading over nothing, which reads as a dead label rather than a choice (QA F235). */}
       {!picked ? (
-        <Section title={t("audit.pick")}>
-          {vaults.map((v) => (
-            <Row key={v.id} testID={`audit-vault-${v.id}`} label={v.name} onPress={() => (locked ? undefined : setPicked(v.id))} chevron disabled={locked} />
-          ))}
-        </Section>
+        vaults.length ? (
+          <Section title={t("audit.pick")}>
+            {vaults.map((v) => (
+              <Row key={v.id} testID={`audit-vault-${v.id}`} label={v.name} onPress={() => (locked ? undefined : setPicked(v.id))} chevron disabled={locked} />
+            ))}
+          </Section>
+        ) : null
       ) : (
         <>
           <Section title={name}>

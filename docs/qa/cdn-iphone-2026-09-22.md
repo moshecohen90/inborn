@@ -1,7 +1,7 @@
 # CDN download on the real iPhone — models.inbornapp.com — 22.9.2026
 
 The step the simulator cannot do. Inborn 1.0.0 (11) on Moshe's iPhone 13 Pro (iOS 26.6.1, udid
-`REDACTED-IPHONE`, on USB, Wi-Fi) downloaded the **Fast** model, 1.2 GB, from the R2 CDN that went live the
+`<iphone-udid>`, on USB, Wi-Fi) downloaded the **Fast** model, 1.2 GB, from the R2 CDN that went live the
 same morning, hashed it against the signed catalog, loaded it and answered a chat turn with it. The CDN itself and how
 it was built are in `docs/ops/cdn-r2.md`.
 

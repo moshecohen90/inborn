@@ -29,6 +29,13 @@ describe("the gate table carries no declared cuts", () => {
     for (const cut of ["encryptedBackup", "deviceTransfer", "keyboardExtension", "lanConnection", "advancedControls", "gpuTuning", "speculativeDecoding", "multiModel", "compareModels", "localServer", "personaWidgets"]) expect(cut in FEATURES, cut).toBe(false);
   });
 
+  it("one shipped capability has one gate key: profession packs are `templates`, and the dead duplicate is gone", () => {
+    expect("professionPacks" in FEATURES).toBe(false);
+    expect(UNBUILT_FEATURES).not.toContain("professionPacks" as never);
+    expect(FEATURES.templates).toBe("work");
+    expect(PAYWALL_BULLETS.work).toContain("packs");
+  });
+
   it("every unbuilt key is a real key, and the built ones are not hidden in that list", () => {
     for (const f of UNBUILT_FEATURES) expect(FEATURE_LIST, f).toContain(f);
     for (const wired of ["documents", "ocr", "strictDocuments", "memory", "detailedStats", "officeIngest", "folders", "exportAll", "unlimitedPersonas", "proModels", "voiceConversation", "whisperDictation", "clientVaults", "auditLog", "signedExport", "templates", "redaction", "architectureStatement"]) expect(UNBUILT_FEATURES, wired).not.toContain(wired);

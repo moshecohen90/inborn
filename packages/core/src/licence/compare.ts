@@ -46,3 +46,9 @@ export const COMPARE_TIERS: readonly LicenceTier[] = ["free", "pro", "work"];
 
 /** A row for a capability this build does not ship would be a promise, not proof (§2.3). */
 export const compareRowShips = (row: CompareRow): boolean => row.kind !== "feature" || !UNBUILT_FEATURES.includes(row.feature);
+
+/**
+ * Rows whose tick the web build cannot honour: `documents/extract.ts` has no OCR, so "text from scans and photos" is a
+ * native-app capability. The table marks them there rather than showing a ✓ a browser reader cannot act on (§2.3).
+ */
+export const COMPARE_APP_ONLY: readonly string[] = ["ocr"];

@@ -168,7 +168,7 @@ Fast"; `settings put global low_power 1/0` → Low Power line on/off; `am send-t
 55 s later; an answer at 23 tok/s sent to the background was cut 16 s later and "Paused · Continue" waited on return. Web: `web:smoke` passes with
 the guard running (wllama, 30 tok/s, no console errors).
 
-OnePlus 6T (Android 11), read-only trace with `scripts/device-thermal-measure.sh REDACTED-6T 200`: three 1,024-token answers, skin 36 → 51.5 °C in
+OnePlus 6T (Android 11), read-only trace with `scripts/device-thermal-measure.sh <6t-serial> 200`: three 1,024-token answers, skin 36 → 51.5 °C in
 80 s, CPU up to 95 °C, back to 36 °C two minutes after the last answer. `PowerManager.getCurrentThermalStatus()` is **stuck at 6 (SHUTDOWN)** on this
 phone: a sensor named `soc` (type 8, battery-current-limit percentage) reports 100 at full charge and OxygenOS maps it to SHUTDOWN, while the skin
 sensor's own status is 3 (SEVERE) under load and 0 at rest. Without the plausibility check the app would never answer there; with it the status is
@@ -912,7 +912,7 @@ given the "Access to cloud-managed distribution certificates" checkbox. The App 
 identity to fall back on. Builds 6–11 were finished by hand with the Admin key; since 22.9.2026 it is the default.
 
 `scripts/asc-key-env.sh` reads the Admin key (Keychain `store-reviews` / `appstore-analytics-config`, key id
-`REDACTED-ASC-KEY`, the same key the ASO tooling uses), refuses any entry whose `role` is not Admin, writes
+`<asc-key-id>`, the same key the ASO tooling uses), refuses any entry whose `role` is not Admin, writes
 `AuthKey_<kid>.p8` into `~/.appstoreconnect/private_keys` with mode 600 — the only place `altool` reads it from — and
 prints the exports. `--cleanup` deletes every staged `.p8`; run it at the end of a build, as the build records do.
 
@@ -2644,7 +2644,7 @@ hang.
 
 ## Fixes round 18: dictation crashed on Android, image input was Instant-only, Sharp's estimate on legacy chips (branch `fixes-r18`) — 21.9.2026
 Three findings from the Play vc12 run (`docs/qa/purchases-run-2026-09-11.md` section O). All three are root-fixed here and
-each is proven on the OnePlus 6T (`REDACTED-6T`, Snapdragon 845, Android 11).
+each is proven on the OnePlus 6T (`<6t-serial>`, Snapdragon 845, Android 11).
 
 - **F35 · the microphone killed the app about 24 s into hands-free** (`patches/@fugood__react-native-audio-pcm-stream@1.1.4.patch`,
   `apps/mobile/src/voice/mic.native.ts`, `packages/core/src/voice/micSession.ts`). Root cause is in the stream module's
@@ -2960,7 +2960,7 @@ the bytes had never left the phone. The same happened on vc6 → vc7. MosheAI ca
   re-requested and lands `ready`, the record survives the unbound boot, a model this device never had is left alone, an
   HTTPS file that is really gone still loses its record, and the vault-open path re-asks. Against the pre-fix `store.ts`
   three of the five fail (`expected [ 'instant' ] to include 'fast'`).
-- **Proof on the OnePlus 6T** (`REDACTED-6T`, release AABs installed with `bundletool build-apks --local-testing`; the local
+- **Proof on the OnePlus 6T** (`<6t-serial>`, release AABs installed with `bundletool build-apks --local-testing`; the local
   Play Core stub reproduces the fault exactly, and its `FakeAssetPackService : startDownload` lines are what proves who asked):
 
 | step | build | vault header | Fast card |
@@ -4183,3 +4183,54 @@ web build runs `app.config.ts` with the new refusal in place. Evidence: `docs/qa
 
 **This branch also carries round 47 and its security addendum** (`fix-tech`, F195–F204 and F255–F256), merged in so
 there is one branch to land rather than two that touch the same files.
+## Fixes round 50: the MosheAI review — what the paywall shouts, what the strip repeats, and a public repo with his phone's serial in it (branch `fix-mosheai`) — 24.9.2026
+
+The 24.9 MosheAI pass raised 20 items. Three of them belong to other streams (the dead call to action on the live
+site and the four dead buy buttons to `cf-token`; the Work tier on hardware and the iPhone use-pass to
+`work-tier-6t` and `ios-qa-bridge`), and item 14 — F161's residual sentence — was not assigned. This round is the
+other fourteen: **F225–F238** in `docs/qa/qa-run-2026-09-11.md`, evidence in `docs/qa/fix-mosheai/`.
+
+- **The paywall's comparison table kept its headers (F225).** 18 rows and `FREE / PRO / WORK` was a plain first row,
+  so at 390 you reached *Client vaults with passcodes* and three unlabelled tick columns. The header row is sticky
+  inside the card on the platform whose style engine has sticky, with its own background so rows pass under it. The
+  complement is what makes this a proof rather than a claim: in the same session, `position` forced back to `static`
+  puts the columns back to bare (`after/05-paywall-compare-scrolled-nosticky-390.png`). On native phones the header
+  still scrolls — React Native has no `sticky` outside a `ScrollView`'s own `stickyHeaderIndices`, and the paywall's
+  children are conditional, so pinning an index there is a separate change. Said plainly rather than implied.
+- **Five notices before the first word became one (F226).** The strip keeps `web.notice` and folds the offline and
+  storage line, the unknown-memory line and the Chrome engine switch behind a `Details` disclosure. The phone door
+  stayed out — a phone reader must not open a disclosure to learn the browser runs Instant only — and so did the
+  AI-can-be-wrong strip, which is the one with a Dismiss. 79 px of chrome became 44.
+- **Hebrew: we stopped discouraging it too (F227).** The permanent all-caps verdict on every Hebrew turn now runs
+  through the **same** once-per-chat memory and chat-row snooze the §7.8 advice card uses, with a Dismiss and in
+  sentence type. The string's own capitals belong to `review-copy` item 20 and were left for that stream.
+- **Two surfaces stopped contradicting each other about what you can buy (F228).** The app sold Pro "in the iOS,
+  Android, Windows and macOS apps" while the site says Windows and macOS come after them. Eight locales and pseudo
+  now name the two stores that exist, and the Desktop button and its string are gone.
+- **Smaller truths (F229–F231, F233–F235).** An HTML file is no longer refused with the word "spreadsheet"; the dead
+  `professionPacks` gate that satisfied the F42 guard in place of the live `templates` is deleted; the compare
+  table's OCR tick carries a footnote in the browser, where `extract.ts` says outright there is no OCR; Fast's
+  Arabic drops from `native` to `good` and the catalog is re-signed; a Hebrew answer mirrors its label and ledger
+  with its text instead of leaving them 600 px away; and an empty chat and `/work/audit` stop being a phone layout
+  at desktop height — including the `CHOOSE A VAULT` heading that printed over nothing.
+- **Rounds 39–41 and the spec (F232).** The review said all three skipped `docs/spec-src`. Checked first: rounds 39
+  and 40 did update it. Round 41 did not, and two real gaps remained — S52 never mentioned the Pro entry round 39
+  added, and §13.4 described a plan rather than the site that shipped. Both written, `docs/build.py` rebuilt.
+- **The site's default canonical is the real host (F237).** Also checked before fixing: `apps/site/dist` is **not**
+  committed — it is gitignored and has never been tracked — so the risk was never a stale committed build, it was
+  the build-time default, which read the staging host in 261 places. This branch replaced the literal; the merge of
+  `origin/main` then brought round 46's better answer, `packages/core/src/site/origins.json`, one file the build, the
+  check and the deploy all read and whose `site` is already `inbornapp.com`. **That** is what shipped, and the
+  literals were dropped rather than left as a second default.
+- **A public repo stopped carrying Moshe's hardware (F238).** The iPhone UDID in 16 files, the 6T serial in 41 and
+  the ASC key id in 8 are replaced by placeholders at HEAD across `docs/qa/` and `README.md`. The history is not
+  rewritten and cannot be; it stops growing. `packages/core/test/no-device-ids.test.ts` walks `git ls-files` and
+  fails on any of the three, and it caught its first real hit immediately: the key id inside the F238 row itself.
+
+Every behaviour fix carries a guard that was watched failing with the fix reverted
+(`docs/qa/fix-mosheai/guard-red-r50.txt`, 11 red; `guard-red-device-ids.txt` for the identifier scan).
+
+Gates after merging `origin/main` (rounds 46–49): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
+**1,356 tests** (core 726, mobile 600, ui 13, i18n 17), `pn web:build` + `pn web:smoke` PASS — the smoke now opens
+the strip's disclosure before reading the offline state — and `pnpm --filter @inborn/site check` "13 pages: no
+scripts, no external assets, no dead links, CSP present".

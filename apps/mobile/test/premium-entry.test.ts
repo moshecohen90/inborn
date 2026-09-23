@@ -145,8 +145,10 @@ describe("F149 · the browser paywall names the price and the way to buy", () =>
     expect(block).not.toMatch(/\$\s?\d/);
     expect(block).toContain('t("paywall.web.priceNote")');
   });
-  it("offers all three ways to the app", () => {
-    expect(block).toContain('(["appStore", "play", "desktop"] as const)');
+  /* Windows and macOS have no listing, and the site's Get section says so; a Desktop button contradicted it (MosheAI item 8, 24.9). */
+  it("offers only the two stores that have a listing", () => {
+    expect(block).toContain('(["appStore", "play"] as const)');
+    expect(block).not.toContain('"desktop"');
     expect(block).toContain("testID={`web-get-${where}`}");
     expect(block).toContain("STORE_LINKS[where]");
   });
