@@ -79,9 +79,11 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
         {open ? (
           <View testID="web-strip-detail" style={styles.stripDetail}>
             {boot.gate.ramGB === null && !phone ? <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.unknownMemory")}</Text> : null}
+            {/* §9.2/§9.3: mono and the sealed green belong to the state word alone; the caveat is a sentence, so it is body text. */}
             <Text testID="web-offline-state" style={[styles.mono, { color: offline === "ready" ? theme.sealed : theme.text3 }]}>
               {t(offline === "ready" ? "web.offlineReady" : offline === "installing" ? "web.offlinePreparing" : "web.offlineUnavailable")}
-              {" · "}
+            </Text>
+            <Text testID="web-storage-notice" style={[styles.caption, { color: theme.text2 }]}>
               {t("webStorageNotice")}
             </Text>
             {boot.chromePromptApi ? (

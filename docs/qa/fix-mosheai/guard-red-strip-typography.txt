@@ -1,0 +1,83 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-mosheai/apps/mobile
+
+ ❯ test/mosheai-r50.test.ts (12 tests | 2 failed) 10ms
+   ❯ item 6 · one line before the first word, not five (4)
+     × the offline line, the storage notice and the engine switch live behind the disclosure 5ms
+     × sets the storage caveat as body text, and keeps mono and sealed for the state word alone 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/mosheai-r50.test.ts > item 6 · one line before the first word, not five > the offline line, the storage notice and the engine switch live behind the disclosure
+AssertionError: testID="web-storage-notice": expected '{open ? (\n          <View testID="we…' to contain 'testID="web-storage-notice"'
+
+- Expected
++ Received
+
+- testID="web-storage-notice"
++ {open ? (
++           <View testID="web-strip-detail" style={styles.stripDetail}>
++             {boot.gate.ramGB === null && !phone ? <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.unknownMemory")}</Text> : null}
++             <Text testID="web-offline-state" style={[styles.mono, { color: offline === "ready" ? theme.sealed : theme.text3 }]}>
++               {t(offline === "ready" ? "web.offlineReady" : offline === "installing" ? "web.offlinePreparing" : "web.offlineUnavailable")}
++               {" · "}
++               {t("webStorageNotice")}
++             </Text>
++             {boot.chromePromptApi ? (
++               <View style={styles.switchRow}>
++                 <Toggle testID="engine-switch" value={boot.engine === "chrome-nano"} onChange={switchEngine} />
++                 <Text style={[styles.caption, { color: theme.text }]}>{t("web.engine.chrome")}</Text>
++               </View>
++             ) : null}
++           </View>
++         ) : null}
++       </View>
++       <Pressable 
+
+ ❯ test/mosheai-r50.test.ts:39:189
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/mosheai-r50.test.ts > item 6 · one line before the first word, not five > sets the storage caveat as body text, and keeps mono and sealed for the state word alone
+AssertionError: expected 'testID="web-offline-state" style={[st…' not to contain 'webStorageNotice'
+
+- Expected
++ Received
+
+- webStorageNotice
++ testID="web-offline-state" style={[styles.mono, { color: offline === "ready" ? theme.sealed : theme.text3 }]}>
++               {t(offline === "ready" ? "web.offlineReady" : offline === "installing" ? "web.offlinePreparing" : "web.offlineUnavailable")}
++               {" · "}
++               {t("webStorageNotice")}
++             </Text>
++             {boot.chromePromptApi ? (
++               <View style={styles.switchRow}>
++                 <Toggle testID="engine-switch" value={boot.engine === "chrome-nano"} onChange={switchEngine} />
++                 <Text style={[styles.caption, { color: theme.text }]}>{t("web.engine.chrome")}</Text>
++               </View>
++             ) : null}
++           </View>
++         ) : null}
++       </View>
++       <Pressable
+
+ ❯ test/mosheai-r50.test.ts:46:25
+     44|     expect(offline).toContain("styles.mono");
+     45|     expect(offline).toContain("theme.sealed");
+     46|     expect(offline).not.toContain("webStorageNotice");
+       |                         ^
+     47|     const caveat = detail.slice(detail.indexOf('testID="web-storage-no…
+     48|     expect(caveat).toContain("styles.caption");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  01:45:46
+   Duration  108ms (transform 44%, tests 30%, import 20%, worker 6%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-mosheai/apps/mobile:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/mosheai-r50.test.ts
