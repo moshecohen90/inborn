@@ -4303,5 +4303,7 @@ The phone was then left carrying a **clean, non-QA** build of this branch, verif
 and then killed, so it sits on its home screen.
 
 Spec §14 records the bridge as the device-QA mechanism. Gates on the merge of this branch with `main`:
-`pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,390 tests** (core 723, mobile 638, i18n 16, ui 13);
+`pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,415 tests** (core 726, mobile 659, i18n 17, ui 13);
 49 of the mobile ones are this round's — 27 on the fiber walk, 11 on the step interpreter, 11 on the build gate.
+Round 50's `no-device-ids` guard passes on this branch too: the driver takes the phone from `INBORN_IOS_DEVICE`
+or `--device` and the UDID is a literal in no tracked file.
