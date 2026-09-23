@@ -56,7 +56,7 @@ expensive to lose at the first red.
 | `setTier` | `free` \| `pro` \| `work` | the existing licence hook (`LicenceManager.pretendTier`), so Pro-gated rows can be reached |
 | `devPrompt` | `lines` | writes the line file `screens/Chat.tsx` already watches: `image: <name>`, `attach: <name>`, `strict: on\|off`, or a prompt |
 | `sleep` | `ms` | |
-| `cleanup` | — | deletes `Documents/qa/` and any `qa-*` file the driver left at the root |
+| `cleanup` | — | deletes `Documents/qa/` and any `qa-*` file the driver left at the root; see *Leaving nothing behind* |
 
 Three things to know before writing one:
 
@@ -67,6 +67,11 @@ Three things to know before writing one:
 - **Pressing is not tapping.** A control that is off screen, behind a keyboard or under another view is still
   pressable, because the handler is called directly. That is a feature for reaching a row below the fold and a trap
   for claiming "the user can see it" — pair any such row with `scrollTo` and a screenshot.
+- **`cleanup` alone does not empty the container.** The report is written after the last step, so a script ending
+  in `cleanup` recreates `Documents/qa/out/<run>/` on its way out. The driver therefore acknowledges the report the
+  same way it acknowledges a screenshot, and the bridge sweeps a second time once that ack lands — it never deletes
+  a report the driver has not taken, because a run nobody read is a run to be diagnosed. The driver's last line says
+  which happened: `swept: Documents/qa is gone` or `swept: STILL ON THE DEVICE`.
 - **The photo picker cannot be driven.** `UIImagePickerController` is a system sheet in another process. The photo
   rows go through `devPrompt` with `image: <file at the Documents root>`, the hook round 38 already used.
 

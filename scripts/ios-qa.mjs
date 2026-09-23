@@ -72,6 +72,20 @@ function screenshot(name) {
   return png;
 }
 
+/** Acknowledges the report, then watches `Documents/qa/boot.json` disappear — the bridge's proof it swept. */
+async function sweep() {
+  const ok = join(staging, 'result.ok');
+  writeFileSync(ok, runId);
+  push(ok, `Documents/qa/ack/${runId}/result.ok`);
+  const probe = join(staging, 'boot-probe.json');
+  for (let i = 0; i < 30; i++) {
+    await sleep(1000);
+    rmSync(probe, { force: true });
+    if (pull('Documents/qa/boot.json', probe) === null) return true;
+  }
+  return false;
+}
+
 async function main() {
   const raw = JSON.parse(readFileSync(scriptPath, 'utf8'));
   const steps = Array.isArray(raw) ? raw : raw.steps;
@@ -134,6 +148,9 @@ async function main() {
   const parsed = JSON.parse(result);
   for (const s of parsed.steps) log(`${s.ok ? 'ok  ' : 'FAIL'} ${String(s.i).padStart(3)} ${s.op.padEnd(10)} ${(s.detail ?? '').slice(0, 110)}`);
   log(`${parsed.passed} passed, ${parsed.failed} failed, ${took.size} screenshots → ${outDir}`);
+  // A `cleanup` step cannot take the report with it, because the report is written after the last step. The bridge
+  // waits for this acknowledgement and only then drops `Documents/qa/`; the poll below is what proves it did.
+  if (steps.some((s) => s.op === 'cleanup')) log(`swept: ${(await sweep()) ? 'Documents/qa is gone' : 'STILL ON THE DEVICE'}`);
   for (const e of parsed.errors) log(`  ! ${e.slice(0, 200)}`);
   process.exit(parsed.ok ? 0 : 1);
 }

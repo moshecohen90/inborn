@@ -149,6 +149,36 @@ async function runStep(surface: Surface, step: Step): Promise<Partial<StepResult
 }
 
 /**
+ * Whether the run has to sweep again once the driver has the report. `cleanup` drops `Documents/qa/`, but the
+ * result file is written into that same namespace after the last step, so a script that ends in `cleanup` still
+ * leaves its own report on the device. The second sweep waits for the driver's acknowledgement and takes it away.
+ */
+export const needsSweep = (steps: Step[]): boolean => steps.some((s) => s.op === "cleanup");
+
+/** What the second sweep is allowed to touch: the driver's acknowledgement, the delete, and the clock. */
+export interface Sweep {
+  acked: () => boolean;
+  cleanup: () => void;
+  sleep: (ms: number) => Promise<void>;
+  now: () => number;
+}
+
+/**
+ * Deletes the namespace once the driver says it has the report, and gives up rather than deleting a report nobody
+ * read: a driver that never comes back has left a run to be diagnosed, and the evidence is worth more than a tidy
+ * container.
+ */
+export async function sweepWhenAcked(sweep: Sweep, timeoutMs: number, pollMs = 500): Promise<boolean> {
+  const until = sweep.now() + timeoutMs;
+  while (!sweep.acked()) {
+    if (sweep.now() > until) return false;
+    await sweep.sleep(pollMs);
+  }
+  sweep.cleanup();
+  return true;
+}
+
+/**
  * Runs every step and never stops at the first red: a device session is expensive, so the report says which rows
  * passed and which failed rather than only where it died.
  */

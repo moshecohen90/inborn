@@ -30,9 +30,15 @@ export function ensureDirs(): void {
   dir("ack");
 }
 
-/** The oldest unread script, or null. The file is consumed (deleted) so a relaunch never replays a finished run. */
+/**
+ * The oldest unread script, or null. The file is consumed (deleted) so a relaunch never replays a finished run.
+ * It reads the inbox without creating it: after a sweep the namespace has to stay gone, and a poll that recreated
+ * `Documents/qa/in` every second would put it straight back.
+ */
 export function takeScript(): Script | null {
-  for (const entry of inboxDir().list()) {
+  const box = new Directory(Paths.document, QA_ROOT, "in");
+  if (!box.exists) return null;
+  for (const entry of box.list()) {
     if (!(entry instanceof File) || !entry.name.endsWith(".json")) continue;
     let raw: string;
     try {

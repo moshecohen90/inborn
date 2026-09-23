@@ -7,7 +7,7 @@ import { router } from "expo-router";
 import { setEntitlements } from "../lib/entitlements";
 import { getLicence } from "../licence/licence";
 import { ackExists, cleanup, writeDevPrompt, writeProgress } from "./io";
-import type { NodeValue, Step, Surface, Tier } from "./steps";
+import { sweepWhenAcked, type NodeValue, type Step, type Surface, type Tier } from "./steps";
 import { currentRoot, dump, fiberOf, findAll, hostOf, isDisabled, pressTarget, propsOf, routeOf, scrollerOf, textOf, typeTarget, type QaFiber } from "./tree";
 
 /** Greppable in a built `main.jsbundle`: `scripts/check-qa-bridge.sh` fails a release artifact that contains it. */
@@ -15,6 +15,8 @@ export const QA_BRIDGE_SENTINEL = "INBORN_QA_BRIDGE_V1";
 
 /** The driver has 2 minutes to take the picture and acknowledge; longer than that is a dead driver, not a slow one. */
 const SHOT_TIMEOUT = 120000;
+/** The same patience for the report's acknowledgement; a driver that never comes back leaves the report behind to be read. */
+const SWEEP_TIMEOUT = 120000;
 const MEASURE_TIMEOUT = 3000;
 
 export const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
@@ -53,6 +55,14 @@ function measureY(host: unknown, relativeTo: unknown, testID: string): Promise<n
     );
   });
 }
+
+/**
+ * The second sweep. `cleanup` runs where the script puts it, but `writeResult` recreates `Documents/qa/out/<run>/`
+ * straight after the last step, so a run that asked to leave nothing behind still leaves its own report. The driver
+ * acknowledges the report exactly as it acknowledges a screenshot, and only then does the namespace go.
+ */
+export const sweepAfterAck = (runId: string): Promise<boolean> =>
+  sweepWhenAcked({ acked: () => ackExists(runId, "result"), cleanup, sleep, now: () => Date.now() }, SWEEP_TIMEOUT);
 
 export function createSurface(getHandle: () => unknown, runId: string): Surface {
   const root = (): QaFiber => {

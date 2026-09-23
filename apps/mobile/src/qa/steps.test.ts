@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { runScript, type NodeValue, type Step, type Surface } from "./steps";
+import { needsSweep, runScript, sweepWhenAcked, type NodeValue, type Step, type Surface } from "./steps";
 
 /** A Surface with no device behind it: the tree is a map, time is a counter, sleeping is free. */
 function fake(nodes: Record<string, NodeValue> = {}) {
@@ -131,5 +131,40 @@ describe("runScript", () => {
     const result = await run(surface, [{ op: "screenshot", name: "F01" }]);
     expect(result.steps[0]?.ok).toBe(false);
     expect(result.steps[0]?.detail).toContain("never acknowledged");
+  });
+});
+
+/**
+ * A script that ends in `cleanup` still leaves its own report behind, because the report is written after the last
+ * step. This is the second sweep that takes it away — and the rule that it never deletes a report nobody read.
+ */
+describe("the second sweep", () => {
+  it("only applies to a script that asked to clean up", () => {
+    expect(needsSweep([{ op: "press", testID: "send" }])).toBe(false);
+    expect(needsSweep([{ op: "press", testID: "send" }, { op: "cleanup" }])).toBe(true);
+    expect(needsSweep([])).toBe(false);
+  });
+
+  it("deletes the namespace once the driver acknowledges the report", async () => {
+    let clock = 0;
+    let acks = 0;
+    let deleted = false;
+    const swept = await sweepWhenAcked(
+      { acked: () => ++acks > 3, cleanup: () => (deleted = true), sleep: async (ms) => void (clock += ms), now: () => clock },
+      120000,
+    );
+    expect([swept, deleted]).toEqual([true, true]);
+    expect(clock).toBe(1500);
+  });
+
+  it("gives up rather than deleting a report nobody read", async () => {
+    let clock = 0;
+    let deleted = false;
+    const swept = await sweepWhenAcked(
+      { acked: () => false, cleanup: () => (deleted = true), sleep: async (ms) => void (clock += ms), now: () => clock },
+      2000,
+    );
+    expect([swept, deleted]).toEqual([false, false]);
+    expect(clock).toBeGreaterThanOrEqual(2000);
   });
 });

@@ -1,13 +1,13 @@
 /**
  * The in-app QA bridge (spec §14.4). It exists only in a build made with `EXPO_PUBLIC_QA=1`: metro.config.js
  * resolves this file to `Bridge.stub.tsx` otherwise, so a release bundle carries neither the interpreter nor the
- * file watcher — `scripts/check-ios-qa-bridge.sh` is the gate that proves it.
+ * file watcher — `scripts/check-qa-bridge.sh` is the gate that proves it.
  */
 import { useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import { ensureDirs, takeScript, writeBoot, writeProgress, writeResult } from "./io";
-import { QA_BRIDGE_SENTINEL, createSurface, sleep } from "./runtime";
-import { runScript } from "./steps";
+import { QA_BRIDGE_SENTINEL, createSurface, sleep, sweepAfterAck } from "./runtime";
+import { needsSweep, runScript } from "./steps";
 import { currentRoot, dump, fiberOf } from "./tree";
 
 const IDLE_POLL = 1000;
@@ -60,6 +60,8 @@ async function watch(getHandle: () => unknown, alive: () => boolean): Promise<vo
         const result = await runScript(createSurface(getHandle, script.runId), script.runId, script.steps);
         writeResult(script.runId, { ...result, errors: [...result.errors, ...noise] });
         writeProgress(script.runId, { state: "done", ok: result.ok, failed: result.failed });
+        // A swept container is the end of the session: staying in the loop would recreate the namespace it just took away.
+        if (needsSweep(script.steps) && (await sweepAfterAck(script.runId))) return;
       } catch (e: unknown) {
         const detail = e instanceof Error ? `${e.message}\n${e.stack ?? ""}` : String(e);
         writeProgress(script.runId, { state: "crashed", detail });

@@ -4196,13 +4196,26 @@ row was green after the fixes. What the phone actually said, read out of the liv
 | Hebrew answered in Hebrew | *"שלום, אני כאן כדי לעזור ולתת לך תשובות נאותות…"* |
 | F137, strict on, tier `pro` via `setTier` | the `DOCS ONLY` chip, and *"I could not find that in your documents."* — the row `docs/qa/ios-device-pass-16-2026-09-23.md` called impossible on this phone |
 
-**Nothing of Moshe's was touched.** The QA build went on as an update, never an uninstall (F144): `vault.json`,
-`documents.json` and `device-prefs.json` came back **byte-identical**, and a full 477 MB copy of `Documents` was
-pulled first and kept in the session scratch dir. The nine chats and the two library entries the run created were
-deleted through the app afterwards, by id — the library is back to its original six documents and the chat list to
-its original six chats, and `strict` was put back to `true`. The phone was then left carrying a **clean, non-QA**
-build of this branch, verified with `scripts/check-qa-bridge.sh`.
+**Nothing of Moshe's was touched.** The QA build went on as an update, never an uninstall (F144): a full 477 MB
+copy of `Documents` was pulled first and kept in the session scratch dir, and against it `device-prefs.json` came
+back **byte-identical** and `vault.json` differs only in `lastLoadedAt`, because the model was loaded. The nine
+chats and the two library entries the run created were deleted through the app afterwards, by id — the library is
+back to its original six documents and the chat list to its original six chats, and `strict` was put back to
+`true`. `documents.json` differs in exactly one way, and it is the app's bug rather than the run's: the six
+`attachments` entries belonging to the deleted chats are still there, which is **F194b**, filed with the one-line
+fix and the migration it needs. They are left in place because they are that row's evidence.
+
+**Then a check after the run found the container was not empty, so the `cleanup` step was rebuilt (F194c).** It
+deletes `Documents/qa/`, but the report is written into that same namespace after the last step, and the inbox poll
+recreated `Documents/qa/in` a second later — a live `devicectl` pull found both. The driver now acknowledges the
+report the way it acknowledges a screenshot, the bridge sweeps once that ack lands and then leaves the watch loop,
+and the inbox is read without being created. Proven on the phone: `swept: Documents/qa is gone`, and an independent
+`devicectl` pull answers `Failed to retrieve the file node for Documents/qa` while the QA app is still running.
+
+The phone was then left carrying a **clean, non-QA** build of this branch, verified with
+`scripts/check-qa-bridge.sh` (0 occurrences of the sentinel), launched once to prove it boots into a sealed chat
+and then killed, so it sits on its home screen.
 
 Spec §14 records the bridge as the device-QA mechanism. Gates on the merge of this branch with `main`:
-`pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,385 tests** (core 723, mobile 633, i18n 16, ui 13);
-44 of the mobile ones are this round's — 27 on the fiber walk, 8 on the step interpreter, 9 on the build gate.
+`pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,390 tests** (core 723, mobile 638, i18n 16, ui 13);
+49 of the mobile ones are this round's — 27 on the fiber walk, 11 on the step interpreter, 11 on the build gate.

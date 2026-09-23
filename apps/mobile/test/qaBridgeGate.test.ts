@@ -103,3 +103,33 @@ describe("metro swaps the bridge out of every non-QA build", () => {
     expect(readFileSync(path.join(MOBILE, "src", "app", "_layout.tsx"), "utf8")).toContain('from "../qa/Bridge"');
   });
 });
+
+/**
+ * The second sweep only works if both halves are wired: the bridge must ask for it after it has written the report,
+ * and the driver must acknowledge the report the way it acknowledges a screenshot. Neither half has a unit under it
+ * — one is a React effect on a device, the other a devicectl copy — so the wiring itself is what is watched, and
+ * each check is watched failing on a sabotaged copy of the same source.
+ */
+describe("a cleanup step really empties the container", () => {
+  const BRIDGE = readFileSync(path.join(MOBILE, "src", "qa", "Bridge.tsx"), "utf8");
+  const DRIVER = readFileSync(path.resolve(MOBILE, "../../scripts/ios-qa.mjs"), "utf8");
+
+  /** The sweep is asked for, and only after the report exists — before it, it would delete the file it waits for. */
+  const sweepWired = (src: string): boolean => {
+    const wrote = src.indexOf("writeResult(");
+    const swept = src.indexOf("sweepAfterAck(");
+    return wrote !== -1 && swept > wrote && /needsSweep\(script\.steps\)/.test(src);
+  };
+  const ackWired = (src: string): boolean => /Documents\/qa\/ack\/\$\{runId\}\/result\.ok/.test(src) && /op === 'cleanup'/.test(src);
+
+  it("the bridge sweeps after it has written the report, not before", () => {
+    expect(sweepWired(BRIDGE)).toBe(true);
+    expect(sweepWired(BRIDGE.replace(/if \(needsSweep[^\n]*\n/, ""))).toBe(false);
+    expect(sweepWired("if (needsSweep(script.steps)) await sweepAfterAck(id);\nwriteResult(id, r);")).toBe(false);
+  });
+
+  it("the driver acknowledges the report, which is what the bridge is waiting for", () => {
+    expect(ackWired(DRIVER)).toBe(true);
+    expect(ackWired(DRIVER.replaceAll("result.ok", "ignored.ok"))).toBe(false);
+  });
+});
