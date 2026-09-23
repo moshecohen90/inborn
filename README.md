@@ -435,6 +435,26 @@ two minutes, it **expired on its own** with no grant given. So a passcode typed 
 on achieves nothing, and the sheet has to be raised while he is holding the phone. It is also a **keypad, not an
 "Enable" button**, which is how the ask has been relayed until now. Neither F90 nor F91 recurred: the keychain
 search list was already clean, and `--cleanup` was never called.
+**TestFlight 1.0.0 (15) VALID 23.9 13:11 from `main` 202db50, buildNumber 15, archive commit `e64d7e72340e`**
+(`docs/qa/ios-build-15-2026-09-23.md`) — cut so the Terms screen a TestFlight reader opens actually names its
+licensor. **F98 is closed on the phone**: `inborn:///legal/terms` on build 15 opens on `Effective date: 22 September
+2026`, `Licensor: Cohen Apps ("we", "us")` and `Contact: support@inbornapp.com or +1-440-847-8502. We have no
+physical reception and offer no in-person service.` above "1. Licence", against **0** occurrences of both `Cohen
+Apps` and `+1-440-847-8502` when pass 14 measured that screen; the Privacy screen gains the effective date it was
+also missing. The shipped Hermes bundle agrees and carries **0** of `{{DEVELOPER_LEGAL_NAME}}`, `{{EFFECTIVE_DATE}}`,
+`{{SUPPORT_EMAIL}}` and `Status: DRAFT`. Real-iPhone pass 15 is deliberately narrow — About reads **`1.0.0 (15)` ·
+`e64d7e72340e`**, the vault survived the update **byte-identical** (597 B, Models still 1.19 GB, nothing
+re-downloaded), five deep-link routes drew with **0** error lines, and F43 still boots the phone on the 1.2 GB Fast
+model at `n_ctx` 4096, and the **10-minute idle soak** held one pid for 11 min 4 s with **0** error lines and **0** crash reports naming Inborn, catching the idle model unload again (rss −1.39 GB between minute 5 and 10, anonymous peak unmoved to the byte, header still `FAST`) (`docs/qa/ios-device-pass-15-2026-09-23.md`). The tap rows were **not repeated**; they stand
+proven on build 12. **A release-pipeline defect came out of this run and is worth more than the build:** the first
+archive built clean with **no Tesseract OCR at all** — no `DocExtractOcr.bundle`, no `eng`/`heb` traineddata, a 564 MB
+`.app` against 572 MB — because a fresh worktree has no `.models` symlink and `DocExtract.podspec` resolves its OCR
+inputs from `INBORN_MODELS_DIR` **or** `<repo>/.models`. `pod install` had neither, took its `else` branch, **warned
+twice and exited 0**, and Hebrew scans would have silently stopped being read. It was caught before the upload and
+the archive was rebuilt. A fresh worktree needs the `.models` symlink **before `pod install`**, not only
+`INBORN_MODELS_DIR` at prebuild — the prebuild's own `withBundledModel` copy succeeds from the variable alone, which
+is exactly what hides the gap. `ExportOptions.plist` is likewise untracked and the prebuild recreates `ios/` without
+it.
 Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
