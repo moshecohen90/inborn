@@ -4360,3 +4360,6 @@ documents than INSTANT*.
 row's swipe actions are perfectly reachable. `apps/mobile/src/screens/Chats.tsx` now declares the `longpress`
 accessibility action and handles it, with the new key `chats.more` in all nine locales; guard in
 `apps/mobile/test/work-tier-r49.test.ts`, watched to fail.
+
+Gates on this branch merged with `main` (**7cb4a63**): `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,419 tests** (core 726, mobile 663, i18n 17, ui 13); the three new mobile ones are the F215 guard.
