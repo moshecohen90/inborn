@@ -3690,3 +3690,52 @@ on Work, redaction before send, and both halves of the Free fix. The full matrix
 traps that cost time are in `docs/qa/attach-android/README.md`; the rows are F125–F129 in `docs/qa/qa-run-2026-09-11.md`.
 Not fixed here and handed over: the browser tier cannot add a document at all. `expo-file-system`'s web
 `pickFileAsync` is a no-op and the drop handler is Tauri-only. That is F128 and another stream's surface.
+## Fixes round 35: the whole app was a phone layout stretched across a desktop window (branch `responsive-design`) — 23.9.2026
+
+Moshe, on the web at 1440: "the onboarding and probably the whole app show a very very wide button; it was clearly
+designed for mobile and on desktop it is stretched and looks bad… we must fix this and check generally that the UI/UX
+fits every device size", and "the message input with + on the left and send on the right is not aligned, not the same
+height; on large screens the field is 2 lines and it looks ugly" — phones are fine. F110–F113. A layout pass only: no
+token, font or colour moved.
+
+- **F110 — only the chat had a content column.** `Chat.tsx` capped the message column at the 680 px §8.9 specifies and
+  the sheets already centred themselves at 560 px, but every screen behind the chat stretched to the window. At 1440
+  that made Welcome's "Continue" **1,408 px** wide, put Settings' toggles 1,100 px from their labels, ran the privacy
+  policy at ~180 characters a line, and gave the Model vault a 1,127 px "Close". The fix is three numbers and one
+  threshold, the one the shell already had: above `WIDE_MIN` (760) a reading column is 680 px, a stack of page actions
+  is 420 px, and the onboarding card is 480 px — `contentMaxWidth`, `actionMaxWidth` and `cardMaxWidth` in
+  `apps/mobile/src/lib/layout.ts`, all `undefined` below it. A cap only ever shrinks, so the window width decides it
+  even inside the sidebar shell, whose content area is always narrower. They are applied in one place each: `Screen`
+  carries the column and the footer cap and so fixes thirteen screens at once, `Actions` carries the cap for CTAs that
+  live in a screen body, and Documents and Vault, which build their own root, wrap it in the same capped column.
+- **F111 — the composer field was a fixed two-row box that never grew.** react-native-web renders `multiline` as a
+  `<textarea>` and only ever sets its `rows` attribute; it has no auto-grow. Measured on `main`: **70 px at 390 and at
+  1440, empty and with a 120-character message alike**, beside 44 px buttons. That is both halves of what Moshe saw —
+  an empty field standing a line above the `[+]` and send, and a long message scrolling inside two lines. §9.6's growth
+  to six lines simply did not exist on the web. The field now asks for one row on the web only (`numberOfLines` is an
+  Android prop that would clamp it there instead) and measures its own growth: height to `auto`, then to
+  `clamp(scrollHeight, 45, six lines)`, so the previous height cannot become the floor of the next measurement. Empty
+  45 px, 170 px at the six-line cap on a phone, 95 px at 1440, back to 45 px when the text is cut — and `[+]`, mic and
+  field share the same bottom edge in every state. Native is untouched.
+- **F112 — onboarding was a phone screen stretched.** Hero at the top, footer at the bottom, several hundred pixels of
+  nothing between. `Screen` gains a `card` prop: above 760 px the body and footer become one 480 px bordered card,
+  centred in the viewport with the Faraday mesh behind it. Below 760 px nothing changes.
+- **F113 — the browser's blue focus ring sat on top of the composer's amber focus border.** The field takes
+  `outlineStyle: "none"` on the web, where that border is the focus indicator the design already specifies.
+
+Proof, per the 23.9 design rule, in the browser first: every screen at 390 / 768 / 1024 / 1440, the two desktop window
+sizes 1040×720 and 1600×1000, and a light-theme set at 390 and 1440 — before and after, 184 files in
+`docs/qa/responsive-design/`, plus every page action measured button by button at six widths before and after
+(`action-widths-before.txt`, `action-widths-after.txt`: 736 / 992 / 1,008 / 1,408 / 1,568 px becomes a flat 420 px,
+and phone widths keep their full bleed). Phone widths are byte-identical except where the composer changed
+(`phone-diff-390.txt`), against a capture noise floor measured at 0.00 % on a single build
+(`phone-noise-floor-390.txt`). Composer geometry before and after in `composer-geometry-before.txt` /
+`-after.txt`. `pn web:smoke` still walks Welcome → Model → Sealed → Lock → chat and answers offline
+(`web-smoke.txt`). Tests: 9 assertions over the three width helpers in `layout.test.ts` including a per-pixel sweep
+from 200 to 2000, and `responsiveSurfaces.test.ts` proving every surface is wired to them; both guards watched red
+with the fixes removed (`guard-red.txt`). Spec §8.9 gains the rule. **Not done:** the desktop app was not driven
+through the QA socket — no `Inborn.app` bundle exists in this worktree and `desktop:build:qa` does not go through
+`with-signing-identity.sh`, so building one risks the Keychain dialog COMMON forbids while another stream owns the
+desktop app; the two desktop window sizes were photographed in the same renderer instead. Chats' own full screen and
+the wide sidebar were left alone: above 760 px `/chats` redirects into the sidebar, so that screen only appears on a
+native tablet, which this pass had no device for.

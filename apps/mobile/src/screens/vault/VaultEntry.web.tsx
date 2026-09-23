@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
+import { Actions, Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useTheme } from "../../services/theme";
 import { useType } from "../../services/type";
@@ -44,7 +44,9 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
       <Pressable accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={styles.link}>
         <Text style={[type.bodySmall, type.strong, { color: theme.text }]}>{t("web.getApp")}</Text>
       </Pressable>
-      <Button variant="secondary" title={t("vault.close")} onPress={onClose} testID="close-vault" />
+      <Actions>
+        <Button variant="secondary" title={t("vault.close")} onPress={onClose} testID="close-vault" />
+      </Actions>
     </Screen>
   );
 }

@@ -5,7 +5,7 @@ import { paywallFor, renderAudit, subjectRef, type AuditLog as AuditLogModel, ty
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Mono, Row, Section } from "../../components/shell/primitives";
+import { Actions, Button, Mono, Row, Section } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
 import { useEntitlement } from "../../licence";
 import { shareFile } from "../../lib/share";
@@ -74,10 +74,10 @@ export function AuditLog() {
               .reverse()
               .map((e) => <Row key={e.seq} testID={`audit-entry-${e.seq}`} label={t(`audit.action.${e.action}`)} sub={`${when(e.at)}${e.subject?.title ? ` · ${e.subject.title}` : subjectRef(e.subject) ? ` · ${subjectRef(e.subject)}` : ""}${e.subject?.recordHash ? ` · ${e.subject.recordHash.slice(0, 12)}…` : ""}`} value={`#${e.seq}`} />)}
           </Section>
-          <View style={styles.actions}>
+          <Actions style={styles.actions}>
             <Button testID="audit-share" title={t("audit.share")} onPress={() => void (log && shareFile({ filename: `inborn-audit-${picked}.txt`, mimeType: "text/plain", body: renderAudit(log, name) }, t("audit.title")))} />
             <Button title={t("templates.back")} variant="secondary" onPress={() => setPicked(null)} />
-          </View>
+          </Actions>
         </>
       )}
     </Screen>

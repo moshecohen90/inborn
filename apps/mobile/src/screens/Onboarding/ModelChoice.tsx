@@ -71,6 +71,7 @@ export function ModelChoice() {
     <Screen
       header={{ back: true }}
       mesh
+      card
       testID="onboarding-model"
       footer={
         <>

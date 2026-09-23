@@ -1,0 +1,6 @@
+PASS: first visit ready 16910 ms · 38.5 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 1581 ms · 38.5 tok/s · context 23 / 4096 · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 801 MB needed, 105 MB free."

@@ -11,6 +11,26 @@ export const SIDEBAR_WIDTH = 280;
 export const COLUMN_WIDTH = 680;
 export const PANEL_WIDTH = 340;
 
+/** The widest a stack of page actions may get: a 1,400 px "Continue" reads as a banner, not a button (F110). */
+export const ACTION_WIDTH = 420;
+/** The onboarding card of §8.9 on a wide window: one object to look at instead of a screen-tall phone layout. */
+export const CARD_WIDTH = 480;
+
+/** Max width of a reading / settings column, or undefined where the window's own gutters are the whole rule. */
+export function contentMaxWidth(width: number): number | undefined {
+  return width >= WIDE_MIN ? COLUMN_WIDTH : undefined;
+}
+
+/** Max width of stacked page actions (footer buttons, full-width CTAs). */
+export function actionMaxWidth(width: number): number | undefined {
+  return width >= WIDE_MIN ? ACTION_WIDTH : undefined;
+}
+
+/** Max width of the centred onboarding card, or undefined where onboarding keeps the full-bleed phone layout. */
+export function cardMaxWidth(width: number): number | undefined {
+  return width >= WIDE_MIN ? CARD_WIDTH : undefined;
+}
+
 export function layoutModeFor(width: number): LayoutMode {
   if (width >= DESKTOP_MIN) return "desktop";
   return width >= WIDE_MIN ? "wide" : "phone";
