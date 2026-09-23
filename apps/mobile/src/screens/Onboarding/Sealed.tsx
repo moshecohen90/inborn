@@ -28,7 +28,19 @@ export function Sealed() {
   }, []);
 
   return (
-    <Screen header={null} mesh card testID="onboarding-sealed" footer={<Button testID="sealed-start" title={t("onboarding.sealed.start")} onPress={() => router.push("/onboarding/lock")} disabled={!done} />}>
+    <Screen
+      header={null}
+      mesh
+      card
+      testID="onboarding-sealed"
+      footer={
+        <>
+          <Button testID="sealed-start" title={t("onboarding.sealed.start")} onPress={() => router.push("/onboarding/lock")} disabled={!done} />
+          {/* The ritual left the onboarding chain (F122); here it is an offer carrying its own reason, not an ask. */}
+          <Button testID="sealed-prove" title={t("onboarding.sealed.prove")} variant="link" onPress={() => router.push("/proof/airplane")} disabled={!done} />
+        </>
+      }
+    >
       <View style={[styles.hero, wide ? styles.heroOnCard : null]}>
         <Seal
           size={72}

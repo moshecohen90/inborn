@@ -5,16 +5,20 @@ import { useTheme } from "../../services/theme";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
-import { sellable, type ProductId, type Store } from "@inborn/core";
+import { sellable, type PaywallReason, type ProductId, type Store } from "@inborn/core";
 import { DEV_AUTOBUY, DEV_RESULT_FILE, devBuild } from "../../licence/devFlags";
 import { useLicenceState } from "../../licence/hooks";
 import { writeLicenceResult } from "../../licence/storage";
 import { LicenceKeySheet } from "./LicenceKeySheet";
 import { TierCard } from "./TierCard";
+import { CompareTable } from "./CompareTable";
+import { WebStoreBlock } from "./WebStoreBlock";
 import { useType } from "../../services/type";
 
 export interface PaywallScreenProps {
   onClose: () => void;
+  /** Which locked tap opened this, so the first line answers that tap instead of pitching (§12.3). */
+  reason?: PaywallReason | null;
   /** Opens the in-app legal documents (docs/legal); the host decides how they are shown. */
   onOpenDoc?: (doc: "terms" | "privacy") => void;
   /** Overrides the platform default (Pro first on phones, Work first on desktop / web). */
@@ -26,7 +30,7 @@ export interface PaywallScreenProps {
 const storeName = (t: (k: string) => string, store: Store | null): string => (store === "app-store" ? t("paywall.store.appStore") : store === "play" ? t("paywall.store.play") : store === "microsoft-store" ? t("paywall.store.microsoft") : t("paywall.store.licenceKey"));
 
 /** S60 Pro paywall (spec §8.7, §12): one line on why paying once is honest, one card per tier, Restore, Family Sharing note, the one-store rule. */
-export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallScreenProps) {
+export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: PaywallScreenProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
@@ -97,6 +101,11 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
           {t("paywall.title")}
         </Text>
         <Text style={[type.body, { color: theme.text2 }]}>{t("paywall.sub")}</Text>
+        {reason ? (
+          <Text testID="paywall-why" style={[type.body, styles.why, { color: theme.accent, borderColor: theme.accent }]}>
+            {t(`paywall.why.${reason}`)}
+          </Text>
+        ) : null}
 
         {owned ? (
           <View testID="owned" style={[styles.owned, { borderColor: theme.sealed, backgroundColor: theme.surface1 }]}>
@@ -114,7 +123,7 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
         ) : null}
 
         {store === null ? (
-          <Text style={[type.bodySmall, styles.centered, { color: theme.text2 }]}>{t("paywall.noStore")}</Text>
+          <WebStoreBlock theme={theme} />
         ) : (
           <View style={styles.cards}>
             {ordered.map((offer, i) => (
@@ -138,6 +147,8 @@ export function PaywallScreen({ onClose, onOpenDoc, workFirst, modal }: PaywallS
             {Platform.OS === "android" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.familySharing.play")}</Text> : null}
           </View>
         ) : null}
+
+        <CompareTable theme={theme} owned={owned ? tier : undefined} />
 
         <Text style={[type.bodySmall, styles.footer, { color: theme.text2 }]}>{t("paywall.footer")}</Text>
         {store ? <Text style={[type.bodySmall, styles.footer, { color: theme.text3 }]}>{t("paywall.oneStore", { store: storeName(t, store) })}</Text> : null}
@@ -165,6 +176,7 @@ const styles = StyleSheet.create({
   list: { paddingHorizontal: 20, gap: 14, maxWidth: 560, width: "100%", alignSelf: "center" },
   cards: { gap: 12 },
   owned: { borderWidth: 1, borderRadius: radius.card, padding: 14, gap: 4 },
+  why: { borderLeftWidth: 2, paddingLeft: 10 },
   links: { alignItems: "center", gap: 6, marginTop: 4 },
   link: { textDecorationLine: "underline" },
   mono: { textAlign: "center" },

@@ -1,4 +1,4 @@
-import { can, limits, type Feature } from "./gates";
+import { FEATURE_LIST, UNBUILT_FEATURES, can, limits, type Feature } from "./gates";
 import type { LicenceTier } from "./types";
 
 /**
@@ -27,3 +27,19 @@ export function paywallFor(tier: LicenceTier, moment: ValueMoment): boolean {
       return !can(tier, moment.feature);
   }
 }
+
+/**
+ * Why the paywall opened. The same id keys the one-line "why" the screen shows (`paywall.why.<reason>`), so the tap
+ * that was refused and the sentence the person reads can never drift apart.
+ */
+export type PaywallReason = ValueMoment["kind"] | Feature | "office" | "photos";
+
+export function reasonOf(moment: ValueMoment): PaywallReason {
+  return moment.kind === "feature" ? moment.feature : moment.kind;
+}
+
+/**
+ * Every reason a screen can open the paywall with. The two that are not a `ValueMoment` are the Work file formats
+ * (`fileIntake`'s "office") and the Free photos-per-message cap, which is a `limits()` row rather than a gate.
+ */
+export const PAYWALL_REASONS: readonly PaywallReason[] = ["persona", "document", "model", "office", "photos", ...FEATURE_LIST.filter((f) => !UNBUILT_FEATURES.includes(f))];

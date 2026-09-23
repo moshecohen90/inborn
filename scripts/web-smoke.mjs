@@ -126,7 +126,8 @@ async function waitForConsole(lines, re, timeoutMs) {
 }
 
 /**
- * S01 Welcome -> S02 model -> S03 airplane -> S04 sealed -> S05 lock -> chat (spec §8.1).
+ * S01 Welcome -> S02 model -> S04 sealed -> S05 lock -> chat (spec §8.1). Round 36 took the airplane test out of the
+ * onboarding chain: it lives on S50 Proof, which is the screen that proves things (F122).
  * F40 (22.9.2026) died on the very first click here: the model step pulled llama.rn's TurboModule into the browser
  * bundle. The old smoke set `onboarded` and never opened these screens, so the gate stayed green through the bug.
  */
@@ -141,12 +142,13 @@ async function walkOnboarding(page, out, pageErrors) {
   };
   await step("onboarding-welcome", () => page.getByTestId("onboarding-continue").click());
   await step("onboarding-model", async () => {
-    out.modelStepReady = (await page.getByTestId("model-ready-card").textContent()) ?? "";
+    out.modelStepOptions = (await page.getByTestId("model-options").textContent()) ?? "";
+    /* The browser can start no download, so the step must show exactly the model it already has (F120). */
+    if ((await page.getByTestId("model-option-fast").count()) > 0) throw new Error("the web model step offered a download it cannot start");
     out.screenshotOnboarding = path.join(outDir, "web-smoke-onboarding.png");
     await page.screenshot({ path: out.screenshotOnboarding });
     await page.getByTestId("start-chatting").click();
   });
-  await step("airplane-test", () => page.getByTestId("airplane-skip").click());
   await step("onboarding-sealed", async () => {
     const start = page.getByTestId("sealed-start");
     await start.waitFor({ timeout: 30_000 });

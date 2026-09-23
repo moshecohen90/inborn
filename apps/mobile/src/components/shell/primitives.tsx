@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Platform, Pressable, StyleSheet, Switch, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
+import { Pressable, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
 import Svg, { Circle, Defs, Pattern, Rect } from "react-native-svg";
 import { Icon, radius } from "@inborn/ui";
 import { useActionMaxWidth } from "../../lib/useLayout";
@@ -67,12 +67,32 @@ export function Button({
   );
 }
 
-/** §9.9: the sealed green belongs to the seal alone, so an ordinary on/off track is neutral. */
+export const TOGGLE_TRACK = { width: 52, height: 32 };
+export const TOGGLE_KNOB = 24;
+const TOGGLE_INSET = (TOGGLE_TRACK.height - TOGGLE_KNOB) / 2;
+
+/**
+ * §9.9: the sealed green belongs to the seal alone, so on/off is told by fill, not by hue. ON is the filled CTA
+ * surface with a ticked knob at the end; OFF is a hollow track outlined in text3 with a muted knob at the start.
+ * The platform Switch could not say which side was on (QA F102): iOS painted both tracks a near-background grey and
+ * gave the knob the surface colour, so in dark mode the whole control disappeared.
+ */
 export function Toggle({ value, onChange, disabled, testID, label }: { value: boolean; onChange: (v: boolean) => void; disabled?: boolean; testID?: string; label?: string }) {
   const { theme } = useTheme();
-  /* react-native-web paints the ON state from its own teal defaults unless activeTrackColor / activeThumbColor are given. */
-  const web = Platform.OS === "web" ? { activeTrackColor: theme.text2, activeThumbColor: theme.surface1 } : {};
-  return <Switch testID={testID} accessibilityLabel={label} value={value} onValueChange={onChange} disabled={disabled} trackColor={{ true: theme.text2, false: theme.border }} thumbColor={theme.surface1} ios_backgroundColor={theme.border} {...web} />;
+  return (
+    <Pressable
+      testID={testID}
+      accessibilityRole="switch"
+      accessibilityLabel={label}
+      accessibilityState={{ checked: value, disabled: !!disabled }}
+      disabled={disabled}
+      hitSlop={8}
+      onPress={() => onChange(!value)}
+      style={[styles.track, { backgroundColor: value ? theme.ctaFill : theme.well, borderColor: value ? theme.ctaFill : theme.text3, opacity: disabled ? DISABLED_OPACITY : 1 }]}
+    >
+      <View style={[styles.knob, value ? styles.knobOn : styles.knobOff, { backgroundColor: value ? theme.ctaText : theme.text3 }]}>{value ? <Icon name="check" size={14} color={theme.ctaFill} strokeWidth={3} /> : null}</View>
+    </Pressable>
+  );
 }
 
 /** A stack of page-level actions: full width on a phone, never wider than a button on a wide window (§8.9, F110). */
@@ -190,6 +210,10 @@ export const shellStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  track: { width: TOGGLE_TRACK.width, height: TOGGLE_TRACK.height, borderRadius: TOGGLE_TRACK.height / 2, borderWidth: 1, flexDirection: "row", alignItems: "center", paddingHorizontal: TOGGLE_INSET },
+  knob: { width: TOGGLE_KNOB, height: TOGGLE_KNOB, borderRadius: TOGGLE_KNOB / 2, alignItems: "center", justifyContent: "center" },
+  knobOn: { marginLeft: "auto" },
+  knobOff: { marginRight: "auto" },
   actions: { width: "100%", alignSelf: "center", gap: 8 },
   button: { minHeight: 48, paddingHorizontal: 20, borderRadius: radius.control, borderWidth: 1, alignItems: "center", justifyContent: "center" },
   link: { minHeight: 44, borderWidth: 0 },

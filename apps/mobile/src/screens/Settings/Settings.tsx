@@ -12,6 +12,7 @@ import { setDeviceStateForPreview } from "../../device/useDeviceState";
 import { idleDeviceState } from "../../device/types";
 import type { AutoDeleteDays, PerformanceProfile } from "../../services/prefsTypes";
 import { Screen } from "../../components/shell/Screen";
+import { openPaywall, useEntitlement } from "../../licence";
 import { Row, Section, Segmented } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
 import { WipeSheet } from "./WipeSheet";
@@ -31,6 +32,7 @@ export function Settings() {
   const { theme } = useTheme();
   const router = useRouter();
   const { prefs, updatePrefs, lock, setDelivery, engine } = useAppServices();
+  const { tier } = useEntitlement();
   const [passcodeOpen, setPasscodeOpen] = useState(false);
   const [wipeOpen, setWipeOpen] = useState(false);
   const [reduceMotion, setReduceMotion] = useState<boolean | null>(null);
@@ -74,6 +76,11 @@ export function Settings() {
 
   return (
     <Screen header={{ back: true, title: t("settings.title") }} testID="settings">
+      {/* The only place in the app that says Pro exists without a locked tap first (§12.3). */}
+      <Section title={t("paywall.entry.title")}>
+        <Row testID="row-pro" label={t("paywall.seeWhatsIn")} sub={t(`paywall.entry.sub.${tier}`)} value={t(`paywall.tier.${tier}`)} onPress={() => openPaywall()} chevron />
+      </Section>
+
       <Section title={t("settings.appearance")}>
         <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.theme")}</Text>
         <Segmented<ThemeMode>

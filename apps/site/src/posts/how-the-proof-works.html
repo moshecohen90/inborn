@@ -1,0 +1,28 @@
+<!-- meta: {"title": "How to prove an AI app sends nothing", "h1": "How to prove an AI app sends nothing", "kicker": "Verification", "published": "2026-09-23", "description": "Five checks anyone can run on a phone to see whether an app talks to the network, what each one proves, and the three things none of them can prove.", "excerpt": "Every AI app claims to be private. Almost none of them tell you how to check. Five tests you can run yourself, in order of how much they prove, plus an honest list of what they leave open."} -->
+<article class="prose post">
+<p class="answer">You can establish that an app sends nothing without reading a line of its code, by watching it from outside with tools your operating system and your network already give you. Airplane mode, the Android permission list, the iOS App Privacy Report, the app's own byte counters and a firewall will between them show every connection an app makes. What they cannot show you is what the code would do under conditions you did not test.</p>
+
+<h2 id="airplane">Check one: airplane mode</h2>
+<p>Switch every radio off and use the app normally. If it keeps answering at the same speed, no part of the answer came from a server. This is the fastest test and, for a chat app, close to decisive: an app that needs a server cannot fake a full-speed reply without one. What it does not rule out is an app that works offline and then uploads a log later, which is why there are four more checks.</p>
+
+<h2 id="android">Check two: the Android permission list</h2>
+<p>Android will not let an app open a network connection unless the app declares <code>android.permission.INTERNET</code> in its manifest, and that manifest is baked into the package you installed. Open the Play listing, then About this app, then App permissions. If "Have full network access" is absent, the app cannot reach the network at all. That is not a promise by the developer, it is a constraint enforced by the operating system, and you can confirm it yourself against the installed package or against the APK:</p>
+<pre><code>adb shell dumpsys package com.inbornapp.mobile | grep INTERNET
+aapt2 dump permissions inborn.apk</code></pre>
+<p>This is the strongest check on the list, because it is the only one that proves a negative rather than observing an absence.</p>
+
+<h2 id="ios">Check three: the iOS App Privacy Report</h2>
+<p>Settings, Privacy and Security, App Privacy Report. iOS records every domain each app contacted over the last seven days, and it is the operating system doing the recording, not the app. An app that talks to a server has rows here whether it admits to it or not. One caveat worth knowing: a model download you started yourself is a real connection and will appear, which is why an app should name the host before it fetches anything.</p>
+
+<h2 id="counters">Check four: the app's own counters</h2>
+<p>Some apps expose the operating system's per-process byte counters. Those counters come from the system rather than from the app's own bookkeeping, so an app cannot report zero while sending data. Bytes out that stay at zero across the life of an install is a strong signal. Treat it as a convenience rather than a proof, since it is still the app drawing the number on the screen.</p>
+
+<h2 id="firewall">Check five: a firewall</h2>
+<p>Put the app behind NetGuard on Android, Little Snitch or LuLu on macOS, or the Windows firewall, and watch what asks for permission. Nothing appearing over days of use is the closest a normal user gets to continuous monitoring. It is also the only check here that keeps working after an update.</p>
+
+<h2 id="limits">What none of this proves</h2>
+<p>Three things. It does not prove that a build came from any particular source tree, which needs a build anyone can rebuild byte for byte, and very few applications have one. It does not prove the code does what it appears to do, which needs the source. And it does not prove that an independent party has looked, which needs a commissioned audit. Anyone who tells you a privacy claim is "verified" should be able to say which of those three they mean.</p>
+<p>Inborn's position on all three is written down rather than implied: the source is not public, nobody outside can rebuild our binary from it, and no audit has been commissioned. What is true is everything in checks one to five, and you can run all of them this afternoon. The full list, with the complete account of when any byte can leave an Inborn install, is on <a href="/proof">the proof page</a>.</p>
+
+<p class="small"><span class="label">Next</span><a href="/blog/why-on-device">Why the AI should run on your device</a> · <a href="/blog/choosing-a-model">How to choose an on-device AI model</a></p>
+</article>

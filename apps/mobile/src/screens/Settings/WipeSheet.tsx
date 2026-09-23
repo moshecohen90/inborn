@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Sheet } from "../../components/shell/Sheet";
-import { Button } from "../../components/shell/primitives";
+import { Button, Toggle } from "../../components/shell/primitives";
 import { font } from "../../services/type";
 
 /** Emergency wipe (§5.7): two confirmations, models optional, no recovery. Ends in onboarding with a fresh key. */
@@ -43,7 +43,7 @@ export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () 
       {step === 1 ? (
         <View style={styles.row}>
           <Text style={[styles.body, styles.grow, { color: theme.text }]}>{t("wipe.alsoModels")}</Text>
-          <Switch accessibilityLabel={t("wipe.alsoModels")} value={models} onValueChange={setModels} trackColor={{ true: theme.danger }} />
+          <Toggle testID="wipe-models" label={t("wipe.alsoModels")} value={models} onChange={setModels} />
         </View>
       ) : null}
       <View style={styles.actions}>
