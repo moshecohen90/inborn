@@ -1,21 +1,28 @@
 import type { ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
 import Svg, { Circle, Defs, Pattern, Rect } from "react-native-svg";
-import { Icon, radius } from "@inborn/ui";
+import { useTranslation } from "react-i18next";
+import { Icon, MIN_TOUCH, radius } from "@inborn/ui";
 import { useActionMaxWidth } from "../../lib/useLayout";
 import { useTheme } from "../../services/theme";
-import { useType } from "../../services/type";
+import { font, useType } from "../../services/type";
 
 /** Plex Mono, uppercase, +0.08em: telemetry and labels only, never paragraphs (§9.3). */
 export function MonoLabel({ children, color, style, testID }: { children: ReactNode; color?: string; style?: StyleProp<TextStyle>; testID?: string }) {
   const { theme } = useTheme();
   const type = useType();
+  const { i18n } = useTranslation();
+  /* Uppercase and tracking carry the label in Latin and do nothing to CJK, where Plex also falls back: those
+     locales get the step in weight and ink instead, or a section header reads as body text (§9.3, round 51). */
+  const cjk = CJK_LOCALES.has(i18n.language.split("-")[0] ?? "");
   return (
-    <Text testID={testID} style={[type.monoLabel, { color: color ?? theme.text3 }, style]}>
+    <Text testID={testID} style={[type.monoLabel, cjk ? styles.monoLabelCjk : null, { color: color ?? (cjk ? theme.text2 : theme.text3) }, style]}>
       {children}
     </Text>
   );
 }
+
+const CJK_LOCALES = new Set(["ja", "ko", "zh"]);
 
 export function Mono({ children, color, style, testID }: { children: ReactNode; color?: string; style?: StyleProp<TextStyle>; testID?: string }) {
   const { theme } = useTheme();
@@ -86,11 +93,12 @@ export function Toggle({ value, onChange, disabled, testID, label }: { value: bo
       accessibilityLabel={label}
       accessibilityState={{ checked: value, disabled: !!disabled }}
       disabled={disabled}
-      hitSlop={8}
       onPress={() => onChange(!value)}
-      style={[styles.track, { backgroundColor: value ? theme.ctaFill : theme.well, borderColor: value ? theme.ctaFill : theme.text3, opacity: disabled ? DISABLED_OPACITY : 1 }]}
+      style={styles.toggleTarget}
     >
-      <View style={[styles.knob, value ? styles.knobOn : styles.knobOff, { backgroundColor: value ? theme.ctaText : theme.text3 }]}>{value ? <Icon name="check" size={14} color={theme.ctaFill} strokeWidth={3} /> : null}</View>
+      <View style={[styles.track, { backgroundColor: value ? theme.ctaFill : theme.well, borderColor: value ? theme.ctaFill : theme.text3, opacity: disabled ? DISABLED_OPACITY : 1 }]}>
+        <View style={[styles.knob, value ? styles.knobOn : styles.knobOff, { backgroundColor: value ? theme.ctaText : theme.text3 }]}>{value ? <Icon name="check" size={14} color={theme.ctaFill} strokeWidth={3} /> : null}</View>
+      </View>
     </Pressable>
   );
 }
@@ -132,15 +140,17 @@ export function Row({
   const body = (
     <>
       <View style={styles.rowText}>
-        <Text style={[type.body, { color: danger ? theme.danger : theme.text }]}>{label}</Text>
+        <Text style={[type.body, { color: danger ? theme.danger : disabled ? theme.text2 : theme.text }]}>{label}</Text>
         {sub ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{sub}</Text> : null}
       </View>
       {value ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{value}</Text> : null}
       {onToggle ? <Toggle value={!!toggle} onChange={onToggle} disabled={disabled} label={label} /> : null}
-      {chevron ? <Icon name="chevronRight" size={20} color={theme.text3} /> : null}
+      {chevron ? <Icon name="chevronRight" size={20} color={theme.text3} style={disabled ? { opacity: DISABLED_OPACITY } : undefined} /> : null}
     </>
   );
-  const style = [styles.row, { borderBottomColor: theme.border, opacity: disabled ? 0.5 : 1 }];
+  /* An off row is told by its control and by the label dropping to text2, never by fading the sentence that says why:
+     at 0.5 that explanation measured 2.28:1 (QA F242). */
+  const style = [styles.row, { borderBottomColor: theme.border }];
   if (onPress && !disabled)
     return (
       <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [style, pressed ? { backgroundColor: theme.surface1 } : null]}>
@@ -210,6 +220,7 @@ export const shellStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  toggleTarget: { minHeight: MIN_TOUCH, justifyContent: "center" },
   track: { width: TOGGLE_TRACK.width, height: TOGGLE_TRACK.height, borderRadius: TOGGLE_TRACK.height / 2, borderWidth: 1, flexDirection: "row", alignItems: "center", paddingHorizontal: TOGGLE_INSET },
   knob: { width: TOGGLE_KNOB, height: TOGGLE_KNOB, borderRadius: TOGGLE_KNOB / 2, alignItems: "center", justifyContent: "center" },
   knobOn: { marginLeft: "auto" },
@@ -221,6 +232,7 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, gap: 2 },
   section: { gap: 0, paddingTop: 20 },
   sectionTitle: { paddingBottom: 6 },
+  monoLabelCjk: { ...font("sans", "600"), letterSpacing: 0 },
   segmented: { flexDirection: "row", gap: 8, flexWrap: "wrap", paddingVertical: 8 },
-  segment: { minHeight: 36, paddingHorizontal: 12, justifyContent: "center", borderWidth: 1, borderRadius: radius.tag },
+  segment: { minHeight: MIN_TOUCH, paddingHorizontal: 12, justifyContent: "center", borderWidth: 1, borderRadius: radius.tag },
 });

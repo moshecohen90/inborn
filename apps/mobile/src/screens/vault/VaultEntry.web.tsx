@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { Linking, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
@@ -41,11 +41,10 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
       </View>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.explain")}</Text>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.fullVault")}</Text>
-      <Pressable accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={styles.link}>
-        <Text style={[type.bodySmall, type.strong, { color: theme.text }]}>{t("web.getApp")}</Text>
-      </Pressable>
+      {/* The only thing this screen can do for a browser reader is the filled button; closing is the aside (QA F252). */}
       <Actions>
-        <Button variant="secondary" title={t("vault.close")} onPress={onClose} testID="close-vault" />
+        <Button testID="vault-get-app" title={t("web.getApp")} onPress={() => void Linking.openURL(GET_APP_URL)} />
+        <Button variant="link" title={t("vault.close")} onPress={onClose} testID="close-vault" />
       </Actions>
     </Screen>
   );
@@ -53,5 +52,4 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
 
 const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", gap: 8 },
-  link: { minHeight: 44, justifyContent: "center" },
 });

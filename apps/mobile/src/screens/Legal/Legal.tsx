@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
+import { useType } from "../../services/type";
 import { Mono } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
 import { LegalSource } from "../../components/LegalSource";
@@ -20,6 +21,7 @@ export const isLegalDoc = (d: string | undefined): d is LegalDoc => d !== undefi
 export function Legal({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const type = useType();
   const { meta, body } = useMemo(() => legalScreen(DOCS[doc]), [doc]);
   const edited = /Last edited ([^.\n]+)/.exec(DOCS[doc])?.[1];
   const effective = effectiveDate(DOCS[doc]);
@@ -27,12 +29,13 @@ export function Legal({ doc }: { doc: LegalDoc }) {
     <Screen header={{ back: true, title: t(TITLES[doc]) }} testID={`legal-${doc}`}>
       <LegalSource doc={doc} label={effective ? t("legal.offlineCopy", { date: effective }) : t("legal.offlineCopyNoDate")} />
       {edited ? <Mono color={theme.text3}>{t("legal.edited", { date: edited })}</Mono> : null}
+      {/* Effective date, licensor and contact are sentences, and §9.3 keeps mono for readouts and labels. */}
       {meta.length ? (
         <View testID="legal-meta" style={[styles.meta, { borderColor: theme.border }]}>
           {meta.map((line) => (
-            <Mono key={line} color={theme.text3}>
+            <Text key={line} style={[type.bodySmall, { color: theme.text2 }]}>
               {line}
-            </Mono>
+            </Text>
           ))}
         </View>
       ) : null}

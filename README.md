@@ -4321,8 +4321,75 @@ Spec §14 records the bridge as the device-QA mechanism. Gates on the merge of t
 49 of the mobile ones are this round's — 27 on the fiber walk, 11 on the step interpreter, 11 on the build gate.
 Round 50's `no-device-ids` guard passes on this branch too: the driver takes the phone from `INBORN_IOS_DEVICE`
 or `--device` and the UDID is a literal in no tracked file.
+## Fixes round 52: the design review of 24.9 — every item it filed, measured before and after (branch `fix-design`) — 24.9.2026
 
-## Fixes round 52: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
+The 24.9 design review walked every screen headlessly at 390 / 768 / 1024 / 1440 in both themes and filed **3
+blockers, 14 should-fix-tonight and 8 later**. This round closes the blockers, all fourteen, and the later items that
+are a token or style change. Nothing here is a per-screen patch: the touch-target floor, the disabled-row ink, the
+44 pt target around a small pill and the vertical centring of a card screen all changed in the primitives that every
+screen is built from, and the site's sideways scroll changed in one CSS line with a headless measurement behind it.
+
+- **The site was panning sideways on every phone.** `scrollWidth` 778 against a 390 viewport, 793 against 768: one
+  grid track defaulting to `min-content` sized the whole band to the 760 px models table, so the page slid 388 px and
+  `.table-wrap`'s own scroller never engaged. Nothing could catch it, because `apps/site/check.mjs` reads HTML and
+  never opened a browser. It does now: it serves `dist` on an ephemeral port, opens every page at 390 and 768 in
+  the headless shell, and fails with the page, the width and the offending elements. It found two more the review had
+  not — a 357 px bare URL in the terms, and the fact that measuring over `file://` is worthless because the pages'
+  absolute `/site.css` never loads there. Reverted to the old CSS the gate goes red at both widths.
+- **The first screen every new user sees was 70 % empty.** The chat's empty state inherited the bottom anchoring that
+  belongs to messages, so the seal, the headline and the chips sat in the bottom third: the headline's top measured
+  **605 px of 844**, and it is **501** now. That half of it landed independently on `main` as **F235** while this
+  branch was working — the same style name and the same expression, so git merged the line and only the comment
+  conflicted; the credit is `fix-mosheai`'s and the measurement here is against `af40796`. The onboarding half is
+  this round's: a `card` screen only centred once the window was wide enough to draw the card, which is why S04 was
+  three lines over ~800 px of nothing on a phone. `Screen` centres it at every width, and S03 and S04 got back the
+  `‹` that S02 has.
+- **The 44 pt touch target is a token and a guard now, not a sentence in the spec.** The review measured 19 segmented
+  chips at 36, six toggles at 32, the header model chip at 28, `Dismiss` at 28, the paywall's `Terms` and `Privacy`
+  at 16, `Get the app` at 32. Several carried `hitSlop`, **which react-native-web drops** — and the browser is a
+  shipping tier. `MIN_TOUCH = 44` now lives in `packages/ui`; where the spec fixes a visual (the 52×32 toggle track,
+  the 28 pt model chip, the 22 pt `PRO` tag) the visual is unchanged and is drawn inside a 44 pt pressable. Measured
+  after, both themes, twelve routes: **nothing under 44**. Merging `origin/main` brought one more — the new browser
+  strip's `Details` at 56×**28** on every route — and it presses through 44 now at no cost in height, because
+  `Get the app` already makes that strip 44 tall. The guard reads the StyleSheets, fails on a pressable under the
+  floor, fails if the toggle goes back to `hitSlop`, and holds the line at the files that still write a bare `44`.
+- **A row that is off now says why, at 4.5:1.** Dimming the whole row at 0.5 put the explanation at **2.28:1** in
+  light and 2.76:1 in dark — the least readable text on the screen was the sentence explaining the control. The
+  review proposed 0.7; the arithmetic says no opacity clears it (`text2` on `well`: 2.22 at 0.5, 3.27 at 0.7, 4.55
+  at 0.85), so the row dims its **control** and drops its label to `text2` while the explanation keeps full opacity.
+  Nine failures before, **zero** after, and `blendOnto()` in `packages/ui` lets the guard measure what the eye sees.
+- **One semantic green again (§9.9).** The sealed green had nine meanings; in one model card it said "selected",
+  "in use" and "native" at once. Selection moved to the bright ink as a border, the language tier became a ladder of
+  ink weight, "In use" dropped to `text2`. The seal, ON-DEVICE and the unlocked vault keep it. `Stop` left the breach
+  red for the CTA fill, and the generating filament stopped filling the ring's interior with muddy amber and now
+  blooms behind it.
+- **The smaller ones, each verified in the browser.** The Documents title was 24–30 px off centre in de/ja/fr and is
+  dead centre in all four locales; Work → Audit stopped printing CHOOSE A VAULT over nothing (F235 reached that one
+  first too, and the merge took its form); Documents stopped
+  stacking three empty messages; the model sheet stopped offering, at full weight, three models the browser cannot
+  install; the browser vault leads with the action instead of with Close; the web paywall's bullets carry the same
+  mark as the native card's; the proof screen draws its tick instead of a `✓` no shipped face has, so "sha256 √" is
+  gone whatever the strings say; one sheet title stopped shouting; CJK section labels step in weight and ink, since
+  uppercase and tracking do nothing to those glyphs.
+
+**Left to other streams, by name.** The browser notice stack (five notices before the first word, including the mono
+paragraph in the sealed green) is `fix-mosheai`'s item 6, landed as F239 in round 50b — the touch
+target on its `Get the app` is fixed here, the copy and the consolidation are theirs. The compare-table sticky header, the Hebrew answer block and the site proof strip
+are also `fix-mosheai`. The `proof.delivery.*` strings and the onboarding S03 airplane caption are `fix-copy`'s.
+**Not done and why:** the sidebar's bottom rail (five link styles in one 200 px block) is a redesign, not a style
+change, and was left; the desktop-height rhythm of the low-traffic screens is `fix-mosheai`'s item 17; the Android
+evidence caption that described a screenshot it does not match was corrected in place rather than re-shot, because
+this stream had no phone. Animation — the 420 ms seal close, the bloom, streaming motion — cannot be judged from
+stills and was not claimed.
+
+Gates after merging `origin/main` (5f4af79): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,445 tests**
+(core 726, mobile 689, i18n 17, ui 13), `pn web:build` and `pn web:smoke` green, `node apps/site/build.mjs &&
+node apps/site/check.mjs` green on all 13 pages including the new measurement. Evidence: `docs/qa/fix-design/`
+(114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
+F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
+
+
+## Fixes round 53: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
 
 The MosheAI review of 24.9 opened its third blocker with *"Nobody has ever run the Work tier on hardware, and its
 three headline bullets are the ones never driven"* — their only coverage was an **emulator on 11.9**, thirteen rounds

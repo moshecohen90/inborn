@@ -29,7 +29,7 @@ export function Sealed() {
 
   return (
     <Screen
-      header={null}
+      header={{ back: true }}
       mesh
       card
       testID="onboarding-sealed"

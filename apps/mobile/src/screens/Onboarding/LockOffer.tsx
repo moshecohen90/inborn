@@ -45,7 +45,7 @@ export function LockOffer() {
 
   return (
     <Screen
-      header={null}
+      header={{ back: true }}
       mesh
       card
       testID="onboarding-lock"

@@ -100,13 +100,14 @@ export function Screen({ children, header, scroll = true, mesh = false, padded =
       {scroll ? (
         <ScrollView
           style={styles.flex}
-          contentContainerStyle={[onCard ? styles.centred : null, { paddingTop: (overlay ? barHeight : 0) + bannerInset, paddingBottom: (lift ? 0 : insets.bottom) + 24 }]}
+          /* An onboarding step is a centred card on a wide window and was top-aligned on a phone, which left 800 px of void under three lines (QA F241). */
+          contentContainerStyle={[card ? styles.centred : null, onCard ? styles.cardPad : null, { paddingTop: (overlay ? barHeight : 0) + bannerInset, paddingBottom: (lift ? 0 : insets.bottom) + 24 }]}
           keyboardShouldPersistTaps="handled"
         >
           {content}
         </ScrollView>
       ) : (
-        <View style={[styles.flex, onCard ? styles.centred : null, { paddingTop: bannerInset }]}>{content}</View>
+        <View style={[styles.flex, card ? styles.centred : null, onCard ? styles.cardPad : null, { paddingTop: bannerInset }]}>{content}</View>
       )}
       {header && overlay ? (
         <ChromeBar style={[styles.overlay, { paddingTop: insets.top }]}>
@@ -123,7 +124,8 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   column: { width: "100%", alignSelf: "center" },
   actionColumn: { width: "100%", alignSelf: "center", gap: 8 },
-  centred: { flexGrow: 1, justifyContent: "center", paddingHorizontal: 16 },
+  centred: { flexGrow: 1, justifyContent: "center" },
+  cardPad: { paddingHorizontal: 16 },
   card: { borderWidth: 1, borderRadius: 20, paddingVertical: 28 },
   cardFooter: { paddingHorizontal: 16, paddingTop: 20, gap: 8 },
   padded: { paddingHorizontal: 16, gap: 12 },

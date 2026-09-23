@@ -1,7 +1,8 @@
 # work-tier-6t — the $69.99 Work card, driven on real hardware (round 52, F215–F224)
 
-This pass was briefed as round 49; `deploy-live` published that number while it ran, so the README section is
-**round 52**. The reserved findings F215–F224 are unchanged, and the guard file keeps its `work-tier-r49` name.
+This pass was briefed as round 49; `deploy-live` and then `fix-design` published 49 and 52 while it ran, so the
+README section is **round 53**. The reserved findings F215–F224 are unchanged, F206 was handed to this stream by
+the lead, and the guard file keeps its `work-tier-r49` name.
 
 The review of 24.9.2026 opened with this: *"Nobody has ever run the Work tier on hardware, and its three headline
 bullets are the ones never driven."* Their only coverage was T48/T49/T50 on an **emulator on 11.9**, thirteen rounds
