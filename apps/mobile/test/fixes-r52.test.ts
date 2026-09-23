@@ -189,11 +189,15 @@ describe("F245, F252, F253, F254 · the rest of the review", () => {
     expect(source("screens/paywall/WebStoreBlock.tsx")).toMatch(/<Icon name="check"/);
   });
 
-  it("the proof screen draws its tick instead of a character no shipped face has", () => {
+  it("the proof screen draws its mark instead of a character no shipped face has", () => {
     const proof = source("screens/Proof/Proof.tsx");
-    expect(proof).toContain('const TICK = "\\u2713"');
-    expect(proof).toMatch(/text\.split\(TICK\)/);
     expect(proof).toMatch(/<Icon name="check"/);
+    /* fix-copy took the glyph out of every proof.delivery.* string (round 52, item 14), so the mark is a prop now. */
+    expect(proof).not.toMatch(/[\u2713\u2714\u221a]/);
+    expect(proof).toMatch(/mark=\{webDelivery\.verified\}/);
+    expect(proof).toMatch(/mark=\{deliveryHashChecked\(delivery\.source\)\}/);
+    /* The caveat line says "no hash published": a trailing check there would verify the caveat. */
+    expect(proof).not.toMatch(/webUnverified[\s\S]{0,80}mark=\{true\}/);
   });
 
   it("only one sheet title shouted, and it no longer does", () => {

@@ -71,10 +71,13 @@ elements; reverting the one CSS line turns it red at both widths.
 | F251 | the seal's filament fills its interior | `before/seal-generating.png` | `after/seal-generating.png` |
 | F252 | the vault's dismissive action gets the button | `before/390-dark--vault.png` | `after/390-dark--vault.png` |
 | F253 | web paywall drops the check bullets | `before/390-dark--paywall.png` | `after/390-dark--paywall.png` |
-| F254 | the integrity mark renders as a square root | `before/proof-delivery-tick.png` | `after/proof-delivery.png` |
+| F254 | the integrity mark renders as a square root | `before/proof-delivery-tick.png` | `after/proof-delivery.png`, `after/proof-delivery-mark-en-dark.png`, `-en-light.png`, `-de-dark.png` |
 
 `before/proof-delivery-tick.png` is the review's own 2× crop of `390-dark--proof.png`; every other image in this
-folder was shot by this stream.
+folder was shot by this stream. The `proof-delivery-mark-*` crops are the second pass: once `fix-copy` removed the
+✓ from every `proof.delivery.*` value, the split had nothing to match, so the mark became a prop gated on the
+same flag that picks the verified string. Each crop was measured, not eyeballed: exactly one `<svg>` inside
+`[data-testid="proof-delivery-web"]`.
 
 ## Not in this folder
 

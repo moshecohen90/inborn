@@ -4368,8 +4368,10 @@ screen is built from, and the site's sideways scroll changed in one CSS line wit
   first too, and the merge took its form); Documents stopped
   stacking three empty messages; the model sheet stopped offering, at full weight, three models the browser cannot
   install; the browser vault leads with the action instead of with Close; the web paywall's bullets carry the same
-  mark as the native card's; the proof screen draws its tick instead of a `✓` no shipped face has, so "sha256 √" is
-  gone whatever the strings say; one sheet title stopped shouting; CJK section labels step in weight and ink, since
+  mark as the native card's; the proof screen draws its mark instead of a `✓` no shipped face has, so "sha256 √" is
+  gone whatever the strings say (`fix-copy` then took the character out of all five `proof.delivery.*` keys, which
+  left nothing to draw, so the mark is a prop now: the hash-verified lines get it, the "no hash published" line
+  deliberately does not); one sheet title stopped shouting; CJK section labels step in weight and ink, since
   uppercase and tracking do nothing to those glyphs.
 
 **Left to other streams, by name.** The browser notice stack (five notices before the first word, including the mono
@@ -4382,8 +4384,8 @@ evidence caption that described a screenshot it does not match was corrected in 
 this stream had no phone. Animation — the 420 ms seal close, the bloom, streaming motion — cannot be judged from
 stills and was not claimed.
 
-Gates after merging `origin/main` (5f4af79): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,445 tests**
-(core 726, mobile 689, i18n 17, ui 13), `pn web:build` and `pn web:smoke` green, `node apps/site/build.mjs &&
+Gates after merging `origin/main` (5f4af79): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,446 tests**
+(core 726, mobile 690, i18n 17, ui 13), `pn web:build` and `pn web:smoke` green, `node apps/site/build.mjs &&
 node apps/site/check.mjs` green on all 13 pages including the new measurement. Evidence: `docs/qa/fix-design/`
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.

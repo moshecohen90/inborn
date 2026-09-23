@@ -21,3 +21,12 @@ export function deliveryKey(source: DeliverySource): string {
       return "proof.delivery.builtin";
   }
 }
+
+/**
+ * Which delivery lines may end on a drawn check: the ones whose last clause is the hash we verified.
+ * `play` states its verification in words and `import`/`bundled` verify nothing, so a mark there would claim more
+ * than the sentence does.
+ */
+export function deliveryHashChecked(source: DeliverySource): boolean {
+  return source === "apple" || source === "https" || source === "hf";
+}
