@@ -38,14 +38,6 @@ export interface DocumentContext {
   detach: (docId: string) => void;
   /** True when at least one attached document has an index to search. */
   ready: boolean;
-  /** True while an attached document is still queued or being read. */
-  indexing: boolean;
-  /** The index model is not installed, so nothing attached can be searched. */
-  noIndexModel: boolean;
-  /** Every attached document is a scan waiting for OCR. */
-  needsOcr: boolean;
-  /** Resolves once every attached document has finished being read. */
-  settle: () => Promise<void>;
   /** Retrieval + fenced prompt for the next user turn; `prompt.noAnswer` means answer with `documents.notFound` and skip the model. */
   buildPrompt: (question: string, history: Message[], nCtx: number, systemPrompt?: string) => Promise<{ prompt: RagPrompt; retrieveMs: number }>;
   /** Chips to show under a finished answer. */
@@ -67,7 +59,6 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
   const documents = useMemo(() => (chatId ? library.attachedTo(chatId) : []), [library, chatId, state]);
   const docIds = useMemo(() => documents.map((d) => d.id), [documents]);
   const ready = documents.some((d) => d.chunkCount > 0);
-  const indexing = library.indexingAny(docIds);
   return {
     documents,
     strict,
@@ -75,10 +66,6 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    indexing,
-    noIndexModel: state.embedder.kind === "missing",
-    needsOcr: documents.length > 0 && documents.every((d) => d.status === "needs-ocr"),
-    settle: () => library.settle(docIds),
     buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
     context: { docIds, strict },

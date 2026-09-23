@@ -88,7 +88,7 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
-import { planDocsTurn, type DocsTurn } from "../lib/docsGate";
+import { planDocsTurn } from "../lib/docsGate";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -227,7 +227,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
+  /** The turn refused because the index model is missing; the notice offers the one screen that fixes it (QA F137). */
   const [docsOffer, setDocsOffer] = useState(false);
+  /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
+  const [readingDocs, setReadingDocs] = useState(0);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -447,23 +450,25 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
+      /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
+      const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
-      let turn: DocsTurn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready, indexing: docs.indexing, noIndexModel: docs.noIndexModel, needsOcr: docs.needsOcr }) : { kind: "model" };
-      /* An attached file is read before the answer, never answered around: that is what produced "I received no document" (QA F135). */
+      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey) });
+      let turn: ReturnType<typeof planDocsTurn> = !existingMessageId && lastUser ? planTurn() : { kind: "model" };
+      /* A file the user attached is read before it is answered about, never after (QA F125/F126). */
       if (turn.kind === "wait") {
-        patch((x) => ({ ...x, content: t("documents.reading") }));
-        await Promise.race([docs.settle(), new Promise<void>((r) => ac.signal.addEventListener("abort", () => r(), { once: true }))]);
-        if (ac.signal.aborted) {
-          setRows((all) => all.filter((x) => x.id !== rowId));
-          return;
+        setReadingDocs(library.attachmentState(attachKey).reading);
+        try {
+          await library.whenAttachmentsRead(attachKey, ac.signal);
+        } finally {
+          setReadingDocs(0);
         }
-        const fresh = docs.context.docIds.map((id) => library.document(id));
-        turn = planDocsTurn({ strict: docs.strict, hasAttachment: fresh.some((d) => !!d), hasIndex: fresh.some((d) => (d?.chunkCount ?? 0) > 0), noIndexModel: library.state().embedder.kind === "missing", needsOcr: fresh.some((d) => d?.status === "needs-ocr") });
-        patch((x) => ({ ...x, content: "" }));
+        if (ac.signal.aborted) return;
+        turn = planTurn();
       }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {
-        if (turn.messageKey === "documents.noIndexModel") setDocsOffer(true);
+        if (turn.messageKey === "documents.needsIndexModel") setDocsOffer(true);
         await answerWithoutModel(turn.messageKey);
         return;
       }
@@ -1198,6 +1203,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
+      ) : null}
+      {readingDocs ? (
+        <View testID="reading-docs" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.reading", { count: readingDocs })}</Text>
+        </View>
       ) : null}
       {visionOffer ? (
         <View testID="vision-offer" style={[styles.notice, { borderColor: theme.border }]}>

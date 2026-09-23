@@ -4,11 +4,12 @@
  * `retrieve` alone may search: with nothing indexed attached to this chat, `DocumentLibrary.ask` would widen the
  * search to the whole library, which is not what the user attached (QA F34).
  */
-export type DocsTurn =
-  | { kind: "retrieve" }
-  | { kind: "wait" }
-  | { kind: "refuse"; messageKey: "documents.notFound" | "documents.noneAttached" | "documents.notReadable" | "documents.noIndexModel" | "documents.needsOcr" }
-  | { kind: "model" };
+export type DocsTurn = { kind: "retrieve" } | { kind: "wait" } | { kind: "refuse"; messageKey: RefusalKey } | { kind: "model" };
+
+export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.needsOcr" | "documents.needsIndexModel";
+
+/** Why the attached documents have nothing to search although none of them is still being read. */
+export type AttachmentBlock = "needs-ocr" | "no-embedder" | null;
 
 export interface DocsTurnInput {
   /** The "Answer only from my documents" switch. */
@@ -17,25 +18,25 @@ export interface DocsTurnInput {
   hasAttachment: boolean;
   /** At least one attached document has passages to search. */
   hasIndex: boolean;
-  /** An attached document is queued or being read right now. */
+  /** At least one attached document is queued or still being read. */
   indexing?: boolean;
-  /** The index model is not installed, so nothing attached can ever be searched. */
-  noIndexModel?: boolean;
-  /** Every attached document is a scan with no text layer; OCR is offered, never run by itself. */
-  needsOcr?: boolean;
+  /** Set once nothing is being read any more and there is still no index. */
+  blocked?: AttachmentBlock;
 }
 
+const refusalFor = (blocked: AttachmentBlock): RefusalKey => (blocked === "needs-ocr" ? "documents.needsOcr" : blocked === "no-embedder" ? "documents.needsIndexModel" : "documents.notRead");
+
 /**
- * A file the user attached is never answered around: the turn waits for its index, or says why it cannot be read.
- * Answering from the model's weights while a file hangs off the composer is what produced "I received no document"
- * on Moshe's iPhone and 6T (QA F135); strict mode alone never guarded it, because the switch is off by default.
+ * Strict mode with nothing to search must say so; it may never fall through to a free answer from the model's weights.
+ *
+ * A file the user attached is never silently dropped either (QA F125/F126): while it is still being read the turn waits,
+ * and once reading is over with nothing to search the turn says why. Answering from the weights with an attachment on
+ * screen produced both "I don't see an attached photo" and an invented access code on the 6T.
  */
-export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, noIndexModel = false, needsOcr = false }: DocsTurnInput): DocsTurn {
+export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null }: DocsTurnInput): DocsTurn {
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };
-  if (!hasAttachment) return strict ? { kind: "refuse", messageKey: "documents.noneAttached" } : { kind: "model" };
-  if (noIndexModel) return { kind: "refuse", messageKey: "documents.noIndexModel" };
-  /* A scan is not an unreadable file: it has one button between it and an answer, and the sentence names it. */
-  if (needsOcr) return { kind: "refuse", messageKey: "documents.needsOcr" };
-  return { kind: "refuse", messageKey: strict ? "documents.notFound" : "documents.notReadable" };
+  if (hasAttachment) return { kind: "refuse", messageKey: refusalFor(blocked) };
+  if (!strict) return { kind: "model" };
+  return { kind: "refuse", messageKey: "documents.noneAttached" };
 }
