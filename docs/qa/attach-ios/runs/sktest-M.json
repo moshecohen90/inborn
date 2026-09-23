@@ -1,0 +1,17 @@
+{
+  "transactions" : [
+    {
+      "productIdentifier" : "inborn.pro",
+      "state" : 1,
+      "identifier" : 0
+    }
+  ],
+  "steps" : [
+    "exists \/System\/Developer\/Library\/Frameworks\/StoreKitTest.framework\/StoreKitTest: true",
+    "loaded \/System\/Developer\/Library\/Frameworks\/StoreKitTest.framework\/StoreKitTest",
+    "session ready, disableDialogs=true",
+    "cleared",
+    "buy inborn.pro: ok"
+  ],
+  "plan" : "clear;buy:inborn.pro"
+}

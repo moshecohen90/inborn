@@ -3407,6 +3407,38 @@ flipping it is a deploy decision, not a code one. No device, emulator or phone w
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
 
+## Fixes round 38: the photo and the PDF the model said it never received (branch `attach-ios`) — 23.9.2026
+
+F135–F144, filed by Moshe from his iPhone: "I attached a photo of a door and asked what it sees; it answered that it
+received no image at all. I attached a PDF: same problem. Does the indexing really work? If a user asks to answer only
+from his sources, does it really do that or does it invent from elsewhere?" Two different mechanisms produced the same
+sentence, and the app never said which one had failed.
+
+- **F135 — a file the user attached was answered around.** A PDF asked about before its index existed went to the
+  model as if nothing were attached, and the answer invented a service code. `attach-android` reached this root cause
+  first, so the gate is theirs and is merged here rather than written twice: `planDocsTurn` waits while an attachment
+  is being read and refuses with the reason when reading is over with nothing to search, and `DocumentLibrary`
+  reports that state live rather than from a render snapshot one frame behind the import.
+- **F136 — the photo was dropped by the document prompt.** iOS found what Android could not see: with a document
+  attached to the same chat, `buildRagPrompt` rewrites the turn into its own text-only messages, so the picture never
+  reached the engine *and* the vision gate, which reads the prompt, never fired to say so. `withPhotos` puts the
+  turn's photos back on the prompt's last user message. The same photo with no document attached was always
+  described correctly, which is what isolated the retrieval path.
+- **F137 — strict mode printed the model's raw sentinel.** "Answer only from my documents" with a question the file
+  does not answer showed `Not_FOUND_IN_DOCUMENTS` on the screen: a 0.8B model returns the token in its own case and
+  the check was an exact `startsWith`. One `isNotFoundReply` in core now decides it for both screens.
+- **F138 — adding the same file again could not rescue it.** A document imported while the index model was missing
+  kept its record, and re-importing returned that record untouched, so the one move the app offers left the chat with
+  an attachment that could never be searched. A twin with no passages is queued again; OCR stays the user's decision.
+- **F139 — the refusal named a screen and gave no way to it.** The missing index model now raises a notice with
+  "Open the vault", and the attach sheet offers "Install the vision companion · 205 MB" when the model can see but
+  the projector is not installed.
+
+Proven on Moshe's iPhone 13 Pro, before and after, with the same dev-prompt driver on both builds; tiers set only in
+an in-process StoreKit test session, never a sandbox purchase. Free keeps one file per chat, Pro two with Office
+formats refused, Work indexes the spreadsheet and the HTML note and answers across both. Evidence:
+`docs/qa/attach-ios/` (`A*` before, `M*` after).
+
 ## Fixes round 39: nothing in the app said Pro existed until it refused you (branch `premium-entry`) — 23.9.2026
 
 F145–F149, filed by Moshe from the browser and the phone: "buttons for premium, to see what's in premium, and tapping
@@ -3628,6 +3660,36 @@ button added in round 42 and the landing composer's hand-off still lead nowhere.
 permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and
 the deploy is the one command above; the live `curl` pass on `/`, `/privacy`, `/accessibility`, `/sitemap.xml`,
 `/llms.txt`, the app shell's COOP/COEP and the `?q=` hand-off is the first thing to run after it.
+## Fixes round 37: a file was attached, and the model answered as if nothing were (branch `attach-android`) — 23.9.2026
+
+Moshe attached a photo of a door and asked what the app saw; it answered that it had received no image. He attached a
+PDF and got the same. Both were reproduced on his own OnePlus 6T against the Play build **1.0.0 (19)**, and the cause is
+one line of turn planning, not vision and not a missing companion: `planDocsTurn` returned `{kind:"model"}` whenever the
+strict switch was off and no attached document had passages **yet**, including when a document was attached. The
+`hasAttachment` flag reached the function and was never read on that path. The two doors that attach a file do so the
+moment it is picked, so "attached" and "readable" are different states, and nothing closed the gap between them.
+
+The second reproduction is the one that matters most. A 40-page PDF was attached and asked about while it was still
+indexing: the model invented the access code `"NORTGATE"` where the attached file, on page 30, says `ZR-4471-QX`. No
+citation, no hedge. That is the direct answer to *"does it invent from elsewhere"*: with the strict switch off, it did.
+
+`planDocsTurn` now has a `wait` outcome and, with an attachment on screen, never returns `model`. A turn whose
+attachment is still being read holds and shows *"Reading your document before answering…"*; when reading ends with
+nothing to search it refuses with the reason instead of answering. `DocumentLibrary.attachmentState()` reports that
+state live, and `Chat.tsx` reads it under the key the chat has **now**, because the first message moves the attachments
+off the draft key, which is exactly the new-chat case Moshe hit. Running OCR on a photograph is a dead end (`door.jpg`
+finished `empty · 0 chunks`), so a picture gets its own refusal pointing at the Photo button, the route that works.
+
+Checking the Free tier turned up a second gap: the attach sheet's library rows called `attach()` with no licence gate,
+so a licence that stops paying kept attaching the whole shelf, Work-only spreadsheets included. They now go through the
+same `fileIntake` as the picker and the share sheet.
+
+Proven on the 6T on a build of this branch running beside the untouched Play build: the notice, the cited `ZR-4471-QX`,
+the photo refusal and then the Photo button describing the door, strict on and off, OCR of a scanned page, XLSX and HTML
+on Work, redaction before send, and both halves of the Free fix. The full matrix, the before/after screenshots and the
+traps that cost time are in `docs/qa/attach-android/README.md`; the rows are F125–F129 in `docs/qa/qa-run-2026-09-11.md`.
+Not fixed here and handed over: the browser tier cannot add a document at all. `expo-file-system`'s web
+`pickFileAsync` is a no-op and the drop handler is Tauri-only. That is F128 and another stream's surface.
 ## Fixes round 35: the whole app was a phone layout stretched across a desktop window (branch `responsive-design`) — 23.9.2026
 
 Moshe, on the web at 1440: "the onboarding and probably the whole app show a very very wide button; it was clearly
