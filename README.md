@@ -4387,3 +4387,45 @@ Gates after merging `origin/main` (5f4af79): `pn typecheck` 0, `pn lint` 0, `pn 
 node apps/site/check.mjs` green on all 13 pages including the new measurement. Evidence: `docs/qa/fix-design/`
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
+
+## Fixes round 52: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
+
+The MosheAI review of 24.9 opened its third blocker with *"Nobody has ever run the Work tier on hardware, and its
+three headline bullets are the ones never driven"* — their only coverage was an **emulator on 11.9**, thirteen rounds
+old, and `docs/qa/acceptance/README.md` §E still listed client vaults, the audit log and signed records as *not
+verified*. This round drives **every line the Work card and the compare table promise** on the phone, and the
+evidence is one file per line in `docs/qa/work-tier-6t/` (F216–F223 in `docs/qa/qa-run-2026-09-11.md`).
+
+Moshe's own install was never touched: the pass runs a second package, `com.inbornapp.mobile.qa`, built
+`assembleDebug` from this branch against Metro on a private port with `EXPO_PUBLIC_TIER=work`, and uninstalled when
+the run ended. The paywall on it reads **YOU OWN PRO FOR WORK**.
+
+**Client vaults with their own passcode.** Two vaults, `Client Alpha` and `Client Beta`, each with its own code.
+Locking hides the chat from the tree, not merely from the eye; a wrong code says only *Wrong passcode*; and the
+**other vault's real code is refused**, which is the difference between a per-vault salt and one app passcode.
+
+**Per-vault audit log, hash-chained.** *Chain verified · 4 entries*, entries naming ids and never titles. One byte
+flipped inside the sealed log file and the screen says *Chain broken at entry 1 (link)*; the original file restores
+the verified reading. After a signed export the log carries that record's own content hash, so the log and the file
+point at each other.
+
+**Signed, verifiable records.** Signed on the phone, **VALID** on the app's own Verify screen, **INVALID** after one
+word of one message is changed — and the Node one-liner the app prints under *How to verify this record* was run on
+the Mac against both files and answered `VALID` and `INVALID`. The published recipe works as published.
+
+**Profession packs** (all four open, one used end to end into a real letter), the **printable architecture statement**
+(dated, naming this build, both vaults and the signing key), **Excel and HTML import**, **redaction before sending**
+and **strict mode** all pass; three Pro rows that had never been driven on this phone — unlimited personas, memory
+across chats, detailed stats — pass with them. The one partial is the Excel *answer*: retrieval cites the right sheet,
+but INSTANT returns the row label instead of the part number, on a screen where the app itself says *FAST is better at
+documents than INSTANT*.
+
+**F215, the bug that had to be fixed before any of it could run.** The chat row's action menu — Rename, Pin, Archive,
+**Move to folder**, **Export chat**, Delete — opens only on `onLongPress`, and a React Native `Pressable` publishes no
+`ACTION_LONG_CLICK` to the accessibility tree, so the entire menu is unreachable to an accessibility client while the
+row's swipe actions are perfectly reachable. `apps/mobile/src/screens/Chats.tsx` now declares the `longpress`
+accessibility action and handles it, with the new key `chats.more` in all nine locales; guard in
+`apps/mobile/test/work-tier-r49.test.ts`, watched to fail.
+
+Gates on this branch merged with `main` (**7cb4a63**): `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,419 tests** (core 726, mobile 663, i18n 17, ui 13); the three new mobile ones are the F215 guard.

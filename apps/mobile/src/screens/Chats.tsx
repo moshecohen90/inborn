@@ -238,6 +238,11 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
         accessibilityState={selecting ? { selected: selected.has(item.id) } : undefined}
         onPress={() => (selecting ? toggleSelect(item.id) : openGuarded(item))}
         onLongPress={() => (selecting ? undefined : setMenu({ chat: item, renaming: false, title: item.title }))}
+        /* Without this the row exposes no long-press action, so move/export/rename/signed-record are unreachable to an accessibility client (F215). */
+        accessibilityActions={selecting ? undefined : [{ name: "longpress", label: t("chats.more") }]}
+        onAccessibilityAction={(e) => {
+          if (!selecting && e.nativeEvent.actionName === "longpress") setMenu({ chat: item, renaming: false, title: item.title });
+        }}
         style={({ pressed }) => [styles.row, { borderColor: theme.border, backgroundColor: pressed || item.id === activeChatId ? theme.surface1 : theme.bg }]}
       >
         {selecting ? (

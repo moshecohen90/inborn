@@ -1,0 +1,44 @@
+{
+  "format": "inborn.signed-record",
+  "version": 1,
+  "exportedAt": 1790202468096,
+  "aiGenerated": true,
+  "generator": "Inborn (on-device AI)",
+  "app": {
+    "name": "Inborn",
+    "version": "1.0.0",
+    "platform": "android"
+  },
+  "signer": {
+    "algorithm": "Ed25519",
+    "publicKeyHex": "6d30a5a68963e14e8e56a03e67fb08aa295e04c997e9af7acecc6453839be464",
+    "keyCreatedAt": 1790202468018
+  },
+  "chat": {
+    "id": "e03882f1-2fd5-41b6-978f-3ccd9f45e96a",
+    "title": "Name three safety checks before a",
+    "createdAt": 1790201882729,
+    "updatedAt": 1790201889686,
+    "modelId": "instant"
+  },
+  "vault": {
+    "folderId": "f391f4e8-cab7-435d-bd46-30b4a15fecf3",
+    "name": "Client Alpha",
+    "auditHead": "a6d21f67f88cbca26f1dc177ceb9f44f8495a65a5fa7b43b8152bd3ee0ad6271"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Name three safety checks before a site visit. Answer in one short list.",
+      "createdAt": 1790201883036
+    },
+    {
+      "role": "assistant",
+      "content": "1. Verify the site is secure and free of active threats by checking its physical and digital security measures.\n2. Assess the environmental conditions for potential hazards and ensure the site is safe for entry.\n3. Review the site's history of incidents or recent disturbances to identify any safety risks.",
+      "createdAt": 1790201889686,
+      "modelId": "instant"
+    }
+  ],
+  "contentHash": "fad7b8315662f5e6898b6b7ac6d07be7c36426064c8036657e417af67ab2b83a",
+  "signature": "530c3dba66d7de1a52541eb16b5fba7d23b65785a9420e4d23da4b05b028e6e0901a50cdb727be9b10b934af55c833d9858bd5466a33e20110b8a425a444580d"
+}
