@@ -39,7 +39,8 @@ vi.mock("./files", () => ({
   deleteFile: (uri: string | undefined) => void (uri && files.delete(uri)),
   readHead: () => new TextEncoder().encode("plain text"),
   resolveDocUri: (uri: string) => uri,
-  sha256Of: async (uri: string) => `sha-${uri}`,
+  /* Content-addressed like the real one, so importing the same file twice really is a duplicate. */
+  sha256Of: async (uri: string) => `sha-${files.get(uri) ?? uri}`,
   sizeOf: (uri: string) => (files.get(uri) ?? "").length || 1,
   storedDocPath: (uri: string) => uri,
 }));
@@ -154,5 +155,50 @@ describe("attachmentState: what the chat may answer from (QA F125/F126)", () => 
     hold = null;
     release();
     await settle(library);
+  });
+});
+
+describe("adding the same file again (QA F139)", () => {
+  it("reads a twin that has no passages instead of handing back the dead record", async () => {
+    embedderMissing = true;
+    const library = new DocumentLibrary();
+    const first = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
+    await settle(library);
+    expect(library.attachmentState("chat-1").hasIndex).toBe(false);
+
+    /* The user installs the index model and adds the file again, which is the only move the app offers them. */
+    embedderMissing = false;
+    await library.refreshEmbedder();
+    const again = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
+    expect(again.id).toBe(first.id);
+    await settle(library);
+
+    const state = library.attachmentState("chat-1");
+    expect(state.hasIndex).toBe(true);
+    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "retrieve" });
+  });
+
+  it("leaves an indexed twin alone: adding it again does not re-read it", async () => {
+    const library = new DocumentLibrary();
+    const first = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
+    await settle(library);
+    const chunks = library.state().documents.find((d) => d.id === first.id)?.chunkCount;
+    expect(chunks).toBeGreaterThan(0);
+
+    const again = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
+    expect(again.id).toBe(first.id);
+    expect(library.attachmentState("chat-1").indexing).toBe(false);
+    expect(library.state().documents.find((d) => d.id === first.id)?.chunkCount).toBe(chunks);
+  });
+
+  it("does not re-read a scan: OCR stays the user's decision", async () => {
+    const library = new DocumentLibrary();
+    const first = await attach(library, "chat-1", "scan.txt", "");
+    await settle(library);
+    expect(library.attachmentState("chat-1").blocked).toBe("needs-ocr");
+
+    await attach(library, "chat-1", "scan.txt", "");
+    expect(library.state().documents.find((d) => d.id === first.id)?.status).toBe("needs-ocr");
+    expect(library.attachmentState("chat-1").blocked).toBe("needs-ocr");
   });
 });
