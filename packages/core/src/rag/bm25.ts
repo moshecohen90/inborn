@@ -1,5 +1,5 @@
 /** Lexical side of hybrid retrieval: BM25 over unicode words, with Hebrew/Arabic prefix variants (ו/ה/ב/ל/מ/ש/כ, ال). */
-import { words } from "./text";
+import { hasCjk, words } from "./text";
 
 const HEBREW_PREFIXES = ["\u05D5\u05D4", "\u05D5\u05D1", "\u05D5\u05DC", "\u05D5\u05DE", "\u05D5\u05E9", "\u05D5\u05DB", "\u05D5", "\u05D4", "\u05D1", "\u05DC", "\u05DE", "\u05E9", "\u05DB"];
 const ARABIC_PREFIXES = ["\u0648\u0627\u0644", "\u0628\u0627\u0644", "\u0644\u0644", "\u0627\u0644", "\u0648", "\u0628", "\u0644"];
@@ -31,7 +31,8 @@ export const isStopWord = (w: string): boolean => STOP.has(w);
 export function bm25Tokens(text: string): string[] {
   const out: string[] = [];
   for (const w of words(text)) {
-    if (STOP.has(w) || (w.length < 2 && !/\p{N}/u.test(w))) continue;
+    /* A lone CJK character is a word, not a stray letter, so the one-character floor does not apply to it. */
+    if (STOP.has(w) || (w.length < 2 && !/\p{N}/u.test(w) && !hasCjk(w))) continue;
     for (const t of termsOf(w)) if (!STOP.has(t)) out.push(t);
   }
   return out;

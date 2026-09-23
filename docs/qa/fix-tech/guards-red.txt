@@ -1,0 +1,49 @@
+Round 47, stream fix-tech — every guard watched red before it was watched green.
+
+Method: the fix (or, where a fix is a deletion, the rule the fix enforces) was reverted or sabotaged in the
+source, the guard was run, the failure count recorded, and the source restored. Full output of each red run:
+SCRATCH/fix-tech/red-f19*.log (SCRATCH = /private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/
+e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad).
+
+F195  packages/core/test/rag-cjk.test.ts
+      revert: packages/core/src/rag/{text.ts,bm25.ts} back to HEAD (one WORD token per CJK sentence)
+      red:    11 failed | 2 passed (13)          green after: 13 passed
+      The two that stayed green are the Latin/Hebrew tokenisation rows — the complement, which the fix
+      must not change.
+
+F196  packages/core/test/rag-not-found.test.ts
+      revert: isNotFoundReply back to the strip class [\s"'*`_.:-] and the hard ^ anchor
+      red:    10 failed | 9 passed (19)          green after: 19 passed
+      The rows that stayed green are the shapes round 43 already caught, plus the four false-positive rows.
+
+F197  apps/mobile/src/documents/pickPlan.test.ts
+      sabotage: the pre-pick count gate removed from runPick (the shape the two copies invited)
+      red:    1 failed | 7 passed (8)            green after: 8 passed
+      "the picker must not open for a refused tap" — the assertion that the gate runs before the chooser.
+
+F198  apps/mobile/src/lib/docsGate.test.ts
+      sabotage: saysNoneMatched returns `attachedCount > 0 && usedPassages === 0` (the round 43 rule)
+      red:    1 failed | 15 passed (16)          green after: 16 passed
+      "never fires on Continue, whichever way that turn went".
+
+F199  apps/mobile/src/documents/libraryAttach.test.ts
+      sabotage: attachRowLock asks the count gate only, as the sheet did before (paywallFor, not fileIntake)
+      red:    2 failed | 8 passed (10)           green after: 10 passed
+      The Work-format row and the row-vs-tap agreement sweep.
+
+F200  apps/mobile/test/siteHeaders.test.ts
+      sabotage: headerProblems keeps only the presence check (the round 43 rewrite)
+      red:    1 failed | 4 passed (5)            green after: 5 passed
+      "fails a later per-path block that re-allows scripts".
+
+F201  packages/core/test/licence-compare.test.ts — the duplicate-copy sweep fails by construction the moment a
+      second key carries the same sentence; it was red on the three pairs that existed before the alias
+      (persona/unlimitedPersonas, model/proModels, office/officeIngest), which is why the keys were removed.
+
+F202  apps/mobile/test/webRouting.test.ts — the deep-link rows were written against the real resolveFile and
+      caught a wrong assumption of my own on the first run: `/../../etc/passwd` resolves to index.html (the
+      one-document rule), not to null. The assertion was corrected to the claim that holds: no answer outside
+      dist. Red run in SCRATCH/fix-tech (1 failed | 4 passed) before the correction.
+
+F203  apps/mobile/test/origins.test.ts — proven green against the one file; it fails on any origin written out
+      again in the deploy, which is the regression it exists for.

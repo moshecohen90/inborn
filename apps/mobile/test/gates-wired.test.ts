@@ -42,13 +42,14 @@ describe("every gate key is asked by a screen", () => {
  * walked past both the Free file cap and the Work formats (QA F72).
  */
 describe("the document intake doors", () => {
-  const doors = ["documents/importPicker.ts", "documents/importPicker.web.ts", "screens/Chat.tsx", "screens/documents/DocumentsScreen.tsx"];
+  const doors = ["documents/importPicker.ts", "documents/pickPlan.ts", "screens/Chat.tsx", "screens/documents/DocumentsScreen.tsx"];
 
   it("every file that reaches importFile came through fileIntake", () => {
     for (const door of doors) {
       const file = sources.find((s) => s.path === door);
       expect(file, door).toBeDefined();
-      expect(file!.src, `${door} imports a file without asking fileIntake`).toContain("fileIntake");
+      /* A door may ask the gate itself or hand the file to `runPick`, which asks it (documents/pickPlan.ts). */
+      expect(file!.src, `${door} imports a file without asking fileIntake`).toMatch(/fileIntake|runPick\(/);
     }
   });
 

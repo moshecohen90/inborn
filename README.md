@@ -3469,8 +3469,9 @@ entitlement mechanism was complete and the *entrances to it* were not.
 - **F149 — the browser paywall named no price, and the URL did not resolve.** With no store the screen rendered one
   sentence and nothing else. It now shows both tiers priced from the catalogue, the value lines, the US-list-price
   note, three buttons to App Store / Google Play / Desktop, the promise that the browser stays free, and the table.
-  Separately the export is one `index.html` with no rewrite, so `/paywall` was a 404 on any static host: the build now
-  writes `_redirects` and the dev server falls back to `index.html` for extensionless paths, the same rule in both.
+  Separately the export is one `index.html` with no rewrite, so `/paywall` was a 404 on any static host: the dev server
+  falls back to `index.html` for extensionless paths, and the origin gets the same rule from the Worker's
+  `not_found_handling` (round 47 removed the `_redirects` copy, which the Workers-assets deploy never read).
 
 Copy in all 9 locales. `pn web:smoke` green. Evidence, before and after at 390 and 1440: `docs/qa/premium-entry/`.
 ## Fixes round 36: the model step offered a download it could not start (branch `onboarding-rework`) — 23.9.2026
@@ -3967,6 +3968,70 @@ zone's 1800 s SOA minimum expires; Cloudflare's resolver and the zone's nameserv
 and the checks that ran while this Mac's resolver was still stale used `curl --resolve` against the zone's own
 addresses. `STORES_LIVE` is still unset, so the site's store links read "Opens at launch".
 
+## Fixes round 47: the relevance floor had no lexical half in Chinese or Japanese (branch `fix-tech`) — 23.9.2026
+
+The tech-lead review of rounds 34–45 (`review-tech`), worked top to bottom. Every fix has a test that was watched
+**red** before it was watched green; which revert or sabotage produced which failure count is written down in
+`docs/qa/fix-tech/guards-red.txt`.
+
+- **F195 — the F161 floor silently ungrounded Chinese and Japanese.** The floor is `cosine ≥ 0.5` **or** a lexical
+  match, and round 43 applied it in both modes. The lexical half could not fire for a script written without spaces:
+  `words()` matched `[\p{L}\p{N}]+`, so a whole Chinese sentence was one token and never overlapped a chunk's. A
+  zh/ja user whose embedding landed at 0.49 lost every passage **and** was told their documents contained nothing
+  about their own question. `words()` now cuts a CJK run into character bigrams, and `bm25Tokens` no longer drops a
+  lone CJK character as a stray letter. Bigrams and not single characters, because one shared particle (の, 的, は)
+  would make any two texts lexically relevant and hand an unrelated passage a citation — F161 in another script. The
+  guard runs the real BM25 index over a Chinese and a Japanese annual report with the cosine pinned under the floor:
+  the on-topic question keeps its passage and its citation in both modes, an unrelated passage in the same language is
+  still dropped, and an off-topic question still cites nothing. Spec §5 says this now.
+- **F196 — the sentinel still reached the screen.** `isNotFoundReply` stripped no brackets and allowed no lead-in, so
+  `Answer: NOT_FOUND_IN_DOCUMENTS`, `[NOT_FOUND_IN_DOCUMENTS]`, `<NOT_FOUND_IN_DOCUMENTS>` and `I am sorry,
+  NOT_FOUND_IN_DOCUMENTS` were rendered as answers — the F137 defect class Moshe met on the iPhone. Brackets, angle
+  brackets and punctuation are stripped and up to three lead-in words allowed; the cap is what keeps a reply that
+  merely discusses the token an answer. Sixteen shapes in a table test, twelve caught and four left alone.
+- **F197 — "Add a file" was the same twelve lines twice**, and what policed the two halves was a test comparing
+  exported symbol names. `importPicker.web.ts` is deleted, the one picker calls `chooseFile(PICK_TYPES)` (the platform
+  split that already existed), and the order — count gate → pick → kind gate → import — is `runPick` in
+  `documents/pickPlan.ts`, dependency-injected so it runs for real off-device. Eight behaviour cases replace the parity
+  check, including that the picker never opens for a tap the count gate already refused.
+- **F198 — Continue flashed "nothing in your documents matched" over an answer that had cited them.** The turn is
+  forced past the gate when `existingMessageId` is set, so it reached the F161 notice with no retrieval to report.
+  Both flash sites now ask one function, `saysNoneMatched`, which is false on Continue. The comment that described an
+  unreachable path is gone, and so are the two regex assertions that asserted its text.
+- **F199 — a Work-format row rendered unlocked and refused after the tap.** The lock came from the count gate, the
+  format half from `planLibraryAttach` after the press. The sheet now asks `attachRowLock` — the same call the tap
+  makes — so the chip, the hint and the verdict cannot disagree, and a refused spreadsheet names the Work moment
+  rather than the Pro one.
+- **F200 — the site CSP check was weakened, not tightened.** Round 43 replaced "every `script-src` must be `'none'`"
+  with "the literal appears once", which passes a `_headers` whose later per-path block re-allows scripts. Both forms
+  run again, in `apps/site/headerCheck.mjs` so they can be tested on text, and the guard fails a `/blog/*` block
+  carrying `script-src 'self'`.
+- **F201 / F202 / F203 — three things written down more than once.** Three paywall reasons shipped identical copy
+  under two keys in all nine locales (27 strings waiting to drift): `reasonOf` aliases the features onto the moment
+  ids and a sweep now fails the moment two reasons carry the same sentence. The one-document rule was written three
+  times, one of them a Pages `_redirects` the Workers deploy does not read: `not_found_handling` is the single source.
+  The site origin was written four times, the site generator defaulting to a different host than the app used — the
+  shape of the bibleapps widget-domain bug of the same day: `packages/core/src/site/origins.json` is the one place
+  now, read by the app, the site build and the deploy, which derives the zone, the app hostname and the `www`
+  redirect from it.
+- **F204 — the small ones.** One `maxWidthAbove` / `useMaxWidth` under the three width helpers; the dead
+  `openPaywallFor` deleted; the Cloudflare upload cap cut from 45 MiB to 35 MiB of raw bytes, because the bodies go up
+  base64 at 4/3 (60 MiB against a 50 MiB limit, latent only because today's dist is 28.6 MB); one `refuseFile` closure
+  for the four file-refusal sites; a comment that no longer states a number its constant contradicts; and the
+  composer's source-text assertions rewritten to match intent on whitespace-collapsed source, so a prettier pass
+  cannot fail them.
+
+**Left for a stream with a device**, deliberately: Enter-to-send never reaches a hardware keyboard on native iOS (the
+module is Android-only — a feature to build and prove on the iPhone, not a fix); `chooseFile.ts` reading a picked file
+with `textSync()` on the JS thread (a real behaviour change on the native picker, unverifiable here); and the fact
+that the Cloudflare deploy has still never run against the real API, which is a risk to state, not a defect to fix.
+
+Gates on the branch: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,281 tests** (core 686, mobile 571,
+ui 13, i18n 11); re-run after merging `origin/main` (round 48): **1,300** (core 686, mobile 586, ui 13, i18n 15).
+`pn web:build` and `pn web:smoke` green both times (first visit 18.0 s · 32 tok/s, offline visit 1.6 s · 0 model
+fetches).
+Evidence: `docs/qa/fix-tech/` (guards-red.txt, the four widths at 390 / 768 / 1024 / 1440, the smoke screenshots and
+logs) and `docs/qa/qa-run-2026-09-11.md` F195–F204.
 ## Fixes round 48: the copy review, and the Apple listing that named Android (branch `fix-copy`) — 24.9.2026
 
 Round 2's copy review (`review-copy`) read the eight locale files, the eight store listings, the site and the legal
@@ -4013,6 +4078,15 @@ the end. F rows: `docs/qa/qa-run-2026-09-11.md` F205–F214.
   price left all eight What's New fields. Five `documents.*` strings moved from "I" to the Inborn voice, so an app
   string no longer reads as the model talking.
 
+**Three items handed over by `fix-design`.** The literal `✓` left all five `proof.delivery.*` values in all eight
+locales: IBM Plex Sans has no U+2713, so the fallback drew a square-root sign and the trust screen read `sha256 √`
+(`docs/qa/fix-copy/before/proof-screen-de-390.png`). `fix-design` draws the mark with the app's own check icon, so
+every verified line now ends on the thing that was verified and an appended icon lands on the right word;
+`proof.delivery.webUnverified` carries no mark on purpose, because there the tick qualified the size and a caveat
+follows it. The em dash left the licence section of `docs/legal/terms.md`. The third item was **declined with
+evidence**: `onboarding.sealed.prove` does start the airplane test, `Sealed.tsx:40` routes it to `/proof/airplane`,
+and `sealed.test.ts` has asserted that route and that copy since F124b.
+
 **Guards, watched red before they were trusted.** `docs/qa/fix-copy/store-guard-red.txt` (8 errors, one per locale,
 with the guideline number), `docs/qa/fix-copy/locale-guards-red.txt` (4 of the new locale rules failing on a
 reintroduced em dash, curly quote, English readout and hardcoded PHONE), and a sabotage pass over the four new site
@@ -4024,8 +4098,8 @@ line, `reviewer_notes` must still be allowed to name both platforms.
 `packages/core` changes rather than string edits, and a copy stream is the wrong place for them. Nothing was pushed
 to App Store Connect or Play; the repository still has no script that writes store metadata.
 
-Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,239 tests** (core 655, mobile 556,
-i18n 15, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
+Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,241 tests** (core 655, mobile 557,
+i18n 16, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
 screenshots at 390 and 1440, before and after: `docs/qa/fix-copy/`.
 
 ## Fixes round 49: HSTS, the /download page three live buttons pointed at, and two review findings that were already fixed (branch `deploy-live`) — 24.9.2026

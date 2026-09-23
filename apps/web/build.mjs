@@ -22,7 +22,7 @@ const OUT = process.env.OUT ?? path.join(here, "dist");
 const MODELS_ORIGIN = process.env.MODELS_ORIGIN ?? "";
 /** The desktop shell and any embedder must not get a precache from this origin. */
 const PRECACHE = ["**/*.{html,js,mjs,css,wasm,json,png,svg,ico,webmanifest,woff2}"];
-const NOT_PRECACHED = ["hashes.json", "_headers", "_redirects", "sw.js", "models/**", "metadata.json"];
+const NOT_PRECACHED = ["hashes.json", "_headers", "sw.js", "models/**", "metadata.json"];
 
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const sri = (buf) => `sha384-${createHash("sha384").update(buf).digest("base64")}`;
@@ -63,9 +63,6 @@ html = html.replace("</head>", `${head}  </head>`);
 writeFileSync(indexPath, html);
 
 writeFileSync(path.join(OUT, "_headers"), pagesHeadersFile(MODELS_ORIGIN));
-
-/* One HTML document serves every route: without this a shared link to /paywall is a 404 on Pages, not the app. */
-writeFileSync(path.join(OUT, "_redirects"), "/* /index.html 200\n");
 
 const sw = await generateSW({
   globDirectory: OUT,

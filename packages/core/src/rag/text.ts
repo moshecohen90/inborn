@@ -33,8 +33,45 @@ export function foldForSearch(s: string): string {
 /** Unicode words (letters/digits, with inner apostrophes and geresh/gershayim kept). */
 const WORD = /[\p{L}\p{N}]+(?:['\u05F3\u05F4\u2019][\p{L}\p{N}]+)*/gu;
 
+/* Han, kana and the CJK extensions. These scripts are written without spaces, so a whole sentence is one WORD
+   match and could never overlap a chunk's tokens: Chinese and Japanese had no lexical retrieval at all (F195). */
+const CJK_CLASS = "[\\u3040-\\u30FF\\u31F0-\\u31FF\\u3400-\\u4DBF\\u4E00-\\u9FFF\\uF900-\\uFAFF\\u{20000}-\\u{2FA1F}]";
+const CJK_RUN = new RegExp(`${CJK_CLASS}+`, "gu");
+const CJK_CHAR = new RegExp(CJK_CLASS, "u");
+
+export const hasCjk = (s: string): boolean => CJK_CHAR.test(s);
+
+/**
+ * Terms for an unspaced CJK run: adjacent character pairs, the standard bigram scheme.
+ *
+ * Bigrams and not single characters, because one shared particle (\u306E, \u7684, \u306F) would otherwise make any two texts
+ * "lexically relevant" and put an unrelated passage back under a citation.
+ */
+function cjkTerms(run: string): string[] {
+  const chars = [...run];
+  if (chars.length < 2) return chars;
+  const out: string[] = [];
+  for (let i = 0; i + 1 < chars.length; i++) out.push(chars[i]! + chars[i + 1]!);
+  return out;
+}
+
 export function words(s: string): string[] {
-  return foldForSearch(s).match(WORD) ?? [];
+  const out: string[] = [];
+  for (const w of foldForSearch(s).match(WORD) ?? []) {
+    if (!hasCjk(w)) {
+      out.push(w);
+      continue;
+    }
+    let last = 0;
+    for (const m of w.matchAll(CJK_RUN)) {
+      const at = m.index ?? 0;
+      if (at > last) out.push(w.slice(last, at));
+      out.push(...cjkTerms(m[0]));
+      last = at + m[0].length;
+    }
+    if (last < w.length) out.push(w.slice(last));
+  }
+  return out;
 }
 
 export const isWhitespaceOnly = (s: string): boolean => !/\S/u.test(s);
