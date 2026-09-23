@@ -60,6 +60,17 @@ const SCREEN_SUBLINE_MAX = 60;
 const AB_SUBTITLE_MAX = 30;
 const AB_SHORT_MAX = 80;
 
+// Where each legal document is published. These are what goes into App Store Connect and Play Console; the app
+// links to the same paths (apps/mobile/src/lib/legalLinks.ts) and the site builds them (apps/site/build.mjs).
+const SITE = 'https://inbornapp.com';
+const REQUIRED_URLS = {
+  marketing: `${SITE}/`,
+  privacy: `${SITE}/privacy`,
+  terms: `${SITE}/terms`,
+  accessibility: `${SITE}/accessibility`,
+  support: `${SITE}/support`,
+};
+
 let errors = [], warns = [], rows = [];
 
 function get(obj, path) { return path.split('.').reduce((o, k) => (o ?? {})[k], obj); }
@@ -126,6 +137,15 @@ for (const file of readdirSync(STORE_DIR).filter((f) => /^listing\..+\.json$/.te
   });
 
   if (!data.reviewer_notes) errors.push(`${loc}: missing reviewer_notes`);
+
+  // The URLs a store form asks for. Apple and Play both refuse a listing without a privacy policy URL, and the
+  // accessibility statement is the one a regulator looks for, so every locale carries the same canonical set.
+  const urls = data.urls || {};
+  for (const [key, expected] of Object.entries(REQUIRED_URLS)) {
+    if (urls[key] == null) errors.push(`${loc}: urls.${key} is missing`);
+    else if (urls[key] !== expected) errors.push(`${loc}: urls.${key} is "${urls[key]}", expected "${expected}"`);
+  }
+  for (const key of Object.keys(urls)) if (!(key in REQUIRED_URLS)) warns.push(`${loc}: urls.${key} is not a store field we fill`);
 
   // A/B variants (English only carries them; others carry ab_note)
   if (loc === 'en') {

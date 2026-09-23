@@ -9,6 +9,7 @@ import { Mono, Section } from "../../components/shell/primitives";
 import notice from "../../../../../docs/legal/NOTICE.json";
 import { font, useType } from "../../services/type";
 import { LicenceSheet, type LicenceSubject } from "../../components/LicenceSheet";
+import { LegalSource } from "../../components/LegalSource";
 
 interface Component {
   id: string;
@@ -59,6 +60,7 @@ export function Licenses() {
   );
   return (
     <Screen header={{ back: true, title: oss === "1" ? t("about.openSource") : t("about.modelLicenses") }} testID="licenses">
+      <LegalSource doc="licenses" label={t("legal.offlineInventory", { date: (notice as { generated: string }).generated })} />
       {oss !== "1" ? (
         <Section title={t("about.modelLicenses")}>
           <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("licenses.modelsNote")}</Text>
