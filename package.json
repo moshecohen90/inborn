@@ -7,9 +7,10 @@
   },
   "scripts": {
     "typecheck": "pnpm -r --if-present typecheck",
-    "test": "pnpm -r --if-present test",
+    "test": "pnpm run check:store && pnpm -r --if-present test",
     "lint": "eslint .",
     "check:permissions": "bash scripts/check-android-permissions.sh",
+    "check:store": "node docs/store/scripts/check-store-copy.mjs",
     "desktop:dev": "pnpm --filter @inborn/desktop dev",
     "desktop:build": "pnpm --filter @inborn/desktop build",
     "desktop:build:app": "pnpm --filter @inborn/desktop build:app",

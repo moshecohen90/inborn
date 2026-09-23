@@ -1,0 +1,20 @@
+F99, item 3 — pushing the corrected text to App Store Connect: NOT DONE, because the repository has no
+script that writes store metadata, and the brief says not to build one.
+
+What was searched, in the whole tree (node_modules and .git excluded), 23.9.2026:
+
+  grep -rilE "appStoreVersionLocalization|appInfoLocalization|/v1/apps/[^\"']*/appStoreVersions|api\.appstoreconnect\.apple\.com"
+    -> no file
+
+  grep -lE "androidpublisher|appstoreconnect|altool|Transporter" scripts/*.mjs scripts/*.sh
+    -> scripts/asc-key-env.sh only
+
+`scripts/asc-key-env.sh` is not a metadata client. It reads the App Store Connect key out of the Keychain,
+stages the `.p8` under ~/.appstoreconnect/private_keys where `xcodebuild -exportArchive` and `altool` look for
+it, and prints the INBORN_ASC_* exports. It signs no request and calls no endpoint itself. `scripts/play-upload.mjs`
+and `scripts/play-products.mjs` are the Play side and touch bundles and IAP products, not listing text.
+
+So there are no API response ids to record here. The corrected text lives in `docs/store/listing.*.json`
+and is what a release step, or a person in the App Store Connect web UI, must copy into the six live
+localizations before submission. The guard (`pn test` -> `check:store`) keeps the JSON honest; it cannot
+see what is live in App Store Connect.
