@@ -16,8 +16,8 @@ Where the write-ups live:
 |---|---|
 | `docs/qa/purchases-run-2026-09-11.md` **§V** | build, gates, the upload, the Play update and every phone row of this pass |
 
-**One device.** Every row is the **OnePlus 6T** (`REDACTED-6T`, Android 11, 8 GB, tier `ANDROID-LEGACY`), running the
-real Play build. Driven by keys only (`adb -s REDACTED-6T`, TAB / DPAD / ENTER / `input text` / `input swipe`); taps are
+**One device.** Every row is the **OnePlus 6T** (`<6t-serial>`, Android 11, 8 GB, tier `ANDROID-LEGACY`), running the
+real Play build. Driven by keys only (`adb -s <6t-serial>`, TAB / DPAD / ENTER / `input text` / `input swipe`); taps are
 ignored on this phone.
 
 ## The files

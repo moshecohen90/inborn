@@ -1,6 +1,6 @@
 # iOS device pass — TestFlight build 1.0.0 (5) — 20.9.2026
 
-Functional pass of the **already archived** build 5 on Moshe's iPhone 13 Pro (iOS 26.6.1, udid `REDACTED-IPHONE`).
+Functional pass of the **already archived** build 5 on Moshe's iPhone 13 Pro (iOS 26.6.1, udid `<iphone-udid>`).
 The app was never rebuilt: every launch in this document is the `.app` from
 `/Users/moshecohen/dev/inborn-wt/ios-build-3/apps/mobile/ios/build/Inborn.xcarchive`
 (`ApplicationProperties.CFBundleVersion` **5**, `CFBundleShortVersionString` 1.0.0, signed `Apple Development: Moshe Cohen`,

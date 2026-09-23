@@ -17,9 +17,9 @@ Where the write-ups live:
 | `docs/qa/purchases-run-2026-09-11.md` **§U** | build, gates, the upload, the Play update, every phone row incl. L1/L2/H1 |
 | `docs/qa/soak-run-11-2026-09-22.md` | the half hour of continuous use on the 6T, with a ledger row per answer |
 
-**One device, and that is the whole of this pass.** Every row is the **OnePlus 6T** (`REDACTED-6T`, Android 11, 8 GB,
+**One device, and that is the whole of this pass.** Every row is the **OnePlus 6T** (`<6t-serial>`, Android 11, 8 GB,
 tier `ANDROID-LEGACY`), Moshe's personal phone, running the real Play build with real Play Billing. It is driven by
-keys only (`adb -s REDACTED-6T`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone. `input swipe`
+keys only (`adb -s <6t-serial>`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone. `input swipe`
 is **not** ignored, which L1 needed and no earlier run had established.
 
 ## The files

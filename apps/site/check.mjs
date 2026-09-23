@@ -52,7 +52,7 @@ for (const file of pages) {
       // Outbound hyperlinks (stores' refund pages, licence texts) are fine; anything the browser would fetch is not.
       const tag = html.slice(Math.max(0, m.index - 200), m.index);
       const isAsset = /<(link|img|script|source|video|audio|iframe|object|embed)\b[^>]*$/i.test(tag);
-      const own = ref.startsWith(process.env.SITE_ORIGIN ?? "https://inborn-site.pages.dev");
+      const own = ref.startsWith(process.env.SITE_ORIGIN ?? "https://inbornapp.com");
       if (isAsset && !own) problems.push(`${file}: loads external asset ${ref}`);
       continue;
     }

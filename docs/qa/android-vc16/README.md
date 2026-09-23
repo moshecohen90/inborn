@@ -14,9 +14,9 @@ Where the write-ups live:
 
 Two devices, and the split between them matters:
 
-- **OnePlus 6T** (`REDACTED-6T`, Android 11, 8 GB, tier `ANDROID-LEGACY`) — Moshe's personal phone, the primary device.
+- **OnePlus 6T** (`<6t-serial>`, Android 11, 8 GB, tier `ANDROID-LEGACY`) — Moshe's personal phone, the primary device.
   It runs the real Play build with real Play Billing, so it is the only place a purchase path is claimed. Driven by
-  keys only (`adb -s REDACTED-6T`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone.
+  keys only (`adb -s <6t-serial>`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone.
 - **Pixel 6 API 33 emulator** (`emulator-5554`, 4 GB, tier `ANDROID-ENTRY`) — the same AAB installed with
   `bundletool --local-testing`. It answers the device-tier questions the phone cannot ask and nothing about billing
   beyond what the app does with no Play account.
