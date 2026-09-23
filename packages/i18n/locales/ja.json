@@ -754,6 +754,12 @@
   "legal.privacy": "プライバシーポリシー",
   "legal.terms": "利用規約",
   "legal.edited": "最終更新 {date}",
+  "legal.accessibility": "アクセシビリティ",
+  "legal.offlineCopy": "オフラインコピー · 発効日 {date}",
+  "legal.offlineCopyNoDate": "オフラインコピー",
+  "legal.offlineInventory": "オフラインコピー · 一覧作成日 {date}",
+  "legal.readCurrent": "{url} で最新版を読む",
+  "legal.currentNote": "この文章はアプリのビルド時に同梱されたものです。適用されるのはウェブサイト上の版で、ブラウザで開きます。",
   "licenses.modelsNote": "アプリに同梱、または当社CDNから配信するモデルについては、当社がその配布者になります。それぞれライセンス、リンク、制限とともに掲載しています。",
   "licenses.view": "ライセンスを読む",
   "licenses.sheet.title": "{name} のライセンス",
@@ -1053,5 +1059,11 @@
   "chat.vision.offer": "写真には{model}ではなく{seer}が必要です。",
   "chat.vision.offerCompanion": "写真には画像用の補助モデルが必要です。",
   "vault.tooSlowHere": "{device, select, phone {このスマホ} tablet {このタブレット} computer {このパソコン} other {このブラウザ}}では動作が遅すぎます",
-  "chat.attach.noVisionHere": "{model}は写真を見られません。"
+  "chat.attach.noVisionHere": "{model}は写真を見られません。",
+  "modelSheet.title": "モデル",
+  "modelSheet.tag": "おすすめ",
+  "modelSheet.goodAt": "得意なこと: {list}",
+  "modelSheet.languageUnrated": "未計測",
+  "chat.modelWeakBetter": "{model}は{language}が苦手です。{better}のほうが得意です。",
+  "modelSheet.inTheApp": "アプリの中"
 }
