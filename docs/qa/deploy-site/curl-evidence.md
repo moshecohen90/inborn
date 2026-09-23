@@ -1,5 +1,8 @@
 # Deploy to inbornapp.com — what the API token can and cannot do, 23.9.2026
 
+> **Superseded 24.9.2026: both origins are live.** This file is the record of the blocked state and of exactly
+> which permission was missing. What was done about it, and every live response: `live-2026-09-24.md`.
+
 **Nothing is live.** `inbornapp.com` and `app.inbornapp.com` still do not resolve. The deploy is written, gated and
 dry-run; it is blocked on one thing: the Keychain token `inborn-cloudflare-api` is **read-only on Workers**, so the
 first write call is refused and there is no other path to a public origin on this zone.
