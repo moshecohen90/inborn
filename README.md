@@ -3406,3 +3406,44 @@ next store submission**, not after. `SITE_ORIGIN` still defaults to the staging 
 flipping it is a deploy decision, not a code one. No device, emulator or phone was touched: the screens are proven in
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
+
+## Deploy: inbornapp.com + app.inbornapp.com (Workers static assets) — 23.9.2026
+
+Two origins, two Workers, one command. `scripts/deploy-cloudflare.mjs` builds each dist, uploads it as a Cloudflare
+Worker with static assets over the REST API, and attaches the hostname (which is what writes the proxied DNS record).
+No Pages, no wrangler, no new dependency, and the token never leaves a shell variable.
+
+```
+node scripts/deploy-cloudflare.mjs --site --app          # the normal deploy
+node scripts/deploy-cloudflare.mjs --site --dry-run --no-build   # manifest + plan, zero network
+```
+
+| Worker | Source | Hostname | Serving rule |
+|---|---|---|---|
+| `inborn-site` | `apps/site/dist`, built with `SITE_ORIGIN=https://inbornapp.com APP_ORIGIN=https://app.inbornapp.com` | `inbornapp.com` | `html_handling: auto-trailing-slash` (so `/privacy` serves `privacy.html`), `not_found_handling: 404-page` |
+| `inborn-www-redirect` | six lines inline in the script | `www.inbornapp.com` | `301` to the apex, path and query kept |
+| `inborn-app` | `apps/web/dist`, built with `MODELS_ORIGIN=https://models.inbornapp.com` | `app.inbornapp.com` | `not_found_handling: single-page-application` |
+
+- **`_headers` survives the move off Pages.** Workers static assets parses `_headers` from the uploaded assets and
+  never serves the file, so `apps/web/headers.mjs` stays the single definition of the web origin's headers and the app
+  keeps `Cross-Origin-Opener-Policy: same-origin` + `Cross-Origin-Embedder-Policy: require-corp`, without which the
+  WASM engine loses `SharedArrayBuffer` and drops to the single-thread fallback. The script refuses to deploy a dist
+  with no `_headers` rather than silently shipping an origin with no CSP.
+- **`www` needs its own Worker.** `_redirects` cannot match on hostname (Cloudflare documents domain-level redirects as
+  unsupported) and Bulk Redirects need Rules permissions the token does not have, so the redirect is a Worker.
+- **Assets are content-addressed** by the first 32 hex of the file's sha256, which is the identifier Cloudflare's
+  upload session expects; unchanged files are skipped by the edge on the next deploy.
+- **Token**, Keychain service `inborn-cloudflare-api`, read with `security find-generic-password -s … -w`:
+  Account → **Workers Scripts → Edit** (script upload, the assets upload session, and `PUT /accounts/{acc}/workers/domains`),
+  Zone → **DNS → Edit** and Zone → **Zone → Read** on `inbornapp.com`. A 403 from the script names the endpoint and
+  says the permission is missing.
+
+**Not deployed yet, 23.9.2026.** The token in the Keychain is **read-only on Workers**: `GET …/workers/scripts`
+returns `200` but `PUT …/workers/scripts/inborn-site` and the assets upload session both return
+`403 No access to the specified resource`, and Pages, Workers Routes, Workers custom domains, the workers.dev
+subdomain and Rules are all `403` as well. DNS read **and write** do work (a probe `TXT` record was created and
+deleted), but DNS alone cannot serve bytes. `inbornapp.com` and `app.inbornapp.com` are still NXDOMAIN, so every legal
+button added in round 42 and the landing composer's hand-off still lead nowhere. Full call-by-call table, the exact
+permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and
+the deploy is the one command above; the live `curl` pass on `/`, `/privacy`, `/accessibility`, `/sitemap.xml`,
+`/llms.txt`, the app shell's COOP/COEP and the `?q=` hand-off is the first thing to run after it.
