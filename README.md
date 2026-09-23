@@ -3088,3 +3088,34 @@ and desktop fetches from our host.
    support@inbornapp.com or +1-440-847-8502, with the same sentence those documents carry: there is no physical
    reception and no in-person service. Governing law is Israeli law with exclusive jurisdiction in the competent
    court in Israel. Effective date 22 September 2026. A test fails if a postal address returns to any legal text.
+
+## Fixes round 32: the Terms screen named no licensor, no phone and no effective date (branch `fixes-r27`) — 23.9.2026
+
+F97, filed by the `vc18` release pass after reading both legal screens off the OnePlus 6T rather than off the file.
+
+- **F97 — the screen rendered the text and dropped the identity above it.** `legalBody()` returned the file from its
+  first `##` heading, so the header block went to nobody: in `terms.md` that block is `Effective date: 22 September
+  2026`, `Licensor: Cohen Apps ("we", "us")` and `Contact: support@inbornapp.com or +1-440-847-8502`. The Terms screen
+  on the phone had 1,444 words, zero `Cohen Apps` and zero `+1-440-847-8502`, while its own §14 told the reader the
+  effective date is "at the top". Privacy escaped only because §12 repeats the same facts below a heading, and it lost
+  the effective date too. `legalScreen()` now returns that block as `meta` — the `Label: value` lines above the first
+  heading, minus the `Spec basis` edit note the screen already shows its own way and any `Status` draft banner — and
+  `Legal.tsx` renders them as a small block under the title, above the text. Parsed from the markdown: `Legal.tsx`
+  contains none of the values, and a test fails if it ever does.
+- **The guard that was green while this shipped.** F96's assertions read the file, where every value is present; its
+  one assertion on the rendered body passed on an incidental `support@inbornapp.com` inside §13. Eight assertions are
+  added to `apps/mobile/test/legal-texts.test.ts`, all on what the screen renders (`[...meta, body]`): the licensor,
+  the email, the phone and the effective date on **both** screens; that they come from the metadata block and not from
+  a section that repeats them; that `Legal.tsx` hardcodes none of them; that the edit note and a draft banner stay out
+  of the block; a parser case over a synthetic document; and the empty case, a text with no header block getting no
+  empty block.
+
+**Proof:** `docs/qa/fixes-r27/`. Watched red before green: `red.txt` — with `legalBody.ts` stubbed back to main's
+rendering, **8 fail and 40 pass**, and the 40 include every file-level assertion F96 added. `green.txt` is 48/48.
+`f97-rendered-after.txt` re-takes the counts of `android-vc18/f97-legalbody-proof.txt` against the shipping module:
+terms `Cohen Apps` 0→1 rendered, `+1-440-847-8502` 0→1, `Effective date` 0→1. Gates: typecheck, lint, **1,000 tests**
+(core 616, mobile 362, i18n 11, ui 11), `web:build`, `web:smoke` 6/6 PASS.
+
+**Not done:** no device or emulator was touched, so the block is proven by the string the screen is handed, not by a
+screenshot of the phone. The wording of the legal texts is unchanged — this round moved no sentence, it only stopped
+the screen from cutting one.

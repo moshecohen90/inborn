@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { legalBody } from "../src/screens/Legal/legalBody";
+import { legalBody, legalScreen } from "../src/screens/Legal/legalBody";
 
 /**
  * Round 26 (F92–F96). The F51 guard watched `en.json` only, so the four texts that ship as Markdown went unwatched and
@@ -153,5 +153,70 @@ describe("F95 · the policy's incognito sentence matches what the code does with
   it("and the code it describes exists: a cache directory, and a sweep on the next launch", () => {
     expect(read("apps/mobile/src/documents/files.native.ts")).toMatch(/new Directory\(Paths\.cache, "incognito"\)/);
     expect(read("apps/mobile/src/documents/library.ts")).toContain("sweepIncognitoFiles()");
+  });
+});
+
+describe("F97 · the metadata block the screen shows above the text", () => {
+  /* What the device puts in front of the reader: the metadata lines under the title, then the body. The F96 guard
+     above reads the FILE, which is why Terms could ship naming no licensor, no phone and no effective date. */
+  const rendered = (file: string) => {
+    const { meta, body } = legalScreen(read(file));
+    return [...meta, body].join("\n");
+  };
+
+  it.each(SHIPPED)("%s renders the licensor, the email, the phone and the effective date", (file) => {
+    const text = rendered(file);
+    for (const value of ["Cohen Apps", "support@inbornapp.com", "+1-440-847-8502", "22 September 2026"]) {
+      expect(text, `${file} renders no "${value}"`).toContain(value);
+    }
+  });
+
+  /* The complement: Terms passed the line above only because of the block, not because some section repeats it. */
+  it.each(SHIPPED)("%s carries the identity in the block itself", (file) => {
+    const meta = legalScreen(read(file)).meta.join("\n");
+    expect(meta, file).toContain("Cohen Apps");
+    expect(meta, file).toContain("support@inbornapp.com");
+    expect(meta, file).toContain("Effective date: 22 September 2026");
+  });
+
+  it("the block is read from the file, never written into the screen", () => {
+    const screen = read("apps/mobile/src/screens/Legal/Legal.tsx");
+    expect(screen).toMatch(/legalScreen\(/);
+    expect(screen).toMatch(/meta\.map/);
+    expect(screen).toMatch(/source=\{body\}/);
+    for (const value of ["Cohen Apps", "inbornapp.com", "+1-440"]) expect(screen, `Legal.tsx hardcodes "${value}"`).not.toContain(value);
+  });
+
+  it("it takes the facts a header block states and nothing else", () => {
+    const doc = [
+      "# A title",
+      "",
+      "Spec basis: §1. Last edited 1 January 2026.",
+      "",
+      "**Status: DRAFT**",
+      "",
+      "Effective date: 2 February 2026",
+      "Licensor: Someone Else Ltd",
+      "Contact: a@b.example or +1-000-000-0000.",
+      "",
+      "A paragraph that states no fact of its own.",
+      "",
+      "## 1. First section",
+      "",
+      "body",
+    ].join("\n");
+    expect(legalScreen(doc).meta).toEqual(["Effective date: 2 February 2026", "Licensor: Someone Else Ltd", "Contact: a@b.example or +1-000-000-0000."]);
+    expect(legalScreen(doc).body).toBe("## 1. First section\n\nbody");
+  });
+
+  it.each(SHIPPED)("%s keeps the edit note and any draft banner out of the block", (file) => {
+    const { meta } = legalScreen(read(file));
+    expect(meta.length, file).toBeGreaterThan(1);
+    expect(meta.join("\n"), file).not.toMatch(/Spec basis|Last edited|Status:/);
+  });
+
+  it("a text with no header block gets no empty block", () => {
+    expect(legalScreen("## 1. Only\n\nbody").meta).toEqual([]);
+    expect(legalBody("## 1. Only\n\nbody")).toBe("## 1. Only\n\nbody");
   });
 });
