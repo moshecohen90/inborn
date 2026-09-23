@@ -4013,6 +4013,15 @@ the end. F rows: `docs/qa/qa-run-2026-09-11.md` F205–F214.
   price left all eight What's New fields. Five `documents.*` strings moved from "I" to the Inborn voice, so an app
   string no longer reads as the model talking.
 
+**Three items handed over by `fix-design`.** The literal `✓` left all five `proof.delivery.*` values in all eight
+locales: IBM Plex Sans has no U+2713, so the fallback drew a square-root sign and the trust screen read `sha256 √`
+(`docs/qa/fix-copy/before/proof-screen-de-390.png`). `fix-design` draws the mark with the app's own check icon, so
+every verified line now ends on the thing that was verified and an appended icon lands on the right word;
+`proof.delivery.webUnverified` carries no mark on purpose, because there the tick qualified the size and a caveat
+follows it. The em dash left the licence section of `docs/legal/terms.md`. The third item was **declined with
+evidence**: `onboarding.sealed.prove` does start the airplane test, `Sealed.tsx:40` routes it to `/proof/airplane`,
+and `sealed.test.ts` has asserted that route and that copy since F124b.
+
 **Guards, watched red before they were trusted.** `docs/qa/fix-copy/store-guard-red.txt` (8 errors, one per locale,
 with the guideline number), `docs/qa/fix-copy/locale-guards-red.txt` (4 of the new locale rules failing on a
 reintroduced em dash, curly quote, English readout and hardcoded PHONE), and a sabotage pass over the four new site
@@ -4024,6 +4033,6 @@ line, `reviewer_notes` must still be allowed to name both platforms.
 `packages/core` changes rather than string edits, and a copy stream is the wrong place for them. Nothing was pushed
 to App Store Connect or Play; the repository still has no script that writes store metadata.
 
-Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,239 tests** (core 655, mobile 556,
-i18n 15, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
+Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,241 tests** (core 655, mobile 557,
+i18n 16, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
 screenshots at 390 and 1440, before and after: `docs/qa/fix-copy/`.

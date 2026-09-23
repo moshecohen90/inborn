@@ -103,6 +103,15 @@ describe("round 48 copy rules", () => {
     }
   });
 
+  /* IBM Plex Sans has no U+2713: the fallback draws a symmetric V, so "sha256 \u2713" shipped as "sha256 \u221a".
+     The Proof screen draws the mark with the app's own check icon, and every verified line ends on what was verified. */
+  it("no locale spells a check mark the app font cannot draw", () => {
+    for (const f of files) {
+      const offenders = Object.entries(load(f)).filter(([, v]) => /[\u2713\u2714\u221a]/.test(v)).map(([k]) => k);
+      expect(offenders, f).toEqual([]);
+    }
+  });
+
   it("no locale carries an em dash", () => {
     for (const f of files) {
       const offenders = Object.entries(load(f)).filter(([, v]) => v.includes("—")).map(([k]) => k);
