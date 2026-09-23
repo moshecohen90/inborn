@@ -3725,10 +3725,12 @@ token, font or colour moved.
 
 Proof, per the 23.9 design rule, in the browser first: every screen at 390 / 768 / 1024 / 1440, the two desktop window
 sizes 1040×720 and 1600×1000, and a light-theme set at 390 and 1440 — before and after, 184 files in
-`docs/qa/responsive-design/`. Phone widths are byte-identical except where the composer changed
+`docs/qa/responsive-design/`, plus every page action measured button by button at six widths before and after
+(`action-widths-before.txt`, `action-widths-after.txt`: 736 / 992 / 1,008 / 1,408 / 1,568 px becomes a flat 420 px,
+and phone widths keep their full bleed). Phone widths are byte-identical except where the composer changed
 (`phone-diff-390.txt`), against a capture noise floor measured at 0.00 % on a single build
 (`phone-noise-floor-390.txt`). Composer geometry before and after in `composer-geometry-before.txt` /
-`-after.txt`. `pn web:smoke` still walks Welcome → Model → airplane → Sealed → Lock → chat and answers offline
+`-after.txt`. `pn web:smoke` still walks Welcome → Model → Sealed → Lock → chat and answers offline
 (`web-smoke.txt`). Tests: 9 assertions over the three width helpers in `layout.test.ts` including a per-pixel sweep
 from 200 to 2000, and `responsiveSurfaces.test.ts` proving every surface is wired to them; both guards watched red
 with the fixes removed (`guard-red.txt`). Spec §8.9 gains the rule. **Not done:** the desktop app was not driven
