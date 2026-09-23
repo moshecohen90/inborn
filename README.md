@@ -3364,6 +3364,12 @@ decisions already taken, not a choice, and S03 asked for something before it had
   cannot download and walks welcome, model, sealed, lock, chat. Screenshots at 390 / 768 / 1440 in both schemes,
   before and after, in `docs/qa/onboarding-rework/`, taken by `docs/qa/onboarding-rework/shots.mjs`. Everything
   under `after/` and `web-smoke.txt` was re-taken after merging `origin/main` at c45509c (round 42).
+- **F124b, added after the lead's call on the open question.** Dropping the airplane test from the chain left a
+  first-run user who never opens Proof without the ritual. The seal screen now offers it as a secondary link under
+  Start, carrying its reason in the label itself so it stays an offer and not an unexplained ask: *Prove it: turn on
+  Airplane Mode and ask*. It opens the same `/proof/airplane` route and sleeps until the seal has closed.
+  `apps/mobile/src/screens/Onboarding/sealed.test.ts` pins the wiring and the label in all nine locale files, and the
+  tap was followed in the browser: `docs/qa/onboarding-rework/after/onboarding-sealed-sealed-prove-*.png`.
 - **Not done.** The two-option layout is proven by unit tests and by a throwaway harness build
   (`docs/qa/onboarding-rework/layout-two-options/`, built with `HttpsDelivery.plan` allowed on the web and the
   platform forced to iOS, then reverted); a real iPhone or a 6T was not in this stream's scope, so nobody has yet
