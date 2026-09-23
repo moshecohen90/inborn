@@ -4,6 +4,7 @@ export { Citations, PassagePanel, PassageSheet, type CitationsProps } from "./Ci
 export { EMBED_MODEL_ID } from "./embedder";
 export { PICK_TYPES, WORK_KINDS, isWorkKind, officeLocked, pickedName, sharedName, sniffPicked } from "./office";
 export { RedactSheet, RedactBar, useRedaction, useRedactionPrefs, moveRedaction, forgetRedaction, type Redaction } from "./redaction";
-export { pickIntoLibrary, planLibraryAttach, type PickOutcome } from "./importPicker";
+export { pickIntoLibrary, type PickOutcome } from "./importPicker";
+export { planLibraryAttach } from "./libraryAttach";
 export { documentState, type DocumentState } from "./stateText";
 export { chooseFile, type ChosenFile } from "./chooseFile";

@@ -64,3 +64,17 @@ describe("F161 · an answer the documents did not carry says so and cites nothin
     expect(strings["documents.noneMatched"]).toBeTruthy();
   });
 });
+
+describe("F163 · the library-row gate exists on every platform", () => {
+  it("lives outside the two pickers, so a browser bundle carries it too", () => {
+    expect(source("documents/libraryAttach.ts")).toContain("export function planLibraryAttach");
+    for (const p of ["documents/importPicker.ts", "documents/importPicker.web.ts"]) expect(source(p), p).not.toContain("planLibraryAttach");
+    expect(source("documents/index.ts")).toContain('from "./libraryAttach"');
+  });
+
+  it("every symbol the index re-exports from a platform module is in both halves", () => {
+    const named = (p: string) => [...source(p).matchAll(/export (?:async )?(?:function|const) (\w+)/g)].map((m) => m[1]);
+    const web = new Set(named("documents/importPicker.web.ts"));
+    for (const n of named("documents/importPicker.ts")) expect(web, `importPicker.web.ts is missing ${n}`).toContain(n);
+  });
+});

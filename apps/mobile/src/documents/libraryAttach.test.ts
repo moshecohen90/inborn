@@ -5,7 +5,7 @@ vi.mock("expo-file-system", () => ({ File: { pickFileAsync: () => Promise.resolv
 vi.mock("./library", () => ({ FREE_PAGE_CAP: 20 }));
 vi.mock("./office", () => ({ PICK_TYPES: [], pickedName: () => "", sniffPicked: () => "pdf" }));
 import type { DocumentRecord } from "@inborn/core";
-import { planLibraryAttach } from "./importPicker";
+import { planLibraryAttach } from "./libraryAttach";
 
 const doc = (id: string, kind: DocumentRecord["kind"]): DocumentRecord => ({
   id,
