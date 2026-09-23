@@ -25,19 +25,20 @@ import { execFileSync } from "node:child_process";
 import { createHash, randomBytes } from "node:crypto";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { URL, fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const API = "https://api.cloudflare.com/client/v4";
 const ACCOUNT_ID = "9de3aac0325f2ec6294e00714a0772b7";
-const ZONE_NAME = "inbornapp.com";
-const SITE_ORIGIN = "https://inbornapp.com";
-const APP_ORIGIN = "https://app.inbornapp.com";
-const MODELS_ORIGIN = "https://models.inbornapp.com";
+/* The one place the origins are written down, read by the app, the site generator and this deploy alike. */
+const { site: SITE_ORIGIN, app: APP_ORIGIN, models: MODELS_ORIGIN } = JSON.parse(readFileSync(path.join(repoRoot, "packages/core/src/site/origins.json"), "utf8"));
+const ZONE_NAME = new URL(SITE_ORIGIN).host;
+const APP_HOST = new URL(APP_ORIGIN).host;
 const COMPATIBILITY_DATE = "2026-09-01";
-/* Cloudflare accepts at most 100 files or 50 MiB per upload call; the session already groups them, this is the floor. */
+/* Cloudflare accepts at most 100 files or 50 MiB per upload call; the session already groups them, this is the floor.
+   The bodies go up base64 (?base64=true), which is 4/3 of the raw bytes, so the raw cap has to leave room for that. */
 const MAX_FILES_PER_CALL = 100;
-const MAX_BYTES_PER_CALL = 45 * 1024 * 1024;
+const MAX_BYTES_PER_CALL = 35 * 1024 * 1024;
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -63,7 +64,7 @@ const WWW_REDIRECT_MODULE = `export default {
   fetch(request) {
     const url = new URL(request.url);
     url.protocol = "https:";
-    url.hostname = "inbornapp.com";
+    url.hostname = ${JSON.stringify(ZONE_NAME)};
     url.port = "";
     return Response.redirect(url.toString(), 301);
   },
@@ -82,7 +83,7 @@ const TARGETS = {
   app: {
     script: "inborn-app",
     dist: "apps/web/dist",
-    hostnames: ["app.inbornapp.com"],
+    hostnames: [APP_HOST],
     notFoundHandling: "single-page-application",
     build: ["run", "web:build"],
     buildEnv: { MODELS_ORIGIN },
@@ -284,11 +285,11 @@ async function deploy(name) {
 async function deployWwwRedirect() {
   console.log(`\n== www redirect (inborn-www-redirect)`);
   if (opts.dryRun) {
-    console.log("  dry run: would PUT inborn-www-redirect and attach www.inbornapp.com");
+    console.log(`  dry run: would PUT inborn-www-redirect and attach www.${ZONE_NAME}`);
     return;
   }
   await putWorker("inborn-www-redirect", { module: WWW_REDIRECT_MODULE });
-  if (opts.domains) await attachDomain("www.inbornapp.com", "inborn-www-redirect");
+  if (opts.domains) await attachDomain(`www.${ZONE_NAME}`, "inborn-www-redirect");
 }
 
 if (opts.site) {

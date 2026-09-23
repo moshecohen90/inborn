@@ -41,12 +41,15 @@ export const NOTHING_RELEVANT_RULE = "The user's attached documents contain noth
 /**
  * Whether a reply is that token rather than an answer.
  *
- * A 0.8B model returns it in its own case and sometimes inside quotes or bold, and an exact match let
- * "Not_FOUND_IN_DOCUMENTS" through to the screen on the iPhone instead of the localized sentence (QA F137).
+ * A 0.8B model returns it in its own case, wrapped in quotes, bold, brackets or angle brackets, and behind a short
+ * lead-in ("Answer:", "I am sorry,"). An exact match let "Not_FOUND_IN_DOCUMENTS" through to the screen on the
+ * iPhone instead of the localized sentence (QA F137, F196); anything not caught here is raw sentinel in the UI.
  */
+const NOT_FOUND_LEAD_IN_WORDS = 3;
 export const isNotFoundReply = (reply: string): boolean => {
-  const bare = reply.replace(/[\s"'*`_.:-]+/g, " ").trim();
-  return new RegExp(`^${NOT_FOUND_TOKEN.replace(/_/g, " ")}\\b`, "i").test(bare);
+  const bare = reply.replace(/[\s"'*`_.,:;!?()[\]{}<>#-]+/g, " ").trim();
+  /* The lead-in is capped: a real answer that discusses the token names it late in a sentence, not in its first words. */
+  return new RegExp(`^(?:\\S+ ){0,${NOT_FOUND_LEAD_IN_WORDS}}${NOT_FOUND_TOKEN.replace(/_/g, " ")}\\b`, "i").test(bare);
 };
 
 export const DEFAULT_ANSWER_RESERVE = 512;

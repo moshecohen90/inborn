@@ -5,7 +5,7 @@ vi.mock("expo-file-system", () => ({ File: { pickFileAsync: () => Promise.resolv
 vi.mock("./library", () => ({ FREE_PAGE_CAP: 20 }));
 vi.mock("./office", () => ({ PICK_TYPES: [], pickedName: () => "", sniffPicked: () => "pdf" }));
 import type { DocumentRecord } from "@inborn/core";
-import { planLibraryAttach } from "./libraryAttach";
+import { attachRowLock, planLibraryAttach } from "./libraryAttach";
 
 const doc = (id: string, kind: DocumentRecord["kind"]): DocumentRecord => ({
   id,
@@ -47,5 +47,44 @@ describe("planLibraryAttach (QA F129)", () => {
 
   it("says ok for an id the library no longer has, so a stale row cannot block the chat", () => {
     expect(planLibraryAttach("free", library, "gone", 0)).toEqual({ kind: "ok" });
+  });
+});
+
+/**
+ * F199. The row's lock came from the count gate only, so on Free with nothing attached a `.xlsx` row rendered with no
+ * PRO chip and refused when pressed. The sheet now asks the same call the tap makes.
+ */
+describe("F199 · the attach row's lock is the verdict the tap will get", () => {
+  it("locks a work format on free with nothing attached, and names the work moment", () => {
+    expect(attachRowLock("free", library, "sheet", 0, false)).toEqual({ locked: true, moment: "office" });
+    expect(attachRowLock("pro", library, "page", 0, false)).toEqual({ locked: true, moment: "office" });
+  });
+
+  it("locks the second file on free with the document moment", () => {
+    expect(attachRowLock("free", library, "b", 1, false)).toEqual({ locked: true, moment: "document" });
+  });
+
+  it("leaves an allowed row open", () => {
+    expect(attachRowLock("free", library, "a", 0, false)).toEqual({ locked: false, moment: null });
+    expect(attachRowLock("work", library, "sheet", 2, false)).toEqual({ locked: false, moment: null });
+  });
+
+  it("never locks a row that is already attached: that tap detaches", () => {
+    for (const [tier, id, count] of [["free", "sheet", 3], ["free", "b", 2], ["pro", "page", 1]] as const) {
+      expect(attachRowLock(tier, library, id, count, true)).toEqual({ locked: false, moment: null });
+    }
+  });
+
+  it("agrees with the tap on every row, tier and count", () => {
+    for (const tier of ["free", "pro", "work"] as const) {
+      for (const d of library) {
+        for (const count of [0, 1, 2]) {
+          const verdict = planLibraryAttach(tier, library, d.id, count);
+          expect(attachRowLock(tier, library, d.id, count, false), `${tier}/${d.id}/${count}`).toEqual(
+            verdict.kind === "paywall" ? { locked: true, moment: verdict.moment } : { locked: false, moment: null },
+          );
+        }
+      }
+    }
   });
 });

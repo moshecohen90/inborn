@@ -35,6 +35,16 @@ const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
  * and once reading is over with nothing to search the turn says why. Answering from the weights with an attachment on
  * screen produced both "I don't see an attached photo" and an invented access code on the 6T.
  */
+/**
+ * Whether the chat says "nothing in your documents matched this question. Answered without them." (QA F161).
+ *
+ * Never on Continue: that turn resumes a partial answer which may have cited the documents in its first half, and it
+ * is forced past the gate with no retrieval of its own, so it has no passage count to report.
+ */
+export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { continuing: boolean; attachedCount: number; usedPassages: number }): boolean {
+  return !continuing && attachedCount > 0 && usedPassages === 0;
+}
+
 export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null }: DocsTurnInput): DocsTurn {
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };

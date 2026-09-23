@@ -75,7 +75,7 @@ import { Composer } from "../components/chat/Composer";
 import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
-import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
+import { RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { BannerSpacer } from "../components/shell/bannerInset";
@@ -88,7 +88,7 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
-import { planDocsTurn } from "../lib/docsGate";
+import { planDocsTurn, saysNoneMatched } from "../lib/docsGate";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -269,6 +269,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const flash = (message: string) => {
     setToast(message);
     setTimeout(() => setToast(null), 1400);
+  };
+
+  /* One refusal for every file door: the line that says what happened now, the paywall once the sheet is out of the way. */
+  const refuseFile = (moment: "document" | "office") => {
+    flash(t(fileRefusalKey(moment)));
+    afterSheetClose(() => onOpenPaywall?.(moment));
   };
 
   useEffect(() => {
@@ -472,8 +478,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
-      /* Attached but unreadable (a scan with no text layer): the turn falls through to the model, so say the files are not in this answer (QA F161). */
-      if (turn.kind === "model" && docs.documents.length) flash(t("documents.noneMatched"));
+      /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
+      if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) flash(t("documents.noneMatched"));
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
       if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
         await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
@@ -497,7 +503,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             return;
           }
           /* Outside strict mode the answer still comes, from general knowledge: say so, because a small model will not (QA F161). */
-          if (!rag.prompt.used.length) flash(t("documents.noneMatched"));
+          if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: rag.prompt.used.length })) flash(t("documents.noneMatched"));
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
@@ -809,7 +815,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             /* Through the same door a picked or shared file uses, so the driver cannot walk past the Free file cap or the Work formats. */
             const verdict = fileIntake(tierRef.current, sniffPicked(new File(Paths.document, name).uri, name), docsRef.current.documents.length);
             if (verdict.kind === "paywall") {
-              flash(t(verdict.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+              flash(t(fileRefusalKey(verdict.moment)));
               continue;
             }
             const doc = await library.importFile(new File(Paths.document, name).uri, name, { incognito });
@@ -851,11 +857,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (attached) flash(t("quick.filesAttached", { count: attached }));
         if (seed.text) setDraft(seed.text);
-        if (blocked) {
-          flash(t(blocked === "office" ? "quick.fileWork" : "quick.filePro"));
-          const why = blocked;
-          afterSheetClose(() => onOpenPaywall?.(why));
-        }
+        if (blocked) refuseFile(blocked);
       })();
       return;
     }
@@ -965,14 +967,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
   const strictLocked = paywallFor(tier, { kind: "feature", feature: "strictDocuments" });
-  /* Ticking a second document in the sheet is the same door as importing one (QA F146): it went through no gate at all. */
-  const attachLocked = paywallFor(tier, { kind: "document", existing: docs.documents.length });
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
       void pickIntoLibrary(library, tier, docs.documents.length, incognito).then((r) => {
+        /* Already inside the sheet hand-over, so the paywall opens now rather than after a second wait. */
         if (r.kind === "paywall") {
-          flash(t(r.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+          flash(t(fileRefusalKey(r.moment)));
           onOpenPaywall?.(r.moment);
         }
         else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
@@ -985,8 +986,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const verdict = planLibraryAttach(tier, libraryState.documents, id, docs.documents.length);
     if (verdict.kind === "ok") return docs.attach(id);
     setAttachOpen(false);
-    flash(t(verdict.moment === "office" ? "quick.fileWork" : "quick.filePro"));
-    afterSheetClose(() => onOpenPaywall?.(verdict.moment));
+    refuseFile(verdict.moment);
   };
   const onMic = () => {
     if (readingId) void stopSpeaking().then(() => setReadingId(null));
@@ -1544,7 +1544,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         strict={docs.strict}
         onSetStrict={docs.setStrict}
         strictLocked={strictLocked}
-        attachLocked={attachLocked}
+        tier={tier}
+        attachedCount={docs.documents.length}
         onUnlock={(why) => {
           setAttachOpen(false);
           afterSheetClose(() => onOpenPaywall?.(why));
