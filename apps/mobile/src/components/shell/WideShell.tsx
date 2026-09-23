@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@inborn/ui";
 
@@ -11,6 +10,7 @@ import { closeSidePanel, useSidePanel } from "../../lib/sidePanel";
 import { ChatsPane } from "./ChatsPane";
 import { PassagePanel } from "../../documents/Citations";
 import { DocumentsScreen } from "../../screens/documents";
+import { openPaywall } from "../../licence";
 
 /**
  * The sidebar shell of §8.9: a permanent 280 px sidebar (chats, projects, vault, proof, settings), the screen stack as the
@@ -36,7 +36,6 @@ function SidePanelView({ panel }: { panel: NonNullable<ReturnType<typeof useSide
   const { theme } = useTheme();
   const type = useType();
   const { t } = useTranslation();
-  const router = useRouter();
   return (
     <View testID="wide-panel" style={[styles.panel, { width: PANEL_WIDTH, borderLeftColor: theme.border, backgroundColor: theme.surface1 }]}>
       {/* The library screen brings its own header (Close · Documents · Add file); a passage has none, so the panel gives it one. */}
@@ -51,7 +50,7 @@ function SidePanelView({ panel }: { panel: NonNullable<ReturnType<typeof useSide
           <PassagePanel citation={panel.citation} />
         </>
       ) : (
-        <DocumentsScreen onClose={closeSidePanel} onUnlock={() => router.push("/paywall")} />
+        <DocumentsScreen onClose={closeSidePanel} onUnlock={openPaywall} />
       )}
     </View>
   );

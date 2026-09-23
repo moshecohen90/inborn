@@ -9,6 +9,6 @@ export default function VoiceRoute() {
   const { tier, loading } = useEntitlement();
   /* F53: the chat's mic gated this, the URL did not — a deep link, a desktop menu item or a restored route reached it for free. */
   if (loading) return null;
-  if (paywallFor(tier, { kind: "feature", feature: "voiceConversation" })) return <Redirect href="/paywall" />;
+  if (paywallFor(tier, { kind: "feature", feature: "voiceConversation" })) return <Redirect href="/paywall?reason=voiceConversation" />;
   return <HandsFreeScreen chatId={params.chat ?? null} incognito={params.incognito === "1"} onClose={() => (router.canGoBack() ? router.back() : router.replace("/"))} onOpenVault={() => router.replace("/vault")} />;
 }

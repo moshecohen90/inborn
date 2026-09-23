@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
-import { PRODUCTS, fallbackPrice, fileIntake, formatBytes, paywallFor, type DocumentRecord } from "@inborn/core";
+import { PRODUCTS, fallbackPrice, fileIntake, formatBytes, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
@@ -34,7 +34,7 @@ export interface DocumentsScreenProps {
   /** Overrides the licence (tests, headless runs); Free attaches one file of up to 20 pages (spec §7.3). */
   pro?: boolean;
   /** The 2nd document is a §12.3 value moment: "Add file" opens the paywall instead. */
-  onUnlock?: () => void;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 /** S40 Document library: documents with state, strict mode, add file, ask about selected, details. */
@@ -120,7 +120,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
 
   const pickAndImport = async () => {
     if (addLocked) {
-      onUnlock?.();
+      onUnlock?.("document");
       return;
     }
     try {
@@ -131,7 +131,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       const verdict = fileIntake(tier, sniffPicked(picked.result.uri, name), state.documents.length);
       if (proOverride === undefined && verdict.kind === "paywall") {
         if (verdict.moment === "office") setWorkMoment(true);
-        else onUnlock?.();
+        else onUnlock?.("document");
         return;
       }
       await importUri(picked.result.uri, name);
@@ -158,7 +158,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         }
         /* Say what was left out rather than letting a file vanish into the window (the drop is a gesture, not a dialog). */
         if (plan.rejected.some((r) => r.reason === "work-only")) setWorkMoment(true);
-        else if (plan.rejected.some((r) => r.reason === "over-free-limit")) onUnlock?.();
+        else if (plan.rejected.some((r) => r.reason === "over-free-limit")) onUnlock?.("document");
         if (plan.rejected.length) setToast(t("documents.drop.skipped", { names: plan.rejected.map((r) => r.name).join(", ") }));
       } finally {
         importing.current = false;
@@ -203,8 +203,8 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        {strictLocked ? <ProTag onPress={() => onUnlock?.()} /> : null}
-        <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.() : library.setStrict(v))} />
+        {strictLocked ? <ProTag onPress={() => onUnlock?.("strictDocuments")} /> : null}
+        <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.("strictDocuments") : library.setStrict(v))} />
       </View>
       {workMoment ? (
         <View testID="office-work-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
@@ -213,7 +213,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.body, { color: theme.text }]}>{t("documents.office.explain")}</Text>
           <Text style={[styles.mono, { color: theme.text2 }]}>{t("paywall.priceLine", { price: workPrice })}</Text>
           <View style={styles.cardRow}>
-            <Pressable testID="office-work-unlock" accessibilityRole="button" onPress={() => onUnlock?.()} style={[styles.btn, styles.grow, { backgroundColor: theme.ctaFill }]}>
+            <Pressable testID="office-work-unlock" accessibilityRole="button" onPress={() => onUnlock?.("office")} style={[styles.btn, styles.grow, { backgroundColor: theme.ctaFill }]}>
               <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("gate.unlockWork")}</Text>
             </Pressable>
             <Pressable testID="office-work-dismiss" accessibilityRole="button" onPress={() => setWorkMoment(false)} style={[styles.btn, styles.ghost, { borderColor: theme.border }]}>
@@ -270,7 +270,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
             onToggleSelect={() => toggle(item.id)}
             onCancel={() => library.cancel(item.id)}
             onResume={() => library.resume(item.id)}
-            onOcr={() => (ocrLocked ? onUnlock?.() : library.runOcr(item.id))}
+            onOcr={() => (ocrLocked ? onUnlock?.("ocr") : library.runOcr(item.id))}
             ocrAvailable={ocrAvailable}
             ocrLocked={ocrLocked}
           />
