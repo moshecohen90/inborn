@@ -112,8 +112,10 @@ export function Seal({ size, label, state, generating = false, color, glow, prog
       <Animated.View style={{ width: size, height: size, opacity: breath }}>
         <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
           <Defs>
+            {/* §9.2 puts the filament behind the seal, not inside it: a fill from the centre read as a brown disc (QA F251). */}
             <RadialGradient id="filament" cx="50%" cy="50%" r="50%">
-              <Stop offset="55%" stopColor={glowColor} stopOpacity={0.35} />
+              <Stop offset="55%" stopColor={glowColor} stopOpacity={0} />
+              <Stop offset="86%" stopColor={glowColor} stopOpacity={0.45} />
               <Stop offset="100%" stopColor={glowColor} stopOpacity={0} />
             </RadialGradient>
             <RadialGradient id="bloom" cx="50%" cy="50%" r="50%">

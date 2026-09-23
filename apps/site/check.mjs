@@ -5,7 +5,9 @@
  *
  *   node apps/site/check.mjs   (after build.mjs)
  */
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { createServer } from "node:http";
+import { createRequire } from "node:module";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { TOKENS, siteOrigin } from "./build.mjs";
@@ -66,8 +68,77 @@ for (const f of ["sitemap.xml", "robots.txt", "llms.txt", "llms-full.txt", "404.
   if (!existsSync(path.join(dist, f))) problems.push(`missing ${f}`);
 }
 
+/* A page that pans sideways on a phone is unreadable there, and CSS alone cannot say whether it does: the home band
+   held a 760px table and overflowed by 388px at 390 with every rule looking correct (QA F240). So: measure it. */
+const WIDTHS = [390, 768];
+function headlessShell() {
+  const dirs = [process.env.PLAYWRIGHT_CORE_DIR, "/Users/moshecohen/.npm/_npx/9833c18b2d85bc59/node_modules"].filter(Boolean);
+  let playwright = null;
+  for (const dir of dirs) {
+    try {
+      playwright = createRequire(path.join(dir, "/"))("playwright-core");
+      break;
+    } catch {
+      /* try the next location */
+    }
+  }
+  if (!playwright) return null;
+  if (process.env.CHROMIUM_PATH) return { playwright, executablePath: process.env.CHROMIUM_PATH };
+  const wanted = playwright.chromium.executablePath();
+  if (existsSync(wanted)) return { playwright, executablePath: wanted };
+  const cache = /^(.*)\/chromium[^/]*-\d+\//.exec(wanted)?.[1];
+  if (!cache || !existsSync(cache)) return null;
+  const found = readdirSync(cache)
+    .filter((d) => /^chromium_headless_shell-\d+$/.test(d))
+    .sort()
+    .reverse()
+    .flatMap((d) => readdirSync(path.join(cache, d)).map((sub) => path.join(cache, d, sub, "chrome-headless-shell")))
+    .find((p) => existsSync(p));
+  return found ? { playwright, executablePath: found } : null;
+}
+
+const MIME = { ".html": "text/html", ".css": "text/css", ".svg": "image/svg+xml", ".txt": "text/plain", ".xml": "application/xml", ".woff2": "font/woff2", ".png": "image/png" };
+/* Over file:// the pages' absolute /site.css never loads and every unstyled table "overflows": the gate has to serve dist. */
+function serve() {
+  const server = createServer((req, res) => {
+    const rel = decodeURIComponent(req.url.split("?")[0]).replace(/^\/+/, "") || "index.html";
+    const file = [rel, `${rel}.html`, path.join(rel, "index.html")].map((p) => path.join(dist, p)).find((p) => p.startsWith(dist) && existsSync(p) && statSync(p).isFile());
+    if (!file) return res.writeHead(404).end();
+    res.writeHead(200, { "content-type": MIME[path.extname(file)] ?? "application/octet-stream" }).end(readFileSync(file));
+  });
+  return new Promise((ok) => server.listen(0, "127.0.0.1", () => ok({ server, port: server.address().port })));
+}
+
+const shell = headlessShell();
+if (!shell) {
+  console.log("· no headless chromium: the sideways-scroll measurement was skipped (set CHROMIUM_PATH)");
+} else {
+  const { server, port } = await serve();
+  const browser = await shell.playwright.chromium.launch({ headless: true, executablePath: shell.executablePath, args: ["--disable-gpu", "--hide-scrollbars"] });
+  for (const width of WIDTHS) {
+    const ctx = await browser.newContext({ viewport: { width, height: 900 } });
+    const page = await ctx.newPage();
+    for (const file of pages) {
+      await page.goto(`http://127.0.0.1:${port}/${file}`, { waitUntil: "load" });
+      const out = await page.evaluate(() => {
+        const dom = globalThis.document;
+        const win = globalThis.innerWidth;
+        const wide = [...dom.querySelectorAll("*")]
+          .filter((el) => el.getBoundingClientRect().right > win + 1)
+          .map((el) => `${el.tagName.toLowerCase()}.${(el.className || "").toString().split(" ")[0]}`)
+          .slice(0, 4);
+        return { doc: dom.documentElement.scrollWidth, win, wide: [...new Set(wide)] };
+      });
+      if (out.doc > out.win + 1) problems.push(`${file}: scrolls sideways at ${width} (${out.doc} > ${out.win})${out.wide.length ? ` — ${out.wide.join(", ")}` : ""}`);
+    }
+    await ctx.close();
+  }
+  await browser.close();
+  server.close();
+}
+
 if (problems.length) {
   console.error(problems.map((p) => `✗ ${p}`).join("\n"));
   process.exit(1);
 }
-console.log(`✓ ${pages.length} pages: no scripts, no external assets, no dead links, CSP present`);
+console.log(`✓ ${pages.length} pages: no scripts, no external assets, no dead links, CSP present${shell ? `, no sideways scroll at ${WIDTHS.join("/")}` : ""}`);

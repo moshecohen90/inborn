@@ -1,6 +1,6 @@
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { radius, type Theme } from "@inborn/ui";
+import { Icon, radius, type Theme } from "@inborn/ui";
 import { PAYWALL_BULLETS, fallbackPrice, offersFor, sellable } from "@inborn/core";
 import { STORE_LINKS } from "../../web/links";
 import { useType } from "../../services/type";
@@ -24,10 +24,12 @@ export function WebStoreBlock({ theme }: { theme: Theme }) {
           <View key={offer.productId} testID={`web-price-${offer.tier}`} style={[styles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
             <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{t(offer.tier === "work" ? "paywall.work.name" : "paywall.pro.name")}</Text>
             <Text style={[type.title, { color: theme.text }]}>{t("paywall.priceLine", { price: fallbackPrice(offer.productId).display })}</Text>
+            {/* The same five lines read as a list on the phone and as prose in the browser until the mark came here too (QA F253). */}
             {PAYWALL_BULLETS[offer.tier].map((b) => (
-              <Text key={b} style={[type.bodySmall, { color: theme.text2 }]}>
-                {t(`paywall.${offer.tier}.${b}`)}
-              </Text>
+              <View key={b} style={styles.bulletRow}>
+                <Icon name="check" size={14} color={theme.text2} style={styles.bulletIcon} />
+                <Text style={[type.bodySmall, styles.bulletText, { color: theme.text2 }]}>{t(`paywall.${offer.tier}.${b}`)}</Text>
+              </View>
             ))}
           </View>
         ))}
@@ -62,6 +64,9 @@ const styles = StyleSheet.create({
   prices: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
   card: { flexGrow: 1, flexBasis: 220, borderWidth: 1, borderRadius: radius.card, padding: 16, gap: 6 },
   tier: { letterSpacing: 1.5 },
+  bulletRow: { flexDirection: "row", gap: 8 },
+  bulletIcon: { marginTop: 3 },
+  bulletText: { flex: 1 },
   buttons: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
   btn: { minHeight: 46, flexGrow: 1, flexBasis: 140, borderWidth: 1, borderRadius: radius.control, alignItems: "center", justifyContent: "center", paddingHorizontal: 14 },
 });

@@ -1,6 +1,7 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { PaywallReason } from "@inborn/core";
+import { MIN_TOUCH } from "@inborn/ui";
 import { openPaywall } from "../licence/openPaywall";
 import { useTheme } from "../lib/theme";
 import { shape } from "../components/chat/styles";
@@ -12,8 +13,12 @@ export function WorkTag({ onPress, reason }: { onPress?: () => void; reason?: Pa
   const theme = useTheme();
   const { t } = useTranslation();
   return (
-    <Pressable testID="work-tag" accessibilityRole="button" accessibilityLabel={t("work.unlock")} hitSlop={8} onPress={onPress ?? (() => openPaywall(reason))} style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
-      <Text style={[type.monoLabel, { color: theme.accent }]}>{t("work.tag")}</Text>
+    <Pressable testID="work-tag" accessibilityRole="button" accessibilityLabel={t("work.unlock")} onPress={onPress ?? (() => openPaywall(reason))} style={styles.target}>
+      <View style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
+        <Text style={[type.monoLabel, { color: theme.accent }]}>{t("work.tag")}</Text>
+      </View>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({ target: { minHeight: MIN_TOUCH, justifyContent: "center" } });

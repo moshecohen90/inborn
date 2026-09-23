@@ -191,16 +191,19 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     <View testID="documents-screen" style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top }]}>
       <View style={[styles.stack, { maxWidth: contentMax }]}>
       <View style={styles.header}>
+        {/* "Schließen" and "Datei hinzufügen" are never the same width, so a title between them drifts (QA F245); it is centred on the bar instead. */}
+        <View pointerEvents="none" style={styles.titleWrap}>
+          <Text numberOfLines={1} style={[styles.title, { color: theme.text }]}>{t("documents.title")}</Text>
+        </View>
         <Pressable testID="documents-close" accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
           <Text style={[styles.headerBtnText, { color: theme.text2 }]}>{t("documents.close")}</Text>
         </Pressable>
-        <Text style={[styles.title, { color: theme.text }]}>{t("documents.title")}</Text>
         <Pressable testID="documents-add" accessibilityRole="button" onPress={pickAndImport} style={styles.headerBtn}>
           <Text style={[styles.headerBtnText, styles.right, { color: addLocked ? theme.accent : theme.text }]}>{addLocked ? t("documents.addPro") : t("documents.add")}</Text>
         </Pressable>
       </View>
       <BannerSpacer />
-      <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text>
+      {state.documents.length ? <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text> : null}
       <View style={[styles.strictRow, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
         <View style={styles.strictText}>
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
@@ -209,6 +212,13 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         {strictLocked ? <ProTag onPress={() => onUnlock?.("strictDocuments")} /> : null}
         <Toggle testID="documents-strict" label={t("documents.strict.title")} value={state.strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.("strictDocuments") : library.setStrict(v))} />
       </View>
+      {/* The headline of an empty screen reads before the cards that offer to fill it (QA F249). */}
+      {state.documents.length ? null : (
+        <View testID="documents-empty" style={styles.empty}>
+          <Text style={[styles.emptyTitle, { color: theme.text }]}>{t("documents.empty.title")}</Text>
+          <Text style={[styles.body, styles.centered, { color: theme.text2 }]}>{t("documents.empty.hint")}</Text>
+        </View>
+      )}
       {workMoment ? (
         <View testID="office-work-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
           <Text style={[styles.label, { color: theme.accent }]}>{t("documents.office.eyebrow")}</Text>
@@ -226,7 +236,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         </View>
       ) : null}
       {embedderMissing ? (
-        <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
+        <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
           <Text style={[styles.label, { color: theme.accent }]}>{t("documents.embedder.title")}</Text>
           <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
           {embedState.kind === "delivering" ? (
@@ -257,12 +267,6 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         data={state.documents}
         keyExtractor={(d) => d.id}
         contentContainerStyle={styles.list}
-        ListEmptyComponent={
-          <View style={styles.empty}>
-            <Text style={[styles.emptyTitle, { color: theme.text }]}>{t("documents.empty.title")}</Text>
-            <Text style={[styles.body, styles.centered, { color: theme.text2 }]}>{t("documents.empty.hint")}</Text>
-          </View>
-        }
         renderItem={({ item }) => (
           <DocumentRow
             doc={item}
@@ -334,7 +338,8 @@ const styles = StyleSheet.create({
   headerBtn: { minWidth: 64, height: 44, justifyContent: "center" },
   headerBtnText: { ...font("sans"), fontSize: 16 },
   right: { textAlign: "right" },
-  title: { ...font("sans", "600"), fontSize: 17 },
+  title: { ...font("sans", "600"), fontSize: 17, textAlign: "center" },
+  titleWrap: { position: "absolute", left: 72, right: 72, top: 0, bottom: 0, alignItems: "center", justifyContent: "center" },
   mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.5 },
   label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
   centered: { textAlign: "center", paddingTop: 4 },
@@ -345,7 +350,7 @@ const styles = StyleSheet.create({
   card: { marginHorizontal: 12, marginBottom: 8, padding: 14, borderRadius: radius.card, borderWidth: 1, gap: 8 },
   body: { ...font("sans"), fontSize: 14, lineHeight: 20 },
   list: { paddingHorizontal: 12, paddingBottom: 12, gap: 8, flexGrow: 1 },
-  empty: { paddingVertical: 48, alignItems: "center", gap: 8 },
+  empty: { paddingVertical: 32, paddingHorizontal: 24, alignItems: "center", gap: 8 },
   emptyTitle: { ...font("sans", "600"), fontSize: 20 },
   footer: { padding: 12, borderTopWidth: 1, gap: 6 },
   btn: { height: 44, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },

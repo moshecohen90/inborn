@@ -90,6 +90,18 @@ export function fontFace(kind: FontKind, weight: FontWeightInput = "400", platfo
 /** §9.4: 4 chips/status dots · 10 buttons/fields · 14 cards · 20 sheets/cartridges · pill. `chip` stays the legacy pill alias. */
 export const radius = { tag: 4, control: 10, card: 14, sheet: 20, pill: 999, chip: 999 } as const;
 
+/** §9.4 "יעדי מגע 44×44 בכל מקום": the floor for anything a finger presses. hitSlop does not count, react-native-web drops it. */
+export const MIN_TOUCH = 44;
+
+/** A dimmed ink as the eye actually sees it: opacity composites the text onto the surface, so the guard must measure the blend. */
+export function blendOnto(ink: string, surface: string, opacity: number): string {
+  if (!/^#[0-9a-fA-F]{6}$/.test(ink) || !/^#[0-9a-fA-F]{6}$/.test(surface)) return ink;
+  const byte = (hex: string, i: number) => parseInt(hex.slice(i, i + 2), 16);
+  let out = "#";
+  for (const i of [1, 3, 5]) out += Math.round(byte(ink, i) * opacity + byte(surface, i) * (1 - opacity)).toString(16).padStart(2, "0");
+  return out;
+}
+
 /** From this combined text scale the chat header drops its seal caption (the ring still says it) so the model name never truncates. */
 export const COMPACT_CHROME_SCALE = 1.5;
 export const compactChrome = (scale: number): boolean => scale >= COMPACT_CHROME_SCALE;

@@ -27,7 +27,7 @@ real Play build on Moshe's own licence, which owns **Pro**.
 | `a-02-proof-out-0b.png` | Proof: `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, `Internet: none (not in the manifest)` |
 | `a-03-proof-after-run.png` | the same screen after the whole pass: still **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session` |
 | `m1-01-model-sheet.png` | **round 40's first device proof.** The Model sheet opened from the chat header chip: the `PRO` tier chip, `See what's in Pro`, the recommendation line, and the model rows each with `Good at:` and their language fit |
-| `m1-02-model-sheet-rows.png` | the same sheet with the header chip on INSTANT |
+| `m1-02-model-sheet-rows.png` | the chat root after the sheet closed, header chip on INSTANT. Not a second view of the sheet: the sheet is `m1-01-model-sheet.png` |
 | `m2-switched-fast.png` | after **one** tap on `model-sheet-use-fast`: the header chip reads **FAST** |
 | `m2b-switched-instant.png` / `m2pre-switched-instant.png` | one tap back: the chip reads **INSTANT** again |
 | `d1-01-f126-reading-notice.png` | **F126.** A 40-page PDF attached and asked about at once: *"Reading your document before answering…"*, 5 s after send |

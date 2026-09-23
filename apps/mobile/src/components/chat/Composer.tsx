@@ -135,8 +135,9 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           {listening ? <View style={[styles.micStop, { backgroundColor: theme.danger }]} /> : <Icon name="mic" size={22} color={micBusy ? theme.accent : theme.text2} />}
         </Pressable>
         {busy ? (
-          <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.danger }]}>
-            <Icon name="stop" size={14} color={theme.onDanger} fill />
+          /* Stopping your own answer is not a breach: §9.2 keeps danger for UNSEALED, deletion and errors (QA F246). */
+          <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.ctaFill }]}>
+            <Icon name="stop" size={14} color={theme.ctaText} fill />
           </Pressable>
         ) : (
           <Pressable testID="send" accessibilityRole="button" accessibilityLabel={t("chat.send")} accessibilityState={{ disabled: !canSend }} disabled={!canSend} onPress={onSend} style={[styles.send, { backgroundColor: theme.ctaFill, opacity: canSend ? 1 : 0.45 }]}>

@@ -4,7 +4,7 @@ import { BannerSpacer } from "../../components/shell/bannerInset";
 import { useTheme } from "../../services/theme";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Icon, radius } from "@inborn/ui";
+import { Icon, MIN_TOUCH, radius } from "@inborn/ui";
 import { sellable, type PaywallReason, type ProductId, type Store } from "@inborn/core";
 import { DEV_AUTOBUY, DEV_RESULT_FILE, devBuild } from "../../licence/devFlags";
 import { useLicenceState } from "../../licence/hooks";
@@ -154,11 +154,11 @@ export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: 
         {store ? <Text style={[type.bodySmall, styles.footer, { color: theme.text3 }]}>{t("paywall.oneStore", { store: storeName(t, store) })}</Text> : null}
         {store === "play" ? <Text style={[type.bodySmall, styles.footer, { color: theme.text3 }]}>{t("paywall.play.acknowledge")}</Text> : null}
         <View style={styles.legal}>
-          <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("terms")} hitSlop={8}>
+          <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("terms")} style={styles.legalLink}>
             <Text style={[type.mono, styles.mono, { color: theme.text2 }]}>{t("paywall.terms")}</Text>
           </Pressable>
           <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>·</Text>
-          <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("privacy")} hitSlop={8}>
+          <Pressable accessibilityRole="link" onPress={() => onOpenDoc?.("privacy")} style={styles.legalLink}>
             <Text style={[type.mono, styles.mono, { color: theme.text2 }]}>{t("paywall.privacy")}</Text>
           </Pressable>
         </View>
@@ -172,7 +172,7 @@ export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: 
 const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12 },
-  headerBtn: { width: 40, height: 40, alignItems: "center", justifyContent: "center" },
+  headerBtn: { width: MIN_TOUCH, height: MIN_TOUCH, alignItems: "center", justifyContent: "center" },
   list: { paddingHorizontal: 20, gap: 14, maxWidth: 560, width: "100%", alignSelf: "center" },
   cards: { gap: 12 },
   owned: { borderWidth: 1, borderRadius: radius.card, padding: 14, gap: 4 },
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
   link: { textDecorationLine: "underline" },
   mono: { textAlign: "center" },
   footer: { textAlign: "center" },
-  legal: { flexDirection: "row", justifyContent: "center", gap: 10 },
+  legal: { flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10 },
+  legalLink: { minHeight: MIN_TOUCH, justifyContent: "center", paddingHorizontal: 4 },
   centered: { textAlign: "center" },
 });
