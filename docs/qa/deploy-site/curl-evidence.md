@@ -79,15 +79,17 @@ SITE_ORIGIN=https://inbornapp.com APP_ORIGIN=https://app.inbornapp.com pnpm --fi
   ✓ 12 pages: no scripts, no external assets, no dead links, CSP present
 
 MODELS_ORIGIN=https://models.inbornapp.com pnpm run web:build
-  bundle /_expo/static/js/web/index-a54a5b7370cdc089a7a77e70e9e0caf1.js
-         sha256 b9c35711a5f420af89824bfb6ecd2953e1641c6b2eb8692ab3e2b695aee7fa10 (3.7 MB)
-  precache 20 files, 28.5 MB; 42 files hashed into hashes.json
+  bundle /_expo/static/js/web/index-938fe32f43558a7541b1640f693c7594.js
+         sha256 0f40da721e83dd6e2b579597cbbc3e8a70f97525c6ff8d38117bcd9e45eb0cdd (3.8 MB)
+  precache 20 files, 28.6 MB; 43 files hashed into hashes.json
 
-node scripts/deploy-cloudflare.mjs --site --app --dry-run --no-build
+node scripts/deploy-cloudflare.mjs --site --app --dry-run      # builds both, then plans; no network at all
   apps/site/dist: 29 files, 0.7 MB   → inborn-site,          not_found_handling 404-page,               inbornapp.com
                                      → inborn-www-redirect,  301,                                       www.inbornapp.com
-  apps/web/dist:  43 files, 28.6 MB  → inborn-app,           not_found_handling single-page-application, app.inbornapp.com
+  apps/web/dist:  44 files, 28.7 MB  → inborn-app,           not_found_handling single-page-application, app.inbornapp.com
 ```
+
+Both builds above are post-merge, on `origin/main` at `e270f1f` (rounds 36 and 39, which changed `apps/web/build.mjs`).
 
 - The site is built for the real origin: `<link rel="canonical" href="https://inbornapp.com/">`, and every `<loc>` in
   `sitemap.xml` is `https://inbornapp.com/…`.

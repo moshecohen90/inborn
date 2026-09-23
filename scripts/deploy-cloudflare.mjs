@@ -5,7 +5,7 @@
  *   node scripts/deploy-cloudflare.mjs --site          # apps/site/dist  -> inbornapp.com      (+ www 301 -> apex)
  *   node scripts/deploy-cloudflare.mjs --app           # apps/web/dist   -> app.inbornapp.com
  *   node scripts/deploy-cloudflare.mjs --site --app    # both, which is the normal deploy
- *   node scripts/deploy-cloudflare.mjs --site --dry-run --no-build   # manifest + plan, zero network
+ *   node scripts/deploy-cloudflare.mjs --site --app --dry-run        # full rehearsal: builds, plans, zero network
  *
  * Flags: --no-build (use the dist that is already there), --dry-run (no writes), --no-domains (skip attaching
  * the hostnames), --verbose.
@@ -266,7 +266,7 @@ async function attachDomain(hostname, script) {
 async function deploy(name) {
   const target = TARGETS[name];
   console.log(`\n== ${name} (${target.script})`);
-  if (opts.build && !opts.dryRun) buildTarget(target);
+  if (opts.build) buildTarget(target);
   const distDir = path.join(repoRoot, target.dist);
   const dist = readDist(distDir);
   const total = Object.values(dist.manifest).reduce((n, f) => n + f.size, 0);
