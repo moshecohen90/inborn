@@ -42,6 +42,8 @@ export interface DocumentContext {
   indexing: boolean;
   /** The index model is not installed, so nothing attached can be searched. */
   noIndexModel: boolean;
+  /** Every attached document is a scan waiting for OCR. */
+  needsOcr: boolean;
   /** Resolves once every attached document has finished being read. */
   settle: () => Promise<void>;
   /** Retrieval + fenced prompt for the next user turn; `prompt.noAnswer` means answer with `documents.notFound` and skip the model. */
@@ -75,6 +77,7 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     ready,
     indexing,
     noIndexModel: state.embedder.kind === "missing",
+    needsOcr: documents.length > 0 && documents.every((d) => d.status === "needs-ocr"),
     settle: () => library.settle(docIds),
     buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),

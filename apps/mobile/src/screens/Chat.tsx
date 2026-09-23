@@ -442,7 +442,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
-      let turn: DocsTurn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready, indexing: docs.indexing, noIndexModel: docs.noIndexModel }) : { kind: "model" };
+      let turn: DocsTurn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready, indexing: docs.indexing, noIndexModel: docs.noIndexModel, needsOcr: docs.needsOcr }) : { kind: "model" };
       /* An attached file is read before the answer, never answered around: that is what produced "I received no document" (QA F135). */
       if (turn.kind === "wait") {
         patch((x) => ({ ...x, content: t("documents.reading") }));
@@ -452,7 +452,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           return;
         }
         const fresh = docs.context.docIds.map((id) => library.document(id));
-        turn = planDocsTurn({ strict: docs.strict, hasAttachment: fresh.some((d) => !!d), hasIndex: fresh.some((d) => (d?.chunkCount ?? 0) > 0), noIndexModel: library.state().embedder.kind === "missing" });
+        turn = planDocsTurn({ strict: docs.strict, hasAttachment: fresh.some((d) => !!d), hasIndex: fresh.some((d) => (d?.chunkCount ?? 0) > 0), noIndexModel: library.state().embedder.kind === "missing", needsOcr: fresh.some((d) => d?.status === "needs-ocr") });
         patch((x) => ({ ...x, content: "" }));
       }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */

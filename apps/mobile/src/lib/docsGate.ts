@@ -7,7 +7,7 @@
 export type DocsTurn =
   | { kind: "retrieve" }
   | { kind: "wait" }
-  | { kind: "refuse"; messageKey: "documents.notFound" | "documents.noneAttached" | "documents.notReadable" | "documents.noIndexModel" }
+  | { kind: "refuse"; messageKey: "documents.notFound" | "documents.noneAttached" | "documents.notReadable" | "documents.noIndexModel" | "documents.needsOcr" }
   | { kind: "model" };
 
 export interface DocsTurnInput {
@@ -21,6 +21,8 @@ export interface DocsTurnInput {
   indexing?: boolean;
   /** The index model is not installed, so nothing attached can ever be searched. */
   noIndexModel?: boolean;
+  /** Every attached document is a scan with no text layer; OCR is offered, never run by itself. */
+  needsOcr?: boolean;
 }
 
 /**
@@ -28,10 +30,12 @@ export interface DocsTurnInput {
  * Answering from the model's weights while a file hangs off the composer is what produced "I received no document"
  * on Moshe's iPhone and 6T (QA F135); strict mode alone never guarded it, because the switch is off by default.
  */
-export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, noIndexModel = false }: DocsTurnInput): DocsTurn {
+export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, noIndexModel = false, needsOcr = false }: DocsTurnInput): DocsTurn {
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };
   if (!hasAttachment) return strict ? { kind: "refuse", messageKey: "documents.noneAttached" } : { kind: "model" };
   if (noIndexModel) return { kind: "refuse", messageKey: "documents.noIndexModel" };
+  /* A scan is not an unreadable file: it has one button between it and an answer, and the sentence names it. */
+  if (needsOcr) return { kind: "refuse", messageKey: "documents.needsOcr" };
   return { kind: "refuse", messageKey: strict ? "documents.notFound" : "documents.notReadable" };
 }

@@ -47,6 +47,15 @@ describe("an attached document is never answered around (QA F135)", () => {
     expect(planDocsTurn({ strict: true, hasAttachment: true, hasIndex: false, noIndexModel: true })).toEqual({ kind: "refuse", messageKey: "documents.noIndexModel" });
   });
 
+  it("a scan says so, instead of the generic unreadable sentence", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, needsOcr: true })).toEqual({ kind: "refuse", messageKey: "documents.needsOcr" });
+    expect(planDocsTurn({ strict: true, hasAttachment: true, hasIndex: false, needsOcr: true })).toEqual({ kind: "refuse", messageKey: "documents.needsOcr" });
+    /* A missing index model is the earlier reason: OCR would not help until it is there. */
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, needsOcr: true, noIndexModel: true })).toEqual({ kind: "refuse", messageKey: "documents.noIndexModel" });
+    /* And a scan still waits while it is being read. */
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, needsOcr: true, indexing: true })).toEqual({ kind: "wait" });
+  });
+
   it("nothing attached still goes to the model, index model or not", () => {
     expect(planDocsTurn({ strict: false, hasAttachment: false, hasIndex: false, noIndexModel: true })).toEqual({ kind: "model" });
     expect(planDocsTurn({ strict: false, hasAttachment: false, hasIndex: false, indexing: true })).toEqual({ kind: "model" });
@@ -58,10 +67,11 @@ describe("an attached document is never answered around (QA F135)", () => {
       for (const hasAttachment of [true, false])
         for (const hasIndex of [true, false])
           for (const indexing of [true, false])
-            for (const noIndexModel of [true, false]) {
-              const turn = planDocsTurn({ strict, hasAttachment, hasIndex, indexing, noIndexModel });
-              if (turn.kind === "refuse") keys.add(turn.messageKey);
-            }
+            for (const noIndexModel of [true, false])
+              for (const needsOcr of [true, false]) {
+                const turn = planDocsTurn({ strict, hasAttachment, hasIndex, indexing, noIndexModel, needsOcr });
+                if (turn.kind === "refuse") keys.add(turn.messageKey);
+              }
     expect(keys.size).toBeGreaterThan(0);
     for (const k of keys) expect(en[k], k).toBeTypeOf("string");
   });
