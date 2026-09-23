@@ -6,7 +6,7 @@ import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
 import { getLibrary } from "../documents/library";
 import { setClipboardExpiry } from "../lib/clipboard";
-import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type SharePayload } from "@inborn/core";
+import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type DeliverySource, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
@@ -44,6 +44,8 @@ export interface DeliveryState {
   status: "idle" | "delivering" | "verifying" | "done" | "failed";
   progress: number;
   totalBytes: number;
+  /** Where the bytes came from, so the Proof screen names the real source instead of guessing from the platform (F206). */
+  source: DeliverySource;
 }
 
 export interface Meter {
@@ -314,8 +316,10 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       const next: DeliveryState | null = !live
         ? null
         : live.state.kind === "delivering"
-          ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes }
-          : { name: live.model.name.toUpperCase(), status: "verifying", progress: 1, totalBytes: live.model.bytes };
+          ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes, source: live.state.via }
+          : live.state.kind === "verifying"
+            ? { name: live.model.name.toUpperCase(), status: "verifying", progress: 1, totalBytes: live.model.bytes, source: live.state.via }
+            : null;
       setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
       /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. A guard switch (§6.5) is a run-time override the vault must not undo. */
       const wanted = vault.activeModel()?.path;

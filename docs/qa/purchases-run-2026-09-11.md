@@ -89,14 +89,14 @@ Moshe accepted the "Enable UI Automation" passcode prompt once, and the setting 
 **Runbook if it is ever needed (UI Automation is now on):** the two-step script below collapses to one step, the password.
 
 Two-step script (as written before Moshe's decision):
-1. Run the UI test once with the phone in hand: from `apps/mobile` on the Mac, `scripts/ios-storekit-proof.sh`-style: `npx expo prebuild -p ios --no-install && (cd ios && pod install) && ruby scripts/ios-add-storekit-tests.rb ios/Inborndev.xcodeproj Inborndev`, then `xcodebuild build-for-testing … -destination id=REDACTED-IPHONE` and `xcodebuild test-without-building -xctestrun ios/build/dd/Build/Products/Inborndev_iphoneos*.xctestrun -only-testing:InbornUITests/SandboxPurchaseUITests` (both commands are in scratch `purchases-r2/ios-build-for-testing.sh` and `run-sandbox-test.sh`). When the phone shows **"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"**, enter the passcode once. That toggles Settings → Developer → UI Automation on, and from then on the test taps the Sandbox sheet hands-free.
+1. Run the UI test once with the phone in hand: from `apps/mobile` on the Mac, `scripts/ios-storekit-proof.sh`-style: `npx expo prebuild -p ios --no-install && (cd ios && pod install) && ruby scripts/ios-add-storekit-tests.rb ios/Inborndev.xcodeproj Inborndev`, then `xcodebuild build-for-testing … -destination id=<iphone-udid>` and `xcodebuild test-without-building -xctestrun ios/build/dd/Build/Products/Inborndev_iphoneos*.xctestrun -only-testing:InbornUITests/SandboxPurchaseUITests` (both commands are in scratch `purchases-r2/ios-build-for-testing.sh` and `run-sandbox-test.sh`). When the phone shows **"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"**, enter the passcode once. That toggles Settings → Developer → UI Automation on, and from then on the test taps the Sandbox sheet hands-free.
 2. The same test run continues by itself: it opens the paywall, waits for the "Sandbox" sheet, taps Purchase once, and stops at any password prompt (if the sandbox asks for the password of tester1@example.com, type it on the phone; the test never types). Result: YOU OWN PRO on screen, `Documents/licence-run.json` with `environment: "sandbox"`; then delete + reinstall and Restore (the `restore` bundle from Task A, or the paywall's Restore button).
 
 Without step 1, the manual alternative (2 minutes): open Inborn (dev build with `EXPO_PUBLIC_AUTOBUY=inborn.pro`, or the paywall in any dev build and tap Unlock Pro), tap **Purchase** on the "Sandbox" sheet (account tester1@example.com, "you will not be charged"), enter the sandbox password if asked; the app then shows YOU OWN PRO and `Documents/licence-run.json` records `environment: "sandbox"`. Then delete and reinstall, open the paywall, Restore purchases. Alternatively enable Settings → Developer → UI Automation and the test in `ios-tests/SandboxPurchaseUITests.swift` does the tap (the password prompt, if any, still needs him).
 
 ## C. Real Play delivery on the OnePlus 6T (Task E, substitute for the OnePlus 11 run) — 14:19–14:28
 
-The OnePlus 11 (`8a3120ef`) was never attached today, so the lead moved the run to the OnePlus 6T (`REDACTED-6T`, Android 11, Snapdragon 845, 8 GB) once the QA stream released it. Account check without names: `dumpsys account` counts 19 `type=com.google` lines and the two internal-tester addresses match 6 lines, so a tester account is signed in. The QA stream's debug build (versionCode 1, debug key) was uninstalled first (Play cannot update over a different signer).
+The OnePlus 11 (`8a3120ef`) was never attached today, so the lead moved the run to the OnePlus 6T (`<6t-serial>`, Android 11, Snapdragon 845, 8 GB) once the QA stream released it. Account check without names: `dumpsys account` counts 19 `type=com.google` lines and the two internal-tester addresses match 6 lines, so a tester account is signed in. The QA stream's debug build (versionCode 1, debug key) was uninstalled first (Play cannot update over a different signer).
 Evidence: scratch `purchases-r2/6t/` (`01-optin.png` … `20-restore.png`, `logcat.txt` = full `logcat -v time` from before the install to after Restore).
 
 | step | result | evidence |
@@ -466,7 +466,7 @@ actionable tasks, 1107 executed, `:doc-extract:stageOcrTessData` and `:doc-extra
 sha256 as the local file, track `internal` release **"1.0.0 (10)"** `completed`. `--name "1.0.0 (10)"` was passed on the
 upload, so unlike vc9 no second edit was needed to rename the release.
 
-**The vc9 → vc10 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc9, app
+**The vc9 → vc10 update path, through the Play Store app.** The 6T (`<6t-serial>`) started with Play's vc9, app
 force-stopped, on its launcher. `market://details?id=com.inbornapp.mobile` offered **Update** at 15:21:43 and the download
 started within 30 s; no wait for the packs to publish was needed. `versionCode=10` at **15:27:43**,
 `installerPackageName=com.android.vending`, `lastUpdateTime=2026-09-21 15:27:25`, `firstInstallTime` still 11:57:38 (the
@@ -555,7 +555,7 @@ both `traineddata` files still carry the round-17 digests (`7d4322bd…`, `11f9e
 **Upload.** `--next-version-code` returned **11**; edit **`08321992585409943482`**, bundle versionCode 11 with the same
 sha256 as the local file, track `internal` release **"1.0.0 (11)"** `completed`, committed.
 
-**The vc10 → vc11 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc10, app
+**The vc10 → vc11 update path, through the Play Store app.** The 6T (`<6t-serial>`) started with Play's vc10, app
 force-stopped, on its launcher. The first **Update** press at **16:19:20** answered "all packs are unavailable" — Play had
 not finished publishing the new pack set; the second press, **16:24:51**, started the download within a minute
 (16:25:43). Play re-fetched both existing packs for the new version code (`inborn_model_fast` 1,280,876,968 B,
@@ -675,7 +675,7 @@ sha256 as the local file (`4b8ca8c7…`), track `internal` release **"1.0.0 (12)
 while Play was still processing the bundle, and the uploader's own probe-and-resume retry carried it through without
 re-sending what Google had already stored.
 
-**The vc11 → vc12 update path, through the Play Store app.** The 6T (`REDACTED-6T`) started with Play's vc11, app
+**The vc11 → vc12 update path, through the Play Store app.** The 6T (`<6t-serial>`) started with Play's vc11, app
 force-stopped, on its launcher, **15,901,540 KB (15.2 GB) free on `/data`**. The first **Update** press at **18:20:16**
 answered "all packs are unavailable" — Play had not finished publishing the new pack set, the same first-attempt
 behaviour vc11 saw. The second press, **18:24:48**, started the download within a minute (18:25:40). `versionCode=12` at
@@ -864,7 +864,7 @@ Pass `--name "1.0.0 (13)"`: without it the uploader names the release after the 
 
 ### The fresh Play install on the 6T
 
-The 6T (`REDACTED-6T`) started with round 18's locally signed release APK, app force-stopped, on its launcher. It was
+The 6T (`<6t-serial>`) started with round 18's locally signed release APK, app force-stopped, on its launcher. It was
 uninstalled at **22:18:00** (`pm uninstall` → Success), leaving **17,990,224 KB (17.2 GB)** free on `/data` and no
 Inborn on the phone.
 
@@ -1094,7 +1094,7 @@ Play's limits, all met: base + install-time **202,650,086 B** against the 4 GB c
 recovered it after two retries. `tracks.update` then `commit` both returned 200; the internal track lists version
 **14** with status `completed`, and Play's own sha256 for the artifact equals the local one.
 
-**The update on the 6T, in place through the Play Store.** The phone (`REDACTED-6T`, Android 11) held Play's **vc13** with
+**The update on the 6T, in place through the Play Store.** The phone (`<6t-serial>`, Android 11) held Play's **vc13** with
 all seven packs. No uninstall, no `bundletool install`, no `adb install`: the Play Store app was driven by keys only.
 
 The Update button cannot be reached the way section P describes. P's five TABs land on a different node in this
@@ -1247,7 +1247,7 @@ recovered it and vc13's `upload-patient.mjs` was not needed. `tracks.update` the
 from a fresh edit, the internal track lists `{"name":"1.0.0 (15)","versionCodes":["15"],"status":"completed"}` and
 Play's own sha256 for the artifact equals the local one.
 
-**The update on the 6T, in place through the Play Store.** The phone (`REDACTED-6T`, Android 11) held Play's **vc14**
+**The update on the 6T, in place through the Play Store.** The phone (`<6t-serial>`, Android 11) held Play's **vc14**
 with all seven packs. No uninstall, no `bundletool install`, no `adb install`: the Play Store app was driven by keys
 only, with section Q's containment rule — TAB until the focused node's bounds enclose the Update label's bounds.
 It took **seven** TABs again, and unlike vc14 the **first** press started the download: Play had already published the

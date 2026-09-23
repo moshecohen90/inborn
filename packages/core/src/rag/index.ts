@@ -5,7 +5,7 @@ export { chunkPage, segments, DEFAULT_CHUNK, type ChunkOptions, type PageChunk }
 export { Bm25Index, bm25Tokens, termsOf, isStopWord, type Bm25Hit } from "./bm25";
 export { VectorIndex, normalize, quantize, dequantize, cosine, cosineQuantized, type VectorHit } from "./vector";
 export { reciprocalRankFusion, mmr, type Ranked, type MmrCandidate } from "./fusion";
-export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDocuments, fenceMarkers, randomNonce, type StrippedText, type FencedPassage } from "./injection";
+export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDocuments, fenceMarkers, randomNonce, safeDocName, MAX_DOC_NAME, UNNAMED_DOC, type StrippedText, type FencedPassage } from "./injection";
 export { buildCitations, citationLabel, citationsForAnswer, citedNumbers, pageGlyph, pageUnit, snippetOf, PAGE_WORDS, type PageUnit, type PageWords } from "./citations";
 export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, NOTHING_RELEVANT_RULE, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_BM25, type PromptOptions } from "./prompt";
 export { indexDocument, chunkId, IndexCancelled, type IndexOptions } from "./indexer";

@@ -1,0 +1,298 @@
+{
+  "runId": "tidy-mueo9uel",
+  "startedAt": "2026-09-23T22:26:18.626Z",
+  "finishedAt": "2026-09-23T22:26:41.260Z",
+  "ok": true,
+  "passed": 17,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "inborn:///documents"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "doc-row-mueo7yfb-1-8t4q79fx ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "doc-delete appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 200,
+      "detail": "doc-delete ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "doc-row-mueo7atf-2-9817jd3z ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "doc-delete appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 200,
+      "detail": "doc-delete ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Close Documents Add file · PRO 6 documents · 408 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO door.jpg IMAGE · 1 page · 57.2 KB Scanned. Run OCR on this phone? Run OCR · PRO notes.html HTML · 2 parts · 140 B Indexed · 2 passages prices.xlsx XLSX · 1 sheet · 1.6 KB Indexed · 1 passage manual.pdf PDF · 80 pages · 98 KB Indexed · 240 passages bigdoc2.txt TXT · 82 parts · 231 KB Indexed · 219 passages kestrel4.pdf PDF · 1 page · 19.4 KB Indexed · 1 passage Select documents to ask INDEXED ON THIS DEVICE · sqlcipher"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mueeyj12-1-15sizyxq",
+          "text": "door.jpg IMAGE · 1 page · 57.2 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeyj12-1-15sizyxq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-mueeyj12-1-15sizyxq",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-mueeyj12-1-15sizyxq",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mueeo5on-2-hh70g8dk",
+          "text": "notes.html HTML · 2 parts · 140 B Indexed · 2 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeo5on-2-hh70g8dk",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueeo5on-2-hh70g8dk",
+          "text": "Indexed · 2 passages"
+        },
+        {
+          "testID": "doc-row-mueeo11v-1-4s899ke4",
+          "text": "prices.xlsx XLSX · 1 sheet · 1.6 KB Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeo11v-1-4s899ke4",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueeo11v-1-4s899ke4",
+          "text": "Indexed · 1 passage"
+        },
+        {
+          "testID": "doc-row-mueemyoi-2-tonetts8",
+          "text": "manual.pdf PDF · 80 pages · 98 KB Indexed · 240 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueemyoi-2-tonetts8",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueemyoi-2-tonetts8",
+          "text": "Indexed · 240 passages"
+        },
+        {
+          "testID": "doc-row-mueec26w-1-5qtg9xr5",
+          "text": "bigdoc2.txt TXT · 82 parts · 231 KB Indexed · 219 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueec26w-1-5qtg9xr5",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueec26w-1-5qtg9xr5",
+          "text": "Indexed · 219 passages"
+        },
+        {
+          "testID": "doc-row-muee8whs-1-m4yowwn4",
+          "text": "kestrel4.pdf PDF · 1 page · 19.4 KB Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muee8whs-1-m4yowwn4",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muee8whs-1-m4yowwn4",
+          "text": "Indexed · 1 passage"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "documents-after"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4143,
+      "detail": "T04-documents-tidied"
+    },
+    {
+      "i": 14,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "inborn:///"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3817,
+      "detail": "T05-home"
+    }
+  ],
+  "errors": []
+}

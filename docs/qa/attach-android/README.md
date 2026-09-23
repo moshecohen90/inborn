@@ -5,7 +5,7 @@ all. I attached a PDF: same problem. Did you check that everything in Pro works?
 indexing really work? If a user asks to answer only from his sources, does it really do that or does it invent from
 elsewhere?"*
 
-**One device.** Every row is the **OnePlus 6T** (`REDACTED-6T`, Android 11, 8 GB, tier `ANDROID-LEGACY`). Driven by keys
+**One device.** Every row is the **OnePlus 6T** (`<6t-serial>`, Android 11, 8 GB, tier `ANDROID-LEGACY`). Driven by keys
 (`TAB` / `DPAD_CENTER` / `input text`) plus the accessibility driver APK for the system pickers, which ignore
 injected touches on this phone. The licence on this phone is real and it **owns Pro** (paywall reads `YOU OWN PRO`),
 so every row below is a Pro row unless it says otherwise.

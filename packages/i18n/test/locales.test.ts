@@ -42,6 +42,17 @@ describe("locales", () => {
   });
 });
 
+describe("the paywall names only the stores that sell it (MosheAI item 8, 24.9.2026)", () => {
+  /* The app promised Windows and macOS while the site's own Get section said they come after iOS and Android. */
+  it("no locale sells Pro on a desktop store, and the Desktop button's string is gone with the button", () => {
+    for (const f of files) {
+      const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+      expect(d["paywall.noStore"], `${f} paywall.noStore`).not.toMatch(/windows|macos|màçÖS|Wïñdôws/i);
+      expect("paywall.web.desktop" in d, `${f} paywall.web.desktop`).toBe(false);
+    }
+  });
+});
+
 describe("sizes in copy (QA F24)", () => {
   /* Every line of the model step that shows a size takes it from the catalog; a number typed into a locale goes stale in silence. */
   const SIZED = ["onboarding.model.source.bundled", "onboarding.model.source.ready", "onboarding.model.source.play", "onboarding.model.source.playPending", "onboarding.model.source.https", "onboarding.model.download"];
@@ -80,6 +91,56 @@ describe("ledger labels in CJK locales (QA F32)", () => {
       for (const k of tokenLabels) {
         expect(l[k], `${f} ${k}`).not.toBe(en[k]);
         expect(l[k], `${f} ${k}`).toMatch(/[぀-ヿ一-鿿가-힯]/);
+      }
+    }
+  });
+});
+
+/**
+ * Round 48 (F212, F213). `proof.outIn` was the headline number of the trust screen and sat in English in
+ * all seven translations; `de.json` carried the only em dash in the nine files; `en.json` the only curly quotes; and
+ * `voice.onDevice` said PHONE on a tablet, a Mac and a browser while every neighbouring string used the select.
+ */
+describe("round 48 copy rules", () => {
+  const real = files.filter((f) => f !== "pseudo.json");
+  const load = (f: string) => JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
+
+  /* The readout of the one screen whose job is to be read: an English label here is an untranslated headline. */
+  const READOUT = ["proof.outIn", "proof.connections", "proof.sinceInstall"];
+  it("the Proof readout is translated in every locale, not left in English", () => {
+    for (const f of real.filter((x) => x !== "en.json")) {
+      const d = load(f);
+      for (const k of READOUT) expect(d[k], `${f} ${k}`).not.toBe(en[k]);
+    }
+  });
+
+  /* IBM Plex Sans has no U+2713: the fallback draws a symmetric V, so "sha256 \u2713" shipped as "sha256 \u221a".
+     The Proof screen draws the mark with the app's own check icon, and every verified line ends on what was verified. */
+  it("no locale spells a check mark the app font cannot draw", () => {
+    for (const f of files) {
+      const offenders = Object.entries(load(f)).filter(([, v]) => /[\u2713\u2714\u221a]/.test(v)).map(([k]) => k);
+      expect(offenders, f).toEqual([]);
+    }
+  });
+
+  it("no locale carries an em dash", () => {
+    for (const f of files) {
+      const offenders = Object.entries(load(f)).filter(([, v]) => v.includes("—")).map(([k]) => k);
+      expect(offenders, f).toEqual([]);
+    }
+  });
+
+  /* German „…" and French « … » are that language's typography and stay; the English file quotes settings plainly. */
+  it("en.json uses straight quotes", () => {
+    const offenders = Object.entries(en).filter(([, v]) => /[“”]/.test(v)).map(([k]) => k);
+    expect(offenders).toEqual([]);
+  });
+
+  it("every string that names the device you are holding takes it from {device}", () => {
+    for (const f of real) {
+      const d = load(f);
+      for (const k of ["voice.onDevice", "models.recommendedNone", "models.recommendedFor"]) {
+        expect(d[k], `${f} ${k}`).toContain("{device");
       }
     }
   });

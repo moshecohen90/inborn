@@ -1,0 +1,44 @@
+=== AFTER FIX: default SITE_ORIGIN build (no env var set) ===
+--- canonical ---
+   1 rel="canonical" href="https://inbornapp.com/"
+   1 rel="canonical" href="https://inbornapp.com/404"
+   1 rel="canonical" href="https://inbornapp.com/accessibility"
+   1 rel="canonical" href="https://inbornapp.com/blog"
+   1 rel="canonical" href="https://inbornapp.com/blog/choosing-a-model"
+   1 rel="canonical" href="https://inbornapp.com/blog/how-the-proof-works"
+   1 rel="canonical" href="https://inbornapp.com/blog/why-on-device"
+   1 rel="canonical" href="https://inbornapp.com/licenses"
+   1 rel="canonical" href="https://inbornapp.com/privacy"
+   1 rel="canonical" href="https://inbornapp.com/proof"
+   1 rel="canonical" href="https://inbornapp.com/support"
+   1 rel="canonical" href="https://inbornapp.com/terms"
+--- og:url ---
+   1 property="og:url" content="https://inbornapp.com/"
+   1 property="og:url" content="https://inbornapp.com/404"
+   1 property="og:url" content="https://inbornapp.com/accessibility"
+   1 property="og:url" content="https://inbornapp.com/blog"
+   1 property="og:url" content="https://inbornapp.com/blog/choosing-a-model"
+   1 property="og:url" content="https://inbornapp.com/blog/how-the-proof-works"
+   1 property="og:url" content="https://inbornapp.com/blog/why-on-device"
+   1 property="og:url" content="https://inbornapp.com/licenses"
+   1 property="og:url" content="https://inbornapp.com/privacy"
+   1 property="og:url" content="https://inbornapp.com/proof"
+   1 property="og:url" content="https://inbornapp.com/support"
+   1 property="og:url" content="https://inbornapp.com/terms"
+--- sitemap.xml loc ---
+<loc>https://inbornapp.com/</loc>
+<loc>https://inbornapp.com/proof</loc>
+<loc>https://inbornapp.com/support</loc>
+<loc>https://inbornapp.com/blog/why-on-device</loc>
+<loc>https://inbornapp.com/blog/how-the-proof-works</loc>
+<loc>https://inbornapp.com/blog/choosing-a-model</loc>
+<loc>https://inbornapp.com/blog</loc>
+<loc>https://inbornapp.com/privacy</loc>
+<loc>https://inbornapp.com/terms</loc>
+<loc>https://inbornapp.com/licenses</loc>
+<loc>https://inbornapp.com/accessibility</loc>
+--- robots.txt Sitemap ---
+Sitemap: https://inbornapp.com/sitemap.xml
+--- totals ---
+pages.dev host occurrences:        0
+inbornapp.com occurrences:      313

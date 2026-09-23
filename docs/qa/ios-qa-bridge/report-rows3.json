@@ -1,0 +1,404 @@
+{
+  "runId": "rows3-mueo7i6e",
+  "startedAt": "2026-09-23T22:24:42.229Z",
+  "finishedAt": "2026-09-23T22:25:36.914Z",
+  "ok": true,
+  "passed": 25,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 615,
+      "detail": "600 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 174,
+      "detail": "strict: off | attach: qa-reading.pdf"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 534,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 11,
+      "op": "type",
+      "ok": true,
+      "ms": 205,
+      "detail": "composer-input = 47 chars"
+    },
+    {
+      "i": 12,
+      "op": "send",
+      "ok": true,
+      "ms": 161,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs appeared"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Reading your document before answering…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading your document before answering…"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2277,
+      "detail": "T01-reading-notice"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 22180,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 536,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15009,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1595,
+      "detail": "T02-answer-after-reading"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The attached documents contain no information regarding the warranty terms. In one sentence, the attached documents do not contain any warranty information, as they appear to be unrelated to the specific product you are asking about. If you are asking about a product purchased or sold, please provide a link or description of the product, and I will be happy to check the product's specifications and warranty details.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The attached documents contain no information regarding the warranty terms. In one sentence, the attached documents do not contain any warranty information, as they appear to be unrelated to the speci"
+    },
+    {
+      "i": 21,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "inborn:///documents"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 23,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Close Documents Add file · PRO 8 documents · 506 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO qa-reading.pdf PDF · 80 pages · 98 KB Indexed · 240 passages qa-reading.pdf ? · 0 B The file is empty (0 bytes). door.jpg IMAGE · 1 page · 57.2 KB Scanned. Run OCR on this phone? Run OCR · PRO notes.html HTML · 2 parts · 140 B Indexed · 2 passages prices.xlsx XLSX · 1 sheet · 1.6 KB Indexed · 1 passage manual.pdf PDF · 80 pages · 98 KB Indexed · 240 passages bigdoc2.txt TXT · 82 parts · 231 KB Indexed · 219 passages kestrel4.pdf PDF · 1 page · 19.4 KB Indexed · 1 passage Select documents to ask INDEXED ON THIS DEVICE · sqlcipher"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mueo7yfb-1-8t4q79fx",
+          "text": "qa-reading.pdf PDF · 80 pages · 98 KB Indexed · 240 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueo7yfb-1-8t4q79fx",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueo7yfb-1-8t4q79fx",
+          "text": "Indexed · 240 passages"
+        },
+        {
+          "testID": "doc-row-mueo7atf-2-9817jd3z",
+          "text": "qa-reading.pdf ? · 0 B The file is empty (0 bytes).",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueo7atf-2-9817jd3z",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-mueo7atf-2-9817jd3z",
+          "text": "The file is empty (0 bytes)."
+        },
+        {
+          "testID": "doc-row-mueeyj12-1-15sizyxq",
+          "text": "door.jpg IMAGE · 1 page · 57.2 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeyj12-1-15sizyxq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-mueeyj12-1-15sizyxq",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-mueeyj12-1-15sizyxq",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mueeo5on-2-hh70g8dk",
+          "text": "notes.html HTML · 2 parts · 140 B Indexed · 2 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeo5on-2-hh70g8dk",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueeo5on-2-hh70g8dk",
+          "text": "Indexed · 2 passages"
+        },
+        {
+          "testID": "doc-row-mueeo11v-1-4s899ke4",
+          "text": "prices.xlsx XLSX · 1 sheet · 1.6 KB Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueeo11v-1-4s899ke4",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueeo11v-1-4s899ke4",
+          "text": "Indexed · 1 passage"
+        },
+        {
+          "testID": "doc-row-mueemyoi-2-tonetts8",
+          "text": "manual.pdf PDF · 80 pages · 98 KB Indexed · 240 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueemyoi-2-tonetts8",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueemyoi-2-tonetts8",
+          "text": "Indexed · 240 passages"
+        },
+        {
+          "testID": "doc-row-mueec26w-1-5qtg9xr5",
+          "text": "bigdoc2.txt TXT · 82 parts · 231 KB Indexed · 219 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mueec26w-1-5qtg9xr5",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mueec26w-1-5qtg9xr5",
+          "text": "Indexed · 219 passages"
+        },
+        {
+          "testID": "doc-row-muee8whs-1-m4yowwn4",
+          "text": "kestrel4.pdf PDF · 1 page · 19.4 KB Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muee8whs-1-m4yowwn4",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muee8whs-1-m4yowwn4",
+          "text": "Indexed · 1 passage"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "documents"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1917,
+      "detail": "T03-documents"
+    }
+  ],
+  "errors": []
+}

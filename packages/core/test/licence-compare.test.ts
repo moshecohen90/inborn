@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { COMPARE_ROWS, COMPARE_TIERS, PAYWALL_REASONS, can, compareCell, compareRowShips, limits, paywallFor, reasonOf, type Feature } from "../src/licence";
+import { COMPARE_APP_ONLY, COMPARE_ROWS, COMPARE_TIERS, PAYWALL_REASONS, can, compareCell, compareRowShips, limits, paywallFor, reasonOf, type Feature } from "../src/licence";
 
 const en = JSON.parse(readFileSync(join(__dirname, "../../i18n/locales/en.json"), "utf8")) as Record<string, string>;
 
@@ -35,6 +35,13 @@ describe("Free / Pro / Work table (§7.3)", () => {
     expect(compareCell(COMPARE_ROWS.find((r) => r.id === "photos")!, "free")).toEqual({ kind: "count", n: 1 });
     expect(compareCell(COMPARE_ROWS.find((r) => r.id === "files")!, "pro")).toEqual({ kind: "unlimited" });
   });
+  /* A ✓ a browser reader cannot act on is the one row that reads as a promise (MosheAI item 12, 24.9.2026). */
+  it("the app-only marks name real rows, and only rows whose tick the web build cannot honour", () => {
+    const rowIds = COMPARE_ROWS.map((r) => r.id);
+    for (const id of COMPARE_APP_ONLY) expect(rowIds, id).toContain(id);
+    expect(COMPARE_APP_ONLY).toContain("ocr");
+    expect("paywall.compare.appOnly" in en).toBe(true);
+  });
   it("Work is worth its column: rows Pro does not have", () => {
     const workOnly = COMPARE_ROWS.filter((r) => compareCell(r, "work").kind === "yes" && compareCell(r, "pro").kind === "no");
     expect(workOnly.map((r) => r.id)).toEqual(["vaults", "redaction", "office", "audit", "signed"]);
@@ -47,6 +54,21 @@ describe("why the paywall opened", () => {
     expect(reasonOf({ kind: "document", existing: 1 })).toBe("document");
     expect(reasonOf({ kind: "persona", existing: 3 })).toBe("persona");
     expect(reasonOf({ kind: "model", proOnly: true })).toBe("model");
+  });
+  /* F201: three features are the same refusal as a moment; they shipped the same sentence twice in every locale. */
+  it("a feature that is the same refusal as a moment answers with the moment's reason", () => {
+    expect(reasonOf({ kind: "feature", feature: "unlimitedPersonas" })).toBe("persona");
+    expect(reasonOf({ kind: "feature", feature: "proModels" })).toBe("model");
+    expect(reasonOf({ kind: "feature", feature: "officeIngest" })).toBe("office");
+    for (const f of ["unlimitedPersonas", "proModels", "officeIngest"] as const) expect(PAYWALL_REASONS).not.toContain(f);
+  });
+  it("no two reasons ship the same sentence, so there is nothing to drift", () => {
+    const byText = new Map<string, string[]>();
+    for (const r of PAYWALL_REASONS) {
+      const text = (en as Record<string, string>)[`paywall.why.${r}`]!;
+      byText.set(text, [...(byText.get(text) ?? []), r]);
+    }
+    expect([...byText.values()].filter((rs) => rs.length > 1)).toEqual([]);
   });
   it("every reason a screen can raise has a one-line why in en.json", () => {
     expect(PAYWALL_REASONS.filter((r) => !(`paywall.why.${r}` in en))).toEqual([]);

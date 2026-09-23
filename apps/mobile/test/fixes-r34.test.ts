@@ -35,11 +35,12 @@ describe("F100 · the attach sheet's Add a file opens a chooser in the browser",
     expect(body.slice(0, body.indexOf("input.click()")), "an await above the click loses the activation").not.toContain("await ");
   });
 
-  it("the web door asks the same gate as the phone's, so a browser cannot walk past the Free cap", () => {
-    for (const door of ["documents/importPicker.ts", "documents/importPicker.web.ts"]) {
-      expect(source(door), door).toContain("fileIntake");
-      expect(source(door), door).toContain("paywallFor");
-    }
+  it("the browser walks the one gated sequence the phone walks, not a copy of it", () => {
+    /* Round 47: the two pickers became one. The gates live in the sequence; the behaviour is in pickPlan.test.ts. */
+    expect(source("documents/importPicker.ts")).toContain("runPick(");
+    expect(source("documents/pickPlan.ts")).toContain("fileIntake");
+    expect(source("documents/pickPlan.ts")).toContain("paywallFor");
+    expect(source("documents/importPicker.ts"), "the one door must pick through the platform-split chooser").toContain("chooseFile(PICK_TYPES)");
   });
 });
 

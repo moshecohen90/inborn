@@ -48,7 +48,7 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   );
   return (
     <Modal key={presented.key} visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose} onShow={presented.onShow}>
-      <Pressable style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
+      <Pressable testID={testID ? `${testID}-close` : "sheet-close"} style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
       {wide ? (
         <View pointerEvents="box-none" style={styles.centre}>
           <View testID={testID} style={[styles.dialog, panelStyle, { maxHeight: geometry.maxHeight, backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>

@@ -117,7 +117,7 @@ mark.ph { background: var(--mark-bg); color: var(--text); border-radius: 4px; pa
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; margin: 16px 0 16px; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; min-width: 760px; }
 th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--border); }
-/* A size or a licence broken over two lines reads as two values; the table scrolls in its own box instead. */
+/* A size or a license broken over two lines reads as two values; the table scrolls in its own box instead. */
 td .mono, td.mono { white-space: nowrap; }
 th { color: var(--text-3); font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-1); }
 tbody tr:last-child td { border-bottom: 0; }
@@ -174,6 +174,7 @@ tbody tr:last-child td { border-bottom: 0; }
 }
 .readout b { font-weight: 500; color: var(--accent); }
 .readout .ok { color: var(--sealed); }
+.readout-cap { margin: 8px 0 0; font-size: 12px; line-height: 16px; color: var(--text-3); letter-spacing: 0.02em; }
 
 /* ---------- landing: bands ---------- */
 /* A numbered rail beside each band, not a stack of centred cards: at 1024+ the page reads as an instrument panel. */

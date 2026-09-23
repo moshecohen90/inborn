@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
-import { radius, type Theme } from "@inborn/ui";
+import { Icon, radius, type Theme } from "@inborn/ui";
 import { delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
@@ -51,6 +51,9 @@ function BrowserShell({ children }: { children: ReactNode }) {
 
 function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline: OfflineState }) {
   const { t } = useTranslation();
+  /* Four stacked notices above an empty chat read as friction whatever each one says (Moshe, 24.9): one line, and the
+     rest behind a disclosure the reader opens once. Nothing is removed, only folded. */
+  const [open, setOpen] = useState(false);
   const phone = boot.gate.formFactor === "phone";
   const switchEngine = (on: boolean) => {
     writeEnginePref(on ? "chrome-nano" : "wllama");
@@ -60,22 +63,35 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
   return (
     <View testID="web-strip" style={[styles.strip, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
       <View style={styles.stripText}>
-        <Text style={[styles.caption, { color: theme.text2 }]}>{t("web.notice")}</Text>
+        <View style={styles.summaryRow}>
+          <Text style={[styles.caption, styles.grow, { color: theme.text2 }]}>{t("web.notice")}</Text>
+          <Pressable testID="web-strip-details" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.detailsBtn}>
+            <Icon name={open ? "chevronDown" : "chevronRight"} size={14} color={theme.text2} />
+            <Text style={[styles.caption, styles.strong, { color: theme.text2 }]}>{t("web.details")}</Text>
+          </Pressable>
+        </View>
+        {/* The phone limit is a door, not a notice: it stays out where the reader it applies to cannot miss it. */}
         {phone ? (
           <Text testID="phone-door" style={[styles.caption, { color: theme.text }]}>
             {t(boot.gate.iphone ? "web.iphoneDoor" : "web.phoneLimit")}
           </Text>
         ) : null}
-        {boot.gate.ramGB === null && !phone ? <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.unknownMemory")}</Text> : null}
-        <Text testID="web-offline-state" style={[styles.mono, { color: offline === "ready" ? theme.sealed : theme.text3 }]}>
-          {t(offline === "ready" ? "web.offlineReady" : offline === "installing" ? "web.offlinePreparing" : "web.offlineUnavailable")}
-          {" · "}
-          {t("webStorageNotice")}
-        </Text>
-        {boot.chromePromptApi ? (
-          <View style={styles.switchRow}>
-            <Toggle testID="engine-switch" value={boot.engine === "chrome-nano"} onChange={switchEngine} />
-            <Text style={[styles.caption, { color: theme.text }]}>{t("web.engine.chrome")}</Text>
+        {open ? (
+          <View testID="web-strip-detail" style={styles.stripDetail}>
+            {boot.gate.ramGB === null && !phone ? <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.unknownMemory")}</Text> : null}
+            {/* §9.2/§9.3: mono and the sealed green belong to the state word alone; the caveat is a sentence, so it is body text. */}
+            <Text testID="web-offline-state" style={[styles.mono, { color: offline === "ready" ? theme.sealed : theme.text3 }]}>
+              {t(offline === "ready" ? "web.offlineReady" : offline === "installing" ? "web.offlinePreparing" : "web.offlineUnavailable")}
+            </Text>
+            <Text testID="web-storage-notice" style={[styles.caption, { color: theme.text2 }]}>
+              {t("webStorageNotice")}
+            </Text>
+            {boot.chromePromptApi ? (
+              <View style={styles.switchRow}>
+                <Toggle testID="engine-switch" value={boot.engine === "chrome-nano"} onChange={switchEngine} />
+                <Text style={[styles.caption, { color: theme.text }]}>{t("web.engine.chrome")}</Text>
+              </View>
+            ) : null}
           </View>
         ) : null}
       </View>
@@ -188,6 +204,10 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   strip: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 12, paddingVertical: 6, borderBottomWidth: 1 },
   stripText: { flex: 1, gap: 2 },
+  summaryRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  stripDetail: { gap: 2, paddingTop: 2 },
+  detailsBtn: { flexDirection: "row", alignItems: "center", gap: 3, minHeight: 28 },
+  grow: { flex: 1 },
   getApp: { minHeight: 32, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },

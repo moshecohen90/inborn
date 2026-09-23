@@ -235,6 +235,9 @@ try {
     out.storageAfter = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
     out.persisted = await page.evaluate(() => navigator.storage.persisted());
     await chat(page, out, PROMPT, consoleLines);
+    /* The strip shows one line and folds the rest (MosheAI item 6, 24.9); the offline state is inside that disclosure. */
+    await page.getByTestId("web-strip-details").click();
+    await page.getByTestId("web-strip-detail").waitFor({ timeout: 30_000 });
     out.offlineState = (await page.getByTestId("web-offline-state").textContent()) ?? "";
     if (hasServiceWorker) {
       await page.evaluate(() => navigator.serviceWorker.ready);

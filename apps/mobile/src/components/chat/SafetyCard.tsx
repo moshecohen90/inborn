@@ -4,12 +4,15 @@ import type { CrisisResource } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
+import { useConnectivity } from "../../proof/connectivity";
 
 /** Resources card above the answer when crisis language is detected (§8.2 S14). Never blocks the chat; dismissible. */
 export function SafetyCard({ resources, onDismiss }: { resources: CrisisResource[]; onDismiss: () => void }) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
+  /* A card that hands out phone numbers cannot promise a call in the one mode this product asks for (F214). */
+  const net = useConnectivity(5000);
   return (
     <View testID="safety-card" style={[shape.card, styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]} accessibilityLiveRegion="polite">
       <Text style={[type.heading, { color: theme.text }]}>{t("safety.title")}</Text>
@@ -20,6 +23,7 @@ export function SafetyCard({ resources, onDismiss }: { resources: CrisisResource
           <Text style={[type.body, type.strong, { color: theme.accent }]}>{r.phone}</Text>
         </Pressable>
       ))}
+      {net.offline ? <Text testID="safety-needs-signal" style={[type.caption, { color: theme.text2 }]}>{t("safety.needsSignal")}</Text> : null}
       <Pressable testID="safety-dismiss" accessibilityRole="button" onPress={onDismiss} style={styles.dismiss}>
         <Text style={[type.caption, { color: theme.text2 }]}>{t("safety.dismiss")}</Text>
       </Pressable>
