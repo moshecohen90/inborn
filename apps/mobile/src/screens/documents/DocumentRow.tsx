@@ -4,6 +4,7 @@ import { Icon, radius, type Theme } from "@inborn/ui";
 import { formatBytes, pageUnit, type DocumentRecord, type IndexProgress } from "@inborn/core";
 import { font } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { documentState } from "../../documents/stateText";
 
 export interface DocumentRowProps {
   doc: DocumentRecord;
@@ -27,28 +28,8 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
   const { t } = useTranslation();
   const pages = doc.pages ? t(`documents.${pageUnit(doc.kind)}s`, { count: doc.pages }) : null;
   const meta = [kindLabel(doc.kind), pages, formatBytes(doc.bytes)].filter(Boolean).join(" · ");
-  const state = (): { text: string; color: string } => {
-    switch (doc.status) {
-      case "indexing": {
-        const total = Math.max(1, progress?.pages ?? doc.pages);
-        const page = progress?.page ?? doc.indexedPages;
-        return { text: t("documents.state.indexing", { percent: Math.floor((100 * page) / total), page, pages: total }), color: theme.accent };
-      }
-      case "queued":
-        return { text: t("documents.state.queued"), color: theme.text3 };
-      case "indexed":
-        return { text: t("documents.state.indexed", { count: doc.chunkCount }), color: theme.sealed };
-      case "needs-ocr":
-        return { text: t("documents.state.needsOcr", { device: deviceNoun() }), color: theme.accent };
-      case "cancelled":
-        return { text: t("documents.state.cancelled", { page: doc.indexedPages, pages: doc.pages }), color: theme.text2 };
-      case "empty":
-        return { text: t(doc.bytes === 0 ? "documents.error.empty" : "documents.state.empty"), color: theme.danger };
-      case "failed":
-        return { text: t(`documents.error.${doc.error ?? "corrupt"}`, { defaultValue: t("documents.state.failed", { error: doc.error ?? "" }) }), color: theme.danger };
-    }
-  };
-  const s = state();
+  const st = documentState(doc, t, deviceNoun(), progress);
+  const s = { text: st.text, color: { progress: theme.accent, waiting: theme.text3, ready: theme.sealed, attention: theme.accent, paused: theme.text2, error: theme.danger }[st.tone] };
   const canSelect = doc.chunkCount > 0;
   return (
     <Pressable testID={`doc-row-${doc.id}`} onPress={onPress} style={[styles.row, { backgroundColor: theme.surface1, borderColor: selected ? theme.accent : theme.border }]}>

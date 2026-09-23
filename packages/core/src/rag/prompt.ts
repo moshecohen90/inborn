@@ -35,6 +35,9 @@ export interface PromptOptions {
 /** The exact token the model returns when strict mode finds nothing; the app renders the localized sentence instead. */
 export const NOT_FOUND_TOKEN = "NOT_FOUND_IN_DOCUMENTS";
 
+/** Outside strict mode the user still gets an answer, but it must open by admitting the documents had nothing on the question. */
+export const NOTHING_RELEVANT_RULE = "The user's attached documents contain nothing about this question. Begin by saying that in one sentence, then answer from general knowledge if you can.";
+
 export const DEFAULT_ANSWER_RESERVE = 512;
 export const DEFAULT_HISTORY_SHARE = 0.35;
 /* nomic-embed puts unrelated text around 0.4; related passages score 0.6+. The hash embedder used in tests sits far lower. */
@@ -82,7 +85,8 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
   if (o.strict && !relevant.length) {
     return { messages: [], citations: [], used: [], droppedForBudget: 0, noAnswer: true, promptTokens: 0 };
   }
-  const candidates = o.strict ? relevant : o.hits;
+  /* The floor decides the passages in both modes: an answer the documents did not carry must not be handed a SOURCES list (QA F161). */
+  const candidates = relevant;
   const system = base + rules(nonce, o.strict, o.answerLanguage, o.citeMarkers ?? true);
   const fixed = estimateTokens(system) + estimateTokens(o.question) + 24;
   const historyBudget = Math.floor(o.nCtx * (o.historyShare ?? DEFAULT_HISTORY_SHARE));
@@ -108,8 +112,9 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
   }
   if (!used.length) {
     if (o.strict) return { messages: [], citations: [], used: [], droppedForBudget: dropped, noAnswer: true, promptTokens: 0 };
-    /* No room for any passage: the model answers the plain question and is told the documents did not fit. */
-    const plain: Message[] = [{ role: "system", content: `${base}The user's documents could not be included; answer from general knowledge and say so.` }, ...history, { role: "user", content: o.question }];
+    /* Nothing relevant is a different story from nothing that fits: the first must be said out loud, the second only explained. */
+    const why = relevant.length ? "The user's documents could not be included; answer from general knowledge and say so." : NOTHING_RELEVANT_RULE;
+    const plain: Message[] = [{ role: "system", content: `${base}${why}` }, ...history, { role: "user", content: o.question }];
     return { messages: plain, citations: [], used: [], droppedForBudget: dropped, noAnswer: false, promptTokens: fixed + historyTokens };
   }
   const context = fenceDocuments(passages, nonce);

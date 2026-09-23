@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { FlatList, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../services/theme";
-import { File } from "expo-file-system";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
@@ -18,6 +17,7 @@ import { listClipping } from "../../lib/listClipping";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
 import { PICK_TYPES, pickedName, sniffPicked } from "../../documents/office";
+import { chooseFile } from "../../documents/chooseFile";
 import { planDrop } from "../../documents/dropped";
 import { openDropped } from "../../documents/drop";
 import { droppedPaths, subscribeDroppedPaths, takeDroppedPaths } from "../../documents/dropQueue";
@@ -124,17 +124,17 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       return;
     }
     try {
-      const picked = await File.pickFileAsync({ multipleFiles: false, mimeTypes: PICK_TYPES });
-      if (picked.canceled) return;
-      const name = pickedName(picked.result.uri, picked.result.name);
+      const picked = await chooseFile(PICK_TYPES);
+      if (!picked) return;
+      const name = pickedName(picked.uri, picked.name);
       /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
-      const verdict = fileIntake(tier, sniffPicked(picked.result.uri, name), state.documents.length);
+      const verdict = fileIntake(tier, sniffPicked(picked.uri, name), state.documents.length);
       if (proOverride === undefined && verdict.kind === "paywall") {
         if (verdict.moment === "office") setWorkMoment(true);
         else onUnlock?.("document");
         return;
       }
-      await importUri(picked.result.uri, name);
+      await importUri(picked.uri, name);
     } catch (e: unknown) {
       console.warn("[documents] pick", e);
     }

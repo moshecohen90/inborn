@@ -7,6 +7,8 @@ import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
 import { Toggle } from "../shell/primitives";
+import { documentState } from "../../documents/stateText";
+import { deviceNoun } from "../../lib/deviceNoun";
 
 interface Props {
   visible: boolean;
@@ -65,7 +67,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
               key={d.id}
               testID={`attach-${d.id}`}
               label={d.name}
-              hint={locked ? t("quick.filePro") : ready ? t("documents.state.indexed", { count: d.chunkCount }) : t("chat.attach.notIndexed")}
+              hint={locked ? t("quick.filePro") : documentState(d, t, deviceNoun()).text}
               disabled={!ready && !on && !locked}
               onPress={() => (locked ? onUnlock?.("document") : on ? onDetach(d.id) : onAttach(d.id))}
               trailing={

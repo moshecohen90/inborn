@@ -452,6 +452,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
+      /* Attached but unreadable (a scan with no text layer): the turn falls through to the model, so say the files are not in this answer (QA F161). */
+      if (turn.kind === "model" && docs.documents.length) flash(t("documents.noneMatched"));
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
       if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
         await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
@@ -474,6 +476,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             await answerWithoutModel("documents.notFound");
             return;
           }
+          /* Outside strict mode the answer still comes, from general knowledge: say so, because a small model will not (QA F161). */
+          if (!rag.prompt.used.length) flash(t("documents.noneMatched"));
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
         } catch (e: unknown) {
