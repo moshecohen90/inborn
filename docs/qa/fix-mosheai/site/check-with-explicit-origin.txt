@@ -1,0 +1,7 @@
+
+> @inborn/site@0.0.1 check /Users/moshecohen/dev/inborn-wt/fix-mosheai/apps/site
+> node build.mjs && node check.mjs
+
+built 12 pages → dist: /404 / /proof /support /blog/why-on-device /blog/how-the-proof-works /blog/choosing-a-model /blog /privacy /terms /licenses /accessibility
+store links render as "Opens at launch" (STORES_LIVE=1 once both listings resolve)
+✓ 12 pages: no scripts, no external assets, no dead links, CSP present

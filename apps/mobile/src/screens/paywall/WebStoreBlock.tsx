@@ -38,7 +38,8 @@ export function WebStoreBlock({ theme }: { theme: Theme }) {
         {t("paywall.web.priceNote")}
       </Text>
       <View style={styles.buttons}>
-        {(["appStore", "play", "desktop"] as const).map((where) => (
+        {/* Windows and macOS have no listing yet, and the site's Get section says so; a Desktop button here contradicted it. */}
+        {(["appStore", "play"] as const).map((where) => (
           <Pressable
             key={where}
             testID={`web-get-${where}`}

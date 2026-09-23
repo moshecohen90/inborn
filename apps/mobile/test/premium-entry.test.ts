@@ -56,21 +56,25 @@ describe("F146 · the second file in the attach sheet is a gate, not a free tick
   const chat = read("screens/Chat.tsx");
   const sheet = read("components/chat/AttachSheet.tsx");
   it("Chat asks the document moment before attaching", () => {
-    expect(chat).toContain('const attachLocked = paywallFor(tier, { kind: "document", existing: docs.documents.length });');
     /* Round 37 moved the tap itself onto fileIntake, which also answers for the Work formats the library already holds (QA F129). */
     expect(chat).toContain("const verdict = planLibraryAttach(tier, libraryState.documents, id, docs.documents.length);");
     expect(chat).toContain('if (verdict.kind === "ok") return docs.attach(id);');
-    expect(chat).toContain("onOpenPaywall?.(verdict.moment)");
+    /* One refusal for every file door (round 47): the line first, the paywall once the sheet is out of the way. */
+    expect(chat).toContain("refuseFile(verdict.moment)");
+    expect(chat).toContain("flash(t(fileRefusalKey(moment)))");
   });
-  it("Chat hands the sheet the lock, so the rows can show it before the tap", () => {
-    expect(chat).toContain("attachLocked={attachLocked}");
+  it("Chat hands the sheet the licence and the same count the tap gates on (F199)", () => {
+    expect(chat).toContain("tier={tier}");
+    expect(chat).toContain("attachedCount={docs.documents.length}");
+    expect(chat, "a second lock beside planLibraryAttach is the F199 defect").not.toContain("attachLocked");
   });
   it("a locked row stays tappable, wears the PRO tag and says why", () => {
-    expect(sheet).toContain("const locked = !!attachLocked && !on;");
+    /* Which rows lock, and with which moment, is proven in src/documents/libraryAttach.test.ts (F199). */
+    expect(sheet).toContain("attachRowLock(tier, documents, d.id, attachedCount, on)");
     expect(sheet).toContain("disabled={!ready && !on && !locked}");
-    expect(sheet).toContain('onPress={() => (locked ? onUnlock?.("document")');
-    expect(sheet).toContain('hint={locked ? t("quick.filePro")');
-    expect(sheet).toContain('<ProTag onPress={() => onUnlock?.("document")} />');
+    expect(sheet).toContain("onPress={() => (locked ? onUnlock?.(why)");
+    expect(sheet).toContain("hint={locked && moment ? t(fileRefusalKey(moment))");
+    expect(sheet).toContain("<ProTag onPress={() => onUnlock?.(why)} />");
   });
   it("the strict switch names its own reason rather than the sheet's", () => {
     expect(sheet).toContain('onUnlock?.("strictDocuments")');
@@ -141,8 +145,10 @@ describe("F149 · the browser paywall names the price and the way to buy", () =>
     expect(block).not.toMatch(/\$\s?\d/);
     expect(block).toContain('t("paywall.web.priceNote")');
   });
-  it("offers all three ways to the app", () => {
-    expect(block).toContain('(["appStore", "play", "desktop"] as const)');
+  /* Windows and macOS have no listing, and the site's Get section says so; a Desktop button contradicted it (MosheAI item 8, 24.9). */
+  it("offers only the two stores that have a listing", () => {
+    expect(block).toContain('(["appStore", "play"] as const)');
+    expect(block).not.toContain('"desktop"');
     expect(block).toContain("testID={`web-get-${where}`}");
     expect(block).toContain("STORE_LINKS[where]");
   });

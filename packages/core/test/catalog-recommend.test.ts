@@ -24,9 +24,9 @@ describe("recommendModel (spec §7.8: use + language + device)", () => {
   });
   it("code in Hebrew: Hebrew is basic on Sharp and Phi alike, so the use decides: Phi", () => {
     expect(recommendModel(input({ use: "code", languageCode: "he" }))!.model.id).toBe("sharp-phi");
-    /* §7.8 ranks language above use, so Fast (ar native after the 20.9 run) now leads Arabic even for code, where it is weak. */
+    /* §7.8 ranks language above use; Fast and Sharp are both `good` at Arabic since the 24.9 downgrade, so the use breaks the tie. */
     expect(ids(rankModels(input({ languageCode: "ar" })))).toEqual(["fast", "sharp", "instant", "sharp-phi"]);
-    expect(recommendModel(input({ use: "code", languageCode: "ar" }))!.model.id).toBe("fast");
+    expect(recommendModel(input({ use: "code", languageCode: "ar" }))!.model.id).toBe("sharp");
   });
   it("a 4 GB phone only ever hears about Instant, whatever the use or language", () => {
     expect(ids(rankModels(input({ device: phone(4), languageCode: "he", use: "code" })))).toEqual(["instant"]);
@@ -113,7 +113,7 @@ describe("adviseModel (the chat card)", () => {
   it("Arabic on Instant: Fast is good at it (basic → good), installed or not; no 'best' line since Fast is the top pick", () => {
     const a = advise("instant", { languageCode: "ar", installed: ["instant", "fast"] })!;
     expect(a.better.model.id).toBe("fast");
-    expect(a.language).toEqual({ code: "ar", from: "basic", to: "native" });
+    expect(a.language).toEqual({ code: "ar", from: "basic", to: "good" });
     expect(a.best).toBeUndefined();
     expect(advise("instant", { languageCode: "ar", installed: ["instant"] })!.better.model.id).toBe("fast");
   });
@@ -146,9 +146,10 @@ describe("adviseModel (the chat card)", () => {
     expect(a.better.model.id).toBe("sharp-phi");
     expect(a.language).toEqual({ code: "he", from: "none", to: "basic" });
     expect(a.use?.to).toBe("best");
-    /* Phi-installed user writing Arabic prose: Phi is basic, and Fast is the top Arabic model after the 20.9 upgrade. */
+    /* Phi-installed user writing Arabic prose: Phi is basic at Arabic; Sharp is good at it and best at writing, so it wins both dimensions. */
     const b = advise("sharp-phi", { use: "writing", languageCode: "ar", installed: ["sharp-phi"] })!;
-    expect(b.better.model.id).toBe("fast");
+    expect(b.better.model.id).toBe("sharp");
+    expect(b.language).toEqual({ code: "ar", from: "basic", to: "good" });
   });
   it("both dimensions at once carry both reasons and one key", () => {
     const a = advise("instant", { use: "code", languageCode: "he", installed: ["instant", "sharp"] })!;

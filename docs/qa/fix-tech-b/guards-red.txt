@@ -1,0 +1,27 @@
+Round 47b, stream fix-tech — each guard watched red before green.
+Full output: SCRATCH/fix-tech-b/red-f25*.log (SCRATCH = /private/tmp/claude-501/
+-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad).
+
+F257  apps/mobile/test/storeBundleGate.test.ts
+      revert: the pre-fix rule — isDevBuild = devBundle || devModelHost, allowsTestPurchases = devBundle ||
+              testPurchaseFlag — and the app.config.ts refusal removed with it
+      red:    4 failed | 6 passed (10)          green after: 10 passed
+      The four are the whole-space sweep (no combination of environment switches may open a store bundle), the
+      "switch alone is not enough" row, the "dev host is not a dev build" row and the config throw.
+
+F258  the same file, the shell gate
+      sabotage: check-store-env.sh stops reading scripts/dev-switches.txt and checks one variable
+      red:    1 failed | 9 passed (10)          green after: 10 passed
+      "refuses every switch on its list, one at a time" — the run is a real `bash scripts/check-store-env.sh`
+      per switch, asserting exit 1 and the variable named in the output.
+
+F259  the same file, the config gate alone
+      sabotage: only the `if (!dev) { … throw }` block removed from app.config.ts
+      red:    1 failed | 9 passed (10)          green after: 10 passed
+      The app config is imported per case with the environment set, so the throw is the behaviour under test,
+      not a source string.
+
+Complement kept green throughout: a dev bundle and the QA release variant
+(APP_VARIANT=development + EXPO_PUBLIC_ALLOW_TEST_PURCHASES=1, docs/qa/purchases-run-2026-09-11.md) still verify
+sandbox proofs, a clean shell still passes check-store-env.sh, and `pn web:build` runs the config with the new
+refusal in place.

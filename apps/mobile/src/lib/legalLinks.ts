@@ -5,7 +5,9 @@
  * Opening it is `Linking.openURL`, which hands the URL to the system browser: it needs no INTERNET permission, so
  * this stays true on Android, where the app has none (D3).
  */
-export const SITE_ORIGIN = "https://inbornapp.com";
+import { SITE_ORIGIN } from "@inborn/core";
+
+export { SITE_ORIGIN };
 
 export type LegalLink = "privacy" | "terms" | "licenses" | "accessibility";
 

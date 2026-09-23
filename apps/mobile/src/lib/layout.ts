@@ -16,20 +16,15 @@ export const ACTION_WIDTH = 420;
 /** The onboarding card of §8.9 on a wide window: one object to look at instead of a screen-tall phone layout. */
 export const CARD_WIDTH = 480;
 
-/** Max width of a reading / settings column, or undefined where the window's own gutters are the whole rule. */
-export function contentMaxWidth(width: number): number | undefined {
-  return width >= WIDE_MIN ? COLUMN_WIDTH : undefined;
-}
+/** A cap applies only in the sidebar shell; below it the window's own gutters are the whole rule. */
+export const maxWidthAbove = (width: number, cap: number): number | undefined => (width >= WIDE_MIN ? cap : undefined);
 
+/** Max width of a reading / settings column. */
+export const contentMaxWidth = (width: number): number | undefined => maxWidthAbove(width, COLUMN_WIDTH);
 /** Max width of stacked page actions (footer buttons, full-width CTAs). */
-export function actionMaxWidth(width: number): number | undefined {
-  return width >= WIDE_MIN ? ACTION_WIDTH : undefined;
-}
-
-/** Max width of the centred onboarding card, or undefined where onboarding keeps the full-bleed phone layout. */
-export function cardMaxWidth(width: number): number | undefined {
-  return width >= WIDE_MIN ? CARD_WIDTH : undefined;
-}
+export const actionMaxWidth = (width: number): number | undefined => maxWidthAbove(width, ACTION_WIDTH);
+/** Max width of the centred onboarding card. */
+export const cardMaxWidth = (width: number): number | undefined => maxWidthAbove(width, CARD_WIDTH);
 
 export function layoutModeFor(width: number): LayoutMode {
   if (width >= DESKTOP_MIN) return "desktop";

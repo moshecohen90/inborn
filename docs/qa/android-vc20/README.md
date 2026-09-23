@@ -16,7 +16,7 @@ Where the write-up lives:
 | `docs/qa/purchases-run-2026-09-11.md` **§W** | the build, the gates, the upload, the Play update and every phone row of this pass |
 | `docs/qa/qa-run-2026-09-11.md` **F180–F184** | the same rows as findings, including the driver traps that cost this run its time |
 
-**One device.** Every row is the **OnePlus 6T** (`REDACTED-6T`, Android 11, 8 GB, tier `ANDROID-LEGACY`), running the
+**One device.** Every row is the **OnePlus 6T** (`<6t-serial>`, Android 11, 8 GB, tier `ANDROID-LEGACY`), running the
 real Play build on Moshe's own licence, which owns **Pro**.
 
 ## The files

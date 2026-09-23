@@ -6,7 +6,7 @@ Spec basis: §14.7 (categories), §10 (every row is a test), §5.9, §11.5. This
 
 | Id | What | Role | Notes |
 |---|---|---|---|
-| D-AND-FLOOR | OnePlus 6T (`adb -s REDACTED-6T`), Snapdragon 845, Android 11, 8 GB | Android floor device | Shared with other streams; CPU only, no NPU, arm64 with dotprod |
+| D-AND-FLOOR | OnePlus 6T (`adb -s <6t-serial>`), Snapdragon 845, Android 11, 8 GB | Android floor device | Shared with other streams; CPU only, no NPU, arm64 with dotprod |
 | D-IOS-FLOOR | iPhone 13 Pro, A15, 6 GB, iOS 26.5 | iOS floor (6 GB tier) | Shared; no Apple Intelligence (needs 15 Pro) |
 | E-P6-36 | Emulator `Pixel_6_API_36` (arm64, google_apis, 1.5 GB RAM) | API 36 target, 16 KB check, low-RAM | Check page size with `adb shell getconf PAGE_SIZE`; if it prints 4096 install the 16 KB image: `sdkmanager "system-images;android-36;google_apis_ps16k;arm64-v8a"` (name varies by SDK; search `sdkmanager --list \| grep 16k`) |
 | E-P6-33, E-P4-33, E-P3a-33 | Emulators API 33 | Android 13 behaviour, notifications permission | |
@@ -25,7 +25,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 
 ### T01 Clean install on the floor device, Android
 - Spec: §10.1 #1, §6.3, §14.2 M8.
-- Procedure: `adb -s REDACTED-6T uninstall com.inbornapp.mobile`; install the **release** AAB via bundletool (`bundletool build-apks --bundle app-release.aab --output out.apks --local-testing && bundletool install-apks --apks out.apks --device-id REDACTED-6T`); launch; complete onboarding without Wi-Fi off yet; send one message.
+- Procedure: `adb -s <6t-serial> uninstall com.inbornapp.mobile`; install the **release** AAB via bundletool (`bundletool build-apks --bundle app-release.aab --output out.apks --local-testing && bundletool install-apks --apks out.apks --device-id <6t-serial>`); launch; complete onboarding without Wi-Fi off yet; send one message.
 - Pass: first answer streams within 30 s of first launch on a fresh install (Instant delivered by the fast-follow pack); no crash; onboarding never blocks on network.
 - Runs on: D-AND-FLOOR. Flagship half (Pixel 8): BLOCKED: needs Pixel 8.
 

@@ -11,7 +11,7 @@ closing.
 ## What was under test
 
 Play release **1.0.0 (15)**, versionCode 15, `com.inbornapp.mobile`, installed by `com.android.vending`, all seven
-asset packs present, speech pack = `ggml-base.bin` (Whisper base). `adb -s REDACTED-6T`, keys only, one driver process,
+asset packs present, speech pack = `ggml-base.bin` (Whisper base). `adb -s <6t-serial>`, keys only, one driver process,
 every `uiautomator dump` serialised behind one lock directory.
 
 `RECORD_AUDIO` was granted with `pm grant` at 10:53 for the measurement and **revoked again afterwards**. The app was

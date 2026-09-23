@@ -1,0 +1,44 @@
+=== BEFORE FIX: default SITE_ORIGIN build (no env var set) ===
+--- canonical ---
+   1 rel="canonical" href="https://inborn-site.pages.dev/"
+   1 rel="canonical" href="https://inborn-site.pages.dev/404"
+   1 rel="canonical" href="https://inborn-site.pages.dev/accessibility"
+   1 rel="canonical" href="https://inborn-site.pages.dev/blog"
+   1 rel="canonical" href="https://inborn-site.pages.dev/blog/choosing-a-model"
+   1 rel="canonical" href="https://inborn-site.pages.dev/blog/how-the-proof-works"
+   1 rel="canonical" href="https://inborn-site.pages.dev/blog/why-on-device"
+   1 rel="canonical" href="https://inborn-site.pages.dev/licenses"
+   1 rel="canonical" href="https://inborn-site.pages.dev/privacy"
+   1 rel="canonical" href="https://inborn-site.pages.dev/proof"
+   1 rel="canonical" href="https://inborn-site.pages.dev/support"
+   1 rel="canonical" href="https://inborn-site.pages.dev/terms"
+--- og:url ---
+   1 property="og:url" content="https://inborn-site.pages.dev/"
+   1 property="og:url" content="https://inborn-site.pages.dev/404"
+   1 property="og:url" content="https://inborn-site.pages.dev/accessibility"
+   1 property="og:url" content="https://inborn-site.pages.dev/blog"
+   1 property="og:url" content="https://inborn-site.pages.dev/blog/choosing-a-model"
+   1 property="og:url" content="https://inborn-site.pages.dev/blog/how-the-proof-works"
+   1 property="og:url" content="https://inborn-site.pages.dev/blog/why-on-device"
+   1 property="og:url" content="https://inborn-site.pages.dev/licenses"
+   1 property="og:url" content="https://inborn-site.pages.dev/privacy"
+   1 property="og:url" content="https://inborn-site.pages.dev/proof"
+   1 property="og:url" content="https://inborn-site.pages.dev/support"
+   1 property="og:url" content="https://inborn-site.pages.dev/terms"
+--- sitemap.xml loc ---
+<loc>https://inborn-site.pages.dev/</loc>
+<loc>https://inborn-site.pages.dev/proof</loc>
+<loc>https://inborn-site.pages.dev/support</loc>
+<loc>https://inborn-site.pages.dev/blog/why-on-device</loc>
+<loc>https://inborn-site.pages.dev/blog/how-the-proof-works</loc>
+<loc>https://inborn-site.pages.dev/blog/choosing-a-model</loc>
+<loc>https://inborn-site.pages.dev/blog</loc>
+<loc>https://inborn-site.pages.dev/privacy</loc>
+<loc>https://inborn-site.pages.dev/terms</loc>
+<loc>https://inborn-site.pages.dev/licenses</loc>
+<loc>https://inborn-site.pages.dev/accessibility</loc>
+--- robots.txt Sitemap ---
+Sitemap: https://inborn-site.pages.dev/sitemap.xml
+--- totals ---
+pages.dev host occurrences:      261
+inbornapp.com occurrences:       52

@@ -55,7 +55,7 @@ as P/L/T. Judgements still sourced from a model card are marked as such.
 | math | weak | Non-thinking 2B; GSM8K-class only in thinking mode, which costs seconds per answer on a phone. |
 | en | native | 3/3/2 (§3.1). |
 | zh, zh-Hans, zh-Hant | native | **The best language we ship.** zh-Hans 3/3/3 — the only language scoring 3/3/3 on *Fast* — and zh-Hant 3/2.5/3 (§3.1). The Simplified translation was shorter and more idiomatic than the English original. |
-| ar | native | **Upgraded from `good` 20.9.2026 (§4.1).** 2/2/3: the Arabic translation was the single best of all 18 languages on Fast. The prose scored 2, so this tier is the least certain in the map — see the review list below. |
+| ar | good | **Downgraded from `native` 24.9.2026, reversing the 20.9.2026 upgrade.** 2/2/3 (§4.1): the translation was the single best of all 18 languages on Fast, but the prose scored only 2, and a single run at 2/2/3 is not a fluency claim `native` can stand on. Held at `good` — matching Sharp's `ar: good` — until a second measurement confirms it. |
 | es, fr, pt, it, ja, ru | good | es 3/3/2.5, fr 3/2.5/2.5, pt-BR 3/2/1.5, it 3/2.5/1.5, ja 3/3/1.5, ru 3/2.5/2 (§3.1). Prose is strong in all six; translation is where a 2B model loses, which `translate: good` already qualifies. |
 | de | basic | **Downgraded from `good` 20.9.2026, and this is the correction that matters most.** 1.5/2/2.5. The paragraph was re-sampled twice more and all three samples opened with the same wrong case, *"Gutem Schlaf ist …"* (it must be *Guter Schlaf ist*), two of them adding a gender error on the next noun (§3.2). Systematic, not an unlucky draw. Sharp German is fine, so the chat card now says "SHARP handles German better than FAST". |
 | ko | basic | **Downgraded from `good` 20.9.2026.** 2/2.5/1: the translation invented a weekday and appended an English meta-note "correcting" itself (§4.1). |
@@ -107,12 +107,12 @@ Hebrew-tuned model (DictaLM-class) or a larger Qwen quant enters the catalog.
 
 ## Least certain judgements (for review)
 
-1. **Fast · Arabic `native` while Sharp · Arabic is `good`.** This is the one place where the map now rates Fast *above* Sharp
-   for a language, and the measurements say the opposite: Fast scored 2/2/3 and Sharp 2.5/2.5/2.5 (§3.1). Because §7.8 ranks
-   language before use, an Arabic user now gets Fast recommended for **code** (where Fast is `weak`) and for **writing**
-   (where Sharp is `best`). The upgrade follows the 20.9 finding that Fast's Arabic translation was the best of all 18
-   languages, but the coherent pair is either Fast `good` + Sharp `good`, or Fast `native` + Sharp `native`. Decide this
-   before Arabic ships; it is the only tier in v3 that changes a recommendation for the worse.
+1. **Resolved 24.9.2026 — Fast · Arabic `native` while Sharp · Arabic is `good`.** Fast scored 2/2/3 and Sharp 2.5/2.5/2.5
+   (§3.1): the measurements never supported rating Fast *above* Sharp for a language, since Fast's prose score (2) was the
+   weak point, not its translation. Fast `ar` is now `good`, matching Sharp, so an Arabic user is no longer steered to Fast
+   for **code** (where Fast is `weak`) or away from Sharp for **writing** (where Sharp is `best`). Fast's Arabic translation
+   is still the best of all 18 languages measured, and the pairing is now consistent (`good` + `good`); revisit `native` for
+   either model only after a second run confirms it.
 2. Sharp · Hebrew `basic` (spot-checked 15.9 and re-measured 20.9; a native speaker may judge some replies acceptable, but "good" would promise fluency the model does not deliver).
 3. Instant · Italian, Russian and Arabic `basic` (not run at this tier on 20.9; carried over from the model-card judgement).
 4. Phi · every language (Phi was not in the 20.9 run at all; all four of its rows are model-card judgements).

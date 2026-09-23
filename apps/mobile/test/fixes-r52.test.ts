@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { MIN_TOUCH, blendOnto, contrastRatio, dark, light } from "../../../packages/ui/src/tokens";
 
 /**
- * Round 51 — the design review of 24.9 (F240-F254). Screens need a device, so the arithmetic and the source of the
+ * Round 52 — the design review of 24.9 (F240-F254). Screens need a device, so the arithmetic and the source of the
  * surfaces whose whole finding was "this control is too small / this ink is too faint" live here; the pixels
  * themselves are in docs/qa/fix-design/ as before-and-after screenshots at 390/768/1024/1440 in both themes.
  */
@@ -53,7 +53,8 @@ describe("F243 · §9.4's 44 pt touch target holds in the primitives every scree
     for (const [file, names] of [
       ["screens/Chat.tsx", ["chipTarget", "noticeBtn", "suggestion"]],
       ["screens/paywall/PaywallScreen.tsx", ["headerBtn", "legalLink"]],
-      ["web/WebShell.tsx", ["getApp", "cta", "textBtn"]],
+      /* detailsBtn arrived with the browser strip (F239, fix-mosheai) at 28; the strip is 44 tall anyway. */
+      ["web/WebShell.tsx", ["getApp", "cta", "textBtn", "detailsBtn"]],
     ] as const) {
       const found = styleHeights(source(file));
       for (const name of names) expect(found.get(name), `${file} styles.${name}`).toBeGreaterThanOrEqual(MIN_TOUCH);
@@ -153,8 +154,11 @@ describe("F244, F248 · a browser reader is not offered what the browser cannot 
 });
 
 describe("F249, F250 · no header over a list that cannot exist, no second empty state", () => {
+  /* F235 (fix-mosheai, round 50) reached this one first and the merge took its form; the guard holds the behaviour. */
   it("the audit picker appears only once there is a vault to pick", () => {
-    expect(source("screens/Work/AuditLog.tsx")).toContain("{!picked && vaults.length ? (");
+    const audit = source("screens/Work/AuditLog.tsx");
+    expect(audit).toMatch(/\{!picked \? \(\s*vaults\.length \? \(/);
+    expect(audit).toMatch(/<\/Section>\s*\) : null/);
   });
 
   it("the documents readout gives way to the screen's own empty state", () => {

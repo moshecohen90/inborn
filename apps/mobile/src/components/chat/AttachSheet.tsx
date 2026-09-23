@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import type { DocumentRecord, PaywallReason } from "@inborn/core";
+import type { DocumentRecord, LicenceTier, PaywallReason } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet, SheetItem } from "./Sheet";
 import { shape } from "./styles";
@@ -8,6 +8,7 @@ import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
 import { Toggle } from "../shell/primitives";
 import { documentState } from "../../documents/stateText";
+import { attachRowLock, fileRefusalKey } from "../../documents/libraryAttach";
 import { deviceNoun } from "../../lib/deviceNoun";
 
 interface Props {
@@ -20,8 +21,10 @@ interface Props {
   onSetStrict: (v: boolean) => void;
   /** "Answer only from my documents" is Pro (§7.3): the switch stays visible and opens the paywall. */
   strictLocked?: boolean;
-  /** Free carries one file per chat (§7.3 row 1): the other rows stay tappable and say why. */
-  attachLocked?: boolean;
+  /** The licence the rows are gated against: each row asks `attachRowLock`, so the lock icon and the tap agree. */
+  tier: LicenceTier;
+  /** Documents attached to this chat, counted by the caller so the sheet and the tap gate on the same number. */
+  attachedCount: number;
   onUnlock?: (reason: PaywallReason) => void;
   onAttach: (docId: string) => void;
   onDetach: (docId: string) => void;
@@ -43,7 +46,7 @@ interface Props {
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, strictLocked, attachLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onInstallVision, visionSize, onImport, onTemplates }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, tier, attachedCount, strict, onSetStrict, strictLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onInstallVision, visionSize, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -65,18 +68,19 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
         documents.map((d) => {
           const on = attachedIds.includes(d.id);
           const ready = indexed(d);
-          const locked = !!attachLocked && !on;
+          const { locked, moment } = attachRowLock(tier, documents, d.id, attachedCount, on);
+          const why: PaywallReason = moment === "office" ? "office" : "document";
           return (
             <SheetItem
               key={d.id}
               testID={`attach-${d.id}`}
               label={d.name}
-              hint={locked ? t("quick.filePro") : documentState(d, t, deviceNoun()).text}
+              hint={locked && moment ? t(fileRefusalKey(moment)) : documentState(d, t, deviceNoun()).text}
               disabled={!ready && !on && !locked}
-              onPress={() => (locked ? onUnlock?.("document") : on ? onDetach(d.id) : onAttach(d.id))}
+              onPress={() => (locked ? onUnlock?.(why) : on ? onDetach(d.id) : onAttach(d.id))}
               trailing={
                 locked ? (
-                  <ProTag onPress={() => onUnlock?.("document")} />
+                  <ProTag onPress={() => onUnlock?.(why)} />
                 ) : (
                   <View testID={on ? `attached-${d.id}` : undefined} style={[styles.tick, { borderColor: on ? theme.accent : theme.border, backgroundColor: on ? theme.accent : "transparent" }]}>
                     {on ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}

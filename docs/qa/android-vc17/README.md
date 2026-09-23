@@ -11,9 +11,9 @@ Where the write-ups live:
 | `docs/qa/purchases-run-2026-09-11.md` **§T** | build, gates, the upload that had to be done twice, the Play update, every phone row |
 | `docs/qa/soak-run-10-2026-09-22.md` | the hour of continuous use on the 6T, with a ledger row per answer |
 
-**One device, and that is the whole of this pass.** Every row below is the **OnePlus 6T** (`REDACTED-6T`, Android 11,
+**One device, and that is the whole of this pass.** Every row below is the **OnePlus 6T** (`<6t-serial>`, Android 11,
 8 GB, tier `ANDROID-LEGACY`), Moshe's personal phone, running the real Play build with real Play Billing. It is
-driven by keys only (`adb -s REDACTED-6T`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone. The
+driven by keys only (`adb -s <6t-serial>`, TAB / DPAD / ENTER / `input text`); taps are ignored on this phone. The
 Pixel 6 API 33 emulator that carried vc16's device-tier rows belonged to another stream for the length of this run
 and was not touched, so vc17 claims nothing about the 4 GB tier — see "What this folder does not contain".
 
