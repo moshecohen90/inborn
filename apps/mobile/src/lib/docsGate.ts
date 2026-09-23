@@ -6,10 +6,10 @@
  */
 export type DocsTurn = { kind: "retrieve" } | { kind: "wait" } | { kind: "refuse"; messageKey: RefusalKey } | { kind: "model" };
 
-export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.needsOcr" | "documents.needsIndexModel";
+export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.needsOcr" | "documents.needsIndexModel" | "documents.photoNotText";
 
 /** Why the attached documents have nothing to search although none of them is still being read. */
-export type AttachmentBlock = "needs-ocr" | "no-embedder" | null;
+export type AttachmentBlock = "needs-ocr" | "no-embedder" | "image" | null;
 
 export interface DocsTurnInput {
   /** The "Answer only from my documents" switch. */
@@ -24,7 +24,9 @@ export interface DocsTurnInput {
   blocked?: AttachmentBlock;
 }
 
-const refusalFor = (blocked: AttachmentBlock): RefusalKey => (blocked === "needs-ocr" ? "documents.needsOcr" : blocked === "no-embedder" ? "documents.needsIndexModel" : "documents.notRead");
+/* A picture attached as a file is read for its text, and a photo of a door has none: OCR on it is a dead end, the Photo button is not. */
+const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
+  blocked === "image" ? "documents.photoNotText" : blocked === "needs-ocr" ? "documents.needsOcr" : blocked === "no-embedder" ? "documents.needsIndexModel" : "documents.notRead";
 
 /**
  * Strict mode with nothing to search must say so; it may never fall through to a free answer from the model's weights.
