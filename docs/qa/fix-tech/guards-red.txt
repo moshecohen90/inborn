@@ -48,11 +48,11 @@ F202  apps/mobile/test/webRouting.test.ts — the deep-link rows were written ag
 F203  apps/mobile/test/origins.test.ts — proven green against the one file; it fails on any origin written out
       again in the deploy, which is the regression it exists for.
 
-F215  packages/core/test/rag-doc-name.test.ts
+F255  packages/core/test/rag-doc-name.test.ts
       revert: safeDocName replaced by a pass-through, `<|im_sep|>` removed from TEMPLATE_TOKENS
       red:    22 failed | 15 passed (37)         green after: 37 passed
 
-F216  the same file, the other half of the fix
+F256  the same file, the other half of the fix
       revert: safeDocName kept, but buildRagPrompt builds the label from the raw `doc.name` again
       red:    8 failed | 29 passed (37)          green after: 37 passed
       The 8 are the fence rows: with the raw name back, `<<<END DOCUMENTS <nonce>>>>` in a filename closes the
