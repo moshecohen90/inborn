@@ -5,22 +5,27 @@ import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
 import { Mono } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
-import { legalScreen } from "./legalBody";
+import { LegalSource } from "../../components/LegalSource";
+import { effectiveDate, legalScreen } from "./legalBody";
 import privacy from "../../../../../docs/legal/privacy-policy.md";
 import terms from "../../../../../docs/legal/terms.md";
+import accessibility from "../../../../../docs/legal/accessibility-policy.md";
 
-export type LegalDoc = "privacy" | "terms";
-const DOCS: Record<LegalDoc, string> = { privacy, terms };
-export const isLegalDoc = (d: string | undefined): d is LegalDoc => d === "privacy" || d === "terms";
+export type LegalDoc = "privacy" | "terms" | "accessibility";
+const DOCS: Record<LegalDoc, string> = { privacy, terms, accessibility };
+const TITLES: Record<LegalDoc, string> = { privacy: "legal.privacy", terms: "legal.terms", accessibility: "legal.accessibility" };
+export const isLegalDoc = (d: string | undefined): d is LegalDoc => d !== undefined && d in DOCS;
 
-/** Privacy policy / terms (§11): the same Markdown the stores and the website show, rendered on the device. */
+/** Privacy policy / terms / accessibility (§11): the website's text, bundled so it reads with no network, and a way to the live page. */
 export function Legal({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { meta, body } = useMemo(() => legalScreen(DOCS[doc]), [doc]);
   const edited = /Last edited ([^.\n]+)/.exec(DOCS[doc])?.[1];
+  const effective = effectiveDate(DOCS[doc]);
   return (
-    <Screen header={{ back: true, title: t(doc === "privacy" ? "legal.privacy" : "legal.terms") }} testID={`legal-${doc}`}>
+    <Screen header={{ back: true, title: t(TITLES[doc]) }} testID={`legal-${doc}`}>
+      <LegalSource doc={doc} label={effective ? t("legal.offlineCopy", { date: effective }) : t("legal.offlineCopyNoDate")} />
       {edited ? <Mono color={theme.text3}>{t("legal.edited", { date: edited })}</Mono> : null}
       {meta.length ? (
         <View testID="legal-meta" style={[styles.meta, { borderColor: theme.border }]}>

@@ -172,3 +172,99 @@ export function detectUse(s: UseSignals): UseCase {
   if (s.personaIcon && ICON_USE[s.personaIcon]) return ICON_USE[s.personaIcon]!;
   return "chat";
 }
+
+export interface ModelChoice {
+  model: CatalogModel;
+  reason: RecommendReason;
+  installed: boolean;
+  /** The model the engine has loaded right now. */
+  current: boolean;
+  /** Listed for honesty, never offered: this device cannot run it (§6.3), or the app is too old. */
+  blocked?: "ram" | "engine" | "slow";
+}
+
+export interface ModelChoicesInput extends RecommendInput {
+  /** The loaded model; it heads the installed list even when the ranking would drop it. */
+  currentId?: string | null;
+  /** Ids the recommendation may pick from. The browser tier can only ever load the one it holds (§14.3), so it must not
+   * be told that a model it cannot install is "recommended on this browser". Every id, when absent. */
+  recommendAmong?: readonly string[];
+}
+
+export interface ModelChoices {
+  /** Ready to load now, best first: one tap switches. */
+  installed: ModelChoice[];
+  /** Runs here once downloaded, best first. */
+  available: ModelChoice[];
+  /** Too big for this device or too new for this app; greyed, no action. */
+  unavailable: ModelChoice[];
+  /** The "Recommended for you" line, from the same ranking the vault uses. */
+  recommended: ModelRecommendation | null;
+  /** True when even that pick is basic/none for the language or weak for the use: the line says so instead of claiming a fit. */
+  recommendedWeak: boolean;
+}
+
+/**
+ * Everything the chat's Model sheet lists (§7.8, §8.4), from the one ranking `rankModels` already computes:
+ * installed first, then what this device can still download, then what it cannot run, with the reason.
+ */
+export function modelChoices(input: ModelChoicesInput): ModelChoices {
+  const { device, languageCode, use } = input;
+  const engine = input.engineVersion ?? ENGINE_VERSION;
+  const ranked = rankModels(input);
+  const rankOf = new Map(ranked.map((r, i) => [r.model.id, i]));
+  const installedSet = new Set(input.installed);
+  const choiceOf = (model: CatalogModel, blocked?: ModelChoice["blocked"]): ModelChoice => ({
+    model,
+    reason: { use, useTier: useTierOf(model, use) ?? "weak", languageCode, languageTier: languageTierOf(model, languageCode), ramFit: ramFit(model, device.ramGB), installed: installedSet.has(model.id) },
+    installed: installedSet.has(model.id),
+    current: !!input.currentId && model.id === input.currentId,
+    ...(blocked ? { blocked } : {}),
+  });
+  const ceiling = TIER_ORDER.indexOf(maxTier(device));
+  const blockedReason = (m: CatalogModel): ModelChoice["blocked"] => (m.minEngine > engine ? "engine" : ramFit(m, device.ramGB) === "no" || tierIndex(m) > ceiling ? "ram" : "slow");
+  const chat = input.catalog.filter((m) => m.role === "chat" && m.fit && m.tier);
+  const installed: ModelChoice[] = [];
+  const available: ModelChoice[] = [];
+  const unavailable: ModelChoice[] = [];
+  for (const model of chat) {
+    const runnable = rankOf.has(model.id);
+    /* An installed model always stays switchable: it is on the disk and it loads, whatever the ranking left out. */
+    if (installedSet.has(model.id) || model.id === input.currentId) installed.push(choiceOf(model));
+    else if (runnable) available.push(choiceOf(model));
+    else unavailable.push(choiceOf(model, blockedReason(model)));
+  }
+  const byRank = (a: ModelChoice, b: ModelChoice) => (rankOf.get(a.model.id) ?? chat.length) - (rankOf.get(b.model.id) ?? chat.length);
+  installed.sort(byRank);
+  available.sort(byRank);
+  unavailable.sort((a, b) => tierIndex(a.model) - tierIndex(b.model));
+  const recommended = (input.recommendAmong ? ranked.filter((r) => input.recommendAmong!.includes(r.model.id)) : ranked)[0] ?? null;
+  return { installed, available, unavailable, recommended, recommendedWeak: !!recommended && recommendationIsWeak(recommended) };
+}
+
+export interface LanguageUpgrade {
+  code: string;
+  /** What the loaded model rates this language. */
+  from: LanguageTier;
+  /** The model to offer: the best installed one that does better, else the best installable one. */
+  better: ModelRecommendation;
+  /** The top of the ranking when it is not `better` and still to install. */
+  best?: ModelRecommendation;
+}
+
+/**
+ * §7.8 language notice: the loaded model rates what the user writes `none` or `basic`, and something on this device
+ * does better. Unlike `adviseModel` this ignores the use dimension — a language the model cannot write is reason enough.
+ * Null when the language is unrated, already good, or nothing here improves on it.
+ */
+export function betterForLanguage(input: AdviceInput): LanguageUpgrade | null {
+  const { current, languageCode } = input;
+  if (!current?.fit || !languageCode) return null;
+  const from = languageTierOf(current, languageCode);
+  if (from !== "none" && from !== "basic") return null;
+  const candidates = rankModels(input).filter((r) => r.model.id !== current.id && languageRank(r.reason.languageTier ?? undefined) > languageRank(from));
+  if (!candidates.length) return null;
+  const better = candidates.find((r) => r.reason.installed) ?? candidates[0]!;
+  const top = candidates[0]!;
+  return { code: languageCode, from, better, ...(top.model.id !== better.model.id && !top.reason.installed ? { best: top } : {}) };
+}

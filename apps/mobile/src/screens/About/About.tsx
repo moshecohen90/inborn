@@ -44,6 +44,7 @@ export function About() {
         <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.privacy")}</Text>
         <Row testID="row-privacy" label={t("legal.privacy")} onPress={() => router.push("/legal/privacy")} chevron />
         <Row testID="row-terms" label={t("legal.terms")} onPress={() => router.push("/legal/terms")} chevron />
+        <Row testID="row-accessibility" label={t("legal.accessibility")} onPress={() => router.push("/legal/accessibility")} chevron />
       </Section>
       <Section title={t("about.help")}>
         <Row label={t("about.report")} sub={t("about.reportSub")} onPress={() => mail("Inborn: problem report", `${diagnostics}\n\n`)} chevron />
