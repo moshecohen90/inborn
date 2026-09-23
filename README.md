@@ -4040,9 +4040,9 @@ character, exactly one opening and one closing fence — while the passage, the 
 ordinary names in four scripts come through byte for byte.
 
 Gates on the branch: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,281 tests** (core 686, mobile 571,
-ui 13, i18n 11); after merging `origin/main` (round 48) and the security addendum: **1,337** (core 723, mobile 586,
-ui 13, i18n 15). `pn web:build` and `pn web:smoke` green each time (first visit 17.0 s · 28 tok/s, offline visit
-1.7 s · 0 model fetches).
+ui 13, i18n 11); after the security addendum and merging `origin/main` (rounds 48 and 49): **1,341** (core 723,
+mobile 589, ui 13, i18n 16). `pn web:build` and `pn web:smoke` green each time (first visit 18.4 s, offline visit
+1.8 s · 0 model fetches).
 Evidence: `docs/qa/fix-tech/` (`guards-red.txt`, the four `gates-*.txt` runs, the four widths at 390 / 768 / 1024 /
 1440, the smoke screenshots) and `docs/qa/qa-run-2026-09-11.md` F195–F204 and F215–F216.
 ## Fixes round 48: the copy review, and the Apple listing that named Android (branch `fix-copy`) — 24.9.2026
