@@ -4,7 +4,7 @@
  */
 import type { Message } from "../llm/types";
 import { citationLabel, buildCitations } from "./citations";
-import { fenceDocuments, randomNonce, stripInstructions } from "./injection";
+import { fenceDocuments, randomNonce, safeDocName, stripInstructions } from "./injection";
 import { estimateTokens } from "./tokens";
 import type { DocumentRecord, RagPrompt, RetrievalHit } from "./types";
 
@@ -112,7 +112,8 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
   const passages: Array<{ n: number; label: string; text: string; tokens: number }> = [];
   for (const h of candidates) {
     const doc = o.docs.get(h.chunk.docId);
-    const label = citationLabel({ docName: doc?.name ?? h.chunk.docId, kind: doc?.kind ?? "unknown", page: h.chunk.page });
+    /* The label is inside the fence, so the name is data like the passage is: the chips still show the real one. */
+    const label = citationLabel({ docName: safeDocName(doc?.name ?? h.chunk.docId, nonce), kind: doc?.kind ?? "unknown", page: h.chunk.page });
     const text = stripInstructions(h.chunk.text).text;
     if (!text) continue;
     const tokens = estimateTokens(text) + estimateTokens(label) + 6;
