@@ -65,6 +65,11 @@ Recipes that cost time here and are not in the repo:
   is_pending:i:0 --bind _size:i:<bytes>`); for the photo picker, `datetaken` also decides the position in `Recent`.
 - `uiautomator dump` and the driver APK both take the UiAutomation service. Running them at once crashes the driver
   with `Process crashed` inside `getUiAutomation`; serialise them.
+- The library dedupes by content, so importing the same file again reuses the record that is already indexed and the
+  turn never waits. To film the wait a second time, change one byte: `northgate-big2.pdf` is `northgate-big.pdf` with a
+  trailing PDF comment.
+- Indexing in the debug bundle runs at about 11 s/page against roughly 1.5 s/page in the Play build. Times in these
+  logs are the dev bundle's, not the product's.
 
 ## Proven on the phone, on the fixed build
 
@@ -74,7 +79,7 @@ models pushed into its own `files/`. The Play build and its vault were not touch
 
 | what | before (Play 1.0.0 (19)) | after (fixed build, same phone, same files) |
 |---|---|---|
-| 40-page PDF, question asked while it indexes | invented `"NORTGATE"`, no citation | holds the turn, *"Reading your document before answering…"*, then *"…is ZR-4471-QX…"* with `p.30` cited |
+| 40-page PDF, question asked while it indexes | invented `"NORTGATE"`, no citation | holds the turn, *"Reading your document before answering…"*, then *"…is ZR-4471-QX…"* with `p.30` cited. Re-checked after `origin/main` was merged, strict on as well as off |
 | photo attached with **Add a file…** | *"I don't see an attached photo."* | *"That is a picture… attach it with the Photo button instead."*, and that button then describes the door |
 | strict on, question not in the file | — | *"I could not find that in your documents."* No invention |
 | strict off, same question | — | *"The capital of Portugal is Lisbon."* The model answers, as designed |
