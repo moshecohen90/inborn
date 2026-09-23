@@ -309,12 +309,12 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           {materialChrome ? null : (
             <Pressable testID="new-chat" accessibilityRole="button" onPress={() => setSheet({ incognito: false, personaId: DEFAULT_PERSONA_ID })} style={[shape.control, styles.action, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
               <Icon name="plus" size={18} color={theme.text} />
-              <Text style={[type.body, type.strong, { color: theme.text }]}>{t("chats.new")}</Text>
+              <Text numberOfLines={1} style={[type.body, type.strong, { color: theme.text }]}>{t("chats.new")}</Text>
             </Pressable>
           )}
           <Pressable testID="new-incognito" accessibilityRole="button" onPress={() => setSheet({ incognito: true, personaId: DEFAULT_PERSONA_ID })} style={[shape.control, styles.action, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
             <Icon name="incognito" size={18} color={theme.text} />
-            <Text style={[type.body, type.strong, { color: theme.text }]}>{t("chats.incognito")}</Text>
+            <Text numberOfLines={1} style={[type.body, type.strong, { color: theme.text }]}>{t("chats.incognito")}</Text>
           </Pressable>
         </View>
       ) : null}
@@ -599,8 +599,10 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44 },
   headerBtn: { minWidth: 44, minHeight: 44, alignItems: "center", justifyContent: "center" },
   search: { marginHorizontal: 16, marginTop: 8 },
-  actions: { flexDirection: "row", gap: 8, paddingHorizontal: 16, paddingVertical: 12 },
-  action: { flex: 1, borderWidth: 1, flexDirection: "row", gap: 8 },
+  /* The sidebar (§8.9) is far narrower than a phone, and `flex: 1` there squeezed "New chat" onto two lines (QA F103):
+     below the basis the two buttons take a row each instead of splitting one. */
+  actions: { flexDirection: "row", flexWrap: "wrap", gap: 8, paddingHorizontal: 16, paddingVertical: 12 },
+  action: { flexGrow: 1, flexBasis: 150, minWidth: 0, borderWidth: 1, flexDirection: "row", gap: 8, paddingHorizontal: 12 },
   titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   titleText: { flexShrink: 1 },
   sectionRow: { flexDirection: "row", alignItems: "center", gap: 4 },

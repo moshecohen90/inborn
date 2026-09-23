@@ -23,6 +23,7 @@ import { deviceNoun } from "../../lib/deviceNoun";
 import { listClipping } from "../../lib/listClipping";
 import { Toggle } from "../../components/shell/primitives";
 import { useOpenSheet } from "../../lib/openSheets";
+import { afterSheetClose } from "../../lib/sheetHandover";
 
 export interface VaultScreenProps {
   onClose: () => void;
@@ -210,7 +211,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
     const entry = vault.addHfModel(model);
     setHfOpen(false);
     if (entry.state.kind === "ready") return setToast(t("vault.hf.alreadyInstalled", { name: model.name }));
-    setTimeout(() => setConfirm({ entry }), 320);
+    afterSheetClose(() => setConfirm({ entry }));
   };
 
   const detailsState = details ? vault.state(details.id) : { kind: "not-installed" as const };

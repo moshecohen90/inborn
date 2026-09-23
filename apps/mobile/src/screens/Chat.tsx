@@ -102,6 +102,7 @@ import { setSidebarOpen, useSidebarOpen } from "../lib/sidebar";
 import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
 import { useFontScale, useTheme } from "../lib/theme";
+import { afterSheetClose } from "../lib/sheetHandover";
 import { useEntitlement, useLicence } from "../licence";
 import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
@@ -152,8 +153,7 @@ export interface ChatProps {
   onSeedConsumed?: () => void;
 }
 
-/* Android freezes when one Modal opens in the frame another one dismisses; hand over after the 280 ms sheet animation. */
-export const afterSheetClose = (fn: () => void) => setTimeout(fn, 320);
+export { afterSheetClose };
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));

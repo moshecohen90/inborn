@@ -10,6 +10,7 @@ import { shape } from "../../components/chat/styles";
 import { useType } from "../../services/type";
 import { Toggle } from "../../components/shell/primitives";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { afterSheetClose } from "../../lib/sheetHandover";
 
 interface Props {
   visible: boolean;
@@ -32,7 +33,7 @@ export function MemorySheet({ visible, onClose, store, onUnlock }: Props) {
   const locked = paywallFor(tier, { kind: "feature", feature: "memory" });
   const unlock = () => {
     onClose();
-    setTimeout(() => onUnlock?.(), 320);
+    afterSheetClose(() => onUnlock?.());
   };
   const [facts, setFacts] = useState<MemoryFact[]>([]);
   const [chats, setChats] = useState<Map<string, Chat>>(new Map());
