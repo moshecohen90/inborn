@@ -4,9 +4,10 @@
 import { Buffer } from 'node:buffer';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
-const STORE_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
+// An argument points the check at a copy of the listings, which is how the guard's own test watches it go red.
+const STORE_DIR = process.argv[2] ? resolve(process.argv[2]) : join(dirname(fileURLToPath(import.meta.url)), '..');
 const cp = (s) => [...s].length;                     // Unicode code points (store char count)
 const bytes = (s) => Buffer.byteLength(s, 'utf8');   // UTF-8 bytes (Apple keyword field is 100 bytes)
 
@@ -49,6 +50,28 @@ const BANNED = [
   },
 ];
 
+/**
+ * F205. Metadata a shopper reads may not send them to the other platform. App Store Review Guideline 2.3.10 is the hard
+ * one: an Apple description that names Android is a metadata rejection in every storefront at once, and bullet 2 of
+ * `apple.description` carried exactly that in all eight locales until round 48. The Play side is the same courtesy
+ * in reverse. `reviewer_notes` is exempt, because it is written for a reviewer and names both platforms on purpose,
+ * and so are the A/B fields, which never leave this repository.
+ */
+const PLATFORM_FIELDS = {
+  apple: {
+    fields: ['apple.name', 'apple.subtitle', 'apple.promotional_text', 'apple.description', 'apple.whats_new', 'apple.keywords'],
+    re: /\bandroid\b|\bgoogle play\b|\bplay store\b|\bplay console\b|アンドロイド|안드로이드|安卓/iu,
+    why: 'App Store Review Guideline 2.3.10: Apple metadata may not reference another mobile platform',
+  },
+  google: {
+    fields: ['google.title', 'google.short_description', 'google.full_description'],
+    re: /\biphone\b|\bipad\b|\bapp store\b|\bapple\b|\bios\b|アップル|애플|蘋果/iu,
+    why: 'Play metadata should not point a buyer at another store, and an Apple platform name is copy no Android reader can act on',
+  },
+};
+/* The screenshot overlays are one shared set that both stores render, so they may name neither platform. */
+const SHARED_SHOT_FIELDS = 'screenshots';
+
 // Every string in the listing, with its dotted path, so a hit names the field to fix.
 function* strings(node, path = '') {
   if (typeof node === 'string') { yield [path, node]; return; }
@@ -88,6 +111,18 @@ for (const file of readdirSync(STORE_DIR).filter((f) => /^listing\..+\.json$/.te
     for (const rule of BANNED) {
       const hit = text.match(rule.re);
       if (hit) errors.push(`${loc}: ${path} carries the banned "${rule.id}" claim ("${hit[0]}") — ${rule.why}`);
+    }
+  }
+
+  for (const [store, rule] of Object.entries(PLATFORM_FIELDS)) {
+    const watched = [
+      ...rule.fields.map((f) => [f, get(data, f)]),
+      ...(data[SHARED_SHOT_FIELDS] || []).flatMap((shot, i) => [[`screenshots[${i}].headline`, shot.headline], [`screenshots[${i}].subline`, shot.subline]]),
+    ];
+    for (const [path, text] of watched) {
+      if (typeof text !== 'string') continue;
+      const hit = text.match(rule.re);
+      if (hit) errors.push(`${loc}: ${path} names the other platform ("${hit[0]}") in ${store} metadata. ${rule.why}`);
     }
   }
 

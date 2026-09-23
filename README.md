@@ -3989,3 +3989,63 @@ Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,281 tests** (co
 `pn web:build` and `pn web:smoke` green (first visit 18.1 s · 27 tok/s, offline visit 1.8 s · 0 model fetches).
 Evidence: `docs/qa/fix-tech/` (guards-red.txt, the four widths at 390 / 768 / 1024 / 1440, the smoke screenshots and
 logs) and `docs/qa/qa-run-2026-09-11.md` F195–F204.
+## Fixes round 48: the copy review, and the Apple listing that named Android (branch `fix-copy`) — 24.9.2026
+
+Round 2's copy review (`review-copy`) read the eight locale files, the eight store listings, the site and the legal
+texts. Locale parity was already clean: 1,138 keys in all eight, no English fallback, ICU adapted per language. What
+it found was a listing that could not be submitted, two screens that stated something false, and a page of smaller
+things. All three blockers and all thirteen should-fix items are done; two later items are not, and they are named at
+the end. F rows: `docs/qa/qa-run-2026-09-11.md` F205–F214.
+
+- **The listing would have been rejected in all eight storefronts at once.** `apple.description` bullet 2 named
+  **Android** in every language, and `apple.whats_new` did it again in its last bullet. Guideline 2.3.10 forbids
+  metadata that references another mobile platform. Both bullets now make a check that works on the device the reader
+  is holding: "The app opens no connection by itself. Put it behind a firewall and watch nothing appear." The rule is
+  in `check-store-copy.mjs` now, both ways, over the six Apple fields, the three Play fields and the shared screenshot
+  overlays, with `reviewer_notes` exempt. `apps/mobile/test/store-copy.test.ts` runs the real script against a
+  sabotaged copy of the eight listings and expects **exit 1** on each of five injections.
+- **The Proof screen named the wrong host.** It printed "Apple-hosted asset pack · sha256 ✓" for every completed
+  delivery that was not Android, including a download from our own CDN, a Hugging Face import and a file the user
+  picked off their disk, while the site says in public that we use no Apple-hosted asset packs. The label now comes
+  from the `via` the vault records, through an exhaustive `deliveryKey(source)`, with new `https` / `hf` / `imported`
+  lines in all eight locales. A second bug in the same section survives and is written down rather than hidden: the
+  `done` status is never set, so after a download finishes the section falls back to the built-in line. That one needs
+  a device.
+- **"0 B for the life of the install" was false for any Pro user**, on both pages, nine lines above the download
+  `proof.html` itself lists. Both now read "unless you start a model download yourself". The page also promised
+  per-release hashes that `docs/legal/verification.md` forbids, over an empty table; the promise and the table are
+  gone.
+- **The paywall sold Family Sharing whenever the store was unreachable**, which on this product means offline. The
+  condition was `familyShareable || !storeReachable`; an unknown store state now resolves to the honest line.
+- **Copy that spoke past the reader.** "No trace" left the first screen, because chats persist on the device and the
+  storage screen says so. The three `weakAt` lines stopped naming **Hebrew** to a Japanese or Taiwanese reader, since
+  Hebrew is not a launch locale and the per-language verdict already reaches anyone who writes it. `voice.onDevice`
+  stopped saying PHONE on a Mac. Those `weakAt` lines are the **signed catalog's** text as well, so `manifest.json`
+  was edited with them and re-signed (v4, 7 models, `--check` OK); the CDN copy should be republished at the next
+  model publish, though nothing a user reads comes from it.
+- **Four things the locale files got wrong in their own language.** Three German `-ieren` imperatives
+  (`importier`, `akzeptier`, `nutz`), the only em dash in all nine files, the only curly quotes in `en.json`, and
+  `proof.outIn` sitting in English in all seven translations. That last one is the headline number of the trust
+  screen: `docs/qa/fix-copy/{before,after}/proof-screen-de-390.png` shows `OUT 0 B · IN 508 MB` becoming
+  `RAUS 0 B · REIN 508 MB`.
+- **The rest.** The crisis card no longer promises a call the device may be unable to place, and says so when the
+  radios are off. The site is US English, matching the app screens and the largest storefront, and the EULA now points
+  at `Settings → About → Licenses`, which is what the screen is called. "Neither store listing is public yet" moved
+  off prose and onto the `storesLive` flag that already switches the buttons, checked in both states. The dated launch
+  price left all eight What's New fields. Five `documents.*` strings moved from "I" to the Inborn voice, so an app
+  string no longer reads as the model talking.
+
+**Guards, watched red before they were trusted.** `docs/qa/fix-copy/store-guard-red.txt` (8 errors, one per locale,
+with the guideline number), `docs/qa/fix-copy/locale-guards-red.txt` (4 of the new locale rules failing on a
+reintroduced em dash, curly quote, English readout and hardcoded PHONE), and a sabotage pass over the four new site
+rules. Each has its complement: the qualifier must be present, `apple` must be the only source that reaches the Apple
+line, `reviewer_notes` must still be allowed to name both platforms.
+
+**Not done.** Review items 19 and 23: collapsing the five duplicate `paywall.why.*` pairs, and adding a
+`paywall.compare` row for the six-quick-action cap Free enforces in `packages/core/src/licence/gates.ts`. Both are
+`packages/core` changes rather than string edits, and a copy stream is the wrong place for them. Nothing was pushed
+to App Store Connect or Play; the repository still has no script that writes store metadata.
+
+Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,239 tests** (core 655, mobile 556,
+i18n 15, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
+screenshots at 390 and 1440, before and after: `docs/qa/fix-copy/`.

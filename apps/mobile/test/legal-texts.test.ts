@@ -386,3 +386,39 @@ describe("F157 · the accessibility statement matches the code it describes", ()
     expect(policy).not.toMatch(/Every text style in the app/);
   });
 });
+
+/**
+ * Round 48 (F207, F209, F214). The site published three things the rest of the repository already contradicted:
+ * an absolute zero-bytes-out claim nine lines above the download it admits to, a promise of per-release hashes that
+ * `verification.md` forbids, and British spelling on pages whose app screens and US storefront are American.
+ */
+describe("F207/F209/F214 · what the site may not go back to saying", () => {
+  const SITE_TEXT = [...SITE_PAGES, "apps/site/build.mjs", "apps/site/src/site.css"];
+
+  it("no page makes the exit meter an absolute", () => {
+    for (const file of SITE_TEXT) expect(read(file), file).not.toMatch(/for the life of the install/i);
+  });
+
+  /* The complement: the sentence is still there, with the qualifier, on both pages that carry the meter. */
+  it("both meter sentences carry the honest qualifier", () => {
+    for (const file of ["apps/site/src/pages/index.html", "apps/site/src/pages/proof.html"]) {
+      expect(read(file), file).toMatch(/0 B<\/span> unless you start a model download yourself/);
+    }
+  });
+
+  it("no page promises a hash of every released build", () => {
+    for (const file of SITE_TEXT) expect(read(file), file).not.toMatch(/lists the SHA-256 of every released build|per-release hash(?!, because)/i);
+    expect(read("apps/site/src/pages/proof.html")).toContain("We do not publish a per-release hash, because");
+  });
+
+  it("the site spells license, quantization and math the way the app screens and the US storefront do", () => {
+    for (const file of SITE_TEXT) expect(read(file), file).not.toMatch(/\blicences?\b|\bquantis(?:ation|ed)\b|\bmaths\b|\bsummaris|data centre/i);
+  });
+
+  /* The EULA keeps British wording, but its pointer at a screen must name the screen: `about.licenses` reads LICENSES. */
+  it("the terms point at the screen the app actually shows", () => {
+    const terms = read("docs/legal/terms.md");
+    expect(terms).toContain("Settings → About → Licenses");
+    expect(terms).not.toMatch(/Settings → (?:About → )?Licences/);
+  });
+});

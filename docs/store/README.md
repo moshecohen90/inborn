@@ -30,6 +30,17 @@ on what may be published about the source, and `privacy-policy.md` §6 on what i
 Adding a locale means adding its translations of these phrases to `BANNED` in the script, or
 the rule is blind there.
 
+Since round 48 (F205) it also fails when a field a shopper reads names the other platform. `apple.description`
+bullet 2 named Android in all eight locales, which is an App Store Review Guideline 2.3.10 metadata rejection
+in every storefront at once, and `apple.whats_new` did the same in its last bullet. The rule watches the six
+Apple fields, the three Play fields and the shared screenshot overlays, in both directions; `reviewer_notes`
+is exempt, because a reviewer needs both names. The guard's own test is `apps/mobile/test/store-copy.test.ts`,
+which runs this script against a sabotaged copy of the listings and expects exit 1:
+
+```
+node docs/store/scripts/check-store-copy.mjs <directory>   # check a copy instead of these files
+```
+
 Last run: PASS, all fields within limits, zero warnings.
 
 ## Field mapping

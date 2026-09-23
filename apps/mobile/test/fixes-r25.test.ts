@@ -43,7 +43,7 @@ describe("F51 · nothing in the app claims a source the reader cannot open", () 
   it("the Proof screen no longer links to the private repository", () => {
     const proof = source("screens/Proof/Proof.tsx");
     expect(proof).not.toContain("github.com/moshecohen90/inborn");
-    expect(proof).toContain("proof.build.notPublished");
+    expect(proof).toContain("proof.build.source");
   });
   /* `about.openSource` is the third-party dependency list, which really is open source; the claim we had to drop is about OUR code. */
   it("no shipped string offers Inborn's own source or a hash the user could match", () => {
