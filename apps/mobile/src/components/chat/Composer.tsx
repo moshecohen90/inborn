@@ -51,13 +51,15 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
   const canSend = !!value.trim() && !disabled && !busy;
-  /* A physical keyboard's Enter sends while the field has focus; Shift+Enter still breaks the line (QA T28). Latest props through a ref: the capture is armed once per focus. */
+  /* A physical keyboard's Enter sends while the field has focus; Shift+Enter still breaks the line (QA T28, F108). Latest props through a ref: the capture is armed once per focus. */
   const enter = useRef({ canSend, onSend });
   enter.current = { canSend, onSend };
   useEffect(() => {
     if (!focused) return;
     return captureHardwareEnter(() => {
-      if (enter.current.canSend) enter.current.onSend();
+      if (!enter.current.canSend) return false;
+      enter.current.onSend();
+      return true;
     });
   }, [focused]);
   const maxHeight = LINE * 6 * scale + 20;
@@ -134,7 +136,7 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
         </Pressable>
         {busy ? (
           <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.danger }]}>
-            <Icon name="stop" size={14} color={theme.ctaFill} fill />
+            <Icon name="stop" size={14} color={theme.onDanger} fill />
           </Pressable>
         ) : (
           <Pressable testID="send" accessibilityRole="button" accessibilityLabel={t("chat.send")} accessibilityState={{ disabled: !canSend }} disabled={!canSend} onPress={onSend} style={[styles.send, { backgroundColor: theme.ctaFill, opacity: canSend ? 1 : 0.45 }]}>

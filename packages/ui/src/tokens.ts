@@ -13,8 +13,9 @@ export const dark = {
   danger: "#F25555",
   ctaFill: "#E6EAEE",
   ctaText: "#0A0D11",
-  /** Text on a danger fill (the one filled colour besides cta): light in both schemes. */
-  onDanger: "#F3F5F7",
+  /** Text and glyphs on a danger fill. It follows the fill, not the scheme: the dark theme's red is a light one, so
+   *  white on it was 3.10:1 and failed 1.4.3 (QA F109). */
+  onDanger: "#0A0D11",
 } as const;
 
 export const light = {
@@ -28,7 +29,7 @@ export const light = {
   text3: "#5E6975",
   accent: "#8F5309",
   sealed: "#0B7A4C",
-  danger: "#C93A3A",
+  danger: "#BC2F2F",
   ctaFill: "#12161B",
   ctaText: "#F3F5F7",
   onDanger: "#F3F5F7",
