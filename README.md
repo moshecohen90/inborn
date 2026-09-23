@@ -405,6 +405,36 @@ sample) — the XCUITest runner is built and both sessions are patched and ready
 "Enter iPhone Passcode for 'XCTest' · Enable UI Automation" prompt. Two release-pipeline defects came out of the run and
 are filed as **F90** (a stale locked `signing_temp` keychain kills `-exportArchive` with an unexplained
 `errSecInternalComponent`) and **F91** (`asc-key-env.sh --cleanup` deletes every stream's staged key, not its own).
+**TestFlight 1.0.0 (14) VALID 23.9 09:26 from `main` 8033dce, buildNumber 14** (`docs/qa/ios-build-14-2026-09-22.md`)
+— cut because MosheAI found build 13's in-app Legal screens rendering raw `{{…}}` placeholders and claims the code does
+not support (**F92–F96**, fixes round 31), and legal text is shared TypeScript plus two Markdown files the screen
+imports, so build 13's binary could not carry the fix. **The fix is proved on the shipped Hermes bundle, not on the
+source tree**: all six placeholder tokens and both draft notices are **0** where build 13 carried eighteen of them, and
+`Cohen Apps`, `support@inbornapp.com` and `+1-440-847-8502` are present; the false `published open-source core`,
+`Secure Enclave` and `hardware-backed` claims are **0** and the honest key-store wording is in. A sweep of the whole
+6,172,387-byte bundle finds 41 distinct `{{…}}` tokens left, one of them `{{COPYRIGHT}}` (which `licenceText()` fills)
+and the other 40 all work-pack prompt templates. Real-iPhone pass 14: **27 PASS, 1 FAIL, 1 PARTIAL, 1 NOT RUN of 30
+rows** (`docs/qa/ios-device-pass-14-2026-09-22.md`) — 13 deep-link routes all drew, 0 error lines across every device
+log, the chat settles to a frame whose full-frame difference bbox is `None`, F43 still boots the phone on the 1.2 GB
+Fast model at `n_ctx` 4096, the vault survived the update byte-identical, and the Proof screen still reads `OUT 0 B ·
+IN 0 B`. The **30-minute soak** held one process for 31 min 17 s with 0 error lines and 0 crash reports, caught the
+10-minute idle unload again (resident −1.38 GB, header still `FAST`), and settled to a footprint within **0.3 %** of
+build 13's — two independent runs agreeing, which is what makes the number trustworthy. **The FAIL is new and is filed
+as F98**: the in-app **Terms** screen names no licensor and gives no
+phone number, because `legalBody()` returns the document from its first `## ` heading and `terms.md` carries
+`Licensor: Cohen Apps`, the effective date, the phone and the scope paragraph **only** above it — the privacy policy
+survives the same cut only because it repeats the identity in a numbered section. Round 31's guard could not see it
+because it asserts those values on the **file** while the reader gets the **screen**, which is the F96 shape again; the
+complement was run to prove the check is not vacuous (it fails on the terms and passes on the privacy policy).
+**Still open and needing Moshe:** every tap row (a live chat answer with tok/s, the three Hebrew answers, a model's
+Details sheet incl. F46's SOURCE line, the vault below the fold, the privacy policy's lower sections). The runner is
+built and all four step files are patched and ready; **three** driver attempts stopped at the phone's "Enter iPhone
+Passcode for 'XCTest' · Enable UI Automation" keypad. **New fact about that sheet, measured here:** pass 13 recorded
+that it does not clear itself, which holds over 90 seconds but not over six — watched with a hashed screenshot every
+two minutes, it **expired on its own** with no grant given. So a passcode typed into a sheet that no runner is waiting
+on achieves nothing, and the sheet has to be raised while he is holding the phone. It is also a **keypad, not an
+"Enable" button**, which is how the ask has been relayed until now. Neither F90 nor F91 recurred: the keychain
+search list was already clean, and `--cleanup` was never called.
 Play internal testing 1.0.0 (6) active
 (`docs/qa/purchases-run-2026-09-11.md` section I); versionCode 7 released 20.9 from `main` ff39f94 (section J), versionCode 8 released 21.9
 from `main` 543a5af with the F33 fix (section K); versionCode 9 released 21.9 from `main` f27a8c5 with fixes rounds 15 and 16 (section L);
