@@ -86,7 +86,7 @@ Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed
 
 ## 10. Security
 
-No server means no server to breach. On the device: an encrypted database whose key the operating system holds, optional biometric app lock, optional screenshot blocking, incognito mode and emergency wipe. Inborn's source code is not public, so nothing in this policy asks you to read it; the claims in section 3 are the kind you can check from outside the app, without our cooperation. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
+No server means no server to breach. On the device: an encrypted database whose key the operating system holds, optional biometric app lock, optional screenshot blocking, incognito mode and emergency wipe. Inborn's source code is public at github.com/moshecohen90/inborn, but nothing in this policy asks you to read it; the claims in section 3 are the kind you can check from outside the app, without our cooperation. The Android build's manifest can be checked with `aapt2 dump permissions`; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3.
 
 ## 11. Changes
 
