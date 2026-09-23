@@ -3875,3 +3875,53 @@ signing options for every release living in an untracked file recreated by hand 
 being uncheckable on this phone because it is a FREE device and both routes to Pro on a distribution build need the
 same driver grant as F185. Details: `docs/qa/ios-build-16-2026-09-23.md` and
 `docs/qa/ios-device-pass-16-2026-09-23.md`.
+
+## Fixes round 44: Play internal 1.0.0 (20) — the first Android build carrying rounds 34–43 (branch `android-vc20`) — 23.9.2026
+
+`vc19` was the Android submission candidate and it was built from `main` 202db50, which predates every round merged
+during 23.9: the browser file pickers and the toggle (34, 34b), the responsive pass (35), the onboarding rework (36),
+the attach gate on Android and iOS (37, 38), the premium entrances (39), the model sheet (40), the site landing (41),
+the legal-from-site block (42) and the acceptance round (43). None of them had ever run on an Android **release**
+build. `main` **bab0618** is the first one that carries them all, and this round is that build on Moshe's phone.
+
+- **The bundle.** `INBORN_VERSION_CODE=20`, `INBORN_PACKS` unset, `bundleRelease` in 9 m 19 s: **5,117,903,079 bytes**,
+  sha256 `c5346d9e…4337`, the **seven** asset packs byte-for-byte the vc12–vc19 set, both `traineddata` files, **zero**
+  `base/assets/ios` entries, `bundletool validate` rc 0, `versionCode="20" versionName="1.0.0"`, minSdk 26, targetSdk
+  36, and `check-android-permissions.sh` confirming **no INTERNET permission**. The whole delta against vc19 is
+  **+134,008 bytes in `base/assets`** — the JS bundle carrying the thirteen rounds — over an identical entry count and
+  an identical pack set. Uploaded to the internal track as "1.0.0 (20)", edit `04438752370749918475`, committed 22:41;
+  Play's read-back over a fresh edit answers the same sha256 as the local file.
+- **The update was an update.** Pressed 21 minutes after the commit, first attempt, `DOWNLOAD-STARTED`, and
+  **versionCode 20 84 seconds later** — Play reused every pack this time, against the 945 s and 5.08 GB it re-fetched
+  for vc19. `firstInstallTime` is still 21.9, `installerPackageName=com.android.vending`, onboarding was not re-run,
+  and nothing on the phone was uninstalled or cleared.
+- **Round 40 has a device proof now.** It shipped saying plainly that no screenshot showed a real one-tap switch,
+  because that stream had no phone. The chip opens the sheet, the sheet lists **all four** chat models — `instant`,
+  `fast`, `sharp`, `sharp-phi` — each with its own `Good at:` line and its own language line, `FAST` carrying
+  RECOMMENDED and `INSTANT` carrying `In use`, `SHARP` greyed `TOO BIG FOR 8 GB` and `SHARP (PHI)` `Too slow to use on
+  this phone`. **One** tap on `model-sheet-use-fast` moves the header chip in 7 s, and one tap moves it back.
+- **The three document answers Moshe asked about, on the shipping build.** Round 37 had to prove its fix on a second
+  package because the Play build could not be replaced, and round 43's floor was proven in a browser. Here, on the
+  Play build: a 40-page PDF asked about while it was still indexing **held** and said *"Reading your document before
+  answering…"*, then answered **ZR-4471-QX** cited to `p.30` (F126); the same file with a question it does not answer
+  produced **no citations at all** plus *"Nothing in your documents matched this question. Answered without them."*
+  (F161); and with `DOCS ONLY` on, *"I could not find that in your documents."* (F137). The door photo on the Photo
+  button is described (F125), Settings' `INBORN PRO` row opens the paywall with no reason and a Work-only `.xlsx`
+  opens it with *"You opened a spreadsheet. Pro for Work reads Excel and HTML files."* (round 39), Terms opens with
+  `OFFLINE COPY · EFFECTIVE 22 September 2026` above **"Read the current version at inbornapp.com/terms"** (round 42),
+  the Proof screen's `Run the airplane test` lands on the airplane screen (F124b), and a Hebrew question is answered
+  in Hebrew (68 Hebrew characters, 0 Latin letters). **0 crashes, 0 ANRs, one pid** across the whole pass.
+- **The residual round 43 declared is still real, and is not hidden here.** With strict **off** and nothing relevant
+  in the file, Instant still answers the ferry question out of general knowledge rather than refusing. What round 43
+  fixed is that it no longer wears citations while doing it, and that the app says so itself. Strict mode is the
+  thing that actually refuses, and D3 is it working on this build.
+
+**Not done, and why.** The legal button is photographed but **not followed**: `inbornapp.com` still does not resolve,
+which is README "Deploy"'s open item and not this stream's. No purchase was started on the paywall. The onboarding
+Sealed screen's copy of the airplane link was not reachable, because an update in place does not re-run onboarding —
+the Proof screen's copy of the same link is the one proven. This build does **not** carry round 43b (`site-github`),
+which landed on `main` after the bundle was built.
+
+Gates on `bab0618`: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,220 tests** (core 655, mobile 541, ui 13,
+i18n 11). Evidence: `docs/qa/android-vc20/`, write-ups in `docs/qa/purchases-run-2026-09-11.md` §W and
+`docs/qa/qa-run-2026-09-11.md` F180–F184.
