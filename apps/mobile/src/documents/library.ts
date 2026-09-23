@@ -274,6 +274,8 @@ export class DocumentLibrary {
         if (!job) continue;
         await this.runJob(id, job);
         this.jobs.delete(id);
+        /* The last notify of runJob still sees the job in the map, so `settle` would never wake without this one. */
+        this.notify();
       }
     } finally {
       this.running = false;
@@ -343,6 +345,23 @@ export class DocumentLibrary {
     this.docs.set(doc.id, doc);
     void this.store?.putDocument(doc);
     this.notify();
+  }
+
+  /** True while one of these documents is queued or being read; a chat turn waits for it instead of answering around it (QA F135). */
+  indexingAny(docIds: readonly string[]): boolean {
+    return docIds.some((id) => this.jobs.has(id));
+  }
+
+  /** Resolves once none of these documents is queued or being read. Already-settled ids resolve immediately. */
+  settle(docIds: readonly string[]): Promise<void> {
+    if (!this.indexingAny(docIds)) return Promise.resolve();
+    return new Promise((resolve) => {
+      const off = this.subscribe(() => {
+        if (this.indexingAny(docIds)) return;
+        off();
+        resolve();
+      });
+    });
   }
 
   cancel(id: string): void {

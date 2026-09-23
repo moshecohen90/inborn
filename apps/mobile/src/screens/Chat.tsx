@@ -83,7 +83,8 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
-import { planDocsTurn } from "../lib/docsGate";
+import { planDocsTurn, type DocsTurn } from "../lib/docsGate";
+import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -220,6 +221,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
+  const [docsOffer, setDocsOffer] = useState(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -440,9 +442,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
-      const turn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready }) : { kind: "model" as const };
+      let turn: DocsTurn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready, indexing: docs.indexing, noIndexModel: docs.noIndexModel }) : { kind: "model" };
+      /* An attached file is read before the answer, never answered around: that is what produced "I received no document" (QA F135). */
+      if (turn.kind === "wait") {
+        patch((x) => ({ ...x, content: t("documents.reading") }));
+        await Promise.race([docs.settle(), new Promise<void>((r) => ac.signal.addEventListener("abort", () => r(), { once: true }))]);
+        if (ac.signal.aborted) {
+          setRows((all) => all.filter((x) => x.id !== rowId));
+          return;
+        }
+        const fresh = docs.context.docIds.map((id) => library.document(id));
+        turn = planDocsTurn({ strict: docs.strict, hasAttachment: fresh.some((d) => !!d), hasIndex: fresh.some((d) => (d?.chunkCount ?? 0) > 0), noIndexModel: library.state().embedder.kind === "missing" });
+        patch((x) => ({ ...x, content: "" }));
+      }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {
+        if (turn.messageKey === "documents.noIndexModel") setDocsOffer(true);
         await answerWithoutModel(turn.messageKey);
         return;
       }
@@ -470,6 +485,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
+          messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
           flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
         }
@@ -1115,6 +1131,23 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </Pressable>
         </View>
       ) : null}
+      {docsOffer ? (
+        <View testID="docs-offer" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.error.no-embedder")}</Text>
+          <Pressable
+            testID="docs-offer-action"
+            accessibilityRole="button"
+            onPress={() => {
+              setDocsOffer(false);
+              afterSheetClose(() => onOpenVault?.());
+            }}
+            hitSlop={8}
+            style={styles.noticeBtn}
+          >
+            <Text style={[type.caption, { color: theme.accent }]}>{t("voice.openVault")}</Text>
+          </Pressable>
+        </View>
+      ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.canBeWrong", { device: deviceNoun() })}</Text>
@@ -1427,6 +1460,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => setTemplatesOpen(true));
         }}
         photoDisabled={!visionReady || !modelSees}
+        onInstallVision={modelSees && !visionReady ? () => {
+          setAttachOpen(false);
+          afterSheetClose(() => onOpenVault?.());
+        } : undefined}
+        visionSize="205 MB"
         photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: modelLabel(model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: modelLabel(model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
       />

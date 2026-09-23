@@ -21,17 +21,48 @@ describe("planDocsTurn (QA F34)", () => {
 
   it("leaves the plain chat alone: no strict, no documents, the model answers", () => {
     expect(planDocsTurn({ strict: false, hasAttachment: false, hasIndex: false })).toEqual({ kind: "model" });
-    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false })).toEqual({ kind: "model" });
+  });
+});
+
+describe("an attached document is never answered around (QA F135)", () => {
+  /* Moshe's iPhone and 6T, 23.9.2026: a PDF hangs off the composer, strict is off, and the turn went straight to the
+     model, which answered that it had received no document. The old gate returned { kind: "model" } for exactly this. */
+  it("does not send the turn to the model while a file the user attached cannot be searched", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false })).not.toEqual({ kind: "model" });
+  });
+
+  it("waits for an attached document that is still being read, strict or not", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, indexing: true })).toEqual({ kind: "wait" });
+    expect(planDocsTurn({ strict: true, hasAttachment: true, hasIndex: false, indexing: true })).toEqual({ kind: "wait" });
+    /* A second file still being read holds the answer back too: the user attached both and asked about both. */
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: true, indexing: true })).toEqual({ kind: "wait" });
+  });
+
+  it("says the file could not be read when indexing is finished and produced nothing", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, indexing: false })).toEqual({ kind: "refuse", messageKey: "documents.notReadable" });
+  });
+
+  it("names the missing index model rather than the file when that is the reason", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: true, hasIndex: false, noIndexModel: true })).toEqual({ kind: "refuse", messageKey: "documents.noIndexModel" });
+    expect(planDocsTurn({ strict: true, hasAttachment: true, hasIndex: false, noIndexModel: true })).toEqual({ kind: "refuse", messageKey: "documents.noIndexModel" });
+  });
+
+  it("nothing attached still goes to the model, index model or not", () => {
+    expect(planDocsTurn({ strict: false, hasAttachment: false, hasIndex: false, noIndexModel: true })).toEqual({ kind: "model" });
+    expect(planDocsTurn({ strict: false, hasAttachment: false, hasIndex: false, indexing: true })).toEqual({ kind: "model" });
   });
 
   it("every message key it can return exists in en.json", () => {
-    for (const input of [
-      { strict: true, hasAttachment: false, hasIndex: false },
-      { strict: true, hasAttachment: true, hasIndex: false },
-    ]) {
-      const turn = planDocsTurn(input);
-      expect(turn.kind).toBe("refuse");
-      if (turn.kind === "refuse") expect(en[turn.messageKey]).toBeTypeOf("string");
-    }
+    const keys = new Set<string>();
+    for (const strict of [true, false])
+      for (const hasAttachment of [true, false])
+        for (const hasIndex of [true, false])
+          for (const indexing of [true, false])
+            for (const noIndexModel of [true, false]) {
+              const turn = planDocsTurn({ strict, hasAttachment, hasIndex, indexing, noIndexModel });
+              if (turn.kind === "refuse") keys.add(turn.messageKey);
+            }
+    expect(keys.size).toBeGreaterThan(0);
+    for (const k of keys) expect(en[k], k).toBeTypeOf("string");
   });
 });
