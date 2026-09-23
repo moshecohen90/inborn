@@ -3823,3 +3823,55 @@ governs, and all of them had to keep saying the same thing or start contradictin
   link, the rewritten FAQ answer and the footer's new small print in the same shot; `proof-{390,1440}.png` shows
   `/proof`'s new "The source, and release hashes" section. No phone or emulator was used; nothing in this round
   touches native code.
+
+## Fixes round 45: TestFlight 1.0.0 (16) — the first build carrying rounds 34–43 (branch `ios-build-16`) — 23.9.2026
+
+Build 15 went to TestFlight before rounds 34–43 merged, so everything those rounds fixed existed only in `main` and
+in a browser. `docs/qa/acceptance/ios/README.md` said it plainly — *"the round-43 fixes have not been seen on the
+iPhone"* — and this build is the answer to that sentence. `ios.buildNumber` 15 → 16 over `origin/main` **bab0618**;
+the bump was committed before the archive, so the binary is stamped with this branch's own tip, **e8a880472467**,
+and the phone's About screen shows that string back.
+
+**Archived, exported, uploaded and VALID on the first attempt of each.** Archive 22:26:52 → 22:30:08 (3 min 16 s,
+after 7 minutes waiting out `android-vc20`'s gradle lock), `** ARCHIVE SUCCEEDED **`, 0 `error:` lines; export 37 s;
+upload 91 s at 64 MB/s; **VALID at 22:48:19** with no compliance question. Delivery UUID
+`290d92c2-66f2-4a21-8ab0-f1bece8a331f`, ASC build id the same, `APP_STORE_ELIGIBLE`, in the internal group beside
+every build back to 1. IPA 561,109,972 B, sha256 `879d3eb1…`; `main.jsbundle` **6,288,554 B**, +131,494 B over build
+15, which is rounds 34–43 in bytes. The two traps build 15 documented were both paid up front: the `.models` symlink
+existed **before** `pod install`, so the archive carries `eng.traineddata` and `heb.traineddata` on its first cut,
+and the untracked `ExportOptions.plist` was recreated before the export. Tests before the archive: **1,220** (core
+655, mobile 541, i18n 11, ui 13) plus `check:store`, all green.
+
+**On the phone, installed as an update — and Moshe's data came through untouched.** `devicectl device install app`
+over the existing bundle id, never an uninstall (F144): 1.0.0 (15) → **1.0.0 (16)** in 16 s, `vault.json`
+byte-identical (338 B, same sha), `documents.json` byte-identical, all 6 library files still there. Eight deep-link
+routes launched and screenshotted, none crashed; a 9-minute foreground soak held **one** pid across minutes 0, 4 and
+8 with 0 error lines in the console, and the phone's entire crash-log store — 55 reports — **mentions Inborn
+nowhere**, the newest report of any kind predating this build.
+
+**Six of the ten assigned rows did not run, and are not claimed.** The XCUITest driver never started: both launches
+died on `Timed out while enabling automation mode` while the phone raised *"Enter iPhone Passcode for 'XCTest'"*,
+which only Moshe can answer. The sheet stood from 22:52 to 22:57:57 and expired unaccepted; it was not raised a third
+time and the phone was left on its home screen. So the model sheet's Instant→Fast switch, F136, F126, F161, F137 and
+the Hebrew turn are recorded as **not driven on 16**, each with the build it was last proven on — not folded into
+this round's results. That gap is **F185**, filed with the one-session step list that would close it
+(`scratchpad/ios-build-16/stepsF.txt`) and with the observation that this is the third pass in two weeks to hit it.
+
+**What the deep links did prove on build 16**, each with a screenshot in `docs/qa/ios-device-pass-16/`: About at
+1.0.0 (16) with the archive commit; the round-42 legal header — **"Read the current version at
+inbornapp.com/terms"** over the F97 identity block (`Cohen Apps`, `support@inbornapp.com`, `+1-440-847-8502`,
+effective 22 September 2026) — on Terms and on Privacy; the round-39 `INBORN PRO` settings row reading *See what's in
+Pro · FREE*; **F160 on Apple hardware**, the Documents screen naming the scan *"Scanned. Run OCR on this phone?"*
+instead of "Not indexed yet" while the four readable files read `Indexed · N passages`; the strict control locked
+with its `PRO` tag; the redrawn `Toggle` photographed in both states on the iPhone itself, which is the closest
+anyone has come to the `.ini`'s row 6 (the Wi-Fi-only switch is below the fold and needs the driver, so that row
+stays open); the model chip on the chat header; the vault ranking Instant `In use` against Fast `RECOMMENDED ON THIS
+PHONE`; and the paywall's real prices.
+
+Three more findings came out of the run and are filed rather than fixed: **F186**, the doc-extract podspec that drops
+Tesseract with a warning and still ships a green archive — the mechanism that nearly cost build 15 its Hebrew OCR,
+with the one-line Release-configuration failure and the release-checklist assertion that would end it; **F187**, the
+signing options for every release living in an untracked file recreated by hand from prose; and **F188**, strict mode
+being uncheckable on this phone because it is a FREE device and both routes to Pro on a distribution build need the
+same driver grant as F185. Details: `docs/qa/ios-build-16-2026-09-23.md` and
+`docs/qa/ios-device-pass-16-2026-09-23.md`.
