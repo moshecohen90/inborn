@@ -4369,9 +4369,8 @@ screen is built from, and the site's sideways scroll changed in one CSS line wit
   stacking three empty messages; the model sheet stopped offering, at full weight, three models the browser cannot
   install; the browser vault leads with the action instead of with Close; the web paywall's bullets carry the same
   mark as the native card's; the proof screen draws its mark instead of a `✓` no shipped face has, so "sha256 √" is
-  gone whatever the strings say (`fix-copy` then took the character out of all five `proof.delivery.*` keys, which
-  left nothing to draw, so the mark is a prop now: the hash-verified lines get it, the "no hash published" line
-  deliberately does not); one sheet title stopped shouting; CJK section labels step in weight and ink, since
+  gone whatever the strings say (round 52b below finishes this one: `fix-copy` removed the character from the
+  strings, which left the renderer nothing to draw); one sheet title stopped shouting; CJK section labels step in weight and ink, since
   uppercase and tracking do nothing to those glyphs.
 
 **Left to other streams, by name.** The browser notice stack (five notices before the first word, including the mono
@@ -4431,3 +4430,35 @@ accessibility action and handles it, with the new key `chats.more` in all nine l
 
 Gates on this branch merged with `main` (**7cb4a63**): `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
 **1,419 tests** (core 726, mobile 663, i18n 17, ui 13); the three new mobile ones are the F215 guard.
+
+## Fixes round 52b: the proof mark, after the strings it keyed off stopped carrying it (branch `fix-design`) — 24.9.2026
+
+Round 52 fixed the proof screen's integrity mark by splitting the line on U+2713 and drawing `<Icon name="check" />`
+in its place, because IBM Plex Sans has no such glyph and the fallback read "sha256 √" on the one screen whose whole
+job is literal accuracy. Round 52's own item 14, on `fix-copy`, then removed that character from all five
+`proof.delivery.*` keys in eight locales and reordered the verified lines to **end** on "sha256". Both changes are
+right and together they shipped a bug: the split matched nothing, the icon never rendered, and the delivery line
+carried **no mark at all**. Measured on the running build before anything changed: zero `<svg>` nodes inside
+`[data-testid="proof-delivery-web"]`.
+
+The mark is a prop now, and which lines get it is a decision in code rather than a property of a string:
+
+- The browser line passes `webDelivery.verified`, the same flag that already chooses between the verified and the
+  unverified string.
+- The native line passes the new `deliveryHashChecked(source)` in `apps/mobile/src/proof/deliveryLine.ts`: true for
+  `apple`, `https` and `hf`, the three whose sentence ends on the hash we checked. `play` states its verification in
+  words, and `import` and `bundled` verify nothing, so a mark there would claim more than the sentence does.
+- `webUnverified` deliberately gets none. It ends on "no hash published", so a trailing check would read as verifying
+  the caveat — which is the opposite of what that key exists to say.
+
+Two guards, each watched red. `apps/mobile/test/fixes-r52.test.ts` fails if the source carries a tick, a heavy tick
+or a square-root character again, and if either `mark=` gate goes missing. `apps/mobile/src/proof/deliveryLine.test.ts`
+fails if the marked sources stop being exactly the ones whose English line ends on `sha256`; adding `import` to the
+predicate turns it red. Verified on the build rather than by eye: exactly one `<svg>` in the delivery line in English
+dark and light and in German dark, `docs/qa/fix-design/after/proof-delivery-mark-*.png`. The first shot came back
+with zero marks because the service worker was still serving the previous bundle, which is worth knowing for anyone
+measuring a rebuild here.
+
+Gates on this branch merged with `main` (**e3e771c**): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
+**1,449 tests** (core 726, mobile 693, i18n 17, ui 13), `pn web:build` and `pn web:smoke` 6/6, site build and
+`node apps/site/check.mjs` green on 13 pages. The F254 row in `docs/qa/qa-run-2026-09-11.md` carries both passes.
