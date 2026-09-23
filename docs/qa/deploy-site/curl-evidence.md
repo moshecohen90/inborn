@@ -68,6 +68,10 @@ Then the whole deploy is one command:
 node scripts/deploy-cloudflare.mjs --site --app
 ```
 
+The token was then polled for write access every 30 s for 12 minutes, in case it was replaced while the rest of this
+stream ran: 24 probes of `POST …/workers/scripts/inborn-permcheck/assets-upload-session`, all `403`
+(`scratchpad/deploy-site/token-poll.log`). Nothing was deployed.
+
 ## What was proven locally, and what stays unproven
 
 Proven:
