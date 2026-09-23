@@ -3362,7 +3362,8 @@ decisions already taken, not a choice, and S03 asked for something before it had
 - **Proof.** `pn typecheck`, `pn lint`, `pn test` (core 616, mobile 375, i18n 11, ui 11 = 1,013, +13 for
   `modelStep.test.ts`) and `pn web:smoke` all green; the smoke now asserts that the browser step offers no model it
   cannot download and walks welcome, model, sealed, lock, chat. Screenshots at 390 / 768 / 1440 in both schemes,
-  before and after, in `docs/qa/onboarding-rework/`, taken by `docs/qa/onboarding-rework/shots.mjs`.
+  before and after, in `docs/qa/onboarding-rework/`, taken by `docs/qa/onboarding-rework/shots.mjs`. Everything
+  under `after/` and `web-smoke.txt` was re-taken after merging `origin/main` at c45509c (round 42).
 - **Not done.** The two-option layout is proven by unit tests and by a throwaway harness build
   (`docs/qa/onboarding-rework/layout-two-options/`, built with `HttpsDelivery.plan` allowed on the web and the
   platform forced to iOS, then reverted); a real iPhone or a 6T was not in this stream's scope, so nobody has yet
