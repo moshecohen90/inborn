@@ -143,7 +143,7 @@ export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: 
                 <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.restore")}</Text>
               </Pressable>
             )}
-            {Platform.OS === "ios" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{state.familyShareable || !state.storeReachable ? t("paywall.familySharing.ios") : t("paywall.familySharing.iosOff")}</Text> : null}
+            {Platform.OS === "ios" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{state.familyShareable ? t("paywall.familySharing.ios") : t("paywall.familySharing.iosOff")}</Text> : null}
             {Platform.OS === "android" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.familySharing.play")}</Text> : null}
           </View>
         ) : null}
