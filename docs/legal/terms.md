@@ -10,7 +10,7 @@ These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to 
 
 ## 1. Licence
 
-We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source: its source code is public at github.com/moshecohen90/inborn under our source-available licence, which grants the right to read, build and verify the code and nothing more — not to redistribute, modify or resell it. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licences.
+We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use Inborn on devices you own or control, for your own use, subject to these terms. The app is licensed, not sold. Inborn is not open source: its source code is public at github.com/moshecohen90/inborn under our source-available licence, which grants the right to read, build and verify the code and nothing more. It does not grant the right to redistribute, modify or resell it. The app, its user interface, artwork, name and logo are ours. Third-party components we include keep their own licences, listed in the app under Settings → About → Licenses.
 
 You may not: redistribute the app or its Pro/Work features; remove or bypass licence checks; use the app to build a competing service that misrepresents its origin; or use our name or logo without permission. You may inspect, reverse-engineer and audit the app to the extent permitted by law. You do not have to take our privacy claims on trust: they are the kind that can be checked from outside the app, and the Proof screen inside it tells you how.
 
@@ -41,7 +41,7 @@ Prices may change; a price change never affects a purchase already made. Launch 
 
 ## 4. AI output: what you are agreeing to
 
-Inborn runs artificial-intelligence language models on your device. **You are talking to software, not a person.** The models are third-party open-weight models (listed in Settings → Licences) that we have not trained and cannot fully control.
+Inborn runs artificial-intelligence language models on your device. **You are talking to software, not a person.** The models are third-party open-weight models (listed in Settings → Licenses) that we have not trained and cannot fully control.
 
 - **Outputs can be wrong.** The AI can produce inaccurate, incomplete, outdated, biased or fabricated statements, including invented facts, citations, laws, dosages, prices and code. Treat every answer as a draft to verify, never as a fact.
 - **No professional advice.** Nothing the app produces is medical, legal, financial, tax, psychological or other professional advice, and no professional relationship is created by using it. For decisions that matter, consult a qualified professional. If you are in crisis, contact local emergency services or a crisis line; the app shows local resources when it detects such language, but it is not a crisis service.
@@ -52,7 +52,7 @@ Inborn runs artificial-intelligence language models on your device. **You are ta
 
 ## 5. Third-party models and licences
 
-The models bundled with or downloadable through Inborn are licensed by their authors under open licences (Apache-2.0, MIT and others), listed with links in Settings → Licences and in the `NOTICE` file. Those licences govern your use of the model weights. Models you import yourself from Hugging Face or elsewhere are your responsibility: the app shows you the licence when it can, but you accept the model author's terms, not ours.
+The models bundled with or downloadable through Inborn are licensed by their authors under open licences (Apache-2.0, MIT and others), listed with links in Settings → Licenses and in the `NOTICE` file. Those licences govern your use of the model weights. Models you import yourself from Hugging Face or elsewhere are your responsibility: the app shows you the licence when it can, but you accept the model author's terms, not ours.
 
 ## 6. Your content
 

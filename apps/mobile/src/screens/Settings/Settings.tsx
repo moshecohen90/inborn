@@ -68,7 +68,7 @@ export function Settings() {
         return setDeviceStateForPreview({ ...idleDeviceState, battery: { level: 0.18, lowPowerMode: false }, recommendation: { kind: "switchToInstant", reason: "battery", auto: false } });
       case "delivering":
         setDeviceStateForPreview(idleDeviceState);
-        return setDelivery({ name: "FAST", status: "delivering", progress: 0.41, totalBytes: 1.3 * 1024 ** 3 });
+        return setDelivery({ name: "FAST", status: "delivering", progress: 0.41, totalBytes: 1.3 * 1024 ** 3, source: Platform.OS === "android" ? "play" : "https" });
       default:
         return setDeviceStateForPreview(idleDeviceState);
     }

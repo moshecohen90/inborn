@@ -5,11 +5,12 @@ import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import { HF_CDN_HOST, HF_HOST, daysSince, formatBytes, networkAllowlist } from "@inborn/core";
+import { HF_CDN_HOST, HF_HOST, MODELS_HOST, daysSince, formatBytes, networkAllowlist } from "@inborn/core";
 import { radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
+import { deliveryKey } from "../../proof/deliveryLine";
 import { lastWebDelivery } from "../../proof/webDelivery";
 import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
@@ -63,7 +64,7 @@ export function Proof() {
             <Line text={t("proof.delivery.webNone")} testID="proof-delivery-web" />
           )
         ) : delivery && delivery.status === "done" ? (
-          <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={Platform.OS === "android" ? t("proof.delivery.play") : t("proof.delivery.apple")} />
+          <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} testID="proof-delivery" />
         ) : (
           <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} />
         )}
@@ -83,7 +84,7 @@ export function Proof() {
       <Section title={t("proof.build")}>
         <Line mono={`${version} (${build}) · ${extra.commit ?? "unknown"}`} text={t("proof.build.line", { date: extra.builtAt ?? "" })} testID="proof-build" />
         <Text testID="proof-source-note" style={[type.bodySmall, { color: theme.text3 }]}>
-          {t("proof.build.notPublished")}
+          {t("proof.build.source")}
         </Text>
       </Section>
 

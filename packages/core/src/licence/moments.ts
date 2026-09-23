@@ -34,12 +34,18 @@ export function paywallFor(tier: LicenceTier, moment: ValueMoment): boolean {
  */
 export type PaywallReason = ValueMoment["kind"] | Feature | "office" | "photos";
 
+/**
+ * Three features are the same refusal as a moment and shipped the same sentence under a second key in every locale.
+ * The moment id wins, so there is one string to write and one to translate (round 47).
+ */
+const FEATURE_ALIAS: Partial<Record<Feature, PaywallReason>> = { unlimitedPersonas: "persona", proModels: "model", officeIngest: "office" };
+
 export function reasonOf(moment: ValueMoment): PaywallReason {
-  return moment.kind === "feature" ? moment.feature : moment.kind;
+  return moment.kind === "feature" ? FEATURE_ALIAS[moment.feature] ?? moment.feature : moment.kind;
 }
 
 /**
  * Every reason a screen can open the paywall with. The two that are not a `ValueMoment` are the Work file formats
  * (`fileIntake`'s "office") and the Free photos-per-message cap, which is a `limits()` row rather than a gate.
  */
-export const PAYWALL_REASONS: readonly PaywallReason[] = ["persona", "document", "model", "office", "photos", ...FEATURE_LIST.filter((f) => !UNBUILT_FEATURES.includes(f))];
+export const PAYWALL_REASONS: readonly PaywallReason[] = ["persona", "document", "model", "office", "photos", ...FEATURE_LIST.filter((f) => !UNBUILT_FEATURES.includes(f) && !(f in FEATURE_ALIAS))];

@@ -55,6 +55,21 @@ describe("why the paywall opened", () => {
     expect(reasonOf({ kind: "persona", existing: 3 })).toBe("persona");
     expect(reasonOf({ kind: "model", proOnly: true })).toBe("model");
   });
+  /* F201: three features are the same refusal as a moment; they shipped the same sentence twice in every locale. */
+  it("a feature that is the same refusal as a moment answers with the moment's reason", () => {
+    expect(reasonOf({ kind: "feature", feature: "unlimitedPersonas" })).toBe("persona");
+    expect(reasonOf({ kind: "feature", feature: "proModels" })).toBe("model");
+    expect(reasonOf({ kind: "feature", feature: "officeIngest" })).toBe("office");
+    for (const f of ["unlimitedPersonas", "proModels", "officeIngest"] as const) expect(PAYWALL_REASONS).not.toContain(f);
+  });
+  it("no two reasons ship the same sentence, so there is nothing to drift", () => {
+    const byText = new Map<string, string[]>();
+    for (const r of PAYWALL_REASONS) {
+      const text = (en as Record<string, string>)[`paywall.why.${r}`]!;
+      byText.set(text, [...(byText.get(text) ?? []), r]);
+    }
+    expect([...byText.values()].filter((rs) => rs.length > 1)).toEqual([]);
+  });
   it("every reason a screen can raise has a one-line why in en.json", () => {
     expect(PAYWALL_REASONS.filter((r) => !(`paywall.why.${r}` in en))).toEqual([]);
   });

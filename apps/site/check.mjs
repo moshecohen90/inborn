@@ -8,7 +8,8 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { TOKENS } from "./build.mjs";
+import { TOKENS, siteOrigin } from "./build.mjs";
+import { headerProblems } from "./headerCheck.mjs";
 
 const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
 const problems = [];
@@ -20,10 +21,7 @@ function htmlFiles(dir, base = dist) {
 }
 const pages = htmlFiles(dist);
 
-const headers = readFileSync(path.join(dist, "_headers"), "utf8");
-if (!/Content-Security-Policy: default-src 'none'/.test(headers)) problems.push("_headers: CSP must start from default-src 'none'");
-if (!/script-src 'none'/.test(headers)) problems.push("_headers: script-src must be 'none'");
-if (/form-action\s+(?!'none'|https:\/\/)/.test(headers)) problems.push("_headers: form-action must be 'none' or one https origin");
+problems.push(...headerProblems(readFileSync(path.join(dist, "_headers"), "utf8")));
 
 for (const file of pages) {
   const html = readFileSync(path.join(dist, file), "utf8");
@@ -52,7 +50,7 @@ for (const file of pages) {
       // Outbound hyperlinks (stores' refund pages, licence texts) are fine; anything the browser would fetch is not.
       const tag = html.slice(Math.max(0, m.index - 200), m.index);
       const isAsset = /<(link|img|script|source|video|audio|iframe|object|embed)\b[^>]*$/i.test(tag);
-      const own = ref.startsWith(process.env.SITE_ORIGIN ?? "https://inbornapp.com");
+      const own = ref.startsWith(siteOrigin);
       if (isAsset && !own) problems.push(`${file}: loads external asset ${ref}`);
       continue;
     }
