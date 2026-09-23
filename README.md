@@ -4388,7 +4388,7 @@ node apps/site/check.mjs` green on all 13 pages including the new measurement. E
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
 
-## Fixes round 52: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
+## Fixes round 53: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
 
 The MosheAI review of 24.9 opened its third blocker with *"Nobody has ever run the Work tier on hardware, and its
 three headline bullets are the ones never driven"* — their only coverage was an **emulator on 11.9**, thirteen rounds
