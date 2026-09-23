@@ -1,10 +1,23 @@
+import Constants from "expo-constants";
+import { allowsTestPurchases, isDevBuild, type BuildFacts } from "./buildKind";
+
 /**
  * Bundle-time switches for purchase proofs on simulators/emulators. Store builds never set them, so release bundles
  * trust only Apple's production root and Play's real signature (spec §12.4, §10.7 #51).
+ *
+ * Which build this is comes from `extra.devVariant`, baked by `app.config.ts`, never from an environment variable a
+ * release shell could be carrying (QA F255): `Constants.expoConfig` missing at all reads as "not a dev variant".
  */
-export const devBuild = (): boolean => __DEV__ || process.env.EXPO_PUBLIC_DEV_MODEL_HOST !== undefined;
-/** Sandbox / Xcode StoreKit transactions and `android.test.*` SKUs verify only in dev bundles. */
-export const ALLOW_TEST_PURCHASES: boolean = process.env.EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1" || __DEV__;
+const FACTS: BuildFacts = {
+  devBundle: __DEV__,
+  devVariant: (Constants.expoConfig?.extra as { devVariant?: boolean } | undefined)?.devVariant === true,
+  devModelHost: process.env.EXPO_PUBLIC_DEV_MODEL_HOST !== undefined,
+  testPurchaseFlag: process.env.EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1",
+};
+
+export const devBuild = (): boolean => isDevBuild(FACTS);
+/** Sandbox / Xcode StoreKit transactions and `android.test.*` SKUs verify only in a dev bundle or the QA variant. */
+export const ALLOW_TEST_PURCHASES: boolean = allowsTestPurchases(FACTS);
 /** Play licence public key (base64 SPKI) at bundle time until it is pasted into roots.ts. */
 export const PLAY_LICENCE_KEY: string = process.env.EXPO_PUBLIC_PLAY_LICENCE_KEY ?? "";
 /** Launch day as ISO date for the 30-day launch price (§12.1); unset = launch SKU hidden. */
