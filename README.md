@@ -3925,3 +3925,61 @@ which landed on `main` after the bundle was built.
 Gates on `bab0618`: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,220 tests** (core 655, mobile 541, ui 13,
 i18n 11). Evidence: `docs/qa/android-vc20/`, write-ups in `docs/qa/purchases-run-2026-09-11.md` §W and
 `docs/qa/qa-run-2026-09-11.md` F180–F184.
+
+## Fixes round 46: the iPhone drives itself — an in-app QA bridge instead of XCUITest (branch `ios-qa-bridge`) — 24.9.2026
+
+Moshe, 24.9 00:05: *"isn't there another way to test without it? a shame it happened again; this is not good, we need
+a permanent solution."* The thing that happened again is F185. Every tap on the iPhone went through an XCUITest
+runner, the runner cannot start until iOS's *"Enter iPhone Passcode for 'XCTest' · Enable UI Automation"* sheet is
+answered, the grant comes back after a few launches and expires in about six minutes, and Moshe is usually not
+beside the phone. On build 16 that cost **six of ten proof rows**. This round takes the runner out of the loop.
+
+**The bridge (F190).** A step interpreter inside the app's own JS runtime. It finds any `testID` the app already has
+by walking React's fiber tree and calls the handler React is holding — `onPress`, `onChangeText`, a `Toggle`'s
+`onChange`, a settings `Row`'s `onToggle`. No native module, no new dependency, no accessibility grant, no passcode.
+The Mac pushes a JSON script into the app's own Documents container with `devicectl device copy to`, which prompts
+for nothing; the app polls that directory once a second, runs the steps, and parks on each `screenshot` step until
+the driver has photographed the phone (`pymobiledevice3 developer dvt screenshot --userspace`) and acknowledged.
+`scripts/ios-qa.mjs` is the whole Mac side: push, launch, poll, shoot, pull. The verbs are the desktop QA socket's,
+extended where a phone needs more: `press`, `type`, `send`, `waitFor`, `assertText`, `value`, `dump`, `screenshot`,
+`scrollTo`, `deeplink`, `setTier`, `devPrompt`, `sleep`, `cleanup`. `setTier` is the existing licence hook
+(`LicenceManager.pretendTier`), and `devPrompt` writes the line file `screens/Chat.tsx` has watched since round 38
+(`image:`, `attach:`, `strict:`) — nothing here is a parallel mechanism.
+
+**It cannot reach a shipping build.** `metro.config.js` resolves `src/qa/Bridge.tsx` to a stub that imports nothing
+unless `EXPO_PUBLIC_QA=1`. A dead `if` would not have been enough: metro records a dependency whether or not the
+branch can run, so the swap happens at resolution and metro never walks into the interpreter. Proven on real
+bundles, not on reasoning:
+
+| `expo export:embed` | `INBORN_QA_BRIDGE_V1` | `Documents/qa/in` | `qa-bridge` | `scripts/check-qa-bridge.sh` |
+|---|---|---|---|---|
+| no flag | 0 | 0 | 0 | **OK** |
+| `EXPO_PUBLIC_QA=1` | 1 | 1 | 1 | **FAIL** |
+
+`apps/mobile/test/qaBridgeGate.test.ts` watches the gate fail on a leaked bundle, on a leaked `.ipa`, and with
+`--expect-present` on a clean one, and asserts the metro swap in both directions.
+
+**The six rows, on the phone, through the bridge.** One script, 178 steps, **173 green on the first run**; the five
+reds were two bugs in the bridge (F191, F192), one late assertion (F193) and one QA-fixture trap (F194), and every
+row was green after the fixes. What the phone actually said, read out of the live tree:
+
+| row | what the phone answered |
+|---|---|
+| Model sheet, four chat models with reasons | `INSTANT … English · Native 508 MB In use`; `FAST RECOMMENDED … 1.2 GB`; `SHARP PRO … 2.6 GB`; `SHARP (PHI) PRO … 2.3 GB`, and Fast's download confirm reached without downloading |
+| Wi-Fi-only, both states | `value: false / checked: false` → pressed → `true / checked: true` → pressed → `false / checked: false` |
+| F126, the reading notice then a cited answer | *"Reading your document before answering…"*, then *"The authorised service code for the Kestrel 7 is QUARTZ-4417."* with `SOURCES kestrel4.pdf · p.1` |
+| F161, strict off, a question the file lacks | toast *"Nothing in your documents matched this question. Answered without them."*, the answer given anyway, and **no** citations block |
+| F136, a photo with a document attached | *"This image shows a rectangular door with six square panes of glass arranged in a grid…"* with `manual.pdf` attached |
+| Hebrew answered in Hebrew | *"שלום, אני כאן כדי לעזור ולתת לך תשובות נאותות…"* |
+| F137, strict on, tier `pro` via `setTier` | the `DOCS ONLY` chip, and *"I could not find that in your documents."* — the row `docs/qa/ios-device-pass-16-2026-09-23.md` called impossible on this phone |
+
+**Nothing of Moshe's was touched.** The QA build went on as an update, never an uninstall (F144): `vault.json`,
+`documents.json` and `device-prefs.json` came back **byte-identical**, and a full 477 MB copy of `Documents` was
+pulled first and kept in the session scratch dir. The nine chats and the two library entries the run created were
+deleted through the app afterwards, by id — the library is back to its original six documents and the chat list to
+its original six chats, and `strict` was put back to `true`. The phone was then left carrying a **clean, non-QA**
+build of this branch, verified with `scripts/check-qa-bridge.sh`.
+
+Spec §14 records the bridge as the device-QA mechanism. Tests: **1,264** (core 655, mobile 585, i18n 11, ui 13);
+44 of the mobile ones are this round's: 27 on the fiber walk, 8 on the step interpreter, 9 on the build gate.
+`pnpm typecheck`, `pnpm lint` and `pnpm test` green.

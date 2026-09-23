@@ -1,0 +1,768 @@
+{
+  "runId": "rows",
+  "_": "The six rows build 16 could not drive (docs/qa/ios-device-pass-16-2026-09-23.md, F185), as one bridge script. Fixtures already on the phone: kestrel4.pdf / manual.pdf / door.jpg at the Documents root, six documents in the library. Run: node scripts/ios-qa.mjs docs/qa/ios-qa-bridge/rows.json --out docs/qa/ios-qa-bridge --launch --timeout 2400000",
+  "steps": [
+    {
+      "op": "setTier",
+      "tier": "free"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "R00-chat-root"
+    },
+    {
+      "op": "dump",
+      "name": "chat-root"
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "press",
+      "testID": "model-chip"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "R01-model-sheet"
+    },
+    {
+      "op": "dump",
+      "name": "model-sheet"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-recommended"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-row-instant"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-inuse-instant"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-row-fast"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-recommended-fast"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-goodat-fast"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-language-fast"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-row-sharp"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-goodat-sharp"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-row-sharp-phi"
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-sheet-download-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "R02-fast-row"
+    },
+    {
+      "op": "press",
+      "testID": "model-sheet-download-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-sheet-confirm-fast",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "R03-fast-confirm"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "press",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 900
+    },
+    {
+      "op": "screenshot",
+      "name": "R04-wifi-flipped"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "press",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 900
+    },
+    {
+      "op": "screenshot",
+      "name": "R05-wifi-restored"
+    },
+    {
+      "op": "value",
+      "testID": "model-sheet-wifi-fast"
+    },
+    {
+      "op": "press",
+      "testID": "model-sheet-close"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-sheet",
+      "gone": true,
+      "timeoutMs": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "R06-back-to-chat"
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 12000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "strict: off",
+        "attach: kestrel4.pdf"
+      ]
+    },
+    {
+      "op": "waitFor",
+      "testID": "attached-docs",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "R07-fresh-attach"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the authorised service code for the Kestrel 7?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-docs",
+      "timeoutMs": 25000
+    },
+    {
+      "op": "value",
+      "testID": "reading-docs"
+    },
+    {
+      "op": "screenshot",
+      "name": "R08-reading-notice"
+    },
+    {
+      "op": "waitFor",
+      "testID": "citations",
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "R09-cited-answer"
+    },
+    {
+      "op": "value",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "value",
+      "testID": "citations"
+    },
+    {
+      "op": "assertText",
+      "text": "QUARTZ-4417",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 12000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "press",
+      "testID": "attach"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "R10-attach-sheet"
+    },
+    {
+      "op": "dump",
+      "name": "attach-sheet"
+    },
+    {
+      "op": "value",
+      "testID": "attach-strict"
+    },
+    {
+      "op": "press",
+      "testID": "attach-mueemyoi-2-tonetts8"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attached-mueemyoi-2-tonetts8",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "screenshot",
+      "name": "R11-attached-indexed"
+    },
+    {
+      "op": "press",
+      "testID": "attach-sheet-close"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "gone": true,
+      "timeoutMs": 8000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the population of Lisbon?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "toast",
+      "timeoutMs": 300000
+    },
+    {
+      "op": "value",
+      "testID": "toast"
+    },
+    {
+      "op": "screenshot",
+      "name": "R12-none-matched"
+    },
+    {
+      "op": "assertText",
+      "text": "Nothing in your documents matched this question",
+      "testID": "toast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "assistant-text",
+      "timeoutMs": 420000
+    },
+    {
+      "op": "sleep",
+      "ms": 15000
+    },
+    {
+      "op": "screenshot",
+      "name": "R13-answer-no-sources"
+    },
+    {
+      "op": "value",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "waitFor",
+      "testID": "citations",
+      "gone": true,
+      "timeoutMs": 3000
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 12000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "press",
+      "testID": "attach"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "press",
+      "testID": "attach-mueemyoi-2-tonetts8"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attached-mueemyoi-2-tonetts8",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "attach-sheet-close"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "gone": true,
+      "timeoutMs": 8000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "image: door.jpg"
+      ]
+    },
+    {
+      "op": "waitFor",
+      "testID": "pending-images",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "R14-photo-with-doc"
+    },
+    {
+      "op": "dump",
+      "name": "photo-with-doc"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Describe what you see in this photo."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "assistant-text",
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 25000
+    },
+    {
+      "op": "screenshot",
+      "name": "R15-photo-answer"
+    },
+    {
+      "op": "value",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 12000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "מה שלומך? ענה בעברית בבקשה"
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "screenshot",
+      "name": "R16-hebrew-question"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "assistant-text",
+      "timeoutMs": 420000
+    },
+    {
+      "op": "sleep",
+      "ms": 18000
+    },
+    {
+      "op": "screenshot",
+      "name": "R17-hebrew-answer"
+    },
+    {
+      "op": "value",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "setTier",
+      "tier": "pro"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 12000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 8000
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "press",
+      "testID": "attach"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "value",
+      "testID": "attach-strict"
+    },
+    {
+      "op": "press",
+      "testID": "attach-strict"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "value",
+      "testID": "attach-strict"
+    },
+    {
+      "op": "screenshot",
+      "name": "R18-strict-on-pro"
+    },
+    {
+      "op": "press",
+      "testID": "attach-mueemyoi-2-tonetts8"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attached-mueemyoi-2-tonetts8",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "attach-sheet-close"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attach-sheet",
+      "gone": true,
+      "timeoutMs": 8000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the population of Lisbon?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "assistant-text",
+      "timeoutMs": 420000
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "R19-strict-not-found"
+    },
+    {
+      "op": "value",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "assertText",
+      "text": "could not find that in your documents",
+      "testID": "assistant-text"
+    },
+    {
+      "op": "setTier",
+      "tier": "free"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "deeplink",
+      "url": "inborn:///vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 6000
+    },
+    {
+      "op": "screenshot",
+      "name": "R20-vault"
+    },
+    {
+      "op": "deeplink",
+      "url": "inborn:///"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "R21-final-chat"
+    },
+    {
+      "op": "dump",
+      "name": "final"
+    }
+  ]
+}

@@ -1,0 +1,2307 @@
+{
+  "runId": "rows-muenu65g",
+  "startedAt": "2026-09-23T22:14:20.106Z",
+  "finishedAt": "2026-09-23T22:18:09.206Z",
+  "ok": false,
+  "passed": 173,
+  "failed": 5,
+  "steps": [
+    {
+      "i": 0,
+      "op": "setTier",
+      "ok": true,
+      "ms": 188,
+      "detail": "free"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2880,
+      "detail": "R00-chat-root"
+    },
+    {
+      "i": 3,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "chat-root"
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2563,
+      "detail": "R01-model-sheet"
+    },
+    {
+      "i": 9,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "model-sheet",
+          "text": "Model FREE See what's in Pro RECOMMENDED ON THIS phone · CHAT IN ENGLISH On this device INSTANT Good at: Chat, Summaries, Voice notes, Photos English · Native 508 MB In use Fits your phone FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes English · Native 1.2 GB Install · 1.2 GB from models.inbornapp.com SHARP PRO Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning English · Native 2.6 GB Install · 2.6 GB from models.inbornapp.com SHARP (PHI) PRO Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning English · Native 2.3 GB Install · 2.3 GB from models.inbornapp.com Model vault Chat settings Close"
+        },
+        {
+          "testID": "model-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "tier-chip",
+          "text": "FREE"
+        },
+        {
+          "testID": "see-whats-in-pro",
+          "text": "See what's in Pro",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-recommended",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-sheet-row-instant",
+          "text": "INSTANT Good at: Chat, Summaries, Voice notes, Photos English · Native 508 MB In use"
+        },
+        {
+          "testID": "model-sheet-goodat-instant",
+          "text": "Good at: Chat, Summaries, Voice notes, Photos"
+        },
+        {
+          "testID": "model-sheet-language-instant",
+          "text": "English · Native"
+        },
+        {
+          "testID": "model-sheet-inuse-instant",
+          "text": "In use"
+        },
+        {
+          "testID": "model-sheet-row-fast",
+          "text": "FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes English · Native 1.2 GB Install · 1.2 GB from models.inbornapp.com"
+        },
+        {
+          "testID": "model-sheet-recommended-fast",
+          "text": "RECOMMENDED"
+        },
+        {
+          "testID": "model-sheet-goodat-fast",
+          "text": "Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes"
+        },
+        {
+          "testID": "model-sheet-language-fast",
+          "text": "English · Native"
+        },
+        {
+          "testID": "model-sheet-download-fast",
+          "text": "Install · 1.2 GB from models.inbornapp.com",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp",
+          "text": "SHARP PRO Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning English · Native 2.6 GB Install · 2.6 GB from models.inbornapp.com"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp",
+          "text": "Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning"
+        },
+        {
+          "testID": "model-sheet-language-sharp",
+          "text": "English · Native"
+        },
+        {
+          "testID": "model-sheet-download-sharp",
+          "text": "Install · 2.6 GB from models.inbornapp.com",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp-phi",
+          "text": "SHARP (PHI) PRO Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning English · Native 2.3 GB Install · 2.3 GB from models.inbornapp.com"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp-phi",
+          "text": "Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning"
+        },
+        {
+          "testID": "model-sheet-language-sharp-phi",
+          "text": "English · Native"
+        },
+        {
+          "testID": "model-sheet-download-sharp-phi",
+          "text": "Install · 2.3 GB from models.inbornapp.com",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-manage",
+          "text": "Model vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-chat-settings",
+          "text": "Chat settings",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "model-sheet"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT Good at: Chat, Summaries, Voice notes, Photos English · Native 508 MB In use",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT Good at: Chat, Summaries, Voice notes, Photos English · Native 508 MB In use"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "In use",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "In use"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes English · Native 1.2 GB Install · 1.2 GB from models.inbornapp.com",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes English · Native 1.2 GB Install · 1.2 GB from models.inbornapp.com"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "RECOMMENDED",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "RECOMMENDED"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "English · Native",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "English · Native"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SHARP PRO Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning English · Native 2.6 GB Install · 2.6 GB from models.inbornapp.com",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SHARP PRO Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning English · Native 2.6 GB Install · 2.6 GB from models.inbornapp.com"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SHARP (PHI) PRO Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning English · Native 2.3 GB Install · 2.3 GB from models.inbornapp.com",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SHARP (PHI) PRO Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning English · Native 2.3 GB Install · 2.3 GB from models.inbornapp.com"
+    },
+    {
+      "i": 20,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 2,
+      "detail": "scrollTo model-sheet-download-fast: not mounted"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1201,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2864,
+      "detail": "R02-fast-row"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "model-sheet-download-fast ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "model-sheet-confirm-fast appeared"
+    },
+    {
+      "i": 25,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 4,
+      "detail": "scrollTo model-sheet-wifi-fast: not mounted"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1209,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2881,
+      "detail": "R03-fast-confirm"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Wi-Fi only",
+          "accessibilityLabel": "Wi-Fi only",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 29,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-wifi-fast ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 917,
+      "detail": "900 ms"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1915,
+      "detail": "R04-wifi-flipped"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "",
+        "props": {
+          "value": true,
+          "label": "Wi-Fi only",
+          "accessibilityLabel": "Wi-Fi only",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": true,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 33,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-sheet-wifi-fast ← onPress"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 917,
+      "detail": "900 ms"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1597,
+      "detail": "R05-wifi-restored"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Wi-Fi only",
+          "accessibilityLabel": "Wi-Fi only",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 37,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet gone"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2865,
+      "detail": "R06-back-to-chat"
+    },
+    {
+      "i": 40,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 43,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 607,
+      "detail": "600 ms"
+    },
+    {
+      "i": 46,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 49,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 177,
+      "detail": "strict: off | attach: kestrel4.pdf"
+    },
+    {
+      "i": 50,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 535,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1202,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 52,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2241,
+      "detail": "R07-fresh-attach"
+    },
+    {
+      "i": 53,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 54 chars"
+    },
+    {
+      "i": 54,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 25070,
+      "detail": "waitFor reading-docs never appeared in 25000 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value reading-docs: no node with that testID is mounted"
+    },
+    {
+      "i": 57,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2245,
+      "detail": "R08-reading-notice"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12015,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 60,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2549,
+      "detail": "R09-cited-answer"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The authorised service code for the Kestrel 7 is QUARTZ-4417.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The authorised service code for the Kestrel 7 is QUARTZ-4417."
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SOURCES kestrel4.pdf · p.1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES kestrel4.pdf · p.1"
+    },
+    {
+      "i": 63,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"QUARTZ-4417\" present"
+    },
+    {
+      "i": 64,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 65,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 67,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 68,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 605,
+      "detail": "600 ms"
+    },
+    {
+      "i": 70,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 71,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 73,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 74,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1207,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 76,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2248,
+      "detail": "R10-attach-sheet"
+    },
+    {
+      "i": 77,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "attach-sheet",
+          "text": "ATTACH DOCUMENTS Templates Profession packs: legal, therapy, medical, accounting PHOTOS Photo One photo per message on Free Camera Add a file… PDF, Word, Excel, HTML, text, CSV or a photo door.jpg Scanned. Run OCR on this phone? notes.html Indexed · 2 passages prices.xlsx Indexed · 1 passage manual.pdf Indexed · 240 passages bigdoc2.txt Indexed · 219 passages kestrel4.pdf Indexed · 1 passage Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO Manage documents"
+        },
+        {
+          "testID": "attach-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "attach-templates",
+          "text": "Templates Profession packs: legal, therapy, medical, accounting",
+          "pressable": true
+        },
+        {
+          "testID": "attach-photo",
+          "text": "Photo One photo per message on Free",
+          "pressable": true
+        },
+        {
+          "testID": "attach-camera",
+          "text": "Camera",
+          "pressable": true
+        },
+        {
+          "testID": "attach-import",
+          "text": "Add a file… PDF, Word, Excel, HTML, text, CSV or a photo",
+          "pressable": true
+        },
+        {
+          "testID": "attach-mueeyj12-1-15sizyxq",
+          "text": "door.jpg Scanned. Run OCR on this phone?",
+          "disabled": true
+        },
+        {
+          "testID": "attach-mueeo5on-2-hh70g8dk",
+          "text": "notes.html Indexed · 2 passages",
+          "pressable": true
+        },
+        {
+          "testID": "attach-mueeo11v-1-4s899ke4",
+          "text": "prices.xlsx Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "attach-mueemyoi-2-tonetts8",
+          "text": "manual.pdf Indexed · 240 passages",
+          "pressable": true
+        },
+        {
+          "testID": "attach-mueec26w-1-5qtg9xr5",
+          "text": "bigdoc2.txt Indexed · 219 passages",
+          "pressable": true
+        },
+        {
+          "testID": "attach-muee8whs-1-m4yowwn4",
+          "text": "kestrel4.pdf Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "attach-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "attach-manage",
+          "text": "Manage documents",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "attach-sheet"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Answer only from my documents",
+          "accessibilityLabel": "Answer only from my documents",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 79,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "attach-mueemyoi-2-tonetts8 ← onPress"
+    },
+    {
+      "i": 80,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attached-mueemyoi-2-tonetts8 appeared"
+    },
+    {
+      "i": 81,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2865,
+      "detail": "R11-attached-indexed"
+    },
+    {
+      "i": 82,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 83,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 84,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 33 chars"
+    },
+    {
+      "i": 85,
+      "op": "send",
+      "ok": true,
+      "ms": 194,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 86,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 264,
+      "detail": "toast appeared"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Nothing in your documents matched this question. Answered without them.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+      "i": 88,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2231,
+      "detail": "R12-none-matched"
+    },
+    {
+      "i": 89,
+      "op": "assertText",
+      "ok": false,
+      "ms": 2,
+      "detail": "assertText \"Nothing in your documents matched this question\" is not on screen under toast"
+    },
+    {
+      "i": 90,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15015,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 92,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1917,
+      "detail": "R13-answer-no-sources"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Lisbon's population is estimated to be approximately 1.3 million residents, with over 300,000 people living in the city centre alone.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Lisbon's population is estimated to be approximately 1.3 million residents, with over 300,000 people living in the city centre alone."
+    },
+    {
+      "i": 94,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "citations gone"
+    },
+    {
+      "i": 95,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 96,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 98,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 99,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 606,
+      "detail": "600 ms"
+    },
+    {
+      "i": 101,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 102,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 103,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 104,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 105,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 106,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1215,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 107,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach-mueemyoi-2-tonetts8 ← onPress"
+    },
+    {
+      "i": 108,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attached-mueemyoi-2-tonetts8 appeared"
+    },
+    {
+      "i": 109,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 110,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 111,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "image: door.jpg"
+    },
+    {
+      "i": 112,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 267,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 113,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 114,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2548,
+      "detail": "R14-photo-with-doc"
+    },
+    {
+      "i": 115,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "pending-images",
+          "text": "Free sends one photo per message"
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "manual.pdf"
+        },
+        {
+          "testID": "attached-chip-mueemyoi-2-tonetts8",
+          "text": "manual.pdf",
+          "role": "button",
+          "label": "Remove manual.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "photo-with-doc"
+    },
+    {
+      "i": 116,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 36 chars"
+    },
+    {
+      "i": 117,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 118,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2123,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 119,
+      "op": "sleep",
+      "ok": true,
+      "ms": 25012,
+      "detail": "25000 ms"
+    },
+    {
+      "i": 120,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1600,
+      "detail": "R15-photo-answer"
+    },
+    {
+      "i": 121,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This image shows a rectangular door with six square panes of glass arranged in a grid, set against a light-colored wall. A small, round, light-colored object is positioned on the right side of the frame.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "This image shows a rectangular door with six square panes of glass arranged in a grid, set against a light-colored wall. A small, round, light-colored object is positioned on the right side of the fra"
+    },
+    {
+      "i": 122,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 123,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 124,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 125,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 126,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 127,
+      "op": "sleep",
+      "ok": true,
+      "ms": 605,
+      "detail": "600 ms"
+    },
+    {
+      "i": 128,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 129,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 130,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 131,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 26 chars"
+    },
+    {
+      "i": 132,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 133,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1931,
+      "detail": "R16-hebrew-question"
+    },
+    {
+      "i": 134,
+      "op": "send",
+      "ok": true,
+      "ms": 169,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 135,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 525,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 136,
+      "op": "sleep",
+      "ok": true,
+      "ms": 18009,
+      "detail": "18000 ms"
+    },
+    {
+      "i": 137,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1917,
+      "detail": "R17-hebrew-answer"
+    },
+    {
+      "i": 138,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "שלום, אני כאן כדי לעזור ולתת לך תשובות נאותות. יש לי זמן עבודה ומרחב להימנע מניסויים חסכוניים. נשמע כן, מודה.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "שלום, אני כאן כדי לעזור ולתת לך תשובות נאותות. יש לי זמן עבודה ומרחב להימנע מניסויים חסכוניים. נשמע כן, מודה."
+    },
+    {
+      "i": 139,
+      "op": "setTier",
+      "ok": true,
+      "ms": 198,
+      "detail": "pro"
+    },
+    {
+      "i": 140,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 141,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 142,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 143,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 144,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 146,
+      "op": "sleep",
+      "ok": true,
+      "ms": 614,
+      "detail": "600 ms"
+    },
+    {
+      "i": 147,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 148,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 149,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 150,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 151,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 152,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1215,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 153,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Answer only from my documents",
+          "accessibilityLabel": "Answer only from my documents",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 154,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "attach-strict ← onPress"
+    },
+    {
+      "i": 155,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 156,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "",
+        "props": {
+          "value": true,
+          "label": "Answer only from my documents",
+          "accessibilityLabel": "Answer only from my documents",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": true,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 157,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1930,
+      "detail": "R18-strict-on-pro"
+    },
+    {
+      "i": 158,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach-mueemyoi-2-tonetts8 ← onPress"
+    },
+    {
+      "i": 159,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "attached-mueemyoi-2-tonetts8 appeared"
+    },
+    {
+      "i": 160,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 161,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 162,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 33 chars"
+    },
+    {
+      "i": 163,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 164,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 165,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12002,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 166,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2565,
+      "detail": "R19-strict-not-found"
+    },
+    {
+      "i": 167,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "I could not find that in your documents.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "I could not find that in your documents."
+    },
+    {
+      "i": 168,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"could not find that in your documents\" present"
+    },
+    {
+      "i": 169,
+      "op": "setTier",
+      "ok": true,
+      "ms": 196,
+      "detail": "free"
+    },
+    {
+      "i": 170,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 171,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "inborn:///vault"
+    },
+    {
+      "i": 172,
+      "op": "sleep",
+      "ok": true,
+      "ms": 6002,
+      "detail": "6000 ms"
+    },
+    {
+      "i": 173,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2239,
+      "detail": "R20-vault"
+    },
+    {
+      "i": 174,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "inborn:///"
+    },
+    {
+      "i": 175,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 176,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3190,
+      "detail": "R21-final-chat"
+    },
+    {
+      "i": 177,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What is the population of Lisbon?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI I could not find that in your documents. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I could not find that in your documents."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "manual.pdf DOCS ONLY"
+        },
+        {
+          "testID": "attached-chip-mueemyoi-2-tonetts8",
+          "text": "manual.pdf",
+          "role": "button",
+          "label": "Remove manual.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "final"
+    }
+  ],
+  "errors": [
+    "step 20 (scrollTo): scrollTo model-sheet-download-fast: not mounted",
+    "step 25 (scrollTo): scrollTo model-sheet-wifi-fast: not mounted",
+    "step 55 (waitFor): waitFor reading-docs never appeared in 25000 ms",
+    "step 56 (value): value reading-docs: no node with that testID is mounted",
+    "step 89 (assertText): assertText \"Nothing in your documents matched this question\" is not on screen under toast"
+  ]
+}

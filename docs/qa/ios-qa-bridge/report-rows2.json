@@ -1,0 +1,458 @@
+{
+  "runId": "rows2-mueo2fpl",
+  "startedAt": "2026-09-23T22:20:45.915Z",
+  "finishedAt": "2026-09-23T22:23:02.470Z",
+  "ok": false,
+  "passed": 58,
+  "failed": 3,
+  "steps": [
+    {
+      "i": 0,
+      "op": "setTier",
+      "ok": true,
+      "ms": 188,
+      "detail": "free"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "inborn:///settings"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2243,
+      "detail": "S01-settings-top"
+    },
+    {
+      "i": 5,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 4,
+      "detail": "row-wipe"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1614,
+      "detail": "S02-settings-scrolled"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Delete everything Chats, key, documents. No recovery.",
+        "props": {
+          "label": "Delete everything",
+          "sub": "Chats, key, documents. No recovery.",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Delete everything Chats, key, documents. No recovery."
+    },
+    {
+      "i": 9,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "inborn:///"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4000,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 615,
+      "detail": "600 ms"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 20,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 178,
+      "detail": "strict: off | attach: manual.pdf"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 535,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 515,
+      "detail": "500 ms"
+    },
+    {
+      "i": 23,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 24,
+      "op": "send",
+      "ok": true,
+      "ms": 187,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 60251,
+      "detail": "waitFor reading-docs never appeared in 60000 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value reading-docs: no node with that testID is mounted"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1596,
+      "detail": "S03-reading-notice"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15016,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 30,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3515,
+      "detail": "S04-after-reading"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided manual contains no mention of warranty information for the Kestrel 7 lock body; it only details machining specifications requiring a torque of nine newton metres before installation.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The provided manual contains no mention of warranty information for the Kestrel 7 lock body; it only details machining specifications requiring a torque of nine newton metres before installation."
+    },
+    {
+      "i": 32,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 35,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 36,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 608,
+      "detail": "600 ms"
+    },
+    {
+      "i": 38,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 39,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 41,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1206,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 44,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach-mueemyoi-2-tonetts8 ← onPress"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "attached-mueemyoi-2-tonetts8 appeared"
+    },
+    {
+      "i": 46,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 48,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 33 chars"
+    },
+    {
+      "i": 49,
+      "op": "send",
+      "ok": true,
+      "ms": 157,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 50,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "toast appeared"
+    },
+    {
+      "i": 51,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Nothing in your documents matched this question\" present"
+    },
+    {
+      "i": 52,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2233,
+      "detail": "S05-none-matched"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value toast: no node with that testID is mounted"
+    },
+    {
+      "i": 54,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12016,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 56,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3501,
+      "detail": "S06-no-sources"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations gone"
+    },
+    {
+      "i": 58,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "inborn:///"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 60,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2865,
+      "detail": "S07-final"
+    }
+  ],
+  "errors": [
+    "step 25 (waitFor): waitFor reading-docs never appeared in 60000 ms",
+    "step 26 (value): value reading-docs: no node with that testID is mounted",
+    "step 53 (value): value toast: no node with that testID is mounted"
+  ]
+}
