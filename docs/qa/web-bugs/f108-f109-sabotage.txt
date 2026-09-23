@@ -1,0 +1,54 @@
+=== SABOTAGE 1 · dark onDanger back to #F3F5F7 (the pre-fix white) ===
+     × text on the danger fill reaches 4.5:1, which is the delete and wipe buttons 2ms
+ FAIL  src/tokens.test.ts > contrast (QA B11) > text on the danger fill reaches 4.5:1, which is the delete and wipe buttons
+AssertionError: dark onDanger on danger: expected 3.0961819282912297 to be greater than or equal to 4.5
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+=== SABOTAGE 1 · statement guard ===
+     × the delete/wipe contrast is fixed, and the statement no longer claims otherwise 3ms
+ FAIL  test/legal-texts.test.ts > F157 · the accessibility statement's measured gaps are still true > the delete/wipe contrast is fixed, and the statement no longer claims otherwise
+AssertionError: expected 3.0961819282912297 to be greater than or equal to 4.5
+ Test Files  1 failed (1)
+      Tests  1 failed | 90 passed (91)
+18:  onDanger: "#F3F5F7",
+35:  onDanger: "#F3F5F7",
+
+=== SABOTAGE 2 · light danger back to #C93A3A (the pre-fix red) ===
+     × the semantic inks reach 4.5:1 on every surface too, in both schemes 2ms
+ FAIL  src/tokens.test.ts > contrast (QA B11) > the semantic inks reach 4.5:1 on every surface too, in both schemes
+AssertionError: light danger on well: expected 4.301046913015272 to be greater than or equal to 4.5
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+
+=== SABOTAGE 3 · the two closed gaps put back into the statement ===
+     × the delete/wipe contrast is fixed, and the statement no longer claims otherwise 3ms
+     × the hardware-keyboard gap is closed, and the statement no longer claims it 0ms
+ FAIL  test/legal-texts.test.ts > F157 · the accessibility statement matches the code it describes > the delete/wipe contrast is fixed, and the statement no longer claims otherwise
+AssertionError: expected '# Inborn Accessibility Statement\n\nS…' not to match /delete and wipe buttons fail the cont…/
+- **Text size, two independent ways.** On iOS and Android, Inborn follows the system text size (Dynamic Type, the Android font scale). It also has its own **Text size** control in Settings, with seven steps from 0.9× to 2×, and that one works on every platform including the web version. On mobile the two multiply, so the largest app setting on a phone already at its largest system size is very large text. Most of the app's text is built from that scale. Some surfaces still use fixed sizes and follow only the system text size; section 5 says which.
+ FAIL  test/legal-texts.test.ts > F157 · the accessibility statement matches the code it describes > the hardware-keyboard gap is closed, and the statement no longer claims it
+AssertionError: expected '# Inborn Accessibility Statement\n\nS…' not to match /cannot send a message from a hardwar…/i
+- **Text size, two independent ways.** On iOS and Android, Inborn follows the system text size (Dynamic Type, the Android font scale). It also has its own **Text size** control in Settings, with seven steps from 0.9× to 2×, and that one works on every platform including the web version. On mobile the two multiply, so the largest app setting on a phone already at its largest system size is very large text. Most of the app's text is built from that scale. Some surfaces still use fixed sizes and follow only the system text size; section 5 says which.
+ Test Files  1 failed (1)
+      Tests  2 failed | 89 passed (91)
+
+=== SABOTAGE 4 · Shift+Enter no longer excluded (the newline would be swallowed) ===
+     × Shift+Enter breaks the line instead of sending 4ms
+ FAIL  src/components/chat/composerEnter.test.ts > F108 · Enter sends from a hardware keyboard > Shift+Enter breaks the line instead of sending
+AssertionError: expected true to be false // Object.is equality
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+
+=== SABOTAGE 5 · the capture stops swallowing the newline it sent on ===
+     × the web capture sends on Enter from the field, and stops the newline only then 4ms
+ FAIL  src/components/chat/composerEnter.test.ts > F108 · Enter sends from a hardware keyboard > the web capture sends on Enter from the field, and stops the newline only then
+AssertionError: expected false to be true // Object.is equality
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+
+=== SABOTAGE 6 · the composer stops reporting whether it sent ===
+     × the composer arms the capture while it has focus and reports whether it sent 3ms
+ FAIL  src/components/chat/composerEnter.test.ts > F108 · Enter sends from a hardware keyboard > the composer arms the capture while it has focus and reports whether it sent
+AssertionError: expected 'import { useEffect, useRef, useState,…' to match /if \(!enter\.current\.canSend\) retur…/
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
