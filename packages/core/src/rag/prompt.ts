@@ -39,7 +39,7 @@ export const NOT_FOUND_TOKEN = "NOT_FOUND_IN_DOCUMENTS";
  * Whether a reply is that token rather than an answer.
  *
  * A 0.8B model returns it in its own case and sometimes inside quotes or bold, and an exact match let
- * "Not_FOUND_IN_DOCUMENTS" through to the screen on the iPhone instead of the localized sentence (QA F141).
+ * "Not_FOUND_IN_DOCUMENTS" through to the screen on the iPhone instead of the localized sentence (QA F137).
  */
 export const isNotFoundReply = (reply: string): boolean => {
   const bare = reply.replace(/[\s"'*`_.:-]+/g, " ").trim();

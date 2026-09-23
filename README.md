@@ -3407,6 +3407,38 @@ flipping it is a deploy decision, not a code one. No device, emulator or phone w
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
 
+## Fixes round 38: the photo and the PDF the model said it never received (branch `attach-ios`) — 23.9.2026
+
+F135–F144, filed by Moshe from his iPhone: "I attached a photo of a door and asked what it sees; it answered that it
+received no image at all. I attached a PDF: same problem. Does the indexing really work? If a user asks to answer only
+from his sources, does it really do that or does it invent from elsewhere?" Two different mechanisms produced the same
+sentence, and the app never said which one had failed.
+
+- **F135 — a file the user attached was answered around.** A PDF asked about before its index existed went to the
+  model as if nothing were attached, and the answer invented a service code. `attach-android` reached this root cause
+  first, so the gate is theirs and is merged here rather than written twice: `planDocsTurn` waits while an attachment
+  is being read and refuses with the reason when reading is over with nothing to search, and `DocumentLibrary`
+  reports that state live rather than from a render snapshot one frame behind the import.
+- **F136 — the photo was dropped by the document prompt.** iOS found what Android could not see: with a document
+  attached to the same chat, `buildRagPrompt` rewrites the turn into its own text-only messages, so the picture never
+  reached the engine *and* the vision gate, which reads the prompt, never fired to say so. `withPhotos` puts the
+  turn's photos back on the prompt's last user message. The same photo with no document attached was always
+  described correctly, which is what isolated the retrieval path.
+- **F137 — strict mode printed the model's raw sentinel.** "Answer only from my documents" with a question the file
+  does not answer showed `Not_FOUND_IN_DOCUMENTS` on the screen: a 0.8B model returns the token in its own case and
+  the check was an exact `startsWith`. One `isNotFoundReply` in core now decides it for both screens.
+- **F138 — adding the same file again could not rescue it.** A document imported while the index model was missing
+  kept its record, and re-importing returned that record untouched, so the one move the app offers left the chat with
+  an attachment that could never be searched. A twin with no passages is queued again; OCR stays the user's decision.
+- **F139 — the refusal named a screen and gave no way to it.** The missing index model now raises a notice with
+  "Open the vault", and the attach sheet offers "Install the vision companion · 205 MB" when the model can see but
+  the projector is not installed.
+
+Proven on Moshe's iPhone 13 Pro, before and after, with the same dev-prompt driver on both builds; tiers set only in
+an in-process StoreKit test session, never a sandbox purchase. Free keeps one file per chat, Pro two with Office
+formats refused, Work indexes the spreadsheet and the HTML note and answers across both. Evidence:
+`docs/qa/attach-ios/` (`A*` before, `M*` after).
+
 ## Fixes round 39: nothing in the app said Pro existed until it refused you (branch `premium-entry`) — 23.9.2026
 
 F145–F149, filed by Moshe from the browser and the phone: "buttons for premium, to see what's in premium, and tapping

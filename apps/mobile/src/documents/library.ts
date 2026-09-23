@@ -276,7 +276,7 @@ export class DocumentLibrary {
       if (twin) {
         if (uri !== twin.uri) deleteFile(uri);
         /* A twin that never got an index is read again here: adding the file a second time is what a user does about it,
-           and before this it was the one action that could not help (QA F139). OCR stays a decision the user makes. */
+           and before this it was the one action that could not help (QA F138). OCR stays a decision the user makes. */
         if (twin.chunkCount === 0 && twin.status !== "needs-ocr") this.resume(twin.id, { ocr: opts.ocr ?? false });
         return twin;
       }

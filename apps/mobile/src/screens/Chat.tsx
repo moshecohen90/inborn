@@ -227,7 +227,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
-  /** The turn refused because the index model is missing; the notice offers the one screen that fixes it (QA F137). */
+  /** The turn refused because the index model is missing; the notice offers the one screen that fixes it (QA F139). */
   const [docsOffer, setDocsOffer] = useState(false);
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
