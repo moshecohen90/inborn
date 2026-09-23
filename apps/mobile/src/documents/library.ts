@@ -30,6 +30,19 @@ export const RAM_ATTACH_PREFIX = "ram:";
 
 export type EmbedderStatus = { kind: "ready"; path: string } | { kind: "missing" } | { kind: "loading" } | { kind: "failed"; error: string };
 
+/** Why a chat's attachments have nothing to search although none of them is still being read. */
+export type AttachmentBlock = "needs-ocr" | "no-embedder" | null;
+
+export interface AttachmentState {
+  hasAttachment: boolean;
+  hasIndex: boolean;
+  /** At least one attached document is queued or still being read. */
+  indexing: boolean;
+  blocked: AttachmentBlock;
+  /** How many attached documents are still being read, for the "reading your documents" notice. */
+  reading: number;
+}
+
 export interface LibraryState {
   documents: DocumentRecord[];
   progress: Map<string, IndexProgress>;
@@ -213,6 +226,34 @@ export class DocumentLibrary {
     return (this.prefs.attachments[chatId] ?? []).map((id) => this.docs.get(id)).filter((d): d is DocumentRecord => !!d);
   }
 
+  /**
+   * What this chat's attachments can offer the turn about to be sent, read live rather than from a render snapshot
+   * (QA F125/F126: the Chat screen's copy is one render behind the import that queued the job).
+   */
+  attachmentState(chatId: string): AttachmentState {
+    const docs = this.attachedTo(chatId);
+    const indexing = docs.some((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing");
+    const hasIndex = docs.some((d) => d.chunkCount > 0);
+    const blocked: AttachmentBlock = hasIndex || indexing ? null : this.embedder.kind === "missing" ? "no-embedder" : docs.some((d) => d.status === "needs-ocr") ? "needs-ocr" : null;
+    return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: docs.filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing").length };
+  }
+
+  /** Resolves once nothing attached to this chat is queued or being read, so the answer can see what the user attached. */
+  whenAttachmentsRead(chatId: string, signal?: AbortSignal): Promise<void> {
+    if (!this.attachmentState(chatId).indexing || signal?.aborted) return Promise.resolve();
+    return new Promise((resolve) => {
+      const done = () => {
+        off();
+        signal?.removeEventListener("abort", done);
+        resolve();
+      };
+      const off = this.subscribe(() => {
+        if (!this.attachmentState(chatId).indexing) done();
+      });
+      signal?.addEventListener("abort", done, { once: true });
+    });
+  }
+
   // ---- import -------------------------------------------------------------------
 
   /** Copies the file in, sniffs it, records it and queues indexing. Failures are recorded on the document, never thrown. */
@@ -274,6 +315,8 @@ export class DocumentLibrary {
         if (!job) continue;
         await this.runJob(id, job);
         this.jobs.delete(id);
+        /* The job outlives its last commit, so a turn waiting on "nothing is being read any more" needs this one. */
+        this.notify();
       }
     } finally {
       this.running = false;

@@ -220,6 +220,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
+  /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
+  const [readingDocs, setReadingDocs] = useState(0);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -439,8 +441,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
+      /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
+      const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
-      const turn = !existingMessageId && lastUser ? planDocsTurn({ strict: docs.strict, hasAttachment: docs.documents.length > 0, hasIndex: docs.ready }) : { kind: "model" as const };
+      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey) });
+      let turn: ReturnType<typeof planDocsTurn> = !existingMessageId && lastUser ? planTurn() : { kind: "model" };
+      /* A file the user attached is read before it is answered about, never after (QA F125/F126). */
+      if (turn.kind === "wait") {
+        setReadingDocs(library.attachmentState(attachKey).reading);
+        try {
+          await library.whenAttachmentsRead(attachKey, ac.signal);
+        } finally {
+          setReadingDocs(0);
+        }
+        if (ac.signal.aborted) return;
+        turn = planTurn();
+      }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {
         await answerWithoutModel(turn.messageKey);
@@ -1106,6 +1122,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
+      ) : null}
+      {readingDocs ? (
+        <View testID="reading-docs" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.reading", { count: readingDocs })}</Text>
+        </View>
       ) : null}
       {visionOffer ? (
         <View testID="vision-offer" style={[styles.notice, { borderColor: theme.border }]}>
