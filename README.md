@@ -3773,6 +3773,10 @@ lists all four chat models and says why a browser holds one. Four things were no
   he filed about popups. It moved beside both pickers, and a guard now fails when the two halves stop exporting the
   same names.
 
-Two rows of the checklist are **FAIL and not fixed here**, because round 35 owns them: the onboarding button is
-1408 px wide at a 1440 viewport (98 %), and the composer's field is a fixed 70 px box beside a 44 px `+` and a 36 px
-send at every width. Both are measured, with pictures, in `docs/qa/acceptance/web/`.
+Two rows measured **FAIL** at the start of the run and **PASS** at the end: round 35 landed while it was going, and
+both were re-measured on the merged build with the same driver rather than taken on trust — the onboarding button
+went from 1408 px at a 1440 viewport (98 %) to 446 px centred, and the composer's field from a fixed 70 px box to
+45 px on one centre line with the `+` and the send, growing to 95 px on a second line. The device half cites rounds
+37 and 38, which proved the phone matrix — OCR, strict mode, the Work formats, redaction, the photo — on these same
+two phones hours earlier; what this round did not put on a phone, and why, is in
+`docs/qa/acceptance/android/README.md` and `ios/README.md`.
