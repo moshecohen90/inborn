@@ -1,0 +1,32 @@
+{
+ "url": "http://127.0.0.1:8643",
+ "checks": {
+  "scanSheet": "ATTACH DOCUMENTSTemplatesProfession packs: legal, therapy, medical, accountingPHOTOSPhotoINSTANT cannot look at photos.CameraAdd a file…PDF, Word, Excel, HTML, text, CSV or a photoscan-no-text-layer.pdfScanned. Run OCR on this browser?Answer only from my documentsWhen nothing relevant is found, Inborn says so instead of guessing.PROManage documents",
+  "scanAsk": {
+   "answer": "The Kessler valve inspection passed successfully on 10 March 2023.",
+   "citation": "",
+   "citationBlocks": 0
+  },
+  "onTopic": {
+   "answer": "The document states that the Belmont warehouse roof was replaced in March 2019.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.2turbine-report-3pages.pdf · p.3",
+   "citationBlocks": 1
+  },
+  "offTopic": {
+   "answer": "The attached document provides no information about the passenger capacity of the Arendal ferry for 2024.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.3",
+   "citationBlocks": 2
+  }
+ },
+ "documentLines": [
+  "log: [documents] scan-no-text-layer.pdf: needs-ocr · 1/1 pages · 0 chunks · 14 ms (14 ms/page)",
+  "log: [documents] turbine-report-3pages.pdf: indexed · 3/3 pages · 3 chunks · 2407 ms (802 ms/page)"
+ ],
+ "pageErrors": [],
+ "shots": [
+  "docs/qa/acceptance/web/A7-00-scan-state-after-1440.png",
+  "docs/qa/acceptance/web/A7-01-scan-answer-after-1440.png",
+  "docs/qa/acceptance/web/A7-02-on-topic-after-1440.png",
+  "docs/qa/acceptance/web/A7-03-off-topic-after-1440.png"
+ ]
+}

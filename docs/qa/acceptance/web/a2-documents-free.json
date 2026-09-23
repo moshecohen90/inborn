@@ -1,0 +1,54 @@
+{
+ "tier": "free",
+ "dist": "apps/web/dist",
+ "url": "http://127.0.0.1:8643",
+ "checks": {
+  "pdf3": {
+   "chooserOpened": true,
+   "sheetStillUp": false,
+   "paywall": null,
+   "sheetText": null,
+   "indexing": {
+    "name": "turbine-report-3pages.pdf",
+    "status": "indexed",
+    "indexedPages": 3,
+    "pages": 3,
+    "chunks": 3
+   },
+   "rowAfterIndex": "ATTACH DOCUMENTSTemplatesProfession packs: legal, therapy, medical, accountingPHOTOSPhotoINSTANT cannot look at photos.CameraAdd a file…PDF, Word, Excel, HTML, text, CSV or a phototurbine-report-3pages.pdfIndexed · 3 passagesAnswer only from my documentsWhen nothing relevant is found, Inborn says so instead of guessing.PROManage documents"
+  },
+  "askPage2": {
+   "answer": "According to the documents, the Belmont warehouse roof was replaced in March 2019.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.2turbine-report-3pages.pdf · p.1turbine-report-3pages.pdf · p.3"
+  },
+  "askPage3": {
+   "answer": "The annual maintenance budget for the Halden plant is 284,000 euro.",
+   "citation": "SOURCESturbine-report-3pages.pdf · p.3turbine-report-3pages.pdf · p.1turbine-report-3pages.pdf · p.2"
+  },
+  "strict": {
+   "present": true,
+   "proTagInSheet": true,
+   "paywallTitle": "Pay once. Own it.",
+   "paywallWhy": "You asked for answers only from your documents. Pro turns that on."
+  },
+  "secondFile": {
+   "chooserOpened": false,
+   "sheetStillUp": false,
+   "paywall": "Pay once. Own it.",
+   "why": "Free keeps one file per chat. Pro opens the whole library."
+  }
+ },
+ "pageErrors": [],
+ "documentLines": [
+  "log: [documents] turbine-report-3pages.pdf: indexed · 3/3 pages · 3 chunks · 2391 ms (797 ms/page)"
+ ],
+ "consoleErrors": [],
+ "shots": [
+  "docs/qa/acceptance/web/A2-01-attach-sheet-1440.png",
+  "docs/qa/acceptance/web/A2-02-indexed-1440.png",
+  "docs/qa/acceptance/web/A2-03-answer-page2-1440.png",
+  "docs/qa/acceptance/web/A2-04-answer-page3-1440.png",
+  "docs/qa/acceptance/web/A2-05-strict-tap-1440.png",
+  "docs/qa/acceptance/web/A2-07-second-file-1440.png"
+ ]
+}

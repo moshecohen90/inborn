@@ -3690,3 +3690,40 @@ on Work, redaction before send, and both halves of the Free fix. The full matrix
 traps that cost time are in `docs/qa/attach-android/README.md`; the rows are F125–F129 in `docs/qa/qa-run-2026-09-11.md`.
 Not fixed here and handed over: the browser tier cannot add a document at all. `expo-file-system`'s web
 `pickFileAsync` is a no-op and the drop handler is Tauri-only. That is F128 and another stream's surface.
+
+## Fixes round 43: the answer the documents never carried, wearing their citations (branch `acceptance`) — 23.9.2026
+
+The acceptance pass over everything Moshe wrote: every line of his `.ini` and every row of the paywall's own
+comparison table, checked in the browser first at 390 / 768 / 1024 / 1440 and then on the phones, with a file behind
+each verdict. The checklist is `docs/qa/acceptance/README.md`; the ten drivers that produced it sit next to it, as do
+the five test documents (`fixtures/mkdocs.py`) so any row can be re-run. Most of what he filed is now fixed by the
+rounds before this one — the chooser opens, the prices are on the paywall, "New chat" is one line, the model sheet
+lists all four chat models and says why a browser holds one. Four things were not.
+
+- **F161 — an invented answer arrived carrying a SOURCES list.** He asked it plainly: *does it really answer only
+  from my sources, or does it invent from others?* Outside strict mode `buildRagPrompt` put every retrieved passage
+  into the prompt and every one of them under the answer as citations. The relevance floor existed, and was consulted
+  only in strict mode; the retriever has no floor of its own, so a question about a ferry that appears in no document
+  still retrieved all three chunks in the index and came back with *"The Arendal ferry did not operate in 2024, as the
+  ferry lines ceased operations that year…"* under three citations. The floor now decides the passages in both modes,
+  so an unsupported answer gets no SOURCES list, and when nothing is relevant the model is told so in a sentence of
+  its own rather than the budget case's. Because a 0.8B model does not reliably obey that, the app says it itself:
+  `documents.noneMatched`, on both ways of answering without the files — attached but never indexed, and indexed but
+  nothing matched. Strict mode, which is what actually solves this, is proven working in the same run.
+- **F160 — a scan looked like a file that was still being read.** The library knew (`needs-ocr · 0 chunks`) and the
+  S40 row has said so since it was written; the attach sheet collapsed `needs-ocr`, `empty`, `failed` and `cancelled`
+  into "Not indexed yet", the same words a queued file shows. So the user waits for an index that is never coming and
+  the question that follows is answered from nothing. Both surfaces now read one helper, `documents/stateText.ts`.
+- **F162 — three of the four "pick a file" doors were still dead outside the phones.** Round 34 diagnosed
+  `expo-file-system`'s web no-op exactly and wrote a browser chooser for the chat's `+`; the Documents screen's own
+  Add, the vault's GGUF import and Work's "Verify a record" still called `File.pickFileAsync`. All three are reachable
+  in the Tauri desktop app. The chooser is now `documents/chooseFile.ts` / `.web.ts` and all four doors use it.
+- **F163 — the library row threw on web and desktop.** Round 37's `planLibraryAttach` went into `importPicker.ts`,
+  which the web bundle never loads, so re-attaching a document from the attach sheet raised
+  `(0 , R.planLibraryAttach) is not a function` — and to the user, a sheet that does nothing, which is the complaint
+  he filed about popups. It moved beside both pickers, and a guard now fails when the two halves stop exporting the
+  same names.
+
+Two rows of the checklist are **FAIL and not fixed here**, because round 35 owns them: the onboarding button is
+1408 px wide at a 1440 viewport (98 %), and the composer's field is a fixed 70 px box beside a 44 px `+` and a 36 px
+send at every width. Both are measured, with pictures, in `docs/qa/acceptance/web/`.
