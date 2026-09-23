@@ -24,10 +24,13 @@ import {
   languageCodeOf,
   LANGUAGE_NAME_BY_CODE,
   adviseModel,
+  betterForLanguage,
   detectLanguage,
   detectUse,
   fileIntake,
+  formatModelBytes,
   languageTierOf,
+  FIT_LANGUAGES,
   modelShortfall,
   limits,
   markdownToText,
@@ -79,6 +82,7 @@ import { BannerSpacer } from "../components/shell/bannerInset";
 import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
+import { ChatModelSheet } from "../components/chat/ChatModelSheet";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
@@ -215,6 +219,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [actionRow, setActionRow] = useState<Row | null>(null);
   const [reportRow, setReportRow] = useState<ChatMessage | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [modelSheetOpen, setModelSheetOpen] = useState(false);
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -348,7 +353,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current?.abort();
   });
   useShortcut("search", () => focused.current && onOpenChats());
-  useShortcut("model-picker", () => focused.current && setSettingsOpen(true));
+  useShortcut("model-picker", () => focused.current && setModelSheetOpen(true));
   useShortcut("continue", () => {
     if (!focused.current || busy) return;
     const last = [...rowsRef.current].reverse().find((r) => r.role === "assistant");
@@ -885,6 +890,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [adviceLanguage, model.id]);
   /* §6.3 mediate honestly: a browser user cannot switch, so instead of the card they get the same verdict the vault's picker gives, with no action. */
   const noBetterHere = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
+  /* An empty chat has no language of its own yet; the sheet's recommendation then answers for the app's own language. */
+  const uiLanguageCode = useMemo(() => {
+    const base = i18n.language.split("-")[0]?.toLowerCase() ?? "en";
+    return FIT_LANGUAGES.includes(base) ? base : "en";
+  }, [i18n.language]);
+  /* §7.8: the loaded model rates this language none/basic. The notice names what does better here and switches or downloads it. */
+  const languageUpgrade = useMemo(() => {
+    if (Platform.OS === "web" || !adviceLanguage) return null;
+    const vault = getVault();
+    const installed = vault
+      .entries()
+      .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
+      .map((e) => e.model.id);
+    return betterForLanguage({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
+  }, [adviceLanguage, model.id, use]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
@@ -1060,7 +1080,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             </Text>
           )}
         </View>
-        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("chatSettings.title")} onPress={() => setSettingsOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("modelSheet.title")} onPress={() => setModelSheetOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
           <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
             {modelLabel(model.id)}
@@ -1078,10 +1098,33 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {statusLine}
         </Text>
       ) : null}
-      {weakLanguage && status.kind === "ready" ? (
-        <Text testID="model-weak-line" style={[type.caption, styles.centered, { color: theme.text3 }]}>
-          {t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
-        </Text>
+      {weakLanguage && status.kind === "ready" && !adviceShown?.language && !noBetterHere ? (
+        <View testID="model-weak" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text testID="model-weak-line" style={[type.caption, styles.grow, { color: theme.text3 }]}>
+            {languageUpgrade
+              ? t("chat.modelWeakBetter", {
+                  model: modelLabel(model.id),
+                  language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }),
+                  better: modelLabel(languageUpgrade.better.model.id),
+                })
+              : t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
+          </Text>
+          {languageUpgrade ? (
+            <Pressable
+              testID="model-weak-action"
+              accessibilityRole="button"
+              hitSlop={8}
+              style={styles.noticeBtn}
+              onPress={() => (languageUpgrade.better.reason.installed ? onSwitchModel?.(languageUpgrade.better.model.id) : setModelSheetOpen(true))}
+            >
+              <Text style={[type.caption, { color: theme.accent }]}>
+                {languageUpgrade.better.reason.installed
+                  ? t("chat.modelAdvice.switch", { model: modelLabel(languageUpgrade.better.model.id) })
+                  : t("chat.modelAdvice.install", { model: modelLabel(languageUpgrade.better.model.id), size: formatModelBytes(languageUpgrade.better.model.bytes) })}
+              </Text>
+            </Pressable>
+          ) : null}
+        </View>
       ) : null}
       {noBetterHere && status.kind === "ready" ? (
         <Text testID="model-none-line" style={[type.monoLabel, styles.centered, { color: theme.text2 }]}>
@@ -1527,6 +1570,19 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </View>
         ) : null}
       </Sheet>
+      <ChatModelSheet
+        visible={modelSheetOpen}
+        onClose={() => setModelSheetOpen(false)}
+        theme={theme}
+        currentId={model.id}
+        use={use}
+        languageCode={adviceLanguage ?? uiLanguageCode}
+        tier={tier}
+        onSwitchModel={onSwitchModel}
+        onOpenVault={onOpenVault}
+        onOpenPaywall={onOpenPaywall}
+        onChatSettings={() => setSettingsOpen(true)}
+      />
       <ChatSettingsSheet visible={settingsOpen} onClose={() => setSettingsOpen(false)} value={settings} onSave={(next) => void saveSettings(next)} customPersonas={customPersonas} modelId={model.id} thinkingAvailable={thinkingAvailable} />
     </View>
   );

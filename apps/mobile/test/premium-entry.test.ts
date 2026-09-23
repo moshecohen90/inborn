@@ -89,16 +89,23 @@ describe("F147 · Pro has a visible front door", () => {
     expect(settings).toContain("t(`paywall.tier.${tier}`)");
     expect(settings).toContain("onPress={() => openPaywall()}");
   });
-  it("the chat header menu carries the tier chip and the same link", () => {
-    const sheet = read("components/chat/ChatSettingsSheet.tsx");
-    expect(sheet).toContain('testID="tier-chip"');
-    expect(sheet).toContain("t(`paywall.tier.${tier}`)");
-    expect(sheet).toContain('testID="see-whats-in-pro"');
-    expect(sheet).toContain('t("paywall.seeWhatsIn")');
+  it("the sheet the chat header opens carries the tier chip and the same link", () => {
+    /* Round 40 moved the header chip from Chat settings to the model sheet; the entry follows the header, not the file. */
+    expect(read("screens/Chat.tsx")).toContain('testID="model-chip"');
+    expect(read("screens/Chat.tsx")).toContain("onPress={() => setModelSheetOpen(true)}");
+    for (const file of ["components/chat/ModelSheet.tsx", "components/chat/ChatSettingsSheet.tsx"]) {
+      const sheet = read(file);
+      expect(sheet, file).toContain('testID="tier-chip"');
+      expect(sheet, file).toContain("t(`paywall.tier.${tier}`)");
+      expect(sheet, file).toContain('testID="see-whats-in-pro"');
+      expect(sheet, file).toContain('t("paywall.seeWhatsIn")');
+    }
+    expect(read("components/chat/ChatModelSheet.tsx")).toContain("tier={tier}");
   });
   it("both entries open S60 with no reason, because nothing was refused", () => {
     expect(read("screens/Settings/Settings.tsx")).not.toMatch(/openPaywall\("/);
     expect(read("components/chat/ChatSettingsSheet.tsx")).not.toMatch(/openPaywall\("/);
+    expect(read("components/chat/ChatModelSheet.tsx")).toMatch(/onSeePro=\{\(\) => \{\s*onClose\(\);\s*openPaywall\(\);/);
   });
 });
 

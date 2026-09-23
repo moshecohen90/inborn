@@ -14,7 +14,26 @@ Why this is honest, per Apple's definitions:
 - Support email: happens outside the app in the user's mail client; even inside Apple's optional-disclosure test (infrequent, optional, user-provided with consent, not primary functionality) it would be exempt.
 - Third-party SDKs: none with network access, so nothing to declare on their behalf. Keep it that way: any SDK addition re-opens this section (spec §10.9 #60).
 
-Also in App Store Connect: **Privacy Policy URL** = `https://inbornapp.com/privacy` (required by Guideline 5.1.1 even with zero collection); **App Review notes** (see §6).
+Also in App Store Connect: **Privacy Policy URL** = `https://inbornapp.com/privacy` (required by Guideline 5.1.1 even with zero collection); **App Review notes** (see §6). Every URL the two store forms ask for is listed in §1a.
+
+## 1a. The URLs both stores ask for
+
+One canonical set, entered identically in App Store Connect and Play Console. They live in `docs/store/listing.*.json`
+under `urls`, `docs/store/scripts/check-store-copy.mjs` fails when a locale drifts from them, the app opens the same
+paths (`apps/mobile/src/lib/legalLinks.ts`) and `apps/site/build.mjs` publishes them.
+
+| Field | URL | Where it is required |
+|---|---|---|
+| Marketing / app website | `https://inbornapp.com/` | Optional in both stores |
+| **Privacy policy** | `https://inbornapp.com/privacy` | Apple Guideline 5.1.1; Play requires it for every app |
+| Terms of use / EULA | `https://inbornapp.com/terms` | Apple "Licence Agreement" (custom EULA); Play listing |
+| **Accessibility statement** | `https://inbornapp.com/accessibility` | Not a store field. It is what the Israeli Service Accessibility Regulations and the European Accessibility Act expect to find published, and support links to it |
+| Support | `https://inbornapp.com/support` | Apple Support URL (required); Play support website |
+
+The accessibility statement (`docs/legal/accessibility-policy.md`) is a public partial-conformance statement: it names
+WCAG 2.2 AA as the bar and lists the gaps we have measured. Two of those gaps change store answers if either store
+asks about accessibility features: there is no way to send a message from a hardware keyboard, and the delete/wipe
+button's text is below 4.5:1 in the dark theme. Do not claim a feature the statement lists as a gap.
 
 ## 2. PrivacyInfo.xcprivacy (app-level privacy manifest)
 
@@ -111,7 +130,7 @@ Region note: Apple assigns ratings per country; a few regions may show 12 or 16 
 | Does your app collect or share any of the required user data types? | **No** | Nothing leaves the device; Play Asset Delivery and Play Billing traffic is Google Play's, not the app's (Play's help page: data collected by Google Play services on Google's behalf is not the developer's disclosure) |
 | Is all of the user data collected by your app encrypted in transit? | not asked (only shown when data is collected) | Should the form still show it, answer Yes: the only transfer that exists anywhere (iOS/desktop model download) is HTTPS |
 | Do you provide a way for users to request that their data is deleted? | not asked / Yes | Settings → Storage → Delete all, Emergency Wipe, uninstall; described in the privacy policy §6 |
-| Privacy policy URL | `https://inbornapp.com/privacy` | Required for every app, including zero-collection apps |
+| Privacy policy URL | `https://inbornapp.com/privacy` | Required for every app, including zero-collection apps (the full URL set is in §1a) |
 | Data types table | empty | |
 
 Store result: "No data collected" and "No data shared". The spec's line "encryption at rest, deletion mechanism" describes what we *do*; the form only asks about them when data is collected, so they live in the policy text instead.
@@ -201,7 +220,7 @@ Ads: No. Government app: No. Financial features: No. Health apps: No (the crisis
 
 ## 6. App Review notes (paste into ASC "Notes" and Play "Instructions for review")
 
-> Inborn runs an open-weight language model entirely on the device. Reviewers can test it in Airplane Mode: the built-in "Instant" model is inside the app bundle (iOS) / delivered by Play as an asset pack (Android), so no download or account is required. There is no server, no login, no analytics SDK; on Android the manifest has no INTERNET permission. To test the required reporting flow: long-press any AI answer → Report → choose a reason → Save. Reports are stored on the device and can optionally be emailed from Settings → Reports. To test the purchase: the reviewer's own sandbox account buys product `pro` (non-consumable); no licence-tester account is needed. The privacy policy is at Settings → Privacy and at `https://inbornapp.com/privacy`.
+> Inborn runs an open-weight language model entirely on the device. Reviewers can test it in Airplane Mode: the built-in "Instant" model is inside the app bundle (iOS) / delivered by Play as an asset pack (Android), so no download or account is required. There is no server, no login, no analytics SDK; on Android the manifest has no INTERNET permission. To test the required reporting flow: long-press any AI answer → Report → choose a reason → Save. Reports are stored on the device and can optionally be emailed from Settings → Reports. To test the purchase: the reviewer's own sandbox account buys product `pro` (non-consumable); no licence-tester account is needed. The privacy policy is at Settings → Privacy and at `https://inbornapp.com/privacy`; the terms, the licences and the accessibility statement are on the same site and are reachable from Settings → About, where each screen shows the bundled offline copy and a button that opens the current version in the browser.
 
 ## 7. Sources
 
