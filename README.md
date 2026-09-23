@@ -3325,3 +3325,63 @@ next store submission**, not after. `SITE_ORIGIN` still defaults to the staging 
 flipping it is a deploy decision, not a code one. No device, emulator or phone was touched: the screens are proven in
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
+
+## Fixes round 34: "Add a file" was dead in the browser, and the toggle would not say which side was on (branch `web-bugs`) — 23.9.2026
+
+Moshe tested the web build (`apps/web`, the same RN-web bundle the Tauri desktop runs) and reported four things:
+"Add a file" closes the sheet and no file dialog opens; popups that vanish without doing anything happened several
+more times; the Wi-Fi-only switch does not say which side is on; and "New chat" in the side bar wraps to two lines.
+F100–F103. Everything below was reproduced before it was touched and re-measured after, headlessly over the built
+`apps/web/dist`, both bundles built from source: evidence in `docs/qa/web-bugs/` (`before-*` from the pre-fix bundle,
+`after-*` from the shipped one).
+
+- **F100 — the browser had no file picker at all, and the failure was designed to be silent.** Clicking "Add a file"
+  produced **zero** `filechooser` events, no page error and no toast. `expo-file-system` ships no web picker: its web
+  module is `pickFileAsync: () => { console.warn('expo-file-system is not supported on web'); return
+  Promise.resolve(); }` — that warning is in the before run's console. `File.pickFileAsync` then constructs a `File`
+  from that `undefined`, catches its own TypeError and returns `{ result: null, canceled: true }`, so the app read a
+  user-cancelled pick every single time and had nothing to report. The same door on the Documents screen was dead for
+  the same reason. `documents/importPicker.web.ts` is now a picker of our own — an `<input type="file">` carrying
+  `PICK_TYPES`, clicked with nothing awaited above it, the chosen file registered as a blob through the same
+  `registerBlob` the desktop's drag-and-drop uses — and it asks `paywallFor` and `fileIntake` in the same order as the
+  phone's, so the Free one-file cap and the Work formats gate a browser exactly as they gate a phone. `gates-wired`
+  now lists it as a door, which is what forces that. After: one chooser, the picked file imported and attached.
+- **F101 — "several more times" turned out to be F100 and nothing else a browser can reach, and both obvious suspects
+  were wrong.** Every item of every sheet reachable in the browser was clicked one at a time in a fresh page — attach,
+  chat settings, new chat, personas, memory, wipe, eighteen items — and every one did something. The backdrop is not
+  swallowing the tap: the panel is rendered after it in both `Sheet.tsx` files, and a guard now holds that. Nor is the
+  320 ms hand-over eating the gesture: a control page fired a chooser and a download both inside the gesture and from
+  a 320 ms timer, and all four worked, in Chromium **and** WebKit, because transient activation lasts five seconds.
+  What the hand-over *is* on web is 320 ms of nothing, since its only reason is that Android freezes when a Modal
+  opens in the frame another dismisses. So `afterSheetClose` moved to `lib/sheetHandover.ts`, runs inside the gesture
+  on web, and the three screens that had copied the timer by hand (`MemorySheet`, `PersonasSheet`, `VaultScreen`) call
+  the shared one; a guard fails on any `setTimeout(…, 320)` left in `apps/mobile/src`.
+- **F102 — the switch was invisible, and the numbers say so.** React Native's `Switch` was painted `trackColor {true:
+  text2, false: border}` with `thumbColor: surface1`. In the dark theme that puts the OFF track at **1.27:1** against
+  the screen and its knob at **1.19:1** against its own track; the light theme is **1.18** and **1.29**. WCAG 2.2
+  1.4.11 asks 3:1 for a control's own shape, so there was nothing there to read, and the ON state differed only by a
+  grey being lighter. `Toggle` is now drawn instead of delegated: a 52×32 track with a 24 knob, ON filled in `ctaFill`
+  with the knob at the end carrying a ✓, OFF hollow in `well` outlined in `text3` with a muted knob at the start —
+  fill, knob side and tick, three signals rather than one. Every pair clears 3:1 (ON track **16.10:1** dark,
+  **16.62:1** light; OFF outline **5.30** / **5.12**; OFF knob **5.16** / **4.76**). `WipeSheet` had a second switch
+  of its own and now uses the shared one; a guard fails on any `<Switch` left in `apps/mobile/src`, and the contrast
+  test asserts the **old** values are under 3:1 as well as the new ones over it, so it cannot pass by being empty.
+  Spec §9.4 gains the shape.
+- **F103 — "New chat" had 61 px for a 72 px label.** Two `flex: 1` buttons in a pane 279 px wide are 119.5 px each;
+  `shape.control` takes 32 in padding and the icon plus gap takes 26. The button was 119.5×**52** at 768, 1024 and
+  1440 and correct only at 390, which is why it reads as a sidebar bug. The row now wraps rather than squeezes
+  (`flexWrap: "wrap"`, `flexGrow: 1`, `flexBasis: 150`), so below the basis each button takes a row at the full pane
+  width, and both labels are `numberOfLines={1}`. **247×44** at every sidebar width, unchanged at 390, and checked
+  across all eight shipped locales × four widths: **0 wrapped**. One residual is stated rather than hidden — French
+  `chats.incognito` is "Navigation privée", 195 px in a 175 px button at 390, so it ellipsises there where it used to
+  wrap; the real fix is a shorter French string and that is a translation call this round did not take.
+
+Not done here: the toggle has not been seen on the iPhone itself, because this stream was assigned no phone — the
+claim it carries is the browser rendering at 390/768/1024/1440 in both themes plus the contrast arithmetic, and
+someone with the device should confirm F102 there. The brief asked for a `@testing-library/react-native` render test
+of a sheet item; that library is not in the repo and `pn install --frozen-lockfile` is the required flow, so the
+equivalent proof is the pure unit test on the hand-over, the source guards, and the real-browser click-through of all
+eighteen sheet items.
+
+Tests after the merge of `origin/main`: core 638, mobile 435 (16 of them this round), i18n 11, ui 11, plus
+`check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.

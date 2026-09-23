@@ -1,0 +1,238 @@
+{
+  "attach-sheet": [
+    {
+      "item": "attach-templates",
+      "sheetOpen": false,
+      "appeared": [
+        "templates-sheet",
+        "work-tag",
+        "pack-legal",
+        "pack-therapy",
+        "pack-medical",
+        "pack-accounting"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "attach-photo",
+      "error": "TimeoutError: locator.click: Timeout 5000ms exceeded."
+    },
+    {
+      "item": "attach-camera",
+      "error": "TimeoutError: locator.click: Timeout 5000ms exceeded."
+    },
+    {
+      "item": "attach-import",
+      "sheetOpen": false,
+      "appeared": [],
+      "chooser": 1,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "pro-tag",
+      "error": "Error: locator.click: Error: strict mode violation: getByTestId('pro-tag') resolved to 2 elements:"
+    },
+    {
+      "item": "attach-strict",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "attach-manage",
+      "sheetOpen": false,
+      "appeared": [
+        "wide-panel",
+        "documents-screen",
+        "documents-close",
+        "documents-add",
+        "documents-strict",
+        "embedder-card",
+        "embedder-install",
+        "documents-ask-selected"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    }
+  ],
+  "chat-settings-sheet": {
+    "unreachable": "TimeoutError: locator.waitFor: Timeout 8000ms exceeded."
+  },
+  "new-chat-sheet": [
+    {
+      "item": "persona-chip-builtin:assistant",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "persona-chip-builtin:writer",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "persona-chip-builtin:tutor",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "persona-chip-builtin:translator",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "incognito-switch",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "start-chat",
+      "sheetOpen": false,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": true
+    }
+  ],
+  "personas-sheet": [
+    {
+      "item": "persona-add",
+      "sheetOpen": true,
+      "appeared": [
+        "persona-name",
+        "persona-icon-spark",
+        "persona-icon-pen",
+        "persona-icon-book",
+        "persona-icon-globe",
+        "persona-icon-code",
+        "persona-icon-scale",
+        "persona-icon-heart",
+        "persona-icon-briefcase",
+        "persona-icon-flask",
+        "persona-icon-compass",
+        "persona-prompt",
+        "persona-temperature",
+        "persona-disclaimer",
+        "persona-save"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    }
+  ],
+  "memory-sheet": [
+    {
+      "item": "pro-tag",
+      "error": "Error: locator.click: Error: strict mode violation: getByTestId('pro-tag') resolved to 2 elements:"
+    },
+    {
+      "item": "memory-master",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "memory-add",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "memory-persona-builtin:assistant",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "memory-persona-builtin:writer",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "memory-persona-builtin:tutor",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "memory-persona-builtin:translator",
+      "sheetOpen": false,
+      "appeared": [
+        "close-paywall",
+        "paywall-title"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    }
+  ],
+  "wipe-sheet": [
+    {
+      "item": "wipe-models",
+      "sheetOpen": true,
+      "appeared": [],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    },
+    {
+      "item": "wipe-step1",
+      "sheetOpen": true,
+      "appeared": [
+        "wipe-step2"
+      ],
+      "chooser": 0,
+      "pageErrors": [],
+      "deadEnd": false
+    }
+  ]
+}

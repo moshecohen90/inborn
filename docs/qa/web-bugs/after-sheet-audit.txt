@@ -1,0 +1,24 @@
+attach-sheet           attach-templates           ok (sheet=false new=[templates-sheet,work-tag,pack-legal,pack-therapy,pack-medical,pack-accounting] chooser=0)
+attach-sheet           attach-photo               ERR TimeoutError: locator.click: Timeout 5000ms exceeded.
+attach-sheet           attach-camera              ERR TimeoutError: locator.click: Timeout 5000ms exceeded.
+attach-sheet           attach-import              ok (sheet=false new=[] chooser=1)
+attach-sheet           pro-tag                    ERR Error: locator.click: Error: strict mode violation: getByTestId('pro-tag') resolved to 2 elements:
+attach-sheet           attach-strict              ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+attach-sheet           attach-manage              ok (sheet=false new=[wide-panel,documents-screen,documents-close,documents-add,documents-strict,embedder-card,embedder-install,documents-ask-selected] chooser=0)
+chat-settings-sheet: TimeoutError: locator.waitFor: Timeout 8000ms exceeded.
+new-chat-sheet         persona-chip-builtin:assistant ok (sheet=true new=[] chooser=0)
+new-chat-sheet         persona-chip-builtin:writer ok (sheet=true new=[] chooser=0)
+new-chat-sheet         persona-chip-builtin:tutor ok (sheet=true new=[] chooser=0)
+new-chat-sheet         persona-chip-builtin:translator ok (sheet=true new=[] chooser=0)
+new-chat-sheet         incognito-switch           ok (sheet=true new=[] chooser=0)
+new-chat-sheet         start-chat                 DEAD END
+personas-sheet         persona-add                ok (sheet=true new=[persona-name,persona-icon-spark,persona-icon-pen,persona-icon-book,persona-icon-globe,persona-icon-code,persona-icon-scale,persona-icon-heart,persona-icon-briefcase,persona-icon-flask,persona-icon-compass,persona-prompt,persona-temperature,persona-disclaimer,persona-save] chooser=0)
+memory-sheet           pro-tag                    ERR Error: locator.click: Error: strict mode violation: getByTestId('pro-tag') resolved to 2 elements:
+memory-sheet           memory-master              ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+memory-sheet           memory-add                 ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+memory-sheet           memory-persona-builtin:assistant ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+memory-sheet           memory-persona-builtin:writer ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+memory-sheet           memory-persona-builtin:tutor ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+memory-sheet           memory-persona-builtin:translator ok (sheet=false new=[close-paywall,paywall-title] chooser=0)
+wipe-sheet             wipe-models                ok (sheet=true new=[] chooser=0)
+wipe-sheet             wipe-step1                 ok (sheet=true new=[wipe-step2] chooser=0)
