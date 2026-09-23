@@ -17,6 +17,8 @@ const doc = (id: string, kind: DocumentRecord["kind"]): DocumentRecord => ({
   status: "indexed",
   indexedPages: 1,
   chunkCount: 1,
+  flaggedLines: 0,
+  ocrPages: 0,
 });
 
 const library = [doc("a", "pdf"), doc("b", "pdf"), doc("sheet", "xlsx"), doc("page", "html")];
