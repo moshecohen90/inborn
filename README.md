@@ -3985,8 +3985,10 @@ module is Android-only — a feature to build and prove on the iPhone, not a fix
 with `textSync()` on the JS thread (a real behaviour change on the native picker, unverifiable here); and the fact
 that the Cloudflare deploy has still never run against the real API, which is a risk to state, not a defect to fix.
 
-Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,281 tests** (core 686, mobile 571, ui 13, i18n 11),
-`pn web:build` and `pn web:smoke` green (first visit 18.1 s · 27 tok/s, offline visit 1.8 s · 0 model fetches).
+Gates on the branch: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,281 tests** (core 686, mobile 571,
+ui 13, i18n 11); re-run after merging `origin/main` (round 48): **1,300** (core 686, mobile 586, ui 13, i18n 15).
+`pn web:build` and `pn web:smoke` green both times (first visit 18.0 s · 32 tok/s, offline visit 1.6 s · 0 model
+fetches).
 Evidence: `docs/qa/fix-tech/` (guards-red.txt, the four widths at 390 / 768 / 1024 / 1440, the smoke screenshots and
 logs) and `docs/qa/qa-run-2026-09-11.md` F195–F204.
 ## Fixes round 48: the copy review, and the Apple listing that named Android (branch `fix-copy`) — 24.9.2026
