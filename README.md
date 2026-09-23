@@ -3440,6 +3440,56 @@ entitlement mechanism was complete and the *entrances to it* were not.
   writes `_redirects` and the dev server falls back to `index.html` for extensionless paths, the same rule in both.
 
 Copy in all 9 locales. `pn web:smoke` green. Evidence, before and after at 390 and 1440: `docs/qa/premium-entry/`.
+## Fixes round 36: the model step offered a download it could not start (branch `onboarding-rework`) — 23.9.2026
+
+F120–F124, filed by Moshe walking the first run in the browser. Three complaints, one root: S02 was a summary of
+decisions already taken, not a choice, and S03 asked for something before it had said why.
+
+- **F120 — the offer nothing could honour.** The "OPTIONAL · Fast (1.2 GB)" card had a size, a sentence and a
+  Wi-Fi switch, and no action: `start-chatting` and "Stay on Instant only" both ran the same
+  `router.push("/onboarding/airplane")`. On the web it was dead by construction, because `HttpsDelivery.plan()`
+  returns null for `Platform.OS === "web"`. The step now computes its options from one pure function,
+  `apps/mobile/src/screens/Onboarding/modelStep.ts`: a model is an option when it is already on the device, or when
+  the platform's `ModelDelivery.plan()` says this screen can fetch it. Everything else is dropped rather than shown
+  greyed out, because an offer the screen cannot start is a bug, not an option. Picking one that needs delivery turns
+  the primary button into `Download {name} · {size}` and calls `vault.install(id)` there and then; while it runs, the
+  card shows the progress and the button becomes "Start chatting while it downloads", which is true because the model
+  already on the device answers in the meantime and `AppServices` swaps the engine when the new one verifies.
+- **F121 — a switch that governed one platform out of three.** `wifiOnly` reaches only `HttpsDelivery`
+  (`shouldWait`, `packages/core/src/catalog/resume.ts:55`). `PlayDelivery` is built without the context that carries
+  it, because Play runs its own cellular consent, and a browser has no download here and cannot see a metered link.
+  So the switch is shown only where an HTTPS download is on offer, in a block of its own instead of inside a model
+  card, with a line saying what it does. Android gets the honest sentence in its place: "Google Play delivers the
+  model, because Inborn itself has no internet permission."
+- **F122 — airplane mode, three screens before any reason.** The test moved out of the onboarding chain
+  (`apps/mobile/src/app/onboarding/airplane.tsx` is gone; the flow is welcome, model, sealed, lock) onto S50 Proof,
+  where every other claim is verified, under an AIRPLANE TEST section led by the reason: *Turn on Airplane Mode and
+  ask anything. The answer still comes, because it was only ever coming from this {device}.* The same line opens the
+  test screen, above the steps, and the two numbered steps now sit in separate cards so step 1 stops reading as the
+  tail of the screen before it. Apple's onboarding guidance says to ask where the function is used rather than up
+  front, and deferred asks are reported at a 28 % higher grant rate; the ritual is stronger after the first answer,
+  not before it.
+- **Copy and locales.** The step's copy was written by the `conversion-copywriter` agent and checked against the
+  shipped register before use; two of its own flags were taken (reuse `models.recommended` and `vault.state.*`
+  instead of new keys; keep the primary button an action rather than a progress label). 18 new keys and 9 dead ones,
+  translated into all eight locales with the `{device}` ICU select each language needs, plus the regenerated
+  `pseudo.json`. The QA F24 guard now walks every sized key in every locale, not one key.
+- **Proof.** `pn typecheck`, `pn lint`, `pn test` (core 616, mobile 375, i18n 11, ui 11 = 1,013, +13 for
+  `modelStep.test.ts`) and `pn web:smoke` all green; the smoke now asserts that the browser step offers no model it
+  cannot download and walks welcome, model, sealed, lock, chat. Screenshots at 390 / 768 / 1440 in both schemes,
+  before and after, in `docs/qa/onboarding-rework/`, taken by `docs/qa/onboarding-rework/shots.mjs`. Everything
+  under `after/` and `web-smoke.txt` was re-taken after merging `origin/main` at c45509c (round 42).
+- **F124b, added after the lead's call on the open question.** Dropping the airplane test from the chain left a
+  first-run user who never opens Proof without the ritual. The seal screen now offers it as a secondary link under
+  Start, carrying its reason in the label itself so it stays an offer and not an unexplained ask: *Prove it: turn on
+  Airplane Mode and ask*. It opens the same `/proof/airplane` route and sleeps until the seal has closed.
+  `apps/mobile/src/screens/Onboarding/sealed.test.ts` pins the wiring and the label in all nine locale files, and the
+  tap was followed in the browser: `docs/qa/onboarding-rework/after/onboarding-sealed-sealed-prove-*.png`.
+- **Not done.** The two-option layout is proven by unit tests and by a throwaway harness build
+  (`docs/qa/onboarding-rework/layout-two-options/`, built with `HttpsDelivery.plan` allowed on the web and the
+  platform forced to iOS, then reverted); a real iPhone or a 6T was not in this stream's scope, so nobody has yet
+  seen Play's `playPending` line or the Android notice on a device.
+
 
 
 ## Fixes round 34: "Add a file" was dead in the browser, and the toggle would not say which side was on (branch `web-bugs`) — 23.9.2026
@@ -3499,5 +3549,5 @@ of a sheet item; that library is not in the repo and `pn install --frozen-lockfi
 equivalent proof is the pure unit test on the hand-over, the source guards, and the real-browser click-through of all
 eighteen sheet items.
 
-Tests after the merge of `origin/main`: core 649, mobile 467 (16 of them this round), i18n 11, ui 11, plus
+Tests after the merge of `origin/main`: core 649, mobile 483 (16 of them this round), i18n 11, ui 11, plus
 `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.

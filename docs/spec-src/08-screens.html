@@ -1,7 +1,7 @@
 <h2 id="s8"><span class="n">08</span>מסכי האפליקציה, מסך אחר מסך</h2>
 <p class="lead">לכל מסך: התפקיד שלו, האלמנטים, המצבים, מקרי הקצה שהוא חייב לטפל בהם, ומה בו חינם ומה Pro. הדמו האינטראקטיבי מציג את כל המסכים הממוספרים כאן (S01–S60); המסמך מגדיר גם את המצבים ומקרי הקצה שלהם. הניווט: במובייל כותרת עם החותם במרכז, כפתור מגירת השיחות בצד ההתחלה וצ'יפ המודל בצד הסיום; בדסקטופ ובטאבלט סרגל צד קבוע במקום המגירה.</p>
 
-<h3>8.1 השקה ראשונה ו‑onboarding (5 מסכים, פחות מ‑90 שניות)</h3>
+<h3>8.1 השקה ראשונה ו‑onboarding (4 מסכים, פחות מ‑60 שניות)</h3>
 
 <div class="screen">
 <h4>S01 · Welcome <span class="pill free">Free</span></h4>
@@ -29,17 +29,17 @@
 
 <div class="screen">
 <h4>S02 · Your model <span class="pill free">Free</span></h4>
-<p class="job">להראות שהאפליקציה כבר יודעת מה מתאים למכשיר, ולאפשר צ'אט מיד בלי הורדה.</p>
+<p class="job">לבחור את המודל לפני שיורד ולו בייט אחד, ורק בין מודלים שהמסך הזה באמת יכול לספק.</p>
 <dl class="grid">
-<dt>elements</dt><dd>כרטיס "Ready now": Instant (מובנה, 0.5 GB, "~50 tok/s on this phone" במכשיר 8 GB) או Apple on‑device במכשירים מתאימים. מתחתיו הצעה: "Fast (1.3 GB) downloads once. Never uploads." עם גודל, זמן משוער, ומתג Wi‑Fi בלבד; באנדרואיד השורה אומרת "Delivered by Google Play. Inborn itself has no internet access." כפתור ראשי אחד: "Start chatting" (עושה את הדבר הנכון: Instant עכשיו, Fast ברקע ב‑Wi‑Fi), וקישור קטן "Stay on Instant only". הכרטיסים בלי שמות מודלים ומספרי פרמטרים; רק גודל ומשפט אחד.</dd>
-<dt>states</dt><dd>Apple FM זמין / כבוי / באזור לא נתמך / בהורדה: הכרטיס מציג את המצב ואת החלופה. מקום פנוי חסר: ההצעה להוריד מוצגת באפור עם "Free up 1.5 GB".</dd>
-<dt>edge cases</dt><dd>רשת סלולרית יקרה: ברירת מחדל Wi‑Fi בלבד, גודל בדיאלוג. המשתמש מבטל הורדה: הצ'אט עובד עם Instant. הורדה נמשכת ברקע עם התראה מקומית בסיום.</dd>
+<dt>elements</dt><dd>רשימת אפשרויות בחירה (radio), אחת לכל מודל צ'אט חינמי שהמכשיר יכול להריץ: שם המודל מהקטלוג, שורת מקור במונו עם הגודל ומאיפה הוא מגיע ("{size} · inside the app · nothing to download" ב‑iOS, "{size} · delivered by Google Play" באנדרואיד, "{size} · already on this {device}" בדפדפן ובדסקטופ, "{size} · one download from models.{{DOMAIN}}" כשההורדה היא HTTPS), משפט ה‑"למה זה טוב" מהקטלוג, ושורת שפות ("Best in …" עם +N). תגים: READY NOW, RECOMMENDED FOR THIS {device}, ו‑"Better in {language}" כשהמודל הגדול מדרג את שפת האפליקציה טוב יותר מהמודל הקטן. כפתור ראשי אחד שמשתנה עם הבחירה: "Start chatting" כשהנבחר כבר על המכשיר, "Download {name} · {size}" כשצריך להוריד; בזמן הורדה הוא הופך ל‑"Start chatting while it downloads" ומתחתיו "Stop the download". מתג "Download only on Wi‑Fi" יושב בבלוק נפרד משלו, לא בתוך כרטיס מודל, ורק כשההורדה שהמסך יכול להתחיל היא HTTPS (iOS): Play מבקש אישור סלולרי בעצמו והדפדפן לא יודע להבחין בין חיבור מדוד לקווי. באנדרואיד נוספת שורה: "Google Play delivers the model, because Inborn itself has no internet permission."</dd>
+<dt>states</dt><dd>מודל שה‑RAM של המכשיר מתחת לרצפה שלו, או שאין לפלטפורמה הזו דרך לספק אותו (אין Play, כספת הדפדפן), לא מוצג בכלל — הצעה שהמסך לא יכול להתחיל היא באג, לא אפשרות. אין מקום בדיסק: הכרטיס מעומעם, לא ניתן לבחירה, עם "Free up {size}" שמתעדכן כשמתפנה מקום. הורדה בתהליך: פס התקדמות ואחוזים בכרטיס, ואז Verifying. הורדה שלא התחילה: שורה אדומה שאומרת שהצ'אט ממשיך לעבוד ואפשר לנסות שוב בכספת.</dd>
+<dt>edge cases</dt><dd>אנדרואיד לפני שחבילת ה‑fast‑follow נחתה: Instant עדיין אפשרות עם "Google Play is delivering it now", ו‑"Start chatting" מושבת עד שיש מודל שאפשר להריץ. דפדפן: המודל כבר יושב ב‑OPFS כי דלת ההורדה קדמה ל‑onboarding, ולכן מוצגת בדיוק אפשרות אחת. המשתמש בוחר Fast ויוצא מהמסך: ההורדה ממשיכה, Instant עונה בינתיים, והמודל מתחלף כשהוא מאומת.</dd>
 </dl>
 </div>
 
 <div class="screen">
 <h4>S03 · Airplane test <span class="pill free">Free</span></h4>
-<p class="job">הטקס שהופך הבטחה להוכחה: המשתמש מכבה את הרשת בעצמו ורואה שהאפליקציה ממשיכה לענות.</p>
+<p class="job">הטקס שהופך הבטחה להוכחה: המשתמש מכבה את הרשת בעצמו ורואה שהאפליקציה ממשיכה לענות. מ‑23.9.2026 המסך הזה אינו חלק משרשרת ה‑onboarding אלא נפתח מ‑S50 Proof, המסך שתפקידו להוכיח: בקשה לכבות רשת לפני שהמשתמש ראה תשובה אחת היא בקשה בלי סיבה. בהשקה ראשונה הוא עדיין במרחק נגיעה: S04 Sealed מציע אותו בקישור משני שנושא את הסיבה בתווית עצמה — "Prove it: turn on Airplane Mode and ask" — מתחת ל‑"Start", ולא כשלב שחוסם.</p>
 <div class="wire">┌────────────────────────┐
 │  <u>Prove it to yourself.</u> │
 │  1. Turn on Airplane   │
@@ -53,10 +53,10 @@
 │                        │
 │  OUT <b>0 B</b> · IN 0 B      │
 │  [ Ask ] (cta) … then   │
-│  [ I saw it ]  Skip test │
+│  [ Done ]               │
 └────────────────────────┘</div>
 <dl class="grid">
-<dt>elements</dt><dd>שני צעדים, אינדיקטור מצב הרשת (מזוהה ב‑NWPathMonitor / ConnectivityManager), שדה שאלה עם הצעה, "Ask" ככפתור הבולט במסך, תשובה מוזרמת, קריאת OUT/IN חיה; "I saw it" מופיע רק אחרי שהתשובה הגיעה, ו"Skip the test" כקישור קטן.</dd>
+<dt>elements</dt><dd>שורת הסיבה מתחת לכותרת, לפני כל הוראה: "Turn on Airplane Mode and ask anything. The answer still comes, because it was only ever coming from this {device}." אחריה שני צעדים, כל אחד בכרטיס משלו כדי שלא ייקראו כהמשך של המסך הקודם: (1) ההוראה עם אינדיקטור מצב הרשת (NWPathMonitor / ConnectivityManager) ורמז פר פלטפורמה, (2) שדה השאלה עם הצעה. "Ask" הוא הכפתור הבולט במסך, תשובה מוזרמת, קריאת OUT/IN חיה, ו‑"Done" מופיע רק אחרי שהתשובה הגיעה. אין "Skip the test": אף אחד כבר לא נחסם כאן.</dd>
 <dt>states</dt><dd>מצב טיסה עדיין דולק בסוף: מציעים להשאיר ("You can use {{BRAND}} like this forever"). המשתמש לא מכבה רשת: המבחן עדיין רץ, הכיתוב אומר "Airplane Mode is off; the counter still shows 0 B".</dd>
 <dt>edge cases</dt><dd>iOS לא מאפשר לאפליקציה להפעיל מצב טיסה; הכפתור פותח את Control Center בהנחיה. ב‑Android אפשר לפתוח את הגדרות הרשת. ווב: ה‑Service Worker מאפשר את המבחן; iPhone Safari מציג הודעת "התקן את האפליקציה למבחן מלא".</dd>
 </dl>
@@ -66,7 +66,7 @@
 <h4>S04 · Sealed <span class="pill free">Free</span></h4>
 <p class="job">רגע השיא של ה‑onboarding (חוק Peak‑End): החותם נסגר בקפיץ, הפטיק אחד, "SEALED · ON‑DEVICE".</p>
 <dl class="grid">
-<dt>elements</dt><dd>חותם 72px נסגר ב‑420ms, bloom ירוק 600ms, תווית מונו, משפט אחד: "From here on, every answer is made on this phone." כפתור "Start".</dd>
+<dt>elements</dt><dd>חותם 72px נסגר ב‑420ms, bloom ירוק 600ms, תווית מונו, משפט אחד: "From here on, every answer is made on this phone." כפתור "Start", ומתחתיו קישור משני "Prove it: turn on Airplane Mode and ask" שפותח את S03. שניהם מושבתים עד שהחותם נסגר.</dd>
 <dt>states</dt><dd>Reduced motion: מעבר חד לטבעת סגורה + הפטיק. בלי הפטיקה (הגדרה או מכשיר): רק ויזואל.</dd>
 </dl>
 </div>
@@ -303,7 +303,7 @@ TRACKERS            0 (Exodus report ↗)
 BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 [ Run the airplane test ]   [ View network log ]</p></div>
 <dl class="grid">
-<dt>elements</dt><dd>קריאות מונו, allowlist, יומן רשת פר סשן (כל בקשה: יעד, בייטים, זמן), רשימת הרשאות עם מצב, קישור לדוח Exodus, hash של הבנייה מול הפרסום, כפתור מבחן טיסה (בסיום המבחן המונה OUT 0 B נשאר גלוי כפס קבוע בצ'אט, לא הודעה חולפת), קישור לקוד הפתוח.</dd>
+<dt>elements</dt><dd>קריאות מונו, allowlist, יומן רשת פר סשן (כל בקשה: יעד, בייטים, זמן), רשימת הרשאות עם מצב, קישור לדוח Exodus, hash של הבנייה מול הפרסום, מקטע AIRPLANE TEST עם שורת הסיבה ("Turn on Airplane Mode and ask anything. The answer still comes…") מעל הכפתור שפותח את S03 — כאן נמצאת ההזמנה למצב טיסה, לא ב‑onboarding (בסיום המבחן המונה OUT 0 B נשאר גלוי כפס קבוע בצ'אט, לא הודעה חולפת), קישור לקוד הפתוח.</dd>
 <dt>states</dt><dd>אם מצב LAN (Pro) פעיל: החותם מציג "LAN · 192.168.1.20" בכתום ולא ירוק. אם אי פעם ייפתח מצב ענן: UNSEALED אדום עם הסיבה.</dd>
 </dl>
 </div>
