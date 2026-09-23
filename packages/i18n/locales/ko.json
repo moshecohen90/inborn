@@ -765,6 +765,12 @@
   "legal.privacy": "개인정보처리방침",
   "legal.terms": "이용약관",
   "legal.edited": "최종 수정 {date}",
+  "legal.accessibility": "접근성",
+  "legal.offlineCopy": "오프라인 사본 · 시행일 {date}",
+  "legal.offlineCopyNoDate": "오프라인 사본",
+  "legal.offlineInventory": "오프라인 사본 · 목록 기준일 {date}",
+  "legal.readCurrent": "{url}에서 최신 버전 읽기",
+  "legal.currentNote": "이 문서는 앱을 빌드할 때 포함된 사본입니다. 적용되는 것은 웹사이트의 최신 버전이며 브라우저에서 열립니다.",
   "licenses.modelsNote": "앱 안에 들어가거나 저희 CDN에서 배포되는 모델은 저희가 배포자가 돼요. 하나하나 라이선스, 링크, 제한과 함께 적어 두었어요.",
   "licenses.view": "라이선스 보기",
   "licenses.sheet.title": "{name} 라이선스",
@@ -1044,5 +1050,11 @@
   "chat.vision.offer": "사진에는 {model}이(가) 아니라 {seer}이(가) 필요해요.",
   "chat.vision.offerCompanion": "사진에는 비전 보조 모델이 필요해요.",
   "vault.tooSlowHere": "{device, select, phone {이 휴대폰} tablet {이 태블릿} computer {이 컴퓨터} other {이 브라우저}}에서는 쓰기에 너무 느려요",
-  "chat.attach.noVisionHere": "{model}은(는) 사진을 볼 수 없어요."
+  "chat.attach.noVisionHere": "{model}은(는) 사진을 볼 수 없어요.",
+  "modelSheet.title": "모델",
+  "modelSheet.tag": "추천",
+  "modelSheet.goodAt": "잘하는 것: {list}",
+  "modelSheet.languageUnrated": "측정 안 됨",
+  "chat.modelWeakBetter": "{model}는 {language}에 약해요. {better}가 더 잘해요.",
+  "modelSheet.inTheApp": "앱에 있는 것"
 }

@@ -29,7 +29,7 @@
     --border: #DDE3E9;
     --text: #12161B;
     --text-2: #4A5560;
-    --text-3: #5C6873;
+    --text-3: #5E6975;
     --accent: #8F5309;
     --sealed: #0B7A4C;
     --danger: #C93A3A;
@@ -136,7 +136,7 @@ tbody tr:last-child td { border-bottom: 0; }
 /* The seal is the product's mark: at desktop widths it holds the right of the hero, set in a port on the panel,
    instead of the stock illustration this page would otherwise need. */
 .hero-seal { display: none; }
-@media (min-width: 1024px) {
+@media (min-width: 1140px) {
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; column-gap: 48px; align-items: center; }
   .hero .mesh { grid-area: 1 / 1 / 2 / 3; }
   .hero-seal {
@@ -147,7 +147,7 @@ tbody tr:last-child td { border-bottom: 0; }
   .hero-seal .seal { width: 188px; height: 188px; }
 }
 .eyebrow { font-size: 11px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; }
-.hero h1 { font-size: clamp(36px, 7vw, 68px); line-height: 1.04; letter-spacing: -0.035em; margin: 0 0 20px; max-width: 16ch; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.04; letter-spacing: -0.035em; margin: 0 0 20px; max-width: 16ch; }
 .hero .lede { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--text-2); max-width: 58ch; margin: 0 0 32px; }
 
 /* The composer is the demonstration, not a decoration: the page hands the typed line straight to the app. */

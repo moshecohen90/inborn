@@ -163,11 +163,16 @@ const nav = [
   ["/support", "Support"],
 ];
 
+/* Every legal page the app links out to, so the footer and the app's Legal screen cannot drift apart. */
+export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"];
+
+const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licences", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
+
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
-export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "FAQ", "ACCESSIBILITY_LINK"];
+export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "FAQ"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
-function tokens(built) {
+function tokens() {
   const storeRow = Object.values(stores).map((s) => `<a class="store" href="${s.href}" rel="noopener">
   <span class="store-k">${esc(s.name)}</span>
   <span class="store-v">${storesLive ? "Download Inborn" : "Opens at launch"}</span>
@@ -178,7 +183,6 @@ function tokens(built) {
     APP_ORIGIN: appOrigin,
     STORE_ROW: storeRow,
     FAQ: faqHtml(),
-    ACCESSIBILITY_LINK: built.includes("/accessibility") ? `<a href="/accessibility">Accessibility</a>` : "",
   };
 }
 
@@ -242,7 +246,7 @@ ${body}
     </nav>
     <nav aria-label="Legal">
       <span class="label">Legal</span>
-      <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/licenses">Licences</a>{{ACCESSIBILITY_LINK}}
+      ${legalRoutes.map((r) => `<a href="${r}">${legalLabel(r)}</a>`).join("")}
     </nav>
   </div>
   <p class="mono small readout-line">NO COOKIES · NO TRACKING · NO THIRD-PARTY REQUESTS</p>
@@ -545,9 +549,11 @@ export function build() {
   const terms = legalPage("terms.md");
   add("/terms", { ...terms, description: "Inborn terms of use and licence: Free, one-time Pro and Work purchases, refunds through the stores, and what you agree to about AI output." });
   add("/licenses", { ...licensesPage(), description: "Every model, engine, library and font Inborn ships with, and its licence." });
+  const accessibility = legalPage("accessibility-policy.md");
+  add("/accessibility", { ...accessibility, description: "Inborn accessibility statement: the standard we work to, what the app and this site do today for text size, contrast, motion, screen readers and keyboards, the gaps we have measured, and how to report one." });
 
   const built = pages.map((p) => p.path);
-  const vars = tokens(built);
+  const vars = tokens();
   const fill = (html) => html.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
 
   for (const page of pages) {

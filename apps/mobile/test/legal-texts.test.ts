@@ -1,7 +1,9 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { legalBody, legalScreen } from "../src/screens/Legal/legalBody";
+import { contrastRatio, dark, light } from "../../../packages/ui/src/tokens";
+import { effectiveDate, legalBody, legalScreen } from "../src/screens/Legal/legalBody";
+import { LEGAL_PATHS, SITE_ORIGIN, legalUrl } from "../src/lib/legalLinks";
 
 /**
  * Round 26 (F92–F96). The F51 guard watched `en.json` only, so the four texts that ship as Markdown went unwatched and
@@ -13,8 +15,8 @@ const repo = join(__dirname, "../../..");
 const legalDir = join(repo, "docs/legal");
 const read = (p: string) => readFileSync(join(repo, p), "utf8");
 
-/** The two the app bundles and the site renders: what a user and an App Store reviewer actually read. */
-const SHIPPED = ["docs/legal/privacy-policy.md", "docs/legal/terms.md"];
+/** The three the app bundles and the site renders: what a user and an App Store reviewer actually read. */
+const SHIPPED = ["docs/legal/privacy-policy.md", "docs/legal/terms.md", "docs/legal/accessibility-policy.md"];
 /** Everything else under docs/legal that a store submission or the site is built from. */
 const LEGAL_MD = readdirSync(legalDir).filter((f) => f.endsWith(".md")).map((f) => `docs/legal/${f}`);
 const siteSrc = (dir: string) =>
@@ -176,7 +178,9 @@ describe("F97 · the metadata block the screen shows above the text", () => {
 
   it.each(SHIPPED)("%s renders the licensor, the email, the phone and the effective date", (file) => {
     const text = rendered(file);
-    for (const value of ["Cohen Apps", "support@inbornapp.com", "+1-440-847-8502", "22 September 2026"]) {
+    const date = effectiveDate(read(file));
+    expect(date, `${file} states no effective date`).not.toBeNull();
+    for (const value of ["Cohen Apps", "support@inbornapp.com", "+1-440-847-8502", date!]) {
       expect(text, `${file} renders no "${value}"`).toContain(value);
     }
   });
@@ -186,7 +190,7 @@ describe("F97 · the metadata block the screen shows above the text", () => {
     const meta = legalScreen(read(file)).meta.join("\n");
     expect(meta, file).toContain("Cohen Apps");
     expect(meta, file).toContain("support@inbornapp.com");
-    expect(meta, file).toContain("Effective date: 22 September 2026");
+    expect(meta, file).toContain(`Effective date: ${effectiveDate(read(file))}`);
   });
 
   it("the block is read from the file, never written into the screen", () => {
@@ -228,5 +232,147 @@ describe("F97 · the metadata block the screen shows above the text", () => {
   it("a text with no header block gets no empty block", () => {
     expect(legalScreen("## 1. Only\n\nbody").meta).toEqual([]);
     expect(legalBody("## 1. Only\n\nbody")).toBe("## 1. Only\n\nbody");
+  });
+});
+
+/**
+ * Round 42 (F155–F157). Moshe: the policies in the app must come from the site so they can be updated, and the site
+ * needs an accessibility policy. The app cannot fetch them — Android has no INTERNET permission (D3) — so the bundled
+ * copy stays, labelled as a copy, and every legal screen offers the live page through the system browser.
+ */
+
+describe("F155 · every legal document in the app has a live page to open", () => {
+  const screens = {
+    privacy: read("apps/mobile/src/screens/Legal/Legal.tsx"),
+    terms: read("apps/mobile/src/screens/Legal/Legal.tsx"),
+    licenses: read("apps/mobile/src/screens/About/Licenses.tsx"),
+    accessibility: read("apps/mobile/src/screens/Legal/Legal.tsx"),
+  };
+
+  it("the link map covers exactly the four documents, all on inbornapp.com", () => {
+    expect(Object.keys(LEGAL_PATHS).sort()).toEqual(["accessibility", "licenses", "privacy", "terms"]);
+    expect(SITE_ORIGIN).toBe("https://inbornapp.com");
+    for (const doc of Object.keys(LEGAL_PATHS) as (keyof typeof LEGAL_PATHS)[]) {
+      expect(legalUrl(doc)).toBe(`https://inbornapp.com${LEGAL_PATHS[doc]}`);
+    }
+  });
+
+  /* The whole point of the round: a path the app sends a user to must be a page the site actually serves. */
+  it("every path the app opens is a page the site build produces", () => {
+    for (const path of Object.values(LEGAL_PATHS)) {
+      expect(SITE_DIST, `the site serves no ${path}`).toContain(`apps/site/dist${path}.html`);
+    }
+  });
+
+  it("the screen that shows a document is the screen that offers its live page", () => {
+    /* The rendered element, not the import: an unused import would otherwise satisfy this. */
+    for (const [doc, src] of Object.entries(screens)) expect(src, `${doc}'s screen offers no live page`).toMatch(/<LegalSource\b/);
+    const source = read("apps/mobile/src/components/LegalSource.tsx");
+    expect(source).toContain("legalUrl(doc)");
+    expect(source).toContain("Linking.openURL");
+    /* Not a fetch: the app has no network path on Android, so the live text is only ever read in the system browser. */
+    expect(source).not.toMatch(/\bfetch\(|XMLHttpRequest|axios/);
+  });
+
+  it("no legal screen fetches a policy over the network", () => {
+    for (const file of ["apps/mobile/src/screens/Legal/Legal.tsx", "apps/mobile/src/screens/About/Licenses.tsx", "apps/mobile/src/components/LegalSource.tsx"]) {
+      expect(read(file), file).not.toMatch(/\bfetch\(|XMLHttpRequest/);
+    }
+  });
+
+  it("the bundled text is labelled a copy, with the date it is effective from", () => {
+    const en = JSON.parse(read("packages/i18n/locales/en.json")) as Record<string, string>;
+    expect(en["legal.offlineCopy"]).toMatch(/\{date\}/);
+    expect(en["legal.offlineCopy"]!.toLowerCase()).toContain("offline copy");
+    expect(en["legal.readCurrent"]).toMatch(/\{url\}/);
+    expect(read("apps/mobile/src/screens/Legal/Legal.tsx")).toContain("legal.offlineCopy");
+  });
+
+  /* The identity guard (F97) still holds: the screen states no fact of its own, it renders the file's. */
+  it("the screen still hardcodes no identity", () => {
+    const screen = read("apps/mobile/src/screens/Legal/Legal.tsx");
+    for (const value of ["Cohen Apps", "inbornapp.com", "+1-440"]) expect(screen, `Legal.tsx hardcodes "${value}"`).not.toContain(value);
+  });
+
+  it("the accessibility statement is reachable from the app's legal index", () => {
+    const about = read("apps/mobile/src/screens/About/About.tsx");
+    expect(about).toContain('router.push("/legal/accessibility")');
+    expect(about).toContain("legal.accessibility");
+  });
+
+  it("the site links it from every page's footer", () => {
+    for (const file of SITE_DIST) expect(read(file), file).toContain('href="/accessibility"');
+  });
+});
+
+describe("F156 · the site's palette is held to the same contrast rule as the app's", () => {
+  /* The statement tells the reader the site meets the app's contrast rule. The site hard-copies the palette instead
+     of importing the tokens, and `--text-3` had already drifted to a value that fails AA on every dark surface. */
+  const css = read("apps/site/src/site.css");
+  const scheme = (block: string): Record<string, string> =>
+    Object.fromEntries([...block.matchAll(/--([a-z0-9-]+):\s*(#[0-9A-Fa-f]{6})\s*;/g)].map((m) => [m[1]!, m[2]!.toUpperCase()]));
+  const darkCss = scheme(/:root\s*\{([\s\S]*?)\}/.exec(css)![1]!);
+  const lightCss = scheme(/@media \(prefers-color-scheme: light\)\s*\{\s*:root\s*\{([\s\S]*?)\}/.exec(css)![1]!);
+  const PAIRS: [string, keyof typeof dark][] = [
+    ["bg", "bg"], ["surface-1", "surface1"], ["surface-2", "surface2"], ["well", "well"],
+    ["border", "border"], ["text", "text"], ["text-2", "text2"], ["text-3", "text3"],
+    ["accent", "accent"], ["sealed", "sealed"], ["danger", "danger"], ["cta-fill", "ctaFill"], ["cta-text", "ctaText"],
+  ];
+
+  it("reads both schemes out of the stylesheet", () => {
+    expect(Object.keys(darkCss).length).toBeGreaterThan(10);
+    expect(Object.keys(lightCss).length).toBeGreaterThan(10);
+  });
+
+  it.each(PAIRS)("--%s is the app's token", (cssName, token) => {
+    expect(darkCss[cssName], `dark --${cssName}`).toBe(dark[token].toUpperCase());
+    expect(lightCss[cssName], `light --${cssName}`).toBe(light[token].toUpperCase());
+  });
+
+  /* The complement: equality above would pass on a palette that is equally bad, so the ratios are asserted too. */
+  it.each(["text", "text-2", "text-3"])("--%s reaches 4.5:1 on every surface the site puts it on", (ink) => {
+    for (const [name, colours] of [["dark", darkCss], ["light", lightCss]] as const) {
+      for (const surface of ["bg", "surface-1", "surface-2", "well"]) {
+        expect(contrastRatio(colours[ink]!, colours[surface]!), `${name} --${ink} on --${surface}`).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
+});
+
+describe("F157 · the accessibility statement's measured gaps are still true", () => {
+  const policy = read("docs/legal/accessibility-policy.md");
+
+  /* The statement admits the delete/wipe button fails AA in the dark theme. The day someone fixes that colour pair
+     this fails, and the gap has to come out of section 5 in the same change — which is what section 7 promises. */
+  it("the delete/wipe contrast the statement admits is the contrast the tokens still have", () => {
+    const ratio = contrastRatio(dark.onDanger, dark.danger);
+    expect(ratio).toBeLessThan(4.5);
+    expect(ratio).toBeCloseTo(3.1, 1);
+    expect(policy).toMatch(/delete and wipe buttons fail the contrast rule/);
+    expect(policy).toMatch(/\*\*3\.1:1\*\*/);
+  });
+
+  it("the gap list still matches the ink tokens that do pass, so the statement is not blanket-pessimistic", () => {
+    for (const theme of [dark, light]) {
+      for (const surface of [theme.bg, theme.surface1, theme.surface2, theme.well]) {
+        for (const ink of [theme.text, theme.text2, theme.text3]) expect(contrastRatio(ink, surface)).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
+
+  it("names its standard, its law and a way to complain", () => {
+    expect(policy).toContain("WCAG 2.2");
+    expect(policy).toContain("5758-1998");
+    expect(policy).toContain("support@inbornapp.com");
+    expect(policy).toContain("+1-440-847-8502");
+    expect(policy).toContain("Effective date: 23 September 2026");
+  });
+
+  /* Claims the review of 23.9 struck out must not creep back: each one was false against the code. */
+  it("makes none of the claims the code does not support", () => {
+    expect(policy).not.toMatch(/fails the build/);
+    expect(policy).not.toMatch(/one completed sentence at a time/);
+    expect(policy).not.toMatch(/a target never falls below/);
+    expect(policy).not.toMatch(/Every text style in the app/);
   });
 });
