@@ -4384,8 +4384,8 @@ evidence caption that described a screenshot it does not match was corrected in 
 this stream had no phone. Animation — the 420 ms seal close, the bloom, streaming motion — cannot be judged from
 stills and was not claimed.
 
-Gates after merging `origin/main` (5f4af79): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,446 tests**
-(core 726, mobile 690, i18n 17, ui 13), `pn web:build` and `pn web:smoke` green, `node apps/site/build.mjs &&
+Gates after merging `origin/main` (e3e771c, which already carries this round plus round 53): `pn typecheck` 0,
+`pn lint` 0, `pn check:store` PASS, **1,449 tests** (core 726, mobile 693, i18n 17, ui 13), `pn web:build` and `pn web:smoke` green, `node apps/site/build.mjs &&
 node apps/site/check.mjs` green on all 13 pages including the new measurement. Evidence: `docs/qa/fix-design/`
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
