@@ -8,7 +8,7 @@ import { Icon, compactChrome, radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
-  NOT_FOUND_TOKEN,
+  isNotFoundReply,
   PASTE_OFFER_CHARS,
   PRODUCTS,
   SAFETY_BASELINE,
@@ -565,7 +565,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
-      if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
+      if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
         citations = undefined;
         patch((x) => ({ ...x, content: prefix + reply }));
