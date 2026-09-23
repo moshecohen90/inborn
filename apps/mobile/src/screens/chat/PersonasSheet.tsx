@@ -8,6 +8,7 @@ import { PersonaGlyph } from "../../components/chat/PersonaGlyph";
 import { ProTag, Sheet, SheetItem } from "../../components/chat/Sheet";
 import { shape } from "../../components/chat/styles";
 import { useType } from "../../services/type";
+import { afterSheetClose } from "../../lib/sheetHandover";
 
 interface Props {
   visible: boolean;
@@ -40,7 +41,7 @@ export function PersonasSheet({ visible, onClose, store, onChanged, onUnlock }: 
   const locked = paywallFor(tier, { kind: "persona", existing: custom.length });
   const unlock = () => {
     onClose();
-    setTimeout(() => onUnlock?.("persona"), 320);
+    afterSheetClose(() => onUnlock?.("persona"));
   };
   const edit = (p: Persona) => setDraft({ id: p.id, name: p.name, icon: p.icon, systemPrompt: p.systemPrompt, temperature: p.temperature === undefined ? "" : String(p.temperature), disclaimer: p.disclaimer ?? "" });
 

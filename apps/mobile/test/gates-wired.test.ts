@@ -42,7 +42,7 @@ describe("every gate key is asked by a screen", () => {
  * walked past both the Free file cap and the Work formats (QA F72).
  */
 describe("the document intake doors", () => {
-  const doors = ["documents/importPicker.ts", "screens/Chat.tsx", "screens/documents/DocumentsScreen.tsx"];
+  const doors = ["documents/importPicker.ts", "documents/importPicker.web.ts", "screens/Chat.tsx", "screens/documents/DocumentsScreen.tsx"];
 
   it("every file that reaches importFile came through fileIntake", () => {
     for (const door of doors) {

@@ -783,7 +783,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <p>המספרים שמאחורי הספים: §6.4 (חום מוריד 15–40% אחרי 5–10 דקות; 0.3–0.5% סוללה ל‑1,000 טוקנים). מה שמשתנה בין מכשירים הוא רק הסף והכיוון; הקופי, הכפתורים והעיקרון "מיידעים, לא מפתיעים" זהים בכולם, ולכן משתמש שעובר מהטלפון למק פוגש אותה התנהגות.</p>
 
 </section>
-<section class="sec" data-tier="must" data-words="2540">
+<section class="sec" data-tier="must" data-words="2562">
 <h2 id="s7"><span class="n">07</span>מפת פיצ'רים: חינם / Pro / Pro for Work<span class="tierpill">MUST</span><span class="h2min">~13 min</span></h2>
 <p class="lead">עיקרון החלוקה: כל מה שמתחרים חינמיים כבר נותנים, וכל מה שהופך את הבטחת הפרטיות לאמינה, נשאר חינם. מה שנמכר הוא עוצמה מתמשכת ועבודה: מסמכים, זיכרון, קול, אינטגרציות ושליטה. אפליקציית פרטיות שגובה כסף על פרטיות נקראת "הונאה" בביקורות (Layla, Venice), ולכן שום פיצ'ר אמון אינו מאחורי תשלום.</p>
 
@@ -846,7 +846,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <tr><td>מצב "ענה רק מהמסמכים שלי"</td><td><span class="pill pro">Pro</span></td><td>צורך מקצועי</td></tr>
 <tr><td>הבנת טבלאות (CSV/XLSX)</td><td><span class="pill pro">Pro</span> CSV בתוך ספריית המסמכים · <span class="pill work">Work</span> קליטת XLSX</td><td>CSV נכנס דרך הצירוף החינמי (שורה למעלה) והבנתו היא חלק מספריית המסמכים; XLSX לא נכנס בכלל בלי Work — §7.9 מונה את קליטת ה‑XLSX תחת Pro for Work, לא Pro, ואין דרך אחרת פנימה</td></tr>
 <tr><td>סיכום מסמך ארוך (map‑reduce מעל ההקשר)</td><td><span class="pill pro">Pro</span></td><td>מבדיל</td></tr>
-<tr><td>ייבוא מ‑Files / iCloud Drive / Google Drive דרך בורר הקבצים של המערכת</td><td><span class="pill free">Free</span></td><td>קריאה בלבד; בלי קריאת רשת של האפליקציה. שערי הקליטה עצמם (מכסת הקובץ האחד, XLSX/HTML ל‑Work) חלים על מה שנבחר, לא על הבורר; הבורר חינם כי הוא הדלת היחידה לצירוף החינמי בשורה למעלה</td></tr>
+<tr><td>ייבוא מ‑Files / iCloud Drive / Google Drive דרך בורר הקבצים של המערכת; בדפדפן ובדסקטופ (§14.3) הדלת היא בורר הקבצים של הדפדפן עצמו (<span class="ltr">&lt;input type="file"&gt;</span>), כי <span class="ltr">expo-file-system</span> אינו מממש בורר בווב (QA F100)</td><td><span class="pill free">Free</span></td><td>קריאה בלבד; בלי קריאת רשת של האפליקציה. שערי הקליטה עצמם (מכסת הקובץ האחד, XLSX/HTML ל‑Work) חלים על מה שנבחר, לא על הבורר; הבורר חינם כי הוא הדלת היחידה לצירוף החינמי בשורה למעלה</td></tr>
 <tr><td>Vaults לפי לקוח/תיק עם קוד נפרד; ייבוא DOCX/XLSX/HTML; רדקציה לפני הדבקה</td><td><span class="pill work">Work</span></td><td></td></tr>
 </tbody>
 </table>
@@ -1386,7 +1386,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 </div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="1713">
+<section class="sec" data-tier="rec" data-words="1776">
 <h2 id="s9"><span class="n">09</span>מערכת העיצוב FARADAY<span class="tierpill">RECOMMENDED</span><span class="h2min">~9 min</span></h2>
 <p class="lead">התזה: הטלפון הוא כלוב פאראדיי למחשבות שלך. שום דבר לא נכנס, שום דבר לא יוצא, וזו פיזיקה, לא מדיניות. האפליקציה נראית כמו מכשיר מדידה אטום עם אור חזק בפנים. שתי שכבות: שכבת קריאה רגועה (הצ'אט) ושכבת הוכחה מדויקת (החותם, הטלמטריה, כספת המודלים). הסימן ש"AI עובד" הוא החותם שנושם, אף פעם לא נצנוץ.</p>
 
@@ -1456,6 +1456,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <span class="k">radius</span><span>4 (צ'יפים, נקודות מצב) · 10 (כפתורים, שדות) · 14 (כרטיסים, הודעת משתמש) · 20 (sheets, מחסניות מודל) · pill (חותם, גלולות). אלמנטים מקוננים לפי כלל הקונצנטריות של iOS 26: רדיוס פנימי = חיצוני פחות הריפוד.</span>
 <span class="k">spacing</span><span>סולם 4pt: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64. שוליים 16 בטלפון (20 בטלפונים גדולים).</span>
 <span class="k">targets</span><span>שדה הקלדה מינימום 44, כפתור שליחה 44, יעדי מגע 44×44 בכל מקום, גם על מסך ההוכחה.</span>
+<span class="k">מתג on/off</span><span>מסלול <span class="ltr">52×32</span> וכפתור <span class="ltr">24</span>: דלוק = מסלול מלא ב‑<code>ctaFill</code> עם כפתור ב‑<code>ctaText</code> וסימן ✓ בקצה; כבוי = מסלול חלול ב‑<code>well</code> עם מתאר ב‑<code>text3</code> וכפתור אפור בהתחלה. המצב נקרא ממילוי, ממיקום הכפתור ומהסימן — לא מגוון בלבד, ולא מהמתג של הפלטפורמה, שבמצב כבוי צייר בערכה הכהה מסלול ביחס ניגודיות <span class="ltr">1.27:1</span> וכפתור <span class="ltr">1.19:1</span> מול המסלול שלו (QA F102).</span>
 <span class="k">motion</span><span>120ms לחיצה/hover · 180ms מצב · 280ms sheet · 420ms סגירת חותם. ease‑out בכניסה (<code>cubic-bezier(.23,1,.32,1)</code>), ease‑in‑out לתנועה על המסך. אין bounce אלא בסגירת החותם הראשונה וב‑FAB של אנדרואיד.</span>
 </div>
 
