@@ -11,6 +11,7 @@ import { Button, MonoLabel } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { deviceLine } from "./deviceLine";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { useWide } from "../../lib/useLayout";
 
 /** S01: the thesis in one sentence and the open seal before anything else. No skip: the next screen is already useful. */
 export function Welcome() {
@@ -19,9 +20,10 @@ export function Welcome() {
   const type = useType();
   const router = useRouter();
   const line = useMemo(deviceLine, []);
+  const wide = useWide();
   return (
-    <Screen header={null} mesh testID="onboarding-welcome" footer={<Footer onNext={() => router.push("/onboarding/model")} />}>
-      <View style={styles.hero}>
+    <Screen header={null} mesh card testID="onboarding-welcome" footer={<Footer onNext={() => router.push("/onboarding/model")} />}>
+      <View style={[styles.hero, wide ? styles.heroOnCard : null]}>
         <Seal size={72} state="open" label={t("onboarding.sealOpen")} />
         <Text accessibilityRole="header" style={[type.headline, styles.center, { color: theme.text }]}>
           {t("onboarding.headline", { device: deviceNoun() })}
@@ -54,6 +56,8 @@ function Footer({ onNext }: { onNext: () => void }) {
 
 const styles = StyleSheet.create({
   hero: { alignItems: "center", gap: 20, paddingTop: 48, paddingHorizontal: 8 },
+  /* The card supplies the breathing room on a wide window; the phone's top padding would push the hero off centre. */
+  heroOnCard: { paddingTop: 0 },
   center: { textAlign: "center" },
   runsOn: { flexDirection: "row", alignItems: "center", gap: 8, minHeight: 36, paddingHorizontal: 12, borderWidth: 1, borderRadius: 999 },
   disclaimer: { textAlign: "center", paddingTop: 4, paddingHorizontal: 8 },

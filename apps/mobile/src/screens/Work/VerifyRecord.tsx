@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { verificationInstructions, verifyRecord, type RecordVerdict } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Mono } from "../../components/shell/primitives";
+import { Actions, Button, Mono } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
 import { shape } from "../../components/chat/styles";
 import { useType } from "../../services/type";
@@ -43,10 +43,14 @@ export function VerifyRecord() {
 
   return (
     <Screen header={{ back: true, title: t("verify.title") }} testID="verify-record">
-      <Button testID="verify-pick" title={t("verify.pick")} onPress={() => void pick()} />
+      <Actions>
+        <Button testID="verify-pick" title={t("verify.pick")} onPress={() => void pick()} />
+      </Actions>
       <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("verify.paste")}</Text>
       <TextInput testID="verify-input" value={pasted} onChangeText={setPasted} multiline autoCapitalize="none" autoCorrect={false} placeholder="{ … }" placeholderTextColor={theme.text3} style={[shape.field, styles.input, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />
-      <Button testID="verify-run" title={t("verify.run")} variant="secondary" disabled={!pasted.trim()} onPress={() => void check(pasted)} />
+      <Actions>
+        <Button testID="verify-run" title={t("verify.run")} variant="secondary" disabled={!pasted.trim()} onPress={() => void check(pasted)} />
+      </Actions>
       {verdict ? (
         <View testID="verify-result" style={[styles.result, { borderColor: verdict.v.ok ? theme.sealed : theme.danger, backgroundColor: theme.surface1 }]}>
           <Mono color={verdict.v.ok ? theme.sealed : theme.danger}>{verdict.v.ok ? t("verify.valid", { count: verdict.v.messages, date: when(verdict.v.exportedAt) }) : t(`verify.invalid.${verdict.v.reason}`)}</Mono>

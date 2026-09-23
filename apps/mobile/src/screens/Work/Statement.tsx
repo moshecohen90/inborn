@@ -5,7 +5,7 @@ import { architectureStatement, type Folder } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
-import { Button } from "../../components/shell/primitives";
+import { Actions, Button } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
 import { useType } from "../../services/type";
 import { useEntitlement } from "../../licence";
@@ -56,7 +56,9 @@ export function Statement() {
           <WorkTag />
         </View>
       ) : (
-        <Button testID="statement-share" title={t("statement.share")} onPress={() => void shareFile({ filename: `inborn-architecture-statement-${date}.md`, mimeType: "text/markdown", body }, t("statement.dialog"))} />
+        <Actions>
+          <Button testID="statement-share" title={t("statement.share")} onPress={() => void shareFile({ filename: `inborn-architecture-statement-${date}.md`, mimeType: "text/markdown", body }, t("statement.dialog"))} />
+        </Actions>
       )}
       <View style={styles.body}>
         <Markdown testID="statement-body" source={preview} direction="ltr" />

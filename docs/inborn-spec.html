@@ -215,7 +215,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <section class="guide" aria-label="מדריך קריאה">
 <div class="row"><div class="tier must"><span class="k">MUST · ~42 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~59 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~47 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~148 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~101 דק'</button><button type="button" data-view="must">חובה בלבד · ~42 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~149 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~101 דק'</button><button type="button" data-view="must">חובה בלבד · ~42 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -969,7 +969,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <div class="note"><p><strong>Pro for Work (69.99 דולר חד‑פעמי, דסקטופ תחילה; Pro משדרגים ב‑49.99):</strong> חבילות מקצוע (משפטי, טיפולי, רפואי, חשבונאי) עם תבניות והצהרות, vaults לפי לקוח/תיק עם קוד נפרד, כלי רדקציה/אנונימיזציה לפני הדבקה, קליטת DOCX/XLSX/HTML, הכתבה לרשומות, יומן ביקורת וייצוא מוחתם, מודלים גדולים (Power/Studio), מפתחות רישיון קבוצתיים שמאומתים אופליין, והצהרת ארכיטקטורה להדפסה לתיקי ציות. לעולם לא "HIPAA‑compliant" ולא "privileged" בשיווק.</p></div>
 
 </section>
-<section class="sec" data-tier="ref" data-words="4385">
+<section class="sec" data-tier="ref" data-words="4437">
 <h2 id="s8"><span class="n">08</span>מסכי האפליקציה, מסך אחר מסך<span class="tierpill">REFERENCE</span><span class="h2min">~22 min</span></h2>
 <p class="lead">לכל מסך: התפקיד שלו, האלמנטים, המצבים, מקרי הקצה שהוא חייב לטפל בהם, ומה בו חינם ומה Pro. הדמו האינטראקטיבי מציג את כל המסכים הממוספרים כאן (S01–S60); המסמך מגדיר גם את המצבים ומקרי הקצה שלהם. הניווט: במובייל כותרת עם החותם במרכז, כפתור מגירת השיחות בצד ההתחלה וצ'יפ המודל בצד הסיום; בדסקטופ ובטאבלט סרגל צד קבוע במקום המגירה.</p>
 
@@ -1367,6 +1367,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 <h4>דסקטופ (Tauri, Windows + macOS)</h4>
 <ul>
 <li>פריסה: סרגל צד 280px (שיחות, פרויקטים, כספת, הוכחה, הגדרות) + עמודת הודעות 680px + פאנל מסמך/ציטוט אופציונלי מימין.</li>
+<li>רספונסיביות בכל מסך (לא רק הצ'אט): מ‑760px ומעלה כל עמודת תוכן מוגבלת ל‑680px וממורכזת, ערימת כפתורי פעולה ל‑420px, ומסכי ה‑Onboarding (Welcome, Model, Sealed, Lock) נפרסים ככרטיס ממורכז ברוחב 480px. מתחת ל‑760px הפריסה זהה לטלפון. שדה הכתיבה מתחיל בגובה שורה אחת וגדל עם התוכן עד שש שורות, כשה‑[+], המיקרופון והשליחה נשארים מיושרים לתחתית.</li>
 <li>drag‑and‑drop של קבצים ותיקיות לספרייה; פרויקטים (Work) עם vault ומסמכים מרובים.</li>
 <li>קיצורי מקלדת בלי אנימציה: New chat, Search, Stop, Toggle sidebar, Model picker. Command palette (Cmd/Ctrl+K).</li>
 <li>Tray/Menu bar: מצב החותם, שיחה מהירה, "Quit unloads model".</li>

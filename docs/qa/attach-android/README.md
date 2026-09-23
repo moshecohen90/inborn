@@ -100,7 +100,7 @@ reload per tier. Every row is a tap on the 6T.
 | Free | attaching a document already in the library | **was broken → fixed.** See F129; the count half is F146, fixed on `main` in the same week, and this round adds the Work-format half | `f129-free-two-docs-work-kind.png` → `f129-free-second-doc-blocked-after.png` |
 | Pro | library, attach, detach, citations | **proven** throughout the rows above | `f126-cited-after.png` |
 | Pro | OCR of a scanned page | **proven.** `scan-certificate.png` imported `needs-ocr · 0 chunks`; **Run OCR** → `indexed · 1/1 pages · 1 chunks · 2706 ms`; strict answer *"…is WP-8832-VN."* cited `p.1` | `tier-pro-ocr-indexed.png`, `tier-pro-ocr-cited.png` |
-| Pro | strict mode | **proven** both ways | `f-strict-notfound.png`, `f-strict-off-model.png` |
+| Pro | strict mode | **proven** both ways on this device and this model. Read it with **F137** (`attach-ios`): the check that turns the model's sentinel into that sentence was an exact `startsWith`, so the localized refusal here depended on the casing this model happened to return. On the iPhone the same path printed `Not_FOUND_IN_DOCUMENTS` to the screen. Fixed in core for both streams; this row was not re-run on the 6T afterwards | `f-strict-notfound.png`, `f-strict-off-model.png` |
 | Pro | Excel / HTML stay behind Work | **proven.** Picking `bearings.xlsx` on Pro opens the paywall at **PRO FOR WORK** | `tier-pro-xlsx-work-paywall.png` |
 | Work | XLSX import | **proven.** `indexed · 1 chunk`, answer *"…is BR-3311-LM."* cited `bearings.xlsx · sheet 1` | `tier-work-xlsx-cited.png` |
 | Work | HTML import | **proven.** `indexed · 2/2 pages`, answer *"…is Gate C car park."* cited `sitenotes.html · part 2` | `tier-work-html-cited.png` |

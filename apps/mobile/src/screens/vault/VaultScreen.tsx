@@ -22,6 +22,7 @@ import { chooseFile } from "../../documents/chooseFile";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { listClipping } from "../../lib/listClipping";
+import { useContentMaxWidth } from "../../lib/useLayout";
 import { Toggle } from "../../components/shell/primitives";
 import { useOpenSheet } from "../../lib/openSheets";
 import { afterSheetClose } from "../../lib/sheetHandover";
@@ -52,6 +53,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
+  const contentMax = useContentMaxWidth();
   const { vault, entries } = useVault();
   const [bestUse, setBestUse] = useState<UseCase>("chat");
   const [bestLanguage, setBestLanguage] = useState(() => startLanguage(i18n.language));
@@ -220,6 +222,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   useOpenSheet(confirm !== null, () => setConfirm(null));
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
+      <View style={[styles.stack, { maxWidth: contentMax }]}>
       <View style={styles.header}>
         <Pressable testID="close-vault" accessibilityRole="button" accessibilityLabel={t("vault.close")} onPress={onClose} hitSlop={8} style={styles.headerBtn}>
           <Icon name="x" size={20} color={theme.text2} />
@@ -294,6 +297,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
           </View>
         }
       />
+      </View>
       {toast ? (
         <View testID="vault-toast" style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border, bottom: insets.bottom + 16 }]}>
           <Text style={[type.body, { color: theme.text }]}>{toast}</Text>
@@ -384,6 +388,7 @@ const fill = { position: "absolute", top: 0, left: 0, right: 0, bottom: 0 } as c
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  stack: { flex: 1, width: "100%", alignSelf: "center" },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
   headerBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   centered: { textAlign: "center", paddingHorizontal: 16, paddingTop: 4 },

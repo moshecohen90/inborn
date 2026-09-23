@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { COLUMN_WIDTH, DESKTOP_MIN, PANEL_WIDTH, SIDEBAR_WIDTH, WIDE_MIN, hasPanel, isWide, layoutModeFor } from "./layout";
+import { ACTION_WIDTH, CARD_WIDTH, COLUMN_WIDTH, DESKTOP_MIN, PANEL_WIDTH, SIDEBAR_WIDTH, WIDE_MIN, actionMaxWidth, cardMaxWidth, contentMaxWidth, hasPanel, isWide, layoutModeFor } from "./layout";
 
 describe("layout mode", () => {
   it("keeps every phone width on the phone shell", () => {
@@ -55,5 +55,47 @@ describe("layout mode", () => {
       last = step;
     }
     expect(last).toBe(2);
+  });
+});
+
+describe("content, action and card widths", () => {
+  it("leaves a phone's own gutters as the whole rule", () => {
+    for (const w of [320, 375, 390, 412, 430, WIDE_MIN - 1]) {
+      expect(contentMaxWidth(w)).toBeUndefined();
+      expect(actionMaxWidth(w)).toBeUndefined();
+      expect(cardMaxWidth(w)).toBeUndefined();
+    }
+  });
+
+  it("caps the reading column and page actions from the wide threshold up (F110)", () => {
+    for (const w of [WIDE_MIN, 768, 1024, DESKTOP_MIN, 1440, 1920, 3840]) {
+      expect(contentMaxWidth(w)).toBe(COLUMN_WIDTH);
+      expect(actionMaxWidth(w)).toBe(ACTION_WIDTH);
+      expect(cardMaxWidth(w)).toBe(CARD_WIDTH);
+    }
+  });
+
+  it("keeps the caps in the order the shell stacks them", () => {
+    /* An action sits inside the onboarding card, which sits inside the reading column, which sits inside the message column. */
+    expect(ACTION_WIDTH).toBeLessThan(CARD_WIDTH);
+    expect(CARD_WIDTH).toBeLessThan(COLUMN_WIDTH);
+    expect(COLUMN_WIDTH).toBeLessThanOrEqual(WIDE_MIN);
+  });
+
+  it("never returns a cap wider than the window it was asked about", () => {
+    for (let w = 200; w <= 2000; w += 1) {
+      for (const cap of [contentMaxWidth(w), actionMaxWidth(w), cardMaxWidth(w)]) {
+        if (cap !== undefined) expect(cap).toBeLessThanOrEqual(w);
+      }
+    }
+  });
+
+  it("caps the column the sidebar shell leaves for a screen, not the window (F110)", () => {
+    /* The hooks read the window width, which is only ever wider than the content area; a cap that only shrinks stays correct. */
+    for (const w of [DESKTOP_MIN, 1440, 1920]) {
+      const content = w - SIDEBAR_WIDTH;
+      expect(Math.min(content, contentMaxWidth(w) ?? content)).toBeLessThanOrEqual(content);
+      expect(Math.min(content, contentMaxWidth(w) ?? content)).toBe(COLUMN_WIDTH);
+    }
   });
 });
