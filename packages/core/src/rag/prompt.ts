@@ -35,6 +35,17 @@ export interface PromptOptions {
 /** The exact token the model returns when strict mode finds nothing; the app renders the localized sentence instead. */
 export const NOT_FOUND_TOKEN = "NOT_FOUND_IN_DOCUMENTS";
 
+/**
+ * Whether a reply is that token rather than an answer.
+ *
+ * A 0.8B model returns it in its own case and sometimes inside quotes or bold, and an exact match let
+ * "Not_FOUND_IN_DOCUMENTS" through to the screen on the iPhone instead of the localized sentence (QA F137).
+ */
+export const isNotFoundReply = (reply: string): boolean => {
+  const bare = reply.replace(/[\s"'*`_.:-]+/g, " ").trim();
+  return new RegExp(`^${NOT_FOUND_TOKEN.replace(/_/g, " ")}\\b`, "i").test(bare);
+};
+
 export const DEFAULT_ANSWER_RESERVE = 512;
 export const DEFAULT_HISTORY_SHARE = 0.35;
 /* nomic-embed puts unrelated text around 0.4; related passages score 0.6+. The hash embedder used in tests sits far lower. */

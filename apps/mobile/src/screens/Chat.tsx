@@ -8,7 +8,7 @@ import { Icon, compactChrome, radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
-  NOT_FOUND_TOKEN,
+  isNotFoundReply,
   PASTE_OFFER_CHARS,
   PRODUCTS,
   SAFETY_BASELINE,
@@ -89,6 +89,7 @@ import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { planDocsTurn } from "../lib/docsGate";
+import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -226,6 +227,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
+  /** The turn refused because the index model is missing; the notice offers the one screen that fixes it (QA F139). */
+  const [docsOffer, setDocsOffer] = useState(false);
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
   const [templatesOpen, setTemplatesOpen] = useState(false);
@@ -465,6 +468,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {
+        if (turn.messageKey === "documents.needsIndexModel") setDocsOffer(true);
         await answerWithoutModel(turn.messageKey);
         return;
       }
@@ -492,6 +496,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
+          messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
           /* A toast is not an answer: a search that failed must not leave the model answering as if nothing were attached. */
           flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
@@ -563,7 +568,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
-      if (citations && reply.trim().startsWith(NOT_FOUND_TOKEN)) {
+      if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
         citations = undefined;
         patch((x) => ({ ...x, content: prefix + reply }));
@@ -689,6 +694,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   /* The dev voice hook runs once, when the model is ready; these keep it on the live send path instead of that render's. */
   const submitRef = useRef(submit);
   submitRef.current = submit;
+  /* The file driver's interval is created once per busy/status change; without this it would send through the render's stale `docs` and miss an attachment made after it. */
+  const docsRef = useRef(docs);
+  docsRef.current = docs;
+  const tierRef = useRef(tier);
+  tierRef.current = tier;
   const dictationRef = useRef(dictation);
   dictationRef.current = dictation;
 
@@ -785,8 +795,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lines = raw.split("\n");
       const images = lines.filter((l) => l.startsWith("image:")).map((l) => new File(Paths.document, l.slice("image:".length).trim()));
       if (images.length) return setPendingImages(images.map((f) => ({ uri: f.uri, width: 0, height: 0, bytes: f.size ?? 0 })));
+      /* The document half of the same file driver: `attach: <name in Documents>` and `strict: on|off`, so the attach sheet's two decisions can be driven over USB. */
+      const strictLine = lines.find((l) => l.startsWith("strict:"));
+      if (strictLine) docsRef.current.setStrict(strictLine.slice("strict:".length).trim() === "on");
+      const attach = lines.filter((l) => l.startsWith("attach:")).map((l) => l.slice("attach:".length).trim());
+      if (attach.length) {
+        void (async () => {
+          for (const name of attach) {
+            /* Through the same door a picked or shared file uses, so the driver cannot walk past the Free file cap or the Work formats. */
+            const verdict = fileIntake(tierRef.current, sniffPicked(new File(Paths.document, name).uri, name), docsRef.current.documents.length);
+            if (verdict.kind === "paywall") {
+              flash(t(verdict.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+              continue;
+            }
+            const doc = await library.importFile(new File(Paths.document, name).uri, name, { incognito });
+            docsRef.current.attach(doc.id);
+          }
+        })();
+        return;
+      }
+      if (strictLine) return;
       const text = lines.join("\n").trim();
-      if (text) void submit(text);
+      if (text) void submitRef.current(text);
     }, 1500);
     return () => clearInterval(timer);
   }, [status.kind, busy, pendingImages]);
@@ -1198,6 +1228,23 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </Pressable>
         </View>
       ) : null}
+      {docsOffer ? (
+        <View testID="docs-offer" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.error.no-embedder")}</Text>
+          <Pressable
+            testID="docs-offer-action"
+            accessibilityRole="button"
+            onPress={() => {
+              setDocsOffer(false);
+              afterSheetClose(() => onOpenVault?.());
+            }}
+            hitSlop={8}
+            style={styles.noticeBtn}
+          >
+            <Text style={[type.caption, { color: theme.accent }]}>{t("voice.openVault")}</Text>
+          </Pressable>
+        </View>
+      ) : null}
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.canBeWrong", { device: deviceNoun() })}</Text>
@@ -1511,6 +1558,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => setTemplatesOpen(true));
         }}
         photoDisabled={!visionReady || !modelSees}
+        onInstallVision={modelSees && !visionReady ? () => {
+          setAttachOpen(false);
+          afterSheetClose(() => onOpenVault?.());
+        } : undefined}
+        visionSize="205 MB"
         photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: modelLabel(model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: modelLabel(model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
       />
