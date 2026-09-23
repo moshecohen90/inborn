@@ -27,6 +27,7 @@ import { useDesktopKeys } from "../components/shell/useDesktopKeys";
 import { useShortcut } from "../lib/shortcuts";
 import { closeSidePanel } from "../lib/sidePanel";
 import { toggleSidebar, useSidebarOpen } from "../lib/sidebar";
+import { QaBridge } from "../qa/Bridge";
 
 /* The stored theme is applied before the first paint (QA B14): the splash, the lock screen and the status bar never show the system scheme first. */
 applyThemeMode(mergePrefs(readPrefsRaw(), Date.now()).themeMode);
@@ -126,6 +127,8 @@ function Shell() {
       <DeviceExplainSheet />
       {cover ? <PrivacyCover captured={captured} /> : null}
       {lock.locked ? <LockScreen /> : null}
+      <QaBridge />
+
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />
     </View>
   );

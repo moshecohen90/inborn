@@ -29,7 +29,7 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
   );
   return (
     <Modal visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose}>
-      <Pressable accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />
+      <Pressable testID={testID ? `${testID}-close` : "sheet-close"} accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />
       {wide ? (
         <View pointerEvents="box-none" style={styles.centre}>
           <View testID={testID} style={[styles.dialog, panelStyle, { maxHeight: geometry.maxHeight, backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
