@@ -3781,7 +3781,7 @@ went from 1408 px at a 1440 viewport (98 %) to 446 px centred, and the composer'
 two phones hours earlier; what this round did not put on a phone, and why, is in
 `docs/qa/acceptance/android/README.md` and `ios/README.md`.
 
-## Fixes round 44: the GitHub link, now that there is one (branch `site-github`) — 23.9.2026
+## Fixes round 43b: the GitHub link, now that there is one (branch `site-github`) — 23.9.2026
 
 Round 41's "Decision for Moshe" — *the day the repository goes public, the source-available answer and the link go
 in together; one line in `build.mjs` and one FAQ entry* — came due. `github.com/moshecohen90/inborn` is public as of
