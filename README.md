@@ -3654,7 +3654,7 @@ node scripts/deploy-cloudflare.mjs --site --dry-run --no-build   # manifest + pl
 **Not deployed yet, 23.9.2026.** The token in the Keychain is **read-only on Workers**: `GET …/workers/scripts`
 returns `200` but `PUT …/workers/scripts/inborn-site` and the assets upload session both return
 `403 No access to the specified resource`, and Pages, Workers Routes, Workers custom domains, the workers.dev
-subdomain and Rules are all `403` as well. DNS read **and write** do work (a probe `TXT` record was created and
+subdomain and Rules are all `403` as well. The token was polled every five minutes for three hours on 23.9.2026 and never changed. DNS read **and write** do work (a probe `TXT` record was created and
 deleted), but DNS alone cannot serve bytes. `inbornapp.com` and `app.inbornapp.com` are still NXDOMAIN, so every legal
 button added in round 42 and the landing composer's hand-off still lead nowhere. Full call-by-call table, the exact
 permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and

@@ -68,9 +68,12 @@ Then the whole deploy is one command:
 node scripts/deploy-cloudflare.mjs --site --app
 ```
 
-The token was then polled for write access every 30 s for 12 minutes, in case it was replaced while the rest of this
-stream ran: 24 probes of `POST …/workers/scripts/inborn-permcheck/assets-upload-session`, all `403`
-(`scratchpad/deploy-site/token-poll.log`). Nothing was deployed.
+The token was then polled for write access, in case it was replaced while this stream ran. First every 30 s for
+12 minutes (24 probes), then every 5 minutes for **3 hours** (36 probes, 20:17 → 23:12 on 23.9.2026). All 60 probes of
+`POST …/workers/scripts/{name}/assets-upload-session` returned `403`, and the token's own prefix never changed, so the
+Keychain item was never replaced. The probe is the upload-session call rather than a `PUT` of a throwaway Worker
+because it needs exactly the same permission and creates nothing that would have to be deleted again.
+**Nothing was deployed.**
 
 ## What was proven locally, and what stays unproven
 
