@@ -7,6 +7,22 @@ import PICK_TYPES from "./src/documents/pickTypes.json";
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
 const dev = process.env.APP_VARIANT === "development";
 
+/**
+ * The store-bundle gate (QA F257, security review S5). Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
+ * left over in the building shell ships inside a store bundle — `EXPO_PUBLIC_ALLOW_TEST_PURCHASES` would make it
+ * accept Apple sandbox and `android.test.*` transactions. `scripts/check-store-env.sh` has said so since round 9 and
+ * nothing ever called it; this file is the one every build path evaluates (prebuild, export, gradle, Xcode), and it
+ * reads that script's own list so there is one list and two gates.
+ */
+const DEV_SWITCHES = readFileSync(path.join(__dirname, "../../scripts/dev-switches.txt"), "utf8")
+  .split("\n")
+  .map((l) => l.trim())
+  .filter((l) => l && !l.startsWith("#"));
+if (!dev) {
+  const leaked = DEV_SWITCHES.filter((v) => process.env[v]);
+  if (leaked.length) throw new Error(`store build refused: dev switch set in the environment: ${leaked.join(", ")} — unset it or build with APP_VARIANT=development (scripts/check-store-env.sh)`);
+}
+
 /* Inborn is the handler for .gguf so a browser download opens straight in the vault (spec §7.2, §5.4). */
 const GGUF_UTI = "app.inborn.gguf";
 const ggufIntentFilter = {
@@ -106,7 +122,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         ],
   },
   web: { bundler: "metro", output: "single", favicon: "./assets/favicon.png" },
-  extra: { commit, builtAt: new Date().toISOString().slice(0, 10) },
+  /* `devVariant` is decided here, at config time, and baked into the bundle: a store build cannot be given it by an
+     environment variable later, and an APP_VARIANT that flips it also declares INTERNET, which the Android permission
+     gate refuses. It is what lets the licence verifier accept sandbox proofs in a QA build and never in a store one. */
+  extra: { commit, builtAt: new Date().toISOString().slice(0, 10), devVariant: dev },
   plugins: [
     ["expo-router", { root: "./src/app" }],
     "llama.rn",

@@ -214,8 +214,8 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 </header>
 
 <section class="guide" aria-label="מדריך קריאה">
-<div class="row"><div class="tier must"><span class="k">MUST · ~42 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~60 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~47 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~149 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~102 דק'</button><button type="button" data-view="must">חובה בלבד · ~42 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="row"><div class="tier must"><span class="k">MUST · ~43 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~60 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~47 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~149 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~103 דק'</button><button type="button" data-view="must">חובה בלבד · ~43 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -1787,7 +1787,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 
 
 </section>
-<section class="sec" data-tier="must" data-words="977">
+<section class="sec" data-tier="must" data-words="1031">
 <h2 id="s12"><span class="n">12</span>מוניטיזציה ותמחור<span class="tierpill">MUST</span><span class="h2min">~5 min</span></h2>
 <p class="lead">אין עלות שוטפת פר משתמש, ולכן אין מנוי. המודל: חינמי שלם, Pro חד‑פעמי, ו‑Work חד‑פעמי לדסקטופ. "שלם פעם אחת" הוא גם התמחור וגם המסר.</p>
 
@@ -1836,6 +1836,7 @@ BUILD               1.0.3 (412) · sha256 9f2a…c41e (matches published ↗)
 </tbody>
 </table>
 </div>
+<p><strong>בנייה לחנות:</strong> קבלה מסביבת בדיקה (Apple sandbox, ‎<code>android.test.*</code>‎) מאומתת רק בבילד פיתוח או בוריאנט ה‑QA. מה שמחליט הוא קבוע שנצרב בזמן הבנייה (<code>extra.devVariant</code> ב‑<code>app.config.ts</code>), לא משתנה סביבה: משתנה <code>EXPO_PUBLIC_*</code> ששכח מישהו ב‑shell לא יכול לפתוח רכישות בדיקה בבילד חנות, וה‑config מסרב בכלל לבנות בילד חנות כשמשתנה כזה דלוק (F257).</p>
 <p><strong>חסד:</strong> אם החנות לא נגישה, הזכאות האחרונה הידועה נשמרת 30 יום. <strong>פיראטיות:</strong> מקבלים דליפה; אימות JWS/חתימה מקומי מעלה את הרף; אין Play Integrity קשיח, אין שרת. <strong>מכשירים:</strong> Pro אחד לכל המכשירים של אותה חנות; בין חנויות (iPhone + Windows) — הוחלט (משה, 3.9.2026): רכישה נפרדת, עם קוד הצעה של 20–30% למי שמציג קבלה (ידני, דרך התמיכה). מכיוון שאין חשבון משתמש, רכישה חוצת‑חנויות אינה אפשרית טכנית, וזה חלק מהעיצוב.</p>
 
 <h3>12.5 תחזית</h3>
