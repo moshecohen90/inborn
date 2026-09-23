@@ -16,5 +16,10 @@ empty `MODELS_DIR`, so `webReady` is true with no model and the chat shell rende
 | `before-w*-chats.png`, `after-w*-chats.png` | F103: the chats pane at every width |
 | `after-locale-report.json`, `after-locale-*.png` | F103: all eight shipped locales × four widths, 0 wrapped labels, the one French ellipsis named |
 
+**Reading the toggle files.** `Wi-Fi only` ships on, so in `*-toggle-*-off.png` the switch is in its **on** state as
+the screen was found, and `*-toggle-*-on.png` is the state after one click, i.e. **off**. The pair is what matters:
+before, both states are a barely-there grey smudge; after, one is a filled track with a ✓ and the other a hollow
+outline with the knob at the other end.
+
 `start-chat` scores a dead end in both audits. It is a false positive of the audit's "did a new testID appear"
 heuristic: with a non-default persona picked it does start that chat, and the header changes to `Writer`.
