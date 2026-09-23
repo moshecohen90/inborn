@@ -119,6 +119,8 @@ try {
       const steps = STEPS();
       for (const [screen, next] of steps) {
         await page.getByTestId(screen).waitFor({ timeout: 60_000 });
+        /* The seal animates before its buttons wake up; shooting on arrival catches the disabled state. */
+        if (screen === "onboarding-sealed") for (let i = 0; i < 100 && (await page.getByTestId("sealed-start").isDisabled()); i++) await page.waitForTimeout(100);
         if (!only || only === screen) await shot(page, `${screen}-${suffix}`);
         /* A second shot after one tap: the choice a screenshot of the resting state cannot show. */
         if (pick && (!only || only === screen) && (await page.getByTestId(pick).count())) {
