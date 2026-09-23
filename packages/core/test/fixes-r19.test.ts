@@ -112,6 +112,22 @@ describe("what the user asks for beats the heuristic", () => {
     expect(detectExplicitLength("תסביר ב-120 מילים")?.words).toBe(120);
   });
 
+  /* F152: Hebrew names the number after the unit and spells the small ones, so the number-then-unit tables heard nothing
+     and "ענה במשפט אחד" got a longer answer than the same ask in English. */
+  it("Hebrew puts the number after the unit, and spells it", () => {
+    expect(detectExplicitLength("מה בירת צרפת? ענה במשפט אחד")).toEqual({ kind: "count", words: 25 });
+    expect(detectExplicitLength("כתוב בשתי פסקאות על עצי אלון")?.words).toBe(160);
+    expect(detectExplicitLength("סכם בשלושה משפטים")?.words).toBe(75);
+    expect(detectExplicitLength("תסביר ב-50 מילים")?.words).toBe(50);
+    expect(detectExplicitLength("ענה במשפט אחד")).toEqual(detectExplicitLength("answer in one sentence"));
+  });
+  it("…and a Hebrew unit with no number, or a number that is part of another word, is not a length", () => {
+    expect(detectExplicitLength("מה זה משפט מחובר?")).toBeNull();
+    expect(detectExplicitLength("מה הן מילים נרדפות?")).toBeNull();
+    /* "אחדות" (unity) begins with "אחד"; the lookahead keeps it out. */
+    expect(detectExplicitLength("כתוב על משפט אחדות העם")).toBeNull();
+  });
+
   it('"in detail" lifts a short question to the ceiling, "briefly" holds a long one down', () => {
     const long = plan("What is 2 plus 2? Explain in detail.");
     expect(long.length).toBe("long");
