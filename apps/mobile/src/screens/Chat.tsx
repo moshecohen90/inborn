@@ -680,6 +680,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   /* The dev voice hook runs once, when the model is ready; these keep it on the live send path instead of that render's. */
   const submitRef = useRef(submit);
   submitRef.current = submit;
+  /* The file driver's interval is created once per busy/status change; without this it would send through the render's stale `docs` and miss an attachment made after it. */
+  const docsRef = useRef(docs);
+  docsRef.current = docs;
+  const tierRef = useRef(tier);
+  tierRef.current = tier;
   const dictationRef = useRef(dictation);
   dictationRef.current = dictation;
 
@@ -776,8 +781,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lines = raw.split("\n");
       const images = lines.filter((l) => l.startsWith("image:")).map((l) => new File(Paths.document, l.slice("image:".length).trim()));
       if (images.length) return setPendingImages(images.map((f) => ({ uri: f.uri, width: 0, height: 0, bytes: f.size ?? 0 })));
+      /* The document half of the same file driver: `attach: <name in Documents>` and `strict: on|off`, so the attach sheet's two decisions can be driven over USB. */
+      const strictLine = lines.find((l) => l.startsWith("strict:"));
+      if (strictLine) docsRef.current.setStrict(strictLine.slice("strict:".length).trim() === "on");
+      const attach = lines.filter((l) => l.startsWith("attach:")).map((l) => l.slice("attach:".length).trim());
+      if (attach.length) {
+        void (async () => {
+          for (const name of attach) {
+            /* Through the same door a picked or shared file uses, so the driver cannot walk past the Free file cap or the Work formats. */
+            const verdict = fileIntake(tierRef.current, sniffPicked(new File(Paths.document, name).uri, name), docsRef.current.documents.length);
+            if (verdict.kind === "paywall") {
+              flash(t(verdict.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+              continue;
+            }
+            const doc = await library.importFile(new File(Paths.document, name).uri, name, { incognito });
+            docsRef.current.attach(doc.id);
+          }
+        })();
+        return;
+      }
+      if (strictLine) return;
       const text = lines.join("\n").trim();
-      if (text) void submit(text);
+      if (text) void submitRef.current(text);
     }, 1500);
     return () => clearInterval(timer);
   }, [status.kind, busy, pendingImages]);
