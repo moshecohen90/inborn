@@ -415,6 +415,11 @@ describe("F207/F209/F214 · what the site may not go back to saying", () => {
     for (const file of SITE_TEXT) expect(read(file), file).not.toMatch(/\blicences?\b|\bquantis(?:ation|ed)\b|\bmaths\b|\bsummaris|data centre/i);
   });
 
+  /* review-design 18: the one em dash left in a text the app renders on a device. */
+  it("no shipped legal text carries an em dash", () => {
+    for (const file of SHIPPED) expect(read(file), file).not.toContain("\u2014");
+  });
+
   /* The EULA keeps British wording, but its pointer at a screen must name the screen: `about.licenses` reads LICENSES. */
   it("the terms point at the screen the app actually shows", () => {
     const terms = read("docs/legal/terms.md");

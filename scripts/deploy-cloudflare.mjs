@@ -17,9 +17,9 @@
  * A read-only token fails with 403 "No access to the specified resource" on the first write; the error names the
  * endpoint and the permission so the next person does not have to rediscover which one is missing.
  *
- * Both dists ship a Cloudflare `_headers` file. Workers static assets parses it and never serves it, so the app's
- * COOP/COEP pair (which the WASM engine needs for SharedArrayBuffer) and the site's CSP survive the move off Pages
- * unchanged; `apps/web/headers.mjs` stays the single definition of those headers.
+ * Both dists ship a Cloudflare `_headers` file. It is sent as `assets.config._headers` rather than uploaded as an
+ * asset, so the app's COOP/COEP pair (which the WASM engine needs for SharedArrayBuffer) and the site's CSP survive
+ * the move off Pages unchanged; `apps/web/headers.mjs` stays the single definition of those headers.
  */
 import { execFileSync } from "node:child_process";
 import { createHash, randomBytes } from "node:crypto";
@@ -150,16 +150,27 @@ function walk(dir, base = dir, out = []) {
 /** Cloudflare keys assets by a client-chosen 32-hex digest; sha256 truncated is stable across machines and runs. */
 const digest = (buf) => createHash("sha256").update(buf).digest("hex").slice(0, 32);
 
+/* `_headers`/`_redirects` are configuration, not assets: uploaded in the manifest the edge serves them verbatim and
+   applies nothing. `_headers` travels in `assets.config` instead (what wrangler does); the web build's
+   `_redirects` (`/* /index.html 200`) is Pages-only — Cloudflare rejects it here as a loop, and
+   `not_found_handling: single-page-application` is the Workers equivalent — so it is dropped, not forwarded. */
+const CONFIG_FILES = ["/_headers", "/_redirects"];
+
 function readDist(distDir) {
   const files = new Map();
   const manifest = {};
+  const config = {};
   for (const rel of walk(distDir)) {
     const bytes = readFileSync(path.join(distDir, rel));
+    if (CONFIG_FILES.includes(rel)) {
+      config[rel] = bytes.toString("utf8");
+      continue;
+    }
     const hash = digest(bytes);
     files.set(hash, { rel, bytes, type: MIME[path.extname(rel).toLowerCase()] ?? "text/plain; charset=utf-8" });
     manifest[rel] = { hash, size: bytes.length };
   }
-  return { manifest, files };
+  return { manifest, files, config };
 }
 
 function buildTarget(target) {
@@ -230,12 +241,17 @@ async function uploadAssets(script, { manifest, files }) {
   return jwt;
 }
 
-async function putWorker(script, { assetsJwt, notFoundHandling, module }) {
+async function putWorker(script, { assetsJwt, notFoundHandling, module, assetsConfig = {} }) {
   const metadata = {
     compatibility_date: COMPATIBILITY_DATE,
     ...(module ? { main_module: "index.mjs" } : {}),
     ...(assetsJwt
-      ? { assets: { jwt: assetsJwt, config: { html_handling: "auto-trailing-slash", not_found_handling: notFoundHandling } } }
+      ? {
+          assets: {
+            jwt: assetsJwt,
+            config: { html_handling: "auto-trailing-slash", not_found_handling: notFoundHandling, ...assetsConfig },
+          },
+        }
       : {}),
   };
   const parts = [{ name: "metadata", type: "application/json", body: JSON.stringify(metadata) }];
@@ -272,13 +288,17 @@ async function deploy(name) {
   const dist = readDist(distDir);
   const total = Object.values(dist.manifest).reduce((n, f) => n + f.size, 0);
   console.log(`  ${target.dist}: ${Object.keys(dist.manifest).length} files, ${(total / 1048576).toFixed(1)} MB`);
-  if (!dist.manifest["/_headers"]) throw new Error(`${target.dist} has no _headers; the security headers would be lost`);
+  if (!dist.config["/_headers"]) throw new Error(`${target.dist} has no _headers; the security headers would be lost`);
   if (opts.dryRun) {
     console.log(`  dry run: would PUT ${target.script} (not_found_handling ${target.notFoundHandling}) and attach ${target.hostnames.join(", ")}`);
     return;
   }
   const jwt = await uploadAssets(target.script, dist);
-  await putWorker(target.script, { assetsJwt: jwt, notFoundHandling: target.notFoundHandling });
+  await putWorker(target.script, {
+    assetsJwt: jwt,
+    notFoundHandling: target.notFoundHandling,
+    assetsConfig: { _headers: dist.config["/_headers"] },
+  });
   if (opts.domains) for (const hostname of target.hostnames) await attachDomain(hostname, target.script);
 }
 

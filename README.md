@@ -3652,15 +3652,18 @@ node scripts/deploy-cloudflare.mjs --site --dry-run --no-build   # manifest + pl
   Zone → **DNS → Edit** and Zone → **Zone → Read** on `inbornapp.com`. A 403 from the script names the endpoint and
   says the permission is missing.
 
-**Not deployed yet, 23.9.2026.** The token in the Keychain is **read-only on Workers**: `GET …/workers/scripts`
-returns `200` but `PUT …/workers/scripts/inborn-site` and the assets upload session both return
-`403 No access to the specified resource`, and Pages, Workers Routes, Workers custom domains, the workers.dev
-subdomain and Rules are all `403` as well. The token was polled every five minutes for three hours on 23.9.2026 and never changed. DNS read **and write** do work (a probe `TXT` record was created and
-deleted), but DNS alone cannot serve bytes. `inbornapp.com` and `app.inbornapp.com` are still NXDOMAIN, so every legal
-button added in round 42 and the landing composer's hand-off still lead nowhere. Full call-by-call table, the exact
-permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and
-the deploy is the one command above; the live `curl` pass on `/`, `/privacy`, `/accessibility`, `/sitemap.xml`,
-`/llms.txt`, the app shell's COOP/COEP and the `?q=` hand-off is the first thing to run after it.
+**Live since 24.9.2026.** A new token (`inborn-deploy-2026-09-24`, Account → Workers Scripts → Edit, Zone →
+Workers Routes → Edit, Zone → DNS → Edit, Zone → Zone → Read on `inbornapp.com`) replaced the read-only one over the
+same Keychain service, and `--site --app` ran clean: `inbornapp.com`, `www.inbornapp.com` (301 to the apex, path and
+query kept) and `app.inbornapp.com` all serve, with the app's `Cross-Origin-Opener-Policy: same-origin` +
+`Cross-Origin-Embedder-Policy: require-corp` pair and both CSPs arriving from `_headers`. Every call, header and DNS
+record: `docs/qa/deploy-site/live-2026-09-24.md`. Two traps that cost the round are written up there and worth knowing
+before touching this again: the dashboard renders Zone Resources → **"Specific zone" disabled**, so a zone-scoped
+token cannot be created by clicking; and `_headers` must be sent as `assets.config._headers`, because uploading it in
+the asset manifest makes the edge serve the file and apply none of it — the first deploy did exactly that and shipped
+an app origin with no isolation headers and no CSP. `docs/qa/deploy-site/curl-evidence.md` is the record of the
+blocked state that preceded it.
+
 ## Fixes round 37: a file was attached, and the model answered as if nothing were (branch `attach-android`) — 23.9.2026
 
 Moshe attached a photo of a door and asked what the app saw; it answered that it had received no image. He attached a
@@ -3927,6 +3930,44 @@ Gates on `bab0618`: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,22
 i18n 11). Evidence: `docs/qa/android-vc20/`, write-ups in `docs/qa/purchases-run-2026-09-11.md` §W and
 `docs/qa/qa-run-2026-09-11.md` F180–F184.
 
+## Fixes round 46: both origins are live, and `_headers` was being served instead of applied (branch `deploy-live`) — 24.9.2026
+
+`inbornapp.com`, `www.inbornapp.com` and `app.inbornapp.com` serve. The legal buttons round 42 added, the landing
+composer's hand-off and the `?q=` link now lead somewhere. Round 44's "not done" item is closed.
+
+- **The token was the stated block, and replacing it was not clickable.** The dashboard's Create Custom Token form
+  renders Zone Resources → **"Specific zone" disabled** (`aria-disabled="true"`), whatever the permission rows or the
+  account resource are, so a token scoped to one zone cannot be built by clicking through it. The token was created
+  through the dashboard's own `POST /api/v4/user/tokens`, with the zone resource set to the `inbornapp.com` zone id;
+  the same request sent from outside the page is answered by the WAF with a `403` challenge, so it has to originate
+  there. `inborn-deploy-2026-09-24` carries Account → Workers Scripts → Edit, Zone → Workers Routes → Edit, Zone →
+  DNS → Edit, Zone → Zone → Read, no expiry, and lives on the Keychain service the script already reads. The
+  read-only predecessor is kept under `inborn-cloudflare-api-old-readonly` instead of being overwritten.
+- **The first deploy succeeded and was wrong.** `readDist` put `/_headers` in the asset manifest, so Workers static
+  assets served the file at `/_headers` (`200`) and applied none of it: `app.inbornapp.com` answered with **no
+  `Cross-Origin-Opener-Policy`, no `Cross-Origin-Embedder-Policy` and no `Content-Security-Policy`**. That is the
+  isolation pair the WASM engine needs for `SharedArrayBuffer`, so the origin was live and quietly pinned to the
+  single-thread fallback. `_headers` now travels as `assets.config._headers`, out of the manifest, which is what
+  wrangler sends; the app origin returns the full pair plus both CSPs, and the per-path `Cache-Control` rules
+  (`immutable` on `_expo/*`, `no-cache` on `sw.js` / `hashes.json` / `manifest.webmanifest`) arrive with them, which
+  is the second proof the file is parsed and not served. The README's claim that the platform "parses it and never
+  serves it" was true only of the config field, not of an uploaded asset, and now says so.
+- **`_redirects` is dropped, not forwarded.** The web build writes the Pages rule `/* /index.html 200`; Cloudflare
+  rejects it here with `400 100324 Invalid _redirects configuration: Line 1: Infinite loop detected in this rule`,
+  because `not_found_handling: single-page-application` already is that rule. The file stays out of the manifest too,
+  so neither origin serves it.
+- **Proven live, not locally.** 14 site paths `200` with the right content types, `/no-such-page` `404`, `www` `301`
+  to the apex with path and query kept, the app shell `200` on `/`, `/?q=hello` and an SPA route, the 3.8 MB bundle
+  and the 8.1 MB `wllama.wasm` both `200`, and the three proxied DNS records written by the custom-domain calls. Full
+  call-by-call table: `docs/qa/deploy-site/live-2026-09-24.md`.
+
+**Not done, and why.** No visual or functional pass on the live app: this stream's scope was the token, the deploy and
+the `curl` verification, and the app's behaviour is what rounds 34–45 proved on the phones and in the browser.
+`app.inbornapp.com` was `NXDOMAIN` for months, so resolvers asked before the deploy hold a negative answer until the
+zone's 1800 s SOA minimum expires; Cloudflare's resolver and the zone's nameservers served the new records at once,
+and the checks that ran while this Mac's resolver was still stale used `curl --resolve` against the zone's own
+addresses. `STORES_LIVE` is still unset, so the site's store links read "Opens at launch".
+
 ## Fixes round 47: the relevance floor had no lexical half in Chinese or Japanese (branch `fix-tech`) — 23.9.2026
 
 The tech-lead review of rounds 34–45 (`review-tech`), worked top to bottom. Every fix has a test that was watched
@@ -4050,6 +4091,15 @@ the end. F rows: `docs/qa/qa-run-2026-09-11.md` F205–F214.
   price left all eight What's New fields. Five `documents.*` strings moved from "I" to the Inborn voice, so an app
   string no longer reads as the model talking.
 
+**Three items handed over by `fix-design`.** The literal `✓` left all five `proof.delivery.*` values in all eight
+locales: IBM Plex Sans has no U+2713, so the fallback drew a square-root sign and the trust screen read `sha256 √`
+(`docs/qa/fix-copy/before/proof-screen-de-390.png`). `fix-design` draws the mark with the app's own check icon, so
+every verified line now ends on the thing that was verified and an appended icon lands on the right word;
+`proof.delivery.webUnverified` carries no mark on purpose, because there the tick qualified the size and a caveat
+follows it. The em dash left the licence section of `docs/legal/terms.md`. The third item was **declined with
+evidence**: `onboarding.sealed.prove` does start the airplane test, `Sealed.tsx:40` routes it to `/proof/airplane`,
+and `sealed.test.ts` has asserted that route and that copy since F124b.
+
 **Guards, watched red before they were trusted.** `docs/qa/fix-copy/store-guard-red.txt` (8 errors, one per locale,
 with the guideline number), `docs/qa/fix-copy/locale-guards-red.txt` (4 of the new locale rules failing on a
 reintroduced em dash, curly quote, English readout and hardcoded PHONE), and a sabotage pass over the four new site
@@ -4061,6 +4111,40 @@ line, `reviewer_notes` must still be allowed to name both platforms.
 `packages/core` changes rather than string edits, and a copy stream is the wrong place for them. Nothing was pushed
 to App Store Connect or Play; the repository still has no script that writes store metadata.
 
-Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,239 tests** (core 655, mobile 556,
-i18n 15, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
+Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,241 tests** (core 655, mobile 557,
+i18n 16, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
 screenshots at 390 and 1440, before and after: `docs/qa/fix-copy/`.
+
+## Fixes round 49: HSTS, the /download page three live buttons pointed at, and two review findings that were already fixed (branch `deploy-live`) — 24.9.2026
+
+Round 46 put both origins live. Two reviews arrived after it, both reading the state the **first** deploy of that
+evening had left. Every claim was re-checked against the live origins before anything was touched, and the table in
+`docs/qa/deploy-site/live-2026-09-24.md` records what each one actually got back.
+
+- **"The site sends no security headers and `/_headers` is downloadable" was already false.** At re-check the apex
+  sent CSP, COOP, CORP, Permissions-Policy, Referrer-Policy, X-Content-Type-Options and X-Frame-Options, and
+  `/_headers` returned `404`. The `assets.config._headers` fix in round 46 had landed between the review and the
+  report. **"app.inbornapp.com has no DNS record" was also false**: the zone's own nameservers and Cloudflare's
+  resolver both answered, and all four published edge addresses returned `200` with COOP and COEP. It is the
+  negative-cache artefact round 46 wrote up, seen from a resolver that had asked before the deploy.
+- **HSTS was genuinely missing**, because neither `_headers` file asked for it. Added in both places, one line each,
+  and it survives the config path: both origins now send `Strict-Transport-Security: max-age=31536000`. No
+  `includeSubDomains`, which would bind hosts on the zone that do not exist yet, and no `preload`, which cannot be
+  withdrawn on our schedule. Zone-wide HSTS needs Zone → Settings → Edit, which this token does not have.
+- **`/download` was a 404 that three live buttons pointed at.** `STORE_LINKS` (`apps/mobile/src/web/links.ts`) sends
+  the web paywall's App Store, Google Play and Desktop buttons to `inbornapp.com/download`, and no such page existed.
+  `apps/site/src/pages/download.html` now serves it: the store tiles come from the same `{{STORE_ROW}}` token the
+  home page uses, so they read "Opens at launch" from one place; the browser version is a real link; Windows and
+  macOS get an honest "Not yet" tile instead of a link that does nothing. In `sitemap.xml` and the `llms.txt`
+  Product group. 13 pages now, `check.mjs` clean.
+
+**Not done, and why.** The review asked for a `main_module` Worker that parses `_headers` and applies the rules
+itself; the runtime already does that from `assets.config._headers`, and a Worker in front of every asset request to
+re-implement it would be a second mechanism doing the first one's job. It also asked for `/_headers` to return `404`
+on the app origin: it returns the SPA shell, because `not_found_handling: single-page-application` answers every
+unknown path with `index.html`, which is what makes `/paywall` and every deep link resolve. The file is not in the
+manifest, so nothing is disclosed. `STORES_LIVE` is still unset, so every store tile reads "Opens at launch".
+
+Gates: `pn lint` 0, `pn typecheck` 0, `pn check:store` PASS, **1,241 tests** (core 655, mobile 558, i18n 15, ui 13),
+`apps/site` build + `check.mjs` 13 pages clean, `pn web:build` clean, `pn web:smoke` PASS with `isolated=true`, which
+is the COOP/COEP pair doing its job. Evidence and screenshots at 390/768/1024/1440: `docs/qa/deploy-site/`.
