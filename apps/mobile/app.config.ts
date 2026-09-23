@@ -7,6 +7,11 @@ import PICK_TYPES from "./src/documents/pickTypes.json";
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
 const dev = process.env.APP_VARIANT === "development";
 
+/* QA F265: the dev/QA variant is its own iOS app, so installing it can never replace the store build on a real phone
+   and wipe that build's container (F144 cost Moshe his chats). Android keeps one package: Play asset packs and the
+   6T drivers are keyed to it. */
+const IOS_BUNDLE_ID = dev ? "com.inbornapp.mobile.qa" : "com.inbornapp.mobile";
+
 /**
  * The store-bundle gate (QA F257, security review S5). Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
  * left over in the building shell ships inside a store bundle — `EXPO_PUBLIC_ALLOW_TEST_PURCHASES` would make it
@@ -68,8 +73,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   /* All icon files come from design/icon/build.mjs (spec §9.8); edit the SVG master there, never these PNGs. */
   icon: "./assets/icon.png",
   ios: {
-    bundleIdentifier: "com.inbornapp.mobile",
-    buildNumber: "16",
+    bundleIdentifier: IOS_BUNDLE_ID,
+    buildNumber: "17",
     supportsTablet: true,
     /* The floor §6.3, the release checklist and the privacy policy all declare; Expo's Podfile template would leave 16.4. */
     deploymentTarget: "17.0",

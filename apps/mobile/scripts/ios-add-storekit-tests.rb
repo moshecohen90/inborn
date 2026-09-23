@@ -10,6 +10,8 @@ abort "usage: ios-add-storekit-tests.rb <xcodeproj> <app target>" unless project
 
 project = Xcodeproj::Project.open(project_path)
 app_target = project.targets.find { |t| t.name == app_target_name } or abort "no target #{app_target_name}"
+# Read from the target, never a literal: the dev/QA variant builds under com.inbornapp.mobile.qa (F265).
+app_bundle_id = app_target.build_configurations.first.build_settings["PRODUCT_BUNDLE_IDENTIFIER"]
 ios_dir = File.dirname(project_path)
 tests_name = "InbornUITests"
 
@@ -35,7 +37,7 @@ end
 tests.build_configurations.each do |c|
   c.build_settings["PRODUCT_NAME"] = "$(TARGET_NAME)"
   c.build_settings["TEST_TARGET_NAME"] = app_target_name
-  c.build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = "com.inbornapp.mobile.uitests"
+  c.build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = "#{app_bundle_id}.uitests"
   c.build_settings["SWIFT_VERSION"] = "5.0"
   c.build_settings["CODE_SIGN_STYLE"] = "Automatic"
   c.build_settings["DEVELOPMENT_TEAM"] = app_target.build_configurations.first.build_settings["DEVELOPMENT_TEAM"]
@@ -74,8 +76,8 @@ team = ENV["DEVELOPMENT_TEAM"] || app_target.build_configurations.first.build_se
 if File.exist?(ent_path) && (team.nil? || team.empty?) == false
   ent = Xcodeproj::Plist.read_from_path(ent_path) || {}
   unless ent.key?("application-identifier")
-    ent["application-identifier"] = "#{team}.com.inbornapp.mobile"
-    ent["keychain-access-groups"] = ["#{team}.com.inbornapp.mobile"]
+    ent["application-identifier"] = "#{team}.#{app_bundle_id}"
+    ent["keychain-access-groups"] = ["#{team}.#{app_bundle_id}"]
     Xcodeproj::Plist.write_to_path(ent, ent_path)
     puts "entitlements: application-identifier + keychain-access-groups for team #{team}"
   end
