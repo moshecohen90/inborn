@@ -92,7 +92,7 @@ reload per tier. Every row is a tap on the 6T.
 | Free | second file in a chat → Pro | **proven.** "Add a file…" opens the Pro paywall | `tier-free-second-file-paywall.png` |
 | Free | *"Answer only from my documents"* → Pro | **proven.** The switch opens the Pro paywall, it does not flip | `tier-free-strict-paywall.png` |
 | Free | one photo per message | **proven.** The sheet says *"One photo per message on Free"*, the composer *"FREE SENDS ONE PHOTO PER MESSAGE"* | `f125-photo-button-sees-after.png` |
-| Free | attaching a document already in the library | **was broken → fixed.** See F129 | `f129-free-two-docs-work-kind.png` → `f129-free-second-doc-blocked-after.png` |
+| Free | attaching a document already in the library | **was broken → fixed.** See F129; the count half is F146, fixed on `main` in the same week, and this round adds the Work-format half | `f129-free-two-docs-work-kind.png` → `f129-free-second-doc-blocked-after.png` |
 | Pro | library, attach, detach, citations | **proven** throughout the rows above | `f126-cited-after.png` |
 | Pro | OCR of a scanned page | **proven.** `scan-certificate.png` imported `needs-ocr · 0 chunks`; **Run OCR** → `indexed · 1/1 pages · 1 chunks · 2706 ms`; strict answer *"…is WP-8832-VN."* cited `p.1` | `tier-pro-ocr-indexed.png`, `tier-pro-ocr-cited.png` |
 | Pro | strict mode | **proven** both ways | `f-strict-notfound.png`, `f-strict-off-model.png` |

@@ -7,6 +7,7 @@ import { openSidePanel } from "../lib/sidePanel";
 import { Chat } from "../screens/Chat";
 import { resetEngine } from "../engine";
 import { getVault } from "../vault/store";
+import { openPaywall } from "../licence";
 
 export default function Index() {
   const s = useAppServices();
@@ -29,7 +30,7 @@ export default function Index() {
       onChatCreated={s.chatCreated}
       onNewChat={s.newChat}
       onOpenDocuments={() => (hasPanel(mode) ? openSidePanel({ kind: "documents" }) : router.push("/documents"))}
-      onOpenPaywall={() => router.push("/paywall")}
+      onOpenPaywall={openPaywall}
       onOpenVault={() => router.push("/vault")}
       onSwitchModel={(id) => {
         getVault().setDefault(id);

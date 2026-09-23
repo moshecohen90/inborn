@@ -3265,6 +3265,87 @@ chip. Spec §7.8 and §8.4 (S30b) updated and rebuilt; five new keys in all eigh
 **Not done:** the switch and download buttons themselves are exercised only by unit tests and source assertions. They
 exist on iOS and Android alone — the browser and desktop shells hold one model by design (§14.3) — and this stream was
 assigned no phone, so no screenshot shows a real one-tap switch or a download started from the sheet.
+## Fixes round 41: the website was a document set, not a landing page (branch `site-landing`) — 23.9.2026
+
+Moshe: "The site must already offer the message line from which the user can start a chat. The home page must be a
+landing page that presents the product: sharp fitting copy and an original, special design. Also a link to GitHub and of
+course to all the stores. Use all your agents for ASO, AEO, SEO." `apps/site` had a thesis page with three cards and a
+store-badge placeholder. It now has a hero the reader can type into, seven numbered sections, ten answer-engine FAQ
+entries, three blog posts, and the structured data and crawler files an engine needs to quote us. Still plain HTML and
+CSS, still zero JavaScript in the output, still zero third-party requests. Full write-up, with the copy sources and
+every claim removed: `docs/marketing/site-2026-09-23.md`. **Nothing was deployed.**
+
+- **The composer is the demonstration.** A zero-JavaScript `GET` form hands the typed line to the web app as `?q=`. The
+  app side reuses the share-target seed that already exists (`openShared` → `active.seed` → `Chat`), so the message
+  survives the download door and onboarding and is waiting in the first chat's composer; only the web stub changed.
+  `apps/mobile/src/share/useShareTarget.ts` reads the parameter once per load and clears it from the address bar with
+  `history.replaceState`, so a reload cannot re-seed a chat the user has moved on from. Six unit tests in
+  `src/share/seedParam.test.ts`. **Run end to end against a real `pn web:build`, not reasoned about:**
+  `docs/qa/site-landing/handoff-1-door.png` is the app opened at `/?q=What%20is%20a%20GGUF%20file%3F`, and
+  `handoff-2-seeded-composer.png` is the composer holding `What is a GGUF file?` with the address bar back to `/`.
+  A `GET` form puts the typed line in the URL and therefore in the app origin's access log; the note under the composer
+  says so, because on this page of all pages that could not ship silently.
+- **`form-action` had to open, and `script-src` had to close.** `public/_headers` said `form-action 'none'`, which would
+  have blocked the composer, and declared no `script-src` at all, so `check.mjs`'s assertion on it passed vacuously.
+  Both are fixed: `script-src 'none'` is explicit and `form-action` names exactly one origin, filled from `APP_ORIGIN`
+  at build time (default `https://app.inbornapp.com`; the web app is not deployed anywhere yet, see the open asks).
+- **JSON-LD ships without weakening the no-script gate.** `<script type="application/ld+json">` is a data block, not a
+  script: WHATWG's "prepare the script element" returns before the Content Security Policy step, so it never executes
+  and never trips `script-src 'none'`. `check.mjs` now allows that one element shape, parses the JSON, requires
+  `@context` to be schema.org, rejects a raw angle bracket inside it, and **fails any page carrying no JSON-LD**;
+  anything else matching `<script` is still fatal. `SoftwareApplication` with three `Offer` nodes, `FAQPage`,
+  `Organization`, `Brand`, `WebSite`, `Blog`, `BlogPosting`, `BreadcrumbList`. No `aggregateRating` until real store
+  ratings exist. The ten FAQ answers live in one array in `build.mjs` and render both the visible list and the graph,
+  so a quoted answer cannot differ from the answer on screen.
+- **Eight claims removed from the old page**, each against the source that contradicted it: the unverified `IN 2.7 GB`
+  readout, Apple Family Sharing (`terms.md` §2 says it is not enabled), SmolLM (not in `manifest.json`), four Pro
+  features listed as if they were free (`licence/gates.ts`), "incognito never touches disk" (F99), bare "no crash
+  reporting", "same speed, same answers" as a general claim, and Work features with no gate behind them. Model sizes
+  and speeds are now the measured ones. `/proof` still carries the same `IN 2.7 GB` figure: **flagged, not changed**,
+  it belongs to that page's round.
+- **No GitHub link, on purpose.** `github.com/moshecohen90/inborn` is private: verified anonymously this round, the URL
+  returns 404 and the unauthenticated API returns `Not Found`. `docs/legal/verification.md` forbids "a source link the
+  reader cannot open" while it stays private, and F99 was the round where exactly these claims had to be stripped from
+  eight store listings. The site says the true thing instead, in the Get section, the footer and the FAQ: the source is
+  not public, which is why no check we publish asks anyone to read it. **Moshe's call:** the day the repository goes
+  public, the link and the source-available answer go in together, one line in `build.mjs` and one FAQ entry.
+- **Store links point at the real product pages and say they are not open yet.** Verified this round: the App Store
+  version for id `6809165161` is `PREPARE_FOR_SUBMISSION` and its page 404s, and `com.inbornapp.mobile` 404s on Play
+  because vc19 went to the internal track, not production. Per the brief both are linked anyway and marked on screen
+  ("Opens at launch"); `STORES_LIVE=1` flips the label. Text tiles rather than the official badge artwork, because
+  Apple's guidelines require a badge to link to a live product page, and because self-hosting is the only badge route
+  that keeps the zero-third-party rule.
+- **Crawlers, sitemap, llms.txt.** `robots.txt` allows everything that can cite us (`GPTBot`, `ClaudeBot`,
+  `Google-Extended`, `PerplexityBot`, `Applebot-Extended`, `CCBot`, and `facebookexternalhit`, whose blocking would
+  kill link previews) and blocks the data resellers. `sitemap.xml` drops `priority` and `changefreq`, which Google
+  ignores, and takes `lastmod` from **git** rather than build time, so the field stays trustworthy. `llms.txt` and
+  `llms-full.txt` are generated from the same page list and cannot drift.
+- **A design derived from the app, not a template.** FARADAY tokens only, no new colours and no images: a CSS Faraday
+  mesh behind the hero, the seal set in a bordered port at 1024 and up, a sticky numbered rail beside every section, and
+  monospace readouts as the recurring device. Fluid type, tables scrolling inside their own box, every control at least
+  44px, and a header that folds to two rows at 640 so the brand, three links and the button all keep their target size.
+  Open Graph cards are real `1200x630` PNGs rendered from the site's own tokens; `og:image` cannot be an SVG, and the
+  old square `icon-512.png` rendered as a thumbnail rather than a card.
+- **The token guard was one page-directory wide.** `apps/mobile/test/legal-texts.test.ts` walked `apps/site/dist` one
+  level deep and allow-listed the single literal `{{SEAL}}`, so the blog posts in their own directory would have gone
+  unwatched and any new token would have failed a test that had nothing to do with it. It now walks dist recursively,
+  covers `src/posts` as well as `src/pages`, and reads the allowed set from `TOKENS` exported by `build.mjs`.
+- **Watched red first.** The `verification.md` guard caught this round's own copy: `how-the-proof-works.html` used the
+  banned phrase "reproducible build" while *denying* the claim, and `pn test` failed on it
+  (`apps/site/src/posts/how-the-proof-works.html still claims "reproducible build"`). The post was rephrased rather than
+  the guard loosened.
+
+Verified: `pn typecheck` 0, `pn lint` 0, `pn test` 0 — core 616, **mobile 374** (362 + 6 new + 6 from the parametrised
+site-page cases), i18n 11, ui 11, plus `check:store`. `pnpm --filter @inborn/site build` renders 11 pages and
+`check.mjs` passes. 32 screenshots at 390 / 768 / 1024 / 1440 in dark and light, before and after, in
+`docs/qa/site-landing/`; the screenshot harness also fails on any request that leaves the origin and reported none at
+any width or scheme.
+
+**Open asks for the lead.** The hero composer needs somewhere to send people: the web app has no deployed origin, and
+`app.inbornapp.com` is the subdomain reserved for it on our own zone. Either point that record at an `apps/web/dist`
+Pages project or build the site with `APP_ORIGIN=…`; until one of those happens the composer's Ask button leads
+nowhere. Flip `STORES_LIVE=1` when both listings resolve, and add
+`<meta name="apple-itunes-app" content="app-id=6809165161">` on the same day.
 ## Fixes round 42: the legal texts come from the site, and the site gets an accessibility statement (branch `legal-from-site`) — 23.9.2026
 
 Moshe: "The privacy policy and terms of use in the app MUST come from the site so we can update them; it must not be
@@ -3326,6 +3407,227 @@ flipping it is a deploy decision, not a code one. No device, emulator or phone w
 the browser at both widths, per the 23.9 design rule, and the accessibility statement's own §5 says plainly that the
 screen-reader gap it describes has still not had a listening pass.
 
+## Fixes round 39: nothing in the app said Pro existed until it refused you (branch `premium-entry`) — 23.9.2026
+
+F145–F149, filed by Moshe from the browser and the phone: "buttons for premium, to see what's in premium, and tapping
+things that lead to premium according to what we decided" · "the other attach buttons show they are disabled, but why
+doesn't tapping them take me to the paywall?" · "`/paywall` is very strange: only 'Pay once. Own it… Pro is sold in the
+iOS, Android, Windows and macOS apps…'. Where are the prices? Very naked." Three different symptoms of one thing: the
+entitlement mechanism was complete and the *entrances to it* were not.
+
+- **F145 — every refusal opened the same generic price list.** Fourteen doors pushed a bare `router.push("/paywall")`,
+  so the person who had just been refused one specific thing met "Pay once. Own it." and had to work out which of two
+  prices lifted what they tried. `paywallFor` already computed the exact reason; the door threw it away. The moments
+  mechanism is extended rather than doubled: `reasonOf(moment)` and `PAYWALL_REASONS` live next to `paywallFor` in
+  `packages/core/src/licence/moments.ts`, `openPaywall(reason)` is the one door, and S60 opens with
+  `paywall.why.<reason>` above the cards. Proved by tapping, not by reading: the PRO tag on the strict switch lands on
+  `/paywall?reason=strictDocuments` and the screen reads "You asked for answers only from your documents. Pro turns
+  that on."
+- **F146 — a Free user could tick a second document into a chat for nothing.** The picker and the share target both
+  asked `fileIntake`; the attach sheet's own list did not, and `onAttach={docs.attach}` walked straight past the
+  one-file limit §7.3 gives Free. The row now carries the PRO tag and the reason for the limit, stays tappable, and
+  opens S60 with `document`. Detaching is never gated — removing your own data is not something we sell (§7.5).
+- **F147 — no front door.** Settings opens with an "INBORN PRO" section (tier badge, a sub-line per tier, "See what's
+  in Pro"), and the sheet the chat header opens carries the same chip and link (round 40 moved that from Chat settings to
+  the model sheet; both carry it). All of them open S60 with no reason, because nothing was refused.
+- **F148 — the paywall never said what separates the tiers.** `COMPARE_ROWS` / `compareCell()` keep the §7.3 matrix in
+  one machine-readable place and `CompareTable` renders 18 rows across Free / Pro / Work, marking the column you are
+  on. Every cell is computed from the same `can()` / `limits()` the screens ask, so the table cannot promise what the
+  gates refuse; a row for a capability on `UNBUILT_FEATURES` fails the build.
+- **F149 — the browser paywall named no price, and the URL did not resolve.** With no store the screen rendered one
+  sentence and nothing else. It now shows both tiers priced from the catalogue, the value lines, the US-list-price
+  note, three buttons to App Store / Google Play / Desktop, the promise that the browser stays free, and the table.
+  Separately the export is one `index.html` with no rewrite, so `/paywall` was a 404 on any static host: the build now
+  writes `_redirects` and the dev server falls back to `index.html` for extensionless paths, the same rule in both.
+
+Copy in all 9 locales. `pn web:smoke` green. Evidence, before and after at 390 and 1440: `docs/qa/premium-entry/`.
+## Fixes round 36: the model step offered a download it could not start (branch `onboarding-rework`) — 23.9.2026
+
+F120–F124, filed by Moshe walking the first run in the browser. Three complaints, one root: S02 was a summary of
+decisions already taken, not a choice, and S03 asked for something before it had said why.
+
+- **F120 — the offer nothing could honour.** The "OPTIONAL · Fast (1.2 GB)" card had a size, a sentence and a
+  Wi-Fi switch, and no action: `start-chatting` and "Stay on Instant only" both ran the same
+  `router.push("/onboarding/airplane")`. On the web it was dead by construction, because `HttpsDelivery.plan()`
+  returns null for `Platform.OS === "web"`. The step now computes its options from one pure function,
+  `apps/mobile/src/screens/Onboarding/modelStep.ts`: a model is an option when it is already on the device, or when
+  the platform's `ModelDelivery.plan()` says this screen can fetch it. Everything else is dropped rather than shown
+  greyed out, because an offer the screen cannot start is a bug, not an option. Picking one that needs delivery turns
+  the primary button into `Download {name} · {size}` and calls `vault.install(id)` there and then; while it runs, the
+  card shows the progress and the button becomes "Start chatting while it downloads", which is true because the model
+  already on the device answers in the meantime and `AppServices` swaps the engine when the new one verifies.
+- **F121 — a switch that governed one platform out of three.** `wifiOnly` reaches only `HttpsDelivery`
+  (`shouldWait`, `packages/core/src/catalog/resume.ts:55`). `PlayDelivery` is built without the context that carries
+  it, because Play runs its own cellular consent, and a browser has no download here and cannot see a metered link.
+  So the switch is shown only where an HTTPS download is on offer, in a block of its own instead of inside a model
+  card, with a line saying what it does. Android gets the honest sentence in its place: "Google Play delivers the
+  model, because Inborn itself has no internet permission."
+- **F122 — airplane mode, three screens before any reason.** The test moved out of the onboarding chain
+  (`apps/mobile/src/app/onboarding/airplane.tsx` is gone; the flow is welcome, model, sealed, lock) onto S50 Proof,
+  where every other claim is verified, under an AIRPLANE TEST section led by the reason: *Turn on Airplane Mode and
+  ask anything. The answer still comes, because it was only ever coming from this {device}.* The same line opens the
+  test screen, above the steps, and the two numbered steps now sit in separate cards so step 1 stops reading as the
+  tail of the screen before it. Apple's onboarding guidance says to ask where the function is used rather than up
+  front, and deferred asks are reported at a 28 % higher grant rate; the ritual is stronger after the first answer,
+  not before it.
+- **Copy and locales.** The step's copy was written by the `conversion-copywriter` agent and checked against the
+  shipped register before use; two of its own flags were taken (reuse `models.recommended` and `vault.state.*`
+  instead of new keys; keep the primary button an action rather than a progress label). 18 new keys and 9 dead ones,
+  translated into all eight locales with the `{device}` ICU select each language needs, plus the regenerated
+  `pseudo.json`. The QA F24 guard now walks every sized key in every locale, not one key.
+- **Proof.** `pn typecheck`, `pn lint`, `pn test` (core 616, mobile 375, i18n 11, ui 11 = 1,013, +13 for
+  `modelStep.test.ts`) and `pn web:smoke` all green; the smoke now asserts that the browser step offers no model it
+  cannot download and walks welcome, model, sealed, lock, chat. Screenshots at 390 / 768 / 1440 in both schemes,
+  before and after, in `docs/qa/onboarding-rework/`, taken by `docs/qa/onboarding-rework/shots.mjs`. Everything
+  under `after/` and `web-smoke.txt` was re-taken after merging `origin/main` at c45509c (round 42).
+- **F124b, added after the lead's call on the open question.** Dropping the airplane test from the chain left a
+  first-run user who never opens Proof without the ritual. The seal screen now offers it as a secondary link under
+  Start, carrying its reason in the label itself so it stays an offer and not an unexplained ask: *Prove it: turn on
+  Airplane Mode and ask*. It opens the same `/proof/airplane` route and sleeps until the seal has closed.
+  `apps/mobile/src/screens/Onboarding/sealed.test.ts` pins the wiring and the label in all nine locale files, and the
+  tap was followed in the browser: `docs/qa/onboarding-rework/after/onboarding-sealed-sealed-prove-*.png`.
+- **Not done.** The two-option layout is proven by unit tests and by a throwaway harness build
+  (`docs/qa/onboarding-rework/layout-two-options/`, built with `HttpsDelivery.plan` allowed on the web and the
+  platform forced to iOS, then reverted); a real iPhone or a 6T was not in this stream's scope, so nobody has yet
+  seen Play's `playPending` line or the Android notice on a device.
+
+
+
+## Fixes round 34: "Add a file" was dead in the browser, and the toggle would not say which side was on (branch `web-bugs`) — 23.9.2026
+
+Moshe tested the web build (`apps/web`, the same RN-web bundle the Tauri desktop runs) and reported four things:
+"Add a file" closes the sheet and no file dialog opens; popups that vanish without doing anything happened several
+more times; the Wi-Fi-only switch does not say which side is on; and "New chat" in the side bar wraps to two lines.
+F100–F103. Everything below was reproduced before it was touched and re-measured after, headlessly over the built
+`apps/web/dist`, both bundles built from source: evidence in `docs/qa/web-bugs/` (`before-*` from the pre-fix bundle,
+`after-*` from the shipped one).
+
+- **F100 — the browser had no file picker at all, and the failure was designed to be silent.** Clicking "Add a file"
+  produced **zero** `filechooser` events, no page error and no toast. `expo-file-system` ships no web picker: its web
+  module is `pickFileAsync: () => { console.warn('expo-file-system is not supported on web'); return
+  Promise.resolve(); }` — that warning is in the before run's console. `File.pickFileAsync` then constructs a `File`
+  from that `undefined`, catches its own TypeError and returns `{ result: null, canceled: true }`, so the app read a
+  user-cancelled pick every single time and had nothing to report. The same door on the Documents screen was dead for
+  the same reason. `documents/importPicker.web.ts` is now a picker of our own — an `<input type="file">` carrying
+  `PICK_TYPES`, clicked with nothing awaited above it, the chosen file registered as a blob through the same
+  `registerBlob` the desktop's drag-and-drop uses — and it asks `paywallFor` and `fileIntake` in the same order as the
+  phone's, so the Free one-file cap and the Work formats gate a browser exactly as they gate a phone. `gates-wired`
+  now lists it as a door, which is what forces that. After: one chooser, the picked file imported and attached.
+- **F101 — "several more times" turned out to be F100 and nothing else a browser can reach, and both obvious suspects
+  were wrong.** Every item of every sheet reachable in the browser was clicked one at a time in a fresh page — attach,
+  chat settings, new chat, personas, memory, wipe, eighteen items — and every one did something. The backdrop is not
+  swallowing the tap: the panel is rendered after it in both `Sheet.tsx` files, and a guard now holds that. Nor is the
+  320 ms hand-over eating the gesture: a control page fired a chooser and a download both inside the gesture and from
+  a 320 ms timer, and all four worked, in Chromium **and** WebKit, because transient activation lasts five seconds.
+  What the hand-over *is* on web is 320 ms of nothing, since its only reason is that Android freezes when a Modal
+  opens in the frame another dismisses. So `afterSheetClose` moved to `lib/sheetHandover.ts`, runs inside the gesture
+  on web, and the three screens that had copied the timer by hand (`MemorySheet`, `PersonasSheet`, `VaultScreen`) call
+  the shared one; a guard fails on any `setTimeout(…, 320)` left in `apps/mobile/src`.
+- **F102 — the switch was invisible, and the numbers say so.** React Native's `Switch` was painted `trackColor {true:
+  text2, false: border}` with `thumbColor: surface1`. In the dark theme that puts the OFF track at **1.27:1** against
+  the screen and its knob at **1.19:1** against its own track; the light theme is **1.18** and **1.29**. WCAG 2.2
+  1.4.11 asks 3:1 for a control's own shape, so there was nothing there to read, and the ON state differed only by a
+  grey being lighter. `Toggle` is now drawn instead of delegated: a 52×32 track with a 24 knob, ON filled in `ctaFill`
+  with the knob at the end carrying a ✓, OFF hollow in `well` outlined in `text3` with a muted knob at the start —
+  fill, knob side and tick, three signals rather than one. Every pair clears 3:1 (ON track **16.10:1** dark,
+  **16.62:1** light; OFF outline **5.30** / **5.12**; OFF knob **5.16** / **4.76**). `WipeSheet` had a second switch
+  of its own and now uses the shared one; a guard fails on any `<Switch` left in `apps/mobile/src`, and the contrast
+  test asserts the **old** values are under 3:1 as well as the new ones over it, so it cannot pass by being empty.
+  Spec §9.4 gains the shape.
+- **F103 — "New chat" had 61 px for a 72 px label.** Two `flex: 1` buttons in a pane 279 px wide are 119.5 px each;
+  `shape.control` takes 32 in padding and the icon plus gap takes 26. The button was 119.5×**52** at 768, 1024 and
+  1440 and correct only at 390, which is why it reads as a sidebar bug. The row now wraps rather than squeezes
+  (`flexWrap: "wrap"`, `flexGrow: 1`, `flexBasis: 150`), so below the basis each button takes a row at the full pane
+  width, and both labels are `numberOfLines={1}`. **247×44** at every sidebar width, unchanged at 390, and checked
+  across all eight shipped locales × four widths: **0 wrapped**. One residual is stated rather than hidden — French
+  `chats.incognito` is "Navigation privée", 195 px in a 175 px button at 390, so it ellipsises there where it used to
+  wrap; the real fix is a shorter French string and that is a translation call this round did not take.
+
+Not done here: the toggle has not been seen on the iPhone itself, because this stream was assigned no phone — the
+claim it carries is the browser rendering at 390/768/1024/1440 in both themes plus the contrast arithmetic, and
+someone with the device should confirm F102 there. The brief asked for a `@testing-library/react-native` render test
+of a sheet item; that library is not in the repo and `pn install --frozen-lockfile` is the required flow, so the
+equivalent proof is the pure unit test on the hand-over, the source guards, and the real-browser click-through of all
+eighteen sheet items.
+
+Tests after the merge of `origin/main`: core 649, mobile 483 (16 of them this round), i18n 11, ui 11, plus
+`check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.
+
+## Fixes round 34b: Enter did not send, and the red buttons failed the contrast rule (branch `web-bugs-a11y`) — 23.9.2026
+
+The `legal-from-site` accessibility audit measured two gaps and declared them in `docs/legal/accessibility-policy.md`
+§5. Both are closed here. §7 of that statement promises a closed gap is deleted in the same change as its fix, so the
+two bullets are gone from it and §3 says what is true instead. F108–F109; evidence in `docs/qa/web-bugs/` (round 35).
+
+- **F108 — a message could not be sent from a hardware keyboard.** Proven in a real browser against a real model on
+  the pre-fix bundle: Enter in the composer added a newline and sent nothing, 0 user messages. The `hardware-keys`
+  module was Android-only, so the browser and the Tauri shell had no send key at all, and the statement called this
+  the most serious gap for anyone who cannot use a touchscreen. It now has a web branch: a capture-phase `keydown`
+  listener, armed only while the composer has focus, that sends on a bare Enter in a text field and swallows the
+  newline **only when something was actually sent**, so Enter on an empty draft still breaks the line. Shift+Enter and
+  every other modifier break the line, and a keystroke an IME is still composing is neither. A browser cannot be asked
+  whether its keyboard is physical, so `matchMedia("(any-pointer: fine)")` stands in for it, read each time the
+  capture is armed rather than once at launch. After: Enter sends, the draft clears, Shift+Enter still yields two
+  lines, and a 390 px touch-only context still treats Enter as a newline, so phones are untouched.
+- **F109 — the ink on every red button failed 1.4.3, and the guard was looking the other way.** Dark `onDanger` on
+  `danger` measured **3.10:1**. The statement's "about 4.3:1 in the light theme" is a different pair: the light button
+  was already 4.63:1, and 4.30:1 is danger-coloured *text* on `well`. The guard covered `text`, `text2`, `text3` and
+  the CTA pair only. Dark `onDanger` becomes `#0A0D11`, because the dark theme's red is a light red and ink on it has
+  to be dark (5.75:1), and light `danger` moves to `#BC2F2F`, lifting danger text on `well` to 4.98:1. A defect the
+  audit had not found came out with it: the Stop buttons drew their glyph in `ctaFill` on the danger fill, 2.80:1 in
+  the dark theme. The guard is now wider than the pair that broke — `danger`, `accent` and `sealed` at 4.5:1 on all
+  four surfaces in both schemes, plus `onDanger` on `danger` — which closes the open item F157 left behind.
+
+**The statement's own test was inverted, not deleted.** `legal-texts.test.ts` used to assert both gaps were still
+real, so that closing one without editing the statement would fail the suite. It now asserts the opposite: the
+statement fails the suite if it starts claiming a gap the code no longer has, and the tokens fail it if either colour
+regresses.
+
+Tests: core 649, mobile **497** (14 of them this round: 13 on the Enter key, 1 on the statement), i18n 11, ui **13**
+(2 of them this round), plus `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` against a real model — all
+green. Six sabotages watched red first: either danger colour restored, the statement's two bullets put back, the
+Shift exclusion dropped, the `preventDefault` gate dropped, and the composer's send/did-not-send return dropped.
+
+## Deploy: inbornapp.com + app.inbornapp.com (Workers static assets) — 23.9.2026
+
+Two origins, two Workers, one command. `scripts/deploy-cloudflare.mjs` builds each dist, uploads it as a Cloudflare
+Worker with static assets over the REST API, and attaches the hostname (which is what writes the proxied DNS record).
+No Pages, no wrangler, no new dependency, and the token never leaves a shell variable.
+
+```
+node scripts/deploy-cloudflare.mjs --site --app          # the normal deploy
+node scripts/deploy-cloudflare.mjs --site --dry-run --no-build   # manifest + plan, zero network
+```
+
+| Worker | Source | Hostname | Serving rule |
+|---|---|---|---|
+| `inborn-site` | `apps/site/dist`, built with `SITE_ORIGIN=https://inbornapp.com APP_ORIGIN=https://app.inbornapp.com` | `inbornapp.com` | `html_handling: auto-trailing-slash` (so `/privacy` serves `privacy.html`), `not_found_handling: 404-page` |
+| `inborn-www-redirect` | six lines inline in the script | `www.inbornapp.com` | `301` to the apex, path and query kept |
+| `inborn-app` | `apps/web/dist`, built with `MODELS_ORIGIN=https://models.inbornapp.com` | `app.inbornapp.com` | `not_found_handling: single-page-application` |
+
+- **`_headers` survives the move off Pages.** Workers static assets parses `_headers` from the uploaded assets and
+  never serves the file, so `apps/web/headers.mjs` stays the single definition of the web origin's headers and the app
+  keeps `Cross-Origin-Opener-Policy: same-origin` + `Cross-Origin-Embedder-Policy: require-corp`, without which the
+  WASM engine loses `SharedArrayBuffer` and drops to the single-thread fallback. The script refuses to deploy a dist
+  with no `_headers` rather than silently shipping an origin with no CSP.
+- **`www` needs its own Worker.** `_redirects` cannot match on hostname (Cloudflare documents domain-level redirects as
+  unsupported) and Bulk Redirects need Rules permissions the token does not have, so the redirect is a Worker.
+- **Assets are content-addressed** by the first 32 hex of the file's sha256, which is the identifier Cloudflare's
+  upload session expects; unchanged files are skipped by the edge on the next deploy.
+- **Token**, Keychain service `inborn-cloudflare-api`, read with `security find-generic-password -s … -w`:
+  Account → **Workers Scripts → Edit** (script upload, the assets upload session, and `PUT /accounts/{acc}/workers/domains`),
+  Zone → **DNS → Edit** and Zone → **Zone → Read** on `inbornapp.com`. A 403 from the script names the endpoint and
+  says the permission is missing.
+
+**Not deployed yet, 23.9.2026.** The token in the Keychain is **read-only on Workers**: `GET …/workers/scripts`
+returns `200` but `PUT …/workers/scripts/inborn-site` and the assets upload session both return
+`403 No access to the specified resource`, and Pages, Workers Routes, Workers custom domains, the workers.dev
+subdomain and Rules are all `403` as well. DNS read **and write** do work (a probe `TXT` record was created and
+deleted), but DNS alone cannot serve bytes. `inbornapp.com` and `app.inbornapp.com` are still NXDOMAIN, so every legal
+button added in round 42 and the landing composer's hand-off still lead nowhere. Full call-by-call table, the exact
+permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and
+the deploy is the one command above; the live `curl` pass on `/`, `/privacy`, `/accessibility`, `/sitemap.xml`,
+`/llms.txt`, the app shell's COOP/COEP and the `?q=` hand-off is the first thing to run after it.
 ## Fixes round 37: a file was attached, and the model answered as if nothing were (branch `attach-android`) — 23.9.2026
 
 Moshe attached a photo of a door and asked what the app saw; it answered that it had received no image. He attached a

@@ -2,8 +2,9 @@ import { File } from "expo-file-system";
 import { fileIntake, paywallFor, type DocumentRecord, type IntakeVerdict, type LicenceTier } from "@inborn/core";
 import { FREE_PAGE_CAP, type DocumentLibrary } from "./library";
 import { PICK_TYPES, pickedName, sniffPicked } from "./office";
+import type { PickOutcome } from "./pickOutcome";
 
-export type PickOutcome = { kind: "cancelled" } | { kind: "paywall"; moment: "document" | "office" } | { kind: "error"; error: string } | { kind: "imported"; id: string };
+export type { PickOutcome } from "./pickOutcome";
 
 /** The attach sheet's "Add a file": pick, route by kind (Excel/HTML are Work), import into the library, hand back the id.
  *  `incognito` keeps the document in RAM for the session (§5.7), never in the encrypted library. */

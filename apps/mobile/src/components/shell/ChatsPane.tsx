@@ -14,6 +14,7 @@ import { meterLabel } from "../../lib/models";
 import { openSidePanel } from "../../lib/sidePanel";
 import { hasPanel } from "../../lib/layout";
 import { useLayoutMode } from "../../lib/useLayout";
+import { openPaywall } from "../../licence";
 
 function Link({ testID, label, onPress }: { testID: string; label: string; onPress: () => void }) {
   const { theme } = useTheme();
@@ -52,7 +53,7 @@ export function ChatsPane({ embedded = false, onClose }: { embedded?: boolean; o
             after();
           }}
           onDeleted={s.chatDeleted}
-          onOpenPaywall={() => router.push("/paywall")}
+          onOpenPaywall={openPaywall}
           autoDeleteDays={s.prefs.autoDeleteDays}
           version={s.chatsVersion}
         />

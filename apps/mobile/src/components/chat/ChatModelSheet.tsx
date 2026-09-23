@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { Platform } from "react-native";
-import { ENGINE_VERSION, modelChoices, paywallFor, type CatalogModel, type LicenceTier, type UseCase } from "@inborn/core";
+import { ENGINE_VERSION, modelChoices, paywallFor, type CatalogModel, type LicenceTier, type PaywallReason, type UseCase } from "@inborn/core";
 import type { Theme } from "@inborn/ui";
 import { ModelSheet } from "./ModelSheet";
 import { useAppServices } from "../../services/AppServices";
 import { useVault } from "../../vault";
 import { resetEngine } from "../../engine";
+import { openPaywall } from "../../licence";
 
 export interface ChatModelSheetProps {
   visible: boolean;
@@ -19,7 +20,7 @@ export interface ChatModelSheetProps {
   tier: LicenceTier;
   onSwitchModel?: (id: string) => void;
   onOpenVault?: () => void;
-  onOpenPaywall?: () => void;
+  onOpenPaywall?: (reason?: PaywallReason) => void;
   onChatSettings: () => void;
 }
 
@@ -65,7 +66,7 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
       onDownload={(id) => void vault.install(id)}
       onUnlock={() => {
         onClose();
-        onOpenPaywall?.();
+        onOpenPaywall?.("model");
       }}
       onManage={() => {
         onClose();
@@ -74,6 +75,11 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
       onChatSettings={() => {
         onClose();
         onChatSettings();
+      }}
+      tier={tier}
+      onSeePro={() => {
+        onClose();
+        openPaywall();
       }}
     />
   );

@@ -87,8 +87,17 @@ export function Proof() {
         </Text>
       </Section>
 
+      {/* The airplane invitation lives here, on the page that proves things, with the reason on the same line (F122). */}
+      <Section title={t("proof.airplane.title")}>
+        <View style={styles.invite}>
+          <Text testID="proof-airplane-why" style={[type.bodySmall, { color: theme.text2 }]}>
+            {t("airplane.why")}
+          </Text>
+          <Button testID="proof-airplane" title={t("proof.runAirplane")} onPress={() => router.push("/proof/airplane")} />
+        </View>
+      </Section>
+
       <View style={styles.actions}>
-        <Button testID="proof-airplane" title={t("proof.runAirplane")} onPress={() => router.push("/proof/airplane")} />
         <Button testID="proof-log" title={t("proof.viewLog")} variant="secondary" onPress={() => setLogOpen(true)} />
       </View>
 
@@ -138,5 +147,6 @@ const styles = StyleSheet.create({
   note: { ...font("sans"), fontSize: 12, lineHeight: 16 },
   line: { paddingVertical: 8, gap: 2, borderBottomWidth: StyleSheet.hairlineWidth },
   actions: { gap: 8, paddingTop: 20 },
+  invite: { gap: 10, paddingTop: 4 },
   spaced: { paddingTop: 8 },
 });

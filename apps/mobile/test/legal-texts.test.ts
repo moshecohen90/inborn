@@ -19,13 +19,22 @@ const read = (p: string) => readFileSync(join(repo, p), "utf8");
 const SHIPPED = ["docs/legal/privacy-policy.md", "docs/legal/terms.md", "docs/legal/accessibility-policy.md"];
 /** Everything else under docs/legal that a store submission or the site is built from. */
 const LEGAL_MD = readdirSync(legalDir).filter((f) => f.endsWith(".md")).map((f) => `docs/legal/${f}`);
-const SITE_PAGES = readdirSync(join(repo, "apps/site/src/pages")).filter((f) => f.endsWith(".html")).map((f) => `apps/site/src/pages/${f}`);
+const siteSrc = (dir: string) =>
+  readdirSync(join(repo, dir)).filter((f) => f.endsWith(".html")).map((f) => `${dir}/${f}`);
+const SITE_PAGES = [...siteSrc("apps/site/src/pages"), ...siteSrc("apps/site/src/posts")];
+/** The blog posts live in their own directory under dist, so the walk cannot be one level deep. */
+const htmlUnder = (dir: string, base = dir): string[] =>
+  readdirSync(join(repo, dir), { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory() ? htmlUnder(`${dir}/${e.name}`, base) : e.name.endsWith(".html") ? [`${dir}/${e.name}`] : []);
 /* The site is generated, so the guard reads what is served, not the sources it is made from. */
 let SITE_DIST: string[] = [];
+/** Every token the generator fills, read from the generator so the guard cannot go stale when one is added. */
+let SITE_TOKENS: string[] = [];
 beforeAll(async () => {
-  const { build } = (await import(/* @vite-ignore */ join(repo, "apps/site/build.mjs"))) as { build: () => string[] };
-  build();
-  SITE_DIST = readdirSync(join(repo, "apps/site/dist")).filter((f) => f.endsWith(".html")).map((f) => `apps/site/dist/${f}`);
+  const mod = (await import(/* @vite-ignore */ join(repo, "apps/site/build.mjs"))) as { build: () => string[]; TOKENS: string[] };
+  mod.build();
+  SITE_TOKENS = mod.TOKENS;
+  SITE_DIST = htmlUnder("apps/site/dist");
 });
 
 describe("F92 · no placeholder reaches a screen or a page", () => {
@@ -33,9 +42,10 @@ describe("F92 · no placeholder reaches a screen or a page", () => {
     expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0])).toEqual([]);
   });
 
-  /* `{{SEAL}}` is the one token the generator itself fills, with the inline seal SVG. */
+  /* A fragment may only use a token `build.mjs` exports as one it fills; anything else would ship as literal braces. */
   it.each(SITE_PAGES)("%s carries no token the build does not fill", (file) => {
-    expect([...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0]).filter((t) => t !== "{{SEAL}}")).toEqual([]);
+    const used = [...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0]);
+    expect(used.filter((t) => !SITE_TOKENS.includes(t.slice(2, -2)))).toEqual([]);
   });
 
   it("every page the site serves is free of tokens and of the draft notice", () => {
@@ -329,17 +339,23 @@ describe("F156 · the site's palette is held to the same contrast rule as the ap
   });
 });
 
-describe("F157 · the accessibility statement's measured gaps are still true", () => {
+describe("F157 · the accessibility statement matches the code it describes", () => {
   const policy = read("docs/legal/accessibility-policy.md");
 
-  /* The statement admits the delete/wipe button fails AA in the dark theme. The day someone fixes that colour pair
-     this fails, and the gap has to come out of section 5 in the same change — which is what section 7 promises. */
-  it("the delete/wipe contrast the statement admits is the contrast the tokens still have", () => {
-    const ratio = contrastRatio(dark.onDanger, dark.danger);
-    expect(ratio).toBeLessThan(4.5);
-    expect(ratio).toBeCloseTo(3.1, 1);
-    expect(policy).toMatch(/delete and wipe buttons fail the contrast rule/);
-    expect(policy).toMatch(/\*\*3\.1:1\*\*/);
+  /* F157 declared this gap and F109 closed it. Section 7 promises the bullet leaves in the same change as the fix,
+     so the two are asserted together: a colour that falls back under 4.5 fails here, and so does a statement that
+     starts admitting a gap the tokens no longer have. */
+  it("the delete/wipe contrast is fixed, and the statement no longer claims otherwise", () => {
+    expect(contrastRatio(dark.onDanger, dark.danger)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(light.onDanger, light.danger)).toBeGreaterThanOrEqual(4.5);
+    expect(policy).not.toMatch(/delete and wipe buttons fail the contrast rule/);
+    expect(policy).not.toMatch(/\*\*3\.1:1\*\*/);
+  });
+
+  /* F108 closed the other one: Enter sends in a browser and on the desktop shell. */
+  it("the hardware-keyboard gap is closed, and the statement no longer claims it", () => {
+    expect(policy).not.toMatch(/cannot send a message from a hardware keyboard/i);
+    expect(policy).toMatch(/Enter sends/);
   });
 
   it("the gap list still matches the ink tokens that do pass, so the statement is not blanket-pessimistic", () => {

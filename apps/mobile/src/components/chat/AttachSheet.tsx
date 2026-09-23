@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import type { DocumentRecord } from "@inborn/core";
+import type { DocumentRecord, PaywallReason } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet, SheetItem } from "./Sheet";
 import { shape } from "./styles";
@@ -18,7 +18,9 @@ interface Props {
   onSetStrict: (v: boolean) => void;
   /** "Answer only from my documents" is Pro (§7.3): the switch stays visible and opens the paywall. */
   strictLocked?: boolean;
-  onUnlock?: () => void;
+  /** Free carries one file per chat (§7.3 row 1): the other rows stay tappable and say why. */
+  attachLocked?: boolean;
+  onUnlock?: (reason: PaywallReason) => void;
   onAttach: (docId: string) => void;
   onDetach: (docId: string) => void;
   onManage: () => void;
@@ -36,7 +38,7 @@ interface Props {
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, strictLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onImport, onTemplates }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, strict, onSetStrict, strictLocked, attachLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -57,18 +59,23 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
         documents.map((d) => {
           const on = attachedIds.includes(d.id);
           const ready = indexed(d);
+          const locked = !!attachLocked && !on;
           return (
             <SheetItem
               key={d.id}
               testID={`attach-${d.id}`}
               label={d.name}
-              hint={ready ? t("documents.state.indexed", { count: d.chunkCount }) : t("chat.attach.notIndexed")}
-              disabled={!ready && !on}
-              onPress={() => (on ? onDetach(d.id) : onAttach(d.id))}
+              hint={locked ? t("quick.filePro") : ready ? t("documents.state.indexed", { count: d.chunkCount }) : t("chat.attach.notIndexed")}
+              disabled={!ready && !on && !locked}
+              onPress={() => (locked ? onUnlock?.("document") : on ? onDetach(d.id) : onAttach(d.id))}
               trailing={
-                <View testID={on ? `attached-${d.id}` : undefined} style={[styles.tick, { borderColor: on ? theme.accent : theme.border, backgroundColor: on ? theme.accent : "transparent" }]}>
-                  {on ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}
-                </View>
+                locked ? (
+                  <ProTag onPress={() => onUnlock?.("document")} />
+                ) : (
+                  <View testID={on ? `attached-${d.id}` : undefined} style={[styles.tick, { borderColor: on ? theme.accent : theme.border, backgroundColor: on ? theme.accent : "transparent" }]}>
+                    {on ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}
+                  </View>
+                )
               }
             />
           );
@@ -81,8 +88,8 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, strict, 
           <Text style={[type.body, { color: theme.text }]}>{t("documents.strict.title")}</Text>
           <Text style={[type.caption, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
         </View>
-        {strictLocked ? <ProTag onPress={onUnlock} /> : null}
-        <Toggle testID="attach-strict" label={t("documents.strict.title")} value={strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.() : onSetStrict(v))} />
+        {strictLocked ? <ProTag onPress={() => onUnlock?.("strictDocuments")} /> : null}
+        <Toggle testID="attach-strict" label={t("documents.strict.title")} value={strict && !strictLocked} onChange={(v) => (strictLocked ? onUnlock?.("strictDocuments") : onSetStrict(v))} />
       </View>
       <Pressable testID="attach-manage" accessibilityRole="button" onPress={onManage} style={[shape.control, styles.manage, { borderColor: theme.border }]}>
         <Text style={[type.body, { color: theme.text }]}>{t("chat.attach.manage")}</Text>

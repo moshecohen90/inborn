@@ -86,7 +86,7 @@ describe("F53 · /voice is gated by the licence, not only by the mic button", ()
     expect(route).toContain("paywallFor(");
   });
   it("sends a Free user to the paywall rather than rendering the screen", () => {
-    expect(route).toMatch(/Redirect href="\/paywall"/);
+    expect(route).toMatch(/Redirect href="\/paywall\?reason=voiceConversation"/);
   });
   it("renders nothing until the tier is known, so a deep link cannot slip through the loading frame", () => {
     expect(route).toMatch(/if \(loading\) return null;/);
