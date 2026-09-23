@@ -86,7 +86,7 @@
 <h4>S10 · Chat, empty state <span class="pill free">Free</span></h4>
 <p class="job">מסך הבית. חותם 72px, שם המודל, "Nothing leaves this phone.", שלושה צ'יפים שקטים של הצעות, קומפוזר.</p>
 <dl class="grid">
-<dt>elements</dt><dd>כותרת: "Chats" (פותח מגירה), החותם 28px + "SEALED", צ'יפ מודל [▣ FAST] (שם ידידותי בלבד, בלי גודל). גוף: חותם גדול, שם המודל, הצעות (Summarize a document · Translate · Draft a message). קומפוזר עם [+] (צירוף: קובץ, תמונה, מצלמה), מיקרופון, שדה, שליחה.</dd>
+<dt>elements</dt><dd>כותרת: "Chats" (פותח מגירה), החותם 28px + "SEALED", צ'יפ מודל [▣ FAST] (שם ידידותי בלבד, בלי גודל) שפותח את גיליון המודל S30b. גוף: חותם גדול, שם המודל, הצעות (Summarize a document · Translate · Draft a message). קומפוזר עם [+] (צירוף: קובץ, תמונה, מצלמה), מיקרופון, שדה, שליחה.</dd>
 <dt>states</dt><dd>מודל בטעינה: החותם כקשת עם אחוזים, הקומפוזר פעיל (הודעה ממתינה בתור). אינקוגניטו: רקע well, אייקון מסכה בכותרת, ותחת החותם "Not saved. Gone when you close it." ההבדל מצ'אט רגיל: רגיל נשמר מוצפן בטלפון, נמצא בחיפוש ובגיבוי והזיכרון לומד ממנו; אינקוגניטו הוא RAM בלבד, בלי זיכרון (לא קורא ולא כותב), לא בחיפוש, לא בייצוא, נעלם בסגירה. ההבטחה "Nothing leaves this phone" תקפה לשני המצבים, ולכן היא לא חוזרת במסך האינקוגניטו: שם כתוב רק מה שהמצב מוסיף. Apple FM: צ'יפ "APPLE · ON‑DEVICE".</dd>
 <dt>edge cases</dt><dd>אין שום מודל (מחקו את המובנה): מצב ריק מציע להוריד/לייבא, הקומפוזר מושבת עם הסבר. זיכרון נמוך: הצעה אוטומטית לעבור ל‑Instant.</dd>
 </dl>
@@ -196,6 +196,35 @@
 </dl>
 </div>
 
+
+<div class="screen">
+<h4>S30b · Model sheet (from the chat) <span class="pill free">Free</span></h4>
+<p class="job">להחליף מודל מבלי לצאת מהשיחה, ולהגיד בשפה פשוטה למה דווקא הוא.</p>
+<div class="wire">┌────────────────────────┐
+│ <b>Model</b>                  │
+│ RECOMMENDED ON THIS    │
+│ PHONE · CHAT IN HEBREW │
+│ On this device         │
+│ ┌────────────────────┐ │
+│ │ <b>▣ INSTANT</b>          │ │
+│ │ Good at: Chat, …   │ │
+│ │ Hebrew · <i>No</i>        │ │
+│ │ 508 MB · In use    │ │
+│ └────────────────────┘ │
+│ Fits your phone        │
+│ ┌────────────────────┐ │
+│ │ ▣ SHARP  RECOMMENDED│ │
+│ │ Hebrew · <i>Basic</i>     │ │
+│ │ [Install · 2.6 GB] │ │
+│ └────────────────────┘ │
+│ [Model vault] [Chat settings]│
+└────────────────────────┘</div>
+<dl class="grid">
+<dt>elements</dt><dd>שורת ההמלצה של §7.8 (שימוש + שפה + מכשיר, ואותן שלוש נוסחאות של הכספת), ואז שלוש קבוצות: On this device (מותקנים, לפי הדירוג, הטעון מסומן "In use", השאר "Use this model"), Fits your phone (להורדה, עם "Good at", דרגת השפה של השיחה, גודל וכפתור הורדה), Too big for N GB (אפור, עם סיבה). בתחתית: Model vault, Chat settings, Close.</dd>
+<dt>states</dt><dd>אישור ההורדה נפתח בתוך השורה (גודל + מארח + Wi‑Fi only, §5.1); בזמן הורדה השורה מציגה אחוז ואין כפתור; מודל Pro נושא PRO ופותח את הפייוול; דפדפן ודסקטופ (§14.3): קריאה בלבד, הקבוצה השנייה נקראת "In the app", וההמלצה מחושבת רק ממה שהשכבה הזו יכולה לטעון.</dd>
+<dt>edge cases</dt><dd>מכשיר 4 GB: קבוצת ההורדה ריקה והכל מתחת ל"Too big"; מנוע ישן מדי: "Update the app to run this"; אין נתיב חנות לקובץ (אנדרואיד sideload): השורה מפנה לייבוא במקום לכפתור מת.</dd>
+</dl>
+</div>
 <div class="screen">
 <h4>S31 · Model details <span class="pill free">Free</span></h4>
 <p class="job">הכל על מודל אחד: יכולות, שפות, benchmark על המכשיר הזה, רישיון, מחיקה.</p>
