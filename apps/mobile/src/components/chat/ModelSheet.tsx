@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { joinList } from "@inborn/i18n";
-import { LANGUAGE_NAME_BY_CODE, formatModelBytes, type CatalogModel, type InstallState, type LanguageTier, type ModelChoice, type ModelChoices, type UseCase } from "@inborn/core";
+import { LANGUAGE_NAME_BY_CODE, formatModelBytes, type CatalogModel, type InstallState, type LanguageTier, type ModelChoice, type ModelChoices, type LicenceTier, type PaywallReason, type UseCase } from "@inborn/core";
 import { Sheet } from "./Sheet";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
@@ -30,7 +30,11 @@ export interface ModelSheetProps {
   lockedFor?: (model: CatalogModel) => boolean;
   onSwitch?: (id: string) => void;
   onDownload?: (id: string) => void;
-  onUnlock?: () => void;
+  /** Every locked row in this sheet is the §12.3 model moment, so the reason never varies. */
+  onUnlock?: (reason?: PaywallReason) => void;
+  /** The chat header opens this sheet, so this is where the tier is visible without anything being refused (§12.3). */
+  tier?: LicenceTier;
+  onSeePro?: () => void;
   onManage: () => void;
   onChatSettings: () => void;
   /** §14.3 browser tier: the page holds one model, so the rows are read-only and the app is the way to the rest. */
@@ -41,7 +45,7 @@ export interface ModelSheetProps {
  * §7.8 model switching where the user is: the chat header's chip opens this. Installed models first (one tap switches),
  * then what this device can still download, each with what it is good at, how it rates this chat's language, and its size.
  */
-export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed }: ModelSheetProps) {
+export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed, tier, onSeePro }: ModelSheetProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const [confirmId, setConfirmId] = useState<string | null>(null);
@@ -80,13 +84,25 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
         setConfirmId(null);
         onDownload?.(choice.model.id);
       }}
-      onUnlock={() => onUnlock?.()}
+      onUnlock={() => onUnlock?.("model")}
     />
   );
 
   return (
     <Sheet visible={visible} onClose={onClose} title={t("modelSheet.title")} testID="model-sheet">
       <View style={styles.body}>
+        {tier ? (
+          <View style={styles.tierRow}>
+            <View testID="tier-chip" style={[styles.tierChip, { backgroundColor: theme.surface2, borderColor: tier === "free" ? theme.border : theme.accent }]}>
+              <Text style={[type.monoLabel, { color: tier === "free" ? theme.text2 : theme.accent }]}>{t(`paywall.tier.${tier}`)}</Text>
+            </View>
+            {onSeePro ? (
+              <Pressable testID="see-whats-in-pro" accessibilityRole="button" hitSlop={8} onPress={onSeePro}>
+                <Text style={[type.bodySmall, type.strong, styles.seeProLink, { color: theme.text }]}>{t("paywall.seeWhatsIn")}</Text>
+              </Pressable>
+            ) : null}
+          </View>
+        ) : null}
         {recommendedLine ? (
           <Text testID="model-sheet-recommended" style={[type.monoLabel, { color: choices.recommendedWeak ? theme.text2 : theme.accent }]}>
             {recommendedLine}
@@ -243,6 +259,9 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
 }
 
 const styles = StyleSheet.create({
+  tierRow: { flexDirection: "row", alignItems: "center", gap: 10, minHeight: 32 },
+  tierChip: { borderWidth: 1, borderRadius: radius.chip, paddingHorizontal: 8, paddingVertical: 2, minHeight: 22, justifyContent: "center" },
+  seeProLink: { textDecorationLine: "underline" },
   body: { paddingHorizontal: 12, paddingBottom: 8, gap: 8 },
   section: { paddingTop: 10 },
   row: { borderWidth: 1, borderRadius: radius.card, padding: 12, gap: 4 },

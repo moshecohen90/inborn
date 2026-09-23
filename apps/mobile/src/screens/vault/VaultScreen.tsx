@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BannerSpacer } from "../../components/shell/bannerInset";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -29,7 +29,7 @@ export interface VaultScreenProps {
   /** Called after the default model changed and the engine was reset; the host remounts the chat screen. */
   onModelChanged?: (modelId: string) => void;
   /** Installing a Pro-only model (Sharp) is a §12.3 value moment: the paywall opens instead of the download sheet. */
-  onUnlock?: () => void;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 type Section = { key: string; title: string; data: VaultEntry[]; disabled?: Map<string, "ram" | "engine"> };
@@ -264,7 +264,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             active={active?.model.id === item.model.id}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
-            onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.() : setConfirm({ entry: item }))}
+            onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.("model") : setConfirm({ entry: item }))}
             onCancel={() => void vault.cancel(item.model.id)}
             onPause={() => void vault.pause(item.model.id)}
             onResume={() => void vault.resume(item.model.id)}

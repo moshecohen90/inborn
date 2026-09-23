@@ -9,6 +9,7 @@ import { Sheet } from "./Sheet";
 import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { Toggle } from "../shell/primitives";
+import { openPaywall, useEntitlement } from "../../licence";
 import { ChipGlyph } from "../shell/ChipGlyph";
 
 export interface ChatSettings {
@@ -34,6 +35,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
   const theme = useTheme();
   const { t } = useTranslation();
   const [draft, setDraft] = useState<ChatSettings>(value);
+  const { tier } = useEntitlement();
   useEffect(() => {
     if (visible) setDraft(value);
   }, [visible, value]);
@@ -45,6 +47,22 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
   return (
     <Sheet visible={visible} onClose={done} title={t("chatSettings.title")} testID="chat-settings">
       <View style={styles.body}>
+        <View style={styles.tierRow}>
+          <View testID="tier-chip" style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: tier === "free" ? theme.border : theme.accent }]}>
+            <Text style={[type.monoLabel, { color: tier === "free" ? theme.text2 : theme.accent }]}>{t(`paywall.tier.${tier}`)}</Text>
+          </View>
+          <Pressable
+            testID="see-whats-in-pro"
+            accessibilityRole="button"
+            hitSlop={8}
+            onPress={() => {
+              done();
+              openPaywall();
+            }}
+          >
+            <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.seeWhatsIn")}</Text>
+          </Pressable>
+        </View>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chatSettings.model")}</Text>
         <View style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           <ChipGlyph size={12} color={theme.text2} />
@@ -95,5 +113,7 @@ const styles = StyleSheet.create({
   personaChip: { flexDirection: "row", alignItems: "center", gap: 8, minHeight: 36, paddingLeft: 6, paddingRight: 14, flexShrink: 1 },
   prompt: { minHeight: 96, textAlignVertical: "top" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 12 },
+  tierRow: { flexDirection: "row", alignItems: "center", gap: 10, minHeight: 32 },
+  link: { textDecorationLine: "underline" },
   grow: { flex: 1, gap: 2 },
 });
