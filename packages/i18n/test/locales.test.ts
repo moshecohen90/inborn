@@ -43,11 +43,15 @@ describe("locales", () => {
 });
 
 describe("sizes in copy (QA F24)", () => {
-  it("the onboarding offer takes its size from the catalog, so no locale spells a number", () => {
+  /* Every line of the model step that shows a size takes it from the catalog; a number typed into a locale goes stale in silence. */
+  const SIZED = ["onboarding.model.source.bundled", "onboarding.model.source.ready", "onboarding.model.source.play", "onboarding.model.source.playPending", "onboarding.model.source.https", "onboarding.model.download"];
+  it("every sized line of the onboarding step carries {size} and no locale spells a number", () => {
     for (const f of files) {
       const d = JSON.parse(readFileSync(join(dir, f), "utf8")) as Record<string, string>;
-      expect({ file: f, fast: d["onboarding.model.fast"] }, `${f}:onboarding.model.fast`).toEqual({ file: f, fast: expect.stringMatching(/\{size\}/) });
-      expect(d["onboarding.model.fast"], `${f}:onboarding.model.fast`).not.toMatch(/\d/);
+      for (const key of SIZED) {
+        expect({ file: f, key, value: d[key] }, `${f}:${key}`).toEqual({ file: f, key, value: expect.stringMatching(/\{size\}/) });
+        expect(d[key], `${f}:${key}`).not.toMatch(/\d/);
+      }
     }
   });
 });

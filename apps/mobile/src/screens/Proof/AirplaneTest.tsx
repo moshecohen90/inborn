@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "expo-router";
 import { SAFETY_BASELINE, formatBytes, type Message, type Session } from "@inborn/core";
 import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
@@ -10,7 +9,7 @@ import { loadSession } from "../../engine";
 import { openAirplaneSettings, useConnectivity } from "../../proof/connectivity";
 import { Screen } from "../../components/shell/Screen";
 import { Seal } from "../../components/Seal";
-import { Button, Mono, MonoLabel } from "../../components/shell/primitives";
+import { Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
 import { font, useType } from "../../services/type";
 
@@ -20,12 +19,11 @@ const SUGGESTED = "What's 17 × 23?";
 const AIRPLANE_SYSTEM = `${SAFETY_BASELINE} Answer in one or two short sentences of plain text: no Markdown, no tables, no lists.`;
 
 /** S03: the user cuts the network with their own hands and watches the answer arrive anyway, with OUT/IN live. */
-export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => void; doneLabel: string; skipLabel?: string }) {
+export function AirplaneTest({ onDone, doneLabel }: { onDone: () => void; doneLabel: string }) {
   const type = useType();
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const router = useRouter();
-  const { engine, meter, prefs } = useAppServices();
+  const { engine, meter } = useAppServices();
   const net = useConnectivity();
   const [question, setQuestion] = useState(SUGGESTED);
   const [answer, setAnswer] = useState("");
@@ -81,39 +79,47 @@ export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => v
           ) : (
             <Button testID="airplane-ask" title={busy ? t("airplane.asking") : t("airplane.ask")} onPress={() => void ask()} disabled={busy || !question.trim()} />
           )}
-          {skipLabel && phase !== "done" ? <Button testID="airplane-skip" title={skipLabel} variant="link" onPress={onDone} /> : null}
         </>
       }
     >
       <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
         {t("airplane.title")}
       </Text>
-      <View style={styles.step}>
-        <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("airplane.step1")}</Text>
-        <Pressable
-          testID="airplane-indicator"
-          accessibilityRole="button"
-          onPress={() => void openAirplaneSettings()}
-          style={[styles.pill, { borderColor: net.offline ? theme.sealed : theme.border, backgroundColor: theme.surface2 }]}
-        >
-          <Icon name="plane" size={14} color={net.offline ? theme.sealed : theme.text2} />
-          <MonoLabel color={net.offline ? theme.sealed : theme.text2}>{net.offline ? t("airplane.on") : t("airplane.off")}</MonoLabel>
-        </Pressable>
-      </View>
-      <Text style={[type.bodySmall, { color: theme.text3 }]}>
-        {Platform.OS === "ios" ? t("airplane.hint.ios") : Platform.OS === "android" ? t("airplane.hint.android") : t("airplane.hint.web")}
+      {/* The reason, before the instruction: the old screen asked for Airplane Mode without ever saying why (F122). */}
+      <Text testID="airplane-why" style={[type.body, { color: theme.text2 }]}>
+        {t("airplane.why")}
       </Text>
-      <Text style={[type.body, { color: theme.text }]}>{t("airplane.step2")}</Text>
-      <TextInput
-        testID="airplane-question"
-        value={question}
-        onChangeText={setQuestion}
-        editable={!busy}
-        onSubmitEditing={() => void ask()}
-        returnKeyType="send"
-        accessibilityLabel={t("airplane.step2")}
-        style={[styles.input, { color: theme.text, backgroundColor: theme.well, borderColor: theme.border }]}
-      />
+      {/* Each numbered step is its own card, so step 1 stops reading like the tail of the screen before it (F122). */}
+      <View testID="airplane-step-1" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+        <View style={styles.step}>
+          <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("airplane.step1")}</Text>
+          <Pressable
+            testID="airplane-indicator"
+            accessibilityRole="button"
+            onPress={() => void openAirplaneSettings()}
+            style={[styles.pill, { borderColor: net.offline ? theme.sealed : theme.border, backgroundColor: theme.surface2 }]}
+          >
+            <Icon name="plane" size={14} color={net.offline ? theme.sealed : theme.text2} />
+            <MonoLabel color={net.offline ? theme.sealed : theme.text2}>{net.offline ? t("airplane.on") : t("airplane.off")}</MonoLabel>
+          </Pressable>
+        </View>
+        <Text style={[type.bodySmall, { color: theme.text3 }]}>
+          {Platform.OS === "ios" ? t("airplane.hint.ios") : Platform.OS === "android" ? t("airplane.hint.android") : t("airplane.hint.web")}
+        </Text>
+      </View>
+      <View testID="airplane-step-2" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+        <Text style={[type.body, { color: theme.text }]}>{t("airplane.step2")}</Text>
+        <TextInput
+          testID="airplane-question"
+          value={question}
+          onChangeText={setQuestion}
+          editable={!busy}
+          onSubmitEditing={() => void ask()}
+          returnKeyType="send"
+          accessibilityLabel={t("airplane.step2")}
+          style={[styles.input, { color: theme.text, backgroundColor: theme.well, borderColor: theme.border }]}
+        />
+      </View>
       {phase !== "idle" ? (
         <View testID="airplane-answer" style={styles.answer}>
           <View style={styles.answerHead}>
@@ -141,7 +147,6 @@ export function AirplaneTest({ onDone, doneLabel, skipLabel }: { onDone: () => v
           {net.offline ? t("airplane.keepIt") : t("airplane.stillZero")}
         </Text>
       ) : null}
-      {phase === "done" && !prefs.onboarded ? null : phase === "done" ? <Button title={t("proof.title")} variant="link" onPress={() => router.replace("/proof")} /> : null}
     </Screen>
   );
 }
