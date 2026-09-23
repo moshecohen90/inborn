@@ -74,7 +74,7 @@ import { Composer } from "../components/chat/Composer";
 import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
-import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, useRedaction } from "../documents";
+import { RedactBar, RedactSheet, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { BannerSpacer } from "../components/shell/bannerInset";
@@ -492,7 +492,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
         } catch (e: unknown) {
+          /* A toast is not an answer: a search that failed must not leave the model answering as if nothing were attached. */
           flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
+          await answerWithoutModel("documents.notRead");
+          return;
         }
       }
       const opts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
@@ -938,6 +941,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         else if (r.kind === "imported") docs.attach(r.id);
       }, (e: unknown) => flash(errorText(e)));
     });
+  };
+  /* A library row is a door into the chat like the picker and the share sheet, and it was the one that asked no gate (QA F129). */
+  const attachFromLibrary = (id: string) => {
+    const verdict = planLibraryAttach(tier, libraryState.documents, id, docs.context.docIds.length);
+    if (verdict.kind === "ok") return docs.attach(id);
+    setAttachOpen(false);
+    flash(t(verdict.moment === "office" ? "quick.fileWork" : "quick.filePro"));
+    afterSheetClose(() => onOpenPaywall?.());
   };
   const onMic = () => {
     if (readingId) void stopSpeaking().then(() => setReadingId(null));
@@ -1478,7 +1489,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           setAttachOpen(false);
           afterSheetClose(() => onOpenPaywall?.());
         }}
-        onAttach={docs.attach}
+        onAttach={attachFromLibrary}
         onImport={importFile}
         onDetach={docs.detach}
         onManage={() => {
