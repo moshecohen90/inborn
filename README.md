@@ -3553,7 +3553,7 @@ eighteen sheet items.
 Tests after the merge of `origin/main`: core 649, mobile 483 (16 of them this round), i18n 11, ui 11, plus
 `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.
 
-## Fixes round 35: Enter did not send, and the red buttons failed the contrast rule (branch `web-bugs-a11y`) — 23.9.2026
+## Fixes round 34b: Enter did not send, and the red buttons failed the contrast rule (branch `web-bugs-a11y`) — 23.9.2026
 
 The `legal-from-site` accessibility audit measured two gaps and declared them in `docs/legal/accessibility-policy.md`
 §5. Both are closed here. §7 of that statement promises a closed gap is deleted in the same change as its fix, so the
