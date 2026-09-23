@@ -474,7 +474,7 @@ function llmsTxt(pages) {
 
 ## Product
 
-${group(["/", "/proof", "/support"])}
+${group(["/", "/download", "/proof", "/support"])}
 
 ## Writing
 

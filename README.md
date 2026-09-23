@@ -4101,3 +4101,37 @@ to App Store Connect or Play; the repository still has no script that writes sto
 Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS with zero warnings, **1,241 tests** (core 655, mobile 557,
 i18n 16, ui 13), `apps/site` build + `check.mjs` 12 pages clean, `pn web:build` + `pn web:smoke` PASS. Evidence and
 screenshots at 390 and 1440, before and after: `docs/qa/fix-copy/`.
+
+## Fixes round 49: HSTS, the /download page three live buttons pointed at, and two review findings that were already fixed (branch `deploy-live`) — 24.9.2026
+
+Round 46 put both origins live. Two reviews arrived after it, both reading the state the **first** deploy of that
+evening had left. Every claim was re-checked against the live origins before anything was touched, and the table in
+`docs/qa/deploy-site/live-2026-09-24.md` records what each one actually got back.
+
+- **"The site sends no security headers and `/_headers` is downloadable" was already false.** At re-check the apex
+  sent CSP, COOP, CORP, Permissions-Policy, Referrer-Policy, X-Content-Type-Options and X-Frame-Options, and
+  `/_headers` returned `404`. The `assets.config._headers` fix in round 46 had landed between the review and the
+  report. **"app.inbornapp.com has no DNS record" was also false**: the zone's own nameservers and Cloudflare's
+  resolver both answered, and all four published edge addresses returned `200` with COOP and COEP. It is the
+  negative-cache artefact round 46 wrote up, seen from a resolver that had asked before the deploy.
+- **HSTS was genuinely missing**, because neither `_headers` file asked for it. Added in both places, one line each,
+  and it survives the config path: both origins now send `Strict-Transport-Security: max-age=31536000`. No
+  `includeSubDomains`, which would bind hosts on the zone that do not exist yet, and no `preload`, which cannot be
+  withdrawn on our schedule. Zone-wide HSTS needs Zone → Settings → Edit, which this token does not have.
+- **`/download` was a 404 that three live buttons pointed at.** `STORE_LINKS` (`apps/mobile/src/web/links.ts`) sends
+  the web paywall's App Store, Google Play and Desktop buttons to `inbornapp.com/download`, and no such page existed.
+  `apps/site/src/pages/download.html` now serves it: the store tiles come from the same `{{STORE_ROW}}` token the
+  home page uses, so they read "Opens at launch" from one place; the browser version is a real link; Windows and
+  macOS get an honest "Not yet" tile instead of a link that does nothing. In `sitemap.xml` and the `llms.txt`
+  Product group. 13 pages now, `check.mjs` clean.
+
+**Not done, and why.** The review asked for a `main_module` Worker that parses `_headers` and applies the rules
+itself; the runtime already does that from `assets.config._headers`, and a Worker in front of every asset request to
+re-implement it would be a second mechanism doing the first one's job. It also asked for `/_headers` to return `404`
+on the app origin: it returns the SPA shell, because `not_found_handling: single-page-application` answers every
+unknown path with `index.html`, which is what makes `/paywall` and every deep link resolve. The file is not in the
+manifest, so nothing is disclosed. `STORES_LIVE` is still unset, so every store tile reads "Opens at launch".
+
+Gates: `pn lint` 0, `pn typecheck` 0, `pn check:store` PASS, **1,241 tests** (core 655, mobile 558, i18n 15, ui 13),
+`apps/site` build + `check.mjs` 13 pages clean, `pn web:build` clean, `pn web:smoke` PASS with `isolated=true`, which
+is the COOP/COEP pair doing its job. Evidence and screenshots at 390/768/1024/1440: `docs/qa/deploy-site/`.

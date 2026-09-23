@@ -27,6 +27,8 @@ export const isolationHeaders = { "Cross-Origin-Opener-Policy": "same-origin", "
 export function securityHeaders(modelsOrigin = "") {
   return {
     "Cross-Origin-Resource-Policy": "same-origin",
+    /* No includeSubDomains: this origin cannot speak for a future host on the zone that is not yet HTTPS-only. */
+    "Strict-Transport-Security": "max-age=31536000",
     "Content-Security-Policy": contentSecurityPolicy(modelsOrigin),
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
