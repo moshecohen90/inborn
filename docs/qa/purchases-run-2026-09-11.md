@@ -1928,3 +1928,112 @@ force-stopped and the phone is on its launcher home screen. Nothing was uninstal
 phone was never locked or unlocked, and the iPhone was not touched. Gradle ran once, `--no-daemon`, in a private
 `GRADLE_USER_HOME` inside the session scratch; `gradlew --stop` was never run; `pgrep -f xcodebuild` was empty and
 `ios-build-10/xcodebuild.running` absent before it started. No emulator, simulator or browser was started.
+## V. Play internal release versionCode 19 — the Android submission candidate from `main` 202db50 — 23.9.2026
+
+`vc18` was the submission candidate until its own L1 row read the Terms screen off the phone and found it named no
+licensor, no phone and no effective date (**F97**). Round 32 (`fixes-r27`) fixed that in `legalBody.ts`, and `main`
+**202db50** is the first Android build carrying it. This pass is deliberately short: the full matrix ran on `vc18`
+an hour earlier from the same `main` plus that one screen fix, so only the rows that name the build, the rows that
+F97 touched and a short soak are repeated.
+
+### Build
+
+Fresh worktree `android-vc19` off `origin/main` **202db50**, `pn install --frozen-lockfile` 0, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
+`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=19` and no
+`INBORN_PACKS`, which declared the same **seven** pack modules, each asset a symlink into `.models`. Then
+`bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"`
+with a private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 7 m 58 s**, 1112 tasks, all executed.
+`gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild` was empty when it
+started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,858,783 bytes** (4.77 GiB; vc18 was 5,117,857,900, **+883**) |
+| sha256 | `f91b8174f63cfea53a140f70c226f047fe42a228abd48c8a63044dbebe6d7b2b` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, byte-for-byte the vc12–vc18 set (`inborn_model` 532,518,071 B, `_fast` 1,280,836,794, `_embed` 274,291,515, `_speech` 147,952,421, `_vision` 204,988,188, `_sharp` 1,401,059,131, `_sharp_2` 1,339,880,861) |
+| `traineddata` entries | **2** — `eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes | base **202,769,207 B / 1453 entries** (vc18: 202,767,863); `base/assets` **17,952,009 B / 120 entries** (vc18: 17,948,433 / 120) |
+| manifest | `versionCode="19" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
+| commit baked into `app.config` | **202db50abf36** — what About shows |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pn typecheck` **0**, `pn test` **0** (**1000** tests: core 616, mobile 362, ui 11, i18n 11), `pn lint` **0** |
+
+The whole delta against `vc18` is **883 bytes**, all of it in `base/assets` — the JS bundle carrying round 32.
+
+### Upload
+
+`scripts/play-upload.mjs` (`INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account`), internal track, release
+name **"1.0.0 (19)"**, status `completed`. One attempt, no retry: edit `10657145023884373811` committed at **11:35**.
+Play's own read-back over a fresh edit answers `bundle vc19 sha256=f91b8174…d7b2b` — **the same hash as the local
+file** — and `internal track: [{"name":"1.0.0 (19)","versionCodes":["19"],"status":"completed"}]`.
+
+### The Play update on the OnePlus 6T
+
+Pressed **21 minutes after the edit committed**, by keys, on the Play page reached with
+`market://details?id=com.inbornapp.mobile`: the Update label was found at `[718,630][851,687]`, TAB walked the focus
+ring onto its container in **7 presses**, ENTER, and logcat answered **DOWNLOAD-STARTED** — first press, no retry and
+no "all packs are unavailable", unlike vc17 and vc18.
+
+Play did **not** reuse a single pack. Finsky re-fetched the whole **5,082,357,356 bytes** across 26 artifacts for a
+release whose base differs from vc18 by 883 bytes, and the phone sat at 93% full (7.9 GB free) while it did.
+**versionCode 19 at 12:13:04, 945 s (15 m 45 s) after the press**, `installerPackageName=com.android.vending`,
+`firstInstallTime` unchanged from 21.9 — a real update in place, not a reinstall.
+
+| after the update | |
+|---|---|
+| `dumpsys package` | `versionCode=19 minSdk=26 targetSdk=36`, `installerPackageName=com.android.vending` |
+| About | **1.0.0 (19)** and commit **202db50abf36** — `a-01-about-1-0-0-19.png` |
+| Proof | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, `Internet: none (not in the manifest)` — `a-02-proof-out-0b.png` |
+
+
+### The rows
+
+**L1a — Legal → Terms, the F97 proof.** The whole screen read off the phone by swipe-scrolling to the bottom:
+**52 lines, 1,600 words, 0 `{{`, 0 `Status: DRAFT`**, and the head now carries the identity block vc18 could not
+show — `Effective date: 22 September 2026`, `Licensor: Cohen Apps ("we", "us")`, `Contact: support@inbornapp.com or
++1-440-847-8502. We have no physical reception and offer no in-person service.` `l1-01-legal-terms-identity.png` is
+that screen. Full text: `docs/qa/android-vc19/legal-terms-on-device.txt`. **F97 is closed on the device**, and with it
+**F98**, which is the same defect seen on the iPhone — one shared `legalBody.ts`, one fix.
+
+The first read of this screen reported `MISSING :: Cohen Apps` and was wrong. `uiautomator` writes an attribute whose
+value contains a double quote in **single** quotes — `text='Licensor: Cohen Apps ("we", "us")'` — and the reader
+matched `text="…"` only, dropping that one node. The raw dump settled it before anything was concluded
+(`run/terms-raw.xml`, node index 3), and the reader now accepts both quotings.
+
+**L1b — Legal → Privacy.** Unchanged and still right: **56 lines, 1,323 words, 0 `{{`**, §12 Contact naming
+**Cohen Apps**, `support@inbornapp.com` and `+1-440-847-8502`, plus the effective date the block now adds.
+`l1-03-legal-privacy.png`, `legal-privacy-on-device.txt`.
+
+Read before the phone was touched, the shipped Hermes bundle (`base/assets/index.android.bundle`) already carried the
+values as UTF-16 string-table entries — `Cohen Apps` ×3, `+1-440-847-8502` ×2, `Effective date` ×2, `Licensor` ×1
+(`bundle-legal-grep.txt`).
+
+**C — one Fast answer.** "How do I set up SSH keys on my Mac?" on **FAST**: 59 words, 3 sentences, complete. The
+ledger card of that turn reads `MODEL FAST · QUANT Q4_K · CONTEXT 312 / 4096 · MS / TOKEN 158 ms · **TOK / S 6.3** ·
+FIRST TOKEN 16410 ms · TOKENS IN + OUT 189 + 123 · GENERATION 35.8 s`. `c-01-fast-howto.png`.
+
+**H — one Hebrew answer.** `ענה בעברית: מה פירוש המילה שלום?` handed over as `ACTION_SEND text/plain` (Android 11
+cannot type Hebrew through `input text`), opened in chat with the draft verbatim, answered in **18 s**:
+**73 Hebrew characters, 0 Latin letters — HEBREW**. The language row passes. The answer's *content* is poor even for
+a 2B model, which is a model-quality observation and not a release gate. `h-01-hebrew.png`.
+
+**Soak — 10 minutes.** 3 prompts sent, **0 timeouts, 0 send failures**, and **2 F33 cycles** (HOME → 60 s → relaunch
+→ `inborn://vault` → BACK), both `verdict=OK`. Over the whole window: **0 `FATAL EXCEPTION`, 0 ANR, 0
+`am_proc_died`, 0 `am_crash`, 0 dropbox entries**, and **one pid (25589) from the first prompt to the last** —
+`soak19-sweep.txt`. The ledger series for the soak's first turn: `FAST 6.8 tok/s, first token 16182 ms, ctx 195 /
+4096, generation 17.1 s`. Proof after the soak is still `OUT 0 B · IN 0 B`, `CONNECTIONS 0 this session`
+(`a-03-proof-after-soak19.png`).
+
+### Housekeeping
+
+The 6T was driven by keys only, never locked or unlocked, nothing was uninstalled and no phone setting was changed;
+it is on its launcher home screen. The iPhone was not touched. Gradle ran once, `--no-daemon`, in a private
+`GRADLE_USER_HOME` in the session scratch; `gradlew --stop` was never run; no `xcodebuild.running` lock existed and
+`pgrep -f xcodebuild` was empty before it started. No emulator, simulator or browser was started.
+
+
