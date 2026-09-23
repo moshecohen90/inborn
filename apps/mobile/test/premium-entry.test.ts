@@ -57,8 +57,10 @@ describe("F146 · the second file in the attach sheet is a gate, not a free tick
   const sheet = read("components/chat/AttachSheet.tsx");
   it("Chat asks the document moment before attaching", () => {
     expect(chat).toContain('const attachLocked = paywallFor(tier, { kind: "document", existing: docs.documents.length });');
-    expect(chat).toContain("if (!attachLocked) return docs.attach(id);");
-    expect(chat).toContain('onOpenPaywall?.("document")');
+    /* Round 37 moved the tap itself onto fileIntake, which also answers for the Work formats the library already holds (QA F129). */
+    expect(chat).toContain("const verdict = planLibraryAttach(tier, libraryState.documents, id, docs.documents.length);");
+    expect(chat).toContain('if (verdict.kind === "ok") return docs.attach(id);');
+    expect(chat).toContain("onOpenPaywall?.(verdict.moment)");
   });
   it("Chat hands the sheet the lock, so the rows can show it before the tap", () => {
     expect(chat).toContain("attachLocked={attachLocked}");
