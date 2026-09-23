@@ -1,0 +1,157 @@
+# F99 — the banned-claim rules in docs/store/scripts/check-store-copy.mjs, watched RED first.
+# Run against the eight listings exactly as they stood on main 202db50 (git show HEAD:docs/store/listing.*.json),
+# with the new script. Nothing but the listings differs.
+#   node <copy of check-store-copy.mjs> over HEAD's listings
+
+FIELD LENGTHS
+  de     apple.name                    24/30  ok
+  de     apple.subtitle                26/30  ok
+  de     apple.promotional_text      152/170  ok
+  de     apple.description         1791/4000  ok
+  de     apple.whats_new            505/4000  ok
+  de     google.title                  24/30  ok
+  de     google.short_description      80/80  ok
+  de     google.full_description   1746/4000  ok
+  de     apple.keywords              98/100B  ok
+  en     apple.name                    29/30  ok
+  en     apple.subtitle                29/30  ok
+  en     apple.promotional_text      152/170  ok
+  en     apple.description         1571/4000  ok
+  en     apple.whats_new            436/4000  ok
+  en     google.title                  24/30  ok
+  en     google.short_description      78/80  ok
+  en     google.full_description   1516/4000  ok
+  en     apple.keywords              99/100B  ok
+  es     apple.name                    24/30  ok
+  es     apple.subtitle                24/30  ok
+  es     apple.promotional_text      150/170  ok
+  es     apple.description         1761/4000  ok
+  es     apple.whats_new            496/4000  ok
+  es     google.title                  24/30  ok
+  es     google.short_description      78/80  ok
+  es     google.full_description   1733/4000  ok
+  es     apple.keywords              94/100B  ok
+  fr     apple.name                    28/30  ok
+  fr     apple.subtitle                22/30  ok
+  fr     apple.promotional_text      157/170  ok
+  fr     apple.description         1907/4000  ok
+  fr     apple.whats_new            533/4000  ok
+  fr     google.title                  27/30  ok
+  fr     google.short_description      79/80  ok
+  fr     google.full_description   1802/4000  ok
+  fr     apple.keywords              91/100B  ok
+  ja     apple.name                    20/30  ok
+  ja     apple.subtitle                17/30  ok
+  ja     apple.promotional_text       78/170  ok
+  ja     apple.description          866/4000  ok
+  ja     apple.whats_new            239/4000  ok
+  ja     google.title                  20/30  ok
+  ja     google.short_description      39/80  ok
+  ja     google.full_description    843/4000  ok
+  ja     apple.keywords              95/100B  ok
+  ko     apple.name                    21/30  ok
+  ko     apple.subtitle                17/30  ok
+  ko     apple.promotional_text       95/170  ok
+  ko     apple.description          927/4000  ok
+  ko     apple.whats_new            254/4000  ok
+  ko     google.title                  19/30  ok
+  ko     google.short_description      49/80  ok
+  ko     google.full_description    921/4000  ok
+  ko     apple.keywords              92/100B  ok
+  pt-BR  apple.name                    26/30  ok
+  pt-BR  apple.subtitle                24/30  ok
+  pt-BR  apple.promotional_text      152/170  ok
+  pt-BR  apple.description         1713/4000  ok
+  pt-BR  apple.whats_new            498/4000  ok
+  pt-BR  google.title                  27/30  ok
+  pt-BR  google.short_description      67/80  ok
+  pt-BR  google.full_description   1639/4000  ok
+  pt-BR  apple.keywords              92/100B  ok
+  zh-Hant apple.name                    17/30  ok
+  zh-Hant apple.subtitle                15/30  ok
+  zh-Hant apple.promotional_text       66/170  ok
+  zh-Hant apple.description          660/4000  ok
+  zh-Hant apple.whats_new            179/4000  ok
+  zh-Hant google.title                  17/30  ok
+  zh-Hant google.short_description      34/80  ok
+  zh-Hant google.full_description    639/4000  ok
+  zh-Hant apple.keywords              89/100B  ok
+
+ERRORS
+  x de: apple.description carries the banned "open-source" claim ("Open Source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x de: apple.description carries the banned "disk-claim" claim ("nie auf die Platte schreib") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x de: apple.description carries the banned "published-hash" claim ("veröffentlichtem Hash") — no reproducible build, so a published hash proves nothing a user can check
+  x de: google.full_description carries the banned "open-source" claim ("Open Source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x de: google.full_description carries the banned "disk-claim" claim ("ohne Schreiben auf die Platte") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x de: google.full_description carries the banned "published-hash" claim ("veröffentlichtem Hash") — no reproducible build, so a published hash proves nothing a user can check
+  x en: apple.keywords carries the banned "deepseek" claim ("deepseek") — DeepSeek is not a model we ship or list in the catalog
+  x en: apple.description carries the banned "open-source" claim ("open source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x en: apple.description carries the banned "disk-claim" claim ("never touches disk") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x en: apple.description carries the banned "published-hash" claim ("published hash") — no reproducible build, so a published hash proves nothing a user can check
+  x en: google.full_description carries the banned "open-source" claim ("open source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x en: google.full_description carries the banned "disk-claim" claim ("never writes to disk") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x en: google.full_description carries the banned "published-hash" claim ("published hash") — no reproducible build, so a published hash proves nothing a user can check
+  x es: apple.description carries the banned "open-source" claim ("código abierto") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x es: apple.description carries the banned "disk-claim" claim ("nunca escribe en el disco") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x es: apple.description carries the banned "published-hash" claim ("hash publicado") — no reproducible build, so a published hash proves nothing a user can check
+  x es: google.full_description carries the banned "open-source" claim ("código abierto") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x es: google.full_description carries the banned "disk-claim" claim ("no escribe en el disco") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x es: google.full_description carries the banned "published-hash" claim ("hash publicado") — no reproducible build, so a published hash proves nothing a user can check
+  x fr: apple.description carries the banned "open-source" claim ("open source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x fr: apple.description carries the banned "disk-claim" claim ("n'écrit jamais sur le disque") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x fr: apple.description carries the banned "published-hash" claim ("empreinte publiée") — no reproducible build, so a published hash proves nothing a user can check
+  x fr: google.full_description carries the banned "open-source" claim ("open source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x fr: google.full_description carries the banned "disk-claim" claim ("sans écriture sur le disque") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x fr: google.full_description carries the banned "published-hash" claim ("empreinte publiée") — no reproducible build, so a published hash proves nothing a user can check
+  x ja: apple.description carries the banned "open-source" claim ("オープンソース") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x ja: apple.description carries the banned "disk-claim" claim ("ディスクに一切書き込") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x ja: apple.description carries the banned "published-hash" claim ("ハッシュを公開") — no reproducible build, so a published hash proves nothing a user can check
+  x ja: google.full_description carries the banned "open-source" claim ("オープンソース") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x ja: google.full_description carries the banned "disk-claim" claim ("ディスクに書き込") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x ja: google.full_description carries the banned "published-hash" claim ("ハッシュを公開") — no reproducible build, so a published hash proves nothing a user can check
+  x ko: apple.keywords carries the banned "deepseek" claim ("deepseek") — DeepSeek is not a model we ship or list in the catalog
+  x ko: apple.description carries the banned "open-source" claim ("오픈소스") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x ko: apple.description carries the banned "disk-claim" claim ("디스크에 한 글자도 쓰지") — same claim in Korean / Traditional Chinese
+  x ko: apple.description carries the banned "published-hash" claim ("해시를 공개") — no reproducible build, so a published hash proves nothing a user can check
+  x ko: google.full_description carries the banned "open-source" claim ("오픈소스") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x ko: google.full_description carries the banned "disk-claim" claim ("디스크에 쓰지") — same claim in Korean / Traditional Chinese
+  x ko: google.full_description carries the banned "published-hash" claim ("해시를 공개") — no reproducible build, so a published hash proves nothing a user can check
+  x pt-BR: apple.description carries the banned "open-source" claim ("código aberto") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x pt-BR: apple.description carries the banned "disk-claim" claim ("nunca grava no disco") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x pt-BR: apple.description carries the banned "published-hash" claim ("hash publicado") — no reproducible build, so a published hash proves nothing a user can check
+  x pt-BR: google.full_description carries the banned "open-source" claim ("código aberto") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x pt-BR: google.full_description carries the banned "disk-claim" claim ("não grava no disco") — an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"
+  x pt-BR: google.full_description carries the banned "published-hash" claim ("hash publicado") — no reproducible build, so a published hash proves nothing a user can check
+  x zh-Hant: apple.keywords carries the banned "deepseek" claim ("deepseek") — DeepSeek is not a model we ship or list in the catalog
+  x zh-Hant: apple.description carries the banned "open-source" claim ("開放原始碼") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x zh-Hant: apple.description carries the banned "disk-claim" claim ("完全不寫入磁碟") — same claim in Korean / Traditional Chinese
+  x zh-Hant: apple.description carries the banned "published-hash" claim ("公布雜湊值") — no reproducible build, so a published hash proves nothing a user can check
+  x zh-Hant: google.full_description carries the banned "open-source" claim ("開放原始碼") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+  x zh-Hant: google.full_description carries the banned "disk-claim" claim ("從不寫入磁碟") — same claim in Korean / Traditional Chinese
+  x zh-Hant: google.full_description carries the banned "published-hash" claim ("公布雜湊值") — no reproducible build, so a published hash proves nothing a user can check
+
+FAIL: 51 error(s).
+exit=1
+
+
+
+## The gate itself: `pn test` runs the guard before any test runner.
+## One banned phrase put back into en apple.description (nothing else changed), then `pn test`:
+
+> inborn@ test /Users/moshecohen/dev/inborn-wt/store-copy
+> pnpm run check:store && pnpm -r --if-present test
+
+
+> inborn@ check:store /Users/moshecohen/dev/inborn-wt/store-copy
+> node docs/store/scripts/check-store-copy.mjs
+
+FIELD LENGTHS
+
+ERRORS
+  x en: apple.description carries the banned "open-source" claim ("open source") — the source is private; see docs/legal/verification.md "Wording that is safe to publish"
+
+FAIL: 1 error(s).
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Test failed. See above for more details.
+
+pn test exit=1  (it stopped at check:store; no vitest project was reached)

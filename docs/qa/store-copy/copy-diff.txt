@@ -1,0 +1,125 @@
+# F99 - every sentence changed in the eight store listings, line by line.
+# OLD = main 202db50, NEW = this branch. Only the lines below differ; nothing else in these files moved.
+
+===== en
+  apple.description
+    OLD - The engine and storage core is open source, with a published hash for every release.
+    NEW - Every check above happens outside the app, with no cooperation from us, and the Proof screen names the exact build you are running.
+  apple.description
+    OLD - A screen lock, an incognito mode that never touches disk, and one-tap wipe.
+    NEW - A screen lock, an incognito mode that saves nothing and ends with the session, and one-tap wipe.
+  google.full_description
+    OLD - The engine and storage core is open source, with a published hash for every release.
+    NEW - Every check above happens outside the app, with no cooperation from us, and the Proof screen names the exact build you are running.
+  google.full_description
+    OLD - Screen lock, an incognito mode that never writes to disk, and emergency wipe.
+    NEW - Screen lock, an incognito mode that saves nothing and ends with the session, and emergency wipe.
+  apple.keywords
+    OLD assistant,secure,encrypted,gguf,deepseek,qwen,gemma,mistral,phi,documents,pdf,notes,voice,incognito
+    NEW assistant,secure,encrypted,gguf,qwen,gemma,mistral,phi,documents,pdf,notes,voice,incognito
+
+===== de
+  apple.description
+    OLD - Der Kern aus Engine und Speicher ist Open Source, mit veröffentlichtem Hash pro Version.
+    NEW - Jede Prüfung oben läuft außerhalb der App, ohne unser Zutun, und der Nachweis-Bildschirm nennt den genauen Build, den du gerade nutzt.
+  apple.description
+    OLD - Bildschirmsperre, ein Inkognito-Modus, der nie auf die Platte schreibt, und Löschen mit einem Tipp.
+    NEW - Bildschirmsperre, ein Inkognito-Modus, der nichts speichert und mit der Sitzung endet, und Löschen mit einem Tipp.
+  google.full_description
+    OLD - Der Kern aus Engine und Speicher ist Open Source, mit veröffentlichtem Hash pro Version.
+    NEW - Jede Prüfung oben läuft außerhalb der App, ohne unser Zutun, und der Nachweis-Bildschirm nennt den genauen Build, den du gerade nutzt.
+  google.full_description
+    OLD - Bildschirmsperre, ein Inkognito-Modus ohne Schreiben auf die Platte, und Notfall-Löschung.
+    NEW - Bildschirmsperre, ein Inkognito-Modus, der nichts speichert und mit der Sitzung endet, und Notfall-Löschung.
+
+===== fr
+  apple.description
+    OLD - Le cœur (moteur et stockage) est open source, avec une empreinte publiée pour chaque version.
+    NEW - Chaque vérification ci-dessus se fait hors de l'application, sans notre aide, et l'écran Preuve indique la version exacte que vous utilisez.
+  apple.description
+    OLD - Un verrouillage, un mode navigation privée qui n'écrit jamais sur le disque, et un effacement en une touche.
+    NEW - Un verrouillage, un mode navigation privée qui n'enregistre rien et se termine avec la session, et un effacement en une touche.
+  google.full_description
+    OLD - Le cœur (moteur et stockage) est open source, avec une empreinte publiée pour chaque version.
+    NEW - Chaque vérification ci-dessus se fait hors de l'application, sans notre aide, et l'écran Preuve indique la version exacte que vous utilisez.
+  google.full_description
+    OLD - Verrouillage d'écran, mode navigation privée sans écriture sur le disque, et effacement d'urgence.
+    NEW - Verrouillage d'écran, mode navigation privée qui n'enregistre rien et se termine avec la session, et effacement d'urgence.
+
+===== es
+  apple.description
+    OLD - El núcleo de motor y almacenamiento es de código abierto, con un hash publicado por versión.
+    NEW - Cada comprobación de arriba se hace fuera de la app, sin ayuda nuestra, y la pantalla Prueba indica la versión exacta que estás usando.
+  apple.description
+    OLD - Un bloqueo, un modo incógnito que nunca escribe en el disco y borrado con un toque.
+    NEW - Un bloqueo, un modo incógnito que no guarda nada y termina con la sesión, y borrado con un toque.
+  google.full_description
+    OLD - El núcleo de motor y almacenamiento es de código abierto, con un hash publicado por versión.
+    NEW - Cada comprobación de arriba se hace fuera de la app, sin ayuda nuestra, y la pantalla Prueba indica la versión exacta que estás usando.
+  google.full_description
+    OLD - Bloqueo de pantalla, un modo incógnito que no escribe en el disco y borrado de emergencia.
+    NEW - Bloqueo de pantalla, un modo incógnito que no guarda nada y termina con la sesión, y borrado de emergencia.
+
+===== pt-BR
+  apple.description
+    OLD - O núcleo de motor e armazenamento é de código aberto, com um hash publicado a cada versão.
+    NEW - Cada verificação acima acontece fora do app, sem ajuda nossa, e a tela Prova mostra a versão exata que você está usando.
+  apple.description
+    OLD - Um bloqueio, um modo anônimo que nunca grava no disco e apagar com um toque.
+    NEW - Um bloqueio, um modo anônimo que não salva nada e termina com a sessão, e apagar com um toque.
+  google.full_description
+    OLD - O núcleo de motor e armazenamento é de código aberto, com um hash publicado a cada versão.
+    NEW - Cada verificação acima acontece fora do app, sem ajuda nossa, e a tela Prova mostra a versão exata que você está usando.
+  google.full_description
+    OLD - Bloqueio de tela, um modo anônimo que não grava no disco e apagar de emergência.
+    NEW - Bloqueio de tela, um modo anônimo que não salva nada e termina com a sessão, e apagar de emergência.
+
+===== ja
+  apple.description
+    OLD - エンジンとストレージの中核はオープンソースで、各リリースのハッシュを公開しています。
+    NEW - 上の確認はすべて、こちらの協力なしにアプリの外からできます。証明画面には、いま動いているビルドが正確に表示されます。
+  apple.description
+    OLD - 画面ロック、ディスクに一切書き込まないシークレットモード、ワンタップ消去。
+    NEW - 画面ロック、何も保存せずセッションの終了とともに消えるシークレットモード、ワンタップ消去。
+  google.full_description
+    OLD - エンジンとストレージの中核はオープンソースで、各リリースのハッシュを公開しています。
+    NEW - 上の確認はすべて、こちらの協力なしにアプリの外からできます。証明画面には、いま動いているビルドが正確に表示されます。
+  google.full_description
+    OLD - 画面ロック、ディスクに書き込まないシークレットモード、緊急消去。
+    NEW - 画面ロック、何も保存せずセッションの終了とともに消えるシークレットモード、緊急消去。
+
+===== ko
+  apple.description
+    OLD - 엔진과 저장 코어는 오픈소스이고, 릴리스마다 해시를 공개합니다.
+    NEW - 위의 확인은 모두 저희 도움 없이 앱 밖에서 직접 할 수 있고, 증명 화면은 지금 실행 중인 빌드를 정확히 알려 줍니다.
+  apple.description
+    OLD - 화면 잠금, 디스크에 한 글자도 쓰지 않는 시크릿 모드, 한 번에 지우기.
+    NEW - 화면 잠금, 아무것도 저장하지 않고 세션이 끝나면 사라지는 시크릿 모드, 한 번에 지우기.
+  google.full_description
+    OLD - 엔진과 저장 코어는 오픈소스이고, 릴리스마다 해시를 공개합니다.
+    NEW - 위의 확인은 모두 저희 도움 없이 앱 밖에서 직접 할 수 있고, 증명 화면은 지금 실행 중인 빌드를 정확히 알려 줍니다.
+  google.full_description
+    OLD - 화면 잠금, 디스크에 쓰지 않는 시크릿 모드, 긴급 삭제.
+    NEW - 화면 잠금, 아무것도 저장하지 않고 세션이 끝나면 사라지는 시크릿 모드, 긴급 삭제.
+  apple.keywords
+    OLD 암호화,어시스턴트,gguf,deepseek,qwen,gemma,mistral,phi,pdf,문서검색,음성입력
+    NEW 암호화,어시스턴트,gguf,qwen,gemma,mistral,phi,pdf,문서검색,음성입력
+
+===== zh-Hant
+  apple.description
+    OLD - 引擎和儲存核心是開放原始碼，每個版本都公布雜湊值。
+    NEW - 以上每一項都能在 App 之外自行查證，不需要我們配合；「證明」畫面會顯示你正在執行的確切版本。
+  apple.description
+    OLD - 螢幕鎖定、完全不寫入磁碟的無痕模式，以及一鍵清除。
+    NEW - 螢幕鎖定、什麼都不儲存、隨工作階段結束就消失的無痕模式，以及一鍵清除。
+  google.full_description
+    OLD - 引擎和儲存核心是開放原始碼，每個版本都公布雜湊值。
+    NEW - 以上每一項都能在 App 之外自行查證，不需要我們配合；「證明」畫面會顯示你正在執行的確切版本。
+  google.full_description
+    OLD - 螢幕鎖定、從不寫入磁碟的無痕模式，以及緊急清除。
+    NEW - 螢幕鎖定、什麼都不儲存、隨工作階段結束就消失的無痕模式，以及緊急清除。
+  apple.keywords
+    OLD 無網路,加密保護,文件問答,gguf,deepseek,qwen,gemma,mistral,phi,pdf,語音輸入
+    NEW 無網路,加密保護,文件問答,gguf,qwen,gemma,mistral,phi,pdf,語音輸入
+
+35 changed lines across 8 locales.

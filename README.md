@@ -3149,3 +3149,43 @@ terms `Cohen Apps` 0→1 rendered, `+1-440-847-8502` 0→1, `Effective date` 0�
 **Not done:** no device or emulator was touched, so the block is proven by the string the screen is handed, not by a
 screenshot of the phone. The wording of the legal texts is unchanged — this round moved no sentence, it only stopped
 the screen from cutting one.
+
+## Fixes round 33: the store listings still claimed an open-source core and a disk-free incognito (branch `store-copy`) — 23.9.2026
+
+F99, filed by MosheAI's read of the eight submission-ready listings against the legal texts rounds 31 and 32 had just
+corrected. The legal texts had stopped making three claims; the store copy was still making all three, in eight
+languages, and nothing in the gates could see it.
+
+- **F99 — three false claims and one keyword.** `docs/legal/verification.md` lists "open source", "published core"
+  and "reproducible build" as wording that may not be published while the repository is private; `terms.md` §1 says
+  outright that Inborn is not open source. Every listing said the opposite (`Open Source`, `código abierto`,
+  `オープンソース`, `오픈소스`, `開放原始碼` …), each with a published-per-release hash promise beside it that no
+  reproducible build can back. The incognito line was false in its own way: `privacy-policy.md` §6 holds an incognito
+  **attachment** in a temporary file for the length of the session, so "never touches disk" overstates it. And
+  `deepseek` sat in the Apple keyword field of en, ko and zh-Hant for a model the catalogue does not contain — the
+  only `deepseek` in the tree is `deepseek2` in the GGUF architecture allow-list, an import format.
+- **What the copy says now.** The source claim is replaced by the sentence `verification.md` says is safe: every check
+  in the bullet list above it happens outside the app, with no cooperation from us, and the Proof screen names the
+  exact build you are running. Each locale uses the shipped name of that screen (`Nachweis`, `Preuve`, `Prueba`,
+  `Prova`, `証明`, `증명`, `證明`), taken from `packages/i18n/locales/*.json`, not invented. The incognito line becomes
+  "saves nothing and ends with the session", which is what §6 actually says. 35 lines changed in total and nothing
+  else in the eight files moved.
+- **The guard that could not see any of it.** `docs/store/scripts/check-store-copy.mjs` measured field lengths and
+  keyword hygiene, and no gate ran it. It gains five banned-claim rules — open-source, disk, published-hash, DeepSeek,
+  and a second disk rule for Korean and Traditional Chinese — that walk **every** string in a listing rather than a
+  field list, so a banned phrase in `promotional_text`, `whats_new`, a screenshot line, the reviewer notes or an A/B
+  variant fails too, and each error names the locale, the field and the phrase it matched. `pn test` now runs it as
+  `check:store` before any test runner.
+
+**Proof:** `docs/qa/store-copy/`. Watched red before green: `red.txt` — **51 errors** against the eight listings
+exactly as they stood on `main` 202db50 (`git show HEAD:docs/store/listing.*.json` fed to the new script), every rule
+firing in every language it was written for; then, with one banned phrase put back into the English description,
+`pn test` exits 1 at `check:store` and no vitest project is reached. `green.txt` is clean and every field is still
+inside its store limit. `copy-diff.txt` is the 35 changed lines, old and new, side by side. Gates: lint, **1,000
+tests** (core 616, mobile 362, i18n 11, ui 11).
+
+**Not done:** nothing was pushed to App Store Connect. The repository has no script that writes store metadata —
+`scripts/asc-key-env.sh` only stages the signing key for `xcodebuild` and `altool` — and the brief said not to build
+one, so the corrected text still has to be copied into the live localizations before submission
+(`docs/qa/store-copy/asc-update.txt`). The guard reads the JSON in this repository; it cannot see what is live in the
+stores. The Play listing is empty, so there was nothing to correct there.

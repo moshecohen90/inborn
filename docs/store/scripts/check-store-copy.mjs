@@ -17,6 +17,44 @@ const LIMITS = {
   'google.title': 30, 'google.short_description': 80, 'google.full_description': 4000,
 };
 const KEYWORDS_BYTES = 100;
+
+// Claims that must never reach a store listing, in any locale. Each one was published once and is false:
+// the source is private (docs/legal/verification.md), an incognito attachment does touch disk for the length
+// of the session (privacy-policy.md §6), no reproducible hash is published, and DeepSeek is not in the catalog.
+const BANNED = [
+  {
+    id: 'open-source',
+    why: 'the source is private; see docs/legal/verification.md "Wording that is safe to publish"',
+    re: /open[\s-]?source|quell(?:offen|code\s+ist\s+öffentlich)|code\s+source\s+ouvert|c[óo]digo\s+abierto|c[óo]digo\s+aberto|オープンソース|오픈\s?소스|開放原始碼|開源/iu,
+  },
+  {
+    id: 'disk-claim',
+    why: 'an incognito attachment is written to a temporary file for the session; say "saves nothing, ends with the session"',
+    re: /never\s+(?:touches|writes\s+to)\s+disk|(?:nie|ohne)[^.\n]{0,40}auf\s+die\s+Platte\s+schreib|ohne\s+Schreiben\s+auf\s+die\s+Platte|(?:n['’]écrit\s+jamais|sans\s+écriture)\s+sur\s+le\s+disque|no\s+escribe\s+en\s+el\s+disco|nunca\s+escribe\s+en\s+el\s+disco|n[ãa]o\s+grava\s+no\s+disco|nunca\s+grava\s+no\s+disco|ディスクに[^。\n]{0,10}書き込/iu,
+  },
+  {
+    id: 'disk-claim',
+    why: 'same claim in Korean / Traditional Chinese',
+    re: /디스크에[^.\n]{0,12}(?:쓰지|쓰는)|(?:不|從不|完全不)寫入磁碟/u,
+  },
+  {
+    id: 'published-hash',
+    why: 'no reproducible build, so a published hash proves nothing a user can check',
+    re: /published\s+hash|veröffentlichtem?\s+Hash|empreinte\s+publiée|hash\s+publicad[oa]|ハッシュを公開|해시를\s?공개|公布雜湊值/iu,
+  },
+  {
+    id: 'deepseek',
+    why: 'DeepSeek is not a model we ship or list in the catalog',
+    re: /deepseek/iu,
+  },
+];
+
+// Every string in the listing, with its dotted path, so a hit names the field to fix.
+function* strings(node, path = '') {
+  if (typeof node === 'string') { yield [path, node]; return; }
+  if (Array.isArray(node)) { for (const [i, v] of node.entries()) yield* strings(v, `${path}[${i}]`); return; }
+  if (node && typeof node === 'object') { for (const [k, v] of Object.entries(node)) yield* strings(v, path ? `${path}.${k}` : k); }
+}
 const SCREEN_HEADLINE_MAX = 45;  // thumbnail-readability guidance, not a hard store cap
 const SCREEN_SUBLINE_MAX = 60;
 const AB_SUBTITLE_MAX = 30;
@@ -34,6 +72,13 @@ function tokens(kwField) {
 for (const file of readdirSync(STORE_DIR).filter((f) => /^listing\..+\.json$/.test(f)).sort()) {
   const loc = file.replace(/^listing\.|\.json$/g, '');
   const data = JSON.parse(readFileSync(join(STORE_DIR, file), 'utf8'));
+
+  for (const [path, text] of strings(data)) {
+    for (const rule of BANNED) {
+      const hit = text.match(rule.re);
+      if (hit) errors.push(`${loc}: ${path} carries the banned "${rule.id}" claim ("${hit[0]}") — ${rule.why}`);
+    }
+  }
 
   for (const [path, max] of Object.entries(LIMITS)) {
     const v = get(data, path);
