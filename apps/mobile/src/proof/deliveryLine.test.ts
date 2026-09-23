@@ -33,7 +33,7 @@ describe("F206 · the Proof screen's last-delivery line", () => {
 
   /* F254: the drawn check may only follow a line whose last clause is the hash, never one that ends on a caveat. */
   it("marks the hash-verified sources and nothing else", () => {
-    expect(SOURCES.filter(deliveryHashChecked).sort()).toEqual(["apple", "hf", "https"]);
+    expect(SOURCES.filter(deliveryHashChecked).sort()).toEqual(["apple", "hf", "https", "play"]);
     for (const s of SOURCES) {
       if (deliveryHashChecked(s)) expect(en[deliveryKey(s)], s).toMatch(/sha256$/);
       else expect(en[deliveryKey(s)], s).not.toMatch(/sha256$/);

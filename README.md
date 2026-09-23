@@ -4446,19 +4446,38 @@ The mark is a prop now, and which lines get it is a decision in code rather than
 - The browser line passes `webDelivery.verified`, the same flag that already chooses between the verified and the
   unverified string.
 - The native line passes the new `deliveryHashChecked(source)` in `apps/mobile/src/proof/deliveryLine.ts`: true for
-  `apple`, `https` and `hf`, the three whose sentence ends on the hash we checked. `play` states its verification in
-  words, and `import` and `bundled` verify nothing, so a mark there would claim more than the sentence does.
+  `apple`, `https`, `hf` and `play`.
+- **Play was the one the guard argued with, and the guard was right.** The first pass left it out, on the reading
+  that "verified by Play" is a claim about Play. It is not the whole truth: `VaultStore.checkAndRecord`
+  (`apps/mobile/src/vault/store.ts`) hashes every shard against the signed catalog whatever delivered it, and its one
+  Play-specific branch merely skips *deleting* files Play owns. So the app checks a Play pack exactly as it checks an
+  HTTPS download, and the old string credited half of what happened on the screen whose whole job is literal
+  accuracy — the same class of bug as F206 itself. `fix-copy` rewrote `proof.delivery.play` in all eight locales to
+  end on "sha256" and handed the key over for this one commit, so the sentence and the predicate changed together.
+- `import` and `bundled` stay unmarked. The bundled copy is hashed too, lazily, but those sentences are about
+  provenance ("nothing downloaded"), not verification; a check there would answer a question the line is not asking.
 - `webUnverified` deliberately gets none. It ends on "no hash published", so a trailing check would read as verifying
   the caveat — which is the opposite of what that key exists to say.
 
-Two guards, each watched red. `apps/mobile/test/fixes-r52.test.ts` fails if the source carries a tick, a heavy tick
+Three guards, each watched red. `apps/mobile/test/fixes-r52.test.ts` fails if the source carries a tick, a heavy tick
 or a square-root character again, and if either `mark=` gate goes missing. `apps/mobile/src/proof/deliveryLine.test.ts`
 fails if the marked sources stop being exactly the ones whose English line ends on `sha256`; adding `import` to the
-predicate turns it red. Verified on the build rather than by eye: exactly one `<svg>` in the delivery line in English
+predicate turns it red. And because a mark on the Play line is only honest while the app really hashes what Play
+delivered, `apps/mobile/src/vault/store.test.ts` now hands a Play-delivered pack a bad shard and expects `corrupt`
+with nothing deleted: excusing `play` from the hash check turns it red, and deleting Play's files on a mismatch turns
+it red the other way. Verified on the build rather than by eye: exactly one `<svg>` in the delivery line in English
 dark and light and in German dark, `docs/qa/fix-design/after/proof-delivery-mark-*.png`. The first shot came back
 with zero marks because the service worker was still serving the previous bundle, which is worth knowing for anyone
 measuring a rebuild here.
 
+Not verified on a screen: the Play line renders only on an Android device, and this stream has no phone. Its string,
+its predicate and the hash behaviour behind it are proven by the three guards above; the drawn mark itself is proven
+on the browser line, which takes the identical code path through `Line`.
+
+Regenerating `pseudo.json` (`pnpm --filter @inborn/i18n run pseudo`, required after any English change) also
+normalised six unrelated values that had been hand-written rather than generated. That is the generator's output, not
+an edit.
+
 Gates on this branch merged with `main` (**e3e771c**): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
-**1,449 tests** (core 726, mobile 693, i18n 17, ui 13), `pn web:build` and `pn web:smoke` 6/6, site build and
+**1,450 tests** (core 726, mobile 694, i18n 17, ui 13), `pn web:build` and `pn web:smoke` 6/6, site build and
 `node apps/site/check.mjs` green on 13 pages. The F254 row in `docs/qa/qa-run-2026-09-11.md` carries both passes.

@@ -24,9 +24,9 @@ export function deliveryKey(source: DeliverySource): string {
 
 /**
  * Which delivery lines may end on a drawn check: the ones whose last clause is the hash we verified.
- * `play` states its verification in words and `import`/`bundled` verify nothing, so a mark there would claim more
- * than the sentence does.
+ * Play belongs here — `VaultStore.checkAndRecord` hashes every shard whatever delivered it, and its one Play branch
+ * only skips deleting files Play owns. `import` and `bundled` say where the bytes came from, not that we checked them.
  */
 export function deliveryHashChecked(source: DeliverySource): boolean {
-  return source === "apple" || source === "https" || source === "hf";
+  return source === "apple" || source === "https" || source === "hf" || source === "play";
 }
