@@ -15,6 +15,7 @@ import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
 import { devFileUri, sizeOf } from "../../documents/files";
 import { listClipping } from "../../lib/listClipping";
+import { useContentMaxWidth } from "../../lib/useLayout";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
 import { PICK_TYPES, pickedName, sniffPicked } from "../../documents/office";
@@ -26,7 +27,7 @@ import { AskDocuments, type AskOutcome } from "./AskDocuments";
 import { DocumentDetails } from "./DocumentDetails";
 import { DocumentRow } from "./DocumentRow";
 import { font } from "../../services/type";
-import { Toggle } from "../../components/shell/primitives";
+import { Actions, Toggle } from "../../components/shell/primitives";
 import { ProTag } from "../../components/chat/Sheet";
 
 export interface DocumentsScreenProps {
@@ -42,6 +43,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
   const { t } = useTranslation();
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
+  const contentMax = useContentMaxWidth();
   const { library, state } = useDocuments();
   const { vault } = useVault();
   const { tier, can } = useEntitlement();
@@ -187,6 +189,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
 
   return (
     <View testID="documents-screen" style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top }]}>
+      <View style={[styles.stack, { maxWidth: contentMax }]}>
       <View style={styles.header}>
         <Pressable testID="documents-close" accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
           <Text style={[styles.headerBtnText, { color: theme.text2 }]}>{t("documents.close")}</Text>
@@ -277,6 +280,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         )}
       />
       <View style={[styles.footer, { borderColor: theme.border, paddingBottom: insets.bottom + 12 }]}>
+        <Actions>
         <Pressable
           testID="documents-ask-selected"
           accessibilityRole="button"
@@ -286,7 +290,9 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         >
           <Text style={[styles.btnText, { color: selected.size ? theme.ctaText : theme.text3 }]}>{t("documents.askSelected", { count: selected.size })}</Text>
         </Pressable>
+        </Actions>
         <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.onDevice", { store: state.storeKind })}</Text>
+      </View>
       </View>
       {toast ? (
         <View style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
@@ -323,6 +329,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  stack: { flex: 1, width: "100%", alignSelf: "center" },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
   headerBtn: { minWidth: 64, height: 44, justifyContent: "center" },
   headerBtnText: { ...font("sans"), fontSize: 16 },

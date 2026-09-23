@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf } from "@inborn/core";
 import { Icon, radius } from "@inborn/ui";
@@ -33,6 +33,15 @@ interface ComposerProps {
 
 const LINE = 25;
 
+const web = Platform.OS === "web";
+/* A <textarea> starts two rows tall, which left an empty field a line above the [+] and send at every width (F111);
+   `numberOfLines` is an Android prop that would clamp the field there, so the one row is asked for on the web alone. */
+const webField = web ? { numberOfLines: 1 } : {};
+/** One line of text plus the field's own padding: the height the empty field and the 44 pt buttons share. */
+const MIN_FIELD = 45;
+/* The box already draws the amber focus border; the browser's own ring on top of it read as a second, misaligned field. */
+const webInput = web ? ({ outlineStyle: "none" } as object) : null;
+
 /** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; attach and mic sit in text-2, dimmed while they wait for M5. */
 export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef }: ComposerProps) {
   const theme = useTheme();
@@ -51,6 +60,16 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
       if (enter.current.canSend) enter.current.onSend();
     });
   }, [focused]);
+  const maxHeight = LINE * 6 * scale + 20;
+  const field = useRef<TextInput | null>(null);
+  /* react-native-web renders a plain <textarea>, which never grows with its content, so §9.6's growth to six lines is
+     measured here; `auto` first, or the previous height would be the floor of the next measurement. */
+  useEffect(() => {
+    const node = field.current as unknown as HTMLTextAreaElement | null;
+    if (!web || !node) return;
+    node.style.height = "auto";
+    node.style.height = `${Math.min(Math.max(node.scrollHeight, MIN_FIELD), maxHeight)}px`;
+  }, [value, maxHeight]);
   const listening = mic === "listening";
   const micBusy = mic === "starting" || mic === "transcribing";
   return (
@@ -83,17 +102,21 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           ) : null}
         </Pressable>
         <TextInput
-          ref={inputRef}
+          ref={(node) => {
+            field.current = node;
+            if (inputRef) inputRef.current = node;
+          }}
           testID="composer-input"
           value={value}
           onChangeText={onChange}
           placeholder={placeholder}
           placeholderTextColor={theme.text3}
           multiline
+          {...webField}
           editable={!disabled}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          style={[type.body, styles.input, { color: theme.text, maxHeight: LINE * 6 * scale + 20, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]}
+          style={[type.body, styles.input, webInput, { color: theme.text, maxHeight, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]}
         />
         <Pressable
           testID="mic"

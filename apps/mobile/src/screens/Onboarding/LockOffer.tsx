@@ -10,6 +10,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Button, Segmented, Toggle } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
 import { useType } from "../../services/type";
+import { useWide } from "../../lib/useLayout";
 
 /** S53: the passcode variant reads as its own sentence instead of "a passcode opens Inborn". */
 export function lockCopy(t: (k: string, o?: Record<string, unknown>) => string, kind: BiometricKind, label: string): { require: string; explain: string } {
@@ -29,6 +30,7 @@ export function LockOffer() {
   const [on, setOn] = useState(false);
   const [timeout, setTimeoutSec] = useState<number>(0);
   const [passcodeOpen, setPasscodeOpen] = useState(false);
+  const wide = useWide();
   const label = biometricLabel(t, lock.kind);
   const copy = lockCopy(t, lock.kind, label);
 
@@ -45,6 +47,7 @@ export function LockOffer() {
     <Screen
       header={null}
       mesh
+      card
       testID="onboarding-lock"
       footer={
         <>
@@ -53,7 +56,7 @@ export function LockOffer() {
         </>
       }
     >
-      <View style={styles.top}>
+      <View style={[styles.top, wide ? styles.topOnCard : null]}>
         <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
           {t("lock.title")}
         </Text>
@@ -87,4 +90,4 @@ export function LockOffer() {
   );
 }
 
-const styles = StyleSheet.create({ top: { gap: 20, paddingTop: 32 }, row: { flexDirection: "row", alignItems: "center", gap: 16 }, grow: { flex: 1, gap: 4 } });
+const styles = StyleSheet.create({ top: { gap: 20, paddingTop: 32 }, topOnCard: { paddingTop: 0 }, row: { flexDirection: "row", alignItems: "center", gap: 16 }, grow: { flex: 1, gap: 4 } });

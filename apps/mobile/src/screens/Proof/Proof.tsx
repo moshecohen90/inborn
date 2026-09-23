@@ -12,7 +12,7 @@ import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
 import { lastWebDelivery } from "../../proof/webDelivery";
 import { Screen } from "../../components/shell/Screen";
-import { Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
+import { Actions, Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
 import { Sheet } from "../../components/shell/Sheet";
 import { font, useType } from "../../services/type";
 
@@ -87,10 +87,10 @@ export function Proof() {
         </Text>
       </Section>
 
-      <View style={styles.actions}>
+      <Actions style={styles.actions}>
         <Button testID="proof-airplane" title={t("proof.runAirplane")} onPress={() => router.push("/proof/airplane")} />
         <Button testID="proof-log" title={t("proof.viewLog")} variant="secondary" onPress={() => setLogOpen(true)} />
-      </View>
+      </Actions>
 
       <Section title={t("proof.verify.title")}>
         <Text style={[type.bodySmall, { color: theme.text2 }]}>

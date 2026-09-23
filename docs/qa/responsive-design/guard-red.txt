@@ -1,0 +1,12 @@
+# Guards watched red — the fixes removed from the source, 23.9.2026
+# (webField no longer asks for one row, the `auto` reset dropped from the measurement, Welcome's card prop removed)
+
+ ❯ src/lib/responsiveSurfaces.test.ts (6 tests | 2 failed) 9ms
+     × gives every onboarding step the centred card (F110) 6ms
+     × keeps the composer field one row tall, and grows it on the web where nothing else does (F111) 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/lib/responsiveSurfaces.test.ts > responsive surfaces > gives every onboarding step the centred card (F110)
+ ❯ src/lib/responsiveSurfaces.test.ts:18:96
+ FAIL  src/lib/responsiveSurfaces.test.ts > responsive surfaces > keeps the composer field one row tall, and grows it on the web where nothing else does (F111)
+ ❯ src/lib/responsiveSurfaces.test.ts:42:22
+      Tests  2 failed | 428 passed (430)

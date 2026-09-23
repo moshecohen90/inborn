@@ -9,6 +9,7 @@ import { Seal, type SealState } from "../../components/Seal";
 import { Button, MonoLabel } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { useWide } from "../../lib/useLayout";
 
 /** S04, the peak: the ring snaps shut, one haptic, "SEALED · ON-DEVICE". */
 export function Sealed() {
@@ -19,6 +20,7 @@ export function Sealed() {
   const { prefs, setSealState: setGlobalSeal } = useAppServices();
   const [state, setState] = useState<SealState>("open");
   const [done, setDone] = useState(false);
+  const wide = useWide();
 
   useEffect(() => {
     const id = setTimeout(() => setState("sealing"), 350);
@@ -26,8 +28,8 @@ export function Sealed() {
   }, []);
 
   return (
-    <Screen header={null} mesh testID="onboarding-sealed" footer={<Button testID="sealed-start" title={t("onboarding.sealed.start")} onPress={() => router.push("/onboarding/lock")} disabled={!done} />}>
-      <View style={styles.hero}>
+    <Screen header={null} mesh card testID="onboarding-sealed" footer={<Button testID="sealed-start" title={t("onboarding.sealed.start")} onPress={() => router.push("/onboarding/lock")} disabled={!done} />}>
+      <View style={[styles.hero, wide ? styles.heroOnCard : null]}>
         <Seal
           size={72}
           state={state}
@@ -47,4 +49,9 @@ export function Sealed() {
   );
 }
 
-const styles = StyleSheet.create({ hero: { alignItems: "center", gap: 20, paddingTop: 96, paddingHorizontal: 8 }, center: { textAlign: "center" } });
+const styles = StyleSheet.create({
+  hero: { alignItems: "center", gap: 20, paddingTop: 96, paddingHorizontal: 8 },
+  /* The card supplies the breathing room on a wide window; the phone's top padding would push the hero off centre. */
+  heroOnCard: { paddingTop: 0 },
+  center: { textAlign: "center" },
+});

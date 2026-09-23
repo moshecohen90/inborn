@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Platform, Pressable, StyleSheet, Switch, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
 import Svg, { Circle, Defs, Pattern, Rect } from "react-native-svg";
 import { Icon, radius } from "@inborn/ui";
+import { useActionMaxWidth } from "../../lib/useLayout";
 import { useTheme } from "../../services/theme";
 import { useType } from "../../services/type";
 
@@ -72,6 +73,11 @@ export function Toggle({ value, onChange, disabled, testID, label }: { value: bo
   /* react-native-web paints the ON state from its own teal defaults unless activeTrackColor / activeThumbColor are given. */
   const web = Platform.OS === "web" ? { activeTrackColor: theme.text2, activeThumbColor: theme.surface1 } : {};
   return <Switch testID={testID} accessibilityLabel={label} value={value} onValueChange={onChange} disabled={disabled} trackColor={{ true: theme.text2, false: theme.border }} thumbColor={theme.surface1} ios_backgroundColor={theme.border} {...web} />;
+}
+
+/** A stack of page-level actions: full width on a phone, never wider than a button on a wide window (§8.9, F110). */
+export function Actions({ children, style }: { children: ReactNode; style?: StyleProp<ViewStyle> }) {
+  return <View style={[styles.actions, { maxWidth: useActionMaxWidth() }, style]}>{children}</View>;
 }
 
 /** One dimming for every control that exists but cannot be used yet. */
@@ -184,6 +190,7 @@ export const shellStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  actions: { width: "100%", alignSelf: "center", gap: 8 },
   button: { minHeight: 48, paddingHorizontal: 20, borderRadius: radius.control, borderWidth: 1, alignItems: "center", justifyContent: "center" },
   link: { minHeight: 44, borderWidth: 0 },
   row: { flexDirection: "row", alignItems: "center", gap: 12, minHeight: 52, paddingVertical: 10, borderBottomWidth: StyleSheet.hairlineWidth },

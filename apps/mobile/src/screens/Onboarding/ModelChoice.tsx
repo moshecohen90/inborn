@@ -30,7 +30,7 @@ export function ModelChoice() {
   const ready = installed !== null || engine.model.id !== "null";
   const next = () => router.push("/onboarding/airplane");
   return (
-    <Screen header={{ back: true }} mesh testID="onboarding-model" footer={<Footer ready={ready} onStart={next} onInstantOnly={next} />}>
+    <Screen header={{ back: true }} mesh card testID="onboarding-model" footer={<Footer ready={ready} onStart={next} onInstantOnly={next} />}>
       <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
         {t("onboarding.model.title")}
       </Text>
