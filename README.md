@@ -3209,3 +3209,59 @@ tests** (core 616, mobile 362, i18n 11, ui 11).
 one, so the corrected text still has to be copied into the live localizations before submission
 (`docs/qa/store-copy/asc-update.txt`). The guard reads the JSON in this repository; it cannot see what is live in the
 stores. The Play listing is empty, so there was nothing to correct there.
+
+## Fixes round 40: the model was a label, not a choice (branch `model-switch`) — 23.9.2026
+
+Moshe, 23.9.2026: *"How do I change model? Is there a choice of other models? I did not find how to switch models, and
+how do you recommend models: by language and by the action I ask for, no? Apart from Instant I saw no other models."*
+And, separately: *"Why does Hebrew come out as gibberish 'on purpose'? Do not deal with Hebrew specifically; if a user
+wants Hebrew let him, we don't push it but we don't block it."* Both answers were already in the tree and neither was
+where he was standing. F150–F154.
+
+- **F150 — the chip named the model and led nowhere.** The chat header's `model-chip` showed `INSTANT` and the
+  `model-picker` shortcut was bound to it, but both opened Chat settings, where the model is a `<View>` chip that is
+  not a control: name, persona, system prompt, thinking switch, no door. The recommendation engine from round 11
+  (`recommend.ts`, use × language × device) and the §6.1 fit map were shipped and correct — and only `/vault` read
+  them, three taps away behind the drawer. A user who never opened the vault met one model for the life of the app,
+  which is exactly what he reported. The chip now opens a **Model sheet** (§8.4 S30b): the recommendation line, then
+  `On this device` (installed, ranked, the loaded one marked `In use`, the rest one tap to switch), `Fits your phone`
+  (downloadable, each row carrying what the model is good at, the language tier for *this* chat, the size, and a
+  Download that expands the §5.1 confirmation with the Wi-Fi-only switch inside the sheet), then `Too big for N GB`
+  greyed with the reason. Chat settings and the full vault sit in its footer, so nothing that was reachable stopped
+  being reachable.
+- **One ranking, extended, never a second one.** The sheet's sections come from a new pure `modelChoices`, built on the
+  existing `rankModels`; the recommendation line reuses the vault's own three strings (`models.recommended`,
+  `models.recommendedFor`, `models.recommendedNone`), so the chip and the vault cannot disagree about what is best
+  here. The language it ranks for is the chat's detected language, falling back to the app's own in an empty chat.
+- **F151 — the weak-language line was a complaint with no handle.** `INSTANT is weak in Hebrew` named no alternative
+  and had nothing to tap; the card that does name one fires only when the model is weak on the language *and* on the
+  task, and snoozes per chat after one showing. It now reads `INSTANT is weak in Hebrew. SHARP handles it better.`
+  with `Switch to SHARP`, or the sheet opened on that model's download. Its new helper, `betterForLanguage`, weighs
+  the language alone — a language the model cannot write is reason enough — and lets the task break the tie between
+  the models that fix it.
+- **F154 — Hebrew is not degraded anywhere, and now there is a test that would notice.** The sweep found no path that
+  blocks, rewrites, transliterates or shortens a turn by language: `languageHint` adds one line to the system prompt,
+  the token estimate is a budget figure, and the family-safe list carries Hebrew at the same level as the other eight
+  languages and only as explicit phrases. `chat-hebrew-unchanged.test.ts` replays the chat's real send path on a
+  Hebrew turn and asserts the user's text arrives code point for code point, that the system prompt differs from the
+  English one by the hint block and nothing else, and — the complement, so the guard cannot pass by being empty —
+  that the one explicit Hebrew phrase the safety list ships still fires. What is left is the models: Instant and Fast
+  rate Hebrew `none`, Sharp and Phi `basic`. The sheet now says so on every row instead of leaving the user to guess.
+- **F152 — found by that test, not by a report.** An explicit length asked in Hebrew was silently ignored while the
+  same ask in English was honoured: `detectExplicitLength` reads number-then-unit, and Hebrew writes the small numbers
+  after the unit and spells them (`ענה במשפט אחד` is "answer in sentence one"). A Hebrew table beside the existing
+  ones reads both orders; `ענה במשפט אחד` now plans the same answer as `answer in one sentence`.
+- **F153 — the browser tier recommended a model it can never load.** Caught in the browser before the push:
+  `RECOMMENDED ON THIS BROWSER · CHAT IN ENGLISH` with the tag on `SHARP`, under a paragraph saying Sharp lives in the
+  app. `modelChoices` now takes `recommendAmong`, the ids a tier can actually load; the browser and desktop shells
+  pass their own, head the second section `In the app`, and leave its rows without actions.
+
+**Proof:** `docs/qa/model-switch/before/` and `after/`, taken by `shots.mjs` against the real web export at 390 and
+1440 — the dead Chat settings chip he met, the sheet that replaced it, the sheet after a Hebrew turn with `Hebrew · No`
+and `Hebrew · Basic` on the rows, and the footer reached by scrolling. Tests: core 638, mobile 383, i18n 11, ui 11,
+plus `check:store`; 43 of them new (core +22, mobile +21). The F150 wiring assertion was watched red by putting `setSettingsOpen` back on the
+chip. Spec §7.8 and §8.4 (S30b) updated and rebuilt; five new keys in all eight locales plus pseudo.
+
+**Not done:** the switch and download buttons themselves are exercised only by unit tests and source assertions. They
+exist on iOS and Android alone — the browser and desktop shells hold one model by design (§14.3) — and this stream was
+assigned no phone, so no screenshot shows a real one-tap switch or a download started from the sheet.
