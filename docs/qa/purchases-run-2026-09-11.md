@@ -2037,3 +2037,146 @@ it is on its launcher home screen. The iPhone was not touched. Gradle ran once, 
 `pgrep -f xcodebuild` was empty before it started. No emulator, simulator or browser was started.
 
 
+
+## W. Play internal release versionCode 20 — the first Android build carrying rounds 34–43 — 23.9.2026
+
+`vc19` was the submission candidate built from `main` 202db50, which predates the thirteen rounds merged during
+23.9 (34–43: the web pickers, the responsive pass, the onboarding rework, the attach gate on both platforms, the
+premium entrances, the model sheet, the site landing, the legal-from-site block and the acceptance round). `main`
+**bab0618** is the first Android build carrying all of them, and this is that build on the phone.
+
+### Build
+
+Fresh worktree `android-vc20` off `origin/main` **bab0618**, `pn install --frozen-lockfile` 0, `.models` symlinked to
+`/Users/moshecohen/dev/inborn/.models`, no `android/` directory and no `modules/doc-extract/android/build`.
+`scripts/check-store-env.sh` clean. Prebuild with `INBORN_MODELS_DIR=…/.models INBORN_VERSION_CODE=20` and no
+`INBORN_PACKS`, which declared the same **seven** pack modules, each asset a symlink into `.models`. Then
+`bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g"`
+with a private `GRADLE_USER_HOME` in the session scratch. **BUILD SUCCESSFUL in 9 m 19 s**, 1112 tasks, all executed.
+`gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild` was empty when it
+started.
+
+| check | result |
+|---|---|
+| AAB | `app/build/outputs/bundle/release/app-release.aab`, **5,117,903,079 bytes** (vc19 was 5,117,858,783, **+44,296**) |
+| sha256 | `c5346d9e1ef89a022c468b25978032f762a4a2d1e7d162116bad5a8c94f04337` |
+| signer | `CN=Inborn Upload Key, O=Inborn, C=IL` (SHA-256 `E7:02:C9:A9:…:ED:CD`); `jarsigner -verify` → "jar verified" |
+| asset packs | **seven**, byte-for-byte the vc12–vc19 set (`inborn_model` 532,518,071 B, `_fast` 1,280,836,794, `_embed` 274,291,515, `_speech` 147,952,421, `_vision` 204,988,188, `_sharp` 1,401,059,131, `_sharp_2` 1,339,880,861) |
+| pack delivery | `inborn_model` fast-follow; the other six on-demand |
+| `traineddata` entries | **2** — `eng.traineddata` 4,113,088 B, `heb.traineddata` 961,404 B |
+| entries under `base/assets/ios` | **0** |
+| `scripts/check-android-bundle.sh` | **exit 0**, all seven packs named OK |
+| `bundletool validate` (`.tools/bundletool-all-1.18.3.jar`) | **OK**, rc 0 |
+| module sizes | base **202,903,215 B / 1453 entries** (vc19: 202,769,207); `base/assets` **18,086,017 B / 120 entries** (vc19: 17,952,009 / 120) |
+| manifest | `versionCode="20" versionName="1.0.0"`, package `com.inbornapp.mobile`, minSdk **26**, targetSdk **36** |
+| module registry (dex strings) | AssetPacks, DeviceGuard, DocExtract, HardwareKeys, ReadAloud, SecureScreen, ShareTarget, TrafficMeter, VaultNative — all nine |
+| commit baked into `app.config` | **bab0618d7782** — what About shows |
+| `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)." |
+| gates | `pn typecheck` **0**, `pn test` **0** (**1,220** tests: core 655, mobile 541, ui 13, i18n 11), `pn lint` **0**, `pn check:store` **PASS** |
+
+The delta against `vc19` is **+134,008 bytes in `base/assets`** — the JS bundle carrying rounds 34–43 — over an
+identical entry count and an identical pack set; the AAB itself grows **44,296 bytes** after compression.
+
+### Upload
+
+`scripts/play-upload.mjs` (`INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account`), internal track, release
+name **"1.0.0 (20)"**, status `completed`. Edit **`04438752370749918475`**, committed at **22:41:00**. The last chunk
+answered `fetch failed` twice and the script's own probe-and-resume carried it; nothing was re-sent twice and no edit
+was lost. Play's read-back over a fresh edit answers `bundle vc20 sha256=c5346d9e…4337` — **the same hash as the local
+file** — and `internal track: [{"name":"1.0.0 (20)","versionCodes":["20"],"status":"completed"}]`.
+
+### The Play update on the OnePlus 6T
+
+Pressed **21 minutes after the edit committed**, by keys, on the Play page reached with
+`market://details?id=com.inbornapp.mobile`: the Update label was at `[718,630][851,687]`, TAB walked the focus ring
+onto its container in **7 presses**, ENTER, and logcat answered **DOWNLOAD-STARTED** — first press, no retry and no
+"all packs are unavailable".
+
+Unlike vc19, Play **reused the packs**: **versionCode 20 at 23:03:31, 84 seconds after the press**, against vc19's
+945 s for a delivery of 5,082,357,356 bytes. `installerPackageName=com.android.vending`, `firstInstallTime` still
+**2026-09-21 22:59:16** — a real update in place. Nothing was uninstalled or cleared; the phone's chats, documents,
+vault and licence are Moshe's own, and **onboarding was not re-run**.
+
+| after the update | |
+|---|---|
+| `dumpsys package` | `versionCode=20 minSdk=26 targetSdk=36`, `installerPackageName=com.android.vending` |
+| About | **1.0.0 (20)** and commit **bab0618d7782** — `a-01-about-1-0-0-20.png` |
+| Proof, BUILD line | `1.0.0 (20) · bab0618d7782 · built 2026-09-23` — `pf-01-proof-airplane-link.png` |
+| Proof | `SEALED · ON-DEVICE`, **OUT 0 B · IN 0 B**, `CONNECTIONS 0 this session`, `Internet: none (not in the manifest)` — `a-02-proof-out-0b.png`, and unchanged after the whole pass, `a-03-proof-after-run.png` |
+
+### The rows
+
+**M — the model sheet, round 40's first device proof.** Round 40 shipped saying plainly that no screenshot showed a
+real one-tap switch, because that stream had no phone. The chat header chip opens `model-sheet`, which lists **all
+four chat models** — each with its own `Good at:` line and its own language line — under `RECOMMENDED ON THIS PHONE ·
+CHAT IN ENGLISH`, with the tier chip `PRO` and `See what's in Pro` at the top and `Model vault` / `Chat settings` in
+the footer:
+
+| row | Good at | language | state |
+|---|---|---|---|
+| FAST | Chat, Writing, Summaries, Translation, Documents, Voice notes | English · Native | **RECOMMENDED**, `Use this model`, 1.2 GB |
+| INSTANT | Chat, Summaries, Voice notes, Photos | English · Native | **In use**, 508 MB |
+| SHARP | Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning | English · Native | 2.6 GB, `TOO BIG FOR 8 GB` |
+| SHARP (PHI) | Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning | English · Native | 2.3 GB · `Too slow to use on this phone` |
+
+**One** accessibility tap on `model-sheet-use-fast` moved the header chip `INSTANT → FAST` in **7 s**, and one tap on
+`model-sheet-use-instant` moved it back in 7 s. `m1-01-model-sheet.png`, `m2-switched-fast.png`,
+`m2b-switched-instant.png`.
+
+**D1 — F126, the document still being read.** `northgate-big.pdf` plus one trailing byte (so the library cannot
+dedupe it against round 37's copy) shared into a fresh chat, strict off, the question asked at once: the turn **held**
+and showed *"Reading your document before answering…"* **5 s** after send, then answered *"The maintenance access code
+for the North Gate Turbine is **ZR-4471-QX**"* under **SOURCES `vc20-northgate.pdf · p.30`**, p.1, p.18, p.17. 487 s
+end to end on Instant. `d1-01-f126-reading-notice.png`, `d1-02-f126-cited.png`.
+
+**D2 — F161, strict off and nothing relevant.** *"Which ferry lines served Arendal in 2024 and what was their
+capacity?"* against the same attached file: **no citations node on the settled screen**, and the notice *"Nothing in
+your documents matched this question. Answered without them."* `d2-01-f161-none-matched.png`. That notice is a
+**1,400 ms** toast fired when the turn is planned, and one `uiautomator dump` on this phone takes longer than that,
+so it was filmed at ~2 frames a second rather than polled. The residual round 43 stated is still true and visible
+here: Instant answers the ferry question out of nothing instead of refusing — it simply no longer wears citations
+while doing it. Strict mode is what fixes that, and D3 is it working.
+
+**D3 — F137, strict on.** The same question with `DOCS ONLY` on answers *"I could not find that in your documents."*
+— the localized sentence, not the raw sentinel, and no SOURCES. `d3-01-f137-not-found.png` carries both turns on one
+screen, which is the whole of Moshe's question in one picture.
+
+**P — F125, the photo.** The door photo attached with the **Photo** button on INSTANT: *"I see a simple brown door
+with a keyhole on the upper right and some decorative panels on the sides."* `p-01-f125-door-described.png`.
+
+**PW — round 39, both entrances.** Settings opens with the `INBORN PRO` section: `See what's in Pro · You own Pro.
+Pro for Work adds the client tools. · PRO`, and the row opens S60 with the `owned` block, the comparison table and
+**no reason line**, because nothing was refused (`pw-01-paywall-from-settings.png`). A control this licence cannot
+use — a `.xlsx`, which is Work-only, on a phone that owns Pro — opens the same screen carrying **its** reason: *"You
+opened a spreadsheet. Pro for Work reads Excel and HTML files."* (`pw-02-paywall-with-reason-office.png`). No
+purchase was started.
+
+**LG — round 42, the legal text comes from the site.** Legal → Terms opens with `OFFLINE COPY · EFFECTIVE 22
+September 2026`, the primary button **"Read the current version at inbornapp.com/terms"** and the sentence saying the
+website version is the one that applies, above the F97 identity block (`Licensor: Cohen Apps ("we", "us")`,
+`support@inbornapp.com or +1-440-847-8502`). `lg-01-legal-terms-open-on-site.png`. The button is **not** followed
+here: `inbornapp.com` still does not resolve, which is the open item in README "Deploy" and not this stream's.
+
+**PF — F124b, the airplane test.** An update in place does not re-run onboarding, so the Sealed screen's copy of the
+link was not on this path; the Proof screen's is, reading `Run the airplane test`, and it lands on `airplane-test`
+with *"Prove it to yourself. Turn on Airplane Mode and ask anything…"*. `pf-01-proof-airplane-link.png`,
+`pf-02-airplane-test.png`.
+
+**H — a Hebrew question, answered in Hebrew.** `ענה בעברית: מה פירוש המילה שלום?` handed over as `ACTION_SEND
+text/plain` (Android 11 cannot type Hebrew through `input text`), opened in chat with the draft verbatim, answered in
+**15 s**: **68 Hebrew characters, 0 Latin letters**. `h-01-hebrew.png`. The answer's content is poor, which is a
+0.8B-model observation and not a release gate — the sheet now says so on the row itself.
+
+**Crash sweep.** Over everything above: **0 `FATAL EXCEPTION`, 0 ANR, 0 `am_proc_died`, 0 `am_crash`, 0 dropbox
+entries**, and **one pid (27775)** from the update to the last row.
+
+### Housekeeping
+
+The 6T was updated by Play, never uninstalled, never cleared, never locked or unlocked, and no phone setting was
+changed; it is on its launcher home screen. Driving it needed the `a11y-drive` instrumentation APK
+(`com.inbornapp.mobile.uitest` + `.test`), because the Chats screen's TAB focus ring is empty and the Android
+new-chat control is a FAB under the soft keyboard; both packages were **uninstalled** at the end, and the photo
+fixture was removed from `/sdcard/Pictures` and from MediaStore. The iPhone was not touched. Gradle ran twice
+(the release bundle, then the driver APK), `--no-daemon`, in a private `GRADLE_USER_HOME` in the session scratch;
+`gradlew --stop` was never run; no `xcodebuild.running` lock existed and `pgrep -f xcodebuild` was empty before
+either. No emulator, simulator or browser was started.
