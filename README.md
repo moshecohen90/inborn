@@ -3628,3 +3628,33 @@ button added in round 42 and the landing composer's hand-off still lead nowhere.
 permission to add, and what was proven locally instead: `docs/qa/deploy-site/curl-evidence.md`. Replace the token and
 the deploy is the one command above; the live `curl` pass on `/`, `/privacy`, `/accessibility`, `/sitemap.xml`,
 `/llms.txt`, the app shell's COOP/COEP and the `?q=` hand-off is the first thing to run after it.
+## Fixes round 37: a file was attached, and the model answered as if nothing were (branch `attach-android`) — 23.9.2026
+
+Moshe attached a photo of a door and asked what the app saw; it answered that it had received no image. He attached a
+PDF and got the same. Both were reproduced on his own OnePlus 6T against the Play build **1.0.0 (19)**, and the cause is
+one line of turn planning, not vision and not a missing companion: `planDocsTurn` returned `{kind:"model"}` whenever the
+strict switch was off and no attached document had passages **yet**, including when a document was attached. The
+`hasAttachment` flag reached the function and was never read on that path. The two doors that attach a file do so the
+moment it is picked, so "attached" and "readable" are different states, and nothing closed the gap between them.
+
+The second reproduction is the one that matters most. A 40-page PDF was attached and asked about while it was still
+indexing: the model invented the access code `"NORTGATE"` where the attached file, on page 30, says `ZR-4471-QX`. No
+citation, no hedge. That is the direct answer to *"does it invent from elsewhere"*: with the strict switch off, it did.
+
+`planDocsTurn` now has a `wait` outcome and, with an attachment on screen, never returns `model`. A turn whose
+attachment is still being read holds and shows *"Reading your document before answering…"*; when reading ends with
+nothing to search it refuses with the reason instead of answering. `DocumentLibrary.attachmentState()` reports that
+state live, and `Chat.tsx` reads it under the key the chat has **now**, because the first message moves the attachments
+off the draft key, which is exactly the new-chat case Moshe hit. Running OCR on a photograph is a dead end (`door.jpg`
+finished `empty · 0 chunks`), so a picture gets its own refusal pointing at the Photo button, the route that works.
+
+Checking the Free tier turned up a second gap: the attach sheet's library rows called `attach()` with no licence gate,
+so a licence that stops paying kept attaching the whole shelf, Work-only spreadsheets included. They now go through the
+same `fileIntake` as the picker and the share sheet.
+
+Proven on the 6T on a build of this branch running beside the untouched Play build: the notice, the cited `ZR-4471-QX`,
+the photo refusal and then the Photo button describing the door, strict on and off, OCR of a scanned page, XLSX and HTML
+on Work, redaction before send, and both halves of the Free fix. The full matrix, the before/after screenshots and the
+traps that cost time are in `docs/qa/attach-android/README.md`; the rows are F125–F129 in `docs/qa/qa-run-2026-09-11.md`.
+Not fixed here and handed over: the browser tier cannot add a document at all. `expo-file-system`'s web
+`pickFileAsync` is a no-op and the drop handler is Tauri-only. That is F128 and another stream's surface.
