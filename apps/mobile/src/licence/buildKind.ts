@@ -1,5 +1,5 @@
 /**
- * What a bundle is allowed to do, decided from constants baked at build time (QA F255, security review S5).
+ * What a bundle is allowed to do, decided from constants baked at build time (QA F257, security review S5).
  *
  * The old rule read a loose environment variable: `ALLOW_TEST_PURCHASES = EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1"
  * || __DEV__`, and `devBuild() = __DEV__ || EXPO_PUBLIC_DEV_MODEL_HOST !== undefined`. Metro inlines every

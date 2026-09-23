@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { allowsTestPurchases, isDevBuild, type BuildFacts } from "../src/licence/buildKind";
 
 /**
- * F255 (security review S5). `ALLOW_TEST_PURCHASES` was `EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1" || __DEV__` and
+ * F257 (security review S5). `ALLOW_TEST_PURCHASES` was `EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1" || __DEV__` and
  * `devBuild()` was `__DEV__ || EXPO_PUBLIC_DEV_MODEL_HOST !== undefined` — neither gated on anything a store build
  * could not carry by accident. Metro inlines `EXPO_PUBLIC_*` at bundle time, so one leftover export in the building
  * shell shipped a store bundle that accepts Apple sandbox and `android.test.*` proofs. `scripts/check-store-env.sh`
@@ -15,7 +15,7 @@ const repo = join(__dirname, "../../..");
 const facts = (o: Partial<BuildFacts> = {}): BuildFacts => ({ devBundle: false, devVariant: false, devModelHost: false, testPurchaseFlag: false, ...o });
 const bools = [false, true];
 
-describe("F255 · a store bundle cannot verify a test purchase", () => {
+describe("F257 · a store bundle cannot verify a test purchase", () => {
   it("refuses every combination of environment switches when the build is not a dev one", () => {
     /* The complement, over the whole space: with devBundle and devVariant both false, nothing else may open it. */
     for (const devModelHost of bools) {
@@ -44,7 +44,7 @@ describe("F255 · a store bundle cannot verify a test purchase", () => {
   });
 });
 
-describe("F256 · the gate that was wired to nothing now refuses the build", () => {
+describe("F258 · the gate that was wired to nothing now refuses the build", () => {
   const script = join(repo, "scripts/check-store-env.sh");
   const run = (env: Record<string, string>) => {
     try {
@@ -76,7 +76,7 @@ describe("F256 · the gate that was wired to nothing now refuses the build", () 
   });
 });
 
-describe("F257 · the app config refuses to configure a store build with a switch set", () => {
+describe("F259 · the app config refuses to configure a store build with a switch set", () => {
   const load = async (env: Record<string, string | undefined>) => {
     vi.resetModules();
     const saved: Record<string, string | undefined> = {};

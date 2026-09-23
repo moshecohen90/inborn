@@ -8,7 +8,7 @@ import PICK_TYPES from "./src/documents/pickTypes.json";
 const dev = process.env.APP_VARIANT === "development";
 
 /**
- * The store-bundle gate (QA F255, security review S5). Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
+ * The store-bundle gate (QA F257, security review S5). Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
  * left over in the building shell ships inside a store bundle — `EXPO_PUBLIC_ALLOW_TEST_PURCHASES` would make it
  * accept Apple sandbox and `android.test.*` transactions. `scripts/check-store-env.sh` has said so since round 9 and
  * nothing ever called it; this file is the one every build path evaluates (prebuild, export, gradle, Xcode), and it

@@ -6,7 +6,7 @@ import { allowsTestPurchases, isDevBuild, type BuildFacts } from "./buildKind";
  * trust only Apple's production root and Play's real signature (spec §12.4, §10.7 #51).
  *
  * Which build this is comes from `extra.devVariant`, baked by `app.config.ts`, never from an environment variable a
- * release shell could be carrying (QA F255): `Constants.expoConfig` missing at all reads as "not a dev variant".
+ * release shell could be carrying (QA F257): `Constants.expoConfig` missing at all reads as "not a dev variant".
  */
 const FACTS: BuildFacts = {
   devBundle: __DEV__,
