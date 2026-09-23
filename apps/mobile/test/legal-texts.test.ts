@@ -339,17 +339,23 @@ describe("F156 · the site's palette is held to the same contrast rule as the ap
   });
 });
 
-describe("F157 · the accessibility statement's measured gaps are still true", () => {
+describe("F157 · the accessibility statement matches the code it describes", () => {
   const policy = read("docs/legal/accessibility-policy.md");
 
-  /* The statement admits the delete/wipe button fails AA in the dark theme. The day someone fixes that colour pair
-     this fails, and the gap has to come out of section 5 in the same change — which is what section 7 promises. */
-  it("the delete/wipe contrast the statement admits is the contrast the tokens still have", () => {
-    const ratio = contrastRatio(dark.onDanger, dark.danger);
-    expect(ratio).toBeLessThan(4.5);
-    expect(ratio).toBeCloseTo(3.1, 1);
-    expect(policy).toMatch(/delete and wipe buttons fail the contrast rule/);
-    expect(policy).toMatch(/\*\*3\.1:1\*\*/);
+  /* F157 declared this gap and F109 closed it. Section 7 promises the bullet leaves in the same change as the fix,
+     so the two are asserted together: a colour that falls back under 4.5 fails here, and so does a statement that
+     starts admitting a gap the tokens no longer have. */
+  it("the delete/wipe contrast is fixed, and the statement no longer claims otherwise", () => {
+    expect(contrastRatio(dark.onDanger, dark.danger)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(light.onDanger, light.danger)).toBeGreaterThanOrEqual(4.5);
+    expect(policy).not.toMatch(/delete and wipe buttons fail the contrast rule/);
+    expect(policy).not.toMatch(/\*\*3\.1:1\*\*/);
+  });
+
+  /* F108 closed the other one: Enter sends in a browser and on the desktop shell. */
+  it("the hardware-keyboard gap is closed, and the statement no longer claims it", () => {
+    expect(policy).not.toMatch(/cannot send a message from a hardware keyboard/i);
+    expect(policy).toMatch(/Enter sends/);
   });
 
   it("the gap list still matches the ink tokens that do pass, so the statement is not blanket-pessimistic", () => {

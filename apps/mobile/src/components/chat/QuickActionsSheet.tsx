@@ -145,8 +145,8 @@ export function QuickActionsSheet({ visible, onClose, text, replaceable, run, bu
         <View style={styles.actions}>
           {streaming ? (
             <Pressable testID="quick-stop" accessibilityRole="button" onPress={stop} style={[shape.control, styles.btn, { backgroundColor: theme.danger }]}>
-              <Icon name="stop" size={14} color={theme.ctaFill} fill />
-              <Text style={[type.bodySmall, type.strong, { color: theme.ctaFill }]}>{t("chat.stop")}</Text>
+              <Icon name="stop" size={14} color={theme.onDanger} fill />
+              <Text style={[type.bodySmall, type.strong, { color: theme.onDanger }]}>{t("chat.stop")}</Text>
             </Pressable>
           ) : null}
           {result && !streaming ? (

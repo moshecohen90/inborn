@@ -3584,6 +3584,42 @@ eighteen sheet items.
 
 Tests after the merge of `origin/main`: core 649, mobile 483 (16 of them this round), i18n 11, ui 11, plus
 `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` — all green.
+
+## Fixes round 34b: Enter did not send, and the red buttons failed the contrast rule (branch `web-bugs-a11y`) — 23.9.2026
+
+The `legal-from-site` accessibility audit measured two gaps and declared them in `docs/legal/accessibility-policy.md`
+§5. Both are closed here. §7 of that statement promises a closed gap is deleted in the same change as its fix, so the
+two bullets are gone from it and §3 says what is true instead. F108–F109; evidence in `docs/qa/web-bugs/` (round 35).
+
+- **F108 — a message could not be sent from a hardware keyboard.** Proven in a real browser against a real model on
+  the pre-fix bundle: Enter in the composer added a newline and sent nothing, 0 user messages. The `hardware-keys`
+  module was Android-only, so the browser and the Tauri shell had no send key at all, and the statement called this
+  the most serious gap for anyone who cannot use a touchscreen. It now has a web branch: a capture-phase `keydown`
+  listener, armed only while the composer has focus, that sends on a bare Enter in a text field and swallows the
+  newline **only when something was actually sent**, so Enter on an empty draft still breaks the line. Shift+Enter and
+  every other modifier break the line, and a keystroke an IME is still composing is neither. A browser cannot be asked
+  whether its keyboard is physical, so `matchMedia("(any-pointer: fine)")` stands in for it, read each time the
+  capture is armed rather than once at launch. After: Enter sends, the draft clears, Shift+Enter still yields two
+  lines, and a 390 px touch-only context still treats Enter as a newline, so phones are untouched.
+- **F109 — the ink on every red button failed 1.4.3, and the guard was looking the other way.** Dark `onDanger` on
+  `danger` measured **3.10:1**. The statement's "about 4.3:1 in the light theme" is a different pair: the light button
+  was already 4.63:1, and 4.30:1 is danger-coloured *text* on `well`. The guard covered `text`, `text2`, `text3` and
+  the CTA pair only. Dark `onDanger` becomes `#0A0D11`, because the dark theme's red is a light red and ink on it has
+  to be dark (5.75:1), and light `danger` moves to `#BC2F2F`, lifting danger text on `well` to 4.98:1. A defect the
+  audit had not found came out with it: the Stop buttons drew their glyph in `ctaFill` on the danger fill, 2.80:1 in
+  the dark theme. The guard is now wider than the pair that broke — `danger`, `accent` and `sealed` at 4.5:1 on all
+  four surfaces in both schemes, plus `onDanger` on `danger` — which closes the open item F157 left behind.
+
+**The statement's own test was inverted, not deleted.** `legal-texts.test.ts` used to assert both gaps were still
+real, so that closing one without editing the statement would fail the suite. It now asserts the opposite: the
+statement fails the suite if it starts claiming a gap the code no longer has, and the tokens fail it if either colour
+regresses.
+
+Tests: core 649, mobile **497** (14 of them this round: 13 on the Enter key, 1 on the statement), i18n 11, ui **13**
+(2 of them this round), plus `check:store`, `pn lint`, `pn typecheck` and `pn web:smoke` against a real model — all
+green. Six sabotages watched red first: either danger colour restored, the statement's two bullets put back, the
+Shift exclusion dropped, the `preventDefault` gate dropped, and the composer's send/did-not-send return dropped.
+
 ## Deploy: inbornapp.com + app.inbornapp.com (Workers static assets) — 23.9.2026
 
 Two origins, two Workers, one command. `scripts/deploy-cloudflare.mjs` builds each dist, uploads it as a Cloudflare

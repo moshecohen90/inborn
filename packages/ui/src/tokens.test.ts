@@ -11,6 +11,17 @@ describe("contrast (QA B11)", () => {
     expect(contrastRatio(dark.ctaText, dark.ctaFill)).toBeGreaterThanOrEqual(4.5);
     expect(contrastRatio(light.ctaText, light.ctaFill)).toBeGreaterThanOrEqual(4.5);
   });
+  /* The three semantic inks were the gap F157 left open: untested, and danger on its own fill was 3.10:1 (QA F109). */
+  it("the semantic inks reach 4.5:1 on every surface too, in both schemes", () => {
+    for (const [name, theme] of [["dark", dark], ["light", light]] as const)
+      for (const surface of ["bg", "surface1", "surface2", "well"] as const)
+        for (const ink of ["danger", "accent", "sealed"] as const)
+          expect(contrastRatio(theme[ink], theme[surface]), `${name} ${ink} on ${surface}`).toBeGreaterThanOrEqual(4.5);
+  });
+  it("text on the danger fill reaches 4.5:1, which is the delete and wipe buttons", () => {
+    for (const [name, theme] of [["dark", dark], ["light", light]] as const)
+      expect(contrastRatio(theme.onDanger, theme.danger), `${name} onDanger on danger`).toBeGreaterThanOrEqual(4.5);
+  });
 });
 
 describe("fontFace", () => {
