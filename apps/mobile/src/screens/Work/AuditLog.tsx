@@ -55,13 +55,14 @@ export function AuditLog() {
         </View>
       ) : null}
       {!vaults.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("audit.empty")}</Text> : null}
-      {!picked ? (
+      {/* A section header over a list that cannot exist yet is not a heading, it is a void (QA F250). */}
+      {!picked && vaults.length ? (
         <Section title={t("audit.pick")}>
           {vaults.map((v) => (
             <Row key={v.id} testID={`audit-vault-${v.id}`} label={v.name} onPress={() => (locked ? undefined : setPicked(v.id))} chevron disabled={locked} />
           ))}
         </Section>
-      ) : (
+      ) : picked ? (
         <>
           <Section title={name}>
             {verdict ? (
@@ -79,7 +80,7 @@ export function AuditLog() {
             <Button title={t("templates.back")} variant="secondary" onPress={() => setPicked(null)} />
           </Actions>
         </>
-      )}
+      ) : null}
     </Screen>
   );
 }

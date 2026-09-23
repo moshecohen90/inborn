@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { PaywallReason } from "@inborn/core";
+import { MIN_TOUCH } from "@inborn/ui";
 import { openPaywall } from "../../licence/openPaywall";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
@@ -92,7 +93,7 @@ export function SheetItem({ label, hint, onPress, danger, disabled, testID, trai
     <Pressable testID={testID} accessibilityRole="button" accessibilityState={{ disabled: !!disabled }} disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.item, { backgroundColor: pressed ? theme.surface2 : "transparent", opacity: disabled ? 0.45 : 1 }]}>
       <View style={styles.itemText}>
         <Text style={[type.body, { color: danger ? theme.danger : theme.text }]}>{label}</Text>
-        {hint ? <Text style={[type.caption, { color: theme.text3 }]}>{hint}</Text> : null}
+        {hint ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{hint}</Text> : null}
       </View>
       {trailing}
     </Pressable>
@@ -105,8 +106,10 @@ export function ProTag({ onPress, reason }: { onPress?: () => void; reason?: Pay
   const theme = useTheme();
   const { t } = useTranslation();
   return (
-    <Pressable testID="pro-tag" accessibilityRole="button" accessibilityLabel={t("gate.unlock")} hitSlop={8} onPress={onPress ?? (() => openPaywall(reason))} style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
-      <Text style={[type.monoLabel, { color: theme.accent }]}>PRO</Text>
+    <Pressable testID="pro-tag" accessibilityRole="button" accessibilityLabel={t("gate.unlock")} onPress={onPress ?? (() => openPaywall(reason))} style={styles.tagTarget}>
+      <View style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
+        <Text style={[type.monoLabel, { color: theme.accent }]}>PRO</Text>
+      </View>
     </Pressable>
   );
 }
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, paddingTop: 8, borderTopWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20 },
   centre: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, alignItems: "center", justifyContent: "center", padding: 24 },
   dialog: { width: "100%", maxWidth: 560, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderRadius: 20 },
+  tagTarget: { minHeight: MIN_TOUCH, justifyContent: "center" },
   grabber: { alignSelf: "center", width: 36, height: 4, borderRadius: 2, marginBottom: 8 },
   title: { paddingHorizontal: 20, paddingVertical: 8 },
   body: { paddingHorizontal: 8 },

@@ -108,6 +108,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
 .prose h3 { margin-top: 28px; }
 .prose h2 + p, .prose h3 + p { margin-top: 0; }
 .legal p:first-of-type { color: var(--text-2); }
+/* The legal texts cite bare URLs: a 357px one panned the whole page sideways at 390 rather than breaking. */
+.prose a, .legal a { overflow-wrap: anywhere; }
 .lede-2 { color: var(--text-2); font-size: 17px; line-height: 27px; max-width: 62ch; }
 
 .notice { border: 1px solid var(--border); background: var(--surface-1); border-radius: 14px; padding: 14px 16px; margin: 0 0 32px; color: var(--text-2); font-size: 14px; line-height: 20px; }
@@ -177,7 +179,8 @@ tbody tr:last-child td { border-bottom: 0; }
 
 /* ---------- landing: bands ---------- */
 /* A numbered rail beside each band, not a stack of centred cards: at 1024+ the page reads as an instrument panel. */
-.band { border-top: 1px solid var(--rule); padding: clamp(40px, 5vw, 64px) 0; display: grid; gap: 20px; }
+/* A grid track is min-content wide by default, so the 760px models table pushed the whole page sideways below 1024px. */
+.band { border-top: 1px solid var(--rule); padding: clamp(40px, 5vw, 64px) 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
 .rail { display: flex; align-items: baseline; gap: 10px; }
 .rail .num { font-size: 12px; letter-spacing: 0.1em; color: var(--accent); }
 .rail-k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
@@ -254,14 +257,14 @@ main.wide + .bottom { margin-top: 0; }
 .footer-grid > div p { margin: 12px 0 0; max-width: 34ch; }
 .footer-grid nav { display: flex; flex-direction: column; align-items: flex-start; }
 .footer-grid nav .label { margin-bottom: 4px; }
-.footer-grid nav a { min-height: 40px; display: inline-flex; align-items: center; text-decoration: none; color: var(--text-2); font-size: 15px; }
+.footer-grid nav a { min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; color: var(--text-2); font-size: 15px; }
 .footer-grid nav a:hover { color: var(--text); text-decoration: underline; }
 .bottom > p { max-width: 1180px; margin: 0 auto 10px; }
 .readout-line { letter-spacing: 0.08em; color: var(--text-3); }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 10px; text-decoration: none; font-weight: 500; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); }
 .btn.primary { background: var(--cta-fill); color: var(--cta-text); border-color: transparent; }
-.btn.compact { min-height: 40px; padding: 0 14px; font-size: 14px; flex: none; }
+.btn.compact { min-height: 44px; padding: 0 14px; font-size: 14px; flex: none; }
 .btn:hover { filter: brightness(1.08); }
 
 @media (max-width: 640px) {

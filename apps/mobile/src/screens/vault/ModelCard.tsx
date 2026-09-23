@@ -48,7 +48,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
   const tooSlow = tooSlowHere(device.chip, model.tier);
   const fit = ramFit(model, device.ramGB);
   const dot = state.kind === "ready" ? (active ? "●" : "◉") : state.kind === "quarantined" || state.kind === "corrupt" ? "⊗" : "○";
-  const dotColor = state.kind === "ready" ? (active ? theme.sealed : theme.text) : state.kind === "corrupt" || state.kind === "quarantined" ? theme.danger : theme.text3;
+  const dotColor = state.kind === "ready" ? (active ? theme.text : theme.text2) : state.kind === "corrupt" || state.kind === "quarantined" ? theme.danger : theme.text3;
   const disabled = !!disabledReason;
   const imported = model.id.startsWith("import:");
   const hf = isHfModelId(model.id);
@@ -104,7 +104,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
     );
 
   return (
-    <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: active ? theme.sealed : theme.border, opacity: disabled ? 0.45 : 1 }]}>
+    <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: active ? theme.text : theme.border, opacity: disabled ? 0.45 : 1 }]}>
       <View style={styles.head}>
         <Text style={[styles.dot, { color: dotColor }]}>{dot}</Text>
         <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{tierLabel}</Text>
@@ -167,7 +167,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
           {state.kind === "delivering" && !state.paused && plan?.via === "https" ? <Action testID={`pause-${model.id}`} theme={theme} onPress={onPause} label={t("vault.pause")} /> : null}
           {state.kind === "delivering" || state.kind === "verifying" ? <Action testID={`cancel-${model.id}`} theme={theme} onPress={onCancel} label={t("vault.cancel")} /> : null}
           {state.kind === "ready" && !active ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
-          {state.kind === "ready" && active ? <Text style={[type.mono, styles.inUse, { color: theme.sealed }]}>{t("vault.inUse")}</Text> : null}
+          {state.kind === "ready" && active ? <Text style={[type.mono, styles.inUse, { color: theme.text2 }]}>{t("vault.inUse")}</Text> : null}
           {hf && onRemove && (state.kind === "not-installed" || state.kind === "failed" || state.kind === "corrupt" || state.kind === "needs-space") ? <Action testID={`remove-${model.id}`} theme={theme} onPress={onRemove} label={t("vault.remove")} /> : null}
           <Action testID={`details-${model.id}`} theme={theme} onPress={onDetails} label={t("vault.details")} />
         </View>

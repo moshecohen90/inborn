@@ -4,7 +4,7 @@ import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getLocales } from "expo-localization";
-import { Icon, compactChrome, radius } from "@inborn/ui";
+import { Icon, MIN_TOUCH, compactChrome, radius } from "@inborn/ui";
 import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
@@ -1141,11 +1141,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             </Text>
           )}
         </View>
-        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("modelSheet.title")} onPress={() => setModelSheetOpen(true)} style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-          {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
-          <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
-            {modelLabel(model.id)}
-          </Text>
+        {/* The pill stays 28 pt tall by design; the press target around it is the 44 pt one (QA F243). */}
+        <Pressable testID="model-chip" accessibilityRole="button" accessibilityLabel={t("modelSheet.title")} onPress={() => setModelSheetOpen(true)} style={styles.chipTarget}>
+          <View style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
+            {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
+            <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
+              {modelLabel(model.id)}
+            </Text>
+          </View>
         </Pressable>
       </FloatingToolbar>
       <BannerSpacer />
@@ -1351,7 +1354,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         {...listClipping}
         data={rows}
         keyExtractor={(r) => r.id}
-        contentContainerStyle={[styles.list, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
+        /* The list is bottom-anchored so messages sit on the composer; the empty state is not a message and centres instead (QA F241). */
+        contentContainerStyle={[styles.list, rows.length ? null : styles.listEmpty, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
         onScroll={onScroll}
         onLayout={onListLayout}
         scrollEventThrottle={64}
@@ -1676,6 +1680,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44, gap: 8 },
   /* SC-1: the model name never truncates; at large text sizes the seal label (already told by the ring) gives way first. */
   modelChip: { flexDirection: "row", gap: 6, flexShrink: 0 },
+  chipTarget: { minHeight: MIN_TOUCH, flexShrink: 0, justifyContent: "center" },
   modelChipText: { flexShrink: 0 },
   sealLabel: { flexShrink: 1 },
   overlayTop: { position: "absolute", top: 0, left: 0, right: 0 },
@@ -1684,15 +1689,16 @@ const styles = StyleSheet.create({
   sealWrap: { flexDirection: "row", alignItems: "center", gap: 8, flexShrink: 1 },
   centered: { textAlign: "center", paddingTop: 4, paddingHorizontal: 16 },
   notice: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 16, marginTop: 6, paddingVertical: 6, borderBottomWidth: StyleSheet.hairlineWidth },
-  noticeBtn: { minHeight: 28, justifyContent: "center" },
+  noticeBtn: { minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, alignItems: "center", justifyContent: "center", paddingHorizontal: 6 },
   grow: { flex: 1 },
   list: { padding: 16, gap: 14, flexGrow: 1, justifyContent: "flex-end" },
+  listEmpty: { justifyContent: "center" },
   /* §8.9 text measure: the stream and the composer keep 680 px however wide the window is. */
   column: { width: "100%", maxWidth: COLUMN_WIDTH, alignSelf: "center" },
   empty: { alignItems: "center", gap: 12, marginBottom: 32 },
   headline: { textAlign: "center" },
   suggestions: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 8 },
-  suggestion: { minHeight: 36, paddingHorizontal: 14 },
+  suggestion: { minHeight: MIN_TOUCH, paddingHorizontal: 14 },
   banner: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12, marginHorizontal: 12, marginBottom: 8, padding: 12, borderWidth: 1, borderRadius: radius.control },
   /* At large text sizes the button drops under the text instead of squeezing it to one word per line. */
   bannerText: { flexGrow: 1, flexBasis: 180 },

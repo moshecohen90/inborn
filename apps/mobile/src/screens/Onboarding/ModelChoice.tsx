@@ -95,8 +95,9 @@ export function ModelChoice() {
         </>
       }
     >
+      {/* A step that renders one card is not a choice: on the browser tier it says whose model it is (QA F244). */}
       <Text accessibilityRole="header" style={[type.title, { color: theme.text }]}>
-        {t("onboarding.model.title")}
+        {t(step.options.length > 1 ? "onboarding.model.title" : "onboarding.model.titleOne")}
       </Text>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.sub")}</Text>
 
@@ -134,7 +135,8 @@ export function ModelChoice() {
         </View>
       ) : null}
 
-      <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>
+      {/* The browser vault says there is nothing to import or switch, so this step must not promise one. */}
+      {PLATFORM === "web" ? null : <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>}
     </Screen>
   );
 }
@@ -158,7 +160,7 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
       accessibilityState={{ selected, disabled: blocked }}
       disabled={blocked}
       onPress={onSelect}
-      style={[shellStyles.card, { borderColor: selected ? theme.sealed : theme.border, backgroundColor: theme.surface1, opacity: blocked ? DISABLED_OPACITY : 1 }]}
+      style={[shellStyles.card, { borderColor: selected ? theme.text : theme.border, backgroundColor: theme.surface1, opacity: blocked ? DISABLED_OPACITY : 1 }]}
     >
       <View style={styles.head}>
         <ChipGlyph size={16} color={theme.text} />

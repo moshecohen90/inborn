@@ -6,7 +6,7 @@ import Constants from "expo-constants";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
 import { HF_CDN_HOST, HF_HOST, daysSince, formatBytes, networkAllowlist } from "@inborn/core";
-import { radius } from "@inborn/ui";
+import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
@@ -132,13 +132,24 @@ function ReadoutRow({ label, value, color, testID }: { label: string; value: str
   );
 }
 
+/** IBM Plex Sans has no U+2713, so a literal tick fell back to a symmetric V and read as a square root (QA F254). */
+const TICK = "\u2713";
+
 function Line({ mono, text, testID }: { mono?: string; text: string; testID?: string }) {
   const type = useType();
   const { theme } = useTheme();
+  const parts = text.split(TICK);
   return (
     <View style={[styles.line, { borderBottomColor: theme.border }]} testID={testID}>
       {mono ? <Mono color={theme.text}>{mono}</Mono> : null}
-      <Text style={[type.bodySmall, { color: theme.text2 }]}>{text}</Text>
+      <Text style={[type.bodySmall, { color: theme.text2 }]}>
+        {parts.map((part, i) => (
+          <Text key={i}>
+            {i ? <Icon name="check" size={12} color={theme.text2} style={styles.tick} /> : null}
+            {part}
+          </Text>
+        ))}
+      </Text>
     </View>
   );
 }
@@ -146,6 +157,7 @@ function Line({ mono, text, testID }: { mono?: string; text: string; testID?: st
 const styles = StyleSheet.create({
   readout: { borderWidth: 1, borderRadius: radius.card, padding: 16, gap: 10 },
   row: { gap: 2 },
+  tick: { transform: [{ translateY: 1 }] },
   note: { ...font("sans"), fontSize: 12, lineHeight: 16 },
   line: { paddingVertical: 8, gap: 2, borderBottomWidth: StyleSheet.hairlineWidth },
   actions: { gap: 8, paddingTop: 20 },

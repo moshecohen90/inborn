@@ -118,7 +118,7 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
         {choices.installed.map(row)}
         {choices.available.length ? (
           <>
-            <Text style={[type.monoLabel, styles.section, { color: theme.text3 }]}>{managed ? t("modelSheet.inTheApp") : t("vault.fits", { device: deviceNoun() })}</Text>
+            <Text style={[type.monoLabel, styles.section, { color: theme.text }]}>{managed ? t("modelSheet.inTheApp") : t("vault.fits", { device: deviceNoun() })}</Text>
             {choices.available.map(row)}
           </>
         ) : null}
@@ -176,15 +176,17 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   /* "Good at" names the jobs the fit map rates best or good, plus photos, which no use case covers. */
   const goodAt = goodAtUses(model).map((u) => (u === "photos" ? t("vault.details.vision") : t(`use.${u}`)));
   const tier = reason.languageTier;
-  const tierColor = tier === "native" ? theme.sealed : tier === "good" ? theme.text : tier === "none" ? theme.danger : theme.text3;
+  /* §9.9 keeps the sealed green for the seal: the language tier is a ladder of ink weight instead (QA F247). */
+  const tierColor = tier === "native" ? theme.text : tier === "good" ? theme.text2 : tier === "none" ? theme.danger : theme.text3;
   const downloading = state?.kind === "delivering" || state?.kind === "verifying";
   const percent = state?.kind === "delivering" ? Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)) : 0;
-  const dim = !!choice.blocked;
+  /* A model this tier cannot install is not offered at the weight of the one in use (QA F248). */
+  const dim = !!choice.blocked || (managed && !choice.current);
 
   return (
-    <View testID={`model-sheet-row-${model.id}`} style={[styles.row, { borderColor: choice.current ? theme.sealed : theme.border, backgroundColor: theme.surface1, opacity: dim ? 0.5 : 1 }]}>
+    <View testID={`model-sheet-row-${model.id}`} style={[styles.row, { borderColor: choice.current ? theme.text : theme.border, backgroundColor: theme.surface1, opacity: dim ? 0.5 : 1 }]}>
       <View style={styles.head}>
-        <ChipGlyph size={12} color={choice.current ? theme.sealed : theme.text2} />
+        <ChipGlyph size={12} color={choice.current ? theme.text : theme.text2} />
         <Text style={[type.monoLabel, styles.name, { color: theme.text }]}>{modelLabel(model.id)}</Text>
         {recommended ? (
           <Text testID={`model-sheet-recommended-${model.id}`} style={[type.monoLabel, { color: theme.accent }]}>
@@ -234,7 +236,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
       ) : dim || (managed && !choice.current) ? null : (
         <View style={styles.actions}>
           {choice.current ? (
-            <Text testID={`model-sheet-inuse-${model.id}`} style={[type.mono, { color: theme.sealed }]}>
+            <Text testID={`model-sheet-inuse-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
               {t("vault.inUse")}
             </Text>
           ) : choice.installed ? (

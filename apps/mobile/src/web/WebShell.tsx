@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
-import { radius, type Theme } from "@inborn/ui";
+import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   strip: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 12, paddingVertical: 6, borderBottomWidth: 1 },
   stripText: { flex: 1, gap: 2 },
-  getApp: { minHeight: 32, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
+  getApp: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },
   card: { width: "100%", maxWidth: 440, padding: 20, gap: 12, borderWidth: 1, borderRadius: radius.card },
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   mono: { ...font("mono"), fontSize: 12, letterSpacing: 0.3 },
   monoLabel: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
   cta: { minHeight: 44, paddingHorizontal: 20, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
-  textBtn: { minHeight: 36, justifyContent: "center" },
+  textBtn: { minHeight: MIN_TOUCH, justifyContent: "center" },
   progressWrap: { gap: 8 },
   track: { height: 6, borderRadius: 3, overflow: "hidden" },
   fill: { height: 6 },
