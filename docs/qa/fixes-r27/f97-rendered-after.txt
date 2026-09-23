@@ -1,0 +1,28 @@
+What the Legal screen renders after the F97 fix, produced by importing the shipping
+apps/mobile/src/screens/Legal/legalBody.ts (legalScreen = the metadata block + the body).
+Same counting as docs/qa/android-vc18/f97-legalbody-proof.txt, which read rendered=0 for the terms values.
+
+--- privacy (docs/legal/privacy-policy.md)
+    metadata block shown under the title:
+      | Effective date: 22 September 2026
+      | Publisher: Cohen Apps (the developer account shown on the store listing)
+      | Contact: support@inbornapp.com
+   Cohen Apps             file=2   rendered=2   (block=1)
+   +1-440-847-8502        file=1   rendered=1   (block=0)
+   support@inbornapp.com  file=3   rendered=3   (block=1)
+   Effective date         file=1   rendered=1   (block=1)
+   22 September 2026      file=2   rendered=1   (block=1)
+   words rendered: 1914
+
+--- terms (docs/legal/terms.md)
+    metadata block shown under the title:
+      | Effective date: 22 September 2026
+      | Licensor: Cohen Apps ("we", "us")
+      | Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
+   Cohen Apps             file=1   rendered=1   (block=1)
+   +1-440-847-8502        file=1   rendered=1   (block=1)
+   support@inbornapp.com  file=2   rendered=2   (block=1)
+   Effective date         file=1   rendered=1   (block=1)
+   22 September 2026      file=2   rendered=1   (block=1)
+   words rendered: 1618
+

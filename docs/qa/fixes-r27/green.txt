@@ -1,0 +1,61 @@
+F97 guard, green run — same command, after the fix (legalScreen parses the header block, Legal.tsx renders it).
+Command: pnpm vitest run test/legal-texts.test.ts --reporter=verbose   (cwd apps/mobile)
+Date: 2026-09-23 09:20 IDT
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fixes-r27/apps/mobile
+
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/ai-act-notes.md has no unfilled token 1ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/app-privacy-details.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/licenses.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/maintainer-notes.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/verification.md has no unfilled token 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > apps/site/src/pages/404.html carries no token the build does not fill 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > apps/site/src/pages/index.html carries no token the build does not fill 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > apps/site/src/pages/proof.html carries no token the build does not fill 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > apps/site/src/pages/support.html carries no token the build does not fill 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > every page the site serves is free of tokens and of the draft notice 1ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > the model licence texts keep {{COPYRIGHT}} and nothing else 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md no longer opens with a draft notice 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md no longer opens with a draft notice 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/privacy-policy.md renders on the device with every value filled 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > docs/legal/terms.md renders on the device with every value filled 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > the values Moshe had to supply are in the texts, not only in the README 0ms
+ ✓ test/legal-texts.test.ts > F92 · no placeholder reaches a screen or a page > no legal text carries a postal address, and none asks the reader to visit one 1ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/ai-act-notes.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/app-privacy-details.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/licenses.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/maintainer-notes.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/privacy-policy.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > docs/legal/terms.md claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/404.html claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/index.html claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/proof.html claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/src/pages/support.html claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > packages/core/src/work/statement.ts claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > apps/site/build.mjs claims no source the reader cannot open 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > all three texts that contradicted each other now say the same thing 0ms
+ ✓ test/legal-texts.test.ts > F93/F96 · every shipped text says source-available, the way docs/legal/verification.md defines it > the site still tells the reader where support lives 0ms
+ ✓ test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > there is code to check 0ms
+ ✓ test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > nothing in the app requests the Secure Enclave or StrongBox 2ms
+ ✓ test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > so no shipped text may promise them 1ms
+ ✓ test/legal-texts.test.ts > F94 · the policy describes the key store the code actually asks for > what the policy names is what the code asks for 0ms
+ ✓ test/legal-texts.test.ts > F95 · the policy's incognito sentence matches what the code does with an attached file > it no longer says a file is never written to disk 0ms
+ ✓ test/legal-texts.test.ts > F95 · the policy's incognito sentence matches what the code does with an attached file > and the code it describes exists: a cache directory, and a sweep on the next launch 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/privacy-policy.md renders the licensor, the email, the phone and the effective date 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/terms.md renders the licensor, the email, the phone and the effective date 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/privacy-policy.md carries the identity in the block itself 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/terms.md carries the identity in the block itself 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > the block is read from the file, never written into the screen 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > it takes the facts a header block states and nothing else 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/privacy-policy.md keeps the edit note and any draft banner out of the block 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > docs/legal/terms.md keeps the edit note and any draft banner out of the block 0ms
+ ✓ test/legal-texts.test.ts > F97 · the metadata block the screen shows above the text > a text with no header block gets no empty block 0ms
+
+ Test Files  1 passed (1)
+      Tests  48 passed (48)
+   Start at  09:20:46
+   Duration  279ms (import 35%, transform 32%, tests 30%, worker 2%)
+
