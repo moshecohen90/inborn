@@ -9,7 +9,7 @@
  * legal sources. `{{PLACEHOLDER}}` tokens in the legal texts are rendered as visible chips until they are filled at launch.
  *
  * Environment:
- *   SITE_ORIGIN   canonical origin for links, sitemap and JSON-LD (default the Pages staging host)
+ *   SITE_ORIGIN   canonical origin for links, sitemap and JSON-LD (default packages/core/src/site/origins.json)
  *   APP_ORIGIN    where the hero composer posts the first message (the deployed web app); also the only
  *                 host allowed in the CSP `form-action`
  *   STORES_LIVE   "1" once the two store listings actually resolve; until then the download row says so
@@ -23,9 +23,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "../..");
 const src = path.join(here, "src");
 const dist = path.join(here, "dist");
-export const siteOrigin = process.env.SITE_ORIGIN ?? "https://inborn-site.pages.dev";
-/** The web app is a separate Pages project; `app.inbornapp.com` is the subdomain reserved for it on our own zone. */
-export const appOrigin = process.env.APP_ORIGIN ?? "https://app.inbornapp.com";
+/* The one place the origins are written down; the deploy passes the same values as env (packages/core/src/site/origins.json). */
+const origins = JSON.parse(readFileSync(path.join(repoRoot, "packages/core/src/site/origins.json"), "utf8"));
+export const siteOrigin = process.env.SITE_ORIGIN ?? origins.site;
+/** The web app is its own Worker; `app.inbornapp.com` is the subdomain reserved for it on our own zone. */
+export const appOrigin = process.env.APP_ORIGIN ?? origins.app;
 /** Neither listing resolved on 23.9.2026 (App Store version PREPARE_FOR_SUBMISSION, Play on the internal track only). */
 export const storesLive = process.env.STORES_LIVE === "1";
 

@@ -37,15 +37,16 @@ describe("responsive surfaces", () => {
 
   it("keeps the composer field one row tall, and grows it on the web where nothing else does (F111)", () => {
     /* react-native-web renders `multiline` as a plain <textarea>: born two rows tall and never growing with its
-       content. Both halves of the fix are web-only; on Android `numberOfLines` would clamp the field instead. */
-    const composer = read("components/chat/Composer.tsx");
-    expect(composer).toMatch(/const webField = web \? \{ numberOfLines: 1 \} : \{\};/);
-    expect(composer).toMatch(/multiline\n\s*\{\.\.\.webField\}/);
-    expect(composer).toMatch(/node\.style\.height = "auto";/);
-    expect(composer).toMatch(/Math\.min\(Math\.max\(node\.scrollHeight, MIN_FIELD\), maxHeight\)/);
+       content. Both halves of the fix are web-only; on Android `numberOfLines` would clamp the field instead.
+       Matched on intent, not on formatting: a prettier pass must not be able to fail this. */
+    const composer = read("components/chat/Composer.tsx").replace(/\s+/g, " ");
+    expect(composer, "the one-row prop must be web-only").toMatch(/webField\s*=\s*web\s*\?\s*\{\s*numberOfLines:\s*1\s*\}\s*:\s*\{\s*\}/);
+    expect(composer, "and it must reach the field").toMatch(/multiline \{\.\.\.webField\}/);
+    expect(composer, "the height must be re-measured from scratch, not from the last value").toMatch(/node\.style\.height\s*=\s*"auto"/);
+    expect(composer, "and clamped between one row and the cap").toMatch(/Math\.min\(\s*Math\.max\(\s*node\.scrollHeight,\s*MIN_FIELD\s*\),\s*maxHeight\s*\)/);
     /* The complement: neither half may reach a native build, and the measurement may not skip the `auto` reset. */
-    expect(composer).not.toMatch(/numberOfLines=\{1\}/);
-    expect(composer).toMatch(/if \(!web \|\| !node\) return;/);
+    expect(composer).not.toMatch(/numberOfLines=\{\s*1\s*\}/);
+    expect(composer).toMatch(/if \(\s*!web \|\| !node\s*\) return;/);
   });
 
   it("routes stacked page actions through the one wrapper that caps them (F110)", () => {

@@ -41,7 +41,7 @@ describe("F160 · the attach sheet says what the document's state really is", ()
 
 describe("F162 · every 'pick a file' door works in the browser, not only the chat's", () => {
   it("no screen calls expo-file-system's picker, which resolves to nothing on the web", () => {
-    for (const p of ["screens/documents/DocumentsScreen.tsx", "screens/vault/VaultScreen.tsx", "screens/Work/VerifyRecord.tsx", "documents/importPicker.web.ts"]) {
+    for (const p of ["screens/documents/DocumentsScreen.tsx", "screens/vault/VaultScreen.tsx", "screens/Work/VerifyRecord.tsx", "documents/importPicker.ts"]) {
       expect(source(p), p).not.toContain("File.pickFileAsync");
       expect(source(p), p).toContain("chooseFile");
     }
@@ -54,12 +54,7 @@ describe("F162 · every 'pick a file' door works in the browser, not only the ch
 });
 
 describe("F161 · an answer the documents did not carry says so and cites nothing", () => {
-  it("the chat flashes the notice on both ways of answering without the files", () => {
-    const src = source("screens/Chat.tsx");
-    /* Attached but never indexed (the turn never reaches retrieval), and indexed but nothing matched. */
-    expect(src).toMatch(/if \(turn\.kind === "model" && docs\.documents\.length\) flash\(t\("documents\.noneMatched"\)\)/);
-    expect(src).toMatch(/if \(!rag\.prompt\.used\.length\) flash\(t\("documents\.noneMatched"\)\)/);
-  });
+  /* When the notice fires is `saysNoneMatched`, proven in src/lib/docsGate.test.ts (F198); this only needs the string. */
   it("the sentence exists in every locale", () => {
     expect(strings["documents.noneMatched"]).toBeTruthy();
   });
@@ -68,13 +63,10 @@ describe("F161 · an answer the documents did not carry says so and cites nothin
 describe("F163 · the library-row gate exists on every platform", () => {
   it("lives outside the two pickers, so a browser bundle carries it too", () => {
     expect(source("documents/libraryAttach.ts")).toContain("export function planLibraryAttach");
-    for (const p of ["documents/importPicker.ts", "documents/importPicker.web.ts"]) expect(source(p), p).not.toContain("planLibraryAttach");
+    for (const p of ["documents/importPicker.ts", "documents/pickPlan.ts"]) expect(source(p), p).not.toContain("planLibraryAttach");
     expect(source("documents/index.ts")).toContain('from "./libraryAttach"');
   });
 
-  it("every symbol the index re-exports from a platform module is in both halves", () => {
-    const named = (p: string) => [...source(p).matchAll(/export (?:async )?(?:function|const) (\w+)/g)].map((m) => m[1]);
-    const web = new Set(named("documents/importPicker.web.ts"));
-    for (const n of named("documents/importPicker.ts")) expect(web, `importPicker.web.ts is missing ${n}`).toContain(n);
-  });
+  /* Round 47 deleted importPicker.web.ts: the platform split that stays is chooseFile.ts / chooseFile.web.ts, and the
+     sequence both platforms run is proven in src/documents/pickPlan.test.ts. Nothing left to keep in parity by hand. */
 });

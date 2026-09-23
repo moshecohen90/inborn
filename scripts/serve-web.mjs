@@ -85,7 +85,7 @@ export function resolveFile(urlPath, { dist, modelsDir, aliases }) {
   }
   const file = path.join(dist, clean === "/" ? "index.html" : clean);
   if (file.startsWith(dist + path.sep) && existsSync(file) && statSync(file).isFile()) return file;
-  /* The same one-document rule the origin ships in _redirects, so /paywall and friends answer here too. */
+  /* The one-document rule the origin gets from the Worker's not_found_handling, so /paywall and friends answer here too. */
   return path.extname(clean) === "" ? path.join(dist, "index.html") : null;
 }
 
