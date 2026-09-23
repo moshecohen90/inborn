@@ -3,11 +3,11 @@
 > pnpm -r --if-present typecheck
 
 Scope: 7 of 8 workspace projects
-packages/i18n typecheck$ tsc --noEmit -p tsconfig.json
 packages/core typecheck$ tsc --noEmit -p tsconfig.json
+packages/i18n typecheck$ tsc --noEmit -p tsconfig.json
 packages/ui typecheck$ tsc --noEmit -p tsconfig.json
-packages/i18n typecheck: Done
 packages/ui typecheck: Done
+packages/i18n typecheck: Done
 packages/core typecheck: Done
 apps/mobile typecheck$ tsc --noEmit -p tsconfig.json
 apps/mobile typecheck: Done

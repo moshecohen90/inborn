@@ -3,15 +3,15 @@
 > node scripts/web-smoke.mjs
 
 {
-  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "model": "/Users/moshecohen/dev/inborn-wt/fix-tech-b/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
   "dist": "/Users/moshecohen/dev/inborn-wt/fix-tech-b/apps/web/dist",
-  "url": "http://127.0.0.1:62049",
+  "url": "http://127.0.0.1:62771",
   "isolation": true,
   "serviceWorker": true,
   "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
   "first": {
     "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.Preparing offline mode… · Chats are saved in this browser's storage without the app's encryption. Clear site data to remove them.Google's model, managed by ChromeGet the app",
-    "storageBefore": 8566890,
+    "storageBefore": 108257,
     "resumedFrom": "Resume · 10 MB of 533 MB",
     "modelStepOptions": "InstantREADY NOW508 MB · already on this browserQuick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.Best in English, Chinese, Portuguese.",
     "screenshotOnboarding": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-onboarding.png",
@@ -21,8 +21,8 @@
       "onboarding-sealed",
       "onboarding-lock"
     ],
-    "readyMs": 17461,
-    "sessionLoadMs": 1330,
+    "readyMs": 17444,
+    "sessionLoadMs": 1236,
     "downloadRequests": [
       "GET /models/instant.gguf",
       "GET /models/instant.gguf [bytes=10485760-]"
@@ -31,11 +31,11 @@
     "webgpu": false,
     "storageAfter": 562736393,
     "persisted": false,
-    "tokPerSec": 32.3,
+    "tokPerSec": 37,
     "tokens": "7 / 4096",
     "answer": "Paris is the capital of France.",
     "modelChip": "INSTANT",
-    "engineLoadMs": 1321,
+    "engineLoadMs": 1228,
     "threads": 6,
     "gpuLayers": 0,
     "offlineState": "Works offline · Chats are saved in this browser's storage without the app's encryption. Clear site data to remove them.",
@@ -45,17 +45,17 @@
     "vaultScreenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-vault.png",
     "consoleErrors": [],
     "hosts": [
-      "127.0.0.1:62049"
+      "127.0.0.1:62771"
     ]
   },
   "offline": {
-    "readyMs": 1593,
-    "sessionLoadMs": 1344,
-    "tokPerSec": 38.5,
-    "tokens": "11 / 4096",
-    "answer": "Jupiter is a gas giant in our solar system.",
+    "readyMs": 1595,
+    "sessionLoadMs": 1268,
+    "tokPerSec": 30.3,
+    "tokens": "13 / 4096",
+    "answer": "The Moon is one of the eight planets in our solar system.",
     "modelChip": "INSTANT",
-    "engineLoadMs": 1327,
+    "engineLoadMs": 1253,
     "threads": 6,
     "gpuLayers": 0,
     "requests": [
@@ -78,7 +78,7 @@
       "GET /wllama/wllama.wasm"
     ],
     "hosts": [
-      "127.0.0.1:62049"
+      "127.0.0.1:62771"
     ],
     "navigatorOnLine": false,
     "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-offline.png",
@@ -98,8 +98,8 @@
     "screenshot": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-web-smoke/web-smoke-nospace.png"
   }
 }
-PASS: first visit ready 17461 ms · 32.3 tok/s · context 7 / 4096 · threads=6 · isolated=true
-PASS: offline visit ready 1593 ms · 38.5 tok/s · context 11 / 4096 · requests=17 · model fetches=0
+PASS: first visit ready 17444 ms · 37 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 1595 ms · 30.3 tok/s · context 13 / 4096 · requests=17 · model fetches=0
 PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
 PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
 PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
