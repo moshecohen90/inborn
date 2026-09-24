@@ -49,6 +49,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         [t("vault.details.source"), installed ? t(`vault.source.${state.via}`) : join(deliverySources(model, Platform.OS).map((v) => t(`vault.source.${v}`)))],
         [t("vault.details.sha"), installed ? state.sha256 : model.sha256],
         ...(installed ? [[t("vault.details.path"), state.path] as [string, string]] : []),
+        ...(state.kind === "failed" && state.error !== "no-delivery" ? [[t("vault.details.error"), state.error] as [string, string]] : []),
       ]
     : [];
   const verdict = benchmark ? benchmarkVerdict(benchmark.genTokPerSec, expected) : "unknown";

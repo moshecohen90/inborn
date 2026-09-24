@@ -21,6 +21,7 @@ import { webDoorsApply } from "./doors";
 import { needsModel } from "./doorRoutes";
 
 import { GET_APP_URL } from "./links";
+import { installFailureText } from "../vault/failureText";
 
 export { GET_APP_URL, STORE_LINKS } from "./links";
 
@@ -136,6 +137,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
   const [phase, setPhase] = useState<Phase>(() => (boot.status.kind === "partial" ? { kind: "paused", have: boot.status.have } : { kind: "idle" }));
   const [estimate, setEstimate] = useState<StorageEstimate | null>(null);
   const [persisted, setPersisted] = useState<boolean | null>(null);
+  const [errorDetails, setErrorDetails] = useState(false);
   const running = useRef(false);
 
   useEffect(() => {
@@ -221,9 +223,19 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
           </Text>
         ) : null}
         {phase.kind === "error" ? (
-          <Text testID="download-error" style={[styles.body, { color: theme.danger }]}>
-            {t("web.download.failed", { error: phase.message })}
-          </Text>
+          <View>
+            <Text testID="download-error" style={[styles.body, { color: theme.danger }]}>
+              {installFailureText(t, phase.message, "web", typeof navigator !== "undefined" && navigator.onLine === false)}
+            </Text>
+            <Pressable testID="download-error-details" accessibilityRole="button" onPress={() => setErrorDetails((v) => !v)} style={styles.textBtn}>
+              <Text style={[styles.caption, { color: theme.text2 }]}>{t("vault.details")}</Text>
+            </Pressable>
+            {errorDetails ? (
+              <Text testID="download-error-raw" selectable style={[styles.mono, { color: theme.text3 }]}>
+                {phase.message}
+              </Text>
+            ) : null}
+          </View>
         ) : null}
 
         {busy ? (
@@ -254,7 +266,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
             style={[styles.cta, { backgroundColor: theme.ctaFill, opacity: space && !space.ok ? 0.5 : 1 }]}
           >
             <Text style={[styles.body, styles.strong, { color: theme.ctaText }]}>
-              {phase.kind === "paused" ? t("web.download.resume", { done: formatModelBytes(phase.have), total: size }) : t("web.download.button", { size })}
+              {phase.kind === "paused" ? t("web.download.resume", { done: formatModelBytes(phase.have), total: size }) : phase.kind === "error" ? t("vault.retry") : t("web.download.button", { size })}
             </Text>
           </Pressable>
         )}

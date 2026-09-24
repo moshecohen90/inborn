@@ -29,6 +29,7 @@ import { DocumentRow } from "./DocumentRow";
 import { font } from "../../services/type";
 import { Actions, Toggle } from "../../components/shell/primitives";
 import { ProTag } from "../../components/chat/Sheet";
+import { installFailureText } from "../../vault/failureText";
 
 export interface DocumentsScreenProps {
   onClose: () => void;
@@ -248,7 +249,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
             {embedState.kind === "needs-space" ? (
               <Text testID="embedder-needs-space" style={[styles.mono, { color: theme.danger }]}>{t("vault.state.needsSpace", { size: formatBytes(embedState.requiredBytes - embedState.freeBytes) })}</Text>
             ) : embedState.kind === "failed" ? (
-              <Text testID="embedder-failed" style={[styles.mono, { color: theme.danger }]}>{t(embedState.error === "no-delivery" ? (Platform.OS === "android" ? "vault.state.noDelivery.android" : "vault.state.noDelivery.web") : "vault.state.failed", { error: embedState.error })}</Text>
+              <Text testID="embedder-failed" style={[styles.mono, { color: theme.danger }]}>{installFailureText(t, embedState.error, Platform.OS)}</Text>
             ) : null}
             <Pressable
               testID="embedder-install"

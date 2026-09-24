@@ -10,7 +10,7 @@ export interface PickedImage {
 
 export type PickOutcome = { ok: true; images: PickedImage[] } | { ok: false; reason: "cancelled" | "permission" | "failed" };
 
-export async function pickImages(_source: "library" | "camera", _limit: number): Promise<PickOutcome> {
+export async function pickImages(_source: "library" | "camera", _limit: number, _onPicked?: (count: number) => void): Promise<PickOutcome> {
   return { ok: false, reason: "failed" };
 }
 

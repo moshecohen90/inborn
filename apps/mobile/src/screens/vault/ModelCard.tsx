@@ -8,6 +8,7 @@ import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { modelCopy, modelLabel } from "../../lib/models";
+import { installFailureText } from "../../vault/failureText";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -69,7 +70,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       case "quarantined":
         return { text: t("vault.state.quarantined"), danger: true };
       case "failed":
-        return { text: t(state.error === "no-delivery" ? (device.os === "android" ? "vault.state.noDelivery.android" : "vault.state.noDelivery.web") : "vault.state.failed", { error: state.error }), danger: true };
+        return { text: installFailureText(t, state.error, device.os), danger: true };
       case "ready":
         return { text: state.via === "bundled" ? t("vault.state.bundled") : active ? t("vault.loaded") : t("vault.installed") };
       case "not-installed":

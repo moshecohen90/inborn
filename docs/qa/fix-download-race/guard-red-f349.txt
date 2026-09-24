@@ -1,0 +1,54 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-download-race/apps/mobile
+
+ ❯ src/vault/failureText.test.ts (4 tests | 2 failed) 16ms
+   ❯ F349 · a failed download reads as one plain sentence (4)
+     × no locale ever shows a class name, a file path or the raw text 6ms
+     × each kind has its own sentence, and the unknown one is not blank 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > no locale ever shows a class name, a file path or the raw text
+AssertionError: en.json ios: expected 'Could not install: UnableToDownloadEx…' not to match /Exception|\.swift|\.kt\b|\.java\b|NSU…/
+
+- Expected:
+/Exception|\.swift|\.kt\b|\.java\b|NSURLError|NSCocoa|ENOSPC|\(at |:\d+\)|\{/
+
++ Received:
+"Could not install: UnableToDownloadException: Unable to download a file: unknown error (at ExpoFileSystem/FileSystemDownloadTask.swift:425)"
+
+ ❯ src/vault/failureText.test.ts:41:45
+     39|       for (const [name, raw] of Object.entries(RAW)) {
+     40|         const text = installFailureText(t, raw, "ios");
+     41|         expect(text, `${file} ${name}`).not.toMatch(/Exception|\.swift…
+       |                                             ^
+     42|         expect(text, `${file} ${name}`).not.toContain(raw);
+     43|         expect(text.trim().length, `${file} ${name}`).toBeGreaterThan(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > each kind has its own sentence, and the unknown one is not blank
+AssertionError: expected 7 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 7
+
+ ❯ src/vault/failureText.test.ts:51:24
+     49|     const t = tFor(load("en.json"));
+     50|     const texts = new Set(Object.values(RAW).map((raw) => installFailu…
+     51|     expect(texts.size).toBe(4);
+       |                        ^
+     52|     expect(installFailureText(t, RAW.ios, "ios")).toBe("Something went…
+     53|     expect(installFailureText(t, RAW.offline, "ios")).toBe("No connect…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  18:05:56
+   Duration  1.08s (transform 81%, import 16%, tests 2%, worker 1%)
+

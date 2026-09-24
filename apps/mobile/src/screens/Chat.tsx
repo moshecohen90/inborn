@@ -67,6 +67,7 @@ import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
 import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, type PickedImage } from "../images";
+import { pickIntoComposer } from "../images/intake";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -241,6 +242,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [micOpen, setMicOpen] = useState(false);
   const [preferWhisper, setPreferWhisper] = useState(false);
   const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
+  const [preparingPhotos, setPreparingPhotos] = useState(0);
   const [readingId, setReadingId] = useState<string | null>(null);
   /** S43: the text under the quick-action sheet and where it came from ("processText" can hand a result back). */
   const [quick, setQuick] = useState<{ text: string; source: "message" | "share" | "processText"; replaceable: boolean } | null>(null);
@@ -680,7 +682,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
   const submit = async (input: string) => {
     const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
-    if (!text || !session.current || busy) return;
+    if (!text || !session.current || busy || preparingPhotos > 0) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
     setDraft("");
     const dictated = isDictatedSend(dictatedDraft.current, text);
@@ -1084,9 +1086,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
     /* iOS refuses to present the picker while the sheet's modal is still dismissing. */
     afterSheetClose(() => {
-      void pickImages(source, room).then((r) => {
-        if (r.ok) setPendingImages((p) => [...p, ...r.images]);
-        else if (r.reason === "permission") flash(t("chat.image.permission"));
+      void pickIntoComposer((onPicked) => pickImages(source, room, onPicked), { hold: (d) => setPreparingPhotos((n) => n + d), add: (images) => setPendingImages((p) => [...p, ...images]) }).then((r) => {
+        if (r.ok) return;
+        if (r.reason === "permission") flash(t("chat.image.permission"));
         else if (r.reason === "failed") flash(t("chat.image.failed"));
       });
     });
@@ -1385,6 +1387,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           setDraft(text);
         }}
         onSend={send}
+        preparing={preparingPhotos}
         onStop={() => {
           stopReason.current = "user";
           abort.current?.abort();

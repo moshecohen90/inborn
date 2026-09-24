@@ -1,0 +1,617 @@
+{
+  "runId": "p2",
+  "startedAt": "2026-09-24T15:23:57.519Z",
+  "finishedAt": "2026-09-24T15:26:59.060Z",
+  "ok": false,
+  "passed": 21,
+  "failed": 3,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 7701,
+      "detail": "composer-preparing appeared"
+    },
+    {
+      "i": 1,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 8552,
+      "detail": "F350-02-preparing"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Preparing photo…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Preparing photo…"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Send",
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": true
+          },
+          "disabled": true
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value user-images: no node with that testID is mounted"
+    },
+    {
+      "i": 5,
+      "op": "send",
+      "ok": false,
+      "ms": 0,
+      "detail": "press send: mounted but not pressable (disabled, or no handler)"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 7,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "What do you see?",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3175,
+      "detail": "F350-03-send-pressed-while-preparing"
+    },
+    {
+      "i": 9,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "composer-preparing",
+          "text": "Preparing photo…"
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What do you see?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "while-preparing"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 60192,
+      "detail": "waitFor pending-image-0 never appeared in 60000 ms"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 38583,
+      "detail": "composer-preparing gone"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 500,
+      "detail": "500 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "F350-04-photo-ready"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Send",
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 159,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 9503,
+      "detail": "F350-05-sent"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI"
+        },
+        {
+          "testID": "pulsing-dot",
+          "text": ""
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "after-send"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45001,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3488,
+      "detail": "F350-06-answer"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "I see a brown door with a gold doorknob and grey hinges on a plain wall.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "I see a brown door with a gold doorknob and grey hinges on a plain wall."
+    },
+    {
+      "i": 23,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI I see a brown door with a gold doorknob and grey hinges on a plain wall. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I see a brown door with a gold doorknob and grey hinges on a plain wall."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "answer"
+    }
+  ],
+  "errors": [
+    "step 4 (value): value user-images: no node with that testID is mounted",
+    "step 5 (send): press send: mounted but not pressable (disabled, or no handler)",
+    "step 10 (waitFor): waitFor pending-image-0 never appeared in 60000 ms"
+  ]
+}

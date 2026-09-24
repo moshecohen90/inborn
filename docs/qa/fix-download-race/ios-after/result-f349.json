@@ -1,0 +1,447 @@
+{
+  "runId": "v1",
+  "startedAt": "2026-09-24T15:19:53.885Z",
+  "finishedAt": "2026-09-24T15:21:50.672Z",
+  "ok": false,
+  "passed": 25,
+  "failed": 4,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": false,
+      "ms": 0,
+      "detail": "press sealed-start: mounted but not pressable (disabled, or no handler)"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 30150,
+      "detail": "waitFor onboarding-lock never appeared in 30000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press lock-start: not mounted"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 60215,
+      "detail": "waitFor composer-input never appeared in 60000 ms"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/vault"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 14,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 2,
+      "detail": "install-vision-qwen35"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "install-vision-qwen35 ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8017,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 20,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-card-vision-qwen35"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2540,
+      "detail": "F349-ios-card-after"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Something went wrong. Try again.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Something went wrong. Try again."
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "○ VISION · Qwen3.5 mmproj 0.4B Lets Instant look at your photos on this device. 205 MB · F16 · Battery: Medium Speed not measured on this phone Something went wrong. Try again. Try again Details",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "○ VISION · Qwen3.5 mmproj 0.4B Lets Instant look at your photos on this device. 205 MB · F16 · Battery: Medium Speed not measured on this phone Something went wrong. Try again. Try again Details"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "details-vision-qwen35 ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2223,
+      "detail": "F349-ios-details-after"
+    },
+    {
+      "i": 28,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "close-vault",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vault-storage",
+          "text": "0 B in the vault · 731 GB free · RUNS ON: IOS-FLAGSHIP · 64 GB"
+        },
+        {
+          "testID": "best-for",
+          "text": "BEST FOR Chat in English"
+        },
+        {
+          "testID": "best-for-use",
+          "text": "Chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-language",
+          "text": "in English",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-instant",
+          "text": "● INSTANT · Qwen3.5 0.8B Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery. GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. 533 MB · Q4_K_M · Battery: Low ~40-58 tok/s on your phone Included with the app In use Details"
+        },
+        {
+          "testID": "model-goodfor-instant",
+          "text": "Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery."
+        },
+        {
+          "testID": "fit-instant",
+          "text": "GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
+        },
+        {
+          "testID": "model-status-instant",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-instant",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-fast",
+          "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this phone. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Install · 1.3 GB from models.inbornapp.com Details"
+        },
+        {
+          "testID": "recommended-fast",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-goodfor-fast",
+          "text": "Everyday assistant: writing, questions, translation. Best balance on this phone."
+        },
+        {
+          "testID": "fit-fast",
+          "text": "GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents."
+        },
+        {
+          "testID": "install-fast",
+          "text": "Install · 1.3 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-fast",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp",
+          "text": "○ SHARP · Qwen3.5 4B PRO Complex tasks: analysis, code, long documents. Slower, runs warmer. GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode. 2.7 GB · Q4_K_M · Battery: High ~15-20 tok/s on your phone Install · 2.7 GB from models.inbornapp.com Details"
+        },
+        {
+          "testID": "model-goodfor-sharp",
+          "text": "Complex tasks: analysis, code, long documents. Slower, runs warmer."
+        },
+        {
+          "testID": "fit-sharp",
+          "text": "GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode."
+        },
+        {
+          "testID": "install-sharp",
+          "text": "Install · 2.7 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp-phi",
+          "text": "○ SHARP · Phi-4-mini 3.8B PRO Reasoning, math and code. No photos. GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation. 2.5 GB · Q4_K_M · Battery: High ~15-20 tok/s on your phone Install · 2.5 GB from models.inbornapp.com Details"
+        },
+        {
+          "testID": "model-goodfor-sharp-phi",
+          "text": "Reasoning, math and code. No photos."
+        },
+        {
+          "testID": "fit-sharp-phi",
+          "text": "GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation."
+        },
+        {
+          "testID": "install-sharp-phi",
+          "text": "Install · 2.5 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp-phi",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-embed-nomic",
+          "text": "○ EMBEDDING · nomic-embed-text-v1.5 137M Lets Inborn search your documents on this device. 274 MB · F16 · Battery: Low Speed not measured on this phone Install · 274 MB from models.inbornapp.com Details"
+        },
+        {
+          "testID": "model-goodfor-embed-nomic",
+          "text": "Lets Inborn search your documents on this device."
+        },
+        {
+          "testID": "install-embed-nomic",
+          "text": "Install · 274 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-embed-nomic",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-speech-whisper-base",
+          "text": "○ SPEECH · whisper.cpp base 74M Turns your voice into text on this device, in any language. 148 MB · F16 · Battery: Low Speed not measured on this phone Install · 148 MB from models.inbornapp.com Details"
+        },
+        {
+          "testID": "model-goodfor-speech-whisper-base",
+          "text": "Turns your voice into text on this device, in any language."
+        },
+        {
+          "testID": "install-speech-whisper-base",
+          "text": "Install · 148 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-speech-whisper-base",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35",
+          "text": "○ VISION · Qwen3.5 mmproj 0.4B Lets Instant look at your photos on this device. 205 MB · F16 · Battery: Medium Speed not measured on this phone Something went wrong. Try again. Try again Details"
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35",
+          "text": "Lets Instant look at your photos on this device."
+        },
+        {
+          "testID": "model-status-vision-qwen35",
+          "text": "Something went wrong. Try again."
+        },
+        {
+          "testID": "install-vision-qwen35",
+          "text": "Try again",
+          "pressable": true
+        },
+        {
+          "testID": "details-vision-qwen35",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "import-gguf",
+          "text": "Import GGUF",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "search-hf",
+          "text": "Search Hugging Face",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-use-sheet",
+          "text": ""
+        },
+        {
+          "testID": "best-for-language-sheet",
+          "text": ""
+        },
+        {
+          "testID": "details-view-licence",
+          "text": "View licence",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "details"
+    }
+  ],
+  "errors": [
+    "step 6 (press): press sealed-start: mounted but not pressable (disabled, or no handler)",
+    "step 7 (waitFor): waitFor onboarding-lock never appeared in 30000 ms",
+    "step 8 (press): press lock-start: not mounted",
+    "step 9 (waitFor): waitFor composer-input never appeared in 60000 ms"
+  ]
+}

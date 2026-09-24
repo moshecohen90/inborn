@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf } from "@inborn/core";
 import { Icon, radius } from "@inborn/ui";
@@ -7,6 +7,7 @@ import { useFontScale, useTheme } from "../../lib/theme";
 import { useType } from "../../services/type";
 import { DISABLED_OPACITY } from "../shell/primitives";
 import { captureHardwareEnter } from "../../../modules/hardware-keys";
+import { composerCanSend } from "../../images/intake";
 
 interface ComposerProps {
   value: string;
@@ -29,6 +30,8 @@ interface ComposerProps {
   /** Dictation state: the field pulses amber while listening, the mic turns into a stop square. */
   mic?: "idle" | "starting" | "listening" | "transcribing";
   inputRef?: RefObject<TextInput | null>;
+  /** Photos picked but not yet scaled into the composer: send waits for them (F350). */
+  preparing?: number;
 }
 
 const LINE = 25;
@@ -43,14 +46,14 @@ const MIN_FIELD = 45;
 const webInput = web ? ({ outlineStyle: "none" } as object) : null;
 
 /** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; attach and mic sit in text-2, dimmed while they wait for M5. */
-export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef }: ComposerProps) {
+export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef, preparing = 0 }: ComposerProps) {
   const theme = useTheme();
   const type = useType();
   const { t } = useTranslation();
   const scale = useFontScale() * type.scale;
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
-  const canSend = !!value.trim() && !disabled && !busy;
+  const canSend = composerCanSend({ text: value, preparing, busy, disabled });
   /* A physical keyboard's Enter sends while the field has focus; Shift+Enter still breaks the line (QA T28, F108). Latest props through a ref: the capture is armed once per focus. */
   const enter = useRef({ canSend, onSend });
   enter.current = { canSend, onSend };
@@ -82,6 +85,12 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           <Pressable testID="cancel-edit" accessibilityRole="button" onPress={onCancelEdit} hitSlop={8} style={styles.cancelEdit}>
             <Text style={[type.caption, { color: theme.text2 }]}>{t("chats.cancel")}</Text>
           </Pressable>
+        </View>
+      ) : null}
+      {preparing > 0 ? (
+        <View testID="composer-preparing" accessibilityLiveRegion="polite" style={styles.editRow}>
+          <ActivityIndicator size="small" color={theme.accent} />
+          <Text style={[type.monoLabel, styles.preparing, { color: theme.accent }]}>{t("chat.image.preparing", { count: preparing })}</Text>
         </View>
       ) : null}
       <View testID={listening ? "composer-listening" : undefined} style={[styles.box, { backgroundColor: incognito ? theme.bg : theme.well, borderColor: listening ? theme.accent : focused ? `${theme.accent}99` : theme.border }]}>
@@ -157,6 +166,7 @@ const styles = StyleSheet.create({
   wrap: { paddingHorizontal: 12, paddingTop: 6, paddingBottom: 8, gap: 6 },
   editRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 4 },
   cancelEdit: { minHeight: 28, justifyContent: "center" },
+  preparing: { flex: 1, marginLeft: 8 },
   box: { flexDirection: "row", alignItems: "flex-end", borderWidth: 1, borderRadius: radius.control, paddingLeft: 4, paddingRight: 4 },
   iconBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   micStop: { width: 16, height: 16, borderRadius: 3 },
