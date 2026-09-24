@@ -1,0 +1,59 @@
+Every guard of round 56, watched failing on purpose (2026-09-24T09:20:29Z). Each block: the sabotage, then the red it produces.
+
+### F270 sabotage: webEligible stops excluding Pro, split and non-chat models
+     × offers only free, single-file chat models 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/webCatalog.test.ts > F270 · the deployed origin carries the browser tier's catalog > offers only free, single-file chat models
+AssertionError: expected [ 'instant', 'fast', 'sharp', …(4) ] to deeply equal [ 'instant', 'fast' ]
+      Tests  1 failed | 7 passed (8)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/webCatalog.test.ts
+
+### F270 sabotage: the build no longer writes the catalog into the dist
+     × the build writes it at the path the app fetches 6ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/webCatalog.test.ts > F270 · the deployed origin carries the browser tier's catalog > the build writes it at the path the app fetches
+AssertionError: expected '#!/usr/bin/env node\n/**\n * Deployab…' to contain 'webManifest('
++  *   apps/mobile/dist  →  apps/web/dist  + sw.js (Workbox precache, offline boot) + _headers (Cloudflare Pages: COOP/COEP,
++ if (scripts.length !== 1) throw new Error(`expected one bundle script in index.html, found ${scripts.length}`);
+      Tests  1 failed | 7 passed (8)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/webCatalog.test.ts
+
+### F271 sabotage: the SPA shell is parsed like a catalog, and no catalog means ready
+     × holds the door when the catalog failed, and opens it when the catalog is merely empty 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/web/modelDelivery.test.ts > F271 · a browser with no catalog is not a browser that is ready > holds the door when the catalog failed, and opens it when the catalog is merely empty
+AssertionError: expected true to be false // Object.is equality
+      Tests  1 failed | 10 passed (11)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/web/modelDelivery.test.ts
+
+### F272 sabotage: the deploy no longer verifies the live catalog
+     × the app deploy runs the check and fails on it 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/webCatalog.test.ts > F272 · the deploy refuses to call a broken catalog a deploy > the app deploy runs the check and fails on it
+AssertionError: expected '#!/usr/bin/env node\n/**\n * The two …' to match /await deploy\("app"\);\s*\n\s*if \(!o…/
+      Tests  1 failed | 7 passed (8)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/webCatalog.test.ts
+
+### F273 sabotage: NAMES.null = DEV is put back
+     × catalog ids keep their friendly names 7ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/lib/models.test.ts > modelLabel > catalog ids keep their friendly names
+AssertionError: expected 'DEV' not to be 'DEV' // Object.is equality
+      Tests  1 failed | 10 passed (11)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/lib/models.test.ts
+
+### F271 sabotage: the catalog failure is swallowed again, as it was before the fix
+     × calls the SPA shell what it is instead of an empty catalog 4ms
+     × says unreachable when the fetch fails or the origin answers an error 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/web/modelDelivery.test.ts > fetchManifest tells a broken catalog from an empty one > calls the SPA shell what it is instead of an empty catalog
+AssertionError: expected { models: [], error: null } to deeply equal { models: [], error: 'not-json' }
+ FAIL  src/web/modelDelivery.test.ts > fetchManifest tells a broken catalog from an empty one > says unreachable when the fetch fails or the origin answers an error
+AssertionError: expected { models: [], error: null } to deeply equal { models: [], error: 'unreachable' }
+      Tests  2 failed | 9 passed (11)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/web/modelDelivery.test.ts
+
+### F274/F271 sabotage, in a real browser: webReady goes back to `b.source === null`, app rebuilt, full smoke re-run
+    "catalog": {
+FAIL: locator.waitFor: Timeout 60000ms exceeded.
+[2m  - waiting for getByTestId('catalog-door') to be visible[22m

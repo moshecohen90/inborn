@@ -341,6 +341,7 @@ try {
     const broken = await browser.newContext({ viewport: { width: 1180, height: 800 } });
     await broken.route("**/models/manifest.json", (route) => route.fulfill({ status: 200, contentType: "text/html", body: readFileSync(path.join(defaults.dist, "index.html"), "utf8") }));
     const page = await broken.newPage();
+    lastPage = page;
     const out = (result.brokenCatalog = {});
     await page.goto(server.url);
     await page.getByTestId("catalog-door").waitFor({ timeout: 60_000 });
