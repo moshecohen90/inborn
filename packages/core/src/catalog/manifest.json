@@ -424,9 +424,13 @@
       ],
       "delivery": [
         {
+          "kind": "bundled",
+          "file": "mmproj-Qwen3.5-0.8B-F16.gguf"
+        },
+        {
           "kind": "play-asset-pack",
           "pack": "inborn_model_vision",
-          "mode": "on-demand",
+          "mode": "fast-follow",
           "file": "mmproj-Qwen3.5-0.8B-F16.gguf"
         },
         {
@@ -438,5 +442,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "f4c40ce2e191866db0063efc3fa85f54c97fc16bc666dd422d4f691f3993cf6fec813f12e305651a9cf823974badc241cdd70cf471ae2ec196b3343979e7700a"
+  "signature": "4435b56b35686899c0482efb6aae2e4016980439dd8a84a58443555c3f1af60c42d4fdfc078f64a0ae999093468a2360d1b82740c6380376e7e88fe29c00df09"
 }
