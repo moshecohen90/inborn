@@ -170,8 +170,9 @@ async function walkOnboarding(page, out, pageErrors) {
   await step("onboarding-welcome", () => page.getByTestId("onboarding-continue").click());
   await step("onboarding-model", async () => {
     out.modelStepOptions = (await page.getByTestId("model-options").textContent()) ?? "";
-    /* The browser can start no download, so the step must show exactly the model it already has (F120). */
-    if ((await page.getByTestId("model-option-fast").count()) > 0) throw new Error("the web model step offered a download it cannot start");
+    /* F312: the step reads the web boot's list, so it offers exactly what the door offers — no more, no fewer. */
+    out.modelStepIds = await page.locator('[data-testid^="model-option-"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-testid").replace("model-option-", "")));
+    if (out.modelStepIds.join() !== out.doorOptionIds.join()) throw new Error(`the model step offers ${out.modelStepIds.join(", ")} but the door offers ${out.doorOptionIds.join(", ")}`);
     out.screenshotOnboarding = path.join(outDir, "web-smoke-onboarding.png");
     await page.screenshot({ path: out.screenshotOnboarding });
     await page.getByTestId("start-chatting").click();
@@ -185,6 +186,20 @@ async function walkOnboarding(page, out, pageErrors) {
   });
   await step("onboarding-lock", () => page.getByTestId("lock-start").click());
   out.onboarding = steps;
+}
+
+/** The ids the door's option list offers, in its own order. */
+const chooseIds = (page) =>
+  page.locator('[data-testid^="web-model-choose-"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-testid").replace("web-model-choose-", "")));
+
+/** Which model the door is offering: the one catalog id the option list does not repeat. */
+async function offeredId(page, catalogIds) {
+  /* The door folds the list away; the vault opens it. Only open what is closed, or the toggle closes it again. */
+  if ((await chooseIds(page)).length === 0 && (await page.getByTestId("web-model-options-toggle").count()) > 0) await page.getByTestId("web-model-options-toggle").click();
+  const others = new Set(await chooseIds(page));
+  const offered = catalogIds.filter((id) => !others.has(id));
+  if (offered.length !== 1) throw new Error(`the door offers ${offered.length} models of ${catalogIds.join(", ")}`);
+  return offered[0];
 }
 
 /** Ready = the Chat screen is up and the console says which engine loaded (the status line stays visible with the engine name). */
@@ -310,7 +325,27 @@ try {
     await page.goto(server.url);
     await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
     out.gateText = (await page.getByTestId("web-strip").textContent()) ?? "";
-    await page.screenshot({ path: path.join(outDir, "web-smoke-door.png") });
+    /* F311: what the door offers first is the recommendation for THIS browser, and the others are one tap below it. */
+    if ((await page.getByTestId("web-download-why").count()) === 0) throw new Error("the door offered a model without saying it is the recommended one");
+    out.doorOffer = (await page.getByTestId("download-door").textContent()) ?? "";
+    out.doorSpeed = (await page.getByTestId("web-download-speed").textContent()) ?? "";
+    await page.getByTestId("web-model-options-toggle").click();
+    out.doorOtherIds = await chooseIds(page);
+    /* The door's own list, in its order: the offered model first, then the rest — what the onboarding step must repeat. */
+    out.doorOptionIds = [await offeredId(page, out.catalog.models), ...out.doorOtherIds];
+    if (out.doorOtherIds.length !== out.catalog.models.length - 1) throw new Error(`the door listed ${out.doorOtherIds.length} other models of ${out.catalog.models.length - 1} in the catalog`);
+    await page.screenshot({ path: path.join(outDir, "web-smoke-door.png"), fullPage: true });
+    /* §14.9 for the screen the round changed: the door with its option list open, at all four widths, before a byte moves. */
+    out.doorLayout = {};
+    for (const width of REQUIRED_WIDTHS) {
+      await page.setViewportSize({ width, height: 900 });
+      const shot = path.join(outDir, `web-smoke-door-${width}.png`);
+      await page.screenshot({ path: shot, fullPage: true });
+      const m = await measureLayout(page);
+      out.doorLayout[width] = { scrollWidth: m.scrollWidth, clientWidth: m.clientWidth, screenshot: shot };
+      if (m.scrollWidth > m.clientWidth + 1) throw new Error(`the download door at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+    }
+    await page.setViewportSize({ width: 1180, height: 800 });
     out.storageBefore = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
     await page.getByTestId("download-model").click();
     await page.getByTestId("download-progress").waitFor({ timeout: 60_000 });
@@ -328,7 +363,9 @@ try {
     /* The door reloads the page once the file is in OPFS; onboarding is what the reloaded app opens on. */
     await walkOnboarding(page, out, pageErrors);
     await waitForEngine(page, out, consoleLines, t0);
-    out.downloadRequests = requests.filter((r) => r.includes("/models/instant.gguf"));
+    out.downloadedFile = `/models/${out.doorOptionIds[0]}.gguf`;
+    out.downloadRequests = requests.filter((r) => r.includes(out.downloadedFile));
+    if (!out.downloadRequests.length) throw new Error(`nothing was fetched for ${out.downloadedFile}`);
     out.crossOriginIsolated = await page.evaluate(() => globalThis.crossOriginIsolated);
     out.webgpu = await page.evaluate(async () => (navigator.gpu ? !!(await navigator.gpu.requestAdapter()) : false));
     out.storageAfter = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
@@ -456,11 +493,44 @@ try {
     await page.screenshot({ path: out.screenshot, fullPage: true });
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (foreignHosts(hosts).length) throw new Error(`offline page talked to ${foreignHosts(hosts).join(", ")}`);
-    if (requests.some((r) => r.includes("/models/instant.gguf"))) throw new Error("offline visit fetched the model again instead of reading OPFS");
+    if (requests.some((r) => r.includes(result.first.downloadedFile))) throw new Error("offline visit fetched the model again instead of reading OPFS");
     await page.close();
     await context.setOffline(false);
   } else {
     result.offline = { skipped: "no sw.js in the served dist; run: corepack pnpm web:build" };
+  }
+
+  /* 2b. F312: the reader takes another model. The vault lists what the door listed, the pick lands in the door, and
+     the chat comes up on the model that was chosen — the second half of "default = recommended, choose a different one". */
+  {
+    const page = await context.newPage();
+    const { consoleLines, pageErrors, hosts } = observe(page);
+    lastPage = page;
+    lastConsole = consoleLines;
+    const out = (result.switched = {});
+    const t0 = Date.now();
+    await page.goto(new URL("/vault", server.url).href);
+    await page.getByTestId("vault-web-door").waitFor({ timeout: 60_000 });
+    out.vaultOtherIds = await chooseIds(page);
+    if (out.vaultOtherIds.join() !== result.first.doorOtherIds.join()) throw new Error(`the vault offers ${out.vaultOtherIds.join(", ")} and the door offered ${result.first.doorOtherIds.join(", ")}`);
+    out.chosen = out.vaultOtherIds[0];
+    await page.screenshot({ path: path.join(outDir, "web-smoke-vault-options.png"), fullPage: true });
+    await page.getByTestId(`web-model-choose-${out.chosen}`).click();
+    await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    out.door = (await page.getByTestId("download-door").textContent()) ?? "";
+    out.doorOffers = await offeredId(page, result.first.catalog.models);
+    if (out.doorOffers !== out.chosen) throw new Error(`chose ${out.chosen} and the door offered ${out.doorOffers}`);
+    await page.getByTestId("download-model").click();
+    await waitForEngine(page, out, consoleLines, t0);
+    out.modelChip = ((await page.getByTestId("model-chip").textContent()) ?? "").trim();
+    if (!out.modelChip.toLowerCase().includes(out.chosen.split("-")[0])) throw new Error(`the chat runs ${out.modelChip} after choosing ${out.chosen}`);
+    await chat(page, out, PROMPT, consoleLines);
+    noPageErrors(pageErrors, "after choosing another model");
+    out.screenshot = path.join(outDir, "web-smoke-switched.png");
+    await page.screenshot({ path: out.screenshot, fullPage: true });
+    out.hosts = [...hosts];
+    if (foreignHosts(hosts).length) throw new Error(`the switched page talked to ${foreignHosts(hosts).join(", ")}`);
+    await page.close();
   }
   await context.close();
 

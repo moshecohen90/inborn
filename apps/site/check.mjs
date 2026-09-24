@@ -10,7 +10,7 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin } from "./build.mjs";
+import { COMPARE_APPS, COMPARE_COLUMNS, COMPARE_FAQ, FAQ, SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin } from "./build.mjs";
 import { headerProblems } from "./headerCheck.mjs";
 
 const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
@@ -24,8 +24,8 @@ if (SIZE_INSTANT !== "533 MB") problems.push(`SIZE_INSTANT is "${SIZE_INSTANT}",
 if (SIZE_FAST !== "1.3 GB") problems.push(`SIZE_FAST is "${SIZE_FAST}", expected "1.3 GB" (packages/core/src/catalog/manifest.json, id "fast")`);
 /* Every place the site names a model's download size, so a future edit cannot quietly hardcode a number again. */
 const SIZE_MENTIONS = [
-  ["index.html", ["Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
-  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
+  ["index.html", ["Your browser downloads one model once: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once into the browser's own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
+  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once into its own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
   ["blog/why-on-device.html", ["Inborn ships a 0.8B model inside the app, {{SIZE_INSTANT}}, so the first chat works"]],
 ];
 for (const [file, sentences] of SIZE_MENTIONS) {
@@ -34,6 +34,22 @@ for (const [file, sentences] of SIZE_MENTIONS) {
     const expected = sentence.replace("{{SIZE_INSTANT}}", SIZE_INSTANT).replace("{{SIZE_FAST}}", SIZE_FAST);
     if (!html.includes(expected)) problems.push(`${file}: missing "${expected}" (a model size was hardcoded instead of using {{SIZE_INSTANT}}/{{SIZE_FAST}}?)`);
   }
+}
+
+/* F319: /compare states facts about other companies' products. A row must carry every column, and every competitor
+   must link its own public page, because that link is where the claim is checked. A question already answered on the
+   home page must not be answered here too: two URLs carrying one answer split the citation and neither wins. */
+for (const [name, url, cells] of COMPARE_APPS) {
+  const self = url === `${siteOrigin}/`;
+  if (cells.length !== COMPARE_COLUMNS.length) problems.push(`/compare: row "${name}" has ${cells.length} cells, expected ${COMPARE_COLUMNS.length}`);
+  if (!self && !/^https?:\/\//.test(url)) problems.push(`/compare: "${name}" has no link to its own public page`);
+  if (!self && url.startsWith(siteOrigin)) problems.push(`/compare: "${name}" links to us instead of to its own page`);
+  const blank = cells.findIndex((c) => !c.trim());
+  if (blank >= 0) problems.push(`/compare: row "${name}" leaves "${COMPARE_COLUMNS[blank]}" empty (say "Not verified" instead)`);
+}
+const homeQuestions = new Set(FAQ.map(([q]) => q.toLowerCase()));
+for (const [q] of COMPARE_FAQ) {
+  if (homeQuestions.has(q.toLowerCase())) problems.push(`/compare: "${q}" is already answered on the home page`);
 }
 
 /** Every .html under dist, including the blog posts in their own directory. */

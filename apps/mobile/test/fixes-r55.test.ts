@@ -35,10 +35,10 @@ describe("F265 · the QA variant is its own app", () => {
   beforeEach(() => vi.resetModules());
   afterEach(() => vi.resetModules());
 
-  it("gives the store build the store bundle id, at build 17", async () => {
+  it("gives the store build the store bundle id, at build 18", async () => {
     const c = await load(undefined);
     expect(c.ios?.bundleIdentifier).toBe(STORE_ID);
-    expect(c.ios?.buildNumber).toBe("17");
+    expect(c.ios?.buildNumber).toBe("18");
     expect(c.name).toBe("Inborn");
   });
 

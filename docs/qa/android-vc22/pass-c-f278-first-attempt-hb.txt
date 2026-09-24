@@ -1,0 +1,44 @@
+NC-OK
+attach-strict before: checked="false" (off)
+attach-strict after:  checked="false" (off)
+strict off rc=0
+SHARED file:///sdcard/Android/data/com.inbornapp.mobile/files/vc22-ja-report.txt
+ids:  android:id/content android:id/navigationBarBackground attach attached-chip-mufhyc05-2-7qxeb7r5 attached-docs com.inbornapp.mobile:id/action_bar_root composer-input context-level-ok context-meter empty-headline mic model-chip notice open-chats seal seal-label send suggestion-draft suggestion-summarize suggestion-translate 
+text: Chats|SEALED|INSTANT|This is AI running on your phone. It can be wrong. Check important facts.|Dismiss|INSTANT|Nothing leaves this phone.|Summarize text|Translate|Draft a message|vc22-ja-report.txt|Message…|
+--- F278 OFF-TOPIC, asked in Japanese (the exact sentence round 58 measured at bm25Terms=2)
+quick-source carries: [一九九八年のワールドカップで優勝したのはどこですか？]
+draft now: [一九九八年のワールドカップで優勝したのはどこですか？]
+f278-off sec=13 complete=1 hebrew-chars=0 latin-letters=2 LANGUAGE=NO-HEBREW
+ANSWER: 一九九八年ワールドカップの優勝したのはフランスのFCバルジャンです。 
+SOURCES-blocks=0
+--- whole screen:
+Chats
+SEALED
+INSTANT
+FAST handles Japanese better than INSTANT.
+Switch to FAST
+Not now
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+一九九八年のワールドカップで優勝したのはどこですか？
+INSTANT · ON-DEVICE AI
+一九九八年ワールドカップの優勝したのはフランスのFCバルジャンです。
+LEDGER
+Message…
+--- F278 ON-TOPIC, asked in Japanese, same one-passage file
+quick-source carries: [青葉商事の社員数は何名ですか？]
+draft now: [青葉商事の社員数は何名ですか？]
+f278-on sec=15 complete=1 hebrew-chars=0 latin-letters=0 LANGUAGE=NO-HEBREW
+ANSWER: 青葉商事は「青葉商事」として設立された独立会社であり、社員の数は現在で公開されておらず、会社組織や従業員情報について正確な情報は把握できません。 
+SOURCES-blocks=0
+--- whole screen:
+Chats
+SEALED
+INSTANT
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+青葉商事の社員数は何名ですか？
+INSTANT · ON-DEVICE AI
+青葉商事は「青葉商事」として設立された独立会社であり、社員の数は現在で公開されておらず、会社組織や従業員情報について正確な情報は把握できません。
+LEDGER
+Message…

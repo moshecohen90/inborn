@@ -147,6 +147,8 @@ beats the control, keep the control; a null result is a real result on this surf
 
 ## What is not decided here
 
-Region pricing (spec 12.2), the launch price schedule (14.99 for 30 days, then 19.99), promo
-codes, and the paid-ads copy live in `docs/launch/launch-plan.md`. This directory is store
-metadata only.
+Region pricing (spec 12.2) is not decided anywhere: we set one US price per SKU and the store
+converts it for every other market. The launch price schedule (14.99 for 30 days, then 19.99) and
+the paid-ads copy live in `docs/launch/launch-plan.md`. The codes to create in App Store Connect
+and Play Console, and what support may promise, are in `codes.md` next to this file. Everything
+else here is store metadata only.
