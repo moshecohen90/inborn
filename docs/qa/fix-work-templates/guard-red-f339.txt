@@ -1,0 +1,20 @@
+# F339 guard watched red: AuditLog.tsx, Statement.tsx, TemplatesSheet.tsx reverted to 96e14f9, test unchanged
+     × no control is disabled by a paywall lock 5ms
+     × no WORK or PRO chip is left without a handler or a reason 1ms
+     × a locked vault in the audit log opens the paywall saying why 10ms
+     × the architecture statement banner names its reason 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ …(2) ] to deeply equal []
++ [
++   "screens/Work/AuditLog.tsx: disabled={locked}",
++   "work/TemplatesSheet.tsx: disabled={gate.templatesLocked}",
++ ]
+AssertionError: expected [ 'screens/Work/AuditLog.tsx', …(2) ] to deeply equal []
++ [
++   "screens/Work/AuditLog.tsx",
++   "screens/Work/Statement.tsx",
++   "work/TemplatesSheet.tsx",
++ ]
+AssertionError: expected 'import { useEffect, useState } from "…' to contain 'onPress={() => (locked ? openPaywall(…'
+AssertionError: expected 'import { useEffect, useMemo, useState…' to contain '<WorkTag reason="architectureStatemen…'
+      Tests  4 failed (4)

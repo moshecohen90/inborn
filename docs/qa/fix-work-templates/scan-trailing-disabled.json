@@ -1,0 +1,33 @@
+{
+  "scanned": 113,
+  "hits": [
+    {
+      "at": "apps/mobile/src/components/chat/AttachSheet.tsx:60",
+      "tag": "SheetItem",
+      "testID": "\"attach-photo\"",
+      "disabled": "{photoDisabled}",
+      "trailing": "{<Icon name=\"image\" size={18} color={theme.text2} />}"
+    },
+    {
+      "at": "apps/mobile/src/components/chat/AttachSheet.tsx:61",
+      "tag": "SheetItem",
+      "testID": "\"attach-camera\"",
+      "disabled": "{photoDisabled}",
+      "trailing": "{<Icon name=\"camera\" size={18} color={theme.text2} />}"
+    },
+    {
+      "at": "apps/mobile/src/components/chat/AttachSheet.tsx:74",
+      "tag": "SheetItem",
+      "testID": "{`attach-${d.id}`}",
+      "disabled": "{!ready && !on && !locked}",
+      "trailing": "{\n                locked ? (\n                  <ProTag onPress={() => onUnlock?.(why)} />\n"
+    },
+    {
+      "at": "apps/mobile/src/screens/chat/FolderSheet.tsx:87",
+      "tag": "SheetItem",
+      "testID": "{`folder-pick-${f.id}`}",
+      "disabled": "{canMoveTo ? !canMoveTo(f) : false}",
+      "trailing": "{mode.chat.folderId === f.id ? <Icon name=\"check\" size={16} color={theme.accent} /> : unde"
+    }
+  ]
+}

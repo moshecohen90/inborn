@@ -9,6 +9,8 @@ import { useType } from "../services/type";
 import { Button } from "../components/shell/primitives";
 import { useWorkGate } from "./hooks";
 import { WorkTag } from "./WorkTag";
+import { openPaywall } from "../licence/openPaywall";
+import { afterSheetClose } from "../lib/sheetHandover";
 
 interface Props {
   visible: boolean;
@@ -41,6 +43,10 @@ export function TemplatesSheet({ visible, onClose, onInsert }: Props) {
   };
   const title = template ? template.title : pack ? pack.name : t("templates.title");
   const back = () => (template ? setTemplate(null) : setPack(null));
+  const unlock = () => {
+    onClose();
+    afterSheetClose(() => openPaywall("templates"));
+  };
 
   return (
     <Sheet visible={visible} onClose={onClose} title={title} testID="templates-sheet">
@@ -54,7 +60,7 @@ export function TemplatesSheet({ visible, onClose, onInsert }: Props) {
           {gate.templatesLocked ? (
             <View style={[styles.moment, { borderColor: theme.border, backgroundColor: theme.surface2 }]}>
               <Text style={[type.bodySmall, styles.grow, { color: theme.text2 }]}>{t("work.moment.templates", { price: gate.price })}</Text>
-              <WorkTag />
+              <WorkTag onPress={unlock} />
             </View>
           ) : null}
           {PACKS.map((p) => (
@@ -70,7 +76,7 @@ export function TemplatesSheet({ visible, onClose, onInsert }: Props) {
             </Text>
           </View>
           {pack.templates.map((tp) => (
-            <SheetItem key={tp.id} testID={`template-${tp.id}`} label={tp.title} hint={tp.purpose} onPress={() => (gate.templatesLocked ? undefined : setTemplate(tp))} trailing={gate.templatesLocked ? <WorkTag /> : undefined} disabled={gate.templatesLocked} />
+            <SheetItem key={tp.id} testID={`template-${tp.id}`} label={tp.title} hint={tp.purpose} onPress={() => (gate.templatesLocked ? unlock() : setTemplate(tp))} trailing={gate.templatesLocked ? <WorkTag onPress={unlock} /> : undefined} />
           ))}
         </>
       ) : (
