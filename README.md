@@ -5368,6 +5368,10 @@ model for it first, the rest below.
   door's list and names Fast. Fast's catalog line said "on this phone" in a browser; it says "device" now, with the
   manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
   site languages now say "computers and tablets", and a test holds that sentence to the gate.
+- **The photo pack is a companion, has one name, and its install link lands on it** (F346, after round 74). Its
+  vault card offered "Use this model"; now no companion card does. It is called "Photo understanding" (translated
+  once per locale) on the card, in the download dialog and in every chat line, with "Qwen3.5 mmproj 0.4B" only on the
+  size line. Every "install X" link opens the vault scrolled to X's card with the card marked.
 
 Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
 `proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).

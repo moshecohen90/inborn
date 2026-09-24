@@ -214,8 +214,8 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 </header>
 
 <section class="guide" aria-label="מדריך קריאה">
-<div class="row"><div class="tier must"><span class="k">MUST · ~45 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~70 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~48 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~163 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~115 דק'</button><button type="button" data-view="must">חובה בלבד · ~45 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="row"><div class="tier must"><span class="k">MUST · ~45 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~71 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~48 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~164 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~116 דק'</button><button type="button" data-view="must">חובה בלבד · ~45 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -642,7 +642,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <p>הוחלט (D13, משה 3.9.2026): משיקים ב‑6 שפות (§7.8), ובכל מקרה הקוד נבנה כך שהוספת שפה היא קובץ אחד ובלי שינוי קוד: כל מחרוזת בממשק חיה בקובץ locale אחד לכל שפה (JSON בפורמט ICU MessageFormat, עם ריבוי וסדר מילים לפי שפה), נטענת דרך i18next + react-i18next, ואותם קבצים משרתים את הטלפון, את הווב ואת הדסקטופ (Tauri מציג את הממשק מאותה בניית ווב). expo-localization קורא את שפת המכשיר; Intl מעצב תאריכים, מספרים ויחידות. RTL מהיום הראשון במבנה: מאפייני CSS לוגיים (start/end) ו‑I18nManager בכל מסך. <strong>מה נבדק בפועל בכל PR (מתוקן 22.9.2026):</strong> אף locale של עברית או ערבית לא נשלח ב‑1.0 (<span class="ltr">docs/research/launch-languages-2026-09.md</span> — שמונה שפות השקה, עברית נדחית עד שייכנס מודל ייעודי), ולכן הכלל “בדיקה בעברית ובערבית בכל PR” אינו בר‑ביצוע והוחלף בזה: (א) הרצת ה‑locale הפסאודו (<span class="ltr">packages/i18n/scripts/pseudo.mjs</span>, מחרוזות מוארכות ב‑40%) בכל PR שנוגע במחרוזות או בפריסה, כדי לתפוס חיתוך טקסט; (ב) מעבר RTL ידני דרך המתג <span class="ltr">settings.advanced.rtl</span> שב‑Settings (<span class="ltr">I18nManager.forceRTL</span>, גלוי רק ב‑<span class="ltr">__DEV__</span>) על כל מסך שה‑PR שינה; (ג) ברגע שנשלח locale של עברית או ערבית, הכלל חוזר לנוסחו המקורי ובדיקה בשפה עצמה מחליפה את שלב בʹ. CI מריץ פסאודו‑לוקליזציה (מחרוזות מוארכות ב‑40% עם תווים מיוחדים) כדי לתפוס חיתוך טקסט לפני שיש מתרגם. מחרוזות חדשות נאספות אוטומטית (extraction) ומועברות לצינור התרגום הקיים של אפליקציות התנ"ך (translation-expert + validateLangs), שכבר יודע לתרגם בהקשר ולאמת שלמות; גם מטא‑דאטה בחנויות וצילומי מסך לכל שפה עוברים באותו צינור. מה לא מתורגם: תשובות המודל, שתלויות במודל; לכן בפרטי כל מחסנית (S31, §8) יש שורת "שפות טובות", ובשפה שהמודל חלש בה האפליקציה אומרת זאת במקום להבטיח.</p>
 
 </section>
-<section class="sec" data-tier="rec" data-words="2576">
+<section class="sec" data-tier="rec" data-words="2657">
 <h2 id="s6"><span class="n">06</span>מודלים ורצפת מכשירים<span class="tierpill">RECOMMENDED</span><span class="h2min">~13 min</span></h2>
 <p class="lead">המשתמש לא בוחר "מודל" מרשימה של 40 שמות. הוא רואה ארבע רמות עם שם, גודל, ומהירות צפויה על המכשיר שלו, וברירת מחדל שנבחרה לפי הזיכרון. מאחורי הקלעים, קטלוג GGUF אחד משרת את כל הפלטפורמות.</p>
 
@@ -714,6 +714,7 @@ store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 </tbody>
 </table>
 </div>
+<p>בכספת, כרטיס של מודל נלווה אינו כרטיס של מודל צ'אט: אין בו <span class="ltr">Use this model</span> ואין מהירות, והכותרת היא שמו של המודל בשפת המשתמש (<span class="ltr">Photo understanding</span>, <span class="ltr">Voice input</span>, <span class="ltr">Document index</span>). אותו שם מופיע בחלון ההורדה ובכל שורה בצ'אט, והשם הטכני (<span class="ltr">Qwen3.5 mmproj 0.4B</span>) מופיע רק בשורת הגודל. כשהמודל מובנה, הכרטיס אומר <span class="ltr">Included with the app</span>. כל קישור "התקן X" (צירוף תמונה, מסמכים, הכתבה, כרטיס ההמלצה) פותח את הכספת גלולה לכרטיס של X ומסמן אותו.</p>
 
 <h3>6.3 רצפת מכשירים ובחירת ברירת מחדל</h3>
 <div class="tw">

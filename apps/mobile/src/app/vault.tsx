@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { VaultEntry } from "../screens/vault/VaultEntry";
 import { useAppServices } from "../services/AppServices";
 import { openPaywall } from "../licence";
@@ -8,8 +8,10 @@ import { openPaywall } from "../licence";
 export default function VaultRoute() {
   const router = useRouter();
   const s = useAppServices();
+  const { focus } = useLocalSearchParams<{ focus?: string }>();
   return (
     <VaultEntry
+      focus={typeof focus === "string" ? focus : undefined}
       onClose={() => (router.canGoBack() ? router.back() : router.replace("/"))}
       onModelChanged={() => {
         s.modelChanged();

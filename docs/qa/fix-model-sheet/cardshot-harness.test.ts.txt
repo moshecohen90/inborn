@@ -1,0 +1,41 @@
+import { writeFileSync } from "node:fs";
+import { createElement, type ReactElement } from "react";
+import { it, vi } from "vitest";
+import { BUNDLED_MANIFEST, type CatalogModel, type InstallState } from "@inborn/core";
+import { dark, light } from "@inborn/ui";
+import { initI18n } from "@inborn/i18n";
+
+const OUT = "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-model-sheet/cards";
+const cur = vi.hoisted(() => ({ t: (k: string) => k }));
+vi.mock("react-native", async () => await import("react-native-web"));
+vi.mock("react-native-svg", () => { const Svg = () => null; return { __esModule: true, default: Svg, Svg, Path: Svg, Circle: Svg, Rect: Svg, G: Svg, Line: Svg }; });
+vi.mock("react-i18next", async (orig) => ({ ...(await orig<object>()), useTranslation: () => ({ t: (k: string, o?: object) => cur.t(k, o as never), i18n: { language: "en" } }) }));
+vi.mock("../../services/theme", () => ({ useTextScale: () => 1, useTheme: () => ({ theme: dark }) }));
+vi.mock("../../lib/deviceNoun", () => ({ deviceNoun: () => "phone" }));
+
+it("renders cards", async () => {
+  const { mkdirSync } = await import("node:fs");
+  mkdirSync(OUT, { recursive: true });
+  const RNW = (await import("react-native-web")) as unknown as { AppRegistry: { registerComponent: (n: string, f: () => unknown) => void; getApplication: (n: string, o?: object) => { element: ReactElement; getStyleElement: () => ReactElement } }; View: never; ScrollView: never };
+  const serverRenderer: string = "react-dom/server";
+  const { renderToString, renderToStaticMarkup } = (await import(serverRenderer)) as { renderToString: (e: ReactElement) => string; renderToStaticMarkup: (e: ReactElement) => string };
+  const byId = (id: string): CatalogModel => BUNDLED_MANIFEST.models.find((m) => m.id === id)!;
+  const ready = (via: "bundled" | "https"): InstallState => ({ kind: "ready", via, bytes: 1, path: "/x", sha256: "" });
+  const plan = (m: CatalogModel) => ({ via: "https", host: "models.inbornapp.com", origin: "models.inbornapp.com", bytes: m.bytes }) as never;
+  const device = { ramGB: 6, deviceClass: "phone", chip: "ios-mid", os: "ios" } as never;
+  for (const version of ["before", "after"]) {
+    const Card = (version === "before" ? (await import("./ModelCard.before")) : await import("./ModelCard")).ModelCard as (p: object) => ReactElement;
+    for (const locale of ["en", "de"]) {
+      const i18n = await initI18n(locale, [], { device: "phone" });
+      cur.t = i18n.t.bind(i18n) as never;
+      for (const [mode, theme] of [["light", light], ["dark", dark]] as const) {
+        const rows: [string, InstallState, boolean, boolean][] = [["instant", ready("bundled"), true, false], ["fast", { kind: "not-installed" }, false, false], ["speech-whisper-base", { kind: "not-installed" }, false, false], ["vision-qwen35", ready("bundled"), false, version === "after"]];
+        const App = () => createElement("div", { style: { padding: 16, background: theme.bg, minHeight: "100vh" } }, rows.map(([id, state, active, highlighted]) => createElement(Card, { key: id, model: byId(id), state, plan: state.kind === "ready" ? null : plan(byId(id)), device, theme, recommended: id === "fast", active, highlighted, onInstall() {}, onCancel() {}, onPause() {}, onResume() {}, onUse() {}, onDetails() {} })));
+        RNW.AppRegistry.registerComponent("App", () => App);
+        const { element, getStyleElement } = RNW.AppRegistry.getApplication("App");
+        const html = `<!doctype html><html><head><meta name="viewport" content="width=device-width"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=block" rel="stylesheet"><style>body{margin:0;font-family:'IBM Plex Sans',sans-serif}</style>${renderToStaticMarkup(getStyleElement())}</head><body>${renderToString(element)}</body></html>`;
+        writeFileSync(`${OUT}/${version}-${locale}-${mode}.html`, html);
+      }
+    }
+  }
+});

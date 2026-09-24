@@ -116,7 +116,8 @@ describe("F247 · the sealed green means the seal and nothing else (§9.9)", () 
     expect(sheet).toContain("borderColor: choice.current ? theme.text : theme.border");
     expect(sheet).not.toMatch(/theme\.sealed/);
     const card = source("screens/vault/ModelCard.tsx");
-    expect(card).toContain("borderColor: active ? theme.text : theme.border");
+    /* F346: the card an "install X" link opened the vault for is marked in accent, still never in the sealed green. */
+    expect(card).toContain("borderColor: highlighted ? theme.accent : active ? theme.text : theme.border");
     expect(card).not.toMatch(/inUse.*theme\.sealed/);
   });
 
