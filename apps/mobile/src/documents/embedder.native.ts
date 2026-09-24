@@ -1,25 +1,30 @@
 import { File, Paths } from "expo-file-system";
-import type { Embedder } from "@inborn/core";
+import { BUNDLED_MANIFEST, type Embedder } from "@inborn/core";
 import { LlamaRnEmbedder } from "../adapters/llamaRn";
 import { getVault } from "../vault/store";
 
-/** Catalog id of the default document-index model (spec §6.2). */
-export const EMBED_MODEL_ID = "embed-nomic";
+/** Catalog id of the document-index model (spec §6.2). */
+export const EMBED_MODEL_ID = "embed-e5";
 /** M1-style dev fallback: a GGUF pushed by hand as Documents/embed.gguf. */
 export const DEV_EMBED_FILE = "embed.gguf";
 
 export interface ResolvedEmbedder {
   embedder: Embedder & { unload(): Promise<void>; loadMs?: number };
   path: string;
+  /** The model's trained context; llama.cpp aborts past it, so the chunker must be told. */
+  contextTokens: number;
 }
+
+const contextTokens = (): number => BUNDLED_MANIFEST.models.find((m) => m.id === EMBED_MODEL_ID)?.contextLength ?? 512;
 
 /** The vault's installed companion first, then the dev fallback file; null means "install the document index". */
 export function resolveEmbedder(): ResolvedEmbedder | null {
   const vault = getVault();
   const state = vault.state(EMBED_MODEL_ID);
-  if (state.kind === "ready" && new File(state.path).exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, state.path), path: state.path };
+  const ctx = contextTokens();
+  if (state.kind === "ready" && new File(state.path).exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, state.path, ctx), path: state.path, contextTokens: ctx };
   const dev = new File(Paths.document, DEV_EMBED_FILE);
-  if (dev.exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, dev.uri), path: dev.uri };
+  if (dev.exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, dev.uri, ctx), path: dev.uri, contextTokens: ctx };
   return null;
 }
 

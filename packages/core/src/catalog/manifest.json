@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 4,
-  "publishedAt": "2026-09-21",
+  "version": 5,
+  "publishedAt": "2026-09-24",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -315,38 +315,49 @@
       "minEngine": 1
     },
     {
-      "id": "embed-nomic",
+      "id": "embed-e5",
       "role": "embedding",
       "name": "Document index",
-      "vendor": "Nomic",
-      "family": "nomic-embed-text-v1.5",
-      "params": "137M",
-      "quant": "F16",
-      "arch": "nomic-bert",
-      "file": "nomic-embed-text-v1.5.f16.gguf",
-      "bytes": 274290560,
-      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
-      "license": "Apache-2.0",
+      "vendor": "Microsoft",
+      "family": "multilingual-e5-large-instruct",
+      "params": "560M",
+      "quant": "Q6_K",
+      "arch": "bert",
+      "file": "multilingual-e5-large-instruct-Q6_K.gguf",
+      "bytes": 467958912,
+      "sha256": "971b20b033a555f920bad72941123f48b470a2fa676abdb713e5dc8605ea15a4",
+      "license": "MIT",
       "minRamGB": 3,
-      "recommendedRamGB": 3,
-      "contextLength": 8192,
+      "recommendedRamGB": 4,
+      "contextLength": 512,
       "vision": false,
       "tools": false,
       "goodFor": "Lets Inborn search your documents on this device.",
       "battery": "low",
       "goodLanguages": [
-        "en"
+        "en",
+        "de",
+        "es",
+        "fr",
+        "pt",
+        "it",
+        "he",
+        "ja",
+        "ko",
+        "zh",
+        "ru",
+        "ar"
       ],
       "delivery": [
         {
           "kind": "play-asset-pack",
           "pack": "inborn_model_embed",
           "mode": "on-demand",
-          "file": "nomic-embed-text-v1.5.f16.gguf"
+          "file": "multilingual-e5-large-instruct-Q6_K.gguf"
         },
         {
           "kind": "https",
-          "path": "nomic-embed-text-v1.5.f16.gguf"
+          "path": "multilingual-e5-large-instruct-Q6_K.gguf"
         }
       ],
       "proOnly": false,
@@ -443,4 +454,5 @@
     }
   ],
   "signature": "4435b56b35686899c0482efb6aae2e4016980439dd8a84a58443555c3f1af60c42d4fdfc078f64a0ae999093468a2360d1b82740c6380376e7e88fe29c00df09"
+  "signature": "8952684e2505a90dc52b0f656034a710a1f92fc4ae8d61bdd46b125d828cf9b7581b5e8d9202fd6929edc8d9ec8784dcfba12327d51d93d18df08ab759c01505"
 }

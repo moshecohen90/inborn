@@ -8,14 +8,26 @@ import { normalize } from "./vector";
 export const NOMIC_DOC_PREFIX = "search_document: ";
 export const NOMIC_QUERY_PREFIX = "search_query: ";
 
+/* multilingual-e5-*-instruct takes the task on the query only; a passage is embedded raw. Every number in
+   docs/qa/embed-multilingual/measure.md was measured with exactly this string, so changing it invalidates them. */
+export const E5_QUERY_PREFIX = "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ";
+
+const PREFIXES: ReadonlyArray<{ match: RegExp; doc: string; query: string }> = [
+  { match: /nomic/i, doc: NOMIC_DOC_PREFIX, query: NOMIC_QUERY_PREFIX },
+  { match: /e5/i, doc: "", query: E5_QUERY_PREFIX },
+];
+
+const prefixesFor = (embedderId: string) => PREFIXES.find((p) => p.match.test(embedderId));
+
 export const usesNomicPrefixes = (embedderId: string): boolean => /nomic/i.test(embedderId);
 
 export function forDocuments(embedderId: string, texts: string[]): string[] {
-  return usesNomicPrefixes(embedderId) ? texts.map((t) => NOMIC_DOC_PREFIX + t) : texts;
+  const p = prefixesFor(embedderId);
+  return p?.doc ? texts.map((t) => p.doc + t) : texts;
 }
 
 export function forQuery(embedderId: string, text: string): string {
-  return usesNomicPrefixes(embedderId) ? NOMIC_QUERY_PREFIX + text : text;
+  return (prefixesFor(embedderId)?.query ?? "") + text;
 }
 
 /** Any LocalLM whose capabilities report embeddings (llama.rn / wllama / tauri sessions loaded for embedding). */

@@ -188,6 +188,8 @@ const ALL_PACKS = {
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
   embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } }],
   /* Voice (whisper base) companion, same rule. */
+  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],
+  /* Voice (whisper base) and vision (Qwen3.5 projector) companions, same rule. */
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
   /* Instant's projector arrives with Instant (fast-follow), so the first photo on a fresh install is answered; its own pack keeps Remove per model. */
   vision: [{ name: "inborn_model_vision", deliveryType: "fast-follow", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],

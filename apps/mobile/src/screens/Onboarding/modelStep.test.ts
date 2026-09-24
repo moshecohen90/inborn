@@ -94,7 +94,7 @@ describe("model step offers", () => {
 
   it("compares languages against the smallest chat model, not against the speech or embedding files (F120b)", () => {
     const speech = model("speech-whisper-base");
-    const embed = model("embed-nomic");
+    const embed = model("embed-e5");
     const s = step({
       entries: [entry(speech, NOT_INSTALLED, httpsPlan(speech)), entry(embed, NOT_INSTALLED, httpsPlan(embed)), entry(instant, ready("bundled"), httpsPlan(instant))],
       languageCode: "en",

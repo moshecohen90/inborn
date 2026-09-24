@@ -19,7 +19,8 @@ through it end to end: the browser (`pnpm web:smoke`, below) and Moshe's iPhone
 | `v1/Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf` | 1,401,058,176 | size, ranges |
 | `v1/Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf` | 1,339,879,904 | size, ranges |
 | `v1/Phi-4-mini-instruct-Q4_K_M.gguf` | 2,491,874,272 | size, ranges |
-| `v1/nomic-embed-text-v1.5.f16.gguf` | 274,290,560 | size, ranges |
+| `v1/nomic-embed-text-v1.5.f16.gguf` | 274,290,560 | size, ranges; out of the catalog since v5 (round 72) |
+| `v1/multilingual-e5-large-instruct-Q6_K.gguf` | 467,958,912 | **not uploaded yet**: catalog v5 names it, `docs/qa/deploy-site/embed-e5-upload.md` has the command |
 | `v1/ggml-base.bin` | 147,951,465 | size, ranges, full sha256 |
 | `v1/mmproj-Qwen3.5-0.8B-F16.gguf` | 204,987,232 | size, ranges, full sha256 |
 
