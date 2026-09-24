@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FREE_LEDGER_ROWS, type ChatMessage } from "@inborn/core";
 import { useEntitlement } from "../../licence";
 import { useTheme } from "../../lib/theme";
-import { modelLabel } from "../../lib/models";
+import { chipLabel } from "../../lib/models";
 import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
 
@@ -34,7 +34,7 @@ export function Ledger({ message, nCtx, quant, onUnlock, rtl }: LedgerProps) {
   const msPerToken = u && u.tokPerSec > 0 ? Math.round(1000 / u.tokPerSec) : undefined;
   const genMs = u ? Math.round(u.ttftMs + (u.completionTokens * 1000) / Math.max(1, u.tokPerSec)) : undefined;
   const rows: [string, string, string][] = [
-    ["model", t("ledger.model"), modelLabel(message.modelId ?? "")],
+    ["model", t("ledger.model"), chipLabel(t, message.modelId ?? "")],
     ["quant", t("ledger.quant"), quant ?? "—"],
     ["context", t("ledger.context"), u ? `${u.promptTokens + u.completionTokens} / ${nCtx}` : "—"],
     ["msPerToken", t("ledger.msPerToken"), msPerToken !== undefined ? `${msPerToken} ms` : "—"],

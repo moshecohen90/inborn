@@ -20,6 +20,7 @@ import { createReadStream, existsSync, readFileSync, statSync, writeFileSync } f
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isolationHeaders, securityHeaders } from "../apps/web/headers.mjs";
+import { MANIFEST_REL, readCatalog, webModel } from "./web-manifest.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const webDist = path.join(repoRoot, "apps/web/dist");
@@ -58,17 +59,26 @@ export function modelSha256(file) {
   return hash;
 }
 
-/** The dev catalog: every alias that resolves to a file, in the shape apps/mobile/src/web/modelDelivery.ts reads. */
-export function modelsManifest({ modelsDir, aliases, modelsOrigin = "" }) {
-  const tiers = { instant: "instant", fast: "fast", sharp: "sharp", power: "power" };
+/**
+ * The dev catalog: every alias that resolves to a file, in the one shape the deployed manifest also has
+ * (scripts/web-manifest.mjs). The served file's own size and hash win over the catalog's: a dev alias may point at
+ * another GGUF, and the manifest must describe what this server actually hands out.
+ * With no model on this machine it answers with the built dist's manifest, so the deployed catalog can be read here.
+ */
+export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "" }) {
+  const catalog = readCatalog();
   const models = [];
   for (const name of Object.keys(aliases)) {
     const file = resolveFile(`/models/${name}`, { dist: "", modelsDir, aliases });
     if (!file) continue;
     const id = name.replace(/\.gguf$/, "");
-    models.push({ id, tier: tiers[id] ?? "instant", name: id[0].toUpperCase() + id.slice(1), file: name, bytes: statSync(file).size, sha256: modelSha256(file), delivery: [{ kind: "cdn", url: modelsOrigin ? `${modelsOrigin}/v1/${path.basename(file)}` : `/models/${name}` }] });
+    const model = catalog.models.find((m) => m.id === id) ?? { id, tier: "instant", name: id[0].toUpperCase() + id.slice(1) };
+    const url = modelsOrigin ? `${modelsOrigin}/v1/${path.basename(file)}` : `/models/${name}`;
+    models.push({ ...webModel(model, url), file: name, bytes: statSync(file).size, sha256: modelSha256(file) });
   }
-  return { version: 1, publishedAt: new Date().toISOString(), models, signature: "" };
+  const built = dist ? path.join(dist, MANIFEST_REL) : "";
+  if (models.length === 0 && built && existsSync(built)) return JSON.parse(readFileSync(built, "utf8"));
+  return { version: catalog.version, publishedAt: new Date().toISOString(), models, signature: "" };
 }
 
 const headersFor = (opts) => ({ ...securityHeaders(opts.modelsOrigin), ...(opts.isolation ? isolationHeaders : {}), "Cache-Control": "no-cache" });

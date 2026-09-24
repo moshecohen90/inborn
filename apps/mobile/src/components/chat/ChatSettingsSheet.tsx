@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BUILT_IN_PERSONAS, type Persona } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
-import { modelLabel } from "../../lib/models";
+import { chipLabel } from "../../lib/models";
 import { PersonaGlyph } from "./PersonaGlyph";
 import { Sheet } from "./Sheet";
 import { shape } from "./styles";
@@ -66,7 +66,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chatSettings.model")}</Text>
         <View style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
           <ChipGlyph size={12} color={theme.text2} />
-          <Text style={[type.monoLabel, { color: theme.text2 }]}>{modelLabel(modelId)}</Text>
+          <Text style={[type.monoLabel, { color: theme.text2 }]}>{chipLabel(t, modelId)}</Text>
         </View>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("chatSettings.persona")}</Text>
         <View style={styles.personas}>
@@ -93,7 +93,7 @@ export function ChatSettingsSheet({ visible, onClose, value, onSave, customPerso
         <View style={styles.switchRow}>
           <View style={styles.grow}>
             <Text style={[type.body, { color: thinkingAvailable ? theme.text : theme.text3 }]}>{t("chatSettings.thinking")}</Text>
-            <Text style={[type.caption, { color: theme.text3 }]}>{thinkingAvailable ? t("chatSettings.thinkingHint") : t("chatSettings.thinkingOff", { model: modelLabel(modelId) })}</Text>
+            <Text style={[type.caption, { color: theme.text3 }]}>{thinkingAvailable ? t("chatSettings.thinkingHint") : t("chatSettings.thinkingOff", { model: chipLabel(t, modelId) })}</Text>
           </View>
           <Toggle testID="thinking-switch" label={t("chatSettings.thinking")} value={thinkingAvailable && draft.thinking} disabled={!thinkingAvailable} onChange={(thinking) => setDraft((d) => ({ ...d, thinking }))} />
         </View>
