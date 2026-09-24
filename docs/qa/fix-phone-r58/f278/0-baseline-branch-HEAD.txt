@@ -1,0 +1,166 @@
+
+> inborn@ test /Users/moshecohen/dev/inborn-wt/fix-phone-r58
+> pnpm run check:store && pnpm -r --if-present test
+
+
+> inborn@ check:store /Users/moshecohen/dev/inborn-wt/fix-phone-r58
+> node docs/store/scripts/check-store-copy.mjs
+
+FIELD LENGTHS
+  de     apple.name                    24/30  ok
+  de     apple.subtitle                26/30  ok
+  de     apple.promotional_text      152/170  ok
+  de     apple.description         1863/4000  ok
+  de     apple.whats_new            431/4000  ok
+  de     google.title                  24/30  ok
+  de     google.short_description      80/80  ok
+  de     google.full_description   1810/4000  ok
+  de     apple.keywords              94/100B  ok
+  en     apple.name                    29/30  ok
+  en     apple.subtitle                29/30  ok
+  en     apple.promotional_text      152/170  ok
+  en     apple.description         1642/4000  ok
+  en     apple.whats_new            358/4000  ok
+  en     google.title                  24/30  ok
+  en     google.short_description      78/80  ok
+  en     google.full_description   1582/4000  ok
+  en     apple.keywords              85/100B  ok
+  es     apple.name                    24/30  ok
+  es     apple.subtitle                24/30  ok
+  es     apple.promotional_text      150/170  ok
+  es     apple.description         1826/4000  ok
+  es     apple.whats_new            416/4000  ok
+  es     google.title                  24/30  ok
+  es     google.short_description      78/80  ok
+  es     google.full_description   1793/4000  ok
+  es     apple.keywords              92/100B  ok
+  fr     apple.name                    28/30  ok
+  fr     apple.subtitle                22/30  ok
+  fr     apple.promotional_text      157/170  ok
+  fr     apple.description         1997/4000  ok
+  fr     apple.whats_new            460/4000  ok
+  fr     google.title                  27/30  ok
+  fr     google.short_description      79/80  ok
+  fr     google.full_description   1873/4000  ok
+  fr     apple.keywords              88/100B  ok
+  ja     apple.name                    20/30  ok
+  ja     apple.subtitle                17/30  ok
+  ja     apple.promotional_text       78/170  ok
+  ja     apple.description          896/4000  ok
+  ja     apple.whats_new            197/4000  ok
+  ja     google.title                  20/30  ok
+  ja     google.short_description      39/80  ok
+  ja     google.full_description    869/4000  ok
+  ja     apple.keywords              97/100B  ok
+  ko     apple.name                    21/30  ok
+  ko     apple.subtitle                17/30  ok
+  ko     apple.promotional_text       95/170  ok
+  ko     apple.description          973/4000  ok
+  ko     apple.whats_new            206/4000  ok
+  ko     google.title                  19/30  ok
+  ko     google.short_description      49/80  ok
+  ko     google.full_description    968/4000  ok
+  ko     apple.keywords              85/100B  ok
+  pt-BR  apple.name                    26/30  ok
+  pt-BR  apple.subtitle                24/30  ok
+  pt-BR  apple.promotional_text      152/170  ok
+  pt-BR  apple.description         1767/4000  ok
+  pt-BR  apple.whats_new            409/4000  ok
+  pt-BR  google.title                  27/30  ok
+  pt-BR  google.short_description      67/80  ok
+  pt-BR  google.full_description   1689/4000  ok
+  pt-BR  apple.keywords              90/100B  ok
+  zh-Hant apple.name                    17/30  ok
+  zh-Hant apple.subtitle                15/30  ok
+  zh-Hant apple.promotional_text       66/170  ok
+  zh-Hant apple.description          696/4000  ok
+  zh-Hant apple.whats_new            151/4000  ok
+  zh-Hant google.title                  17/30  ok
+  zh-Hant google.short_description      34/80  ok
+  zh-Hant google.full_description    673/4000  ok
+  zh-Hant apple.keywords              79/100B  ok
+
+PASS: all fields within limits.
+Scope: 7 of 8 workspace projects
+packages/core test$ vitest run
+packages/i18n test$ vitest run
+packages/ui test$ vitest run
+packages/i18n test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/i18n
+packages/core test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core
+packages/ui test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/ui
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  13 passed (13)
+packages/ui test:    Start at  12:16:21
+packages/ui test:    Duration  212ms (transform 67%, import 17%, tests 13%, worker 4%)
+packages/ui test: Done
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  20 passed (20)
+packages/i18n test:    Start at  12:16:21
+packages/i18n test:    Duration  708ms (tests 76%, transform 15%, import 6%, worker 2%)
+packages/i18n test: Done
+packages/core test:  Test Files  75 passed (75)
+packages/core test:       Tests  726 passed (726)
+packages/core test:    Start at  12:16:21
+packages/core test:    Duration  2.20s (import 44%, transform 36%, tests 18%, worker 3%)
+packages/core test:   Transform  transforming modules took 5.15s · 36% of tracked time, re-done on every run
+packages/core test:              persist transforms across runs with fsModuleCache: true
+packages/core test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+packages/core test: Done
+apps/mobile test$ vitest run
+apps/mobile test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile
+apps/mobile test:  ❯ src/proof/deliveryLine.test.ts (0 test)
+apps/mobile test:  ❯ src/vault/lastDelivery.test.ts (0 test)
+apps/mobile test: ⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+apps/mobile test:  FAIL  src/proof/deliveryLine.test.ts [ src/proof/deliveryLine.test.ts ]
+apps/mobile test: Error: Transform failed with 1 error:
+apps/mobile test: [31m[PARSE_ERROR] [0mExpected `}` but found `EOF`
+apps/mobile test:     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/proof/deliveryLine.ts:38:3 [38;5;246m][0m
+apps/mobile test:     [38;5;246m│[0m
+apps/mobile test:  [38;5;246m30 │[0m [38;5;249me[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249md[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249my[0m[38;5;249mH[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249mh[0m[38;5;249mC[0m[38;5;249mh[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mk[0m[38;5;249me[0m[38;5;249md[0m[38;5;249m([0m[38;5;249ms[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mD[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249my[0m[38;5;249mS[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m)[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mb[0m[38;5;249mo[0m[38;5;249mo[0m[38;5;249ml[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mn[0m[38;5;249m [0m{
+apps/mobile test:  [38;5;240m   │[0m                                                                      ┬  
+apps/mobile test:  [38;5;240m   │[0m                                                                      ╰── Opened here
+apps/mobile test:  [38;5;240m   │[0m 
+apps/mobile test:  [38;5;246m38 │[0m [38;5;249m}[0m
+apps/mobile test:  [38;5;240m   │[0m   │ 
+apps/mobile test:  [38;5;240m   │[0m   ╰─ `}` expected
+apps/mobile test: [38;5;246m────╯[0m
+apps/mobile test:   Plugin: vite:oxc
+apps/mobile test:   File: /Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile/src/proof/deliveryLine.ts
+apps/mobile test:  ❯ transformWithOxc ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:4103:19
+apps/mobile test:  ❯ TransformPluginContext.transform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:4174:26
+apps/mobile test:  ❯ EnvironmentPluginContainer.transform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:30932:51
+apps/mobile test:  ❯ loadAndTransform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:20671:26
+apps/mobile test: ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+apps/mobile test:  FAIL  src/vault/lastDelivery.test.ts [ src/vault/lastDelivery.test.ts ]
+apps/mobile test: Error: Transform failed with 1 error:
+apps/mobile test: [31m[PARSE_ERROR] [0mExpected `}` but found `EOF`
+apps/mobile test:     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/proof/deliveryLine.ts:38:3 [38;5;246m][0m
+apps/mobile test:     [38;5;246m│[0m
+apps/mobile test:  [38;5;246m30 │[0m [38;5;249me[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mu[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249md[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249my[0m[38;5;249mH[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249mh[0m[38;5;249mC[0m[38;5;249mh[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mk[0m[38;5;249me[0m[38;5;249md[0m[38;5;249m([0m[38;5;249ms[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mD[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249my[0m[38;5;249mS[0m[38;5;249mo[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m)[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mb[0m[38;5;249mo[0m[38;5;249mo[0m[38;5;249ml[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mn[0m[38;5;249m [0m{
+apps/mobile test:  [38;5;240m   │[0m                                                                      ┬  
+apps/mobile test:  [38;5;240m   │[0m                                                                      ╰── Opened here
+apps/mobile test:  [38;5;240m   │[0m 
+apps/mobile test:  [38;5;246m38 │[0m [38;5;249m}[0m
+apps/mobile test:  [38;5;240m   │[0m   │ 
+apps/mobile test:  [38;5;240m   │[0m   ╰─ `}` expected
+apps/mobile test: [38;5;246m────╯[0m
+apps/mobile test:   Plugin: vite:oxc
+apps/mobile test:   File: /Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile/src/proof/deliveryLine.ts
+apps/mobile test:  ❯ transformWithOxc ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:4103:19
+apps/mobile test:  ❯ TransformPluginContext.transform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:4174:26
+apps/mobile test:  ❯ EnvironmentPluginContainer.transform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:30932:51
+apps/mobile test:  ❯ loadAndTransform ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:20671:26
+apps/mobile test:  ❯ fetchModule ../../node_modules/.pnpm/vite@8.2.2_@types+node@26.4.1_terser@5.51.2_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:34343:15
+apps/mobile test: ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+apps/mobile test:  Test Files  2 failed | 77 passed (79)
+apps/mobile test:       Tests  705 passed (705)
+apps/mobile test:    Start at  12:16:23
+apps/mobile test:    Duration  2.04s (transform 45%, tests 26%, import 26%, worker 3%)
+apps/mobile test:   Transform  transforming modules took 6.30s · 45% of tracked time, re-done on every run
+apps/mobile test:              persist transforms across runs with fsModuleCache: true
+apps/mobile test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+apps/mobile test: Failed
+/Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @inborn/mobile@0.0.1 test: `vitest run`
+Exit status 1
+ ELIFECYCLE  Test failed. See above for more details.

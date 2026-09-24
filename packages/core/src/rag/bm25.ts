@@ -28,6 +28,15 @@ const STOP = new Set(
 
 export const isStopWord = (w: string): boolean => STOP.has(w);
 
+/* Chinese/Japanese grammatical characters: kana morphology, plus the Han pronouns, copulas, conjunctions and
+   particles that STOP covers for English and Hebrew but that no word boundary ever separates in these scripts. */
+const CJK_FUNCTION_CHAR =
+  /[ぁ-ゟー]|[的了是在和有我你他她它们这那什么可以就都也很不没上下来去对为因所以吗呢吧把被让从与及其之于而且但如还要会能过时得着个两一每或者向新]/u;
+
+/* A bigram of pure glue ("です", "可以") is shared by any two texts of the language, so counting it as a distinct
+   lexical match handed an off-topic question the document's own passage (QA F278); it still scores and ranks. */
+export const isCjkFunctionTerm = (term: string): boolean => hasCjk(term) && ![...term].some((c) => !CJK_FUNCTION_CHAR.test(c));
+
 export function bm25Tokens(text: string): string[] {
   const out: string[] = [];
   for (const w of words(text)) {
@@ -41,7 +50,7 @@ export function bm25Tokens(text: string): string[] {
 export interface Bm25Hit {
   id: string;
   score: number;
-  /** Distinct query terms that matched. */
+  /** Distinct content query terms that matched; grammatical glue is excluded, as the relevance floor reads this. */
   matched: number;
 }
 
@@ -99,7 +108,7 @@ export class Bm25Index {
         let e = scores.get(id);
         if (!e) scores.set(id, (e = { score: 0, matched: new Set() }));
         e.score += s;
-        e.matched.add(t);
+        if (!isCjkFunctionTerm(t)) e.matched.add(t);
       }
     }
     return [...scores]

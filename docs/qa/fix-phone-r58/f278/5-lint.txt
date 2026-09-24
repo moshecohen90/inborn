@@ -1,0 +1,14 @@
+
+> inborn@ lint /Users/moshecohen/dev/inborn-wt/fix-phone-r58
+> eslint .
+
+
+/Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile/src/documents/f277-doc-name.test.ts
+  2:140  error  'OpenedDocument' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile/src/proof/deliveryLine.ts
+  39:0  error  Parsing error: '}' expected
+
+✖ 2 problems (2 errors, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.

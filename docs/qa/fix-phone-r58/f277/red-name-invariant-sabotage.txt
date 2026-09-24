@@ -1,0 +1,50 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile
+
+stdout | src/documents/f277-doc-name.test.ts > F277 · a document whose name reads as an instruction still indexes and is cited > indexes and cites both names from an iOS pick
+[documents] plain-halcyon.txt: indexed · 1/1 pages · 1 chunks · 11 ms (11 ms/page)
+
+ ❯ src/documents/f277-doc-name.test.ts (5 tests | 2 failed) 20ms
+   ❯ F277 · a document whose name reads as an instruction still indexes and is cited (5)
+     × indexes and cites both names from an iOS pick 17ms
+     × indexes and cites both names from an Android pick 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/f277-doc-name.test.ts > F277 · a document whose name reads as an instruction still indexes and is cited > indexes and cites both names from an iOS pick
+AssertionError: {"kind":"error","error":"unsupported"}: expected 'error' to be 'imported' // Object.is equality
+
+Expected: "imported"
+Received: "error"
+
+ ❯ src/documents/f277-doc-name.test.ts:110:53
+    108|     const injected = await pickInto(library, iosPick(INJECTION), body(…
+    109|     const control = await pickInto(library, iosPick(CONTROL), body("me…
+    110|     expect(injected.kind, JSON.stringify(injected)).toBe("imported");
+       |                                                     ^
+    111|     expect(control.kind, JSON.stringify(control)).toBe("imported");
+    112|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/documents/f277-doc-name.test.ts > F277 · a document whose name reads as an instruction still indexes and is cited > indexes and cites both names from an Android pick
+AssertionError: {"kind":"error","error":"unsupported"}: expected 'error' to be 'imported' // Object.is equality
+
+Expected: "imported"
+Received: "error"
+
+ ❯ src/documents/f277-doc-name.test.ts:142:53
+    140|     const library = new DocumentLibrary();
+    141|     const injected = await pickInto(library, androidPick(INJECTION), b…
+    142|     expect(injected.kind, JSON.stringify(injected)).toBe("imported");
+       |                                                     ^
+    143|     expect(library.state().documents[0]!.name).toBe(INJECTION);
+    144|     expect(library.state().documents[0]!.chunkCount).toBeGreaterThan(0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  12:25:42
+   Duration  552ms (transform 78%, import 17%, tests 4%)

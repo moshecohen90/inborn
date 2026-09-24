@@ -38,6 +38,11 @@ export function sizeOf(uri: string): number {
   return blobs.get(uri)?.size ?? 0;
 }
 
+/** True when nothing can be opened at this location, which `sizeOf` reports as the same 0 an empty file gives. */
+export function missingSource(uri: string): boolean {
+  return !uri || !blobs.has(uri);
+}
+
 /** Browsers cannot copy into an app directory; the blob simply stays registered under its URI, incognito or not. */
 export function copyIntoLibrary(sourceUri: string, _id: string, _name: string, _opts: { incognito?: boolean } = {}): string {
   return sourceUri;

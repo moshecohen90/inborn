@@ -215,7 +215,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <section class="guide" aria-label="מדריך קריאה">
 <div class="row"><div class="tier must"><span class="k">MUST · ~43 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~63 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~48 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~153 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~106 דק'</button><button type="button" data-view="must">חובה בלבד · ~43 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~154 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~106 דק'</button><button type="button" data-view="must">חובה בלבד · ~43 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -511,7 +511,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="2218">
+<section class="sec" data-tier="rec" data-words="2262">
 <h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית<span class="tierpill">RECOMMENDED</span><span class="h2min">~11 min</span></h2>
 <p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
 
@@ -588,7 +588,7 @@ embed:     nomic-embed-text-v1.5 (274 MB) ברירת מחדל · Qwen3-Embedding
 store:     sqlite-vec (mobile/desktop) · in‑memory/IndexedDB (web)</div>
 <ul>
 <li>כל תשובה שמבוססת על מסמך מציגה <strong>ציטוטים</strong> עם שם הקובץ ומספר עמוד; לחיצה פותחת את הקטע. בלי ציטוט, המודל אומר שלא מצא.</li>
-<li><strong>סף רלוונטיות בשני המצבים</strong> (cosine ≥ 0.5, או התאמה לקסיקלית): רק קטעים מעליו נכנסים לפרומפט ורק הם הופכים לציטוטים. קודם הסף חל רק במצב "ענה רק מהמסמכים שלי", ולכן שאלה שאין עליה דבר במסמכים קיבלה תשובה מומצאת עם רשימת SOURCES מתחתיה (F161). כשאין קטע רלוונטי — או שהמסמך המצורף לא אונדקס בכלל — האפליקציה אומרת זאת בעצמה: "Nothing in your documents matched this question. Answered without them.", ולא סומכת על כך שמודל קטן יציית להוראה.</li>
+<li><strong>סף רלוונטיות בשני המצבים</strong> (cosine ≥ 0.5, או התאמה לקסיקלית): רק קטעים מעליו נכנסים לפרומפט ורק הם הופכים לציטוטים. קודם הסף חל רק במצב "ענה רק מהמסמכים שלי", ולכן שאלה שאין עליה דבר במסמכים קיבלה תשובה מומצאת עם רשימת SOURCES מתחתיה (F161). כשאין קטע רלוונטי — או שהמסמך המצורף לא אונדקס בכלל — האפליקציה אומרת זאת בעצמה: "Nothing in your documents matched this question. Answered without them.", ולא סומכת על כך שמודל קטן יציית להוראה. ההודעה הזו נשארת על המסך לצד התשובה שהיא מסבירה ויורדת רק כששאלה חדשה מחליפה את שתיהן; קודם היא הייתה הבזק של 1,400 מילישניות שנורה לפני שהתשובה התחילה, ועל טלפון שבו התשובה הראשונה מגיעה אחרי כ‑10 שניות היא נעלמה הרבה לפני שהיה מה להסביר (F276).</li>
 <li>מסמך גדול (200+ עמודים) מאונדקס בהדרגה עם מד התקדמות, ואפשר לשאול על מה שכבר אונדקס.</li>
 <li>שפות RTL ורב‑לשוניות: חיתוך לפי משפטים עם Intl.Segmenter, לא לפי תווים; embedding רב‑לשוני ב‑Pro.</li>
 <li><strong>סינית ויפנית</strong>: בשפות שנכתבות בלי רווחים ההתאמה הלקסיקלית נעשית על צמדי תווים (bigrams), אחרת משפט שלם הוא אסימון אחד, שום קטע לא עובר את סף הרלוונטיות, והמשתמש מקבל "לא נמצא במסמכים" על שאלה שהמסמך שלו כן עונה עליה (F195).</li>
