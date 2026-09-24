@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, DEFAULT_MIN_COSINE, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
 
 /**
  * F195. The F161 relevance floor is `cosine >= 0.5 || bm25Terms >= 2 || (bm25Terms >= 1 && bm25 >= 2.0)`. Chinese and
@@ -93,6 +93,57 @@ describe("F195 · an on-topic CJK question keeps its passages and its citations"
       const p = buildRagPrompt({ question: off, hits: hitsFor(off, [passage]), docs, strict: false, nCtx: 4096, nonce: "n" });
       expect(p.used).toEqual([]);
       expect(p.citations).toEqual([]);
+    });
+  }
+});
+
+/**
+ * F278. Real ja/zh documents end their sentences in grammatical glue ("…ためです。", "我们可以…"), and the F195 bigrams
+ * cut that glue into terms like です / した / 我们 / 可以 that any two texts of the language share. Two of them cleared
+ * `bm25Terms >= 2`, so an off-topic question was handed the document's one passage as a citation (QA F261).
+ *
+ * One passage per document on purpose: with a single chunk the IDF is the same constant for every term
+ * (ln(1 + 0.5/1.5) ≈ 0.288), so the score clause cannot tell a particle from a content word either.
+ */
+const JA_ONE = "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。";
+const ZH_ONE = "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。";
+
+describe("F278 · a one-passage CJK document does not cite itself for an off-topic question", () => {
+  for (const [label, record, text, offTopic, onTopic] of [
+    ["Japanese", jaDoc, JA_ONE, "一九九八年のワールドカップで優勝したのはどこですか？", "当社の年度の収益はいくらですか？"],
+    ["Chinese", zhDoc, ZH_ONE, "我们什么时候可以去巴黎旅游？", "公司的年度收入增长了多少？"],
+  ] as const) {
+    const docs = new Map([[record.id, record]]);
+    const only = { id: `${record.id}1`, docId: record.id, text };
+
+    it(`${label}: the glue the question shares with the passage is not counted as a lexical match`, () => {
+      const [hit] = hitsFor(offTopic, [only]);
+      expect(hit!.bm25Terms).toBeLessThan(2);
+      expect(hit!.bm25).toBeLessThan(DEFAULT_MIN_BM25);
+    });
+
+    it(`${label}: outside strict mode the off-topic question cites nothing`, () => {
+      const p = buildRagPrompt({ question: offTopic, hits: hitsFor(offTopic, [only]), docs, strict: false, nCtx: 4096, nonce: "n" });
+      expect(p.used).toEqual([]);
+      expect(p.citations).toEqual([]);
+      expect(p.messages[0]!.content).toContain("contain nothing about this question");
+    });
+
+    it(`${label}: strict mode answers nothing rather than quoting the one passage`, () => {
+      const p = buildRagPrompt({ question: offTopic, hits: hitsFor(offTopic, [only]), docs, strict: false, nCtx: 4096, nonce: "n" });
+      expect(buildRagPrompt({ question: offTopic, hits: hitsFor(offTopic, [only]), docs, strict: true, nCtx: 4096, nonce: "n" }).noAnswer).toBe(true);
+      expect(p.messages[1]?.content ?? "").not.toContain(text);
+    });
+
+    it(`${label}: the on-topic question on the same one-passage document still cites it`, () => {
+      const [hit] = hitsFor(onTopic, [only]);
+      expect(hit!.cosine).toBeLessThan(DEFAULT_MIN_COSINE);
+      expect(hit!.bm25Terms).toBeGreaterThanOrEqual(2);
+      const p = buildRagPrompt({ question: onTopic, hits: hitsFor(onTopic, [only]), docs, strict: true, nCtx: 4096, nonce: "n" });
+      expect(p.noAnswer).toBe(false);
+      expect(p.used.map((h) => h.chunk.id)).toEqual([only.id]);
+      expect(p.citations).toHaveLength(1);
+      expect(p.messages[1]!.content).toContain(text);
     });
   }
 });
