@@ -34,8 +34,8 @@ is the gap between T and the lowest on-topic cosine it lets through.
 
 | candidate | rule 70 on | rule 70 off | T | +cos>T on | +cos>T off | margin |
 |---|---|---|---|---|---|---|
-| nomic-v1.5 | 43/87 | 0/143 | 0.7642 | **43/87** | 0/143 | 0 |
-| e5-large-inst-q6 | 43/87 | 0/143 | 0.8177 | **81/87** | 0/143 | 0.0006 |
+| nomic-v1.5 | 39/87 | 0/143 | 0.7642 | **39/87** | 0/143 | 0 |
+| e5-large-inst-q6 | 39/87 | 0/143 | 0.8177 | **81/87** | 0/143 | 0.0006 |
 
 ## The threshold that could actually ship
 
@@ -46,14 +46,14 @@ threshold that cites **nothing** off-topic in either set — the only one that c
 
 | candidate | T joint | on-topic 1-passage | off | multi-chunk on-topic | right | wrong only | multi off |
 |---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0.7642 | **43/87** | 0/143 | 5/27 | 4 | 1 | 3/54 |
+| nomic-v1.5 | 0.7642 | **39/87** | 0/143 | 5/27 | 4 | 1 | 3/54 |
 | e5-large-inst-q6 | 0.8177 | **81/87** | 0/143 | 25/27 | 25 | 0 | 3/54 |
 
 ## Per language, on-topic cited under `rule 70 OR cos > T joint`
 
 | candidate | de | de (no accents) | en | es | es (no accents) | fr | fr (no accents) | he | ja | ko | pt | pt (no accents) | zh | zh-Hant |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0/5 | 1/3 | 4/10 | 1/5 | 2/4 | 0/5 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
+| nomic-v1.5 | 0/5 | 0/3 | 4/10 | 1/5 | 1/4 | 0/5 | 0/2 | 3/5 | 8/14 | 3/6 | 3/5 | 1/3 | 7/10 | 8/10 |
 | e5-large-inst-q6 | 5/5 | 3/3 | 8/10 | 4/5 | 3/4 | 5/5 | 1/2 | 5/5 | 13/14 | 6/6 | 5/5 | 3/3 | 10/10 | 10/10 |
 
 ## Per language, on-topic cited by the lexical rule alone (`rule 70`)
@@ -64,8 +64,8 @@ word is accented in the passage.
 
 | candidate | de | de (no accents) | en | es | es (no accents) | fr | fr (no accents) | he | ja | ko | pt | pt (no accents) | zh | zh-Hant |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0/5 | 1/3 | 4/10 | 1/5 | 2/4 | 0/5 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
-| e5-large-inst-q6 | 0/5 | 1/3 | 4/10 | 1/5 | 2/4 | 0/5 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
+| nomic-v1.5 | 0/5 | 0/3 | 4/10 | 1/5 | 1/4 | 0/5 | 0/2 | 3/5 | 8/14 | 3/6 | 3/5 | 1/3 | 7/10 | 8/10 |
+| e5-large-inst-q6 | 0/5 | 0/3 | 4/10 | 1/5 | 1/4 | 0/5 | 0/2 | 3/5 | 8/14 | 3/6 | 3/5 | 1/3 | 7/10 | 8/10 |
 
 ## Size, licence and cost
 
@@ -90,7 +90,7 @@ cannot move it under the door. This is the row the guard asserts.
 
 | candidate | on-topic | off-topic | multi-chunk on-topic | right | wrong only | multi off-topic |
 |---|---|---|---|---|---|---|
-| nomic-v1.5 | **43/87** | 0/143 | 5/27 | 4 | 1 | 3/54 |
+| nomic-v1.5 | **39/87** | 0/143 | 5/27 | 4 | 1 | 3/54 |
 | e5-large-inst-q6 | **79/87** | 0/143 | 25/27 | 25 | 0 | 3/54 |
 
 ## Headroom above the fitted threshold
@@ -100,15 +100,12 @@ one unseen off-topic question above it would be cited. This is what buying headr
 
 | candidate | T+0 | T+0.01 | T+0.02 | T+0.03 | T+0.05 |
 |---|---|---|---|---|---|
-| e5-large-inst-q6 | 81/87, 0 off | 75/87, 0 off | 71/87, 0 off | 65/87, 0 off | 51/87, 0 off |
+| e5-large-inst-q6 | 81/87, 0 off | 75/87, 0 off | 71/87, 0 off | 64/87, 0 off | 48/87, 0 off |
 
 ## What this changes
 
 The per-language table is the answer to round 81: the accented columns are what a user with a proper keyboard types,
 the "(no accents)" columns are the same questions typed the way round 70 typed them, and zh-Hant is the launch locale.
-
-Since round 84 (F367) the word index folds accents on both sides, so an accent-less question meets its accented passage;
-the lexical-only table is where that shows. The "sieges" question still waits on its cosine, because its passage says "bureaux".
 
 For e5-large-inst-q6, the highest off-topic cosine the lexical rule does not already cite is 0.8177 over 197
 off-topic questions, 0.0023 under the shipped door of 0.82, so the door stays where it is.

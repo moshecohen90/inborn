@@ -5518,3 +5518,42 @@ German, French, Spanish and Portuguese typed without accents. Neither is what la
 Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
 `door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
 `docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.
+
+## Fixes round 84: a word typed without its accents finds its accented passage (branch `fix-accent-fold`) — 24.9.2026
+
+Round 81 left one lexical gap open: the word index compared words exactly, so "societe" never met "société" and
+"Hauptburos" never met "Hauptbüros". French, Spanish, Portuguese and German users who type fast drop those marks.
+
+- **Accents are folded on both sides (F367).** The tokenizer strips the marks from Latin letters in the passage and
+  in the question, and spells out ß, æ, œ, ø and ł. An accent-less question scores a passage exactly as its accented
+  twin does, so a folded match can never outrank an exact one. Kana voicing, Hangul, Cyrillic й/ё, Hebrew and Arabic
+  are left as they are. Stop words are checked before folding: "qué" and "que" stay glue, "très" stays glue, and
+  Spanish "tres", English "fur" and "uber" stay words.
+- **No re-index.** The document index keeps chunk text and vectors on the device, never word terms. The retriever
+  rebuilds the word index in memory from the chunk text on every load, so existing installs pick the fold up at once.
+- **Round 81's accent-less rows could not move.** The French "sieges" question asks about a passage that says
+  "bureaux", and no Spanish, Portuguese or German round-70 row shares an accented word with its passage. Each of the
+  four documents therefore got one accent-less question whose only word in common with the passage is accented there.
+  Their cosines were measured with the shipped embedder and added to the committed ones, which were kept as they were.
+- **Before and after**, one-passage on-topic questions, shipped embedder:
+
+  | language | lexical rule alone, before | after | shipped door (0.82), before | after |
+  |---|---|---|---|---|
+  | de (no accents) | 0/3 | 1/3 | 3/3 | 3/3 |
+  | es (no accents) | 1/4 | 2/4 | 2/4 | 2/4 |
+  | fr (no accents) | 0/2 | 1/2 | 1/2 | 1/2 |
+  | pt (no accents) | 1/3 | 2/3 | 3/3 | 3/3 |
+  | all 14 columns | 39/87 | 43/87 | 79/87 | 79/87 |
+
+  Off-topic citations stay 0/143 and 3/54. The highest off-topic cosine stays 0.8177, and the door stays at 0.82.
+  The four new rows have cosines of 0.84 to 0.87, so the shipped door already cited them. The fold matters where the
+  cosine is weaker, and on every device without the document index installed the lexical rule is the only door.
+- **Still open.** German typed as ae/oe/ue ("Staedten") does not match "Städten". Folding "ue" to "u" everywhere
+  would also change French and English words, so it is left for a German-specific rule. French elision keeps
+  "l'œuvre" as one word, so "oeuvre" alone does not match it.
+- **Guarded.** `packages/core/test/rag-accent-fold.test.ts` has 10 cases; 8 of them went red on the old tokenizer.
+  Two new guard tests in `rag-multilingual-guard.test.ts` went red on it too, on exactly the four new rows.
+
+Evidence in `docs/qa/fix-accent-fold/`: `red-accent-fold.txt`, `red-guard.txt`, `green.txt` and
+`measure-before.md`, the measure on the old tokenizer beside the regenerated `docs/qa/embed-multilingual/measure.md`.
+Spec §5.5 describes the fold.

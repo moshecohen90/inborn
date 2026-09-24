@@ -33,7 +33,7 @@ describe("BM25", () => {
       idx.add("p", passage);
       expect([question, idx.search(question)[0]?.matched ?? 0]).toEqual([question, 0]);
     }
-    expect(bm25Tokens("Qu'est-ce que la société fabrique?")).toContain("société");
+    expect(bm25Tokens("Qu'est-ce que la société fabrique?")).toContain("societe");
   });
 
   it("removes and re-adds documents", () => {
