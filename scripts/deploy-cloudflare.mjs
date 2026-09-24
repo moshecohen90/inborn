@@ -8,7 +8,7 @@
  *   node scripts/deploy-cloudflare.mjs --site --app --dry-run        # full rehearsal: builds, plans, zero network
  *
  * Flags: --no-build (use the dist that is already there), --dry-run (no writes), --no-domains (skip attaching
- * the hostnames), --verbose.
+ * the hostnames), --no-check-live (skip the post-deploy read-back), --verbose.
  *
  * The API token comes from the macOS Keychain, service `inborn-cloudflare-api`, and is never printed. It needs:
  *   Account -> Workers Scripts -> Edit   (upload the script, open the assets upload session, attach custom domains)
@@ -26,7 +26,6 @@ import { createHash, randomBytes } from "node:crypto";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
-import { catalogProblem } from "./web-manifest.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const API = "https://api.cloudflare.com/client/v4";
@@ -100,6 +99,7 @@ const opts = {
   dryRun: flag("--dry-run"),
   domains: !flag("--no-domains"),
   verbose: flag("--verbose"),
+  checkLive: !flag("--no-check-live"),
 };
 if (!opts.site && !opts.app) {
   console.error("nothing to do: pass --site and/or --app (see the header of this file)");
@@ -303,34 +303,6 @@ async function deploy(name) {
   if (opts.domains) for (const hostname of target.hostnames) await attachDomain(hostname, target.script);
 }
 
-/**
- * What the origin must answer once it is live. The app's whole first run hangs on the model catalog, and a missing
- * file there is not an error but a 200 of the SPA shell, which the browser then fails to parse (B1, 24.9.2026).
- * The deploy says so itself rather than leaving it to be found in a browser weeks later.
- */
-async function verifyApp() {
-  const url = `${APP_ORIGIN}/models/manifest.json`;
-  let last = "no response";
-  /* A fresh asset can take a moment to be readable on every edge; three tries, then the deploy has failed. */
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      const res = await fetch(url, { headers: { "cache-control": "no-cache" } });
-      const contentType = res.headers.get("content-type") ?? "";
-      const body = await res.text();
-      const problem = catalogProblem({ status: res.status, contentType, body });
-      if (!problem) {
-        console.log(`  verified ${url}: ${contentType}, ${JSON.parse(body).models.length} models`);
-        return;
-      }
-      last = problem;
-    } catch (e) {
-      last = String(e);
-    }
-    if (attempt < 3) await new Promise((r) => setTimeout(r, 3000));
-  }
-  throw new Error(`${url} -> ${last}; the browser tier cannot install a model. apps/web/build.mjs writes apps/web/dist/models/manifest.json; check it is in the dist that was uploaded.`);
-}
-
 async function deployWwwRedirect() {
   console.log(`\n== www redirect (inborn-www-redirect)`);
   if (opts.dryRun) {
@@ -345,8 +317,19 @@ if (opts.site) {
   await deploy("site");
   await deployWwwRedirect();
 }
-if (opts.app) {
-  await deploy("app");
-  if (!opts.dryRun) await verifyApp();
+if (opts.app) await deploy("app");
+
+/* A deploy that returns 200 is not a deploy that is correct: Cloudflare rewrites HTML at the edge, so what the
+   origin serves a browser has to be read back from the public URL (F275). --no-check-live skips it. */
+if (!opts.dryRun && opts.checkLive) {
+  const urls = [...(opts.site ? [SITE_ORIGIN + "/"] : []), ...(opts.app ? [APP_ORIGIN + "/"] : [])];
+  console.log("\n== live check");
+  await new Promise((r) => setTimeout(r, 8000));
+  try {
+    execFileSync(process.execPath, [path.join(repoRoot, "scripts/check-live.mjs"), ...urls], { stdio: "inherit" });
+  } catch {
+    console.error("\nthe deploy landed but the live check failed (above); the origins are serving something we did not write");
+    process.exit(1);
+  }
 }
 console.log(`\ndone${opts.dryRun ? " (dry run)" : ""}`);

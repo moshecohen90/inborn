@@ -1,5 +1,8 @@
 import { beforeAll, describe, expect, it } from "vitest";
+import { spawn } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createServer } from "node:http";
+import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { MODELS_ORIGIN } from "@inborn/core";
@@ -89,10 +92,42 @@ describe("F272 · the deploy refuses to call a broken catalog a deploy", () => {
     expect(web.catalogProblem({ status: 404, contentType: "application/json", body: ok })).toBe("404");
   });
 
-  it("the app deploy runs the check and fails on it", () => {
+  /* The catalog check rides in round 57's live gate, which the deploy runs after --app and exits non-zero on. */
+  it("the deploy runs that gate and fails on it", () => {
     const deploy = readFileSync(join(repo, "scripts/deploy-cloudflare.mjs"), "utf8");
-    expect(deploy).toMatch(/await deploy\("app"\);\s*\n\s*if \(!opts\.dryRun\) await verifyApp\(\);/);
-    expect(deploy).toContain("catalogProblem(");
-    expect(deploy).toMatch(/throw new Error\(`\$\{url\} -> \$\{last\}/);
+    expect(deploy).toContain("scripts/check-live.mjs");
+    expect(deploy).toMatch(/the live check failed[\s\S]{0,120}process\.exit\(1\)/);
   });
+
+  /* Run for real against an origin that answers the way B1's origin did, and against one that answers properly. */
+  it("passes a real catalog and fails the SPA shell, as a process, with the reason on stderr", async () => {
+    const catalog = JSON.stringify(web.webManifest(`${MODELS_ORIGIN}/v1`));
+    const shell = '<!DOCTYPE html>\n<html lang="en"><head></head><body></body></html>';
+    const serve = (body: string, type: string) =>
+      createServer((req, res) => {
+        const isCatalog = (req.url ?? "").startsWith(`/${web.MANIFEST_REL}`);
+        res.writeHead(200, { "Content-Type": isCatalog ? type : "text/html; charset=utf-8", "Cache-Control": "no-cache, no-transform" }).end(isCatalog ? body : shell);
+      });
+    const run = async (body: string, type: string): Promise<{ code: number | null; err: string }> => {
+      const server = serve(body, type);
+      await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
+      const origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+      try {
+        return await new Promise((resolve) => {
+          const child = spawn(process.execPath, [join(repo, "scripts/check-live.mjs"), `${origin}/`], { env: { ...process.env, APP_ORIGIN: origin, CHECK_LIVE_RETRY_MS: "0" } });
+          let err = "";
+          child.stderr.on("data", (d: Buffer) => (err += d.toString()));
+          child.stdout.on("data", () => undefined);
+          child.on("close", (code) => resolve({ code, err }));
+        });
+      } finally {
+        await new Promise<void>((r) => server.close(() => r()));
+      }
+    };
+
+    await expect(run(catalog, "application/json")).resolves.toMatchObject({ code: 0 });
+    const red = await run(shell, "text/html; charset=utf-8");
+    expect(red.code).toBe(1);
+    expect(red.err).toMatch(/models\/manifest\.json: 200 text\/html.*SPA shell/);
+  }, 30_000);
 });

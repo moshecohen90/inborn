@@ -4616,6 +4616,42 @@ container is not Moshe's — it starts empty, runs onboarding, and every fixture
 Gates on this branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,458 tests**
 (core 726, mobile 702, i18n 17, ui 13); the ten new mobile ones are the F265 guard.
 
+## Fixes round 57: Cloudflare was putting a tracker on every page, and no gate could see it (branch `cf-analytics`) — 24.9.2026
+
+`inbornapp.com` and `app.inbornapp.com` were serving Cloudflare's Web Analytics beacon on every HTML response. We
+never shipped it; the edge added it on the way out, which is why `apps/site/check.mjs` and every build gate were
+green while a third-party script was on every page. F275.
+
+- **The trigger is `Accept: text/html`, not the user agent.** A plain `curl` gets a clean document, a browser gets
+  `static.cloudflareinsights.com/beacon.min.js` with `data-cf-beacon` token `8316c4ee…`, the same token on both
+  hosts. Both CSPs forbid it, so a real browser refused to load it and logged an error on every view, while the site
+  footer claimed no third-party requests and the app's Proof screen claimed `TRACKERS 0`.
+- **There was no setting to switch off.** The account's Web Analytics list holds 11 sites; none is `inbornapp.com`,
+  none carries that token, the zone has no RUM ruleset, there is no second account, and the Worker's own
+  `observability` is `null`. By contrast `hebrewbible.app` gets the beacon from its own site in that list with
+  `auto_install: true`, so auto-install works normally where a site exists. On this zone the Workers platform
+  injects its own with nothing behind it, which is the Pages behaviour long reported as "no UI toggle".
+- **The fix is a response header, in the repo, not a dashboard checkbox.** `Cache-Control: no-transform` stops the
+  edge rewriting the document. It is in `apps/site/public/_headers` and in `apps/web/headers.mjs`'s `cache()`
+  helper, so the single definition of each origin's headers carries it and it cannot drift. No freshness changed:
+  `/*` on the app now sends `public, max-age=0, must-revalidate, no-transform`, which is the value the platform was
+  already sending. Proven as a controlled experiment — the site was deployed alone and went to zero matches while
+  the app, untouched, still returned the beacon on the same request; then the app followed and both went clean.
+- **A gate that reads the public URL, because no gate did.** `scripts/check-live.mjs` (`pn check:live`) fetches each
+  live origin with a browser's `Accept` and fails on `cloudflareinsights`, on any `<script src>` that is not
+  same-origin, or on a `Cache-Control` without `no-transform`. `scripts/deploy-cloudflare.mjs` runs it after every
+  deploy and exits non-zero on failure (`--no-check-live` opts out). It was watched failing against the live app
+  before its fix landed, with all three assertions firing, and passing after.
+
+**Not done, and why.** Nothing was changed at Cloudflare: there was no toggle for this zone, and the deploy token
+has no Web Analytics permission by design. The other nine zones on the account still auto-install the beacon from
+their own sites; that is deliberate there and none of them claims to make no third-party requests, so they were left
+alone. The Safari window this stream opened on the dashboard was navigated away to an unrelated Facebook sign-in by
+something outside this stream while the probes were running, so it was abandoned rather than closed.
+
+Gates: `pn lint` 0, `pn typecheck` 0, `pn check:store` PASS, `pn check:live` PASS on both origins, `apps/site` build +
+`check.mjs` 13 pages clean, `pn web:build` clean, `pn web:smoke` PASS with `isolated=true`. Evidence:
+`docs/qa/deploy-site/live-2026-09-24.md` §"Round 57", `docs/qa/qa-run-2026-09-11.md` F275.
 ## Fixes round 56: the browser app could not install a model at all (branch `fix-web-models`) — 24.9.2026
 
 MosheAI's blocker B1, and it was exactly as reported. `https://app.inbornapp.com/models/manifest.json` answered
@@ -4640,8 +4676,9 @@ answer in, it gets a door: **"The model catalog did not load · This browser cou
 with **Try again**. The vault and the model step say the same thing rather than blaming the browser. A cached
 catalog still beats a dead network, so the offline visit is untouched.
 
-**The deploy checks its own work** (F272): after `--app` it fetches the live catalog and exits non-zero unless it is
-JSON listing at least one model, naming what it got instead. **The chip no longer says DEV** (F273): `NAMES.null`
+**The deploy checks its own work** (F272): round 57's `scripts/check-live.mjs`, which the deploy already runs after
+`--app`, now also reads the live catalog back and fails unless it is JSON listing at least one model, naming what it
+got instead. One live gate for the origin, not a second one beside it. **The chip no longer says DEV** (F273): `NAMES.null`
 is gone and every chip that can be handed the no-model engine asks for the localized "no model" wording, in all nine
 locales. **The smoke could not have caught this** (F274): it now reads `/models/manifest.json` as the app reads it,
 and a fifth pass serves the app's own `index.html` in its place — the exact B1 response — and requires the catalog
@@ -4656,7 +4693,7 @@ document at either width (`live-walk.json`, `live-1440-*.png`, `live-390-chat.pn
 watched failing first, including the browser one: with `webReady` put back the way it was, the rebuilt app times
 out waiting for the catalog door, which is B1 reproduced on demand (`docs/qa/fix-web-models/guards-red.txt`).
 
-Gates on this branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,494 tests**
-(core 726, mobile 735, i18n 20, ui 13), `pnpm web:smoke` green including its two new checks. Seventeen of the
-mobile tests are this round's: `test/webCatalog.test.ts` (8), `src/web/modelDelivery.test.ts` (+6),
-`src/lib/models.test.ts` (+3).
+Gates on this branch, with round 57 merged in: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,495 tests** (core 726, mobile 736, i18n 20, ui 13), `pnpm web:smoke` green including its two new checks, and
+`pn check:live` green on the redeployed origin. Eighteen of the mobile tests are this round's:
+`test/webCatalog.test.ts` (9), `src/web/modelDelivery.test.ts` (+6), `src/lib/models.test.ts` (+3).

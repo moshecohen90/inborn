@@ -37,19 +37,24 @@ export function securityHeaders(modelsOrigin = "") {
   };
 }
 
+/* Without `no-transform` Cloudflare rewrites our HTML at the edge and injects its Web Analytics beacon from
+   static.cloudflareinsights.com, which both CSPs block and which contradicts the app's own "no third-party
+   requests" claim (F275). The value on /* is the platform default this origin already sent. */
+const cache = (value) => `${value}, no-transform`;
+
 /** Cloudflare Pages `_headers` text: security on every path, no caching of the entry points, immutable hashed assets. */
 export function pagesHeadersFile(modelsOrigin = "") {
-  const all = { ...securityHeaders(modelsOrigin), ...isolationHeaders };
+  const all = { ...securityHeaders(modelsOrigin), ...isolationHeaders, "Cache-Control": cache("public, max-age=0, must-revalidate") };
   const block = (path, headers) => [path, ...Object.entries(headers).map(([k, v]) => `  ${k}: ${v}`)].join("\n");
   return [
     block("/*", all),
-    block("/index.html", { "Cache-Control": "no-cache" }),
-    block("/sw.js", { "Cache-Control": "no-cache" }),
-    block("/hashes.json", { "Cache-Control": "no-cache" }),
-    block("/manifest.webmanifest", { "Cache-Control": "no-cache" }),
+    block("/index.html", { "Cache-Control": cache("no-cache") }),
+    block("/sw.js", { "Cache-Control": cache("no-cache") }),
+    block("/hashes.json", { "Cache-Control": cache("no-cache") }),
+    block("/manifest.webmanifest", { "Cache-Control": cache("no-cache") }),
     /* A stale model catalog offers a file the CDN may no longer hold; it is revalidated like the other entry points. */
-    block("/models/manifest.json", { "Cache-Control": "no-cache" }),
-    block("/_expo/*", { "Cache-Control": "public, max-age=31536000, immutable" }),
-    block("/wllama/*", { "Cache-Control": "public, max-age=604800" }),
+    block("/models/manifest.json", { "Cache-Control": cache("no-cache") }),
+    block("/_expo/*", { "Cache-Control": cache("public, max-age=31536000, immutable") }),
+    block("/wllama/*", { "Cache-Control": cache("public, max-age=604800") }),
   ].join("\n\n") + "\n";
 }
