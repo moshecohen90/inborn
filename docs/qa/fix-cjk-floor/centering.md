@@ -79,10 +79,12 @@ everything was. Spec §10.4 #30 forbids exactly that. Round 70 fences 0.29 chunk
 
 ## The root cause is the embedder, not the floor
 
-`packages/core/src/catalog/manifest.json` ships one embedding model, `embed-nomic` —
-**`nomic-embed-text-v1.5`, 274 MB, which is Nomic's English model.** Nomic's multilingual embedder is a different
-model (`nomic-embed-text-v2-moe`). The app asks an English text-embedding model to do document retrieval in eight
-launch locales, five of them not English, plus Hebrew. Every number in round 70 and round 70b is that one fact:
+**The spec already planned for this and the catalog never caught up.** Spec §5.5 and §6 name three embedders —
+`nomic-embed-text-v1.5` (274 MB) as the default, **`Qwen3-Embedding-0.6B` (395 MB) as the multilingual one for Pro**,
+and `all-MiniLM` (46 MB) for weak devices. `packages/core/src/catalog/manifest.json` has exactly one entry with
+`"role": "embedding"`, and it is `embed-nomic`. So the app asks an **English** text-embedding model (v1.5 is Nomic's
+English model; their multilingual one is a separate `v2-moe`) to do document retrieval in eight launch locales, five
+of them not English, plus Hebrew. Every number in round 70 and round 70b is that one fact:
 
 - unrelated English text sits near 0.4 and related English text at 0.6+, which is where the 0.5 floor came from;
 - in ja/zh/ko/he *any* two texts of the same language sit at 0.53–0.76, so the number measures the language;
@@ -90,9 +92,11 @@ launch locales, five of them not English, plus Hebrew. Every number in round 70 
 
 Two ways out, neither in this round's scope:
 
-1. **Ship a multilingual embedder.** The catalog and the delivery mechanism already handle a second embedding pack;
-   this is a model swap plus a re-index, and it is the only change that makes the semantic half mean anything outside
-   English. It should be measured on exactly these fixtures before it ships.
+1. **Ship the multilingual embedder the spec already chose**, `Qwen3-Embedding-0.6B`. The catalog schema and the
+   on-demand delivery pack already handle a second embedding model; this is a catalog entry, a download and a
+   re-index, and it is the only change that makes the semantic half mean anything outside English. It should be
+   measured on exactly these fixtures before it ships: `embed.mjs` and `embed-centering.mjs` read the model from
+   `INBORN_MODELS_DIR` and name the file, so a different embedder is one line in each plus a rerun of both guards.
 2. **Expand the question instead.** The lexical half is the half that works — it separated on-topic from off-topic
    perfectly on 159 questions. Having the chat model rewrite the question into a few content words in the document's
    language, before the lexical index sees it, would recover the paraphrase questions (`Belegschaft` → `Personen`,

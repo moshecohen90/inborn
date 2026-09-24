@@ -5195,14 +5195,16 @@ not reach it, and the measurement found why — which is not the floor.
   zh 0/3, ja 1/3, en 2/3. So the citations round 70 gave up were not right answers waiting to be readmitted — a door
   that let them back cites the **wrong** passage. Round 69 looked better only because its floor fenced 5.48 of 6
   chunks per question and the whole document on 17 of 21 on-topic questions, which §10.4 #30 forbids; round 70
-  fences 0.29. **Root cause: the catalog ships one embedding model, `nomic-embed-text-v1.5`, which is Nomic's
-  English model**, for eight launch locales. Spec §5.5 promised "multilingual embedding in Pro" and now says what is
-  actually shipped, what it costs, and that the lexical half carries relevance until a multilingual model lands.
+  fences 0.29. **Root cause, and the spec already chose the fix:** §5.5 and §6 name three embedders, including
+  `Qwen3-Embedding-0.6B` as the multilingual one for Pro — and the catalog has exactly one entry with
+  `"role": "embedding"`, Nomic's **English** `nomic-embed-text-v1.5`, serving all eight launch locales. The §5.5
+  bullet stated the multilingual embedding as something the app does; it now says it is planned and not shipped,
+  what that costs, and that the lexical half carries relevance until the catalog catches up.
 - **The negative result is a test, not a report** (F332). 7 cases sweep the thresholds over the committed numbers
   and assert the bar unmet, so round 71 does not re-derive it; the whole measurement regenerates from a fresh
   embedding pass behind two env vars. Watched red two ways in `docs/qa/fix-cjk-floor/guard/`.
 
-Open, for whoever picks it up: swap in a multilingual embedder (the catalog and the on-demand pack already support a
-second embedding model) and measure it on these same fixtures, or expand the question into content words in the
-document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
+Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the schema and the on-demand pack
+already support a second embedding model) and measure it on these same fixtures, or expand the question into content
+words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
 across all 159 questions; it is the half worth extending.
