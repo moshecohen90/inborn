@@ -325,7 +325,7 @@ actions, share targets ACTION_SEND / PROCESS_TEXT "Ask Inborn" / iOS share exten
 Enter-to-send module, screen-reader announcements for streaming answers); M4 shell (expo-router, onboarding, seal, exit meter, lock, FLAG_SECURE,
 proof, settings, prefs backup, a full-disk banner that keeps chats and drafts intact); M5 documents + RAG with honest page/sheet/part citations,
 OCR incl. Hebrew on iOS, voice (dictation, Whisper Pro, hands-free, read-aloud engine choice, dictated sends classified as the "voice" use); M6
-licence (StoreKit 2 / Play, paywall with Pro AND Work, Work vaults/audit/signed export/redaction); §6.5 device guard; §6.1/§6.3/§7.8 honest
+license (StoreKit 2 / Play, paywall with Pro AND Work, Work vaults/audit/signed export/redaction); §6.5 device guard; §6.1/§6.3/§7.8 honest
 model-fit mediation (catalog v4, re-signed in round 18 with measured per-language tiers, the chat advice card and vault "Best for" pickers, now
 also on the web tier); 8 UI languages (the original six plus Korean and Traditional Chinese, ~1,000 keys each, all complete, model copy
 localized); web phase 2; desktop phase 3 CI; legal/QA/ops docs; store copy in all 8 languages; icon. Fixes round 15 (Android bundle no longer
@@ -439,7 +439,7 @@ search list was already clean, and `--cleanup` was never called.
 (`docs/qa/ios-build-15-2026-09-23.md`) — cut so the Terms screen a TestFlight reader opens actually names its
 licensor. **F98 is closed on the phone**: `inborn:///legal/terms` on build 15 opens on `Effective date: 22 September
 2026`, `Licensor: Cohen Apps ("we", "us")` and `Contact: support@inbornapp.com or +1-440-847-8502. We have no
-physical reception and offer no in-person service.` above "1. Licence", against **0** occurrences of both `Cohen
+physical reception and offer no in-person service.` above "1. License", against **0** occurrences of both `Cohen
 Apps` and `+1-440-847-8502` when pass 14 measured that screen; the Privacy screen gains the effective date it was
 also missing. The shipped Hermes bundle agrees and carries **0** of `{{DEVELOPER_LEGAL_NAME}}`, `{{EFFECTIVE_DATE}}`,
 `{{SUPPORT_EMAIL}}` and `Status: DRAFT`. Real-iPhone pass 15 is deliberately narrow — About reads **`1.0.0 (15)` ·
@@ -667,7 +667,7 @@ keep their old props, mounted by the routes.
   privacy cover (`expo-blur`), Android `FLAG_SECURE` screenshot blocking and iOS `UIScreen.isCaptured` hiding (`modules/secure-screen`), and the
   emergency-wipe UI (confirm twice → `src/storage/wipe.*`).
 - **Settings + proof** (`src/screens/Settings`, `src/screens/Proof`, §8.6): every S52 row (theme, text size, security, chat, performance,
-  language picker from the `@inborn/i18n` locales, downloads, accessibility, storage dashboard, about + licences from §11.4) and the S50 proof
+  language picker from the `@inborn/i18n` locales, downloads, accessibility, storage dashboard, about + licenses from §11.4) and the S50 proof
   page (readouts, allowlist, permissions, build hash, network log, "check for yourself" per store).
 - **System-wide states** (§8.8): `src/components/shell/Banners.tsx` renders storage-full / thermal / low-power / battery / model-delivering as a
   strip under the header. The policy comes from `useDeviceState()` (`src/device/types.ts` + a stub); the device-guard stream replaces the stub. A
@@ -686,7 +686,7 @@ The iOS build needs `patches/expo-modules-core@57.0.15.patch` (Xcode 26.2's Swif
   enrol → app-switcher blur → relaunch lock → match unlocks, proof, settings, `inborn://` deep links.
 - **Android emulator** (Pixel_4_API_33): onboarding, real airplane-mode test streaming offline, and `FLAG_SECURE` proven — with screenshot
   protection on, `adb shell screencap` writes a 0-byte file and the window shows `fl=… SECURE`; off, it captures normally.
-- **Web** (headless Chromium): the whole flow (onboarding → chat → drawer → settings light/dark → storage → about → licences → language/pseudo →
+- **Web** (headless Chromium): the whole flow (onboarding → chat → drawer → settings light/dark → storage → about → licenses → language/pseudo →
   proof → network log → cold-reload lock → wrong then right passcode → deep links → wipe→onboarding), 0 console errors.
 
 ## Intentionally not built for 1.0 (one list, 11.9.2026)
@@ -707,13 +707,13 @@ The cross-stream wiring no stream owned, on branch `integrate-r2`:
   `ChatMessage.citations` is persisted: schema v3 (`messages.citations_json`), IndexedDB v3, the Tauri repository; the contract test covers
   all three (`apps/mobile/test/`, the desktop one through a sql.js stand-in for the Rust `db_*` commands), plus a v2→v3 migration test.
   The stand-in also caught that the desktop and SQLCipher repositories resolved `updateMessage` on an unknown id; both reject now.
-- **Value moments** (§12.3): `paywallFor(tier, moment)` in `packages/core/src/licence/moments.ts` answers every gate the same way (4th persona,
+- **Value moments** (§12.3): `paywallFor(tier, moment)` in `packages/core/src/license/moments.ts` answers every gate the same way (4th persona,
   2nd document, Pro-only model, any feature). Wired at: persona add row, "Add file · PRO" in the library, Sharp's Install in the vault, the mic,
   "Remember this", Memory's add row, Folders, "Export all chats" (new row in the export sheet, Pro exports every saved chat as one Markdown
   file), and every `PRO` tag (tapping one opens `/paywall`). `EXPO_PUBLIC_PRO=1` stays a dev-bundle-only pretence (`DEV_TIER`); release
-  bundles read only the licence.
+  bundles read only the license.
 - **Legal in the app**: `/legal/privacy` and `/legal/terms` render `docs/legal/*.md`, bundled as strings by `apps/mobile/metro/mdTransformer.js`
-  (no fetch); the paywall's Terms / Privacy links and About point there. The licences page reads `docs/legal/NOTICE.json` (shipped + catalogue
+  (no fetch); the paywall's Terms / Privacy links and About point there. The licenses page reads `docs/legal/NOTICE.json` (shipped + catalogue
   entries only).
 - **Shell events** (§14.4): `new-chat`, `toggle-incognito`, `focus-composer`, `search`, `stop` are handled by the chat screen when it is the one
   in front (`useFocusEffect`), so the drawer's own handlers do not double up. The new-chat sheet's persona travels through
@@ -736,7 +736,7 @@ opened the bundled policy; the Settings preview showed "Delivering FAST · 41% o
 66 mobile + 4 i18n tests, `web:build` + `web:smoke` (4 passes, 0 vault warnings).
 
 ## Work documents: DOCX / XLSX / HTML intake + redaction before sending (spec §7.3 row 8, §7.9) — status 7.9.2026
-Branch `work-docs`. Both are Work-tier capabilities (`officeIngest`, `redaction` in `packages/core/src/licence/gates.ts`, unchanged).
+Branch `work-docs`. Both are Work-tier capabilities (`officeIngest`, `redaction` in `packages/core/src/license/gates.ts`, unchanged).
 - **Intake** (`packages/core/src/rag/extract/`): `xlsx.ts` reads the workbook without a spreadsheet library (sheet list via the
   relationships part, shared + inline strings, formula results, booleans, ISO dates; one sheet = one page, inflated only when its page
   is read) and emits `Sheet · row N: a | b | c` lines; `html.ts` strips markup without a DOM (scripts, styles, `hidden` /
@@ -829,7 +829,7 @@ track) were already on `main`; this round closes what was still open and finishe
 - **§9.7 sheets, menus, popovers.** `NativeChrome.tsx` exports `GlassFill` (a `GlassView` under the panel, iOS 26 only),
   `panelColor()` (the surface at 72 % alpha over the glass so body text keeps contrast; opaque elsewhere) and `panelStyle`
   (clips the glass to the panel's corners). Both `Sheet` primitives and the six bespoke panels (new-chat menu, model details,
-  vault confirm, document details, passage sheet, licence key) use them; nothing changes on Android, iOS < 26 or web.
+  vault confirm, document details, passage sheet, license key) use them; nothing changes on Android, iOS < 26 or web.
 - **VA-2** the vault "recommended" line is the `monoLabel` step (uppercase, tracked) in the accent colour: the interpolated
   device noun is uppercased with the rest, and the sealed green stays with the seal (§9.9).
 - **SC-1** the chat header model chip no longer shrinks; from a combined text scale of 150 % (`compactChrome()` in
@@ -889,8 +889,8 @@ INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node ../../../scripts
 One-time products (Pro / Pro launch / Work / Work upgrade) live in Play through `scripts/play-products.mjs` (same
 credentials; `--list`, `--dry-run`): the new `monetization.onetimeproducts` API (the legacy `inappproducts` endpoint
 answers 403 for this app), US price as the base and Play's own regional conversion for the rest, six listings each,
-idempotent. Licence testers (account-level, Play Console → Settings → Licence testing) and the internal-track tester
-list are console-only; the app's Play licensing public key is committed in `packages/core/src/licence/roots.ts`
+idempotent. License testers (account-level, Play Console → Settings → License testing) and the internal-track tester
+list are console-only; the app's Play licensing public key is committed in `packages/core/src/license/roots.ts`
 (an empty key makes every real purchase fail with `untrusted-root`).
 arm64-v8a only: Play accepts it (64-bit is the requirement) and every test phone is arm64; add `armeabi-v7a` before a
 wider rollout.
@@ -937,11 +937,11 @@ on its own; the recipe would then work with either key.
 
 ## Legal, compliance, QA and launch docs (legal-docs stream)
 Docs only, no app code. Everything the spec promises "lives in the repo" for §10–§11, §13.5, §14.7, §15:
-- `docs/legal/` — `privacy-policy.md` (store + website text, per-platform network list), `terms.md` (EULA, one-time Pro/Work, Family Sharing, refunds via stores, AI disclaimer), `ai-act-notes.md` (Art. 50 duties; Inborn launches after 2.8.2026 so the 2.12.2026 grace does not apply), `licenses.md` + `NOTICE.json` (every model/native/JS component with licence, attribution, obligations; nothing conflicts with a closed Pro app), `app-privacy-details.md` (Apple "Data Not Collected" reasoning, `PrivacyInfo.xcprivacy` content from the manifests actually in node_modules, Play Data safety, AI-content policy, age-rating answers, review notes).
+- `docs/legal/` — `privacy-policy.md` (store + website text, per-platform network list), `terms.md` (EULA, one-time Pro/Work, Family Sharing, refunds via stores, AI disclaimer), `ai-act-notes.md` (Art. 50 duties; Inborn launches after 2.8.2026 so the 2.12.2026 grace does not apply), `licenses.md` + `NOTICE.json` (every model/native/JS component with license, attribution, obligations; nothing conflicts with a closed Pro app), `app-privacy-details.md` (Apple "Data Not Collected" reasoning, `PrivacyInfo.xcprivacy` content from the manifests actually in node_modules, Play Data safety, AI-content policy, age-rating answers, review notes).
 - `docs/qa/` — `release-checklist.md` (the 40 tests T01–T40 with commands, pass criteria and which of our devices can run each) and `edge-cases-matrix.md` (all 70 §10 cases → test ids; status column for the lead).
 - `docs/ops/` — `metrics-without-sdk.md` (sources, gates A/B/C, weekly routine, template), `trademark-watch.md` + `com.inbornapp.tm-watch.plist` (monthly `scripts/tm-watch.sh`, not installed; inborn.app expiry 25.10.2026; EU/US/UK filing costs), `developer-account.md` (neutral developer name, App Transfer at gate C).
 - `docs/launch/launch-plan.md` — Product Hunt / Show HN / Reddit / creator / promo-code / ASA+UAC drafts. Nothing sent.
-Verified: `plutil -lint` on the plist, `NOTICE.json` parses; licence inventory from `pnpm licenses list --json` (534 packages, 447 MIT). `scripts/tm-watch.sh Inborn` run 6.9.2026: 264 TMview results, 0 identical live marks in classes 9/42 at EM/US/GB/WO (exit 0).
+Verified: `plutil -lint` on the plist, `NOTICE.json` parses; license inventory from `pnpm licenses list --json` (534 packages, 447 MIT). `scripts/tm-watch.sh Inborn` run 6.9.2026: 264 TMview results, 0 identical live marks in classes 9/42 at EM/US/GB/WO (exit 0).
 
 ## Website (staging, spec §13.4 / §11.3 / §3.3–3.4) — status 6.9.2026
 `apps/site/` is the static site: plain HTML + CSS, **zero JavaScript in the output, zero third-party requests**, IBM Plex self-hosted from `apps/site/public/fonts` (copies of `apps/mobile/public/fonts`). `privacy.html` and `terms.html` are rendered at build time from `docs/legal/privacy-policy.md` and `docs/legal/terms.md` (minimal Markdown renderer in `build.mjs`; the "Notes for the maintainer" sections never ship; `{{PLACEHOLDER}}` tokens render as visible chips until filled at launch, `{{PRIVACY_URL}}` resolves to `/privacy`). `licenses.html` is rendered from `docs/legal/NOTICE.json`. Hand-written pages: `index` (thesis, three messages, three proofs, tiers, store badge placeholders), `proof` (airplane test, Play permissions page, App Privacy Report, exit meter, firewall, what-can-leave list, release-hash table), `support` (in-app Report, common fixes, refunds via stores, contact placeholders: no support address is invented), `404`. `public/_headers` sets `Content-Security-Policy: default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:` plus nosniff / no-referrer / frame-ancestors none.
@@ -957,7 +957,7 @@ Verified: `plutil -lint` on the plist, `NOTICE.json` parses; licence inventory f
   personas + memory, folders + export all, the Sharp models, and the voice line (marked in `VOICE_LINES`). Backup, keyboard extension, advanced
   controls and the whole Work list are gone from the copy. Work has no capability of its own on main, so `sellable("work")` is false and the
   Work card is not offered (the gate map, products and owned-state stay; the card returns with its first real feature). Core test
-  `licence-gates.test.ts` pins every bullet to an `en.json` key.
+  `license-gates.test.ts` pins every bullet to an `en.json` key.
 - **Proof on the web** (§3.4, §8.9): "Last delivery" reads the OPFS model (`src/proof/webDelivery.ts`): name, bytes, the origin the tab fetched
   it from and whether the stored sha256 equals the manifest's. The download worker's fetch never appears in the page's resource timing, so the
   finished download is recorded in `localStorage` (`src/web/transfers.ts`) and seeded into the session `NetworkLog`: the meter shows
@@ -1026,7 +1026,7 @@ profession packs, architecture statement; redaction and office intake join when 
   Markdown companion, and verification instructions whose Node one-liner the test really runs), `packs/*.json` + `packs.ts` (legal, therapy,
   medical, accounting: a declaration each and 4 templates with `{{placeholders}}`; a test asserts no "HIPAA-compliant / privileged / certified /
   guarantee" wording), `statement.ts` (dated architecture statement per platform, vaults and signing key listed, explicit non-claims).
-  `licence/cache.ts` now exposes `sealJson`/`openJson` with a domain label, so audit files and the entitlement cache use unrelated keys.
+  `license/cache.ts` now exposes `sealJson`/`openJson` with a domain label, so audit files and the entitlement cache use unrelated keys.
 - **Phone** (`apps/mobile/src/work/`): `WorkStore` (vault records + signing seed in the Keychain/Keystore, both in `SECURE_ITEMS` so the wipe
   removes them; sealed audit files under `Documents/work/`; unlocked set in memory, relocked by `useWork()` when `lock.locked` flips),
   `VaultCodeSheet`, `TemplatesSheet` (pack → declaration → template → blanks → insert into the composer), `WorkTag`; screens under
@@ -1054,14 +1054,14 @@ price line + WORK tag.
   dropped while the keyboard covers it, `maxHeight` capped to the visible room, scroll body `flexShrink: 1`), the `Screen` primitive (root pads
   by the lift so the scroll view shrinks and Android scrolls the focused field into view), the chat root (replaces `KeyboardAvoidingView`,
   which added the keyboard height on top of the safe inset) plus the iOS 26 glass composer overlay (`bottom: lift`; Yoga does not offset
-  absolute children by the parent's padding), the rename dialog and the licence-key dialog (centred in the room above the keyboard) and the
+  absolute children by the parent's padding), the rename dialog and the license-key dialog (centred in the room above the keyboard) and the
   Ask-documents modal. Every Modal-based sheet (folder, vault code, passcode, persona, memory, report, templates, redaction, chat settings)
   inherits it from the primitives; no new dependency.
 - Verified with the keyboard open on Pixel_6_API_33 (edge-to-edge, own AVD, dark + light + 200 % text) and iPhone 17 Pro / iOS 26.3 Release
   (dark + light 200 %): New folder, vault code, passcode, persona (last field), memory, report, templates blanks, redact names, chat settings
   prompt, rename, composer (last message stays visible above it), airplane test, verify record. Long forms at 200 % keep the focused field
   visible; the Save button below it is one scroll away inside the sheet.
-- Not reachable on a phone: the licence-key dialog exists only for the web/desktop store (`store === "licence-key"`); Ask documents needs the
+- Not reachable on a phone: the license-key dialog exists only for the web/desktop store (`store === "license-key"`); Ask documents needs the
   262 MB embedder and shares the chat root's padding, so it is covered by the same code path, not by a screenshot.
 
 ## Android release blockers (QA run 6.9.2026 B1/B2/B3/B5/B14/B16/B18/B19, branch fixes-r4a) — status 7.9.2026
@@ -1141,7 +1141,7 @@ UI automation: Pro purchase → "You own Pro" + the $49.99 upgrade card, Pro →
   `SKTestSession` on `Inborn.storekit` (ops `clear` · `buy:<sku>` · `refund:<index>` · `dialogs:on`) and writes `Documents/sktest.json`.
 - Launch with `DYLD_FRAMEWORK_PATH=/System/Developer/Library/Frameworks:/System/Developer/Library/PrivateFrameworks` (StoreKitTest links
   `@rpath/XCTest.framework/XCTest`, which only the developer disk image has) and `--payload-url inborn://paywall`; the bundle-time
-  `EXPO_PUBLIC_AUTOBUY=<sku|restore>` (`ios/.xcode.env.local`) makes the paywall buy or restore by itself and write `Documents/licence-run.json`.
+  `EXPO_PUBLIC_AUTOBUY=<sku|restore>` (`ios/.xcode.env.local`) makes the paywall buy or restore by itself and write `Documents/license-run.json`.
   Screenshots: `pymobiledevice3 developer dvt screenshot out.png` (no root needed on iOS 17+).
 - Trap: without the session a dev build talks to Apple's real sandbox (the phone has a sandbox account signed in) and shows a "Sandbox" payment
   sheet that outlives the app; it is hosted by `PassbookUIService` — `xcrun devicectl device process signal --pid <pid> --signal SIGKILL` dismisses it.
@@ -2154,7 +2154,7 @@ drops every key the menu declares. Esc now stops a streaming answer within 700 m
 
 **F81** desktop Settings has none of §8.9's desktop rows (no model location, no Launch at login, no Advanced
 section — so no backend picker, no VRAM offload, no local server). **F82** the desktop paywall's two buy
-buttons are priced and permanently disabled, because the provider is `licence-key` and there is no in-app
+buttons are priced and permanently disabled, because the provider is `license-key` and there is no in-app
 checkout; the Work-first ordering §8.9 asks for is correct, so today it orders two dead cards first. **F83**
 the native Mac app's screenshot-protection row reads "Not available in a browser."
 
@@ -2209,7 +2209,7 @@ every sentence we publish now says that**, in the same words, in the policy, the
 404'd for every user who tapped it; the build line told them to "match it against the published hash" with no
 hash published and no reproducible build; the terms claimed an MIT open-source core; the policy §10 and the Work
 architecture statement said the same. The repository had no `LICENSE` at all. Now: a **source-available**
-licence (read, build, publish findings; no redistribution — explicitly not an open-source licence), and
+license (read, build, publish findings; no redistribution — explicitly not an open-source license), and
 `docs/legal/verification.md` as the one place that says what a user really can check (Android permissions from
 the Play page or `aapt2`, the iOS App Privacy Report, any firewall, the in-app airplane test) and what they
 cannot. The four texts were rewritten from it, and a test fails on any `en.json` string that offers our source
@@ -2224,11 +2224,11 @@ splits the two.
 or a restored route opened a Pro screen. It now asks the same question, and renders nothing while the
 entitlement is loading rather than existing for one frame.
 
-**F54 · nobody's licence obligations were discharged.** The Licences screen showed a name, an attribution and a
+**F54 · nobody's license obligations were discharged.** The Licenses screen showed a name, an attribution and a
 link. Apache-2.0 §4(d) and MIT both want the text to travel with the distribution, and on an app whose promise
 is that it works with no network, a link discharges nothing. The canonical Apache-2.0 and MIT texts now ship
-inside the bundle (`docs/legal/model-licences/`, mirrored byte for byte into `packages/core`, with a test that
-fails on drift), a **View licence** control opens the full text from the model card and every Licences row, and
+inside the bundle (`docs/legal/model-licenses/`, mirrored byte for byte into `packages/core`, with a test that
+fails on drift), a **View license** control opens the full text from the model card and every Licenses row, and
 MIT's copyright line is filled per component — Phi reads Microsoft's, Whisper reads OpenAI's. A Hugging Face
 download now opens the same sheet with an **accept** button and starts only on that tap.
 
@@ -2265,7 +2265,7 @@ the same. `web:smoke` passes with six PASS lines on the merged tree.
 
 ### Decisions for Moshe (round 25)
 1. **The source claim.** The app now says the source is not published. Three ways to close it for good: publish
-   under a real open-source licence; publish under the new source-available `LICENSE`; or drop the claim from
+   under a real open-source license; publish under the new source-available `LICENSE`; or drop the claim from
    the positioning entirely. Until one is chosen, `docs/legal/verification.md` is what every text may say.
 2. **Family-safe: phrase check or classifier.** What ships reduces this content and does not eliminate it, and
    says so everywhere. Upgrading to ShieldGemma costs the Gemma terms, an acceptance screen and a second model
@@ -2301,7 +2301,7 @@ one file per chat (§7.3 row 1) and the Work formats (§7.3 row 8) held at one d
 open door is the share sheet, which §7.7 calls the cheapest acquisition surface we have. A Free user could share
 in ten files; a Pro user could share in a spreadsheet the picker refuses.
 
-**The fix is one function, not a second copy of the checks.** `packages/core/src/licence/intake.ts`:
+**The fix is one function, not a second copy of the checks.** `packages/core/src/license/intake.ts`:
 
 ```ts
 fileIntake(tier, kind, attachedCount) -> { ok } | { paywall, moment: "document" | "office" }
@@ -2329,8 +2329,8 @@ resolves to `blob.xlsx` and is refused.
 
 Two of these are gates on the chrome only if you stop at the switch. Strict mode is read at prompt time from
 `state.strict`, and memory is read by `store.memoryFor()` on every turn, so a user who turned either on while
-subscribed kept the Pro behaviour after the licence lapsed. Both are now masked at the read: one line in
-`documents/hooks.ts`, one at the `memoryFor` call site. A lapsed licence stops changing answers, and deletes
+subscribed kept the Pro behaviour after the license lapsed. Both are now masked at the read: one line in
+`documents/hooks.ts`, one at the `memoryFor` call site. A lapsed license stops changing answers, and deletes
 nothing.
 
 Memory draws a line rather than gating the panel: every **write** is Pro — add, edit, turning it on, re-enabling a
@@ -2374,7 +2374,7 @@ entering a password and WITHOUT you moving my mouse all the time."* Two walls st
 desktop build, and the cost is in the record: F41 and F42 both shipped with **runtime proof NOT RUN**, and the
 round-22 desktop layout was signed off from the browser tier alone.
 
-**Wall 1 — the Keychain.** The SQLCipher key and the licence-cache key live in login-Keychain items whose ACL
+**Wall 1 — the Keychain.** The SQLCipher key and the license-cache key live in login-Keychain items whose ACL
 names the code identity that created them. Dev builds are signed ad hoc (`"signingIdentity": "-"`), and an
 ad-hoc signature identifies an app only by its own code hash, so every rebuild was a stranger to the item and
 macOS asked for the login password on launch.
@@ -3008,7 +3008,7 @@ audit against `main`). Docs only: no app code changed, no device or emulator use
   proven; the spec's stated reason ("the Billing library's manifest has no INTERNET") was wrong about the wrapper we
   actually ship. `11-store-legal.html` now names `openiap-google` and the `tools:node="remove"` strip, and points at the
   disabled CI gate (gap 6) as the thing that actually needs closing.
-- **§5.7's two tier labels were backwards (gap 26).** `licence-entitlement.test.ts:123` asserts screenshot blocking and
+- **§5.7's two tier labels were backwards (gap 26).** `license-entitlement.test.ts:123` asserts screenshot blocking and
   the lock-screen quick wipe are never gated, and §7.5 already lists them Free — §5.7 alone said Pro. The spec was the
   error, not the code (per the audit: "fix §5.7 before someone builds a gate that a passing test forbids"). Both rows
   now read Free, with a note citing the test and pointing at §7.9 for the full Free/Pro/Work breakdown.
@@ -3091,14 +3091,14 @@ asks for. Docs, a site page and one behaviour. F92–F96.
   22 September 2026, `DEVELOPER_LEGAL_NAME` = Cohen Apps. There is no `POSTAL_ADDRESS`: the line is deleted and
   contact is an email and a phone number, the way the Tanach apps' policies do it. Same values in `app-privacy-details.md`,
   `licenses.md` and `NOTICE.json`; `{{TESTER}}` is gone, because a reviewer's own sandbox account buys the
-  non-consumable and no licence-tester account is needed. Both "Status: DRAFT / Not yet published" lines are out of
-  the shipped texts. `{{COPYRIGHT}}` stays in `docs/legal/model-licences/mit.txt`: `licenceText()` fills it per model.
+  non-consumable and no license-tester account is needed. Both "Status: DRAFT / Not yet published" lines are out of
+  the shipped texts. `{{COPYRIGHT}}` stays in `docs/legal/model-licenses/mit.txt`: `licenceText()` fills it per model.
 - **F93 — three texts, three different answers about the source.** All of them now say what
   `docs/legal/verification.md` allows while the repository is private: the policy's §10 drops the "published
   open-source core so that anyone can verify the claims", terms §1 spells out source-available, the site's support
   page stops promising a public issue tracker and gives the support address, and `proof.html` stops offering claims
-  that "can be read in code rather than believed". The licences page no longer calls the core open source under MIT;
-  `NOTICE.json` carries the real licence name.
+  that "can be read in code rather than believed". The licenses page no longer calls the core open source under MIT;
+  `NOTICE.json` carries the real license name.
 - **F94 — the policy named a key store the app never asks for.** A grep over `apps/mobile/src`,
   `apps/desktop/src-tauri/src` and `packages/core/src` returns nothing for `SecureEnclave`, `kSecAttrTokenID` or
   `StrongBox`. What the code does: `SecureStore` with `WHEN_UNLOCKED_THIS_DEVICE_ONLY` (iOS Keychain, Android
@@ -3299,7 +3299,7 @@ every claim removed: `docs/marketing/site-2026-09-23.md`. **Nothing was deployed
   so a quoted answer cannot differ from the answer on screen.
 - **Eight claims removed from the old page**, each against the source that contradicted it: the unverified `IN 2.7 GB`
   readout, Apple Family Sharing (`terms.md` §2 says it is not enabled), SmolLM (not in `manifest.json`), four Pro
-  features listed as if they were free (`licence/gates.ts`), "incognito never touches disk" (F99), bare "no crash
+  features listed as if they were free (`license/gates.ts`), "incognito never touches disk" (F99), bare "no crash
   reporting", "same speed, same answers" as a general claim, and Work features with no gate behind them. Model sizes
   and speeds are now the measured ones. `/proof` still carries the same `IN 2.7 GB` figure: **flagged, not changed**,
   it belongs to that page's round.
@@ -3358,7 +3358,7 @@ local on the phone, very important. Also the site needs an accessibility policy.
   the proof the whole app rests on. So the site is the source, `https://inbornapp.com/<doc>` is the canonical URL, and
   the bundled copy stays and is labelled as one. Every legal screen opens with the same block: `OFFLINE COPY ·
   EFFECTIVE 23 September 2026`, read from the document's own `Effective date:` line (`OFFLINE COPY · INVENTORY
-  2026-09-05` from `NOTICE.json` on the licences screen), a primary **"Read the current version at
+  2026-09-05` from `NOTICE.json` on the licenses screen), a primary **"Read the current version at
   inbornapp.com/<doc>"** button, and one line saying the website version is the one that applies. The button is
   `Linking.openURL`: the system browser opens it and no network permission is involved, so Android is unchanged. One
   link map for all four documents (`apps/mobile/src/lib/legalLinks.ts`), one component for the block
@@ -3393,7 +3393,7 @@ local on the phone, very important. Also the site needs an accessibility policy.
   not to a legal-text round, so the number is published in §5 of the statement and a guard pins it: the day the colour
   is fixed, the test fails and forces the gap out of the statement, which is what §7 of the statement promises.
 
-**Proof:** `docs/qa/legal-from-site/` — the app's three legal screens and the licences screen at 390 and 1440, the
+**Proof:** `docs/qa/legal-from-site/` — the app's three legal screens and the licenses screen at 390 and 1440, the
 published `/accessibility` page in both schemes at both widths, and `site-licenses-1440-dark-{BEFORE,AFTER}-contrast.png`
 with the computed `th` colour read out of the browser for each (`rgb(102, 115, 128)` → `rgb(122, 135, 148)` on
 `rgb(10, 13, 17)`). `guards-fail.md` has every new guard sabotaged and watched red, including the one that **passed**
@@ -3451,7 +3451,7 @@ entitlement mechanism was complete and the *entrances to it* were not.
   so the person who had just been refused one specific thing met "Pay once. Own it." and had to work out which of two
   prices lifted what they tried. `paywallFor` already computed the exact reason; the door threw it away. The moments
   mechanism is extended rather than doubled: `reasonOf(moment)` and `PAYWALL_REASONS` live next to `paywallFor` in
-  `packages/core/src/licence/moments.ts`, `openPaywall(reason)` is the one door, and S60 opens with
+  `packages/core/src/license/moments.ts`, `openPaywall(reason)` is the one door, and S60 opens with
   `paywall.why.<reason>` above the cards. Proved by tapping, not by reading: the PRO tag on the strict switch lands on
   `/paywall?reason=strictDocuments` and the screen reads "You asked for answers only from your documents. Pro turns
   that on."
@@ -3684,8 +3684,8 @@ state live, and `Chat.tsx` reads it under the key the chat has **now**, because 
 off the draft key, which is exactly the new-chat case Moshe hit. Running OCR on a photograph is a dead end (`door.jpg`
 finished `empty · 0 chunks`), so a picture gets its own refusal pointing at the Photo button, the route that works.
 
-Checking the Free tier turned up a second gap: the attach sheet's library rows called `attach()` with no licence gate,
-so a licence that stops paying kept attaching the whole shelf, Work-only spreadsheets included. They now go through the
+Checking the Free tier turned up a second gap: the attach sheet's library rows called `attach()` with no license gate,
+so a license that stops paying kept attaching the whole shelf, Work-only spreadsheets included. They now go through the
 same `fileIntake` as the picker and the share sheet.
 
 Proven on the 6T on a build of this branch running beside the untouched Play build: the notice, the cited `ZR-4471-QX`,
@@ -3790,15 +3790,15 @@ two phones hours earlier; what this round did not put on a phone, and why, is in
 Round 41's "Decision for Moshe" — *the day the repository goes public, the source-available answer and the link go
 in together; one line in `build.mjs` and one FAQ entry* — came due. `github.com/moshecohen90/inborn` is public as of
 this round, verified anonymously both by curl (`https://github.com/moshecohen90/inborn` returns 200) and by the
-unauthenticated API (`"private": false`), under the existing `LICENSE`, the Inborn Source-Available Licence 1.0. It
+unauthenticated API (`"private": false`), under the existing `LICENSE`, the Inborn Source-Available License 1.0. It
 was more than one line in the end, because the private-repo wording had spread to every place `docs/legal/verification.md`
 governs, and all of them had to keep saying the same thing or start contradicting each other again.
 
 - **The site.** A `GitHub` link joins the header nav next to Proof/Blog/Support; the footer's small print and the
   `/support` and `/proof` pages now say the source is public and link to it instead of denying it exists; the FAQ's
-  "Is Inborn open source?" answer explains the actual licence (read it, build it, publish findings; no redistribution
+  "Is Inborn open source?" answer explains the actual license (read it, build it, publish findings; no redistribution
   or modification, which is why it still isn't open source) instead of saying the code cannot be seen at all;
-  `llms.txt` and the third-party Licences page say the same thing. All of it stays inside the site's own rules — an
+  `llms.txt` and the third-party Licenses page say the same thing. All of it stays inside the site's own rules — an
   `<a href>` to an external page is not a fetched asset, so `check.mjs`'s "no external asset" gate does not apply, and
   the new nav entries get `rel="noopener"` like the other outbound links already on `/support`.
 - **The legal texts and the Work statement.** `terms.md` §1, `privacy-policy.md` §10 and
@@ -3813,7 +3813,7 @@ governs, and all of them had to keep saying the same thing or start contradictin
   no behavioural gain.
 - **The guard tests.** `apps/mobile/test/legal-texts.test.ts` (F93/F96) asserted the four now-contradicted old
   sentences verbatim; its `FORBIDDEN` list ("open source", "reproducible build", …) still applies exactly as before,
-  because the licence's terms did not change, only its visibility, so the assertions were updated to the new wording
+  because the license's terms did not change, only its visibility, so the assertions were updated to the new wording
   rather than the ban list being loosened. `apps/mobile/test/fixes-r25.test.ts` (F51) had a stale `"not published"`
   substring check against `statement.ts`; updated to `"not reproducible"`, which the rewritten sentence still says
   and still means. The store listings (`docs/store/listing.*.json`) do not mention source at all, so `pn check:store`
@@ -4096,7 +4096,7 @@ locales: IBM Plex Sans has no U+2713, so the fallback drew a square-root sign an
 (`docs/qa/fix-copy/before/proof-screen-de-390.png`). `fix-design` draws the mark with the app's own check icon, so
 every verified line now ends on the thing that was verified and an appended icon lands on the right word;
 `proof.delivery.webUnverified` carries no mark on purpose, because there the tick qualified the size and a caveat
-follows it. The em dash left the licence section of `docs/legal/terms.md`. The third item was **declined with
+follows it. The em dash left the license section of `docs/legal/terms.md`. The third item was **declined with
 evidence**: `onboarding.sealed.prove` does start the airplane test, `Sealed.tsx:40` routes it to `/proof/airplane`,
 and `sealed.test.ts` has asserted that route and that copy since F124b.
 
@@ -4107,7 +4107,7 @@ rules. Each has its complement: the qualifier must be present, `apple` must be t
 line, `reviewer_notes` must still be allowed to name both platforms.
 
 **Not done.** Review items 19 and 23: collapsing the five duplicate `paywall.why.*` pairs, and adding a
-`paywall.compare` row for the six-quick-action cap Free enforces in `packages/core/src/licence/gates.ts`. Both are
+`paywall.compare` row for the six-quick-action cap Free enforces in `packages/core/src/license/gates.ts`. Both are
 `packages/core` changes rather than string edits, and a copy stream is the wrong place for them. Nothing was pushed
 to App Store Connect or Play; the repository still has no script that writes store metadata.
 
@@ -4154,11 +4154,11 @@ is the COOP/COEP pair doing its job. Evidence and screenshots at 390/768/1024/14
 The last three findings of the security review (S5), on top of round 47. Each guard was watched red first;
 `docs/qa/fix-tech-b/guards-red.txt` records which revert produced which failure count.
 
-- **F257 — the licence verifier trusted an environment variable.** `ALLOW_TEST_PURCHASES` was
+- **F257 — the license verifier trusted an environment variable.** `ALLOW_TEST_PURCHASES` was
   `EXPO_PUBLIC_ALLOW_TEST_PURCHASES === "1" || __DEV__` and `devBuild()` was
   `__DEV__ || EXPO_PUBLIC_DEV_MODEL_HOST !== undefined`. Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
   leftover `export` in the building shell ships a release bundle that verifies Apple sandbox and `android.test.*`
-  proofs — a free Pro licence for anyone who can produce one. The decision now lives in `licence/buildKind.ts` and
+  proofs — a free Pro license for anyone who can produce one. The decision now lives in `license/buildKind.ts` and
   rests on `extra.devVariant`, which `app.config.ts` bakes from `APP_VARIANT` as the config is evaluated. A store
   bundle carries `devVariant: false` and nothing set afterwards can change it; an `APP_VARIANT=development` that
   would flip it also declares the INTERNET permission, which the Android permission gate refuses on a release
@@ -4270,7 +4270,7 @@ for nothing; the app polls that directory once a second, runs the steps, and par
 the driver has photographed the phone (`pymobiledevice3 developer dvt screenshot --userspace`) and acknowledged.
 `scripts/ios-qa.mjs` is the whole Mac side: push, launch, poll, shoot, pull. The verbs are the desktop QA socket's,
 extended where a phone needs more: `press`, `type`, `send`, `waitFor`, `assertText`, `value`, `dump`, `screenshot`,
-`scrollTo`, `deeplink`, `setTier`, `devPrompt`, `sleep`, `cleanup`. `setTier` is the existing licence hook
+`scrollTo`, `deeplink`, `setTier`, `devPrompt`, `sleep`, `cleanup`. `setTier` is the existing license hook
 (`LicenceManager.pretendTier`), and `devPrompt` writes the line file `screens/Chat.tsx` has watched since round 38
 (`image:`, `attach:`, `strict:`) — nothing here is a parallel mechanism.
 
@@ -4579,7 +4579,7 @@ first archive, the App Group is on both the app and the share extension, and `sc
 `docs/qa/ios-build-17-2026-09-24.md`.
 
 **F265 — the QA variant is its own app.** `APP_VARIANT=development` now builds **`com.inbornapp.mobile.qa`**.
-Android keeps one package, because Play asset packs and the 6T drivers are keyed to it. The licence verifier is
+Android keeps one package, because Play asset packs and the 6T drivers are keyed to it. The license verifier is
 handed the running build's own bundle id, but only in a build that already allows test purchases, so a store build
 still accepts nothing but `APP_BUNDLE_ID`; `scripts/ios-add-storekit-tests.rb` reads the id off the app target
 instead of a literal. Ten tests in `apps/mobile/test/fixes-r55.test.ts`, with the complement watched failing: the
@@ -4590,9 +4590,9 @@ uninstalled at the end without going near the store app's container.
 
 **Moshe's container, measured rather than assumed.** Every file was pulled before the install and compared byte for
 byte after it and again at the end: `inborn.db` (2,072,576 B), its WAL and shm, `documents.json`, `prefs.json`,
-`licence.bin`, `vault.json` and all six library documents. Nothing was lost. The only three files that differ at
+`license.bin`, `vault.json` and all six library documents. Nothing was lost. The only three files that differ at
 the end changed at 02:39:53, the second the app was launched, and only in what a launch writes — the model's
-last-loaded time, the licence re-seal, the device prefs.
+last-loaded time, the license re-seal, the device prefs.
 
 **The rows, driven on the phone with no XCUITest and no passcode sheet.** Model sheet Instant → Fast; the Wi-Fi-only
 toggle; F126's cited answer (*"…the Kestrel 7 is QUARTZ-4417"* with `SOURCES kestrel4.pdf · p.1`); F161's
@@ -4835,10 +4835,10 @@ every visual claim is a screenshot at 390 / 768 / 1024 / 1440 in `docs/qa/fix-r6
 - **Two shipped legal texts promised what the App Store contradicts** (F296): "Cohen Apps (the developer account
   shown on the store listing)" is true on Play and false on Apple, where the account reads "Moshe Cohen". The name
   stays, the promise goes.
-- **The licence notice quoted font versions we do not ship** (F297): Plex Sans 1.1.0 / Mono 2.5.0 against the
+- **The license notice quoted font versions we do not ship** (F297): Plex Sans 1.1.0 / Mono 2.5.0 against the
   packaged 3.005 / 2.005. The new guard reads the version out of the font bytes.
 - **Spec §16 D4 still described core-MIT-plus-closed-UI** (F298); it now states the shipped decision, the public
-  repo under a source-available licence, dated 22.9.2026.
+  repo under a source-available license, dated 22.9.2026.
 - **The QA-bridge gate now runs itself** (F299). `scripts/check-shipping-bundles.mjs` walks the artifact paths the
   builds write and is part of `pnpm check:store`, so `pnpm test` carries it; `INBORN_REQUIRE_BUNDLE=1` is the
   release form and is a required line in the release checklist.
@@ -4869,3 +4869,48 @@ PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Ev
   `numberOfLines={1}` swallows that difference without a sound. Now "Privé", the wording the incognito badge already
   uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
   text overflows its own box; watched red with the old string (`needs 130px in 124px`).
+
+## Fixes round 68: the comparison page the ASO read asked for, and the first answer-engine baseline (branch `aso-compare`) — 24.9.2026
+
+Three findings, all marketing surface, no app code. `aso-specialist` supplied the keyword targets, `aeo-specialist`
+ran the probe and set the answer shape, `conversion-copywriter` wrote the copy, and every competitor claim was checked
+against that competitor's own public page before it was written. The record is
+`docs/marketing/site-compare-2026-09-24.md`, `aeo-baseline-2026-09-24.md` and `listicles-2026-09-24.md`.
+
+- **The site had no comparison page, and comparison is the only query class this category actually searches** (F319).
+  `site-2026-09-23.md` flagged it as the highest-value missing page and left it out of scope. The measured case, US
+  Google Ads metrics on 24.9: `lm studio vs ollama` plus its reverse is 4,500 a month, `best local llm` 1,600,
+  `is chatgpt private` 1,300, `ollama alternative` 880 — and none of them has a store analogue, which is why this is a
+  web page and not store copy. Four of the phrases we assumed were targets are dead for web search
+  (`offline ai chat app` 40, `ai without internet` 30, `chatgpt alternative offline` 10) and belong only in the Play
+  listing, where `ai without internet` scores 94/100. `/compare` is now nine sections, two real tables, and eight FAQ
+  answers. Per-competitor child pages were measured and refused: `pocketpal alternative` is 10 a month and
+  `pocketpal vs private llm` returns no data at all, so ten thin pages on a domain with no backlinks would be a
+  doorway cluster. The split trigger is written down.
+- **The page had to be a comparison, which meant it could not overclaim** (F319, second half). Table B and its
+  `ItemList` graph render from one array in `build.mjs`, the way the landing FAQ already renders its visible list and
+  its `FAQPage` from one array, so a row cannot drift from its structured data. Six things the page deliberately does
+  not say, each because a source contradicted it: not "no competitor ships without the INTERNET permission" (we read
+  six release manifests and all six declare it, so the page names those six), no ChatGPT price or OpenAI quote at all
+  (`openai.com` returned 403 to every fetch, and the page says so on the page), not "cloud apps require an account"
+  (Gemini, Copilot and Perplexity all work signed out), no training default for Claude (Anthropic's two pages
+  disagree), not "we are cheaper" (Private LLM is 4.99 USD one time, a quarter of Pro, said twice), and not "offline is
+  our differentiator" (Google's own AI Edge Gallery is free, Apache-2.0 and says no internet is required). Section 07
+  is seven places a rival is the better buy. Five guards, each watched red: two tests refuse a ChatGPT price or an
+  unscoped permission claim, and the site gate refuses a row that misses a column, a competitor linked to us instead of
+  to its own page, and a FAQ question already answered on the home page. `check.mjs` green on 14 pages; screenshots at 390 / 768 / 1024 / 1440 in
+  dark and light in `docs/qa/aso-compare/`, zero off-origin requests and 0px overflow at all eight combinations.
+- **We had never asked an answer engine about Inborn** (F320). First probe: 12 English/US buying questions, two
+  repeats, gpt-5, gemini-3.5-flash and Claude Sonnet, 72 answers, 0 failures. **Inborn is named in 0 of them**, which
+  is the right answer while both store listings 404, and the point of the run is the competitor set and the citation
+  map: PocketPal AI leads 24% of answers (50% on Claude), ChatGPT 29%, LM Studio 11%. The two store listings are the
+  single largest citation source on every engine, ahead of any page we write. Claude states its ranking rule verbatim
+  in the run — it downgrades apps whose "no network" claim it cannot audit — which is the argument for
+  source-available plus a check the reader runs from outside the app. **Bing has zero pages of inbornapp.com indexed,
+  so ChatGPT cannot cite this site at all today**; that, and deploying, gate everything else. The run also corrected
+  two stale lines in `site-2026-09-23.md`: the site *is* deployed and the repository *is* public. The runner stays in
+  fbcloud; the three-line patch a second brand needs is written down rather than forked into this repo.
+- **Five earned-media targets, chosen from what the engines actually quoted** (F321). Not an outreach list: every one
+  of the five was cited in our own 72 answers and returned 200 on 24.9, with the contact route found on the page.
+  Each pitch leads with the one claim a reviewer can check in a minute with `aapt2 dump permissions`. Nothing has been
+  sent, and nothing should be sent before both store listings resolve.

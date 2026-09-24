@@ -124,6 +124,15 @@ td .mono, td.mono { white-space: nowrap; }
 th { color: var(--text-3); font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-1); }
 tbody tr:last-child td { border-bottom: 0; }
 
+/* The comparison tables hold a whole short sentence per cell, so six columns at the model table's 760px would set
+   three words to a line. They scroll inside .table-wrap, as every table here does. */
+.compare-table { min-width: 1180px; }
+.compare-table th[scope="row"] { font: 500 15px/22px "IBM Plex Sans", system-ui, sans-serif; letter-spacing: normal; text-transform: none; color: var(--text); }
+.compare-table td { color: var(--text-2); }
+.compare-table tr.self th[scope="row"] { box-shadow: inset 2px 0 var(--accent); }
+.compare-table tr.self td { color: var(--text); }
+.compare-table.cloud td:first-of-type { color: var(--text); box-shadow: inset 2px 0 var(--accent); }
+
 /* ---------- landing: hero ---------- */
 .hero { position: relative; padding: clamp(48px, 9vw, 104px) 0 clamp(40px, 6vw, 72px); }
 .hero-body { position: relative; z-index: 1; }
