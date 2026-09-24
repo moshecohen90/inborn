@@ -1,0 +1,2 @@
+$ corepack pnpm web:smoke   # Icon.tsx with accessibilityElementsHidden left next to the helper (production drops a boolean silently; passes 1-6 pass)
+FAIL: development export: React warned 2x: error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden

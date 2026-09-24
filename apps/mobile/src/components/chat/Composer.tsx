@@ -88,7 +88,7 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
         </View>
       ) : null}
       {preparing > 0 ? (
-        <View testID="composer-preparing" accessibilityLiveRegion="polite" style={styles.editRow}>
+        <View testID="composer-preparing" aria-live="polite" style={styles.editRow}>
           <ActivityIndicator size="small" color={theme.accent} />
           <Text style={[type.monoLabel, styles.preparing, { color: theme.accent }]}>{t("chat.image.preparing", { count: preparing })}</Text>
         </View>

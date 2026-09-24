@@ -8,6 +8,8 @@
  *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled;
  *   5. an origin that answers the catalog with its own index.html (B1, 24.9.2026) lands on the catalog door with a
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
+ *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
+ *      warnings: React only reports props it cannot put on an element in development builds (F371).
  * Skips (exit 0) when the model or playwright-core is absent.
  *
  *   MODELS_DIR=/path/to/ggufs SMOKE_OUT_DIR=/tmp node scripts/web-smoke.mjs
@@ -15,12 +17,13 @@
  * PLAYWRIGHT_CORE_DIR: a node_modules dir holding playwright-core (default: the npx cache used on this machine).
  * CHROMIUM_PATH: the headless shell binary (default: Playwright's registry, or any chromium_headless_shell-* in its cache).
  * ISOLATION=off serves without COOP/COEP, which must land on the single-thread fallback.
+ * DEV_DIST: the development export for pass 7 (default apps/mobile/web-build/dev); DEV_CONSOLE=off skips that pass.
  */
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { URL } from "node:url";
+import { URL, fileURLToPath } from "node:url";
 import { defaults, resolveFile, startServer } from "./serve-web.mjs";
 
 const PROMPT = "What is the capital of France? Answer in one sentence.";
@@ -55,6 +58,11 @@ const MIN_TOUCH_PX = 44;
 const LOCALES = ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"];
 /** The two sidebar buttons that share one row: the narrowest place a translated label has to fit (QA F103, F304). */
 const LABEL_BUTTONS = ["new-chat", "new-incognito"];
+/* React DOM's development warnings about what it was handed (F371). Production builds print none of them. */
+const REACT_WARNING_RE = /React does not recognize the|for a non-boolean attribute|Invalid DOM property|Invalid value for prop|Unknown event handler property|is using incorrect casing|unique "key" prop|Cannot update a component|cannot be a child of|cannot contain a nested|React Components must start with an uppercase/;
+/* React Native prop names that mean nothing to a browser: on the DOM they are junk, and what they asked for is not done. */
+const RN_ONLY_ATTR_RE = /^(accessibility[a-z]+|importantforaccessibility|collapsable)$/i;
+const DEV_DIST = process.env.DEV_DIST ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../apps/mobile/web-build/dev");
 const IPHONE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1";
 
 const skip = (why) => {
@@ -289,6 +297,33 @@ async function undersizedControls(page, min) {
   }, min);
 }
 
+/**
+ * F371: every React Native prop that reached the DOM as an attribute, and the composer's icons, which are decoration
+ * next to a labelled button and must be aria-hidden, or a screen reader reads the button twice.
+ */
+async function rnPropLeaks(page) {
+  return page.evaluate((reSource) => {
+    const re = new RegExp(reSource, "i");
+    const leaks = [];
+    for (const el of document.querySelectorAll("*")) {
+      const names = [...el.attributes].map((a) => a.name).filter((n) => re.test(n));
+      if (names.length) leaks.push({ tag: el.tagName.toLowerCase(), testid: el.closest("[data-testid]")?.getAttribute("data-testid") ?? "", attributes: names });
+    }
+    const icons = ["attach", "mic", "send"].map((id) => {
+      const svg = document.querySelector(`[data-testid="${id}"] svg`);
+      return { id, svg: !!svg, ariaHidden: svg?.getAttribute("aria-hidden") ?? null };
+    });
+    return { leaks, icons };
+  }, RN_ONLY_ATTR_RE.source);
+}
+
+function assertA11yProps(where, found) {
+  if (found.leaks.length) throw new Error(`${where}: React Native props reached the DOM: ${found.leaks.map((l) => `<${l.tag}> in ${l.testid || "?"} ${l.attributes.join(",")}`).join("; ")}`);
+  const shown = found.icons.filter((i) => i.svg && i.ariaHidden !== "true");
+  if (shown.length) throw new Error(`${where}: composer icons not hidden from screen readers: ${shown.map((i) => i.id).join(", ")}`);
+  if (!found.icons.some((i) => i.svg)) throw new Error(`${where}: no composer icon found to check`);
+}
+
 /** Any element whose text is cut off by its own box (RNW numberOfLines={1} clips with an ellipsis, silently). */
 async function truncatedLabels(page, testIds) {
   return page.evaluate((ids) => {
@@ -371,6 +406,8 @@ try {
     out.storageAfter = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
     out.persisted = await page.evaluate(() => navigator.storage.persisted());
     await chat(page, out, PROMPT, consoleLines);
+    out.a11yProps = await rnPropLeaks(page);
+    assertA11yProps("first visit, chat", out.a11yProps);
     /* The strip shows one line and folds the rest (MosheAI item 6, 24.9); the offline state is inside that disclosure. */
     await page.getByTestId("web-strip-details").click();
     await page.getByTestId("web-strip-detail").waitFor({ timeout: 30_000 });
@@ -466,6 +503,8 @@ try {
 
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (out.consoleErrors.some((l) => /^pageerror/.test(l))) throw new Error(`page errors: ${out.consoleErrors.join(" | ")}`);
+    out.reactWarnings = consoleLines.filter((l) => REACT_WARNING_RE.test(l));
+    if (out.reactWarnings.length) throw new Error(`React warned: ${out.reactWarnings.join(" | ")}`);
     out.hosts = [...hosts];
     if (foreignHosts(hosts, true).length) throw new Error(`the page talked to ${foreignHosts(hosts, true).join(", ")}; only ${[origin, catalogHost].filter(Boolean).join(" and ")} is allowed`);
     if (out.crossOriginIsolated !== defaults.isolation) throw new Error(`crossOriginIsolated=${out.crossOriginIsolated} with ISOLATION=${defaults.isolation ? "on" : "off"}`);
@@ -610,6 +649,55 @@ try {
     await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
     await fresh.close();
   }
+  /* 7. F371: the development export. React names the props it cannot put on an element only here, and LogBox turns
+     each one into a red toast over the composer plus a POST /symbolicate that this static host answers 405. */
+  if (process.env.DEV_CONSOLE === "off") {
+    result.dev = { skipped: "DEV_CONSOLE=off" };
+  } else {
+    if (!existsSync(path.join(DEV_DIST, "index.html"))) throw new Error(`no development export at ${DEV_DIST}; run: corepack pnpm web:build`);
+    const devServer = await startServer({ port: 0, dist: DEV_DIST });
+    const dev = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    try {
+      const page = await dev.newPage();
+      const { consoleLines, pageErrors } = observe(page);
+      const failed = [];
+      page.on("response", (r) => {
+        if (r.status() >= 400) failed.push(`${r.status()} ${r.request().method()} ${new URL(r.url()).pathname}`);
+      });
+      lastPage = page;
+      lastConsole = consoleLines;
+      const out = (result.dev = { dist: DEV_DIST });
+      const t0 = Date.now();
+      await page.goto(devServer.url);
+      await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+      await page.getByTestId("download-model").click();
+      await page.getByTestId("onboarding-welcome").waitFor({ timeout: LOAD_TIMEOUT_MS });
+      await page.getByTestId("onboarding-continue").click();
+      await page.getByTestId("start-chatting").click();
+      const start = page.getByTestId("sealed-start");
+      await start.waitFor({ timeout: 60_000 });
+      for (let i = 0; i < 100 && (await start.isDisabled()); i++) await new Promise((r) => setTimeout(r, 100));
+      await start.click();
+      await page.getByTestId("lock-start").click();
+      await waitForEngine(page, out, consoleLines, t0);
+      await chat(page, out, PROMPT, consoleLines);
+      noPageErrors(pageErrors, "development export");
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.waitForTimeout(1_000);
+      out.screenshot = path.join(outDir, "web-smoke-dev-chat-390.png");
+      await page.screenshot({ path: out.screenshot });
+      out.a11yProps = await rnPropLeaks(page);
+      out.reactWarnings = consoleLines.filter((l) => REACT_WARNING_RE.test(l));
+      out.failedRequests = failed;
+      if (out.reactWarnings.length) throw new Error(`development export: React warned ${out.reactWarnings.length}x: ${[...new Set(out.reactWarnings)].join(" | ")}`);
+      assertA11yProps("development export, chat", out.a11yProps);
+      const symbolicate = failed.filter((f) => f.includes("/symbolicate"));
+      if (symbolicate.length) throw new Error(`development export: LogBox reported ${symbolicate.length} console error(s) (${symbolicate[0]})`);
+    } finally {
+      await dev.close();
+      await devServer.close();
+    }
+  }
 } catch (e) {
   failure = e;
   /* What the page showed when it went wrong: the door/error text, the status line, the console, a screenshot. */
@@ -642,6 +730,9 @@ console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
 console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
+console.log(`PASS: no React Native prop on the DOM, composer icons aria-hidden (${f.a11yProps.icons.map((i) => i.id).join(", ")})`);
+if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev.skipped})`);
+else console.log(`PASS: development export walked door -> onboarding -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
 for (const screen of LAYOUT_SCREENS) {
   for (const width of REQUIRED_WIDTHS) {

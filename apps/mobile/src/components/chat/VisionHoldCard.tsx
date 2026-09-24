@@ -51,7 +51,7 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
           ? t("chat.vision.holdBody", { size })
           : t("chat.vision.holdNoPack");
   return (
-    <View testID="vision-hold" accessibilityLiveRegion="polite" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
+    <View testID="vision-hold" aria-live="polite" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
       {title ? (
         <Text testID="vision-hold-title" style={[type.bodySmall, type.strong, { color: theme.text }]}>
           {title}

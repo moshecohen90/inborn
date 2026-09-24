@@ -1,5 +1,6 @@
-import { I18nManager, type StyleProp, type ViewStyle } from "react-native";
+import { I18nManager, Platform, type StyleProp, type ViewStyle } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
+import { hiddenFromScreenReaders } from "../a11y";
 import { ICONS, type IconName } from "./paths";
 
 export interface IconProps {
@@ -28,8 +29,7 @@ export function Icon({ name, size = 20, color, strokeWidth = 2, fill = false, st
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
+      {...hiddenFromScreenReaders(Platform.OS)}
       style={[mirrored ? { transform: [{ scaleX: -1 }] } : null, style]}
     >
       {def.paths.map((d) => (

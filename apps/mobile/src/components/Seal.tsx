@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { AccessibilityInfo, Animated, Easing, Platform, View } from "react-native";
-import Svg, { Circle, Defs, Path, RadialGradient, Stop } from "react-native-svg";
+import Svg, { Circle, type CircleProps, Defs, Path, RadialGradient, Stop } from "react-native-svg";
 import { glow as glowTokens, motion } from "@inborn/ui";
 import { useTheme } from "../services/theme";
 import { haptic } from "../services/haptics";
@@ -23,7 +23,11 @@ interface SealProps {
   testID?: string;
 }
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+/* Animated stamps collapsable={false} on what it animates, and react-native-svg hands that straight to the DOM on web. */
+const WebCircle = forwardRef<Circle, CircleProps & { collapsable?: boolean }>(function WebCircle({ collapsable: _collapsable, ...props }, ref) {
+  return <Circle ref={ref} {...props} />;
+});
+const AnimatedCircle = Animated.createAnimatedComponent(Platform.OS === "web" ? WebCircle : Circle);
 const OPEN_FRACTION = 0.16;
 
 /** The seal ring: the only "AI is working" indicator and the only privacy state object in the app. */
