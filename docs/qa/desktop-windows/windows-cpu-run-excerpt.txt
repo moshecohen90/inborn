@@ -1,0 +1,28 @@
+2026-09-24T15:23:05.2433394Z      Running makensis to produce D:\a\inborn\inborn\apps\desktop\src-tauri\target\release\bundle\nsis\Inborn_0.0.1_x64-setup.exe
+2026-09-24T15:23:19.0870681Z     Finished 1 bundle at:
+2026-09-24T15:23:19.0871622Z         D:\a\inborn\inborn\apps\desktop\src-tauri\target\release\bundle\nsis\Inborn_0.0.1_x64-setup.exe
+2026-09-24T15:24:05.7658065Z running 20 tests
+2026-09-24T15:24:05.7658451Z test engine::tests::plain_text_passes_through ... ok
+2026-09-24T15:24:05.7658931Z test engine::tests::splits_reasoning_even_when_tags_arrive_in_pieces ... ok
+2026-09-24T15:24:05.7659846Z test qa::tests::wrap_carries_the_id_and_the_snippet ... ok
+2026-09-24T15:24:05.7660404Z test qa_transport::tests::a_path_is_refused_on_windows ... ok
+2026-09-24T15:24:05.7660892Z test qa_transport::tests::tcp_endpoint_parses_and_must_be_loopback ... ok
+2026-09-24T15:24:05.7661394Z test secrets::tests::random_hex_has_two_characters_per_byte ... ok
+2026-09-24T15:24:05.7661885Z test secrets::tests::qa_key_file_keeps_a_secret_stable_across_calls ... ok
+2026-09-24T15:24:05.7662438Z test shell::tests::a_restored_window_under_the_minimum_is_grown_on_both_axes ... ok
+2026-09-24T15:24:05.7663022Z test shell::tests::a_window_at_or_above_the_minimum_is_left_exactly_as_it_was ... ok
+2026-09-24T15:24:05.7663569Z test qa_transport::tests::tcp_channel_answers_one_line_per_request ... ok
+2026-09-24T15:24:05.7664043Z test shell::tests::expand_drop_does_not_descend_for_ever ... ok
+2026-09-24T15:24:05.7664524Z test shell::tests::expand_drop_walks_folders_and_keeps_models_apart ... ok
+2026-09-24T15:24:05.7665371Z test store::tests::migration_batch_and_user_version_roundtrip ... ok
+2026-09-24T15:24:05.7665874Z test store::tests::failed_migration_step_leaves_no_open_transaction ... ok
+2026-09-24T15:24:05.7666421Z test store::tests::quarantine_reports_nothing_kept_when_there_was_no_file ... ok
+2026-09-24T15:24:05.7666870Z test strings::tests::desktop_keys_exist ... ok
+2026-09-24T15:24:05.7667322Z test store::tests::quarantine_keeps_the_unreadable_file_and_only_one_copy ... ok
+2026-09-24T15:24:05.7667929Z test shell::tests::expand_drop_stops_at_the_file_cap_and_ignores_what_is_not_there ... ok
+2026-09-24T15:24:05.7668575Z test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+2026-09-24T15:28:17.4888939Z · launch: {"pid":1644,"version":"0.0.1","launcherPid":1644,"socket":"tcp:127.0.0.1:46243","keyFile":"D:\\a\\_temp\\inborn-qa\\secrets.json","log":"D:\\a\\_temp\\inborn-qa\\app.log"}
+2026-09-24T15:28:17.5934810Z · place: {"height":720,"scaleFactor":1,"width":1120,"x":0,"y":24}
+2026-09-24T15:28:20.5275511Z · reset: "localStorage cleared, page reloaded"
+2026-09-24T15:28:20.6087673Z · title: "Inborn"
+2026-09-24T15:28:20.6833772Z · body-text-length: 195

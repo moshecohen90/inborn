@@ -3,9 +3,10 @@
 //
 // It talks to the `--features qa` control socket (src-tauri/src/qa.rs): one JSON line out, one back.
 // `start` launches the built app with the QA secret file so the keychain is never asked for an item a
-// previous build's code identity created — that ask is the macOS password dialog.
+// previous build's code identity created — that ask is the macOS password dialog. On Windows the channel is a
+// loopback port and `shot` images the window with PrintWindow (qa-shot-windows.ps1); see qa-platform.mjs.
 //
-//   node qa-drive.mjs start [--app <Inborn.app>] [--log <file>]
+//   node qa-drive.mjs start [--app <Inborn.app | inborn-desktop.exe>] [--log <file>]
 //   node qa-drive.mjs eval  'return document.title'
 //   node qa-drive.mjs wait  'return !!document.querySelector("textarea")' [--timeout 30000]
 //   node qa-drive.mjs place [--width 1120] [--height 720]
@@ -13,21 +14,18 @@
 //   node qa-drive.mjs window [--all]
 //   node qa-drive.mjs stop
 import { spawn, execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { connect } from 'node:net';
 import { mkdirSync, existsSync, openSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { appBinary, defaultApp as defaultAppFor, qaEndpoint } from './qa-platform.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const runDir = process.env.INBORN_QA_DIR || join(tmpdir(), 'inborn-qa');
-// A unix socket path over ~100 bytes cannot be bound, and the app only logs that and keeps running, so a run
-// under a long INBORN_QA_DIR (an agent scratchpad is one) would hang on `start` with no visible cause.
-const inRunDir = join(runDir, 'control.sock');
-const socketPath = Buffer.byteLength(inRunDir) < 100 ? inRunDir : join('/tmp', `inborn-qa-${createHash('sha1').update(runDir).digest('hex').slice(0, 8)}.sock`);
+const endpoint = qaEndpoint(runDir);
 const keyFile = join(runDir, 'secrets.json');
-const defaultApp = join(here, '..', 'src-tauri', 'target', 'release', 'bundle', 'macos', 'Inborn.app');
+const defaultApp = defaultAppFor(join(here, '..', 'src-tauri'));
 
 const argv = process.argv.slice(2);
 const command = argv[0];
@@ -39,7 +37,7 @@ const flag = (name, fallback) => {
 
 function send(request, { timeout = 30000 } = {}) {
   return new Promise((resolve, reject) => {
-    const socket = connect(socketPath);
+    const socket = connect(endpoint.connect);
     let buffer = '';
     const fail = (e) => { socket.destroy(); reject(e); };
     socket.setTimeout(timeout, () => fail(new Error(`socket timeout after ${timeout} ms`)));
@@ -69,6 +67,7 @@ async function waitForSocket(deadlineMs) {
 
 // Window ids come from CGWindowListCopyWindowInfo, which needs no mouse and no accessibility access.
 function windows(owner = 'Inborn', all = false, pid = null) {
+  if (process.platform !== 'darwin') throw new Error('window listing is macOS only; `shot` covers Windows');
   const out = execFileSync('swift', [join(here, 'qa-windows.swift'), owner, ...(all ? ['all'] : []), ...(pid ? ['pid', String(pid)] : [])], { encoding: 'utf8' });
   return out.trim().split('\n').filter(Boolean).map((line) => {
     const [id, name, width, height] = line.split('\t');
@@ -78,23 +77,41 @@ function windows(owner = 'Inborn', all = false, pid = null) {
 
 async function start() {
   const app = flag('app', defaultApp);
-  const binary = join(app, 'Contents', 'MacOS', 'inborn-desktop');
+  const binary = appBinary(app);
   if (!existsSync(binary)) throw new Error(`no app at ${binary}`);
   mkdirSync(runDir, { recursive: true });
-  rmSync(socketPath, { force: true });
+  if (endpoint.file) rmSync(endpoint.file, { force: true });
   const log = flag('log', join(runDir, 'app.log'));
   // The log goes straight to a descriptor: a piped stdio would keep this launcher alive after unref().
   const logFd = openSync(log, 'a');
   const child = spawn(binary, [], {
     // The app sets NSApplicationActivationPolicyAccessory when INBORN_QA_SOCKET is set, so launching it
     // here never pulls focus away from whatever the Mac is doing.
-    env: { ...process.env, INBORN_QA_SOCKET: socketPath, INBORN_QA_KEY_FILE: keyFile },
+    env: { ...process.env, INBORN_QA_SOCKET: endpoint.env, INBORN_QA_KEY_FILE: keyFile },
     stdio: ['ignore', logFd, logFd],
     detached: true,
   });
   child.unref();
   const info = await waitForSocket(60000);
-  console.log(JSON.stringify({ ...info, launcherPid: child.pid, socket: socketPath, keyFile, log }));
+  console.log(JSON.stringify({ ...info, launcherPid: child.pid, socket: endpoint.env, keyFile, log }));
+}
+
+// A frame this app really painted runs 70-100 KB per megapixel as PNG; an empty or unpainted window about 20.
+const paintedEnough = (file, pixels) => statSync(file).size / (pixels / 1e6) >= 40_000;
+
+async function shotWindows(pid, file, waitMs) {
+  const until = Date.now() + waitMs;
+  let last;
+  for (;;) {
+    try {
+      const out = execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', join(here, 'qa-shot-windows.ps1'), '-ProcessId', String(pid), '-Out', file], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+      const window = JSON.parse(out.trim());
+      if (window.distinctColors > 4) return { file, window };
+      last = new Error('the window imaged blank; it has not painted yet');
+    } catch (e) { last = e; }
+    if (Date.now() > until) throw new Error(`the Inborn window refused to be imaged: ${last?.message ?? 'unknown'}`);
+    await sleep(700);
+  }
 }
 
 async function main() {
@@ -126,6 +143,7 @@ async function main() {
       // Ask the socket who it is: a second copy of the app left running has a window of its own, and imaging
       // that one photographs a session nobody is driving.
       const { pid } = await send({ op: 'ping' });
+      if (process.platform === 'win32') return console.log(JSON.stringify(await shotWindows(pid, positional[0], Number(flag('wait', 20000)))));
       // Only ever image a window the window server calls on-screen. `screencapture -l` happily returns the
       // stale backing store of a window on another Space, which is a QA run photographing a screen that no
       // longer exists — the run would "prove" the state before the last click.
@@ -140,9 +158,9 @@ async function main() {
             // A window that has not repainted since its last resize images as empty chrome, and `screencapture`
             // reports that as a success — a run would file a blank PNG as proof. PNG of a flat image carries
             // almost no IDAT: this app's real frames run 70-100 KB per megapixel, an empty one about 20.
-            const perMegapixel = statSync(positional[0]).size / ((target.width * target.height * 4) / 1e6);
-            if (perMegapixel >= 40_000) return console.log(JSON.stringify({ file: positional[0], window: target }));
-            last = new Error(`the window imaged blank (${Math.round(perMegapixel / 1000)} KB/MP); it has not repainted since its last resize`);
+            // Points to pixels: the capture is Retina, two pixels per point each way.
+            if (paintedEnough(positional[0], target.width * target.height * 4)) return console.log(JSON.stringify({ file: positional[0], window: target }));
+            last = new Error('the window imaged blank; it has not repainted since its last resize');
           } catch (e) { last = e; }
         }
         if (Date.now() > until) {

@@ -2,15 +2,17 @@
 /**
  * The desktop proof, unattended: launch the built app, walk onboarding, send one prompt on the Rust
  * engine, photograph the window, quit. No mouse, no keystrokes, no dialog — everything goes through the
- * `--features qa` control socket (`qa-drive.mjs`), and `screencapture -l` only ever sees our own window.
+ * `--features qa` control socket (`qa-drive.mjs`), and the capture only ever sees our own window
+ * (`screencapture -l` on macOS, PrintWindow on Windows).
  *
- *   node qa-desktop-run.mjs --out docs/qa/desktop-run-2026-09-22 [--app <Inborn.app>] [--prompt "…"]
+ *   node qa-desktop-run.mjs --out docs/qa/desktop-run-2026-09-22 [--app <Inborn.app | inborn-desktop.exe>] [--prompt "…"] [--reset] [--quit]
  */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { windowStateFile } from './qa-platform.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const drive = join(here, 'qa-drive.mjs');
@@ -21,7 +23,7 @@ const arg = (name, fallback) => {
 const outDir = resolve(arg('out', join(here, '..', '..', '..', 'docs', 'qa', 'desktop-run')));
 const prompt = arg('prompt', 'What is the capital of France? Answer in one sentence.');
 
-const run = (...args) => execFileSync('node', [drive, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] }).trim();
+const run = (...args) => execFileSync(process.execPath, [drive, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] }).trim();
 const evalJs = (js, timeout = 20000) => JSON.parse(run('eval', js, '--timeout', String(timeout)));
 const waitJs = (js, timeout = 60000) => JSON.parse(run('wait', js, '--timeout', String(timeout)));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -59,7 +61,7 @@ async function main() {
   if (process.argv.includes('--reset')) {
     // tauri-plugin-window-state would otherwise restore whatever size the last run left, and the proof is
     // about the window tauri.conf.json configures.
-    rmSync(join(homedir(), 'Library', 'Application Support', 'com.inbornapp.desktop', '.window-state.json'), { force: true });
+    rmSync(windowStateFile(process.platform, process.env, homedir()), { force: true });
   }
   step('launch', JSON.parse(run('start', ...(arg('app') ? ['--app', arg('app')] : []))));
   step('place', JSON.parse(run('place', '--width', arg('width', '1120'), '--height', arg('height', '720'))));
@@ -105,7 +107,11 @@ const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'va
 setter.call(input, ${JSON.stringify(prompt)});
 input.dispatchEvent(new Event('input', { bubbles: true }));
 return input.value;`);
+  // Send stays disabled until the engine has loaded the model (19 s of Metal shader compile on a cold Mac; longer on a CPU
+  // runner), and a press before that is swallowed.
+  waitJs(js('send', 'return !!el && el.getAttribute("aria-disabled") !== "true";'), 300000);
   press('send');
+  waitFor('user-message', 30000);
   step('sent', prompt);
 
   waitJs(js('assistant-text', 'return el && el.innerText.trim().length > 10 ? el.innerText.trim() : false;'), 300000);
@@ -122,6 +128,7 @@ return input.value;`);
   result.finishedAt = new Date().toISOString();
   writeFileSync(join(outDir, 'run.json'), `${JSON.stringify(result, null, 2)}\n`);
   console.log(`\nwrote ${join(outDir, 'run.json')}`);
+  if (process.argv.includes('--quit')) run('stop');
 }
 
 main().catch((e) => { console.error(String(e.stack || e)); process.exit(1); });

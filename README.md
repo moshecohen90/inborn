@@ -5453,3 +5453,28 @@ The iOS image repro found two defects on the way to a photo answer.
 
 Evidence in `docs/qa/fix-download-race/`: `ios-before/`, `ios-after/`, `web-before/`, `web-after/`, `guard-red-f349.txt`,
 `guard-red-f350.txt`. Spec §10 rows 2 and 35 carry the two rules.
+
+## Fixes round 77: the Windows desktop app built and ran for the first time (branch `desktop-windows`) — 24.9.2026
+
+Wave 2's S02 found that the Tauri desktop app had never been built for Windows: `desktop.yml` had zero runs, and the QA
+harness had no Windows channel. One manual run, `platform=windows`, now proves the build.
+
+- **Two Windows installers from one run** (F347). Run
+  [36016745768](https://github.com/moshecohen90/inborn/actions/runs/36016745768) built the CPU and Vulkan NSIS
+  installers. Their sizes and SHA-256 values are in `docs/qa/desktop-windows/artifacts.txt`. Both jobs passed the 20
+  desktop Rust tests on Windows. Both QA builds launched and answered over the new loopback channel, and each rendered
+  onboarding S01. The screenshots are `windows-cpu-01-launch.png` and `windows-vulkan-01-launch.png`. The Vulkan build
+  also started on a runner with no GPU. The one-answer smoke on Windows is not proven. It stopped at its first
+  screenshot, because the blank-frame check rejected a correct light frame. That check is fixed but was not re-run: all
+  three allowed runs were used.
+- **What Windows needed** (F348). The QA channel is a unix socket or loopback TCP, in a module that type-checks for
+  Windows on the Mac. The harness knows each OS's paths and captures a window with PrintWindow. Tauri's build now copies
+  the pdf.js worker and wllama wasm files. Before this, every clean-checkout desktop build shipped without them, so PDF
+  import could not work. The first two runs stopped at the Linux gate. One test path only resolved on case-insensitive
+  disks, and a vault test flaked about once in 700 runs; both are fixed. The Mac smoke also pressed Send before the
+  model had loaded; it now waits, and the Mac run answers "Paris is the capital of France.".
+- **CI follows the rule again.** `desktop.yml` ran on every push to main and every PR. It now runs only on `v*` tags and
+  manual runs, like `ci.yml`. A `platform` input (all, windows or macos) keeps a manual run to the builds that are needed.
+- The site still says "Not yet" for Windows and macOS downloads. Distribution waits for Moshe's gate C decision, and a
+  Windows code-signing certificate does not exist yet.
+

@@ -11,7 +11,9 @@ describe("client vaults (spec §7.5 Work): per-folder passcode, salted hash, ses
     expect(r).toMatchObject({ folderId: "folder-1", createdAt: NOW });
     expect(r.saltHex).toMatch(/^[0-9a-f]{32}$/);
     expect(r.hashHex).toMatch(/^[0-9a-f]{64}$/);
-    expect(JSON.stringify(r)).not.toContain("2468");
+    /* Field by field: a random hex salt or hash contains "2468" about once in 700 runs. */
+    expect(Object.keys(r).sort()).toEqual(["createdAt", "folderId", "hashHex", "saltHex"]);
+    expect(Object.values(r)).not.toContain("2468");
     expect(verifyVaultCode(r, "2468")).toBe(true);
     expect(verifyVaultCode(r, "2469")).toBe(false);
     expect(verifyVaultCode(r, "")).toBe(false);

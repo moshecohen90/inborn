@@ -1,0 +1,8 @@
+$ git status (fresh worktree of origin/main a38c1b5), tauri.conf.json beforeBuildCommand run verbatim:
+$ cd apps/mobile && npx expo export -p web
+metadata.json (49B)
+
+Exported: dist
+$ ls dist/pdfjs dist/wllama
+ls: dist/pdfjs: No such file or directory
+ls: dist/wllama: No such file or directory
