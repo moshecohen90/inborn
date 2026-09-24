@@ -3,10 +3,14 @@ import {
   Retriever,
   assertImportable,
   buildRagPrompt,
+  chunkFor,
   citationsForAnswer,
+  embedBudget,
   indexDocument,
   isRelevant,
+  needsReindex,
   newId,
+  reindexFrom,
   type Citation,
   type DocumentRecord,
   type EmbeddingStore,
@@ -18,7 +22,7 @@ import {
 } from "@inborn/core";
 import { MemoryEmbeddingStore, SplitEmbeddingStore } from "@inborn/core";
 import { openRagStore, ragStoreKind } from "./db";
-import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
+import { EMBED_MODEL_ID, resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
 import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
@@ -146,7 +150,28 @@ export class DocumentLibrary {
     this.embedderRef = resolved;
     this.retriever = null;
     this.embedder = resolved ? { kind: "ready", path: resolved.path } : { kind: "missing" };
+    this.reindexStale();
     this.notify();
+  }
+
+  /**
+   * A document whose vectors came from another embedder is rebuilt with this one on the first open after the update;
+   * with no embedder yet it waits as "no-embedder", which the chat already turns into "install the document index".
+   */
+  private reindexStale(): void {
+    const current = this.embedderRef?.embedder.id ?? EMBED_MODEL_ID;
+    for (const doc of this.docs.values()) {
+      if (this.jobs.has(doc.id)) continue;
+      const stale = needsReindex(doc, current);
+      const waiting = doc.status === "failed" && doc.error === "no-embedder";
+      if (!stale && !(waiting && this.embedderRef)) continue;
+      const ocr = doc.ocrPages > 0;
+      const fresh = stale ? reindexFrom(doc) : doc;
+      if (this.embedderRef) {
+        this.commit(fresh);
+        this.enqueue(doc.id, ocr);
+      } else this.commit({ ...fresh, status: "failed", error: "no-embedder" });
+    }
   }
 
   subscribe(listener: () => void): () => void {
@@ -374,6 +399,7 @@ export class DocumentLibrary {
       ocr,
       signal: job.abort.signal,
       maxPages: this.pageCaps.get(id),
+      chunk: chunkFor(this.embedderRef.contextTokens),
       onProgress: (p) => {
         this.progress.set(id, p);
         const current = this.docs.get(id);
@@ -470,7 +496,7 @@ export class DocumentLibrary {
   async ask(question: string, o: AskOptions = {}): Promise<AskResult> {
     await this.ready();
     if (!this.store || !this.embedderRef) throw new Error("no-embedder");
-    const retriever = (this.retriever ??= new Retriever(this.store, this.embedderRef.embedder));
+    const retriever = (this.retriever ??= new Retriever(this.store, this.embedderRef.embedder, embedBudget(this.embedderRef.contextTokens)));
     const indexed = this.state().documents.filter((d) => d.chunkCount > 0);
     const docIds = o.docIds?.length ? o.docIds.filter((id) => this.docs.get(id)?.chunkCount) : indexed.map((d) => d.id);
     const started = Date.now();

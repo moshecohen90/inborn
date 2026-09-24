@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, isRelevant, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, isRelevant, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, type DocumentRecord, type RetrievalHit } from "../src/rag";
 import measured from "./fixtures/rag/cjk-cosines.json";
 
 /**
@@ -7,8 +7,9 @@ import measured from "./fixtures/rag/cjk-cosines.json";
  * floor to do it, so neither test could see the other door: on the OnePlus 6T a one-passage Japanese file was still
  * cited for an off-topic Japanese question, over `cosine >= 0.5` alone (QA F261, F282).
  *
- * Every cosine here is the real one, measured off-device with the embedder the app ships (see the fixture's header):
- * 12 one-passage documents in 9 languages, 57 on-topic and 102 off-topic questions.
+ * Every cosine here is the real one, measured off-device with nomic-embed-text-v1.5, the embedder the app shipped until
+ * round 72 (see the fixture's header): 12 one-passage documents in 9 languages, 57 on-topic and 102 off-topic
+ * questions. The shipped multilingual embedder is guarded on the same questions in rag-multilingual-guard.test.ts.
  */
 interface Fixture {
   id: string;
@@ -92,9 +93,10 @@ describe("F327 · the embedding half cannot cite a passage on its own", () => {
     }
   });
 
-  it("the cosine still corroborates a single shared word, and still cannot replace it", () => {
+  it("the cosine still corroborates a single shared word, and replaces it only above the cosine-alone door (F334)", () => {
     const h = (cosine: number, bm25: number, bm25Terms: number): RetrievalHit => ({ chunk: { id: "c", docId: "d", page: 1, ord: 0, text: "t", start: 0, end: 1, tokens: 1 }, score: 1, cosine, bm25, bm25Terms });
-    expect(isRelevant(h(0.99, 0, 0))).toBe(false);
+    expect(isRelevant(h(DEFAULT_MIN_COSINE_ALONE, 0, 0))).toBe(false);
+    expect(isRelevant(h(DEFAULT_MIN_COSINE_ALONE + 0.001, 0, 0))).toBe(true);
     expect(isRelevant(h(0.1, 0.9, 1))).toBe(false);
     expect(isRelevant(h(0.6, 0.9, 1))).toBe(true);
     expect(isRelevant(h(0.1, 3.2, 1))).toBe(true);

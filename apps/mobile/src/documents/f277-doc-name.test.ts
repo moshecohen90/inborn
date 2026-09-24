@@ -39,7 +39,7 @@ vi.mock("./files", async () => {
   };
 });
 vi.mock("./db", () => ({ openRagStore: async () => saved, ragStoreKind: () => "sqlcipher" }));
-vi.mock("./embedder", () => ({ resolveEmbedder: () => ({ path: "/embed.gguf", embedder: hashEmbedder(64) }) }));
+vi.mock("./embedder", () => ({ EMBED_MODEL_ID: "embed-e5", resolveEmbedder: () => ({ path: "/embed.gguf", embedder: hashEmbedder(64), contextTokens: 512 }) }));
 vi.mock("./extract", async () => {
   const { TextFileExtractor } = await import("@inborn/core");
   const files = await import("./files");

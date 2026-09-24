@@ -127,7 +127,7 @@ export interface EmbeddingStore {
 }
 
 export interface Embedder {
-  /** Catalog id of the embedding model ("embed-nomic", "null"); nomic ids get the search_document/search_query prefixes. */
+  /** Catalog id of the embedding model ("embed-e5", "null"); it picks the task prefixes (`forDocuments`, `forQuery`). */
   readonly id: string;
   embed(texts: string[]): Promise<Float32Array[]>;
 }

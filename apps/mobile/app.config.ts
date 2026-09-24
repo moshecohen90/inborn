@@ -183,7 +183,7 @@ const ALL_PACKS = {
   instant: [{ name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
   fast: [{ name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } }],
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
-  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } }],
+  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],
   /* Voice (whisper base) and vision (Qwen3.5 projector) companions, same rule. */
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
   vision: [{ name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],

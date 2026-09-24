@@ -21,7 +21,7 @@ Rule from the spec: anything we bundle or serve from our CDN makes us a distribu
 | T3 alt | Ministral 3 8B | Apache-2.0 per spec §6.1 | Mistral AI | **Verify at the exact HF repo before adding**: older Ministral 8B (2410) was MRL (non-commercial), which is out of the catalogue by rule | planned |
 | T4 Studio | Muse Glimmer 30B | Apache-2.0 per spec §6.1 | Meta | **Verify licence text at the source before adding**; if it is a Llama-style community licence, "Built with …" and AUP obligations apply | planned |
 | Vision | Qwen3.5 mmproj files | Apache-2.0 | same repo as the base model | same | catalogue |
-| Embeddings | nomic-embed-text-v1.5 (GGUF) | Apache-2.0 | Nomic AI. https://huggingface.co/nomic-ai/nomic-embed-text-v1.5 | LICENSE + attribution | catalogue |
+| Embeddings (document index) | multilingual-e5-large-instruct (GGUF Q6_K) | MIT | Microsoft. https://huggingface.co/intfloat/multilingual-e5-large-instruct | Copyright notice on the Licences screen | shipped |
 | Embeddings (Pro) | Qwen3-Embedding-0.6B | Apache-2.0 | https://huggingface.co/Qwen/Qwen3-Embedding-0.6B | same | catalogue |
 | Embeddings (low-end) | all-MiniLM-L6-v2 | Apache-2.0 | sentence-transformers / UKPLab | same | catalogue |
 | Speech-to-text | whisper base / small (ggml) | MIT | OpenAI (weights and code). https://github.com/openai/whisper/blob/main/LICENSE | Copyright notice | catalogue |
@@ -93,7 +93,7 @@ One list, grouped Models / Engine / Libraries / Fonts, each row: name, version, 
 
 - Qwen3.5 model cards and LICENSE files: https://huggingface.co/Qwen/Qwen3.5-0.8B, https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE
 - Phi-4-mini-instruct LICENSE (MIT): https://huggingface.co/microsoft/Phi-4-mini-instruct/blob/main/LICENSE
-- nomic-embed-text-v1.5 (Apache-2.0): https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
+- multilingual-e5-large-instruct (MIT, model card metadata): https://huggingface.co/intfloat/multilingual-e5-large-instruct
 - Whisper (MIT): https://github.com/openai/whisper/blob/main/LICENSE; whisper.cpp (MIT): https://github.com/ggml-org/whisper.cpp
 - SQLCipher LICENSE.md (BSD-2-Clause, Zetetic LLC): https://github.com/sqlcipher/sqlcipher/blob/master/LICENSE.md
 - llama.rn LICENSE (MIT, Jhen-Jie Hong): node_modules/llama.rn/LICENSE; wllama package.json `license: MIT`

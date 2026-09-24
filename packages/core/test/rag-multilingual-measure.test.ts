@@ -67,6 +67,8 @@ const OFF_TOTAL = 102;
 const MC_ON = 21;
 /** The cosine door the app ships with the multilingual embedder; see docs/qa/embed-multilingual/measure.md. */
 const SHIPPED_MIN_COSINE = 0.82;
+/** The candidate the catalog ships as `embed-e5`; its per-question cosines are committed for the guards. */
+const SHIPPED_VARIANT = "e5-large-inst-q6";
 
 const round70 = (r: { terms: number; bm25: number; cos: number }) => r.terms >= 2 || (r.terms >= 1 && (r.bm25 >= 2.0 || r.cos >= 0.5));
 
@@ -322,6 +324,28 @@ function tables(results: CandidateResult[]): string {
   return L.join("\n") + "\n";
 }
 
+/** Every cosine of one candidate, per question, in the shape of `cjk-cosines.json` plus the six-chunk documents. */
+function perQuestion(dir: string, variant: string, meta: Record<string, string | number>) {
+  const vectors = JSON.parse(readFileSync(join(dir, `${variant}.vectors.json`), "utf8")) as Record<string, number[]>;
+  const singles = JSON.parse(readFileSync(join(OLD_QA, "fixtures.json"), "utf8")).docs as SingleDoc[];
+  const multis = JSON.parse(readFileSync(join(OLD_QA, "multichunk.json"), "utf8")).docs as MultiDoc[];
+  const f32 = (key: string) => Float32Array.from(vectors[key]!);
+  const cos = (text: string, q: string) => {
+    const { q: qq, scale } = quantize(f32(text));
+    return Number(cosineQuantized(qq, scale, normalize(f32(q))).toFixed(4));
+  };
+  const candidates = JSON.parse(readFileSync(join(QA, "candidates.json"), "utf8")).candidates as Array<{ id: string; docPrefix: string; queryPrefix: string }>;
+  const c = candidates.find((x) => x.id === meta.id)!;
+  return {
+    embedder: String(meta.source ?? ""),
+    prefixes: [c.docPrefix, c.queryPrefix],
+    measured: "llama-embedding --pooling mean --embd-normalize 2, then the app's own quantize()/cosineQuantized() (packages/core/src/rag/vector.ts)",
+    why: "The shipped embedder's real cosines for round 70's questions, so the relevance door is guarded on the numbers the phone produces (F334).",
+    docs: singles.map((d) => ({ id: d.id, lang: d.lang, text: d.text, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosine: cos(`doc:${d.id}`, `q:${d.id}:${kind}:${q}`) }))) })),
+    multi: multis.map((d) => ({ id: d.id, lang: d.lang, answers: d.answers, chunks: d.chunks, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosines: d.chunks.map((_, i) => cos(`c:${d.id}:${i}`, `q:${d.id}:${kind}:${q}`)) }))) })),
+  };
+}
+
 describe.skipIf(!DIR)("F333 · every candidate multilingual embedder, measured", () => {
   it("scores every candidate and writes the tables", () => {
     const dir = DIR!;
@@ -334,6 +358,7 @@ describe.skipIf(!DIR)("F333 · every candidate multilingual embedder, measured",
     expect(results.length).toBeGreaterThan(0);
     writeFileSync(join(QA, "measure.md"), tables(results));
     writeFileSync(join(__dirname, "fixtures/rag/multilingual.json"), JSON.stringify({ results }, null, 1));
+    if (meta[SHIPPED_VARIANT]) writeFileSync(join(__dirname, "fixtures/rag/e5-cosines.json"), JSON.stringify(perQuestion(dir, SHIPPED_VARIANT, meta[SHIPPED_VARIANT]!), null, 1));
     for (const r of results) console.log(`${r.variant}: answerFirst ${r.answerFirst}/${MC_ON} · T=${r.cosAlone.T} → ${r.cosAlone.on}/${ON_TOTAL} on, ${r.cosAlone.off}/${OFF_TOTAL} off · ${mb(r.bytes)}`);
   });
 });

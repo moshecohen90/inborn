@@ -260,12 +260,13 @@ struct EmbedLoaded {
   n_ctx: usize,
 }
 
-/// The embedding companion (nomic-embed) gets its own model + context: one llama context is either chat or embeddings.
+/// The embedding companion gets its own model + context: one llama context is either chat or embeddings.
 fn load_embedder(backend: &LlamaBackend, path: &str) -> Result<EmbedLoaded, String> {
   let started = Instant::now();
   let model_params = LlamaModelParams::default().with_n_gpu_layers(999);
   let model = Box::new(LlamaModel::load_from_file(backend, path, &model_params).map_err(|e| e.to_string())?);
-  let n_ctx: u32 = 2048;
+  // A BERT past its trained positions aborts llama.cpp (GGML_ASSERT in get_rows), so tokens are cut at n_ctx_train.
+  let n_ctx: u32 = 2048.min(model.n_ctx_train().max(1));
   // Non-causal (BERT) attention needs the whole sequence in one micro-batch.
   let ctx_params = LlamaContextParams::default()
     .with_n_ctx(NonZeroU32::new(n_ctx))

@@ -180,7 +180,7 @@ export class LlamaRnLM implements LocalLM {
 }
 
 /**
- * Embedding companion (nomic-embed) on its own llama.rn context: a context is either chat or embeddings, never both.
+ * Embedding companion on its own llama.rn context: a context is either chat or embeddings, never both.
  * Loaded on first use, released by `unload()` (the document library calls it when indexing is idle).
  */
 export class LlamaRnEmbedder implements Embedder {
@@ -191,14 +191,17 @@ export class LlamaRnEmbedder implements Embedder {
   constructor(
     readonly id: string,
     private readonly uri: string,
+    /* llama.cpp aborts on a sequence past the model's trained context, so this comes from the catalog, never a constant. */
+    private readonly contextTokens = 512,
   ) {}
 
   private ready(): Promise<Ctx> {
     if (this.ctx) return Promise.resolve(this.ctx);
     return (this.loading ??= (async () => {
       const started = Date.now();
+      const n = this.contextTokens;
       /* Non-causal (BERT) attention needs the whole sequence in one micro-batch, so n_batch = n_ubatch = n_ctx. */
-      const ctx = await initLlama({ model: this.uri, embedding: true, n_ctx: 2048, n_batch: 2048, n_ubatch: 2048, pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
+      const ctx = await initLlama({ model: this.uri, embedding: true, n_ctx: n, n_batch: n, n_ubatch: n, pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
       this.loadMs = Date.now() - started;
       if (__DEV__) console.log(`[llama.rn] embedder ${this.id} loaded in ${this.loadMs} ms`);
       this.ctx = ctx;
