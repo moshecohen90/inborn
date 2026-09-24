@@ -1,0 +1,59 @@
+{
+ "variant": "after",
+ "dist": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-web-a11y-props/dist-after",
+ "console": [
+  "info: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+  "log: Running application \"main\" with appParams:\n {rootTag: #root, hydrate: undefined} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.",
+  "error: WebSocket connection to 'ws://127.0.0.1:61783/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:61783/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "log: [device] normal · — {} · none/none · button=null · threads=6 maxTokens=1024 · unknown/unknown/80%/charging/lpm=false",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "info: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+  "log: Running application \"main\" with appParams:\n {rootTag: #root, hydrate: undefined} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.",
+  "error: WebSocket connection to 'ws://127.0.0.1:61783/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:61783/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "warning: props.pointerEvents is deprecated. Use style.pointerEvents",
+  "log: [device] normal · — {} · none/none · button=null · threads=6 maxTokens=1024 · unknown/unknown/80%/charging/lpm=false",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "warning: No available adapters.",
+  "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+  "info: [wllama] loaded fast in 2503 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+  "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 2533 ms",
+  "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+  "log: [stats] {\"engine\":\"wllama\",\"model\":\"fast\",\"uri\":\"opfs://models/fast.gguf\",\"loadMs\":2533,\"tokPerSec\":14.35691285353898,\"ttftMs\":7700.115000009537,\"ctxUsed\":7,\"memMB\":0,\"elapsedMs\":8199}",
+  "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 10 ms"
+ ],
+ "failed": [],
+ "dom": {
+  "svgCount": 7,
+  "svgAriaHidden": 5,
+  "leakedAttributes": [],
+  "composerIcons": [
+   {
+    "id": "attach",
+    "svg": [
+     {
+      "aria-hidden": "true"
+     }
+    ]
+   },
+   {
+    "id": "mic",
+    "svg": [
+     {
+      "aria-hidden": "true"
+     }
+    ]
+   },
+   {
+    "id": "send",
+    "svg": [
+     {
+      "aria-hidden": "true"
+     }
+    ]
+   }
+  ],
+  "liveRegions": []
+ }
+}

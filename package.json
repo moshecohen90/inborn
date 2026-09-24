@@ -20,7 +20,7 @@
     "desktop:release:macos": "bash apps/desktop/scripts/release-macos.sh",
     "web:serve": "node scripts/serve-web.mjs",
     "web:smoke": "node scripts/web-smoke.mjs",
-    "web:build": "pnpm --filter @inborn/mobile export:web && pnpm --filter @inborn/web build"
+    "web:build": "pnpm --filter @inborn/mobile export:web && pnpm --filter @inborn/web build && pnpm --filter @inborn/mobile export:web:dev"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

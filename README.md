@@ -5756,3 +5756,41 @@ two of four token sizes never fire), and it left every copy on screen.
 
 Evidence in `docs/qa/fix-loop-guard/`: the red files above, `e2e/` (harnesses, before/after JSON, trial JSON) and
 `shots/` at 1440 and 390. Spec §10 row 39 states the rule.
+
+## Fixes round 88: React Native accessibility props no longer leak into the web page (branch `fix-web-a11y-props`) — 24.9.2026
+
+Every web end-to-end run since round 83 logged "React does not recognize the `accessibilityElementsHidden` prop" and the
+same for `importantForAccessibility` (`docs/qa/fix-loop-guard/e2e/before.json` lines 180 to 190). In a development build
+LogBox turned them into a red toast over the composer. The icons were not hidden from browser screen readers either.
+
+- **Cause (F371).** `Icon` in `packages/ui` is the only place that set those two props, but it sets them on a
+  react-native-svg `Svg`. react-native-web would translate them on a `View`. react-native-svg passes its props to the
+  `<svg>` element as they are, so the browser got two junk attributes and no `aria-hidden`.
+- **Fix.** `hiddenFromScreenReaders(os)` in `packages/ui/src/a11y.ts` returns `aria-hidden` on web and the two native
+  props on iOS and Android, so native behaviour does not change. `a11y.test.ts` checks all three platforms.
+- **Same console, same kind of leak.** The Seal ring's `Animated` circle got `collapsable={false}` from Animated, which
+  react-native-svg also handed to the DOM ("Received `false` for a non-boolean attribute"). On web it now goes through a
+  circle that drops that prop. The three `accessibilityLiveRegion="polite"` views use `aria-live="polite"`, which
+  react-native-web maps without a deprecation warning and React Native maps to the same live region on Android.
+- **The 405.** It was a development-build artefact. Each React warning made LogBox `POST /symbolicate`, which
+  `serve-web.mjs` answers 405 because it serves only GET and HEAD. It appears only in development exports, and with
+  the warnings gone there are no such requests.
+- **Guard.** `web:smoke` checks the chat's DOM for any React Native prop name and checks that the attach, mic and send
+  icons are `aria-hidden`. A new pass 7 walks the first run on a development export. `web:build` now also writes
+  `apps/mobile/web-build/dev`, which is gitignored and never shipped. That pass fails on any React DOM warning and on
+  any LogBox `/symbolicate` report. Production React prints no warnings, so only a development build can see them.
+  `DEV_CONSOLE=off` skips the pass.
+- **Red first.** In `red-prod-dom-leak.txt`, leaving `importantForAccessibility` in `Icon` fails the production DOM
+  check. In `red-dev-react-warning.txt`, leaving `accessibilityElementsHidden` passes production, because React drops
+  a boolean it does not know silently, and fails pass 7.
+- **Proven in headless Chromium.** `probe.mjs` walks door, download, onboarding and one answer on a development export.
+  In `before.json`, 5 icon `<svg>`s had `importantForAccessibility`, none was `aria-hidden`, and there were 8 `POST
+  /symbolicate` 405s. In `after.json`, 5 of 7 `<svg>`s are `aria-hidden`, nothing leaked and nothing failed. The other
+  two are not `Icon` glyphs. `green-dom.json` is the smoke's own reading. `before-chat-390.png` shows the
+  toast, and `after-chat-390.png` and `green-dev-chat-390.png` do not.
+
+Development-build warnings that remain are not React's: react-native-web's "props.pointerEvents is deprecated" from
+nine call sites, wllama's "No available adapters" without WebGPU, and Animated's native-driver fallback. Some console
+lines are harness noise because no Metro server is running: the dev bundle's `/hot` and `/message` sockets fail, and
+the raw mobile export has no `/sw.js`. The before build was minified, so it also warned about a screen component named
+`o`. The unminified export does not. Evidence in `docs/qa/fix-web-a11y-props/`.
