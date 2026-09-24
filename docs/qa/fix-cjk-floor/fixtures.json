@@ -1,5 +1,5 @@
 {
-  "note": "One-passage documents and the questions asked of them. `on` must keep citing, `off` must not. Passages and questions marked device were run on the OnePlus 6T (docs/qa/android-vc21, android-vc22).",
+  "note": "One-passage documents and the questions asked of them. `on` must keep citing, `off` must not. Passages and questions marked device were run on the OnePlus 6T (docs/qa/android-vc21, android-vc22). de/fr/es/pt are typed with their accents and each doc's `sloppy` lists the accent-less questions kept as typing variants; zhHant-* are the zh-Hant launch locale (F363).",
   "docs": [
     {
       "id": "ja-device",
@@ -108,6 +108,54 @@
       ]
     },
     {
+      "id": "zhHant-f278",
+      "lang": "zh-Hant",
+      "source": "zh-f278 in Traditional Chinese as written in Taiwan (F363): 營收, 成長, 獲利, 高鐵 台北到高雄",
+      "text": "本公司二〇二四年度的營收為三千萬元，比上一年度成長百分之十二。我們可以在下一年度繼續維持這樣的成長。",
+      "on": [
+        "公司的年度營收成長了多少？",
+        "本公司二〇二四年度的營收是多少？",
+        "去年的營業額比前年高了幾成？",
+        "獲利提高了幾個百分點？",
+        "明年還能維持這樣的勢頭嗎？",
+        "銷售業績比以前好了嗎？"
+      ],
+      "off": [
+        "我們什麼時候可以去巴黎旅遊？",
+        "一九九八年世界盃足球賽是誰贏的？",
+        "紅燒肉要怎麼做才好吃？",
+        "台北到高雄搭高鐵要多久？",
+        "要怎麼樣才能學好英文？",
+        "手機充電太慢怎麼辦？",
+        "小孩發燒應該怎麼處理？",
+        "推薦一部好看的電影。",
+        "長城是哪個朝代建的？",
+        "養貓需要注意什麼？"
+      ]
+    },
+    {
+      "id": "zhHant-f195",
+      "lang": "zh-Hant",
+      "source": "zh-f195 in Traditional Chinese as written in Taiwan (F363)",
+      "text": "本公司二〇二四年度的營收為三千萬元，比上一年度成長百分之十二。",
+      "on": [
+        "公司的年度營收是多少？",
+        "營業額跟前一年比起來如何？",
+        "獲利比以前多了多少？",
+        "生意做得比上一年好嗎？"
+      ],
+      "off": [
+        "誰贏得了一九九八年世界盃足球賽？",
+        "員工餐廳的午餐時間是什麼時候？",
+        "番茄炒蛋怎麼做？",
+        "明天會下雨嗎？",
+        "哪個牌子的電腦比較好？",
+        "跑步前需要暖身嗎？",
+        "故宮的門票多少錢？",
+        "要怎樣才能睡個好覺？"
+      ]
+    },
+    {
       "id": "ko-report",
       "lang": "ko",
       "source": "new for F329; the Korean twin of ja-device",
@@ -207,35 +255,75 @@
     {
       "id": "es-report",
       "lang": "es",
-      "source": "Spanish twin of en-report",
-      "text": "Segun el informe anual de 2025 de Aoba Trading, la empresa emplea a trescientas ochenta y dos personas y sus dos oficinas principales estan en Sendai y Fukuoka.",
+      "source": "Spanish twin of en-report, typed with its accents (F363); `sloppy` lists the round-70 accent-less questions kept as typing variants",
+      "text": "Según el informe anual de 2025 de Aoba Trading, la empresa emplea a trescientas ochenta y dos personas y sus dos oficinas principales están en Sendai y Fukuoka.",
       "on": [
+        "¿Cuántas personas trabajan allí?",
+        "¿Qué tamaño tiene la plantilla?",
+        "¿En qué ciudades están las sedes?",
+        "¿Cuál es el número total de empleados?",
+        "¿Dónde tiene la compañía sus sedes?",
         "¿Cuantas personas trabajan alli?",
         "¿Que tamaño tiene la plantilla?",
         "¿En que ciudades estan las sedes?"
       ],
       "off": [
+        "¿Quién ganó el Mundial de 1998?",
+        "¿Cómo se prepara un buen risotto?",
+        "¿Cuánto dura el tren de Tokio a Osaka?",
+        "¿Por qué se descarga tan rápido la batería?",
+        "Mi hijo tiene fiebre, ¿qué hago?",
+        "¿Hay que calentar antes de correr?",
+        "¿Qué tiempo hará mañana en Madrid?",
+        "¿Cómo se quita una mancha de vino tinto?",
         "¿Quien gano el Mundial de 1998?",
         "¿Como se prepara un buen risotto?",
         "¿Cuanto dura el tren de Tokio a Osaka?",
         "¿Por que se descarga tan rapido la bateria?",
-        "Mi hijo tiene fiebre, ¿que hago?",
-        "¿Hay que calentar antes de correr?"
+        "Mi hijo tiene fiebre, ¿que hago?"
+      ],
+      "sloppy": [
+        "¿Cuantas personas trabajan alli?",
+        "¿Que tamaño tiene la plantilla?",
+        "¿En que ciudades estan las sedes?",
+        "¿Quien gano el Mundial de 1998?",
+        "¿Como se prepara un buen risotto?",
+        "¿Cuanto dura el tren de Tokio a Osaka?",
+        "¿Por que se descarga tan rapido la bateria?",
+        "Mi hijo tiene fiebre, ¿que hago?"
       ]
     },
     {
       "id": "pt-report",
       "lang": "pt",
-      "source": "Portuguese twin",
-      "text": "Segundo o relatorio anual de 2025 da Aoba Trading, a companhia emprega trezentas e oitenta e duas pessoas e os seus dois escritorios principais ficam em Sendai e Fukuoka.",
+      "source": "Portuguese twin, in Brazilian Portuguese (the pt-BR launch locale) with its accents (F363); `sloppy` lists the round-70 accent-less European questions kept as typing variants",
+      "text": "Segundo o relatório anual de 2025 da Aoba Trading, a empresa emprega trezentas e oitenta e duas pessoas, e seus dois escritórios principais ficam em Sendai e Fukuoka.",
       "on": [
+        "Quantas pessoas trabalham lá?",
+        "Qual é o tamanho do quadro de funcionários?",
+        "Em que cidades ficam as sedes?",
+        "Qual é o número total de funcionários?",
+        "Em quais cidades a empresa está instalada?",
         "Quantas pessoas trabalham la?",
-        "Qual e o tamanho do quadro de pessoal?",
-        "Em que cidades ficam as sedes?"
+        "Qual e o tamanho do quadro de pessoal?"
       ],
       "off": [
         "Quem ganhou a Copa do Mundo de 1998?",
         "Como se faz um bom risoto?",
+        "Quanto tempo leva o trem de Tóquio a Osaka?",
+        "Por que a bateria acaba tão rápido?",
+        "Meu filho está com febre, o que eu faço?",
+        "É preciso aquecer antes de correr?",
+        "Qual é a previsão do tempo para amanhã em São Paulo?",
+        "Como tirar mancha de café da roupa?",
+        "Quanto tempo demora o comboio de Toquio a Osaka?",
+        "Porque e que a bateria acaba tao depressa?",
+        "O meu filho tem febre, o que faco?",
+        "E preciso aquecer antes de correr?"
+      ],
+      "sloppy": [
+        "Quantas pessoas trabalham la?",
+        "Qual e o tamanho do quadro de pessoal?",
         "Quanto tempo demora o comboio de Toquio a Osaka?",
         "Porque e que a bateria acaba tao depressa?",
         "O meu filho tem febre, o que faco?",
@@ -245,18 +333,36 @@
     {
       "id": "fr-report",
       "lang": "fr",
-      "source": "French twin",
-      "text": "Selon le rapport annuel 2025 d'Aoba Trading, la societe emploie trois cent quatre-vingt-deux personnes et ses deux bureaux principaux se trouvent a Sendai et Fukuoka.",
+      "source": "French twin, typed with its accents (F363); `sloppy` lists the round-70 accent-less questions kept as typing variants",
+      "text": "Selon le rapport annuel 2025 d'Aoba Trading, la société emploie trois cent quatre-vingt-deux personnes et ses deux bureaux principaux se trouvent à Sendai et Fukuoka.",
       "on": [
         "Combien de gens y travaillent?",
         "Quelle est la taille des effectifs?",
+        "Dans quelles villes sont les sièges?",
+        "Combien de salariés compte l'entreprise?",
+        "Où l'entreprise est-elle implantée?",
         "Dans quelles villes sont les sieges?"
       ],
       "off": [
+        "Qui a gagné la Coupe du monde 1998?",
+        "Comment prépare-t-on un bon risotto?",
+        "Combien de temps dure le train de Tokyo à Osaka?",
+        "Pourquoi la batterie se vide-t-elle si vite?",
+        "Mon enfant a de la fièvre, que faire?",
+        "Faut-il s'échauffer avant de courir?",
+        "Quel temps fera-t-il à Paris demain?",
+        "Comment réparer une fuite d'eau sous l'évier?",
         "Qui a gagne la Coupe du monde 1998?",
         "Comment prepare-t-on un bon risotto?",
         "Combien de temps dure le train de Tokyo a Osaka?",
-        "Pourquoi la batterie se vide-t-elle si vite?",
+        "Mon enfant a de la fievre, que faire?",
+        "Faut-il s'echauffer avant de courir?"
+      ],
+      "sloppy": [
+        "Dans quelles villes sont les sieges?",
+        "Qui a gagne la Coupe du monde 1998?",
+        "Comment prepare-t-on un bon risotto?",
+        "Combien de temps dure le train de Tokyo a Osaka?",
         "Mon enfant a de la fievre, que faire?",
         "Faut-il s'echauffer avant de courir?"
       ]
@@ -264,10 +370,14 @@
     {
       "id": "de-report",
       "lang": "de",
-      "source": "German twin",
-      "text": "Laut dem Jahresbericht 2025 von Aoba Trading beschaeftigt das Unternehmen dreihundertzweiundachtzig Personen, und seine beiden Hauptbueros befinden sich in Sendai und Fukuoka.",
+      "source": "German twin, typed with its umlauts and ß (F363); `sloppy` lists the round-70 ae/oe/ue/ss questions kept as typing variants",
+      "text": "Laut dem Jahresbericht 2025 von Aoba Trading beschäftigt das Unternehmen dreihundertzweiundachtzig Personen, und seine beiden Hauptbüros befinden sich in Sendai und Fukuoka.",
       "on": [
         "Wie viele Leute arbeiten dort?",
+        "Wie groß ist die Belegschaft?",
+        "In welchen Städten sitzen die Zentralen?",
+        "Wie hoch ist die Zahl der Beschäftigten?",
+        "An welchen Orten hat die Firma ihre Geschäftsstellen?",
         "Wie gross ist die Belegschaft?",
         "In welchen Staedten sitzen die Zentralen?"
       ],
@@ -277,6 +387,14 @@
         "Wie lange dauert der Zug von Tokio nach Osaka?",
         "Warum ist der Akku so schnell leer?",
         "Mein Kind hat Fieber, was soll ich tun?",
+        "Muss man sich vor dem Laufen aufwärmen?",
+        "Welche Schuhgröße braucht ein fünfjähriges Kind?",
+        "Wann öffnen die Geschäfte am Sonntag?",
+        "Muss man sich vor dem Laufen aufwaermen?"
+      ],
+      "sloppy": [
+        "Wie gross ist die Belegschaft?",
+        "In welchen Staedten sitzen die Zentralen?",
         "Muss man sich vor dem Laufen aufwaermen?"
       ]
     }

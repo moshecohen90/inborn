@@ -23,6 +23,19 @@ describe("BM25", () => {
     expect(bm25Tokens("הָאַחֲרָיוּת")).toContain("אחריות");
   });
 
+  it("F363: 'que' is glue in French, Spanish and Portuguese, so an off-topic question does not match a passage on it", () => {
+    for (const [passage, question] of [
+      ["La maison a été fondée en 1962 et ne traitait alors que du bois importé.", "Mon enfant a de la fièvre, que faire?"],
+      ["La empresa dice que sus oficinas están en Sendai.", "¿Hay que calentar antes de correr?"],
+      ["O relatório diz que a empresa emprega trezentas pessoas.", "O que eu faço com a febre do meu filho?"],
+    ] as const) {
+      const idx = new Bm25Index();
+      idx.add("p", passage);
+      expect([question, idx.search(question)[0]?.matched ?? 0]).toEqual([question, 0]);
+    }
+    expect(bm25Tokens("Qu'est-ce que la société fabrique?")).toContain("société");
+  });
+
   it("removes and re-adds documents", () => {
     const idx = new Bm25Index();
     idx.add("a", "alpha beta");

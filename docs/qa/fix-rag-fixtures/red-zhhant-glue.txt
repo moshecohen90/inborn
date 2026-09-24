@@ -1,0 +1,16 @@
+     × every Simplified glue glyph's Traditional form is glue too 10ms
+     × the off-topic question shares no term with the passage in either script, so a corroborating cosine cites nothing 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/rag-cjk.test.ts > F363 · Traditional Chinese glue is glue > every Simplified glue glyph's Traditional form is glue too
+AssertionError: expected [ '們', false ] to deeply equal [ '們', true ]
+- Expected
++ Received
+-   true,
++   false,
+ FAIL  test/rag-cjk.test.ts > F363 · Traditional Chinese glue is glue > the off-topic question shares no term with the passage in either script, so a corroborating cosine cites nothing
+AssertionError: expected [ '我們什麼時候可以去巴黎旅遊？', 1 ] to deeply equal [ '我們什麼時候可以去巴黎旅遊？', +0 ]
+- Expected
++ Received
+-   0,
++   1,
+      Tests  2 failed | 1 passed | 41 skipped (44)
