@@ -3,8 +3,7 @@
 # of a branch — not only at HEAD, which is what packages/core/test/no-device-ids.test.ts already guards.
 #
 # The repo is public (moshecohen90/inborn) and a commit's patch is served to anyone by raw.githubusercontent.com,
-# so a placeholder at HEAD hides nothing. This is deliberately NOT part of `pnpm check:store`: it is red on today's
-# history and stays red until that history is rewritten, which only the lead does. Wire it into check:store after.
+# so a placeholder at HEAD hides nothing. `pnpm check:store` runs it over HEAD's history since the round-63 rewrite.
 #
 #   scripts/check-history-ids.sh                     # every commit reachable from HEAD
 #   scripts/check-history-ids.sh origin/main..HEAD   # only what this branch adds

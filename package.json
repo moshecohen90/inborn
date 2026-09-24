@@ -10,7 +10,7 @@
     "test": "pnpm run check:store && pnpm -r --if-present test",
     "lint": "eslint .",
     "check:permissions": "bash scripts/check-android-permissions.sh",
-    "check:store": "node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs",
+    "check:store": "node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs && bash scripts/check-history-ids.sh",
     "check:live": "node scripts/check-live.mjs",
     "desktop:dev": "pnpm --filter @inborn/desktop dev",
     "desktop:build": "pnpm --filter @inborn/desktop build",
