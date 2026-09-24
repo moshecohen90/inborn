@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { gatePhotoSend, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
+import { gatePhotoSend, packAction, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
 
 const ready: VisionTurnInput = {
   hasImages: true,
@@ -157,5 +157,17 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
     const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
     expect(en["chat.vision.holdBody"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
     expect(en["chat.attach.visionMissing"]).toBe(en["chat.vision.holdBody"]);
+  });
+
+  it("the card offers one button for every pack state: a pause or a failure is a Download, never a dead end", () => {
+    expect(packAction({ kind: "not-installed" })).toBe("download");
+    expect(packAction({ kind: "failed" })).toBe("download");
+    expect(packAction({ kind: "corrupt" })).toBe("download");
+    expect(packAction({ kind: "delivering", paused: true })).toBe("resume");
+    expect(packAction({ kind: "delivering", paused: false })).toBe("progress");
+    expect(packAction({ kind: "verifying" })).toBe("progress");
+    expect(packAction({ kind: "delivering", paused: false, needsConfirmation: true })).toBe("vault");
+    expect(packAction({ kind: "needs-space" })).toBe("vault");
+    expect(packAction({ kind: "ready" })).toBe("ready");
   });
 });

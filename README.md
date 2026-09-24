@@ -5310,5 +5310,11 @@ picture: *"I cannot analyze the image or identify specific colors in the door."*
   button itself could not be proven on the simulator: its background download never reached the local model server, and
   the vault's own Install fails the same way. So the automatic release is covered by unit tests only and needs one look
   on a phone.
+- **A picture through the file door is a photo** (F343, second door). On build 18, "Add a file… or a photo" and the
+  share sheet indexed a photo as a document, and the answer was a refusal about the document index model. The pick
+  now sniffs the bytes, and an image goes to the composer as a photo under the same limit and the same Send gate.
+  Documents turns pictures away with a pointer to the chat. The missing-pack line is one sentence: "This device has
+  no photo model installed. Download the 205 MB photo pack to ask about pictures." Proven in headless Chromium at
+  390, 768, 1024 and 1440, and on the simulator.
 - **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
   The file stays attached, so there is nothing to hold.

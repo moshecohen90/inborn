@@ -79,3 +79,20 @@ export async function gatePhotoSend(d: PhotoGateDeps): Promise<"sent" | "held"> 
 
 /** The held turn goes out on its own the moment the pack becomes ready, from the chat's button or from the vault. */
 export const releasesHeldTurn = (held: boolean, before: string | undefined, now: string): boolean => held && before !== "ready" && now === "ready";
+
+/** What the hold card offers for the photo pack's install state (F343): one plain sentence, one button. */
+export type PackAction = "download" | "resume" | "progress" | "vault" | "ready";
+
+export function packAction(state: { kind: string; paused?: boolean; waitingForWifi?: boolean; needsConfirmation?: boolean }): PackAction {
+  if (state.kind === "ready") return "ready";
+  if (state.kind === "verifying") return "progress";
+  if (state.kind === "needs-space") return "vault";
+  if (state.kind === "delivering") {
+    if (state.paused) return "resume";
+    /* Mobile data and the size confirmation are the user's call, made in the vault. */
+    if (state.waitingForWifi || state.needsConfirmation) return "vault";
+    return "progress";
+  }
+  /* not-installed, failed, corrupt, quarantined: the same Download starts over. */
+  return "download";
+}
