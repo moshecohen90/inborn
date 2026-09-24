@@ -5144,6 +5144,36 @@ the fix everyone expected does not exist.
 Not done: no device run. The next Android or iOS pass should repeat F282's two Japanese turns and read the `[rag]`
 line for them. Nothing was measured on a multi-chunk document either — every fixture has one passage, because that
 is the case that failed.
+## Fixes round 69: the iPad pass — a send button nobody could hit, and Enter that never sends (branch `ipad-pass`) — 24.9.2026
+
+Moshe asked for the iPad, design included. Browser first, at the iPad's own widths, then the app itself on an
+iPad (10th gen) simulator in both orientations.
+
+- **The send button was 36 px, not 44 (F322).** `styles.send` was a 36×36 circle with `margin: 4`. The margin makes
+  the slot 44 so it lines up with the 44 pt attach and mic beside it, and that is all it does: margin is not
+  touchable. The app's most-used control sat 8 px under the platform minimum on every device, and worst on a tablet
+  held in two hands. The 36 px circle is now a View drawn inside a 44×44 Pressable — the same pixels, a fingertip
+  target, and it works in the browser too, where react-native-web ignores `hitSlop`.
+- **The browser gate now measures target size, and covers the iPad (F322).** `web:smoke` kept its shape and grew:
+  seven widths instead of four (390 / 768 / **820** / 1024 / **1180** / **1366** / 1440), seven screens instead of
+  four (proof, vault and documents joined), **both themes**, and a new measurement — every control on screen must be
+  at least `MIN_TOUCH` in both directions. 98 combinations per run. It went red on its first run against shipped
+  code, which is how the send button was found. Spec §14.9 was rewritten to match.
+- **The QA bridge can now drive a simulator (F323).** `scripts/ios-qa.mjs` was `devicectl`-only, so no iPad could be
+  driven without an XCUITest runner. A `--simulator` flag swaps the four transport moves for `simctl`; nothing else
+  changed. 34 steps passed in portrait and 27 in landscape, with landscape reached by `idb ui rotate` rather than by
+  touching the Simulator window. No layout defect at either orientation.
+- **Enter still does not send on an iPad (F324).** Round 47 suspected it; this round proved it. The hardware-keys
+  module declares `"platforms": ["android"]`, so on iOS the capture is a no-op. A real HID Return into a focused
+  composer left `"iPad hardware\n Enter check"` in the field and sent nothing. It needs an iOS native module, which
+  this round was told not to build, so it is filed with the evidence instead.
+- **The model chooser says "phone" to an iPad owner (F325).** "Best balance on this phone" sits directly under
+  "RECOMMENDED FOR THIS TABLET". The app has the right mechanism (`deviceNoun()` feeds `{device}` into 12 call
+  sites) but this string is signed catalog data, not a translation key, so it bypasses it and reaches every locale
+  in English. Filed rather than fixed: editing it breaks the Ed25519 signature and still would not reach users.
+
+Evidence in `docs/qa/ipad-pass/`: `layout/` (browser, both themes, before and after), `sim/` (the iPad simulator,
+portrait and landscape), `guard-red-f322-send-target.txt` (both guards watched red).
 
 ## Fixes round 70b: a centred cosine does not win the recall back, and the embedder is the reason (branch `fix-cjk-floor`) — 24.9.2026
 
