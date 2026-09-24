@@ -4615,3 +4615,40 @@ container is not Moshe's — it starts empty, runs onboarding, and every fixture
 
 Gates on this branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,458 tests**
 (core 726, mobile 702, i18n 17, ui 13); the ten new mobile ones are the F265 guard.
+
+## Fixes round 57: Cloudflare was putting a tracker on every page, and no gate could see it (branch `cf-analytics`) — 24.9.2026
+
+`inbornapp.com` and `app.inbornapp.com` were serving Cloudflare's Web Analytics beacon on every HTML response. We
+never shipped it; the edge added it on the way out, which is why `apps/site/check.mjs` and every build gate were
+green while a third-party script was on every page. F275.
+
+- **The trigger is `Accept: text/html`, not the user agent.** A plain `curl` gets a clean document, a browser gets
+  `static.cloudflareinsights.com/beacon.min.js` with `data-cf-beacon` token `8316c4ee…`, the same token on both
+  hosts. Both CSPs forbid it, so a real browser refused to load it and logged an error on every view, while the site
+  footer claimed no third-party requests and the app's Proof screen claimed `TRACKERS 0`.
+- **There was no setting to switch off.** The account's Web Analytics list holds 11 sites; none is `inbornapp.com`,
+  none carries that token, the zone has no RUM ruleset, there is no second account, and the Worker's own
+  `observability` is `null`. By contrast `hebrewbible.app` gets the beacon from its own site in that list with
+  `auto_install: true`, so auto-install works normally where a site exists. On this zone the Workers platform
+  injects its own with nothing behind it, which is the Pages behaviour long reported as "no UI toggle".
+- **The fix is a response header, in the repo, not a dashboard checkbox.** `Cache-Control: no-transform` stops the
+  edge rewriting the document. It is in `apps/site/public/_headers` and in `apps/web/headers.mjs`'s `cache()`
+  helper, so the single definition of each origin's headers carries it and it cannot drift. No freshness changed:
+  `/*` on the app now sends `public, max-age=0, must-revalidate, no-transform`, which is the value the platform was
+  already sending. Proven as a controlled experiment — the site was deployed alone and went to zero matches while
+  the app, untouched, still returned the beacon on the same request; then the app followed and both went clean.
+- **A gate that reads the public URL, because no gate did.** `scripts/check-live.mjs` (`pn check:live`) fetches each
+  live origin with a browser's `Accept` and fails on `cloudflareinsights`, on any `<script src>` that is not
+  same-origin, or on a `Cache-Control` without `no-transform`. `scripts/deploy-cloudflare.mjs` runs it after every
+  deploy and exits non-zero on failure (`--no-check-live` opts out). It was watched failing against the live app
+  before its fix landed, with all three assertions firing, and passing after.
+
+**Not done, and why.** Nothing was changed at Cloudflare: there was no toggle for this zone, and the deploy token
+has no Web Analytics permission by design. The other nine zones on the account still auto-install the beacon from
+their own sites; that is deliberate there and none of them claims to make no third-party requests, so they were left
+alone. The Safari window this stream opened on the dashboard was navigated away to an unrelated Facebook sign-in by
+something outside this stream while the probes were running, so it was abandoned rather than closed.
+
+Gates: `pn lint` 0, `pn typecheck` 0, `pn check:store` PASS, `pn check:live` PASS on both origins, `apps/site` build +
+`check.mjs` 13 pages clean, `pn web:build` clean, `pn web:smoke` PASS with `isolated=true`. Evidence:
+`docs/qa/deploy-site/live-2026-09-24.md` §"Round 57", `docs/qa/qa-run-2026-09-11.md` F275.
