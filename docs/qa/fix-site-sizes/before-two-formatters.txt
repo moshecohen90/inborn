@@ -1,0 +1,21 @@
+=== BEFORE: two formatters disagreed for the SAME bytes (F281) ===
+--- packages/core/src/catalog/resume.ts (used by ModelCard/VaultScreen/ModelSheet/ChatModelSheet/ModelChoice/HfSearch) ---
+export function formatModelBytes(bytes: number): string {
+  if (bytes >= 1024 ** 3) return `${(bytes / 1024 ** 3).toFixed(bytes >= 10 * 1024 ** 3 ? 0 : 1)} GB`;
+  if (bytes >= 1024 ** 2) return `${Math.round(bytes / 1024 ** 2)} MB`;
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
+
+--- apps/mobile/src/web/format.ts (used by the browser download door WebShell.tsx + VaultEntry.web.tsx) ---
+/** Bytes for the download door: "533 MB", "2.7 GB". Binary-free (the catalog quotes decimal sizes, spec §6.1). */
+export function formatBytes(bytes: number): string {
+  if (!Number.isFinite(bytes) || bytes < 0) return "?";
+  if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 1)} GB`;
+  if (bytes >= 1e6) return `${Math.round(bytes / 1e6)} MB`;
+  if (bytes >= 1e3) return `${Math.round(bytes / 1e3)} kB`;
+  return `${bytes} B`;
+}
+
+Same bytes, two outputs:
+  532517120 (Instant): core->'508 MB' (binary)   web/format->'533 MB' (decimal)
+  1280835840 (Fast):    core->'1.2 GB' (binary)  web/format->'1.3 GB' (decimal)

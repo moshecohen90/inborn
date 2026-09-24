@@ -3,8 +3,8 @@ import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { Icon, MIN_TOUCH, radius, type Theme } from "@inborn/ui";
+import { formatModelBytes } from "@inborn/core";
 import { delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
-import { formatBytes } from "./format";
 import type { DeliveryEvent } from "./modelDelivery";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
 import { writeEnginePref } from "./prefs";
@@ -139,7 +139,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
   if (!source) return null;
   const have = phase.kind === "paused" || phase.kind === "downloading" ? phase.have : 0;
   const space = estimate ? spaceCheck(estimate, source.bytes, have) : null;
-  const size = formatBytes(source.bytes);
+  const size = formatModelBytes(source.bytes);
 
   const start = async () => {
     if (running.current) return;
@@ -171,13 +171,13 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
         <Text style={[styles.headline, { color: theme.text }]}>{t("web.download.title", { model: source.name })}</Text>
         <Text style={[styles.body, { color: theme.text2 }]}>{t("web.download.explain", { size })}</Text>
         <Text style={[styles.mono, { color: theme.text3 }]}>
-          {t("web.download.storage", { free: estimate?.quota != null ? formatBytes(Math.max(0, estimate.quota - (estimate.usage ?? 0))) : "?" })}
+          {t("web.download.storage", { free: estimate?.quota != null ? formatModelBytes(Math.max(0, estimate.quota - (estimate.usage ?? 0))) : "?" })}
           {persisted === null ? "" : ` · ${t(persisted ? "web.download.kept" : "web.download.notKept")}`}
         </Text>
 
         {space && !space.ok && !busy ? (
           <Text testID="no-space" style={[styles.body, { color: theme.danger }]}>
-            {t("web.download.noSpace", { needed: formatBytes(space.needed), free: formatBytes(space.free) })}
+            {t("web.download.noSpace", { needed: formatModelBytes(space.needed), free: formatModelBytes(space.free) })}
           </Text>
         ) : null}
         {phase.kind === "error" ? (
@@ -192,7 +192,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
               <View style={[styles.fill, { width: `${percent}%`, backgroundColor: theme.sealed }]} />
             </View>
             <Text testID="download-progress" style={[styles.mono, { color: theme.text2 }]}>
-              {phase.kind === "verifying" ? t("web.download.verifying") : t("web.download.progress", { done: formatBytes(phase.have), total: formatBytes(phase.total ?? source.bytes), percent })}
+              {phase.kind === "verifying" ? t("web.download.verifying") : t("web.download.progress", { done: formatModelBytes(phase.have), total: formatModelBytes(phase.total ?? source.bytes), percent })}
             </Text>
             {phase.kind === "downloading" ? (
               <Pressable testID="download-cancel" accessibilityRole="button" onPress={() => delivery.cancel()} style={styles.textBtn}>
@@ -209,7 +209,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
             style={[styles.cta, { backgroundColor: theme.ctaFill, opacity: space && !space.ok ? 0.5 : 1 }]}
           >
             <Text style={[styles.body, styles.strong, { color: theme.ctaText }]}>
-              {phase.kind === "paused" ? t("web.download.resume", { done: formatBytes(phase.have), total: size }) : t("web.download.button", { size })}
+              {phase.kind === "paused" ? t("web.download.resume", { done: formatModelBytes(phase.have), total: size }) : t("web.download.button", { size })}
             </Text>
           </Pressable>
         )}

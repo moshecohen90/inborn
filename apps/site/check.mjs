@@ -10,11 +10,31 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { TOKENS, siteOrigin } from "./build.mjs";
+import { SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin } from "./build.mjs";
 import { headerProblems } from "./headerCheck.mjs";
 
 const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
 const problems = [];
+
+/* F280/F281: the app and the browser used to quote two different sizes for the same model file (533 MB vs 508 MB,
+   1.3 GB vs 1.2 GB) because the size was hand-typed on the site instead of read from the catalog. Pinning the two
+   sizes the catalog ships today catches both a formula regression (binary math prints "508 MB"/"1.2 GB") and a
+   catalog change nobody updated here for; the page scan below catches a hardcoded number that bypassed the token. */
+if (SIZE_INSTANT !== "533 MB") problems.push(`SIZE_INSTANT is "${SIZE_INSTANT}", expected "533 MB" (packages/core/src/catalog/manifest.json, id "instant")`);
+if (SIZE_FAST !== "1.3 GB") problems.push(`SIZE_FAST is "${SIZE_FAST}", expected "1.3 GB" (packages/core/src/catalog/manifest.json, id "fast")`);
+/* Every place the site names a model's download size, so a future edit cannot quietly hardcode a number again. */
+const SIZE_MENTIONS = [
+  ["index.html", ["Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
+  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
+  ["blog/why-on-device.html", ["Inborn ships a 0.8B model inside the app, {{SIZE_INSTANT}}, so the first chat works"]],
+];
+for (const [file, sentences] of SIZE_MENTIONS) {
+  const html = readFileSync(path.join(dist, file), "utf8");
+  for (const sentence of sentences) {
+    const expected = sentence.replace("{{SIZE_INSTANT}}", SIZE_INSTANT).replace("{{SIZE_FAST}}", SIZE_FAST);
+    if (!html.includes(expected)) problems.push(`${file}: missing "${expected}" (a model size was hardcoded instead of using {{SIZE_INSTANT}}/{{SIZE_FAST}}?)`);
+  }
+}
 
 /** Every .html under dist, including the blog posts in their own directory. */
 function htmlFiles(dir, base = dist) {

@@ -5,7 +5,7 @@ const MB = 1048576;
 
 /*
  * QA F43: `DispatchSource.makeMemoryPressureSource` reports the whole phone's pressure. The device syslog caught one
- * 4.0 s before Inborn was even launched; read as this app's state it dropped the chosen 1.2 GB model on a phone with
+ * 4.0 s before Inborn was even launched; read as this app's state it dropped the chosen 1.3 GB model on a phone with
  * 223 MB of footprint and gigabytes of headroom, on every cold launch.
  */
 describe("memoryPressureFromIos (QA F43)", () => {
