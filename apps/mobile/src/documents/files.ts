@@ -17,6 +17,9 @@ export function registerBlob(blob: Blob, name: string): string {
   return uri;
 }
 
+/** The picked file behind an in-app `blob:inborn/…` URI, for callers that need a URL the page itself can render. */
+export const registeredBlob = (uri: string): Blob | undefined => blobs.get(uri);
+
 async function blobOf(uri: string): Promise<Blob> {
   const b = blobs.get(uri);
   if (b) return b;

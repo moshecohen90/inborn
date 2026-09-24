@@ -1,0 +1,693 @@
+{
+  "runId": "fd-mufp0q6i",
+  "startedAt": "2026-09-24T15:35:12.272Z",
+  "finishedAt": "2026-09-24T15:35:33.038Z",
+  "ok": true,
+  "passed": 23,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2221,
+      "detail": "after-10-attach-sheet-plain-copy"
+    },
+    {
+      "i": 6,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "attach-sheet",
+          "text": "Attach documents Templates Profession packs: legal, therapy, medical, accounting PHOTOS Photo This device has no photo model installed. Download the 205 MB photo pack to ask about pictures. Camera Download the photo pack · 205 MB Add a file… PDF, Word, Excel, HTML, text, CSV or a photo No documents yet. Add a PDF, Word file or text in the library. It is indexed here, and nothing is uploaded. Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO Manage documents"
+        },
+        {
+          "testID": "attach-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "attach-templates",
+          "text": "Templates Profession packs: legal, therapy, medical, accounting",
+          "pressable": true
+        },
+        {
+          "testID": "attach-photo",
+          "text": "Photo This device has no photo model installed. Download the 205 MB photo pack to ask about pictures.",
+          "disabled": true
+        },
+        {
+          "testID": "attach-camera",
+          "text": "Camera",
+          "disabled": true
+        },
+        {
+          "testID": "attach-install-vision",
+          "text": "Download the photo pack · 205 MB",
+          "pressable": true
+        },
+        {
+          "testID": "attach-import",
+          "text": "Add a file… PDF, Word, Excel, HTML, text, CSV or a photo",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "attach-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "attach-manage",
+          "text": "Manage documents",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sheet"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1200,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 11,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "after-11-file-door-photo-in-composer"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 158,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2540,
+      "detail": "after-12-file-door-send-held"
+    },
+    {
+      "i": 18,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold",
+          "text": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures. Download · 205 MB Remove the photo"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures."
+        },
+        {
+          "testID": "vision-hold-download",
+          "text": "Download · 205 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pending-images",
+          "text": "Free sends one photo per message"
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is in this photo?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "held"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "What is in this photo?",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 20,
+      "op": "send",
+      "ok": true,
+      "ms": 158,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 6014,
+      "detail": "6000 ms"
+    },
+    {
+      "i": 22,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold",
+          "text": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures. Download · 205 MB Remove the photo"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures."
+        },
+        {
+          "testID": "vision-hold-download",
+          "text": "Download · 205 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pending-images",
+          "text": "Free sends one photo per message"
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is in this photo?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "held-again"
+    }
+  ],
+  "errors": []
+}

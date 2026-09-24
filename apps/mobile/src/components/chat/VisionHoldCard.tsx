@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { formatModelBytes } from "@inborn/core";
 import { VISION_MODEL_ID, installVision } from "../../images";
-import { releasesHeldTurn } from "../../lib/visionGate";
+import { packAction, releasesHeldTurn } from "../../lib/visionGate";
 import { useVault } from "../../vault/hooks";
 import { useType } from "../../services/type";
 
@@ -27,7 +27,8 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
   const type = useType();
   const { t } = useTranslation();
   const { vault } = useVault();
-  const pack = vault.model(VISION_MODEL_ID);
+  /* The browser engine has no projector path, so there the pack exists in the catalog but cannot be fetched. */
+  const pack = Platform.OS === "web" ? undefined : vault.model(VISION_MODEL_ID);
   const state = vault.state(VISION_MODEL_ID);
   const size = pack ? formatModelBytes(pack.bytes) : "";
   const prev = useRef<string | undefined>(state.kind);
@@ -36,40 +37,38 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
     prev.current = state.kind;
     if (releasesHeldTurn(true, before, state.kind)) onReady();
   }, [state.kind, onReady]);
-  const packReady = state.kind === "ready";
-  const moving = state.kind === "delivering" || state.kind === "verifying";
-  const stuck = state.kind === "delivering" && (state.paused || state.waitingForWifi || state.needsConfirmation);
+  const action = packAction(state);
+  const packReady = action === "ready";
   const pct = state.kind === "delivering" && state.total > 0 ? Math.floor((state.bytes / state.total) * 100) : 100;
-  const failed = state.kind === "failed" || state.kind === "needs-space" || state.kind === "corrupt" || state.kind === "quarantined";
-  const title = offer === "switch" ? t("chat.vision.holdTitleModel", { model }) : t("chat.vision.holdTitle");
-  const body = moving && !stuck
+  const title = offer === "switch" ? t("chat.vision.holdTitleModel", { model }) : "";
+  const body = action === "progress"
     ? t("chat.vision.holdDownloading", { pct })
-    : stuck || failed
+    : action === "vault"
       ? t("chat.vision.holdStuck")
       : packReady
         ? t("chat.vision.holdSwitch", { seer })
         : pack
           ? t("chat.vision.holdBody", { size })
-          : "";
+          : t("chat.vision.holdNoPack");
   return (
     <View testID="vision-hold" accessibilityLiveRegion="polite" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
-      <Text testID="vision-hold-title" style={[type.bodySmall, type.strong, { color: theme.text }]}>
-        {title}
-      </Text>
-      {body ? (
-        <Text testID="vision-hold-body" style={[type.bodySmall, { color: theme.text2 }]}>
-          {body}
+      {title ? (
+        <Text testID="vision-hold-title" style={[type.bodySmall, type.strong, { color: theme.text }]}>
+          {title}
         </Text>
       ) : null}
+      <Text testID="vision-hold-body" style={[type.bodySmall, title ? { color: theme.text2 } : type.strong, title ? null : { color: theme.text }]}>
+        {body}
+      </Text>
       <View style={styles.actions}>
-        {pack && !packReady && !moving && !failed ? (
-          <Pressable testID="vision-hold-download" accessibilityRole="button" onPress={() => void installVision().catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+        {pack && (action === "download" || action === "resume") ? (
+          <Pressable testID="vision-hold-download" accessibilityRole="button" onPress={() => void (action === "resume" ? vault.resume(VISION_MODEL_ID) : installVision()).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t("chat.vision.holdDownload", { size })}
             </Text>
           </Pressable>
         ) : null}
-        {stuck || failed ? (
+        {action === "vault" ? (
           <Pressable testID="vision-hold-vault" accessibilityRole="button" onPress={onOpenVault} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t("voice.openVault")}

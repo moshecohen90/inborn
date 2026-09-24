@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { gatePhotoSend, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
+import { gatePhotoSend, packAction, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
 
 const ready: VisionTurnInput = {
   hasImages: true,
@@ -143,7 +143,7 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
 
   it("the card has its words in every locale, and none of them is jargon", () => {
     const repo = join(__dirname, "../../../..");
-    const keys = ["holdTitle", "holdTitleModel", "holdBody", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove"].map((k) => `chat.vision.${k}`);
+    const keys = [...["holdTitleModel", "holdBody", "holdNoPack", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove", "companionMissing", "offerCompanion"].map((k) => `chat.vision.${k}`), "chat.attach.visionMissing", "chat.attach.installVision"];
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       for (const k of keys) {
@@ -151,5 +151,23 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
         expect(json[k]!.toLowerCase(), `${loc} ${k}`).not.toMatch(/companion|projector|mmproj|begleiter|compagnon|acompanhante/);
       }
     }
+  });
+
+  it("the missing-pack line is one sentence a user understands, the same in the card and the attach sheet", () => {
+    const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
+    expect(en["chat.vision.holdBody"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
+    expect(en["chat.attach.visionMissing"]).toBe(en["chat.vision.holdBody"]);
+  });
+
+  it("the card offers one button for every pack state: a pause or a failure is a Download, never a dead end", () => {
+    expect(packAction({ kind: "not-installed" })).toBe("download");
+    expect(packAction({ kind: "failed" })).toBe("download");
+    expect(packAction({ kind: "corrupt" })).toBe("download");
+    expect(packAction({ kind: "delivering", paused: true })).toBe("resume");
+    expect(packAction({ kind: "delivering", paused: false })).toBe("progress");
+    expect(packAction({ kind: "verifying" })).toBe("progress");
+    expect(packAction({ kind: "delivering", paused: false, needsConfirmation: true })).toBe("vault");
+    expect(packAction({ kind: "needs-space" })).toBe("vault");
+    expect(packAction({ kind: "ready" })).toBe("ready");
   });
 });
