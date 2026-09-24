@@ -173,6 +173,7 @@ const sealSvg = `<svg class="seal" viewBox="0 0 1024 1024" aria-hidden="true" fo
 
 const nav = [
   ["/proof", "Proof"],
+  ["/compare", "Compare"],
   ["/blog", "Blog"],
   ["/support", "Support"],
   ["https://github.com/moshecohen90/inborn", "GitHub"],
@@ -184,7 +185,7 @@ export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"]
 const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licenses", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
 
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
-export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST"];
+export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST", "COMPARE_FAQ", "COMPARE_TABLE", "COMPARE_CHECKED"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
 function tokens() {
@@ -204,6 +205,9 @@ function tokens() {
     FAQ: faqHtml(),
     SIZE_INSTANT,
     SIZE_FAST,
+    COMPARE_FAQ: compareFaqHtml(),
+    COMPARE_TABLE: compareTableHtml(),
+    COMPARE_CHECKED,
   };
 }
 
@@ -263,7 +267,7 @@ ${body}
     </div>
     <nav aria-label="Footer">
       <span class="label">Product</span>
-      <a href="/">Home</a><a href="/proof">Proof</a><a href="/blog">Blog</a><a href="/support">Support</a>
+      <a href="/">Home</a><a href="/proof">Proof</a><a href="/compare">Compare</a><a href="/blog">Blog</a><a href="/support">Support</a>
     </nav>
     <nav aria-label="Legal">
       <span class="label">Legal</span>
@@ -330,7 +334,7 @@ const breadcrumb = (p, trail) => ({
  * The landing FAQ, in one place: the visible `<h3>` list and the FAQPage graph are both rendered from it, so an
  * answer an engine quotes can never differ from the answer a reader sees. First sentence answers it outright.
  */
-const FAQ = [
+export const FAQ = [
   ["Is Inborn really offline?",
     "Yes. Inborn runs the AI model on your own device, so it answers with every radio switched off, and the Android release build does not declare the INTERNET permission, which means it cannot open a connection. Turn on airplane mode and ask it something: the answer arrives at the same speed, because there is no server in the path."],
   ["Do you see my chats?",
@@ -354,6 +358,162 @@ const FAQ = [
 ];
 
 const faqHtml = () => FAQ.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
+
+/* ---------- /compare ---------- */
+
+/** The date every price, license and permission on /compare was read on the vendor's own page. */
+const COMPARE_CHECKED = "24 September 2026";
+
+export const COMPARE_COLUMNS = ["Platforms", "Price", "License", "Where the model comes from", "Your documents on the device", "Android INTERNET permission"];
+
+/**
+ * The on-device rivals, in the order the table and the ItemList both render, so a row and its structured-data entry
+ * cannot drift. A cell says "Not verified" when we could not read it on the vendor's own page or in source they
+ * publish; a guess in a comparison table is the one thing that would cost this page its credibility.
+ */
+export const COMPARE_APPS = [
+  ["Inborn", `${siteOrigin}/`, [
+    "iPhone, Android, web browser, Windows and macOS.",
+    "Free is the whole app. Pro is 19.99 USD one time, Work 69.99 USD one time. No subscription.",
+    "Source-available at github.com/moshecohen90/inborn: read it, build it, publish what you find, but not redistribute or modify it. Not open source.",
+    "Instant, 0.53 GB, ships inside the app and needs no download. Any GGUF file can be imported.",
+    "Yes, with Pro. Your PDFs and documents are indexed on the device, with OCR.",
+    "Not declared in the release build, so Android will not let it open a connection. A build gate fails the release if the line ever appears.",
+  ]],
+  ["PocketPal AI", "https://github.com/a-ghorbani/pocketpal-ai", [
+    "iPhone, iPad, Mac and Android.",
+    "Free. Its listing names no paid tier.",
+    "MIT, open source, so you can fork it.",
+    "No model inside the app. You pick a GGUF from Hugging Face in the app.",
+    "Not verified.",
+    "Declared. We read android.permission.INTERNET in its release manifest.",
+  ]],
+  ["Private LLM", "https://privatellm.app/en/faq", [
+    "iPhone, iPad, Mac and Vision. Android is a side-loaded beta, not on Google Play.",
+    "4.99 USD one time, with Family Sharing for six people.",
+    "Closed source. There is no public repository.",
+    "The vendor's own quantized models. It cannot load a file from Hugging Face.",
+    "Not verified.",
+    "Not verified. There is no Google Play release to read.",
+  ]],
+  ["Enclave AI", "https://enclaveai.app/pricing/", [
+    "iPhone, iPad, Mac and Vision.",
+    "Local models are free and unlimited. Pro, which adds cloud models, is 9.99 USD a month.",
+    "Closed source.",
+    "Models are downloaded inside the app.",
+    "Yes, on the free tier. Questions and summaries over your own PDFs.",
+    "No Android app.",
+  ]],
+  ["Layla", "https://apps.apple.com/us/app/layla/id6456886656", [
+    "Android and iPhone.",
+    "19.99 USD one time on the App Store.",
+    "Closed source.",
+    "About 4 GB downloads the first time the app runs.",
+    "Not verified. It does take image input, and it generates images on the device.",
+    "Not verified, and the source is closed. Its Play data-safety page says it shares device identifiers and crash logs for analytics, and offers no way to ask for deletion.",
+  ]],
+  ["MLC Chat", "https://github.com/mlc-ai/mlc-llm", [
+    "iPhone, iPad and Mac. On Android only as an APK from GitHub, not on Google Play.",
+    "Free.",
+    "Apache-2.0, open source.",
+    "Weights download from Hugging Face. Bundling them is a build option, not the default.",
+    "Not verified.",
+    "Declared. We read it in its manifest.",
+  ]],
+  ["Google AI Edge Gallery", "https://github.com/google-ai-edge/gallery", [
+    "Android and iPhone, published by Google.",
+    "Free.",
+    "Apache-2.0, open source.",
+    "Models download inside the app, and you can load your own.",
+    "Not verified. It takes image and audio input.",
+    "Declared, along with camera, microphone, calendar, accounts and push messaging.",
+  ]],
+  ["LM Studio", "https://lmstudio.ai/", [
+    "Windows, macOS and Linux. There is no phone version.",
+    "Free for personal use and for work use.",
+    "The desktop app is proprietary. Its command-line tools are MIT.",
+    "Models download inside the app.",
+    "Yes. Questions over .docx, .pdf and .txt files.",
+    "No Android app.",
+  ]],
+  ["Ollama", "https://ollama.com/pricing", [
+    "Windows, macOS and Linux. There is no phone version.",
+    "Local use is free and unlimited. Cloud models need an account, and Pro is 20 USD a month.",
+    "MIT, open source.",
+    "Models are pulled from ollama.com/library.",
+    "Not verified.",
+    "No Android app.",
+  ]],
+];
+
+const compareTableHtml = () => `<div class="table-wrap"><table class="compare-table">
+<caption class="sr-only">Inborn and eight other on-device AI apps: platforms, price, license, where the model comes from, documents on the device, and whether the Android build declares the INTERNET permission. Read on ${COMPARE_CHECKED}.</caption>
+<thead><tr><th scope="col">App</th>${COMPARE_COLUMNS.map((c) => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
+<tbody>
+${COMPARE_APPS.map(([name, url, cells], i) => `<tr${i === 0 ? ' class="self"' : ""}><th scope="row">${i === 0 ? esc(name) : `<a href="${esc(url)}" rel="noopener">${esc(name)}</a>`}</th>${cells.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("\n")}
+</tbody>
+</table></div>`;
+
+/** Answers the probe found nobody owning, phrased the way a person asks an answer engine. Same rule as the home FAQ:
+    the first sentence answers it outright and names Inborn in the first clause, so a lifted chunk still stands alone.
+    "Is Inborn open source" and "what does a small model give up" live on the home FAQ; two URLs with one answer
+    split the citation and neither wins. */
+export const COMPARE_FAQ = [
+  ["Inborn vs ChatGPT: what do I gain and what do I lose?",
+    "Inborn gains you an assistant that never sends your text anywhere and answers at full speed with the radios off. You lose capability: a model that fits on a phone writes shorter, reasons less far and knows less than a model on a rack of servers. You also lose a price comparison here, because OpenAI's pages returned an error to us."],
+  ["What is the best offline AI chat app for iPhone?",
+    "Inborn is the one we built, so read this as our answer and check the others yourself. On iPhone, Private LLM is 4.99 USD one time with Siri support, and Enclave AI answers questions about your documents on its free tier. Inborn ships the model inside the app, imports any GGUF, and runs the same on Android, web and desktop."],
+  ["Is there an AI chat app that works with no internet?",
+    "Inborn works with no internet, and so do several others, because the model runs on your device rather than on a server. Turn on airplane mode and ask it anything; the answer arrives at the same speed. PocketPal AI, MLC Chat, Layla and Google's own AI Edge Gallery run offline too. Offline is normal in this category now."],
+  ["Which private on-device AI apps are actually private, and how do I verify it?",
+    "Inborn is the one whose Android release ships without the INTERNET permission, which the operating system enforces for you rather than asking you to trust a promise. Verify any app in three ways: run aapt2 dump permissions on its APK, read the App permissions page on its Play listing, and put it behind a firewall. The six on-device Android apps whose source we read all declare INTERNET."],
+  ["Is there an AI chat app with no account and no sign-up?",
+    "Inborn has no account, no sign-up screen and no email field anywhere in it. PocketPal AI, Enclave AI, Private LLM and LLM Hub also state that no account is required. Gemini, Copilot and Perplexity can each be used signed out with fewer features, though signing in is where their storage and retention clocks begin."],
+  ["Is there a one-time purchase AI app instead of a monthly subscription?",
+    "Inborn is a one-time purchase and will not become a subscription. Free is the whole app, with unlimited chat and no message quota. Pro is 19.99 USD once and Work is 69.99 USD once. Private LLM is 4.99 USD once, Layla is 19.99 USD once on iOS, and LLM Hub has a 9.99 USD lifetime tier."],
+  ["Inborn vs PocketPal AI: which should I use?",
+    "Inborn ships a working model inside the app and its Android release has no INTERNET permission. PocketPal AI is free, MIT licensed and genuinely open source, so you can fork it. PocketPal downloads its models from Hugging Face and its release manifest declares INTERNET. If an open license matters more to you than the permission, choose PocketPal."],
+  ["Inborn vs Private LLM: which should I use?",
+    "Inborn is the cross-platform one and Private LLM is the cheaper one. Private LLM is 4.99 USD one time, a quarter of Inborn Pro, with Siri, Shortcuts, macOS text tools and Family Sharing for six. It is closed source, limited to its vendor's own quantized models, and its Android build is a side-loaded beta."],
+];
+
+const compareFaqHtml = () => COMPARE_FAQ.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
+
+const compareGraph = () => [
+  {
+    "@type": "WebPage",
+    "@id": `${siteOrigin}/compare#webpage`,
+    url: `${siteOrigin}/compare`,
+    name: "Inborn vs ChatGPT and the other private AI chat apps",
+    description: "Inborn compared with the cloud assistants and with the other on-device AI apps: what leaves the device, price, license, and the Android INTERNET permission.",
+    inLanguage: "en",
+    isPartOf: { "@id": ID.site },
+    about: { "@id": ID.app },
+    publisher: { "@id": ID.org },
+    dateModified: lastmod("apps/site/src/pages/compare.html"),
+  },
+  {
+    "@type": "ItemList",
+    "@id": `${siteOrigin}/compare#apps`,
+    name: "On-device AI chat apps compared with Inborn",
+    description: `Prices, licenses and Android permissions read on each vendor's own page on ${COMPARE_CHECKED}.`,
+    numberOfItems: COMPARE_APPS.length,
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    itemListElement: COMPARE_APPS.map(([name, url], i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      /* Inborn's own node is defined in full on the home page; naming it here too keeps this page's graph resolvable
+         on its own, which is how an answer engine reads a page it fetched in isolation. */
+      item: { "@type": "SoftwareApplication", ...(i === 0 ? { "@id": ID.app } : {}), name, url, applicationCategory: "UtilitiesApplication" },
+    })),
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${siteOrigin}/compare#faq`,
+    mainEntity: COMPARE_FAQ.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
+  },
+  breadcrumb("/compare", [["Inborn", "/"], ["Compare", null]]),
+];
 
 const homeGraph = () => [
   {
@@ -488,7 +648,7 @@ function llmsTxt(pages) {
 
 ## Product
 
-${group(["/", "/download", "/proof", "/support"])}
+${group(["/", "/download", "/proof", "/compare", "/support"])}
 
 ## Writing
 
@@ -545,6 +705,9 @@ Sitemap: ${siteOrigin}/sitemap.xml
 
 /* ---------- Build ---------- */
 
+/** A page whose structured data is generated rather than declared in its fragment's `meta` block. */
+const PAGE_GRAPH = { "/": homeGraph, "/compare": compareGraph };
+
 export function build() {
   rmSync(dist, { recursive: true, force: true });
   mkdirSync(dist, { recursive: true });
@@ -578,7 +741,7 @@ export function build() {
   const fill = (html) => html.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
 
   for (const page of pages) {
-    const jsonld = [...orgGraph(), ...(page.path === "/" ? homeGraph() : []), ...(page.jsonld ?? [])];
+    const jsonld = [...orgGraph(), ...(PAGE_GRAPH[page.path]?.() ?? []), ...(page.jsonld ?? [])];
     const file = page.path === "/" ? "index.html" : `${page.path.slice(1)}.html`;
     mkdirSync(path.dirname(path.join(dist, file)), { recursive: true });
     writeFileSync(path.join(dist, file), fill(layout({ ...page, jsonld })));

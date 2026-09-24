@@ -1,0 +1,6 @@
+     × no page quotes a price for ChatGPT 6ms
+     × the INTERNET permission claim never drops its scope 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: apps/site/src/pages/compare.html: expected '<!-- meta: {"title": "Inborn vs ChatG…' not to match /(ChatGPT|OpenAI)[^.!?]{0,120}(\$\s?\…/i
+AssertionError: apps/site/build.mjs: expected '#!/usr/bin/env node\n/**\n * Static s…' not to match /(no|not a single|the only) (other )?…/i
+      Tests  2 failed | 779 passed (781)

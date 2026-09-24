@@ -1,0 +1,13 @@
+Run: 2026-09-24-inborn  (Inborn, EN/US, 12 prompts x 2 repeats x gpt+gemini+claude = 72 answers, 0 failures)
+Tool: copies of fbcloud/tools/marketing/aeo probe.mjs + score.mjs (fbcloud itself untouched, read-only).
+The only patches vs the fbcloud originals: state dir comes from $AEO_STATE (so the Hebrew-Bible
+history.json is never touched) and score.mjs domainType() classifies inbornapp.com as "own".
+
+  export AEO_STATE=<workdir>/state
+  cp docs/marketing/aeo/brands.inborn.json      <workdir>/brands.json
+  cp docs/marketing/aeo/prompts.inborn.en.json  <workdir>/prompts/en.json
+  node probe.mjs --run 2026-09-24-inborn --engines gpt,gemini,claude --langs en --repeat 2 --concurrency 4
+  node score.mjs --run 2026-09-24-inborn
+
+Models: gpt-5 (OpenAI Responses + web_search), gemini-3.5-flash (Google Search grounding),
+claude sonnet (headless `claude -p`, WebSearch/WebFetch, --setting-sources '' in a neutral cwd).
