@@ -1,0 +1,11 @@
+     × no pack on disk holds the send; the pack on disk lets it go 6ms
+     × refuse: nothing is sent, the turn is held; pressing Send again still holds; once the pack is in, it is sent 2ms
+     × the chat keeps the message and the photo until the gate lets the turn go 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/lib/visionGate.test.ts > F343 · a photo nothing here can see is held in the composer, not sent > no pack on disk holds the send; the pack on disk lets it go
+AssertionError: expected { kind: 'send' } to deeply equal { kind: 'hold', offer: 'companion' }
+ FAIL  src/lib/visionGate.test.ts > F343 · a photo nothing here can see is held in the composer, not sent > refuse: nothing is sent, the turn is held; pressing Send again still holds; once the pack is in, it is sent
+AssertionError: expected 'sent' to be 'held' // Object.is equality
+ FAIL  src/lib/visionGate.test.ts > F343 · a photo nothing here can see is held in the composer, not sent > the chat keeps the message and the photo until the gate lets the turn go
+AssertionError: expected 'const submit = async (input: string) …' to contain 'await gatePhotoSend({'
+      Tests  3 failed | 10 passed (13)
