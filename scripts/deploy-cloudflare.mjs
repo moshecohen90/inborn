@@ -8,7 +8,7 @@
  *   node scripts/deploy-cloudflare.mjs --site --app --dry-run        # full rehearsal: builds, plans, zero network
  *
  * Flags: --no-build (use the dist that is already there), --dry-run (no writes), --no-domains (skip attaching
- * the hostnames), --verbose.
+ * the hostnames), --no-check-live (skip the post-deploy read-back), --verbose.
  *
  * The API token comes from the macOS Keychain, service `inborn-cloudflare-api`, and is never printed. It needs:
  *   Account -> Workers Scripts -> Edit   (upload the script, open the assets upload session, attach custom domains)
@@ -99,6 +99,7 @@ const opts = {
   dryRun: flag("--dry-run"),
   domains: !flag("--no-domains"),
   verbose: flag("--verbose"),
+  checkLive: !flag("--no-check-live"),
 };
 if (!opts.site && !opts.app) {
   console.error("nothing to do: pass --site and/or --app (see the header of this file)");
@@ -317,4 +318,18 @@ if (opts.site) {
   await deployWwwRedirect();
 }
 if (opts.app) await deploy("app");
+
+/* A deploy that returns 200 is not a deploy that is correct: Cloudflare rewrites HTML at the edge, so what the
+   origin serves a browser has to be read back from the public URL (F275). --no-check-live skips it. */
+if (!opts.dryRun && opts.checkLive) {
+  const urls = [...(opts.site ? [SITE_ORIGIN + "/"] : []), ...(opts.app ? [APP_ORIGIN + "/"] : [])];
+  console.log("\n== live check");
+  await new Promise((r) => setTimeout(r, 8000));
+  try {
+    execFileSync(process.execPath, [path.join(repoRoot, "scripts/check-live.mjs"), ...urls], { stdio: "inherit" });
+  } catch {
+    console.error("\nthe deploy landed but the live check failed (above); the origins are serving something we did not write");
+    process.exit(1);
+  }
+}
 console.log(`\ndone${opts.dryRun ? " (dry run)" : ""}`);
