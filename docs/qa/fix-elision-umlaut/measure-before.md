@@ -34,8 +34,8 @@ is the gap between T and the lowest on-topic cosine it lets through.
 
 | candidate | rule 70 on | rule 70 off | T | +cos>T on | +cos>T off | margin |
 |---|---|---|---|---|---|---|
-| nomic-v1.5 | 45/89 | 0/143 | 0.7642 | **45/89** | 0/143 | 0 |
-| e5-large-inst-q6 | 45/89 | 0/143 | 0.8177 | **83/89** | 0/143 | 0.0006 |
+| nomic-v1.5 | 43/89 | 0/143 | 0.7642 | **43/89** | 0/143 | 0 |
+| e5-large-inst-q6 | 43/89 | 0/143 | 0.8177 | **83/89** | 0/143 | 0.0006 |
 
 ## The threshold that could actually ship
 
@@ -46,27 +46,26 @@ threshold that cites **nothing** off-topic in either set — the only one that c
 
 | candidate | T joint | on-topic 1-passage | off | multi-chunk on-topic | right | wrong only | multi off |
 |---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0.7643 | **45/89** | 0/143 | 5/27 | 4 | 1 | 3/54 |
+| nomic-v1.5 | 0.7643 | **43/89** | 0/143 | 5/27 | 4 | 1 | 3/54 |
 | e5-large-inst-q6 | 0.8177 | **83/89** | 0/143 | 25/27 | 25 | 0 | 3/54 |
 
 ## Per language, on-topic cited under `rule 70 OR cos > T joint`
 
 | candidate | de | de (no accents) | en | es | es (no accents) | fr | fr (no accents) | he | ja | ko | pt | pt (no accents) | zh | zh-Hant |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0/5 | 2/4 | 4/10 | 1/5 | 2/4 | 1/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
+| nomic-v1.5 | 0/5 | 1/4 | 4/10 | 1/5 | 2/4 | 0/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
 | e5-large-inst-q6 | 5/5 | 4/4 | 8/10 | 4/5 | 3/4 | 6/6 | 1/2 | 5/5 | 13/14 | 6/6 | 5/5 | 3/3 | 10/10 | 10/10 |
 
 ## Per language, on-topic cited by the lexical rule alone (`rule 70`)
 
 The half of the door the word index decides, so a change to the tokenizer shows here and nowhere else. Since round 84
 (F367) accents are folded on both sides, and each de/fr/es/pt document has one accent-less question whose only shared
-word is accented in the passage. Since round 85 (F368) an umlaut typed as ae/oe/ue and a word behind an elided article
-("d'Aoba") are found too; de-report and fr-report each have one question whose only shared word is spelled that way.
+word is accented in the passage.
 
 | candidate | de | de (no accents) | en | es | es (no accents) | fr | fr (no accents) | he | ja | ko | pt | pt (no accents) | zh | zh-Hant |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| nomic-v1.5 | 0/5 | 2/4 | 4/10 | 1/5 | 2/4 | 1/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
-| e5-large-inst-q6 | 0/5 | 2/4 | 4/10 | 1/5 | 2/4 | 1/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
+| nomic-v1.5 | 0/5 | 1/4 | 4/10 | 1/5 | 2/4 | 0/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
+| e5-large-inst-q6 | 0/5 | 1/4 | 4/10 | 1/5 | 2/4 | 0/6 | 1/2 | 3/5 | 8/14 | 3/6 | 3/5 | 2/3 | 7/10 | 8/10 |
 
 ## Size, licence and cost
 
@@ -91,7 +90,7 @@ cannot move it under the door. This is the row the guard asserts.
 
 | candidate | on-topic | off-topic | multi-chunk on-topic | right | wrong only | multi off-topic |
 |---|---|---|---|---|---|---|
-| nomic-v1.5 | **45/89** | 0/143 | 5/27 | 4 | 1 | 3/54 |
+| nomic-v1.5 | **43/89** | 0/143 | 5/27 | 4 | 1 | 3/54 |
 | e5-large-inst-q6 | **81/89** | 0/143 | 25/27 | 25 | 0 | 3/54 |
 
 ## Headroom above the fitted threshold
@@ -101,7 +100,7 @@ one unseen off-topic question above it would be cited. This is what buying headr
 
 | candidate | T+0 | T+0.01 | T+0.02 | T+0.03 | T+0.05 |
 |---|---|---|---|---|---|
-| e5-large-inst-q6 | 83/89, 0 off | 77/89, 0 off | 73/89, 0 off | 67/89, 0 off | 53/89, 0 off |
+| e5-large-inst-q6 | 83/89, 0 off | 77/89, 0 off | 73/89, 0 off | 66/89, 0 off | 52/89, 0 off |
 
 ## What this changes
 
@@ -110,8 +109,6 @@ the "(no accents)" columns are the same questions typed the way round 70 typed t
 
 Since round 84 (F367) the word index folds accents on both sides, so an accent-less question meets its accented passage;
 the lexical-only table is where that shows. The "sieges" question still waits on its cosine, because its passage says "bureaux".
-Since round 85 (F368) German typed with ae/oe/ue meets ä/ö/ü and French/Italian/Catalan elided articles are glue;
-the rejected German option, a query-side fold, is measured in `docs/qa/fix-elision-umlaut/options.md`.
 
 For e5-large-inst-q6, the highest off-topic cosine the lexical rule does not already cite is 0.8177 over 197
 off-topic questions, 0.0023 under the shipped door of 0.82, so the door stays where it is.

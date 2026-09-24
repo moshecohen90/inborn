@@ -147,9 +147,9 @@ describe("F334 · the bar is met by the embedder, not by a door", () => {
     expect(on.filter(Boolean).length).toBe(25);
   });
 
-  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 79 of 87", () => {
+  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 81 of 89", () => {
     expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(77);
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(79);
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(81);
     expect(scored.filter((r) => r.kind === "off" && r.ok).length).toBe(0);
   });
 });

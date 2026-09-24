@@ -1,0 +1,44 @@
+import { expect, it } from "vitest";
+import { Bm25Index } from "../src/rag/bm25";
+import { Bm25Index as Round84 } from "../src/rag/bm25-round84";
+import shipped from "./fixtures/rag/e5-cosines.json";
+
+/* Option (b): no passage alias; a German query folds ae/oe/ue to a/o/u unless the word is on the exception list. */
+const EXCEPT = new Set(["poesie", "aerosol", "museum", "feuer"]);
+const foldQuery = (q: string) => q.replace(/[\p{L}]+/gu, (w) => (EXCEPT.has(w.toLowerCase()) ? w : w.replace(/ae/g, "a").replace(/oe/g, "o").replace(/ue/g, "u").replace(/Ae/g, "A").replace(/Oe/g, "O").replace(/Ue/g, "U")));
+type Idx = { add(id: string, t: string): void; search(q: string, k?: number): Array<{ id: string; score: number; matched: number }> };
+const options: Record<string, { make: () => Idx; q: (s: string) => string }> = {
+  "a: passage alias": { make: () => new Bm25Index(), q: (s) => s },
+  "b: German query fold": { make: () => new Round84(), q: foldQuery },
+  "round 84": { make: () => new Round84(), q: (s) => s },
+};
+const rule70 = (terms: number, bm25: number, cos: number) => terms >= 2 || (terms >= 1 && (bm25 >= 2.0 || cos >= 0.5));
+/* Common German words whose ae/oe/ue is not an umlaut. */
+const LEGIT = "Poesie Aerosol Museum Feuer Quelle Quellen aktuell aktuelle Steuer neue Treue teuer Abenteuer Dauer dauert Mauer sauer Bauer bauen Frauen schauen trauen genauer blauer Bedauern erneuerbare manuell Duell individuell Statue Israel Michael Raphael Poet Koeffizient Aerobic Boeing".split(" ");
+
+it("options probe", () => {
+  const lines: string[] = [];
+  for (const [name, o] of Object.entries(options)) {
+    let on = 0, onN = 0, off = 0, offN = 0, lexOn = 0;
+    for (const d of (shipped.docs as any[]).filter((x) => x.lang === "de"))
+      for (const q of d.questions) {
+        const idx = o.make(); idx.add("p", d.text);
+        const h = idx.search(o.q(q.q))[0];
+        const lex = rule70(h?.matched ?? 0, h?.score ?? 0, q.cosine);
+        const door = lex || q.cosine > 0.82;
+        if (q.kind === "on") { onN++; on += door ? 1 : 0; lexOn += lex ? 1 : 0; } else { offN++; off += door ? 1 : 0; }
+      }
+    let mcOn = 0, mcOnN = 0, mcOff = 0, mcOffN = 0;
+    for (const d of (shipped.multi as any[]).filter((x) => x.lang === "de"))
+      for (const q of d.questions) {
+        const idx = o.make(); d.chunks.forEach((c: string, i: number) => idx.add(String(i), c));
+        const lex = new Map(idx.search(o.q(q.q), 10).map((h) => [h.id, h]));
+        const cited = d.chunks.some((_: string, i: number) => { const h = lex.get(String(i)); return rule70(h?.matched ?? 0, h?.score ?? 0, q.cosines[i]) || q.cosines[i] > 0.82; });
+        if (q.kind === "on") { mcOnN++; mcOn += cited ? 1 : 0; } else { mcOffN++; mcOff += cited ? 1 : 0; }
+      }
+    const lost = LEGIT.filter((w) => { const idx = o.make(); idx.add("p", `Ein Satz mit ${w} darin.`); return (idx.search(o.q(w))[0]?.matched ?? 0) === 0; });
+    lines.push(`| ${name} | ${lexOn}/${onN} | ${on}/${onN} | ${off}/${offN} | ${mcOn}/${mcOnN} | ${mcOff}/${mcOffN} | ${LEGIT.length - lost.length}/${LEGIT.length} | ${lost.join(", ") || "none"} |`);
+  }
+  console.log(["| option | de lexical on | de door on | de door off | mc-de on | mc-de off | real ae/oe/ue words found | words lost |", "|---|---|---|---|---|---|---|---|", ...lines].join("\n"));
+  expect(lines.length).toBe(3);
+});

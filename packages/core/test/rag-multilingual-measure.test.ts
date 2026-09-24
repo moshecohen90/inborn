@@ -297,7 +297,8 @@ function tables(results: CandidateResult[]): string {
   L.push("");
   L.push("The half of the door the word index decides, so a change to the tokenizer shows here and nowhere else. Since round 84");
   L.push("(F367) accents are folded on both sides, and each de/fr/es/pt document has one accent-less question whose only shared");
-  L.push("word is accented in the passage.");
+  L.push("word is accented in the passage. Since round 85 (F368) an umlaut typed as ae/oe/ue and a word behind an elided article");
+  L.push("(\"d'Aoba\") are found too; de-report and fr-report each have one question whose only shared word is spelled that way.");
   L.push("");
   L.push(`| candidate | ${LANGS.join(" | ")} |`);
   L.push(`|---|${LANGS.map(() => "---").join("|")}|`);
@@ -348,6 +349,8 @@ function tables(results: CandidateResult[]): string {
   L.push("");
   L.push("Since round 84 (F367) the word index folds accents on both sides, so an accent-less question meets its accented passage;");
   L.push("the lexical-only table is where that shows. The \"sieges\" question still waits on its cosine, because its passage says \"bureaux\".");
+  L.push("Since round 85 (F368) German typed with ae/oe/ue meets ä/ö/ü and French/Italian/Catalan elided articles are glue;");
+  L.push("the rejected German option, a query-side fold, is measured in `docs/qa/fix-elision-umlaut/options.md`.");
   if (ship) {
     L.push("");
     L.push(`For ${SHIPPED_VARIANT}, the highest off-topic cosine the lexical rule does not already cite is ${ship.joint.T} over ${OFF_TOTAL + MC_OFF}`);
