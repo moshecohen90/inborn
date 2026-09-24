@@ -5208,3 +5208,32 @@ Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the 
 already support a second embedding model) and measure it on these same fixtures, or expand the question into content
 words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
 across all 159 questions; it is the half worth extending.
+
+## Fixes round 72: a multilingual document index, measured, shipped and proven (branch `embed-multilingual`) — 24.9.2026
+
+Rounds 70 and 70b ended on one cause: the only embedder in the catalog, `nomic-embed-text-v1.5`, is Nomic's English
+model, so outside English its cosine measured the language and ranked the answering chunk first for 3 of 21
+questions. This round replaced it.
+
+- **Measured every candidate llama.rn can run** (F333). 20 variants of 13 embedders on round 70's own fixtures and
+  scorer, with the phone's int8 cosine. The bar was 18/21 answering chunks first plus 50/57 on-topic at 0/102
+  off-topic, Apache-2.0/MIT only. Only `multilingual-e5-large-instruct` clears it (Q8_0 and Q6_K, both 20/21).
+  Tables: `docs/qa/embed-multilingual/measure.md`.
+- **Shipped `embed-e5` = multilingual-e5-large-instruct Q6_K** (F334). 468 MB, MIT, catalog v5 re-signed, NOTICE and
+  licence sheet carry Microsoft's line. The cosine may cite alone again above 0.82, which sits 0.0024 over the highest
+  off-topic cosine of 144 questions; the round-70 lexical rule is unchanged. Result: 51/57 on-topic, 0/102
+  off-topic; on six-chunk documents 18/21 cite the right chunk and none cites only a wrong one. The round-70b negative
+  test now asserts both halves: the old embedder fails the bar, the new one passes it.
+- **Nothing past 512 positions reaches the embedder** (F335). The token estimator under-counts e5's tokenizer up to
+  1.84x (code), and the desktop engine aborted on a long chunk. Chunks are now sized from the model's context (212
+  estimated tokens), questions are clipped to the same budget, and the desktop caps its context at `n_ctx_train`.
+- **Old indexes are rebuilt, not searched** (F336). A document built by another embedder is re-indexed from page 0 on
+  the first open after the update; without e5 installed it waits as "no-embedder". Re-indexing from page 0 now drops
+  the old rows, which it silently kept before.
+- **Proven on an Android emulator** (F337). Japanese and German one-passage documents: a paraphrase that shares no
+  word with the passage is cited, and the off-topic question each earlier round failed on is dropped. Screenshots
+  and the `[rag]` lines are in `docs/qa/embed-multilingual/device/`.
+
+Open: the lead uploads the model to models.inbornapp.com with the command in `docs/qa/deploy-site/embed-e5-upload.md`
+(the URL is 404 today). French is the weakest language at 1/3, and the 0.82 door is tied to this embedder: any
+future embedder change must be measured again with `rag-multilingual-measure.test.ts`.
