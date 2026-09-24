@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
-import { PRODUCTS, downloadPercent, fallbackPrice, fileIntake, formatBytes, formatModelBytes, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
+import { PRODUCTS, downloadPercent, fallbackPrice, fileIntake, formatBytes, formatModelBytes, isSearchable, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
@@ -111,7 +111,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       writeDevResult(devResults.current);
       if (DEV_AUTOASK) {
         if (DEV_AUTOASK_STRICT) library.setStrict(true);
-        setAsk({ docs: library.state().documents.filter((d) => d.chunkCount > 0), auto: DEV_AUTOASK });
+        setAsk({ docs: library.state().documents.filter(isSearchable), auto: DEV_AUTOASK });
       }
     })();
   }, [library, importUri]);
@@ -183,7 +183,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     });
 
   const askSelected = () => {
-    const docs = state.documents.filter((d) => selected.has(d.id) && d.chunkCount > 0);
+    const docs = state.documents.filter((d) => selected.has(d.id) && isSearchable(d));
     if (docs.length) setAsk({ docs });
   };
 

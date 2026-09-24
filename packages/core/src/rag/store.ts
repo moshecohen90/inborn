@@ -66,6 +66,15 @@ export class MemoryEmbeddingStore implements EmbeddingStore {
     }
   }
 
+  async deleteChunksOfPage(docId: string, page: number): Promise<void> {
+    for (const [cid, c] of this.chunks) {
+      if (c.docId === docId && c.page === page) {
+        this.chunks.delete(cid);
+        this.vectors.delete(cid);
+      }
+    }
+  }
+
   /** Drops everything at once; the incognito session's whole index goes this way when the session ends (§5.7). */
   clear(): void {
     this.docs.clear();

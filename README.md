@@ -5923,3 +5923,43 @@ read binary MB with no GB unit at all. The header also rounded its percent while
   1_280_000_000)` → 16, the exact pair from the round-91 screenshot) and by every call site now routing through the
   same two functions, so a header and a card computing from the same bytes cannot print different numbers again.
 
+## Fixes round 89: a question is answered while the index is rebuilt (branch `fix-reindex-busy`) — 24.9.2026
+
+Round 79 found F353 on the OnePlus 6T. After the update to the multilingual embedder, the rebuild of all documents
+ran for about 40 minutes. A question on a document already rebuilt was answered "has no searchable text yet" with a
+"Context is busy" toast. The emulator reproduced it exactly with main's code (F372).
+
+- **One embedder, a priority lane.** `EmbedLanes` in core feeds the engine one text at a time. A waiting question
+  goes before the next chunk of the rebuild, so it waits for at most the chunk already in the engine. No second model
+  is loaded, and the engine is never called twice at once.
+- **A document not rebuilt yet is still searched.** A rebuild now replaces one page at a time instead of deleting
+  every row first. Pages not rebuilt keep their old rows, which are searched by their words; their old vectors are
+  left out of the cosine. The chat waits only for a first read, never for a rebuild. The answer carries "Still
+  re-indexing N of M documents, answers may miss some passages".
+- **The rebuild survives a kill.** The record keeps `reindexFrom` until the last page is written (new column
+  `reindex_from`, added on open). The next launch resumes at the last committed page of the unfinished document. A
+  file the user adds meanwhile is read before the rebuilds still waiting.
+- **"No searchable text" means no text.** A search that fails now says "could not search the file just now, ask again".
+  The old not-read sentence no longer claims the file has no text. Only the no-text and needs-OCR refusals say so.
+- **Two writers wait for each other.** The first "after" run failed the fleet PDF at page 19 with a SQLite
+  `finalizeAsync` rejection. The answer was being saved on the chat connection while the rebuild wrote a page on its
+  own connection, and neither had a busy timeout. Both connections now wait up to 5 s for the lock. The rerun
+  completed every page.
+
+Proof on a Pixel 6 emulator. Three 40-page PDFs and a one-line report were indexed by nomic, then the app was updated
+to e5 with the same data. Screenshots and `[rag]` lines are in `docs/qa/fix-reindex-busy/`.
+
+| during the rebuild | main | this branch |
+|---|---|---|
+| question on the report, already rebuilt | "has no searchable text yet" | answered, 535 ms retrieval |
+| question on the fleet PDF, not rebuilt yet | waits, then "has no searchable text yet" | answered from page 37 plus the notice |
+| kill at supplier page 22 of 40, relaunch | not measured | resumed there, 50 s for the rest |
+
+Rebuild time. The host ran other agents' builds and tests (load average up to 150), so the emulator's wall clock
+moved by up to 2x between identical runs (`timing-loaded-host.txt`). In the quiet runs, the fleet and harbor PDFs took
+0.81 s per chunk on main and 0.79 s on this branch. A deterministic benchmark of the indexing path shows the same
+overhead per chunk on both, 3.06 ms against 800 ms of engine time (`overhead-bench.txt`).
+
+Tests red first (`red-core.txt`, `red-library.txt`): a question during a queue of chunks, the old index searched
+during a rebuild, and a kill that resumes at the last finished document and page. Open: the notice counts the
+attached documents, not the whole library. A rebuild that fails mid-document is resumed on the next launch, not at once.

@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS documents (
   uri TEXT,
   sha256 TEXT,
   flagged_lines INTEGER NOT NULL DEFAULT 0,
-  ocr_pages INTEGER NOT NULL DEFAULT 0
+  ocr_pages INTEGER NOT NULL DEFAULT 0,
+  reindex_from TEXT
 );
 CREATE TABLE IF NOT EXISTS chunks (
   id TEXT PRIMARY KEY NOT NULL,
@@ -61,7 +62,7 @@ export const RAG_SQL = {
   listDocuments: "SELECT * FROM documents ORDER BY added_at DESC",
   getDocument: "SELECT * FROM documents WHERE id = ?",
   upsertDocument:
-    "INSERT INTO documents (id, name, kind, bytes, pages, added_at, status, indexed_pages, chunk_count, language, embed_model, error, uri, sha256, flagged_lines, ocr_pages) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET name = excluded.name, kind = excluded.kind, bytes = excluded.bytes, pages = excluded.pages, status = excluded.status, indexed_pages = excluded.indexed_pages, chunk_count = excluded.chunk_count, language = excluded.language, embed_model = excluded.embed_model, error = excluded.error, uri = excluded.uri, sha256 = excluded.sha256, flagged_lines = excluded.flagged_lines, ocr_pages = excluded.ocr_pages",
+    "INSERT INTO documents (id, name, kind, bytes, pages, added_at, status, indexed_pages, chunk_count, language, embed_model, error, uri, sha256, flagged_lines, ocr_pages, reindex_from) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET name = excluded.name, kind = excluded.kind, bytes = excluded.bytes, pages = excluded.pages, status = excluded.status, indexed_pages = excluded.indexed_pages, chunk_count = excluded.chunk_count, language = excluded.language, embed_model = excluded.embed_model, error = excluded.error, uri = excluded.uri, sha256 = excluded.sha256, flagged_lines = excluded.flagged_lines, ocr_pages = excluded.ocr_pages, reindex_from = excluded.reindex_from",
   deleteVectorsOfDoc: "DELETE FROM vectors WHERE doc_id = ?",
   deleteChunksOfDoc: "DELETE FROM chunks WHERE doc_id = ?",
   deleteDocument: "DELETE FROM documents WHERE id = ?",
@@ -72,6 +73,11 @@ export const RAG_SQL = {
   vectorsOf: (n: number) => `SELECT * FROM vectors WHERE doc_id IN (${Array.from({ length: n }, () => "?").join(", ")})`,
   deleteVectorsFrom: "DELETE FROM vectors WHERE chunk_id IN (SELECT id FROM chunks WHERE doc_id = ? AND page >= ?)",
   deleteChunksFrom: "DELETE FROM chunks WHERE doc_id = ? AND page >= ?",
+  deleteVectorsOfPage: "DELETE FROM vectors WHERE chunk_id IN (SELECT id FROM chunks WHERE doc_id = ? AND page = ?)",
+  deleteChunksOfPage: "DELETE FROM chunks WHERE doc_id = ? AND page = ?",
+  /* Databases created before round 89 have no such column; SQLite has no ADD COLUMN IF NOT EXISTS. */
+  addReindexFrom: "ALTER TABLE documents ADD COLUMN reindex_from TEXT",
+  documentColumns: "PRAGMA table_info(documents)",
 } as const;
 
 type DocRow = {
@@ -91,6 +97,7 @@ type DocRow = {
   sha256: string | null;
   flagged_lines: number;
   ocr_pages: number;
+  reindex_from?: string | null;
 };
 type ChunkRow = { id: string; doc_id: string; page: number; ord: number; text: string; start: number; end: number; tokens: number };
 type VectorRow = { chunk_id: string; doc_id: string; dim: number; scale: number; q: string };
@@ -145,6 +152,7 @@ const toDoc = (r: DocRow): DocumentRecord => ({
   ...(r.error ? { error: r.error } : {}),
   ...(r.uri ? { uri: r.uri } : {}),
   ...(r.sha256 ? { sha256: r.sha256 } : {}),
+  ...(r.reindex_from ? { reindexFrom: r.reindex_from } : {}),
 });
 
 const toChunk = (r: ChunkRow): Chunk => ({ id: r.id, docId: r.doc_id, page: r.page, ord: r.ord, text: r.text, start: r.start, end: r.end, tokens: r.tokens });
@@ -155,6 +163,8 @@ export class SqlEmbeddingStore implements EmbeddingStore {
 
   static async open(db: SqlDriver): Promise<SqlEmbeddingStore> {
     await db.exec(RAG_SCHEMA_SQL);
+    const columns = await db.all<{ name: string }>(RAG_SQL.documentColumns);
+    if (!columns.some((c) => c.name === "reindex_from")) await db.run(RAG_SQL.addReindexFrom);
     return new SqlEmbeddingStore(db);
   }
 
@@ -168,7 +178,7 @@ export class SqlEmbeddingStore implements EmbeddingStore {
   }
 
   async putDocument(d: DocumentRecord): Promise<void> {
-    await this.db.run(RAG_SQL.upsertDocument, [d.id, d.name, d.kind, d.bytes, d.pages, d.addedAt, d.status, d.indexedPages, d.chunkCount, d.language ?? null, d.embedModel ?? null, d.error ?? null, d.uri ?? null, d.sha256 ?? null, d.flaggedLines, d.ocrPages]);
+    await this.db.run(RAG_SQL.upsertDocument, [d.id, d.name, d.kind, d.bytes, d.pages, d.addedAt, d.status, d.indexedPages, d.chunkCount, d.language ?? null, d.embedModel ?? null, d.error ?? null, d.uri ?? null, d.sha256 ?? null, d.flaggedLines, d.ocrPages, d.reindexFrom ?? null]);
   }
 
   /* Explicit deletes rather than relying on foreign_keys being on for this connection. */
@@ -209,6 +219,13 @@ export class SqlEmbeddingStore implements EmbeddingStore {
     await this.db.batch([
       { sql: RAG_SQL.deleteVectorsFrom, params: [docId, fromPage] },
       { sql: RAG_SQL.deleteChunksFrom, params: [docId, fromPage] },
+    ]);
+  }
+
+  async deleteChunksOfPage(docId: string, page: number): Promise<void> {
+    await this.db.batch([
+      { sql: RAG_SQL.deleteVectorsOfPage, params: [docId, page] },
+      { sql: RAG_SQL.deleteChunksOfPage, params: [docId, page] },
     ]);
   }
 }

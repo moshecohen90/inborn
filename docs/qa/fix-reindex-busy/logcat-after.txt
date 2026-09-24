@@ -1,0 +1,17 @@
+# run 1 (no busy_timeout): fleet page write failed while the answer was saved
+09-24 22:08:30.111  5832  5873 I ReactNativeJS: [llama.rn] embedder embed-e5 loaded in 898 ms
+09-24 22:08:30.376  5832  5873 I ReactNativeJS: [documents] staff-report.txt: indexed · 1/1 pages · 1 chunks · 1213 ms (1213 ms/page)
+09-24 22:08:32.133  5832  5873 I ReactNativeJS: [rag] strict=false hits=1 used=1 535 ms | mufw3zct-4-lwycy0hg#0 cos=0.904 terms=3 bm25=0.86 KEPT
+09-24 22:09:27.659  5832  5873 I ReactNativeJS: [rag] strict=false reindexing=1/2 hits=6 used=1 303 ms | mufw3z6v-3-7xuj8fbd#147 cos=0.000 terms=4 bm25=17.82 KEPT · mufw3z6v-3-7xuj8fbd#30 cos=0.787 terms=0 bm25=0.00 dropped · mufw3z6v-3-7xuj8fbd#31 cos=0.787 terms=0 bm25=0.00 dropped · mufw3z6v-3-7xuj8fbd#13 cos=0.787 terms=0 bm25=0.00 dropped · mufw3z6v-3-7xuj8fbd#60 cos=0.786 terms=0 bm25=0.00 d
+09-24 22:09:53.910  5832  5873 I ReactNativeJS: [documents] fleet-audit.pdf: failed · 19/40 pages · 77 chunks · 83463 ms (4393 ms/page)
+# run 2 (busy_timeout), killed 22:15:54 at supplier page 22/40
+09-24 22:11:55.321  6172  6214 I ReactNativeJS: [licence] store unreachable: Error: Play Store service is not connected
+09-24 22:12:27.179  6172  6214 I ReactNativeJS: [llama.rn] embedder embed-e5 loaded in 1189 ms
+09-24 22:12:27.413  6172  6214 I ReactNativeJS: [documents] staff-report.txt: indexed · 1/1 pages · 1 chunks · 1472 ms (1472 ms/page)
+09-24 22:12:31.776  6172  6214 I ReactNativeJS: [rag] strict=false reindexing=1/2 hits=6 used=1 252 ms | mufw3z6v-3-7xuj8fbd#2 cos=0.781 terms=0 bm25=0.00 dropped · mufw3z6v-3-7xuj8fbd#147 cos=0.000 terms=4 bm25=17.82 KEPT · mufw3zct-4-lwycy0hg#0 cos=0.723 ter
+09-24 22:14:48.102  6172  6214 I ReactNativeJS: [documents] fleet-audit.pdf: indexed · 40/40 pages · 163 chunks · 140611 ms (3515 ms/page)
+# relaunch
+09-24 22:16:07.228  6466  6504 I ReactNativeJS: [llama.rn] embedder embed-e5 loaded in 930 ms
+09-24 22:16:08.915  6466  6504 I ReactNativeJS: [licence] store unreachable: Error: Play Store service is not connected
+09-24 22:16:56.181  6466  6504 I ReactNativeJS: [documents] supplier-review.pdf: indexed · 40/40 pages · 190 chunks · 50010 ms (1250 ms/page)
+09-24 22:18:53.195  6466  6504 I ReactNativeJS: [documents] harbor-survey.pdf: indexed · 40/40 pages · 162 chunks · 116971 ms (2924 ms/page)

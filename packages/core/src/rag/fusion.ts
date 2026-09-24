@@ -19,7 +19,8 @@ export interface MmrCandidate {
   id: string;
   /** Relevance as ranked by the caller (normalized 0..1 works best). */
   relevance: number;
-  vector: Float32Array;
+  /** Absent for a row found only by its words (an old embedder's row during a rebuild); it then counts as unlike every pick. */
+  vector?: Float32Array;
 }
 
 /** Greedy MMR: each pick maximizes λ·relevance − (1−λ)·max similarity to what is already picked. */
@@ -32,7 +33,7 @@ export function mmr(candidates: MmrCandidate[], k: number, lambda = 0.7): MmrCan
     for (let i = 0; i < pool.length; i++) {
       const c = pool[i]!;
       let maxSim = 0;
-      for (const p of picked) maxSim = Math.max(maxSim, cosine(c.vector, p.vector));
+      for (const p of picked) if (c.vector && p.vector) maxSim = Math.max(maxSim, cosine(c.vector, p.vector));
       const s = lambda * c.relevance - (1 - lambda) * maxSim;
       if (s > best) {
         best = s;

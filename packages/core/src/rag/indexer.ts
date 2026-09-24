@@ -28,11 +28,28 @@ export interface IndexOptions {
 
 export const chunkId = (docId: string, page: number, ord: number): string => `${docId}:${page}:${ord}`;
 
-/** Vectors from another embedder live in another space (and here another dimension), so the document is rebuilt, never searched. */
+/** Vectors from another embedder live in another space (and here another dimension), so the document is rebuilt, never cosine-searched. */
 export const needsReindex = (doc: Pick<DocumentRecord, "embedModel" | "indexedPages">, embedderId: string): boolean => doc.indexedPages > 0 && doc.embedModel !== embedderId;
 
-/** The record to re-queue: page 0, no chunks, so `indexDocument` rebuilds it from the start and drops the old rows. */
-export const reindexFrom = (doc: DocumentRecord): DocumentRecord => ({ ...doc, status: "queued", indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 });
+/**
+ * The record to re-queue: `indexDocument` rebuilds it from page 0, replacing one page at a time. The old rows of the pages
+ * not rebuilt yet stay in the store and are searched by their words until their page is replaced (QA F353).
+ */
+export const reindexFrom = (doc: DocumentRecord): DocumentRecord => ({
+  ...doc,
+  status: "queued",
+  indexedPages: 0,
+  chunkCount: 0,
+  ocrPages: 0,
+  flaggedLines: 0,
+  ...(doc.chunkCount > 0 ? { reindexFrom: doc.reindexFrom ?? doc.embedModel ?? "unknown" } : {}),
+});
+
+/** Has rows a question can search: its own index, or while a rebuild runs, the old embedder's rows found by their words. */
+export const isSearchable = (doc: Pick<DocumentRecord, "chunkCount" | "reindexFrom">): boolean => doc.chunkCount > 0 || !!doc.reindexFrom;
+
+/** The page from which a document's vectors are not in the current embedder's space: every page while nothing is rebuilt. */
+export const vectorsValidUpTo = (doc: Pick<DocumentRecord, "reindexFrom" | "indexedPages">): number => (doc.reindexFrom ? doc.indexedPages : Infinity);
 
 export class IndexCancelled extends Error {
   constructor() {
@@ -50,10 +67,10 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder.id };
   const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.indexedPages, pages: total, chunks: doc.chunkCount, elapsedMs: now() - started });
   const cancelled = () => o.signal?.aborted === true;
-  /* A resume re-embeds nothing, but a page interrupted mid-commit is redone from scratch; from page 0 that is every row. */
-  await o.store.deleteChunksFrom(doc.id, doc.indexedPages + 1);
+  /* Rows past the committed page are either a page interrupted mid-commit or the old embedder's rows of a rebuild:
+     both are replaced page by page below, so a question asked meanwhile still finds the old rows by their words. */
   await o.store.putDocument(doc);
-  let ord = (await o.store.chunksOf(doc.id)).length;
+  let ord = (await o.store.chunksOf(doc.id)).filter((c) => c.page <= doc.indexedPages).length;
   doc.chunkCount = ord;
   let blankPages = 0;
   const scripts = new Map<string, number>();
@@ -74,6 +91,7 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
       }
       const { text: normalized, chunks } = chunkPage(text, o.chunk);
       if (!chunks.length) {
+        await o.store.deleteChunksOfPage(doc.id, p + 1);
         doc.indexedPages = p + 1;
         await o.store.putDocument(doc);
         report("store");
@@ -91,12 +109,16 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
         const batch = rows.slice(i, i + batchSize);
         vectors.push(...(await o.embedder.embed(forDocuments(o.embedder.id, batch.map((r) => r.text)))));
       }
+      await o.store.deleteChunksOfPage(doc.id, p + 1);
       await o.store.putChunks(rows, vectors);
       doc.chunkCount += rows.length;
       doc.indexedPages = p + 1;
       await o.store.putDocument(doc);
       report("store");
     }
+    /* Pages past a lowered cap, or an old index of a longer file, keep no rows once the rebuild is complete. */
+    await o.store.deleteChunksFrom(doc.id, total + 1);
+    delete doc.reindexFrom;
     const dominant = [...scripts].sort((a, b) => b[1] - a[1])[0]?.[0];
     if (dominant) doc.language = dominant;
     if (!doc.chunkCount) doc.status = blankPages > 0 && !o.ocr ? "needs-ocr" : "empty";

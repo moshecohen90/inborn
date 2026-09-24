@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import type { DocumentRecord, LicenceTier, PaywallReason } from "@inborn/core";
+import { isSearchable, type DocumentRecord, type LicenceTier, type PaywallReason } from "@inborn/core";
 import { useTheme } from "../../lib/theme";
 import { ProTag, Sheet, SheetItem } from "./Sheet";
 import { shape } from "./styles";
@@ -50,7 +50,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, tier, at
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
-  const indexed = (d: DocumentRecord) => d.chunkCount > 0;
+  const indexed = isSearchable;
   return (
     <Sheet visible={visible} onClose={onClose} title={t("chat.attach.title")} testID="attach-sheet">
       {onTemplates ? <SheetItem testID="attach-templates" label={t("templates.title")} hint={t("templates.hint")} onPress={onTemplates} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}

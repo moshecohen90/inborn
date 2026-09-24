@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
-import type { Citation, DocumentRecord, Message, RagPrompt } from "@inborn/core";
+import { isSearchable, type Citation, type DocumentRecord, type Message } from "@inborn/core";
 import { useEntitlement } from "../licence";
 import { peekEngine } from "../engine";
-import { canCiteMarkers, getLibrary, type DocumentLibrary, type LibraryState } from "./library";
+import { canCiteMarkers, getLibrary, type AskResult, type DocumentLibrary, type LibraryState } from "./library";
 
 /* useSyncExternalStore needs a changing snapshot; a counter bumped per notification is enough (same trick as the vault). */
 let version = 0;
@@ -39,7 +39,7 @@ export interface DocumentContext {
   /** True when at least one attached document has an index to search. */
   ready: boolean;
   /** Retrieval + fenced prompt for the next user turn; `prompt.noAnswer` means answer with `documents.notFound` and skip the model. */
-  buildPrompt: (question: string, history: Message[], nCtx: number, systemPrompt?: string) => Promise<{ prompt: RagPrompt; retrieveMs: number }>;
+  buildPrompt: (question: string, history: Message[], nCtx: number, systemPrompt?: string) => Promise<AskResult>;
   /** Chips to show under a finished answer. */
   citationsFor: (answer: string, citations: Citation[]) => { shown: Citation[]; cited: boolean };
   /** The `documents` field to keep on the chat's system context. */
@@ -58,7 +58,7 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
   const key = chatId ?? "";
   const documents = useMemo(() => (chatId ? library.attachedTo(chatId) : []), [library, chatId, state]);
   const docIds = useMemo(() => documents.map((d) => d.id), [documents]);
-  const ready = documents.some((d) => d.chunkCount > 0);
+  const ready = documents.some(isSearchable);
   return {
     documents,
     strict,

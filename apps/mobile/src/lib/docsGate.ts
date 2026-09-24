@@ -6,7 +6,7 @@
  */
 export type DocsTurn = { kind: "retrieve" } | { kind: "wait" } | { kind: "refuse"; messageKey: RefusalKey } | { kind: "model" };
 
-export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.needsOcr" | "documents.needsIndexModel" | "documents.photoNotText" | "documents.noText";
+export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.searchFailed" | "documents.needsOcr" | "documents.needsIndexModel" | "documents.photoNotText" | "documents.noText";
 
 /** Why the attached documents have nothing to search although none of them is still being read. */
 export type AttachmentBlock = "needs-ocr" | "no-embedder" | "image" | "no-text" | null;
