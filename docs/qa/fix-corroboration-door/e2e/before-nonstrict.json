@@ -1,0 +1,74 @@
+{
+ "exe": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+ "url": "http://127.0.0.1:8591",
+ "steps": [
+  {
+   "q": "従業員は全部で何人ですか？",
+   "answer": "社員数は三百八十二名です。",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 1,
+   "rag": [
+    "log: [rag] strict=false hits=1 used=1 364 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.852 terms=0 bm25=0.00 KEPT"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+   "answer": "一九九八年のワールドカップで優勝したのは日本を代表したチームです。",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 2,
+   "rag": [
+    "log: [rag] strict=false hits=1 used=1 389 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.787 terms=1 bm25=0.29 KEPT"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "Who won the 1998 football World Cup?",
+   "answer": "1998 年ワールドカップで優勝したのは日本チームです。",
+   "citationsNearLastAnswer": 2,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 2,
+   "rag": [
+    "log: [rag] strict=false hits=1 used=0 368 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.653 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 1
+  }
+ ],
+ "loaded": "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1859 ms",
+ "doc2": "log: [documents] aoba-nenji.txt: indexed · 1/1 pages · 1 chunks · 5611 ms (5611 ms/page)",
+ "console": [
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. importantForAccessibility importantforaccessibility",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. importantForAccessibility importantforaccessibility",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1859 ms",
+  "log: [documents] aoba-nenji.txt: indexed · 1/1 pages · 1 chunks · 5611 ms (5611 ms/page)",
+  "log: [rag] strict=false hits=1 used=1 364 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.852 terms=0 bm25=0.00 KEPT",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 12 ms",
+  "log: [rag] strict=false hits=1 used=1 389 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.787 terms=1 bm25=0.29 KEPT",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms",
+  "log: [rag] strict=false hits=1 used=0 368 ms | 89b2c304-242a-41f2-ad40-114bc39e1e51#0 cos=0.653 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms"
+ ]
+}

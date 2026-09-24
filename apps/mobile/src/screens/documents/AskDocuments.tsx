@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { isNotFoundReply, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
+import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -98,7 +98,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       }
       const generateMs = Date.now() - started;
       const isNotFound = isNotFoundReply(reply);
-      const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, prompt.citations);
+      const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
       setNotFound(isNotFound);
       if (isNotFound) setAnswer("");
       setCitations(shown);

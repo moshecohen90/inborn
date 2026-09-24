@@ -1,0 +1,16 @@
+# e5 Q6 harness run on the round-70 fixtures (HEAD 4a6af9b) vs the committed e5-cosines.json
+537 committed cosines recomputed, 0 differ, max |diff| 0.0000
+
+# the same unchanged ja/zh/ko/en/he texts, embedded in the round-70 batch vs the round-81 batch (same binary, same model)
+123 unchanged-text pairs, 43 differ by run, max 0.0004
+# the round-81 batch embedded twice
+123 unchanged-text pairs, 0 differ by run, max 0.0000
+
+# every off-topic cosine of the round-81 set against the 0.82 door (one-passage + every chunk of every six-chunk doc)
+off-topic cosines: 467 ; above 0.82: 0
+0.8177 ko-report  서울에서 부산까지 KTX로 얼마나 걸립니까?
+0.8174 mc-ko#0  서울에서 부산까지 KTX로 얼마나 걸립니까?
+0.8162 mc-he#1  מתי נבנתה החומה הסינית?
+0.8125 pt-report  Quanto tempo leva o trem de Tóquio a Osaka?
+0.8107 mc-ja#1  一九九八年のワールドカップで優勝したのはどこですか？
+0.8092 es-report  ¿Cuánto dura el tren de Tokio a Osaka?

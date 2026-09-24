@@ -22,6 +22,8 @@ interface SingleDoc {
   text: string;
   on: string[];
   off: string[];
+  /** The questions typed without their accents, kept beside the accented ones because users type both. */
+  sloppy?: string[];
 }
 interface MultiDoc {
   id: string;
@@ -30,6 +32,7 @@ interface MultiDoc {
   answers: number;
   on: string[];
   off: string[];
+  sloppy?: string[];
 }
 
 /** One candidate's whole result: what the lead needs to pick a winner. */
@@ -56,15 +59,23 @@ export interface CandidateResult {
   /** The joint door applied to the six-chunk documents, where citing the wrong chunk is visible. */
   multiDoor: { on: number; right: number; wrongOnly: number; off: number };
   onByLang: Record<string, [number, number]>;
+  /** On-topic questions the lexical rule cites on its own, per language: what the accent fold moves (F367). */
+  lexByLang: Record<string, [number, number]>;
   /** How recall falls as T is raised past the fitted one: the headroom a shipped threshold can buy. */
   headroom: Array<{ T: number; on: number; off: number }>;
   /** Everything at SHIPPED_MIN_COSINE, the round number the app actually uses. */
   shipped: { T: number; on: number; off: number; multiOn: number; multiRight: number; multiWrongOnly: number; multiOff: number };
 }
 
-const ON_TOTAL = 57;
-const OFF_TOTAL = 102;
-const MC_ON = 21;
+const SINGLES = JSON.parse(readFileSync(join(OLD_QA, "fixtures.json"), "utf8")).docs as SingleDoc[];
+const MULTIS = JSON.parse(readFileSync(join(OLD_QA, "multichunk.json"), "utf8")).docs as MultiDoc[];
+const ON_TOTAL = SINGLES.reduce((n, d) => n + d.on.length, 0);
+const OFF_TOTAL = SINGLES.reduce((n, d) => n + d.off.length, 0);
+const MC_ON = MULTIS.reduce((n, d) => n + d.on.length, 0);
+const MC_OFF = MULTIS.reduce((n, d) => n + d.off.length, 0);
+/** Per-language tables split the accent-less typing variants out, so an accented and a sloppy question never share a cell. */
+const NO_ACCENTS = " (no accents)";
+const labelOf = (d: { lang: string; sloppy?: string[] }, q: string) => (d.sloppy?.includes(q) ? d.lang + NO_ACCENTS : d.lang);
 /** The cosine door the app ships with the multilingual embedder; see docs/qa/embed-multilingual/measure.md. */
 const SHIPPED_MIN_COSINE = 0.82;
 /** The candidate the catalog ships as `embed-e5`; its per-question cosines are committed for the guards. */
@@ -74,8 +85,8 @@ const round70 = (r: { terms: number; bm25: number; cos: number }) => r.terms >= 
 
 function score(dir: string, variant: string, meta: Record<string, string | number>): CandidateResult {
   const vectors = JSON.parse(readFileSync(join(dir, `${variant}.vectors.json`), "utf8")) as Record<string, number[]>;
-  const singles = JSON.parse(readFileSync(join(OLD_QA, "fixtures.json"), "utf8")).docs as SingleDoc[];
-  const multis = JSON.parse(readFileSync(join(OLD_QA, "multichunk.json"), "utf8")).docs as MultiDoc[];
+  const singles = SINGLES;
+  const multis = MULTIS;
   const f32 = (key: string) => {
     const v = vectors[key];
     if (!v) throw new Error(`${variant}: no embedding for ${key}`);
@@ -91,7 +102,7 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
       for (const question of d[kind]) {
         const qv = normalize(f32(`q:${d.id}:${kind}:${question}`));
         const hit = idx.search(question, 5)[0];
-        rows.push({ doc: d.id, lang: d.lang, kind, q: question, terms: hit?.matched ?? 0, bm25: Number((hit?.score ?? 0).toFixed(3)), cos: Number(cosineQuantized(q, scale, qv).toFixed(4)) });
+        rows.push({ doc: d.id, lang: labelOf(d, question), kind, q: question, terms: hit?.matched ?? 0, bm25: Number((hit?.score ?? 0).toFixed(3)), cos: Number(cosineQuantized(q, scale, qv).toFixed(4)) });
       }
   }
 
@@ -111,7 +122,7 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
           const h = lex.get(String(c.i));
           return { cos: Number(cosineQuantized(c.q, c.scale, qv).toFixed(4)), bm25: Number((h?.score ?? 0).toFixed(3)), terms: h?.matched ?? 0 };
         });
-        mc.push({ lang: d.lang, kind, answer: d.answers, top: per.reduce((bestAt, p, i) => (p.cos > per[bestAt]!.cos ? i : bestAt), 0), per });
+        mc.push({ lang: labelOf(d, question), kind, answer: d.answers, top: per.reduce((bestAt, p, i) => (p.cos > per[bestAt]!.cos ? i : bestAt), 0), per });
       }
   }
 
@@ -146,6 +157,11 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
   for (const r of rows.filter((x) => x.kind === "on")) {
     const cur = onByLang[r.lang] ?? [0, 0];
     onByLang[r.lang] = [cur[0] + (door(r) ? 1 : 0), cur[1] + 1];
+  }
+  const lexByLang: Record<string, [number, number]> = {};
+  for (const r of rows.filter((x) => x.kind === "on")) {
+    const cur = lexByLang[r.lang] ?? [0, 0];
+    lexByLang[r.lang] = [cur[0] + (round70(r) ? 1 : 0), cur[1] + 1];
   }
 
   const multiDoor = { on: 0, right: 0, wrongOnly: 0, off: 0 };
@@ -206,34 +222,45 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
     joint,
     multiDoor,
     onByLang,
+    lexByLang,
     headroom,
     shipped,
   };
 }
 
-const LANGS = ["de", "en", "es", "fr", "he", "ja", "ko", "pt", "zh"];
-const MC_LANGS = ["de", "en", "fr", "he", "ja", "ko", "zh"];
+const langsOf = (docs: Array<{ lang: string; on: string[]; sloppy?: string[] }>) => [...new Set(docs.flatMap((d) => d.on.map((q) => labelOf(d, q))))].sort();
+const LANGS = langsOf(SINGLES);
+const MC_LANGS = langsOf(MULTIS);
+/* Round 72's bar was 18 of 21 and 50 of 57; it scales with the fixture set so adding questions cannot lower it. */
+const BAR_FIRST = Math.ceil((18 / 21) * MC_ON);
+const BAR_ON = Math.ceil((50 / 57) * ON_TOTAL);
+const TEXTS = SINGLES.reduce((n, d) => n + 1 + d.on.length + d.off.length, 0) + MULTIS.reduce((n, d) => n + d.chunks.length + d.on.length + d.off.length, 0);
 const mb = (n: number) => `${(n / 1e6).toFixed(0)} MB`;
 
 function tables(results: CandidateResult[]): string {
   const L: string[] = [];
   L.push("# Every multilingual embedder llama.rn can run, measured (F333)");
   L.push("");
-  L.push("Same two fixture sets, same scorer, same quantized cosine as round 70 (`docs/qa/fix-cjk-floor`): 12 one-passage");
-  L.push("documents with 57 on-topic and 102 off-topic questions, and 7 six-chunk documents with 21 and 42. Each model runs");
+  L.push(`Same two fixture sets, same scorer, same quantized cosine as round 70 (\`docs/qa/fix-cjk-floor\`): ${SINGLES.length} one-passage`);
+  L.push(`documents with ${ON_TOTAL} on-topic and ${OFF_TOTAL} off-topic questions, and ${MULTIS.length} six-chunk documents with ${MC_ON} and ${MC_OFF}. Each model runs`);
   L.push("with the prefixes and pooling its authors trained it with, through llama.cpp's `llama-embedding`, then through");
   L.push("`quantize()`/`cosineQuantized()` from `packages/core/src/rag/vector.ts`, so the cosine is the phone's cosine.");
   L.push("Regenerate: `node docs/qa/embed-multilingual/embed-candidates.mjs /tmp/multi` then the env-gated");
   L.push("`packages/core/test/rag-multilingual-measure.test.ts`.");
   L.push("");
+  L.push("Since round 81 (F363) the German, French, Spanish and Portuguese documents and questions are typed with their accents,");
+  L.push(`the round-70 accent-less questions are kept as typing variants (columns marked "${NO_ACCENTS.trim()}"), and zh-Hant, the`);
+  L.push("launch locale, has its own documents beside the Simplified ones. The 22-candidate comparison that picked the embedder");
+  L.push("was measured on the round-70 set and is kept as it was in `measure-f333.md`.");
+  L.push("");
   L.push("## The bar");
   L.push("");
-  L.push(`Ranks the answering chunk first for at least 18 of ${MC_ON}, **and** some cosine threshold T gives at least 50 of ${ON_TOTAL}`);
+  L.push(`Ranks the answering chunk first for at least ${BAR_FIRST} of ${MC_ON}, **and** some cosine threshold T gives at least ${BAR_ON} of ${ON_TOTAL}`);
   L.push(`on-topic questions a citation with 0 of ${OFF_TOTAL} off-topic ones. Nothing below that ships.`);
   L.push("");
   L.push("## Multi-chunk ranking — the measurement that decides it");
   L.push("");
-  L.push("For how many of the 21 on-topic questions is the chunk that answers the question the embedder's top chunk?");
+  L.push(`For how many of the ${MC_ON} on-topic questions is the chunk that answers the question the embedder's top chunk?`);
   L.push("");
   L.push(`| candidate | pooling | answering chunk first | ${MC_LANGS.join(" | ")} |`);
   L.push(`|---|---|---|${MC_LANGS.map(() => "---").join("|")}|`);
@@ -258,7 +285,7 @@ function tables(results: CandidateResult[]): string {
   L.push("");
   L.push("| candidate | T joint | on-topic 1-passage | off | multi-chunk on-topic | right | wrong only | multi off |");
   L.push("|---|---|---|---|---|---|---|---|");
-  for (const r of results) L.push(`| ${r.variant} | ${r.joint.T} | **${r.joint.on}/${ON_TOTAL}** | ${r.joint.off}/${OFF_TOTAL} | ${r.multiDoor.on}/${MC_ON} | ${r.multiDoor.right} | ${r.multiDoor.wrongOnly} | ${r.multiDoor.off}/42 |`);
+  for (const r of results) L.push(`| ${r.variant} | ${r.joint.T} | **${r.joint.on}/${ON_TOTAL}** | ${r.joint.off}/${OFF_TOTAL} | ${r.multiDoor.on}/${MC_ON} | ${r.multiDoor.right} | ${r.multiDoor.wrongOnly} | ${r.multiDoor.off}/${MC_OFF} |`);
   L.push("");
   L.push("## Per language, on-topic cited under `rule 70 OR cos > T joint`");
   L.push("");
@@ -266,16 +293,27 @@ function tables(results: CandidateResult[]): string {
   L.push(`|---|${LANGS.map(() => "---").join("|")}|`);
   for (const r of results) L.push(`| ${r.variant} | ${LANGS.map((l) => (r.onByLang[l] ? `${r.onByLang[l]![0]}/${r.onByLang[l]![1]}` : "–")).join(" | ")} |`);
   L.push("");
+  L.push("## Per language, on-topic cited by the lexical rule alone (`rule 70`)");
+  L.push("");
+  L.push("The half of the door the word index decides, so a change to the tokenizer shows here and nowhere else. Since round 84");
+  L.push("(F367) accents are folded on both sides, and each de/fr/es/pt document has one accent-less question whose only shared");
+  L.push("word is accented in the passage. Since round 85 (F368) an umlaut typed as ae/oe/ue and a word behind an elided article");
+  L.push("(\"d'Aoba\") are found too; de-report and fr-report each have one question whose only shared word is spelled that way.");
+  L.push("");
+  L.push(`| candidate | ${LANGS.join(" | ")} |`);
+  L.push(`|---|${LANGS.map(() => "---").join("|")}|`);
+  for (const r of results) L.push(`| ${r.variant} | ${LANGS.map((l) => (r.lexByLang[l] ? `${r.lexByLang[l]![0]}/${r.lexByLang[l]![1]}` : "–")).join(" | ")} |`);
+  L.push("");
   L.push("## Size, licence and cost");
   L.push("");
-  L.push("`ms/text` is wall clock on this Mac (M-series, Metal) over the whole 400-text pass including model load, a proxy");
+  L.push(`\`ms/text\` is wall clock on this Mac (M-series, Metal) over the whole ${TEXTS}-text pass including model load, a proxy`);
   L.push("for the phone, not a phone number.");
   L.push("");
   L.push("| candidate | family | arch | params | dim | file | licence | ms/text | source |");
   L.push("|---|---|---|---|---|---|---|---|---|");
   for (const r of results) L.push(`| ${r.variant} | ${r.family} | ${r.arch} | ${r.params} | ${r.dim} | ${mb(r.bytes)} | ${r.license} | ${r.msPerText} | \`${r.source}\` |`);
   L.push("");
-  const passes = results.filter((r) => r.answerFirst >= 18 && r.joint.on >= 50 && r.joint.off === 0);
+  const passes = results.filter((r) => r.answerFirst >= BAR_FIRST && r.joint.on >= BAR_ON && r.joint.off === 0);
   L.push("## What passes the bar");
   L.push("");
   if (!passes.length) L.push("Nothing.");
@@ -292,34 +330,34 @@ function tables(results: CandidateResult[]): string {
   L.push("");
   L.push("| candidate | on-topic | off-topic | multi-chunk on-topic | right | wrong only | multi off-topic |");
   L.push("|---|---|---|---|---|---|---|");
-  for (const r of results) L.push(`| ${r.variant} | **${r.shipped.on}/${ON_TOTAL}** | ${r.shipped.off}/${OFF_TOTAL} | ${r.shipped.multiOn}/${MC_ON} | ${r.shipped.multiRight} | ${r.shipped.multiWrongOnly} | ${r.shipped.multiOff}/42 |`);
+  for (const r of results) L.push(`| ${r.variant} | **${r.shipped.on}/${ON_TOTAL}** | ${r.shipped.off}/${OFF_TOTAL} | ${r.shipped.multiOn}/${MC_ON} | ${r.shipped.multiRight} | ${r.shipped.multiWrongOnly} | ${r.shipped.multiOff}/${MC_OFF} |`);
   L.push("");
   L.push("## Headroom above the fitted threshold");
   L.push("");
-  L.push("`T joint` is fitted at the highest off-topic cosine in 144 questions, so it has **no** headroom by construction:");
+  L.push(`\`T joint\` is fitted at the highest off-topic cosine in ${OFF_TOTAL + MC_OFF} questions, so it has **no** headroom by construction:`);
   L.push("one unseen off-topic question above it would be cited. This is what buying headroom costs the passing candidates.");
   L.push("");
   L.push(`| candidate | ${[0, 0.01, 0.02, 0.03, 0.05].map((e) => `T+${e}`).join(" | ")} |`);
   L.push(`|---|${[0, 0, 0, 0, 0].map(() => "---").join("|")}|`);
   for (const r of passes.length ? passes : results.slice(0, 3)) L.push(`| ${r.variant} | ${r.headroom.map((h) => `${h.on}/${ON_TOTAL}, ${h.off} off`).join(" | ")} |`);
   L.push("");
+  const ship = results.find((r) => r.variant === SHIPPED_VARIANT);
   L.push("## What this changes");
   L.push("");
-  L.push("The shipped embedder answers document questions in English and, outside it, measures the language rather than the");
-  L.push("topic. That is the whole of round 70 and round 70b: German 0/3, French 0/3, and the answering chunk ranked first for");
-  L.push("3 of 21 questions. It is not a floor that can be tuned — `nomic-embed-text-v1.5` is Nomic's **English** model.");
+  L.push("The per-language table is the answer to round 81: the accented columns are what a user with a proper keyboard types,");
+  L.push(`the "${NO_ACCENTS.trim()}" columns are the same questions typed the way round 70 typed them, and zh-Hant is the launch locale.`);
   L.push("");
-  L.push("An embedder trained on 100 languages fixes it at the source. The winner ranks the answering chunk first for 20 of 21");
-  L.push("questions, 3/3 in German, French, Hebrew, Japanese and Korean, and **never** cites a wrong chunk while citing no");
-  L.push("right one. The cosine can stand on its own again, which is what round 70 had to give up.");
-  L.push("");
-  L.push("Two things this does not fix, both pre-existing and unchanged by the swap:");
-  L.push("");
-  L.push("1. Three of the 42 off-topic multi-chunk questions are still cited. Every one is cited by the **lexical** half —");
-  L.push("   an off-topic question that happens to share two content words with a chunk of the same company report. The");
-  L.push("   shipped embedder cites the same three. The cosine door adds none.");
-  L.push("2. The threshold is fitted, not derived. It sits above the highest off-topic cosine in 144 questions with a few");
-  L.push("   thousandths of headroom, and the table above prices more.");
+  L.push("Since round 84 (F367) the word index folds accents on both sides, so an accent-less question meets its accented passage;");
+  L.push("the lexical-only table is where that shows. The \"sieges\" question still waits on its cosine, because its passage says \"bureaux\".");
+  L.push("Since round 85 (F368) German typed with ae/oe/ue meets ä/ö/ü and French/Italian/Catalan elided articles are glue;");
+  L.push("the rejected German option, a query-side fold, is measured in `docs/qa/fix-elision-umlaut/options.md`.");
+  if (ship) {
+    L.push("");
+    L.push(`For ${SHIPPED_VARIANT}, the highest off-topic cosine the lexical rule does not already cite is ${ship.joint.T} over ${OFF_TOTAL + MC_OFF}`);
+    L.push(`off-topic questions, ${Number((SHIPPED_MIN_COSINE - ship.joint.T).toFixed(4))} under the shipped door of ${SHIPPED_MIN_COSINE}, so the door stays where it is.`);
+    L.push(`${ship.shipped.multiOff} of the ${MC_OFF} off-topic multi-chunk questions are cited; \`rag-multilingual-guard.test.ts\` asserts every one`);
+    L.push("is cited by the lexical half, never by the cosine.");
+  }
   L.push("");
   return L.join("\n") + "\n";
 }
@@ -327,8 +365,8 @@ function tables(results: CandidateResult[]): string {
 /** Every cosine of one candidate, per question, in the shape of `cjk-cosines.json` plus the six-chunk documents. */
 function perQuestion(dir: string, variant: string, meta: Record<string, string | number>) {
   const vectors = JSON.parse(readFileSync(join(dir, `${variant}.vectors.json`), "utf8")) as Record<string, number[]>;
-  const singles = JSON.parse(readFileSync(join(OLD_QA, "fixtures.json"), "utf8")).docs as SingleDoc[];
-  const multis = JSON.parse(readFileSync(join(OLD_QA, "multichunk.json"), "utf8")).docs as MultiDoc[];
+  const singles = SINGLES;
+  const multis = MULTIS;
   const f32 = (key: string) => Float32Array.from(vectors[key]!);
   const cos = (text: string, q: string) => {
     const { q: qq, scale } = quantize(f32(text));
@@ -340,9 +378,9 @@ function perQuestion(dir: string, variant: string, meta: Record<string, string |
     embedder: String(meta.source ?? ""),
     prefixes: [c.docPrefix, c.queryPrefix],
     measured: "llama-embedding --pooling mean --embd-normalize 2, then the app's own quantize()/cosineQuantized() (packages/core/src/rag/vector.ts)",
-    why: "The shipped embedder's real cosines for round 70's questions, so the relevance door is guarded on the numbers the phone produces (F334).",
-    docs: singles.map((d) => ({ id: d.id, lang: d.lang, text: d.text, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosine: cos(`doc:${d.id}`, `q:${d.id}:${kind}:${q}`) }))) })),
-    multi: multis.map((d) => ({ id: d.id, lang: d.lang, answers: d.answers, chunks: d.chunks, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosines: d.chunks.map((_, i) => cos(`c:${d.id}:${i}`, `q:${d.id}:${kind}:${q}`)) }))) })),
+    why: "The shipped embedder's real cosines for round 70's questions plus round 81's accented, accent-less and zh-Hant ones, so the relevance door is guarded on the numbers the phone produces (F334, F363).",
+    docs: singles.map((d) => ({ id: d.id, lang: d.lang, text: d.text, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosine: cos(`doc:${d.id}`, `q:${d.id}:${kind}:${q}`), ...(d.sloppy?.includes(q) ? { sloppy: true } : {}) }))) })),
+    multi: multis.map((d) => ({ id: d.id, lang: d.lang, answers: d.answers, chunks: d.chunks, questions: (["on", "off"] as const).flatMap((kind) => d[kind].map((q) => ({ kind, q, cosines: d.chunks.map((_, i) => cos(`c:${d.id}:${i}`, `q:${d.id}:${kind}:${q}`)), ...(d.sloppy?.includes(q) ? { sloppy: true } : {}) }))) })),
   };
 }
 

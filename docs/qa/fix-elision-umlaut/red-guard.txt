@@ -1,0 +1,71 @@
+
+ RUN  v5.0.0 packages/core
+
+ ❯ test/rag-multilingual-guard.test.ts (15 tests | 2 failed) 218ms
+   ❯ F334 · one-passage documents in nine languages (7)
+     × F368: the word index alone finds an umlaut typed as a digraph and a word behind an elided article 11ms
+     × F367: per language, what the lexical rule cites on its own 53ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-multilingual-guard.test.ts > F334 · one-passage documents in nine languages > F368: the word index alone finds an umlaut typed as a digraph and a word behind an elided article
+AssertionError: expected [ 'de-report', …(2) ] to deeply equal [ 'de-report', …(2) ]
+
+- Expected
++ Received
+
+  [
+    "de-report",
+    "Wo liegen die Hauptbueros?",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-multilingual-guard.test.ts:143:67
+    141|       const d = ONE.find((x) => x.id === id)!;
+    142|       expect([id, d.questions.some((x) => x.q === q && x.kind === "on"…
+    143|       expect([id, q, hits(d.id, [d.text], q, [0])[0]!.bm25Terms]).toEq…
+       |                                                                   ^
+    144|     }
+    145|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/rag-multilingual-guard.test.ts > F334 · one-passage documents in nine languages > F367: per language, what the lexical rule cites on its own
+AssertionError: expected { ja: '8/14', zh: '7/10', …(12) } to deeply equal { de: '0/5', …(13) }
+
+- Expected
++ Received
+
+@@ -1,12 +1,12 @@
+  {
+    "de": "0/5",
+-   "de (no accents)": "2/4",
++   "de (no accents)": "1/4",
+    "en": "4/10",
+    "es": "1/5",
+    "es (no accents)": "2/4",
+-   "fr": "1/6",
++   "fr": "0/6",
+    "fr (no accents)": "1/2",
+    "he": "3/5",
+    "ja": "8/14",
+    "ko": "3/6",
+    "pt": "3/5",
+
+ ❯ test/rag-multilingual-guard.test.ts:157:95
+    155|         cur[1]++;
+    156|       }
+    157|     expect(Object.fromEntries(Object.entries(byLang).map(([k, [a, b]])…
+       |                                                                                               ^
+    158|   });
+    159|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 13 passed (15)
+   Start at  19:54:34
+   Duration  2.03s (transform 83%, tests 11%, import 5%)
+

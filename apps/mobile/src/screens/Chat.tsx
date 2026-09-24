@@ -9,6 +9,8 @@ import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
   isNotFoundReply,
+  groundedCitations,
+  type RetrievalHit,
   PASTE_OFFER_CHARS,
   PRODUCTS,
   SAFETY_BASELINE,
@@ -435,6 +437,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let reasoningStart = 0;
     let reasoningMs: number | undefined;
     let citations: Citation[] | undefined;
+    let ragUsed: RetrievalHit[] = [];
     /* Set while streaming so the abort below is read as a replacement, not as the user's Stop (which would offer "Continue"). */
     let familySafeHit = false;
     const started = Date.now();
@@ -522,6 +525,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: rag.prompt.used.length })) setNoneMatched(true);
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
+          ragUsed = rag.prompt.used;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
           /* A toast is not an answer: a search that failed must not leave the model answering as if nothing were attached. */
@@ -624,6 +628,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         reply = t("documents.notFound");
         citations = undefined;
         patch((x) => ({ ...x, content: prefix + reply }));
+      } else if (citations) {
+        /* A SOURCES strip under words no passage carried is a fabricated citation (QA F366). */
+        const kept = groundedCitations(prefix + reply, lastUser, ragUsed, citations);
+        if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
+        citations = kept.length ? kept : undefined;
       }
       let keptId: string | null = null;
       if (!reply && !reasoning && stopped && !savedId) {

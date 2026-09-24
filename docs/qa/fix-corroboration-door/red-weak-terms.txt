@@ -1,0 +1,20 @@
+# sabotage: weak-terms
+# packages/core/src/rag/bm25.ts: 'export const isWeakTerm = (term: string): boolean => {' -> 'export const isWeakTerm = (term: string): boolean => { if (term) return false;'
+     × years, counts, units, numeral bigrams and lone CJK characters are weak; words are not 19ms
+     × a year alone matches zero terms; beside a content word it counts 1ms
+     × the verifier's exact turn: the Japanese 1998 question against the whole company report is refused in strict mode and gets no passage outside it 1ms
+     × no off-topic question that shares only a year or a number is cited, in any of nine languages, in either mode 25ms
+     × what the weak rule costs: a question that shares only a year with its answer needs the cosine alone 1ms
+     × an answer that only repeats the question, or shares only a number with the passage, keeps no chip 1ms
+     × an answer taken from a passage keeps that passage's chip and only it, and its [n] still points at it 1ms
+     × nomic-embed-text-v1.5 cites nothing off-topic at the door, and its recall stays at the lexical rule's 37 of 83 8ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 39 to be 37 // Object.is equality
+AssertionError: expected [ '1998', false ] to deeply equal [ '1998', true ]
+AssertionError: expected 1 to be +0 // Object.is equality
+AssertionError: expected 1 to be +0 // Object.is equality
+AssertionError: expected [ …(8) ] to deeply equal []
+AssertionError: expected 6 to be 8 // Object.is equality
+AssertionError: expected [ { n: 1, docId: 'e', …(5) } ] to deeply equal []
+AssertionError: expected [ 1, 6 ] to deeply equal [ 1 ]
+      Tests  8 failed | 19 passed (27)

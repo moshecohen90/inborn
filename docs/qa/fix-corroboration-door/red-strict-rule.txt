@@ -1,0 +1,6 @@
+# sabotage: strict-rule
+# packages/core/src/rag/prompt.ts: ' Answer only with what a passage states. If no passage states the answer, reply' -> ' If they do not contain the answer, reply'
+     × the strict instruction names the shared-number trap and forbids answering around it 8ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'The user attached documents. Passages…' to contain 'Answer only with what a passage state…'
+      Tests  1 failed | 14 passed (15)

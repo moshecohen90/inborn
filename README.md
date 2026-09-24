@@ -5512,3 +5512,186 @@ Build 19 carries rounds 62–78 to TestFlight. It is the first store build with 
   took. It now lists missing screenshots. Both changes are guarded, and both guards were watched red.
 
 Evidence: `docs/qa/ios-build-19-2026-09-24.md`, `docs/qa/ios-device-pass-19-2026-09-24.md`, `docs/qa/ios-device-pass-19/`.
+## Fixes round 81: the RAG measurement covers zh-Hant and accented typing (branch `fix-rag-fixtures`) — 24.9.2026
+
+Verifier S03 found that the numbers behind the 0.82 relevance door were measured on Simplified Chinese and on
+German, French, Spanish and Portuguese typed without accents. Neither is what launch-locale users type.
+
+- **The fixtures now match the launch locales (F363).** Two zh-Hant one-passage documents and a zh-Hant six-chunk
+  document were added, written the way Taiwan writes them rather than glyph-converted. The de/fr/es/pt documents and
+  questions are typed with their accents, Portuguese as pt-BR. The old accent-less questions stay as typing variants,
+  because users type both. The set grew from 57/102 one-passage and 21/42 six-chunk questions to 83/143 and 27/54.
+- **The door stays at 0.82.** The harness reproduced all 537 committed cosines exactly before the change. On the new
+  set the highest off-topic cosine is 0.8177, so nothing off-topic reaches the door.
+- **Per language, before and after** (shipped embedder, shipped door):
+
+  | language | round 72 | accented | without accents |
+  |---|---|---|---|
+  | de | 3/3 | 5/5 | 2/2 |
+  | fr | 1/3 | 5/5 | 0/1 |
+  | es | 2/3 | 3/5 | 1/3 |
+  | pt | 3/3 | 5/5 | 2/2 |
+  | zh / zh-Hant | 10/10 | zh 10/10 | zh-Hant 10/10 |
+
+- **Two false citations the new questions exposed are fixed.** The Chinese glue list held only Simplified glyphs, so
+  zh-Hant 我們 counted as a shared word and cited an off-topic question. French, Spanish and Portuguese lacked `que` as
+  a stop word, so "que faire?" cited a French chunk. Off-topic six-chunk citations went from 5 to 3. The three left
+  share only the year bigram 一九.
+- **Still open.** An accent-less word never matches its accented form in the lexical index. The one French question
+  that misses is "sieges" against "sièges", with a cosine of 0.777. The same text also moves by up to 0.0004
+  depending on which texts share its embedding batch, against 0.0023 of headroom under the door.
+- **Guarded.** 17 guard tests went red on the new numbers, and the two fixes were each watched red first.
+
+Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
+`door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
+`docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.
+
+## Fixes round 82: `check:live` now guards the legal pages, not just the pipes (branch `fix-live-legal-guard`) — 24.9.2026
+
+Wave-3 verifier C02 proved by hand that the live site's privacy, terms and accessibility pages still matched
+`docs/legal/*.md` word for word, in all 8 locales — but `pn check:live`, the gate that runs after every deploy, never
+checked that itself. It covered status codes, the Cloudflare beacon, third-party scripts, `no-transform` and the model
+catalog, and nothing else. A future edit to `docs/legal` could stop reaching the live site and no gate would notice.
+
+- **The guard** (F364). `check:live` now fetches every launch locale's `/privacy`, `/terms` and `/accessibility` and
+  word-diffs the `<article class="prose legal">` body against the matching `docs/legal/*.md` — the maintainer's
+  "Spec basis: …" line and the H1 excluded, exactly as `apps/site/build.mjs` already strips them before publishing, so
+  a real drift is the only thing that trips it. It also fetches `/licenses` and diffs the "model" table's component
+  names against `docs/legal/NOTICE.json`.
+- **A licenses mismatch is a FAIL, unless it is just a pending deploy.** The guard also reads the live
+  `/models/manifest.json`'s catalog `version`. If it is older than the repo's, a model-list mismatch is a WARN, not a
+  FAIL — round 72 (F334-F336) already ships `multilingual-e5-large-instruct` in `NOTICE.json`, but the live catalog is
+  still version 4 against the repo's 6 until Deploy 5 runs. Once the live version catches up, the same mismatch fails
+  the gate. Run live today: all 24 legal-text pages match exactly; `/licenses` differs (still names
+  `nomic-embed-text-v1.5`) and is correctly downgraded to a warning, exit 0
+  (`docs/qa/fix-live-legal-guard/live-check-2026-09-24.txt`).
+- **Proven watched red and green**, end to end, against a local static server built by the real `apps/site/build.mjs`
+  (not hand-written HTML fixtures): a one-word flip in `privacy.html` fails with the exact drifted word; the same
+  sabotaged `/licenses` fails when the fixture's catalog version matches the repo's and downgrades to an exit-0 warning
+  once it is set behind it (`docs/qa/fix-live-legal-guard/fixture-*.txt`). 31 unit tests on the pure comparators
+  (`scripts/check-live-legal.mjs`, new) in `apps/mobile/test/check-live-legal.test.ts`, built against the real site
+  generator's output in all 8 locales rather than hand-authored HTML.
+
+## Fixes round 84: a word typed without its accents finds its accented passage (branch `fix-accent-fold`) — 24.9.2026
+
+Round 81 left one lexical gap open: the word index compared words exactly, so "societe" never met "société" and
+"Hauptburos" never met "Hauptbüros". French, Spanish, Portuguese and German users who type fast drop those marks.
+
+- **Accents are folded on both sides (F367).** The tokenizer strips the marks from Latin letters in the passage and
+  in the question, and spells out ß, æ, œ, ø and ł. An accent-less question scores a passage exactly as its accented
+  twin does, so a folded match can never outrank an exact one. Kana voicing, Hangul, Cyrillic й/ё, Hebrew and Arabic
+  are left as they are. Stop words are checked before folding: "qué" and "que" stay glue, "très" stays glue, and
+  Spanish "tres", English "fur" and "uber" stay words.
+- **No re-index.** The document index keeps chunk text and vectors on the device, never word terms. The retriever
+  rebuilds the word index in memory from the chunk text on every load, so existing installs pick the fold up at once.
+- **Round 81's accent-less rows could not move.** The French "sieges" question asks about a passage that says
+  "bureaux", and no Spanish, Portuguese or German round-70 row shares an accented word with its passage. Each of the
+  four documents therefore got one accent-less question whose only word in common with the passage is accented there.
+  Their cosines were measured with the shipped embedder and added to the committed ones, which were kept as they were.
+- **Before and after**, one-passage on-topic questions, shipped embedder:
+
+  | language | lexical rule alone, before | after | shipped door (0.82), before | after |
+  |---|---|---|---|---|
+  | de (no accents) | 0/3 | 1/3 | 3/3 | 3/3 |
+  | es (no accents) | 1/4 | 2/4 | 2/4 | 2/4 |
+  | fr (no accents) | 0/2 | 1/2 | 1/2 | 1/2 |
+  | pt (no accents) | 1/3 | 2/3 | 3/3 | 3/3 |
+  | all 14 columns | 39/87 | 43/87 | 79/87 | 79/87 |
+
+  Off-topic citations stay 0/143 and 3/54. The highest off-topic cosine stays 0.8177, and the door stays at 0.82.
+  The four new rows have cosines of 0.84 to 0.87, so the shipped door already cited them. The fold matters where the
+  cosine is weaker, and on every device without the document index installed the lexical rule is the only door.
+- **Still open.** German typed as ae/oe/ue ("Staedten") does not match "Städten". Folding "ue" to "u" everywhere
+  would also change French and English words, so it is left for a German-specific rule. French elision keeps
+  "l'œuvre" as one word, so "oeuvre" alone does not match it.
+- **Guarded.** `packages/core/test/rag-accent-fold.test.ts` has 10 cases; 8 of them went red on the old tokenizer.
+  Two new guard tests in `rag-multilingual-guard.test.ts` went red on it too, on exactly the four new rows.
+
+Evidence in `docs/qa/fix-accent-fold/`: `red-accent-fold.txt`, `red-guard.txt`, `green.txt` and
+`measure-before.md`, the measure on the old tokenizer beside the regenerated `docs/qa/embed-multilingual/measure.md`.
+Spec §5.5 describes the fold.
+
+## Fixes round 85: German typed as ae/oe/ue, and a word behind an elided article (branch `fix-elision-umlaut`) — 24.9.2026
+
+Round 84 left two lexical gaps open: "Staedten" never met "Städten", and "l'œuvre" or "d'Aoba" were one word, so
+"oeuvre" or "Aoba" alone never met them.
+
+- **Umlauts have a second spelling, not a fold (F368).** A word with ä, ö or ü is also indexed under its ae/oe/ue
+  spelling, and a question word with ä/ö/ü is also looked up under it. "Staedten" finds "Städten", "Muenchen" finds
+  "München", and a passage typed "Muenchen" is found by "München". One question word counts as one term whichever
+  spelling matched, and the extra spelling does not count in the passage length, so no other score moves. ß was
+  already spelled "ss" on both sides in round 84, so "Strasse" finds "Straße".
+- **The fold was measured and rejected.** Folding ae→a, oe→o, ue→u on German questions moves the same fixture row and
+  cites nothing off-topic either, but it lost 33 of 37 common German words. "au" followed by "e" is everyday German
+  ("Frauen", "bauen", "Dauer"), as are "Quelle", "neue" and "aktuell", so no exception list can hold them. It would
+  also need the question's language, which the index does not know. The numbers are in
+  `docs/qa/fix-elision-umlaut/options.md`.
+- **Elided articles are glue.** In French, Italian and Catalan, an elided article or pronoun before an ASCII ' or a
+  typographic ’ is dropped: l, d, qu, j, c, m, n, s, t, jusqu, lorsqu, puisqu, quoiqu, un, dell, all, nell, dall,
+  sull, quest, quell. The word after it is indexed alone, so "oeuvre" finds "l'œuvre". What an article leaves behind
+  can still be glue: "j'ai", "c'est", "qu'il" and "d'une" give no term. "ai" is glue only after "j'", since English
+  "AI" is a word.
+- **English.** "Moshe's" and "it's" lose their "'s". Other contractions ("don't", "can't") stay one word, as they were:
+  splitting "don't" would turn "don" into a content word, and it is Spanish and English for something else.
+  "aujourd'hui", "prud'homme" and "O'Brien" stay whole, because their first part is not an article.
+- **No re-index.** As in round 84, the word index is rebuilt in memory from chunk text on every load.
+- **Before and after**, one-passage on-topic questions, shipped embedder. Each of `de-report` and `fr-report` gained
+  one question whose only shared word is spelled this way: "Wo liegen die Hauptbueros?" (cosine 0.8438) and "Combien
+  de gens travaillent chez Aoba?" (0.8957). The committed cosines of the older rows were kept as they were.
+
+  | language | lexical rule alone, before | after | shipped door (0.82), before | after |
+  |---|---|---|---|---|
+  | de (no accents) | 1/4 | 2/4 | 4/4 | 4/4 |
+  | fr | 0/6 | 1/6 | 6/6 | 6/6 |
+  | all 14 columns | 43/89 | 45/89 | 83/89 | 83/89 |
+
+  Off-topic citations stay 0/143 and 3/54, and the door stays at 0.82. Both new rows are above the door already, so
+  the gain shows on devices without the document embedder, where the lexical rule is the only door.
+- **Guarded.** `packages/core/test/rag-elision-umlaut.test.ts` has 19 cases; 15 of them went red on round 84's
+  tokenizer. One new guard in `rag-multilingual-guard.test.ts` and the per-language lexical guard went red on it too.
+
+Evidence in `docs/qa/fix-elision-umlaut/`: `red-elision-umlaut.txt`, `red-guard.txt`, `green.txt`, `options.md` with
+its probe source, and `measure-before.md` beside the regenerated `docs/qa/embed-multilingual/measure.md`. Spec §5.5
+describes both rules.
+
+## Fixes round 83: one shared year no longer cites a passage, and SOURCES follow the answer (branch `fix-corroboration-door`) — 24.9.2026
+
+Verifier I12 found that under e5 a single shared year made an unrelated passage relevant. "Who won the 1998 World Cup?"
+in Japanese, against a company report that mentions 一九六二年, was answered with SOURCES, in strict mode too. The
+one-word door was still nomic's `cosine >= 0.5`, and under e5 every off-topic question scores above 0.5.
+
+- **The doors belong to the embedder (F365).** `RELEVANCE_DOORS` in `packages/core/src/rag/prompt.ts` is keyed by
+  catalog embedder id. An embedder with no measured row gets no cosine door, and a test fails when a catalog
+  embedding model has no row, so the next swap is measured instead of inherited.
+
+  | embedder | cosine alone | one word + cosine | one rare word |
+  |---|---|---|---|
+  | embed-e5 | > 0.82 | >= 0.815 | BM25 >= 2 |
+  | embed-nomic | > 0.82 | >= 0.5 | BM25 >= 2 |
+
+- **A number is not a shared word (F365).** Years, counts, units, number+counter tokens and numeral or counter
+  bigrams like 一九 and 八年 count only beside a content word.
+- **Measured, with margins.** Every question that shares one term with a passage, over rounds 81-85's sets and a new
+  year/number set in nine languages, is in `docs/qa/fix-corroboration-door/one-term.md`. The highest off-topic
+  cosine with one shared term is 0.8107, so the new door sits 0.0043 above it even before the number rule.
+
+  | | before | after |
+  |---|---|---|
+  | off-topic cited, six-chunk | 3 of 54 | 0 of 54 |
+  | off-topic cited, year set | not measured | 0 of 19 |
+  | on-topic cited, one-passage | 81 of 89 | 80 of 89 |
+  | answering chunk cited, six-chunk | 25 of 27 | 24 of 27 |
+
+  The cost is two on-topic questions that share one word under 0.815, plus eight "What happened in 1998?" questions
+  whose only shared word is the year.
+- **SOURCES only under what the answer used (F366).** A chip stays only when the answer contains a word or a number
+  from that passage that the question did not. Otherwise the chat shows "Nothing in your documents matched". The
+  strict prompt now says to answer NOT_FOUND when a passage shares a name, number or year but not the fact asked.
+- **Proven in headless Chromium** with the local e5 model. The I12 turn is refused in strict mode, and in
+  non-strict mode it shows the notice with no SOURCES. On-topic German, Japanese, English and the board question keep
+  theirs.
+- **Still open.** A wrong number in an answer that did take words from the passage keeps its chip. That is the
+  model's error. Phones are untouched: the rule reaches users with the next build.
+
+Evidence in `docs/qa/fix-corroboration-door/`: `one-term.md`, six `red-*.txt` runs, `e2e/` with before and after
+JSON, and `shots/` before and after at 1440 and 390. Spec §5.5 carries the door table and the grounding rule.

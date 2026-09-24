@@ -1,0 +1,7 @@
+=== 1. clean fixture, catalog version equal (6) — expect exit 0, no problems, no warnings ===
+http://127.0.0.1:8931/ -> 200, 0 script src, cache-control: public, max-age=600, no-transform
+http://127.0.0.1:8931/models/manifest.json -> a JSON catalog the app can read
+legal-text guard: 8 locales × (3 legal pages + licenses) checked against docs/legal
+
+✓ 1 live pages: no injected beacon, no off-origin script, no-transform present
+EXIT=0
