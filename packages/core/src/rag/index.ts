@@ -1,6 +1,6 @@
 export * from "./types";
 export { estimateTokens as estimateRagTokens, clipToTokens, detectScript, isRtlScript, type Script as TextScript } from "./tokens";
-export { normalizeText, foldForSearch, words } from "./text";
+export { normalizeText, foldForSearch, foldDiacritics, words } from "./text";
 export { chunkPage, segments, chunkFor, embedBudget, DEFAULT_CHUNK, EMBED_TOKEN_SAFETY, type ChunkOptions, type PageChunk } from "./chunker";
 export { Bm25Index, bm25Tokens, termsOf, isStopWord, isCjkFunctionTerm, isWeakTerm, type Bm25Hit } from "./bm25";
 export { VectorIndex, normalize, quantize, dequantize, cosine, cosineQuantized, type VectorHit } from "./vector";

@@ -33,6 +33,7 @@ Doors for `embed-e5` (packages/core/src/rag/prompt.ts RELEVANCE_DOORS): alone > 
 | r83-years | yr-es#0 | off | ¿Quién ganó el Mundial de 1998? | 1998 (weak) | 0.7529 | 0.29 | 0 terms: refused |
 | r83-years | yr-en#0 | off | How many calories are in 1200 grams of rice? | 1200 (weak) | 0.7390 | 0.29 | 0 terms: refused |
 | r83-years | yr-en#0 | off | Who won the 1998 World Cup? | 1998 (weak) | 0.7303 | 0.29 | 0 terms: refused |
+| r70-one | fr-report#0 | on | Combien de gens travaillent chez Aoba? | aoba | 0.8957 | 0.29 | cosine alone |
 | r70-one | zhHant-f278#0 | on | 去年的營業額比前年高了幾成？ | 的營 | 0.8934 | 0.29 | cosine alone |
 | r70-one | ja-f278#0 | on | 収益が増えた理由は何ですか？ | 収益 | 0.8914 | 0.57 | cosine alone |
 | r70-one | zhHant-f195#0 | on | 營業額跟前一年比起來如何？ | 一年 (weak) | 0.8897 | 0.29 | cosine alone |
@@ -45,6 +46,7 @@ Doors for `embed-e5` (packages/core/src/rag/prompt.ts RELEVANCE_DOORS): alone > 
 | r70-six | mc-zhHant#0 | on | 公司總共有多少人在工作？ | 公司 | 0.8723 | 0.59 | cosine alone |
 | r70-one | ko-report#0 | on | 보고서에 나온 종업원 규모가 어느 정도인가요? | 보고서에 | 0.8712 | 0.29 | cosine alone |
 | r70-one | ja-f278#0 | on | 前年に対する成長率を教えてください。 | 前年 | 0.8707 | 0.29 | cosine alone |
+| r70-one | es-report#0 | on | ¿Segun el reporte, cuantos empleados hay? | segun | 0.8682 | 0.29 | cosine alone |
 | r70-one | es-report#0 | on | ¿Cuántas personas trabajan allí? | personas | 0.8678 | 0.29 | cosine alone |
 | r70-one | pt-report#0 | on | Quantas pessoas trabalham lá? | pessoas | 0.8660 | 0.29 | cosine alone |
 | r70-one | pt-report#0 | on | Quantas pessoas trabalham la? | pessoas | 0.8655 | 0.29 | cosine alone |
@@ -52,10 +54,14 @@ Doors for `embed-e5` (packages/core/src/rag/prompt.ts RELEVANCE_DOORS): alone > 
 | r70-one | ja-device#0 | on | 働いている人の総数はどれくらいですか？ | 数は | 0.8603 | 0.29 | cosine alone |
 | r83-years | yr-zh#0 | on | 仓库有多大？ | 仓库 | 0.8568 | 0.29 | cosine alone |
 | r70-one | pt-report#0 | on | Em quais cidades a empresa está instalada? | empresa | 0.8565 | 0.29 | cosine alone |
+| r70-one | de-report#0 | on | Wo liegen die Hauptburos? | hauptburos | 0.8533 | 0.29 | cosine alone |
+| r70-one | fr-report#0 | on | Combien d'employes compte la societe? | societe | 0.8532 | 0.29 | cosine alone |
 | r83-years | yr-de#0 | on | Wie groß ist das Lager? | lager | 0.8486 | 0.29 | cosine alone |
-| r83-years | yr-pt#0 | on | Qual é o tamanho do armazém? | armazém | 0.8437 | 0.29 | cosine alone |
+| r83-years | yr-pt#0 | on | Qual é o tamanho do armazém? | armazem | 0.8437 | 0.29 | cosine alone |
+| r83-years | yr-fr#0 | on | Quelle est la taille de l'entrepôt ? | entrepot | 0.8435 | 0.29 | cosine alone |
+| r70-one | pt-report#0 | on | Em que cidades estao os escritorios? | escritorios | 0.8407 | 0.29 | cosine alone |
 | r83-years | yr-en#0 | on | How large is the warehouse? | warehouse | 0.8395 | 0.29 | cosine alone |
-| r83-years | yr-es#0 | on | ¿Qué tamaño tiene el almacén? | almacén | 0.8381 | 0.29 | cosine alone |
+| r83-years | yr-es#0 | on | ¿Qué tamaño tiene el almacén? | almacen | 0.8381 | 0.29 | cosine alone |
 | r70-one | en-report#0 | on | What is the size of the workforce in the report? | report | 0.8350 | 0.29 | cosine alone |
 | r70-six | mc-zhHant#1 | on (other chunk) | 公司總共有多少人在工作？ | 公司 | 0.8329 | 0.77 | cosine alone |
 | r70-six | mc-zh#1 | on (other chunk) | 公司一共有多少人在工作？ | 公司 | 0.8310 | 0.78 | cosine alone |

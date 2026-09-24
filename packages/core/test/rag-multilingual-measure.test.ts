@@ -59,6 +59,8 @@ export interface CandidateResult {
   /** The joint door applied to the six-chunk documents, where citing the wrong chunk is visible. */
   multiDoor: { on: number; right: number; wrongOnly: number; off: number };
   onByLang: Record<string, [number, number]>;
+  /** On-topic questions the lexical rule cites on its own, per language: what the accent fold moves (F367). */
+  lexByLang: Record<string, [number, number]>;
   /** How recall falls as T is raised past the fitted one: the headroom a shipped threshold can buy. */
   headroom: Array<{ T: number; on: number; off: number }>;
   /** Everything at SHIPPED_MIN_COSINE, the round number the app actually uses. */
@@ -156,6 +158,11 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
     const cur = onByLang[r.lang] ?? [0, 0];
     onByLang[r.lang] = [cur[0] + (door(r) ? 1 : 0), cur[1] + 1];
   }
+  const lexByLang: Record<string, [number, number]> = {};
+  for (const r of rows.filter((x) => x.kind === "on")) {
+    const cur = lexByLang[r.lang] ?? [0, 0];
+    lexByLang[r.lang] = [cur[0] + (round70(r) ? 1 : 0), cur[1] + 1];
+  }
 
   const multiDoor = { on: 0, right: 0, wrongOnly: 0, off: 0 };
   for (const r of mc) {
@@ -215,6 +222,7 @@ function score(dir: string, variant: string, meta: Record<string, string | numbe
     joint,
     multiDoor,
     onByLang,
+    lexByLang,
     headroom,
     shipped,
   };
@@ -285,6 +293,17 @@ function tables(results: CandidateResult[]): string {
   L.push(`|---|${LANGS.map(() => "---").join("|")}|`);
   for (const r of results) L.push(`| ${r.variant} | ${LANGS.map((l) => (r.onByLang[l] ? `${r.onByLang[l]![0]}/${r.onByLang[l]![1]}` : "–")).join(" | ")} |`);
   L.push("");
+  L.push("## Per language, on-topic cited by the lexical rule alone (`rule 70`)");
+  L.push("");
+  L.push("The half of the door the word index decides, so a change to the tokenizer shows here and nowhere else. Since round 84");
+  L.push("(F367) accents are folded on both sides, and each de/fr/es/pt document has one accent-less question whose only shared");
+  L.push("word is accented in the passage. Since round 85 (F368) an umlaut typed as ae/oe/ue and a word behind an elided article");
+  L.push("(\"d'Aoba\") are found too; de-report and fr-report each have one question whose only shared word is spelled that way.");
+  L.push("");
+  L.push(`| candidate | ${LANGS.join(" | ")} |`);
+  L.push(`|---|${LANGS.map(() => "---").join("|")}|`);
+  for (const r of results) L.push(`| ${r.variant} | ${LANGS.map((l) => (r.lexByLang[l] ? `${r.lexByLang[l]![0]}/${r.lexByLang[l]![1]}` : "–")).join(" | ")} |`);
+  L.push("");
   L.push("## Size, licence and cost");
   L.push("");
   L.push(`\`ms/text\` is wall clock on this Mac (M-series, Metal) over the whole ${TEXTS}-text pass including model load, a proxy`);
@@ -327,6 +346,11 @@ function tables(results: CandidateResult[]): string {
   L.push("");
   L.push("The per-language table is the answer to round 81: the accented columns are what a user with a proper keyboard types,");
   L.push(`the "${NO_ACCENTS.trim()}" columns are the same questions typed the way round 70 typed them, and zh-Hant is the launch locale.`);
+  L.push("");
+  L.push("Since round 84 (F367) the word index folds accents on both sides, so an accent-less question meets its accented passage;");
+  L.push("the lexical-only table is where that shows. The \"sieges\" question still waits on its cosine, because its passage says \"bureaux\".");
+  L.push("Since round 85 (F368) German typed with ae/oe/ue meets ä/ö/ü and French/Italian/Catalan elided articles are glue;");
+  L.push("the rejected German option, a query-side fold, is measured in `docs/qa/fix-elision-umlaut/options.md`.");
   if (ship) {
     L.push("");
     L.push(`For ${SHIPPED_VARIANT}, the highest off-topic cosine the lexical rule does not already cite is ${ship.joint.T} over ${OFF_TOTAL + MC_OFF}`);

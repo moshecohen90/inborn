@@ -1,0 +1,164 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-accent-fold/packages/core
+
+ ❯ test/rag-accent-fold.test.ts (10 tests | 8 failed) 12ms
+   ❯ F367 · accent-less typing matches accented text (10)
+     × fr: "sieges scene" finds its accented passage on every word 5ms
+     × es: "cancion gano bogota" finds its accented passage on every word 1ms
+     × pt: "informacao publicacao" finds its accented passage on every word 1ms
+     × de: "grosse strasse betragt" finds its accented passage on every word 0ms
+     × fr: "garcon mange creme brulee" finds its accented passage on every word 0ms
+     × fr: "oeuvre aequo" finds its accented passage on every word 1ms
+     × an accented and an accent-less query score the same passage exactly the same, so a folded match never outranks an exact one 1ms
+     × the letters NFD does not split are spelled out: ß, æ, œ, ø, ł 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > fr: "sieges scene" finds its accented passage on every word
+AssertionError: expected [ 'sieges scene', +0 ] to deeply equal [ 'sieges scene', 2 ]
+
+- Expected
++ Received
+
+  [
+    "sieges scene",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > es: "cancion gano bogota" finds its accented passage on every word
+AssertionError: expected [ 'cancion gano bogota', +0 ] to deeply equal [ 'cancion gano bogota', 3 ]
+
+- Expected
++ Received
+
+  [
+    "cancion gano bogota",
+-   3,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > pt: "informacao publicacao" finds its accented passage on every word
+AssertionError: expected [ 'informacao publicacao', +0 ] to deeply equal [ 'informacao publicacao', 2 ]
+
+- Expected
++ Received
+
+  [
+    "informacao publicacao",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > de: "grosse strasse betragt" finds its accented passage on every word
+AssertionError: expected [ 'grosse strasse betragt', +0 ] to deeply equal [ 'grosse strasse betragt', 3 ]
+
+- Expected
++ Received
+
+  [
+    "grosse strasse betragt",
+-   3,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > fr: "garcon mange creme brulee" finds its accented passage on every word
+AssertionError: expected [ 'garcon mange creme brulee', +0 ] to deeply equal [ 'garcon mange creme brulee', 4 ]
+
+- Expected
++ Received
+
+  [
+    "garcon mange creme brulee",
+-   4,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > fr: "oeuvre aequo" finds its accented passage on every word
+AssertionError: expected [ 'oeuvre aequo', +0 ] to deeply equal [ 'oeuvre aequo', 2 ]
+
+- Expected
++ Received
+
+  [
+    "oeuvre aequo",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:23:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > an accented and an accent-less query score the same passage exactly the same, so a folded match never outranks an exact one
+AssertionError: expected [ { id: 'b', …(2) } ] to deeply equal [ { id: 'a', …(2) } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "id": "a",
++     "id": "b",
+      "matched": 1,
+-     "score": 0.8538153929094885,
++     "score": 1.0596458894144545,
+    },
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:33:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  test/rag-accent-fold.test.ts > F367 · accent-less typing matches accented text > the letters NFD does not split are spelled out: ß, æ, œ, ø, ł
+AssertionError: expected [ 'straße', 'æther', 'cœur', …(2) ] to deeply equal [ 'strasse', 'aether', 'coeur', …(2) ]
+
+- Expected
++ Received
+
+  [
+-   "strasse",
+-   "aether",
+-   "coeur",
+-   "soren",
+-   "lodz",
++   "straße",
++   "æther",
++   "cœur",
++   "søren",
++   "łódź",
+  ]
+
+ ❯ test/rag-accent-fold.test.ts:54:56
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 2 passed (10)
+   Start at  19:46:41
+   Duration  246ms (transform 71%, import 19%, tests 8%, worker 2%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-accent-fold/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-accent-fold.test.ts

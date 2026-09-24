@@ -147,10 +147,10 @@ describe("F334 · the bar is met by the embedder, not by a door", () => {
     expect(on.filter(Boolean).length).toBe(25);
   });
 
-  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 74 of 83", () => {
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(73);
-    /* 75 until F365 raised e5's one-word corroboration door to 0.815; "Which cities host the offices?" sits under it. */
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(74);
+  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 80 of 89", () => {
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(77);
+    /* 81 until F365 raised e5's one-word corroboration door to 0.815; "Which cities host the offices?" sits under it. */
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(80);
     expect(scored.filter((r) => r.kind === "off" && r.ok).length).toBe(0);
   });
 });

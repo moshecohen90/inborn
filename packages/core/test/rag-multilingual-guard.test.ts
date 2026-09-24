@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, DEFAULT_MIN_COSINE_ALONE, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, DEFAULT_MIN_COSINE_ALONE, isRelevant, type DocumentRecord, type RetrievalHit, relevanceDoors } from "../src/rag";
 import shipped from "./fixtures/rag/e5-cosines.json";
 import old from "./fixtures/rag/cjk-cosines.json";
 
@@ -23,23 +23,53 @@ interface SixDoc {
   questions: Array<{ kind: "on" | "off"; q: string; cosines: number[]; sloppy?: boolean }>;
 }
 const ONE = shipped.docs as OneDoc[];
-/* Accent-less French "sieges" never meets "sièges" in the lexical index, and its cosine alone is 0.777 (F363). */
+/* Round 81's accent-less French question asks for "sieges" in a passage that says "bureaux", so only its cosine (0.777) could cite it. */
 const EXPECTED_BY_LANG: Record<string, string> = {
   de: "5/5",
-  "de (no accents)": "2/2",
-  /* 8/10 before F365: "Which cities host the offices?" (cosine 0.8098, one shared word) is under the 0.815 door. */
+  "de (no accents)": "4/4",
+  /* 8/10 before F365: "Which cities host the offices?" shares one word at cosine 0.8098, under the 0.815 door. */
   en: "7/10",
   es: "3/5",
-  "es (no accents)": "1/3",
-  fr: "5/5",
-  "fr (no accents)": "0/1",
+  "es (no accents)": "2/4",
+  fr: "6/6",
+  "fr (no accents)": "1/2",
   he: "5/5",
   ja: "13/14",
   ko: "6/6",
   pt: "5/5",
-  "pt (no accents)": "2/2",
+  "pt (no accents)": "3/3",
   zh: "10/10",
   "zh-Hant": "10/10",
+};
+/* What the word index cites without the cosine standing alone: the half the accent fold moves (F367). */
+const EXPECTED_LEXICAL_BY_LANG: Record<string, string> = {
+  de: "0/5",
+  "de (no accents)": "2/4",
+  /* F365 took one each from en, zh and zh-Hant: "offices" under 0.815, and "前一年" whose only shared word is a date. */
+  en: "3/10",
+  es: "1/5",
+  "es (no accents)": "2/4",
+  fr: "1/6",
+  "fr (no accents)": "1/2",
+  he: "3/5",
+  ja: "8/14",
+  ko: "3/6",
+  pt: "3/5",
+  "pt (no accents)": "2/3",
+  zh: "6/10",
+  "zh-Hant": "7/10",
+};
+/** The questions whose only word in common with their passage is accented there. */
+const FOLDED_ONLY: Record<string, string> = {
+  "de-report": "Wo liegen die Hauptburos?",
+  "es-report": "¿Segun el reporte, cuantos empleados hay?",
+  "fr-report": "Combien d'employes compte la societe?",
+  "pt-report": "Em que cidades estao os escritorios?",
+};
+/** F368: the German question whose only shared word has an umlaut the typist spelled "ue", and the French one whose only shared word is elided in the passage ("d'Aoba"). */
+const SPELLED_ONLY: Record<string, string> = {
+  "de-report": "Wo liegen die Hauptbueros?",
+  "fr-report": "Combien de gens travaillent chez Aoba?",
 };
 const SIX = shipped.multi as SixDoc[];
 
@@ -80,10 +110,10 @@ describe("F363 · the fixtures cover what users of the launch locales type", () 
 
 describe("F334 · one-passage documents in nine languages", () => {
   for (const strict of [false, true]) {
-    it(`strict=${strict}: 74 of 83 on-topic questions cite the passage and 0 of 143 off-topic ones do`, () => {
+    it(`strict=${strict}: 80 of 89 on-topic questions cite the passage and 0 of 143 off-topic ones do`, () => {
       const on = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], strict).length > 0));
       const offCited = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off" && citedIn(d.id, [d.text], q.q, [q.cosine], strict).length).map((q) => `${d.id} ${q.q}`));
-      expect([on.length, on.filter(Boolean).length]).toEqual([83, 74]);
+      expect([on.length, on.filter(Boolean).length]).toEqual([89, 80]);
       expect(ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off")).length).toBe(143);
       expect(offCited).toEqual([]);
     });
@@ -98,6 +128,35 @@ describe("F334 · one-passage documents in nine languages", () => {
         cur[1]++;
       }
     expect(Object.fromEntries(Object.entries(byLang).map(([k, [a, b]]) => [k, `${a}/${b}`]))).toEqual(EXPECTED_BY_LANG);
+  });
+
+  it("F367: the word index alone finds a question typed without the accents its passage has", () => {
+    for (const [id, q] of Object.entries(FOLDED_ONLY)) {
+      const d = ONE.find((x) => x.id === id)!;
+      expect([id, d.questions.some((x) => x.q === q && x.kind === "on" && x.sloppy)]).toEqual([id, true]);
+      expect([id, q, hits(d.id, [d.text], q, [0])[0]!.bm25Terms]).toEqual([id, q, 1]);
+    }
+  });
+
+  it("F368: the word index alone finds an umlaut typed as a digraph and a word behind an elided article", () => {
+    for (const [id, q] of Object.entries(SPELLED_ONLY)) {
+      const d = ONE.find((x) => x.id === id)!;
+      expect([id, d.questions.some((x) => x.q === q && x.kind === "on")]).toEqual([id, true]);
+      expect([id, q, hits(d.id, [d.text], q, [0])[0]!.bm25Terms]).toEqual([id, q, 1]);
+    }
+  });
+
+  it("F367: per language, what the lexical rule cites on its own", () => {
+    const byLang: Record<string, [number, number]> = {};
+    for (const d of ONE)
+      for (const q of d.questions.filter((x) => x.kind === "on")) {
+        const h = hits(d.id, [d.text], q.q, [q.cosine])[0]!;
+        const lexical = isRelevant(h, { ...relevanceDoors("embed-e5"), alone: Infinity });
+        const cur = (byLang[labelOf(d.lang, q)] ??= [0, 0]);
+        cur[0] += lexical ? 1 : 0;
+        cur[1]++;
+      }
+    expect(Object.fromEntries(Object.entries(byLang).map(([k, [a, b]]) => [k, `${a}/${b}`]))).toEqual(EXPECTED_LEXICAL_BY_LANG);
   });
 
   it("the door sits above every off-topic cosine measured, with the margin stated", () => {

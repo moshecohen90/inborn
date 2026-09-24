@@ -13,10 +13,15 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
-import { catalogProblem, MANIFEST_REL } from "./web-manifest.mjs";
+import { catalogProblem, MANIFEST_REL, readCatalog } from "./web-manifest.mjs";
+import { LOCALES } from "../apps/site/build.mjs";
+import { MD_LEGAL_PAGES, judgeLicenseDrift, legalWordDiff, liveLegalWords, liveLicenseModelNames, repoLegalWords, repoLicenseModelNames } from "./check-live-legal.mjs";
 
-/* Overridable so this gate can be pointed at any origin that is meant to carry the model catalog. */
-const APP_ORIGIN = process.env.APP_ORIGIN || JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "../packages/core/src/site/origins.json"), "utf8")).app;
+const origins = JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "../packages/core/src/site/origins.json"), "utf8"));
+/* Overridable so this gate can be pointed at any origin that is meant to carry the model catalog, or (SITE_ORIGIN)
+   the legal pages — a test fixture server needs both, since the app origin's manifest judges the licenses page. */
+const APP_ORIGIN = process.env.APP_ORIGIN || origins.app;
+const SITE_ORIGIN = process.env.SITE_ORIGIN || origins.site;
 /* The wait between tries is for edge propagation; a caller that serves the answer itself has nothing to wait for. */
 const RETRY_MS = Number(process.env.CHECK_LIVE_RETRY_MS ?? 3000);
 
@@ -34,6 +39,7 @@ const BROWSER = {
 };
 
 const problems = [];
+const warnings = [];
 const notes = [];
 
 /** Every `<script src>` in the document, with the raw attribute value. */
@@ -101,7 +107,72 @@ for (const origin of [...new Set(TARGETS.map((t) => new URL(t).origin))].filter(
   else notes.push(`${catalog} -> a JSON catalog the app can read`);
 }
 
+/**
+ * Legal-text drift (F364): round 42 ("legal-from-site", F155-F157) made docs/legal/*.md + NOTICE.json the only
+ * source the site's four legal pages may render from, and wave-3 verifier C02 proved by hand that the live site
+ * still matched it — but nothing re-checks that on every deploy, so a drift like that would come back silently.
+ * Only runs when SITE_ORIGIN is actually one of the origins this invocation is checking.
+ */
+if ([...new Set(TARGETS.map((t) => new URL(t).origin))].includes(SITE_ORIGIN)) {
+  for (const locale of LOCALES) {
+    const root = locale.dir ? `/${locale.dir}` : "";
+    for (const [route, mdFile] of MD_LEGAL_PAGES) {
+      const url = `${SITE_ORIGIN}${root}${route}`;
+      let html;
+      try {
+        const res = await fetch(url, { headers: BROWSER });
+        if (!res.ok) {
+          problems.push(`${url}: HTTP ${res.status} (legal-text guard)`);
+          continue;
+        }
+        html = await res.text();
+      } catch (e) {
+        problems.push(`${url}: request failed (${e.message}) (legal-text guard)`);
+        continue;
+      }
+      const diff = legalWordDiff(liveLegalWords(html), repoLegalWords(mdFile));
+      if (diff) problems.push(`${url}: legal text differs from docs/legal/${mdFile} — ${diff}`);
+    }
+  }
+
+  const repoNames = repoLicenseModelNames();
+  const repoCatalogVersion = readCatalog().version;
+  let liveCatalogVersion = null;
+  try {
+    const res = await fetch(`${APP_ORIGIN}/${MANIFEST_REL}`, { headers: { ...BROWSER, Accept: "application/json" } });
+    if (res.ok) {
+      const body = await res.json();
+      if (typeof body.version === "number") liveCatalogVersion = body.version;
+    }
+  } catch {
+    /* judged as unknown by judgeLicenseDrift below, which treats that as a warn rather than a fail */
+  }
+
+  for (const locale of LOCALES) {
+    const root = locale.dir ? `/${locale.dir}` : "";
+    const url = `${SITE_ORIGIN}${root}/licenses`;
+    let html;
+    try {
+      const res = await fetch(url, { headers: BROWSER });
+      if (!res.ok) {
+        problems.push(`${url}: HTTP ${res.status} (legal-text guard)`);
+        continue;
+      }
+      html = await res.text();
+    } catch (e) {
+      problems.push(`${url}: request failed (${e.message}) (legal-text guard)`);
+      continue;
+    }
+    const verdict = judgeLicenseDrift({ liveNames: liveLicenseModelNames(html), repoNames, liveCatalogVersion, repoCatalogVersion });
+    if (verdict.level === "fail") problems.push(`${url}: ${verdict.message}`);
+    else if (verdict.level === "warn") warnings.push(`${url}: ${verdict.message}`);
+  }
+
+  notes.push(`legal-text guard: ${LOCALES.length} locales × (${MD_LEGAL_PAGES.length} legal pages + licenses) checked against docs/legal`);
+}
+
 console.log(notes.join("\n"));
+if (warnings.length) console.warn(`\n${warnings.map((w) => `⚠ ${w}`).join("\n")}`);
 if (problems.length) {
   console.error(`\n${problems.map((p) => `✗ ${p}`).join("\n")}`);
   process.exit(1);
