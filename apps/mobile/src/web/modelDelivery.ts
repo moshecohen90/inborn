@@ -1,5 +1,4 @@
 import type { Tier } from "@inborn/core";
-import { tierFits } from "./deviceGate";
 import { modelStatus, type ModelStatus } from "./opfs";
 import type { WorkerMessage } from "../../public/model-worker";
 
@@ -95,13 +94,6 @@ export async function fetchManifest(allowedOrigins: string[] = []): Promise<Cata
   }
   const models = cachedModels(allowedOrigins);
   return { models, error: models.length ? null : error };
-}
-
-/** Biggest tier the gate allows; ties go to the smaller file. */
-export function pickModel(models: WebModelSource[], maxTier: Tier): WebModelSource | undefined {
-  return models
-    .filter((m) => tierFits(m.tier, maxTier))
-    .sort((a, b) => (a.tier === b.tier ? a.bytes - b.bytes : tierFits(a.tier, b.tier) ? 1 : -1))[0];
 }
 
 export type DeliveryEvent =

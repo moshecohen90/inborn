@@ -136,8 +136,10 @@ describe("F244, F248 · a browser reader is not offered what the browser cannot 
     expect(source("screens/Onboarding/ModelChoice.tsx")).toContain('t(step.options.length > 1 ? "onboarding.model.title" : "onboarding.model.titleOne")');
   });
 
-  it("the step stops promising a vault the browser tier does not have", () => {
-    expect(source("screens/Onboarding/ModelChoice.tsx")).toMatch(/PLATFORM === "web" \? null : <Text[^>]*>\{t\("onboarding\.model\.laterInVault"\)\}/);
+  /* Round 66 moved the line, not the rule: the browser vault now switches models (F312), so the promise is honest
+     there; the desktop shell is the runtime that has no vault screen of its own, and it is the one still kept quiet. */
+  it("the step promises a vault only where one exists", () => {
+    expect(source("screens/Onboarding/ModelChoice.tsx")).toMatch(/PLATFORM === "web" && !web \? null : <Text[^>]*>\{t\("onboarding\.model\.laterInVault"\)\}/);
   });
 
   it("every locale carries the single-model title", () => {

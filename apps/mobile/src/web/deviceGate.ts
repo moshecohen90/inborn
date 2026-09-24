@@ -19,6 +19,8 @@ export interface DeviceGate {
   /** Largest tier the web tier will offer here (spec §14.3: desktop up to Sharp, phone up to Instant). */
   maxTier: Tier;
   ramGB: number | null;
+  /** navigator.hardwareConcurrency: the only capability signal left when a browser hides its memory (Safari, Firefox). */
+  cores: number | null;
   /** iPhone Safari caps a tab well under 500 MB: the door says "install the app" (spec §4.4, §8.9). */
   iphone: boolean;
   webgpu: boolean;
@@ -52,7 +54,8 @@ export function classifyDevice(s: DeviceSignals): DeviceGate {
   else if (ramGB >= 8) maxTier = "sharp";
   else if (ramGB >= 4) maxTier = "fast";
   else maxTier = "instant";
-  return { formFactor, maxTier, ramGB, iphone: /iPhone|iPod/.test(s.userAgent), webgpu: s.webgpu };
+  const cores = typeof s.hardwareConcurrency === "number" && s.hardwareConcurrency > 0 ? s.hardwareConcurrency : null;
+  return { formFactor, maxTier, ramGB, cores, iphone: /iPhone|iPod/.test(s.userAgent), webgpu: s.webgpu };
 }
 
 type HintedNavigator = Navigator & { deviceMemory?: number; userAgentData?: { mobile?: boolean }; gpu?: unknown };
