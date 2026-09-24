@@ -4804,3 +4804,43 @@ behind it once the first was traced to its source.
 Gates: `pnpm typecheck` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 13, `check:store` PASS), `pnpm lint`
 0, `node apps/site/build.mjs && node apps/site/check.mjs` green, `pnpm web:build` and `pnpm web:smoke` green.
 Evidence in `docs/qa/fix-site-sizes/`.
+
+## Fixes round 61: TestFlight 1.0.0 (18), and the first device pass that reads the store build's own screen (branch `ios-build-18`) — 24.9.2026
+
+- **Build 1.0.0 (18) is on TestFlight and VALID** (F287–F291). Branch `ios-build-18` from `origin/main` 2d446fe with
+  round 59 merged in; the archive is stamped `extra.commit d201c71efdd3`, its own tip. Archive 13:51:22 → 13:54:39
+  (3 min 17 s), `** ARCHIVE SUCCEEDED **`, 0 `error:` lines; export 41 s first try; upload `UPLOAD SUCCEEDED with no
+  errors`, delivery `eac4ef66-e498-454f-b5be-2cf0e4e22e01`; **VALID at 14:07:18**, `APP_STORE_ELIGIBLE`, in the
+  `Inborn internal` group beside 17 down to 14. Tesseract (`eng` + `heb`) is in the archive on the first build, the
+  qa-bridge gate is clean on both the archive and the IPA, and `check-store-env.sh` reported *store env clean*.
+  `main.jsbundle` 6,316,369 B, +6,781 B over build 17 — rounds 56–59.
+- **A build-number bump is two files.** `apps/mobile/test/fixes-r55.test.ts` asserts the shipping build number, so
+  bumping only `app.config.ts` leaves `pn test` red (`expected '18' to be '17'`). That is the guard working; it moves
+  with the bump.
+- **The store build's own About screen was read on the phone, with no bridge and no XCUITest** — new, and the
+  permanent answer to "prove a row on the build you actually shipped". `devicectl device process launch
+  --payload-url "inborn:///settings/about"` hands the app a URL exactly as the system would, `+native-intent.ts`
+  passes the route through, and `pymobiledevice3 developer dvt screenshot --userspace` photographs it: **VERSION
+  1.0.0 (18) · d201c71efdd3**. Build 17 could only report the version `devicectl` already knew.
+- **Moshe's container survived the update**, checked byte for byte rather than by presence: `inborn.db` (2,072,576 B),
+  `documents.json`, `models/vault.json`, `device-prefs.json` and `licence.bin` are all **identical** before and after.
+  Nothing was ever uninstalled (F144).
+- **F276 and F281 verified on Apple hardware** (F288, F289). The "nothing in your documents matched" notice is still
+  on screen **60 s after** the answer it explains, with nothing cited, and is withdrawn by the next on-topic turn,
+  which cites `plain-bramblewick.txt · part 1`. Every model size now reads the same in the model sheet and the vault —
+  Instant **533 MB**, Fast **1.3 GB**, Sharp **2.7 GB** — where build 17's device pass recorded Fast as **1.2 GB**.
+  Both rows assert the new string present **and** the old one absent, so neither can pass on an unfixed screen.
+- **Two rounds' fixes did not survive the phone, and both are filed open.** F290: a one-passage Japanese document was
+  rendered as `SOURCES` for `一九九八年のワールドカップで優勝したのはどこですか？`, so round 58's CJK relevance floor does
+  not cover that sentence. F291: the hostile document name imports and attaches under its **exact** literal name, two
+  byte-distinct files stay two documents (which closes round 58's dedupe doubt) and no injection succeeds — but the
+  file then **extracts to no searchable text**, and the app says so itself, while the control indexes and is cited in
+  the same chat. Neither was measured on the device: the QA library is SQLCipher-encrypted, so both need a probe
+  build, not more driving.
+- **A QA run can be fully photographed and entirely red** (F287). The first run lost all 200 steps at step 0 because a
+  QA variant under its own bundle id opens on **onboarding**, not the chat root, and the Mac photographs the phone
+  without ever asking the app. Row scripts now open with an onboarding prelude.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 13 — 1,514), `pnpm
+check:store` **PASS**. Evidence in `docs/qa/ios-build-18-2026-09-24.md`, `docs/qa/ios-device-pass-18-2026-09-24.md`
+and `docs/qa/ios-device-pass-18/`.
