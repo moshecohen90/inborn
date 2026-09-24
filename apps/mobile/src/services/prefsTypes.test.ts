@@ -32,3 +32,16 @@ describe("recoverPrefs (QA F12: prefs survive an interrupted write)", () => {
     expect(isPrefsLike([])).toBe(false);
   });
 });
+
+describe("mergePrefs theme migration (F309: 'system' becomes 'auto')", () => {
+  it("migrates a pre-round-65 'system' themeMode to 'auto'", () => {
+    expect(mergePrefs({ onboarded: true, themeMode: "system" }, 5).themeMode).toBe("auto");
+  });
+  it("leaves 'dark' and 'light' untouched", () => {
+    expect(mergePrefs({ onboarded: true, themeMode: "dark" }, 5).themeMode).toBe("dark");
+    expect(mergePrefs({ onboarded: true, themeMode: "light" }, 5).themeMode).toBe("light");
+  });
+  it("defaults a fresh install to 'auto'", () => {
+    expect(defaultPrefs(5).themeMode).toBe("auto");
+  });
+});

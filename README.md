@@ -4907,3 +4907,24 @@ build (`web-nostore/`), which is the correct behaviour, not a failure. Watched r
 post-redemption refresh removed (`red-no-refresh.txt`, `expected 'free' to be 'pro'`) and three claims sabotaged at
 once — the row's gate, the spec sentence, the terms sentence (`red-guards.txt`, 3 failures). Gates green: typecheck,
 1,557 tests (core 738, mobile 786, i18n 20, ui 13), lint, `check:store`, `web:smoke` including its four-width sweep.
+## Fixes round 65: Auto theme gets the clock rule the Tanach apps already had (branch `theme-auto`) — 24.9.2026
+
+Moshe (24.9): "add the clock rule like our other apps." Read the Tanach apps' `display-mode.service.ts`
+read-only for the rule (night 18:00–06:00 local, or the OS already dark, whichever fires first) and brought
+it into Inborn, which had never had a clock component at all — "System" only ever mirrored the OS.
+
+- **Appearance's "System" is now "Auto" and actually has a rule** (F309). `ThemeMode` is `"auto" | "dark" | "light"`.
+  The clock rule itself, `isAutoDark(now, systemDark)`, is a pure function in new `packages/ui/src/themeAuto.ts` —
+  no React Native import, so it is unit-tested without a device (8 cases over the 18:00/06:00 boundaries and both
+  OS states). `apps/mobile/src/services/theme.ts` wires it into `resolveScheme()` and re-evaluates every minute the
+  app is open and on every return to the foreground, through a shared tick store. A `"system"` value saved by an
+  older build migrates silently to `"auto"` in `mergePrefs()` (3 new cases in `prefsTypes.test.ts`).
+- **The row now says what Auto does** (F310): a one-line caption under the segmented control —
+  "Dark at night, 18:00-06:00, and whenever the system is dark." — in all 8 shipped locales plus a regenerated
+  `pseudo.json`. Spec §8 rewritten and rebuilt.
+- Before/after screenshots at 390 and 1440, against the real `apps/web/dist` build served on a private port:
+  `docs/qa/theme-auto/before-390.png` (still "System", no caption) → `docs/qa/theme-auto/after-390.png` (Auto /
+  Dark / Light, caption present); same pair at 1440.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 780, i18n 20, ui 20, `check:store`
+PASS), `pnpm web:build` green. No phone was touched. Evidence in `docs/qa/theme-auto/`.
