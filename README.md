@@ -5174,3 +5174,22 @@ iPad (10th gen) simulator in both orientations.
 
 Evidence in `docs/qa/ipad-pass/`: `layout/` (browser, both themes, before and after), `sim/` (the iPad simulator,
 portrait and landscape), `guard-red-f322-send-target.txt` (both guards watched red).
+
+## Fixes round 71: Enter sends from an iPad keyboard (branch `fix-ipad-enter`) — 24.9.2026
+
+Round 69 proved that on an iPad with a hardware keyboard Enter inserted a newline and never sent (F324). This round
+builds the missing piece.
+
+- **The hardware-keys module now has an iOS half (F326).** One `UIKeyCommand` for a bare Return, on the window, with
+  priority over the text view's own newline. It is armed only while the composer has focus, the same as Android, and
+  it emits the same `onEnter` event, so the composer has no platform branch. Shift+Return is not claimed and stays a
+  newline. The on-screen keyboard's Return is not a key press and is untouched.
+- **Proven on two simulators with real HID keys.** On the iPad and on an iPhone 17 Pro, Return sent the draft,
+  Shift+Return left `"Line one\nLine two"` in the field unsent, and a newline typed as text did not send. Return on an
+  empty draft sent nothing.
+- **Guarded.** Four unit tests cover the native event to send path and the module's Apple half. Each guard was
+  watched red with its piece removed.
+
+Evidence in `docs/qa/fix-ipad-enter/`: `ipad/` (iPad simulator), `iphone/` (iPhone simulator), `guard-red-f326.txt`.
+The spec rule (§10 #55) already said this; iOS now does it.
+

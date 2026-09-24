@@ -1,0 +1,34 @@
+{
+  "runId": "before",
+  "startedAt": "2026-09-24T13:52:11.212Z",
+  "finishedAt": "2026-09-24T13:52:12.480Z",
+  "ok": true,
+  "passed": 2,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "iPad hardware Enter check",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 1,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1267,
+      "detail": "E02-draft-before-enter"
+    }
+  ],
+  "errors": []
+}

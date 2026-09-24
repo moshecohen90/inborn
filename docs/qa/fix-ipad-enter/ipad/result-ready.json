@@ -1,0 +1,79 @@
+{
+  "runId": "ready",
+  "startedAt": "2026-09-24T13:51:26.350Z",
+  "finishedAt": "2026-09-24T13:51:32.578Z",
+  "ok": true,
+  "passed": 6,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4000,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2226,
+      "detail": "E01-chat-root"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Send",
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": true
+          },
+          "disabled": true
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 5,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SEALED",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SEALED"
+    }
+  ],
+  "errors": []
+}
