@@ -4,6 +4,7 @@ import { BUNDLED_MANIFEST, WIFI_ONLY_ABOVE_BYTES, type CatalogModel, type Networ
 /* An in-memory vault directory: File objects share one map of uri → bytes, and the download task writes into it. */
 const disk = new Map<string, number>();
 const gets: { url: string; from: number }[] = [];
+const sessions: (string | undefined)[] = [];
 class FakeFile {
   constructor(public uri: string) {}
   get exists() {
@@ -25,7 +26,8 @@ class FakeFile {
       }, 5),
     );
   }
-  static createDownloadTask(url: string, file: FakeFile, opts: { onProgress?: (p: { bytesWritten: number }) => void }) {
+  static createDownloadTask(url: string, file: FakeFile, opts: { sessionType?: string; onProgress?: (p: { bytesWritten: number }) => void }) {
+    sessions.push(opts.sessionType);
     return fakeTask(url, file, 0, opts);
   }
 }
@@ -86,6 +88,7 @@ function delivery(options: { wifiOnly?: boolean; network?: NetworkKind } = {}) {
 beforeEach(() => {
   disk.clear();
   gets.length = 0;
+  sessions.length = 0;
   vi.stubGlobal("fetch", async () => new Response(null, { status: 200, headers: { "content-length": String(TOTAL), "accept-ranges": "bytes", etag: '"e1"' } }));
 });
 
@@ -100,6 +103,8 @@ describe("HttpsDelivery.deliverPart (QA F20)", () => {
     expect(saved.size).toBe(0);
     expect(gets).toEqual([{ url: `${BUNDLED_MANIFEST.baseUrl}/${model.file}`, from: 0 }]);
     expect(events).toContain("progress");
+    /* F370 moved iOS to the in-process session; Android's downloader keeps the session it always had. */
+    expect(sessions).toEqual(["background"]);
   });
   it("Try again with a full-size .part renames it instead of fetching from byte 0", async () => {
     const { d, saved } = delivery();

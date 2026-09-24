@@ -3,11 +3,15 @@
  * grant and no "Enable UI Automation" passcode sheet (F185) — every action is a call into the handlers React
  * already holds, found through the fiber a single mounted `View` hands over.
  */
+import { File, Paths } from "expo-file-system";
 import { router } from "expo-router";
+import { requestBytes } from "@inborn/core";
+import { recordTransfer } from "../proof/transfers";
+import { allowedHosts } from "../vault/httpsDelivery";
 import { setEntitlements } from "../lib/entitlements";
 import { getLicence } from "../licence/licence";
 import { ackExists, cleanup, writeDevPrompt, writeProgress } from "./io";
-import { sweepWhenAcked, type NodeValue, type Step, type Surface, type Tier } from "./steps";
+import { sweepWhenAcked, type NodeValue, type ProbeResult, type ProbeSession, type Step, type Surface, type Tier } from "./steps";
 import { currentRoot, dump, fiberOf, findAll, hostOf, isDisabled, pressTarget, propsOf, routeOf, scrollerOf, textOf, typeTarget, type QaFiber } from "./tree";
 
 /** Greppable in a built `main.jsbundle`: `scripts/check-qa-bridge.sh` fails a release artifact that contains it. */
@@ -63,6 +67,40 @@ function measureY(host: unknown, relativeTo: unknown, testID: string): Promise<n
  */
 export const sweepAfterAck = (runId: string): Promise<boolean> =>
   sweepWhenAcked({ acked: () => ackExists(runId, "result"), cleanup, sleep, now: () => Date.now() }, SWEEP_TIMEOUT);
+
+/** The same DownloadTask the vault uses, with only the session type varied, so a phone can A/B nsurlsessiond (F370). */
+async function probeDownload(url: string, session: ProbeSession, seconds: number): Promise<ProbeResult> {
+  const host = new URL(url).hostname;
+  if (!allowedHosts().includes(host)) throw new Error(`probeDownload: ${host} is not an allowed model host`);
+  const file = new File(Paths.cache, `qa-probe-${session}.bin`);
+  if (file.exists) file.delete();
+  let bytes = 0;
+  let last = Date.now();
+  const began = Date.now();
+  const task = File.createDownloadTask(url, file, {
+    sessionType: session,
+    onProgress: ({ bytesWritten }) => {
+      bytes = bytesWritten;
+      last = Date.now();
+    },
+  });
+  let stopped = false;
+  const timer = setTimeout(() => {
+    stopped = true;
+    task.cancel();
+  }, seconds * 1000);
+  let complete = false;
+  try {
+    complete = !!(await task.downloadAsync());
+  } catch (e: unknown) {
+    if (!stopped) throw e;
+  } finally {
+    clearTimeout(timer);
+    recordTransfer({ host, bytesOut: requestBytes(url), bytesIn: bytes, purpose: "model" });
+    if (file.exists) file.delete();
+  }
+  return { bytes, ms: (bytes > 0 ? last : Date.now()) - began, complete };
+}
 
 export function createSurface(getHandle: () => unknown, runId: string): Surface {
   const root = (): QaFiber => {
@@ -122,6 +160,7 @@ export function createSurface(getHandle: () => unknown, runId: string): Surface 
       writeProgress(runId, { awaiting: null, took: name });
     },
     devPrompt: writeDevPrompt,
+    probeDownload,
     cleanup,
     sleep,
     now: () => Date.now(),

@@ -1,0 +1,96 @@
+{
+ "_": "F370: Fast with the app backgrounded 15 s mid-transfer",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 600
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "press",
+   "testID": "cancel-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "press",
+   "testID": "install-fast"
+  },
+  {
+   "op": "waitFor",
+   "testID": "confirm-download",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-fast",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "B01-fast-downloading"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-fast",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "waitFor",
+   "testID": "cancel-fast",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "B02-fast-after-background"
+  }
+ ]
+}

@@ -20,7 +20,17 @@ export type Step =
   | { op: "setTier"; tier: Tier }
   | { op: "devPrompt"; lines: string[] }
   | { op: "sleep"; ms: number }
+  | { op: "probeDownload"; url: string; session: ProbeSession; seconds?: number }
   | { op: "cleanup" };
+
+/** expo-file-system's two iOS URLSession configurations: nsurlsessiond out of process, or in the app's own process. */
+export type ProbeSession = "background" | "foreground";
+
+export interface ProbeResult {
+  bytes: number;
+  ms: number;
+  complete: boolean;
+}
 
 export interface NodeValue {
   text: string;
@@ -42,6 +52,8 @@ export interface Surface {
   /** Writes the line-based prompt file Chat.tsx already watches (`image:`, `attach:`, `strict:`, plain text). */
   devPrompt: (lines: string[]) => void;
   cleanup: () => void;
+  /** Downloads `url` through one session type for at most `seconds`, then throws the bytes away. */
+  probeDownload: (url: string, session: ProbeSession, seconds: number) => Promise<ProbeResult>;
   sleep: (ms: number) => Promise<void>;
   now: () => number;
 }
@@ -71,6 +83,20 @@ const DEFAULT_WAIT = 30000;
 const POLL = 250;
 /** React commits on a later tick, so nothing is read back in the same turn that changed it. */
 const SETTLE = 150;
+
+const PROBE_SECONDS = 20;
+const PROBE_MAX_SECONDS = 600;
+
+async function probeDownload(surface: Surface, step: Extract<Step, { op: "probeDownload" }>): Promise<Partial<StepResult>> {
+  const seconds = step.seconds ?? PROBE_SECONDS;
+  if (step.session !== "background" && step.session !== "foreground") throw new Error(`probeDownload: session must be background or foreground, not ${JSON.stringify(step.session)}`);
+  if (!(seconds >= 1 && seconds <= PROBE_MAX_SECONDS)) throw new Error(`probeDownload: seconds must be 1..${PROBE_MAX_SECONDS}, not ${seconds}`);
+  const r = await surface.probeDownload(step.url, step.session, seconds);
+  if (r.bytes <= 0) throw new Error(`probeDownload: ${step.session} moved no bytes in ${r.ms} ms`);
+  const mb = (r.bytes / 1e6 / (Math.max(1, r.ms) / 1000)).toFixed(2);
+  const detail = `${step.session} ${mb} MB/s · ${r.bytes} B in ${r.ms} ms${r.complete ? " · complete" : ""}`;
+  return { detail, value: { text: detail, props: { session: step.session, bytes: r.bytes, ms: r.ms, mbps: Number(mb), complete: r.complete } } };
+}
 
 const norm = (s: string): string => s.replace(/\s+/g, " ").trim().toLowerCase();
 
@@ -142,6 +168,8 @@ async function runStep(surface: Surface, step: Step): Promise<Partial<StepResult
     case "sleep":
       await surface.sleep(step.ms);
       return { detail: `${step.ms} ms` };
+    case "probeDownload":
+      return probeDownload(surface, step);
     case "cleanup":
       surface.cleanup();
       return { detail: "qa namespace removed" };

@@ -1,0 +1,208 @@
+{
+ "_": "F370 after the fix: probes, the photo pack through the vault, then Fast with the app sent to the background mid-transfer",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 180000
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "start-chatting"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "background",
+   "seconds": 60
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "foreground",
+   "seconds": 60
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "sleep",
+   "ms": 600
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "press",
+   "testID": "install-vision-qwen35"
+  },
+  {
+   "op": "waitFor",
+   "testID": "confirm-download",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-vision-qwen35",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-vision-qwen35",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "cancel-vision-qwen35",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "screenshot",
+   "name": "A01-photo-pack-installed"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 600
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "press",
+   "testID": "install-fast"
+  },
+  {
+   "op": "waitFor",
+   "testID": "confirm-download",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-fast",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "A02-fast-downloading"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-fast",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "cancel-fast",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "A03-fast-installed-after-background"
+  }
+ ]
+}
