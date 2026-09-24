@@ -5208,3 +5208,20 @@ Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the 
 already support a second embedding model) and measure it on these same fixtures, or expand the question into content
 words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
 across all 159 questions; it is the half worth extending.
+
+## Fixes round 73: the Work templates were the last locked door that did nothing (branch `fix-work-templates`) — 24.9.2026
+
+Moshe's I03 had two halves. The first, the attach button that made the screen vanish, was closed and proven in rounds
+34–62. The second, "buttons show as inactive but clicking them does not open the paywall", was closed on every door
+but one: the Work templates sheet.
+
+- **A locked template row and its WORK chip open the paywall saying why** (F338). The rows were `disabled` and the
+  chip sat inside them, so neither tap reached S60; the banner chip reached it with no reason line. Locked rows now
+  stay tappable, the way the attach sheet's locked documents already were, and the row, its chip and the banner chip
+  all land on `/paywall?reason=templates`. A component test renders the real sheet over a `Pressable` that honours
+  `disabled` and watched red on all three taps. Headless Chromium at 390, 768, 1024 and 1440 shows the line on every
+  tap, with before and after shots in `docs/qa/fix-work-templates/`.
+- **No other door is dead or reasonless** (F339). An AST scan of every element with both `trailing` and `disabled`
+  found five; only the template row was a paid lock with a live chip inside. A wider search found the audit-log vault
+  rows disabled by the same lock, and two Work banners with bare chips. All three now name their reason. `WorkTag`
+  and `ProTag` take a handler or a reason, so a bare chip is a type error rather than a review finding.
