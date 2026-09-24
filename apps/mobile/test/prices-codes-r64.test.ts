@@ -64,12 +64,20 @@ describe("F305 · one US price per SKU, the store does the rest", () => {
  */
 describe("F307 · the written promise is one the stores can keep", () => {
   const terms = read("docs/legal/terms.md");
-  const support = read("apps/site/src/pages/support.html");
+  const siteDir = join(repo, "apps/site/src/i18n");
+  const supportIn = (f: string) => (JSON.parse(readFileSync(join(siteDir, f), "utf8")) as Record<string, string>)["support.settings-restore-purchases-signed-in"];
+  const support = supportIn("en.json");
   it("neither the terms nor the site promises a cross-store discount code any more", () => {
-    for (const [name, text] of [["terms.md", terms], ["support.html", support]] as const) {
+    for (const [name, text] of [["terms.md", terms], ["support (en)", support]] as const) {
       expect(text, name).not.toMatch(/receipt for a discount code/);
       expect(text, name).toContain("no particular discount is promised");
       expect(text, name).toContain("$49.99");
+    }
+  });
+  it("every language of the support page names the same-store upgrade price", () => {
+    for (const f of readdirSync(siteDir).filter((x) => x.endsWith(".json"))) {
+      expect(supportIn(f), f).toMatch(/49\.99/);
+      expect(supportIn(f), f).toMatch(/69\.99/);
     }
   });
   it("the codes a human has to create in each console are written down", () => {

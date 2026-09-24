@@ -8,6 +8,10 @@
  * from docs/legal/*.md and licenses.html from docs/legal/NOTICE.json at build time, so the site cannot drift from the
  * legal sources. `{{PLACEHOLDER}}` tokens in the legal texts are rendered as visible chips until they are filled at launch.
  *
+ * Every page is built once per launch locale: English at the root, the other seven under /<locale>/. The page
+ * fragments hold structure only — every string lives in src/i18n/<locale>.json under the same key, so one source
+ * produces eight sites and a missing translation is a gate failure, not a silently English page.
+ *
  * Environment:
  *   SITE_ORIGIN   canonical origin for links, sitemap and JSON-LD (default packages/core/src/site/origins.json)
  *   APP_ORIGIN    where the hero composer posts the first message (the deployed web app); also the only
@@ -15,7 +19,7 @@
  *   STORES_LIVE   "1" once the two store listings actually resolve; until then the download row says so
  */
 import { execFileSync } from "node:child_process";
-import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -31,6 +35,50 @@ export const appOrigin = process.env.APP_ORIGIN ?? origins.app;
 /** Neither listing resolved on 23.9.2026 (App Store version PREPARE_FOR_SUBMISSION, Play on the internal track only). */
 export const storesLive = process.env.STORES_LIVE === "1";
 
+/* ---------- Locales ---------- */
+
+/**
+ * The eight launch locales of packages/i18n, in that order, English first because the root of the site is English
+ * (check.mjs asserts the two lists match). `dir` is the URL segment: lowercase, because a static host is the one
+ * place where `/pt-BR/` and `/pt-br/` are two different pages.
+ */
+export const LOCALES = [
+  { code: "en", dir: "", name: "English", og: "en_US" },
+  { code: "ja", dir: "ja", name: "日本語", og: "ja_JP" },
+  { code: "de", dir: "de", name: "Deutsch", og: "de_DE" },
+  { code: "fr", dir: "fr", name: "Français", og: "fr_FR" },
+  { code: "es", dir: "es", name: "Español", og: "es_ES" },
+  { code: "pt-BR", dir: "pt-br", name: "Português (Brasil)", og: "pt_BR" },
+  { code: "ko", dir: "ko", name: "한국어", og: "ko_KR" },
+  { code: "zh-Hant", dir: "zh-hant", name: "繁體中文", og: "zh_TW" },
+];
+/** Same set as packages/i18n RTL_LOCALES: none of them launches today, and the layout must already be right when one does. */
+export const RTL_LOCALES = new Set(["he", "ar", "fa", "ur"]);
+export const EN = LOCALES[0];
+/** The writing direction a locale renders in. None of the eight launches RTL; the layout must already be right when one does. */
+export const htmlDir = (code) => (RTL_LOCALES.has(code.split("-")[0]) ? "rtl" : "ltr");
+const root = (l) => (l.dir ? `/${l.dir}` : "");
+/** A page's path inside a locale: "/" is the locale's home, everything else keeps the English path. */
+const href = (l, p) => (p === "/" ? `${root(l)}/` : `${root(l)}${p}`);
+const abs = (l, p) => `${siteOrigin}${href(l, p)}`;
+
+export const strings = Object.fromEntries(
+  LOCALES.map((l) => {
+    const file = path.join(src, `i18n/${l.code}.json`);
+    if (!existsSync(file)) {
+      if (l !== EN) console.warn(`· no src/i18n/${l.code}.json yet: that locale falls back to English (check.mjs fails on it)`);
+      return [l.code, {}];
+    }
+    return [l.code, JSON.parse(readFileSync(file, "utf8"))];
+  }),
+);
+/** A missing key falls back to English so a half-finished translation still builds; check.mjs is what refuses to ship it. */
+export function t(l, key) {
+  const value = strings[l.code][key] ?? strings[EN.code][key];
+  if (value === undefined) throw new Error(`no string "${key}" in src/i18n/en.json`);
+  return value;
+}
+
 /** "533 MB", "1.3 GB": must read exactly like packages/core's formatModelBytes (catalog-resume.test.ts), or the app and the site quote two different sizes for the same file (F281). */
 function formatModelBytes(bytes) {
   if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 1)} GB`;
@@ -44,8 +92,8 @@ export const SIZE_INSTANT = formatModelBytes(bytesOf("instant"));
 export const SIZE_FAST = formatModelBytes(bytesOf("fast"));
 
 export const stores = {
-  ios: { name: "App Store", href: "https://apps.apple.com/app/id6809165161", note: "iPhone and iPad" },
-  android: { name: "Google Play", href: "https://play.google.com/store/apps/details?id=com.inbornapp.mobile", note: "Android phones and tablets" },
+  ios: { name: "App Store", href: "https://apps.apple.com/app/id6809165161", note: "ui.store.ios-note" },
+  android: { name: "Google Play", href: "https://play.google.com/store/apps/details?id=com.inbornapp.mobile", note: "ui.store.android-note" },
 };
 
 /** Placeholders we can fill now; everything else stays a visible chip (title attribute explains why). */
@@ -118,53 +166,59 @@ export function markdownToHtml(md) {
   return html.join("\n");
 }
 
-/** The first `**Status: …**` paragraph of a legal draft becomes a notice above the text instead of body copy. */
+/**
+ * The first `**Status: …**` paragraph of a legal draft becomes a notice above the text instead of body copy.
+ * The text itself is only ever published in English: a policy is the document a reader can be held to, and a
+ * translated one would be a second, unreviewed contract. Outside English the page says so above the text.
+ */
 function legalPage(file) {
   const md = readFileSync(path.join(repoRoot, "docs/legal", file), "utf8");
   const status = /^\*\*Status: ([^*]+)\*\*$/m.exec(md);
   const edited = /Last edited ([^.\n]+)\./.exec(md);
   const body = markdownToHtml(md.replace(status?.[0] ?? "", ""));
-  const title = /^# (.+)$/m.exec(md)[1];
   const notice = status
     ? `<aside class="notice" role="note"><span class="label">Status</span>${inline(status[1])}${edited ? ` Last edited ${esc(edited[1])}.` : ""}</aside>`
     : "";
-  return { title, body: `<article class="prose legal">${notice}${body.replace(/^<h1[^>]*>.*?<\/h1>\n?/, "")}</article>`, h1: title, source: `docs/legal/${file}` };
+  return (l) => `${l === EN ? "" : `<aside class="notice" role="note"><span class="label">${esc(t(l, "ui.legal.english-label"))}</span>${esc(t(l, "ui.legal.english-only"))}</aside>\n`}<article class="prose legal"${l === EN ? "" : ' lang="en" dir="ltr"'}>${notice}${body.replace(/^<h1[^>]*>.*?<\/h1>\n?/, "")}</article>`;
 }
 
 /* ---------- Licenses from NOTICE.json ---------- */
 
-function licensesPage() {
+function licensesPage(l) {
   const notice = JSON.parse(readFileSync(path.join(repoRoot, "docs/legal/NOTICE.json"), "utf8"));
   const groups = [
-    ["model", "Models", "Open-weight models bundled with the app or served from our model host. Models you import yourself are shown their own license in the app."],
-    ["engine", "Engines and native components", ""],
-    ["library", "Libraries", ""],
-    ["font", "Fonts", ""],
+    ["model", "ui.licenses.models", "ui.licenses.models-intro"],
+    ["engine", "ui.licenses.engines", null],
+    ["library", "ui.licenses.libraries", null],
+    ["font", "ui.licenses.fonts", null],
   ];
   const row = (c) => `<tr>
   <td><a href="${esc(c.homepage ?? c.licenseUrl)}" rel="noopener">${esc(c.name)}</a>${c.version ? `<div class="mono small">${esc(c.version)}</div>` : ""}${c.tier ? `<div class="mono small">${esc(c.tier)}</div>` : ""}</td>
   <td><a href="${esc(c.licenseUrl)}" rel="noopener">${esc(c.license)}</a></td>
-  <td>${esc(c.attribution ?? "")}${c.restrictions?.length ? `<div class="small">Restrictions: ${esc(c.restrictions.join("; "))}</div>` : ""}</td>
+  <td>${esc(c.attribution ?? "")}${c.restrictions?.length ? `<div class="small">${esc(t(l, "ui.licenses.restrictions"))} ${esc(c.restrictions.join("; "))}</div>` : ""}</td>
   <td class="mono small">${esc(c.scope)}</td>
 </tr>`;
   const sections = groups.map(([g, title, intro]) => {
     const items = notice.components.filter((c) => c.group === g);
     if (!items.length) return "";
-    return `<h2 id="${g}">${title}</h2>${intro ? `<p>${esc(intro)}</p>` : ""}
+    return `<h2 id="${g}">${esc(t(l, title))}</h2>${intro ? `<p>${esc(t(l, intro))}</p>` : ""}
 <div class="table-wrap"><table>
-<thead><tr><th>Component</th><th>License</th><th>Attribution</th><th>Scope</th></tr></thead>
+<thead><tr><th>${esc(t(l, "ui.licenses.component"))}</th><th>${esc(t(l, "ui.licenses.license"))}</th><th>${esc(t(l, "ui.licenses.attribution"))}</th><th>${esc(t(l, "ui.licenses.scope"))}</th></tr></thead>
 <tbody>${items.map(row).join("")}</tbody></table></div>`;
   }).join("\n");
   const excluded = notice.excludedByRule.map((e) => `<li><strong>${esc(e.family)}</strong> (${esc(e.license)}): ${esc(e.reason)}.</li>`).join("");
-  const body = `<article class="prose">
-<p>${esc(notice.app.name)} itself is not open source: its ${esc(notice.app.coreScope)} core is public at github.com/moshecohen90/inborn under the ${esc(notice.app.coreLicense)}, which grants the right to read, build and verify the code and nothing more. Everything else it ships with is listed here with its license, exactly as the in-app Licenses screen shows it. Inventory dated ${esc(notice.generated)}.</p>
-<p class="small"><span class="label">Scope</span> shipped = inside the store build · catalogue = downloadable through the app · planned = in the specification, not yet integrated · build-only = used to build the app, never shipped.</p>
+  return `<article class="prose">
+<p>${t(l, "ui.licenses.lede")
+  .replace("{{APP_NAME}}", esc(notice.app.name))
+  .replace("{{CORE_SCOPE}}", esc(notice.app.coreScope))
+  .replace("{{CORE_LICENSE}}", esc(notice.app.coreLicense))
+  .replace("{{GENERATED}}", esc(notice.generated))}</p>
+<p class="small"><span class="label">${esc(t(l, "ui.licenses.scope"))}</span> ${esc(t(l, "ui.licenses.scope-key"))}</p>
 ${sections}
-<h2 id="excluded">Not in the catalogue, by rule</h2>
-<p>These model families are deliberately not bundled or served, because their licenses carry obligations we would have to pass on to you:</p>
+<h2 id="excluded">${esc(t(l, "ui.licenses.excluded"))}</h2>
+<p>${esc(t(l, "ui.licenses.excluded-intro"))}</p>
 <ul>${excluded}</ul>
 </article>`;
-  return { title: "Licenses", h1: "Third-party licenses", body, source: "docs/legal/NOTICE.json" };
 }
 
 /* ---------- Layout ---------- */
@@ -172,53 +226,81 @@ ${sections}
 const sealSvg = `<svg class="seal" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false"><circle cx="512" cy="512" r="294" fill="none" stroke="var(--sealed)" stroke-width="92"/><path d="M 723.5 307.8 A 294 294 0 0 1 794.6 431" fill="none" stroke="var(--accent-fill)" stroke-width="92" stroke-linecap="round"/><path d="M 723.5 307.8 A 294 294 0 0 1 794.6 431" fill="none" stroke="#FFD9A3" stroke-width="30" stroke-linecap="round"/></svg>`;
 
 const nav = [
-  ["/proof", "Proof"],
-  ["/compare", "Compare"],
-  ["/blog", "Blog"],
-  ["/support", "Support"],
-  ["https://github.com/moshecohen90/inborn", "GitHub"],
+  ["/proof", "ui.nav.proof"],
+  ["/compare", "ui.nav.compare"],
+  ["/blog", "ui.nav.blog"],
+  ["/support", "ui.nav.support"],
+  ["https://github.com/moshecohen90/inborn", "ui.nav.github"],
 ];
 
 /* Every legal page the app links out to, so the footer and the app's Legal screen cannot drift apart. */
 export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"];
 
-const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licenses", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
+const legalLabel = (l, route) => t(l, `ui.legal.${route.slice(1)}`);
 
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
 export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST", "COMPARE_FAQ", "COMPARE_TABLE", "COMPARE_CHECKED"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
-function tokens() {
+function tokens(l) {
   const storeRow = Object.values(stores).map((s) => `<a class="store" href="${s.href}" rel="noopener">
   <span class="store-k">${esc(s.name)}</span>
-  <span class="store-v">${storesLive ? "Download Inborn" : "Opens at launch"}</span>
-  <span class="store-n">${esc(s.note)}</span>
+  <span class="store-v">${esc(t(l, storesLive ? "ui.store.download" : "ui.store.at-launch"))}</span>
+  <span class="store-n">${esc(t(l, s.note))}</span>
 </a>`).join("");
   return {
     SEAL: sealSvg,
     APP_ORIGIN: appOrigin,
     STORE_ROW: storeRow,
     /* Prose that stops being true on launch day belongs on the flag that already switches the buttons (F214). */
-    STORE_STATE: storesLive
-      ? "Both store listings are public; the links above open the product page."
-      : "Neither store listing is public yet; both links open the real product page the moment it is.",
-    FAQ: faqHtml(),
+    STORE_STATE: esc(t(l, storesLive ? "ui.store.state-live" : "ui.store.state-pending")),
+    FAQ: faqHtml(l),
     SIZE_INSTANT,
     SIZE_FAST,
-    COMPARE_FAQ: compareFaqHtml(),
-    COMPARE_TABLE: compareTableHtml(),
-    COMPARE_CHECKED,
+    COMPARE_FAQ: compareFaqHtml(l),
+    COMPARE_TABLE: compareTableHtml(l),
+    COMPARE_CHECKED: esc(t(l, "compare.checked")),
   };
 }
 
-function layout({ title, description, path: p, body, h1, wide = false, jsonld = [], ogImage = "/og/default.png", ogAlt, ogType = "website" }) {
+/** Resolves a fragment: strings first (their values may quote a size token), then the generator's own tokens. */
+function fill(l, html) {
+  const vars = tokens(l);
+  return html
+    .replace(/\{\{t:([A-Za-z0-9.-]+)\}\}/g, (_, k) => t(l, k))
+    .replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
+}
+
+/** Files that exist once, at the root, in every language; every other absolute path is a page that exists per locale. */
+const ROOT_FILES = /^\/(site\.css|favicon\.svg|apple-touch-icon\.png|icon-512\.png|robots\.txt|sitemap|og\/|fonts\/)/;
+
+/**
+ * A link written inside a fragment or a translated string names the English path ("/proof"). On a localized page it
+ * has to stay inside that language, or a reader who followed one sentence lands on the English site (F314).
+ */
+export function localizeLinks(l, html) {
+  if (l === EN) return html;
+  return html.replace(/\b(href|action)="(\/[^"]*)"/g, (m, attr, p) =>
+    ROOT_FILES.test(p) || p === root(l) || p.startsWith(`${root(l)}/`) ? m : `${attr}="${root(l)}${p}"`);
+}
+
+/** Plain links, no JavaScript: the same page in every language, marked so a crawler reads it as the alternate set. */
+function langSwitch(l, p, place) {
+  const links = LOCALES.map((other) => `<a href="${href(other, p)}" hreflang="${other.code}" lang="${other.code}"${other === l ? ' aria-current="true"' : ""}>${esc(other.name)}</a>`).join("");
+  if (place === "footer") return `<nav class="lang-list" aria-label="${esc(t(l, "ui.lang.label"))}" id="languages"><span class="label">${esc(t(l, "ui.lang.label"))}</span>${links}</nav>`;
+  return `<details class="lang"><summary aria-label="${esc(t(l, "ui.lang.label"))}"><span class="mono">${esc(l.code.toUpperCase())}</span></summary><div class="lang-menu">${links}</div></details>`;
+}
+
+function layout(l, { title, description, path: p, body, h1, wide = false, jsonld = [], ogImage = "/og/default.png", ogAlt, ogType = "website" }) {
   const isHome = p === "/";
-  const pageTitle = isHome ? "Inborn: private AI chat that runs on your device" : `${title} · Inborn`;
-  const url = `${siteOrigin}${p === "/" ? "/" : p}`;
-  const alt = ogAlt ?? "Inborn, an AI chat app that runs on your own device. The network readout reads OUT 0 B, CONNECTIONS 0, SEALED, ON-DEVICE.";
-  const graph = [baseGraph(), ...jsonld];
+  const pageTitle = isHome ? t(l, "ui.home-title") : `${title} · Inborn`;
+  const url = abs(l, p);
+  const alt = ogAlt ?? t(l, "ui.og-alt");
+  const graph = [orgGraph(), ...jsonld].flat();
+  const alternates = LOCALES.map((other) => `<link rel="alternate" hreflang="${other.code}" href="${abs(other, p)}">`).join("\n") +
+    `\n<link rel="alternate" hreflang="x-default" href="${abs(EN, p)}">`;
   return `<!doctype html>
-<html lang="en">
+<html lang="${l.code}" dir="${htmlDir(l.code)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -227,11 +309,13 @@ function layout({ title, description, path: p, body, h1, wide = false, jsonld = 
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0A0D11">
 <link rel="canonical" href="${url}">
+${alternates}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
 <meta property="og:site_name" content="Inborn">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="${l.og}">
+${LOCALES.filter((o) => o !== l).map((o) => `<meta property="og:locale:alternate" content="${o.og}">`).join("\n")}
 <meta property="og:type" content="${ogType}">
 <meta property="og:title" content="${esc(pageTitle)}">
 <meta property="og:description" content="${esc(description)}">
@@ -249,11 +333,12 @@ function layout({ title, description, path: p, body, h1, wide = false, jsonld = 
 ${ldjson({ "@context": "https://schema.org", "@graph": graph })}
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">${esc(t(l, "ui.skip"))}</a>
 <header class="top">
-  <a class="brand" href="/" aria-label="Inborn home">${sealSvg}<span>Inborn</span></a>
-  <nav aria-label="Main">${nav.map(([href, label]) => `<a href="${href}"${p === href ? ' aria-current="page"' : ""}${/^https?:/.test(href) ? ' rel="noopener"' : ""}>${label}</a>`).join("")}</nav>
-  <a class="btn primary compact" href="/#get">Get Inborn</a>
+  <a class="brand" href="${href(l, "/")}" aria-label="${esc(t(l, "ui.brand-home"))}">${sealSvg}<span>Inborn</span></a>
+  <nav aria-label="${esc(t(l, "ui.nav.main"))}">${nav.map(([link, label]) => `<a href="${/^https?:/.test(link) ? link : href(l, link)}"${p === link ? ' aria-current="page"' : ""}${/^https?:/.test(link) ? ' rel="noopener"' : ""}>${esc(t(l, label))}</a>`).join("")}</nav>
+  ${langSwitch(l, p, "header")}
+  <a class="btn primary compact" href="${href(l, "/")}#get">${esc(t(l, "ui.get-inborn"))}</a>
 </header>
 <main id="main" class="${wide ? "wide" : "narrow"}">
 ${h1 ? `<h1>${h1}</h1>` : ""}
@@ -262,21 +347,22 @@ ${body}
 <footer class="bottom">
   <div class="footer-grid">
     <div>
-      <a class="brand" href="/" aria-label="Inborn home">${sealSvg}<span>Inborn</span></a>
-      <p class="small">Private AI chat that runs on your own device. Published by Cohen Apps.</p>
+      <a class="brand" href="${href(l, "/")}" aria-label="${esc(t(l, "ui.brand-home"))}">${sealSvg}<span>Inborn</span></a>
+      <p class="small">${esc(t(l, "ui.footer.tagline"))}</p>
     </div>
-    <nav aria-label="Footer">
-      <span class="label">Product</span>
-      <a href="/">Home</a><a href="/proof">Proof</a><a href="/compare">Compare</a><a href="/blog">Blog</a><a href="/support">Support</a>
+    <nav aria-label="${esc(t(l, "ui.nav.footer"))}">
+      <span class="label">${esc(t(l, "ui.footer.product"))}</span>
+      <a href="${href(l, "/")}">${esc(t(l, "ui.footer.home"))}</a><a href="${href(l, "/proof")}">${esc(t(l, "ui.nav.proof"))}</a><a href="${href(l, "/compare")}">${esc(t(l, "ui.nav.compare"))}</a><a href="${href(l, "/blog")}">${esc(t(l, "ui.nav.blog"))}</a><a href="${href(l, "/support")}">${esc(t(l, "ui.nav.support"))}</a>
     </nav>
-    <nav aria-label="Legal">
-      <span class="label">Legal</span>
-      ${legalRoutes.map((r) => `<a href="${r}">${legalLabel(r)}</a>`).join("")}
+    <nav aria-label="${esc(t(l, "ui.nav.legal"))}">
+      <span class="label">${esc(t(l, "ui.nav.legal"))}</span>
+      ${legalRoutes.map((r) => `<a href="${href(l, r)}">${esc(legalLabel(l, r))}</a>`).join("")}
     </nav>
   </div>
-  <p class="mono small readout-line">NO COOKIES · NO TRACKING · NO THIRD-PARTY REQUESTS</p>
-  <p class="small">Responses in the app are generated by AI and can be wrong. Check anything that matters.</p>
-  <p class="small">Inborn's source is public at <a href="https://github.com/moshecohen90/inborn" rel="noopener">github.com/moshecohen90/inborn</a>, source-available: read it, build it, publish what you find. App Store is a trademark of Apple Inc., registered in the U.S. and other countries. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+  ${langSwitch(l, p, "footer")}
+  <p class="mono small readout-line">${esc(t(l, "ui.footer.readout"))}</p>
+  <p class="small">${esc(t(l, "ui.footer.ai-notice"))}</p>
+  <p class="small">${t(l, "ui.footer.source")}</p>
 </footer>
 </body>
 </html>
@@ -285,21 +371,23 @@ ${body}
 
 /* ---------- Structured data ---------- */
 
+/* The publisher and the brand are one entity in every language, so they keep one id at the root. A page is not:
+   each locale's WebSite, app description, FAQ and articles are their own nodes, in their own language. */
 const ID = {
-  site: `${siteOrigin}/#website`,
   org: `${siteOrigin}/#organization`,
   brand: `${siteOrigin}/#brand`,
   logo: `${siteOrigin}/#logo`,
-  app: `${siteOrigin}/#app`,
+  site: (l) => `${abs(l, "/")}#website`,
+  app: (l) => `${abs(l, "/")}#app`,
 };
 
-const baseGraph = () => ({
+const baseGraph = (l) => ({
   "@type": "WebSite",
-  "@id": ID.site,
-  url: `${siteOrigin}/`,
+  "@id": ID.site(l),
+  url: abs(l, "/"),
   name: "Inborn",
-  description: "Inborn is an AI chat app that runs entirely on your own device. No account, no cloud, no analytics. Works in airplane mode. One-time purchase.",
-  inLanguage: "en",
+  description: t(l, "ld.site-description"),
+  inLanguage: l.code,
   publisher: { "@id": ID.org },
 });
 
@@ -324,133 +412,52 @@ const orgGraph = () => [
   },
 ];
 
-const breadcrumb = (p, trail) => ({
+const breadcrumb = (l, p, trail) => ({
   "@type": "BreadcrumbList",
-  "@id": `${siteOrigin}${p}#breadcrumb`,
-  itemListElement: trail.map(([name, item], i) => ({ "@type": "ListItem", position: i + 1, name, ...(item ? { item: `${siteOrigin}${item}` } : {}) })),
+  "@id": `${abs(l, p)}#breadcrumb`,
+  itemListElement: trail.map(([name, item], i) => ({ "@type": "ListItem", position: i + 1, name, ...(item ? { item: abs(l, item) } : {}) })),
 });
 
 /**
  * The landing FAQ, in one place: the visible `<h3>` list and the FAQPage graph are both rendered from it, so an
  * answer an engine quotes can never differ from the answer a reader sees. First sentence answers it outright.
  */
-export const FAQ = [
-  ["Is Inborn really offline?",
-    "Yes. Inborn runs the AI model on your own device, so it answers with every radio switched off, and the Android release build does not declare the INTERNET permission, which means it cannot open a connection. Turn on airplane mode and ask it something: the answer arrives at the same speed, because there is no server in the path."],
-  ["Do you see my chats?",
-    "No. Your messages never leave the device, and Inborn has no account system, no server, no analytics and no crash reporting, so there is nothing for us to see, store, sell or hand to anyone. Conversations live in an encrypted database whose key the operating system holds. We could not recover them for you even if you asked."],
-  ["How big is the download?",
-    `The app is a normal store download and the Instant model it runs is ${SIZE_INSTANT}, which ships inside the app on iPhone and arrives from Google Play as an asset pack on Android. Larger models are optional: Fast is 1.28 GB and Sharp is 2.74 GB, and you choose when to install them. In a browser, one model downloads once into the browser's own storage: ${SIZE_INSTANT} (Instant) or ${SIZE_FAST} (Fast, on capable desktops), whichever you pick, with the one your device runs best offered first.`],
-  ["Which AI models does Inborn run?",
-    "Inborn runs open-weight models in GGUF format: Qwen3.5 at 0.8B, 2B and 4B under Apache-2.0, and Microsoft's Phi-4-mini 3.8B under MIT. Instant and Fast are free; the Sharp models come with Pro. You can also import any GGUF file you already have, including Gemma, Mistral and Llama."],
-  ["Will it work on my phone?",
-    "Inborn measures your device and recommends a model that fits it, and the built-in Instant model runs on every supported device. Measured on our own hardware: Instant reaches about 36 tokens a second on an iPhone 13 Pro and 12 to 15 on a 2018 Android flagship. On that 2018 phone the Sharp models are too slow to be worth installing, and the app says so on the card before you install."],
-  ["Is Inborn a subscription?",
-    "No. Inborn is a one-time purchase: Free is the complete app with unlimited chat, Pro is 19.99 USD once and Work is 69.99 USD once, with no renewal, no monthly fee and no message quota. List prices are in US dollars and local prices vary. A purchase belongs to the store account that bought it."],
-  ["How good is a small on-device model compared with ChatGPT?",
-    "A model that fits on a phone is genuinely weaker than a frontier cloud model at hard reasoning, long code, current facts and rare languages, and it is the better choice for anything you would rather not upload. Expect solid short answers, rewrites, summaries and translation into the major languages. Expect mistakes elsewhere, and check anything that matters."],
-  ["Can Inborn read my own documents?",
-    "Yes, with Pro. Inborn indexes your PDFs and documents on the device and answers questions about them with the passage it took the answer from, and nothing is uploaded because there is no cloud index. A file you add inside an incognito chat is removed when the session ends."],
-  ["Can I use Inborn for client work?",
-    "Yes. Work is a one-time 69.99 USD purchase that adds client vaults, an audit log with signed export, and an architecture statement you can hand to whoever at your firm has to approve software. Because there is no server, client material never leaves the machine you typed it on. You stay responsible for checking AI output under your own professional rules."],
-  ["Is Inborn open source?",
-    "No, it's source-available. The code is public at github.com/moshecohen90/inborn, so you can read it, build it and publish what you find, but the license does not let you redistribute or modify it, which is what open source would require. None of the checks we publish depends on that: every one of them is made from outside the app, on the build you installed, and the Proof screen names the exact commit that build came from."],
-];
+export const FAQ_COUNT = 10;
+/* Sizes only, not fill(): the FAQ is itself one of the tokens fill() resolves. */
+const sizes = (s) => s.replace(/\{\{SIZE_INSTANT\}\}/g, SIZE_INSTANT).replace(/\{\{SIZE_FAST\}\}/g, SIZE_FAST);
+const faq = (l) => Array.from({ length: FAQ_COUNT }, (_, i) => [t(l, `faq.${i + 1}.q`), sizes(t(l, `faq.${i + 1}.a`))]);
 
-const faqHtml = () => FAQ.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
+const faqHtml = (l) => faq(l).map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
 
-/* ---------- /compare ---------- */
-
-/** The date every price, license and permission on /compare was read on the vendor's own page. */
-const COMPARE_CHECKED = "24 September 2026";
-
-export const COMPARE_COLUMNS = ["Platforms", "Price", "License", "Where the model comes from", "Your documents on the device", "Android INTERNET permission"];
+/* ---------- /compare (F319, round 68) ---------- */
 
 /**
  * The on-device rivals, in the order the table and the ItemList both render, so a row and its structured-data entry
- * cannot drift. A cell says "Not verified" when we could not read it on the vendor's own page or in source they
- * publish; a guess in a comparison table is the one thing that would cost this page its credibility.
+ * cannot drift. Names, URLs and the column order live here; every sentence in a cell is a string like any other
+ * (`compare.cell.<app>.<column>`), so the table reads in the reader's language. A cell says "Not verified" when we
+ * could not read it on the vendor's own page or in source they publish; a guess in a comparison table is the one
+ * thing that would cost this page its credibility.
  */
+export const COMPARE_COLUMNS = ["platforms", "price", "license", "model-source", "documents", "internet"];
 export const COMPARE_APPS = [
-  ["Inborn", `${siteOrigin}/`, [
-    "iPhone, Android, web browser, Windows and macOS.",
-    "Free is the whole app. Pro is 19.99 USD one time, Work 69.99 USD one time. No subscription.",
-    "Source-available at github.com/moshecohen90/inborn: read it, build it, publish what you find, but not redistribute or modify it. Not open source.",
-    "Instant, 0.53 GB, ships inside the app and needs no download. Any GGUF file can be imported.",
-    "Yes, with Pro. Your PDFs and documents are indexed on the device, with OCR.",
-    "Not declared in the release build, so Android will not let it open a connection. A build gate fails the release if the line ever appears.",
-  ]],
-  ["PocketPal AI", "https://github.com/a-ghorbani/pocketpal-ai", [
-    "iPhone, iPad, Mac and Android.",
-    "Free. Its listing names no paid tier.",
-    "MIT, open source, so you can fork it.",
-    "No model inside the app. You pick a GGUF from Hugging Face in the app.",
-    "Not verified.",
-    "Declared. We read android.permission.INTERNET in its release manifest.",
-  ]],
-  ["Private LLM", "https://privatellm.app/en/faq", [
-    "iPhone, iPad, Mac and Vision. Android is a side-loaded beta, not on Google Play.",
-    "4.99 USD one time, with Family Sharing for six people.",
-    "Closed source. There is no public repository.",
-    "The vendor's own quantized models. It cannot load a file from Hugging Face.",
-    "Not verified.",
-    "Not verified. There is no Google Play release to read.",
-  ]],
-  ["Enclave AI", "https://enclaveai.app/pricing/", [
-    "iPhone, iPad, Mac and Vision.",
-    "Local models are free and unlimited. Pro, which adds cloud models, is 9.99 USD a month.",
-    "Closed source.",
-    "Models are downloaded inside the app.",
-    "Yes, on the free tier. Questions and summaries over your own PDFs.",
-    "No Android app.",
-  ]],
-  ["Layla", "https://apps.apple.com/us/app/layla/id6456886656", [
-    "Android and iPhone.",
-    "19.99 USD one time on the App Store.",
-    "Closed source.",
-    "About 4 GB downloads the first time the app runs.",
-    "Not verified. It does take image input, and it generates images on the device.",
-    "Not verified, and the source is closed. Its Play data-safety page says it shares device identifiers and crash logs for analytics, and offers no way to ask for deletion.",
-  ]],
-  ["MLC Chat", "https://github.com/mlc-ai/mlc-llm", [
-    "iPhone, iPad and Mac. On Android only as an APK from GitHub, not on Google Play.",
-    "Free.",
-    "Apache-2.0, open source.",
-    "Weights download from Hugging Face. Bundling them is a build option, not the default.",
-    "Not verified.",
-    "Declared. We read it in its manifest.",
-  ]],
-  ["Google AI Edge Gallery", "https://github.com/google-ai-edge/gallery", [
-    "Android and iPhone, published by Google.",
-    "Free.",
-    "Apache-2.0, open source.",
-    "Models download inside the app, and you can load your own.",
-    "Not verified. It takes image and audio input.",
-    "Declared, along with camera, microphone, calendar, accounts and push messaging.",
-  ]],
-  ["LM Studio", "https://lmstudio.ai/", [
-    "Windows, macOS and Linux. There is no phone version.",
-    "Free for personal use and for work use.",
-    "The desktop app is proprietary. Its command-line tools are MIT.",
-    "Models download inside the app.",
-    "Yes. Questions over .docx, .pdf and .txt files.",
-    "No Android app.",
-  ]],
-  ["Ollama", "https://ollama.com/pricing", [
-    "Windows, macOS and Linux. There is no phone version.",
-    "Local use is free and unlimited. Cloud models need an account, and Pro is 20 USD a month.",
-    "MIT, open source.",
-    "Models are pulled from ollama.com/library.",
-    "Not verified.",
-    "No Android app.",
-  ]],
+  ["inborn", "Inborn", `${siteOrigin}/`],
+  ["pocketpal", "PocketPal AI", "https://github.com/a-ghorbani/pocketpal-ai"],
+  ["private-llm", "Private LLM", "https://privatellm.app/en/faq"],
+  ["enclave", "Enclave AI", "https://enclaveai.app/pricing/"],
+  ["layla", "Layla", "https://apps.apple.com/us/app/layla/id6456886656"],
+  ["mlc", "MLC Chat", "https://github.com/mlc-ai/mlc-llm"],
+  ["ai-edge", "Google AI Edge Gallery", "https://github.com/google-ai-edge/gallery"],
+  ["lm-studio", "LM Studio", "https://lmstudio.ai/"],
+  ["ollama", "Ollama", "https://ollama.com/pricing"],
 ];
+export const COMPARE_FAQ_COUNT = 8;
+export const compareCell = (app, column) => `compare.cell.${app}.${column}`;
 
-const compareTableHtml = () => `<div class="table-wrap"><table class="compare-table">
-<caption class="sr-only">Inborn and eight other on-device AI apps: platforms, price, license, where the model comes from, documents on the device, and whether the Android build declares the INTERNET permission. Read on ${COMPARE_CHECKED}.</caption>
-<thead><tr><th scope="col">App</th>${COMPARE_COLUMNS.map((c) => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
+const compareTableHtml = (l) => `<div class="table-wrap"><table class="compare-table">
+<caption class="sr-only">${esc(t(l, "compare.table-caption")).replace("{{COMPARE_CHECKED}}", esc(t(l, "compare.checked")))}</caption>
+<thead><tr><th scope="col">${esc(t(l, "compare.col.app"))}</th>${COMPARE_COLUMNS.map((c) => `<th scope="col">${esc(t(l, `compare.col.${c}`))}</th>`).join("")}</tr></thead>
 <tbody>
-${COMPARE_APPS.map(([name, url, cells], i) => `<tr${i === 0 ? ' class="self"' : ""}><th scope="row">${i === 0 ? esc(name) : `<a href="${esc(url)}" rel="noopener">${esc(name)}</a>`}</th>${cells.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("\n")}
+${COMPARE_APPS.map(([id, name, url], i) => `<tr${i === 0 ? ' class="self"' : ""}><th scope="row">${i === 0 ? esc(name) : `<a href="${esc(url)}" rel="noopener">${esc(name)}</a>`}</th>${COMPARE_COLUMNS.map((c) => `<td>${esc(sizes(t(l, compareCell(id, c))))}</td>`).join("")}</tr>`).join("\n")}
 </tbody>
 </table></div>`;
 
@@ -458,210 +465,199 @@ ${COMPARE_APPS.map(([name, url, cells], i) => `<tr${i === 0 ? ' class="self"' : 
     the first sentence answers it outright and names Inborn in the first clause, so a lifted chunk still stands alone.
     "Is Inborn open source" and "what does a small model give up" live on the home FAQ; two URLs with one answer
     split the citation and neither wins. */
-export const COMPARE_FAQ = [
-  ["Inborn vs ChatGPT: what do I gain and what do I lose?",
-    "Inborn gains you an assistant that never sends your text anywhere and answers at full speed with the radios off. You lose capability: a model that fits on a phone writes shorter, reasons less far and knows less than a model on a rack of servers. You also lose a price comparison here, because OpenAI's pages returned an error to us."],
-  ["What is the best offline AI chat app for iPhone?",
-    "Inborn is the one we built, so read this as our answer and check the others yourself. On iPhone, Private LLM is 4.99 USD one time with Siri support, and Enclave AI answers questions about your documents on its free tier. Inborn ships the model inside the app, imports any GGUF, and runs the same on Android, web and desktop."],
-  ["Is there an AI chat app that works with no internet?",
-    "Inborn works with no internet, and so do several others, because the model runs on your device rather than on a server. Turn on airplane mode and ask it anything; the answer arrives at the same speed. PocketPal AI, MLC Chat, Layla and Google's own AI Edge Gallery run offline too. Offline is normal in this category now."],
-  ["Which private on-device AI apps are actually private, and how do I verify it?",
-    "Inborn is the one whose Android release ships without the INTERNET permission, which the operating system enforces for you rather than asking you to trust a promise. Verify any app in three ways: run aapt2 dump permissions on its APK, read the App permissions page on its Play listing, and put it behind a firewall. The six on-device Android apps whose source we read all declare INTERNET."],
-  ["Is there an AI chat app with no account and no sign-up?",
-    "Inborn has no account, no sign-up screen and no email field anywhere in it. PocketPal AI, Enclave AI, Private LLM and LLM Hub also state that no account is required. Gemini, Copilot and Perplexity can each be used signed out with fewer features, though signing in is where their storage and retention clocks begin."],
-  ["Is there a one-time purchase AI app instead of a monthly subscription?",
-    "Inborn is a one-time purchase and will not become a subscription. Free is the whole app, with unlimited chat and no message quota. Pro is 19.99 USD once and Work is 69.99 USD once. Private LLM is 4.99 USD once, Layla is 19.99 USD once on iOS, and LLM Hub has a 9.99 USD lifetime tier."],
-  ["Inborn vs PocketPal AI: which should I use?",
-    "Inborn ships a working model inside the app and its Android release has no INTERNET permission. PocketPal AI is free, MIT licensed and genuinely open source, so you can fork it. PocketPal downloads its models from Hugging Face and its release manifest declares INTERNET. If an open license matters more to you than the permission, choose PocketPal."],
-  ["Inborn vs Private LLM: which should I use?",
-    "Inborn is the cross-platform one and Private LLM is the cheaper one. Private LLM is 4.99 USD one time, a quarter of Inborn Pro, with Siri, Shortcuts, macOS text tools and Family Sharing for six. It is closed source, limited to its vendor's own quantized models, and its Android build is a side-loaded beta."],
-];
+const compareFaq = (l) => Array.from({ length: COMPARE_FAQ_COUNT }, (_, i) => [t(l, `compare.faq.${i + 1}.q`), sizes(t(l, `compare.faq.${i + 1}.a`))]);
+const compareFaqHtml = (l) => compareFaq(l).map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
 
-const compareFaqHtml = () => COMPARE_FAQ.map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
-
-const compareGraph = () => [
+const compareGraph = (l) => [
   {
     "@type": "WebPage",
-    "@id": `${siteOrigin}/compare#webpage`,
-    url: `${siteOrigin}/compare`,
-    name: "Inborn vs ChatGPT and the other private AI chat apps",
-    description: "Inborn compared with the cloud assistants and with the other on-device AI apps: what leaves the device, price, license, and the Android INTERNET permission.",
-    inLanguage: "en",
-    isPartOf: { "@id": ID.site },
-    about: { "@id": ID.app },
-    publisher: { "@id": ID.org },
+    "@id": `${abs(l, "/compare")}#webpage`,
+    url: abs(l, "/compare"),
+    name: metaOf("compare", "h1", l, metaOf("compare", "title", l)),
+    description: metaOf("compare", "description", l),
+    inLanguage: l.code,
+    isPartOf: { "@id": ID.site(l) },
+    about: { "@id": ID.app(l) },
     dateModified: lastmod("apps/site/src/pages/compare.html"),
+    publisher: { "@id": ID.org },
   },
   {
     "@type": "ItemList",
-    "@id": `${siteOrigin}/compare#apps`,
-    name: "On-device AI chat apps compared with Inborn",
-    description: `Prices, licenses and Android permissions read on each vendor's own page on ${COMPARE_CHECKED}.`,
+    "@id": `${abs(l, "/compare")}#apps`,
+    name: t(l, "compare.list-name"),
+    description: t(l, "compare.list-description").replace("{{COMPARE_CHECKED}}", t(l, "compare.checked")),
     numberOfItems: COMPARE_APPS.length,
     itemListOrder: "https://schema.org/ItemListUnordered",
-    itemListElement: COMPARE_APPS.map(([name, url], i) => ({
+    itemListElement: COMPARE_APPS.map(([, name, url], i) => ({
       "@type": "ListItem",
       position: i + 1,
-      /* Inborn's own node is defined in full on the home page; naming it here too keeps this page's graph resolvable
-         on its own, which is how an answer engine reads a page it fetched in isolation. */
-      item: { "@type": "SoftwareApplication", ...(i === 0 ? { "@id": ID.app } : {}), name, url, applicationCategory: "UtilitiesApplication" },
+      item: { "@type": "SoftwareApplication", name, url, applicationCategory: "UtilitiesApplication" },
     })),
   },
   {
     "@type": "FAQPage",
-    "@id": `${siteOrigin}/compare#faq`,
-    mainEntity: COMPARE_FAQ.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
+    "@id": `${abs(l, "/compare")}#faq`,
+    mainEntity: compareFaq(l).map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
   },
-  breadcrumb("/compare", [["Inborn", "/"], ["Compare", null]]),
+  breadcrumb(l, "/compare", [["Inborn", "/"], [metaOf("compare", "title", l), null]]),
 ];
 
-const homeGraph = () => [
+const homeGraph = (l) => [
   {
     "@type": "SoftwareApplication",
-    "@id": ID.app,
+    "@id": ID.app(l),
     name: "Inborn",
     alternateName: "Inborn: Private Local AI Chat",
-    url: `${siteOrigin}/`,
+    url: abs(l, "/"),
     applicationCategory: "UtilitiesApplication",
     applicationSubCategory: "On-device AI chat assistant",
     operatingSystem: "iOS, iPadOS, Android, Windows, macOS, Web browser",
     isAccessibleForFree: true,
-    inLanguage: "en",
+    inLanguage: l.code,
     softwareVersion: "1.0",
-    permissions: "None on Android: the release build does not declare android.permission.INTERNET, so the app cannot open a network connection.",
-    featureList: [
-      "Unlimited AI chat with an open-weight model that runs entirely on the device",
-      "Works with no internet connection, including airplane mode",
-      "No account, no email, no sign-in",
-      "Ask questions about your own PDFs and documents, indexed on the device",
-      "Speech in and out with voices that run locally",
-      "Screen lock, an incognito mode that saves nothing and ends with the session, one-tap wipe",
-      "Proof screen showing bytes out, bytes in and open connections from the operating system's own counters",
-      "Import any GGUF model file, including Gemma, Mistral and Llama",
-    ],
+    permissions: t(l, "ld.permissions"),
+    featureList: Array.from({ length: 8 }, (_, i) => t(l, `ld.feature.${i + 1}`)),
     publisher: { "@id": ID.org },
     brand: { "@id": ID.brand },
     offers: [
-      ["free", "Free", "0", "A complete app, not a trial: unlimited chat with the built-in model, no message cap, no watermark, no ads."],
-      ["pro", "Pro", "19.99", "One-time purchase, no subscription: your own documents, voice in and out, the larger Sharp models, unlimited personas, folders and full export."],
-      ["work", "Work", "69.99", "One-time purchase for people whose notes must not leave the room: client vaults, an audit log with signed export, and an architecture statement. 49.99 USD as an upgrade from Pro."],
-    ].map(([id, name, price, description]) => ({
-      "@type": "Offer", "@id": `${siteOrigin}/#offer-${id}`, name, description, price, priceCurrency: "USD",
+      ["free", "0"],
+      ["pro", "19.99"],
+      ["work", "69.99"],
+    ].map(([id, price]) => ({
+      "@type": "Offer", "@id": `${abs(l, "/")}#offer-${id}`, name: t(l, `ld.offer.${id}.name`), description: t(l, `ld.offer.${id}.description`), price, priceCurrency: "USD",
       availability: "https://schema.org/InStock", category: id === "free" ? "free" : "one-time purchase",
     })),
   },
   {
     "@type": "FAQPage",
-    "@id": `${siteOrigin}/#faq`,
-    mainEntity: FAQ.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
+    "@id": `${abs(l, "/")}#faq`,
+    mainEntity: faq(l).map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
   },
 ];
 
 /* ---------- Pages ---------- */
 
-/** A page fragment in src/pages: `<!-- meta: {json} -->` on the first line, then body HTML. */
+/** A page fragment in src/pages: `<!-- meta: {json} -->` on the first line, then body HTML whose strings are keys. */
 function fragment(dir, name) {
   const raw = readFileSync(path.join(src, dir, `${name}.html`), "utf8");
   const m = /^<!--\s*meta:\s*(\{.*?\})\s*-->\n?/s.exec(raw);
   const meta = m ? JSON.parse(m[1]) : {};
-  return { ...meta, body: raw.slice(m ? m[0].length : 0), source: `apps/site/src/${dir}/${name}.html` };
+  return { ...meta, tpl: raw.slice(m ? m[0].length : 0), source: `apps/site/src/${dir}/${name}.html` };
 }
 
 /** The three answer-engine posts. Order here is the order on /blog and in llms.txt. */
 const POSTS = ["why-on-device", "how-the-proof-works", "choosing-a-model"];
 
+const metaOf = (id, field, l, fallback) => {
+  const key = `${id}.meta.${field}`;
+  if (strings[EN.code][key] === undefined) return fallback;
+  return t(l, key);
+};
+
 function postPages() {
   return POSTS.map((name) => {
     const f = fragment("posts", name);
     const p = `/blog/${name}`;
+    const id = `post.${name}`;
     return {
       ...f,
+      id,
       path: p,
       ogImage: "/og/blog.png",
       ogType: "article",
-      jsonld: [
+      jsonld: (l) => [
         {
           "@type": "BlogPosting",
-          "@id": `${siteOrigin}${p}#article`,
-          isPartOf: { "@id": ID.site },
-          mainEntityOfPage: `${siteOrigin}${p}`,
-          url: `${siteOrigin}${p}`,
-          headline: f.h1 ?? f.title,
-          description: f.description,
-          inLanguage: "en",
+          "@id": `${abs(l, p)}#article`,
+          isPartOf: { "@id": ID.site(l) },
+          mainEntityOfPage: abs(l, p),
+          url: abs(l, p),
+          headline: metaOf(id, "h1", l, metaOf(id, "title", l)),
+          description: metaOf(id, "description", l),
+          inLanguage: l.code,
           datePublished: f.published,
           dateModified: lastmod(f.source),
           author: { "@id": ID.org },
           publisher: { "@id": ID.org },
-          about: { "@id": ID.app },
+          about: { "@id": ID.app(l) },
         },
-        breadcrumb(p, [["Inborn", "/"], ["Blog", "/blog"], [f.h1 ?? f.title, null]]),
+        breadcrumb(l, p, [["Inborn", "/"], [metaOf("blog", "h1", l), "/blog"], [metaOf(id, "h1", l, metaOf(id, "title", l)), null]]),
       ],
     };
   });
 }
 
 function blogIndex(posts) {
-  const items = posts.map((post) => `<li class="post">
-  <a class="post-link" href="${post.path}">
-    <span class="label">${esc(post.kicker ?? "Article")}</span>
-    <h2>${esc(post.h1 ?? post.title)}</h2>
-    <p>${esc(post.excerpt)}</p>
-    <span class="more">Read it</span>
+  return {
+    id: "blog",
+    path: "/blog",
+    wide: true,
+    source: "apps/site/build.mjs",
+    body: (l) => {
+      const items = posts.map((post) => `<li class="post">
+  <a class="post-link" href="${href(l, post.path)}">
+    <span class="label">${esc(metaOf(post.id, "kicker", l, t(l, "blog.article")))}</span>
+    <h2>${esc(metaOf(post.id, "h1", l, metaOf(post.id, "title", l)))}</h2>
+    <p>${esc(metaOf(post.id, "excerpt", l))}</p>
+    <span class="more">${esc(t(l, "blog.read-it"))}</span>
   </a>
 </li>`).join("");
-  return {
-    title: "Blog",
-    h1: "Writing",
-    description: "Short pieces on running AI on your own hardware: why on-device, how to check that an app sends nothing, and how to pick a model your device can run.",
-    wide: true,
-    body: `<p class="lede">Three questions we get asked constantly, answered properly. No newsletter, no pop-up, no tracking.</p>
-<ul class="posts">${items}</ul>`,
-    source: "apps/site/build.mjs",
-    jsonld: [
-      { "@type": "Blog", "@id": `${siteOrigin}/blog#blog`, url: `${siteOrigin}/blog`, name: "Inborn writing", inLanguage: "en", publisher: { "@id": ID.org }, blogPost: posts.map((p) => ({ "@id": `${siteOrigin}${p.path}#article` })) },
-      breadcrumb("/blog", [["Inborn", "/"], ["Blog", null]]),
+      return `<p class="lede">${esc(t(l, "blog.lede"))}</p>
+<ul class="posts">${items}</ul>`;
+    },
+    jsonld: (l) => [
+      { "@type": "Blog", "@id": `${abs(l, "/blog")}#blog`, url: abs(l, "/blog"), name: metaOf("blog", "h1", l), inLanguage: l.code, publisher: { "@id": ID.org }, blogPost: posts.map((p) => ({ "@id": `${abs(l, p.path)}#article` })) },
+      breadcrumb(l, "/blog", [["Inborn", "/"], [metaOf("blog", "h1", l), null]]),
     ],
   };
 }
 
 /* ---------- Answer-engine files ---------- */
 
-function llmsTxt(pages) {
+/**
+ * One llms.txt per language, each listing that language's own URLs, plus a Languages section so an engine that
+ * fetched the root file (the only path the convention fixes) can find the rest.
+ */
+function llmsTxt(l, pages) {
   const link = (p) => {
     const page = pages.find((x) => x.path === p);
-    return page ? `- [${page.h1 ?? page.title}](${siteOrigin}${p}): ${page.description}` : null;
+    return page ? `- [${page.h1 ?? page.title}](${abs(l, p)}): ${page.description}` : null;
   };
   const group = (paths) => paths.map(link).filter(Boolean).join("\n");
+  const languages = LOCALES.map((other) => `- ${other.name} (${other.code}): ${abs(other, "/")}`).join("\n");
   return `# Inborn
 
-> Inborn is a private AI chat app that runs entirely on the user's own device. There is no account, no cloud, no server, no analytics and no tracking. It works in airplane mode because the AI model is stored on the device. On Android the release build does not declare the INTERNET permission, so the app cannot open a network connection at all. Inborn is sold as a one-time purchase, never a subscription. Published by Cohen Apps; support@inbornapp.com.
+> ${t(l, "llms.summary")}
 
-- Platforms: iPhone, iPad, Android, web browser, Windows, macOS. iPhone and Android first; desktop after.
-- Price: Free 0 USD (a complete app: unlimited chat, no message cap, no ads, no watermark). Pro 19.99 USD one time. Work 69.99 USD one time, or 49.99 USD as an upgrade from Pro. List prices in US dollars; local prices vary.
-- Models: open-weight models in GGUF format. Instant is Qwen3.5 0.8B (533 MB, Apache-2.0) and ships inside the app. Fast is Qwen3.5 2B (1.28 GB, Apache-2.0). Sharp is Qwen3.5 4B (2.74 GB) or Phi-4-mini 3.8B (2.49 GB, MIT) and needs Pro. Any GGUF file can be imported, including Gemma, Mistral and Llama.
-- Privacy label: Data Not Collected. No account, no email, no sign-in, no analytics, no ads, no crash reporting in the app.
-- The four situations in which any bytes leave the device: model delivery (Google Play asset packs on Android, one HTTPS file fetch from models.inbornapp.com on iOS and desktop), a store purchase, an optional Hugging Face import the user starts, and a support email the user writes.
-- Verification, all from outside the app: the airplane-mode test; the Google Play permissions page shows no "full network access"; aapt2 dump permissions on the APK shows no android.permission.INTERNET; the iOS App Privacy Report row stays empty; the in-app Proof screen reads OUT 0 B and CONNECTIONS 0 from the operating system's own counters; a firewall such as NetGuard, Little Snitch or LuLu has nothing to block.
-- Honest limit: a small model on a phone is not a large cloud model. Responses are generated by AI and can be wrong.
-- Inborn is source-available, not open source: the code is public at github.com/moshecohen90/inborn under a license that permits reading, building and publishing findings but not redistribution; no check we publish depends on reading it.
+- ${t(l, "llms.platforms")}
+- ${t(l, "llms.price")}
+- ${t(l, "llms.models")}
+- ${t(l, "llms.privacy-label")}
+- ${t(l, "llms.egress")}
+- ${t(l, "llms.verification")}
+- ${t(l, "llms.limit")}
+- ${t(l, "llms.source")}
 
-## Product
+## ${t(l, "llms.languages")}
+
+${languages}
+
+## ${t(l, "llms.product")}
 
 ${group(["/", "/download", "/proof", "/compare", "/support"])}
 
-## Writing
+## ${t(l, "llms.writing")}
 
 ${group(["/blog", ...POSTS.map((p) => `/blog/${p}`)])}
 
-## Legal
+## ${t(l, "llms.legal")}
 
 ${group(["/privacy", "/terms", "/licenses", "/accessibility"])}
 `;
 }
 
 /** One fetch instead of twelve. Not a spec, a convenience: the whole site as text, never truncated. */
-function llmsFull(pages) {
+function llmsFull(l, pages) {
   const text = (html) => html
     .replace(/<script[\s\S]*?<\/script>/g, "")
     .replace(/<h2[^>]*>/g, "\n## ").replace(/<h3[^>]*>/g, "\n### ")
@@ -670,14 +666,14 @@ function llmsFull(pages) {
     .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ")
     .replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
   const body = pages.filter((p) => p.path !== "/404").map((p) => `# ${p.h1 ?? p.title}
-URL: ${siteOrigin}${p.path === "/" ? "/" : p.path}
+URL: ${abs(l, p.path)}
 > ${p.description}
 
-${text(p.body)}
+${text(p.html)}
 
 ---
 `).join("\n");
-  return `${llmsTxt(pages).split("\n## ")[0]}\n\n---\n\n${body}`;
+  return `${llmsTxt(l, pages).split("\n## ")[0]}\n\n---\n\n${body}`;
 }
 
 /** We want answer engines to read and cite us; the block list is data resellers and training-only scrapers. */
@@ -686,6 +682,7 @@ function robotsTxt() {
   const deny = ["Bytespider", "TikTokSpider", "omgili", "omgilibot", "Webzio-Extended", "Timpibot", "VelenPublicWebCrawler", "Diffbot", "ImagesiftBot", "ISSCyberRiskCrawler", "SemrushBot-OCOB"];
   return `# ${siteOrigin}/robots.txt
 # Inborn is an on-device AI chat app. We want search and answer engines to read and cite this site.
+# The same site is published in ${LOCALES.length} languages: English at the root, the others under /<locale>/.
 
 ${allow.map((ua) => `User-agent: ${ua}\nAllow: /`).join("\n\n")}
 
@@ -705,59 +702,78 @@ Sitemap: ${siteOrigin}/sitemap.xml
 
 /* ---------- Build ---------- */
 
-/** A page whose structured data is generated rather than declared in its fragment's `meta` block. */
+/** The pages that carry structured data of their own, by path. */
 const PAGE_GRAPH = { "/": homeGraph, "/compare": compareGraph };
 
-export function build() {
-  rmSync(dist, { recursive: true, force: true });
-  mkdirSync(dist, { recursive: true });
-  cpSync(path.join(here, "public"), dist, { recursive: true });
-  writeFileSync(path.join(dist, "site.css"), readFileSync(path.join(src, "site.css")));
-  /* The hero composer is the one form on the site; form-action names exactly where it may post and nothing else. */
-  const headers = readFileSync(path.join(here, "public/_headers"), "utf8").replace(/\{\{APP_ORIGIN\}\}/g, appOrigin);
-  writeFileSync(path.join(dist, "_headers"), headers);
-
+/** The locale-independent page set: path, id, template or body function, and the structured data each one adds. */
+function pageSet() {
   const pages = [];
-  const add = (p, page) => { pages.push({ path: p, ...page }); };
-
   for (const file of readdirSync(path.join(src, "pages"))) {
     const name = file.replace(/\.html$/, "");
-    add(name === "index" ? "/" : `/${name}`, fragment("pages", name));
+    const id = name === "index" ? "home" : name;
+    const path_ = name === "index" ? "/" : `/${name}`;
+    pages.push({ ...fragment("pages", name), id, path: path_, jsonld: (l) => PAGE_GRAPH[path_]?.(l) ?? [] });
   }
   const posts = postPages();
-  for (const post of posts) pages.push(post);
-  add("/blog", blogIndex(posts));
+  pages.push(...posts, blogIndex(posts));
+  pages.push({ id: "privacy", path: "/privacy", source: "docs/legal/privacy-policy.md", body: legalPage("privacy-policy.md") });
+  pages.push({ id: "terms", path: "/terms", source: "docs/legal/terms.md", body: legalPage("terms.md") });
+  pages.push({ id: "licenses", path: "/licenses", source: "docs/legal/NOTICE.json", body: licensesPage });
+  pages.push({ id: "accessibility", path: "/accessibility", source: "docs/legal/accessibility-policy.md", body: legalPage("accessibility-policy.md") });
+  return pages;
+}
 
-  const privacy = legalPage("privacy-policy.md");
-  add("/privacy", { ...privacy, description: "Inborn privacy policy: conversations, documents and the AI model stay on your device. No accounts, no analytics, no data collection. The complete list of network activity, per platform." });
-  const terms = legalPage("terms.md");
-  add("/terms", { ...terms, description: "Inborn terms of use and license: Free, one-time Pro and Work purchases, refunds through the stores, and what you agree to about AI output." });
-  add("/licenses", { ...licensesPage(), description: "Every model, engine, library and font Inborn ships with, and its license." });
-  const accessibility = legalPage("accessibility-policy.md");
-  add("/accessibility", { ...accessibility, description: "Inborn accessibility statement: the standard we work to, what the app and this site do today for text size, contrast, motion, screen readers and keyboards, the gaps we have measured, and how to report one." });
+/** The page as one locale sees it: every string resolved, ready for the layout, llms-full.txt and the sitemap. */
+function render(l, page) {
+  const html = localizeLinks(l, page.body ? page.body(l) : fill(l, page.tpl));
+  return {
+    ...page,
+    html,
+    title: metaOf(page.id, "title", l),
+    h1: metaOf(page.id, "h1", l),
+    description: metaOf(page.id, "description", l),
+  };
+}
 
-  const built = pages.map((p) => p.path);
-  const vars = tokens();
-  const fill = (html) => html.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
+/** `out` exists so two test files can build at once without wiping each other's dist (they run in parallel workers). */
+export function build({ out = dist } = {}) {
+  rmSync(out, { recursive: true, force: true });
+  mkdirSync(out, { recursive: true });
+  cpSync(path.join(here, "public"), out, { recursive: true });
+  writeFileSync(path.join(out, "site.css"), readFileSync(path.join(src, "site.css")));
+  /* The hero composer is the one form on the site; form-action names exactly where it may post and nothing else. */
+  const headers = readFileSync(path.join(here, "public/_headers"), "utf8").replace(/\{\{APP_ORIGIN\}\}/g, appOrigin);
+  writeFileSync(path.join(out, "_headers"), headers);
 
-  for (const page of pages) {
-    const jsonld = [...orgGraph(), ...(PAGE_GRAPH[page.path]?.() ?? []), ...(page.jsonld ?? [])];
-    const file = page.path === "/" ? "index.html" : `${page.path.slice(1)}.html`;
-    mkdirSync(path.dirname(path.join(dist, file)), { recursive: true });
-    writeFileSync(path.join(dist, file), fill(layout({ ...page, jsonld })));
+  const set = pageSet();
+  const built = [];
+  for (const l of LOCALES) {
+    const pages = set.map((page) => render(l, page));
+    for (const page of pages) {
+      const jsonld = [baseGraph(l), ...(page.jsonld?.(l) ?? [])];
+      const rel = page.path === "/" ? "index.html" : `${page.path.slice(1)}.html`;
+      const file = path.join(root(l).slice(1), rel);
+      mkdirSync(path.dirname(path.join(out, file)), { recursive: true });
+      writeFileSync(path.join(out, file), layout(l, { ...page, body: page.html, jsonld }));
+      built.push(href(l, page.path));
+    }
+    const indexed = pages.filter((p) => p.path !== "/404");
+    const urls = indexed.map((p) => `  <url><loc>${abs(l, p.path)}</loc><lastmod>${lastmod(p.source ?? "apps/site")}</lastmod></url>`).join("\n");
+    writeFileSync(path.join(out, `sitemap-${l.code}.xml`), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+    const dir = path.join(out, root(l).slice(1));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(path.join(dir, "llms.txt"), llmsTxt(l, pages));
+    writeFileSync(path.join(dir, "llms-full.txt"), llmsFull(l, pages));
   }
-
-  const indexed = pages.filter((p) => p.path !== "/404");
-  const urls = indexed.map((p) => `  <url><loc>${siteOrigin}${p.path === "/" ? "/" : p.path}</loc><lastmod>${lastmod(p.source ?? "apps/site")}</lastmod></url>`).join("\n");
-  writeFileSync(path.join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
-  writeFileSync(path.join(dist, "robots.txt"), robotsTxt());
-  writeFileSync(path.join(dist, "llms.txt"), fill(llmsTxt(pages)));
-  writeFileSync(path.join(dist, "llms-full.txt"), fill(llmsFull(pages)));
+  /* One index, so a search engine finds all eight language maps from the one path robots.txt names. */
+  const maps = LOCALES.map((l) => `  <sitemap><loc>${siteOrigin}/sitemap-${l.code}.xml</loc><lastmod>${lastmod("apps/site")}</lastmod></sitemap>`).join("\n");
+  writeFileSync(path.join(out, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${maps}\n</sitemapindex>\n`);
+  writeFileSync(path.join(out, "robots.txt"), robotsTxt());
   return built;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const out = build();
-  console.log(`built ${out.length} pages → ${path.relative(process.cwd(), dist)}: ${out.join(" ")}`);
+  console.log(`built ${out.length} pages in ${LOCALES.length} languages → ${path.relative(process.cwd(), dist)}`);
   if (!storesLive) console.log("store links render as \"Opens at launch\" (STORES_LIVE=1 once both listings resolve)");
 }

@@ -1,178 +1,178 @@
-<!-- meta: {"title": "Inborn vs ChatGPT and other private offline AI apps", "h1": "Inborn vs ChatGPT and the other private AI chat apps: what actually runs offline", "description": "Inborn runs entirely on your phone, with no account and no subscription. Compared point by point with ChatGPT, Gemini, Ollama, LM Studio and PocketPal.", "wide": true} -->
-<p class="lede">Inborn runs the model on your device, so your messages never reach a server and the app keeps working with the radios off. ChatGPT, Gemini, Copilot and Claude run on their companies' computers, so your text has to travel to get an answer. That one difference decides everything else on this page: what is stored, for how long, who can read it, and whether the app works on a plane.</p>
+<!-- meta: {"wide":true} -->
+<p class="lede">{{t:compare.inborn-runs-the-model-on}}</p>
 
-<p class="lede-2">Offline AI is no longer rare. Several good apps run a model on a phone, and one of them is published by Google. This page compares Inborn with the cloud assistants and with the on-device apps, names the places where a rival is the better buy, and shows how to check each claim yourself. Every price, license and permission here was read on {{COMPARE_CHECKED}}, on the vendor's own public page.</p>
+<p class="lede-2">{{t:compare.offline-ai-is-no-longer}}</p>
 
 <section class="band" aria-labelledby="leaves" id="leaves">
-  <div class="rail"><span class="mono num">01</span><span class="mono rail-k">What leaves</span></div>
+  <div class="rail"><span class="mono num">01</span><span class="mono rail-k">{{t:compare.what-leaves}}</span></div>
   <div class="band-body">
-    <h2 id="leaves">Cloud AI and on-device AI: what actually leaves your phone</h2>
-    <p>A cloud assistant is a text pipe. You type, the words go to a data center, a large model reads them, and the answer comes back. The model is far too big for a phone, which is why it lives there. Microsoft states the consequence plainly in its <a href="https://support.microsoft.com/en-us/privacy/microsoft-copilot/transparency-note" rel="noopener">Copilot transparency note</a>: "Copilot relies on Internet connectivity to function. Disruptions in connectivity can have an impact on the availability and performance of the service."</p>
-    <p>An on-device app inverts that. The model file sits in the app's storage, your own chip does the arithmetic, and the answer is produced a few centimeters from your hand. Nothing is sent, because there is nowhere to send it. Google's <a href="https://policies.google.com/privacy?hl=en-US" rel="noopener">privacy policy</a> notes that "your information may be processed on servers located outside of the country where you live". On a device-only app that sentence has no subject.</p>
-    <p>The trade is real and we will not dress it up. A 2 GB model on a phone is weaker than a model running on a rack of accelerators. It writes shorter, reasons less far and knows less. What you get back is that the work happens where you are, at the same speed in airplane mode, with no account and no monthly charge.</p>
-    <p>Inborn goes one step past "it works offline". On Android the release build does not declare the INTERNET permission at all, and a build gate fails the release if that line ever appears. Android will not let an app without that permission open a connection, so the guarantee is enforced by the operating system rather than by our promise.</p>
-    <p class="readout" aria-label="A picture of the app's own Proof screen readout, not a live measurement of this web page"><span>OUT <b>0 B</b></span><span>CONNECTIONS <b>0</b></span><span class="ok">SEALED · ON-DEVICE</span></p>
-    <p class="readout-cap mono">What the app's own Proof screen shows on your device — a picture, not a live reading of this page.</p>
+    <h2 id="leaves">{{t:compare.cloud-ai-and-on-device}}</h2>
+    <p>{{t:compare.a-cloud-assistant-is-a}}</p>
+    <p>{{t:compare.an-on-device-app-inverts}}</p>
+    <p>{{t:compare.the-trade-is-real-and}}</p>
+    <p>{{t:compare.inborn-goes-one-step-past}}</p>
+    <p class="readout" aria-label="{{t:compare.a-picture-of-the-app}}">{{t:compare.out-0-b-connections-0}}</p>
+    <p class="readout-cap mono">{{t:compare.what-the-app-s-own}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="cloud-terms" id="cloud-terms">
-  <div class="rail"><span class="mono num">02</span><span class="mono rail-k">Their terms</span></div>
+  <div class="rail"><span class="mono num">02</span><span class="mono rail-k">{{t:compare.their-terms}}</span></div>
   <div class="band-body">
-    <h2 id="cloud-terms">Is ChatGPT private? What the cloud assistants store</h2>
-    <p>We could not read OpenAI's policy pages. Both <span class="mono">openai.com</span> and <span class="mono">help.openai.com</span> returned an error to us on {{COMPARE_CHECKED}}, so this page quotes nothing from them and prints no ChatGPT price. Their <a href="https://openai.com/chatgpt/pricing" rel="noopener">pricing page</a> is linked here and you can read it yourself. What follows is what four other vendors say on their own public pages, in their own words.</p>
+    <h2 id="cloud-terms">{{t:compare.is-chatgpt-private-what-the}}</h2>
+    <p>{{t:compare.we-could-not-read-openai}}</p>
     <div class="grid two">
       <div class="card">
-        <span class="label">Microsoft Copilot</span>
-        <h3>Eighteen months by default</h3>
-        <p>The <a href="https://support.microsoft.com/en-us/microsoft-copilot/privacy-faq-for-microsoft-copilot" rel="noopener">privacy FAQ</a> says that signed in, "this info will be sent to the Microsoft cloud and stored with your Microsoft account". On training: "Except for certain categories of users or users who have opted out, Microsoft uses data from Bing, MSN, Copilot… for AI training." On retention: "By default, we store conversation activity for 18 months." Signed out is different, and Microsoft says so: "If you are not logged into Copilot with a Microsoft Account… we do not train on your conversations."</p>
+        <span class="label">{{t:compare.microsoft-copilot}}</span>
+        <h3>{{t:compare.eighteen-months-by-default}}</h3>
+        <p>{{t:compare.the-privacy-faq-says-that}}</p>
       </div>
       <div class="card">
-        <span class="label">Google Gemini</span>
-        <h3>On by default, and three years for reviewed chats</h3>
-        <p>Google's help pages say "If you're 18 or over, <a href="https://support.google.com/gemini/answer/13278892?hl=en" rel="noopener">Keep Activity is on by default</a>." Turning it off does not make conversations vanish at once: "Even when Keep Activity is off, your conversations will be saved with your account for up to 72 hours." Chats that went to a human reviewer are handled separately, and Google states they "<a href="https://support.google.com/gemini/answer/13594961?hl=en" rel="noopener">are not deleted when you delete your activity. Instead, they are retained for up to three years</a>." You can use Gemini signed out, where Google says you "can generally use text-based interactions".</p>
+        <span class="label">{{t:compare.google-gemini}}</span>
+        <h3>{{t:compare.on-by-default-and-three}}</h3>
+        <p>{{t:compare.google-s-help-pages-say}}</p>
       </div>
       <div class="card">
-        <span class="label">Perplexity</span>
-        <h3>Retention on by default</h3>
-        <p>Its help center says "<a href="https://intercom.help/perplexity-ai/en/articles/11564572-data-collection-at-perplexity" rel="noopener">AI Data Retention is enabled by default</a>", and, about material already collected, "Previously collected training data cannot be deleted or removed." It can be used without signing in.</p>
+        <span class="label">{{t:compare.perplexity}}</span>
+        <h3>{{t:compare.retention-on-by-default}}</h3>
+        <p>{{t:compare.its-help-center-says-ai}}</p>
       </div>
       <div class="card">
-        <span class="label">Claude</span>
-        <h3>Thirty days, and no default we can state</h3>
-        <p>Anthropic says deleted conversations are "<a href="https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data" rel="noopener">Deleted from our back-end storage systems within 30 days</a>". On whether training is on by default, their <a href="https://www.anthropic.com/legal/privacy" rel="noopener">privacy policy</a> and their <a href="https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training" rel="noopener">privacy center</a> do not agree, so we state no default for Claude. Read both and decide for yourself.</p>
+        <span class="label">{{t:compare.claude}}</span>
+        <h3>{{t:compare.thirty-days-and-no-default}}</h3>
+        <p>{{t:compare.anthropic-says-deleted-conversations-are}}</p>
       </div>
     </div>
-    <p class="small">None of this is an accusation. These are the published terms of a service that has to receive your text in order to answer it. The point is that the terms exist at all, and that they can change. With Inborn there is no term to read, because there is no transfer to govern. The same list for Inborn, in legal wording and per platform, is section 3 of the <a href="/privacy#3-the-complete-list-of-network-activity-by-platform">privacy policy</a>.</p>
+    <p class="small">{{t:compare.none-of-this-is-an}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="cloud-table" id="cloud-table">
-  <div class="rail"><span class="mono num">03</span><span class="mono rail-k">Versus the cloud</span></div>
+  <div class="rail"><span class="mono num">03</span><span class="mono rail-k">{{t:compare.versus-the-cloud}}</span></div>
   <div class="band-body">
-    <h2 id="cloud-table">Inborn compared with the cloud assistants</h2>
-    <p>Each cell below holds a short statement rather than a tick. Where a vendor's own page was unreadable to us, or where two of their pages contradict each other, the cell says so instead of guessing.</p>
+    <h2 id="cloud-table">{{t:compare.inborn-compared-with-the-cloud}}</h2>
+    <p>{{t:compare.each-cell-below-holds-a}}</p>
     <div class="table-wrap"><table class="compare-table cloud">
-      <caption class="sr-only">Inborn compared with ChatGPT, Gemini, Claude and Copilot on where the model runs, working offline, accounts, price, what happens to your text, and what you can check yourself.</caption>
-      <thead><tr><th scope="col">&nbsp;</th><th scope="col">Inborn</th><th scope="col">ChatGPT</th><th scope="col">Gemini</th><th scope="col">Claude</th><th scope="col">Copilot</th></tr></thead>
+      <caption class="sr-only">{{t:compare.inborn-compared-with-chatgpt-gemini}}</caption>
+      <thead><tr><th scope="col">{{t:compare.text}}</th><th scope="col">{{t:compare.inborn}}</th><th scope="col">{{t:compare.chatgpt}}</th><th scope="col">{{t:compare.gemini}}</th><th scope="col">{{t:compare.claude-2}}</th><th scope="col">{{t:compare.copilot}}</th></tr></thead>
       <tbody>
         <tr>
-          <th scope="row">Where the model runs</th>
-          <td>The model file sits on your device and your own chip produces every answer.</td>
-          <td>On OpenAI's computers. It is a cloud service.</td>
-          <td>On Google's servers, which Google says may sit outside your country.</td>
-          <td>On Anthropic's servers.</td>
-          <td>In the Microsoft cloud.</td>
+          <th scope="row">{{t:compare.where-the-model-runs}}</th>
+          <td>{{t:compare.the-model-file-sits-on}}</td>
+          <td>{{t:compare.on-openai-s-computers-it}}</td>
+          <td>{{t:compare.on-google-s-servers-which}}</td>
+          <td>{{t:compare.on-anthropic-s-servers}}</td>
+          <td>{{t:compare.in-the-microsoft-cloud}}</td>
         </tr>
         <tr>
-          <th scope="row">Works with no connection</th>
-          <td>Yes, at the same speed. Turn on airplane mode and ask anything.</td>
-          <td>No. An answer has to come back over the network.</td>
-          <td>No. The request has to reach Google to be answered.</td>
-          <td>No. The request has to reach Anthropic to be answered.</td>
-          <td>No. Microsoft states that it "relies on Internet connectivity to function".</td>
+          <th scope="row">{{t:compare.works-with-no-connection}}</th>
+          <td>{{t:compare.yes-at-the-same-speed}}</td>
+          <td>{{t:compare.no-an-answer-has-to}}</td>
+          <td>{{t:compare.no-the-request-has-to}}</td>
+          <td>{{t:compare.no-the-request-has-to-2}}</td>
+          <td>{{t:compare.no-microsoft-states-that-it}}</td>
         </tr>
         <tr>
-          <th scope="row">Account required</th>
-          <td>No account, no sign-up screen and no email field anywhere in the app.</td>
-          <td>Not verified. We could not read OpenAI's own pages.</td>
-          <td>Not for everything. Signed out you "can generally use text-based interactions".</td>
-          <td>Anthropic's help pages describe creating an account with a phone number to use Claude.</td>
-          <td>Not required. Microsoft describes a signed-out mode with different data handling.</td>
+          <th scope="row">{{t:compare.account-required}}</th>
+          <td>{{t:compare.no-account-no-sign-up}}</td>
+          <td>{{t:compare.not-verified-we-could-not}}</td>
+          <td>{{t:compare.not-for-everything-signed-out}}</td>
+          <td>{{t:compare.anthropic-s-help-pages-describe}}</td>
+          <td>{{t:compare.not-required-microsoft-describes-a}}</td>
         </tr>
         <tr>
-          <th scope="row">Price</th>
-          <td>Free is the whole app. Pro 19.99 USD one time, Work 69.99 USD one time. No renewal.</td>
-          <td>A free tier and a paid monthly plan. We print no figure: their pricing page returned an error to us.</td>
-          <td>A free tier and paid monthly plans. Google's own plans page rendered no price for us, so we print none.</td>
-          <td>A free tier, and Pro listed at 20 USD a month billed monthly on claude.com/pricing.</td>
-          <td>A free tier, and Microsoft 365 Premium listed at 19.99 USD a month on Microsoft's own page.</td>
+          <th scope="row">{{t:compare.price}}</th>
+          <td>{{t:compare.free-is-the-whole-app}}</td>
+          <td>{{t:compare.a-free-tier-and-a}}</td>
+          <td>{{t:compare.a-free-tier-and-paid}}</td>
+          <td>{{t:compare.a-free-tier-and-pro}}</td>
+          <td>{{t:compare.a-free-tier-and-microsoft}}</td>
         </tr>
         <tr>
-          <th scope="row">What happens to your text</th>
-          <td>It stays in an encrypted database on your device. Nothing is sent, so nothing is stored elsewhere.</td>
-          <td>Not verified. Their policy pages returned an error to us.</td>
-          <td>Kept with your account. Keep Activity is on by default at 18 and over, and human-reviewed chats are "retained for up to three years".</td>
-          <td>Deleted conversations are "Deleted from our back-end storage systems within 30 days". Their two pages disagree on the training default, so we state none.</td>
-          <td>"Sent to the Microsoft cloud and stored with your Microsoft account", and "By default, we store conversation activity for 18 months."</td>
+          <th scope="row">{{t:compare.what-happens-to-your-text}}</th>
+          <td>{{t:compare.it-stays-in-an-encrypted}}</td>
+          <td>{{t:compare.not-verified-their-policy-pages}}</td>
+          <td>{{t:compare.kept-with-your-account-keep}}</td>
+          <td>{{t:compare.deleted-conversations-are-deleted-from}}</td>
+          <td>{{t:compare.sent-to-the-microsoft-cloud}}</td>
         </tr>
         <tr>
-          <th scope="row">What you can check yourself</th>
-          <td>Five checks from outside the app: airplane mode, the Play permissions page, aapt2 on the APK, the iOS App Privacy Report, and a firewall.</td>
-          <td>Nothing we could read. You can still watch your own traffic with a firewall.</td>
-          <td>Google's help pages state the rules. You cannot inspect their servers.</td>
-          <td>Anthropic's pages state the rules. You cannot inspect their servers.</td>
-          <td>Microsoft's pages state the rules. You cannot inspect their servers.</td>
+          <th scope="row">{{t:compare.what-you-can-check-yourself}}</th>
+          <td>{{t:compare.five-checks-from-outside-the}}</td>
+          <td>{{t:compare.nothing-we-could-read-you}}</td>
+          <td>{{t:compare.google-s-help-pages-state}}</td>
+          <td>{{t:compare.anthropic-s-pages-state-the}}</td>
+          <td>{{t:compare.microsoft-s-pages-state-the}}</td>
         </tr>
       </tbody>
     </table></div>
-    <p class="small">Quotes read on {{COMPARE_CHECKED}} on each vendor's own page. "Not verified" means we could not read the vendor's own page, so we printed nothing rather than a guess.</p>
+    <p class="small">{{t:compare.quotes-read-on-on-each}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="desktop" id="desktop">
-  <div class="rail"><span class="mono num">04</span><span class="mono rail-k">Desktop runners</span></div>
+  <div class="rail"><span class="mono num">04</span><span class="mono rail-k">{{t:compare.desktop-runners}}</span></div>
   <div class="band-body">
-    <h2 id="desktop">Inborn, Ollama and LM Studio</h2>
-    <p>If you have a desktop and you are comfortable with a terminal, <a href="https://ollama.com/" rel="noopener">Ollama</a> and <a href="https://lmstudio.ai/" rel="noopener">LM Studio</a> are excellent, and both are free. Ollama is MIT licensed and its local use is free and unlimited; its cloud models need an account, and Ollama Pro is listed at 20 USD a month. LM Studio is free for personal use and for work use, runs on Windows, macOS and Linux, answers questions over .docx, .pdf and .txt files, acts as an MCP host, and exposes a local OpenAI-compatible server. Its desktop app is proprietary.</p>
-    <p>On a machine with 32 GB of memory, both will run models Inborn cannot fit on a phone, and they will run them faster. If that is your situation, use them. We would rather tell you than sell you something smaller.</p>
-    <p>Neither one runs on a phone. That is the whole gap. Inborn is built for the device that is actually in your pocket on the train, and it is the same app on iPhone, Android, in a browser and on the desktop. The Android release also has no INTERNET permission, which a desktop app has no equivalent of. Model sizes, memory and the speeds we measured are in <a href="/blog/choosing-a-model">choosing a model</a>.</p>
+    <h2 id="desktop">{{t:compare.inborn-ollama-and-lm-studio}}</h2>
+    <p>{{t:compare.if-you-have-a-desktop}}</p>
+    <p>{{t:compare.on-a-machine-with-32}}</p>
+    <p>{{t:compare.neither-one-runs-on-a}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="ondevice" id="ondevice">
-  <div class="rail"><span class="mono num">05</span><span class="mono rail-k">Versus on-device</span></div>
+  <div class="rail"><span class="mono num">05</span><span class="mono rail-k">{{t:compare.versus-on-device}}</span></div>
   <div class="band-body">
-    <h2 id="ondevice">Inborn compared with the other on-device AI apps</h2>
-    <p>Running offline is table stakes in this category now. Google's own AI Edge Gallery says no internet is required, and it is free. So the useful comparison is not whether an app works offline. It is what it costs, what license it carries, what it can do with your files, and what it is still permitted to send.</p>
+    <h2 id="ondevice">{{t:compare.inborn-compared-with-the-other}}</h2>
+    <p>{{t:compare.running-offline-is-table-stakes}}</p>
     {{COMPARE_TABLE}}
-    <p class="small">"Not verified" means we could not confirm it on the vendor's own public page or in source they publish, so we left it rather than guess. On the permission row we read the release manifests of six on-device Android apps: PocketPal AI, MLC Chat, Google AI Edge Gallery, SmolChat, LLM Hub and MyDeviceAI. All six declare <span class="mono">android.permission.INTERNET</span>. Inborn's release build does not. We have not read every Android AI app that exists, so this is a statement about those six.</p>
-    <p class="small">Two more worth knowing about. LLM Hub is free with a 9.99 USD lifetime tier, on both stores, source-available under a PolyForm Noncommercial license, and needs no account; its manifest declares INTERNET along with location, contacts and calendar. Apple Intelligence is free and built into the operating system, and <a href="https://support.apple.com/en-us/121115" rel="noopener">Apple's own page</a> says it "can draw on larger server-based models" through Private Cloud Compute. Gemini Nano is an Android system service rather than a chat app, and Google states that "<a href="https://developer.android.com/ai/gemini-nano" rel="noopener">AICore does not have direct internet access</a>".</p>
+    <p class="small">{{t:compare.not-verified-means-we-could}}</p>
+    <p class="small">{{t:compare.two-more-worth-knowing-about}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="account" id="account">
-  <div class="rail"><span class="mono num">06</span><span class="mono rail-k">No account</span></div>
+  <div class="rail"><span class="mono num">06</span><span class="mono rail-k">{{t:compare.no-account}}</span></div>
   <div class="band-body">
-    <h2 id="account">No account, no login, no subscription</h2>
-    <p>Inborn has no account. There is no sign-up screen, no email field, no profile, and nothing on our side that could hold a record of you. A purchase is tied to the store you bought it from, because there is no account that could carry it anywhere else. That is a real limitation and it is the price of having no account at all.</p>
-    <p>The cloud assistants are not all account walls. Gemini, Copilot and Perplexity can each be used signed out, with fewer features and, in Microsoft's stated case, different training treatment. So the honest claim is narrower than "cloud apps make you log in". It is that signing in is where the storage, the history and the retention clocks begin. Microsoft is explicit about it: signed in, your text is "sent to the Microsoft cloud and stored with your Microsoft account".</p>
-    <p>On payment, Inborn has no subscription and will not add one. Free is the entire app, with unlimited chat, no message quota and no watermark. Pro is 19.99 USD once. Work is 69.99 USD once. If we stopped shipping updates tomorrow, the copy you bought would keep working, because there is no license server to switch off. The three tiers are on the <a href="/#pricing">pricing section</a> of the home page.</p>
+    <h2 id="account">{{t:compare.no-account-no-login-no}}</h2>
+    <p>{{t:compare.inborn-has-no-account-there}}</p>
+    <p>{{t:compare.the-cloud-assistants-are-not}}</p>
+    <p>{{t:compare.on-payment-inborn-has-no}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="better" id="better">
-  <div class="rail"><span class="mono num">07</span><span class="mono rail-k">Where they win</span></div>
+  <div class="rail"><span class="mono num">07</span><span class="mono rail-k">{{t:compare.where-they-win}}</span></div>
   <div class="band-body">
-    <h2 id="better">Where the others are better than Inborn</h2>
+    <h2 id="better">{{t:compare.where-the-others-are-better}}</h2>
     <ul>
-      <li><strong>Documents on a free tier.</strong> Enclave AI answers questions about your PDFs at no cost, with image, PDF and code attachments. In Inborn, documents and OCR sit behind Pro.</li>
-      <li><strong>Images on the device.</strong> Layla generates images locally with Stable Diffusion, takes image input, generates music and runs Python agents. Inborn does none of that.</li>
-      <li><strong>Price on an iPhone.</strong> Private LLM is 4.99 USD one time, a quarter of Inborn Pro, with Family Sharing for six, Siri and Shortcuts support, and system-wide text tools on macOS. Inborn has not built those.</li>
-      <li><strong>A license you can fork.</strong> PocketPal AI is MIT and genuinely open source. Inborn is source-available: you can read it, build it and publish what you find, and you may not redistribute or modify it. That is a weaker freedom and we say so rather than borrow the words "open source".</li>
-      <li><strong>A desktop with memory to spare.</strong> LM Studio and Ollama are free and will run larger and better models than any phone can hold.</li>
-      <li><strong>Nothing to install.</strong> Apple Intelligence is already on the phone and costs nothing, though Apple notes it can reach server-based models. On Android, Google AI Edge Gallery is free, Apache-2.0 and published by Google itself.</li>
-      <li><strong>Raw capability.</strong> Every cloud assistant is stronger than any model that fits on a phone. If your work needs the best reasoning available and you accept the terms in section 02, use one of them.</li>
+      <li>{{t:compare.documents-on-a-free-tier}}</li>
+      <li>{{t:compare.images-on-the-device-layla}}</li>
+      <li>{{t:compare.price-on-an-iphone-private}}</li>
+      <li>{{t:compare.a-license-you-can-fork}}</li>
+      <li>{{t:compare.a-desktop-with-memory-to}}</li>
+      <li>{{t:compare.nothing-to-install-apple-intelligence}}</li>
+      <li>{{t:compare.raw-capability-every-cloud-assistant}}</li>
     </ul>
-    <p>Inborn is for the times and the material where you would rather nothing left the device.</p>
+    <p>{{t:compare.inborn-is-for-the-times}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="check" id="check">
-  <div class="rail"><span class="mono num">08</span><span class="mono rail-k">Check it</span></div>
+  <div class="rail"><span class="mono num">08</span><span class="mono rail-k">{{t:compare.check-it}}</span></div>
   <div class="band-body">
-    <h2 id="check">How to check any of this yourself</h2>
-    <p>Nothing on this page needs you to trust us. Five checks on Inborn work from outside the app, on the build you installed: airplane mode, the App permissions page on the Play listing, <code>aapt2 dump permissions</code> on the APK, the iOS App Privacy Report, and a firewall such as NetGuard, Little Snitch or LuLu. Each takes under a minute.</p>
-    <p>The instructions are on <a href="/proof">the proof page</a>. The reasoning behind each check, including the three things none of them proves, is in <a href="/blog/how-the-proof-works">how the proof works</a>. Why any of it is worth the trade is in <a href="/blog/why-on-device">why on-device</a>. The app's source is at <a href="https://github.com/moshecohen90/inborn" rel="noopener">github.com/moshecohen90/inborn</a>, source-available: read it, build it, publish what you find.</p>
-    <p><a class="btn primary" href="/download">Get Inborn</a></p>
+    <h2 id="check">{{t:compare.how-to-check-any-of}}</h2>
+    <p>{{t:compare.nothing-on-this-page-needs}}</p>
+    <p>{{t:compare.the-instructions-are-on-the}}</p>
+    <p>{{t:compare.get-inborn}}</p>
   </div>
 </section>
 
 <section class="band" aria-labelledby="compare-faq" id="compare-faq">
-  <div class="rail"><span class="mono num">09</span><span class="mono rail-k">Questions</span></div>
+  <div class="rail"><span class="mono num">09</span><span class="mono rail-k">{{t:compare.questions}}</span></div>
   <div class="band-body">
-    <h2 id="compare-faq">Questions people ask when comparing</h2>
+    <h2 id="compare-faq">{{t:compare.questions-people-ask-when-comparing}}</h2>
     <div class="qa-list">{{COMPARE_FAQ}}</div>
-    <p class="small">Whether Inborn is open source, and what a small model gives up against a large one, are answered on the <a href="/#faq">home page</a>.</p>
+    <p class="small">{{t:compare.whether-inborn-is-open-source}}</p>
   </div>
 </section>
