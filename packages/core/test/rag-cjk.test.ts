@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, isCjkFunctionTerm, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
 
 /**
  * F195. The F161 relevance floor is `cosine >= 0.5 || bm25Terms >= 2 || (bm25Terms >= 1 && bm25 >= 2.0)`. Chinese and
@@ -153,6 +153,40 @@ describe("F278 · a one-passage CJK document does not cite itself for an off-top
       expect(p.messages[1]!.content).toContain(text);
     });
   }
+});
+
+/**
+ * F363. zh-Hant is the launch locale, and its glue is written in Traditional glyphs (我們, 這個, 什麼, 會, 為) that the
+ * Simplified-only glue class did not know, so 我們/可以 counted as a content word shared with any text: the real
+ * fixture's off-topic question matched one term and the cosine corroborated it into a citation.
+ */
+const ZH_HANT_ONE = "本公司二〇二四年度的營收為三千萬元，比上一年度成長百分之十二。我們可以在下一年度繼續維持這樣的成長。";
+const ZH_HANT_OFF = "我們什麼時候可以去巴黎旅遊？";
+
+describe("F363 · Traditional Chinese glue is glue", () => {
+  it("every Simplified glue glyph's Traditional form is glue too", () => {
+    const pairs = "们們 这這 么麼 对對 为為 吗嗎 让讓 从從 与與 于於 还還 会會 过過 时時 着著 个個 两兩 来來 没沒".split(" ");
+    for (const [simplified, traditional] of pairs.map((p) => [...p])) {
+      expect([simplified, isCjkFunctionTerm(simplified!)]).toEqual([simplified, true]);
+      expect([traditional, isCjkFunctionTerm(traditional!)]).toEqual([traditional, true]);
+    }
+    expect(isCjkFunctionTerm("我們")).toBe(true);
+    expect(isCjkFunctionTerm("營收")).toBe(false);
+  });
+
+  it("the off-topic question shares no term with the passage in either script, so a corroborating cosine cites nothing", () => {
+    for (const [text, question] of [[ZH_ONE, "我们什么时候可以去巴黎旅游？"], [ZH_HANT_ONE, ZH_HANT_OFF]] as const) {
+      const only = { id: "z1", docId: "zh", text };
+      const hits = hitsFor(question, [only], DEFAULT_MIN_COSINE + 0.1);
+      expect([question, hits[0]!.bm25Terms]).toEqual([question, 0]);
+      expect(buildRagPrompt({ question, hits, docs: new Map([["zh", zhDoc]]), strict: true, nCtx: 4096, nonce: "n" }).citations).toEqual([]);
+    }
+  });
+
+  it("the on-topic Traditional question still shares its content words", () => {
+    const [hit] = hitsFor("本公司二〇二四年度的營收是多少？", [{ id: "z1", docId: "zh", text: ZH_HANT_ONE }]);
+    expect(hit!.bm25Terms).toBeGreaterThanOrEqual(2);
+  });
 });
 
 /**

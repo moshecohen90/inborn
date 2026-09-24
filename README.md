@@ -5484,3 +5484,37 @@ harness had no Windows channel. One manual run, `platform=windows`, now proves t
 - The site still says "Not yet" for Windows and macOS downloads. Distribution waits for Moshe's gate C decision, and a
   Windows code-signing certificate does not exist yet.
 
+
+## Fixes round 81: the RAG measurement covers zh-Hant and accented typing (branch `fix-rag-fixtures`) — 24.9.2026
+
+Verifier S03 found that the numbers behind the 0.82 relevance door were measured on Simplified Chinese and on
+German, French, Spanish and Portuguese typed without accents. Neither is what launch-locale users type.
+
+- **The fixtures now match the launch locales (F363).** Two zh-Hant one-passage documents and a zh-Hant six-chunk
+  document were added, written the way Taiwan writes them rather than glyph-converted. The de/fr/es/pt documents and
+  questions are typed with their accents, Portuguese as pt-BR. The old accent-less questions stay as typing variants,
+  because users type both. The set grew from 57/102 one-passage and 21/42 six-chunk questions to 83/143 and 27/54.
+- **The door stays at 0.82.** The harness reproduced all 537 committed cosines exactly before the change. On the new
+  set the highest off-topic cosine is 0.8177, so nothing off-topic reaches the door.
+- **Per language, before and after** (shipped embedder, shipped door):
+
+  | language | round 72 | accented | without accents |
+  |---|---|---|---|
+  | de | 3/3 | 5/5 | 2/2 |
+  | fr | 1/3 | 5/5 | 0/1 |
+  | es | 2/3 | 3/5 | 1/3 |
+  | pt | 3/3 | 5/5 | 2/2 |
+  | zh / zh-Hant | 10/10 | zh 10/10 | zh-Hant 10/10 |
+
+- **Two false citations the new questions exposed are fixed.** The Chinese glue list held only Simplified glyphs, so
+  zh-Hant 我們 counted as a shared word and cited an off-topic question. French, Spanish and Portuguese lacked `que` as
+  a stop word, so "que faire?" cited a French chunk. Off-topic six-chunk citations went from 5 to 3. The three left
+  share only the year bigram 一九.
+- **Still open.** An accent-less word never matches its accented form in the lexical index. The one French question
+  that misses is "sieges" against "sièges", with a cosine of 0.777. The same text also moves by up to 0.0004
+  depending on which texts share its embedding batch, against 0.0023 of headroom under the door.
+- **Guarded.** 17 guard tests went red on the new numbers, and the two fixes were each watched red first.
+
+Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
+`door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
+`docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.

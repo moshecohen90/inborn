@@ -70,7 +70,7 @@ describe("F327 · the embedding half cannot cite a passage on its own", () => {
     for (const f of FIXTURES)
       for (const q of f.questions.filter((x) => x.kind === "on"))
         for (const strict of [false, true]) if (ask(f, q.q, q.cosine, strict).citations.length) kept.add(f.lang);
-    expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "pt", "zh"]);
+    expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "pt", "zh", "zh-Hant"]);
   });
 
   it("the device's own on-topic turns, the ones QA ran on hardware, still cite", () => {

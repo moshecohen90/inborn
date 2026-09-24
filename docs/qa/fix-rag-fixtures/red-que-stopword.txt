@@ -1,0 +1,9 @@
+     × F363: 'que' is glue in French, Spanish and Portuguese, so an off-topic question does not match a passage on it 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/rag-index.test.ts > BM25 > F363: 'que' is glue in French, Spanish and Portuguese, so an off-topic question does not match a passage on it
+AssertionError: expected [ …(2) ] to deeply equal [ …(2) ]
+- Expected
++ Received
+-   0,
++   1,
+      Tests  1 failed | 8 passed (9)
