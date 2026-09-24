@@ -1,0 +1,37 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/android-vc22/apps/mobile
+
+ ❯ test/playCommitRetry.test.ts (5 tests | 1 failed) 7ms
+   ❯ commitEdit (5)
+     × does NOT retry any other error — a deleted edit or a rejected bundle fails at once 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/playCommitRetry.test.ts > commitEdit > does NOT retry any other error — a deleted edit or a rejected bundle fails at once
+AssertionError: promise resolved "{ id: 'committed-1' }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "id": "committed-1",
+  }
+
+ ❯ test/playCommitRetry.test.ts:56:127
+     54|     const api = fakeApi(1, 'POST /edits/1:commit → 400\n{ "error": { "…
+     55|     const waits: number[] = [];
+     56|     await expect(commitEdit(api, "com.inbornapp.mobile", "1", { sleep:…
+       |                                                                                                                               ^
+     57|     expect(api.calls).toHaveLength(1);
+     58|     expect(waits).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  14:10:48
+   Duration  116ms (transform 58%, import 20%, tests 18%, worker 5%)
+
