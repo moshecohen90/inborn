@@ -1,0 +1,22 @@
+ FAIL  src/web/modelChoice.test.ts > F311 · the browser door offers a choice, best for this device first > reads cores when the browser hides its memory: many cores earn Fast, few get Instant with Fast still on the list
+AssertionError: expected 'instant' to be 'fast' // Object.is equality
+
+Expected: "fast"
+Received: "instant"
+
+ ❯ src/web/modelChoice.test.ts:36:31
+     34|     const many = gate({ ramGB: null, cores: 10, maxTier: "fast" });
+     35|     const few = gate({ ramGB: null, cores: 2, maxTier: "fast" });
+     36|     expect(recommended(many)).toBe("fast");
+       |                               ^
+     37|     expect(recommended(few)).toBe("instant");
+     38|     expect(ids(few)).toContain("fast");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  15:48:20
+   Duration  1.61s (transform 87%, import 11%, tests 1%)
+

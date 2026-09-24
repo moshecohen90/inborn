@@ -1,0 +1,481 @@
+{
+  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "dist": "/Users/moshecohen/dev/inborn-wt/web-door-choice/apps/web/dist",
+  "url": "http://127.0.0.1:61269",
+  "isolation": true,
+  "serviceWorker": true,
+  "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "first": {
+    "catalog": {
+      "status": 200,
+      "type": "application/json",
+      "models": [
+        "instant",
+        "fast"
+      ]
+    },
+    "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.DetailsGet the app",
+    "doorOffer": "ON-DEVICEDownload Fast to this browserRECOMMENDED FOR THIS browserThe best answers this browser can run.1.3 GB, once. It stays on this device. Later visits need no network.~4-15 tok/s on your browserBest in English, Chinese, Spanish, French and 5 more languages.Free in this browser: 11 GB · the browser may clear it when space runs lowDownload 1.3 GBSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.1 other model runs in this browser",
+    "doorSpeed": "~4-15 tok/s on your browser",
+    "doorOtherIds": [
+      "instant"
+    ],
+    "doorOptionIds": [
+      "fast",
+      "instant"
+    ],
+    "doorLayout": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-door-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-door-768.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-door-1024.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-door-1440.png"
+      }
+    },
+    "storageBefore": 30182073,
+    "resumedFrom": "Resume · 13 MB of 1.3 GB",
+    "modelStepOptions": "FastREADY NOWRECOMMENDED FOR THIS browser1.3 GB · already on this browserEveryday assistant: writing, questions, translation. Best balance on this phone.Best in English, Chinese, Spanish, French and 5 more languages.Instant533 MB · one download from 127.0.0.1:61269Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.Best in English, Chinese, Portuguese.",
+    "modelStepIds": [
+      "fast",
+      "instant"
+    ],
+    "screenshotOnboarding": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-onboarding.png",
+    "onboarding": [
+      "onboarding-welcome",
+      "onboarding-model",
+      "onboarding-sealed",
+      "onboarding-lock"
+    ],
+    "readyMs": 38892,
+    "sessionLoadMs": 2168,
+    "downloadedFile": "/models/fast.gguf",
+    "downloadRequests": [
+      "GET /models/fast.gguf",
+      "GET /models/fast.gguf [bytes=12910592-]"
+    ],
+    "crossOriginIsolated": true,
+    "webgpu": false,
+    "storageAfter": 1311092307,
+    "persisted": false,
+    "tokPerSec": 14.9,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "modelChip": "FAST",
+    "engineLoadMs": 2159,
+    "threads": 6,
+    "gpuLayers": 0,
+    "offlineState": "Works offline",
+    "memoryMB": null,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke.png",
+    "vaultDoor": "Stored in this browser's private storage. Clearing site data removes it.",
+    "vaultScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-vault.png",
+    "consoleErrors": [],
+    "hosts": [
+      "127.0.0.1:61269"
+    ]
+  },
+  "offline": {
+    "readyMs": 2290,
+    "sessionLoadMs": 1958,
+    "tokPerSec": 16.4,
+    "tokens": "13 / 4096",
+    "answer": "Venus is one of the eight planets in our solar system.",
+    "modelChip": "FAST",
+    "engineLoadMs": 1941,
+    "threads": 6,
+    "gpuLayers": 0,
+    "requests": [
+      "GET /",
+      "GET /fonts/IBMPlexSans-Regular.woff2",
+      "GET /fonts/IBMPlexMono-Regular.woff2",
+      "GET /_expo/static/js/web/index-e167aa24a4bbbe195d79fc592984eb25.js",
+      "GET /models/manifest.json",
+      "GET /fonts/IBMPlexSans-SemiBold.woff2",
+      "GET /fonts/IBMPlexSans-Medium.woff2",
+      "GET /fonts/IBMPlexMono-Medium.woff2",
+      "HEAD /models/nomic-embed-text-v1.5.f16.gguf",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET /wllama/wllama.wasm"
+    ],
+    "hosts": [
+      "127.0.0.1:61269"
+    ],
+    "navigatorOnLine": false,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-offline.png",
+    "consoleErrors": [
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    ]
+  },
+  "phone": {
+    "door": "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience.",
+    "getApp": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-phone.png"
+  },
+  "layout": {
+    "chat": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": {
+          "x": 17,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "input": {
+          "x": 61,
+          "y": 846,
+          "w": 224,
+          "h": 45,
+          "cy": 869
+        },
+        "mic": {
+          "x": 285,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "send": {
+          "x": 333,
+          "y": 851,
+          "w": 36,
+          "h": 36,
+          "cy": 869
+        },
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-chat-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "attach": {
+          "x": 297,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "input": {
+          "x": 341,
+          "y": 846,
+          "w": 322,
+          "h": 45,
+          "cy": 869
+        },
+        "mic": {
+          "x": 663,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "send": {
+          "x": 711,
+          "y": 851,
+          "w": 36,
+          "h": 36,
+          "cy": 869
+        },
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-chat-768.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "attach": {
+          "x": 329,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "input": {
+          "x": 373,
+          "y": 846,
+          "w": 514,
+          "h": 45,
+          "cy": 869
+        },
+        "mic": {
+          "x": 887,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "send": {
+          "x": 935,
+          "y": 851,
+          "w": 36,
+          "h": 36,
+          "cy": 869
+        },
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-chat-1024.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "attach": {
+          "x": 537,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "input": {
+          "x": 581,
+          "y": 846,
+          "w": 514,
+          "h": 45,
+          "cy": 869
+        },
+        "mic": {
+          "x": 1095,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "send": {
+          "x": 1143,
+          "y": 851,
+          "w": 36,
+          "h": 36,
+          "cy": 869
+        },
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-chat-1440.png"
+      }
+    },
+    "settings": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-settings-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-settings-768.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-settings-1024.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-settings-1440.png"
+      }
+    },
+    "paywall": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-paywall-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-paywall-768.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-paywall-1024.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-paywall-1440.png"
+      }
+    },
+    "onboarding": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-onboarding-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-onboarding-768.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-onboarding-1024.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-layout-onboarding-1440.png"
+      }
+    }
+  },
+  "labels": {
+    "en": {
+      "newChat": "New chat",
+      "incognito": "Incognito",
+      "clipped": []
+    },
+    "de": {
+      "newChat": "Neuer Chat",
+      "incognito": "Inkognito",
+      "clipped": []
+    },
+    "fr": {
+      "newChat": "Nouveau chat",
+      "incognito": "Privé",
+      "clipped": []
+    },
+    "es": {
+      "newChat": "Nuevo chat",
+      "incognito": "Incógnito",
+      "clipped": []
+    },
+    "pt-BR": {
+      "newChat": "Novo chat",
+      "incognito": "Anônimo",
+      "clipped": []
+    },
+    "ja": {
+      "newChat": "新しいチャット",
+      "incognito": "シークレット",
+      "clipped": []
+    },
+    "ko": {
+      "newChat": "새 채팅",
+      "incognito": "시크릿",
+      "clipped": []
+    },
+    "zh-Hant": {
+      "newChat": "新對話",
+      "incognito": "無痕",
+      "clipped": []
+    },
+    "pseudo": {
+      "newChat": "[Néw çhàt~~~~]",
+      "incognito": "[Îñçôgñïtô~~~~]",
+      "clipped": []
+    }
+  },
+  "switched": {
+    "vaultOtherIds": [
+      "instant"
+    ],
+    "chosen": "instant",
+    "door": "ON-DEVICEDownload Instant to this browser533 MB, once. It stays on this device. Later visits need no network.~7-33 tok/s on your browserBest in English, Chinese, Portuguese.Free in this browser: 11 GB · the browser may clear it when space runs lowDownload 533 MBSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.1 other model runs in this browser",
+    "doorOffers": "instant",
+    "readyMs": 16122,
+    "sessionLoadMs": 1397,
+    "modelChip": "INSTANT",
+    "tokPerSec": 29.4,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "engineLoadMs": 1382,
+    "threads": 6,
+    "gpuLayers": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-switched.png",
+    "hosts": [
+      "127.0.0.1:61269"
+    ]
+  },
+  "noSpace": {
+    "text": "Not enough space in this browser: 1.5 GB needed, 105 MB free.",
+    "buttonDisabled": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-nospace.png"
+  },
+  "brokenCatalog": {
+    "text": "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again",
+    "retry": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-catalog-broken.png"
+  },
+  "paywallWithoutModel": {
+    "pro": "PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation",
+    "work": "PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement",
+    "why": "You asked for answers only from your documents. Pro turns that on.",
+    "door": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/web-door-choice/smoke-merged/web-smoke-paywall-no-model.png"
+  }
+}
+PASS: first visit ready 38892 ms · 14.9 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 2290 ms · 16.4 tok/s · context 13 / 4096 · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 1.5 GB needed, 105 MB free."
+PASS: catalog application/json · models instant, fast
+PASS: broken catalog door "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again"
+PASS: layout swept chat, settings, paywall, onboarding at 390 / 768 / 1024 / 1440 — no horizontal scroll, composer row aligned
+PASS: 9 locales at 390, no clipped sidebar label (fr incognito = "Privé")
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation / PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement
