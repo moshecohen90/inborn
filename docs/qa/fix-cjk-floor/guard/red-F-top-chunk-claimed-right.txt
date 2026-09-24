@@ -1,0 +1,57 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core
+
+ ❯ test/rag-centering-negative.test.ts (8 tests | 2 failed | 1 skipped) 8ms
+   ❯ F330 · the embedder is not finding the right chunk either (4)
+     × the answering chunk is ranked first for 3 of 21 on-topic questions 4ms
+     × German and French ask about the headcount and get the turnover chunk 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-centering-negative.test.ts > F330 · the embedder is not finding the right chunk either > the answering chunk is ranked first for 3 of 21 on-topic questions
+AssertionError: expected 21 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 21
+
+ ❯ test/rag-centering-negative.test.ts:102:57
+    100|   it("the answering chunk is ranked first for 3 of 21 on-topic questio…
+    101|     expect(on.length).toBe(21);
+    102|     expect(on.filter((r) => r.top === r.answer).length).toBe(3);
+       |                                                         ^
+    103|   });
+    104|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/rag-centering-negative.test.ts > F330 · the embedder is not finding the right chunk either > German and French ask about the headcount and get the turnover chunk
+AssertionError: expected 3 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 3
+
+ ❯ test/rag-centering-negative.test.ts:106:109
+    104|
+    105|   it("German and French ask about the headcount and get the turnover c…
+    106|     for (const lang of ["de", "fr"]) expect(on.filter((r) => r.lang ==…
+       |                                                                                                             ^
+    107|   });
+    108|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed | 1 skipped (8)
+   Start at  16:24:40
+   Duration  168ms (transform 72%, import 17%, tests 9%, worker 3%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-centering-negative.test.ts

@@ -5175,6 +5175,40 @@ iPad (10th gen) simulator in both orientations.
 Evidence in `docs/qa/ipad-pass/`: `layout/` (browser, both themes, before and after), `sim/` (the iPad simulator,
 portrait and landscape), `guard-red-f322-send-target.txt` (both guards watched red).
 
+## Fixes round 70b: a centred cosine does not win the recall back, and the embedder is the reason (branch `fix-cjk-floor`) — 24.9.2026
+
+Round 70 left 29 of 57 on-topic questions cited, German and French none of three. This round was asked to give the
+cosine a topic signal instead of an absolute threshold and take that back, at ≥50/57 with 0/102 off-topic. It does
+not reach it, and the measurement found why — which is not the floor.
+
+- **Centring against a per-script null bank: best case 35/57** (F330). Ninety neutral sentences written for this,
+  ten per language, grouped into `ja`/`zh`/`ko`/`he`/`latin` banks and embedded with the document prefix. On the 28
+  on-topic and 102 off-topic questions that share no word with their passage, the threshold that cites no off-topic
+  question keeps 0/28 for the raw cosine, 0/28 for `cos − mean(bank)`, and **6/28** for the z-score against the
+  bank's spread — the only variant with a real margin (+0.466 z). Per-language banks 5/28, `cos − max(bank)` 4/28,
+  mean over all 90 1/28, removing the bank's mean direction from both vectors 3/28, removing its principal
+  directions 0/28. Variant (b), seven purpose-written six-chunk documents: top-minus-median, within-document z and
+  top-minus-second each keep **0/18**. No threshold was picked; the round-70 rule stands.
+- **The embedder ranks the answering chunk first for 3 of 21 on-topic questions** (F331). *"Wie gross ist die
+  Belegschaft?"* prefers the turnover chunk; *"Combien de gens y travaillent?"* and *"כמה אנשים מועסקים שם?"* prefer
+  the product-ranges chunk; the Chinese and Korean ones prefer the environment chunk. de 0/3, fr 0/3, he 0/3, ko 0/3,
+  zh 0/3, ja 1/3, en 2/3. So the citations round 70 gave up were not right answers waiting to be readmitted — a door
+  that let them back cites the **wrong** passage. Round 69 looked better only because its floor fenced 5.48 of 6
+  chunks per question and the whole document on 17 of 21 on-topic questions, which §10.4 #30 forbids; round 70
+  fences 0.29. **Root cause, and the spec already chose the fix:** §5.5 and §6 name three embedders, including
+  `Qwen3-Embedding-0.6B` as the multilingual one for Pro — and the catalog has exactly one entry with
+  `"role": "embedding"`, Nomic's **English** `nomic-embed-text-v1.5`, serving all eight launch locales. The §5.5
+  bullet stated the multilingual embedding as something the app does; it now says it is planned and not shipped,
+  what that costs, and that the lexical half carries relevance until the catalog catches up.
+- **The negative result is a test, not a report** (F332). 7 cases sweep the thresholds over the committed numbers
+  and assert the bar unmet, so round 71 does not re-derive it; the whole measurement regenerates from a fresh
+  embedding pass behind two env vars. Watched red two ways in `docs/qa/fix-cjk-floor/guard/`.
+
+Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the schema and the on-demand pack
+already support a second embedding model) and measure it on these same fixtures, or expand the question into content
+words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
+across all 159 questions; it is the half worth extending.
+
 ## Fixes round 71: Enter sends from an iPad keyboard (branch `fix-ipad-enter`) — 24.9.2026
 
 Round 69 proved that on an iPad with a hardware keyboard Enter inserted a newline and never sent (F324). This round
