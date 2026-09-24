@@ -3,7 +3,7 @@
 Spec basis: §9.3, §9.4, §10.8, §11.3. Last edited 23 September 2026.
 
 Effective date: 23 September 2026
-Owner: Cohen Apps (the developer account shown on the store listing)
+Owner: Cohen Apps
 Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
 
 ---

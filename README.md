@@ -4229,9 +4229,14 @@ other fourteen: **F225–F239** in `docs/qa/qa-run-2026-09-11.md`, evidence in `
   check and the deploy all read and whose `site` is already `inbornapp.com`. **That** is what shipped, and the
   literals were dropped rather than left as a second default.
 - **A public repo stopped carrying Moshe's hardware (F238).** The iPhone UDID in 16 files, the 6T serial in 41 and
-  the ASC key id in 8 are replaced by placeholders at HEAD across `docs/qa/` and `README.md`. The history is not
-  rewritten and cannot be; it stops growing. `packages/core/test/no-device-ids.test.ts` walks `git ls-files` and
-  fails on any of the three, and it caught its first real hit immediately: the key id inside the F238 row itself.
+  the ASC key id in 8 are replaced by placeholders at HEAD across `docs/qa/` and `README.md`.
+  `packages/core/test/no-device-ids.test.ts` walks `git ls-files` and fails on any of the three, and it caught its
+  first real hit immediately: the key id inside the F238 row itself. **The history was not rewritten — which is a
+  decision, not a limit (corrected in round 62, F301).** A placeholder at HEAD hides nothing: the three identifiers
+  are still served to anyone by the patches of 19, 35 and 10 commits, and `scripts/check-history-ids.sh` prints
+  which ones. `git filter-repo` over the three patterns plus a force-push of main and every branch is the fix, the
+  original history is kept in the private archive repo, and the public repo has no forks to break. Until the lead
+  runs it, that script is red and stays out of `pnpm check:store`.
 
 Every behaviour fix carries a guard that was watched failing with the fix reverted
 (`docs/qa/fix-mosheai/guard-red-r50.txt`, 11 red; `guard-red-device-ids.txt` for the identifier scan;
@@ -4804,3 +4809,50 @@ behind it once the first was traced to its source.
 Gates: `pnpm typecheck` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 13, `check:store` PASS), `pnpm lint`
 0, `node apps/site/build.mjs && node apps/site/check.mjs` green, `pnpm web:build` and `pnpm web:smoke` green.
 Evidence in `docs/qa/fix-site-sizes/`.
+
+## Fixes round 62: the verifiers' round — a paywall nobody could reach, a reason that was an event, and a claim the repo could not keep (branch `fix-r62`) — 24.9.2026
+
+Eleven findings from the item verifiers (I02, I04, I10, I12, I13, S06, S07, S08, S10, C04, C05). Browser-first:
+every visual claim is a screenshot at 390 / 768 / 1024 / 1440 in `docs/qa/fix-r62/`, before and after, against
+`apps/web/dist` served on a private port. Every guard was watched red with its fix reverted. No phone was touched.
+
+- **The Folders PRO tag sent the press event to the paywall** (F292). `unlock` defaulted its reason, which is what
+  made `onPress={unlock}` typecheck — and React Native hands a press handler the gesture event, so the default never
+  applied and the screen landed on `/paywall?reason=[object Object]` with no why-line. The reason is now a required
+  parameter, and the compiler found the other two call sites itself; on top of that `ProTag` and `WorkTag` call their
+  handler with no arguments, so no future screen can leak an event through either. Four guard cases, 3 red before.
+- **A browser could not see the price list without first downloading 533 MB** (F293). The download door replaced
+  every route. `needsModel()` now decides: `/paywall`, `/settings`, `/proof`, `/vault`, `/legal` and `/lock` render
+  without a model, the chat still meets the door. Reproduced on this build first (`before-paywall-is-the-door-*.png`,
+  zero price elements), then proven at four widths, plus a new `web:smoke` step that reads both prices with an empty
+  OPFS.
+- **A photo sent right after a cold launch was answered as if no photo existed** (F294). The vault's disk scan was
+  never awaited, so an installed 205 MB projector read as absent. The turn now waits behind a "Reading your image…"
+  line, exactly like an attached document waits to be read, and a projector that will not attach is a refusal rather
+  than a picture sent to a model that cannot see it. The complement is tested over all 32 input combinations.
+- **"Wi-Fi only" sat in the desktop and browser Settings, controlling nothing** (F295) — the preference is read only
+  by the native downloader. Hidden on web, proven at four widths.
+- **Two shipped legal texts promised what the App Store contradicts** (F296): "Cohen Apps (the developer account
+  shown on the store listing)" is true on Play and false on Apple, where the account reads "Moshe Cohen". The name
+  stays, the promise goes.
+- **The licence notice quoted font versions we do not ship** (F297): Plex Sans 1.1.0 / Mono 2.5.0 against the
+  packaged 3.005 / 2.005. The new guard reads the version out of the font bytes.
+- **Spec §16 D4 still described core-MIT-plus-closed-UI** (F298); it now states the shipped decision, the public
+  repo under a source-available licence, dated 22.9.2026.
+- **The QA-bridge gate now runs itself** (F299). `scripts/check-shipping-bundles.mjs` walks the artifact paths the
+  builds write and is part of `pnpm check:store`, so `pnpm test` carries it; `INBORN_REQUIRE_BUNDLE=1` is the
+  release form and is a required line in the release checklist.
+- **`TRACKERS 0` is now defended by the lockfile, not by hope** (F300): 15 analytics/crash/ads/attribution families
+  matched against the package names `pnpm-lock.yaml` resolves. Watched red with `@sentry/react-native` planted.
+- **The README's "the history … cannot be [rewritten]" was wrong** (F301). It is a decision, not a limit: 0 forks,
+  the original kept in the private archive. The identifiers are still readable in the patch of 19, 35 and 10
+  commits, and `scripts/check-history-ids.sh` prints which. It stays out of `check:store` on purpose: it is red
+  until the lead rewrites the history, and a red gate inside `pnpm test` is a gate that gets switched off.
+- **A file with no readable text stopped looking like a file we failed to read** (F302). Its own state (`no-text`),
+  its own refusal naming OCR and a clearer copy, and an attach row that says "No readable text" instead of
+  "Indexed · 0 passages".
+
+F303 was reserved and not used.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 777, i18n 20, ui 13, `check:store`
+PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Evidence in `docs/qa/fix-r62/`.

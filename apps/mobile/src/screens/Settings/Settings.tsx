@@ -181,7 +181,10 @@ export function Settings() {
       </Section>
 
       <Section title={t("settings.downloads")}>
-        <Row label={t("settings.downloads.wifiOnly")} toggle={prefs.wifiOnly} onToggle={(v) => updatePrefs({ wifiOnly: v })} />
+        {/* The browser and the desktop shell download through the page, which has no Wi-Fi/cellular switch to obey: the row would control nothing (F295). */}
+        {Platform.OS === "web" ? null : (
+          <Row testID="row-wifi-only" label={t("settings.downloads.wifiOnly")} toggle={prefs.wifiOnly} onToggle={(v) => updatePrefs({ wifiOnly: v })} />
+        )}
         <Row label={t("settings.downloads.storage")} value={t("settings.downloads.internal")} />
       </Section>
 

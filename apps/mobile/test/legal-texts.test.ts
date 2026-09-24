@@ -426,4 +426,14 @@ describe("F207/F209/F214 · what the site may not go back to saying", () => {
     expect(terms).toContain("Settings → About → Licenses");
     expect(terms).not.toMatch(/Settings → (?:About → )?Licences/);
   });
+  /**
+   * F296. "Publisher: Cohen Apps (the developer account shown on the store listing)" is true on Google Play and false
+   * on the App Store, where the single-person account reads "Moshe Cohen". The name stays; the promise about the
+   * listing does not, because no one text can make it true on both stores.
+   */
+  it("no shipped text promises that a name is what the store listing shows", () => {
+    for (const file of [...SHIPPED, ...SITE_TEXT]) expect(read(file), file).not.toMatch(/the developer account shown on the store listing/i);
+    expect(read("docs/legal/privacy-policy.md")).toContain("Publisher: Cohen Apps\n");
+    expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Cohen Apps\n");
+  });
 });

@@ -1,0 +1,128 @@
+
+> inborn@ web:smoke /Users/moshecohen/dev/inborn-wt/fix-r62
+> node scripts/web-smoke.mjs
+
+{
+  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "dist": "/Users/moshecohen/dev/inborn-wt/fix-r62/apps/web/dist",
+  "url": "http://127.0.0.1:55200",
+  "isolation": true,
+  "serviceWorker": true,
+  "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "first": {
+    "catalog": {
+      "status": 200,
+      "type": "application/json",
+      "models": [
+        "instant"
+      ]
+    },
+    "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.DetailsGet the app",
+    "storageBefore": 8566890,
+    "resumedFrom": "Resume · 13 MB of 533 MB",
+    "modelStepOptions": "InstantREADY NOW533 MB · already on this browserQuick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.Best in English, Chinese, Portuguese.",
+    "screenshotOnboarding": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-onboarding.png",
+    "onboarding": [
+      "onboarding-welcome",
+      "onboarding-model",
+      "onboarding-sealed",
+      "onboarding-lock"
+    ],
+    "readyMs": 17488,
+    "sessionLoadMs": 1306,
+    "downloadRequests": [
+      "GET /models/instant.gguf",
+      "GET /models/instant.gguf [bytes=12713984-]"
+    ],
+    "crossOriginIsolated": true,
+    "webgpu": false,
+    "storageAfter": 562756902,
+    "persisted": false,
+    "tokPerSec": 37,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "modelChip": "INSTANT",
+    "engineLoadMs": 1298,
+    "threads": 6,
+    "gpuLayers": 0,
+    "offlineState": "Works offline",
+    "memoryMB": null,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke.png",
+    "vaultDoor": "Stored in this browser's private storage. Clearing site data removes it.",
+    "vaultScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-vault.png",
+    "consoleErrors": [],
+    "hosts": [
+      "127.0.0.1:55200"
+    ]
+  },
+  "offline": {
+    "readyMs": 1695,
+    "sessionLoadMs": 1362,
+    "tokPerSec": 34.5,
+    "tokens": "11 / 4096",
+    "answer": "The Sun is the only planet in our solar system.",
+    "modelChip": "INSTANT",
+    "engineLoadMs": 1344,
+    "threads": 6,
+    "gpuLayers": 0,
+    "requests": [
+      "GET /",
+      "GET /fonts/IBMPlexSans-Regular.woff2",
+      "GET /fonts/IBMPlexMono-Regular.woff2",
+      "GET /_expo/static/js/web/index-f23318b28938e54a04b31e4b33560c83.js",
+      "GET /models/manifest.json",
+      "GET /fonts/IBMPlexSans-SemiBold.woff2",
+      "GET /fonts/IBMPlexSans-Medium.woff2",
+      "GET /fonts/IBMPlexMono-Medium.woff2",
+      "HEAD /models/nomic-embed-text-v1.5.f16.gguf",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET /wllama/wllama.wasm"
+    ],
+    "hosts": [
+      "127.0.0.1:55200"
+    ],
+    "navigatorOnLine": false,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-offline.png",
+    "consoleErrors": [
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    ]
+  },
+  "phone": {
+    "door": "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience.",
+    "getApp": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-phone.png"
+  },
+  "noSpace": {
+    "text": "Not enough space in this browser: 801 MB needed, 105 MB free.",
+    "buttonDisabled": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-nospace.png"
+  },
+  "brokenCatalog": {
+    "text": "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again",
+    "retry": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-catalog-broken.png"
+  },
+  "paywallWithoutModel": {
+    "pro": "PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation",
+    "work": "PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement",
+    "why": "You asked for answers only from your documents. Pro turns that on.",
+    "door": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke/web-smoke-paywall-no-model.png"
+  }
+}
+PASS: first visit ready 17488 ms · 37 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 1695 ms · 34.5 tok/s · context 11 / 4096 · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 801 MB needed, 105 MB free."
+PASS: catalog application/json · models instant
+PASS: broken catalog door "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again"
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation / PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement

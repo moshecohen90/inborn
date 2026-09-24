@@ -1,0 +1,25 @@
+FAIL: iPhone UDID is in the patch of 19 commit(s):
+  31b7c59b316871feb4897e1fa83164540825947f 2026-09-24 qa(ios): in-app QA bridge — the iPhone drives itself, no XCUITest, no passcode sheet
+  227fd343c83c901b3dc8419ce5ca7090b7326a81 2026-09-24 round 50: the MosheAI review — sticky compare header, one strip line, the Hebrew banner, and a public repo with his phone's serial (F225-F238)
+  7c8dec5d9f098a529c3bac655a376d5d51f62d94 2026-09-23 docs(qa): TestFlight 1.0.0 (16) — rounds 34-43 on the iPhone, and the six rows that needed a grant
+  e1143cac61ee272f7d0d7e5559ad7c015937ff4a 2026-09-23 docs(qa): acceptance round 43 — the two phones, what this round cited and what it did not run
+  d0f098c2527605d0a399bef56c75d750d925cec7 2026-09-23 docs(attach-ios): F135–F144, README round 38, iPhone evidence before and after
+  882d437cea86a141a7af5120ad000c1be32a9b78 2026-09-23 docs(ios): TestFlight 1.0.0 (15) VALID, iPhone pass 15, F98 closed
+  137e5e787632435630ca32f7adab9157494034a8 2026-09-23 docs(ios): TestFlight 1.0.0 (14), the iPhone pass and the 30-minute soak
+  bbfd891788cdbe99f5015ad9f4024d7e428ed65e 2026-09-22 docs(ios): TestFlight 1.0.0 (13), the iPhone pass and the 30-minute soak
+  6a2735b681067e4db2970ab4988e08861c909ca6 2026-09-22 chore(ios): buildNumber 12, TestFlight 1.0.0 (12) and the real-iPhone pass
+  82d2533293ca124048fbe6341944ea7db7c68808 2026-09-22 cdn: the real iPhone pulls 1.2 GB from models.inbornapp.com and answers with it
+  … and 9 more
+FAIL: OnePlus 6T serial is in the patch of 35 commit(s):
+  104596609a5396d37a04ba130b58dbb110d4c50b 2026-09-24 docs(qa): round 58 — F276 measured on the 6T, F277 narrowed, F278 closed
+  227fd343c83c901b3dc8419ce5ca7090b7326a81 2026-09-24 round 50: the MosheAI review — sticky compare header, one strip line, the Hebrew banner, and a public repo with his phone's serial (F225-F238)
+  778871cc2d3c10194d2d7056b86a5c4ae9818357 2026-09-23 round 44: Play internal 1.0.0 (20), the first Android build carrying rounds 34-43, proven on the 6T
+  e1143cac61ee272f7d0d7e5559ad7c015937ff4a 2026-09-23 docs(qa): acceptance round 43 — the two phones, what this round cited and what it did not run
+  8c9934eed717cb2f02e13db0acc3f3e45dc3234a 2026-09-23 docs(qa): round 37, the attachment the model never saw (F125-F129)
+  1332d2deeb6b69613aeadc13a267e664a7350ae0 2026-09-23 docs(android): Play 1.0.0 (19), the F97 proof on the 6T
+  f82496933e62025b85a8e06d3cbc265b0027ec7f 2026-09-23 qa(android): Play internal release 1.0.0 (18) from main 82c7b98, proven on the OnePlus 6T
+  3927f2ad6dfe374b611c5999331d39f2e79221a7 2026-09-22 qa(android): Play internal 1.0.0 (17) from main 4d3dd8f, on the 6T through Play
+  4e2bdf0b95ed9a2bb5f199c42920e2fa1455b481 2026-09-22 docs(qa): vc16 release pass on the real 6T — soak 9, Play billing, incognito
+  0b35be0819bd4d1af8e35397be1ca861cb74a10e 2026-09-22 docs(qa): the live Whisper attempt on the 6T — 57 mic cycles, still no transcript
+  … and 25 more
+FAIL: ASC key id is in the patch of 10 commit(s):

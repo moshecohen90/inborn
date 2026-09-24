@@ -16,6 +16,9 @@ export function resolveVision(): string | null {
 
 export const visionInstalled = (): boolean => resolveVision() !== null;
 
+/** Resolves once the vault has read the disk: before that every model reads as "no projector installed" (QA F294). */
+export const visionScanned = (): Promise<void> => getVault().ready();
+
 export function installVision(): Promise<unknown> {
   return getVault().install(VISION_MODEL_ID);
 }
