@@ -35,6 +35,7 @@ vi.mock("./files", () => ({
     files.set(stored, files.get(uri) ?? "");
     return stored;
   },
+  missingSource: () => false,
   sweepIncognitoFiles: () => 0,
   deleteFile: (uri: string | undefined) => void (uri && files.delete(uri)),
   readHead: (uri: string) => new TextEncoder().encode(/\.pdf$/.test(uri) ? "%PDF-1.4" : "plain text"),

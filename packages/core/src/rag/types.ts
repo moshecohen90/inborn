@@ -76,7 +76,9 @@ export interface OpenedDocument {
   close(): Promise<void>;
 }
 
-export type ExtractFailure = "empty" | "corrupt" | "encrypted" | "unsupported" | "too-large";
+/* `missing` is not `empty`: a filesystem answers "no file here" with the same 0 a genuinely empty file gives, and the
+   two need different sentences or a document that was never found reads as a document with no text in it (QA F277). */
+export type ExtractFailure = "empty" | "missing" | "corrupt" | "encrypted" | "unsupported" | "too-large";
 
 export class ExtractError extends Error {
   constructor(

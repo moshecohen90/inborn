@@ -42,6 +42,16 @@ export function sizeOf(uri: string): number {
   }
 }
 
+/** True when nothing can be opened at this location, which `sizeOf` reports as the same 0 an empty file gives. */
+export function missingSource(uri: string): boolean {
+  if (!uri) return true;
+  try {
+    return !fileOf(uri).exists;
+  } catch {
+    return true;
+  }
+}
+
 /** Incognito attachments (spec §5.7): a cache directory the OS may reclaim, outside the document library and outside any backup. */
 export function incognitoDir(): Directory {
   const dir = new Directory(Paths.cache, "incognito");

@@ -1,4 +1,5 @@
 import {
+  ExtractError,
   Retriever,
   assertImportable,
   buildRagPrompt,
@@ -8,7 +9,6 @@ import {
   type Citation,
   type DocumentRecord,
   type EmbeddingStore,
-  type ExtractError,
   type IndexProgress,
   type Message,
   type OpenedDocument,
@@ -20,7 +20,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
-import { copyIntoLibrary, deleteFile, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
+import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 /* The gate owns the reasons, so a new one cannot be reported here and go unhandled there. */
 import type { AttachmentBlock } from "../lib/docsGate";
@@ -276,6 +276,8 @@ export class DocumentLibrary {
     const base: DocumentRecord = { id, name, kind: "unknown", bytes, pages: 0, addedAt: Date.now(), status: "queued", indexedPages: 0, chunkCount: 0, flaggedLines: 0, ocrPages: 0 };
     let doc: DocumentRecord;
     try {
+      /* Asked before the size, because a source that is not there and a source of 0 bytes are the same 0 (QA F277). */
+      if (missingSource(sourceUri)) throw new ExtractError("missing", `${name}: nothing to read at ${sourceUri}`);
       const kind = assertImportable(name, bytes, readHead(sourceUri));
       const uri = copyIntoLibrary(sourceUri, id, name, { incognito: opts.incognito });
       /* File.copy() can return before Android has written every byte (vault D5); the hash must cover the whole file. */

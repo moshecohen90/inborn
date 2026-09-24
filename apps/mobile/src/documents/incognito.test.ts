@@ -30,6 +30,7 @@ vi.mock("./files", () => ({
     files.set(stored, files.get(uri) ?? "");
     return stored;
   },
+  missingSource: (uri: string) => !files.has(uri),
   sweepIncognitoFiles: () => {
     const orphans = [...files.keys()].filter((k) => k.startsWith(INCOGNITO));
     for (const k of orphans) files.delete(k);
