@@ -1,7 +1,7 @@
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
-import { LANGUAGE_NAME_BY_CODE, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
+import { LANGUAGE_NAME_BY_CODE, downloadPercent, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
 import { FitMap } from "./FitMap";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
@@ -68,7 +68,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       case "delivering":
         if (state.needsConfirmation) return { text: t("vault.state.needsConfirmation") };
         if (state.waitingForWifi) return { text: t("vault.state.waitingWifi") };
-        return { text: t(state.paused ? "vault.state.paused" : justResumed(state, Date.now()) ? "vault.state.resumed" : "vault.state.delivering", { percent: Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
+        return { text: t(state.paused ? "vault.state.paused" : justResumed(state, Date.now()) ? "vault.state.resumed" : "vault.state.delivering", { percent: downloadPercent(state.bytes, state.total || model.bytes), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
       case "verifying":
         return { text: t("vault.state.verifying") };
       case "needs-space":
@@ -159,7 +159,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       )}
       {progress > 0 ? (
         <View style={[styles.bar, { backgroundColor: theme.well }]}>
-          <View style={[styles.fill, { width: `${Math.round(progress * 100)}%`, backgroundColor: state.kind === "ready" ? theme.sealed : theme.accent }]} />
+          {/* The same floor as the status line's percent (F376): a round here would show the bar a hair ahead of the number beside it. */}
+          <View style={[styles.fill, { width: `${state.kind === "delivering" ? downloadPercent(state.bytes, state.total || model.bytes) : Math.round(progress * 100)}%`, backgroundColor: state.kind === "ready" ? theme.sealed : theme.accent }]} />
         </View>
       ) : null}
       {status ? (

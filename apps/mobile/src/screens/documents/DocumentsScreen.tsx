@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
-import { PRODUCTS, fallbackPrice, fileIntake, formatBytes, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
+import { PRODUCTS, downloadPercent, fallbackPrice, fileIntake, formatBytes, formatModelBytes, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
@@ -244,15 +244,15 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       {embedderMissing ? (
         <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
           <Text style={[styles.label, { color: theme.accent }]}>{t("documents.embedder.title")}</Text>
-          <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
+          <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatModelBytes(embedModel?.bytes ?? 274290560) })}</Text>
           {embedState.kind === "delivering" ? (
-            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.delivering", { percent: Math.floor((100 * embedState.bytes) / Math.max(1, embedState.total)), done: formatBytes(embedState.bytes), total: formatBytes(embedState.total) })}</Text>
+            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.delivering", { percent: downloadPercent(embedState.bytes, embedState.total), done: formatModelBytes(embedState.bytes), total: formatModelBytes(embedState.total) })}</Text>
           ) : embedState.kind === "verifying" ? (
             <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.verifying")}</Text>
           ) : (
             <>
             {embedState.kind === "needs-space" ? (
-              <Text testID="embedder-needs-space" style={[styles.mono, { color: theme.danger }]}>{t("vault.state.needsSpace", { size: formatBytes(embedState.requiredBytes - embedState.freeBytes) })}</Text>
+              <Text testID="embedder-needs-space" style={[styles.mono, { color: theme.danger }]}>{t("vault.state.needsSpace", { size: formatModelBytes(embedState.requiredBytes - embedState.freeBytes) })}</Text>
             ) : embedState.kind === "failed" ? (
               <Text testID="embedder-failed" style={[styles.mono, { color: theme.danger }]}>{installFailureText(t, embedState.error, Platform.OS)}</Text>
             ) : null}
@@ -262,7 +262,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
               onPress={() => void installEmbedder().then(() => library.refreshEmbedder())}
               style={[styles.btn, { backgroundColor: theme.ctaFill }]}
             >
-              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatBytes(embedModel?.bytes ?? 274290560) })}</Text>
+              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatModelBytes(embedModel?.bytes ?? 274290560) })}</Text>
             </Pressable>
             </>
           )}

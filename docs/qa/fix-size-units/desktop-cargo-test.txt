@@ -1,0 +1,24 @@
+    Finished `release` profile [optimized] target(s) in 0.24s
+     Running unittests src/main.rs (target/release/deps/inborn_desktop-9ad76a3d7ff6b373)
+
+running 17 tests
+test engine::tests::plain_text_passes_through ... ok
+test engine::tests::reads_the_repeat_penalty_the_webview_sends ... ok
+test engine::tests::splits_reasoning_even_when_tags_arrive_in_pieces ... ok
+test models::format_tests::decimal_units_match_the_shared_ts_formatter ... ok
+test shell::tests::a_restored_window_under_the_minimum_is_grown_on_both_axes ... ok
+test secrets::tests::random_hex_has_two_characters_per_byte ... ok
+test shell::tests::a_window_at_or_above_the_minimum_is_left_exactly_as_it_was ... ok
+test licence::tests::base64_round_trips_every_length ... ok
+test strings::tests::desktop_keys_exist ... ok
+test store::tests::failed_migration_step_leaves_no_open_transaction ... ok
+test store::tests::migration_batch_and_user_version_roundtrip ... ok
+test store::tests::quarantine_reports_nothing_kept_when_there_was_no_file ... ok
+test store::tests::fts5_is_compiled_in ... ok
+test store::tests::quarantine_keeps_the_unreadable_file_and_only_one_copy ... ok
+test shell::tests::expand_drop_walks_folders_and_keeps_models_apart ... ok
+test shell::tests::expand_drop_does_not_descend_for_ever ... ok
+test shell::tests::expand_drop_stops_at_the_file_cap_and_ignores_what_is_not_there ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
