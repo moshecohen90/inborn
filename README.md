@@ -5015,6 +5015,9 @@ PASS), `pnpm web:build` green. No phone was touched. Evidence in `docs/qa/theme-
   QA variant under its own bundle id opens on **onboarding**, not the chat root, and the Mac photographs the phone
   without ever asking the app. Row scripts now open with an onboarding prelude.
 
-Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 13 — 1,514), `pnpm
-check:store` **PASS**. Evidence in `docs/qa/ios-build-18-2026-09-24.md`, `docs/qa/ios-device-pass-18-2026-09-24.md`
-and `docs/qa/ios-device-pass-18/`.
+Gates at the archive, on the tree that was built: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 734,
+mobile 747, i18n 20, ui 13 — 1,514), `pnpm check:store` **PASS: all fields within limits**. Gates again after merging
+rounds 60, 62, 64 and 65: typecheck 0, lint 0, **1,572 tests** (core 738, mobile 794, i18n 20, ui 20), 0 failed;
+`check:store` answers **SKIP — no shipping artifact in this tree**, because the QA variant's prebuild clears
+`ios/build` after the store IPA has been exported and uploaded. Evidence in `docs/qa/ios-build-18-2026-09-24.md`,
+`docs/qa/ios-device-pass-18-2026-09-24.md` and `docs/qa/ios-device-pass-18/`.
