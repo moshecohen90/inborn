@@ -110,9 +110,9 @@ Rule from §13.5: 10 YouTube channels in "local AI" and "privacy" get Pro for fr
 
 ## 4. Promo codes and offer codes
 
-- **App Store:** App Store Connect › Inborn › Promo Codes: up to 100 codes per IAP per request, 1,000 per app per six months; codes expire 28 days after generation, so generate in the week they are sent. Use **offer codes** (custom code, e.g. `LAUNCH`, redeemable N times, expiry up to 6 months) for the launch-price and cross-store discount cases; offer codes work for non-consumables. Source: https://developer.apple.com/help/app-store-connect/offer-promo-codes/request-and-manage-promo-codes and https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-offer-codes-for-in-app-purchases
-- **Google Play:** Play Console › Monetise › Promotions › Promo codes: one-time codes for the Pro in-app product, up to 500 per quarter per app; set an expiry.
-- Plan: 20 creator codes per store (10 creators × 2 stores), 30 spare for support ("Pro on the other store", D5 20–30% offer via a custom offer code rather than a free code), all logged in the ASO ledger with date and recipient. **Codes not yet generated.**
+- **App Store: offer codes only.** Apple stopped creating promo codes for In-App Purchases on 26 March 2026; offer codes replaced them and now cover non-consumables, which is what Pro and Work are. 10 active offers per app, up to 1M codes per app per quarter. Sources: https://developer.apple.com/news/?id=gf6mgrs6 and https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-offer-codes-for-in-app-purchases/
+- **Google Play:** Play Console › Monetise › Promotions › Promo codes: one-time codes for the Pro one-time product, up to 500 per quarter across all non-subscription promotions; set an expiry. Play codes are free-only — its percentage discount codes are for subscriptions.
+- Plan: 20 creator codes per store (10 creators × 2 stores), 60 spare for support, all logged in the ASO ledger with date and recipient. The cross-store case is a **free** code at support's discretion, not the D5 "20–30%", which Play cannot issue for a one-time product. Exact batches: `docs/store/codes.md`. **Codes not yet generated.**
 
 ## 5. Paid test: Apple Search Ads and Google UAC ($30/day × 14 days = $420, needs Moshe's approval)
 

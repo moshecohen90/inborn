@@ -105,8 +105,9 @@ export function ProTag({ onPress, reason }: { onPress?: () => void; reason?: Pay
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
+  /* The handler is called with no arguments: passed straight to Pressable it receives the press event, which one screen then forwarded as the paywall reason (F292). */
   return (
-    <Pressable testID="pro-tag" accessibilityRole="button" accessibilityLabel={t("gate.unlock")} onPress={onPress ?? (() => openPaywall(reason))} style={styles.tagTarget}>
+    <Pressable testID="pro-tag" accessibilityRole="button" accessibilityLabel={t("gate.unlock")} onPress={() => (onPress ? onPress() : openPaywall(reason))} style={styles.tagTarget}>
       <View style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
         <Text style={[type.monoLabel, { color: theme.accent }]}>PRO</Text>
       </View>

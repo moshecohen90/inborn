@@ -1,0 +1,168 @@
+
+> inborn@ web:smoke /Users/moshecohen/dev/inborn-wt/fix-r62
+> node scripts/web-smoke.mjs
+
+{
+  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "dist": "/Users/moshecohen/dev/inborn-wt/fix-r62/apps/web/dist",
+  "url": "http://127.0.0.1:61133",
+  "isolation": true,
+  "serviceWorker": true,
+  "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "first": {
+    "catalog": {
+      "status": 200,
+      "type": "application/json",
+      "models": [
+        "instant"
+      ]
+    },
+    "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.DetailsGet the app",
+    "storageBefore": 108257,
+    "resumedFrom": "Resume · 12 MB of 533 MB",
+    "modelStepOptions": "InstantREADY NOW533 MB · already on this browserQuick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.Best in English, Chinese, Portuguese.",
+    "screenshotOnboarding": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-onboarding.png",
+    "onboarding": [
+      "onboarding-welcome",
+      "onboarding-model",
+      "onboarding-sealed",
+      "onboarding-lock"
+    ],
+    "readyMs": 17990,
+    "sessionLoadMs": 1400,
+    "downloadRequests": [
+      "GET /models/instant.gguf",
+      "GET /models/instant.gguf [bytes=11730944-]"
+    ],
+    "crossOriginIsolated": true,
+    "webgpu": false,
+    "storageAfter": 562756902,
+    "persisted": false,
+    "tokPerSec": 38.5,
+    "tokens": "7 / 4096",
+    "answer": "Paris is the capital of France.",
+    "modelChip": "INSTANT",
+    "engineLoadMs": 1391,
+    "threads": 6,
+    "gpuLayers": 0,
+    "offlineState": "Works offline",
+    "memoryMB": null,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke.png",
+    "vaultDoor": "Stored in this browser's private storage. Clearing site data removes it.",
+    "vaultScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-vault.png"
+  },
+  "offline": {},
+  "phone": {},
+  "layout": {
+    "chat": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": {
+          "x": 17,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "input": {
+          "x": 61,
+          "y": 846,
+          "w": 224,
+          "h": 45,
+          "cy": 869
+        },
+        "mic": {
+          "x": 285,
+          "y": 847,
+          "w": 44,
+          "h": 44,
+          "cy": 869
+        },
+        "send": {
+          "x": 333,
+          "y": 851,
+          "w": 36,
+          "h": 36,
+          "cy": 869
+        },
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-layout-chat-390.png"
+      }
+    },
+    "settings": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-layout-settings-390.png"
+      }
+    },
+    "paywall": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-layout-paywall-390.png"
+      }
+    },
+    "onboarding": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "attach": null,
+        "input": null,
+        "mic": null,
+        "send": null,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-layout-onboarding-390.png"
+      }
+    }
+  },
+  "labels": {
+    "en": {
+      "newChat": "New chat",
+      "incognito": "Incognito",
+      "clipped": []
+    },
+    "de": {
+      "newChat": "Neuer Chat",
+      "incognito": "Inkognito",
+      "clipped": []
+    },
+    "fr": {
+      "newChat": "Nouveau chat",
+      "incognito": "Navigation privée",
+      "clipped": [
+        {
+          "id": "new-incognito",
+          "text": "Navigation privée",
+          "scrollWidth": 130,
+          "clientWidth": 124
+        }
+      ]
+    }
+  },
+  "failure": {
+    "door": null,
+    "error": null,
+    "status": null,
+    "modelChip": null,
+    "console": [
+      "warning: No available adapters.",
+      "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+      "info: [wllama] loaded instant in 1391 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+      "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1400 ms",
+      "warning: No available adapters.",
+      "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+      "warning: No available adapters."
+    ],
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/fix-r62/smoke-red/web-smoke-fail.png"
+  }
+}
+FAIL: fr at 390: new-incognito "Navigation privée" needs 130px in 124px
+ ELIFECYCLE  Command failed with exit code 1.

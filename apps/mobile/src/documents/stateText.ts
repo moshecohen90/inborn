@@ -23,7 +23,10 @@ export function documentState(doc: DocumentRecord, t: Translate, device: string,
     case "queued":
       return { text: t("documents.state.queued"), tone: "waiting" };
     case "indexed":
-      return { text: t("documents.state.indexed", { count: doc.chunkCount }), tone: "ready" };
+      /* Indexed with nothing in it is not a ready document: the row said "Indexed · 0 passages" and read as fine (QA F302). */
+      return doc.chunkCount > 0
+        ? { text: t("documents.state.indexed", { count: doc.chunkCount }), tone: "ready" }
+        : { text: t("documents.state.noText"), tone: "attention" };
     case "needs-ocr":
       return { text: t("documents.state.needsOcr", { device }), tone: "attention" };
     case "cancelled":

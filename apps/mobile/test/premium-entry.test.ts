@@ -163,3 +163,47 @@ describe("F149 · the browser paywall names the price and the way to buy", () =>
     for (const u of urls) expect(u).toContain("GET_APP_URL");
   });
 });
+
+/**
+ * F292. Round 62: the Folders PRO tag landed on `/paywall?reason=[object Object]` with no why-line. `unlock` defaulted
+ * its reason, which made `onPress={unlock}` typecheck, and React Native hands a press handler the gesture event — so the
+ * default never applied and the event became the reason. Two locks: the reason is a required parameter (the compiler
+ * then refuses a bare handler), and the tags call their handler with no arguments at all.
+ */
+describe("F292 · a press event can never become the paywall reason", () => {
+  it("no paywall handler defaults its reason, which is what let the event through", () => {
+    const defaulted = sources.filter((s) => /\(\s*\w+\s*:\s*PaywallReason\s*=/.test(s.src));
+    expect(defaulted.map((s) => s.path)).toEqual([]);
+  });
+
+  it("ProTag and WorkTag call their handler with no arguments", () => {
+    for (const rel of ["components/chat/Sheet.tsx", "work/WorkTag.tsx"]) {
+      const src = read(rel);
+      expect(src, rel).toMatch(/onPress=\{\(\) => \(onPress \? onPress\(\) : openPaywall\(reason\)\)\}/);
+      /* `onPress ?? (…)` is the shape that forwarded the event: the prop went to Pressable unwrapped. */
+      expect(src, rel).not.toContain("onPress={onPress ??");
+    }
+  });
+
+  it("no tag is handed a bare handler that takes a parameter", () => {
+    /* A zero-argument handler is safe (the tags drop the event); one that takes a parameter would receive it. */
+    const bare: string[] = [];
+    for (const { path, src } of sources) {
+      for (const m of src.matchAll(/<(?:Pro|Work)Tag[^>]*?onPress=\{(\w+)\}/g)) {
+        const name = m[1]!;
+        const decl = new RegExp(`const ${name} = (?:async )?\\(([^)]*)\\)`).exec(src);
+        if (decl && decl[1]!.trim()) bare.push(`${path}: ${name}(${decl[1]!.trim()})`);
+      }
+    }
+    expect(bare).toEqual([]);
+  });
+
+  it("every reason any call site passes is a PAYWALL_REASONS key", () => {
+    const passed = new Set<string>();
+    for (const { src } of sources) {
+      for (const m of src.matchAll(/(?:onOpenPaywall|onUnlock|unlock|openPaywall)\??\.?\(\s*"([a-zA-Z]+)"/g)) passed.add(m[1]!);
+    }
+    expect([...passed].filter((r) => !(PAYWALL_REASONS as readonly string[]).includes(r))).toEqual([]);
+    expect(passed.size).toBeGreaterThan(8);
+  });
+});

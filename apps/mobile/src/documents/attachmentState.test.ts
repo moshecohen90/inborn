@@ -215,3 +215,33 @@ describe("adding the same file again (QA F139)", () => {
     expect(library.attachmentState("chat-1").blocked).toBe("needs-ocr");
   });
 });
+
+/**
+ * F302. A file read to the end that carried no text looked exactly like a file we failed to read: `blocked` was
+ * `null` for both, so the chat gave the vague "Inborn has not read it" line, and the library row called an empty
+ * index "Indexed". The state now has its own name, and the refusal says what to do about it.
+ */
+describe("F302 · a document with no readable text is its own state", () => {
+  it("names the state instead of leaving it unknown, and the turn is refused with that line", async () => {
+    const library = new DocumentLibrary();
+    /* Whitespace has a text layer, so OCR is not the answer: the file is simply empty of readable text. */
+    const doc = await attach(library, "chat-1", "unreadable-scan.pdf", "   \n  \n");
+    await settle(library);
+    const record = library.state().documents.find((d) => d.id === doc.id)!;
+    expect(record.chunkCount).toBe(0);
+
+    const state = library.attachmentState("chat-1");
+    expect(state).toMatchObject({ hasAttachment: true, hasIndex: false, indexing: false, blocked: "no-text" });
+    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.noText" });
+    /* The complement that matters: it is never sent to the model, in either mode. */
+    for (const strict of [true, false]) expect(planDocsTurn({ strict, ...state }).kind).not.toBe("model");
+  });
+
+  it("a scan that still needs OCR keeps its own, different answer", async () => {
+    const library = new DocumentLibrary();
+    await attach(library, "chat-1", "scan.txt", "");
+    await settle(library);
+    expect(library.attachmentState("chat-1").blocked).toBe("needs-ocr");
+    expect(planDocsTurn({ strict: false, ...library.attachmentState("chat-1") })).toEqual({ kind: "refuse", messageKey: "documents.needsOcr" });
+  });
+});

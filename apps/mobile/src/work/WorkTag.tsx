@@ -12,8 +12,9 @@ export function WorkTag({ onPress, reason }: { onPress?: () => void; reason?: Pa
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
+  /* Called with no arguments, like ProTag: Pressable would otherwise hand the press event to the handler (F292). */
   return (
-    <Pressable testID="work-tag" accessibilityRole="button" accessibilityLabel={t("work.unlock")} onPress={onPress ?? (() => openPaywall(reason))} style={styles.target}>
+    <Pressable testID="work-tag" accessibilityRole="button" accessibilityLabel={t("work.unlock")} onPress={() => (onPress ? onPress() : openPaywall(reason))} style={styles.target}>
       <View style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
         <Text style={[type.monoLabel, { color: theme.accent }]}>{t("work.tag")}</Text>
       </View>

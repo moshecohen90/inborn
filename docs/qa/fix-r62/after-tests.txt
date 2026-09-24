@@ -1,0 +1,122 @@
+
+> inborn@ test /Users/moshecohen/dev/inborn-wt/fix-r62
+> pnpm run check:store && pnpm -r --if-present test
+
+
+> inborn@ check:store /Users/moshecohen/dev/inborn-wt/fix-r62
+> node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs
+
+FIELD LENGTHS
+  de     apple.name                    24/30  ok
+  de     apple.subtitle                26/30  ok
+  de     apple.promotional_text      152/170  ok
+  de     apple.description         1863/4000  ok
+  de     apple.whats_new            431/4000  ok
+  de     google.title                  24/30  ok
+  de     google.short_description      80/80  ok
+  de     google.full_description   1810/4000  ok
+  de     apple.keywords              94/100B  ok
+  en     apple.name                    29/30  ok
+  en     apple.subtitle                29/30  ok
+  en     apple.promotional_text      152/170  ok
+  en     apple.description         1642/4000  ok
+  en     apple.whats_new            358/4000  ok
+  en     google.title                  24/30  ok
+  en     google.short_description      78/80  ok
+  en     google.full_description   1582/4000  ok
+  en     apple.keywords              85/100B  ok
+  es     apple.name                    24/30  ok
+  es     apple.subtitle                24/30  ok
+  es     apple.promotional_text      150/170  ok
+  es     apple.description         1826/4000  ok
+  es     apple.whats_new            416/4000  ok
+  es     google.title                  24/30  ok
+  es     google.short_description      78/80  ok
+  es     google.full_description   1793/4000  ok
+  es     apple.keywords              92/100B  ok
+  fr     apple.name                    28/30  ok
+  fr     apple.subtitle                22/30  ok
+  fr     apple.promotional_text      157/170  ok
+  fr     apple.description         1997/4000  ok
+  fr     apple.whats_new            460/4000  ok
+  fr     google.title                  27/30  ok
+  fr     google.short_description      79/80  ok
+  fr     google.full_description   1873/4000  ok
+  fr     apple.keywords              88/100B  ok
+  ja     apple.name                    20/30  ok
+  ja     apple.subtitle                17/30  ok
+  ja     apple.promotional_text       78/170  ok
+  ja     apple.description          896/4000  ok
+  ja     apple.whats_new            197/4000  ok
+  ja     google.title                  20/30  ok
+  ja     google.short_description      39/80  ok
+  ja     google.full_description    869/4000  ok
+  ja     apple.keywords              97/100B  ok
+  ko     apple.name                    21/30  ok
+  ko     apple.subtitle                17/30  ok
+  ko     apple.promotional_text       95/170  ok
+  ko     apple.description          973/4000  ok
+  ko     apple.whats_new            206/4000  ok
+  ko     google.title                  19/30  ok
+  ko     google.short_description      49/80  ok
+  ko     google.full_description    968/4000  ok
+  ko     apple.keywords              85/100B  ok
+  pt-BR  apple.name                    26/30  ok
+  pt-BR  apple.subtitle                24/30  ok
+  pt-BR  apple.promotional_text      152/170  ok
+  pt-BR  apple.description         1767/4000  ok
+  pt-BR  apple.whats_new            409/4000  ok
+  pt-BR  google.title                  27/30  ok
+  pt-BR  google.short_description      67/80  ok
+  pt-BR  google.full_description   1689/4000  ok
+  pt-BR  apple.keywords              90/100B  ok
+  zh-Hant apple.name                    17/30  ok
+  zh-Hant apple.subtitle                15/30  ok
+  zh-Hant apple.promotional_text       66/170  ok
+  zh-Hant apple.description          696/4000  ok
+  zh-Hant apple.whats_new            151/4000  ok
+  zh-Hant google.title                  17/30  ok
+  zh-Hant google.short_description      34/80  ok
+  zh-Hant google.full_description    673/4000  ok
+  zh-Hant apple.keywords              79/100B  ok
+
+PASS: all fields within limits.
+  apps/web/dist (browser app): OK: /Users/moshecohen/dev/inborn-wt/fix-r62/apps/web/dist contains no QA bridge
+  apps/mobile/dist (expo web export): OK: /Users/moshecohen/dev/inborn-wt/fix-r62/apps/mobile/dist contains no QA bridge
+
+PASS: 2 shipping artifact(s) carry no QA bridge.
+Scope: 7 of 8 workspace projects
+packages/i18n test$ vitest run
+packages/core test$ vitest run
+packages/ui test$ vitest run
+packages/core test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/packages/core
+packages/i18n test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/packages/i18n
+packages/ui test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/packages/ui
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  13 passed (13)
+packages/ui test:    Start at  15:09:23
+packages/ui test:    Duration  193ms (transform 60%, import 22%, tests 10%, worker 8%)
+packages/ui test: Done
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  20 passed (20)
+packages/i18n test:    Start at  15:09:23
+packages/i18n test:    Duration  722ms (tests 84%, transform 9%, import 5%, worker 2%)
+packages/i18n test: Done
+packages/core test:  Test Files  75 passed (75)
+packages/core test:       Tests  736 passed (736)
+packages/core test:    Start at  15:09:23
+packages/core test:    Duration  2.48s (import 49%, transform 31%, tests 17%, worker 3%)
+packages/core test:   Transform  transforming modules took 5.33s · 31% of tracked time, re-done on every run
+packages/core test:              persist transforms across runs with fsModuleCache: true
+packages/core test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+packages/core test: Done
+apps/mobile test$ vitest run
+apps/mobile test:  RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/apps/mobile
+apps/mobile test:  Test Files  84 passed (84)
+apps/mobile test:       Tests  777 passed (777)
+apps/mobile test:    Start at  15:09:26
+apps/mobile test:    Duration  2.42s (transform 42%, tests 28%, import 28%, worker 2%)
+apps/mobile test:   Transform  transforming modules took 7.04s · 42% of tracked time, re-done on every run
+apps/mobile test:              persist transforms across runs with fsModuleCache: true
+apps/mobile test:              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+apps/mobile test: Done
