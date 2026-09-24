@@ -1,0 +1,13 @@
+# F338 guard watched red: apps/mobile/src/work/TemplatesSheet.tsx reverted to 96e14f9, test unchanged
+     × every locked template row is live and opens /paywall?reason=templates 10ms
+     × the WORK chip on each locked row reaches the paywall with the same reason 3ms
+     × the banner chip on the pack list names the reason too 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/work/TemplatesSheet.test.ts > F338 · a locked Work template opens the paywall saying why > every locked template row is live and opens /paywall?reason=templates
+AssertionError: template-case-memo must not be disabled: expected true to be false // Object.is equality
+ FAIL  src/work/TemplatesSheet.test.ts > F338 · a locked Work template opens the paywall saying why > the WORK chip on each locked row reaches the paywall with the same reason
+AssertionError: the chip sits inside a disabled row: expected true to be false // Object.is equality
+ FAIL  src/work/TemplatesSheet.test.ts > F338 · a locked Work template opens the paywall saying why > the banner chip on the pack list names the reason too
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'templates' ]
+      Tests  3 failed | 1 passed (4)
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/work/TemplatesSheet.test.ts

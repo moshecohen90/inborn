@@ -53,7 +53,7 @@ export function Statement() {
       {gate.statementLocked ? (
         <View style={[styles.moment, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
           <Text style={[type.bodySmall, styles.grow, { color: theme.text2 }]}>{t("work.moment.statement", { price: gate.price })}</Text>
-          <WorkTag />
+          <WorkTag reason="architectureStatement" />
         </View>
       ) : (
         <Actions>

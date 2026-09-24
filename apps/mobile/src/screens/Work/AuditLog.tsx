@@ -8,6 +8,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, Row, Section } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
 import { useEntitlement } from "../../licence";
+import { openPaywall } from "../../licence/openPaywall";
 import { shareFile } from "../../lib/share";
 import { useWork, useWorkGate, WorkTag } from "../../work";
 
@@ -51,7 +52,7 @@ export function AuditLog() {
       {locked ? (
         <View style={[styles.moment, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
           <Text style={[type.bodySmall, styles.grow, { color: theme.text2 }]}>{t("work.moment.vault", { price: gate.price })}</Text>
-          <WorkTag />
+          <WorkTag reason="auditLog" />
         </View>
       ) : null}
       {!vaults.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("audit.empty")}</Text> : null}
@@ -60,7 +61,7 @@ export function AuditLog() {
         vaults.length ? (
           <Section title={t("audit.pick")}>
             {vaults.map((v) => (
-              <Row key={v.id} testID={`audit-vault-${v.id}`} label={v.name} onPress={() => (locked ? undefined : setPicked(v.id))} chevron disabled={locked} />
+              <Row key={v.id} testID={`audit-vault-${v.id}`} label={v.name} onPress={() => (locked ? openPaywall("auditLog") : setPicked(v.id))} chevron />
             ))}
           </Section>
         ) : null
