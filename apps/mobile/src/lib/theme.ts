@@ -2,7 +2,7 @@ import { useWindowDimensions } from "react-native";
 import type { Theme } from "@inborn/ui";
 import { useTheme as useResolvedTheme } from "../services/theme";
 
-/** Same source as the shell (services/theme): the Settings override first, the system scheme only under "system". */
+/** Same source as the shell (services/theme): the Settings override first, the system scheme only under "auto". */
 export function useTheme(): Theme {
   return useResolvedTheme().theme;
 }
