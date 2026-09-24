@@ -1,0 +1,28 @@
+### baseline break repaired LOCALLY for measurement only (one '}' added to apps/mobile/src/proof/deliveryLine.ts:33; REVERTED after this run)
+
+### pn typecheck
+packages/core typecheck$ tsc --noEmit -p tsconfig.json
+packages/i18n typecheck$ tsc --noEmit -p tsconfig.json
+packages/ui typecheck$ tsc --noEmit -p tsconfig.json
+packages/ui typecheck: Done
+packages/i18n typecheck: Done
+packages/core typecheck: Done
+apps/mobile typecheck$ tsc --noEmit -p tsconfig.json
+apps/mobile typecheck: Done
+
+### pn test
+packages/ui test:  Test Files  1 passed (1)
+packages/ui test:       Tests  13 passed (13)
+packages/i18n test:  Test Files  4 passed (4)
+packages/i18n test:       Tests  20 passed (20)
+packages/core test:  Test Files  75 passed (75)
+packages/core test:       Tests  734 passed (734)
+apps/mobile test:  Test Files  79 passed (79)
+apps/mobile test:       Tests  722 passed (722)
+
+### pn lint
+
+> inborn@ lint /Users/moshecohen/dev/inborn-wt/fix-phone-r58
+> eslint .
+
+lint exit: 0

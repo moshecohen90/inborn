@@ -1,0 +1,147 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core
+
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Chinese sentence into terms instead of one token 3ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Japanese sentence the same way, kana and kanji alike 0ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > keeps the latin half of a mixed token and the spaced scripts untouched 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: the passage survives the relevance floor with the cosine under it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: strict mode answers from the document instead of "not found" 3ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: outside strict mode the answer carries the passage and cites it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: an unrelated passage in the same language is still dropped 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: a question about something else keeps citing nothing 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: the passage survives the relevance floor with the cosine under it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: strict mode answers from the document instead of "not found" 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: outside strict mode the answer carries the passage and cites it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: an unrelated passage in the same language is still dropped 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: a question about something else keeps citing nothing 0ms
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the glue the question shares with the passage is not counted as a lexical match 2ms
+   → expected 2 to be less than 2
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: outside strict mode the off-topic question cites nothing 3ms
+   → expected [ Array(1) ] to deeply equal []
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: strict mode answers nothing rather than quoting the one passage 1ms
+   → expected false to be true // Object.is equality
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the on-topic question on the same one-passage document still cites it 0ms
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the glue the question shares with the passage is not counted as a lexical match 0ms
+   → expected 2 to be less than 2
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: outside strict mode the off-topic question cites nothing 1ms
+   → expected [ Array(1) ] to deeply equal []
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: strict mode answers nothing rather than quoting the one passage 0ms
+   → expected false to be true // Object.is equality
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the on-topic question on the same one-passage document still cites it 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the glue the question shares with the passage is not counted as a lexical match
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the glue the question shares with the passage is not counted as a lexical match
+AssertionError: expected 2 to be less than 2
+ ❯ test/rag-cjk.test.ts:121:30
+    119|     it(`${label}: the glue the question shares with the passage is not…
+    120|       const [hit] = hitsFor(offTopic, [only]);
+    121|       expect(hit!.bm25Terms).toBeLessThan(2);
+       |                              ^
+    122|       expect(hit!.bm25).toBeLessThan(DEFAULT_MIN_BM25);
+    123|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: outside strict mode the off-topic question cites nothing
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0.5753641449035617,
++     "bm25Terms": 2,
++     "chunk": {
++       "docId": "ja",
++       "end": 58,
++       "id": "ja1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。",
++       "tokens": 40,
++     },
++     "cosine": 0.49,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:127:22
+    125|     it(`${label}: outside strict mode the off-topic question cites not…
+    126|       const p = buildRagPrompt({ question: offTopic, hits: hitsFor(off…
+    127|       expect(p.used).toEqual([]);
+       |                      ^
+    128|       expect(p.citations).toEqual([]);
+    129|       expect(p.messages[0]!.content).toContain("contain nothing about …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: strict mode answers nothing rather than quoting the one passage
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: strict mode answers nothing rather than quoting the one passage
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/rag-cjk.test.ts:134:140
+    132|     it(`${label}: strict mode answers nothing rather than quoting the …
+    133|       const p = buildRagPrompt({ question: offTopic, hits: hitsFor(off…
+    134|       expect(buildRagPrompt({ question: offTopic, hits: hitsFor(offTop…
+       |                                                                                                                                            ^
+    135|       expect(p.messages[1]?.content ?? "").not.toContain(text);
+    136|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: outside strict mode the off-topic question cites nothing
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0.5753641449035617,
++     "bm25Terms": 2,
++     "chunk": {
++       "docId": "zh",
++       "end": 48,
++       "id": "zh1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。",
++       "tokens": 40,
++     },
++     "cosine": 0.49,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:127:22
+    125|     it(`${label}: outside strict mode the off-topic question cites not…
+    126|       const p = buildRagPrompt({ question: offTopic, hits: hitsFor(off…
+    127|       expect(p.used).toEqual([]);
+       |                      ^
+    128|       expect(p.citations).toEqual([]);
+    129|       expect(p.messages[0]!.content).toContain("contain nothing about …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 15 passed (21)
+   Start at  12:18:13
+   Duration  233ms (transform 68%, import 17%, tests 13%, worker 2%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-cjk.test.ts --reporter=verbose

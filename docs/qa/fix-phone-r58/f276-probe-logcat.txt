@@ -1,0 +1,24 @@
+OnePlus 6T (REDACTED-6T), com.inbornapp.mobile.qa, Metro on a private port, instant.gguf + embed-nomic.
+r58-halcyon.txt attached and indexed (1/1 pages, 1 chunk), strict off.
+A temporary probe was added to `flash` and to the retrieve-path gate in Chat.tsx, hot-reloaded over Metro,
+and removed again before the fix was written. `adb logcat -s ReactNativeJS:V`:
+
+--- off-topic: "Which river runs through Vienna?" (the F276 case) ---
+13:14:46.169 '[r58-probe] gate',  '{"at":1790244886168,"continuing":false,"attachedCount":1,"used":0,"turn":"retrieve"}'
+13:14:46.178 '[r58-probe] flash', 1790244886172, 'Nothing in your documents matched this question. Answered without them.'
+13:14:47.980 '[r58-probe] flash-clear', 1790244887979, 'Nothing in your documents matched this question. Answered without them.'
+13:14:57.492 '[stats]', '{... "ttftMs":9784, "elapsedMs":11673 ...}'
+
+  gate -> flash            4 ms
+  flash -> flash-clear  1,807 ms   (the 1,400 ms timer, late because the JS thread is busy)
+  turn start -> first token of the answer   9,784 ms
+
+  The notice is raised and withdrawn about eight seconds before the answer it explains appears.
+  saysNoneMatched was TRUE and flash DID run: the logic was never the defect.
+
+--- on-topic control, same chat, same build: "Who rebuilt the lighthouse and in what year?" ---
+13:13:36.688 '[r58-probe] gate', '{"at":1790244816686,"continuing":false,"attachedCount":1,"used":1,"turn":"retrieve"}'
+  used=1, so no notice was raised. The complement holds.
+
+--- an earlier off-topic turn, before the probe, for the ttft figure without any probe in the bundle ---
+13:11:23 '[stats]', '{... "ttftMs":7320, "elapsedMs":9371 ...}'   ("What is the capital of Portugal?")

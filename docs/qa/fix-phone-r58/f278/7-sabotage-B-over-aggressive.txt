@@ -1,0 +1,176 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core
+
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Chinese sentence into terms instead of one token 3ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Japanese sentence the same way, kana and kanji alike 0ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > keeps the latin half of a mixed token and the spaced scripts untouched 1ms
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: the passage survives the relevance floor with the cosine under it 2ms
+   → expected 0 to be greater than or equal to 2
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: strict mode answers from the document instead of "not found" 2ms
+   → expected true to be false // Object.is equality
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: outside strict mode the answer carries the passage and cites it 1ms
+   → expected [] to deeply equal [ 'zh1' ]
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: an unrelated passage in the same language is still dropped 1ms
+   → expected [] to deeply equal [ 'zh1' ]
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: a question about something else keeps citing nothing 0ms
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: the passage survives the relevance floor with the cosine under it 0ms
+   → expected 0 to be greater than or equal to 2
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: strict mode answers from the document instead of "not found" 1ms
+   → expected true to be false // Object.is equality
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: outside strict mode the answer carries the passage and cites it 0ms
+   → expected [] to deeply equal [ 'ja1' ]
+ × test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: an unrelated passage in the same language is still dropped 1ms
+   → expected [] to deeply equal [ 'ja1' ]
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: a question about something else keeps citing nothing 1ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the glue the question shares with the passage is not counted as a lexical match 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: outside strict mode the off-topic question cites nothing 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: strict mode answers nothing rather than quoting the one passage 0ms
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the on-topic question on the same one-passage document still cites it 0ms
+   → expected 0 to be greater than or equal to 2
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the glue the question shares with the passage is not counted as a lexical match 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: outside strict mode the off-topic question cites nothing 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: strict mode answers nothing rather than quoting the one passage 0ms
+ × test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the on-topic question on the same one-passage document still cites it 0ms
+   → expected 0 to be greater than or equal to 2
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: the passage survives the relevance floor with the cosine under it
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: the passage survives the relevance floor with the cosine under it
+AssertionError: expected 0 to be greater than or equal to 2
+ ❯ test/rag-cjk.test.ts:67:34
+     65|       const [onTopic] = hitsFor(question, [passage]);
+     66|       expect(onTopic!.cosine).toBeLessThan(DEFAULT_MIN_COSINE);
+     67|       expect(onTopic!.bm25Terms).toBeGreaterThanOrEqual(2);
+       |                                  ^
+     68|     });
+     69|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: strict mode answers from the document instead of "not found"
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: strict mode answers from the document instead of "not found"
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ test/rag-cjk.test.ts:72:26
+     70|     it(`${label}: strict mode answers from the document instead of "no…
+     71|       const p = buildRagPrompt({ question, hits: hitsFor(question, [pa…
+     72|       expect(p.noAnswer).toBe(false);
+       |                          ^
+     73|       expect(p.used).toHaveLength(1);
+     74|       expect(p.citations).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: outside strict mode the answer carries the passage and cites it
+AssertionError: expected [] to deeply equal [ 'zh1' ]
+
+- Expected
++ Received
+
+- [
+-   "zh1",
+- ]
++ []
+
+ ❯ test/rag-cjk.test.ts:80:45
+     78|     it(`${label}: outside strict mode the answer carries the passage a…
+     79|       const p = buildRagPrompt({ question, hits: hitsFor(question, [pa…
+     80|       expect(p.used.map((h) => h.chunk.id)).toEqual([passage.id]);
+       |                                             ^
+     81|       expect(p.citations).toHaveLength(1);
+     82|       expect(p.messages[0]!.content).not.toContain("contain nothing ab…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: an unrelated passage in the same language is still dropped
+AssertionError: expected [] to deeply equal [ 'zh1' ]
+
+- Expected
++ Received
+
+- [
+-   "zh1",
+- ]
++ []
+
+ ❯ test/rag-cjk.test.ts:88:45
+     86|       const hits = hitsFor(question, [passage, other]);
+     87|       const p = buildRagPrompt({ question, hits, docs, strict: false, …
+     88|       expect(p.used.map((h) => h.chunk.id)).toEqual([passage.id]);
+       |                                             ^
+     89|     });
+     90|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: outside strict mode the answer carries the passage and cites it
+AssertionError: expected [] to deeply equal [ 'ja1' ]
+
+- Expected
++ Received
+
+- [
+-   "ja1",
+- ]
++ []
+
+ ❯ test/rag-cjk.test.ts:80:45
+     78|     it(`${label}: outside strict mode the answer carries the passage a…
+     79|       const p = buildRagPrompt({ question, hits: hitsFor(question, [pa…
+     80|       expect(p.used.map((h) => h.chunk.id)).toEqual([passage.id]);
+       |                                             ^
+     81|       expect(p.citations).toHaveLength(1);
+     82|       expect(p.messages[0]!.content).not.toContain("contain nothing ab…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: an unrelated passage in the same language is still dropped
+AssertionError: expected [] to deeply equal [ 'ja1' ]
+
+- Expected
++ Received
+
+- [
+-   "ja1",
+- ]
++ []
+
+ ❯ test/rag-cjk.test.ts:88:45
+     86|       const hits = hitsFor(question, [passage, other]);
+     87|       const p = buildRagPrompt({ question, hits, docs, strict: false, …
+     88|       expect(p.used.map((h) => h.chunk.id)).toEqual([passage.id]);
+       |                                             ^
+     89|     });
+     90|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the on-topic question on the same one-passage document still cites it
+ FAIL  test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the on-topic question on the same one-passage document still cites it
+AssertionError: expected 0 to be greater than or equal to 2
+ ❯ test/rag-cjk.test.ts:141:30
+    139|       const [hit] = hitsFor(onTopic, [only]);
+    140|       expect(hit!.cosine).toBeLessThan(DEFAULT_MIN_COSINE);
+    141|       expect(hit!.bm25Terms).toBeGreaterThanOrEqual(2);
+       |                              ^
+    142|       const p = buildRagPrompt({ question: onTopic, hits: hitsFor(onTo…
+    143|       expect(p.noAnswer).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 11 passed (21)
+   Start at  12:17:59
+   Duration  291ms (transform 77%, import 13%, tests 8%, worker 1%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-cjk.test.ts --reporter=verbose

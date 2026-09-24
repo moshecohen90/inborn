@@ -1,0 +1,31 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/apps/mobile
+
+ ❯ src/documents/f277-doc-name.test.ts (5 tests | 1 failed) 37ms
+   ❯ F277 · a document whose name reads as an instruction still indexes and is cited (5)
+     × a source that is not on disk is reported missing, not empty 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/f277-doc-name.test.ts > F277 · a document whose name reads as an instruction still indexes and is cited > a source that is not on disk is reported missing, not empty
+AssertionError: expected 'empty/empty' to be 'failed/missing' // Object.is equality
+
+Expected: "failed/missing"
+Received: "empty/empty"
+
+ ❯ src/documents/f277-doc-name.test.ts:126:42
+    124|     /* Nothing is written to `disk`, which is what the device shows wh…
+    125|     const doc = await library.importFile(normalize(TMP + encodeURIComp…
+    126|     expect(`${doc.status}/${doc.error}`).toBe("failed/missing");
+       |                                          ^
+    127|     expect(doc.sha256, "a source that could not be read must not be ha…
+    128|     expect(en["documents.error.missing"], "the reason needs its own se…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  12:25:23
+   Duration  860ms (transform 78%, import 17%, tests 5%)
+

@@ -1,0 +1,30 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-phone-r58/packages/core
+
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Chinese sentence into terms instead of one token 3ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > cuts a Japanese sentence the same way, kana and kanji alike 0ms
+ ✓ test/rag-cjk.test.ts > BM25 tokenisation of unspaced scripts > keeps the latin half of a mixed token and the spaced scripts untouched 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: the passage survives the relevance floor with the cosine under it 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: strict mode answers from the document instead of "not found" 3ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: outside strict mode the answer carries the passage and cites it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: an unrelated passage in the same language is still dropped 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Chinese: a question about something else keeps citing nothing 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: the passage survives the relevance floor with the cosine under it 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: strict mode answers from the document instead of "not found" 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: outside strict mode the answer carries the passage and cites it 1ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: an unrelated passage in the same language is still dropped 0ms
+ ✓ test/rag-cjk.test.ts > F195 · an on-topic CJK question keeps its passages and its citations > Japanese: a question about something else keeps citing nothing 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the glue the question shares with the passage is not counted as a lexical match 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: outside strict mode the off-topic question cites nothing 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: strict mode answers nothing rather than quoting the one passage 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Japanese: the on-topic question on the same one-passage document still cites it 1ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the glue the question shares with the passage is not counted as a lexical match 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: outside strict mode the off-topic question cites nothing 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: strict mode answers nothing rather than quoting the one passage 0ms
+ ✓ test/rag-cjk.test.ts > F278 · a one-passage CJK document does not cite itself for an off-topic question > Chinese: the on-topic question on the same one-passage document still cites it 0ms
+
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+   Start at  12:15:37
+   Duration  190ms (transform 67%, import 19%, tests 12%, worker 2%)
+
