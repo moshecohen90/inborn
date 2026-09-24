@@ -1,0 +1,117 @@
+########## A. ABOUT + PROOF
+=== ABOUT
+About
+VERSION
+1.0.0 (22)
+648bc43f66c6
+LICENSES
+Model licenses
+Open-source licenses
+PRIVACY
+/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/android-vc22/run/a-01-about-1-0-0-22.png -> /Users/moshecohen/dev/inborn-wt/android-vc22/docs/qa/android-vc22/a-01-about-1-0-0-22.png (pixelWidth:230pixelHeight:500)
+=== PROOF
+SEALED · ON-DEVICE
+SEALED · ON-DEVICE
+since install · 2 days
+OUT 0 B · IN 0 B
+CONNECTIONS 0 this session
+NETWORK ALLOWLIST
+none · the app has no internet permission
+Google Play delivers models; Inborn never opens a socket.
+LAST DELIVERY
+VOICE INPUT · 141 MB
+Play Asset Delivery · verified by Play, then by sha256 ￼
+PERMISSIONS
+/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/android-vc22/run/a-02-proof-out-0b.png -> /Users/moshecohen/dev/inborn-wt/android-vc22/docs/qa/android-vc22/a-02-proof-out-0b.png (pixelWidth:230pixelHeight:500)
+########## F281a. THE MODEL SHEET'S SIZES AND ITS DOWNLOAD DOOR
+NC-OK (already an empty chat)
+--- sizes printed in the sheet:
+  17 1.3 GB
+  17 2.7 GB
+  17 533 MB
+--- download-door labels:
+--- rows present:
+model-sheet-row-fast
+model-sheet-row-instant
+model-sheet-row-sharp
+model-sheet-row-sharp-phi
+########## M1. THE MODEL SHEET ROWS (round 40, F150)
+chip before: [FAST]
+UC-FAIL [click:model-chip;sleep:3000]
+java.lang.AssertionError: node not found or action refused: model-chip
+	at com.inbornapp.mobile.uitest.DriveTest.act(DriveTest.java:102)
+	at com.inbornapp.mobile.uitest.DriveTest.drive(DriveTest.java:35)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+OPENED model-sheet
+--- collected 44 lines
+--- model rows:
+model-sheet-row-fast
+model-sheet-row-instant
+model-sheet-row-sharp
+model-sheet-row-sharp-phi
+--- good-at ids:
+model-sheet-goodat-fast
+model-sheet-goodat-instant
+model-sheet-goodat-sharp
+model-sheet-goodat-sharp-phi
+--- language ids:
+model-sheet-language-fast
+model-sheet-language-instant
+model-sheet-language-sharp
+model-sheet-language-sharp-phi
+--- in use:
+model-sheet-inuse-instant
+--- use buttons:
+model-sheet-use-fast
+model-sheet-use-sharp
+--- download buttons:
+--- tier chip: 0   see-whats-in-pro: 0
+--- sheet text:
+Model
+RECOMMENDED ON THIS PHONE · CHAT IN ENGLISH
+ON THIS DEVICE
+FAST
+RECOMMENDED
+Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes
+English · Native
+1.3 GB
+Use this model
+INSTANT
+Good at: Chat, Summaries, Voice notes, Photos
+533 MB
+In use
+SHARP
+Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math &amp; reasoning
+2.7 GB
+TOO BIG FOR 8 GB
+SHARP (PHI)
+Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math &amp; reasoning
+2.5 GB · Too slow to use on this phone
+Model vault
+Chat settings
+Close
+########## M2. ONE TAP: INSTANT -> FAST
+header chip before the tap (sheet closed): [INSTANT]
+UC-OK [click:model-sheet-use-fast]
+ONE tap on model-sheet-use-fast: chip [INSTANT] -> [FAST] in 7s
+SWITCH-OK
+########## M2b. ONE TAP BACK TO INSTANT (the configuration the document rows are proven on)
+header chip before the tap (sheet closed): [FAST]
+UC-OK [click:model-sheet-use-instant]
+ONE tap on model-sheet-use-instant: chip [FAST] -> [INSTANT] in 7s
+SWITCH-OK
+########## F281b. THE SAME SIZES IN THE VAULT
+--- sizes printed in the vault:
+--- spec lines (size · quant):
+1.3 GB · Q4_K_M · Battery: Medium
+148 MB · F16 · Battery: Low
+2.5 GB · Q4_K_M · Battery: High
+2.7 GB · Q4_K_M · Battery: High
+205 MB · F16 · Battery: Medium
+274 MB · F16 · Battery: Low
+533 MB · Q4_K_M · Battery: Low
+--- install (download door) labels:
+--- storage line:
+5.2 GB in the vault · 13 GB free · RUNS ON: ANDROID-LEGACY · 8 GB

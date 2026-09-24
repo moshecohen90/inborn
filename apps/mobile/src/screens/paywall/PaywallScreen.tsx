@@ -79,6 +79,7 @@ export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: 
     if (state.restore.kind === "running") return { text: t("paywall.restoring"), tone: "info" };
     if (state.restore.kind === "done") return { text: t("paywall.restored", { count: state.restore.found }), tone: state.restore.found ? "ok" : "info" };
     if (state.restore.kind === "failed") return { text: t("paywall.restoreFailed"), tone: "danger" };
+    if (state.code.kind === "failed") return { text: t("paywall.code.failed"), tone: "danger" };
     if (state.storeReachable === false && store) {
       if (state.entitlement.fromCache && state.entitlement.graceEndsAt && tier === "free") return { text: t("paywall.graceExpired"), tone: "danger" };
       return { text: t("paywall.offline"), tone: "info" };
@@ -143,6 +144,11 @@ export function PaywallScreen({ onClose, reason, onOpenDoc, workFirst, modal }: 
                 <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.restore")}</Text>
               </Pressable>
             )}
+            {manager.canRedeemStoreCode() ? (
+              <Pressable testID="redeem-code" accessibilityRole="button" disabled={state.code.kind === "opening"} onPress={() => void manager.redeemStoreCode()} hitSlop={8}>
+                <Text style={[type.bodySmall, type.strong, styles.link, { color: theme.text }]}>{t("paywall.code.title")}</Text>
+              </Pressable>
+            ) : null}
             {Platform.OS === "ios" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{state.familyShareable ? t("paywall.familySharing.ios") : t("paywall.familySharing.iosOff")}</Text> : null}
             {Platform.OS === "android" ? <Text style={[type.mono, styles.mono, { color: theme.text3 }]}>{t("paywall.familySharing.play")}</Text> : null}
           </View>

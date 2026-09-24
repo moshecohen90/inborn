@@ -1,0 +1,16 @@
+F282 — the lexical half of the relevance floor, measured against the very passage and questions the phone ran.
+Probe: a real `Bm25Index` with the one passage of vc22-ja-report.txt added as a single chunk, then
+`index.search(question, 10)[0]` plus the `words()` overlap. Run in packages/core (vitest), the assertion
+made to fail so the payload prints; the probe file was removed afterwards and is not committed.
+
+PASSAGE: 青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。
+OFF    : 一九九八年のワールドカップで優勝したのはどこですか？
+ON     : 青葉商事の社員数は何名ですか？
+
+Received: "OFF: bm25=undefined matched=undefined overlap= || ON: bm25=2.301 matched=8 overlap=青葉,葉商,商事,事の,社員,員数,数は,名で"
+
+So the off-topic question does not reach the passage lexically at all — no hit, zero overlapping terms — while the
+on-topic one matches eight. isRelevant (packages/core/src/rag/prompt.ts:62) is
+  cosine >= 0.5 || bm25Terms >= 2 || (bm25Terms >= 1 && bm25 >= 2.0)
+so the citation the phone printed for the off-topic turn can only have come over the cosine floor. The cosine itself
+was NOT measured: no screen on the phone prints it and the embedder was not run off-device.

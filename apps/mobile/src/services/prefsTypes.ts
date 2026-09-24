@@ -38,7 +38,7 @@ export interface Prefs {
 export const defaultPrefs = (now: number): Prefs => ({
   onboarded: false,
   installedAt: now,
-  themeMode: "system",
+  themeMode: "auto",
   textScale: 1,
   locale: null,
   answerLanguage: null,
@@ -69,6 +69,9 @@ export function recoverPrefs(primary: unknown, backup: unknown): unknown {
 export function mergePrefs(raw: unknown, now: number): Prefs {
   const d = defaultPrefs(now);
   if (!raw || typeof raw !== "object") return d;
-  const r = raw as Partial<Prefs>;
-  return { ...d, ...r, lock: { ...d.lock, ...(r.lock ?? {}) }, meter: { ...d.meter, ...(r.meter ?? {}) } };
+  const r = raw as Partial<Prefs> & { themeMode?: ThemeMode | "system" };
+  const merged = { ...d, ...r, lock: { ...d.lock, ...(r.lock ?? {}) }, meter: { ...d.meter, ...(r.meter ?? {}) } };
+  // F309: pre-round-65 prefs stored the old "system" value; it means the same thing "auto" means now.
+  if ((merged.themeMode as string) === "system") merged.themeMode = "auto";
+  return merged;
 }

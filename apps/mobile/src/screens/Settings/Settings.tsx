@@ -86,14 +86,15 @@ export function Settings() {
         <Segmented<ThemeMode>
           testID="theme-mode"
           options={[
-            { value: "system", label: t("settings.appearance.system") },
+            { value: "auto", label: t("settings.appearance.auto") },
             { value: "dark", label: t("settings.appearance.dark") },
             { value: "light", label: t("settings.appearance.light") },
           ]}
           value={prefs.themeMode}
           onChange={(m) => updatePrefs({ themeMode: m })}
         />
-        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
+        <Text testID="theme-mode-sub" style={[type.bodySmall, { color: theme.text3 }]}>{t("settings.appearance.autoHint")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
         <Segmented<number>
           testID="text-scale"
           options={TEXT_SCALES.map((s) => ({ value: s, label: s === 1 ? t("settings.appearance.textDefault") : `${Math.round(s * 100)}%` }))}

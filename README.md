@@ -4810,6 +4810,57 @@ Gates: `pnpm typecheck` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 
 0, `node apps/site/build.mjs && node apps/site/check.mjs` green, `pnpm web:build` and `pnpm web:smoke` green.
 Evidence in `docs/qa/fix-site-sizes/`.
 
+## Fixes round 60: Play internal 1.0.0 (22) — the first Android build carrying rounds 55–59 (branch `android-vc22`) — 24.9.2026
+
+`vc21` carried rounds 46–53. Five rounds landed after it and none had ever run on an Android release build: the
+browser model catalog and the no-transform header (56, 57), **F276**'s notice strip, **F278**'s CJK relevance floor,
+**F279**'s separate QA package, and **F280/F281**'s single decimal size rule. `main` **648bc43** is the first tree
+carrying all of them. This round built it as **1.0.0 (22)**, put it on the Play internal track, took it onto the
+OnePlus 6T as a Play update in place, and ran the rows those five rounds are judged on.
+
+**The build.** `INBORN_VERSION_CODE=22` from a shell with no `EXPO_PUBLIC_*` dev switch (`check-store-env.sh` clean),
+`INBORN_PACKS` unset so all **seven** packs are declared, `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a`
+in a private `GRADLE_USER_HOME`. **BUILD SUCCESSFUL in 7 m 50 s**, AAB **5,117,914,935 B**, sha256 `dbc03436…2883`,
+signed by `CN=Inborn Upload Key`. Gates: `check-android-bundle.sh` 0 (seven packs, both OCR files, no iOS assets),
+`bundletool validate` 0, `check-qa-bridge.sh` 0 (no `INBORN_QA_BRIDGE_V1`), `check-android-permissions.sh` 0 (no
+INTERNET, 9 declared), all nine native modules present by dex type descriptor, commit `648bc43f66c6` baked in.
+`pn typecheck` 0, `pn test` 0 (**1,514**: core 734, mobile 747, i18n 20, ui 13), `pn lint` 0, `check:store` PASS.
+F286's 5 tests landed after the AAB was built, so the branch reached **1,519** (mobile 752), and **1,561** once
+rounds 61–65 were merged in (core 736, mobile 785, i18n 20, ui 20), all green with `lint` and `check:store`. The fix
+is in `scripts/`, which no app bundle carries, so the shipped bundle is the one the gates above describe.
+
+**The one fix this round makes (F286).** The first upload put all 5.1 GB up, set the track, and then the commit
+answered `400 "Some of the Android App Bundle uploads are not completed yet."` — Play still ingesting the bundle.
+`play-upload.mjs` deletes the edit on any commit error, so the finished upload was discarded and had to be repeated
+in full. `commitEdit` (`scripts/lib/play-api.mjs`) now retries the commit on **that message only**, 20 × 60 s, and
+never deletes the edit; any other error still fails at once. Guard: 5 tests in
+`apps/mobile/test/playCommitRetry.test.ts`, watched to fail both ways — the retry removed → 2 red
+(`expected [ Array(1) ] to have a length of 3`); the guard widened to retry everything → 1 red
+(`promise resolved "{ id: 'committed-1' }" instead of rejecting`). The second upload committed on its first call,
+edit **04011734122033761470**, and Play's read-back over a fresh edit answers the same sha256 as the local file.
+
+**On the phone.** Pressed Update 21 minutes after the commit; first press, `DOWNLOAD-STARTED`, versionCode 22 after
+584 s, `firstInstallTime` unchanged — a real update in place over Moshe's own install.
+
+- **F281 — one rounding rule.** INSTANT **533 MB**, FAST **1.3 GB**, SHARP **2.7 GB**, SHARP (PHI) **2.5 GB**, the
+  same on the model sheet, the vault card and the model details screen (on vc21: 508 MB, 1.2 GB, 2.6 GB, 2.3 GB).
+- **F276 — the notice strip, proven both ways.** Off-topic: no SOURCES and the strip still on screen **60 s after**
+  the turn finished. On-topic: the strip withdrawn and the answer cited. This is what vc21 filed as F260.
+- **F278 — half.** The on-topic Japanese question cites the one-passage file; the off-topic one **still cites it**.
+- **F255** the hostile filename is cited by its real name with no leak; **one tap** switches Instant→Fast in 7 s; a
+  Hebrew question is answered in Hebrew on three samples; crash sweep **0**.
+
+**What this round found and did not fix (F282–F285).** **F282**: F278 closed the lexical door properly — the real
+`Bm25Index` gives the off-topic Japanese question **no hit at all** on that passage — but `isRelevant` reads
+`cosine >= 0.5` as sufficient on its own, and that threshold is calibrated on nomic-embed's English behaviour, so a
+one-passage Japanese document is still fenced and cited for a question about the 1998 World Cup. **F283**: F263 is
+narrower than recorded — this Play update did not remove the driver package and no Play Protect dialog appeared.
+**F284**: the `hb.sh` share door opens a new chat and drops the attachment, and the result reads exactly like a
+passing relevance test. **F285**: F281's download door cannot be read on a phone that already has every pack, so
+three surfaces were read and the fourth was declared, not claimed.
+
+Evidence in `docs/qa/android-vc22/`, §Z of `docs/qa/purchases-run-2026-09-11.md`, rows F282–F286 of
+`docs/qa/qa-run-2026-09-11.md`. Internal test link: https://play.google.com/apps/internaltest/4701564557913726350
 ## Fixes round 62: the verifiers' round — a paywall nobody could reach, a reason that was an event, and a claim the repo could not keep (branch `fix-r62`) — 24.9.2026
 
 Eleven findings from the item verifiers (I02, I04, I10, I12, I13, S06, S07, S08, S10, C04, C05). Browser-first:
@@ -4870,6 +4921,106 @@ PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Ev
   uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
   text overflows its own box; watched red with the old string (`needs 130px in 124px`).
 
+## Fixes round 64: the prices we do not set, and a discount code half the stores cannot issue (branch `prices-codes`) — 24.9.2026
+
+Moshe's two decisions of 24.9, and the research one of them needed first. F305–F308.
+
+- **Per-market prices are the store's, not ours** (F305). Spec §12.2 said every non-US price comes from the Bible
+  apps' country-ratio mechanism (`pricing.json`, `getCountryPrice`), down to named ratios — Brazil ≈ 36%, Mexico
+  ≈ 50%, Nigeria ≈ 14%. Nothing in this repo has ever read that file: the paywall shows `displayPrice` from StoreKit
+  and Play Billing. That mechanism was written for subscriptions we bill ourselves, so keeping it in the spec was a
+  promise that would go stale without anyone noticing. Decided: one US price point per SKU, the matching tier chosen
+  in ASC and Play Console, and the store converts for every country including VAT, rounding and FX.
+- **The research verdict on codes** (F306), from Apple's and Google's own documentation. Apple **stopped creating
+  promo codes for In-App Purchases on 26 March 2026** and replaced them with **offer codes**, which now cover
+  consumables, non-consumables and non-renewing subscriptions — so Pro and Work are offer codes, and the launch plan's
+  "100 promo codes per IAP" was a route that no longer exists. Google Play keeps **promo codes** for one-time
+  products, but **free only**: its percentage-discount codes are subscriptions-only. A cross-platform "20–30% off
+  code" therefore cannot be issued at all.
+- **"Have a code?" is a door to the store, not a mechanism of ours** (F306). One row on S60 next to Restore, in all
+  nine locales, calling `expo-iap`'s `openRedeemOfferCode()`: the StoreKit offer-code sheet on iOS, the Play redeem
+  page on Android. `PurchaseProvider.openCodeRedemption?()` is optional, so the browser build and the desktop
+  licence-key build — neither of which has such a screen — do not show the row. We never see, store or validate a
+  code; the unlock arrives as an ordinary signed purchase, and the manager refreshes after the sheet closes because
+  a redemption made outside the app is only reported on the next sync. No server, no local code check to forge.
+- **The terms promised a discount that could not be given** (F307). "Write to support with your receipt for a discount
+  code" shipped in the bundled terms and on the support page, and Play cannot issue a percentage code for a one-time
+  product. It now promises the same-store Work upgrade at **$49.99** instead of $69.99 — a real store price, not a
+  code — and, across stores, a free code at support's discretion with no percentage promised. Same wording in both
+  places, so the app's offline copy and the site agree.
+- **What to create in the consoles** (F308): `docs/store/codes.md`, new. Apple offer codes and Play promo codes with
+  the exact batches, names and quantities, the limits of each store side by side, the handout procedure for support,
+  and the sources. §4 of the launch plan was corrected to match. Nothing in this round wrote to a store.
+
+**Proof:** `docs/qa/prices-codes/`. The row rendered in the browser at 390 / 768 / 1024 / 1440 on a locally patched
+Play-store build (`store-play/`, patch reverted before the commit) and absent at all four widths on the shipping web
+build (`web-nostore/`), which is the correct behaviour, not a failure. Watched red before green: the manager's
+post-redemption refresh removed (`red-no-refresh.txt`, `expected 'free' to be 'pro'`) and three claims sabotaged at
+once — the row's gate, the spec sentence, the terms sentence (`red-guards.txt`, 3 failures). Gates green: typecheck,
+1,557 tests (core 738, mobile 786, i18n 20, ui 13), lint, `check:store`, `web:smoke` including its four-width sweep.
+## Fixes round 65: Auto theme gets the clock rule the Tanach apps already had (branch `theme-auto`) — 24.9.2026
+
+Moshe (24.9): "add the clock rule like our other apps." Read the Tanach apps' `display-mode.service.ts`
+read-only for the rule (night 18:00–06:00 local, or the OS already dark, whichever fires first) and brought
+it into Inborn, which had never had a clock component at all — "System" only ever mirrored the OS.
+
+- **Appearance's "System" is now "Auto" and actually has a rule** (F309). `ThemeMode` is `"auto" | "dark" | "light"`.
+  The clock rule itself, `isAutoDark(now, systemDark)`, is a pure function in new `packages/ui/src/themeAuto.ts` —
+  no React Native import, so it is unit-tested without a device (8 cases over the 18:00/06:00 boundaries and both
+  OS states). `apps/mobile/src/services/theme.ts` wires it into `resolveScheme()` and re-evaluates every minute the
+  app is open and on every return to the foreground, through a shared tick store. A `"system"` value saved by an
+  older build migrates silently to `"auto"` in `mergePrefs()` (3 new cases in `prefsTypes.test.ts`).
+- **The row now says what Auto does** (F310): a one-line caption under the segmented control —
+  "Dark at night, 18:00-06:00, and whenever the system is dark." — in all 8 shipped locales plus a regenerated
+  `pseudo.json`. Spec §8 rewritten and rebuilt.
+- Before/after screenshots at 390 and 1440, against the real `apps/web/dist` build served on a private port:
+  `docs/qa/theme-auto/before-390.png` (still "System", no caption) → `docs/qa/theme-auto/after-390.png` (Auto /
+  Dark / Light, caption present); same pair at 1440.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 780, i18n 20, ui 20, `check:store`
+PASS), `pnpm web:build` green. No phone was touched. Evidence in `docs/qa/theme-auto/`.
+## Fixes round 61: TestFlight 1.0.0 (18), and the first device pass that reads the store build's own screen (branch `ios-build-18`) — 24.9.2026
+
+- **Build 1.0.0 (18) is on TestFlight and VALID** (F287–F291). Branch `ios-build-18` from `origin/main` 2d446fe with
+  round 59 merged in; the archive is stamped `extra.commit d201c71efdd3`, its own tip. Archive 13:51:22 → 13:54:39
+  (3 min 17 s), `** ARCHIVE SUCCEEDED **`, 0 `error:` lines; export 41 s first try; upload `UPLOAD SUCCEEDED with no
+  errors`, delivery `eac4ef66-e498-454f-b5be-2cf0e4e22e01`; **VALID at 14:07:18**, `APP_STORE_ELIGIBLE`, in the
+  `Inborn internal` group beside 17 down to 14. Tesseract (`eng` + `heb`) is in the archive on the first build, the
+  qa-bridge gate is clean on both the archive and the IPA, and `check-store-env.sh` reported *store env clean*.
+  `main.jsbundle` 6,316,369 B, +6,781 B over build 17 — rounds 56–59.
+- **A build-number bump is two files.** `apps/mobile/test/fixes-r55.test.ts` asserts the shipping build number, so
+  bumping only `app.config.ts` leaves `pn test` red (`expected '18' to be '17'`). That is the guard working; it moves
+  with the bump.
+- **The store build's own About screen was read on the phone, with no bridge and no XCUITest** — new, and the
+  permanent answer to "prove a row on the build you actually shipped". `devicectl device process launch
+  --payload-url "inborn:///settings/about"` hands the app a URL exactly as the system would, `+native-intent.ts`
+  passes the route through, and `pymobiledevice3 developer dvt screenshot --userspace` photographs it: **VERSION
+  1.0.0 (18) · d201c71efdd3**. Build 17 could only report the version `devicectl` already knew.
+- **Moshe's container survived the update**, checked byte for byte rather than by presence: `inborn.db` (2,072,576 B),
+  `documents.json`, `models/vault.json`, `device-prefs.json` and `licence.bin` are all **identical** before and after.
+  Nothing was ever uninstalled (F144).
+- **F276 and F281 verified on Apple hardware** (F288, F289). The "nothing in your documents matched" notice is still
+  on screen **60 s after** the answer it explains, with nothing cited, and is withdrawn by the next on-topic turn,
+  which cites `plain-bramblewick.txt · part 1`. Every model size now reads the same in the model sheet and the vault —
+  Instant **533 MB**, Fast **1.3 GB**, Sharp **2.7 GB** — where build 17's device pass recorded Fast as **1.2 GB**.
+  Both rows assert the new string present **and** the old one absent, so neither can pass on an unfixed screen.
+- **Two rounds' fixes did not survive the phone, and both are filed open.** F290: a one-passage Japanese document was
+  rendered as `SOURCES` for `一九九八年のワールドカップで優勝したのはどこですか？`, so round 58's CJK relevance floor does
+  not cover that sentence. F291: the hostile document name imports and attaches under its **exact** literal name, two
+  byte-distinct files stay two documents (which closes round 58's dedupe doubt) and no injection succeeds — but the
+  file then **extracts to no searchable text**, and the app says so itself, while the control indexes and is cited in
+  the same chat. Neither was measured on the device: the QA library is SQLCipher-encrypted, so both need a probe
+  build, not more driving.
+- **A QA run can be fully photographed and entirely red** (F287). The first run lost all 200 steps at step 0 because a
+  QA variant under its own bundle id opens on **onboarding**, not the chat root, and the Mac photographs the phone
+  without ever asking the app. Row scripts now open with an onboarding prelude.
+
+Gates at the archive, on the tree that was built: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 734,
+mobile 747, i18n 20, ui 13 — 1,514), `pnpm check:store` **PASS: all fields within limits**. Gates again after merging
+rounds 60, 62, 64 and 65: typecheck 0, lint 0, **1,572 tests** (core 738, mobile 794, i18n 20, ui 20), 0 failed;
+`check:store` answers **SKIP — no shipping artifact in this tree**, because the QA variant's prebuild clears
+`ios/build` after the store IPA has been exported and uploaded. Evidence in `docs/qa/ios-build-18-2026-09-24.md`,
+`docs/qa/ios-device-pass-18-2026-09-24.md` and `docs/qa/ios-device-pass-18/`.
 ## Fixes round 68: the comparison page the ASO read asked for, and the first answer-engine baseline (branch `aso-compare`) — 24.9.2026
 
 Three findings, all marketing surface, no app code. `aso-specialist` supplied the keyword targets, `aeo-specialist`

@@ -1,0 +1,60 @@
+NC-OK (already an empty chat)
+attach-strict before: checked="false" (off)
+attach-strict after:  checked="false" (off)
+strict off rc=0
+SHARED file:///sdcard/Android/data/com.inbornapp.mobile/files/vc22-marrowgate.txt
+ids:  android:id/content android:id/navigationBarBackground attach attached-chip-mufhs8qu-1-j58kofom attached-docs com.inbornapp.mobile:id/action_bar_root composer-input context-level-ok context-meter empty-headline mic model-chip notice open-chats seal seal-label send suggestion-draft suggestion-summarize suggestion-translate 
+text: Chats|SEALED|INSTANT|This is AI running on your phone. It can be wrong. Check important facts.|Dismiss|INSTANT|Nothing leaves this phone.|Summarize text|Translate|Draft a message|vc22-marrowgate.txt|Message…|
+########## F276a. STRICT OFF, a question the file does not answer -> no SOURCES, strip persists
+f276-off sec=18 complete=1 stop-seen=1 SOURCES-blocks=0
+ANSWER: Arendal was served by two ferry lines in 2024: the Danish ferry Danø (operated by Sjøfart) and the Norwegian ferry Sønderø (operated by Nærøy), with their respective capacities at approximately 1,800 and 1,000 passengers respectively. 
+--- whole screen:
+Chats
+SEALED
+INSTANT
+FAST is better at documents than INSTANT.
+Switch to FAST
+Not now
+Nothing in your documents matched this question. Answered without them.
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+Which ferry lines served Arendal in 2024 and what was their capacity?
+INSTANT · ON-DEVICE AI
+Arendal was served by two ferry lines in 2024: the Danish ferry Danø (operated by Sjøfart) and the Norwegian ferry Sønderø (operated by Nærøy), with their respective capacities at approximately 1,800 and 1,000 passengers respectively.
+LEDGER
+vc22-marrowgate.txt
+1
+Message…
+f276-off +0s none-matched=YES sources-blocks=0
+f276-off +30s none-matched=YES sources-blocks=0
+f276-off +60s none-matched=YES sources-blocks=0
+f276-off strip-text: [Nothing in your documents matched this question. Answered without them.]
+f276-off EXPECTED none-matched=present
+########## F276b. the same document, an ON-TOPIC question -> strip withdrawn, cited answer
+f276-on sec=24 complete=1 stop-seen=1 SOURCES-blocks=1
+ANSWER: The counterweight drum weighs 903 kilograms. SOURCES vc22-marrowgate.txt · part 1 
+--- whole screen:
+Chats
+SEALED
+INSTANT
+FAST is better at documents than INSTANT.
+Switch to FAST
+Not now
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+Arendal was served by two ferry lines in 2024: the Danish ferry Danø (operated by Sjøfart) and the Norwegian ferry Sønderø (operated by Nærøy), with their respective capacities at approximately 1,800 and 1,000 passengers respectively.
+LEDGER
+How much does the counterweight drum weigh?
+INSTANT · ON-DEVICE AI
+The counterweight drum weighs 903 kilograms.
+SOURCES
+vc22-marrowgate.txt · part 1
+LEDGER
+vc22-marrowgate.txt
+1
+Message…
+f276-on +0s none-matched=no sources-blocks=1
+f276-on +30s none-matched=no sources-blocks=1
+f276-on +60s none-matched=no sources-blocks=1
+f276-on strip-text: []
+f276-on EXPECTED none-matched=absent
