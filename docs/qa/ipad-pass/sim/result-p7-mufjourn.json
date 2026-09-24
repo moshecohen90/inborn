@@ -1,0 +1,475 @@
+{
+  "runId": "p7-mufjourn",
+  "startedAt": "2026-09-24T13:05:46.105Z",
+  "finishedAt": "2026-09-24T13:06:21.220Z",
+  "ok": true,
+  "passed": 34,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1264,
+      "detail": "P13-onboarding-lock"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "I00-chat-root-portrait"
+    },
+    {
+      "i": 5,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "wide-sidebar",
+          "text": "Chats Select New chat Incognito No chats yet. Start one above. Everything stays on this tablet. INSTANT Personas Memory Folders PRO INSTANT · OUT 0 B Model vault Documents Settings ◯ Proof"
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-personas",
+          "text": "Personas",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "Memory",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "Folders",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Model vault Documents Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-vault",
+          "text": "Model vault",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-documents",
+          "text": "Documents",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this tablet."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "status-line",
+          "text": "Loading INSTANT…"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "chat-root"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1585,
+      "detail": "I01-model-sheet-portrait"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1200,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 12,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/settings"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-proof appeared"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "I02-settings-portrait"
+    },
+    {
+      "i": 16,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/paywall"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "I03-paywall-portrait"
+    },
+    {
+      "i": 19,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/proof"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "I04-proof-portrait"
+    },
+    {
+      "i": 22,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/vault"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "I05-vault-portrait"
+    },
+    {
+      "i": 25,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/documents"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1905,
+      "detail": "I06-documents-portrait"
+    },
+    {
+      "i": 28,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 30,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 25 chars"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2224,
+      "detail": "I07-draft-before-enter"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "iPad hardware Enter check",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    }
+  ],
+  "errors": []
+}

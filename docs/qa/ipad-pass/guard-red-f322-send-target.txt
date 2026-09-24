@@ -1,0 +1,20 @@
+# F322 guards watched red (24.9.2026)
+
+## 1. The browser gate — scripts/web-smoke.mjs, the send button as shipped on main
+```
+FAIL: chat at 390 (light): 1 control(s) under 44px — send 36x36
+--- the failing measurement, from the same run ---
+119:FAIL: chat at 390 (light): 1 control(s) under 44px — send 36x36
+```
+
+## 2. The unit guard — the fix reverted (styles.sendDot put back on the Pressable)
+```
+     × send is at least MIN_TOUCH in both directions 2ms
+     × the 36 px send circle is drawn inside the target, never used as the target 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/components/chat/composerTouchTargets.test.ts > F322 · every composer control is a fingertip wide > send is at least MIN_TOUCH in both directions
+AssertionError: send width: expected 36 to be greater than or equal to 44
+ FAIL  src/components/chat/composerTouchTargets.test.ts > F322 · every composer control is a fingertip wide > the 36 px send circle is drawn inside the target, never used as the target
+AssertionError: expected [ 'sendDot' ] to not include 'sendDot'
+      Tests  2 failed | 5 passed (7)
+```

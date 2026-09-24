@@ -1,0 +1,200 @@
+{
+  "runId": "l1-mufjrue0",
+  "startedAt": "2026-09-24T13:08:04.941Z",
+  "finishedAt": "2026-09-24T13:08:34.250Z",
+  "ok": true,
+  "passed": 27,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "L00-chat-root-landscape"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "L01-model-sheet-landscape"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 10,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/settings"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-proof appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1901,
+      "detail": "L02-settings-landscape"
+    },
+    {
+      "i": 14,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/paywall"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1905,
+      "detail": "L03-paywall-landscape"
+    },
+    {
+      "i": 17,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/proof"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2224,
+      "detail": "L04-proof-landscape"
+    },
+    {
+      "i": 20,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/vault"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "L05-vault-landscape"
+    },
+    {
+      "i": 23,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/documents"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "L06-documents-landscape"
+    },
+    {
+      "i": 26,
+      "op": "cleanup",
+      "ok": true,
+      "ms": 13,
+      "detail": "qa namespace removed"
+    }
+  ],
+  "errors": []
+}
