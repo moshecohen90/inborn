@@ -189,7 +189,7 @@ const ALL_PACKS = {
   embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],
   /* Voice (whisper base) companion, same rule. */
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
-  /* Instant's projector arrives with Instant (fast-follow), so the first photo on a fresh install is answered; its own pack keeps Remove per model. */
+  /* Instant's projector arrives with Instant (fast-follow), so the first photo on a fresh install is answered; Play re-delivers it on every update, so the vault shows it as part of the app (F374). */
   vision: [{ name: "inborn_model_vision", deliveryType: "fast-follow", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
   /* Play caps one pack at 1.5 GB, so each llama-gguf-split shard is its own pack; the vault links them into one directory (src/vault/playDelivery.ts). */
   sharp: [

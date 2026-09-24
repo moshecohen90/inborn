@@ -1,0 +1,104 @@
+{
+  "runId": "f373-after",
+  "startedAt": "2026-09-24T18:51:56.770Z",
+  "finishedAt": "2026-09-24T18:52:08.162Z",
+  "ok": true,
+  "passed": 12,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 241,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attach-install-vision appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 806,
+      "detail": "800 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1489,
+      "detail": "01-attach-sheet-link"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "attach-install-vision ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1305,
+      "detail": "close-vault appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1668,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1091,
+      "detail": "02-vault-landed"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "○ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium 32% · 67 MB of 205 MB Pause Cancel Details",
+        "props": {
+          "accessibilityState": {
+            "selected": true
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium 32% · 67 MB of 205 MB Pause Cancel Details"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3357,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1264,
+      "detail": "03-vault-after-flash"
+    }
+  ],
+  "errors": []
+}

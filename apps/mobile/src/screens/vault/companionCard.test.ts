@@ -60,6 +60,10 @@ describe("F346 · a companion's vault card says what it is", () => {
   it("a chat model still offers Use, so the rule is about companions and nothing else", () => {
     expect(card("fast", { state: { kind: "ready", via: "https", bytes: 1, path: "/x", sha256: "" } })).toContain('data-testid="use-fast"');
   });
+  it("F374 · a photo pack Play delivered with the app reads 'Included with the app'", () => {
+    expect(card("vision-qwen35", { state: { kind: "ready", via: "play", bytes: 1, path: "/x", sha256: "" } })).toContain(">vault.state.bundled<");
+    expect(card("vision-qwen35", { state: { kind: "ready", via: "https", bytes: 1, path: "/x", sha256: "" } })).not.toContain(">vault.state.bundled<");
+  });
   it("the card an entry point opened the vault for is marked", () => {
     expect(card("vision-qwen35", { highlighted: true })).toContain('data-testid="model-card-vision-qwen35" data-selected="yes"');
     expect(card("vision-qwen35")).not.toContain("data-selected");
@@ -75,12 +79,23 @@ describe("F346 · 'install X' lands on X's card", () => {
     expect(focusLocation(sections, "nope")).toBeNull();
     expect(focusLocation(sections, undefined)).toBeNull();
   });
-  it("the vault scrolls to the focused card once and marks it", () => {
+  it("F373 · the scroll target is the card, not the row above it, and centres it", async () => {
+    const { focusScrollTarget } = await import("./focus");
+    const sections = [{ data: [{ model: { id: "instant" } }] }, { data: [{ model: { id: "fast" } }, { model: { id: "sharp" } }] }, { data: [{ model: { id: "speech-whisper-base" } }, { model: { id: "vision-qwen35" } }] }];
+    /* VirtualizedSectionList: index = itemIndex + Σ(count + 2) over earlier sections, and index 0 of a section is its header. */
+    expect(focusScrollTarget(sections, "vision-qwen35")).toEqual({ sectionIndex: 2, itemIndex: 2, viewPosition: 0.5, viewOffset: 0, animated: true });
+    expect(focusScrollTarget(sections, "instant")).toMatchObject({ sectionIndex: 0, itemIndex: 1 });
+    expect(focusScrollTarget(sections, "nope")).toBeNull();
+  });
+  it("F373 · a re-render cannot cancel the scroll, late layout re-lands it, and the mark is brief", () => {
     const vault = src("VaultScreen.tsx");
-    expect(vault).toContain("focusLocation(sections, focus)");
-    expect(vault).toContain("listRef.current?.scrollToLocation({ ...focused");
+    expect(vault).toContain("focusScrollTarget(sections, focus)");
+    expect(vault).toContain("}, [focusKey, focus, scrollToFocus]);");
+    expect(vault).not.toContain("}, [focus, focused]);");
+    expect(vault).toContain("onContentSizeChange={scrollToFocus}");
     expect(vault).toContain("onScrollToIndexFailed=");
-    expect(vault).toContain("highlighted={item.model.id === focus}");
+    expect(vault).toContain("highlighted={item.model.id === flashId}");
+    expect(vault).toContain("setTimeout(() => setFlashId(null), FOCUS_FLASH_MS)");
     expect(src("../../app/vault.tsx")).toContain("focus={typeof focus === \"string\" ? focus : undefined}");
   });
   it("every entry point that offers to install something names it", () => {
