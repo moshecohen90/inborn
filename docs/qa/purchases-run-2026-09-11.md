@@ -2394,7 +2394,7 @@ started at 13:56:03, one check after the archive finished.
 | module registry | all nine present, by dex **type descriptor** (`Lcom/inbornapp/<pkg>/<Name>Module;`) over all five dex files, each in `classes3.dex` and `classes4.dex` |
 | commit baked into `app.config` | **648bc43f66c6**, `builtAt 2026-09-24`, `devVariant false` — what About shows |
 | `scripts/check-android-permissions.sh` | "OK: no INTERNET permission; every declared permission is in the allowlist (9 declared)" (needs `BUNDLETOOL=` for an AAB) |
-| gates | `pn typecheck` **0**, `pn test` **0** (**1,514** tests: core 734, mobile 747, i18n 20, ui 13), `pn lint` **0**, `pn check:store` **PASS**. The AAB was built from that tree; F286's 5 tests landed after it, so the branch now runs **1,519** (mobile 752) and the bundle is unaffected — the fix is in `scripts/`, which no app bundle carries |
+| gates | `pn typecheck` **0**, `pn test` **0** (**1,514** tests: core 734, mobile 747, i18n 20, ui 13), `pn lint` **0**, `pn check:store` **PASS**. The AAB was built from that tree; F286's 5 tests landed after it, so the branch ran **1,519** (mobile 752) before merging rounds 61–65 and **1,561** after (core 736, mobile 785, i18n 20, ui 20). The bundle is unaffected either way — the fix is in `scripts/`, which no app bundle carries |
 
 `base/assets` **shrank** 5,416 bytes while the compressed AAB **grew** 1,658 over an identical entry count and an
 identical pack set: rounds 55–59 are a smaller JS bundle (round 59 deleted `apps/mobile/src/web/format.ts`) that

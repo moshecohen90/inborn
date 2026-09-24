@@ -4825,8 +4825,9 @@ signed by `CN=Inborn Upload Key`. Gates: `check-android-bundle.sh` 0 (seven pack
 `bundletool validate` 0, `check-qa-bridge.sh` 0 (no `INBORN_QA_BRIDGE_V1`), `check-android-permissions.sh` 0 (no
 INTERNET, 9 declared), all nine native modules present by dex type descriptor, commit `648bc43f66c6` baked in.
 `pn typecheck` 0, `pn test` 0 (**1,514**: core 734, mobile 747, i18n 20, ui 13), `pn lint` 0, `check:store` PASS.
-F286's 5 tests landed after the AAB was built, so the branch ends at **1,519** (mobile 752); the fix is in `scripts/`,
-which no app bundle carries, so the shipped bundle is the one the gates above describe.
+F286's 5 tests landed after the AAB was built, so the branch reached **1,519** (mobile 752), and **1,561** once
+rounds 61–65 were merged in (core 736, mobile 785, i18n 20, ui 20), all green with `lint` and `check:store`. The fix
+is in `scripts/`, which no app bundle carries, so the shipped bundle is the one the gates above describe.
 
 **The one fix this round makes (F286).** The first upload put all 5.1 GB up, set the track, and then the commit
 answered `400 "Some of the Android App Bundle uploads are not completed yet."` — Play still ingesting the bundle.

@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-// @ts-expect-error — plain .mjs helper, no types
 import { commitEdit } from "../../../scripts/lib/play-api.mjs";
 
 /**
