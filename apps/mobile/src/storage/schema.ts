@@ -4,6 +4,7 @@ export const DB_NAME = "inborn.db";
 export const PRAGMAS_SQL = `
 PRAGMA journal_mode = WAL;
 PRAGMA foreign_keys = ON;
+PRAGMA busy_timeout = 5000;
 `;
 
 export interface Migration {

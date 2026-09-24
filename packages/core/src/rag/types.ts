@@ -39,6 +39,8 @@ export interface DocumentRecord {
   flaggedLines: number;
   /** Pages that had no text layer and were read by OCR. */
   ocrPages: number;
+  /** Set while a rebuild for a new embedder runs: the embedder of the rows past `indexedPages`, still searched by their words. */
+  reindexFrom?: string;
 }
 
 export interface Chunk {
@@ -124,6 +126,8 @@ export interface EmbeddingStore {
   vectorsOf(docIds: string[]): Promise<StoredVector[]>;
   /** Drops chunks of pages at or after `fromPage` (1-based); used when re-indexing from a resume point. */
   deleteChunksFrom(docId: string, fromPage: number): Promise<void>;
+  /** Drops the chunks of one page, so a rebuild replaces a page without losing the rows of the pages after it. */
+  deleteChunksOfPage(docId: string, page: number): Promise<void>;
 }
 
 export interface Embedder {

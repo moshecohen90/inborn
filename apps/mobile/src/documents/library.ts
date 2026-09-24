@@ -1,4 +1,5 @@
 import {
+  EmbedLanes,
   ExtractError,
   Retriever,
   assertImportable,
@@ -12,6 +13,8 @@ import {
   needsReindex,
   newId,
   reindexFrom,
+  vectorsValidUpTo,
+  isSearchable as searchable,
   type Citation,
   type DocumentRecord,
   type EmbeddingStore,
@@ -77,12 +80,17 @@ export interface AskResult {
   prompt: RagPrompt;
   /** Milliseconds spent embedding the question and ranking. */
   retrieveMs: number;
+  /** Set when some searched documents are still being rebuilt for a new embedder, for "Still re-indexing N of M documents". */
+  reindexing?: { pending: number; total: number };
 }
+
 
 /** A pending or running indexing job. */
 interface Job {
   abort: AbortController;
   ocr: boolean;
+  /** "rebuild" re-embeds a document already searchable for a new embedder; "read" is a first read or a user's resume. */
+  kind: "read" | "rebuild";
 }
 
 /**
@@ -93,6 +101,8 @@ export class DocumentLibrary {
   private store: EmbeddingStore | null = null;
   private extractors: TextExtractor[] = createExtractors();
   private embedderRef: ResolvedEmbedder | null = null;
+  /* Questions and the index queue share the one embedder; a question never waits behind the queue (QA F353). */
+  private lanes: EmbedLanes | null = null;
   private retriever: Retriever | null = null;
   private docs = new Map<string, DocumentRecord>();
   private progress = new Map<string, IndexProgress>();
@@ -149,6 +159,7 @@ export class DocumentLibrary {
     const previous = this.embedderRef;
     if (previous && previous.path !== resolved?.path) void previous.embedder.unload().catch(() => undefined);
     this.embedderRef = resolved;
+    this.lanes = resolved ? new EmbedLanes(resolved.embedder) : null;
     this.retriever = null;
     this.embedder = resolved ? { kind: "ready", path: resolved.path } : { kind: "missing" };
     this.reindexStale();
@@ -165,13 +176,20 @@ export class DocumentLibrary {
       if (this.jobs.has(doc.id)) continue;
       const stale = needsReindex(doc, current);
       const waiting = doc.status === "failed" && doc.error === "no-embedder";
-      if (!stale && !(waiting && this.embedderRef)) continue;
+      /* A rebuild stopped by a kill or the background resumes at its last committed page, not from zero. */
+      const unfinished = !stale && !!doc.reindexFrom;
+      if (!stale && !unfinished && !(waiting && this.embedderRef)) continue;
       const ocr = doc.ocrPages > 0;
       const fresh = stale ? reindexFrom(doc) : doc;
       if (this.embedderRef) {
         this.commit(fresh);
-        this.enqueue(doc.id, ocr);
-      } else this.commit({ ...fresh, status: "failed", error: "no-embedder" });
+        this.enqueue(doc.id, ocr, undefined, "rebuild");
+      } else {
+        /* Without an embedder no question can be searched at all, so the old rows are not offered as an index. */
+        const waiting: DocumentRecord = { ...fresh, status: "failed", error: "no-embedder" };
+        delete waiting.reindexFrom;
+        this.commit(waiting);
+      }
     }
   }
 
@@ -258,9 +276,11 @@ export class DocumentLibrary {
    */
   attachmentState(chatId: string): AttachmentState {
     const docs = this.attachedTo(chatId);
-    const indexing = docs.some((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing");
-    const hasIndex = docs.some((d) => d.chunkCount > 0);
-    const unread = docs.filter((d) => d.chunkCount === 0);
+    /* A document being rebuilt for a new embedder is answered from meanwhile; only a first read is waited for (QA F353). */
+    const reading = docs.filter((d) => (this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing") && !d.reindexFrom);
+    const indexing = reading.length > 0;
+    const hasIndex = docs.some(searchable);
+    const unread = docs.filter((d) => !searchable(d));
     const blocked: AttachmentBlock =
       hasIndex || indexing
         ? null
@@ -275,7 +295,7 @@ export class DocumentLibrary {
                 unread.length > 0
                 ? "no-text"
                 : null;
-    return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: docs.filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing").length };
+    return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: reading.length };
   }
 
   /** Resolves once nothing attached to this chat is queued or being read, so the answer can see what the user attached. */
@@ -339,14 +359,17 @@ export class DocumentLibrary {
 
   private pageCaps = new Map<string, number>();
 
-  private enqueue(id: string, ocr: boolean, pageCap?: number): void {
+  private enqueue(id: string, ocr: boolean, pageCap?: number, kind: "read" | "rebuild" = "read"): void {
     if (this.jobs.has(id)) return;
-    this.jobs.set(id, { abort: new AbortController(), ocr });
+    this.jobs.set(id, { abort: new AbortController(), ocr, kind });
     const doc = this.docs.get(id);
     if (doc && doc.status !== "queued") this.commit({ ...doc, status: "queued" });
     if (pageCap) this.pageCaps.set(id, pageCap);
     else this.pageCaps.delete(id);
-    this.queue.push(id);
+    /* A file the user just added is read before the rebuilds still waiting: its turn waits for it, theirs does not. */
+    const firstRebuild = kind === "read" ? this.queue.findIndex((q) => this.jobs.get(q)?.kind === "rebuild") : -1;
+    if (firstRebuild >= 0) this.queue.splice(firstRebuild, 0, id);
+    else this.queue.push(id);
     void this.pump();
   }
 
@@ -393,9 +416,10 @@ export class DocumentLibrary {
     const ocr = ocrEngine && opened.render ? { engine: ocrEngine, languages: await ocrEngine.languages(), render: opened.render } : undefined;
     const started = Date.now();
     const result = await indexDocument({
-      doc: job.ocr ? { ...doc, indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 } : doc,
+      /* A rebuild of a scan re-reads it with OCR from its committed page; only a user's "Run OCR" starts over. */
+      doc: job.ocr && !doc.reindexFrom ? { ...doc, indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 } : doc,
       opened,
-      embedder: this.embedderRef.embedder,
+      embedder: this.lanes!.index,
       store,
       ocr,
       signal: job.abort.signal,
@@ -405,12 +429,14 @@ export class DocumentLibrary {
         this.progress.set(id, p);
         const current = this.docs.get(id);
         if (current) this.docs.set(id, { ...current, status: "indexing", indexedPages: p.page, pages: p.pages, chunkCount: p.chunks });
+        /* A rebuilt page moves from word-only to full search; the next question loads it. */
+        if (current?.reindexFrom && p.phase === "store") this.retriever?.invalidate();
         this.notify();
       },
     });
     await opened.close().catch(() => undefined);
     const pages = Math.max(1, result.indexedPages);
-    console.log(`[documents] ${doc.name}: ${result.status} · ${result.indexedPages}/${result.pages} pages · ${result.chunkCount} chunks · ${Date.now() - started} ms (${Math.round((Date.now() - started) / pages)} ms/page)`);
+    console.log(`[documents] ${doc.name}: ${result.status}${result.error ? ` (${result.error})` : ""} · ${result.indexedPages}/${result.pages} pages · ${result.chunkCount} chunks · ${Date.now() - started} ms (${Math.round((Date.now() - started) / pages)} ms/page)`);
     this.progress.delete(id);
     this.commit(result);
     this.retriever?.invalidate();
@@ -443,7 +469,7 @@ export class DocumentLibrary {
   resume(id: string, opts: { ocr?: boolean } = {}): void {
     const doc = this.docs.get(id);
     if (!doc || this.jobs.has(id)) return;
-    this.enqueue(id, opts.ocr ?? false);
+    this.enqueue(id, opts.ocr ?? false, undefined, doc.reindexFrom && !opts.ocr ? "rebuild" : "read");
   }
 
   runOcr(id: string): void {
@@ -496,20 +522,22 @@ export class DocumentLibrary {
   /** Retrieval + the fenced prompt for a question; `noAnswer` in strict mode means "say not found" without the model. */
   async ask(question: string, o: AskOptions = {}): Promise<AskResult> {
     await this.ready();
-    if (!this.store || !this.embedderRef) throw new Error("no-embedder");
-    const retriever = (this.retriever ??= new Retriever(this.store, this.embedderRef.embedder, embedBudget(this.embedderRef.contextTokens)));
-    const indexed = this.state().documents.filter((d) => d.chunkCount > 0);
-    const docIds = o.docIds?.length ? o.docIds.filter((id) => this.docs.get(id)?.chunkCount) : indexed.map((d) => d.id);
+    if (!this.store || !this.embedderRef || !this.lanes) throw new Error("no-embedder");
+    const retriever = (this.retriever ??= new Retriever(this.store, this.lanes.query, embedBudget(this.embedderRef.contextTokens)));
+    const indexed = this.state().documents.filter(searchable);
+    const docIds = o.docIds?.length ? o.docIds.filter((id) => { const d = this.docs.get(id); return !!d && searchable(d); }) : indexed.map((d) => d.id);
+    const rebuilding = docIds.map((id) => this.docs.get(id)!).filter((d) => d.reindexFrom);
+    const vectorPages = Object.fromEntries(rebuilding.map((d) => [d.id, vectorsValidUpTo(d)]));
     const started = Date.now();
-    const hits = docIds.length ? await retriever.retrieve(question, { docIds }) : [];
+    const hits = docIds.length ? await retriever.retrieve(question, { docIds, vectorPages }) : [];
     const retrieveMs = Date.now() - started;
     const strict = o.strict ?? this.prefs.strict;
     const embedderId = this.embedderRef.embedder.id;
     const doors = relevanceDoors(embedderId);
     const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
-    console.log(`[rag] strict=${strict} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
-    return { prompt, retrieveMs };
+    console.log(`[rag] strict=${strict}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
+    return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length } } : {}) };
   }
 
   citationsFor(answer: string, citations: Citation[]): { shown: Citation[]; cited: boolean } {

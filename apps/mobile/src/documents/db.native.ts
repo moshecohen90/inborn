@@ -14,6 +14,8 @@ async function openSharedDb(): Promise<SQLite.SQLiteDatabase> {
   /* Without useNewConnection Android hands back the chat's cached connection; the index gets its own, keyed once. */
   const db = await SQLite.openDatabaseAsync(DB_NAME, { useNewConnection: true });
   await db.execAsync(`PRAGMA key = "x'${key}'";`);
+  /* The chat connection writes the answer while a rebuild writes pages (QA F353): wait for its lock instead of failing the page. */
+  await db.execAsync("PRAGMA busy_timeout = 5000;");
   await db.getFirstAsync("SELECT count(*) AS n FROM sqlite_master");
   return db;
 }

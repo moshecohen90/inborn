@@ -78,6 +78,10 @@ class PersistedMemoryStore implements EmbeddingStore {
     await this.inner.deleteChunksFrom(docId, fromPage);
     this.touch();
   }
+  async deleteChunksOfPage(docId: string, page: number): Promise<void> {
+    await this.inner.deleteChunksOfPage(docId, page);
+    this.touch();
+  }
 }
 
 let opened: Promise<EmbeddingStore> | null = null;

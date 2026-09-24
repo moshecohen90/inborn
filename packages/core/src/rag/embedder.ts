@@ -66,3 +66,71 @@ export function hashVector(text: string, dim = 64): Float32Array {
 export function hashEmbedder(dim = 64, id = "null"): Embedder {
   return { id, embed: async (texts) => texts.map((t) => hashVector(t, dim)) };
 }
+
+interface EmbedCall {
+  texts: string[];
+  out: Float32Array[];
+  resolve: (v: Float32Array[]) => void;
+  reject: (e: unknown) => void;
+}
+
+/**
+ * One embedder, two lanes (QA F353). The engine runs one text at a time; between texts a waiting question goes before the
+ * next chunk of the index queue, so it waits at most one chunk's embedding instead of a whole re-index and never reaches
+ * the engine while it is busy ("Context is busy" on llama.rn). No second model is loaded.
+ */
+export class EmbedLanes {
+  private readonly lanes: { query: EmbedCall[]; index: EmbedCall[] } = { query: [], index: [] };
+  private running = false;
+  /** For questions: served before any chunk still waiting in the index lane. */
+  readonly query: Embedder;
+  /** For indexing: yields to the query lane after every text. */
+  readonly index: Embedder;
+
+  constructor(private readonly inner: Embedder) {
+    this.query = { id: inner.id, embed: (texts) => this.submit("query", texts) };
+    this.index = { id: inner.id, embed: (texts) => this.submit("index", texts) };
+  }
+
+  private submit(lane: "query" | "index", texts: string[]): Promise<Float32Array[]> {
+    if (!texts.length) return Promise.resolve([]);
+    return new Promise((resolve, reject) => {
+      this.lanes[lane].push({ texts, out: [], resolve, reject });
+      void this.pump();
+    });
+  }
+
+  private async pump(): Promise<void> {
+    if (this.running) return;
+    this.running = true;
+    try {
+      for (let call = this.next(); call; call = this.next()) {
+        try {
+          const [v] = await this.inner.embed([call.texts[call.out.length]!]);
+          if (!v) throw new Error("embedder returned no vector");
+          call.out.push(v);
+          if (call.out.length === call.texts.length) {
+            this.drop(call);
+            call.resolve(call.out);
+          }
+        } catch (e: unknown) {
+          this.drop(call);
+          call.reject(e);
+        }
+      }
+    } finally {
+      this.running = false;
+    }
+  }
+
+  private next(): EmbedCall | undefined {
+    return this.lanes.query[0] ?? this.lanes.index[0];
+  }
+
+  private drop(call: EmbedCall): void {
+    for (const lane of [this.lanes.query, this.lanes.index]) {
+      const at = lane.indexOf(call);
+      if (at >= 0) lane.splice(at, 1);
+    }
+  }
+}

@@ -58,6 +58,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<{ shown: Citation[]; cited: boolean }>({ shown: [], cited: true });
   const [notFound, setNotFound] = useState(false);
+  const [reindexing, setReindexing] = useState<{ pending: number; total: number } | null>(null);
   const [stats, setStats] = useState<string | null>(null);
   const autoFired = useRef(false);
 
@@ -67,6 +68,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
     setAnswer("");
     setCitations({ shown: [], cited: true });
     setNotFound(false);
+    setReindexing(null);
     setStats(null);
     const ac = new AbortController();
     abort.current = ac;
@@ -76,7 +78,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setPhase({ kind: "retrieving" });
       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
       const length = planAnswerLength({ text, use: "documents" });
-      const { prompt, retrieveMs } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
+      const { prompt, retrieveMs, reindexing: rebuilding } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
+      setReindexing(rebuilding ?? null);
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
       if (prompt.noAnswer) {
         setNotFound(true);
@@ -161,6 +164,11 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
             </View>
           ) : null}
           {phase.kind === "done" && !notFound ? <Citations citations={citations.shown} cited={citations.cited} /> : null}
+          {reindexing ? (
+            <Text testID="ask-reindexing" style={[styles.mono, { color: theme.text3 }]}>
+              {t("documents.reindexing", reindexing)}
+            </Text>
+          ) : null}
           {stats ? (
             <Text testID="ask-stats" style={[styles.mono, { color: theme.text3 }]}>
               {stats}

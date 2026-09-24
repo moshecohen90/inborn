@@ -61,4 +61,8 @@ export class SplitEmbeddingStore implements EmbeddingStore {
   async deleteChunksFrom(docId: string, fromPage: number): Promise<void> {
     await this.storeFor(docId).deleteChunksFrom(docId, fromPage);
   }
+
+  async deleteChunksOfPage(docId: string, page: number): Promise<void> {
+    await this.storeFor(docId).deleteChunksOfPage(docId, page);
+  }
 }

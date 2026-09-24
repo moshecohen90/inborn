@@ -234,6 +234,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
+  /** Searched documents still being rebuilt for a new embedder when this answer was retrieved (QA F353). */
+  const [reindexing, setReindexing] = useState<{ pending: number; total: number } | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
@@ -476,6 +478,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* The notice belongs to the answer below it, so a fresh turn withdraws the last one; Continue keeps it, since it resumes that same answer. */
       if (!existingMessageId) setNoneMatched(false);
+      if (!existingMessageId) setReindexing(null);
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -518,6 +521,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (turn.kind === "retrieve") {
         try {
           const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system);
+          if (rag.reindexing) setReindexing(rag.reindexing);
           if (rag.prompt.noAnswer) {
             await answerWithoutModel("documents.notFound");
             return;
@@ -529,9 +533,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ragUsed = rag.prompt.used;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
-          /* A toast is not an answer: a search that failed must not leave the model answering as if nothing were attached. */
-          flash(t(`documents.error.${errorText(e)}`, { defaultValue: errorText(e) }));
-          await answerWithoutModel("documents.notRead");
+          /* A search that failed must not leave the model answering as if nothing were attached, nor claim the file has no text (QA F353). */
+          console.warn("[documents] search failed", errorText(e));
+          await answerWithoutModel("documents.searchFailed");
           return;
         }
       }
@@ -1428,6 +1432,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </View>
       ) : null}
       {/* QA F276: a 1,400 ms toast was withdrawn ~8 s before the answer it explains arrived on the 6T, so this sentence lives as long as that answer. */}
+      {reindexing ? (
+        <View testID="reindexing" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.reindexing", reindexing)}</Text>
+        </View>
+      ) : null}
       {noneMatched ? (
         <View testID="none-matched" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.noneMatched")}</Text>

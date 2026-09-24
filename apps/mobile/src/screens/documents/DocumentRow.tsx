@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Icon, radius, type Theme } from "@inborn/ui";
-import { formatBytes, pageUnit, type DocumentRecord, type IndexProgress } from "@inborn/core";
+import { formatBytes, isSearchable, pageUnit, type DocumentRecord, type IndexProgress } from "@inborn/core";
 import { font } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { documentState } from "../../documents/stateText";
@@ -30,7 +30,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
   const meta = [kindLabel(doc.kind), pages, formatBytes(doc.bytes)].filter(Boolean).join(" · ");
   const st = documentState(doc, t, deviceNoun(), progress);
   const s = { text: st.text, color: { progress: theme.accent, waiting: theme.text3, ready: theme.sealed, attention: theme.accent, paused: theme.text2, error: theme.danger }[st.tone] };
-  const canSelect = doc.chunkCount > 0;
+  const canSelect = isSearchable(doc);
   return (
     <Pressable testID={`doc-row-${doc.id}`} onPress={onPress} style={[styles.row, { backgroundColor: theme.surface1, borderColor: selected ? theme.accent : theme.border }]}>
       <Pressable
