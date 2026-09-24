@@ -22,10 +22,10 @@ describe("desktop document drop (§8.9, F64)", () => {
     expect(nameOfPath("contract.pdf")).toBe("contract.pdf");
   });
 
-  it("Pro takes every supported file, in the order they were dropped", () => {
+  it("Pro takes every supported document, in the order they were dropped; a picture is a photo, not a document (F343)", () => {
     const plan = planDrop(drop("/a/one.pdf", "/a/two.docx", "/a/three.md", "/a/four.txt", "/a/five.png"), "pro");
-    expect(names(plan.accept)).toEqual(["one.pdf", "two.docx", "three.md", "four.txt", "five.png"]);
-    expect(plan.rejected).toEqual([]);
+    expect(names(plan.accept)).toEqual(["one.pdf", "two.docx", "three.md", "four.txt"]);
+    expect(plan.rejected).toEqual([{ name: "five.png", reason: "photo" }]);
   });
 
   it("names what it will not take instead of dropping it silently", () => {
