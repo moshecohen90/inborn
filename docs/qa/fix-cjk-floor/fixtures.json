@@ -1,5 +1,5 @@
 {
-  "note": "One-passage documents and the questions asked of them. `on` must keep citing, `off` must not. Passages and questions marked device were run on the OnePlus 6T (docs/qa/android-vc21, android-vc22). de/fr/es/pt are typed with their accents and each doc's `sloppy` lists the accent-less questions kept as typing variants; zhHant-* are the zh-Hant launch locale (F363).",
+  "note": "One-passage documents and the questions asked of them. `on` must keep citing, `off` must not. Passages and questions marked device were run on the OnePlus 6T (docs/qa/android-vc21, android-vc22). de/fr/es/pt are typed with their accents and each doc's `sloppy` lists the accent-less questions kept as typing variants; zhHant-* are the zh-Hant launch locale (F363). Each de/fr/es/pt doc also carries one accent-less question whose only word in common with the passage is accented there (F367), so the lexical fold is measured by a row it can move.",
   "docs": [
     {
       "id": "ja-device",
@@ -265,7 +265,8 @@
         "¿Dónde tiene la compañía sus sedes?",
         "¿Cuantas personas trabajan alli?",
         "¿Que tamaño tiene la plantilla?",
-        "¿En que ciudades estan las sedes?"
+        "¿En que ciudades estan las sedes?",
+        "¿Segun el reporte, cuantos empleados hay?"
       ],
       "off": [
         "¿Quién ganó el Mundial de 1998?",
@@ -290,7 +291,8 @@
         "¿Como se prepara un buen risotto?",
         "¿Cuanto dura el tren de Tokio a Osaka?",
         "¿Por que se descarga tan rapido la bateria?",
-        "Mi hijo tiene fiebre, ¿que hago?"
+        "Mi hijo tiene fiebre, ¿que hago?",
+        "¿Segun el reporte, cuantos empleados hay?"
       ]
     },
     {
@@ -305,7 +307,8 @@
         "Qual é o número total de funcionários?",
         "Em quais cidades a empresa está instalada?",
         "Quantas pessoas trabalham la?",
-        "Qual e o tamanho do quadro de pessoal?"
+        "Qual e o tamanho do quadro de pessoal?",
+        "Em que cidades estao os escritorios?"
       ],
       "off": [
         "Quem ganhou a Copa do Mundo de 1998?",
@@ -327,7 +330,8 @@
         "Quanto tempo demora o comboio de Toquio a Osaka?",
         "Porque e que a bateria acaba tao depressa?",
         "O meu filho tem febre, o que faco?",
-        "E preciso aquecer antes de correr?"
+        "E preciso aquecer antes de correr?",
+        "Em que cidades estao os escritorios?"
       ]
     },
     {
@@ -341,7 +345,8 @@
         "Dans quelles villes sont les sièges?",
         "Combien de salariés compte l'entreprise?",
         "Où l'entreprise est-elle implantée?",
-        "Dans quelles villes sont les sieges?"
+        "Dans quelles villes sont les sieges?",
+        "Combien d'employes compte la societe?"
       ],
       "off": [
         "Qui a gagné la Coupe du monde 1998?",
@@ -364,7 +369,8 @@
         "Comment prepare-t-on un bon risotto?",
         "Combien de temps dure le train de Tokyo a Osaka?",
         "Mon enfant a de la fievre, que faire?",
-        "Faut-il s'echauffer avant de courir?"
+        "Faut-il s'echauffer avant de courir?",
+        "Combien d'employes compte la societe?"
       ]
     },
     {
@@ -379,7 +385,8 @@
         "Wie hoch ist die Zahl der Beschäftigten?",
         "An welchen Orten hat die Firma ihre Geschäftsstellen?",
         "Wie gross ist die Belegschaft?",
-        "In welchen Staedten sitzen die Zentralen?"
+        "In welchen Staedten sitzen die Zentralen?",
+        "Wo liegen die Hauptburos?"
       ],
       "off": [
         "Wer hat die Weltmeisterschaft 1998 gewonnen?",
@@ -395,7 +402,8 @@
       "sloppy": [
         "Wie gross ist die Belegschaft?",
         "In welchen Staedten sitzen die Zentralen?",
-        "Muss man sich vor dem Laufen aufwaermen?"
+        "Muss man sich vor dem Laufen aufwaermen?",
+        "Wo liegen die Hauptburos?"
       ]
     }
   ]

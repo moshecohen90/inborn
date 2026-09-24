@@ -30,6 +30,21 @@ export function foldForSearch(s: string): string {
   return s.normalize("NFKC").toLowerCase().replace(HEBREW_MARKS, "").replace(ARABIC_MARKS, "");
 }
 
+/* Letters NFD does not split into a base and a mark. */
+const LIGATURES: Record<string, string> = { "\u00DF": "ss", "\u00E6": "ae", "\u0153": "oe", "\u00F8": "o", "\u0142": "l", "\u0111": "d" };
+const LATIN_MARKED = /[\u00C0-\u024F\u1E00-\u1EFF]/u;
+
+/**
+ * Latin letters without their accents, so a word typed without them meets its accented form (F367). Only Latin is
+ * folded: kana voicing, Cyrillic й/ё and Hangul carry meaning in their marks.
+ */
+export function foldDiacritics(word: string): string {
+  if (!LATIN_MARKED.test(word)) return word;
+  let out = "";
+  for (const c of word) out += LIGATURES[c] ?? (LATIN_MARKED.test(c) ? c.normalize("NFD").replace(/\p{M}+/gu, "") : c);
+  return out;
+}
+
 /** Unicode words (letters/digits, with inner apostrophes and geresh/gershayim kept). */
 const WORD = /[\p{L}\p{N}]+(?:['\u05F3\u05F4\u2019][\p{L}\p{N}]+)*/gu;
 

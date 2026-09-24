@@ -10,7 +10,7 @@
    "bytes": 274290560,
    "dim": 768,
    "pooling": "mean",
-   "msPerText": 3.35,
+   "msPerText": 3.9,
    "answerFirst": 3,
    "answerFirstByLang": {
     "ja": [
@@ -55,18 +55,18 @@
     ]
    },
    "rule70": {
-    "on": 39,
+    "on": 43,
     "off": 0
    },
    "cosAlone": {
     "T": 0.7642,
-    "on": 39,
+    "on": 43,
     "off": 0,
     "margin": 0
    },
    "joint": {
     "T": 0.7642,
-    "on": 39,
+    "on": 43,
     "off": 0,
     "margin": 0
    },
@@ -106,64 +106,122 @@
      5
     ],
     "es (no accents)": [
-     1,
-     3
+     2,
+     4
     ],
     "pt": [
      3,
      5
     ],
     "pt (no accents)": [
-     1,
-     2
+     2,
+     3
     ],
     "fr": [
      0,
      5
     ],
     "fr (no accents)": [
-     0,
-     1
+     1,
+     2
     ],
     "de": [
      0,
      5
     ],
     "de (no accents)": [
+     1,
+     3
+    ]
+   },
+   "lexByLang": {
+    "ja": [
+     8,
+     14
+    ],
+    "zh": [
+     7,
+     10
+    ],
+    "zh-Hant": [
+     8,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     1,
+     5
+    ],
+    "es (no accents)": [
+     2,
+     4
+    ],
+    "pt": [
+     3,
+     5
+    ],
+    "pt (no accents)": [
+     2,
+     3
+    ],
+    "fr": [
      0,
+     5
+    ],
+    "fr (no accents)": [
+     1,
      2
+    ],
+    "de": [
+     0,
+     5
+    ],
+    "de (no accents)": [
+     1,
+     3
     ]
    },
    "headroom": [
     {
      "T": 0.7642,
-     "on": 39,
+     "on": 43,
      "off": 0
     },
     {
      "T": 0.7742,
-     "on": 39,
+     "on": 43,
      "off": 0
     },
     {
      "T": 0.7842,
-     "on": 39,
+     "on": 43,
      "off": 0
     },
     {
      "T": 0.7942,
-     "on": 39,
+     "on": 43,
      "off": 0
     },
     {
      "T": 0.8142,
-     "on": 39,
+     "on": 43,
      "off": 0
     }
    ],
    "shipped": {
     "T": 0.82,
-    "on": 39,
+    "on": 43,
     "off": 0,
     "multiOn": 5,
     "multiRight": 4,
@@ -181,7 +239,7 @@
    "bytes": 467958912,
    "dim": 1024,
    "pooling": "mean",
-   "msPerText": 9.08,
+   "msPerText": 15.93,
    "answerFirst": 25,
    "answerFirstByLang": {
     "ja": [
@@ -226,18 +284,18 @@
     ]
    },
    "rule70": {
-    "on": 39,
+    "on": 43,
     "off": 0
    },
    "cosAlone": {
     "T": 0.8177,
-    "on": 77,
+    "on": 81,
     "off": 0,
     "margin": 0.0006
    },
    "joint": {
     "T": 0.8177,
-    "on": 77,
+    "on": 81,
     "off": 0,
     "margin": 0.0006
    },
@@ -277,64 +335,122 @@
      5
     ],
     "es (no accents)": [
-     2,
-     3
+     3,
+     4
     ],
     "pt": [
      5,
      5
     ],
     "pt (no accents)": [
-     2,
-     2
+     3,
+     3
     ],
     "fr": [
      5,
      5
     ],
     "fr (no accents)": [
-     0,
-     1
+     1,
+     2
     ],
     "de": [
      5,
      5
     ],
     "de (no accents)": [
+     3,
+     3
+    ]
+   },
+   "lexByLang": {
+    "ja": [
+     8,
+     14
+    ],
+    "zh": [
+     7,
+     10
+    ],
+    "zh-Hant": [
+     8,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     1,
+     5
+    ],
+    "es (no accents)": [
      2,
+     4
+    ],
+    "pt": [
+     3,
+     5
+    ],
+    "pt (no accents)": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     5
+    ],
+    "fr (no accents)": [
+     1,
      2
+    ],
+    "de": [
+     0,
+     5
+    ],
+    "de (no accents)": [
+     1,
+     3
     ]
    },
    "headroom": [
     {
      "T": 0.8177,
-     "on": 77,
+     "on": 81,
      "off": 0
     },
     {
      "T": 0.8277,
-     "on": 71,
+     "on": 75,
      "off": 0
     },
     {
      "T": 0.8377,
-     "on": 67,
+     "on": 71,
      "off": 0
     },
     {
      "T": 0.8477,
-     "on": 61,
+     "on": 65,
      "off": 0
     },
     {
      "T": 0.8677,
-     "on": 47,
+     "on": 51,
      "off": 0
     }
    ],
    "shipped": {
     "T": 0.82,
-    "on": 75,
+    "on": 79,
     "off": 0,
     "multiOn": 25,
     "multiRight": 25,
