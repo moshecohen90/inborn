@@ -5518,3 +5518,45 @@ German, French, Spanish and Portuguese typed without accents. Neither is what la
 Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
 `door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
 `docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.
+
+## Fixes round 83: one shared year no longer cites a passage, and SOURCES follow the answer (branch `fix-corroboration-door`) — 24.9.2026
+
+Verifier I12 found that under e5 a single shared year made an unrelated passage relevant. "Who won the 1998 World Cup?"
+in Japanese, against a company report that mentions 一九六二年, was answered with SOURCES, in strict mode too. The
+one-word door was still nomic's `cosine >= 0.5`, and under e5 every off-topic question scores above 0.5.
+
+- **The doors belong to the embedder (F365).** `RELEVANCE_DOORS` in `packages/core/src/rag/prompt.ts` is keyed by
+  catalog embedder id. An embedder with no measured row gets no cosine door, and a test fails when a catalog
+  embedding model has no row, so the next swap is measured instead of inherited.
+
+  | embedder | cosine alone | one word + cosine | one rare word |
+  |---|---|---|---|
+  | embed-e5 | > 0.82 | >= 0.815 | BM25 >= 2 |
+  | embed-nomic | > 0.82 | >= 0.5 | BM25 >= 2 |
+
+- **A number is not a shared word (F365).** Years, counts, units, number+counter tokens and numeral or counter
+  bigrams like 一九 and 八年 count only beside a content word.
+- **Measured, with margins.** Every question that shares one term with a passage, over round 81's sets and a new
+  year/number set in nine languages, is in `docs/qa/fix-corroboration-door/one-term.md`. The highest off-topic
+  cosine with one shared term is 0.8107, so the new door sits 0.0043 above it even before the number rule.
+
+  | | before | after |
+  |---|---|---|
+  | off-topic cited, six-chunk | 3 of 54 | 0 of 54 |
+  | off-topic cited, year set | not measured | 0 of 19 |
+  | on-topic cited, one-passage | 75 of 83 | 74 of 83 |
+  | answering chunk cited, six-chunk | 25 of 27 | 24 of 27 |
+
+  The cost is two on-topic questions that share one word under 0.815, plus eight "What happened in 1998?" questions
+  whose only shared word is the year.
+- **SOURCES only under what the answer used (F366).** A chip stays only when the answer contains a word or a number
+  from that passage that the question did not. Otherwise the chat shows "Nothing in your documents matched". The
+  strict prompt now says to answer NOT_FOUND when a passage shares a name, number or year but not the fact asked.
+- **Proven in headless Chromium** with the local e5 model. The I12 turn is refused in strict mode, and in
+  non-strict mode it shows the notice with no SOURCES. On-topic German, Japanese, English and the board question keep
+  theirs.
+- **Still open.** A wrong number in an answer that did take words from the passage keeps its chip. That is the
+  model's error. Phones are untouched: the rule reaches users with the next build.
+
+Evidence in `docs/qa/fix-corroboration-door/`: `one-term.md`, six `red-*.txt` runs, `e2e/` with before and after
+JSON, and `shots/` before and after at 1440 and 390. Spec §5.5 carries the door table and the grounding rule.

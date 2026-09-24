@@ -159,9 +159,17 @@ describe("F366 · no SOURCES strip under an answer that took nothing from the pa
     expect(groundedCitations("Japan won the 1998 World Cup.", "Who won the 1998 World Cup?", hits("en", ["Aoba Trading was founded in 1998 in Sendai."], "x", [0.9]), buildCitations(hits("en", ["Aoba Trading was founded in 1998 in Sendai."], "x", [0.9]), new Map()))).toEqual([]);
   });
 
-  it("an answer that only repeats the question, or shares only a number with the passage, keeps no chip", () => {
+  it("an answer that only repeats the question keeps no chip, however many of its words the passage shares", () => {
     expect(groundedCitations("一九九八年のワールドカップ", q, used, citations)).toEqual([]);
-    expect(groundedCitations("It was in 1962.", "When?", hits("e", ["Founded in 1962 in Sendai."], "x", [0.9]), buildCitations(hits("e", ["Founded in 1962 in Sendai."], "x", [0.9]), new Map()))).toEqual([]);
+    const p = hits("e", ["Aoba Trading was founded in 1962 in Sendai."], "x", [0.9]);
+    expect(groundedCitations("Aoba Trading was founded in Sendai.", "Where was Aoba Trading founded in Sendai?", p, buildCitations(p, new Map()))).toEqual([]);
+  });
+
+  it("a number the passage states is the answer's evidence, and a counter-and-particle pair is not", () => {
+    const p = hits("e", ["Aoba Trading was founded in 1962 in Sendai."], "x", [0.9]);
+    expect(groundedCitations("It was founded in 1962.", "When was it founded?", p, buildCitations(p, new Map())).map((c) => c.n)).toEqual([1]);
+    /* The headless run's strict answer: its only new words are "七名", and only the board passage says it. */
+    expect(groundedCitations("取締役会は七名で構成されています。", "取締役会は何名で構成されていますか？", used, citations).map((c) => c.n)).toEqual([6]);
   });
 
   it("an answer taken from a passage keeps that passage's chip and only it, and its [n] still points at it", () => {

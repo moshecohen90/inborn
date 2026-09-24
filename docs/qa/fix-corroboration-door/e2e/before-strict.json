@@ -1,0 +1,140 @@
+{
+ "exe": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+ "url": "http://127.0.0.1:8591",
+ "steps": [
+  {
+   "q": "Wie viele Leute arbeiten dort?",
+   "answer": "Aoba Trading beschäftigt in Sendai und Fukuoka insgesamt dreihundertzweiundachtzig Personen.",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-bericht.txt · part 1",
+   "citationBlocksTotal": 1,
+   "rag": [
+    "log: [rag] strict=true hits=1 used=1 293 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.852 terms=0 bm25=0.00 KEPT"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+   "answer": "Inborn could not find that in your documents.",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-bericht.txt · part 1",
+   "citationBlocksTotal": 1,
+   "rag": [
+    "log: [rag] strict=true hits=1 used=0 311 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.749 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "Who was the first person to walk on the moon?",
+   "answer": "Inborn could not find that in your documents.",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-bericht.txt · part 1",
+   "citationBlocksTotal": 1,
+   "rag": [
+    "log: [rag] strict=true hits=1 used=0 300 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.679 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "従業員は全部で何人ですか？",
+   "answer": "青葉商事の社員数は三百八十二名です。",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 2,
+   "rag": [
+    "log: [rag] strict=true hits=2 used=1 275 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.852 terms=0 bm25=0.00 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.809 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+   "answer": "青葉商事は一九九八年のワールドカップで優勝したものではありません。",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 3,
+   "rag": [
+    "log: [rag] strict=true hits=2 used=1 375 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.787 terms=1 bm25=0.51 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.728 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+   "answer": "青葉商事は一九九八年のワールドカップで優勝したことはありませんでした。",
+   "citationsNearLastAnswer": 1,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 4,
+   "rag": [
+    "log: [rag] strict=true hits=2 used=1 303 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.787 terms=1 bm25=0.51 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.728 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  },
+  {
+   "q": "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+   "answer": "Inborn could not find that in your documents.",
+   "citationsNearLastAnswer": 4,
+   "lastCitationsBlock": "SOURCESaoba-nenji.txt · part 1",
+   "citationBlocksTotal": 4,
+   "rag": [
+    "log: [rag] strict=true hits=2 used=0 283 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.749 terms=0 bm25=0.00 dropped · dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.663 terms=0 bm25=0.00 dropped"
+   ],
+   "notice": 0
+  }
+ ],
+ "loaded": "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1583 ms",
+ "doc1": "log: [documents] aoba-bericht.txt: indexed · 1/1 pages · 1 chunks · 3611 ms (3611 ms/page)",
+ "strictOn": {
+  "ariaChecked": null,
+  "paywall": 0
+ },
+ "doc2": "log: [documents] aoba-nenji.txt: indexed · 1/1 pages · 1 chunks · 1248 ms (1248 ms/page)",
+ "strictOff": {
+  "ariaChecked": null,
+  "paywall": 0
+ },
+ "console": [
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. importantForAccessibility importantforaccessibility",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/hot' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead. false collapsable collapsable false collapsable collapsable collapsable",
+  "error: WebSocket connection to 'ws://127.0.0.1:8591/message' failed: Error during WebSocket handshake: Unexpected response code: 200",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. accessibilityElementsHidden accessibilityelementshidden",
+  "error: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. importantForAccessibility importantforaccessibility",
+  "error: A bad HTTP response code (404) was received when fetching the script.",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "error: Failed to load resource: the server responded with a status of 405 (Method Not Allowed)",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1583 ms",
+  "log: [documents] aoba-bericht.txt: indexed · 1/1 pages · 1 chunks · 3611 ms (3611 ms/page)",
+  "log: [rag] strict=true hits=1 used=1 293 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.852 terms=0 bm25=0.00 KEPT",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [rag] strict=true hits=1 used=0 311 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.749 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 9 ms",
+  "log: [rag] strict=true hits=1 used=0 300 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.679 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 9 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 9 ms",
+  "log: [documents] aoba-nenji.txt: indexed · 1/1 pages · 1 chunks · 1248 ms (1248 ms/page)",
+  "log: [rag] strict=true hits=2 used=1 275 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.852 terms=0 bm25=0.00 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.809 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 12 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 12 ms",
+  "log: [rag] strict=true hits=2 used=1 375 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.787 terms=1 bm25=0.51 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.728 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [rag] strict=true hits=2 used=1 303 ms | dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.787 terms=1 bm25=0.51 KEPT · 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.728 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 9 ms",
+  "log: [rag] strict=true hits=2 used=0 283 ms | 95d8ee11-3aaa-4abb-88ea-194197e6d252#0 cos=0.749 terms=0 bm25=0.00 dropped · dbfb33cf-fbe9-499f-9dba-d93465a24794#0 cos=0.663 terms=0 bm25=0.00 dropped",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 10 ms",
+  "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 11 ms"
+ ]
+}

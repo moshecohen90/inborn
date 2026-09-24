@@ -1,0 +1,6 @@
+# sabotage: grounding-numbers
+# packages/core/src/rag/citations.ts: numbers no longer count as answer evidence
+     × a number the passage states is the answer's evidence, and a counter-and-particle pair is not 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [] to deeply equal [ 1 ]
+      Tests  1 failed | 15 passed (16)

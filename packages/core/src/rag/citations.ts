@@ -1,5 +1,6 @@
 /** Citations: "contract.pdf · p.4" chips (spec S12) built from retrieval hits, and the [n] marks a model used. */
 import { bm25Tokens, isCjkFunctionTerm, isWeakTerm } from "./bm25";
+import { hasCjk } from "./text";
 import type { Citation, DocKind, DocumentRecord, RetrievalHit } from "./types";
 
 const SNIPPET_CHARS = 220;
@@ -57,7 +58,10 @@ export function citationsForAnswer(answer: string, all: Citation[]): { shown: Ci
   return { shown, cited: true };
 }
 
-const evidenceTerms = (text: string): Set<string> => new Set(bm25Tokens(text).filter((t) => !isWeakTerm(t) && !isCjkFunctionTerm(t)));
+const NUMERAL = /[\p{N}〇零一二三四五六七八九十百千万億兆两]/u;
+
+/* In an answer a number is the fact itself ("七名", "1962"), so it counts; a counter or particle pair ("名で") does not. */
+const evidenceTerms = (text: string): Set<string> => new Set(bm25Tokens(text).filter((t) => !isCjkFunctionTerm(t) && (!isWeakTerm(t) || (NUMERAL.test(t) && !(hasCjk(t) && [...t].length === 1)))));
 
 const SCRIPTS: Array<[string, RegExp]> = [
   ["cjk", /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]/gu],
@@ -80,8 +84,8 @@ export function mainScript(text: string): string {
 }
 
 /**
- * The citations whose passage the answer actually took something from: a content word of the passage that the
- * question did not already contain. An answer that only echoes the question, or states a fact no passage carries
+ * The citations whose passage the answer actually took something from: a content word or a number of the passage
+ * that the question did not already contain. An answer that only echoes the question, or states a fact no passage carries
  * ("Japan won the 1998 World Cup" under a company report, QA F366), gets no SOURCES strip.
  */
 export function groundedCitations(answer: string, question: string, used: RetrievalHit[], citations: Citation[]): Citation[] {
