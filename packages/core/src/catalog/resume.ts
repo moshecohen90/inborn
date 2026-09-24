@@ -61,11 +61,21 @@ export function shouldWait(bytes: number, network: NetworkKind, wifiOnly: boolea
 /** Exponential backoff for retries after a dropped connection (§10.1 #2): 2s, 4s, 8s … capped at 60s. */
 export const backoffMs = (attempt: number): number => Math.min(60_000, 2_000 * 2 ** Math.max(0, attempt));
 
-/** "533 MB", "1.3 GB": decimal throughout, one place every screen shares (the catalog itself quotes decimal, spec §6.1) — a binary (1024-based) reading here is what made the download door and the model card print two different sizes for one file (F281). */
+/** "533 MB", "1.28 GB": decimal throughout, one place every screen shares (the catalog itself quotes decimal, spec §6.1) — a binary (1024-based) reading here is what made the download door and the model card print two different sizes for one file (F281), and a screen that called this while another rolled its own rounding printed a third (F376). Two decimals under 10 GB so "1.28" and "1.3" are never both on screen for the same file. */
 export function formatModelBytes(bytes: number): string {
   if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
-  if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 1)} GB`;
+  if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 2)} GB`;
   if (bytes >= 1e6) return `${Math.round(bytes / 1e6)} MB`;
   if (bytes >= 1e3) return `${Math.round(bytes / 1e3)} kB`;
   return `${Math.round(bytes)} B`;
+}
+
+/**
+ * The one download-progress percent every surface shares (F376): floor, never round, so it never claims 100%
+ * before the last byte is in, and never disagrees with a sibling readout of the same two byte counts.
+ */
+export function downloadPercent(receivedBytes: number, totalBytes: number): number {
+  if (!Number.isFinite(totalBytes) || totalBytes <= 0) return 0;
+  if (receivedBytes >= totalBytes) return 100;
+  return Math.max(0, Math.min(99, Math.floor((receivedBytes / totalBytes) * 100)));
 }

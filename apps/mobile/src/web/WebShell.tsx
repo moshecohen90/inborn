@@ -4,7 +4,7 @@ import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-na
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { Icon, MIN_TOUCH, radius, type Theme } from "@inborn/ui";
-import { formatModelBytes } from "@inborn/core";
+import { downloadPercent, formatModelBytes } from "@inborn/core";
 import { joinList } from "@inborn/i18n";
 import { chooseWebModel, delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
 import { ModelOptions } from "./ModelOptions";
@@ -185,7 +185,7 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
 
   const busy = phase.kind === "downloading" || phase.kind === "verifying";
   const stored = phase.kind === "idle" && boot.status.kind === "ready";
-  const percent = phase.kind === "downloading" ? Math.floor((phase.have / (phase.total ?? source.bytes)) * 100) : phase.kind === "verifying" ? 100 : 0;
+  const percent = phase.kind === "downloading" ? downloadPercent(phase.have, phase.total ?? source.bytes) : phase.kind === "verifying" ? 100 : 0;
   return (
     /* The card grows when the option list opens; at 390 that is taller than the viewport, so the door scrolls. */
     <ScrollView testID="download-door" contentContainerStyle={styles.doorScroll}>

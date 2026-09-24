@@ -64,8 +64,36 @@ fn is_gguf(path: &Path) -> bool {
   std::fs::File::open(path).and_then(|mut f| f.read_exact(&mut magic)).map(|_| &magic == b"GGUF").unwrap_or(false)
 }
 
+/// Decimal (1000-based), matching `formatModelBytes` in `@inborn/core` (F376): this door quoted a binary
+/// MB-only reading, so a GB-sized shortfall printed as a four-digit MB count nowhere else on screen used.
 fn mb(bytes: u64) -> String {
-  format!("{} MB", bytes / 1_048_576)
+  let bytes = bytes as f64;
+  if bytes >= 1e9 {
+    let gb = bytes / 1e9;
+    let digits = if gb >= 10.0 { 0 } else { 2 };
+    format!("{:.*} GB", digits, gb)
+  } else if bytes >= 1e6 {
+    format!("{} MB", (bytes / 1e6).round() as u64)
+  } else if bytes >= 1e3 {
+    format!("{} kB", (bytes / 1e3).round() as u64)
+  } else {
+    format!("{} B", bytes.round() as u64)
+  }
+}
+
+#[cfg(test)]
+mod format_tests {
+  use super::mb;
+
+  #[test]
+  fn decimal_units_match_the_shared_ts_formatter() {
+    assert_eq!(mb(532_517_120), "533 MB");
+    assert_eq!(mb(1_280_835_840), "1.28 GB");
+    assert_eq!(mb(2_740_938_080), "2.74 GB");
+    assert_eq!(mb(12_000_000_000), "12 GB");
+    assert_eq!(mb(204_987_232), "205 MB");
+    assert_eq!(mb(1_280_000_000), "1.28 GB");
+  }
 }
 
 pub fn import(app: &AppHandle, source: &Path) -> Result<ModelFile, String> {

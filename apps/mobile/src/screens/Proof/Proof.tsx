@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import { HF_CDN_HOST, HF_HOST, MODELS_HOST, daysSince, formatBytes, networkAllowlist } from "@inborn/core";
+import { HF_CDN_HOST, HF_HOST, MODELS_HOST, daysSince, formatBytes, formatModelBytes, networkAllowlist } from "@inborn/core";
 import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
@@ -59,12 +59,12 @@ export function Proof() {
       <Section title={t("proof.lastDelivery")}>
         {Platform.OS === "web" ? (
           webDelivery ? (
-            <Line mono={`${webDelivery.name.toUpperCase()} · ${formatBytes(webDelivery.bytes)}`} text={t(webDelivery.verified ? "proof.delivery.web" : "proof.delivery.webUnverified", { origin: webDelivery.origin })} mark={webDelivery.verified} testID="proof-delivery-web" />
+            <Line mono={`${webDelivery.name.toUpperCase()} · ${formatModelBytes(webDelivery.bytes)}`} text={t(webDelivery.verified ? "proof.delivery.web" : "proof.delivery.webUnverified", { origin: webDelivery.origin })} mark={webDelivery.verified} testID="proof-delivery-web" />
           ) : (
             <Line text={t("proof.delivery.webNone")} testID="proof-delivery-web" />
           )
         ) : delivery && delivery.status === "done" ? (
-          <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} mark={deliveryHashChecked(delivery.source)} testID="proof-delivery" />
+          <Line mono={`${delivery.name} · ${formatModelBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} mark={deliveryHashChecked(delivery.source)} testID="proof-delivery" />
         ) : (
           <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} />
         )}

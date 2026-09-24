@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { joinList } from "@inborn/i18n";
-import { LANGUAGE_NAME_BY_CODE, formatModelBytes, type CatalogModel, type InstallState, type LanguageTier, type ModelChoice, type ModelChoices, type LicenceTier, type PaywallReason, type UseCase } from "@inborn/core";
+import { LANGUAGE_NAME_BY_CODE, downloadPercent, formatModelBytes, type CatalogModel, type InstallState, type LanguageTier, type ModelChoice, type ModelChoices, type LicenceTier, type PaywallReason, type UseCase } from "@inborn/core";
 import { Sheet } from "./Sheet";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
@@ -194,7 +194,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   /* §9.9 keeps the sealed green for the seal: the language tier is a ladder of ink weight instead (QA F247). */
   const tierColor = tier === "native" ? theme.text : tier === "good" ? theme.text2 : tier === "none" ? theme.danger : theme.text3;
   const downloading = state?.kind === "delivering" || state?.kind === "verifying";
-  const percent = state?.kind === "delivering" ? Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)) : 0;
+  const percent = state?.kind === "delivering" ? downloadPercent(state.bytes, state.total || model.bytes) : 0;
   /* A model this tier cannot install is not offered at the weight of the one in use (QA F248). */
   const dim = !!choice.blocked || (managed && !choice.current && !onChoose);
 

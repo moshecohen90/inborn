@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { formatBytes } from "@inborn/core";
+import { downloadPercent, formatModelBytes } from "@inborn/core";
 
 import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
@@ -62,8 +62,9 @@ export function Banners() {
   else if (rec.kind === "switchToInstant" && rec.reason === "battery" && device.battery.level !== null)
     rows.push({ key: "battery", tone: "muted", text: t("state.batteryOffer", { pct: Math.round(device.battery.level * 100) }), action: { label: t("state.switch"), onPress: switchToInstant } });
   if (delivery && delivery.status === "delivering")
-    rows.push({ key: "delivery", tone: "muted", text: t("state.delivering", { name: delivery.name, pct: Math.round(delivery.progress * 100), size: formatBytes(delivery.totalBytes) }) });
-  else if (delivery && delivery.status === "verifying") rows.push({ key: "delivery", tone: "muted", text: t("state.verifying", { name: delivery.name, size: formatBytes(delivery.totalBytes) }) });
+    /* Same bytes as the model card below it (F376): reconstructing them from the fraction AppServices already computed keeps this in exact lockstep instead of re-deriving its own rounding. */
+    rows.push({ key: "delivery", tone: "muted", text: t("state.delivering", { name: delivery.name, pct: downloadPercent(delivery.progress * delivery.totalBytes, delivery.totalBytes), size: formatModelBytes(delivery.totalBytes) }) });
+  else if (delivery && delivery.status === "verifying") rows.push({ key: "delivery", tone: "muted", text: t("state.verifying", { name: delivery.name, size: formatModelBytes(delivery.totalBytes) }) });
 
   if (rows.length === 0) return null;
   return (

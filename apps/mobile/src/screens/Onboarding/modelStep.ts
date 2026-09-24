@@ -1,4 +1,4 @@
-import { goodLanguagesOf, languageRank, languageTierOf, requiredFreeBytes, type CatalogModel, type DeliverySource, type InstallState } from "@inborn/core";
+import { downloadPercent, goodLanguagesOf, languageRank, languageTierOf, requiredFreeBytes, type CatalogModel, type DeliverySource, type InstallState } from "@inborn/core";
 
 /** What the step can honestly say about one model right now. A model with no way in at all never becomes an option. */
 export type OptionState =
@@ -92,7 +92,7 @@ export function modelStep(input: ModelStepInput): ModelStep {
 
 function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number, bytes: number, loadedByEngine: boolean): OptionState | null {
   if (INSTALLED.includes(state.kind) && "via" in state) return { kind: "ready", via: state.via };
-  if (state.kind === "delivering") return { kind: "arriving", via: state.via, percent: state.total ? Math.floor((state.bytes / state.total) * 100) : 0, verifying: false };
+  if (state.kind === "delivering") return { kind: "arriving", via: state.via, percent: downloadPercent(state.bytes, state.total), verifying: false };
   if (state.kind === "verifying") return { kind: "arriving", via: state.via, percent: 100, verifying: true };
   if (loadedByEngine) return { kind: "ready", via: "import" };
   if (!plan) return null;

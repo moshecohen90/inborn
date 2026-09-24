@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, acceptsResume, backoffMs, checkSpace, formatModelBytes, resumePlan, shouldWait } from "../src/index";
+import { BUNDLED_MANIFEST, acceptsResume, backoffMs, checkSpace, downloadPercent, formatModelBytes, resumePlan, shouldWait } from "../src/index";
 
 const GB = 1024 ** 3;
 const url = "https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf";
@@ -51,9 +51,23 @@ describe("space, network and backoff (spec §10.1 #4/#5/#6)", () => {
   });
   it("formatModelBytes is decimal, matching the catalog and the site copy (F281: was binary, so the download door and the model card printed two different sizes for one file)", () => {
     expect(formatModelBytes(532_517_120)).toBe("533 MB");
-    expect(formatModelBytes(1_280_835_840)).toBe("1.3 GB");
-    expect(formatModelBytes(2_740_938_080)).toBe("2.7 GB");
+    expect(formatModelBytes(1_280_835_840)).toBe("1.28 GB");
+    expect(formatModelBytes(2_740_938_080)).toBe("2.74 GB");
     expect(formatModelBytes(12_000_000_000)).toBe("12 GB");
+  });
+  it("formatModelBytes: two decimals under 10 GB, matching what a screen shares (F376: the vault header rolled its own binary reading and printed 1.19 GB for a file the card correctly called 1.3 GB)", () => {
+    expect(formatModelBytes(1_280_000_000)).toBe("1.28 GB");
+    expect(formatModelBytes(204_987_232)).toBe("205 MB");
+    expect(formatModelBytes(0)).toBe("0 B");
+    expect(formatModelBytes(-4)).toBe("0 B");
+  });
+  it("downloadPercent floors and never disagrees between two callers of the same bytes (F376)", () => {
+    expect(downloadPercent(211_000_000, 1_280_000_000)).toBe(16);
+    expect(downloadPercent(0.41 * 1_280_835_840, 1_280_835_840)).toBe(41);
+    expect(downloadPercent(1_280_835_840, 1_280_835_840)).toBe(100);
+    expect(downloadPercent(1_280_835_839, 1_280_835_840)).toBe(99);
+    expect(downloadPercent(0, 1_280_835_840)).toBe(0);
+    expect(downloadPercent(100, 0)).toBe(0);
   });
 });
 
@@ -61,6 +75,6 @@ describe("the onboarding offer's size (QA F24)", () => {
   it("comes from the catalog and agrees with the vault card", () => {
     const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast")!;
     expect(fast.bytes).toBe(1_280_835_840);
-    expect(formatModelBytes(fast.bytes)).toBe("1.3 GB");
+    expect(formatModelBytes(fast.bytes)).toBe("1.28 GB");
   });
 });

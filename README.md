@@ -5890,3 +5890,36 @@ and put the phone down got a paused download (F375).
   Fast parked for 15 s and came back reading "Resumed". The new QA bridge op `idleTimer` reads the native flag.
 - **Not yet on the phone.** Both phones were off USB this round.
 
+## Fixes round 92: one shared byte formatter, so the vault header and the card under it stop disagreeing (branch `fix-size-units`) — 24.9.2026
+
+`docs/qa/fix-download-keepawake/B01-fast-resumed.png` (round 91) showed the vault header reading "Delivering FAST ·
+17% of 1.19 GB" over a card reading "Resumed · 16% · 211 MB of 1.3 GB" for the same 1,280,835,840 B file. Three byte
+formatters had drifted apart: the network exit-meter's `formatBytes` (binary, 1024-based, correct for its own job)
+was reused for model sizes in the vault header, the Proof screen's "last delivery" line and the documents embedder
+card; the catalog's `formatModelBytes` was decimal but only one decimal place; and the desktop door's own Rust `mb()`
+read binary MB with no GB unit at all. The header also rounded its percent while the card floored it.
+
+- **One shared pair in `@inborn/core`.** `formatModelBytes` (`packages/core/src/catalog/resume.ts`) is decimal
+  throughout, two decimals under 10 GB — "1.28 GB", "533 MB", "205 MB" — never the binary reading and never a third
+  rounding. `downloadPercent(receivedBytes, totalBytes)` floors, so it never claims 100% early, and returns the same
+  number for the same two byte counts wherever it is called.
+- **Every model-size and download-percent call site now shares them**: the vault header (`Banners.tsx`, which had
+  been importing the network formatter and rounding), the Proof screen's last-delivery line, the documents screen's
+  embedder-model card, the model card, the model-choice sheet, the web download door, the onboarding step, and the
+  no-space and needs-space lines everywhere they appear. A document's own file size and the network exit-meter's
+  tx/rx counters are a different quantity and were left on the network formatter.
+- **The desktop door too.** `apps/desktop/src-tauri/src/models.rs`'s `mb()` (used in the native "not enough space"
+  error) is now the same decimal, two-tier formatter, with its own Rust unit tests mirroring the TypeScript vectors.
+- **Red first, green after.** `docs/qa/fix-size-units/red-catalog-resume.txt` (4 failing against the old code,
+  including `downloadPercent` not existing yet) and `green-catalog-resume.txt` (19 passing) for the core package;
+  `desktop-cargo-test.txt` (17 passing, including the new Rust formatter test).
+- **Full gates green.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test` (900 core + 1004 mobile + 20 i18n +
+  23 ui), `pn lint`, `pn check:store`, `pn web:build` and `pn web:smoke` all pass; the smoke run's live browser text
+  ("533 MB", "1.55 GB needed, 105 MB free") confirms the decimal formatter is what actually renders.
+- **Not reproduced as a web screenshot.** The vault header (`Banners.tsx`'s delivery banner) only populates on
+  native: `AppServices.tsx`'s delivery-tracking effect returns immediately when `Platform.OS === "web"`, so the web
+  build never shows two disagreeing surfaces to screenshot side by side — the web build has one download door, not
+  a header plus a card. The fix is verified instead by the shared unit tests (`downloadPercent(211_000_000,
+  1_280_000_000)` → 16, the exact pair from the round-91 screenshot) and by every call site now routing through the
+  same two functions, so a header and a card computing from the same bytes cannot print different numbers again.
+
