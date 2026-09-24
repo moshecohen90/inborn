@@ -7,10 +7,14 @@ import PICK_TYPES from "./src/documents/pickTypes.json";
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
 const dev = process.env.APP_VARIANT === "development";
 
-/* QA F265: the dev/QA variant is its own iOS app, so installing it can never replace the store build on a real phone
-   and wipe that build's container (F144 cost Moshe his chats). Android keeps one package: Play asset packs and the
-   6T drivers are keyed to it. */
-const IOS_BUNDLE_ID = dev ? "com.inbornapp.mobile.qa" : "com.inbornapp.mobile";
+/* QA F265/F279: the dev/QA variant is its own app on both stores, so installing it can never replace the store build
+   on a real phone and wipe that build's container (F144 cost Moshe his chats). Android was left sharing one package
+   until F279, where the only thing that stopped a debug build landing on top of the real one was Play's versionCode
+   downgrade check. Sideloaded QA builds get no Play asset packs under either id, so nothing is lost by splitting. */
+const STORE_ID = "com.inbornapp.mobile";
+const QA_ID = "com.inbornapp.mobile.qa";
+const IOS_BUNDLE_ID = dev ? QA_ID : STORE_ID;
+const ANDROID_PACKAGE = dev ? QA_ID : STORE_ID;
 
 /**
  * The store-bundle gate (QA F257, security review S5). Metro inlines every `EXPO_PUBLIC_*` at bundle time, so one
@@ -95,7 +99,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   locales: LOCALES,
   android: {
-    package: "com.inbornapp.mobile",
+    package: ANDROID_PACKAGE,
     /* Play rejects a versionCode it has already seen, so each upload bumps it via INBORN_VERSION_CODE (scripts/play-upload.mjs --next-version-code prints the next free one). */
     versionCode: Number(process.env.INBORN_VERSION_CODE) || 1,
     adaptiveIcon: {

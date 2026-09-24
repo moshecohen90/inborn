@@ -13,3 +13,9 @@ adb -s <serial> logcat -d -s UIDRIVE
 adb -s <serial> uninstall com.inbornapp.mobile.uitest.test; adb -s <serial> uninstall com.inbornapp.mobile.uitest
 ```
 Node lookup: exact text / content-description / view id first, then substring; click walks up to the nearest clickable ancestor.
+
+The driver acts on whatever is in front, so it needs no package name. The app under test does: since F279 a build made
+with `APP_VARIANT=development` is `com.inbornapp.mobile.qa`, and `com.inbornapp.mobile` is the store build — Moshe's own
+install on the 6T. Address the QA one in every `adb install`, `uninstall`, `run-as` and `am force-stop`; the store id is
+never the target of a QA run. Play Protect blocks the sideload of both APKs here with "Send app for a security check?";
+answer **Don't send** with `input keyevent KEYCODE_DPAD_DOWN` / `KEYCODE_DPAD_CENTER`, and change no phone setting.

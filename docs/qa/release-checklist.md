@@ -23,6 +23,16 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 
 ## A. Installation (§14.7 line 1)
 
+> **Which package a build carries (F265 iOS, F279 Android).** Anything built with `APP_VARIANT=development`
+> is a **separate app** on both platforms: `com.inbornapp.mobile.qa`. Only a store build is
+> `com.inbornapp.mobile`. Every `adb install`, `adb uninstall`, `run-as`, `pm clear` and `dumpsys` line in
+> this checklist that names `com.inbornapp.mobile` therefore means **the store build** — on a phone that also
+> carries a QA build, add `.qa` to reach the QA one. A QA build can no longer land on top of the real app, and
+> uninstalling it can no longer take the real app's chats, documents or vault with it. Until F279 the Android
+> QA build carried the store package and the only thing that stopped it replacing the real install was Play's
+> `INSTALL_FAILED_VERSION_DOWNGRADE`. Both apps register `inborn://` and the .gguf/share doors, so Android
+> will ask which app to open while both are installed; that is expected.
+
 ### T01 Clean install on the floor device, Android
 - Spec: §10.1 #1, §6.3, §14.2 M8.
 - Procedure: `adb -s <6t-serial> uninstall com.inbornapp.mobile`; install the **release** AAB via bundletool (`bundletool build-apks --bundle app-release.aab --output out.apks --local-testing && bundletool install-apks --apks out.apks --device-id <6t-serial>`); launch; complete onboarding without Wi-Fi off yet; send one message.

@@ -4731,3 +4731,28 @@ in `docs/qa/fix-phone-r58/`.
 
 Suite on the merged tree: core 734 · mobile 726 · i18n 20 · ui 13, `typecheck` and `lint` clean.
 
+
+## Fixes round 58b: the Android QA build could still land on the real app (branch `fix-phone-r58b`) — 24.9.2026
+
+F279, the Android half of round 55's F265 split. Round 55 gave the dev variant its own iOS bundle id after an
+uninstall of the shared id cost Moshe his chats, and left Android on one package on the reasoning that "Play asset
+packs and the 6T drivers are keyed to it". Round 58 found out what that costs: `adb install` of the QA build was
+refused as `INSTALL_FAILED_VERSION_DOWNGRADE` against Moshe's Play 1.0.0 (21). A versionCode accident was the only
+thing between a QA run and his install.
+
+- **The premise was wrong, not just the risk.** Play delivers an asset pack only to an app Play installed, so a
+  sideloaded QA build received no packs under the store package either. Nothing is lost by splitting; what the QA
+  build loses it had already lost. The 6T driver acts on whatever is in front and needs no package name at all.
+- **The fix is in the Expo config, on the same switch as iOS.** `APP_VARIANT=development` now sets
+  `android.package` to `com.inbornapp.mobile.qa` from the same `dev` constant that sets the iOS bundle id, so
+  neither platform can be split without the other and the store package is untouched. Round 58's workaround was
+  `applicationIdSuffix '.qa'` in the generated `android/app/build.gradle` — gitignored, so it is lost at the next
+  prebuild and the run silently goes back to building over the real app.
+- **Proven with two real prebuilds**, the generated directory deleted between them: with the switch,
+  `applicationId 'com.inbornapp.mobile.qa'`; without it, `applicationId 'com.inbornapp.mobile'`. The dev variant
+  still carries INTERNET (the trap where a prebuild without the switch strips it and the debug app cannot reach
+  Metro), `inborn://`, the VIEW/SEND doors and all seven asset packs.
+- **Known consequence:** both apps claim `inborn://` and the .gguf/share doors while both are installed, so Android
+  asks which to open. That is the trade round 55 already accepted on iOS.
+- The release checklist, the 6T work-tier README and the a11y-drive README now say which id a QA run targets, so the
+  next Android stream does not have to rediscover it.
