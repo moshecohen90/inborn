@@ -23,15 +23,15 @@ const JA_PASSAGE = "当社の二〇二四年度の収益は三千万円で、前
 const ZH_OTHER = "员工餐厅的午餐时间是中午十二点到下午一点。";
 const JA_OTHER = "社員食堂の昼休みは正午から午後一時までです。";
 
-/** One chunk per passage, scored by the real BM25 index, with the cosine fixed below the floor. */
-function hitsFor(question: string, passages: Array<{ id: string; docId: string; text: string }>): RetrievalHit[] {
+/** One chunk per passage, scored by the real BM25 index, with the cosine fixed where the caller wants it. */
+function hitsFor(question: string, passages: Array<{ id: string; docId: string; text: string }>, cosine = UNDER_FLOOR): RetrievalHit[] {
   const index = new Bm25Index();
   for (const p of passages) index.add(p.id, p.text);
   const lexical = new Map(index.search(question, 10).map((h) => [h.id, h]));
   return passages.map((p) => ({
     chunk: { id: p.id, docId: p.docId, page: 1, ord: 0, text: p.text, start: 0, end: p.text.length, tokens: 40 },
     score: 1,
-    cosine: UNDER_FLOOR,
+    cosine,
     bm25: lexical.get(p.id)?.score ?? 0,
     bm25Terms: lexical.get(p.id)?.matched ?? 0,
   }));
@@ -107,6 +107,13 @@ describe("F195 · an on-topic CJK question keeps its passages and its citations"
  */
 const JA_ONE = "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。";
 const ZH_ONE = "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。";
+const KO_ONE = "한빛물산의 2025년도 연례 보고서에 따르면 직원 수는 삼백팔십이 명이며, 주요 거점은 대전과 부산 두 곳이다.";
+const EN_ONE = "According to Aoba Trading's 2025 annual report the company employs three hundred and eighty-two people, and its two main offices are in Sendai and Fukuoka.";
+const koDoc = doc("ko", "연례보고서.txt");
+const enDoc = doc("en", "annual-report.txt");
+
+/** Above the floor: what the phone's embedder actually returns for an off-topic question in these scripts (QA F282). */
+const OVER_FLOOR = 0.9;
 
 describe("F278 · a one-passage CJK document does not cite itself for an off-topic question", () => {
   for (const [label, record, text, offTopic, onTopic] of [
@@ -145,5 +152,45 @@ describe("F278 · a one-passage CJK document does not cite itself for an off-top
       expect(p.citations).toHaveLength(1);
       expect(p.messages[1]!.content).toContain(text);
     });
+  }
+});
+
+/**
+ * F327. Both blocks above pin the cosine *under* its floor, so neither could see the floor's other door: on the
+ * OnePlus 6T the off-topic Japanese turn came back cited anyway, over `cosine >= 0.5` alone (QA F261, F282). The
+ * embedder scores an off-topic question against a same-language passage at 0.53–0.76, so the cosine is pinned
+ * above the floor here — where the phone actually put it — and the passage must still be dropped.
+ */
+describe("F327 · the cosine cannot carry a one-passage document over the floor on its own", () => {
+  for (const [label, record, text, offTopic, onTopic] of [
+    ["Japanese", jaDoc, JA_ONE, "一九九八年のワールドカップで優勝したのはどこですか？", "当社の年度の収益はいくらですか？"],
+    ["Chinese", zhDoc, ZH_ONE, "我们什么时候可以去巴黎旅游？", "公司的年度收入增长了多少？"],
+    ["Korean", koDoc, KO_ONE, "1998년 월드컵에서 우승한 나라는 어디입니까?", "한빛물산의 직원 수는 몇 명입니까?"],
+    ["English", enDoc, EN_ONE, "Who won the 1998 football World Cup?", "How many people does Aoba Trading employ?"],
+  ] as const) {
+    const docs = new Map([[record.id, record]]);
+    const only = { id: `${record.id}1`, docId: record.id, text };
+
+    it(`${label}: the off-topic question shares no content word with the passage`, () => {
+      expect(hitsFor(offTopic, [only], OVER_FLOOR)[0]!.bm25Terms).toBe(0);
+    });
+
+    for (const strict of [false, true]) {
+      it(`${label}: strict=${strict}, a cosine of ${OVER_FLOOR} does not put the passage under the answer`, () => {
+        const p = buildRagPrompt({ question: offTopic, hits: hitsFor(offTopic, [only], OVER_FLOOR), docs, strict, nCtx: 4096, nonce: "n" });
+        expect(p.used).toEqual([]);
+        expect(p.citations).toEqual([]);
+        expect(p.messages[1]?.content ?? "").not.toContain(text);
+        expect(strict ? p.noAnswer : p.messages[0]!.content).toStrictEqual(strict ? true : expect.stringContaining("contain nothing about this question"));
+      });
+
+      it(`${label}: strict=${strict}, the on-topic question is cited whichever side of the floor the cosine is on`, () => {
+        for (const cosine of [UNDER_FLOOR, OVER_FLOOR]) {
+          const p = buildRagPrompt({ question: onTopic, hits: hitsFor(onTopic, [only], cosine), docs, strict, nCtx: 4096, nonce: "n" });
+          expect([cosine, p.citations.length]).toEqual([cosine, 1]);
+          expect(p.messages[1]!.content).toContain(text);
+        }
+      });
+    }
   }
 });

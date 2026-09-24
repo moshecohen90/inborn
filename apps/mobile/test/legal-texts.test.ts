@@ -454,3 +454,36 @@ describe("F207/F209/F214 · what the site may not go back to saying", () => {
     expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Cohen Apps\n");
   });
 });
+
+/**
+ * F319. /compare states facts about other companies' products, which is the one page on this site where being wrong
+ * is a legal and a reputational problem rather than a typo. Two claims were removed while it was written, each
+ * because a source contradicted it, and these are the guards that stop them coming back.
+ */
+describe("F319 · what /compare may not go back to saying", () => {
+  const COMPARE = ["apps/site/src/pages/compare.html", "apps/site/build.mjs"];
+  /** The six release manifests we actually read, named on the page so the permission claim carries its own scope. */
+  const READ_MANIFESTS = ["PocketPal AI", "MLC Chat", "Google AI Edge Gallery", "SmolChat", "LLM Hub", "MyDeviceAI"];
+
+  /* openai.com and help.openai.com returned 403 to every fetch on 24.9.2026, so nothing on the page is sourced to
+     OpenAI. A price we could not read and cannot re-check would go stale silently and take the page's credibility. */
+  it("no page quotes a price for ChatGPT", () => {
+    for (const file of COMPARE) {
+      const text = read(file);
+      expect(text, file).not.toMatch(/(ChatGPT|OpenAI)[^.!?]{0,120}(\$\s?\d|\d+(?:\.\d+)?\s?USD)/i);
+      expect(text, file).not.toMatch(/(\$\s?\d|\d+(?:\.\d+)?\s?USD)[^.!?]{0,120}(ChatGPT|OpenAI)/i);
+    }
+    expect(read("apps/site/src/pages/compare.html")).toContain("prints no ChatGPT price");
+  });
+
+  /* We read six Android manifests and all six declare INTERNET. "No competitor ships without it" would be a claim
+     about apps whose source is closed, which is exactly the kind of sentence this category punishes. */
+  it("the INTERNET permission claim never drops its scope", () => {
+    for (const file of COMPARE) {
+      expect(read(file), file).not.toMatch(/(no|not a single|the only) (other )?(app|competitor|rival)[^.!?]{0,80}INTERNET/i);
+      expect(read(file), file).not.toMatch(/INTERNET[^.!?]{0,80}(no|not a single) (other )?(app|competitor|rival)/i);
+    }
+    const page = read("apps/site/src/pages/compare.html");
+    for (const name of READ_MANIFESTS) expect(page, name).toContain(name);
+  });
+});

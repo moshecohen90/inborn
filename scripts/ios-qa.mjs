@@ -2,7 +2,7 @@
 // Drives the iPhone through the in-app QA bridge: no XCUITest runner, no "Enable UI Automation" passcode sheet
 // (F185), nothing that needs Moshe standing next to the phone.
 //
-//   node scripts/ios-qa.mjs <script.json> --out docs/qa/ios-qa-bridge [--device <udid>] [--launch] [--run <id>]
+//   node scripts/ios-qa.mjs <script.json> --out docs/qa/ios-qa-bridge [--device <udid>] [--launch] [--run <id>] [--simulator]
 //
 // It pushes the script into the app's own Documents container (`devicectl device copy to`, no prompt), launches or
 // leaves the app running, polls `Documents/qa/out/<run>/progress.json`, takes each `screenshot` step's picture with
@@ -46,29 +46,70 @@ function devicectl(args, { quiet = true } = {}) {
   return execFileSync('xcrun', ['devicectl', ...args], { encoding: 'utf8', stdio: quiet ? ['ignore', 'pipe', 'pipe'] : 'inherit' });
 }
 
-const push = (local, remote) =>
-  devicectl(['device', 'copy', 'to', '--device', device, '--domain-type', 'appDataContainer', '--domain-identifier', bundle, '--source', local, '--destination', remote]);
+function simctl(args, { quiet = true } = {}) {
+  return execFileSync('xcrun', ['simctl', ...args], { encoding: 'utf8', stdio: quiet ? ['ignore', 'pipe', 'pipe'] : 'inherit' });
+}
+
+// A simulator has no devicectl: its container is a directory on this Mac, so the same four moves are file copies
+// (F323, the iPad pass). Everything above and below this block is identical for a phone and a simulator.
+const simulator = has('simulator');
+const simData = () => simctl(['get_app_container', device, bundle, 'data']).trim();
+
+const transport = simulator
+  ? {
+      push(local, remote) {
+        const dest = join(simData(), remote);
+        mkdirSync(join(dest, '..'), { recursive: true });
+        execFileSync('cp', [local, dest]);
+      },
+      pull(remote, local) {
+        const src = join(simData(), remote);
+        if (!existsSync(src)) return null;
+        execFileSync('cp', [src, local]);
+        return existsSync(local) ? readFileSync(local, 'utf8') : null;
+      },
+      launch() {
+        simctl(['launch', '--terminate-running-process', device, bundle]);
+        return null;
+      },
+      shoot: (png) => simctl(['io', device, 'screenshot', png]),
+    }
+  : {
+      push: (local, remote) =>
+        devicectl(['device', 'copy', 'to', '--device', device, '--domain-type', 'appDataContainer', '--domain-identifier', bundle, '--source', local, '--destination', remote]),
+      pull(remote, local) {
+        try {
+          devicectl(['device', 'copy', 'from', '--device', device, '--domain-type', 'appDataContainer', '--domain-identifier', bundle, '--source', remote, '--destination', local]);
+          return existsSync(local) ? readFileSync(local, 'utf8') : null;
+        } catch {
+          return null;
+        }
+      },
+      // The app is launched detached and left running: killing the launcher would take the app with it, and the
+      // bridge only polls while the process lives.
+      launch() {
+        const child = execFile('xcrun', ['devicectl', 'device', 'process', 'launch', '--device', device, '--terminate-existing', '--console', bundle], () => undefined);
+        child.unref?.();
+        return child;
+      },
+      shoot: (png) => execFileSync(pmd, ['developer', 'dvt', 'screenshot', '--userspace', png], { stdio: ['ignore', 'pipe', 'pipe'] }),
+    };
+
+const push = (local, remote) => transport.push(local, remote);
 
 function pull(remote, local) {
   try {
-    devicectl(['device', 'copy', 'from', '--device', device, '--domain-type', 'appDataContainer', '--domain-identifier', bundle, '--source', remote, '--destination', local]);
-    return existsSync(local) ? readFileSync(local, 'utf8') : null;
+    return transport.pull(remote, local);
   } catch {
     return null;
   }
 }
 
-// The app is launched detached and left running: killing the launcher would take the app with it, and the bridge
-// only polls while the process lives.
-function launch() {
-  const child = execFile('xcrun', ['devicectl', 'device', 'process', 'launch', '--device', device, '--terminate-existing', '--console', bundle], () => undefined);
-  child.unref?.();
-  return child;
-}
+const launch = () => transport.launch();
 
 function screenshot(name) {
   const png = join(outDir, `${name}.png`);
-  execFileSync(pmd, ['developer', 'dvt', 'screenshot', '--userspace', png], { stdio: ['ignore', 'pipe', 'pipe'] });
+  transport.shoot(png);
   try {
     execFileSync('sips', ['-Z', '500', png, '--out', join(outDir, `sm-${name}.png`)], { stdio: 'ignore' });
   } catch {

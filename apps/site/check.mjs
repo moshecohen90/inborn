@@ -10,7 +10,7 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { EN, LOCALES, RTL_LOCALES, SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin, strings } from "./build.mjs";
+import { COMPARE_APPS, COMPARE_COLUMNS, COMPARE_FAQ_COUNT, EN, FAQ_COUNT, LOCALES, RTL_LOCALES, SIZE_FAST, SIZE_INSTANT, TOKENS, compareCell, siteOrigin, strings } from "./build.mjs";
 import { headerProblems } from "./headerCheck.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -27,15 +27,39 @@ if (SIZE_INSTANT !== "533 MB") problems.push(`SIZE_INSTANT is "${SIZE_INSTANT}",
 if (SIZE_FAST !== "1.3 GB") problems.push(`SIZE_FAST is "${SIZE_FAST}", expected "1.3 GB" (packages/core/src/catalog/manifest.json, id "fast")`);
 /* Every place the site names a model's download size, so a future edit cannot quietly hardcode a number again. */
 const SIZE_MENTIONS = [
-  ["index.html", ["Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
-  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
+  ["index.html", ["Your browser downloads one model once: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once into the browser's own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
+  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once into its own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
   ["blog/why-on-device.html", ["Inborn ships a 0.8B model inside the app, {{SIZE_INSTANT}}, so the first chat works"]],
+  ["compare.html", ["Instant, {{SIZE_INSTANT}}, ships inside the app"]],
 ];
 for (const [file, sentences] of SIZE_MENTIONS) {
   const html = readFileSync(path.join(dist, file), "utf8");
   for (const sentence of sentences) {
     const expected = sentence.replace("{{SIZE_INSTANT}}", SIZE_INSTANT).replace("{{SIZE_FAST}}", SIZE_FAST);
     if (!html.includes(expected)) problems.push(`${file}: missing "${expected}" (a model size was hardcoded instead of using {{SIZE_INSTANT}}/{{SIZE_FAST}}?)`);
+  }
+}
+
+/* F319: /compare states facts about other companies' products. A row must carry every column in every language, and
+   every competitor must link its own public page, because that link is where the claim is checked. A question already
+   answered on the home page must not be answered here too: two URLs carrying one answer split the citation and
+   neither wins. */
+for (const [id, name, url] of COMPARE_APPS) {
+  const self = url === `${siteOrigin}/`;
+  if (!self && !/^https?:\/\//.test(url)) problems.push(`/compare: "${name}" has no link to its own public page`);
+  if (!self && url.startsWith(siteOrigin)) problems.push(`/compare: "${name}" links to us instead of to its own page`);
+  for (const column of COMPARE_COLUMNS) {
+    for (const l of LOCALES) {
+      const cell = strings[l.code]?.[compareCell(id, column)] ?? (l === EN ? undefined : strings[EN.code][compareCell(id, column)]);
+      if (!cell?.trim()) problems.push(`/compare (${l.code}): row "${name}" leaves "${column}" empty (say "Not verified" instead)`);
+    }
+  }
+}
+for (const l of LOCALES) {
+  const home = new Set(Array.from({ length: FAQ_COUNT }, (_, i) => (strings[l.code]?.[`faq.${i + 1}.q`] ?? strings[EN.code][`faq.${i + 1}.q`]).toLowerCase()));
+  for (let i = 1; i <= COMPARE_FAQ_COUNT; i++) {
+    const q = strings[l.code]?.[`compare.faq.${i}.q`] ?? strings[EN.code][`compare.faq.${i}.q`];
+    if (home.has(q.toLowerCase())) problems.push(`/compare (${l.code}): "${q}" is already answered on the home page`);
   }
 }
 

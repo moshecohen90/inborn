@@ -136,12 +136,16 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
         </Pressable>
         {busy ? (
           /* Stopping your own answer is not a breach: §9.2 keeps danger for UNSEALED, deletion and errors (QA F246). */
-          <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={[styles.send, { backgroundColor: theme.ctaFill }]}>
-            <Icon name="stop" size={14} color={theme.ctaText} fill />
+          <Pressable testID="stop" accessibilityRole="button" accessibilityLabel={t("chat.stop")} onPress={onStop} style={styles.iconBtn}>
+            <View style={[styles.sendDot, { backgroundColor: theme.ctaFill }]}>
+              <Icon name="stop" size={14} color={theme.ctaText} fill />
+            </View>
           </Pressable>
         ) : (
-          <Pressable testID="send" accessibilityRole="button" accessibilityLabel={t("chat.send")} accessibilityState={{ disabled: !canSend }} disabled={!canSend} onPress={onSend} style={[styles.send, { backgroundColor: theme.ctaFill, opacity: canSend ? 1 : 0.45 }]}>
-            <Icon name="arrowUp" size={20} color={theme.ctaText} strokeWidth={2.5} />
+          <Pressable testID="send" accessibilityRole="button" accessibilityLabel={t("chat.send")} accessibilityState={{ disabled: !canSend }} disabled={!canSend} onPress={onSend} style={[styles.iconBtn, { opacity: canSend ? 1 : 0.45 }]}>
+            <View style={[styles.sendDot, { backgroundColor: theme.ctaFill }]}>
+              <Icon name="arrowUp" size={20} color={theme.ctaText} strokeWidth={2.5} />
+            </View>
           </Pressable>
         )}
       </View>
@@ -159,5 +163,6 @@ const styles = StyleSheet.create({
   badge: { position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: "center", justifyContent: "center" },
   badgeText: { fontSize: 10, fontWeight: "700" },
   input: { flex: 1, minHeight: 44, paddingVertical: 10, paddingHorizontal: 4 },
-  send: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center", margin: 4 },
+  /* The filled circle is 36 for the look; the finger gets the 44 of `iconBtn` around it, because margin is not touchable (F322). */
+  sendDot: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
 });

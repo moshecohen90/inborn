@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import { buildRagPrompt, citationsForAnswer, citedNumbers, countInstructionLines, fenceDocuments, fenceMarkers, looksLikeInstruction, normalizeText, stripInstructions, NOT_FOUND_TOKEN, type DocumentRecord, type RetrievalHit } from "../src/index";
 
 const doc = (id: string, name: string, kind: DocumentRecord["kind"] = "pdf"): DocumentRecord => ({ id, name, kind, bytes: 10, pages: 3, addedAt: 1, status: "indexed", indexedPages: 3, chunkCount: 3, flaggedLines: 0, ocrPages: 0 });
-const hit = (docId: string, page: number, text: string, cosine = 0.8, bm25 = 0, bm25Terms = bm25 > 0 ? 1 : 0): RetrievalHit => ({ chunk: { id: `${docId}:${page}:0`, docId, page, ord: 0, text, start: 0, end: text.length, tokens: 20 }, score: 0.02, cosine, bm25, bm25Terms });
+/* The default is a hit the floor keeps: these tests are about fencing, budgets and chips, not about relevance (QA F327 took the cosine-only door away). */
+const hit = (docId: string, page: number, text: string, cosine = 0.8, bm25 = 3.2, bm25Terms = bm25 > 0 ? 2 : 0): RetrievalHit => ({ chunk: { id: `${docId}:${page}:0`, docId, page, ord: 0, text, start: 0, end: text.length, tokens: 20 }, score: 0.02, cosine, bm25, bm25Terms });
 
 describe("instruction stripping", () => {
   it("removes instruction-like lines and template tokens, keeps ordinary prose", () => {
@@ -76,7 +77,7 @@ describe("buildRagPrompt", () => {
     const relaxed = buildRagPrompt({ question: "Who won?", hits: [hit("d1", 1, "The warranty lasts two years.", 0.05, 0)], docs, strict: false, nCtx: 4096 });
     expect(relaxed.noAnswer).toBe(false);
     expect(relaxed.messages[0]!.content).not.toContain(NOT_FOUND_TOKEN);
-    const strict = buildRagPrompt({ question: "How long?", hits: [hit("d1", 1, "The warranty lasts two years.", 0.9, 0)], docs, strict: true, nCtx: 4096 });
+    const strict = buildRagPrompt({ question: "How long?", hits: [hit("d1", 1, "The warranty lasts two years.", 0.9, 3.2, 2)], docs, strict: true, nCtx: 4096 });
     expect(strict.messages[0]!.content).toContain(NOT_FOUND_TOKEN);
     expect(strict.messages[0]!.content).toMatch(/Use only the passages/);
   });

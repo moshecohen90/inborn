@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { fetchManifest, parseManifest, pickModel, type WebModelSource } from "./modelDelivery";
+import { fetchManifest, parseManifest, type WebModelSource } from "./modelDelivery";
 import { webReady, type WebBoot } from "./boot";
 
 const ORIGIN = "https://app.inbornapp.com";
@@ -18,18 +18,6 @@ describe("parseManifest", () => {
   it("ignores rows without a file or size", () => {
     expect(parseManifest({ models: [{ id: "x", file: "", bytes: 0, delivery: [{ kind: "cdn", url: "/models/x.gguf" }] }] }, [], ORIGIN)).toEqual([]);
     expect(parseManifest({}, [], ORIGIN)).toEqual([]);
-  });
-});
-
-describe("pickModel", () => {
-  const list = parseManifest({ models: [m("sharp", "sharp", 2700), m("instant", "instant", 533), m("fast-b", "fast", 1400), m("fast-a", "fast", 1280)] }, [], ORIGIN);
-  it("takes the biggest tier the gate allows, smaller file on a tie", () => {
-    expect(pickModel(list, "sharp")?.id).toBe("sharp");
-    expect(pickModel(list, "fast")?.id).toBe("fast-a");
-    expect(pickModel(list, "instant")?.id).toBe("instant");
-  });
-  it("is undefined when nothing fits", () => {
-    expect(pickModel(list.filter((x) => x.tier === "sharp"), "instant")).toBeUndefined();
   });
 });
 
@@ -94,7 +82,7 @@ describe("fetchManifest tells a broken catalog from an empty one", () => {
 });
 
 describe("F271 · a browser with no catalog is not a browser that is ready", () => {
-  const boot = (over: Partial<WebBoot>): WebBoot => ({ gate: { maxTier: "fast" } as WebBoot["gate"], engine: "wllama", chromePromptApi: false, opfs: true, source: null, catalogError: null, status: { kind: "missing" }, ...over });
+  const boot = (over: Partial<WebBoot>): WebBoot => ({ gate: { maxTier: "fast" } as WebBoot["gate"], engine: "wllama", chromePromptApi: false, opfs: true, choices: [], source: null, catalogError: null, status: { kind: "missing" }, ...over });
 
   it("holds the door when the catalog failed, and opens it when the catalog is merely empty", () => {
     expect(webReady(boot({ catalogError: "not-json" }))).toBe(false);

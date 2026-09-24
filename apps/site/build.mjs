@@ -227,6 +227,7 @@ const sealSvg = `<svg class="seal" viewBox="0 0 1024 1024" aria-hidden="true" fo
 
 const nav = [
   ["/proof", "ui.nav.proof"],
+  ["/compare", "ui.nav.compare"],
   ["/blog", "ui.nav.blog"],
   ["/support", "ui.nav.support"],
   ["https://github.com/moshecohen90/inborn", "ui.nav.github"],
@@ -238,7 +239,7 @@ export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"]
 const legalLabel = (l, route) => t(l, `ui.legal.${route.slice(1)}`);
 
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
-export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST"];
+export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST", "COMPARE_FAQ", "COMPARE_TABLE", "COMPARE_CHECKED"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
 function tokens(l) {
@@ -256,6 +257,9 @@ function tokens(l) {
     FAQ: faqHtml(l),
     SIZE_INSTANT,
     SIZE_FAST,
+    COMPARE_FAQ: compareFaqHtml(l),
+    COMPARE_TABLE: compareTableHtml(l),
+    COMPARE_CHECKED: esc(t(l, "compare.checked")),
   };
 }
 
@@ -348,7 +352,7 @@ ${body}
     </div>
     <nav aria-label="${esc(t(l, "ui.nav.footer"))}">
       <span class="label">${esc(t(l, "ui.footer.product"))}</span>
-      <a href="${href(l, "/")}">${esc(t(l, "ui.footer.home"))}</a><a href="${href(l, "/proof")}">${esc(t(l, "ui.nav.proof"))}</a><a href="${href(l, "/blog")}">${esc(t(l, "ui.nav.blog"))}</a><a href="${href(l, "/support")}">${esc(t(l, "ui.nav.support"))}</a>
+      <a href="${href(l, "/")}">${esc(t(l, "ui.footer.home"))}</a><a href="${href(l, "/proof")}">${esc(t(l, "ui.nav.proof"))}</a><a href="${href(l, "/compare")}">${esc(t(l, "ui.nav.compare"))}</a><a href="${href(l, "/blog")}">${esc(t(l, "ui.nav.blog"))}</a><a href="${href(l, "/support")}">${esc(t(l, "ui.nav.support"))}</a>
     </nav>
     <nav aria-label="${esc(t(l, "ui.nav.legal"))}">
       <span class="label">${esc(t(l, "ui.nav.legal"))}</span>
@@ -424,6 +428,79 @@ const sizes = (s) => s.replace(/\{\{SIZE_INSTANT\}\}/g, SIZE_INSTANT).replace(/\
 const faq = (l) => Array.from({ length: FAQ_COUNT }, (_, i) => [t(l, `faq.${i + 1}.q`), sizes(t(l, `faq.${i + 1}.a`))]);
 
 const faqHtml = (l) => faq(l).map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
+
+/* ---------- /compare (F319, round 68) ---------- */
+
+/**
+ * The on-device rivals, in the order the table and the ItemList both render, so a row and its structured-data entry
+ * cannot drift. Names, URLs and the column order live here; every sentence in a cell is a string like any other
+ * (`compare.cell.<app>.<column>`), so the table reads in the reader's language. A cell says "Not verified" when we
+ * could not read it on the vendor's own page or in source they publish; a guess in a comparison table is the one
+ * thing that would cost this page its credibility.
+ */
+export const COMPARE_COLUMNS = ["platforms", "price", "license", "model-source", "documents", "internet"];
+export const COMPARE_APPS = [
+  ["inborn", "Inborn", `${siteOrigin}/`],
+  ["pocketpal", "PocketPal AI", "https://github.com/a-ghorbani/pocketpal-ai"],
+  ["private-llm", "Private LLM", "https://privatellm.app/en/faq"],
+  ["enclave", "Enclave AI", "https://enclaveai.app/pricing/"],
+  ["layla", "Layla", "https://apps.apple.com/us/app/layla/id6456886656"],
+  ["mlc", "MLC Chat", "https://github.com/mlc-ai/mlc-llm"],
+  ["ai-edge", "Google AI Edge Gallery", "https://github.com/google-ai-edge/gallery"],
+  ["lm-studio", "LM Studio", "https://lmstudio.ai/"],
+  ["ollama", "Ollama", "https://ollama.com/pricing"],
+];
+export const COMPARE_FAQ_COUNT = 8;
+export const compareCell = (app, column) => `compare.cell.${app}.${column}`;
+
+const compareTableHtml = (l) => `<div class="table-wrap"><table class="compare-table">
+<caption class="sr-only">${esc(t(l, "compare.table-caption")).replace("{{COMPARE_CHECKED}}", esc(t(l, "compare.checked")))}</caption>
+<thead><tr><th scope="col">${esc(t(l, "compare.col.app"))}</th>${COMPARE_COLUMNS.map((c) => `<th scope="col">${esc(t(l, `compare.col.${c}`))}</th>`).join("")}</tr></thead>
+<tbody>
+${COMPARE_APPS.map(([id, name, url], i) => `<tr${i === 0 ? ' class="self"' : ""}><th scope="row">${i === 0 ? esc(name) : `<a href="${esc(url)}" rel="noopener">${esc(name)}</a>`}</th>${COMPARE_COLUMNS.map((c) => `<td>${esc(sizes(t(l, compareCell(id, c))))}</td>`).join("")}</tr>`).join("\n")}
+</tbody>
+</table></div>`;
+
+/** Answers the probe found nobody owning, phrased the way a person asks an answer engine. Same rule as the home FAQ:
+    the first sentence answers it outright and names Inborn in the first clause, so a lifted chunk still stands alone.
+    "Is Inborn open source" and "what does a small model give up" live on the home FAQ; two URLs with one answer
+    split the citation and neither wins. */
+const compareFaq = (l) => Array.from({ length: COMPARE_FAQ_COUNT }, (_, i) => [t(l, `compare.faq.${i + 1}.q`), sizes(t(l, `compare.faq.${i + 1}.a`))]);
+const compareFaqHtml = (l) => compareFaq(l).map(([q, a]) => `<div class="qa"><h3>${esc(q)}</h3><p>${esc(a)}</p></div>`).join("");
+
+const compareGraph = (l) => [
+  {
+    "@type": "WebPage",
+    "@id": `${abs(l, "/compare")}#webpage`,
+    url: abs(l, "/compare"),
+    name: metaOf("compare", "h1", l, metaOf("compare", "title", l)),
+    description: metaOf("compare", "description", l),
+    inLanguage: l.code,
+    isPartOf: { "@id": ID.site(l) },
+    about: { "@id": ID.app(l) },
+    dateModified: lastmod("apps/site/src/pages/compare.html"),
+    publisher: { "@id": ID.org },
+  },
+  {
+    "@type": "ItemList",
+    "@id": `${abs(l, "/compare")}#apps`,
+    name: t(l, "compare.list-name"),
+    description: t(l, "compare.list-description").replace("{{COMPARE_CHECKED}}", t(l, "compare.checked")),
+    numberOfItems: COMPARE_APPS.length,
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    itemListElement: COMPARE_APPS.map(([, name, url], i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: { "@type": "SoftwareApplication", name, url, applicationCategory: "UtilitiesApplication" },
+    })),
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${abs(l, "/compare")}#faq`,
+    mainEntity: compareFaq(l).map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
+  },
+  breadcrumb(l, "/compare", [["Inborn", "/"], [metaOf("compare", "title", l), null]]),
+];
 
 const homeGraph = (l) => [
   {
@@ -567,7 +644,7 @@ ${languages}
 
 ## ${t(l, "llms.product")}
 
-${group(["/", "/download", "/proof", "/support"])}
+${group(["/", "/download", "/proof", "/compare", "/support"])}
 
 ## ${t(l, "llms.writing")}
 
@@ -625,13 +702,17 @@ Sitemap: ${siteOrigin}/sitemap.xml
 
 /* ---------- Build ---------- */
 
+/** The pages that carry structured data of their own, by path. */
+const PAGE_GRAPH = { "/": homeGraph, "/compare": compareGraph };
+
 /** The locale-independent page set: path, id, template or body function, and the structured data each one adds. */
 function pageSet() {
   const pages = [];
   for (const file of readdirSync(path.join(src, "pages"))) {
     const name = file.replace(/\.html$/, "");
     const id = name === "index" ? "home" : name;
-    pages.push({ ...fragment("pages", name), id, path: name === "index" ? "/" : `/${name}`, jsonld: (l) => (name === "index" ? homeGraph(l) : []) });
+    const path_ = name === "index" ? "/" : `/${name}`;
+    pages.push({ ...fragment("pages", name), id, path: path_, jsonld: (l) => PAGE_GRAPH[path_]?.(l) ?? [] });
   }
   const posts = postPages();
   pages.push(...posts, blogIndex(posts));

@@ -1,0 +1,34 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-cjk-floor/apps/mobile
+
+ ❯ src/documents/ragLog.test.ts (3 tests | 1 failed) 7ms
+   ❯ F328 · the retrieval line QA reads in logcat (3)
+     × it is not behind __DEV__: the build that showed the bug was a release build 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/ragLog.test.ts > F328 · the retrieval line QA reads in logcat > it is not behind __DEV__: the build that showed the bug was a release build
+AssertionError: expected '    if (__DEV__) console.log(`[rag] s…' not to contain '__DEV__'
+
+Expected: "__DEV__"
+Received: "    if (__DEV__) console.log(`[rag] strict=${strict} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${isRelevant(h) ? "KEPT" : "dropped"}`).join(" · ")}`);"
+
+ ❯ src/documents/ragLog.test.ts:28:22
+     26|
+     27|   it("it is not behind __DEV__: the build that showed the bug was a re…
+     28|     expect(line).not.toContain("__DEV__");
+       |                      ^
+     29|     expect(line.trim().startsWith("console.log(")).toBe(true);
+     30|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  16:02:36
+   Duration  124ms (transform 44%, import 26%, tests 19%, worker 10%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-cjk-floor/apps/mobile:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/documents/ragLog.test.ts

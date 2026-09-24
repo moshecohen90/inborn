@@ -31,18 +31,26 @@ const ANSWER_TIMEOUT_MS = 3 * 60_000;
 const ENGINE_RE = /\[inborn\] (\w+) loaded .* in (\d+) ms/;
 const LOADED_RE = /\[wllama\] loaded .* in (\d+) ms · threads=(\d+) isolated=(\w+) gpuLayers=(\d+)/;
 /**
- * Spec §14.9: anything visual is checked in the BROWSER at these four widths before a Mac or a phone is touched.
- * The sweep below is that rule as a gate — a run that covers fewer than all four widths on all four screens fails.
+ * Spec §14.9: anything visual is checked in the BROWSER at these widths before a Mac or a phone is touched.
+ * The sweep below is that rule as a gate — a run that covers fewer than all of them on all the screens fails.
+ * 820 / 1180 / 1366 are the iPad's own widths (F322): 10th-gen portrait, 10th-gen landscape, 12.9" landscape.
  */
-const REQUIRED_WIDTHS = [390, 768, 1024, 1440];
+const REQUIRED_WIDTHS = [390, 768, 820, 1024, 1180, 1366, 1440];
 /* Drives the sweep. It is checked against REQUIRED_WIDTHS at the end, so narrowing it here fails the run. */
 const LAYOUT_WIDTHS = [...REQUIRED_WIDTHS];
+/* Both themes, because a colour token that is only wrong in the dark palette is invisible to a light-only sweep (F322). */
+const REQUIRED_THEMES = ["light", "dark"];
 const LAYOUT_SCREENS = [
   { id: "chat", path: "/", ready: "composer-input" },
   { id: "settings", path: "/settings", ready: "row-proof" },
   { id: "paywall", path: "/paywall?reason=strictDocuments", ready: "web-price-pro" },
   { id: "onboarding", path: "/onboarding", ready: "onboarding-welcome" },
+  { id: "proof", path: "/proof", ready: null },
+  { id: "vault", path: "/vault", ready: "vault-web-door" },
+  { id: "documents", path: "/documents", ready: null },
 ];
+/** Apple HIG / Android: the smallest a control may be on a touch screen. `MIN_TOUCH` in @inborn/ui is the same number. */
+const MIN_TOUCH_PX = 44;
 /** Every shipped locale, plus the pseudo-locale, which is the longest any string is allowed to get. */
 const LOCALES = ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"];
 /** The two sidebar buttons that share one row: the narrowest place a translated label has to fit (QA F103, F304). */
@@ -162,8 +170,9 @@ async function walkOnboarding(page, out, pageErrors) {
   await step("onboarding-welcome", () => page.getByTestId("onboarding-continue").click());
   await step("onboarding-model", async () => {
     out.modelStepOptions = (await page.getByTestId("model-options").textContent()) ?? "";
-    /* The browser can start no download, so the step must show exactly the model it already has (F120). */
-    if ((await page.getByTestId("model-option-fast").count()) > 0) throw new Error("the web model step offered a download it cannot start");
+    /* F312: the step reads the web boot's list, so it offers exactly what the door offers — no more, no fewer. */
+    out.modelStepIds = await page.locator('[data-testid^="model-option-"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-testid").replace("model-option-", "")));
+    if (out.modelStepIds.join() !== out.doorOptionIds.join()) throw new Error(`the model step offers ${out.modelStepIds.join(", ")} but the door offers ${out.doorOptionIds.join(", ")}`);
     out.screenshotOnboarding = path.join(outDir, "web-smoke-onboarding.png");
     await page.screenshot({ path: out.screenshotOnboarding });
     await page.getByTestId("start-chatting").click();
@@ -177,6 +186,20 @@ async function walkOnboarding(page, out, pageErrors) {
   });
   await step("onboarding-lock", () => page.getByTestId("lock-start").click());
   out.onboarding = steps;
+}
+
+/** The ids the door's option list offers, in its own order. */
+const chooseIds = (page) =>
+  page.locator('[data-testid^="web-model-choose-"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-testid").replace("web-model-choose-", "")));
+
+/** Which model the door is offering: the one catalog id the option list does not repeat. */
+async function offeredId(page, catalogIds) {
+  /* The door folds the list away; the vault opens it. Only open what is closed, or the toggle closes it again. */
+  if ((await chooseIds(page)).length === 0 && (await page.getByTestId("web-model-options-toggle").count()) > 0) await page.getByTestId("web-model-options-toggle").click();
+  const others = new Set(await chooseIds(page));
+  const offered = catalogIds.filter((id) => !others.has(id));
+  if (offered.length !== 1) throw new Error(`the door offers ${offered.length} models of ${catalogIds.join(", ")}`);
+  return offered[0];
 }
 
 /** Ready = the Chat screen is up and the console says which engine loaded (the status line stays visible with the engine name). */
@@ -239,6 +262,33 @@ async function measureLayout(page) {
   });
 }
 
+/**
+ * Every control the user can hit that is smaller than a fingertip (F322). A control the layout has collapsed to
+ * 30 px on a tablet is still clickable with a mouse, so only a measurement finds it.
+ */
+async function undersizedControls(page, min) {
+  return page.evaluate((minPx) => {
+    const out = [];
+    for (const el of document.querySelectorAll('button,[role="button"],[role="link"],[role="switch"],[role="tab"],[role="checkbox"],[role="radio"]')) {
+      const r = el.getBoundingClientRect();
+      /* Nothing with no box on screen: a closed sheet's children stay in the DOM. */
+      if (r.width < 1 || r.height < 1) continue;
+      /* visibility:hidden keeps the box, so the rectangle alone would count a control nobody can see. */
+      if (el.checkVisibility && !el.checkVisibility({ visibilityProperty: true })) continue;
+      /* A control nested inside another control is measured once, on the outer box the finger actually lands on. */
+      if (el.parentElement?.closest('button,[role="button"],[role="link"],[role="switch"],[role="tab"]')) continue;
+      if (r.width >= minPx && r.height >= minPx) continue;
+      out.push({
+        id: el.getAttribute("data-testid") ?? "",
+        text: (el.textContent ?? "").trim().slice(0, 40),
+        w: Math.round(r.width),
+        h: Math.round(r.height),
+      });
+    }
+    return out;
+  }, min);
+}
+
 /** Any element whose text is cut off by its own box (RNW numberOfLines={1} clips with an ellipsis, silently). */
 async function truncatedLabels(page, testIds) {
   return page.evaluate((ids) => {
@@ -275,7 +325,27 @@ try {
     await page.goto(server.url);
     await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
     out.gateText = (await page.getByTestId("web-strip").textContent()) ?? "";
-    await page.screenshot({ path: path.join(outDir, "web-smoke-door.png") });
+    /* F311: what the door offers first is the recommendation for THIS browser, and the others are one tap below it. */
+    if ((await page.getByTestId("web-download-why").count()) === 0) throw new Error("the door offered a model without saying it is the recommended one");
+    out.doorOffer = (await page.getByTestId("download-door").textContent()) ?? "";
+    out.doorSpeed = (await page.getByTestId("web-download-speed").textContent()) ?? "";
+    await page.getByTestId("web-model-options-toggle").click();
+    out.doorOtherIds = await chooseIds(page);
+    /* The door's own list, in its order: the offered model first, then the rest — what the onboarding step must repeat. */
+    out.doorOptionIds = [await offeredId(page, out.catalog.models), ...out.doorOtherIds];
+    if (out.doorOtherIds.length !== out.catalog.models.length - 1) throw new Error(`the door listed ${out.doorOtherIds.length} other models of ${out.catalog.models.length - 1} in the catalog`);
+    await page.screenshot({ path: path.join(outDir, "web-smoke-door.png"), fullPage: true });
+    /* §14.9 for the screen the round changed: the door with its option list open, at all four widths, before a byte moves. */
+    out.doorLayout = {};
+    for (const width of REQUIRED_WIDTHS) {
+      await page.setViewportSize({ width, height: 900 });
+      const shot = path.join(outDir, `web-smoke-door-${width}.png`);
+      await page.screenshot({ path: shot, fullPage: true });
+      const m = await measureLayout(page);
+      out.doorLayout[width] = { scrollWidth: m.scrollWidth, clientWidth: m.clientWidth, screenshot: shot };
+      if (m.scrollWidth > m.clientWidth + 1) throw new Error(`the download door at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+    }
+    await page.setViewportSize({ width: 1180, height: 800 });
     out.storageBefore = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
     await page.getByTestId("download-model").click();
     await page.getByTestId("download-progress").waitFor({ timeout: 60_000 });
@@ -293,7 +363,9 @@ try {
     /* The door reloads the page once the file is in OPFS; onboarding is what the reloaded app opens on. */
     await walkOnboarding(page, out, pageErrors);
     await waitForEngine(page, out, consoleLines, t0);
-    out.downloadRequests = requests.filter((r) => r.includes("/models/instant.gguf"));
+    out.downloadedFile = `/models/${out.doorOptionIds[0]}.gguf`;
+    out.downloadRequests = requests.filter((r) => r.includes(out.downloadedFile));
+    if (!out.downloadRequests.length) throw new Error(`nothing was fetched for ${out.downloadedFile}`);
     out.crossOriginIsolated = await page.evaluate(() => globalThis.crossOriginIsolated);
     out.webgpu = await page.evaluate(async () => (navigator.gpu ? !!(await navigator.gpu.requestAdapter()) : false));
     out.storageAfter = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
@@ -323,32 +395,44 @@ try {
     out.vaultDoor = ((await page.getByTestId("vault-web-status").textContent()) ?? "").trim();
     out.vaultScreenshot = path.join(outDir, "web-smoke-vault.png");
     await page.screenshot({ path: out.vaultScreenshot });
-    /* F303: the four widths, on the four screens, with a model in OPFS — the browser-first rule as a gate. */
+    /* F303/F322: every width, on every screen, in both themes, with a model in OPFS — the browser-first rule as a gate. */
     result.layout = {};
-    for (const width of LAYOUT_WIDTHS) {
-      await page.setViewportSize({ width, height: 900 });
-      for (const screen of LAYOUT_SCREENS) {
-        await page.goto(new URL(screen.path, server.url).href);
-        await page.getByTestId(screen.ready).waitFor({ timeout: 60_000 });
-        noPageErrors(pageErrors, `${screen.id} at ${width}`);
-        const shot = path.join(outDir, `web-smoke-layout-${screen.id}-${width}.png`);
-        await page.screenshot({ path: shot, fullPage: true });
-        const m = await measureLayout(page);
-        (result.layout[screen.id] ??= {})[width] = { ...m, screenshot: shot };
-        if (m.scrollWidth > m.clientWidth + 1) throw new Error(`${screen.id} at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
-        if (screen.id !== "chat") continue;
-        for (const id of ["attach", "input", "mic", "send"]) if (!m[id]) throw new Error(`${screen.id} at ${width}: no ${id} in the composer`);
-        /* One row: the three round controls share a centre line, and the field sits between them. */
-        for (const id of ["mic", "send"]) if (Math.abs(m[id].cy - m.attach.cy) > 2) throw new Error(`${screen.id} at ${width}: ${id} is ${Math.abs(m[id].cy - m.attach.cy)}px off the composer's centre line`);
-        if (!(m.attach.x < m.input.x && m.input.x + m.input.w <= m.mic.x + 1 && m.mic.x < m.send.x)) {
-          throw new Error(`${screen.id} at ${width}: the composer row is out of order ${JSON.stringify({ attach: m.attach.x, input: m.input.x, mic: m.mic.x, send: m.send.x })}`);
+    for (const theme of REQUIRED_THEMES) {
+      await page.emulateMedia({ colorScheme: theme });
+      for (const width of LAYOUT_WIDTHS) {
+        /* The iPad's landscape heights are shorter than its portrait width: a short window is where a footer collapses. */
+        await page.setViewportSize({ width, height: width >= 1180 ? 820 : 900 });
+        for (const screen of LAYOUT_SCREENS) {
+          await page.goto(new URL(screen.path, server.url).href);
+          if (screen.ready) await page.getByTestId(screen.ready).waitFor({ timeout: 60_000 });
+          else await page.waitForLoadState("networkidle");
+          noPageErrors(pageErrors, `${screen.id} at ${width} (${theme})`);
+          const shot = path.join(outDir, `web-smoke-layout-${screen.id}-${width}${theme === "dark" ? "-dark" : ""}.png`);
+          await page.screenshot({ path: shot, fullPage: true });
+          const m = await measureLayout(page);
+          const small = await undersizedControls(page, MIN_TOUCH_PX);
+          ((result.layout[screen.id] ??= {})[width] ??= {})[theme] = { ...m, small, screenshot: shot };
+          if (m.scrollWidth > m.clientWidth + 1) throw new Error(`${screen.id} at ${width} (${theme}): the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+          if (small.length) {
+            throw new Error(`${screen.id} at ${width} (${theme}): ${small.length} control(s) under ${MIN_TOUCH_PX}px — ${small.map((c) => `${c.id || JSON.stringify(c.text)} ${c.w}x${c.h}`).join("; ")}`);
+          }
+          if (screen.id !== "chat") continue;
+          for (const id of ["attach", "input", "mic", "send"]) if (!m[id]) throw new Error(`${screen.id} at ${width} (${theme}): no ${id} in the composer`);
+          /* One row: the three round controls share a centre line, and the field sits between them. */
+          for (const id of ["mic", "send"]) if (Math.abs(m[id].cy - m.attach.cy) > 2) throw new Error(`${screen.id} at ${width} (${theme}): ${id} is ${Math.abs(m[id].cy - m.attach.cy)}px off the composer's centre line`);
+          if (!(m.attach.x < m.input.x && m.input.x + m.input.w <= m.mic.x + 1 && m.mic.x < m.send.x)) {
+            throw new Error(`${screen.id} at ${width} (${theme}): the composer row is out of order ${JSON.stringify({ attach: m.attach.x, input: m.input.x, mic: m.mic.x, send: m.send.x })}`);
+          }
+          if (m.send.x + m.send.w > m.clientWidth + 1) throw new Error(`${screen.id} at ${width} (${theme}): send runs ${m.send.x + m.send.w - m.clientWidth}px past the window`);
         }
-        if (m.send.x + m.send.w > m.clientWidth + 1) throw new Error(`${screen.id} at ${width}: send runs ${m.send.x + m.send.w - m.clientWidth}px past the window`);
       }
     }
+    await page.emulateMedia({ colorScheme: null });
     for (const screen of LAYOUT_SCREENS) {
-      const missing = LAYOUT_WIDTHS.filter((w) => !result.layout[screen.id]?.[w]);
-      if (missing.length) throw new Error(`layout sweep skipped ${screen.id} at ${missing.join(", ")}`);
+      for (const theme of REQUIRED_THEMES) {
+        const missing = LAYOUT_WIDTHS.filter((w) => !result.layout[screen.id]?.[w]?.[theme]);
+        if (missing.length) throw new Error(`layout sweep skipped ${screen.id} (${theme}) at ${missing.join(", ")}`);
+      }
     }
 
     /* F304: the narrowest window, every shipped language: a translated label that does not fit is clipped silently. */
@@ -409,11 +493,44 @@ try {
     await page.screenshot({ path: out.screenshot, fullPage: true });
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (foreignHosts(hosts).length) throw new Error(`offline page talked to ${foreignHosts(hosts).join(", ")}`);
-    if (requests.some((r) => r.includes("/models/instant.gguf"))) throw new Error("offline visit fetched the model again instead of reading OPFS");
+    if (requests.some((r) => r.includes(result.first.downloadedFile))) throw new Error("offline visit fetched the model again instead of reading OPFS");
     await page.close();
     await context.setOffline(false);
   } else {
     result.offline = { skipped: "no sw.js in the served dist; run: corepack pnpm web:build" };
+  }
+
+  /* 2b. F312: the reader takes another model. The vault lists what the door listed, the pick lands in the door, and
+     the chat comes up on the model that was chosen — the second half of "default = recommended, choose a different one". */
+  {
+    const page = await context.newPage();
+    const { consoleLines, pageErrors, hosts } = observe(page);
+    lastPage = page;
+    lastConsole = consoleLines;
+    const out = (result.switched = {});
+    const t0 = Date.now();
+    await page.goto(new URL("/vault", server.url).href);
+    await page.getByTestId("vault-web-door").waitFor({ timeout: 60_000 });
+    out.vaultOtherIds = await chooseIds(page);
+    if (out.vaultOtherIds.join() !== result.first.doorOtherIds.join()) throw new Error(`the vault offers ${out.vaultOtherIds.join(", ")} and the door offered ${result.first.doorOtherIds.join(", ")}`);
+    out.chosen = out.vaultOtherIds[0];
+    await page.screenshot({ path: path.join(outDir, "web-smoke-vault-options.png"), fullPage: true });
+    await page.getByTestId(`web-model-choose-${out.chosen}`).click();
+    await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    out.door = (await page.getByTestId("download-door").textContent()) ?? "";
+    out.doorOffers = await offeredId(page, result.first.catalog.models);
+    if (out.doorOffers !== out.chosen) throw new Error(`chose ${out.chosen} and the door offered ${out.doorOffers}`);
+    await page.getByTestId("download-model").click();
+    await waitForEngine(page, out, consoleLines, t0);
+    out.modelChip = ((await page.getByTestId("model-chip").textContent()) ?? "").trim();
+    if (!out.modelChip.toLowerCase().includes(out.chosen.split("-")[0])) throw new Error(`the chat runs ${out.modelChip} after choosing ${out.chosen}`);
+    await chat(page, out, PROMPT, consoleLines);
+    noPageErrors(pageErrors, "after choosing another model");
+    out.screenshot = path.join(outDir, "web-smoke-switched.png");
+    await page.screenshot({ path: out.screenshot, fullPage: true });
+    out.hosts = [...hosts];
+    if (foreignHosts(hosts).length) throw new Error(`the switched page talked to ${foreignHosts(hosts).join(", ")}`);
+    await page.close();
   }
   await context.close();
 
@@ -528,12 +645,14 @@ console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
 for (const screen of LAYOUT_SCREENS) {
   for (const width of REQUIRED_WIDTHS) {
-    if (!result.layout?.[screen.id]?.[width]) {
-      console.error(`FAIL: the layout sweep never ran ${screen.id} at ${width}`);
-      process.exit(1);
+    for (const theme of REQUIRED_THEMES) {
+      if (!result.layout?.[screen.id]?.[width]?.[theme]) {
+        console.error(`FAIL: the layout sweep never ran ${screen.id} at ${width} in ${theme}`);
+        process.exit(1);
+      }
     }
   }
 }
-console.log(`PASS: layout swept ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} at ${REQUIRED_WIDTHS.join(" / ")} — no horizontal scroll, composer row aligned`);
+console.log(`PASS: layout swept ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} at ${REQUIRED_WIDTHS.join(" / ")} in ${REQUIRED_THEMES.join(" + ")} — no horizontal scroll, composer row aligned, every control >= ${MIN_TOUCH_PX}px`);
 console.log(`PASS: ${Object.keys(result.labels).length} locales at 390, no clipped sidebar label (fr incognito = "${result.labels.fr.incognito}")`);
 console.log(`PASS: no model, the price list still reads ${result.paywallWithoutModel.pro.replace(/\n/g, " · ")} / ${result.paywallWithoutModel.work.replace(/\n/g, " · ")}`);
