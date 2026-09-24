@@ -116,6 +116,37 @@ describe("round 48 copy rules", () => {
 
   /* IBM Plex Sans has no U+2713: the fallback draws a symmetric V, so "sha256 \u2713" shipped as "sha256 \u221a".
      The Proof screen draws the mark with the app's own check icon, and every verified line ends on what was verified. */
+  /**
+   * `pseudo.json` is generated, but nothing bound it to its generator: `locales.test.ts` checked its keys and its ICU
+   * placeholders and skipped its values, so a hand-typed entry survived every gate. Six had drifted by round 53, and
+   * three of them were typed by hand in the wrong accents: `chats.more` had `Móré àçtîöns` where the map produces
+   * `Môré àçtïôñs`, `chat.attach.title` `Åttåch döcüménts` for `Åttàçh dôçüméñts`, `onboarding.model.titleOne` a `Ý`
+   * the map does not contain at all. The other three carried a stale `~` count, which is the part that actually does
+   * the work: the padding is what makes a clipped label show up before a translator exists.
+   */
+  it("pseudo.json is exactly what its generator produces", async () => {
+    const { build } = await import("../scripts/pseudo.mjs");
+    expect(JSON.parse(readFileSync(join(dir, "pseudo.json"), "utf8"))).toEqual(build());
+  });
+
+  /* The complements: that the generator is not a no-op the comparison would pass anyway, and that importing it
+     (which this guard does on every run) writes nothing, because the write is what `pnpm run pseudo` is for. */
+  it("the generator lengthens and accents, so an identity function could not satisfy the guard", async () => {
+    const { build, pseudo } = await import("../scripts/pseudo.mjs");
+    expect(pseudo("Continue")).toBe("[Côñtïñüé~~~~]");
+    /* The padding is the point: it is what makes a clipped label show up before a translator exists. */
+    expect(pseudo("Continue").length).toBeGreaterThan("Continue".length * 1.4);
+    /* Placeholders pass through untouched, or ICU would stop parsing. */
+    expect(pseudo("Loading {model}…")).toContain("{model}");
+    expect(Object.keys(build())).toEqual(Object.keys(en));
+  });
+
+  it("importing the generator writes nothing", async () => {
+    const before = readFileSync(join(dir, "pseudo.json"), "utf8");
+    await import("../scripts/pseudo.mjs");
+    expect(readFileSync(join(dir, "pseudo.json"), "utf8")).toBe(before);
+  });
+
   it("no locale spells a check mark the app font cannot draw", () => {
     for (const f of files) {
       const offenders = Object.entries(load(f)).filter(([, v]) => /[\u2713\u2714\u221a]/.test(v)).map(([k]) => k);

@@ -4481,3 +4481,31 @@ an edit.
 Gates on this branch merged with `main` (**e3e771c**): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
 **1,450 tests** (core 726, mobile 694, i18n 17, ui 13), `pn web:build` and `pn web:smoke` 6/6, site build and
 `node apps/site/check.mjs` green on 13 pages. The F254 row in `docs/qa/qa-run-2026-09-11.md` carries both passes.
+## Fixes round 54: pseudo.json was generated, and nothing said so (branch `fix-copy-pseudo`) — 24.9.2026
+
+A one-guard round, off an observation `fix-design` made while landing round 52: regenerating `pseudo.json` also
+normalised six values nobody had changed. That is the interesting part. `pseudo.json` is output, but no gate bound it
+to its generator, so a hand-typed entry outlived every check.
+
+- **What the existing checks could not see.** `locales.test.ts` asserts pseudo's keys and its ICU placeholders, which
+  is why a stale file is caught when a key is added. Its two value rules skip pseudo by name. So a value that had the
+  right key and the right placeholders passed, whatever was actually in it.
+- **Three of the six were not padding, they were the wrong letters.** `chats.more` held `Móré àçtîöns` where the map
+  produces `Môré àçtïôñs`; `chat.attach.title` `Åttåch döcüménts` for `Åttàçh dôçüméñts`; `onboarding.model.titleOne`
+  a `Ý` the map does not contain. Someone had imitated the style by hand. The other three carried a stale `~` count,
+  which is the part that does the work: the padding is the +40% that makes a clipped label show up before a
+  translator exists, so a short one quietly stops testing the layout it was added for.
+- **The fix.** `packages/i18n/scripts/pseudo.mjs` exports `build()` and writes only when it is the process entry
+  point, so the guard can ask it what the file should contain without touching the file. `locales.test.ts` compares.
+  A `pseudo.d.mts` gives it types instead of a cast.
+- **Watched red on both kinds of drift** (`docs/qa/fix-copy/pseudo-guard-red.txt`): the hand-typed accents from
+  `main`, and one extra `~`. Complements, so the comparison cannot pass for the wrong reason: the generator is
+  asserted to lengthen, to accent and to pass `{placeholders}` through untouched, and importing it is asserted to
+  write nothing.
+
+**Merge note.** `fix-design` regenerated `pseudo.json` on its own branch, so that file will conflict. Resolve it by
+running `corepack pnpm@10.34.5 --filter @inborn/i18n run pseudo` and taking the generated file. With this guard in,
+the correct content is mechanical rather than a judgement call, which is most of the point.
+
+Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,451 tests** (core 726, mobile 692, i18n 20, ui 13).
+F row: `docs/qa/qa-run-2026-09-11.md` F213, follow-up.
