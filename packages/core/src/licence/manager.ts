@@ -53,6 +53,8 @@ export interface PurchaseProvider {
   onError(cb: (error: PurchaseFailure) => void): () => void;
   /** Desktop licence keys only. */
   redeemLicenceKey?(key: string): Promise<RawPurchase>;
+  /** Opens the store's own redemption screen (App Store offer codes, Play promo codes). Absent where no store has one. */
+  openCodeRedemption?(): Promise<void>;
 }
 
 export interface CacheStorage {
@@ -76,6 +78,7 @@ export interface LicenceManagerOptions {
 
 export type PurchasePhase = { kind: "idle" } | { kind: "purchasing"; productId: ProductId } | { kind: "pending"; productId: ProductId } | { kind: "failed"; productId: ProductId; code: string } | { kind: "done"; productId: ProductId };
 export type RestorePhase = { kind: "idle" } | { kind: "running" } | { kind: "done"; found: number } | { kind: "failed"; code: string };
+export type CodePhase = { kind: "idle" } | { kind: "opening" } | { kind: "failed"; code: string };
 
 export interface LicenceState {
   phase: "idle" | "loading" | "ready";
@@ -87,6 +90,8 @@ export interface LicenceState {
   familyShareable: boolean;
   purchase: PurchasePhase;
   restore: RestorePhase;
+  /** The store's code screen: only "failed" is ever shown, because success arrives as a purchase. */
+  code: CodePhase;
   /** Proofs the store handed over that this device refused (diagnostics, never shown as an error to the user). */
   rejected: Rejection[];
 }
@@ -101,7 +106,7 @@ export class LicenceManager {
   private readonly now: () => number;
   private readonly log: (m: string) => void;
   private pretend: LicenceTier | null = null;
-  private _state: LicenceState = { phase: "idle", entitlement: FREE, storeReachable: null, prices: {}, familyShareable: false, purchase: { kind: "idle" }, restore: { kind: "idle" }, rejected: [] };
+  private _state: LicenceState = { phase: "idle", entitlement: FREE, storeReachable: null, prices: {}, familyShareable: false, purchase: { kind: "idle" }, restore: { kind: "idle" }, code: { kind: "idle" }, rejected: [] };
 
   constructor(private readonly opts: LicenceManagerOptions) {
     this.key = deriveCacheKey(opts.storageSecretHex);
@@ -207,6 +212,29 @@ export class LicenceManager {
     }
   }
 
+  /** True when this store has a code screen of its own, so the paywall can offer "Have a code?". */
+  canRedeemStoreCode(): boolean {
+    return typeof this.opts.provider.openCodeRedemption === "function";
+  }
+
+  /**
+   * Hands the user to the store's own redemption screen (App Store offer codes, Play promo codes). We never
+   * see or validate the code; the unlock arrives as an ordinary purchase, so refresh once the screen closes.
+   */
+  async redeemStoreCode(): Promise<void> {
+    const open = this.opts.provider.openCodeRedemption;
+    if (!open || this._state.code.kind === "opening") return;
+    this.set({ code: { kind: "opening" } });
+    try {
+      await open.call(this.opts.provider);
+      this.set({ code: { kind: "idle" } });
+      await this.refresh();
+    } catch (e) {
+      this.log(`code redemption could not open: ${String(e)}`);
+      this.set({ code: { kind: "failed", code: errorCode(e) } });
+    }
+  }
+
   /** Desktop: a Paddle licence key typed in; verified offline, bound to this device in the cache. */
   async redeem(key: string): Promise<VerifyResult> {
     const p = this.opts.provider;
@@ -227,12 +255,13 @@ export class LicenceManager {
   async wipe(): Promise<void> {
     this.cache = null;
     await this.opts.cache.clear().catch(() => undefined);
-    this.set({ entitlement: FREE, purchase: { kind: "idle" }, restore: { kind: "idle" }, rejected: [] });
+    this.set({ entitlement: FREE, purchase: { kind: "idle" }, restore: { kind: "idle" }, code: { kind: "idle" }, rejected: [] });
   }
 
   acknowledgePurchaseUi(): void {
     if (this._state.purchase.kind === "done" || this._state.purchase.kind === "failed") this.set({ purchase: { kind: "idle" } });
     if (this._state.restore.kind !== "running") this.set({ restore: { kind: "idle" } });
+    if (this._state.code.kind === "failed") this.set({ code: { kind: "idle" } });
   }
 
   private async onPurchase(raw: RawPurchase): Promise<void> {

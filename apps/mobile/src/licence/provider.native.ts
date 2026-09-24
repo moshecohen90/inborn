@@ -97,6 +97,13 @@ export function createStoreProvider(): PurchaseProvider {
       await iap.restorePurchases();
     },
 
+    /* iOS presents the StoreKit offer-code sheet, Android opens the Play redeem page; a redemption that lands
+       out of band is picked up by the manager's refresh, not by this return value (docs/store/codes.md). */
+    async openCodeRedemption() {
+      gate();
+      await iap.openRedeemOfferCode();
+    },
+
     async finish(raw: RawPurchase) {
       const purchase = raw.handle as iap.Purchase | undefined;
       if (!purchase) return;
