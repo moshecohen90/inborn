@@ -86,14 +86,15 @@ export function Settings() {
         <Segmented<ThemeMode>
           testID="theme-mode"
           options={[
-            { value: "system", label: t("settings.appearance.system") },
+            { value: "auto", label: t("settings.appearance.auto") },
             { value: "dark", label: t("settings.appearance.dark") },
             { value: "light", label: t("settings.appearance.light") },
           ]}
           value={prefs.themeMode}
           onChange={(m) => updatePrefs({ themeMode: m })}
         />
-        <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
+        <Text testID="theme-mode-sub" style={[type.bodySmall, { color: theme.text3 }]}>{t("settings.appearance.autoHint")}</Text>
+        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.appearance.textSize")}</Text>
         <Segmented<number>
           testID="text-scale"
           options={TEXT_SCALES.map((s) => ({ value: s, label: s === 1 ? t("settings.appearance.textDefault") : `${Math.round(s * 100)}%` }))}
@@ -181,7 +182,10 @@ export function Settings() {
       </Section>
 
       <Section title={t("settings.downloads")}>
-        <Row label={t("settings.downloads.wifiOnly")} toggle={prefs.wifiOnly} onToggle={(v) => updatePrefs({ wifiOnly: v })} />
+        {/* The browser and the desktop shell download through the page, which has no Wi-Fi/cellular switch to obey: the row would control nothing (F295). */}
+        {Platform.OS === "web" ? null : (
+          <Row testID="row-wifi-only" label={t("settings.downloads.wifiOnly")} toggle={prefs.wifiOnly} onToggle={(v) => updatePrefs({ wifiOnly: v })} />
+        )}
         <Row label={t("settings.downloads.storage")} value={t("settings.downloads.internal")} />
       </Section>
 

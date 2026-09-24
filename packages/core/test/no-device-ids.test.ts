@@ -54,3 +54,26 @@ describe("no personal device identifiers or ASC key ids in tracked files", () =>
     expect(hits).toEqual([]);
   });
 });
+
+/**
+ * F301. The HEAD scan above is only half the question on a public repo: a patch is served to anyone, so a
+ * placeholder at HEAD hides nothing. The history sweep is a lead-run script, because it is red until the history is
+ * rewritten and a red gate inside `pnpm test` would just be switched off. This keeps the two from drifting apart.
+ */
+describe("the history sweep exists beside the HEAD scan", () => {
+  const script = join(repo, "scripts/check-history-ids.sh");
+  it("is a runnable script that looks for the same three identifiers", () => {
+    const src = readFileSync(script, "utf8");
+    expect(statSync(script).mode & 0o111, "not executable").toBeGreaterThan(0);
+    for (const label of ["iPhone UDID", "OnePlus 6T serial", "ASC key id"]) expect(src).toContain(label);
+    expect(src, "the script must not carry the literals it hunts for").not.toContain(FORBIDDEN["iPhone 13 Pro UDID (Moshe's device)"]!);
+    expect(src).not.toContain(FORBIDDEN["OnePlus 6T adb serial (Moshe's device)"]!);
+    expect(src).not.toContain(FORBIDDEN["App Store Connect key id"]!);
+  });
+
+  it("the README states that the history was not rewritten as a decision, not as an impossibility", () => {
+    const readme = readFileSync(join(repo, "README.md"), "utf8");
+    expect(readme, "the old claim").not.toContain("The history is not rewritten and cannot be");
+    expect(readme).toContain("scripts/check-history-ids.sh");
+  });
+});

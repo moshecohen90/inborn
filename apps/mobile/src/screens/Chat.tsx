@@ -66,7 +66,7 @@ import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
-import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, type PickedImage } from "../images";
+import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -88,6 +88,7 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
+import { planVisionTurn } from "../lib/visionGate";
 import { planDocsTurn, saysNoneMatched } from "../lib/docsGate";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
@@ -233,6 +234,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [docsOffer, setDocsOffer] = useState(false);
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
+  const [preparingVision, setPreparingVision] = useState(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -522,18 +524,44 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Photos in the prompt (§7.1): the one projector we ship fits Instant's embedding width, so any other model
          would answer as if the picture were not there (QA F36). Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
-        const mmproj = modelHasVision(model.id) ? resolveVision() : null;
-        if (!mmproj || !(await enableVision(mmproj))) {
-          const canSee = visionChatModel();
-          if (lastUserAt >= 0 && history[lastUserAt]!.images?.length) {
-            const offer = !modelHasVision(model.id) && canSee ? "switch" : "companion";
-            await answerWithoutModel(offer === "switch" ? "chat.vision.needsOther" : "chat.vision.companionMissing", { seer: canSee ? modelLabel(canSee.id) : "" });
-            setVisionOffer(offer);
-            return;
+        const onLastUserMessage = lastUserAt >= 0 && !!history[lastUserAt]!.images?.length;
+        let scanned = false;
+        let attached = false;
+        const plan = () =>
+          planVisionTurn({
+            hasImages: true,
+            vaultScanned: scanned,
+            modelSees: modelHasVision(model.id),
+            projectorInstalled: resolveVision() !== null,
+            projectorAttached: attached,
+            onLastUserMessage,
+            otherModelSees: !!visionChatModel(),
+          });
+        let turnVision = plan();
+        /* The projector is 205 MB and the vault reads the disk at launch: the picture waits for it, on screen, instead of being answered around (QA F294). */
+        if (turnVision.kind === "wait") {
+          setPreparingVision(true);
+          try {
+            await visionScanned();
+            scanned = true;
+            if (ac.signal.aborted) return;
+            const mmproj = modelHasVision(model.id) ? resolveVision() : null;
+            attached = mmproj ? await enableVision(mmproj) : false;
+          } finally {
+            setPreparingVision(false);
           }
-          /* Only older turns carry pictures; the model that could see them already answered for them. */
-          messages = messages.map(({ images: _drop, ...rest }) => rest);
+          if (ac.signal.aborted) return;
+          turnVision = plan();
+          /* Waited, and the projector still would not attach: a refusal, never a picture sent to a model that cannot see it. */
+          if (turnVision.kind === "wait") turnVision = onLastUserMessage ? { kind: "refuse", offer: "companion" } : { kind: "drop" };
         }
+        if (turnVision.kind === "refuse") {
+          const canSee = visionChatModel();
+          await answerWithoutModel(turnVision.offer === "switch" ? "chat.vision.needsOther" : "chat.vision.companionMissing", { seer: canSee ? modelLabel(canSee.id) : "" });
+          setVisionOffer(turnVision.offer);
+          return;
+        }
+        if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => rest);
       }
       for await (const d of engine.generate(s, messages, opts, ac.signal)) {
         if (d.reasoning) {
@@ -1241,6 +1269,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
+      ) : null}
+      {preparingVision ? (
+        <View testID="preparing-vision" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.vision.preparing")}</Text>
+        </View>
       ) : null}
       {readingDocs ? (
         <View testID="reading-docs" style={[styles.notice, { borderColor: theme.border }]}>

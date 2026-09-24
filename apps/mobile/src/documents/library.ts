@@ -244,7 +244,10 @@ export class DocumentLibrary {
             ? "image"
             : docs.some((d) => d.status === "needs-ocr")
               ? "needs-ocr"
-              : null;
+              : /* Reading is over and nothing came out: an unreadable scan holds no source, so the turn must not go out as if it did (QA F302). */
+                unread.length > 0
+                ? "no-text"
+                : null;
     return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: docs.filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing").length };
   }
 

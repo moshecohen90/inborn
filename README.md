@@ -4229,9 +4229,14 @@ other fourteen: **F225–F239** in `docs/qa/qa-run-2026-09-11.md`, evidence in `
   check and the deploy all read and whose `site` is already `inbornapp.com`. **That** is what shipped, and the
   literals were dropped rather than left as a second default.
 - **A public repo stopped carrying Moshe's hardware (F238).** The iPhone UDID in 16 files, the 6T serial in 41 and
-  the ASC key id in 8 are replaced by placeholders at HEAD across `docs/qa/` and `README.md`. The history is not
-  rewritten and cannot be; it stops growing. `packages/core/test/no-device-ids.test.ts` walks `git ls-files` and
-  fails on any of the three, and it caught its first real hit immediately: the key id inside the F238 row itself.
+  the ASC key id in 8 are replaced by placeholders at HEAD across `docs/qa/` and `README.md`.
+  `packages/core/test/no-device-ids.test.ts` walks `git ls-files` and fails on any of the three, and it caught its
+  first real hit immediately: the key id inside the F238 row itself. **The history was not rewritten — which is a
+  decision, not a limit (corrected in round 62, F301).** A placeholder at HEAD hides nothing: the three identifiers
+  are still served to anyone by the patches of 19, 35 and 10 commits, and `scripts/check-history-ids.sh` prints
+  which ones. `git filter-repo` over the three patterns plus a force-push of main and every branch is the fix, the
+  original history is kept in the private archive repo, and the public repo has no forks to break. Until the lead
+  runs it, that script is red and stays out of `pnpm check:store`.
 
 Every behaviour fix carries a guard that was watched failing with the fix reverted
 (`docs/qa/fix-mosheai/guard-red-r50.txt`, 11 red; `guard-red-device-ids.txt` for the identifier scan;
@@ -4855,3 +4860,84 @@ three surfaces were read and the fourth was declared, not claimed.
 
 Evidence in `docs/qa/android-vc22/`, §Z of `docs/qa/purchases-run-2026-09-11.md`, rows F282–F286 of
 `docs/qa/qa-run-2026-09-11.md`. Internal test link: https://play.google.com/apps/internaltest/4701564557913726350
+## Fixes round 62: the verifiers' round — a paywall nobody could reach, a reason that was an event, and a claim the repo could not keep (branch `fix-r62`) — 24.9.2026
+
+Eleven findings from the item verifiers (I02, I04, I10, I12, I13, S06, S07, S08, S10, C04, C05). Browser-first:
+every visual claim is a screenshot at 390 / 768 / 1024 / 1440 in `docs/qa/fix-r62/`, before and after, against
+`apps/web/dist` served on a private port. Every guard was watched red with its fix reverted. No phone was touched.
+
+- **The Folders PRO tag sent the press event to the paywall** (F292). `unlock` defaulted its reason, which is what
+  made `onPress={unlock}` typecheck — and React Native hands a press handler the gesture event, so the default never
+  applied and the screen landed on `/paywall?reason=[object Object]` with no why-line. The reason is now a required
+  parameter, and the compiler found the other two call sites itself; on top of that `ProTag` and `WorkTag` call their
+  handler with no arguments, so no future screen can leak an event through either. Four guard cases, 3 red before.
+- **A browser could not see the price list without first downloading 533 MB** (F293). The download door replaced
+  every route. `needsModel()` now decides: `/paywall`, `/settings`, `/proof`, `/vault`, `/legal` and `/lock` render
+  without a model, the chat still meets the door. Reproduced on this build first (`before-paywall-is-the-door-*.png`,
+  zero price elements), then proven at four widths, plus a new `web:smoke` step that reads both prices with an empty
+  OPFS.
+- **A photo sent right after a cold launch was answered as if no photo existed** (F294). The vault's disk scan was
+  never awaited, so an installed 205 MB projector read as absent. The turn now waits behind a "Reading your image…"
+  line, exactly like an attached document waits to be read, and a projector that will not attach is a refusal rather
+  than a picture sent to a model that cannot see it. The complement is tested over all 32 input combinations.
+- **"Wi-Fi only" sat in the desktop and browser Settings, controlling nothing** (F295) — the preference is read only
+  by the native downloader. Hidden on web, proven at four widths.
+- **Two shipped legal texts promised what the App Store contradicts** (F296): "Cohen Apps (the developer account
+  shown on the store listing)" is true on Play and false on Apple, where the account reads "Moshe Cohen". The name
+  stays, the promise goes.
+- **The licence notice quoted font versions we do not ship** (F297): Plex Sans 1.1.0 / Mono 2.5.0 against the
+  packaged 3.005 / 2.005. The new guard reads the version out of the font bytes.
+- **Spec §16 D4 still described core-MIT-plus-closed-UI** (F298); it now states the shipped decision, the public
+  repo under a source-available licence, dated 22.9.2026.
+- **The QA-bridge gate now runs itself** (F299). `scripts/check-shipping-bundles.mjs` walks the artifact paths the
+  builds write and is part of `pnpm check:store`, so `pnpm test` carries it; `INBORN_REQUIRE_BUNDLE=1` is the
+  release form and is a required line in the release checklist.
+- **`TRACKERS 0` is now defended by the lockfile, not by hope** (F300): 15 analytics/crash/ads/attribution families
+  matched against the package names `pnpm-lock.yaml` resolves. Watched red with `@sentry/react-native` planted.
+- **The README's "the history … cannot be [rewritten]" was wrong** (F301). It is a decision, not a limit: 0 forks,
+  the original kept in the private archive. The identifiers are still readable in the patch of 19, 35 and 10
+  commits, and `scripts/check-history-ids.sh` prints which. It stays out of `check:store` on purpose: it is red
+  until the lead rewrites the history, and a red gate inside `pnpm test` is a gate that gets switched off.
+- **A file with no readable text stopped looking like a file we failed to read** (F302). Its own state (`no-text`),
+  its own refusal naming OCR and a clearer copy, and an attach row that says "No readable text" instead of
+  "Indexed · 0 passages".
+
+F303 was reserved and not used.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 777, i18n 20, ui 13, `check:store`
+PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Evidence in `docs/qa/fix-r62/`.
+
+### Round 62b: the rule nobody had written down, and the label that was clipping in silence (same branch) — 24.9.2026
+
+- **The browser-first rule is now a spec section and a gate** (F303). Spec §14.9 says it: anything visual is checked
+  in the browser at 390 / 768 / 1024 / 1440 before a Mac or a phone, and a device is only for what is genuinely
+  device-specific. `pnpm web:smoke` now sweeps chat, settings, paywall and onboarding at all four widths with a model
+  in OPFS — 16 screenshots, no horizontal scroll anywhere, the composer's three controls on one centre line within
+  2px and inside the window — and **fails if any width was skipped**, which is a separate constant from the one that
+  drives the sweep so narrowing it goes red. Required line added to the release checklist.
+- **French clipped its Incognito button at 390** (F304): "Navigation pri…". The label had 124px and needed 130px, and
+  `numberOfLines={1}` swallows that difference without a sound. Now "Privé", the wording the incognito badge already
+  uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
+  text overflows its own box; watched red with the old string (`needs 130px in 124px`).
+
+## Fixes round 65: Auto theme gets the clock rule the Tanach apps already had (branch `theme-auto`) — 24.9.2026
+
+Moshe (24.9): "add the clock rule like our other apps." Read the Tanach apps' `display-mode.service.ts`
+read-only for the rule (night 18:00–06:00 local, or the OS already dark, whichever fires first) and brought
+it into Inborn, which had never had a clock component at all — "System" only ever mirrored the OS.
+
+- **Appearance's "System" is now "Auto" and actually has a rule** (F309). `ThemeMode` is `"auto" | "dark" | "light"`.
+  The clock rule itself, `isAutoDark(now, systemDark)`, is a pure function in new `packages/ui/src/themeAuto.ts` —
+  no React Native import, so it is unit-tested without a device (8 cases over the 18:00/06:00 boundaries and both
+  OS states). `apps/mobile/src/services/theme.ts` wires it into `resolveScheme()` and re-evaluates every minute the
+  app is open and on every return to the foreground, through a shared tick store. A `"system"` value saved by an
+  older build migrates silently to `"auto"` in `mergePrefs()` (3 new cases in `prefsTypes.test.ts`).
+- **The row now says what Auto does** (F310): a one-line caption under the segmented control —
+  "Dark at night, 18:00-06:00, and whenever the system is dark." — in all 8 shipped locales plus a regenerated
+  `pseudo.json`. Spec §8 rewritten and rebuilt.
+- Before/after screenshots at 390 and 1440, against the real `apps/web/dist` build served on a private port:
+  `docs/qa/theme-auto/before-390.png` (still "System", no caption) → `docs/qa/theme-auto/after-390.png` (Auto /
+  Dark / Light, caption present); same pair at 1440.
+
+Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 780, i18n 20, ui 20, `check:store`
+PASS), `pnpm web:build` green. No phone was touched. Evidence in `docs/qa/theme-auto/`.

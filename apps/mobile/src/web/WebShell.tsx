@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { usePathname } from "expo-router";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ import { registerServiceWorker, type OfflineState } from "./serviceWorker";
 import { font } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
 import { webDoorsApply } from "./doors";
+import { needsModel } from "./doorRoutes";
 
 import { GET_APP_URL } from "./links";
 
@@ -35,6 +37,8 @@ function BrowserShell({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
   const [ready] = useState(() => webReady(boot));
   const [offline, setOffline] = useState<OfflineState>("installing");
+  /* The price list, the legal texts and the proof screen answer questions the model has nothing to do with (F293). */
+  const gated = needsModel(usePathname());
 
   useEffect(() => {
     void registerServiceWorker(setOffline);
@@ -44,7 +48,7 @@ function BrowserShell({ children }: { children: ReactNode }) {
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <Strip boot={boot} theme={theme} offline={offline} />
       {/* The app services picked their engine at boot, before the file existed; a reload is the honest hand-over (same as the engine switch). */}
-      {ready ? children : boot.source ? <DownloadDoor boot={boot} theme={theme} onReady={() => location.reload()} /> : <CatalogDoor theme={theme} />}
+      {ready || !gated ? children : boot.source ? <DownloadDoor boot={boot} theme={theme} onReady={() => location.reload()} /> : <CatalogDoor theme={theme} />}
     </View>
   );
 }

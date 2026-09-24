@@ -1,0 +1,46 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/apps/mobile
+
+stdout | src/documents/attachmentState.test.ts > F302 · a document with no readable text is its own state > names the state instead of leaving it unknown, and the turn is refused with that line
+[documents] unreadable-scan.pdf: empty · 1/1 pages · 0 chunks · 0 ms (0 ms/page)
+
+ ❯ src/documents/attachmentState.test.ts (11 tests | 1 failed) 102ms
+   ❯ F302 · a document with no readable text is its own state (2)
+     × names the state instead of leaving it unknown, and the turn is refused with that line 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/attachmentState.test.ts > F302 · a document with no readable text is its own state > names the state instead of leaving it unknown, and the turn is refused with that line
+AssertionError: expected { hasAttachment: true, …(4) } to match object { hasAttachment: true, …(3) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "blocked": "no-text",
++   "blocked": null,
+    "hasAttachment": true,
+    "hasIndex": false,
+    "indexing": false,
+  }
+
+ ❯ src/documents/attachmentState.test.ts:234:19
+    232|
+    233|     const state = library.attachmentState("chat-1");
+    234|     expect(state).toMatchObject({ hasAttachment: true, hasIndex: false…
+       |                   ^
+    235|     expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: …
+    236|     /* The complement that matters: it is never sent to the model, in …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 10 passed (11)
+   Start at  14:53:53
+   Duration  504ms (transform 60%, tests 24%, import 16%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-r62/apps/mobile:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/documents/attachmentState.test.ts
