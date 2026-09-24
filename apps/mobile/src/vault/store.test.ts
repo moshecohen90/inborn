@@ -111,6 +111,14 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     expect(record.installs.fast).toBeDefined();
   });
 
+  /* F341: Instant's projector is a fast-follow pack like Instant, so Play has it on the phone before the first photo. */
+  it("a fresh install asks Play for Instant and its projector together, and for nothing on-demand", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(fetched.sort()).toEqual(["instant", "vision-qwen35"]);
+  });
+
   it("leaves a model this device never had alone, so no boot starts an unasked download", async () => {
     const vault = new VaultStore();
     await vault.ready();
