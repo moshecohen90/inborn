@@ -5518,6 +5518,7 @@ German, French, Spanish and Portuguese typed without accents. Neither is what la
 Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
 `door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
 `docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.
+
 ## Fixes round 82: `check:live` now guards the legal pages, not just the pipes (branch `fix-live-legal-guard`) — 24.9.2026
 
 Wave-3 verifier C02 proved by hand that the live site's privacy, terms and accessibility pages still matched
