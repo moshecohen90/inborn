@@ -3,7 +3,7 @@ import { BUNDLED_MANIFEST, type CatalogModel } from "@inborn/core";
 import type { VaultRecord } from "./record";
 
 const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast") as CatalogModel;
-const embed = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-nomic") as CatalogModel;
+const embed = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5") as CatalogModel;
 const PATH = `file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_fast/9/9/assets/${fast.file}`;
 
 /* What Play answers this app version: `bound` is what getPackLocation points at, `fetched` what the app asked for. */
@@ -111,20 +111,28 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     expect(record.installs.fast).toBeDefined();
   });
 
+  /* F341: Instant's projector is a fast-follow pack like Instant, so Play has it on the phone before the first photo. */
+  it("a fresh install asks Play for Instant and its projector together, and for nothing on-demand", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(fetched.sort()).toEqual(["instant", "vision-qwen35"]);
+  });
+
   it("leaves a model this device never had alone, so no boot starts an unasked download", async () => {
     const vault = new VaultStore();
     await vault.ready();
     await settled();
-    expect(fetched).not.toContain("embed-nomic");
-    expect(vault.state("embed-nomic").kind).toBe("not-installed");
+    expect(fetched).not.toContain("embed-e5");
+    expect(vault.state("embed-e5").kind).toBe("not-installed");
   });
 
   it("still forgets a downloaded file that is gone from the vault directory", async () => {
-    record = { ...emptyRecord(), installs: { "embed-nomic": { file: embed.file, bytes: embed.bytes, sha256: embed.sha256, via: "https", installedAt: 1 } } };
+    record = { ...emptyRecord(), installs: { "embed-e5": { file: embed.file, bytes: embed.bytes, sha256: embed.sha256, via: "https", installedAt: 1 } } };
     const vault = new VaultStore();
     await vault.ready();
-    expect(record.installs["embed-nomic"]).toBeUndefined();
-    expect(vault.state("embed-nomic").kind).toBe("not-installed");
+    expect(record.installs["embed-e5"]).toBeUndefined();
+    expect(vault.state("embed-e5").kind).toBe("not-installed");
   });
 
   it("re-asks on vault open, for an update that landed after the boot scan", async () => {
@@ -157,7 +165,7 @@ describe("VaultStore.lastDelivery (F206)", () => {
   });
 
   it("does not name a download whose file is gone from the vault directory", async () => {
-    record = { ...emptyRecord(), installs: { "embed-nomic": { file: embed.file, bytes: embed.bytes, sha256: embed.sha256, via: "https", installedAt: 9 } } };
+    record = { ...emptyRecord(), installs: { "embed-e5": { file: embed.file, bytes: embed.bytes, sha256: embed.sha256, via: "https", installedAt: 9 } } };
     const vault = new VaultStore();
     await vault.ready();
     await settled();

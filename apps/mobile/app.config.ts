@@ -161,8 +161,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     /* Image input (spec §7.1): photos are downscaled + EXIF-stripped on the device. (`microphonePermission: false` would strip RECORD_AUDIO from the whole app.) */
     ["expo-image-picker", { photosPermission: USAGE.NSPhotoLibraryUsageDescription, cameraPermission: USAGE.NSCameraUsageDescription }],
     ["expo-sqlite", { useSQLCipher: true }],
-    /* iOS ships Instant inside the app (D2): copied from INBORN_MODELS_DIR at prebuild into the bundle as `<id>.gguf`, never committed (plugins/withBundledModel.js). */
-    ["./plugins/withBundledModel", { models: { instant: "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
+    /* iOS ships Instant and its photo projector inside the app (D2): copied from INBORN_MODELS_DIR at prebuild into the bundle as `<id>.gguf`, never committed (plugins/withBundledModel.js). */
+    ["./plugins/withBundledModel", { models: BUNDLED_IOS_MODELS }],
     /* Pack sources come from INBORN_MODELS_DIR at prebuild (plugins/withAssetPacks.js); models are never committed. Asset names must equal the catalog `file` names: the vault looks the delivered pack up by them. */
     ["./plugins/withAssetPacks", { packs: selectedPacks() }],
     /* Release signing with the Play upload key when INBORN_UPLOAD_KEYSTORE is set at build time; debug keystore otherwise. */
@@ -178,15 +178,19 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ],
 });
 
+/* Catalog id → file in INBORN_MODELS_DIR; each id must carry a `bundled` delivery in the catalog (scripts/check-shipping-bundles.mjs gates the archive against it). */
+const BUNDLED_IOS_MODELS = { instant: "Qwen3.5-0.8B-Q4_K_M.gguf", "vision-qwen35": "mmproj-Qwen3.5-0.8B-F16.gguf" } as const;
+
 /* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. Pack names and asset names must match the catalog's play-asset-pack deliveries. */
 const ALL_PACKS = {
   instant: [{ name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
   fast: [{ name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } }],
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
-  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "nomic-embed-text-v1.5.f16.gguf": "nomic-embed-text-v1.5.f16.gguf" } }],
-  /* Voice (whisper base) and vision (Qwen3.5 projector) companions, same rule. */
+  embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],
+  /* Voice (whisper base) companion, same rule. */
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
-  vision: [{ name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
+  /* Instant's projector arrives with Instant (fast-follow), so the first photo on a fresh install is answered; its own pack keeps Remove per model. */
+  vision: [{ name: "inborn_model_vision", deliveryType: "fast-follow", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
   /* Play caps one pack at 1.5 GB, so each llama-gguf-split shard is its own pack; the vault links them into one directory (src/vault/playDelivery.ts). */
   sharp: [
     { name: "inborn_model_sharp", deliveryType: "on-demand", assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf" } },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, betterForLanguage, modelChoices, type CatalogModel, type DeviceProfile, type ModelChoicesInput } from "../src/index";
+import { BUNDLED_MANIFEST, betterForLanguage, deviceRecommendation, modelChoices, pickDefault, type CatalogModel, type DeviceProfile, type ModelChoicesInput } from "../src/index";
 
 const catalog = BUNDLED_MANIFEST.models;
 const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
@@ -98,5 +98,35 @@ describe("betterForLanguage (the weak-language notice, §7.8)", () => {
     expect(advice({ current: byId("sharp") })).toBeNull();
     /* …but from Phi, whose Hebrew is basic as well, the ranking finds no strictly better model either. */
     expect(advice({ current: byId("sharp-phi") })).toBeNull();
+  });
+});
+
+describe("one RECOMMENDED per device (F345, Moshe's decision 6: the best model for this device first)", () => {
+  const legacy8: DeviceProfile = { ramGB: 8, deviceClass: "phone", chip: "android-legacy" };
+  it("a OnePlus 6T holding only the bundled Instant is still told Fast, for every task (not the model it already has)", () => {
+    for (const use of ["chat", "summarize", "code", "math"] as const) {
+      const c = modelChoices(input({ device: legacy8, use, installed: ["instant"] }));
+      expect(c.recommended?.model.id, use).toBe("fast");
+      expect(c.recommended?.model.id, use).toBe(deviceRecommendation({ use, languageCode: "en", device: legacy8, installed: [], catalog })?.model.id);
+    }
+  });
+  it("installing a model never moves the tag: the same device, task and language give the same answer before and after", () => {
+    const desk: DeviceProfile = { ramGB: 8, deviceClass: "desktop", chip: "desktop-cpu" };
+    const before = modelChoices(input({ device: desk, installed: ["instant"] })).recommended?.model.id;
+    const after = modelChoices(input({ device: desk, installed: ["instant", "fast"] })).recommended?.model.id;
+    expect(after).toBe(before);
+  });
+  it("the recommended row still says truthfully whether it is on the device", () => {
+    expect(modelChoices(input({ installed: ["instant", "fast"] })).recommended?.reason.installed).toBe(true);
+  });
+  it("native onboarding's device default (pickDefault) is the same model for a phone or tablet chatting in English or no language yet", () => {
+    const chips = { phone: ["ios-entry", "ios-mid", "ios-high", "ios-flagship", "android-entry", "android-legacy", "android-mid", "android-high", "android-flagship"], tablet: ["ios-mid", "ios-high", "ios-flagship"] } as const;
+    for (const deviceClass of ["phone", "tablet"] as const)
+      for (const chip of chips[deviceClass])
+        for (const ramGB of [3, 4, 6, 8, 12, 16])
+          for (const languageCode of [null, "en"]) {
+            const device: DeviceProfile = { ramGB, deviceClass, chip };
+            expect(deviceRecommendation({ use: "chat", languageCode, device, installed: ["instant"], catalog })?.model.id, `${deviceClass} ${chip} ${ramGB} ${languageCode}`).toBe(pickDefault(catalog, device)?.id);
+          }
   });
 });

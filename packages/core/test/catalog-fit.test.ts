@@ -21,8 +21,8 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
   it("goodLanguages is exactly the native + good codes of the fit block", () => {
     for (const m of chat) expect([...m.goodLanguages].sort(), m.id).toEqual(goodLanguagesOf(m.fit!).sort());
   });
-  it("the signed manifest (v4) still verifies with the fit blocks inside the signature", () => {
-    expect(BUNDLED_MANIFEST.version).toBe(4);
+  it("the signed manifest (v6) still verifies with the fit blocks inside the signature", () => {
+    expect(BUNDLED_MANIFEST.version).toBe(6);
     expect(verifyManifest(BUNDLED_MANIFEST, CATALOG_PUBLIC_KEY)).toBe(true);
     const tampered = { ...BUNDLED_MANIFEST, models: BUNDLED_MANIFEST.models.map((m) => (m.id === "instant" ? { ...m, fit: { ...m.fit!, languages: { ...m.fit!.languages, he: "native" as const } } } : m)) };
     expect(verifyManifest(tampered, CATALOG_PUBLIC_KEY)).toBe(false);

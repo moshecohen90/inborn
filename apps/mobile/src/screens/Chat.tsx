@@ -83,6 +83,7 @@ import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
 import { ChatModelSheet } from "../components/chat/ChatModelSheet";
+import { browserModels } from "../components/chat/browserModels";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
@@ -1022,7 +1023,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     return tier === "none" || tier === "basic" ? adviceLanguage : null;
   }, [adviceLanguage, model.id]);
   /* §6.3 mediate honestly: a browser user cannot switch, so instead of the card they get the same verdict the vault's picker gives, with no action. */
-  const shortfall = useMemo(() => (Platform.OS === "web" && lastUserText ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null), [lastUserText, model.id, use, adviceLanguage]);
+  /* The browser's Model sheet, for this chat's task and language: the notices below name what it names (F346). */
+  const browserPick = useMemo(() => (Platform.OS === "web" && lastUserText && adviceLanguage ? browserModels(use, adviceLanguage, model.id) : null), [lastUserText, model.id, use, adviceLanguage]);
+  const shortfall = useMemo(
+    () => (Platform.OS === "web" && lastUserText && (!browserPick || browserPick.choices.recommendedWeak) ? modelShortfall(getVault().model(model.id), use, adviceLanguage) : null),
+    [lastUserText, model.id, use, adviceLanguage, browserPick],
+  );
   /* A permanent banner on every turn in a language we rated weak is discouraging, not honest (Moshe, 24.9): the verdict
      goes through the same once-per-chat memory and snooze the §7.8 advice card uses, so it is said once and dismissible. */
   const shortfallKey = shortfall ? `none:${shortfall.use}:${shortfall.languageCode}` : null;
@@ -1041,14 +1047,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [i18n.language]);
   /* §7.8: the loaded model rates this language none/basic. The notice names what does better here and switches or downloads it. */
   const languageUpgrade = useMemo(() => {
-    if (Platform.OS === "web" || !adviceLanguage) return null;
+    if (Platform.OS === "web") return browserPick?.upgrade ?? null;
+    if (!adviceLanguage) return null;
     const vault = getVault();
     const installed = vault
       .entries()
       .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
       .map((e) => e.model.id);
     return betterForLanguage({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
-  }, [adviceLanguage, model.id, use]);
+  }, [adviceLanguage, model.id, use, browserPick]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: chipLabel(t, model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: chipLabel(t, model.id), error: status.error }) : null;
@@ -1304,7 +1311,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
               accessibilityRole="button"
               hitSlop={8}
               style={styles.noticeBtn}
-              onPress={() => (languageUpgrade.better.reason.installed ? onSwitchModel?.(languageUpgrade.better.model.id) : setModelSheetOpen(true))}
+              onPress={() => (languageUpgrade.better.reason.installed ? (browserPick ? browserPick.choose(languageUpgrade.better.model.id) : onSwitchModel?.(languageUpgrade.better.model.id)) : setModelSheetOpen(true))}
             >
               <Text style={[type.caption, { color: theme.accent }]}>
                 {languageUpgrade.better.reason.installed
@@ -1320,7 +1327,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           <Text testID="model-none-line" style={[type.caption, styles.grow, { color: theme.text2 }]}>
             {t("models.recommendedNone", {
               device: deviceNoun(),
-              model: chipLabel(t, model.id),
+              model: chipLabel(t, browserPick?.choices.recommended?.model.id ?? model.id),
               use: t(`use.${noBetterHere.use}`),
               language: t(`language.${noBetterHere.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[noBetterHere.languageCode] ?? noBetterHere.languageCode }),
             })}

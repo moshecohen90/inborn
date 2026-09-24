@@ -34,7 +34,7 @@ const SIM_TYPES = {
   ipad: ["com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-8GB", "com.apple.CoreSimulator.SimRuntime.iOS-17-5"],
 };
 const CHAT_MODEL = "Qwen3.5-0.8B-Q4_K_M.gguf";
-const EMBED_MODEL = "nomic-embed-text-v1.5.f16.gguf";
+const EMBED_MODEL = "multilingual-e5-large-instruct-Q6_K.gguf";
 const FIXTURE = "lease.pdf";
 const SCREENS = ["chat", "proof", "documents", "paywall", "vault", "lock"];
 const PASSCODE = "2468";

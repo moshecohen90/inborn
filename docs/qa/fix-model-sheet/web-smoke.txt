@@ -1,0 +1,11 @@
+PASS: first visit ready 39982 ms · 13.2 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 2669 ms · 12 tok/s · context 13 / 4096 · requests=17 · model fetches=0
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 1.5 GB needed, 105 MB free."
+PASS: catalog application/json · models instant, fast
+PASS: broken catalog door "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again"
+PASS: layout swept chat, settings, paywall, onboarding, proof, vault, documents at 390 / 768 / 820 / 1024 / 1180 / 1366 / 1440 in light + dark — no horizontal scroll, composer row aligned, every control >= 44px
+PASS: 9 locales at 390, no clipped sidebar label (fr incognito = "Privé")
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation / PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement

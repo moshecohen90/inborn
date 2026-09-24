@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 4,
-  "publishedAt": "2026-09-21",
+  "version": 6,
+  "publishedAt": "2026-09-24",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -96,7 +96,7 @@
       "contextLength": 262144,
       "vision": false,
       "tools": true,
-      "goodFor": "Everyday assistant: writing, questions, translation. Best balance on this phone.",
+      "goodFor": "Everyday assistant: writing, questions, translation. Best balance on this device.",
       "battery": "medium",
       "goodLanguages": [
         "en",
@@ -315,38 +315,49 @@
       "minEngine": 1
     },
     {
-      "id": "embed-nomic",
+      "id": "embed-e5",
       "role": "embedding",
       "name": "Document index",
-      "vendor": "Nomic",
-      "family": "nomic-embed-text-v1.5",
-      "params": "137M",
-      "quant": "F16",
-      "arch": "nomic-bert",
-      "file": "nomic-embed-text-v1.5.f16.gguf",
-      "bytes": 274290560,
-      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
-      "license": "Apache-2.0",
+      "vendor": "Microsoft",
+      "family": "multilingual-e5-large-instruct",
+      "params": "560M",
+      "quant": "Q6_K",
+      "arch": "bert",
+      "file": "multilingual-e5-large-instruct-Q6_K.gguf",
+      "bytes": 467958912,
+      "sha256": "971b20b033a555f920bad72941123f48b470a2fa676abdb713e5dc8605ea15a4",
+      "license": "MIT",
       "minRamGB": 3,
-      "recommendedRamGB": 3,
-      "contextLength": 8192,
+      "recommendedRamGB": 4,
+      "contextLength": 512,
       "vision": false,
       "tools": false,
       "goodFor": "Lets Inborn search your documents on this device.",
       "battery": "low",
       "goodLanguages": [
-        "en"
+        "en",
+        "de",
+        "es",
+        "fr",
+        "pt",
+        "it",
+        "he",
+        "ja",
+        "ko",
+        "zh",
+        "ru",
+        "ar"
       ],
       "delivery": [
         {
           "kind": "play-asset-pack",
           "pack": "inborn_model_embed",
           "mode": "on-demand",
-          "file": "nomic-embed-text-v1.5.f16.gguf"
+          "file": "multilingual-e5-large-instruct-Q6_K.gguf"
         },
         {
           "kind": "https",
-          "path": "nomic-embed-text-v1.5.f16.gguf"
+          "path": "multilingual-e5-large-instruct-Q6_K.gguf"
         }
       ],
       "proOnly": false,
@@ -424,9 +435,13 @@
       ],
       "delivery": [
         {
+          "kind": "bundled",
+          "file": "mmproj-Qwen3.5-0.8B-F16.gguf"
+        },
+        {
           "kind": "play-asset-pack",
           "pack": "inborn_model_vision",
-          "mode": "on-demand",
+          "mode": "fast-follow",
           "file": "mmproj-Qwen3.5-0.8B-F16.gguf"
         },
         {
@@ -438,5 +453,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "f4c40ce2e191866db0063efc3fa85f54c97fc16bc666dd422d4f691f3993cf6fec813f12e305651a9cf823974badc241cdd70cf471ae2ec196b3343979e7700a"
+  "signature": "9fc2116efe506fb02fd53b98007ff9626db48bfcb877bc037e571f46a59539799e3045db028f57d8334aa079d5af82278a50e67b580c402e32cae21db25f470c"
 }

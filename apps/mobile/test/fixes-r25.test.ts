@@ -109,6 +109,11 @@ describe("F54 · every model we distribute can show its licence on a device with
     expect(subject.attribution).toContain("Microsoft");
     expect(licenceText(subject.license, subject.attribution)).toContain("Microsoft");
   });
+  it("the MIT document index carries Microsoft's line, the only MIT obligation (F334)", () => {
+    const e5 = models.find((m) => m.id === "embed-e5")!;
+    expect(e5.license).toBe("MIT");
+    expect(licenceText("MIT", licenceSubjectFor(e5).attribution)).toContain("Copyright (c) Microsoft Corporation");
+  });
   it("whisper's copyright is OpenAI's, not Microsoft's: the map is per model, not per licence", () => {
     expect(licenceSubjectFor(models.find((m) => m.id === "speech-whisper-base")!).attribution).toContain("OpenAI");
   });

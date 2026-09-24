@@ -31,7 +31,7 @@ const NOTICE_ID: Readonly<Record<string, string>> = {
   fast: "qwen3.5-2b",
   sharp: "qwen3.5-4b",
   "sharp-phi": "phi-4-mini-instruct",
-  "embed-nomic": "nomic-embed-text-v1.5",
+  "embed-e5": "multilingual-e5-large-instruct",
   "speech-whisper-base": "whisper-base",
   "vision-qwen35": "qwen3.5-mmproj",
 };

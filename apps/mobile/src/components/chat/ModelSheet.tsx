@@ -39,13 +39,17 @@ export interface ModelSheetProps {
   onChatSettings: () => void;
   /** §14.3 browser tier: the page holds one model, so the rows are read-only and the app is the way to the rest. */
   managed?: boolean;
+  /** Browser tier: the models the door offers are chosen here as at the door; set, it replaces the read-only rows. */
+  onChoose?: (id: string) => void;
+  /** Browser tier: the catalog models only the app runs, the one section that honestly says "In the app". */
+  inTheApp?: ModelChoice[];
 }
 
 /**
  * §7.8 model switching where the user is: the chat header's chip opens this. Installed models first (one tap switches),
  * then what this device can still download, each with what it is good at, how it rates this chat's language, and its size.
  */
-export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed, tier, onSeePro }: ModelSheetProps) {
+export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed, onChoose, inTheApp, tier, onSeePro }: ModelSheetProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const [confirmId, setConfirmId] = useState<string | null>(null);
@@ -74,6 +78,7 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
       origin={originOf?.(choice.model.id) ?? null}
       locked={!!lockedFor?.(choice.model)}
       managed={!!managed}
+      onChoose={onChoose ? () => onChoose(choice.model.id) : undefined}
       confirming={confirmId === choice.model.id}
       wifiOnly={wifiOnly}
       onWifiOnly={onWifiOnly}
@@ -118,7 +123,7 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
         {choices.installed.map(row)}
         {choices.available.length ? (
           <>
-            <Text style={[type.monoLabel, styles.section, { color: theme.text }]}>{managed ? t("modelSheet.inTheApp") : t("vault.fits", { device: deviceNoun() })}</Text>
+            <Text style={[type.monoLabel, styles.section, { color: theme.text }]}>{managed && !onChoose ? t("modelSheet.inTheApp") : t("vault.fits", { device: deviceNoun() })}</Text>
             {choices.available.map(row)}
           </>
         ) : null}
@@ -126,6 +131,14 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
           <>
             <Text style={[type.monoLabel, styles.section, { color: theme.text3 }]}>{t("vault.tooBig", { ram: deviceRamGB })}</Text>
             {choices.unavailable.map(row)}
+          </>
+        ) : null}
+        {inTheApp?.length ? (
+          <>
+            <Text testID="model-sheet-in-the-app" style={[type.monoLabel, styles.section, { color: theme.text3 }]}>{t("modelSheet.inTheApp")}</Text>
+            {inTheApp.map((choice) => (
+              <ModelRow key={choice.model.id} choice={choice} theme={theme} deviceRamGB={deviceRamGB} languageCode={languageCode} languageName={languageName} locale={i18n.language} recommended={false} state={undefined} origin={null} locked={!!lockedFor?.(choice.model)} managed confirming={false} onSwitch={() => {}} onAskDownload={() => {}} onCancelDownload={() => {}} onDownload={() => {}} onUnlock={() => {}} />
+            ))}
           </>
         ) : null}
 
@@ -157,6 +170,8 @@ interface RowProps {
   origin: string | null;
   locked: boolean;
   managed: boolean;
+  /** Browser tier: take this model instead (the door delivers it). */
+  onChoose?: () => void;
   confirming: boolean;
   wifiOnly?: boolean;
   onWifiOnly?: (value: boolean) => void;
@@ -169,7 +184,7 @@ interface RowProps {
 
 const TIER_KEY: Record<LanguageTier, string> = { native: "vault.fit.tier.native", good: "vault.fit.tier.good", basic: "vault.fit.tier.basic", none: "vault.fit.tier.none" };
 
-function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, locale, recommended, state, origin, locked, managed, confirming, wifiOnly, onWifiOnly, onSwitch, onAskDownload, onCancelDownload, onDownload, onUnlock }: RowProps) {
+function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, locale, recommended, state, origin, locked, managed, onChoose, confirming, wifiOnly, onWifiOnly, onSwitch, onAskDownload, onCancelDownload, onDownload, onUnlock }: RowProps) {
   const type = useType();
   const { t } = useTranslation();
   const { model, reason } = choice;
@@ -181,7 +196,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   const downloading = state?.kind === "delivering" || state?.kind === "verifying";
   const percent = state?.kind === "delivering" ? Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)) : 0;
   /* A model this tier cannot install is not offered at the weight of the one in use (QA F248). */
-  const dim = !!choice.blocked || (managed && !choice.current);
+  const dim = !!choice.blocked || (managed && !choice.current && !onChoose);
 
   return (
     <View testID={`model-sheet-row-${model.id}`} style={[styles.row, { borderColor: choice.current ? theme.text : theme.border, backgroundColor: theme.surface1, opacity: dim ? 0.5 : 1 }]}>
@@ -233,7 +248,15 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
             </Pressable>
           </View>
         </View>
-      ) : dim || (managed && !choice.current) ? null : (
+      ) : dim ? null : onChoose && !choice.current ? (
+        <View style={styles.actions}>
+          <Pressable testID={`model-sheet-choose-${model.id}`} accessibilityRole="button" onPress={onChoose} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+            <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
+              {choice.installed ? t("vault.use") : t("web.models.choose", { size: formatModelBytes(model.bytes) })}
+            </Text>
+          </Pressable>
+        </View>
+      ) : (
         <View style={styles.actions}>
           {choice.current ? (
             <Text testID={`model-sheet-inuse-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
