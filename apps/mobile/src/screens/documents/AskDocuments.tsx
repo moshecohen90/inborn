@@ -5,7 +5,7 @@ import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
 import { isNotFoundReply, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
-import { modelLabel } from "../../lib/models";
+import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
 import { Markdown } from "../../components/chat/Markdown";
 import { canCiteMarkers, getLibrary } from "../../documents/library";
@@ -146,7 +146,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           <Toggle testID="ask-strict" label={t("documents.strict.title")} value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
-          {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: modelLabel(model.id) })}</Text> : null}
+          {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: chipLabel(t, model.id) })}</Text> : null}
           {phase.kind === "retrieving" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text> : null}
           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
           {notFound ? (
@@ -156,7 +156,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           ) : null}
           {answer ? (
             <View style={styles.assistant}>
-              <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: modelLabel(model.id) })}</Text>
+              <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: chipLabel(t, model.id) })}</Text>
               <Markdown testID="ask-answer" source={answer} direction={directionOf(answer)} caret={phase.kind === "answering"} />
             </View>
           ) : null}

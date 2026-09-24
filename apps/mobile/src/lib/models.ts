@@ -2,7 +2,6 @@ import { BUNDLED_MANIFEST, type CatalogModel, type ModelFit } from "@inborn/core
 
 /** Friendly model names for chips and labels (§8.2: "friendly name only, no size"), taken from the catalog so the chip never disagrees with the vault. */
 const NAMES: Record<string, string> = Object.fromEntries(BUNDLED_MANIFEST.models.map((m) => [m.id, m.name.toUpperCase()]));
-NAMES.null = "DEV";
 
 export const IMPORT_PREFIX = "import:";
 const QUANT_SUFFIX = /[-_.](?:i?q\d[a-z0-9_]*|f16|f32|bf16|fp16)$/i;
@@ -23,6 +22,12 @@ export const NULL_MODEL_ID = "null";
 
 /** Subject of the drawer's exit readout: the loaded model, or the caller's localized "no model" wording, never the raw id (QA F25). */
 export const meterLabel = (modelId: string, noModel: string): string => (modelId === NULL_MODEL_ID ? noModel : modelLabel(modelId));
+
+/**
+ * What a chip calls the engine. The no-model engine used to print the literal "DEV" in the header chip, the sidebar
+ * chip and under the seal, in every language (QA F273); it says the same localized wording the drawer's meter says.
+ */
+export const chipLabel = (t: Translate, modelId: string): string => meterLabel(modelId, t("onboarding.model.none"));
 
 /** The chat's load log line, naming its subject; null for the no-model engine, which has nothing to report (QA F16). Shape `<engine> loaded … in N ms` is what scripts/web-smoke.mjs reads. */
 export function describeLoad(engineId: string, modelId: string, uri: string, ms: number): string | null {

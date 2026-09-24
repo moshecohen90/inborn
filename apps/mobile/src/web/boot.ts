@@ -1,6 +1,6 @@
 import { ALLOWED_MODEL_HOSTS } from "@inborn/core";
 import { classifyDevice, readDeviceSignals, type DeviceGate } from "./deviceGate";
-import { WebModelDelivery, fetchManifest, pickModel, type WebModelSource } from "./modelDelivery";
+import { WebModelDelivery, fetchManifest, pickModel, type CatalogError, type WebModelSource } from "./modelDelivery";
 import { modelStatus, opfsSupported, readyModelStatus, type ModelStatus } from "./opfs";
 import { chromePromptApiAvailable } from "./chromeNano";
 import { readEnginePref, type WebEngine } from "./prefs";
@@ -12,6 +12,8 @@ export interface WebBoot {
   chromePromptApi: boolean;
   opfs: boolean;
   source: WebModelSource | null;
+  /** Set when the catalog could not be read at all: a browser with no model and a browser with no catalog are not the same screen. */
+  catalogError: CatalogError | null;
   status: ModelStatus;
 }
 
@@ -34,10 +36,10 @@ export function prepareWebBoot(): Promise<WebBoot> {
     const engine = readEnginePref();
     const chromePromptApi = chromePromptApiAvailable();
     const opfs = opfsSupported();
-    const models = await fetchManifest([...ALLOWED_MODEL_ORIGINS]);
-    const source = pickModel(models, gate.maxTier) ?? null;
+    const catalog = await fetchManifest([...ALLOWED_MODEL_ORIGINS]);
+    const source = pickModel(catalog.models, gate.maxTier) ?? null;
     const status: ModelStatus = source && opfs ? await modelStatus(source.file) : { kind: "missing" };
-    boot = { gate, engine: chromePromptApi ? engine : "wllama", chromePromptApi, opfs, source, status };
+    boot = { gate, engine: chromePromptApi ? engine : "wllama", chromePromptApi, opfs, source, catalogError: catalog.error, status };
     return boot;
   })();
   return pending;
@@ -50,5 +52,8 @@ export async function settleModelStatus(): Promise<ModelStatus> {
   return b.status;
 }
 
-/** True when the chat can start now: a verified model on disk, or the user chose Chrome's engine. */
-export const webReady = (b: WebBoot): boolean => b.engine === "chrome-nano" || b.status.kind === "ready" || b.source === null;
+/**
+ * True when the chat can start now: a verified model on disk, or the user chose Chrome's engine. A browser the
+ * catalog never reached is not ready — it used to pass straight through to a chat with no model at all (B1).
+ */
+export const webReady = (b: WebBoot): boolean => b.engine === "chrome-nano" || b.status.kind === "ready" || (b.source === null && !b.catalogError);

@@ -15,6 +15,7 @@ import { useVault } from "../../vault";
 import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelStep";
+import { catalogFailed } from "./catalogError";
 import { font, useType } from "../../services/type";
 
 const PLATFORM = Platform.OS === "android" ? "android" : Platform.OS === "ios" ? "ios" : "web";
@@ -50,6 +51,7 @@ export function ModelChoice() {
     [entries, vault, engine.model.id, i18n.language, tier],
   );
 
+  const noCatalog = step.options.length === 0 && catalogFailed();
   const selectedId = picked ?? step.initialSelection;
   const selected = step.options.find((o) => o.id === selectedId) ?? null;
   const modelOf = (id: string) => entries.find((e) => e.model.id === id)!.model;
@@ -106,9 +108,11 @@ export function ModelChoice() {
           <OptionCard key={option.id} option={option} model={modelOf(option.id)} selected={option.id === selectedId} onSelect={() => setPicked(option.id)} />
         ))}
         {step.options.length === 0 ? (
+          /* A catalog that never loaded is not a device with no model: the reader is told what failed, and can retry (B1). */
           <View testID="model-none-card" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-            <Text style={[type.heading, { color: theme.text }]}>{t("onboarding.model.none")}</Text>
-            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.noneLine")}</Text>
+            <Text style={[type.heading, { color: theme.text }]}>{t(noCatalog ? "web.catalog.title" : "onboarding.model.none")}</Text>
+            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t(noCatalog ? "web.catalog.explain" : "onboarding.model.noneLine")}</Text>
+            {noCatalog ? <Button testID="catalog-retry" title={t("web.catalog.retry")} onPress={() => location.reload()} /> : null}
           </View>
         ) : null}
       </View>

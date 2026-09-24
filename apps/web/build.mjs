@@ -14,12 +14,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { generateSW } from "workbox-build";
 import { pagesHeadersFile } from "./headers.mjs";
+import { MANIFEST_REL, webManifest } from "../../scripts/web-manifest.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "../..");
 const SRC = process.env.SRC ?? path.join(repoRoot, "apps/mobile/dist");
 const OUT = process.env.OUT ?? path.join(here, "dist");
-const MODELS_ORIGIN = process.env.MODELS_ORIGIN ?? "";
+/* The catalog host is not optional for a built origin: its models are fetched from there and the CSP must allow it.
+   An empty MODELS_ORIGIN used to ship a dist whose own connect-src forbade the download it offers (B1, 24.9.2026). */
+const MODELS_ORIGIN = process.env.MODELS_ORIGIN || JSON.parse(readFileSync(path.join(repoRoot, "packages/core/src/site/origins.json"), "utf8")).models;
 /** The desktop shell and any embedder must not get a precache from this origin. */
 const PRECACHE = ["**/*.{html,js,mjs,css,wasm,json,png,svg,ico,webmanifest,woff2}"];
 const NOT_PRECACHED = ["hashes.json", "_headers", "sw.js", "models/**", "metadata.json"];
@@ -63,6 +66,14 @@ html = html.replace("</head>", `${head}  </head>`);
 writeFileSync(indexPath, html);
 
 writeFileSync(path.join(OUT, "_headers"), pagesHeadersFile(MODELS_ORIGIN));
+
+/* The browser tier's catalog. Without this file the origin answers /models/manifest.json with the SPA shell and the
+   app sees no model at all, which is the one thing a fresh browser cannot recover from (B1, 24.9.2026). */
+const manifestPath = path.join(OUT, MANIFEST_REL);
+mkdirSync(path.dirname(manifestPath), { recursive: true });
+const catalog = webManifest(`${MODELS_ORIGIN}/v1`);
+if (catalog.models.length === 0) throw new Error("the web catalog would ship with no model; check packages/core/src/catalog/manifest.json");
+writeFileSync(manifestPath, JSON.stringify(catalog, null, 2) + "\n");
 
 const sw = await generateSW({
   globDirectory: OUT,

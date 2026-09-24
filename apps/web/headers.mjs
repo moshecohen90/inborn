@@ -47,6 +47,8 @@ export function pagesHeadersFile(modelsOrigin = "") {
     block("/sw.js", { "Cache-Control": "no-cache" }),
     block("/hashes.json", { "Cache-Control": "no-cache" }),
     block("/manifest.webmanifest", { "Cache-Control": "no-cache" }),
+    /* A stale model catalog offers a file the CDN may no longer hold; it is revalidated like the other entry points. */
+    block("/models/manifest.json", { "Cache-Control": "no-cache" }),
     block("/_expo/*", { "Cache-Control": "public, max-age=31536000, immutable" }),
     block("/wllama/*", { "Cache-Control": "public, max-age=604800" }),
   ].join("\n\n") + "\n";

@@ -7,7 +7,7 @@ import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, ty
 import { formatWhen } from "../lib/when";
 import { retentionDaysLeft } from "../services/retention";
 import { useEntitlement } from "../licence";
-import { modelLabel } from "../lib/models";
+import { chipLabel } from "../lib/models";
 import { useShortcut } from "../lib/shortcuts";
 import { listClipping } from "../lib/listClipping";
 import { useTheme } from "../lib/theme";
@@ -410,7 +410,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
         <View style={[styles.footer, { borderColor: theme.border, paddingBottom: insets.bottom + 8 }]}>
           <View style={[shape.chip, styles.titleRow, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
             <ChipGlyph size={12} color={theme.text2} />
-            <Text style={[type.monoLabel, { color: theme.text2 }]}>{modelLabel(model.id)}</Text>
+            <Text style={[type.monoLabel, { color: theme.text2 }]}>{chipLabel(t, model.id)}</Text>
           </View>
           <Pressable testID="open-personas" accessibilityRole="button" onPress={() => setPersonasOpen(true)} style={styles.footerBtn}>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("personas.title")}</Text>
@@ -453,7 +453,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           <View style={[shape.chip, styles.modelChip, styles.titleRow, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
             <ChipGlyph size={12} color={theme.text2} />
             <Text style={[type.monoLabel, { color: theme.text2 }]}>
-              {modelLabel(model.id)} · {t("newChat.fits")}
+              {chipLabel(t, model.id)} · {t("newChat.fits")}
             </Text>
           </View>
           <View style={styles.switchRow}>

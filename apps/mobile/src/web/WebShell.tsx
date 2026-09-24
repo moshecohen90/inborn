@@ -44,7 +44,7 @@ function BrowserShell({ children }: { children: ReactNode }) {
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <Strip boot={boot} theme={theme} offline={offline} />
       {/* The app services picked their engine at boot, before the file existed; a reload is the honest hand-over (same as the engine switch). */}
-      {ready ? children : <DownloadDoor boot={boot} theme={theme} onReady={() => location.reload()} />}
+      {ready ? children : boot.source ? <DownloadDoor boot={boot} theme={theme} onReady={() => location.reload()} /> : <CatalogDoor theme={theme} />}
     </View>
   );
 }
@@ -98,6 +98,25 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
       <Pressable testID="get-app" accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={[styles.getApp, { borderColor: theme.border }]}>
         <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{t("web.getApp")}</Text>
       </Pressable>
+    </View>
+  );
+}
+
+/**
+ * The catalog itself did not arrive, so there is nothing to offer and nothing to blame on this browser (B1, 24.9.2026:
+ * the origin served the SPA shell for /models/manifest.json and the app said "no model on this browser" forever).
+ */
+function CatalogDoor({ theme }: { theme: Theme }) {
+  const { t } = useTranslation();
+  return (
+    <View testID="catalog-door" style={styles.door}>
+      <View style={[styles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+        <Text style={[styles.headline, { color: theme.text }]}>{t("web.catalog.title")}</Text>
+        <Text style={[styles.body, { color: theme.text2 }]}>{t("web.catalog.explain")}</Text>
+        <Pressable testID="catalog-retry" accessibilityRole="button" onPress={() => location.reload()} style={[styles.cta, { backgroundColor: theme.ctaFill }]}>
+          <Text style={[styles.body, styles.strong, { color: theme.ctaText }]}>{t("web.catalog.retry")}</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

@@ -5,7 +5,9 @@
  *      (F40: the model step used to crash the page) → wllama loads from OPFS → one prompt;
  *   2. second visit with the network cut (Playwright setOffline): the service worker boots the page, the model comes from OPFS, chat works;
  *   3. a phone viewport shows the "get the app" door;
- *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled.
+ *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled;
+ *   5. an origin that answers the catalog with its own index.html (B1, 24.9.2026) lands on the catalog door with a
+ *      retry, instead of a silent empty catalog that reads as "no model on this browser".
  * Skips (exit 0) when the model or playwright-core is absent.
  *
  *   MODELS_DIR=/path/to/ggufs SMOKE_OUT_DIR=/tmp node scripts/web-smoke.mjs
@@ -15,7 +17,7 @@
  * ISOLATION=off serves without COOP/COEP, which must land on the single-thread fallback.
  */
 import { createRequire } from "node:module";
-import { existsSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { URL } from "node:url";
@@ -208,6 +210,10 @@ try {
     lastConsole = consoleLines;
     const out = result.first;
     const t0 = Date.now();
+    /* The catalog is what the whole first run hangs on: it is read as the app reads it, before anything is clicked. */
+    const manifest = await page.request.get(new URL("/models/manifest.json", server.url).href);
+    out.catalog = { status: manifest.status(), type: manifest.headers()["content-type"] ?? "", models: (await manifest.json()).models.map((m) => m.id) };
+    if (!/\bjson\b/i.test(out.catalog.type) || out.catalog.models.length === 0) throw new Error(`the origin does not serve a model catalog: ${JSON.stringify(out.catalog)}`);
     await page.goto(server.url);
     await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
     out.gateText = (await page.getByTestId("web-strip").textContent()) ?? "";
@@ -330,6 +336,23 @@ try {
     if (!out.buttonDisabled) throw new Error("download button enabled although space is short");
     await tight.close();
   }
+  /* 5. The B1 shape: 200, text/html, the app's own document where the catalog should be. */
+  {
+    const broken = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await broken.route("**/models/manifest.json", (route) => route.fulfill({ status: 200, contentType: "text/html", body: readFileSync(path.join(defaults.dist, "index.html"), "utf8") }));
+    const page = await broken.newPage();
+    const out = (result.brokenCatalog = {});
+    await page.goto(server.url);
+    await page.getByTestId("catalog-door").waitFor({ timeout: 60_000 });
+    out.text = ((await page.getByTestId("catalog-door").textContent()) ?? "").trim();
+    out.retry = await page.getByTestId("catalog-retry").isVisible();
+    out.screenshot = path.join(outDir, "web-smoke-catalog-broken.png");
+    await page.screenshot({ path: out.screenshot });
+    if (!out.retry) throw new Error("the catalog door offers no retry");
+    if (/No model (on|for) this/i.test(out.text)) throw new Error(`the catalog door blames the browser: ${out.text}`);
+    if (await page.getByTestId("composer-input").count()) throw new Error("a browser with no catalog walked into a chat it cannot answer in");
+    await broken.close();
+  }
 } catch (e) {
   failure = e;
   /* What the page showed when it went wrong: the door/error text, the status line, the console, a screenshot. */
@@ -361,3 +384,5 @@ console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
+console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
+console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
