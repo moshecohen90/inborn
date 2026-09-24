@@ -5397,3 +5397,23 @@ picture: *"I cannot analyze the image or identify specific colors in the door."*
   on a phone.
 - **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
   The file stays attached, so there is nothing to hold.
+## Fixes round 76: one recommended model per device, on every screen (branch `fix-model-sheet`) — 24.9.2026
+
+I14, wave 2: after round 66 the browser door and the vault recommended Fast, but the chat's Model sheet in the same
+browser still said Instant and listed Fast "In the app". Moshe's decision 6 is one answer per device type: the best
+model for it first, the rest below.
+
+- **The sheet, the vault, onboarding and the door name the same model** (F345). `deviceRecommendation()` in core is
+  the §7.8 ranking with "already installed" left out. That term was also why a OnePlus 6T with only the bundled Instant
+  was told Instant in the native sheet and vault while onboarding said Fast. In the browser, the sheet now reads
+  `WebBoot.choices`, the door's list. A model the door offers can be chosen there, and "In the app" is left for what a
+  browser never gets. Headless Chromium, with Instant taken at the door as in I14, gives door, sheet and vault Fast at
+  390 and at 1440. Choose in the sheet switched the page to Fast.
+- **The other places that name a model now agree with it** (F346). The browser's weak-language line said nothing
+  here was good at Spanish while Fast, in the same browser, is good at it. It now runs `betterForLanguage` over the
+  door's list and names Fast. Fast's catalog line said "on this phone" in a browser; it says "device" now, with the
+  manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
+  site languages now say "computers and tablets", and a test holds that sentence to the gate.
+
+Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
+`proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).

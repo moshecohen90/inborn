@@ -7,6 +7,7 @@ import { useAppServices } from "../../services/AppServices";
 import { useVault } from "../../vault";
 import { resetEngine } from "../../engine";
 import { openPaywall } from "../../licence";
+import { browserModels } from "./browserModels";
 
 export interface ChatModelSheetProps {
   visible: boolean;
@@ -30,11 +31,13 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
   const { prefs, updatePrefs } = useAppServices();
   /* The browser tier holds one model in its own storage (§14.3): the vault knows nothing about it, so the loaded id is the installed list. */
   const managed = Platform.OS === "web";
-  const choices = useMemo(() => {
+  const browser = useMemo(() => (visible && managed ? browserModels(use, languageCode, currentId) : null), [visible, managed, use, languageCode, currentId]);
+  const vaultChoices = useMemo(() => {
     const installed = managed ? [currentId] : entries.filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready").map((e) => e.model.id);
     return modelChoices({ use, languageCode, device: vault.device, installed, catalog: vault.manifest.models, currentId, engineVersion: ENGINE_VERSION, ...(managed ? { recommendAmong: installed } : {}) });
     /* `version` stands in for `entries`, which is a fresh array on every render of the vault hook. */
   }, [vault, entries, version, use, languageCode, currentId, managed]);
+  const choices = browser?.choices ?? vaultChoices;
 
   const locked = (model: CatalogModel) => !!paywallFor(tier, { kind: "model", proOnly: !!model.proOnly });
   const originOf = (id: string) => {
@@ -52,6 +55,11 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
       theme={theme}
       deviceRamGB={vault.device.ramGB}
       managed={managed}
+      inTheApp={browser?.choices.inTheApp}
+      onChoose={browser ? (id) => {
+        onClose();
+        browser.choose(id);
+      } : undefined}
       stateOf={(id) => vault.state(id)}
       originOf={originOf}
       wifiOnly={prefs.wifiOnly}

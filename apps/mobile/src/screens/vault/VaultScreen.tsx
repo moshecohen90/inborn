@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BannerSpacer } from "../../components/shell/bannerInset";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -198,8 +198,9 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const byRank = (a: VaultEntry, b: VaultEntry) => (rankOf.get(a.model.id) ?? 99) - (rankOf.get(b.model.id) ?? 99);
   onDevice.sort(byRank);
   fits.sort(byRank);
-  const recommendedId = ranked[0]?.model.id;
-  const recommendedWeak = !!ranked[0] && recommendationIsWeak(ranked[0]);
+  const top = deviceRecommendation({ use: bestUse, languageCode: bestLanguage, device, installed: [], catalog: vault.manifest.models });
+  const recommendedId = top?.model.id;
+  const recommendedWeak = !!top && recommendationIsWeak(top);
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
   const sections: Section[] = [
     { key: "on", title: t("vault.onDevice"), data: onDevice },

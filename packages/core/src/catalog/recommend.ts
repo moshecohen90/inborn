@@ -63,6 +63,13 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
 
 export const recommendModel = (input: RecommendInput): ModelRecommendation | null => rankModels(input)[0] ?? null;
 
+/**
+ * The one RECOMMENDED every surface names (Moshe 23.9, decision 6: the best model for this device first): §7.8 on
+ * use, language and device, with what is already installed left out, so a bundled Instant never outranks the tier
+ * the device is meant to run. Onboarding, the vault, the chat's Model sheet and the browser door all call this.
+ */
+export const deviceRecommendation = (input: RecommendInput): ModelRecommendation | null => rankModels({ ...input, installed: [] })[0] ?? null;
+
 /** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. An unrated language (tier null) is never a claim either way. */
 export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
   (r.reason.languageCode !== null && (r.reason.languageTier === "basic" || r.reason.languageTier === "none")) || r.reason.useTier === "weak";
@@ -238,7 +245,8 @@ export function modelChoices(input: ModelChoicesInput): ModelChoices {
   installed.sort(byRank);
   available.sort(byRank);
   unavailable.sort((a, b) => tierIndex(a.model) - tierIndex(b.model));
-  const recommended = (input.recommendAmong ? ranked.filter((r) => input.recommendAmong!.includes(r.model.id)) : ranked)[0] ?? null;
+  const top = input.recommendAmong ? null : deviceRecommendation(input);
+  const recommended = input.recommendAmong ? (ranked.filter((r) => input.recommendAmong!.includes(r.model.id))[0] ?? null) : top ? (ranked.find((r) => r.model.id === top.model.id) ?? top) : null;
   return { installed, available, unavailable, recommended, recommendedWeak: !!recommended && recommendationIsWeak(recommended) };
 }
 
