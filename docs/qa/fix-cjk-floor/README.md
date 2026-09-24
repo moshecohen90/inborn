@@ -1,4 +1,8 @@
-# fix-cjk-floor — the cosine half of the relevance floor, measured (round 70, F327–F329)
+# fix-cjk-floor — the cosine half of the relevance floor, measured (rounds 70 and 70b, F327–F332)
+
+> **Round 70b** asked whether a centred cosine could win back the recall round 70 gave up. It cannot: best case
+> 35/57 against a bar of 50/57, and the embedder ranks the answering chunk first for only 3 of 21 on-topic questions
+> on a six-chunk document. See **`centering.md`**. The rule below is unchanged.
 
 No phone, no emulator, no browser. The whole round is one measurement and what it forced.
 
@@ -122,5 +126,6 @@ Android or iOS pass should repeat F282's two Japanese turns and read the `[rag]`
 this round.
 
 **Nothing was measured on a multi-chunk document.** Every fixture has one passage, because that is the case that
-failed. On a long document more chunks reach the question, so a shared content word is likelier — but the recall the
-cosine half used to add on its own is gone there too, and nobody has measured how much.
+failed. *Round 70b measured it:* `multichunk.json`, seven six-chunk documents. The answer is in `centering.md` — the
+recall the cosine half used to add there was the floor fencing the whole document, and the embedder ranks the right
+chunk first 3 times in 21.
