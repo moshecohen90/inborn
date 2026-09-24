@@ -4481,7 +4481,7 @@ an edit.
 Gates on this branch merged with `main` (**e3e771c**): `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS,
 **1,450 tests** (core 726, mobile 694, i18n 17, ui 13), `pn web:build` and `pn web:smoke` 6/6, site build and
 `node apps/site/check.mjs` green on 13 pages. The F254 row in `docs/qa/qa-run-2026-09-11.md` carries both passes.
-## Fixes round 54: pseudo.json was generated, and nothing said so (branch `fix-copy-pseudo`) — 24.9.2026
+## Fixes round 48c: pseudo.json was generated, and nothing said so (branch `fix-copy-pseudo`) — 24.9.2026
 
 A one-guard round, off an observation `fix-design` made while landing round 52: regenerating `pseudo.json` also
 normalised six values nobody had changed. That is the interesting part. `pseudo.json` is output, but no gate bound it
