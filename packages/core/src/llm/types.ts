@@ -40,6 +40,9 @@ export interface GenOpts {
   maxTokens?: number;
   temperature?: number;
   topP?: number;
+  /** llama.cpp repeat penalty and its look-back in tokens; `sampling()` fills the shared defaults. */
+  repeatPenalty?: number;
+  repeatLastN?: number;
   stop?: string[];
   /** When false the model is asked not to emit reasoning tokens (Qwen "thinking" off). */
   reasoning?: boolean;

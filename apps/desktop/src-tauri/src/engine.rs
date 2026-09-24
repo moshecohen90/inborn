@@ -70,6 +70,9 @@ pub struct GenOpts {
   pub max_tokens: Option<u32>,
   pub temperature: Option<f32>,
   pub top_p: Option<f32>,
+  /// Filled by `sampling()` in @inborn/core; absent means llama.cpp's own "off" (1.0 / 0).
+  pub repeat_penalty: Option<f32>,
+  pub repeat_last_n: Option<i32>,
   pub stop: Option<Vec<String>>,
   pub reasoning: Option<bool>,
 }
@@ -341,13 +344,15 @@ fn render_prompt(loaded: &Loaded, messages: &[WireMessage], reasoning: bool) -> 
   }
 }
 
-fn sampler(opts: &GenOpts) -> LlamaSampler {
+fn sampler(opts: &GenOpts, n_vocab: i32) -> LlamaSampler {
+  let penalties = LlamaSampler::penalties(n_vocab, opts.repeat_last_n.unwrap_or(0), opts.repeat_penalty.unwrap_or(1.0), 0.0, 0.0);
   let temperature = opts.temperature.unwrap_or(0.7);
   if temperature <= 0.0 {
-    return LlamaSampler::greedy();
+    return LlamaSampler::chain_simple([penalties, LlamaSampler::greedy()]);
   }
   let seed = rand::random::<u32>();
   LlamaSampler::chain_simple([
+    penalties,
     LlamaSampler::top_k(40),
     LlamaSampler::top_p(opts.top_p.unwrap_or(0.9), 1),
     LlamaSampler::min_p(0.05, 1),
@@ -448,7 +453,7 @@ fn generate(loaded: &mut Loaded, messages: &[WireMessage], opts: &GenOpts, chann
     pos += chunk.len() as i32;
   }
 
-  let mut sampler = sampler(opts);
+  let mut sampler = sampler(opts, loaded.model.n_vocab());
   let mut decoder = encoding_rs::UTF_8.new_decoder();
   let mut parser = ThinkParser::new();
   let mut deltas: Vec<Delta> = Vec::new();
@@ -623,5 +628,12 @@ mod tests {
   #[test]
   fn plain_text_passes_through() {
     assert_eq!(run(&["hello ", "<b>world"]), ("hello <b>world".into(), String::new()));
+  }
+
+  #[test]
+  fn reads_the_repeat_penalty_the_webview_sends() {
+    let opts: GenOpts = serde_json::from_str(r#"{"maxTokens":224,"temperature":0.7,"topP":0.9,"repeatPenalty":1.1,"repeatLastN":64}"#).unwrap();
+    assert_eq!(opts.repeat_penalty, Some(1.1));
+    assert_eq!(opts.repeat_last_n, Some(64));
   }
 }

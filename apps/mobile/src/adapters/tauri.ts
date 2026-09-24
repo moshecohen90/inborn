@@ -8,6 +8,7 @@ import {
   searchTerms,
   snippetAround,
   ANSWER_CEILING,
+  sampling,
   type Capabilities,
   type Chat,
   type ChatMessage,
@@ -132,7 +133,7 @@ export class TauriLM implements LocalLM {
     signal.addEventListener("abort", onAbort, { once: true });
     invoke<Usage>("lm_generate", {
       messages: messages.map((m) => ({ role: m.role, content: m.content })),
-      opts: { maxTokens: opts.maxTokens ?? ANSWER_CEILING, temperature: opts.temperature ?? 0.7, topP: opts.topP ?? 0.9, stop: opts.stop, reasoning: opts.reasoning ?? true },
+      opts: { maxTokens: opts.maxTokens ?? ANSWER_CEILING, ...sampling(opts), stop: opts.stop, reasoning: opts.reasoning ?? true },
       onDelta: channel,
     })
       .then((usage) => {

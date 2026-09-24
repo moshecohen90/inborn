@@ -5626,3 +5626,61 @@ Round 84 left two lexical gaps open: "Staedten" never met "Städten", and "l'œu
 Evidence in `docs/qa/fix-elision-umlaut/`: `red-elision-umlaut.txt`, `red-guard.txt`, `green.txt`, `options.md` with
 its probe source, and `measure-before.md` beside the regenerated `docs/qa/embed-multilingual/measure.md`. Spec §5.5
 describes both rules.
+
+## Fixes round 86: a model that starts repeating itself is stopped and cut back (branch `fix-loop-guard`) — 24.9.2026
+
+Round 83's end-to-end run (`docs/qa/fix-loop-guard/e2e/r83-after.json` steps[5] and [6]) showed Instant answering
+一九九八年のワールドカップで優勝したのはどこですか？ in non-strict mode with one sentence three times over, then "199". The old
+guard did fire, but only because the text happened to end on a copy at an 8-token checkpoint (in `red-old-detector.txt`,
+two of four token sizes never fire), and it left every copy on screen.
+
+- **Sampling (F369).** No engine set a repeat penalty, and llama.cpp's own default is off (1.0). `sampling()` in
+  `packages/core/src/llm/sampling.ts` is now the one place the adapters read temperature, top-p and the repeat penalty
+  from: 1.1 over the last 64 tokens. Temperature and top-p keep their old values. Each engine gets the penalty under the
+  name it reads. llama.rn takes `penalty_repeat` and `penalty_last_n`. wllama takes `repeat_penalty` and `repeat_last_n`,
+  because its wasm server ignores the `penalty_*` names in wllama's own types (checked in the wasm's strings). The desktop
+  shell passes `repeatPenalty` and `repeatLastN`, and `engine.rs` adds a penalties sampler at the head of the chain.
+- **Stream guard (F369).** `detectLoop(text)` in `packages/core/src/chat/loop.ts` now searches the whole last 600 code
+  points, not just the end of the text. It fires on a unit of 8 or more code points repeated three times in a row. It
+  needs no whitespace, so CJK loops count like Latin ones. A list item needs four copies, fenced code never counts, and a
+  unit shorter than 8 fires only after 32 code points and five copies. So "no no no", "谢谢谢谢", three identical numbered
+  or bulleted steps, a refrain sung twice and repeated lines inside a code fence all stay. `guardLoops()` wraps every
+  engine's stream. On a loop it stops the engine once, cuts the answer to the end of the first copy, and drops whatever
+  the engine still flushes. A loop that ran to the token ceiling is cut at the end the same way.
+- **In the chat.** `Chat.tsx` streams through `guardLoops`, shows the cut text and logs
+  `[chat] loop cut: kept N of M chars, unit U cp xR` outside `__DEV__`. The stop is saved as `stoppedBy: "loop"`, so the
+  notice survives a reload. Under the answer: "The model started repeating itself, so the answer was cut short. Try
+  again, or switch to the Fast model." A row from a model other than Instant drops the Fast advice. Regenerate replaces
+  Continue on that row, and the Continue shortcut skips it. The strings are in all 8 locales and pseudo. The old
+  half-sentence `chat.loopDetected` is gone.
+- **Tests.** `packages/core/test/chat-loop.test.ts` has 40 cases. The exact after.json text trips at every streaming
+  boundary once its third copy is in, both as one line and one copy per line. So do loops in zh, ko, he, ar, en and de.
+  Healthy text in the same languages stays untouched, and so do the on-topic answers from after.json. The controller
+  cases drive a fake engine that loops forever, and it is stopped inside its fourth copy.
+  `apps/mobile/src/adapters/sampling.test.ts` checks the request each adapter sends, and a Rust test reads the two
+  fields. Scanning 516 real answers in `docs/qa` trips only on the two looping ones, at under 1 ms a call.
+- **Red first.** `red-detect-loop.txt` is 39 of 40 red against the old `loop.ts`. `red-old-detector.txt` replays
+  the looping answer through the old check, and `red-sampling.txt` has all 3 adapters red. Two old cases changed on
+  purpose: "go on and on and on and on and on" and "שלום" said four times were loops under the old word rule and are
+  emphasis now. In `red-sabotage.txt`, removing the `stop()` call and unwrapping the stream in `Chat.tsx` each turn a
+  test red.
+- **Proven in headless Chromium** with the local Instant model. Round 83's branch tip is "before". "After" is that tip
+  plus this round. "Guard only" is this round with the penalty set back to 1.0 in a scratch build, so the guard meets
+  the model's own loops. `e2e/trials.mjs` replays round 83's turns, then regenerates the looping question 20 to 30
+  times over the same context.
+
+  | build | trials | loop left on screen | cut by the guard, with the notice |
+  |---|---|---|---|
+  | before | 50 | 2 | 0 |
+  | guard only | 20 | 0 | 2 |
+  | after | 20 | 0 | 0 |
+
+  A first guard-only pass also cut 2 of 20; its files were overwritten. Loops are rare, so these counts cannot rank
+  the penalty against its absence. In the guard-only build no loop reached the screen uncut. The same question asked in a fresh chat never
+  looped in 60 trials across the three builds, and nothing was cut. Round 83's full sequence on the after build cut
+  nothing, and the on-topic German, Japanese and board answers are intact. One English run read 382 as "three thousand
+  and eighty-two", a sampling miss the guard does not touch. In the before build a loop row can end as
+  "Stopped · Continue", which would extend the loop. The saved `stoppedBy: "loop"` shows the notice with Regenerate.
+
+Evidence in `docs/qa/fix-loop-guard/`: the red files above, `e2e/` (harnesses, before/after JSON, trial JSON) and
+`shots/` at 1440 and 390. Spec §10 row 39 states the rule.

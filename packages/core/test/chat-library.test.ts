@@ -8,7 +8,6 @@ import {
   canCreatePersona,
   crisisResources,
   detectCrisis,
-  detectLoop,
   directionOf,
   exportChat,
   findPersona,
@@ -149,18 +148,6 @@ describe("reports", () => {
     expect((await r.listReports()).map((x) => x.id)).toEqual([b.id, a.id]);
     await r.deleteReport(a.id);
     expect(await r.listReports()).toHaveLength(1);
-  });
-});
-
-describe("detectLoop", () => {
-  it("catches word n-gram repetition and character repetition, and ignores healthy text", () => {
-    expect(detectLoop("The answer is 42. The answer is 42. The answer is 42.")).toBe(true);
-    expect(detectLoop("go on and on and on and on and on")).toBe(true);
-    expect(detectLoop("שלום שלום שלום שלום")).toBe(true);
-    expect(detectLoop("ははははははははははははははははははははははははははははははははははははは")).toBe(true);
-    expect(detectLoop("Here is a summary of the three points you asked about, in order, with one sentence each.")).toBe(false);
-    expect(detectLoop("a b a b")).toBe(false);
-    expect(detectLoop("")).toBe(false);
   });
 });
 

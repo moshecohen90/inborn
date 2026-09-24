@@ -25,6 +25,8 @@ interface Props {
 
 /** Flat, full-width answer (§9.6): mono label, Markdown body, collapsed reasoning and ledger, states for stopped / loop / error. */
 export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quant, onLongPress, onContinue, onRegenerate, onUnlock }: Props) {
+  /* A cut loop is persisted as stoppedBy "loop" (F369), so the notice survives a reload; `row.loop` covers the live turn. */
+  const looped = !!row.loop || row.stoppedBy === "loop";
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -72,14 +74,20 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
           {t("chat.familySafe.note")}
         </Text>
       ) : null}
-      {!row.streaming && (row.stopped || row.loop) ? (
+      {!row.streaming && (row.stopped || looped) ? (
         <View style={[styles.stateRow, rtl ? styles.rowReverse : null]}>
-          <Text style={[type.mono, { color: theme.text3 }]}>{row.loop ? t("chat.loopDetected") : row.stoppedBy === "system" ? t("chat.stoppedBySystem") : t("chat.stopped")}</Text>
-          {row.loop && onRegenerate ? (
+          {looped ? (
+            <Text testID="loop-notice" style={[type.mono, styles.notice, { color: theme.text3 }]}>
+              {t(row.modelId === "instant" ? "chat.loopCut" : "chat.loopCutRetry")}
+            </Text>
+          ) : (
+            <Text style={[type.mono, { color: theme.text3 }]}>{row.stoppedBy === "system" ? t("chat.stoppedBySystem") : t("chat.stopped")}</Text>
+          )}
+          {looped && onRegenerate ? (
             <Pressable testID="regenerate" accessibilityRole="button" onPress={onRegenerate} hitSlop={8} style={styles.inlineBtn}>
               <Text style={[type.caption, { color: theme.accent }]}>{t("chat.regenerate")}</Text>
             </Pressable>
-          ) : row.stopped && onContinue ? (
+          ) : !looped && row.stopped && onContinue ? (
             <Pressable testID="continue" accessibilityRole="button" onPress={onContinue} hitSlop={8} style={styles.inlineBtn}>
               <Text style={[type.caption, { color: theme.accent }]}>{t("chat.continue")}</Text>
             </Pressable>
@@ -174,5 +182,6 @@ const styles = StyleSheet.create({
   reasoningRtl: { borderLeftWidth: 0, borderRightWidth: 1, paddingLeft: 0, paddingRight: 10 },
   dot: { width: 8, height: 8, borderRadius: 4, marginVertical: 8 },
   stateRow: { flexDirection: "row", alignItems: "center", gap: 12, flexWrap: "wrap" },
+  notice: { flexShrink: 1 },
   inlineBtn: { minHeight: 28, justifyContent: "center" },
 });

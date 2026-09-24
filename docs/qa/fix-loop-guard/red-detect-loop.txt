@@ -1,0 +1,349 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-loop-guard/packages/core
+
+ ❯ test/chat-loop.test.ts (40 tests | 39 failed) 16ms
+   ❯ F369 · detectLoop flags a repeat anywhere in the tail, not only at its end (37)
+     × trips on the exact Japanese loop from after.json and trims to the first occurrence 4ms
+     × trips on the Japanese loop at every streaming boundary once the third copy and its separator are in 1ms
+     × trips on a ja sentence loop and keeps "1998 年ワールドカップの優勝は日本を、日本は…" 1ms
+     × trips on a ja, one copy per line sentence loop and keeps "1998 年ワールドカップの優勝は日本を、日本は…" 1ms
+     × trips on a zh sentence loop and keeps "1998年世界杯冠军是法国队，法国队是1998年…" 0ms
+     × trips on a ko sentence loop and keeps "1998년 월드컵 우승팀은 프랑스입니다.…" 0ms
+     × trips on a he sentence loop and keeps "הזוכה במונדיאל 1998 היא …" 0ms
+     × trips on a ar sentence loop and keeps "الفائز بكأس العالم 1998 …" 0ms
+     × trips on a en sentence loop and keeps "France won the 1998 Worl…" 1ms
+     × trips on a de sentence loop and keeps "Der Weltmeister von 1998…" 0ms
+     × catches a loop that started before the 600-code-point window, keeping only its first copy 0ms
+     × leaves healthy text alone: numbered list of three identical steps 0ms
+     × leaves healthy text alone: numbered list of three identical steps (ja) 0ms
+     × leaves healthy text alone: bulleted list of three identical steps (de) 0ms
+     × leaves healthy text alone: poem refrain twice (he) 1ms
+     × leaves healthy text alone: hymn chorus line twice 0ms
+     × leaves healthy text alone: no no no (en) 0ms
+     × leaves healthy text alone: go on and on and on (en idiom) 0ms
+     × leaves healthy text alone: שלום ×4 (he) 0ms
+     × leaves healthy text alone: nein nein nein (de) 0ms
+     × leaves healthy text alone: いいえ ×3 (ja) 0ms
+     × leaves healthy text alone: لا لا لا (ar) 0ms
+     × leaves healthy text alone: 谢谢 (zh) 0ms
+     × leaves healthy text alone: fenced code with repeated lines 0ms
+     × leaves healthy text alone: unfenced code, three repeated lines 0ms
+     × leaves healthy text alone: markdown table and rule 0ms
+     × leaves healthy text alone: de on-topic answer (after.json) 0ms
+     × leaves healthy text alone: ja on-topic answer (after.json) 0ms
+     × leaves healthy text alone: ja board answer (after.json) 0ms
+     × leaves healthy text alone: en long answer 0ms
+     × leaves healthy text alone: ja long answer with repeated particles 0ms
+     × leaves healthy text alone: zh answer 0ms
+     × leaves healthy text alone: ko answer 0ms
+     × leaves healthy text alone: he answer 0ms
+     × leaves healthy text alone: ar answer 0ms
+     × is empty-safe 0ms
+   ❯ F369 · guardLoops stops the engine and cuts the answer (controller) (3)
+     × aborts a looping stream within the fourth copy and hands back the first copy 0ms
+     × passes a healthy stream through untouched and never stops it 0ms
+     × cuts a loop the engine finished by itself (token ceiling) without calling stop 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 39 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on the exact Japanese loop from after.json and trims to the first occurrence
+TypeError: actual value must be number or bigint, received "undefined"
+ ❯ test/chat-loop.test.ts:52:26
+     50|     const hit = detectLoop(JA_LOOP);
+     51|     expect(hit).not.toBeNull();
+     52|     expect(hit!.repeats).toBeGreaterThanOrEqual(3);
+       |                          ^
+     53|     expect(JA_LOOP.slice(0, hit!.keep).trimEnd()).toBe(JA_UNIT);
+     54|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on the Japanese loop at every streaming boundary once the third copy and its separator are in
+AssertionError: expected false to be null
+
+- Expected:
+null
+
++ Received:
+false
+
+ ❯ test/chat-loop.test.ts:59:66
+     57|     const third = (JA_UNIT.length + 1) * 3;
+     58|     for (let end = third; end <= JA_LOOP.length; end++) expect(detectL…
+     59|     expect(detectLoop(JA_LOOP.slice(0, JA_UNIT.length * 2 + 1))).toBeN…
+       |                                                                  ^
+     60|   });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a ja sentence loop and keeps "1998 年ワールドカップの優勝は日本を、日本は…"
+AssertionError: expected '1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカッ…' to be '1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカッ…' // Object.is equality
+
+Expected: "1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？"
+Received: "1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？ 1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？ 1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？ 199"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a ja, one copy per line sentence loop and keeps "1998 年ワールドカップの優勝は日本を、日本は…"
+AssertionError: expected '1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカッ…' to be '1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカッ…' // Object.is equality
+
+- Expected
++ Received
+
+  1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？
++ 1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？
++ 1998 年ワールドカップの優勝は日本を、日本は 1998 年ワールドカップを日本を優勝したのはどこですか？
++ 199
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a zh sentence loop and keeps "1998年世界杯冠军是法国队，法国队是1998年…"
+AssertionError: expected '1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。1998年世…' to be '1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。' // Object.is equality
+
+Expected: "1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。"
+Received: "1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。1998年世界杯冠军是法国队，法国队是1998年世界杯的冠军。1998年"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a ko sentence loop and keeps "1998년 월드컵 우승팀은 프랑스입니다.…"
+AssertionError: expected '1998년 월드컵 우승팀은 프랑스입니다. 1998년 월드컵 우승팀은…' to be '1998년 월드컵 우승팀은 프랑스입니다.' // Object.is equality
+
+Expected: "1998년 월드컵 우승팀은 프랑스입니다."
+Received: "1998년 월드컵 우승팀은 프랑스입니다. 1998년 월드컵 우승팀은 프랑스입니다. 1998년 월드컵 우승팀은 프랑스입니다. 1998년 월"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a he sentence loop and keeps "הזוכה במונדיאל 1998 היא …"
+AssertionError: expected 'הזוכה במונדיאל 1998 היא צרפת. הזוכה ב…' to be 'הזוכה במונדיאל 1998 היא צרפת.' // Object.is equality
+
+Expected: "הזוכה במונדיאל 1998 היא צרפת."
+Received: "הזוכה במונדיאל 1998 היא צרפת. הזוכה במונדיאל 1998 היא צרפת. הזוכה במונדיאל 1998 היא צרפת. הזוכה"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a ar sentence loop and keeps "الفائز بكأس العالم 1998 …"
+AssertionError: expected 'الفائز بكأس العالم 1998 هو فرنسا. الف…' to be 'الفائز بكأس العالم 1998 هو فرنسا.' // Object.is equality
+
+Expected: "الفائز بكأس العالم 1998 هو فرنسا."
+Received: "الفائز بكأس العالم 1998 هو فرنسا. الفائز بكأس العالم 1998 هو فرنسا. الفائز بكأس العالم 1998 هو فرنسا. الفائز"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a en sentence loop and keeps "France won the 1998 Worl…"
+AssertionError: expected 'France won the 1998 World Cup. The wi…' to be 'France won the 1998 World Cup. The wi…' // Object.is equality
+
+Expected: "France won the 1998 World Cup. The winner of the 1998 World Cup was France."
+Received: "France won the 1998 World Cup. The winner of the 1998 World Cup was France. The winner of the 1998 World Cup was France. The winner of the 1998 World Cup was France. The win"
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > trips on a de sentence loop and keeps "Der Weltmeister von 1998…"
+AssertionError: expected 'Der Weltmeister von 1998 ist Frankrei…' to be 'Der Weltmeister von 1998 ist Frankrei…' // Object.is equality
+
+Expected: "Der Weltmeister von 1998 ist Frankreich."
+Received: "Der Weltmeister von 1998 ist Frankreich. Der Weltmeister von 1998 ist Frankreich. Der Weltmeister von 1998 ist Frankreich. Der Weltmeister von 1998 ist Frankreich."
+
+ ❯ test/chat-loop.test.ts:66:50
+     64|       const hit = detectLoop(text);
+     65|       expect(hit).not.toBeNull();
+     66|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+       |                                                  ^
+     67|     });
+     68|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > catches a loop that started before the 600-code-point window, keeping only its first copy
+AssertionError: expected 'Intro. The same eleven words keep com…' to be 'Intro. The same eleven words keep com…' // Object.is equality
+
+Expected: "Intro. The same eleven words keep coming back in this answer again."
+Received: "Intro. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again. The same eleven words keep coming back in this answer again."
+
+ ❯ test/chat-loop.test.ts:73:48
+     71|     const text = "Intro. " + "The same eleven words keep coming back i…
+     72|     const hit = detectLoop(text);
+     73|     expect(text.slice(0, hit!.keep).trimEnd()).toBe("Intro. The same e…
+       |                                                ^
+     74|   });
+     75|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: numbered list of three identical steps
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: numbered list of three identical steps (ja)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: bulleted list of three identical steps (de)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: poem refrain twice (he)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: hymn chorus line twice
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: no no no (en)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: nein nein nein (de)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: いいえ ×3 (ja)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: لا لا لا (ar)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: 谢谢 (zh)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: fenced code with repeated lines
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: unfenced code, three repeated lines
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: markdown table and rule
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: de on-topic answer (after.json)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: ja on-topic answer (after.json)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: ja board answer (after.json)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: en long answer
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: ja long answer with repeated particles
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: zh answer
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: ko answer
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: he answer
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: ar answer
+AssertionError: expected false to be null
+
+- Expected:
+null
+
++ Received:
+false
+
+ ❯ test/chat-loop.test.ts:84:32
+     82|   for (const [name, text] of Object.entries(HEALTHY)) {
+     83|     it(`leaves healthy text alone: ${name}`, () => {
+     84|       expect(detectLoop(text)).toBeNull();
+       |                                ^
+     85|     });
+     86|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: go on and on and on (en idiom)
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > leaves healthy text alone: שלום ×4 (he)
+AssertionError: expected true to be null
+
+- Expected:
+null
+
++ Received:
+true
+
+ ❯ test/chat-loop.test.ts:84:32
+     82|   for (const [name, text] of Object.entries(HEALTHY)) {
+     83|     it(`leaves healthy text alone: ${name}`, () => {
+     84|       expect(detectLoop(text)).toBeNull();
+       |                                ^
+     85|     });
+     86|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · detectLoop flags a repeat anywhere in the tail, not only at its end > is empty-safe
+AssertionError: expected false to be null
+
+- Expected:
+null
+
++ Received:
+false
+
+ ❯ test/chat-loop.test.ts:89:28
+     87|
+     88|   it("is empty-safe", () => {
+     89|     expect(detectLoop("")).toBeNull();
+       |                            ^
+     90|   });
+     91| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · guardLoops stops the engine and cuts the answer (controller) > aborts a looping stream within the fourth copy and hands back the first copy
+TypeError: guardLoops is not a function
+ ❯ test/chat-loop.test.ts:131:29
+    129|     const pulled = { chars: 0, afterStop: 0 };
+    130|     let stops = 0;
+    131|     const out = await drain(guardLoops(loopingEngine(JA_UNIT, ac.signa…
+       |                             ^
+    132|     expect(stops).toBe(1);
+    133|     expect(out.loop?.text).toBe(JA_UNIT);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · guardLoops stops the engine and cuts the answer (controller) > passes a healthy stream through untouched and never stops it
+TypeError: guardLoops is not a function
+ ❯ test/chat-loop.test.ts:147:29
+    145|       yield { done: { promptTokens: 1, completionTokens: words.length,…
+    146|     })();
+    147|     const out = await drain(guardLoops(healthy, () => stops++));
+       |                             ^
+    148|     expect(stops).toBe(0);
+    149|     expect(out.loop).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/39]⎯
+
+ FAIL  test/chat-loop.test.ts > F369 · guardLoops stops the engine and cuts the answer (controller) > cuts a loop the engine finished by itself (token ceiling) without calling stop
+TypeError: guardLoops is not a function
+ ❯ test/chat-loop.test.ts:159:29
+    157|       yield { done: { promptTokens: 1, completionTokens: 1, ttftMs: 1,…
+    158|     })();
+    159|     const out = await drain(guardLoops(whole, () => stops++));
+       |                             ^
+    160|     expect(out.loop?.text).toBe(JA_UNIT);
+    161|     expect(stops).toBeLessThanOrEqual(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/39]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  39 failed | 1 passed (40)
+   Start at  20:44:07
+   Duration  601ms (transform 75%, import 21%, tests 4%, worker 1%)
+

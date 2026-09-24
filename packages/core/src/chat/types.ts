@@ -1,8 +1,8 @@
 import type { Role, Usage } from "../llm/types";
 import type { Citation } from "../rag/types";
 
-/** Who ended a generation early: the user tapped Stop, or the system (memory, heat, background) cut it (§8.8, §10.3). */
-export type StoppedBy = "user" | "system";
+/** Who ended a generation early: the user tapped Stop, the system (memory, heat, background) cut it (§8.8, §10.3), or the repetition guard cut a loop (F369). */
+export type StoppedBy = "user" | "system" | "loop";
 
 /** A conversation (spec §5.3). `incognito` chats live in RAM only and never reach a persistent repository (§5.7). */
 export interface Chat {
