@@ -6,8 +6,8 @@
   "build": {
     "frontendDist": "../../mobile/dist",
     "devUrl": "http://localhost:8081",
-    "beforeDevCommand": "cd ../mobile && APP_VARIANT=development npx expo start --web --port 8081",
-    "beforeBuildCommand": "cd ../mobile && npx expo export -p web"
+    "beforeDevCommand": "cd ../mobile && node scripts/copy-web-assets.mjs && node scripts/with-variant.mjs development npx expo start --web --port 8081",
+    "beforeBuildCommand": "cd ../mobile && node scripts/copy-web-assets.mjs && npx expo export -p web"
   },
   "app": {
     "withGlobalTauri": true,

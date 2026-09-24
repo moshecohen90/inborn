@@ -5,8 +5,10 @@ mod dev;
 mod engine;
 mod licence;
 mod models;
-#[cfg(all(feature = "qa", unix))]
+#[cfg(feature = "qa")]
 mod qa;
+#[cfg(feature = "qa")]
+mod qa_transport;
 mod secrets;
 mod shell;
 mod store;
@@ -18,7 +20,7 @@ use tauri::{Manager, RunEvent};
 fn main() {
   #[allow(unused_mut)]
   let mut builder = tauri::Builder::default();
-  #[cfg(all(feature = "qa", unix))]
+  #[cfg(feature = "qa")]
   {
     builder = builder.plugin(qa::plugin());
   }
@@ -32,7 +34,7 @@ fn main() {
     .manage(shell::Dropped::default())
     .setup(|app| {
       shell::install(app)?;
-      #[cfg(all(feature = "qa", unix))]
+      #[cfg(feature = "qa")]
       {
         app.manage(qa::Qa::default());
         // Accessory: the QA window renders and is captured without the app ever stealing the Mac's focus.
@@ -75,7 +77,7 @@ fn main() {
       updater::updater_check,
       updater::updater_install,
       dev::dev_write_result,
-      #[cfg(all(feature = "qa", unix))]
+      #[cfg(feature = "qa")]
       qa::qa_result,
     ])
     .build(tauri::generate_context!())

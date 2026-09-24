@@ -1,7 +1,7 @@
 //! QA control socket — the reason an agent can drive this app with no mouse and no dialogs.
 //!
-//! Compiled only with `--features qa` and opened only when `INBORN_QA_SOCKET` names a path, so a shipped
-//! build contains none of it. A client writes one JSON line and reads one JSON line back:
+//! Compiled only with `--features qa` and opened only when `INBORN_QA_SOCKET` names an endpoint (a unix socket
+//! path, or `tcp:127.0.0.1:<port>` on Windows; see `qa_transport`), so a shipped build contains none of it. A client writes one JSON line and reads one JSON line back:
 //!
 //! ```text
 //! {"op":"ping"}                                  -> {"ok":true,"value":{"pid":123,...}}
@@ -15,10 +15,8 @@
 //! macOS has no WKWebView WebDriver (tauri-driver is Linux/Windows only), so this is the channel.
 
 use std::collections::HashMap;
-use std::io::{BufRead, BufReader, Write};
-use std::os::unix::net::{UnixListener, UnixStream};
 use std::sync::atomic::{AtomicU64, Ordering};
-use std::sync::{Condvar, Mutex};
+use std::sync::{Arc, Condvar, Mutex};
 use std::time::Duration;
 
 use serde::Deserialize;
@@ -169,43 +167,23 @@ fn handle(app: &AppHandle, line: &str) -> Value {
   }
 }
 
-fn serve(app: AppHandle, stream: UnixStream) {
-  let mut writer = match stream.try_clone() {
-    Ok(w) => w,
-    Err(_) => return,
-  };
-  for line in BufReader::new(stream).lines().map_while(Result::ok) {
-    if line.trim().is_empty() {
-      continue;
-    }
-    let reply = handle(&app, &line).to_string();
-    if writeln!(writer, "{reply}").is_err() || writer.flush().is_err() {
-      return;
-    }
-  }
-}
-
-/// Binds the socket when `INBORN_QA_SOCKET` is set; a no-op otherwise, so a QA build behaves like a normal
+/// Binds the channel when `INBORN_QA_SOCKET` is set; a no-op otherwise, so a QA build behaves like a normal
 /// one until a driver asks for the channel.
 pub fn install(app: &AppHandle) {
-  let Some(path) = std::env::var_os("INBORN_QA_SOCKET") else { return };
-  let path = std::path::PathBuf::from(path);
-  let _ = std::fs::remove_file(&path);
-  let listener = match UnixListener::bind(&path) {
-    Ok(l) => l,
+  let Some(value) = std::env::var_os("INBORN_QA_SOCKET") else { return };
+  let value = value.to_string_lossy().into_owned();
+  let endpoint = match crate::qa_transport::endpoint(&value) {
+    Ok(e) => e,
     Err(e) => {
-      eprintln!("[inborn] qa socket {} failed: {e}", path.display());
+      eprintln!("[inborn] qa socket {e}");
       return;
     }
   };
-  eprintln!("[inborn] qa socket listening on {}", path.display());
   let app = app.clone();
-  std::thread::spawn(move || {
-    for stream in listener.incoming().flatten() {
-      let app = app.clone();
-      std::thread::spawn(move || serve(app, stream));
-    }
-  });
+  match crate::qa_transport::listen(endpoint, Arc::new(move |line: &str| handle(&app, line).to_string())) {
+    Ok(bound) => eprintln!("[inborn] qa socket listening on {bound}"),
+    Err(e) => eprintln!("[inborn] qa socket {value} failed: {e}"),
+  }
 }
 
 #[cfg(test)]

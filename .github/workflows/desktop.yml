@@ -1,34 +1,20 @@
 name: desktop
 
-# macOS (arm64, Metal) and Windows (x64, Vulkan) shells from the same web export (spec §5.9, D9).
-# Pull requests and pushes produce unsigned artefacts; a `v*` tag signs, notarizes and adds updater signatures
-# when the secrets exist. CUDA is a manual extra (workflow_dispatch) because the toolkit is a 3 GB install.
+# macOS (arm64, Metal) and Windows (x64, Vulkan + CPU) shells from the same web export (spec §5.9, D9).
+# Moshe's rule (17.9.2026): CI runs on release tags and manual runs only, never on every push. A `v*` tag signs,
+# notarizes and adds updater signatures when the secrets exist; a manual run builds unsigned for the chosen platform.
+# CUDA is a manual extra because the toolkit is a 3 GB install.
 
 on:
-  # Path filters keep macOS minutes (10x) for desktop-relevant changes only; they are not evaluated for tag pushes,
-  # so a `v*` tag always builds. Manual runs via workflow_dispatch.
   push:
-    branches: [main]
     tags: ["v*"]
-    paths:
-      - "apps/desktop/**"
-      - "apps/mobile/src/adapters/tauri.ts"
-      - "apps/web/**"
-      - "packages/**"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - ".github/workflows/desktop.yml"
-  pull_request:
-    paths:
-      - "apps/desktop/**"
-      - "apps/mobile/src/adapters/tauri.ts"
-      - "apps/web/**"
-      - "packages/**"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - ".github/workflows/desktop.yml"
   workflow_dispatch:
     inputs:
+      platform:
+        description: "Which desktop builds to run"
+        type: choice
+        options: [all, windows, macos]
+        default: all
       cuda:
         description: "Also build the Windows CUDA variant"
         type: boolean
@@ -49,7 +35,24 @@ jobs:
   gate:
     name: gates (typecheck · lint · tests · CSP)
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
     steps:
+      # smoke: launch the QA build, walk onboarding and answer one prompt on the Rust engine ("optional" reports
+      # without failing the run: a runner has no GPU, so the Vulkan build meets a machine with no Vulkan device).
+      - name: Build matrix for the requested platform
+        id: plan
+        env:
+          PLATFORM: ${{ inputs.platform || 'all' }}
+        run: |
+          cat > "$RUNNER_TEMP/matrix.json" <<'JSON'
+          [
+            { "platform": "macos", "name": "macOS arm64 (Metal)", "os": "macos-14", "bundles": "app,dmg", "features": "", "artifact": "inborn-macos-arm64" },
+            { "platform": "windows", "name": "Windows x64 (Vulkan)", "os": "windows-latest", "bundles": "nsis", "features": "--features vulkan", "vulkan": "1.3.296.0", "artifact": "inborn-windows-x64-vulkan", "smoke": "optional" },
+            { "platform": "windows", "name": "Windows x64 (CPU)", "os": "windows-latest", "bundles": "nsis", "features": "", "artifact": "inborn-windows-x64-cpu", "smoke": "required" }
+          ]
+          JSON
+          echo "matrix=$(jq -c --arg p "$PLATFORM" '[.[] | select($p == "all" or .platform == $p)]' "$RUNNER_TEMP/matrix.json")" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -68,24 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - name: macOS arm64 (Metal)
-            os: macos-14
-            bundles: app,dmg
-            features: ""
-            artifact: inborn-macos-arm64
-          - name: Windows x64 (Vulkan)
-            os: windows-latest
-            bundles: nsis
-            features: --features vulkan
-            vulkan: "1.3.296.0"
-            artifact: inborn-windows-x64-vulkan
-          # CPU-only fallback so a Windows artefact exists even when the Vulkan toolchain breaks.
-          - name: Windows x64 (CPU)
-            os: windows-latest
-            bundles: nsis
-            features: ""
-            artifact: inborn-windows-x64-cpu
+        include: ${{ fromJSON(needs.gate.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -101,13 +87,23 @@ jobs:
       # (C1083 "Cannot open compiler generated file ''"), so that job compiles into a short target dir.
       - name: Bundle root
         shell: bash
-        run: echo "BUNDLE_ROOT=apps/desktop/src-tauri/target/release/bundle" >> "$GITHUB_ENV"
+        run: |
+          echo "BUNDLE_ROOT=apps/desktop/src-tauri/target/release/bundle" >> "$GITHUB_ENV"
+          echo "RELEASE_DIR=apps/desktop/src-tauri/target/release" >> "$GITHUB_ENV"
       - name: Short cargo target dir (Vulkan)
         if: matrix.vulkan
         shell: bash
         run: |
           echo "CARGO_TARGET_DIR=D:\\t" >> "$GITHUB_ENV"
           echo "BUNDLE_ROOT=D:/t/release/bundle" >> "$GITHUB_ENV"
+          echo "RELEASE_DIR=D:/t/release" >> "$GITHUB_ENV"
+      # rusqlite's vendored OpenSSL is configured by a perl script; Git for Windows' perl lacks modules it needs.
+      - name: Strawberry Perl for the vendored OpenSSL (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $perl = "C:\Strawberry\perl\bin\perl.exe"
+          if (Test-Path $perl) { "OPENSSL_SRC_PERL=$perl" | Out-File -FilePath $env:GITHUB_ENV -Append } else { Write-Warning "no Strawberry Perl; openssl-src uses perl from PATH" }
 
       - uses: Swatinem/rust-cache@v2
         with:
@@ -175,6 +171,10 @@ jobs:
         if: runner.os == 'macOS'
         run: bash apps/desktop/scripts/verify-macos.sh ${{ env.BUNDLE_ROOT }}/macos/Inborn.app ${{ startsWith(github.ref, 'refs/tags/v') && '--notarized' || '' }}
 
+      - name: Desktop checks (Rust unit tests, QA feature on)
+        working-directory: apps/desktop/src-tauri
+        run: cargo test --release ${{ matrix.features }} --features qa
+
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
@@ -185,6 +185,39 @@ jobs:
             ${{ env.BUNDLE_ROOT }}/macos/*.sig
             ${{ env.BUNDLE_ROOT }}/nsis/*.exe
             ${{ env.BUNDLE_ROOT }}/nsis/*.sig
+
+      - name: Instant model into the desktop vault (smoke)
+        if: matrix.smoke && runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $vault = Join-Path $env:APPDATA "com.inbornapp.desktop\models"
+          New-Item -ItemType Directory -Force $vault | Out-Null
+          $file = Join-Path $vault "instant.gguf"
+          curl.exe -sSfL -o $file https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf
+          $sha = (Get-FileHash $file -Algorithm SHA256).Hash.ToLower()
+          if ($sha -ne "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517") { throw "instant.gguf sha256 $sha is not the catalog's" }
+
+      - name: QA build (control channel, same web export)
+        if: matrix.smoke && runner.os == 'Windows'
+        working-directory: apps/desktop/src-tauri
+        run: cargo build --release ${{ matrix.features }} --features "qa,tauri/custom-protocol"
+
+      - name: Smoke (launch, onboarding, one answer on the Rust engine)
+        if: matrix.smoke && runner.os == 'Windows'
+        continue-on-error: ${{ matrix.smoke == 'optional' }}
+        env:
+          INBORN_QA_DIR: ${{ runner.temp }}\inborn-qa
+        run: node apps/desktop/scripts/qa-desktop-run.mjs --app ${{ env.RELEASE_DIR }}/inborn-desktop.exe --out ${{ runner.temp }}/desktop-smoke --reset --quit
+
+      - name: Smoke evidence
+        if: always() && matrix.smoke && runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}-smoke
+          if-no-files-found: warn
+          path: |
+            ${{ runner.temp }}/desktop-smoke
+            ${{ runner.temp }}/inborn-qa/app.log
 
   build-cuda:
     name: Windows x64 (CUDA, manual)
@@ -207,6 +240,11 @@ jobs:
           cuda: "12.6.0"
           method: network
           sub-packages: '["nvcc", "cudart", "cublas", "cublas_dev", "visual_studio_integration"]'
+      - name: Strawberry Perl for the vendored OpenSSL
+        shell: pwsh
+        run: |
+          $perl = "C:\Strawberry\perl\bin\perl.exe"
+          if (Test-Path $perl) { "OPENSSL_SRC_PERL=$perl" | Out-File -FilePath $env:GITHUB_ENV -Append }
       - run: corepack pnpm install --frozen-lockfile
       - run: corepack pnpm --filter @inborn/desktop tauri build --bundles nsis --features cuda
       - uses: actions/upload-artifact@v4
