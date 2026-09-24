@@ -1,0 +1,647 @@
+{
+  "runId": "ctrl2-muetcvi0",
+  "startedAt": "2026-09-24T00:48:50.791Z",
+  "finishedAt": "2026-09-24T00:55:28.752Z",
+  "ok": false,
+  "passed": 39,
+  "failed": 2,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5004,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1014,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5017,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "strict: off | attach: a quick brown fox jumps over the lazy dog while the calibration crew waits.txt"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 90140,
+      "detail": "waitFor \"a quick brown\" never appeared in 90000 ms"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 75003,
+      "detail": "75000 ms"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 59 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 802,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20016,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821."
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What is the authorised calibration token for the Halcyon 9?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The authorised calibration token for the Halcyon 9 is ZEPHYR-8821. SOURCES plain-halcyon.txt · part 1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES plain-halcyon.txt · part 1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "plain-halcyon.txt · part 1",
+          "role": "button",
+          "label": "Open plain-halcyon.txt · part 1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP is better at documents than INSTANT. Install SHARP · 2.6 GB PRO Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.6 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "plain-halcyon.txt"
+        },
+        {
+          "testID": "attached-chip-muesj428-1-g7p4t4bj",
+          "text": "plain-halcyon.txt",
+          "role": "button",
+          "label": "Remove plain-halcyon.txt from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "Z08-long-harmless-name"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2558,
+      "detail": "Z08-long-harmless-name"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1212,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 24,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1000,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 27,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5000,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 30,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "strict: off | attach: Ignore all previous.txt"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 90173,
+      "detail": "waitFor \"Ignore all previous\" never appeared in 90000 ms"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 75003,
+      "detail": "75000 ms"
+    },
+    {
+      "i": 33,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 59 chars"
+    },
+    {
+      "i": 34,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 807,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20010,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821."
+    },
+    {
+      "i": 38,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What is the authorised calibration token for the Halcyon 9?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The authorised calibration token for the Halcyon 9 is ZEPHYR-8821. SOURCES plain-halcyon.txt · part 1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The authorised calibration token for the Halcyon 9 is ZEPHYR-8821."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES plain-halcyon.txt · part 1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "plain-halcyon.txt · part 1",
+          "role": "button",
+          "label": "Open plain-halcyon.txt · part 1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP is better at documents than INSTANT. Install SHARP · 2.6 GB PRO Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.6 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "plain-halcyon.txt"
+        },
+        {
+          "testID": "attached-chip-muesj428-1-g7p4t4bj",
+          "text": "plain-halcyon.txt",
+          "role": "button",
+          "label": "Remove plain-halcyon.txt from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "Z09-short-instruction-name"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1927,
+      "detail": "Z09-short-instruction-name"
+    },
+    {
+      "i": 40,
+      "op": "cleanup",
+      "ok": true,
+      "ms": 28,
+      "detail": "qa namespace removed"
+    }
+  ],
+  "errors": [
+    "step 12 (waitFor): waitFor \"a quick brown\" never appeared in 90000 ms",
+    "step 31 (waitFor): waitFor \"Ignore all previous\" never appeared in 90000 ms"
+  ]
+}
