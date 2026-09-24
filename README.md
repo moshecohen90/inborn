@@ -5013,8 +5013,10 @@ other one.
   one button) → `after-door-390.png` (recommendation, why, speed, languages, and the other model below), same pair at
   768, 1024 and 1440, no sideways scroll at any of them.
 
-Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green, `pnpm web:build` green, `pnpm web:smoke` 11 PASS
-(first visit 12.2 tok/s, offline visit 0 model fetches, the switch case, the four-width sweep, 9 locales).
+Gates on the merged branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 738, mobile 800, i18n 20,
+ui 20, `check:store` PASS), `pnpm web:build` green, `pnpm web:smoke` 11 PASS (first visit 14.9 tok/s, offline visit
+0 model fetches, the switch case, the four-width sweep, 9 locales), and `expo export -p ios` green, which is what
+proves the phone bundle still resolves `webStep.native.ts` and pulls none of `src/web` in (no device was available).
 Guards watched red: the core rule removed, "already installed" fed back into the ranking, the step reading the vault
 again (`FAIL: the model step offers fast but the door offers fast, instant`), and the site check against the old
 sentence. No phone and no emulator was touched. Evidence in `docs/qa/web-door-choice/`.
