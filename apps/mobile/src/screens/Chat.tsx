@@ -631,7 +631,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       } else if (citations) {
         /* A SOURCES strip under words no passage carried is a fabricated citation (QA F366). */
         const kept = groundedCitations(prefix + reply, lastUser, ragUsed, citations);
-        if (!kept.length && !existingMessageId) setNoneMatched(true);
+        if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
         citations = kept.length ? kept : undefined;
       }
       let keptId: string | null = null;

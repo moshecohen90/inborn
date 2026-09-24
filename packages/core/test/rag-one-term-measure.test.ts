@@ -99,7 +99,7 @@ describe.skipIf(!DIR)("F365 · measures the one-term questions under e5", () => 
       "",
       `- Off-topic pairs, any term count: ${off.length}, highest cosine ${Math.max(...off).toFixed(4)} (the alone door's margin is ${(door.alone - Math.max(...off)).toFixed(4)}).`,
       `- Off-topic pairs sharing one term: ${offOne.length}, highest cosine ${topOffOne.toFixed(4)} (${offOne.find((r) => r.cos === topOffOne)!.shared.join(", ")}); the corroboration door sits ${(door.corroborate - topOffOne).toFixed(4)} above it even before the weak-term rule.`,
-      `- On-topic pairs sharing one content word, at or under the alone door: ${onOneBelowAlone.length}; the door keeps ${kept.length} (lowest kept ${Math.min(...kept).toFixed(4)}, margin ${(Math.min(...kept) - door.corroborate).toFixed(4)}) and refuses ${lost.length}: ${lost.map((r) => `${r.doc}#${r.chunk} ${r.answering ? "answering" : "other chunk"} ${r.cos.toFixed(4)}`).join("; ")}.`,
+      `- On-topic pairs sharing one content word, at or under the alone door: ${onOneBelowAlone.length}; the door keeps ${kept.length}${kept.length ? ` (lowest kept ${Math.min(...kept).toFixed(4)}, margin ${(Math.min(...kept) - door.corroborate).toFixed(4)})` : ""} and refuses ${lost.length}: ${lost.map((r) => `${r.doc}#${r.chunk} ${r.answering ? "answering" : "other chunk"} ${r.cos.toFixed(4)}`).join("; ")}.`,
       "",
       "## Every one-term pair",
       "",

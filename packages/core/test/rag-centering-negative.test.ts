@@ -72,23 +72,21 @@ function sweep(rows: Scored[], metric: "cos" | "centred" | "z"): { kept: number;
 describe("F330 · on the old embedder, centring the cosine does not win the recall back", () => {
   it("the raw cosine keeps nothing once every off-topic question must be dropped", () => {
     const s = sweep(single, "cos");
-    expect(s.total).toBe(28);
+    expect(s.total).toBe(44);
     expect(s.kept).toBe(0);
   });
 
-  it("centring against the script's null bank keeps almost nothing, and z-scoring keeps 6 of 28", () => {
+  it("centring against the script's null bank keeps almost nothing, and z-scoring keeps nothing of 44", () => {
     expect(sweep(single, "centred").kept).toBeLessThanOrEqual(1);
-    const z = sweep(single, "z");
-    expect(z.kept).toBe(6);
-    /* A real gap, unlike every other variant — and still nowhere near the 50/57 the round was asked for. */
-    expect(z.margin).toBeGreaterThan(0.4);
+    /* Round 70b's 6 of 28 did not survive F363's accented and zh-Hant questions: one more off-topic question closed the gap. */
+    expect(sweep(single, "z").kept).toBe(0);
   });
 
-  it("no door reaches the bar: 50 of 57 on-topic with nothing off-topic cited", () => {
+  it("no door reaches the bar: 73 of 83 on-topic with nothing off-topic cited", () => {
     const lexical = single.filter((r) => r.kind === "on" && isRelevant({ chunk: { id: "c", docId: "d", page: 1, ord: 0, text: "t", start: 0, end: 1, tokens: 1 }, score: 1, cosine: r.cos, bm25: r.bm25, bm25Terms: r.terms }, relevanceDoors("embed-nomic"))).length;
     const best = Math.max(...(["cos", "centred", "z"] as const).map((m) => sweep(single, m).kept));
-    expect(lexical + best).toBeLessThan(50);
-    expect(lexical + best).toBe(35);
+    expect(lexical + best).toBeLessThan(73);
+    expect(lexical + best).toBe(39);
   });
 });
 
@@ -100,8 +98,8 @@ describe("F330 · on the old embedder, centring the cosine does not win the reca
 describe("F330 · the old embedder is not finding the right chunk either", () => {
   const on = multi.filter((r) => r.kind === "on");
 
-  it("the answering chunk is ranked first for 3 of 21 on-topic questions", () => {
-    expect(on.length).toBe(21);
+  it("the answering chunk is ranked first for 3 of 27 on-topic questions", () => {
+    expect(on.length).toBe(27);
     expect(on.filter((r) => r.top === r.answer).length).toBe(3);
   });
 
@@ -143,16 +141,16 @@ describe("F334 · the bar is met by the embedder, not by a door", () => {
     return d.questions.map((q) => ({ kind: q.kind, ok: isRelevant(hit(q.cosine, idx.search(q.q, 5)[0]?.score ?? 0, idx.search(q.q, 5)[0]?.matched ?? 0)) }));
   });
 
-  it("answering chunk first: the old embedder 3 of 21, the shipped one 20 of 21", () => {
+  it("answering chunk first: the old embedder 3 of 27, the shipped one 25 of 27", () => {
     expect(multi.filter((r) => r.kind === "on" && r.top === r.answer).length).toBe(3);
     const on = e5Six.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => q.cosines.indexOf(Math.max(...q.cosines)) === d.answers));
-    expect(on.filter(Boolean).length).toBe(20);
+    expect(on.filter(Boolean).length).toBe(25);
   });
 
-  it("one-passage recall with nothing off-topic cited: the old embedder's best door 35 of 57, the shipped one 50 of 57", () => {
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(50);
-    /* 51 until F365 raised e5's one-word corroboration door to 0.815; "Which cities host the offices?" sits at 0.8098. */
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(50);
+  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 74 of 83", () => {
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(73);
+    /* 75 until F365 raised e5's one-word corroboration door to 0.815; "Which cities host the offices?" sits under it. */
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(74);
     expect(scored.filter((r) => r.kind === "off" && r.ok).length).toBe(0);
   });
 });

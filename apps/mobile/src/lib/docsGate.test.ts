@@ -95,9 +95,10 @@ describe("F198 · the 'answered without your documents' notice", () => {
     for (const usedPassages of [0, 2]) expect(saysNoneMatched({ continuing: true, attachedCount: 1, usedPassages })).toBe(false);
   });
 
-  it("the chat asks this one question at both places it could raise the notice, and nowhere decides for itself", () => {
+  it("the chat asks this one question at every place it could raise the notice, and nowhere decides for itself", () => {
     const raises = [...chat.matchAll(/setNoneMatched\(true\)/g)];
-    expect(raises).toHaveLength(2);
+    /* The third is F366: an answer none of whose passages it drew on. */
+    expect(raises).toHaveLength(3);
     for (const m of raises) {
       const line = chat.slice(chat.lastIndexOf("\n", m.index) + 1, m.index);
       expect(line, "a notice raised without asking saysNoneMatched").toContain("saysNoneMatched({ continuing: !!existingMessageId");

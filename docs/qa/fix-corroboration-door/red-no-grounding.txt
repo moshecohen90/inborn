@@ -1,0 +1,11 @@
+# sabotage: no-grounding
+# packages/core/src/rag/citations.ts: '  const asked = evidenceTerms(question);' -> '  if (question) return citations;
+  const asked = evidenceTerms(question);'
+     × the non-strict fabrication the verifier saw keeps no chip 9ms
+     × an answer that only repeats the question, or shares only a number with the passage, keeps no chip 1ms
+     × an answer taken from a passage keeps that passage's chip and only it, and its [n] still points at it 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ Array(6) ] to deeply equal []
+AssertionError: expected [ Array(6) ] to deeply equal []
+AssertionError: expected [ 1, 2, 3, 4, 5, 6 ] to deeply equal [ 1 ]
+      Tests  3 failed | 12 passed (15)

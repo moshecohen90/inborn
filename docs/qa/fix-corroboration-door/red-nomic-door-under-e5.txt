@@ -1,0 +1,18 @@
+# sabotage: nomic-door-under-e5
+# packages/core/src/rag/prompt.ts: '"embed-e5": { alone: 0.82, corroborate: 0.815,' -> '"embed-e5": { alone: 0.82, corroborate: 0.5,'
+     × round 70's six-chunk sets: the three one-year citations are gone 18ms
+     × e5's row, with the margins it was set from 2ms
+     × the old 0.5 corroboration is nomic's alone, and under e5 it no longer corroborates anything 1ms
+     × strict=false: 74 of 83 on-topic questions cite the passage and 0 of 143 off-topic ones do 42ms
+     × strict=true: 74 of 83 on-topic questions cite the passage and 0 of 143 off-topic ones do 12ms
+     × per language, accented and accent-less typing apart, and zh-Hant beside zh 12ms
+     × strict=false: 24 of 27 cite the answering chunk and none cites only a wrong one 11ms
+     × strict=true: 24 of 27 cite the answering chunk and none cites only a wrong one 13ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ 83, 75 ] to deeply equal [ 83, 74 ]
+AssertionError: expected { ja: '13/14', zh: '10/10', …(12) } to deeply equal { de: '5/5', …(13) }
+AssertionError: expected 25 to be 24 // Object.is equality
+AssertionError: expected 0.8107 to be less than 0.5
+AssertionError: expected { alone: 0.82, corroborate: 0.5, …(1) } to deeply equal { alone: 0.82, …(2) }
+AssertionError: expected true to be false // Object.is equality
+      Tests  8 failed | 19 passed (27)
