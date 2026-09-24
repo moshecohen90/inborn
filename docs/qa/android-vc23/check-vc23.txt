@@ -1,0 +1,78 @@
+=== AAB
+5326338059 bytes
+5326338059
+=== sha256
+1598a7afd7e590f2fd8dda625958566603c4ec4fd11488e565274ccb9b22ceac
+=== signer
+Owner: CN=Inborn Upload Key, O=Inborn, C=IL
+	 SHA256: E7:02:C9:A9:19:C8:85:BC:E7:6C:C6:A0:D7:94:70:F0:AD:91:75:AF:49:3B:21:B7:32:02:57:4D:D2:CC:ED:CD
+=== jarsigner
+
+jar verified.
+=== entry list
+    1513
+=== manifest
+minSdkVersion="26"
+package="com.inbornapp.mobile"
+targetSdkVersion="36"
+versionCode="23"
+versionName="1.0.0"
+=== bundletool validate
+rc=0
+App Bundle information
+------------
+Feature modules:
+=== check-android-bundle.sh
+rc=0
+OK: base/assets/tessdata/eng.traineddata (4113088 B)
+OK: base/assets/tessdata/heb.traineddata (961404 B)
+OK: asset pack inborn_model (3 entries, 532518071 B)
+OK: asset pack inborn_model_fast (3 entries, 1280836794 B)
+OK: asset pack inborn_model_embed (3 entries, 467959867 B)
+OK: asset pack inborn_model_speech (3 entries, 147952421 B)
+OK: asset pack inborn_model_vision (3 entries, 204988190 B)
+OK: asset pack inborn_model_sharp (3 entries, 1401059131 B)
+OK: asset pack inborn_model_sharp_2 (3 entries, 1339880861 B)
+OK: no base/assets/ios entries.
+OK: bundle carries both OCR language files, every asset pack of ALL_PACKS and no iOS assets.
+=== check-qa-bridge.sh
+rc=0
+OK: /Users/moshecohen/dev/inborn-wt/android-vc23/apps/mobile/android/app/build/outputs/bundle/release/app-release.aab contains no QA bridge
+=== check-android-permissions.sh
+rc=2
+AAB needs bundletool: set BUNDLETOOL=/path/bundletool.jar
+=== module sizes
+  <base/assets>               18,175,149 B    120 entries
+  BUNDLE-METADATA             51,931,002 B     30 entries
+  BundleConfig.pb                    656 B      1 entries
+  META-INF                       391,895 B      3 entries
+  base                       202,992,347 B   1453 entries
+  inborn_model               532,518,071 B      3 entries
+  inborn_model_embed         467,959,867 B      3 entries
+  inborn_model_fast        1,280,836,794 B      3 entries
+  inborn_model_sharp       1,401,059,131 B      3 entries
+  inborn_model_sharp_2     1,339,880,861 B      3 entries
+  inborn_model_speech        147,952,421 B      3 entries
+  inborn_model_vision        204,988,190 B      3 entries
+=== traineddata
+  base/assets/tessdata/eng.traineddata 4113088 B
+  base/assets/tessdata/heb.traineddata 961404 B
+=== base/assets/ios
+0
+  0
+=== commit baked in
+=== check-shipping-bundles (INBORN_REQUIRE_BUNDLE=1)
+rc=0
+  apps/mobile/android/app/build/outputs/bundle/release/app-release.aab (Android bundle): OK: /Users/moshecohen/dev/inborn-wt/android-vc23/apps/mobile/android/app/build/outputs/bundle/release/app-release.aab contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/android/app/build/outputs/bundle/release/app-release.aab (models): OK instant inborn_model/assets/Qwen3.5-0.8B-Q4_K_M.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/android/app/build/outputs/bundle/release/app-release.aab (models): OK vision-qwen35 inborn_model_vision/assets/mmproj-Qwen3.5-0.8B-F16.gguf 204987232 B sha256 matches the catalog
+=== pack delivery types
+  inborn_model: deliveryType = "fast-follow
+  inborn_model_embed: deliveryType = "on-demand
+  inborn_model_fast: deliveryType = "on-demand
+  inborn_model_sharp: deliveryType = "on-demand
+  inborn_model_sharp_2: deliveryType = "on-demand
+  inborn_model_speech: deliveryType = "on-demand
+  inborn_model_vision: deliveryType = "fast-follow

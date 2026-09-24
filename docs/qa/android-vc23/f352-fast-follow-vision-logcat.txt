@@ -1,0 +1,8 @@
+# logcat after the Play update to vc23 (lastUpdateTime 20:16:19), before any app launch
+09-24 20:16:32.481  1943  2076 I ActivityManager: Start proc 29142:com.inbornapp.mobile/u0a1436 for service {com.inbornapp.mobile/com.google.android.play.core.assetpacks.AssetPackExtractionService}
+09-24 20:16:32.815 24827 24864 I Finsky:background: [85341] RM: queryStatus resource_request=6ab6e92a-e651-42ac-abcb-14cadcb5fd69 request_id=201 pkg_id=com.inbornapp.mobile artifact_id=inborn_model_vision isid=WE1Gt1beSsyMyMzudq260A
+09-24 20:16:32.915 24585 24984 I Finsky  : [85433] getChunkFileDescriptor for package: com.inbornapp.mobile, chunkId: AssetModuleChunkId{sessionId=201, moduleName=inborn_model_vision, sliceId=inborn_model_vision, chunkIndex=0}
+09-24 20:16:33.775 24585 24801 I Finsky  : [85400] Completing chunk AssetModuleChunkId{sessionId=201, moduleName=inborn_model_vision, sliceId=inborn_model_vision, chunkIndex=0}
+09-24 20:16:36.891 24585 24801 I Finsky  : [85400] Completing module AssetModuleId{sessionId=201, name=inborn_model_vision}
+09-24 20:16:37.045 24827 24924 I Finsky:background: [85375] DS: DS: onRemove(request_id=2899, files_to_download=[inborn_model_vision:inborn_model_vision:0(size:40655314),inborn_model_vision:inborn_model_vision:1(size:40505575),inborn_model_vision:inborn_model_vision:2(size:40443821),inborn_model_vision:inborn_model_vision:3(size:34585228)], context[group_id=com.inbornapp.mobile], display_data[invi
+09-24 20:16:37.045 29142 29168 I PlayCore: UID: [11436]  PID: [29142] AssetPackServiceImpl : onNotifyModuleCompleted(inborn_model_vision, sessionId=201)
