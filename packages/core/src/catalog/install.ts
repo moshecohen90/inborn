@@ -4,7 +4,8 @@ export type DeliverySource = "bundled" | "play" | "apple" | "https" | "hf" | "im
 export type InstallState =
   | { kind: "not-installed" }
   | { kind: "needs-space"; requiredBytes: number; freeBytes: number }
-  | { kind: "delivering"; via: DeliverySource; bytes: number; total: number; paused: boolean; waitingForWifi: boolean; needsConfirmation: boolean }
+  /** `resumedAt`: when a transfer parked by leaving the app continued on return, so the row can say it did not restart. */
+  | { kind: "delivering"; via: DeliverySource; bytes: number; total: number; paused: boolean; waitingForWifi: boolean; needsConfirmation: boolean; resumedAt?: number }
   | { kind: "verifying"; via: DeliverySource; bytes: number }
   | { kind: "ready"; path: string; bytes: number; sha256: string; via: DeliverySource }
   | { kind: "corrupt"; reason: CorruptReason; via: DeliverySource }
@@ -18,6 +19,7 @@ export type InstallEvent =
   | { type: "progress"; bytes: number; total: number }
   | { type: "pause" }
   | { type: "resume" }
+  | { type: "resumed"; at: number }
   | { type: "waiting-for-wifi" }
   | { type: "needs-confirmation" }
   | { type: "cancel" }
@@ -52,6 +54,8 @@ export function transition(state: InstallState, event: InstallEvent): InstallSta
       return state.kind === "delivering" ? { ...state, paused: true } : state;
     case "resume":
       return state.kind === "delivering" ? { ...state, paused: false, waitingForWifi: false, needsConfirmation: false } : state;
+    case "resumed":
+      return state.kind === "delivering" ? { ...state, paused: false, resumedAt: event.at } : state;
     case "waiting-for-wifi":
       return state.kind === "delivering" ? { ...state, waitingForWifi: true } : state;
     case "needs-confirmation":

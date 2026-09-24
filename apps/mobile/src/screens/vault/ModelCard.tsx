@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { LANGUAGE_NAME_BY_CODE, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
@@ -10,6 +10,7 @@ import { deviceNoun } from "../../lib/deviceNoun";
 import { modelCopy, modelLabel, modelName } from "../../lib/models";
 import { installFailureText } from "../../vault/failureText";
 import { includedWithApp } from "../../vault/included";
+import { justResumed, keepOpenNote } from "../../vault/keepOpen";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -67,7 +68,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       case "delivering":
         if (state.needsConfirmation) return { text: t("vault.state.needsConfirmation") };
         if (state.waitingForWifi) return { text: t("vault.state.waitingWifi") };
-        return { text: t(state.paused ? "vault.state.paused" : "vault.state.delivering", { percent: Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
+        return { text: t(state.paused ? "vault.state.paused" : justResumed(state, Date.now()) ? "vault.state.resumed" : "vault.state.delivering", { percent: Math.floor((100 * state.bytes) / Math.max(1, state.total || model.bytes)), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
       case "verifying":
         return { text: t("vault.state.verifying") };
       case "needs-space":
@@ -164,6 +165,11 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       {status ? (
         <Text testID={`model-status-${model.id}`} style={[type.mono, { color: status.danger ? theme.danger : theme.text2 }]}>
           {status.text}
+        </Text>
+      ) : null}
+      {keepOpenNote(Platform.OS, state) ? (
+        <Text testID={`model-keep-open-${model.id}`} style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("vault.keepOpen")}
         </Text>
       ) : null}
       {disabled ? null : (

@@ -33,6 +33,7 @@ import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vau
 import { PlayDelivery } from "./playDelivery";
 import { includedWithApp } from "./included";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
+import { downloadAwake } from "./keepAwake";
 
 /** A .gguf in the vault folder that neither the catalog nor an import registered (copied by hand, a crash mid-import): shown, counted, removable, never loaded. */
 export interface StrayFile {
@@ -408,12 +409,14 @@ export class VaultStore {
     try {
       let lastTick = 0;
       const path = await this.delivery.deliver(model, (e) => {
+        downloadAwake.onEvent(id, e);
         /* Five parallel downloads tick every 100 ms each; one repaint per file per half second keeps the JS thread free for the small file's verify. */
         if (e.type === "progress" && e.bytes < e.total && Date.now() - lastTick < PROGRESS_TICK_MS) return;
         if (e.type === "progress") lastTick = Date.now();
         this.dispatch(id, e);
       });
       this.lanes.release(id);
+      downloadAwake.release(id);
       const deliveredAt = Date.now();
       this.dispatch(id, { type: "delivered", bytes: fileSize(new File(path)) });
       const verified = await this.verify(model, path, plan.via);
@@ -421,6 +424,7 @@ export class VaultStore {
       return verified;
     } catch (e: unknown) {
       this.lanes.release(id);
+      downloadAwake.release(id);
       if (e instanceof PausedError) return this.dispatch(id, { type: "pause" });
       if (e instanceof NoSpaceError || isNoSpaceError(e)) {
         reportStorageFull();
@@ -458,6 +462,7 @@ export class VaultStore {
     if (m) await this.delivery.cancel(m);
     this.dispatch(id, { type: "cancel" });
     this.lanes.release(id);
+    downloadAwake.release(id);
   }
 
   async remove(id: string): Promise<void> {
