@@ -60,10 +60,11 @@
       "scope": "planned", "verify": "Confirm the licence text at the source; a Llama-style community licence would add 'Built with' and AUP obligations."
     },
     {
-      "id": "nomic-embed-text-v1.5", "group": "model", "name": "nomic-embed-text-v1.5", "version": "GGUF", "tier": "embeddings",
-      "license": "Apache-2.0", "licenseUrl": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5",
-      "homepage": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5", "attribution": "Nomic AI, Apache License 2.0",
-      "obligations": ["include LICENSE text", "attribution"], "restrictions": [], "scope": "catalogue"
+      "id": "multilingual-e5-large-instruct", "group": "model", "name": "multilingual-e5-large-instruct", "version": "560M GGUF Q6_K", "tier": "Document index",
+      "license": "MIT", "licenseUrl": "https://huggingface.co/intfloat/multilingual-e5-large-instruct",
+      "homepage": "https://huggingface.co/intfloat/multilingual-e5-large-instruct", "attribution": "Copyright (c) Microsoft Corporation (Liang Wang, Nan Yang et al., Multilingual E5). MIT License. GGUF conversion: Ralriki/multilingual-e5-large-instruct-GGUF (MIT)",
+      "obligations": ["copyright notice"], "restrictions": [], "scope": "shipped",
+      "verify": "The repo has no LICENSE file; the licence is the model card's `license: mit` (both the original and the GGUF repo, checked 24.9.2026)."
     },
     {
       "id": "qwen3-embedding-0.6b", "group": "model", "name": "Qwen3-Embedding-0.6B", "version": "GGUF", "tier": "embeddings (Pro)",

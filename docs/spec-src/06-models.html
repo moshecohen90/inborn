@@ -19,6 +19,7 @@
 </table>
 </div>
 <div class="note"><p><strong>ראייה — החלטה, 22.9.2026.</strong> בעמודת “ראייה” רק <strong>Instant</strong> מסומן כן. ה‑projector היחיד שנשלח בקטלוג הוא <span class="ltr">mmproj-Qwen3.5-0.8B-F16</span>, ורוחב ה‑embedding שלו מתאים ל‑Instant בלבד; Fast ו‑Sharp לא יכולים לטעון אותו, ולכן <span class="ltr">manifest.json</span> מציב אצלם <span class="ltr">vision: false</span>. זה תיקון F36: גיליון הצירוף מנטרל תמונה ומצלמה כשהמודל השוכן אינו Instant ומציע לעבור אליו. רמות T3/T4 שמסומנות כן הן תכנון ולא נשלחות ב‑1.0. פתיחת ראייה ל‑Fast ול‑Sharp דורשת projector תואם לכל אחד מהם. <strong>מסירה (סבב 74, 24.9.2026):</strong> ה‑projector נשלח יחד עם Instant בכל מקום ש‑Instant נשלח: בתוך ה‑IPA ב‑iOS, וכחבילת fast‑follow משלו ב‑Play. משתמש חדש שמצרף תמונה כהודעה ראשונה מקבל תשובה, לא הצעה להוריד "חבילת ראייה".</p></div>
+<div class="note"><p><strong>תמונה בלי מודל שרואה — חוסמים, לא שולחים (F343, 24.9.2026).</strong> כשההודעה בכותב נושאת תמונה ושום מודל במכשיר לא יכול לראות אותה עכשיו (חבילת התמונות, 205 MB, לא הורדה, או שהמודל השוכן אינו Instant), לחיצה על שליחה לא יוצרת הודעה ולא פונה למודל. ההודעה והתמונה נשארות בכותב, וכרטיס מעליהן אומר במילים פשוטות שאין במכשיר מודל שרואה תמונות ושאי אפשר לקרוא את התמונה עד שמורידים את חבילת התמונות, עם כפתור הורדה במקום (וכפתור מעבר ל‑Instant כשהוא זה שרואה). אין כפתור "סגור" ששולח בכל זאת: הדרכים היחידות קדימה הן להוריד, להסיר את התמונה או להחליף מודל. כשהחבילה מוכנה, ההודעה המוחזקת יוצאת לבד ועוברת דרך מצב ההמתנה של F294 ("קורא את התמונה שלך…"). מסמך מצורף שאין בו טקסט קריא כבר נחסם לפני המודל (F302), ושם ההודעה נשמרת עם שורת הסבר, כי הקובץ נשאר מצורף לשיחה ולא הולך לאיבוד.</p></div>
 <div class="note"><p><strong>מה לא בברירת המחדל ולמה.</strong> Gemma 4 עברה ל‑Apache‑2.0 באפריל 2026 ומביאה ראייה ושמע, אבל קובץ ה‑E2B שוקל 3.11 GB (5.1B פרמטרים בפועל), גדול מדי לרמת Fast; היא מוצעת כחלופה ברמת Sharp/Power. Llama 3.2 דורשת כיתוב "Built with Llama" ועותק רישיון בתוך האפליקציה, ולכן היא חלופה ולא ברירת מחדל. LFM2.5 חינמי רק מתחת להכנסה של 10 מיליון דולר בשנה; מותר עכשיו אבל מסומן לבדיקה בגדילה. אף מודל "uncensored" לא נכנס לקטלוג (ראו §11).</p></div>
 
 <h4>מה המשתמש רואה על כל מחסנית (בלי מספרי פרמטרים)</h4>
@@ -62,14 +63,14 @@
 <table>
 <thead><tr><th>תפקיד</th><th>ברירת מחדל</th><th class="num">גודל</th><th>רישיון</th><th>חלופה</th></tr></thead>
 <tbody>
-<tr><td>Embeddings למסמכים</td><td class="ltr">nomic-embed-text-v1.5</td><td class="num">274 MB</td><td class="ltr">Apache-2.0</td><td class="ltr">Qwen3-Embedding-0.6B (395 MB, רב‑לשוני, Pro); all-MiniLM-L6-v2 (46 MB) למכשירים חלשים</td></tr>
+<tr><td>Embeddings למסמכים</td><td class="ltr">multilingual-e5-large-instruct Q6_K</td><td class="num">468 MB</td><td class="ltr">MIT</td><td>נבחר מתוך 13 embedders שנמדדו (docs/qa/embed-multilingual/measure.md); nomic-embed-text-v1.5 האנגלי הוחלף בסבב 72</td></tr>
 <tr><td>תמלול</td><td class="ltr">Apple SpeechAnalyzer (iOS 26) / whisper.cpp base</td><td class="num">0 / 142 MB</td><td class="ltr">Apple / MIT</td><td class="ltr">Parakeet (Core ML), whisper small 466 MB (Pro)</td></tr>
 <tr><td>הקראה</td><td>קולות מערכת</td><td class="num">0</td><td>מערכת</td><td class="ltr">Kokoro-82M (ONNX, דסקטופ Pro)</td></tr>
 <tr><td>ראייה (תמונות)</td><td class="ltr">mmproj של Qwen3.5 (<span class="ltr">vision-qwen35</span>, F16), נשלח עם Instant</td><td class="num">205 MB</td><td class="ltr">Apache-2.0</td><td class="ltr">Gemma 4 E2B/E4B (ראייה + שמע)</td></tr>
 </tbody>
 </table>
 </div>
-<p>בכספת, כרטיס של מודל נלווה אינו כרטיס של מודל צ'אט: אין בו <span class="ltr">Use this model</span> ואין מהירות, והכותרת היא שמו של המודל בשפת המשתמש (<span class="ltr">Photo understanding</span>, <span class="ltr">Voice input</span>, <span class="ltr">Document index</span>). אותו שם מופיע בחלון ההורדה ובכל שורה בצ'אט, והשם הטכני (<span class="ltr">Qwen3.5 mmproj 0.4B</span>) מופיע רק בשורת הגודל. כשהמודל מובנה, הכרטיס אומר <span class="ltr">Included with the app</span>. כל קישור "התקן X" (צירוף תמונה, מסמכים, הכתבה, כרטיס ההמלצה) פותח את הכספת גלולה לכרטיס של X ומסמן אותו.</p>
+<p>בכספת, כרטיס של מודל נלווה אינו כרטיס של מודל צ'אט: אין בו <span class="ltr">Use this model</span> ואין מהירות, והכותרת היא שמו של המודל בשפת המשתמש (<span class="ltr">Photo pack</span>, <span class="ltr">Voice input</span>, <span class="ltr">Document index</span>). אותו שם מופיע בחלון ההורדה ובכל שורה בצ'אט, והשם הטכני (<span class="ltr">Qwen3.5 mmproj 0.4B</span>) מופיע רק בשורת הגודל. כשהמודל מובנה, הכרטיס אומר <span class="ltr">Included with the app</span>. כל קישור "התקן X" (צירוף תמונה, מסמכים, הכתבה, כרטיס ההמלצה) פותח את הכספת גלולה לכרטיס של X ומסמן אותו.</p>
 
 <h3>6.3 רצפת מכשירים ובחירת ברירת מחדל</h3>
 <div class="tw">

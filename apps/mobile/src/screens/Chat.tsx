@@ -89,7 +89,8 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
-import { planVisionTurn } from "../lib/visionGate";
+import { gatePhotoSend, planPhotoSend, planVisionTurn } from "../lib/visionGate";
+import { VisionHoldCard } from "../components/chat/VisionHoldCard";
 import { planDocsTurn, saysNoneMatched } from "../lib/docsGate";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
@@ -237,6 +238,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
   const [preparingVision, setPreparingVision] = useState(false);
+  /* QA F343: Send with a photo nothing here can see keeps the message and the photo in the composer behind this card. */
+  const [photoHold, setPhotoHold] = useState<"switch" | "companion" | null>(null);
+  const photoGating = useRef(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
   const [pasteOffer, setPasteOffer] = useState(false);
@@ -682,8 +686,33 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
   const submit = async (input: string) => {
     const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
-    if (!text || !session.current || busy) return;
+    if (!text || !session.current || busy || photoGating.current) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
+    photoGating.current = true;
+    try {
+      await gatePhotoSend({
+        hasImages: pendingImages.length > 0,
+        scanned: async () => {
+          setPreparingVision(true);
+          try {
+            await visionScanned();
+          } finally {
+            setPreparingVision(false);
+          }
+        },
+        verdict: () => planPhotoSend({ hasImages: true, modelSees: modelHasVision(model.id), projectorInstalled: resolveVision() !== null, otherModelSees: !!visionChatModel() }),
+        hold: setPhotoHold,
+        send: async () => {
+          setPhotoHold(null);
+          photoGating.current = false;
+          await submitNow(input, text);
+        },
+      });
+    } finally {
+      photoGating.current = false;
+    }
+  };
+  const submitNow = async (input: string, text: string) => {
     setDraft("");
     const dictated = isDictatedSend(dictatedDraft.current, text);
     setLastDictated(dictated);
@@ -1102,9 +1131,26 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     });
   };
   const dropPhoto = (uri: string) => {
-    setPendingImages((p) => p.filter((x) => x.uri !== uri));
+    setPendingImages((p) => {
+      const rest = p.filter((x) => x.uri !== uri);
+      if (!rest.length) setPhotoHold(null);
+      return rest;
+    });
     removeImage(uri);
   };
+  const dropAllPhotos = () => {
+    for (const p of pendingImages) removeImage(p.uri);
+    setPendingImages([]);
+    setPhotoHold(null);
+  };
+  /* Another model is a different answer to "can anything see this": the next Send asks again. */
+  useEffect(() => setPhotoHold(null), [model.id]);
+  const draftRef = useRef(draft);
+  draftRef.current = draft;
+  const releaseHeldTurn = useCallback(() => {
+    setPhotoHold(null);
+    void submitRef.current(draftRef.current);
+  }, []);
   const micPhase = dictation.phase.kind;
   const micLine = micPhase === "listening" ? t("voice.listeningHint") : micPhase === "transcribing" ? t("voice.transcribingHint") : null;
 
@@ -1350,6 +1396,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         <Text testID="mic-line" style={[type.caption, styles.centered, { color: theme.accent }]}>
           {micLine}
         </Text>
+      ) : null}
+      {photoHold && pendingImages.length ? (
+        <VisionHoldCard
+          offer={photoHold}
+          theme={theme}
+          model={chipLabel(t, model.id)}
+          seer={seerLabel}
+          seerReady={seerReady}
+          photos={pendingImages.length}
+          onSwitch={useSeer}
+          onRemove={dropAllPhotos}
+          onOpenVault={() => onOpenVault?.()}
+          onReady={releaseHeldTurn}
+        />
       ) : null}
       {pendingImages.length ? (
         <View testID="pending-images" style={styles.chips}>

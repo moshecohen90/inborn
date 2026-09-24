@@ -21,6 +21,25 @@ export interface PageChunk {
 
 export const DEFAULT_CHUNK: Required<ChunkOptions> = { targetTokens: 400, overlapTokens: 60, minTokens: 40 };
 
+/** Worst measured under-count of `estimateTokens` against the shipped embedder's tokenizer (docs/qa/embed-multilingual/token-ratios.txt: code 1.84). */
+export const EMBED_TOKEN_SAFETY = 2;
+/* BOS/EOS and slack. */
+const EMBED_RESERVED = 8;
+
+/** Estimated tokens any one text may carry into an embedder with `contextTokens` positions. */
+export const embedBudget = (contextTokens: number): number => Math.floor((contextTokens - EMBED_RESERVED) / EMBED_TOKEN_SAFETY);
+
+/**
+ * Chunk options that never hand an embedder with `contextTokens` positions a chunk longer than that: the phone would
+ * truncate it and llama.cpp elsewhere aborts. The short-tail merge in `chunkPage` may add `minTokens`, so it is paid for.
+ */
+export function chunkFor(contextTokens: number, options: ChunkOptions = {}): Required<ChunkOptions> {
+  const minTokens = options.minTokens ?? DEFAULT_CHUNK.minTokens;
+  const cap = embedBudget(contextTokens) - minTokens;
+  const targetTokens = Math.max(minTokens, Math.min(options.targetTokens ?? DEFAULT_CHUNK.targetTokens, cap));
+  return { targetTokens, minTokens, overlapTokens: Math.min(options.overlapTokens ?? DEFAULT_CHUNK.overlapTokens, Math.floor(targetTokens / 4)) };
+}
+
 interface Segment {
   text: string;
   start: number;

@@ -61,7 +61,7 @@ vi.mock("./paths", () => ({
 }));
 
 const { HttpsDelivery } = await import("./httpsDelivery");
-const model = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-nomic") as CatalogModel;
+const model = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5") as CatalogModel;
 const TOTAL = model.bytes;
 const FINAL = `/vault/${model.file}`;
 const PART = `${FINAL}.part`;

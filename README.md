@@ -5351,6 +5351,53 @@ AAB-gate tests. One thing is left open: the projector card in *On this device* s
 means nothing for a companion. It was not touched here.
 
 Spec §5.1, §5.4, §6.1, §6.2 and the §4.5 diagram were rewritten to match what ships.
+## Fixes round 72: a multilingual document index, measured, shipped and proven (branch `embed-multilingual`) — 24.9.2026
+
+Rounds 70 and 70b ended on one cause: the only embedder in the catalog, `nomic-embed-text-v1.5`, is Nomic's English
+model, so outside English its cosine measured the language and ranked the answering chunk first for 3 of 21
+questions. This round replaced it.
+
+- **Measured every candidate llama.rn can run** (F333). 20 variants of 13 embedders on round 70's own fixtures and
+  scorer, with the phone's int8 cosine. The bar was 18/21 answering chunks first plus 50/57 on-topic at 0/102
+  off-topic, Apache-2.0/MIT only. Only `multilingual-e5-large-instruct` clears it (Q8_0 and Q6_K, both 20/21).
+  Tables: `docs/qa/embed-multilingual/measure.md`.
+- **Shipped `embed-e5` = multilingual-e5-large-instruct Q6_K** (F334). 468 MB, MIT, catalog v5 re-signed, NOTICE and
+  licence sheet carry Microsoft's line. The cosine may cite alone again above 0.82, which sits 0.0024 over the highest
+  off-topic cosine of 144 questions; the round-70 lexical rule is unchanged. Result: 51/57 on-topic, 0/102
+  off-topic; on six-chunk documents 18/21 cite the right chunk and none cites only a wrong one. The round-70b negative
+  test now asserts both halves: the old embedder fails the bar, the new one passes it.
+- **Nothing past 512 positions reaches the embedder** (F335). The token estimator under-counts e5's tokenizer up to
+  1.84x (code), and the desktop engine aborted on a long chunk. Chunks are now sized from the model's context (212
+  estimated tokens), questions are clipped to the same budget, and the desktop caps its context at `n_ctx_train`.
+- **Old indexes are rebuilt, not searched** (F336). A document built by another embedder is re-indexed from page 0 on
+  the first open after the update; without e5 installed it waits as "no-embedder". Re-indexing from page 0 now drops
+  the old rows, which it silently kept before.
+- **Proven on an Android emulator** (F337). Japanese and German one-passage documents: a paraphrase that shares no
+  word with the passage is cited, and the off-topic question each earlier round failed on is dropped. Screenshots
+  and the `[rag]` lines are in `docs/qa/embed-multilingual/device/`.
+
+Open: the lead uploads the model to models.inbornapp.com with the command in `docs/qa/deploy-site/embed-e5-upload.md`
+(the URL is 404 today). French is the weakest language at 1/3, and the 0.82 door is tied to this embedder: any
+future embedder change must be measured again with `rag-multilingual-measure.test.ts`.
+## Fixes round 75: a photo nothing here can see is held in the composer, not sent (branch `vision-block`) — 24.9.2026
+
+Moshe attached a photo on the iPhone without the photo pack. The line asking for it appeared and he dismissed it. The turn had
+already gone out, and the next answer said it had received no image. On a simulator with origin/main's chat screen, the
+refusal was written as an assistant row. The composer came back empty, and the following question went to Instant without the
+picture: *"I cannot analyze the image or identify specific colors in the door."*
+
+- **Send holds the turn when no model here can see the photo** (F343). Nothing is stored and nothing reaches the model.
+  The text and the photo stay in the composer under one card, which says that no model on this device can see photos
+  and that the photo can't be read until the 205 MB photo pack is downloaded. The card offers Download, Remove the
+  photo, and Switch when another model could see it. It has no dismiss button, and Send again stays held. When the
+  pack turns ready, the held turn goes out by itself through the F294 wait state. Proven on the simulator: held with no
+  row stored, held again, and sent with the photo once the pack was on disk (`docs/qa/vision-block/`). The Download
+  button itself could not be proven on the simulator: its background download never reached the local model server, and
+  the vault's own Install fails the same way. So the automatic release is covered by unit tests only and needs one look
+  on a phone.
+- **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
+  The file stays attached, so there is nothing to hold.
+
 ## Fixes round 76: one recommended model per device, on every screen (branch `fix-model-sheet`) — 24.9.2026
 
 I14, wave 2: after round 66 the browser door and the vault recommended Fast, but the chat's Model sheet in the same
@@ -5368,10 +5415,23 @@ model for it first, the rest below.
   door's list and names Fast. Fast's catalog line said "on this phone" in a browser; it says "device" now, with the
   manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
   site languages now say "computers and tablets", and a test holds that sentence to the gate.
-- **The photo pack is a companion, has one name, and its install link lands on it** (F346, after round 74). Its
-  vault card offered "Use this model"; now no companion card does. It is called "Photo understanding" (translated
-  once per locale) on the card, in the download dialog and in every chat line, with "Qwen3.5 mmproj 0.4B" only on the
-  size line. Every "install X" link opens the vault scrolled to X's card with the card marked.
+
 
 Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
 `proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).
+## Fixes round 76b: the photo pack is a companion, has one name, and every install link lands on it (branch `fix-model-sheet`) — 24.9.2026
+
+Round 74 left the bundled projector's vault card offering "Use this model"; `ios-image-repro` found the attach sheet's
+install row opening the vault at the top, and three names for one pack in one flow.
+
+- **A companion card is not a chat model** (F351). Photo pack, Voice input and Document index cards have no Use, no
+  In use and no speed line. The heading is their own name, a bundled pack says "Included with the app", and the file's
+  technical name (Qwen3.5 mmproj 0.4B) sits only on the size line. Details no longer offers "Set as default" for one.
+- **One name** (F351). "Photo pack" is the term round 75 already used for the held photo. It is now what the card, the
+  download dialog, the details sheet and all seven chat lines say, one translation per locale in all 8 plus pseudo.
+- **Every "install X" link lands on X** (F351). The attach sheet, the photo offer, the documents offer, the advice card,
+  the mic sheet and the hands-free screen pass the id; the vault scrolls to that card and marks it in accent.
+
+Evidence in `docs/qa/fix-model-sheet/`: `vault-card-{before,after}-{en,de}-{light,dark}-{390,1440}.png`, rendered from
+the real `ModelCard` through react-native-web (`cardshot-harness.test.ts.txt`, `cardshots.mjs`), and
+`guard-red-f346-companion.txt`. Not seen on a phone or simulator: the scroll is proven by tests on the code path only.

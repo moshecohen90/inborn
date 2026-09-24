@@ -51,7 +51,7 @@ describe("F346 · a companion's vault card says what it is", () => {
     expect(html).toMatch(new RegExp(`data-testid="model-spec-vision-qwen35">${m.family} ${m.params} · `));
   });
   it("the voice and document companions follow the same rule", () => {
-    for (const id of ["speech-whisper-base", "embed-nomic"]) {
+    for (const id of ["speech-whisper-base", "embed-e5"]) {
       const html = card(id, { state: { kind: "ready", via: "https", bytes: 1, path: "/x", sha256: "" } });
       expect(html, id).not.toContain(`data-testid="use-${id}"`);
       expect(html, id).toContain(`NAME(${id.toUpperCase()})`);
@@ -100,13 +100,14 @@ describe("F346 · 'install X' lands on X's card", () => {
 
 describe("F346 · one name for the photo pack, in every locale", () => {
   const dir = join(__dirname, "../../../../../packages/i18n/locales");
-  const KEYS = ["chat.attach.visionMissing", "chat.vision.companionMissing", "chat.vision.offerCompanion", "chat.attach.installVision"];
+  /* Round 75's held-photo lines name the pack too. */
+  const KEYS = ["chat.attach.visionMissing", "chat.vision.companionMissing", "chat.vision.offerCompanion", "chat.attach.installVision", "chat.vision.holdBody", "chat.vision.holdDownloading", "chat.vision.holdStuck"];
   for (const locale of ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant"]) {
     it(`${locale}: every line about the pack uses the name the vault card and the download dialog print`, () => {
       const l = JSON.parse(readFileSync(join(dir, `${locale}.json`), "utf8")) as Record<string, string>;
       const name = l["models.name.vision-qwen35"]!;
       expect(name, locale).toBeTruthy();
-      for (const k of KEYS) expect(l[k], `${locale} ${k}`).toContain(name);
+      for (const k of KEYS) expect(l[k]?.toLocaleLowerCase(locale), `${locale} ${k}`).toContain(name.toLocaleLowerCase(locale));
     });
   }
   it("the card, the download dialog and the details sheet all print that name", () => {

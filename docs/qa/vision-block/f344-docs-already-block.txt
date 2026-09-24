@@ -1,0 +1,32 @@
+ ✓ src/lib/docsGate.test.ts > planDocsTurn (QA F34) > refuses instead of calling the model when strict is on and nothing is attached 1ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn (QA F34) > refuses when strict is on and the attached document has no index yet 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn (QA F34) > retrieves when a document is attached and indexed, strict or not 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn (QA F34) > leaves the plain chat alone: no strict, no documents, the model answers 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > waits while an attached document is still being read, strict or not 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > waits for a second attachment even when the first one is already searchable 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > never answers from the weights with an attachment on screen: the 6T repro 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > names the missing index model when that is why there is nothing to search 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > falls back to the plain refusal when the reason is unknown 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > only an attachment can make the turn wait 0ms
+ ✓ src/lib/docsGate.test.ts > planDocsTurn: an attachment is never silently dropped (QA F125/F126) > every message key it can return exists in en.json 0ms
+ ✓ src/lib/docsGate.test.ts > F198 · the 'answered without your documents' notice > fires on a fresh turn that had documents attached and used none of them 0ms
+ ✓ src/lib/docsGate.test.ts > F198 · the 'answered without your documents' notice > stays quiet when passages were used 0ms
+ ✓ src/lib/docsGate.test.ts > F198 · the 'answered without your documents' notice > stays quiet with nothing attached: there is no claim to make 0ms
+ ✓ src/lib/docsGate.test.ts > F198 · the 'answered without your documents' notice > never fires on Continue, whichever way that turn went 0ms
+ ✓ src/lib/docsGate.test.ts > F198 · the 'answered without your documents' notice > the chat asks this one question at both places it could raise the notice, and nowhere decides for itself 1ms
+ ✓ src/lib/docsGate.test.ts > F276 · the notice outlives the turn it explains > is never routed through the 1,400 ms toast again 0ms
+ ✓ src/lib/docsGate.test.ts > F276 · the notice outlives the turn it explains > is withdrawn by a fresh turn, and only by a fresh turn 0ms
+ ✓ src/lib/docsGate.test.ts > F276 · the notice outlives the turn it explains > renders from the chat's own state, on every platform 0ms
+ ✓ src/lib/docsGate.test.ts > F276 · the notice outlives the turn it explains > the sentence it renders is a real string, not a missing key 0ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > reports a document that is still being read, and the turn waits for it 37ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > a photo attached as a file is reported as a picture, not as a scan to OCR 7ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > a scan that was never OCR'd is reported as needs-ocr, so the turn says so instead of answering 5ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > names the missing index model when nothing could be embedded 0ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > a chat with no attachment is untouched: no wait, no refusal 7ms
+ ✓ src/documents/attachmentState.test.ts > attachmentState: what the chat may answer from (QA F125/F126) > an aborted turn stops waiting 6ms
+ ✓ src/documents/attachmentState.test.ts > adding the same file again (QA F139) > reads a twin that has no passages instead of handing back the dead record 7ms
+ ✓ src/documents/attachmentState.test.ts > adding the same file again (QA F139) > leaves an indexed twin alone: adding it again does not re-read it 6ms
+ ✓ src/documents/attachmentState.test.ts > adding the same file again (QA F139) > does not re-read a scan: OCR stays the user's decision 7ms
+ ✓ src/documents/attachmentState.test.ts > F302 · a document with no readable text is its own state > names the state instead of leaving it unknown, and the turn is refused with that line 7ms
+ ✓ src/documents/attachmentState.test.ts > F302 · a document with no readable text is its own state > a scan that still needs OCR keeps its own, different answer 6ms
+      Tests  31 passed (31)

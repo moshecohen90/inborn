@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { planVisionTurn, type VisionTurnInput } from "./visionGate";
+import { gatePhotoSend, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
 
 const ready: VisionTurnInput = {
   hasImages: true,
@@ -70,6 +70,86 @@ describe("F294 · a picture waits for its projector instead of being answered ar
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       expect(json["chat.vision.preparing"], loc).toBeTruthy();
+    }
+  });
+});
+
+/**
+ * F343. On the iPhone (TestFlight 18) a photo with no vision pack became a message, the "needs the vision companion"
+ * line was dismissed, and the model answered that it received no image. Send now holds the turn in the composer.
+ */
+describe("F343 · a photo nothing here can see is held in the composer, not sent", () => {
+  const noPack = { hasImages: true, modelSees: true, projectorInstalled: false, otherModelSees: true };
+
+  it("no pack on disk holds the send; the pack on disk lets it go", () => {
+    expect(planPhotoSend(noPack)).toEqual({ kind: "hold", offer: "companion" });
+    expect(planPhotoSend({ ...noPack, projectorInstalled: true })).toEqual({ kind: "send" });
+    expect(planPhotoSend({ ...noPack, modelSees: false, projectorInstalled: true })).toEqual({ kind: "hold", offer: "switch" });
+    expect(planPhotoSend({ ...noPack, hasImages: false })).toEqual({ kind: "send" });
+  });
+
+  const run = (verdicts: PhotoSend[]) => {
+    const log: string[] = [];
+    let n = 0;
+    const deps = {
+      hasImages: true,
+      scanned: async () => void log.push("scan"),
+      verdict: () => verdicts[Math.min(n++, verdicts.length - 1)]!,
+      hold: (o: string) => void log.push(`hold:${o}`),
+      send: async () => void log.push("send"),
+    };
+    return { log, deps };
+  };
+
+  it("refuse: nothing is sent, the turn is held; pressing Send again still holds; once the pack is in, it is sent", async () => {
+    const { log, deps } = run([{ kind: "hold", offer: "companion" }, { kind: "hold", offer: "companion" }, { kind: "send" }]);
+    expect(await gatePhotoSend(deps)).toBe("held");
+    expect(log).toEqual(["scan", "hold:companion"]);
+    expect(await gatePhotoSend(deps)).toBe("held");
+    expect(log).not.toContain("send");
+    expect(await gatePhotoSend(deps)).toBe("sent");
+    expect(log.at(-1)).toBe("send");
+  });
+
+  it("the disk scan comes before the verdict, so a cold launch does not hold a photo the pack could read (F294)", async () => {
+    const { log, deps } = run([{ kind: "send" }]);
+    await gatePhotoSend(deps);
+    expect(log).toEqual(["scan", "send"]);
+  });
+
+  it("the held turn is released only by the pack turning ready, never by anything else", () => {
+    expect(releasesHeldTurn(true, "delivering", "ready")).toBe(true);
+    expect(releasesHeldTurn(true, "verifying", "ready")).toBe(true);
+    expect(releasesHeldTurn(true, "ready", "ready")).toBe(false);
+    expect(releasesHeldTurn(false, "delivering", "ready")).toBe(false);
+    expect(releasesHeldTurn(true, "not-installed", "delivering")).toBe(false);
+    expect(releasesHeldTurn(true, "delivering", "failed")).toBe(false);
+  });
+
+  it("the chat keeps the message and the photo until the gate lets the turn go", () => {
+    const chat = readFileSync(join(__dirname, "../screens/Chat.tsx"), "utf8");
+    const submit = chat.slice(chat.indexOf("const submit = async (input: string) => {"), chat.indexOf("const submitNow = async"));
+    expect(submit).toContain("await gatePhotoSend({");
+    expect(submit).toContain("hold: setPhotoHold");
+    expect(submit).not.toContain("setDraft(");
+    expect(submit).not.toContain("setPendingImages(");
+    expect(submit).not.toContain("appendMessage(");
+    const now = chat.slice(chat.indexOf("const submitNow = async"));
+    expect(now.indexOf('setDraft("")')).toBeGreaterThan(-1);
+    expect(now.indexOf("setPendingImages([])")).toBeGreaterThan(now.indexOf('setDraft("")'));
+    expect(chat).toContain("<VisionHoldCard");
+    expect(chat).toContain("onReady={releaseHeldTurn}");
+  });
+
+  it("the card has its words in every locale, and none of them is jargon", () => {
+    const repo = join(__dirname, "../../../..");
+    const keys = ["holdTitle", "holdTitleModel", "holdBody", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove"].map((k) => `chat.vision.${k}`);
+    for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
+      const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
+      for (const k of keys) {
+        expect(json[k], `${loc} ${k}`).toBeTruthy();
+        expect(json[k]!.toLowerCase(), `${loc} ${k}`).not.toMatch(/companion|projector|mmproj|begleiter|compagnon|acompanhante/);
+      }
     }
   });
 });

@@ -142,6 +142,8 @@ export class WllamaEmbedder implements Embedder {
   constructor(
     readonly id: string,
     private readonly uri: string,
+    /* llama.cpp aborts on a sequence past the model's trained context, so this comes from the catalog, never a constant. */
+    private readonly contextTokens = 512,
   ) {}
 
   private ready(): Promise<Wllama> {
@@ -150,7 +152,8 @@ export class WllamaEmbedder implements Embedder {
       const started = performance.now();
       const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
       wllama.setCompat(COMPAT_PATHS);
-      const params = { embeddings: true, pooling_type: "mean" as const, n_ctx: 2048, n_batch: 2048, n_ubatch: 2048, n_threads: threadCount(undefined), log_level: LogLevel.WARN };
+      const n = this.contextTokens;
+      const params = { embeddings: true, pooling_type: "mean" as const, n_ctx: n, n_batch: n, n_ubatch: n, n_threads: threadCount(undefined), log_level: LogLevel.WARN };
       const opfs = fileOfUri(this.uri);
       if (opfs) await wllama.loadModel([await modelFile(opfs)], params);
       else await wllama.loadModelFromUrl(this.uri, params);
