@@ -4428,5 +4428,13 @@ row's swipe actions are perfectly reachable. `apps/mobile/src/screens/Chats.tsx`
 accessibility action and handles it, with the new key `chats.more` in all nine locales; guard in
 `apps/mobile/test/work-tier-r49.test.ts`, watched to fail.
 
-Gates on this branch merged with `main` (**7cb4a63**): `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
-**1,419 tests** (core 726, mobile 663, i18n 17, ui 13); the three new mobile ones are the F215 guard.
+Gates on this branch merged with `main`: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,461 tests** (core 726, mobile 705, i18n 17, ui 13); 16 of the mobile ones are this round's — 3 on F215, 13 on F206b.
+
+**F206b, handed to this stream by the lead after the pass began.** `delivery.status` never became `done`, so the Proof
+screen's LAST DELIVERY branch was unreachable and Android fell back to *"Instant arrives as a Play asset pack"* — on
+the same screen that was reading **IN 539 MB** from an HTTPS download. The line is now read from the vault record
+(`VaultStore.lastDelivery()` + `doneDelivery()`) rather than from a live transfer, so it is right after the download,
+after a restart, and after the next install; a live download still shows its progress and a cancelled one claims
+nothing. Evidence `docs/qa/work-tier-6t/f206-*.png`, guards in `apps/mobile/src/vault/lastDelivery.test.ts`.
+

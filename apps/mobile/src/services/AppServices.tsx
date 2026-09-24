@@ -10,6 +10,7 @@ import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, t
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
+import { doneDelivery } from "../proof/deliveryLine";
 import { applyBootFloor, startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
 import { openPersistentStorage } from "../storage/persistent";
@@ -314,7 +315,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       const chat = vault.entries().filter((e) => e.model.role === "chat");
       const live = chat.find((e) => e.state.kind === "delivering" && !e.state.paused) ?? chat.find((e) => e.state.kind === "verifying");
       const next: DeliveryState | null = !live
-        ? null
+        ? doneDelivery(vault.lastDelivery())
         : live.state.kind === "delivering"
           ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes, source: live.state.via }
           : live.state.kind === "verifying"
