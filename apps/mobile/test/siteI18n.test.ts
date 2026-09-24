@@ -40,7 +40,7 @@ afterAll(() => rmSync(dist, { recursive: true, force: true }));
 const pageOf = (l: Locale, p: string) => readDist(`${l.dir ? `${l.dir}/` : ""}${p.replace(/^\//, "")}`);
 const urlOf = (l: Locale, p: string) => `${site.siteOrigin}${l.dir ? `/${l.dir}` : ""}${p === "/index.html" ? "/" : p.replace(/\.html$/, "")}`;
 /** The pages the English root serves; every other language owes exactly the same set. */
-const PAGES = ["/index.html", "/download.html", "/proof.html", "/support.html", "/blog.html", "/blog/why-on-device.html", "/blog/how-the-proof-works.html", "/blog/choosing-a-model.html", "/privacy.html", "/terms.html", "/licenses.html", "/accessibility.html", "/404.html"];
+const PAGES = ["/index.html", "/download.html", "/proof.html", "/compare.html", "/support.html", "/blog.html", "/blog/why-on-device.html", "/blog/how-the-proof-works.html", "/blog/choosing-a-model.html", "/privacy.html", "/terms.html", "/licenses.html", "/accessibility.html", "/404.html"];
 
 describe("F314 · the same site in eight languages", () => {
   it("builds the launch locales packages/i18n declares, English first and at the root", () => {

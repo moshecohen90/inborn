@@ -20,7 +20,7 @@ const outDir = path.join(here, tag);
 const PORT = Number(process.env.PORT ?? 8529);
 const WIDTHS = [390, 1440];
 const LOCALES = (process.env.LOCALES ?? "en,de,ja").split(",");
-const PAGES = [["", "home"], ["download", "download"], ["proof", "proof"]];
+const PAGES = [["", "home"], ["download", "download"], ["proof", "proof"], ["compare", "compare"]];
 const MIME = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".xml": "application/xml", ".txt": "text/plain; charset=utf-8", ".woff2": "font/woff2" };
 
 function loadPlaywright() {

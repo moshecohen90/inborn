@@ -5215,6 +5215,13 @@ languages, so a reader who found us through a store listing in their own languag
   throwaway `he` locale and screenshotting it mirrored at 390 and 1440 (`docs/qa/site-i18n/rtl-proof/`).
 - Evidence: `docs/qa/site-i18n/after/` (home, download and proof in English, German and Japanese at 390 and 1440, plus
   the switcher open), `check-green.txt`, `guards-red.txt`. Spec §13.6 written and `docs/inborn-spec.html` rebuilt.
+- **After merging main (rounds 66, 68, 69, 70):** the round 68 comparison page moved onto the string files like every
+  other page (table cells, column heads and its FAQ are keys; names and vendor URLs stay in `build.mjs`), and seven
+  `translation-expert` workers translated its 194 new keys plus the 10 English sentences rounds 66 and 68 changed.
+  The site is now 14 pages × 8 = **112 pages**; `check.mjs` green (`docs/qa/site-i18n/check-green.txt`), compare
+  screenshots at 390 and 1440 for en, de, ja in `docs/qa/site-i18n/after/`. The F307 price test now reads the
+  support text from the string files and requires both upgrade prices in every language
+  (`guard-red-support-price.txt`).
   **Nothing is deployed**; the lead deploys.
 
 
