@@ -1407,7 +1407,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           photos={pendingImages.length}
           onSwitch={useSeer}
           onRemove={dropAllPhotos}
-          onOpenVault={() => onOpenVault?.()}
+          onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
           onReady={releaseHeldTurn}
         />
       ) : null}
