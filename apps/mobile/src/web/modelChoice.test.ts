@@ -1,7 +1,9 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { BUNDLED_MANIFEST } from "@inborn/core";
-import { chosenSource, webDeviceProfile, webModelChoices } from "./modelChoice";
-import type { DeviceGate } from "./deviceGate";
+import { chosenSource, webDeviceProfile, webLanguageUpgrade, webModelChoices, webSheetChoices } from "./modelChoice";
+import { classifyDevice, type DeviceGate } from "./deviceGate";
 import type { WebModelSource } from "./modelDelivery";
 
 /* The real catalog, cut the way scripts/web-manifest.mjs cuts it: a chat model, free, one file, reachable over https. */
@@ -73,5 +75,79 @@ describe("F311 · the browser door offers a choice, best for this device first",
     expect(chosenSource(choices, "sharp-phi")?.id).toBe("fast");
     expect(chosenSource(choices, null)?.id).toBe("fast");
     expect(chosenSource([], "instant")).toBeNull();
+  });
+});
+
+describe("F345 · the chat's Model sheet on the browser names the door's recommendation", () => {
+  /* What the door holds after a reader took the smaller model: Instant loaded, Fast recommended (I14, wave 2). */
+  const door = (g: DeviceGate, installed: string[] = ["instant"]) => webModelChoices({ sources: SOURCES, gate: g, installed, languageCode: "en" });
+  const sheet = (g: DeviceGate, over: { languageCode?: string | null; use?: "chat" | "code" } = {}) =>
+    webSheetChoices({ choices: door(g), gate: g, use: over.use ?? "chat", languageCode: over.languageCode === undefined ? "en" : over.languageCode, currentId: "instant" });
+  const doorPick = (g: DeviceGate) => door(g).find((c) => c.recommended)?.source.id;
+
+  it("recommends what the door recommends, on every browser the gate can describe, even with the other model loaded", () => {
+    const gates = [gate(), gate({ ramGB: null, cores: 10, maxTier: "fast" }), gate({ ramGB: null, cores: 2, maxTier: "fast" }), gate({ ramGB: 4, maxTier: "fast" }), gate({ formFactor: "tablet", ramGB: null, cores: 8, maxTier: "fast" }), gate({ formFactor: "phone", maxTier: "instant", ramGB: 4 })];
+    for (const g of gates) expect(sheet(g).recommended?.model.id, JSON.stringify(g)).toBe(doorPick(g));
+    expect(sheet(gate()).recommended?.model.id).toBe("fast");
+  });
+
+  it("offers every model the door offers as a choice on this browser, and nothing it offers is 'In the app'", () => {
+    const s = sheet(gate());
+    expect([...s.installed, ...s.available].map((c) => c.model.id).sort()).toEqual(door(gate()).map((c) => c.source.id).sort());
+    expect(s.available.map((c) => c.model.id)).toEqual(["fast"]);
+    expect(s.installed.map((c) => c.model.id)).toEqual(["instant"]);
+    expect([...s.installed, ...s.available].every((c) => !c.blocked)).toBe(true);
+    expect(s.unavailable).toEqual([]);
+  });
+
+  it("keeps 'In the app' for what the browser is never offered: the Pro and split Sharp models", () => {
+    expect(sheet(gate()).inTheApp.map((c) => c.model.id)).toEqual(["sharp", "sharp-phi"]);
+    /* A phone's browser runs Instant only, so Fast belongs to the app there, and says so. */
+    expect(sheet(gate({ formFactor: "phone", maxTier: "instant", ramGB: 4 })).inTheApp.map((c) => c.model.id)).toEqual(["fast", "sharp", "sharp-phi"]);
+    expect(sheet(gate()).inTheApp.every((c) => !c.blocked)).toBe(true);
+  });
+
+  it("still follows this chat's language and task, from the same ranking, among what the browser can run", () => {
+    const he = sheet(gate(), { languageCode: "he" });
+    expect(he.recommendedWeak).toBe(true);
+    expect(["instant", "fast"]).toContain(he.recommended?.model.id);
+    expect(he.recommended?.model.id).toBe(webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "he" }).find((c) => c.recommended)?.source.id);
+  });
+});
+
+describe("F346 · the site's browser rule is the gate's rule", () => {
+  const offers = (userAgent: string, over: Partial<Parameters<typeof classifyDevice>[0]> = {}) =>
+    webModelChoices({ sources: SOURCES, gate: classifyDevice({ userAgent, webgpu: false, ...over }), languageCode: "en" }).map((c) => c.source.id);
+  const site = readFileSync(join(__dirname, "../../../site/src/i18n/en.json"), "utf8");
+  it("says Fast is for capable computers and tablets, because the gate offers it on both and never on a phone", () => {
+    expect(site).toContain("(Fast, on capable computers and tablets)");
+    expect(site).not.toContain("capable desktops");
+    expect(offers("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)", { deviceMemoryGB: 8, hardwareConcurrency: 8 })).toContain("fast");
+    expect(offers("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)", { maxTouchPoints: 5, hardwareConcurrency: 8 })).toContain("fast");
+    expect(offers("Mozilla/5.0 (Linux; Android 14; SM-X710) Safari/537.36", { hardwareConcurrency: 8 })).toContain("fast");
+    expect(offers("Mozilla/5.0 (Linux; Android 14; Pixel 8) Mobile Safari/537.36", { deviceMemoryGB: 8, hardwareConcurrency: 8 })).toEqual(["instant"]);
+  });
+});
+
+describe("F346 · the browser chat's language notice names a model this browser runs", () => {
+  const choicesFor = (g: DeviceGate) => webModelChoices({ sources: SOURCES, gate: g, installed: ["instant"], languageCode: "en" });
+  const upgrade = (g: DeviceGate, languageCode: string) => webLanguageUpgrade({ choices: choicesFor(g), gate: g, use: "chat", languageCode, currentId: "instant" });
+  it("a Spanish chat on Instant is offered Fast, which this browser runs and rates Spanish good", () => {
+    for (const code of ["es", "fr", "it", "ja", "ru", "ar"]) {
+      const u = upgrade(gate(), code);
+      expect(u?.better.model.id, code).toBe("fast");
+      expect(u?.from, code).toBe("basic");
+      expect(u?.better.reason.installed, code).toBe(false);
+    }
+  });
+  it("offers nothing when nothing here does better: Hebrew (none on both), or a phone browser that runs Instant only", () => {
+    expect(upgrade(gate(), "he")).toBeNull();
+    expect(upgrade(gate({ formFactor: "phone", maxTier: "instant", ramGB: 4 }), "es")).toBeNull();
+  });
+  it("then the sheet's own pick is weak, which is the only case the chat says nothing here is good at it", () => {
+    const g = gate();
+    const sheetFor = (languageCode: string) => webSheetChoices({ choices: choicesFor(g), gate: g, use: "chat", languageCode, currentId: "instant" });
+    expect(sheetFor("es").recommendedWeak).toBe(false);
+    expect(sheetFor("he").recommendedWeak).toBe(true);
   });
 });
