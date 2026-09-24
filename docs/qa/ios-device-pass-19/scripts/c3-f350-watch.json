@@ -1,0 +1,139 @@
+{
+"_": "(c) F350, third run: wait up to 30 s for the preparing row, then press Send at once.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "type",
+"testID": "composer-input",
+"text": "Describe this photo in one sentence."
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door-12mp-real.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "composer-preparing",
+"timeoutMs": 30000
+},
+{
+"op": "send"
+},
+{
+"op": "value",
+"testID": "composer-preparing"
+},
+{
+"op": "value",
+"testID": "composer-input"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 200
+},
+{
+"op": "screenshot",
+"name": "C21-send-pressed-while-preparing"
+},
+{
+"op": "dump",
+"name": "while-preparing"
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 60000
+},
+{
+"op": "waitFor",
+"testID": "composer-preparing",
+"gone": true,
+"timeoutMs": 60000
+},
+{
+"op": "value",
+"testID": "composer-input"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 200
+},
+{
+"op": "sleep",
+"ms": 500
+},
+{
+"op": "screenshot",
+"name": "C22-photo-ready-nothing-sent"
+},
+{
+"op": "send"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "C23-sent-with-photo"
+},
+{
+"op": "waitFor",
+"testID": "assistant-text",
+"timeoutMs": 240000
+},
+{
+"op": "sleep",
+"ms": 45000
+},
+{
+"op": "screenshot",
+"name": "C24-answer"
+},
+{
+"op": "value",
+"testID": "assistant-text"
+}
+]
+}

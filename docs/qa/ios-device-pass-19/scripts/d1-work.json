@@ -1,0 +1,648 @@
+{
+"_": "(d) the Work column of COMPARE_ROWS on the iPhone with the injected Work licence, plus the Pro images-per-message row. Phase 1; phase 2 (d2-vault) needs the new folder's id.",
+"steps": [
+{
+"op": "setTier",
+"tier": "free"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "sleep",
+"ms": 4000
+},
+{
+"op": "screenshot",
+"name": "D01-free-second-photo"
+},
+{
+"op": "dump",
+"name": "free-second-photo"
+},
+{
+"op": "waitFor",
+"testID": "pending-image-1",
+"gone": true,
+"timeoutMs": 500
+},
+{
+"op": "setTier",
+"tier": "pro"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-1",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-2",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "screenshot",
+"name": "D02-pro-three-photos"
+},
+{
+"op": "value",
+"testID": "pending-images"
+},
+{
+"op": "setTier",
+"tier": "work"
+},
+{
+"op": "deeplink",
+"url": "/paywall"
+},
+{
+"op": "waitFor",
+"testID": "compare-table",
+"timeoutMs": 20000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "D03-paywall-work-top"
+},
+{
+"op": "value",
+"testID": "compare-chat-free"
+},
+{
+"op": "value",
+"testID": "compare-chat-pro"
+},
+{
+"op": "value",
+"testID": "compare-chat-work"
+},
+{
+"op": "value",
+"testID": "compare-privacy-free"
+},
+{
+"op": "value",
+"testID": "compare-privacy-pro"
+},
+{
+"op": "value",
+"testID": "compare-privacy-work"
+},
+{
+"op": "value",
+"testID": "compare-offline-free"
+},
+{
+"op": "value",
+"testID": "compare-offline-pro"
+},
+{
+"op": "value",
+"testID": "compare-offline-work"
+},
+{
+"op": "value",
+"testID": "compare-files-free"
+},
+{
+"op": "value",
+"testID": "compare-files-pro"
+},
+{
+"op": "value",
+"testID": "compare-files-work"
+},
+{
+"op": "value",
+"testID": "compare-ocr-free"
+},
+{
+"op": "value",
+"testID": "compare-ocr-pro"
+},
+{
+"op": "value",
+"testID": "compare-ocr-work"
+},
+{
+"op": "value",
+"testID": "compare-strict-free"
+},
+{
+"op": "value",
+"testID": "compare-strict-pro"
+},
+{
+"op": "value",
+"testID": "compare-strict-work"
+},
+{
+"op": "value",
+"testID": "compare-personas-free"
+},
+{
+"op": "value",
+"testID": "compare-personas-pro"
+},
+{
+"op": "value",
+"testID": "compare-personas-work"
+},
+{
+"op": "value",
+"testID": "compare-photos-free"
+},
+{
+"op": "value",
+"testID": "compare-photos-pro"
+},
+{
+"op": "value",
+"testID": "compare-photos-work"
+},
+{
+"op": "value",
+"testID": "compare-memory-free"
+},
+{
+"op": "value",
+"testID": "compare-memory-pro"
+},
+{
+"op": "value",
+"testID": "compare-memory-work"
+},
+{
+"op": "value",
+"testID": "compare-folders-free"
+},
+{
+"op": "value",
+"testID": "compare-folders-pro"
+},
+{
+"op": "value",
+"testID": "compare-folders-work"
+},
+{
+"op": "value",
+"testID": "compare-models-free"
+},
+{
+"op": "value",
+"testID": "compare-models-pro"
+},
+{
+"op": "value",
+"testID": "compare-models-work"
+},
+{
+"op": "value",
+"testID": "compare-voice-free"
+},
+{
+"op": "value",
+"testID": "compare-voice-pro"
+},
+{
+"op": "value",
+"testID": "compare-voice-work"
+},
+{
+"op": "value",
+"testID": "compare-stats-free"
+},
+{
+"op": "value",
+"testID": "compare-stats-pro"
+},
+{
+"op": "value",
+"testID": "compare-stats-work"
+},
+{
+"op": "value",
+"testID": "compare-vaults-free"
+},
+{
+"op": "value",
+"testID": "compare-vaults-pro"
+},
+{
+"op": "value",
+"testID": "compare-vaults-work"
+},
+{
+"op": "value",
+"testID": "compare-redaction-free"
+},
+{
+"op": "value",
+"testID": "compare-redaction-pro"
+},
+{
+"op": "value",
+"testID": "compare-redaction-work"
+},
+{
+"op": "value",
+"testID": "compare-office-free"
+},
+{
+"op": "value",
+"testID": "compare-office-pro"
+},
+{
+"op": "value",
+"testID": "compare-office-work"
+},
+{
+"op": "value",
+"testID": "compare-audit-free"
+},
+{
+"op": "value",
+"testID": "compare-audit-pro"
+},
+{
+"op": "value",
+"testID": "compare-audit-work"
+},
+{
+"op": "value",
+"testID": "compare-signed-free"
+},
+{
+"op": "value",
+"testID": "compare-signed-pro"
+},
+{
+"op": "value",
+"testID": "compare-signed-work"
+},
+{
+"op": "scrollTo",
+"testID": "compare-photos"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D04-compare-photos"
+},
+{
+"op": "scrollTo",
+"testID": "compare-vaults"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D05-compare-work-rows"
+},
+{
+"op": "scrollTo",
+"testID": "compare-signed"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D06-compare-bottom"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "press",
+"testID": "attach"
+},
+{
+"op": "waitFor",
+"testID": "attach-sheet",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "press",
+"testID": "attach-templates"
+},
+{
+"op": "waitFor",
+"testID": "templates-sheet",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 1200
+},
+{
+"op": "screenshot",
+"name": "D07-template-packs"
+},
+{
+"op": "dump",
+"name": "packs"
+},
+{
+"op": "press",
+"testID": "pack-legal"
+},
+{
+"op": "waitFor",
+"testID": "pack-declaration",
+"timeoutMs": 5000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "value",
+"testID": "pack-declaration"
+},
+{
+"op": "screenshot",
+"name": "D08-pack-legal"
+},
+{
+"op": "press",
+"testID": "template-case-memo"
+},
+{
+"op": "waitFor",
+"testID": "slot-matter",
+"timeoutMs": 5000
+},
+{
+"op": "type",
+"testID": "slot-matter",
+"text": "Harlow v. Pemberton Freight"
+},
+{
+"op": "type",
+"testID": "slot-jurisdiction",
+"text": "England and Wales"
+},
+{
+"op": "type",
+"testID": "slot-client_position",
+"text": "claimant"
+},
+{
+"op": "type",
+"testID": "slot-notes",
+"text": "Late delivery of 40 pallets on 3 March."
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D09-template-filled"
+},
+{
+"op": "press",
+"testID": "template-insert"
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "value",
+"testID": "composer-input"
+},
+{
+"op": "screenshot",
+"name": "D10-template-in-composer"
+},
+{
+"op": "deeplink",
+"url": "/work/statement"
+},
+{
+"op": "waitFor",
+"testID": "statement-body",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "value",
+"testID": "statement-body"
+},
+{
+"op": "screenshot",
+"name": "D11-statement"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "open-folders",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "open-folders"
+},
+{
+"op": "waitFor",
+"testID": "folder-sheet",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "folder-new"
+},
+{
+"op": "waitFor",
+"testID": "folder-name",
+"timeoutMs": 5000
+},
+{
+"op": "type",
+"testID": "folder-name",
+"text": "Client Alpha"
+},
+{
+"op": "press",
+"testID": "folder-save"
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "D12-folder-created"
+},
+{
+"op": "dump",
+"name": "folders"
+}
+]
+}

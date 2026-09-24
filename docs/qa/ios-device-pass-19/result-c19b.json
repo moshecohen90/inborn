@@ -1,0 +1,389 @@
+{
+  "runId": "c19b",
+  "startedAt": "2026-09-24T16:52:34.725Z",
+  "finishedAt": "2026-09-24T16:54:44.132Z",
+  "ok": false,
+  "passed": 26,
+  "failed": 5,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 36 chars"
+    },
+    {
+      "i": 8,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "file: door-12mp-real.jpg"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 4019,
+      "detail": "waitFor composer-preparing never appeared in 4000 ms"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3196,
+      "detail": "C11-preparing"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value composer-preparing: no node with that testID is mounted"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Send",
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 317,
+      "detail": "300 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 532,
+      "detail": "waitFor user-images never went away in 300 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1601,
+      "detail": "C12-send-pressed-while-preparing"
+    },
+    {
+      "i": 18,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Describe this photo in one sentence.",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This photo depicts a brown double door with a brass doorknob and hinges against a neutral background. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This photo depicts a brown double door with a brass doorknob and hinges against a neutral background."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "while-preparing"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 60001,
+      "detail": "waitFor pending-image-0 never appeared in 60000 ms"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-preparing gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 514,
+      "detail": "500 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2866,
+      "detail": "C13-photo-ready"
+    },
+    {
+      "i": 23,
+      "op": "send",
+      "ok": false,
+      "ms": 2,
+      "detail": "press send: mounted but not pressable (disabled, or no handler)"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2882,
+      "detail": "C14-sent-with-photo"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45004,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 29,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4447,
+      "detail": "C15-answer"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This photo depicts a brown double door with a brass doorknob and hinges against a neutral background.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "This photo depicts a brown double door with a brass doorknob and hinges against a neutral background."
+    }
+  ],
+  "errors": [
+    "step 9 (waitFor): waitFor composer-preparing never appeared in 4000 ms",
+    "step 11 (value): value composer-preparing: no node with that testID is mounted",
+    "step 16 (waitFor): waitFor user-images never went away in 300 ms",
+    "step 19 (waitFor): waitFor pending-image-0 never appeared in 60000 ms",
+    "step 23 (send): press send: mounted but not pressable (disabled, or no handler)"
+  ]
+}

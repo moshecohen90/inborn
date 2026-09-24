@@ -1,0 +1,146 @@
+{
+"_": "(c) F350 on the iPhone through the file door (the Photo button opens the system picker, which no in-process bridge can reach): a 12 MP photo, Send pressed within 2 s.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 60000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "type",
+"testID": "composer-input",
+"text": "Describe this photo in one sentence."
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door-12mp.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "composer-preparing",
+"timeoutMs": 5000
+},
+{
+"op": "send"
+},
+{
+"op": "sleep",
+"ms": 200
+},
+{
+"op": "screenshot",
+"name": "C01-preparing-send-held"
+},
+{
+"op": "value",
+"testID": "composer-preparing"
+},
+{
+"op": "value",
+"testID": "composer-input"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 500
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 60000
+},
+{
+"op": "waitFor",
+"testID": "composer-preparing",
+"gone": true,
+"timeoutMs": 60000
+},
+{
+"op": "sleep",
+"ms": 500
+},
+{
+"op": "screenshot",
+"name": "C02-photo-ready"
+},
+{
+"op": "send"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "C03-sent-with-photo"
+},
+{
+"op": "waitFor",
+"testID": "assistant-text",
+"timeoutMs": 240000
+},
+{
+"op": "sleep",
+"ms": 45000
+},
+{
+"op": "screenshot",
+"name": "C04-answer"
+},
+{
+"op": "value",
+"testID": "assistant-text"
+},
+{
+"op": "dump",
+"name": "after"
+}
+]
+}

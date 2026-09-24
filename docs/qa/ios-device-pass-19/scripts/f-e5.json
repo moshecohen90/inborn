@@ -1,0 +1,117 @@
+{
+"_": "(f) the multilingual document index (embed-e5) from models.inbornapp.com. The file is 404 on the CDN today, so this is also F349 on a real download failure.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/vault"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "scrollTo",
+"testID": "install-embed-e5"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "F01-e5-card-before"
+},
+{
+"op": "value",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "press",
+"testID": "install-embed-e5"
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "screenshot",
+"name": "F02-e5-confirm"
+},
+{
+"op": "dump",
+"name": "confirm"
+},
+{
+"op": "press",
+"testID": "confirm-download"
+},
+{
+"op": "sleep",
+"ms": 20000
+},
+{
+"op": "scrollTo",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "F03-e5-after-download"
+},
+{
+"op": "value",
+"testID": "model-status-embed-e5"
+},
+{
+"op": "value",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "assertText",
+"text": "NSURL",
+"absent": true
+},
+{
+"op": "assertText",
+"text": "Error Domain",
+"absent": true
+},
+{
+"op": "assertText",
+"text": ".swift",
+"absent": true
+},
+{
+"op": "assertText",
+"text": "Exception",
+"absent": true
+},
+{
+"op": "value",
+"testID": "install-embed-e5"
+},
+{
+"op": "dump",
+"name": "card-after"
+},
+{
+"op": "press",
+"testID": "details-embed-e5"
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "F04-e5-details"
+},
+{
+"op": "dump",
+"name": "details"
+}
+]
+}

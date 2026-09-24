@@ -1,0 +1,41 @@
+== archive <worktree>/apps/mobile/ios/build/Inborn.xcarchive
+CFBundleVersion = 19
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex 
+appex id = com.inbornapp.mobile.share-extension
+appex ver = 19
+instant.gguf = 532517120 B
+vision-qwen35.gguf = 204987232 B sha256 56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+app group (app) = NGCHN95667.com.inbornapp.mobile 
+app group (appex) = group.com.inbornapp.mobile 
+signing = Authority=Apple Development: Moshe Cohen (WUCEF6CXDH) Authority=Apple Worldwide Developer Relations Certification Authority Authority=Apple Root CA 
+main.jsbundle = 6382519 B
+app size = 768M
+== app.config in EXConstants
+version 1.0.0 buildNumber 19 bundleId com.inbornapp.mobile
+extra.commit a75e02df0e2d extra.devVariant false
+== qa-bridge gate on the archive
+OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate (release form) on the archive
+  <worktree>/apps/mobile/ios/build/Inborn.xcarchive (given path): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== release form over the tree (no argument)
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+tree gate rc=0
+== model gate alone
+  <worktree>/apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <worktree>/apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
