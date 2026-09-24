@@ -13,6 +13,15 @@ old, and `docs/qa/acceptance/README.md` §E still lists them as "not verified". 
 `com.inbornapp.mobile.qa`, built `assembleDebug` from this branch against Metro on a private port, with
 `EXPO_PUBLIC_TIER=work` so the licence hook reports the Work tier. It was uninstalled when the run ended.
 
+> **Since F279 (round 58b) the `.qa` package comes from the Expo config, not from the run.** `APP_VARIANT=development`
+> now sets `android.package` as well as the iOS bundle id, so a prebuild under that switch produces
+> `applicationId 'com.inbornapp.mobile.qa'` on its own. Do **not** hand-edit `android/app/build.gradle` to get a
+> second package: that file is generated and gitignored, so the edit is lost on the next prebuild and the run
+> silently goes back to building over Moshe's install. The same switch still carries INTERNET, so the old trap
+> holds unchanged: a prebuild **without** `APP_VARIANT=development` strips INTERNET and the debug app cannot
+> reach Metro. Both apps claim `inborn://` and the .gguf/share doors while both are installed, so Android asks
+> which to open.
+
 Driven with the `a11y-drive` instrumentation APK (`apps/mobile/android-dev/a11y-drive`) plus `input text` and
 `input keyevent`; this phone ignores injected touches.
 

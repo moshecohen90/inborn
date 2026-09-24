@@ -1,0 +1,58 @@
+F279 — the Android QA/dev variant is its own package, from the Expo config.
+
+Both lines below come from `android/app/build.gradle`, which `expo prebuild` generates and `.gitignore`
+ignores. Nothing was hand-edited: the only change is `android.package` in `apps/mobile/app.config.ts`.
+The generated directory was deleted between the two runs and removed again afterwards.
+
+$ cd apps/mobile && rm -rf android
+$ APP_VARIANT=development npx expo prebuild -p android --no-install
+$ grep -n "applicationId\|namespace" android/app/build.gradle | head -2
+89:    namespace 'com.inbornapp.mobile.qa'
+92:        applicationId 'com.inbornapp.mobile.qa'
+
+$ cd apps/mobile && rm -rf android
+$ npx expo prebuild -p android --no-install          # no APP_VARIANT
+$ grep -n "applicationId\|namespace" android/app/build.gradle | head -2
+89:    namespace 'com.inbornapp.mobile'
+92:        applicationId 'com.inbornapp.mobile'
+
+--- the dev variant still has everything it needs ---
+
+INTERNET, the trap in docs/qa/work-tier-6t/README.md (without it the debug app cannot reach Metro).
+`blockedPermissions` is driven by the same `dev` constant as the package, so the two cannot drift:
+
+$ grep -o 'android:name="android.permission.[A-Z_]*"' android/app/src/main/AndroidManifest.xml | sort -u
+android:name="android.permission.INTERNET"          <-- present under APP_VARIANT=development
+android:name="android.permission.READ_EXTERNAL_STORAGE"
+android:name="android.permission.RECORD_AUDIO"
+android:name="android.permission.SYSTEM_ALERT_WINDOW"
+android:name="android.permission.USE_BIOMETRIC"
+android:name="android.permission.USE_FINGERPRINT"
+android:name="android.permission.VIBRATE"
+android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+
+Deep links and the share/gguf doors, unchanged by the package split:
+
+$ grep -o 'android:scheme="[a-z]*"' android/app/src/main/AndroidManifest.xml | sort -u
+android:scheme="content"
+android:scheme="file"
+android:scheme="https"
+android:scheme="inborn"
+$ grep -o 'android:name="android.intent.action.[A-Z_]*"' android/app/src/main/AndroidManifest.xml | sort -u
+android:name="android.intent.action.MAIN"
+android:name="android.intent.action.SEND"
+android:name="android.intent.action.VIEW"
+
+Play asset packs, still all seven, declared identically for both variants:
+
+$ grep -n "assetPacks" android/app/build.gradle
+85:    assetPacks = [":inborn_model", ":inborn_model_fast", ":inborn_model_embed", ":inborn_model_speech", ":inborn_model_vision", ":inborn_model_sharp", ":inborn_model_sharp_2"]
+
+Play delivers a pack only to an app Play installed, so a sideloaded QA build received none under the store
+id either. Nothing is lost by the split; what the QA build loses it had already lost.
+
+--- one consequence to know about ---
+
+With both apps installed, `inborn://` and the .gguf/share doors are registered twice and Android will ask
+which app to open. This is the same trade round 55 accepted on iOS, and it is the cost of the two builds
+being genuinely separate apps.

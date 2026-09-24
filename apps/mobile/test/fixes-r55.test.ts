@@ -23,7 +23,7 @@ describe("F265 · the QA variant is its own app", () => {
     else process.env.APP_VARIANT = variant;
     try {
       const mod = (await import(/* @vite-ignore */ join(repo, "apps/mobile/app.config.ts"))) as {
-        default: (c: { config: object }) => { ios?: { bundleIdentifier?: string; buildNumber?: string }; android?: { package?: string }; name?: string };
+        default: (c: { config: object }) => { ios?: { bundleIdentifier?: string; buildNumber?: string }; android?: { package?: string; blockedPermissions?: string[] }; name?: string };
       };
       return mod.default({ config: {} });
     } finally {
@@ -49,9 +49,35 @@ describe("F265 · the QA variant is its own app", () => {
     expect(c.name).toBe("Inborn (dev)");
   });
 
-  it("leaves the Android package alone: Play asset packs and the 6T drivers are keyed to it", async () => {
+  /**
+   * F279. Round 55 split iOS only and left Android on one package, so a debug build carried the store app's own
+   * package name. On 24.9 an `adb install` of the round-58 QA build was refused as `INSTALL_FAILED_VERSION_DOWNGRADE`
+   * against Moshe's Play 1.0.0 (21): a versionCode accident was the only thing between a QA run and his install.
+   * The variant now carries its own package on both platforms, from the config, not from a hand edit to the
+   * gitignored `android/app/build.gradle`.
+   */
+  it("gives the development variant an Android package the store app can never be replaced by", async () => {
+    expect((await load("development")).android?.package).toBe(QA_ID);
+    expect((await load("development")).android?.package).not.toBe(STORE_ID);
+  });
+
+  it("leaves the store build's Android package exactly as Play knows it", async () => {
     expect((await load(undefined)).android?.package).toBe(STORE_ID);
-    expect((await load("development")).android?.package).toBe(STORE_ID);
+  });
+
+  it("splits both platforms on the same switch, so neither can be split without the other", async () => {
+    const store = await load(undefined);
+    const qa = await load("development");
+    expect(store.android?.package).toBe(store.ios?.bundleIdentifier);
+    expect(qa.android?.package).toBe(qa.ios?.bundleIdentifier);
+    expect(qa.android?.package).not.toBe(store.android?.package);
+  });
+
+  /* The trap in docs/qa/work-tier-6t/README.md: a prebuild without APP_VARIANT=development strips INTERNET, so the
+     debug app cannot reach Metro. The package split must not be readable as a substitute for that switch. */
+  it("still gives the development variant INTERNET, and still takes it from the store build", async () => {
+    expect((await load("development")).android?.blockedPermissions).toEqual([]);
+    expect((await load(undefined)).android?.blockedPermissions).toContain("android.permission.INTERNET");
   });
 });
 

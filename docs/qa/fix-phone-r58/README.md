@@ -101,12 +101,26 @@ document still citing it**. Watched to fail both ways: guard disabled → 6 red;
 red, taking the whole F195 suite with it (`f278/6-sabotage-A-fix-disabled.txt`,
 `f278/7-sabotage-B-over-aggressive.txt`).
 
-## F279 — unused
+## F279 — the Android QA build could still land on the real app (round 58b)
 
-Nothing else belonging to this stream was found. The one extra defect met on the way was
-`apps/mobile/src/proof/deliveryLine.ts:33` missing a closing brace, which broke `typecheck`, `lint` and two
-mobile test files on this branch's base commit. It was already fixed on `origin/main` by the owning stream
-and arrived with the merge, so it is not filed as a finding.
+Filed from what this round walked into. The first `adb install` of the QA build was refused as
+`INSTALL_FAILED_VERSION_DOWNGRADE` against Moshe's Play 1.0.0 (21): round 55 split the QA variant on iOS only
+and left Android sharing `com.inbornapp.mobile`, so a versionCode accident was the only thing between a QA run
+and his install. Round 58 worked around it with `applicationIdSuffix '.qa'` in the generated
+`android/app/build.gradle`, which is gitignored and lost at the next prebuild.
+
+Round 58b puts the split in the Expo config instead: `APP_VARIANT=development` sets `android.package` from the
+same `dev` constant that sets the iOS bundle id. Two real prebuilds with the generated directory deleted between
+them prove both ids, and the dev variant still carries INTERNET, `inborn://`, the VIEW/SEND doors and all seven
+asset packs (`f279-prebuild-package-ids.txt`). The old reasoning was wrong as well as risky: Play delivers a pack
+only to an app it installed, so a sideloaded QA build had no packs under the store id either.
+
+Guard: 4 tests in `apps/mobile/test/fixes-r55.test.ts`, each watched to fail — the split reverted, the store
+package split too, and the dev variant's INTERNET removed.
+
+The one other defect met on the way was `apps/mobile/src/proof/deliveryLine.ts:33` missing a closing brace, which
+broke `typecheck`, `lint` and two mobile test files on this branch's base commit. It was already fixed on
+`origin/main` by the owning stream and arrived with the merge, so it is not filed as a finding.
 
 ## Suite
 
