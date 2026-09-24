@@ -107,7 +107,11 @@ const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'va
 setter.call(input, ${JSON.stringify(prompt)});
 input.dispatchEvent(new Event('input', { bubbles: true }));
 return input.value;`);
+  // Send stays disabled until the engine has loaded the model (19 s of Metal shader compile on a cold Mac; longer on a CPU
+  // runner), and a press before that is swallowed.
+  waitJs(js('send', 'return !!el && el.getAttribute("aria-disabled") !== "true";'), 300000);
   press('send');
+  waitFor('user-message', 30000);
   step('sent', prompt);
 
   waitJs(js('assistant-text', 'return el && el.innerText.trim().length > 10 ? el.innerText.trim() : false;'), 300000);

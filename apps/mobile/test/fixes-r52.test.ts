@@ -213,7 +213,7 @@ describe("F245, F252, F253, F254 · the rest of the review", () => {
   });
 
   it("the legal preamble is a paragraph, so it is not set in mono (§9.3)", () => {
-    const legal = source("screens/legal/Legal.tsx");
+    const legal = source("screens/Legal/Legal.tsx");
     expect(legal).toMatch(/testID="legal-meta"[\s\S]{0,240}<Text key=\{line\} style=\{\[type\.bodySmall/);
     expect(legal).not.toMatch(/testID="legal-meta"[\s\S]{0,240}<Mono/);
   });
