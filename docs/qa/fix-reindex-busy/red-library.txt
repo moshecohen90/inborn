@@ -1,0 +1,119 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-reindex-busy/apps/mobile
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > on a document already rebuilt, is answered within about one chunk's time and never hits a busy embedder
+[documents] ready.pdf: indexed · 8/8 pages · 8 chunks · 178 ms (22 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > on a document not rebuilt yet, answers from its old rows by their words, says so, and does not wait for the rebuild
+[documents] gross1.pdf: failed · 1/8 pages · 1 chunks · 21 ms (21 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > on a document not rebuilt yet, answers from its old rows by their words, says so, and does not wait for the rebuild
+[documents] gross2.pdf: empty · 0/0 pages · 0 chunks · 0 ms (0 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > after a kill mid-rebuild, the next launch resumes at the last finished document and page, not from zero
+[documents] bericht.pdf: failed · 2/8 pages · 2 chunks · 42 ms (21 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > after a kill mid-rebuild, the next launch resumes at the last finished document and page, not from zero
+[documents] andere.pdf: empty · 0/0 pages · 0 chunks · 0 ms (0 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > after a kill mid-rebuild, the next launch resumes at the last finished document and page, not from zero
+[documents] eins.pdf: indexed · 8/8 pages · 8 chunks · 167 ms (21 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > a file the user adds during the rebuild is read before the documents still waiting to be rebuilt
+[documents] alt1.pdf: indexed · 8/8 pages · 8 chunks · 162 ms (20 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > a file the user adds during the rebuild is read before the documents still waiting to be rebuilt
+[documents] alt2.pdf: indexed · 8/8 pages · 8 chunks · 164 ms (21 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > a file the user adds during the rebuild is read before the documents still waiting to be rebuilt
+[documents] alt3.pdf: indexed · 8/8 pages · 8 chunks · 167 ms (21 ms/page)
+
+stdout | src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > a file the user adds during the rebuild is read before the documents still waiting to be rebuilt
+[documents] neu.pdf: indexed · 1/1 pages · 1 chunks · 21 ms (21 ms/page)
+
+ ❯ src/documents/reindexBusy.test.ts (4 tests | 4 failed) 6576ms
+   ❯ F353 · a question during the post-update re-index (4)
+     × on a document already rebuilt, is answered within about one chunk's time and never hits a busy embedder 195ms
+     × on a document not rebuilt yet, answers from its old rows by their words, says so, and does not wait for the rebuild 31ms
+     × after a kill mid-rebuild, the next launch resumes at the last finished document and page, not from zero 5831ms
+     × a file the user adds during the rebuild is read before the documents still waiting to be rebuilt 517ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > on a document already rebuilt, is answered within about one chunk's time and never hits a busy embedder
+Error: Context is busy
+ ❯ Object.embed src/documents/reindexBusy.test.ts:19:15
+     17|       if (inFlight) {
+     18|         e.busyErrors++;
+     19|         throw new Error("Context is busy");
+       |               ^
+     20|       }
+     21|       inFlight = true;
+ ❯ Object.embed src/documents/reindexBusy.test.ts:43:110
+ ❯ Retriever.retrieve ../../packages/core/src/rag/retriever.ts:64:41
+ ❯ DocumentLibrary.ask src/documents/library.ts:504:34
+ ❯ src/documents/reindexBusy.test.ts:119:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > on a document not rebuilt yet, answers from its old rows by their words, says so, and does not wait for the rebuild
+AssertionError: expected { hasAttachment: true, …(4) } to match object { hasIndex: true, …(3) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "blocked": null,
+    "hasIndex": true,
+-   "indexing": false,
+-   "reading": 0,
++   "indexing": true,
++   "reading": 1,
+  }
+
+ ❯ src/documents/reindexBusy.test.ts:138:18
+    136|     await until(() => (library.document("bericht")?.indexedPages ?? 0)…
+    137|     const gate = library.attachmentState("chat");
+    138|     expect(gate).toMatchObject({ hasIndex: true, indexing: false, bloc…
+       |                  ^
+    139|     const { prompt, reindexing } = await library.ask(QUESTION, { docId…
+    140|     expect(prompt.noAnswer).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > after a kill mid-rebuild, the next launch resumes at the last finished document and page, not from zero
+Error: never: rebuild finished after relaunch
+ ❯ until src/documents/reindexBusy.test.ts:98:9
+     96|     await new Promise((r) => setTimeout(r, 2));
+     97|   }
+     98|   throw new Error(`never: ${label}`);
+       |         ^
+     99| };
+    100| const settled = (library: Library) => library.state().documents.every(…
+ ❯ src/documents/reindexBusy.test.ts:168:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/documents/reindexBusy.test.ts > F353 · a question during the post-update re-index > a file the user adds during the rebuild is read before the documents still waiting to be rebuilt
+AssertionError: expected 'indexed' to be 'queued' // Object.is equality
+
+Expected: "queued"
+Received: "indexed"
+
+ ❯ src/documents/reindexBusy.test.ts:187:46
+    185|     const doc = await library.importFile("/picked/neu.pdf", "neu.pdf");
+    186|     await until(() => library.document(doc.id)?.status === "indexed", …
+    187|     expect(library.document("alt3")!.status).toBe("queued");
+       |                                              ^
+    188|   });
+    189| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  21:38:10
+   Duration  7.83s (tests 85%, transform 12%, import 2%)
+

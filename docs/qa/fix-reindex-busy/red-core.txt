@@ -1,0 +1,84 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-reindex-busy/packages/core
+
+ ❯ test/rag-reindex-busy.test.ts (4 tests | 4 failed) 38ms
+   ❯ F353 · a question is served while the index queue embeds (2)
+     × answers within one chunk's time, without 'Context is busy', and the queue still finishes 3ms
+     × a question in a queue of questions is not starved by chunks queued behind it 1ms
+   ❯ F353 · a document with an old index is searchable while it is rebuilt (2)
+     × finds a page not rebuilt yet by its words, with the old vectors left out of the cosine 9ms
+     × resumes the rebuild at its committed page and ends with no old row 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-reindex-busy.test.ts > F353 · a question is served while the index queue embeds > answers within one chunk's time, without 'Context is busy', and the queue still finishes
+TypeError: EmbedLanes is not a constructor
+ ❯ test/rag-reindex-busy.test.ts:70:19
+     68|   it("answers within one chunk's time, without 'Context is busy', and …
+     69|     const engine = slowEngine();
+     70|     const lanes = new EmbedLanes(engine);
+       |                   ^
+     71|     const store = new MemoryEmbeddingStore();
+     72|     const ready = record("ready");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  test/rag-reindex-busy.test.ts > F353 · a question is served while the index queue embeds > a question in a queue of questions is not starved by chunks queued behind it
+TypeError: EmbedLanes is not a constructor
+ ❯ test/rag-reindex-busy.test.ts:89:19
+     87|   it("a question in a queue of questions is not starved by chunks queu…
+     88|     const engine = slowEngine();
+     89|     const lanes = new EmbedLanes(engine);
+       |                   ^
+     90|     const bulk = lanes.index.embed(Array.from({ length: 20 }, (_, i) =…
+     91|     await new Promise((r) => setTimeout(r, CHUNK_MS / 2));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  test/rag-reindex-busy.test.ts > F353 · a document with an old index is searchable while it is rebuilt > finds a page not rebuilt yet by its words, with the old vectors left out of the cosine
+AssertionError: expected undefined to be 'embed-nomic' // Object.is equality
+
+- Expected:
+"embed-nomic"
+
++ Received:
+undefined
+
+ ❯ test/rag-reindex-busy.test.ts:106:32
+    104|     const old = await nomicBuilt(store, "bericht", 6, 6);
+    105|     const queued = reindexFrom(old);
+    106|     expect(queued.reindexFrom).toBe("embed-nomic");
+       |                                ^
+    107|     /* Two pages rebuilt when the question arrives. */
+    108|     const partial = await indexDocument({ doc: queued, opened: opened(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  test/rag-reindex-busy.test.ts > F353 · a document with an old index is searchable while it is rebuilt > resumes the rebuild at its committed page and ends with no old row
+AssertionError: expected { id: 'bericht', …(11) } to match object { indexedPages: 3, …(1) }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "indexedPages": 3,
+-   "reindexFrom": "embed-nomic",
+  }
+
+ ❯ test/rag-reindex-busy.test.ts:128:19
+    126|     /* The record as the next launch reads it back from the store. */
+    127|     const saved = (await store.getDocument("bericht"))!;
+    128|     expect(saved).toMatchObject({ indexedPages: 3, reindexFrom: "embed…
+       |                   ^
+    129|     const engine = slowEngine();
+    130|     const done = await indexDocument({ doc: saved, opened: opened("ber…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  21:38:08
+   Duration  521ms (transform 75%, import 14%, tests 10%, worker 1%)
+
