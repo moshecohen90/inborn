@@ -5174,6 +5174,56 @@ iPad (10th gen) simulator in both orientations.
 
 Evidence in `docs/qa/ipad-pass/`: `layout/` (browser, both themes, before and after), `sim/` (the iPad simulator,
 portrait and landscape), `guard-red-f322-send-target.txt` (both guards watched red).
+## Fixes round 67: the site now exists in all eight launch languages (branch `site-i18n`) — 24.9.2026
+
+Moshe, 24.9: "the site defaults to English but the same site exists in all the other languages like the Tanach site,
+with a language switcher, a matching sitemap etc." `apps/site` was English-only while the app ships in eight
+languages, so a reader who found us through a store listing in their own language landed on an English page.
+
+- **One source, eight sites** (F314). The page fragments in `apps/site/src/{pages,posts}` keep structure only; all 391
+  strings — copy, labels, meta titles and descriptions, `aria-label`s and the composer placeholder — moved to
+  `apps/site/src/i18n/<locale>.json`, one file per launch locale of `packages/i18n`. `build()` renders the page set
+  once per locale: English at the root, the other seven under a lowercase prefix (`/de/proof`, `/pt-br/proof`). 13
+  pages × 8 = **104 pages**, still zero JavaScript in the output and zero third-party requests. The split was proven
+  lossless before anything was translated: every English `<main>` is byte-identical to the pre-refactor build.
+  The root is **not** redirected by `Accept-Language`: that hides the other languages from a crawler and overrules a
+  reader who chose English.
+- **The translations were done in context, not key by key.** One `translation-expert` agent per language, each reading
+  the rendered page and the app's own `packages/i18n/locales/<code>.json`, so the site speaks in the app's register
+  (German *du*, French *vous*, Korean 해요체) and reuses its vocabulary (SEALED · ON-DEVICE, OUT / IN / CONNECTIONS,
+  Vault, Ledger, Incognito, the Play and iOS strings a user will actually see on screen).
+- **Switcher, hreflang, sitemaps, llms.txt** (F315). Plain links in the header (a `<details>`, an element and not a
+  script) and in the footer; `hreflang` for all eight plus `x-default` on every page, with `canonical` on the page
+  itself; `og:locale` and its alternates; `inLanguage` in the JSON-LD, where per-language documents get per-locale
+  `@id`s and the entities that are one thing in every language (Organization, Brand, Logo) keep one id. One sitemap
+  per language under one index, which is what `robots.txt` names. `llms.txt` and `llms-full.txt` per language, because
+  an answer engine replying in German should cite German URLs, with a `Languages` section in each.
+- **The legal texts stay English** and say so in the reader's language above the text (`lang="en"` on the body). A
+  policy is the document you can be held to; an unreviewed translation would be a second contract.
+- **Two defects the browser found** (F317). Every link written inside a sentence pointed at the English page, so a
+  German reader who followed "the proof page" mid-paragraph left the German site — three translators reported it
+  independently, and `localizeLinks` now rewrites internal paths per locale. And the hero placeholder was cut off
+  mid-word in four languages: at 390 the input is 340px and German needed 352, Portuguese 354, Spanish 414, French
+  451. Re-translated shorter, and `check.mjs` now measures the placeholder in the browser so it cannot come back.
+- **The gate reads all eight** (F316): locale list equal to `LAUNCH_LOCALES`, every key present with the same tokens
+  and the same inline HTML, no English sentence left untranslated anywhere, every page in every language, a complete
+  **and reciprocal** hreflang set, sitemaps that list exactly what was built, no `{{t:key}}` in any page, and the
+  sideways-scroll measurement across all 104 pages at 390 and 768. Nine sabotage runs in
+  `docs/qa/site-i18n/guards-red.txt` show each one red first; 17 cases in `apps/mobile/test/siteI18n.test.ts`.
+- **Right-to-left is built but not shipped** (F318). Hebrew and Arabic are not launch locales, so there is no RTL page
+  today; `dir` is derived from `RTL_LOCALES` and the stylesheet moved to logical properties, proven by building a
+  throwaway `he` locale and screenshotting it mirrored at 390 and 1440 (`docs/qa/site-i18n/rtl-proof/`).
+- Evidence: `docs/qa/site-i18n/after/` (home, download and proof in English, German and Japanese at 390 and 1440, plus
+  the switcher open), `check-green.txt`, `guards-red.txt`. Spec §13.6 written and `docs/inborn-spec.html` rebuilt.
+- **After merging main (rounds 66, 68, 69, 70):** the round 68 comparison page moved onto the string files like every
+  other page (table cells, column heads and its FAQ are keys; names and vendor URLs stay in `build.mjs`), and seven
+  `translation-expert` workers translated its 194 new keys plus the 10 English sentences rounds 66 and 68 changed.
+  The site is now 14 pages × 8 = **112 pages**; `check.mjs` green (`docs/qa/site-i18n/check-green.txt`), compare
+  screenshots at 390 and 1440 for en, de, ja in `docs/qa/site-i18n/after/`. The F307 price test now reads the
+  support text from the string files and requires both upgrade prices in every language
+  (`guard-red-support-price.txt`).
+  **Nothing is deployed**; the lead deploys.
+
 
 ## Fixes round 70b: a centred cosine does not win the recall back, and the embedder is the reason (branch `fix-cjk-floor`) — 24.9.2026
 
@@ -5208,6 +5258,41 @@ Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the 
 already support a second embedding model) and measure it on these same fixtures, or expand the question into content
 words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
 across all 159 questions; it is the half worth extending.
+
+## Fixes round 71: Enter sends from an iPad keyboard (branch `fix-ipad-enter`) — 24.9.2026
+
+Round 69 proved that on an iPad with a hardware keyboard Enter inserted a newline and never sent (F324). This round
+builds the missing piece.
+
+- **The hardware-keys module now has an iOS half (F326).** One `UIKeyCommand` for a bare Return, on the window, with
+  priority over the text view's own newline. It is armed only while the composer has focus, the same as Android, and
+  it emits the same `onEnter` event, so the composer has no platform branch. Shift+Return is not claimed and stays a
+  newline. The on-screen keyboard's Return is not a key press and is untouched.
+- **Proven on two simulators with real HID keys.** On the iPad and on an iPhone 17 Pro, Return sent the draft,
+  Shift+Return left `"Line one\nLine two"` in the field unsent, and a newline typed as text did not send. Return on an
+  empty draft sent nothing.
+- **Guarded.** Four unit tests cover the native event to send path and the module's Apple half. Each guard was
+  watched red with its piece removed.
+
+Evidence in `docs/qa/fix-ipad-enter/`: `ipad/` (iPad simulator), `iphone/` (iPhone simulator), `guard-red-f326.txt`.
+The spec rule (§10 #55) already said this; iOS now does it.
+
+## Fixes round 73: the Work templates were the last locked door that did nothing (branch `fix-work-templates`) — 24.9.2026
+
+Moshe's I03 had two halves. The first, the attach button that made the screen vanish, was closed and proven in rounds
+34–62. The second, "buttons show as inactive but clicking them does not open the paywall", was closed on every door
+but one: the Work templates sheet.
+
+- **A locked template row and its WORK chip open the paywall saying why** (F338). The rows were `disabled` and the
+  chip sat inside them, so neither tap reached S60; the banner chip reached it with no reason line. Locked rows now
+  stay tappable, the way the attach sheet's locked documents already were, and the row, its chip and the banner chip
+  all land on `/paywall?reason=templates`. A component test renders the real sheet over a `Pressable` that honours
+  `disabled` and watched red on all three taps. Headless Chromium at 390, 768, 1024 and 1440 shows the line on every
+  tap, with before and after shots in `docs/qa/fix-work-templates/`.
+- **No other door is dead or reasonless** (F339). An AST scan of every element with both `trailing` and `disabled`
+  found five; only the template row was a paid lock with a live chip inside. A wider search found the audit-log vault
+  rows disabled by the same lock, and two Work banners with bare chips. All three now name their reason. `WorkTag`
+  and `ProTag` take a handler or a reason, so a bare chip is a type error rather than a review finding.
 
 ## Fixes round 75: a photo nothing here can see is held in the composer, not sent (branch `vision-block`) — 24.9.2026
 

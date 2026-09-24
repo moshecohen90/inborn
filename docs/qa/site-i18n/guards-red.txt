@@ -1,0 +1,35 @@
+### 1. a German value left as the English sentence
+✗ src/i18n/de.json: "home.inborn-is-an-ai-chat" is still the English sentence
+✗ de/index.html: still shows the English "home.inborn-is-an-ai-chat"
+
+### 2. a key missing from de.json (build falls back to English)
+✓ 104 pages in 8 languages: strings complete, hreflang symmetric, sitemaps exact, no scripts, no external assets, no dead links, CSP present, no sideways scroll at 390/768
+
+### 3. the French proof page deleted
+✗ fr is missing proof.html
+✗ dist holds 103 pages, expected 13 × 8
+✗ de/proof.html: alternate fr points at https://inbornapp.com/fr/proof, which the site does not build
+✗ es/proof.html: alternate fr points at https://inbornapp.com/fr/proof, which the site does not build
+
+### 4. one alternate removed from the German home page
+✗ de/index.html: hreflang set is en,ja,de,fr,es,pt-BR,zh-Hant,x-default, expected en,ja,de,fr,es,pt-BR,ko,zh-Hant,x-default
+✗ ko/index.html: de (de/index.html) does not point back at it
+
+### 5. an unresolved {{t:key}} left in a page
+✗ es/index.html: unresolved string key {{t:home.missing}}
+✗ es/index.html: scrolls sideways at 390 (402 > 390) — table., thead., tr., th.
+
+### 6. a sitemap URL that is not a built page
+✗ sitemap-ja.xml does not list exactly the ja pages (12 vs 12)
+✗ sitemap-ja.xml lists https://inbornapp.com/ja/nope, which is not built
+
+### 7. a ninth locale the site builds and packages/i18n does not launch (he, temporary)
+✗ the site builds en,he,ja,de,fr,es,pt-BR,ko,zh-Hant but packages/i18n launches en,ja,de,fr,es,pt-BR,ko,zh-Hant
+✗ src/i18n/he.json: "404.status-404-sealed-on-device" is still the English sentence
+✗ src/i18n/he.json: "404.the-address-you-followed-does" is still the English sentence
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/siteI18n.test.ts > F314 · the same site in eight languages > builds the launch locales packages/i18n declares, English first and at the root
+ FAIL  test/siteI18n.test.ts > F314 · the same site in eight languages > does not ship English prose as a translation
+ FAIL  test/siteI18n.test.ts > F314 · the same site in eight languages > marks each page with its own language, and would mark an RTL language as RTL
+      Tests  3 failed | 799 passed (802)
+

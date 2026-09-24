@@ -101,7 +101,7 @@ export function SheetItem({ label, hint, onPress, danger, disabled, testID, trai
 }
 
 /** Small "PRO" tag next to a gated action: tapping it opens the paywall (S60), the value moment of §12.3. */
-export function ProTag({ onPress, reason }: { onPress?: () => void; reason?: PaywallReason } = {}) {
+export function ProTag({ onPress, reason }: { onPress: () => void; reason?: never } | { reason: PaywallReason; onPress?: never }) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
