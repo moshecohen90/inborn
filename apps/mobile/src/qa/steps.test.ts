@@ -5,6 +5,7 @@ import { needsSweep, runScript, sweepWhenAcked, type NodeValue, type Step, type 
 function fake(nodes: Record<string, NodeValue> = {}) {
   let clock = 0;
   const calls: string[] = [];
+  const probes: { bytes: number; ms: number; complete: boolean }[] = [];
   const surface: Surface = {
     press: (testID) => {
       if (!nodes[testID]) throw new Error(`press ${testID}: not mounted`);
@@ -32,12 +33,16 @@ function fake(nodes: Record<string, NodeValue> = {}) {
     },
     devPrompt: (lines) => calls.push(`devPrompt:${lines.join("|")}`),
     cleanup: () => calls.push("cleanup"),
+    probeDownload: async (url, session, seconds) => {
+      calls.push(`probe:${session}:${seconds}:${url}`);
+      return probes.shift() ?? { bytes: 0, ms: 0, complete: false };
+    },
     sleep: async (ms) => {
       clock += ms;
     },
     now: () => clock,
   };
-  return { surface, calls, nodes, advance: (ms: number) => (clock += ms) };
+  return { surface, calls, nodes, probes, advance: (ms: number) => (clock += ms) };
 }
 
 const node = (text: string, props: Record<string, unknown> = {}): NodeValue => ({ text, props });
@@ -166,5 +171,42 @@ describe("the second sweep", () => {
     );
     expect([swept, deleted]).toEqual([false, false]);
     expect(clock).toBeGreaterThanOrEqual(2000);
+  });
+});
+
+describe("probeDownload (F370: the phone moved 205 MB at 0.09 MB/s through the background session)", () => {
+  const url = "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf";
+
+  it("measures one session type and reports MB/s, bytes and time", async () => {
+    const { surface, calls, probes } = fake();
+    probes.push({ bytes: 50_000_000, ms: 5_000, complete: false }, { bytes: 204_987_232, ms: 5_125, complete: true });
+    const result = await run(surface, [
+      { op: "probeDownload", url, session: "background", seconds: 5 },
+      { op: "probeDownload", url, session: "foreground" },
+    ]);
+    expect(result.ok).toBe(true);
+    expect(calls).toEqual([`probe:background:5:${url}`, `probe:foreground:20:${url}`]);
+    expect(result.steps[0]?.detail).toBe("background 10.00 MB/s · 50000000 B in 5000 ms");
+    expect(result.steps[0]?.value?.props).toMatchObject({ session: "background", bytes: 50_000_000, ms: 5_000, mbps: 10, complete: false });
+    expect(result.steps[1]?.detail).toBe("foreground 40.00 MB/s · 204987232 B in 5125 ms · complete");
+  });
+
+  it("is red when nothing moved, so a dead network never reads as 0 MB/s passed", async () => {
+    const { surface, probes } = fake();
+    probes.push({ bytes: 0, ms: 20_000, complete: false });
+    const result = await run(surface, [{ op: "probeDownload", url, session: "background" }]);
+    expect(result.ok).toBe(false);
+    expect(result.errors[0]).toMatch(/background moved no bytes in 20000 ms/);
+  });
+
+  it("refuses an unknown session type or a window outside 1..600 s without touching the network", async () => {
+    const { surface, calls } = fake();
+    const result = await run(surface, [
+      { op: "probeDownload", url, session: "discretionary" as never },
+      { op: "probeDownload", url, session: "foreground", seconds: 0 },
+      { op: "probeDownload", url, session: "foreground", seconds: 601 },
+    ]);
+    expect(result.failed).toBe(3);
+    expect(calls).toEqual([]);
   });
 });

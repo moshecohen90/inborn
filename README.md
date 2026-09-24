@@ -5695,3 +5695,29 @@ one-word door was still nomic's `cosine >= 0.5`, and under e5 every off-topic qu
 
 Evidence in `docs/qa/fix-corroboration-door/`: `one-term.md`, six `red-*.txt` runs, `e2e/` with before and after
 JSON, and `shots/` before and after at 1440 and 390. Spec §5.5 carries the door table and the grounding rule.
+
+## Fixes round 87: iPhone model downloads at network speed, not 0.09 MB/s (branch `fix-ios-download-speed`) — 24.9.2026
+
+The iPhone 13 Pro took 37 minutes for the 205 MB photo pack (F360) while the Mac on the same network got 8.9 MB/s.
+The simulator reproduces it with the shipped code (F370).
+
+- **The cause is the session type.** `httpsDelivery.ts` asked expo-file-system for `sessionType: "background"`, so
+  nsurlsessiond moved the bytes, and it paces an installed app's transfer to about 0.09 MB/s even with the app on
+  screen. The same app's in-process session moved the same file at network speed, in the same minute.
+
+  | simulator, same app | before | after |
+  |---|---|---|
+  | photo pack through the vault | 0.095 MB/s (37 min on the phone) | 28.6 MB/s (7.2 s) |
+  | `probeDownload` background / foreground | 0.084 / 43.5 MB/s | 0.086 / 32.8 MB/s |
+  | Mac `curl`, same minute | 42.1 MB/s | 34.5 MB/s |
+
+- **What the fix does.** On iOS the download runs in the app's own URLSession. When the app goes to the
+  background, the running leg is paused and its resume data is saved. When the app comes back, it continues with an
+  HTTP 206 from the same byte. Fast (1.28 GB) backgrounded for 15 s fetched only the remaining 1,010 MB and passed
+  its sha256 check. Android is unchanged.
+- **The handover that was rejected.** Handing the transfer between the two session types restarts the file: resume
+  data from one type gets HTTP 200 and the whole file in the other. That was measured before choosing the park.
+- **A bridge op for the phone.** `probeDownload` (`url`, `session`, `seconds`) downloads through one session type and
+  reports MB/s. The phone steps in `docs/qa/fix-ios-download-speed/measurements.md` use it for the phone's own A/B.
+- **Not yet proven on the phone.** No phone was on USB this round. A download interrupted on 1.0.0 (19) refetches from
+  byte 0 once after the update, at full speed.
