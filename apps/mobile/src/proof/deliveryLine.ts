@@ -29,6 +29,8 @@ export function deliveryKey(source: DeliverySource): string {
  */
 export function deliveryHashChecked(source: DeliverySource): boolean {
   return source === "apple" || source === "https" || source === "hf" || source === "play";
+}
+
 /** What the vault's newest install looks like to the delivery strip once nothing is downloading (F206). */
 export type DoneDelivery = { name: string; status: "done"; progress: 1; totalBytes: number; source: DeliverySource };
 
