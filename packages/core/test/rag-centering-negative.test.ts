@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { Bm25Index } from "../src/rag/bm25";
-import { isRelevant } from "../src/rag/prompt";
+import { isRelevant, relevanceDoors } from "../src/rag/prompt";
 import { hasCjk } from "../src/rag/text";
 import { cosineQuantized, normalize, quantize } from "../src/rag/vector";
 import centering from "./fixtures/rag/centering.json";
@@ -83,7 +83,7 @@ describe("F330 · on the old embedder, centring the cosine does not win the reca
   });
 
   it("no door reaches the bar: 73 of 83 on-topic with nothing off-topic cited", () => {
-    const lexical = single.filter((r) => r.kind === "on" && isRelevant({ chunk: { id: "c", docId: "d", page: 1, ord: 0, text: "t", start: 0, end: 1, tokens: 1 }, score: 1, cosine: r.cos, bm25: r.bm25, bm25Terms: r.terms })).length;
+    const lexical = single.filter((r) => r.kind === "on" && isRelevant({ chunk: { id: "c", docId: "d", page: 1, ord: 0, text: "t", start: 0, end: 1, tokens: 1 }, score: 1, cosine: r.cos, bm25: r.bm25, bm25Terms: r.terms }, relevanceDoors("embed-nomic"))).length;
     const best = Math.max(...(["cos", "centred", "z"] as const).map((m) => sweep(single, m).kept));
     expect(lexical + best).toBeLessThan(73);
     expect(lexical + best).toBe(39);
@@ -147,9 +147,10 @@ describe("F334 · the bar is met by the embedder, not by a door", () => {
     expect(on.filter(Boolean).length).toBe(25);
   });
 
-  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 81 of 89", () => {
+  it("one-passage recall with nothing off-topic cited: the old embedder's best door 39 of 83, the shipped one 80 of 89", () => {
     expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBeGreaterThanOrEqual(77);
-    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(81);
+    /* 81 until F365 raised e5's one-word corroboration door to 0.815; "Which cities host the offices?" sits under it. */
+    expect(scored.filter((r) => r.kind === "on" && r.ok).length).toBe(80);
     expect(scored.filter((r) => r.kind === "off" && r.ok).length).toBe(0);
   });
 });

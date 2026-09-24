@@ -1,0 +1,6 @@
+# sabotage: chat-wiring
+# apps/mobile/src/screens/Chat.tsx: 'const kept = groundedCitations(prefix + reply, lastUser, ragUsed, citations);' -> 'const kept = citations;'
+     × the chat keeps only grounded chips, and says the documents did not match when none are 5ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'import { useCallback, useEffect, useM…' to contain 'groundedCitations(prefix + reply, las…'
+      Tests  1 failed | 22 passed (23)

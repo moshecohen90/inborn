@@ -46,6 +46,27 @@ const CJK_FUNCTION_CHAR =
    lexical match handed an off-topic question the document's own passage (QA F278); it still scores and ranks. */
 export const isCjkFunctionTerm = (term: string): boolean => hasCjk(term) && ![...term].some((c) => !CJK_FUNCTION_CHAR.test(c));
 
+const CJK_NUMERAL = /^[〇零一二三四五六七八九十百千万億兆两]+$/u;
+/* Numerals, the counters a date or a count is written with, and nothing else: "八年", "年に", "年度". */
+const CJK_NUMBERISH = /[〇零一二三四五六七八九十百千万億兆两年月日号號時歳岁個回倍元円度秒名人件枚]/u;
+const UNITS = new Set("km kg mg cm mm ml kb mb gb tb hz khz mhz ghz kw kwh mah usd eur ils nis gbp jpy cny krw brl".split(" "));
+
+/**
+ * A term that proves nothing on its own: a number, a year, a unit, a numeral bigram ("一九") or a lone CJK character.
+ * Under e5 an off-topic question sharing only the year "1998" with a company report scored cosine 0.81 (QA F365).
+ */
+export const isWeakTerm = (term: string): boolean => {
+  if (/^\p{N}+$/u.test(term) || CJK_NUMERAL.test(term) || UNITS.has(term)) return true;
+  if (hasCjk(term)) {
+    const chars = [...term];
+    if (chars.length === 1) return true;
+    if (chars.every((c) => CJK_NUMBERISH.test(c) || CJK_FUNCTION_CHAR.test(c)) && chars.some((c) => CJK_NUMBERISH.test(c))) return true;
+  }
+  /* "1998년", "10th", "1990s", "40km": a number with a counter or unit glued on is still a number. */
+  const unit = term.replace(/^\p{N}+/u, "");
+  return unit !== term && ([...unit].length <= 2 || UNITS.has(unit));
+};
+
 /* French, Italian and Catalan articles and pronouns that elide into the next word: "l'œuvre", "dell'arte", "qu'il". */
 const ELISION = new Set("l d qu j c m n s t jusqu lorsqu puisqu quoiqu un dell all nell dall sull quest quell".split(" "));
 /* What an elided article leaves behind that is still glue ("j'ai", "c'est", "d'une"); "ai" is glue only here, as English "AI" is a word. */
@@ -89,7 +110,7 @@ export const bm25Tokens = (text: string): string[] => termGroups(text).map((g) =
 export interface Bm25Hit {
   id: string;
   score: number;
-  /** Distinct content query terms that matched; grammatical glue is excluded, as the relevance floor reads this. */
+  /** Distinct content query terms that matched; glue is excluded, and weak terms count only beside a content term. */
   matched: number;
 }
 
@@ -135,7 +156,7 @@ export class Bm25Index {
     const n = this.lengths.size;
     if (!n) return [];
     const avg = this.totalLength / n;
-    const scores = new Map<string, { score: number; matched: Set<string> }>();
+    const scores = new Map<string, { score: number; matched: Set<string>; weak: Set<string> }>();
     /* One query word is one term however many spellings it is looked up under: its best-scoring spelling counts, once. */
     const qgroups: string[][] = [];
     for (const g of termGroups(query)) {
@@ -159,13 +180,14 @@ export class Bm25Index {
       const t = group[0]!;
       for (const [id, s] of best) {
         let e = scores.get(id);
-        if (!e) scores.set(id, (e = { score: 0, matched: new Set() }));
+        if (!e) scores.set(id, (e = { score: 0, matched: new Set(), weak: new Set() }));
         e.score += s;
-        if (!isCjkFunctionTerm(t)) e.matched.add(t);
+        if (isWeakTerm(t)) e.weak.add(t);
+        else if (!isCjkFunctionTerm(t)) e.matched.add(t);
       }
     }
     return [...scores]
-      .map(([id, e]) => ({ id, score: e.score, matched: e.matched.size }))
+      .map(([id, e]) => ({ id, score: e.score, matched: e.matched.size ? e.matched.size + e.weak.size : 0 }))
       .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
       .slice(0, k);
   }

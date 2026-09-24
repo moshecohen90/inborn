@@ -177,7 +177,8 @@ describe("F363 · Traditional Chinese glue is glue", () => {
   it("the off-topic question shares no term with the passage in either script, so a corroborating cosine cites nothing", () => {
     for (const [text, question] of [[ZH_ONE, "我们什么时候可以去巴黎旅游？"], [ZH_HANT_ONE, ZH_HANT_OFF]] as const) {
       const only = { id: "z1", docId: "zh", text };
-      const hits = hitsFor(question, [only], DEFAULT_MIN_COSINE + 0.1);
+      /* Corroborating but not enough alone, under whichever doors ship. */
+      const hits = hitsFor(question, [only], DEFAULT_MIN_COSINE_ALONE);
       expect([question, hits[0]!.bm25Terms]).toEqual([question, 0]);
       expect(buildRagPrompt({ question, hits, docs: new Map([["zh", zhDoc]]), strict: true, nCtx: 4096, nonce: "n" }).citations).toEqual([]);
     }

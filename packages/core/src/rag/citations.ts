@@ -1,4 +1,6 @@
 /** Citations: "contract.pdf · p.4" chips (spec S12) built from retrieval hits, and the [n] marks a model used. */
+import { bm25Tokens, isCjkFunctionTerm, isWeakTerm } from "./bm25";
+import { hasCjk } from "./text";
 import type { Citation, DocKind, DocumentRecord, RetrievalHit } from "./types";
 
 const SNIPPET_CHARS = 220;
@@ -51,7 +53,54 @@ export function citedNumbers(answer: string): number[] {
 
 /** Chips to show under an answer: the cited ones first in citation order, then the rest only when nothing was cited. */
 export function citationsForAnswer(answer: string, all: Citation[]): { shown: Citation[]; cited: boolean } {
-  const nums = citedNumbers(answer).filter((n) => n <= all.length);
-  if (!nums.length) return { shown: all, cited: false };
-  return { shown: nums.map((n) => all[n - 1]!), cited: true };
+  const shown = citedNumbers(answer).flatMap((n) => all.filter((c) => c.n === n));
+  if (!shown.length) return { shown: all, cited: false };
+  return { shown, cited: true };
+}
+
+const NUMERAL = /[\p{N}〇零一二三四五六七八九十百千万億兆两]/u;
+
+/* In an answer a number is the fact itself ("七名", "1962"), so it counts; a counter or particle pair ("名で") does not. */
+const evidenceTerms = (text: string): Set<string> => new Set(bm25Tokens(text).filter((t) => !isCjkFunctionTerm(t) && (!isWeakTerm(t) || (NUMERAL.test(t) && !(hasCjk(t) && [...t].length === 1)))));
+
+const SCRIPTS: Array<[string, RegExp]> = [
+  ["cjk", /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]/gu],
+  ["hangul", /[\uAC00-\uD7AF]/gu],
+  ["hebrew", /[\u05D0-\u05EA]/gu],
+  ["arabic", /[\u0621-\u064A]/gu],
+  ["cyrillic", /[\u0400-\u04FF]/gu],
+  ["latin", /[A-Za-z\u00C0-\u024F]/gu],
+];
+
+/** The script most of a text's letters are written in. */
+export function mainScript(text: string): string {
+  let best = "none";
+  let most = 0;
+  for (const [name, re] of SCRIPTS) {
+    const n = text.match(re)?.length ?? 0;
+    if (n > most) [best, most] = [name, n];
+  }
+  return best;
+}
+
+/**
+ * The citations whose passage the answer actually took something from: a content word or a number of the passage
+ * that the question did not already contain. An answer that only echoes the question, or states a fact no passage carries
+ * ("Japan won the 1998 World Cup" under a company report, QA F366), gets no SOURCES strip.
+ */
+export function groundedCitations(answer: string, question: string, used: RetrievalHit[], citations: Citation[]): Citation[] {
+  const asked = evidenceTerms(question);
+  const said = [...evidenceTerms(answer)].filter((t) => !asked.has(t));
+  const script = mainScript(answer);
+  const grounded = new Set(
+    used
+      .filter((h) => {
+        /* An answer in the UI language over a passage in another script shares no word with it by design: nothing to judge. */
+        if (mainScript(h.chunk.text) !== script) return true;
+        const passage = evidenceTerms(h.chunk.text);
+        return said.some((t) => passage.has(t));
+      })
+      .map((h) => h.chunk.id),
+  );
+  return citations.filter((c) => grounded.has(c.chunkId));
 }

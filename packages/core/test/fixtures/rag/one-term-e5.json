@@ -1,0 +1,271 @@
+{
+ "embedder": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q6_k.gguf",
+ "prefixes": [
+  "",
+  "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: "
+ ],
+ "measured": "llama-embedding --pooling mean --embd-normalize 2, then the app's own quantize()/cosineQuantized() (packages/core/src/rag/vector.ts)",
+ "why": "F365: year/number questions in every launch script, measured with the shipped embedder, so e5's one-word door is guarded on real cosines.",
+ "docs": [
+  {
+   "id": "yr-en",
+   "lang": "en",
+   "text": "Aoba Trading was founded in 1998 in Sendai. Its warehouse covers 1200 square metres and ships timber to 40 countries.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "What happened in 1998?",
+     "cosine": 0.7569
+    },
+    {
+     "kind": "on",
+     "q": "How large is the warehouse?",
+     "cosine": 0.8395
+    },
+    {
+     "kind": "off",
+     "q": "Who won the 1998 World Cup?",
+     "cosine": 0.7303
+    },
+    {
+     "kind": "off",
+     "q": "How many calories are in 1200 grams of rice?",
+     "cosine": 0.739
+    }
+   ]
+  },
+  {
+   "id": "yr-de",
+   "lang": "de",
+   "text": "Aoba Trading wurde 1998 in Sendai gegründet. Das Lager umfasst 1200 Quadratmeter und liefert Holz in 40 Länder.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Was geschah 1998?",
+     "cosine": 0.7919
+    },
+    {
+     "kind": "on",
+     "q": "Wie groß ist das Lager?",
+     "cosine": 0.8486
+    },
+    {
+     "kind": "off",
+     "q": "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+     "cosine": 0.7723
+    },
+    {
+     "kind": "off",
+     "q": "Wie viele Kalorien haben 1200 Gramm Reis?",
+     "cosine": 0.7708
+    }
+   ]
+  },
+  {
+   "id": "yr-fr",
+   "lang": "fr",
+   "text": "Aoba Trading a été fondée en 1998 à Sendai. Son entrepôt couvre 1200 mètres carrés et expédie du bois vers 40 pays.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Que s'est-il passé en 1998 ?",
+     "cosine": 0.7842
+    },
+    {
+     "kind": "on",
+     "q": "Quelle est la taille de l'entrepôt ?",
+     "cosine": 0.8435
+    },
+    {
+     "kind": "off",
+     "q": "Qui a gagné la Coupe du monde 1998 ?",
+     "cosine": 0.7567
+    },
+    {
+     "kind": "off",
+     "q": "Combien de calories dans 1200 grammes de riz ?",
+     "cosine": 0.7643
+    }
+   ]
+  },
+  {
+   "id": "yr-es",
+   "lang": "es",
+   "text": "Aoba Trading se fundó en 1998 en Sendai. Su almacén ocupa 1200 metros cuadrados y envía madera a 40 países.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "¿Qué pasó en 1998?",
+     "cosine": 0.7884
+    },
+    {
+     "kind": "on",
+     "q": "¿Qué tamaño tiene el almacén?",
+     "cosine": 0.8381
+    },
+    {
+     "kind": "off",
+     "q": "¿Quién ganó el Mundial de 1998?",
+     "cosine": 0.7529
+    },
+    {
+     "kind": "off",
+     "q": "¿Cuántas calorías tienen 1200 gramos de arroz?",
+     "cosine": 0.7587
+    }
+   ]
+  },
+  {
+   "id": "yr-pt",
+   "lang": "pt",
+   "text": "A Aoba Trading foi fundada em 1998 em Sendai. O armazém ocupa 1200 metros quadrados e envia madeira para 40 países.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "O que aconteceu em 1998?",
+     "cosine": 0.8045
+    },
+    {
+     "kind": "on",
+     "q": "Qual é o tamanho do armazém?",
+     "cosine": 0.8437
+    },
+    {
+     "kind": "off",
+     "q": "Quem ganhou a Copa do Mundo de 1998?",
+     "cosine": 0.7704
+    },
+    {
+     "kind": "off",
+     "q": "Quantas calorias têm 1200 gramas de arroz?",
+     "cosine": 0.7728
+    }
+   ]
+  },
+  {
+   "id": "yr-he",
+   "lang": "he",
+   "text": "אאובה טריידינג נוסדה ב-1998 בסנדאי. המחסן שלה משתרע על 1200 מטרים רבועים ומשלח עצים ל-40 מדינות.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "מה קרה ב-1998?",
+     "cosine": 0.8197
+    },
+    {
+     "kind": "on",
+     "q": "מה גודל המחסן?",
+     "cosine": 0.8534
+    },
+    {
+     "kind": "off",
+     "q": "מי זכה במונדיאל 1998?",
+     "cosine": 0.8009
+    },
+    {
+     "kind": "off",
+     "q": "כמה קלוריות יש ב-1200 גרם אורז?",
+     "cosine": 0.7878
+    }
+   ]
+  },
+  {
+   "id": "yr-ko",
+   "lang": "ko",
+   "text": "한빛물산은 1998년 센다이에서 설립되었다. 창고 면적은 1200제곱미터이며 40개국에 목재를 수출한다.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "1998년에 무슨 일이 있었나요?",
+     "cosine": 0.8173
+    },
+    {
+     "kind": "on",
+     "q": "창고는 얼마나 넓은가요?",
+     "cosine": 0.8591
+    },
+    {
+     "kind": "off",
+     "q": "1998년 월드컵 우승국은 어디인가요?",
+     "cosine": 0.8042
+    },
+    {
+     "kind": "off",
+     "q": "쌀 1200그램은 몇 칼로리인가요?",
+     "cosine": 0.7793
+    }
+   ]
+  },
+  {
+   "id": "yr-ja",
+   "lang": "ja",
+   "text": "青葉商事は一九九八年に仙台で設立された。倉庫の面積は千二百平方メートルで、四十か国に木材を出荷している。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "一九九八年に何がありましたか？",
+     "cosine": 0.8185
+    },
+    {
+     "kind": "on",
+     "q": "倉庫の広さはどれくらいですか？",
+     "cosine": 0.8486
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+     "cosine": 0.8075
+    },
+    {
+     "kind": "off",
+     "q": "千二百グラムの米は何カロリーですか？",
+     "cosine": 0.7696
+    }
+   ]
+  },
+  {
+   "id": "yr-zh",
+   "lang": "zh",
+   "text": "青叶商事于一九九八年在仙台成立，其仓库面积为一千二百平方米，向四十个国家出口木材。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "一九九八年发生了什么？",
+     "cosine": 0.8232
+    },
+    {
+     "kind": "on",
+     "q": "仓库有多大？",
+     "cosine": 0.8568
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年世界杯足球赛是谁赢的？",
+     "cosine": 0.7871
+    },
+    {
+     "kind": "off",
+     "q": "一千二百克米饭有多少卡路里？",
+     "cosine": 0.7718
+    }
+   ]
+  },
+  {
+   "id": "nenji-whole",
+   "lang": "ja",
+   "text": "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。\n\n同社の設立は一九六二年で、当初は木材の輸入を専門としていた。\n\n二〇二五年度の売上高は前年度より七パーセント増え、営業利益率は九パーセントであった。\n\n主力商品は業務用の包装資材と、industrial向けの接着剤の二系統である。\n\n環境方針として、二〇三〇年までに自社施設の電力をすべて再生可能エネルギーに切り替える計画を掲げている。\n\n取締役会は七名で構成され、そのうち三名は社外取締役である。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "従業員は全部で何人ですか？",
+     "cosine": 0.8526
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+     "cosine": 0.7863
+    }
+   ]
+  }
+ ]
+}

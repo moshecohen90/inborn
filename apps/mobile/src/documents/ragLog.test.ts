@@ -15,7 +15,7 @@ describe("F328 · the retrieval line QA reads in logcat", () => {
     expect(line).toContain("terms=");
     expect(line).toContain("bm25=");
     /* Which side of the floor each hit landed on, so the line explains the citation and not only the scores. */
-    expect(line).toMatch(/isRelevant\(h\)/);
+    expect(line).toMatch(/isRelevant\(h, doors\)/);
   });
 
   it("the line carries the turn's mode and what survived the floor", () => {
