@@ -5794,11 +5794,14 @@ nine call sites, wllama's "No available adapters" without WebGPU, and Animated's
 lines are harness noise because no Metro server is running: the dev bundle's `/hot` and `/message` sockets fail, and
 the raw mobile export has no `/sw.js`. The before build was minified, so it also warned about a screen component named
 `o`. The unminified export does not. Evidence in `docs/qa/fix-web-a11y-props/`.
-
 ## Fixes round 79: Play internal 1.0.0 (23) — the photo pack, the hold card and the Document index on the 6T (branch `android-vc23`) — 24.9.2026
 
 The first Android release build carrying rounds 62–78, built from `main` 4a6af9b and delivered to the OnePlus 6T by
 Google Play as an update in place. No code changed in this round; it is the device pass that rounds 72–78 could not do.
+
+**Play upload:** vc23 was uploaded to the internal track and the edit committed at 19:44, before Moshe's 24.9
+decision to stop store uploads reached this stream. Nothing else was done in Play Console, and no further build
+goes to a store until he approves.
 
 - **Released** (F352). `INBORN_REQUIRE_BUNDLE=1` shipping-bundle gate green on the real AAB: Instant and the photo
   projector are fast-follow packs with the catalog's bytes. Edit `05243559871263450934`, committed on the first try.
