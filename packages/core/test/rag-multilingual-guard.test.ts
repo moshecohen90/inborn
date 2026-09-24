@@ -26,11 +26,11 @@ const ONE = shipped.docs as OneDoc[];
 /* Round 81's accent-less French question asks for "sieges" in a passage that says "bureaux", so only its cosine (0.777) could cite it. */
 const EXPECTED_BY_LANG: Record<string, string> = {
   de: "5/5",
-  "de (no accents)": "3/3",
+  "de (no accents)": "4/4",
   en: "8/10",
   es: "3/5",
   "es (no accents)": "2/4",
-  fr: "5/5",
+  fr: "6/6",
   "fr (no accents)": "1/2",
   he: "5/5",
   ja: "13/14",
@@ -43,11 +43,11 @@ const EXPECTED_BY_LANG: Record<string, string> = {
 /* What the word index cites without the cosine standing alone: the half the accent fold moves (F367). */
 const EXPECTED_LEXICAL_BY_LANG: Record<string, string> = {
   de: "0/5",
-  "de (no accents)": "1/3",
+  "de (no accents)": "2/4",
   en: "4/10",
   es: "1/5",
   "es (no accents)": "2/4",
-  fr: "0/5",
+  fr: "1/6",
   "fr (no accents)": "1/2",
   he: "3/5",
   ja: "8/14",
@@ -63,6 +63,11 @@ const FOLDED_ONLY: Record<string, string> = {
   "es-report": "¿Segun el reporte, cuantos empleados hay?",
   "fr-report": "Combien d'employes compte la societe?",
   "pt-report": "Em que cidades estao os escritorios?",
+};
+/** F368: the German question whose only shared word has an umlaut the typist spelled "ue", and the French one whose only shared word is elided in the passage ("d'Aoba"). */
+const SPELLED_ONLY: Record<string, string> = {
+  "de-report": "Wo liegen die Hauptbueros?",
+  "fr-report": "Combien de gens travaillent chez Aoba?",
 };
 const SIX = shipped.multi as SixDoc[];
 
@@ -103,10 +108,10 @@ describe("F363 · the fixtures cover what users of the launch locales type", () 
 
 describe("F334 · one-passage documents in nine languages", () => {
   for (const strict of [false, true]) {
-    it(`strict=${strict}: 79 of 87 on-topic questions cite the passage and 0 of 143 off-topic ones do`, () => {
+    it(`strict=${strict}: 81 of 89 on-topic questions cite the passage and 0 of 143 off-topic ones do`, () => {
       const on = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], strict).length > 0));
       const offCited = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off" && citedIn(d.id, [d.text], q.q, [q.cosine], strict).length).map((q) => `${d.id} ${q.q}`));
-      expect([on.length, on.filter(Boolean).length]).toEqual([87, 79]);
+      expect([on.length, on.filter(Boolean).length]).toEqual([89, 81]);
       expect(ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off")).length).toBe(143);
       expect(offCited).toEqual([]);
     });
@@ -127,6 +132,14 @@ describe("F334 · one-passage documents in nine languages", () => {
     for (const [id, q] of Object.entries(FOLDED_ONLY)) {
       const d = ONE.find((x) => x.id === id)!;
       expect([id, d.questions.some((x) => x.q === q && x.kind === "on" && x.sloppy)]).toEqual([id, true]);
+      expect([id, q, hits(d.id, [d.text], q, [0])[0]!.bm25Terms]).toEqual([id, q, 1]);
+    }
+  });
+
+  it("F368: the word index alone finds an umlaut typed as a digraph and a word behind an elided article", () => {
+    for (const [id, q] of Object.entries(SPELLED_ONLY)) {
+      const d = ONE.find((x) => x.id === id)!;
+      expect([id, d.questions.some((x) => x.q === q && x.kind === "on")]).toEqual([id, true]);
       expect([id, q, hits(d.id, [d.text], q, [0])[0]!.bm25Terms]).toEqual([id, q, 1]);
     }
   });

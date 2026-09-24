@@ -46,18 +46,45 @@ const CJK_FUNCTION_CHAR =
    lexical match handed an off-topic question the document's own passage (QA F278); it still scores and ranks. */
 export const isCjkFunctionTerm = (term: string): boolean => hasCjk(term) && ![...term].some((c) => !CJK_FUNCTION_CHAR.test(c));
 
-export function bm25Tokens(text: string): string[] {
-  const out: string[] = [];
-  for (const raw of words(text)) {
+/* French, Italian and Catalan articles and pronouns that elide into the next word: "l'œuvre", "dell'arte", "qu'il". */
+const ELISION = new Set("l d qu j c m n s t jusqu lorsqu puisqu quoiqu un dell all nell dall sull quest quell".split(" "));
+/* What an elided article leaves behind that is still glue ("j'ai", "c'est", "d'une"); "ai" is glue only here, as English "AI" is a word. */
+const ELIDED_GLUE = new Set("ai est il ils elle elles on un une en y".split(" "));
+const APOSTROPHE = /['\u2019]/u;
+
+/** The word an apostrophe hides: the elided article is dropped, and so is an English "'s". Null when only glue is left (F368). */
+function unelide(word: string): string | null {
+  let w = word;
+  for (let at = w.search(APOSTROPHE); at > 0 && ELISION.has(w.slice(0, at)); at = w.search(APOSTROPHE)) {
+    w = w.slice(at + 1);
+    if (ELIDED_GLUE.has(w)) return null;
+  }
+  const last = w.length - 2;
+  return last > 0 && APOSTROPHE.test(w[last]!) && w[last + 1] === "s" ? w.slice(0, last) : w;
+}
+
+const UMLAUT_DIGRAPH: Record<string, string> = { "\u00E4": "ae", "\u00F6": "oe", "\u00FC": "ue" };
+
+/**
+ * A word as the index spells it, and, for a word with ä/ö/ü, the ae/oe/ue spelling German typists fall back to (F368).
+ * The digraph is an extra spelling, never a fold, so "Poesie", "Quelle" and "Feuer" keep their own letters.
+ */
+function termGroups(text: string): string[][] {
+  const out: string[][] = [];
+  for (const word of words(text)) {
+    const raw = unelide(word);
     /* Glue is recognised as spelled before folding, so "très" stays glue while Spanish "tres" (three) stays a word. */
-    if (STOP.has(raw)) continue;
+    if (raw === null || STOP.has(raw)) continue;
     const w = foldDiacritics(raw);
     /* A lone CJK character is a word, not a stray letter, so the one-character floor does not apply to it. */
     if (STOP.has(w) || (w.length < 2 && !/\p{N}/u.test(w) && !hasCjk(w))) continue;
-    for (const t of termsOf(w)) if (!STOP.has(t)) out.push(t);
+    const digraph = /[\u00E4\u00F6\u00FC]/u.test(raw) ? foldDiacritics(raw.replace(/[\u00E4\u00F6\u00FC]/gu, (c) => UMLAUT_DIGRAPH[c]!)) : null;
+    for (const t of termsOf(w)) if (!STOP.has(t)) out.push(digraph && t === w ? [t, digraph] : [t]);
   }
   return out;
 }
+
+export const bm25Tokens = (text: string): string[] => termGroups(text).map((g) => g[0]!);
 
 export interface Bm25Hit {
   id: string;
@@ -82,10 +109,11 @@ export class Bm25Index {
 
   add(id: string, text: string): void {
     if (this.lengths.has(id)) this.remove(id);
-    const toks = bm25Tokens(text);
-    this.lengths.set(id, toks.length);
-    this.totalLength += toks.length;
-    for (const t of toks) {
+    const groups = termGroups(text);
+    /* The digraph spelling is indexed but not counted in the length, so it moves no other word's score. */
+    this.lengths.set(id, groups.length);
+    this.totalLength += groups.length;
+    for (const t of groups.flat()) {
       let m = this.postings.get(t);
       if (!m) this.postings.set(t, (m = new Map()));
       m.set(id, (m.get(id) ?? 0) + 1);
@@ -108,15 +136,28 @@ export class Bm25Index {
     if (!n) return [];
     const avg = this.totalLength / n;
     const scores = new Map<string, { score: number; matched: Set<string> }>();
-    const qterms = new Set(bm25Tokens(query));
-    for (const t of qterms) {
-      const m = this.postings.get(t);
-      if (!m) continue;
-      const idf = Math.log(1 + (n - m.size + 0.5) / (m.size + 0.5));
-      for (const [id, tf] of m) {
-        if (filter && !filter(id)) continue;
-        const len = this.lengths.get(id) ?? avg;
-        const s = idf * ((tf * (this.k1 + 1)) / (tf + this.k1 * (1 - this.b + (this.b * len) / avg)));
+    /* One query word is one term however many spellings it is looked up under: its best-scoring spelling counts, once. */
+    const qgroups: string[][] = [];
+    for (const g of termGroups(query)) {
+      const same = qgroups.find((q) => g.some((t) => q.includes(t)));
+      if (same) same.push(...g.filter((t) => !same.includes(t)));
+      else qgroups.push(g);
+    }
+    for (const group of qgroups) {
+      const best = new Map<string, number>();
+      for (const t of group) {
+        const m = this.postings.get(t);
+        if (!m) continue;
+        const idf = Math.log(1 + (n - m.size + 0.5) / (m.size + 0.5));
+        for (const [id, tf] of m) {
+          if (filter && !filter(id)) continue;
+          const len = this.lengths.get(id) ?? avg;
+          const s = idf * ((tf * (this.k1 + 1)) / (tf + this.k1 * (1 - this.b + (this.b * len) / avg)));
+          if (s > (best.get(id) ?? -1)) best.set(id, s);
+        }
+      }
+      const t = group[0]!;
+      for (const [id, s] of best) {
         let e = scores.get(id);
         if (!e) scores.set(id, (e = { score: 0, matched: new Set() }));
         e.score += s;

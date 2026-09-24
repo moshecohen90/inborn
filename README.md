@@ -5557,3 +5557,46 @@ Round 81 left one lexical gap open: the word index compared words exactly, so "s
 Evidence in `docs/qa/fix-accent-fold/`: `red-accent-fold.txt`, `red-guard.txt`, `green.txt` and
 `measure-before.md`, the measure on the old tokenizer beside the regenerated `docs/qa/embed-multilingual/measure.md`.
 Spec §5.5 describes the fold.
+
+## Fixes round 85: German typed as ae/oe/ue, and a word behind an elided article (branch `fix-elision-umlaut`) — 24.9.2026
+
+Round 84 left two lexical gaps open: "Staedten" never met "Städten", and "l'œuvre" or "d'Aoba" were one word, so
+"oeuvre" or "Aoba" alone never met them.
+
+- **Umlauts have a second spelling, not a fold (F368).** A word with ä, ö or ü is also indexed under its ae/oe/ue
+  spelling, and a question word with ä/ö/ü is also looked up under it. "Staedten" finds "Städten", "Muenchen" finds
+  "München", and a passage typed "Muenchen" is found by "München". One question word counts as one term whichever
+  spelling matched, and the extra spelling does not count in the passage length, so no other score moves. ß was
+  already spelled "ss" on both sides in round 84, so "Strasse" finds "Straße".
+- **The fold was measured and rejected.** Folding ae→a, oe→o, ue→u on German questions moves the same fixture row and
+  cites nothing off-topic either, but it lost 33 of 37 common German words. "au" followed by "e" is everyday German
+  ("Frauen", "bauen", "Dauer"), as are "Quelle", "neue" and "aktuell", so no exception list can hold them. It would
+  also need the question's language, which the index does not know. The numbers are in
+  `docs/qa/fix-elision-umlaut/options.md`.
+- **Elided articles are glue.** In French, Italian and Catalan, an elided article or pronoun before an ASCII ' or a
+  typographic ’ is dropped: l, d, qu, j, c, m, n, s, t, jusqu, lorsqu, puisqu, quoiqu, un, dell, all, nell, dall,
+  sull, quest, quell. The word after it is indexed alone, so "oeuvre" finds "l'œuvre". What an article leaves behind
+  can still be glue: "j'ai", "c'est", "qu'il" and "d'une" give no term. "ai" is glue only after "j'", since English
+  "AI" is a word.
+- **English.** "Moshe's" and "it's" lose their "'s". Other contractions ("don't", "can't") stay one word, as they were:
+  splitting "don't" would turn "don" into a content word, and it is Spanish and English for something else.
+  "aujourd'hui", "prud'homme" and "O'Brien" stay whole, because their first part is not an article.
+- **No re-index.** As in round 84, the word index is rebuilt in memory from chunk text on every load.
+- **Before and after**, one-passage on-topic questions, shipped embedder. Each of `de-report` and `fr-report` gained
+  one question whose only shared word is spelled this way: "Wo liegen die Hauptbueros?" (cosine 0.8438) and "Combien
+  de gens travaillent chez Aoba?" (0.8957). The committed cosines of the older rows were kept as they were.
+
+  | language | lexical rule alone, before | after | shipped door (0.82), before | after |
+  |---|---|---|---|---|
+  | de (no accents) | 1/4 | 2/4 | 4/4 | 4/4 |
+  | fr | 0/6 | 1/6 | 6/6 | 6/6 |
+  | all 14 columns | 43/89 | 45/89 | 83/89 | 83/89 |
+
+  Off-topic citations stay 0/143 and 3/54, and the door stays at 0.82. Both new rows are above the door already, so
+  the gain shows on devices without the document embedder, where the lexical rule is the only door.
+- **Guarded.** `packages/core/test/rag-elision-umlaut.test.ts` has 19 cases; 15 of them went red on round 84's
+  tokenizer. One new guard in `rag-multilingual-guard.test.ts` and the per-language lexical guard went red on it too.
+
+Evidence in `docs/qa/fix-elision-umlaut/`: `red-elision-umlaut.txt`, `red-guard.txt`, `green.txt`, `options.md` with
+its probe source, and `measure-before.md` beside the regenerated `docs/qa/embed-multilingual/measure.md`. Spec §5.5
+describes both rules.
