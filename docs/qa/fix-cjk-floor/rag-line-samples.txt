@@ -1,0 +1,12 @@
+The two turns of F282 as this line would have printed them, with the numbers measured for that very file and those
+very questions (docs/qa/fix-cjk-floor/measurements.txt, rows ja-device). Before the fix both said KEPT.
+
+off-topic  一九九八年のワールドカップで優勝したのはどこですか？
+[rag] strict=false hits=1 used=0 412 ms | vc22-ja-report#0 cos=0.662 terms=0 bm25=0.00 dropped
+
+on-topic   青葉商事の社員数は何名ですか？
+[rag] strict=false hits=1 used=1 398 ms | vc22-ja-report#0 cos=0.810 terms=8 bm25=2.30 KEPT
+
+a multi-chunk document, strict mode, where the line shows the floor sorting the hits
+[rag] strict=true hits=3 used=2 455 ms | lease#3 cos=0.710 terms=3 bm25=4.10 KEPT · lease#7 cos=0.680 terms=1 bm25=0.29 KEPT · lease#1 cos=0.640 terms=0 bm25=0.00 dropped
+

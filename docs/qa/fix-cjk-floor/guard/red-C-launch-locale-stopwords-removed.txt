@@ -1,0 +1,113 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core
+
+ ❯ test/rag-relevance-floor.test.ts (9 tests | 3 failed) 34ms
+   ❯ F327 · the embedding half cannot cite a passage on its own (6)
+     × no off-topic question in any of the nine languages is cited, in either mode 16ms
+     × the question that shares a word with the passage is still cited, in every language that has one 7ms
+   ❯ F327 · why no cosine floor was chosen instead (3)
+     × the lexical half separates what the cosine cannot: no off-topic question matches a single content word 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > no off-topic question in any of the nine languages is cited, in either mode
+AssertionError: expected [ …(26) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "es-report strict=false ¿Quien gano el Mundial de 1998?",
++   "es-report strict=true ¿Quien gano el Mundial de 1998?",
++   "es-report strict=false ¿Cuanto dura el tren de Tokio a Osaka?",
++   "es-report strict=true ¿Cuanto dura el tren de Tokio a Osaka?",
++   "es-report strict=false ¿Por que se descarga tan rapido la bateria?",
++   "es-report strict=true ¿Por que se descarga tan rapido la bateria?",
++   "es-report strict=false ¿Hay que calentar antes de correr?",
++   "es-report strict=true ¿Hay que calentar antes de correr?",
++   "pt-report strict=false Quem ganhou a Copa do Mundo de 1998?",
++   "pt-report strict=true Quem ganhou a Copa do Mundo de 1998?",
++   "pt-report strict=false Quanto tempo demora o comboio de Toquio a Osaka?",
++   "pt-report strict=true Quanto tempo demora o comboio de Toquio a Osaka?",
++   "pt-report strict=false E preciso aquecer antes de correr?",
++   "pt-report strict=true E preciso aquecer antes de correr?",
++   "fr-report strict=false Qui a gagne la Coupe du monde 1998?",
++   "fr-report strict=true Qui a gagne la Coupe du monde 1998?",
++   "fr-report strict=false Combien de temps dure le train de Tokyo a Osaka?",
++   "fr-report strict=true Combien de temps dure le train de Tokyo a Osaka?",
++   "fr-report strict=false Pourquoi la batterie se vide-t-elle si vite?",
++   "fr-report strict=true Pourquoi la batterie se vide-t-elle si vite?",
++   "fr-report strict=false Mon enfant a de la fievre, que faire?",
++   "fr-report strict=true Mon enfant a de la fievre, que faire?",
++   "de-report strict=false Wie lange dauert der Zug von Tokio nach Osaka?",
++   "de-report strict=true Wie lange dauert der Zug von Tokio nach Osaka?",
++   "de-report strict=false Muss man sich vor dem Laufen aufwaermen?",
++   "de-report strict=true Muss man sich vor dem Laufen aufwaermen?",
++ ]
+
+ ❯ test/rag-relevance-floor.test.ts:59:19
+     57|         for (const strict of [false, true])
+     58|           if (ask(f, q.q, q.cosine, strict).citations.length) cited.pu…
+     59|     expect(cited).toEqual([]);
+       |                   ^
+     60|   });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > the question that shares a word with the passage is still cited, in every language that has one
+AssertionError: expected [ 'en', 'es', 'fr', 'he', 'ja', …(3) ] to deeply equal [ 'en', 'es', 'he', 'ja', 'ko', …(2) ]
+
+- Expected
++ Received
+
+@@ -1,8 +1,9 @@
+  [
+    "en",
+    "es",
++   "fr",
+    "he",
+    "ja",
+    "ko",
+    "pt",
+    "zh",
+
+ ❯ test/rag-relevance-floor.test.ts:72:30
+     70|       for (const q of f.questions.filter((x) => x.kind === "on"))
+     71|         for (const strict of [false, true]) if (ask(f, q.q, q.cosine, …
+     72|     expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "p…
+       |                              ^
+     73|   });
+     74|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · why no cosine floor was chosen instead > the lexical half separates what the cosine cannot: no off-topic question matches a single content word
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ test/rag-relevance-floor.test.ts:137:35
+    135|   it("the lexical half separates what the cosine cannot: no off-topic …
+    136|     const offTerms = FIXTURES.flatMap((f) => f.questions.filter((q) =>…
+    137|     expect(Math.max(...offTerms)).toBe(0);
+       |                                   ^
+    138|   });
+    139| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 failed | 47 passed (50)
+   Start at  16:08:16
+   Duration  241ms (transform 61%, import 19%, tests 18%, worker 2%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-relevance-floor.test.ts test/rag-cjk.test.ts

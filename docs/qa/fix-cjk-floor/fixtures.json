@@ -1,0 +1,284 @@
+{
+  "note": "One-passage documents and the questions asked of them. `on` must keep citing, `off` must not. Passages and questions marked device were run on the OnePlus 6T (docs/qa/android-vc21, android-vc22).",
+  "docs": [
+    {
+      "id": "ja-device",
+      "lang": "ja",
+      "source": "vc22-ja-report.txt, the file the 6T ran for F278/F282",
+      "text": "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。",
+      "on": [
+        "青葉商事の社員数は何名ですか？",
+        "この会社の主要拠点はどこですか？",
+        "報告書によると従業員は何人いますか？",
+        "従業員は全部で何人ですか？",
+        "オフィスがある都市を二つ挙げてください。",
+        "この組織の規模を教えてください。",
+        "働いている人の総数はどれくらいですか？",
+        "How many employees does Aoba Trading have?"
+      ],
+      "off": [
+        "一九九八年のワールドカップで優勝したのはどこですか？",
+        "味噌汁の作り方を教えてください。",
+        "富士山の高さは何メートルですか？",
+        "来週の東京の天気はどうなりますか？",
+        "日本で一番長い川はどれですか？",
+        "明日は傘が必要ですか？",
+        "このアプリの使い方を説明してください。",
+        "ピアノを習うのに最適な年齢は何歳ですか？",
+        "猫は何時間眠りますか？",
+        "電車の切符はどこで買えますか？",
+        "夏目漱石の代表作は何ですか？",
+        "コーヒーとお茶はどちらが体にいいですか？",
+        "Who won the 1998 football World Cup?",
+        "How do I cook a good risotto?"
+      ]
+    },
+    {
+      "id": "ja-f278",
+      "lang": "ja",
+      "source": "JA_ONE, packages/core/test/rag-cjk.test.ts",
+      "text": "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。",
+      "on": [
+        "当社の年度の収益はいくらですか？",
+        "収益が増えた理由は何ですか？",
+        "去年と比べて売上はどれくらい伸びましたか？",
+        "利益はどのくらい伸びましたか？",
+        "業績が良くなった原因は何でしたか？",
+        "前年に対する成長率を教えてください。"
+      ],
+      "off": [
+        "一九九八年のワールドカップで優勝したのはどこですか？",
+        "犬と猫ではどちらが長生きしますか？",
+        "パリ行きの飛行機は何時間かかりますか？",
+        "東京から大阪まで何キロありますか？",
+        "おすすめの映画はありますか？",
+        "スマートフォンの電池を長持ちさせる方法は？",
+        "子供の熱が下がりません、どうすればいいですか？",
+        "ギターのコードを教えてください。",
+        "地震のときはどう行動すべきですか？",
+        "自転車のタイヤの空気圧はどのくらいが適切ですか？"
+      ]
+    },
+    {
+      "id": "zh-f278",
+      "lang": "zh",
+      "source": "ZH_ONE, packages/core/test/rag-cjk.test.ts",
+      "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。",
+      "on": [
+        "公司的年度收入增长了多少？",
+        "本公司二零二四年度的收入是多少？",
+        "去年的营业额比前年高了几成？",
+        "利润提高了几个百分点？",
+        "明年还能保持这样的势头吗？",
+        "销售业绩比从前好了吗？"
+      ],
+      "off": [
+        "我们什么时候可以去巴黎旅游？",
+        "一九九八年世界杯足球赛是谁赢的？",
+        "红烧肉怎么做才好吃？",
+        "北京到上海坐高铁要多久？",
+        "怎么才能学好英语？",
+        "手机充电太慢怎么办？",
+        "孩子发烧应该怎么处理？",
+        "推荐一部好看的电影。",
+        "长城建于哪个朝代？",
+        "养猫需要注意什么？"
+      ]
+    },
+    {
+      "id": "zh-f195",
+      "lang": "zh",
+      "source": "ZH_PASSAGE, packages/core/test/rag-cjk.test.ts",
+      "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。",
+      "on": [
+        "公司的年度收入是多少？",
+        "营业额与前一年相比如何？",
+        "利润比从前多了多少？",
+        "生意做得比上一年好吗？"
+      ],
+      "off": [
+        "谁赢得了一九九八年世界杯足球赛？",
+        "员工餐厅的午餐时间是什么时候？",
+        "西红柿炒鸡蛋怎么做？",
+        "明天会下雨吗？",
+        "哪个牌子的电脑比较好？",
+        "跑步前需要热身吗？",
+        "故宫的门票多少钱？",
+        "怎样才能睡个好觉？"
+      ]
+    },
+    {
+      "id": "ko-report",
+      "lang": "ko",
+      "source": "new for F329; the Korean twin of ja-device",
+      "text": "한빛물산의 2025년도 연례 보고서에 따르면 직원 수는 삼백팔십이 명이며, 주요 거점은 대전과 부산 두 곳이다.",
+      "on": [
+        "한빛물산의 직원 수는 몇 명입니까?",
+        "이 회사의 주요 거점은 어디입니까?",
+        "보고서에 나온 종업원 규모가 어느 정도인가요?",
+        "종업원은 모두 몇 사람인가요?",
+        "사무실이 있는 도시를 알려 주세요.",
+        "조직의 규모가 어느 정도입니까?"
+      ],
+      "off": [
+        "1998년 월드컵에서 우승한 나라는 어디입니까?",
+        "김치찌개는 어떻게 끓이나요?",
+        "다음 주 서울 날씨는 어떻습니까?",
+        "서울에서 부산까지 KTX로 얼마나 걸립니까?",
+        "영어를 잘하려면 어떻게 해야 하나요?",
+        "휴대폰 배터리가 빨리 닳는데 어떻게 하죠?",
+        "아이가 열이 나면 어떻게 해야 합니까?",
+        "재미있는 영화를 추천해 주세요.",
+        "고양이를 키울 때 주의할 점은 무엇인가요?",
+        "달리기 전에 준비운동이 필요한가요?"
+      ]
+    },
+    {
+      "id": "en-report",
+      "lang": "en",
+      "source": "new for F329; the English twin of ja-device",
+      "text": "According to Aoba Trading's 2025 annual report the company employs three hundred and eighty-two people, and its two main offices are in Sendai and Fukuoka.",
+      "on": [
+        "How many people does Aoba Trading employ?",
+        "Where are the company's main offices?",
+        "What is the size of the workforce in the report?",
+        "What is the total headcount?",
+        "Which cities host the offices?",
+        "How large is the organisation?"
+      ],
+      "off": [
+        "Who won the 1998 football World Cup?",
+        "How do I cook a good risotto?",
+        "How tall is Mount Fuji?",
+        "How long is the train from Tokyo to Osaka?",
+        "What is a good film to watch tonight?",
+        "Why does my phone battery drain so fast?",
+        "My child has a fever, what should I do?",
+        "When was the Great Wall built?",
+        "Do I need to warm up before running?",
+        "How do I learn English faster?"
+      ]
+    },
+    {
+      "id": "he-report",
+      "lang": "he",
+      "source": "new for F329; a spaced non-latin script, to prove the rule is not CJK-only",
+      "text": "על פי הדוח השנתי של חברת אובה סחר לשנת 2025, מספר העובדים עומד על שלוש מאות שמונים ושניים, ושני המשרדים הראשיים נמצאים בסנדאי ובפוקואוקה.",
+      "on": [
+        "כמה עובדים יש בחברת אובה סחר?",
+        "היכן נמצאים המשרדים הראשיים?",
+        "מה גודל כוח האדם בארגון?",
+        "באילו ערים יושבים המשרדים?",
+        "כמה אנשים מועסקים שם?"
+      ],
+      "off": [
+        "מי ניצח במונדיאל של 1998?",
+        "איך מכינים חמין טוב?",
+        "כמה זמן לוקחת הרכבת מתל אביב לחיפה?",
+        "איזה סרט כדאי לראות הערב?",
+        "למה הסוללה בטלפון נגמרת מהר?",
+        "הילד שלי עם חום, מה עושים?",
+        "מתי נבנתה החומה הסינית?",
+        "צריך להתחמם לפני ריצה?",
+        "איך לומדים אנגלית מהר יותר?",
+        "מה השעה בניו יורק?"
+      ]
+    },
+    {
+      "id": "en-lease",
+      "lang": "en",
+      "source": "second Latin doc, another subject",
+      "text": "The tenant shall pay a deposit of two months' rent before taking possession, and the landlord must return it within thirty days of the final inspection.",
+      "on": [
+        "When does the money have to be given back?",
+        "How much must be paid up front?",
+        "What happens after the property is checked at the end?",
+        "Is a guarantee required before moving in?"
+      ],
+      "off": [
+        "Who won the 1998 football World Cup?",
+        "How do I cook a good risotto?",
+        "What is the capital of Peru?",
+        "How many moons does Jupiter have?",
+        "What time is it in New York?",
+        "Can dogs eat chocolate?"
+      ]
+    },
+    {
+      "id": "es-report",
+      "lang": "es",
+      "source": "Spanish twin of en-report",
+      "text": "Segun el informe anual de 2025 de Aoba Trading, la empresa emplea a trescientas ochenta y dos personas y sus dos oficinas principales estan en Sendai y Fukuoka.",
+      "on": [
+        "¿Cuantas personas trabajan alli?",
+        "¿Que tamaño tiene la plantilla?",
+        "¿En que ciudades estan las sedes?"
+      ],
+      "off": [
+        "¿Quien gano el Mundial de 1998?",
+        "¿Como se prepara un buen risotto?",
+        "¿Cuanto dura el tren de Tokio a Osaka?",
+        "¿Por que se descarga tan rapido la bateria?",
+        "Mi hijo tiene fiebre, ¿que hago?",
+        "¿Hay que calentar antes de correr?"
+      ]
+    },
+    {
+      "id": "pt-report",
+      "lang": "pt",
+      "source": "Portuguese twin",
+      "text": "Segundo o relatorio anual de 2025 da Aoba Trading, a companhia emprega trezentas e oitenta e duas pessoas e os seus dois escritorios principais ficam em Sendai e Fukuoka.",
+      "on": [
+        "Quantas pessoas trabalham la?",
+        "Qual e o tamanho do quadro de pessoal?",
+        "Em que cidades ficam as sedes?"
+      ],
+      "off": [
+        "Quem ganhou a Copa do Mundo de 1998?",
+        "Como se faz um bom risoto?",
+        "Quanto tempo demora o comboio de Toquio a Osaka?",
+        "Porque e que a bateria acaba tao depressa?",
+        "O meu filho tem febre, o que faco?",
+        "E preciso aquecer antes de correr?"
+      ]
+    },
+    {
+      "id": "fr-report",
+      "lang": "fr",
+      "source": "French twin",
+      "text": "Selon le rapport annuel 2025 d'Aoba Trading, la societe emploie trois cent quatre-vingt-deux personnes et ses deux bureaux principaux se trouvent a Sendai et Fukuoka.",
+      "on": [
+        "Combien de gens y travaillent?",
+        "Quelle est la taille des effectifs?",
+        "Dans quelles villes sont les sieges?"
+      ],
+      "off": [
+        "Qui a gagne la Coupe du monde 1998?",
+        "Comment prepare-t-on un bon risotto?",
+        "Combien de temps dure le train de Tokyo a Osaka?",
+        "Pourquoi la batterie se vide-t-elle si vite?",
+        "Mon enfant a de la fievre, que faire?",
+        "Faut-il s'echauffer avant de courir?"
+      ]
+    },
+    {
+      "id": "de-report",
+      "lang": "de",
+      "source": "German twin",
+      "text": "Laut dem Jahresbericht 2025 von Aoba Trading beschaeftigt das Unternehmen dreihundertzweiundachtzig Personen, und seine beiden Hauptbueros befinden sich in Sendai und Fukuoka.",
+      "on": [
+        "Wie viele Leute arbeiten dort?",
+        "Wie gross ist die Belegschaft?",
+        "In welchen Staedten sitzen die Zentralen?"
+      ],
+      "off": [
+        "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+        "Wie kocht man ein gutes Risotto?",
+        "Wie lange dauert der Zug von Tokio nach Osaka?",
+        "Warum ist der Akku so schnell leer?",
+        "Mein Kind hat Fieber, was soll ich tun?",
+        "Muss man sich vor dem Laufen aufwaermen?"
+      ]
+    }
+  ]
+}
