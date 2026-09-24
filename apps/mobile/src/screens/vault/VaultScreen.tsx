@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { modelName } from "../../lib/models";
+import { focusLocation } from "./focus";
 import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../services/theme";
 import { File, Paths } from "expo-file-system";
@@ -33,6 +35,8 @@ export interface VaultScreenProps {
   onModelChanged?: (modelId: string) => void;
   /** Installing a Pro-only model (Sharp) is a §12.3 value moment: the paywall opens instead of the download sheet. */
   onUnlock?: (reason: PaywallReason) => void;
+  /** Catalog id of the card to scroll to and mark: every "install X" entry point lands on X, not on the top of the list. */
+  focus?: string;
 }
 
 type Section = { key: string; title: string; data: VaultEntry[]; disabled?: Map<string, "ram" | "engine"> };
@@ -48,7 +52,7 @@ const startLanguage = (locale: string): string => {
 };
 
 /** S30 Model vault (spec §8.4): what is installed, what fits this device, download / import / remove. */
-export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenProps) {
+export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultScreenProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
@@ -221,6 +225,16 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
   const detailsState = details ? vault.state(details.id) : { kind: "not-installed" as const };
 
   useOpenSheet(confirm !== null, () => setConfirm(null));
+  const listRef = useRef<SectionList<VaultEntry, Section>>(null);
+  const focused = focusLocation(sections, focus);
+  const scrolledTo = useRef<string | null>(null);
+  useEffect(() => {
+    if (!focus || !focused || scrolledTo.current === focus) return;
+    scrolledTo.current = focus;
+    /* After the first layout: a SectionList cannot scroll to a row it has not measured yet. */
+    const timer = setTimeout(() => listRef.current?.scrollToLocation({ ...focused, viewOffset: 12, viewPosition: 0, animated: true }), 250);
+    return () => clearTimeout(timer);
+  }, [focus, focused]);
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <View style={[styles.stack, { maxWidth: contentMax }]}>
@@ -252,6 +266,12 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         </Pressable>
       </View>
       <SectionList
+        ref={listRef}
+        onScrollToIndexFailed={(info: { averageItemLength: number; index: number }) => {
+          /* Rows below the rendered window: jump near it, then land exactly once they have been measured. */
+          listRef.current?.getScrollResponder()?.scrollTo({ y: info.averageItemLength * info.index, animated: false });
+          setTimeout(() => focused && listRef.current?.scrollToLocation({ ...focused, viewOffset: 12, viewPosition: 0, animated: true }), 300);
+        }}
         {...listClipping}
         sections={sections}
         keyExtractor={(e) => e.model.id}
@@ -268,6 +288,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
             recommended={item.model.id === recommendedId}
             recommendedFor={{ use: bestUse, languageCode: bestLanguage, weak: recommendedWeak }}
             active={active?.model.id === item.model.id}
+            highlighted={item.model.id === focus}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
             onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.("model") : setConfirm({ entry: item }))}
@@ -309,7 +330,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock }: VaultScreenPr
         <Pressable style={styles.backdrop} onPress={() => setConfirm(null)} />
         <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border, paddingBottom: insets.bottom + 20 }]}>
           <GlassFill />
-          <Text style={[type.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm?.entry.model.name ?? "" })}</Text>
+          <Text style={[type.title, { color: theme.text }]}>{t("vault.confirm.title", { name: confirm ? modelName(t, confirm.entry.model) : "" })}</Text>
           <Text testID="confirm-text" style={[type.body, { color: theme.text2 }]}>
             {confirm?.entry.plan?.via === "play"
               ? t("vault.confirm.play", { size: formatModelBytes(confirm.entry.model.bytes) })

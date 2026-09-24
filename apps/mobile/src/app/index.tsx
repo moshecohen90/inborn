@@ -31,7 +31,7 @@ export default function Index() {
       onNewChat={s.newChat}
       onOpenDocuments={() => (hasPanel(mode) ? openSidePanel({ kind: "documents" }) : router.push("/documents"))}
       onOpenPaywall={openPaywall}
-      onOpenVault={() => router.push("/vault")}
+      onOpenVault={(focus) => router.push(focus ? { pathname: "/vault", params: { focus } } : "/vault")}
       onSwitchModel={(id) => {
         getVault().setDefault(id);
         void resetEngine().then(() => {

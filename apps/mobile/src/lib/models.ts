@@ -38,6 +38,9 @@ export function describeLoad(engineId: string, modelId: string, uri: string, ms:
 /** Anything with a `t`: the resolver is called from components and from plain functions alike. */
 export type Translate = (key: string, options?: Record<string, unknown>) => string;
 
+/** A model's name in the user's language: the companions carry a locale key, so one pack has one name on every screen (F346); chat tiers keep the catalog name. */
+export const modelName = (t: Translate, model: Pick<CatalogModel, "id" | "name">): string => t(`models.name.${model.id}`, { defaultValue: model.name });
+
 /** The plain-language catalog copy, in the user's language. */
 export interface ModelCopy {
   goodFor: string;

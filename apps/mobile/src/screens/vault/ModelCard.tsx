@@ -7,7 +7,7 @@ import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
-import { modelCopy, modelLabel } from "../../lib/models";
+import { modelCopy, modelLabel, modelName } from "../../lib/models";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -20,6 +20,8 @@ export interface ModelCardProps {
   /** `weak`: even this top pick is basic/none or weak for the pair; the tag then says so and names this card as the closest. */
   recommendedFor?: { use: UseCase; languageCode: string; weak?: boolean };
   active: boolean;
+  /** The card an "install X" entry point opened the vault for. */
+  highlighted?: boolean;
   /** Greyed row in the "Too big" group; no actions. */
   disabledReason?: "ram" | "engine";
   /** The PRO chip is a price tag, so it shows only while the current tier cannot install the model (QA F6). */
@@ -39,7 +41,7 @@ export interface ModelCardProps {
 }
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, highlighted, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const copy = modelCopy(t, model);
@@ -52,7 +54,10 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
   const disabled = !!disabledReason;
   const imported = model.id.startsWith("import:");
   const hf = isHfModelId(model.id);
-  const tierLabel = (model.tier ?? (imported ? t("vault.imported") : hf ? t("vault.hf.label") : model.role)).toUpperCase();
+  /* A companion (photos, voice, documents) is part of the app, not a model to chat with: its own name, no "Use". */
+  const companion = model.role !== "chat";
+  const tierLabel = (companion ? modelName(t, model) : (model.tier ?? (imported ? t("vault.imported") : hf ? t("vault.hf.label") : model.role))).toUpperCase();
+  const technical = `${model.family} ${model.params}`;
 
   const statusLine = (): { text: string; danger?: boolean } | null => {
     switch (state.kind) {
@@ -104,13 +109,15 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
     );
 
   return (
-    <View testID={`model-card-${model.id}`} style={[styles.card, { backgroundColor: theme.surface1, borderColor: active ? theme.text : theme.border, opacity: disabled ? 0.45 : 1 }]}>
+    <View testID={`model-card-${model.id}`} accessibilityState={{ selected: !!highlighted }} style={[styles.card, { backgroundColor: theme.surface1, borderColor: highlighted ? theme.accent : active ? theme.text : theme.border, borderWidth: highlighted ? 2 : 1, opacity: disabled ? 0.45 : 1 }]}>
       <View style={styles.head}>
         <Text style={[styles.dot, { color: dotColor }]}>{dot}</Text>
         <Text style={[type.monoLabel, styles.tier, { color: theme.text }]}>{tierLabel}</Text>
-        <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
-          · {imported ? model.name : hf ? `${model.name} · ${model.family}` : `${model.family} ${model.params}`}
-        </Text>
+        {companion ? <View style={styles.name} /> : (
+          <Text numberOfLines={1} style={[type.bodySmall, styles.name, { color: theme.text2 }]}>
+            · {imported ? model.name : hf ? `${model.name} · ${model.family}` : technical}
+          </Text>
+        )}
         {model.proOnly && lockedForTier ? <Text style={[type.monoLabel, styles.chip, { color: theme.accent, borderColor: theme.accent }]}>{t("vault.pro")}</Text> : null}
       </View>
       {recommended && !disabled ? (
@@ -131,19 +138,21 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
         </Text>
       ) : null}
       {model.fit ? <FitMap fit={model.fit} weakAt={copy.weakAt} theme={theme} testID={`fit-${model.id}`} /> : null}
-      <Text style={[type.mono, { color: theme.text3 }]}>
-        {model.quant ? t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant }) : formatModelBytes(model.bytes)} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
+      <Text testID={`model-spec-${model.id}`} style={[type.mono, { color: theme.text3 }]}>
+        {companion ? `${technical} · ` : ""}{model.quant ? t("vault.spec", { size: formatModelBytes(model.bytes), quant: model.quant }) : formatModelBytes(model.bytes)} · {t("models.battery", { level: t(`vault.battery.${model.battery}`) })}
       </Text>
-      <Text style={[type.mono, { color: theme.text3 }]}>
-        {disabledReason === "engine"
+      {companion && !disabledReason && fit !== "no" ? null : (
+        <Text style={[type.mono, { color: theme.text3 }]}>
+          {disabledReason === "engine"
           ? t("vault.state.updateApp")
           : disabledReason === "ram" || fit === "no"
             ? t("vault.willNotRun", { ram: device.ramGB })
             : speed
               ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() })
               : t("vault.speedUnknown", { device: deviceNoun() })}
-        {!disabled && tooSlow ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : !disabled && fit === "slowly" ? ` · ${t("vault.runsSlowly", { ram: device.ramGB })}` : ""}
-      </Text>
+          {!disabled && tooSlow ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : !disabled && fit === "slowly" ? ` · ${t("vault.runsSlowly", { ram: device.ramGB })}` : ""}
+        </Text>
+      )}
       {progress > 0 ? (
         <View style={[styles.bar, { backgroundColor: theme.well }]}>
           <View style={[styles.fill, { width: `${Math.round(progress * 100)}%`, backgroundColor: state.kind === "ready" ? theme.sealed : theme.accent }]} />
@@ -166,8 +175,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
           {state.kind === "delivering" && state.paused ? <Action testID={`resume-${model.id}`} theme={theme} primary onPress={onResume} label={t("vault.resume")} /> : null}
           {state.kind === "delivering" && !state.paused && plan?.via === "https" ? <Action testID={`pause-${model.id}`} theme={theme} onPress={onPause} label={t("vault.pause")} /> : null}
           {state.kind === "delivering" || state.kind === "verifying" ? <Action testID={`cancel-${model.id}`} theme={theme} onPress={onCancel} label={t("vault.cancel")} /> : null}
-          {state.kind === "ready" && !active ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
-          {state.kind === "ready" && active ? <Text style={[type.mono, styles.inUse, { color: theme.text2 }]}>{t("vault.inUse")}</Text> : null}
+          {state.kind === "ready" && !active && !companion ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
+          {state.kind === "ready" && active && !companion ? <Text style={[type.mono, styles.inUse, { color: theme.text2 }]}>{t("vault.inUse")}</Text> : null}
           {hf && onRemove && (state.kind === "not-installed" || state.kind === "failed" || state.kind === "corrupt" || state.kind === "needs-space") ? <Action testID={`remove-${model.id}`} theme={theme} onPress={onRemove} label={t("vault.remove")} /> : null}
           <Action testID={`details-${model.id}`} theme={theme} onPress={onDetails} label={t("vault.details")} />
         </View>

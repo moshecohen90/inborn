@@ -65,8 +65,8 @@ import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engi
 import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
-import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
-import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, type PickedImage } from "../images";
+import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled, WHISPER_MODEL_ID } from "../voice";
+import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, VISION_MODEL_ID, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -75,7 +75,7 @@ import { Composer } from "../components/chat/Composer";
 import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
-import { RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
+import { EMBED_MODEL_ID, RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { BannerSpacer } from "../components/shell/bannerInset";
@@ -149,7 +149,8 @@ export interface ChatProps {
   /** Value moments (§12.3): the mic, "remember this", the PRO tags. Carries why the tap was refused. */
   onOpenPaywall?: (reason?: PaywallReason) => void;
   /** Companions live in the vault (whisper, the vision projector). */
-  onOpenVault?: () => void;
+  /** `focus`: the catalog id of the card an "install X" entry point is about; the vault scrolls to it and marks it. */
+  onOpenVault?: (focus?: string) => void;
   /** S44 hands-free voice mode (Pro). */
   onOpenVoice?: (chatId: string | null, incognito: boolean) => void;
   /** §7.8 advice card "Switch": the vault's default changes and this chat remounts on the new model. */
@@ -1099,15 +1100,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     );
   };
   const visionReady = visionInstalled();
+  const visionSize = formatModelBytes(getVault().model(VISION_MODEL_ID)?.bytes ?? 0);
   const modelSees = modelHasVision(model.id);
   /* Instant is the only card the shipped projector fits; the sheet and the offer both name it (QA F36). */
   const seer = useMemo(() => (modelSees ? null : visionChatModel()), [modelSees]);
   const seerLabel = seer ? modelLabel(seer.id) : "";
   const seerReady = seer ? getVault().state(seer.id).kind === "ready" : false;
   const useSeer = () => {
+    const companion = visionOffer === "companion" || !seer;
     setAttachOpen(false);
     setVisionOffer(null);
-    afterSheetClose(() => (seer && seerReady ? onSwitchModel?.(seer.id) : onOpenVault?.()));
+    afterSheetClose(() => (seer && seerReady ? onSwitchModel?.(seer.id) : onOpenVault?.(companion ? VISION_MODEL_ID : seer.id)));
   };
   const imageLimit = limits(tier).imagesPerMessage;
   const addPhoto = (source: "library" | "camera") => {
@@ -1318,7 +1321,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onInstall={() => {
             snoozeAdvice(adviceShown.key);
-            onOpenVault?.();
+            onOpenVault?.(adviceShown.better.model.id);
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />
@@ -1349,7 +1352,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             accessibilityRole="button"
             onPress={() => {
               setDocsOffer(false);
-              afterSheetClose(() => onOpenVault?.());
+              afterSheetClose(() => onOpenVault?.(EMBED_MODEL_ID));
             }}
             hitSlop={8}
             style={styles.noticeBtn}
@@ -1404,7 +1407,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           photos={pendingImages.length}
           onSwitch={useSeer}
           onRemove={dropAllPhotos}
-          onOpenVault={() => onOpenVault?.()}
+          onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
           onReady={releaseHeldTurn}
         />
       ) : null}
@@ -1695,10 +1698,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         photoDisabled={!visionReady || !modelSees}
         onInstallVision={modelSees && !visionReady ? () => {
           setAttachOpen(false);
-          afterSheetClose(() => onOpenVault?.());
+          afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));
         } : undefined}
-        visionSize="205 MB"
-        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        visionSize={visionSize}
+        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
       />
       <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />
@@ -1753,7 +1756,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
                 const pro = dictation.problem?.kind === "offline-missing" && dictation.problem.whisperIsPro;
                 dictation.clearProblem();
                 if (pro) return afterSheetClose(() => onOpenPaywall?.("whisperDictation"));
-                if (!whisperInstalled()) return afterSheetClose(() => onOpenVault?.());
+                if (!whisperInstalled()) return afterSheetClose(() => onOpenVault?.(WHISPER_MODEL_ID));
                 setPreferWhisper(true);
                 afterSheetClose(() => dictation.toggle());
               }}
@@ -1770,7 +1773,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
               label={t("voice.openVault")}
               onPress={() => {
                 dictation.clearProblem();
-                afterSheetClose(() => onOpenVault?.());
+                afterSheetClose(() => onOpenVault?.(WHISPER_MODEL_ID));
               }}
             />
           </>

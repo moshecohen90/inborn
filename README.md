@@ -5416,5 +5416,22 @@ model for it first, the rest below.
   manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
   site languages now say "computers and tablets", and a test holds that sentence to the gate.
 
+
 Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
 `proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).
+## Fixes round 76b: the photo pack is a companion, has one name, and every install link lands on it (branch `fix-model-sheet`) — 24.9.2026
+
+Round 74 left the bundled projector's vault card offering "Use this model"; `ios-image-repro` found the attach sheet's
+install row opening the vault at the top, and three names for one pack in one flow.
+
+- **A companion card is not a chat model** (F351). Photo pack, Voice input and Document index cards have no Use, no
+  In use and no speed line. The heading is their own name, a bundled pack says "Included with the app", and the file's
+  technical name (Qwen3.5 mmproj 0.4B) sits only on the size line. Details no longer offers "Set as default" for one.
+- **One name** (F351). "Photo pack" is the term round 75 already used for the held photo. It is now what the card, the
+  download dialog, the details sheet and all seven chat lines say, one translation per locale in all 8 plus pseudo.
+- **Every "install X" link lands on X** (F351). The attach sheet, the photo offer, the documents offer, the advice card,
+  the mic sheet, the photo hold card and the hands-free screen pass the id; the vault scrolls to that card and marks it in accent.
+
+Evidence in `docs/qa/fix-model-sheet/`: `vault-card-{before,after}-{en,de}-{light,dark}-{390,1440}.png`, rendered from
+the real `ModelCard` through react-native-web (`cardshot-harness.test.ts.txt`, `cardshots.mjs`), and
+`guard-red-f346-companion.txt`. Not seen on a phone or simulator: the scroll is proven by tests on the code path only.

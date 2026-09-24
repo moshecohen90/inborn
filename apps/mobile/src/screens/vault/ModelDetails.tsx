@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { modelName } from "../../lib/models";
 import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
@@ -69,7 +70,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
       <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
         <GlassFill />
         <Text style={[type.title, { color: theme.text }]}>
-          {model?.name} · {model?.family} {model?.params}
+          {model ? modelName(t, model) : ""} · {model?.family} {model?.params}
         </Text>
         <Text style={[type.mono, { color: theme.text3 }]}>
           {model ? formatModelBytes(model.bytes) : ""} · {model?.arch}
@@ -117,7 +118,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
           ) : null}
         </ScrollView>
         <View style={styles.actions}>
-          {installed && !isDefault ? (
+          {installed && !isDefault && model?.role === "chat" ? (
             <Pressable testID="details-set-default" accessibilityRole="button" onPress={onSetDefault} style={[styles.cta, { backgroundColor: theme.ctaFill }]}>
               <Text style={[type.body, styles.body, { color: theme.ctaText }]}>{t("vault.details.setDefault")}</Text>
             </Pressable>
