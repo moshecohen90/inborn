@@ -14,7 +14,7 @@ export function SafetyCard({ resources, onDismiss }: { resources: CrisisResource
   /* A card that hands out phone numbers cannot promise a call in the one mode this product asks for (F214). */
   const net = useConnectivity(5000);
   return (
-    <View testID="safety-card" style={[shape.card, styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]} accessibilityLiveRegion="polite">
+    <View testID="safety-card" style={[shape.card, styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]} aria-live="polite">
       <Text style={[type.heading, { color: theme.text }]}>{t("safety.title")}</Text>
       {resources.map((r) => (
         // The dialer is the only thing this opens: a tel: intent handled by the OS, no data leaves the app.

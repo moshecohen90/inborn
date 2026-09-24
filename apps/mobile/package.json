@@ -9,6 +9,7 @@
     "ios": "APP_VARIANT=development expo start --ios",
     "web": "pnpm run wasm && APP_VARIANT=development expo start --web",
     "export:web": "pnpm run wasm && expo export -p web",
+    "export:web:dev": "pnpm run wasm && expo export -p web --dev --no-minify --output-dir web-build/dev",
     "wasm": "node scripts/copy-web-assets.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run"
