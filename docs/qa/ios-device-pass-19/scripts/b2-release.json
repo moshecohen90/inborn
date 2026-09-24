@@ -1,0 +1,118 @@
+{
+"_": "(b) second half: a turn held while the photo pack downloads, and the chat left alone until the pack is ready. b-photo-pack's last jump to /vault replaced the chat screen and dropped its held turn.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 30000
+},
+{
+"op": "type",
+"testID": "composer-input",
+"text": "What is in this photo?"
+},
+{
+"op": "send"
+},
+{
+"op": "waitFor",
+"testID": "vision-hold",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "B11-held-while-downloading"
+},
+{
+"op": "value",
+"testID": "vision-hold-body"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 300
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"timeoutMs": 3000000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "screenshot",
+"name": "B12-held-turn-released"
+},
+{
+"op": "waitFor",
+"testID": "vision-hold",
+"gone": true,
+"timeoutMs": 5000
+},
+{
+"op": "waitFor",
+"testID": "assistant-text",
+"timeoutMs": 300000
+},
+{
+"op": "sleep",
+"ms": 45000
+},
+{
+"op": "screenshot",
+"name": "B13-answer"
+},
+{
+"op": "value",
+"testID": "assistant-text"
+},
+{
+"op": "dump",
+"name": "answered"
+}
+]
+}

@@ -1,0 +1,147 @@
+{
+"_": "(d) phase 2: the folder from d1 becomes a client vault with its own code, and its hash-chained audit log verifies.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/"
+},
+{
+"op": "setTier",
+"tier": "work"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "open-folders",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "open-folders"
+},
+{
+"op": "waitFor",
+"testID": "vault-make-719033cd-015e-42cd-878d-eac80a8576f5",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D13-folder-make-vault"
+},
+{
+"op": "press",
+"testID": "vault-make-719033cd-015e-42cd-878d-eac80a8576f5"
+},
+{
+"op": "waitFor",
+"testID": "vault-code",
+"timeoutMs": 15000
+},
+{
+"op": "type",
+"testID": "vault-code",
+"text": "1234"
+},
+{
+"op": "type",
+"testID": "vault-code-repeat",
+"text": "1234"
+},
+{
+"op": "sleep",
+"ms": 500
+},
+{
+"op": "screenshot",
+"name": "D14-vault-code"
+},
+{
+"op": "press",
+"testID": "vault-code-submit"
+},
+{
+"op": "waitFor",
+"testID": "vault-code",
+"gone": true,
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "press",
+"testID": "open-folders"
+},
+{
+"op": "waitFor",
+"testID": "vault-code-719033cd-015e-42cd-878d-eac80a8576f5",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D15-folder-is-vault"
+},
+{
+"op": "value",
+"testID": "folder-sheet"
+},
+{
+"op": "deeplink",
+"url": "/work/audit"
+},
+{
+"op": "waitFor",
+"testID": "audit-vault-719033cd-015e-42cd-878d-eac80a8576f5",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "D16-audit-vaults"
+},
+{
+"op": "press",
+"testID": "audit-vault-719033cd-015e-42cd-878d-eac80a8576f5"
+},
+{
+"op": "waitFor",
+"testID": "audit-verdict",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1000
+},
+{
+"op": "value",
+"testID": "audit-verdict"
+},
+{
+"op": "value",
+"testID": "audit-entry-0"
+},
+{
+"op": "screenshot",
+"name": "D17-audit-verified"
+},
+{
+"op": "dump",
+"name": "audit"
+}
+]
+}

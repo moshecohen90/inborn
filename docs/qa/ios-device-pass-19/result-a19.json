@@ -1,0 +1,710 @@
+{
+  "runId": "a19",
+  "startedAt": "2026-09-24T16:48:20.435Z",
+  "finishedAt": "2026-09-24T16:49:44.504Z",
+  "ok": true,
+  "passed": 43,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1001,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2565,
+      "detail": "P00-onboarding-welcome"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11459,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2231,
+      "detail": "A01-empty-chat"
+    },
+    {
+      "i": 16,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 170,
+      "detail": "image: door.jpg"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 268,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 18,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1914,
+      "detail": "A02-door-in-composer"
+    },
+    {
+      "i": 21,
+      "op": "send",
+      "ok": true,
+      "ms": 153,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 23,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"photo pack\" absent"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45002,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2234,
+      "detail": "A03-door-answer"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The image displays a brown door with two rectangular panels and a gold doorknob, set against a plain background.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The image displays a brown door with two rectangular panels and a gold doorknob, set against a plain background."
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"door\" present"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot look at pictures\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Download\" absent"
+    },
+    {
+      "i": 33,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What is in this photo?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The image displays a brown door with two rectangular panels and a gold doorknob, set against a plain background. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a brown door with two rectangular panels and a gold doorknob, set against a plain background."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "chat-after"
+    },
+    {
+      "i": 34,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/vault"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 36,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 7,
+      "detail": "model-card-vision-qwen35"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 809,
+      "detail": "800 ms"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2882,
+      "detail": "A04-vault-photo-pack-included"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "remove-vision-qwen35 gone"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "install-vision-qwen35 gone"
+    },
+    {
+      "i": 42,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "close-vault",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vault-storage",
+          "text": "0 B in the vault · 85 GB free · RUNS ON: IOS-MID · 6 GB"
+        },
+        {
+          "testID": "best-for",
+          "text": "BEST FOR Chat in English"
+        },
+        {
+          "testID": "best-for-use",
+          "text": "Chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-language",
+          "text": "in English",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-instant",
+          "text": "● INSTANT · Qwen3.5 0.8B Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery. GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. 533 MB · Q4_K_M · Battery: Low ~25-36 tok/s on your phone Included with the app In use Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-instant",
+          "text": "Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery."
+        },
+        {
+          "testID": "fit-instant",
+          "text": "GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
+        },
+        {
+          "testID": "model-spec-instant",
+          "text": "533 MB · Q4_K_M · Battery: Low"
+        },
+        {
+          "testID": "model-status-instant",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-instant",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35",
+          "text": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35",
+          "text": "Lets Instant look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35",
+          "text": "Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-vision-qwen35",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-fast",
+          "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~15-24 tok/s on your phone Install · 1.3 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "recommended-fast",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-goodfor-fast",
+          "text": "Everyday assistant: writing, questions, translation. Best balance on this device."
+        },
+        {
+          "testID": "fit-fast",
+          "text": "GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents."
+        },
+        {
+          "testID": "model-spec-fast",
+          "text": "1.3 GB · Q4_K_M · Battery: Medium"
+        },
+        {
+          "testID": "install-fast",
+          "text": "Install · 1.3 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-fast",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp",
+          "text": "○ SHARP · Qwen3.5 4B PRO Complex tasks: analysis, code, long documents. Slower, runs warmer. GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode. 2.7 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.7 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp",
+          "text": "Complex tasks: analysis, code, long documents. Slower, runs warmer."
+        },
+        {
+          "testID": "fit-sharp",
+          "text": "GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode."
+        },
+        {
+          "testID": "model-spec-sharp",
+          "text": "2.7 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp",
+          "text": "Install · 2.7 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp-phi",
+          "text": "○ SHARP · Phi-4-mini 3.8B PRO Reasoning, math and code. No photos. GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation. 2.5 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.5 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp-phi",
+          "text": "Reasoning, math and code. No photos."
+        },
+        {
+          "testID": "fit-sharp-phi",
+          "text": "GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation."
+        },
+        {
+          "testID": "model-spec-sharp-phi",
+          "text": "2.5 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp-phi",
+          "text": "Install · 2.5 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp-phi",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-embed-e5",
+          "text": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-embed-e5",
+          "text": "Lets Inborn search your documents on this device."
+        },
+        {
+          "testID": "model-spec-embed-e5",
+          "text": "multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low"
+        },
+        {
+          "testID": "install-embed-e5",
+          "text": "Install · 468 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-embed-e5",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-speech-whisper-base",
+          "text": "○ VOICE INPUT Turns your voice into text on this device, in any language. whisper.cpp base 74M · 148 MB · F16 · Battery: Low Install · 148 MB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-speech-whisper-base",
+          "text": "Turns your voice into text on this device, in any language."
+        },
+        {
+          "testID": "model-spec-speech-whisper-base",
+          "text": "whisper.cpp base 74M · 148 MB · F16 · Battery: Low"
+        },
+        {
+          "testID": "install-speech-whisper-base",
+          "text": "Install · 148 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-speech-whisper-base",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "import-gguf",
+          "text": "Import GGUF",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "search-hf",
+          "text": "Search Hugging Face",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-use-sheet",
+          "text": ""
+        },
+        {
+          "testID": "best-for-language-sheet",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "vault"
+    }
+  ],
+  "errors": []
+}

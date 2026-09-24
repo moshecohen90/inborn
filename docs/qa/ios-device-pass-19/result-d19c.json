@@ -1,0 +1,292 @@
+{
+  "runId": "d19c",
+  "startedAt": "2026-09-24T17:03:30.976Z",
+  "finishedAt": "2026-09-24T17:03:50.351Z",
+  "ok": false,
+  "passed": 32,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "setTier",
+      "ok": true,
+      "ms": 170,
+      "detail": "work"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "open-folders appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-folders ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vault-make-719033cd-015e-42cd-878d-eac80a8576f5 appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3510,
+      "detail": "D13-folder-make-vault"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "vault-make-719033cd-015e-42cd-878d-eac80a8576f5 ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 268,
+      "detail": "vault-code appeared"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "vault-code = 4 chars"
+    },
+    {
+      "i": 11,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "vault-code-repeat = 4 chars"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 514,
+      "detail": "500 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2877,
+      "detail": "D14-vault-code"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "vault-code-submit ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vault-code gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-folders ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "vault-code-719033cd-015e-42cd-878d-eac80a8576f5 appeared"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1598,
+      "detail": "D15-folder-is-vault"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Folders Client Alpha Code Unvault Rename Delete New folder",
+        "props": {
+          "title": "Folders",
+          "disabled": false
+        }
+      },
+      "detail": "Folders Client Alpha Code Unvault Rename Delete New folder"
+    },
+    {
+      "i": 22,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/work/audit"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "audit-vault-719033cd-015e-42cd-878d-eac80a8576f5 appeared"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1931,
+      "detail": "D16-audit-vaults"
+    },
+    {
+      "i": 26,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "audit-vault-719033cd-015e-42cd-878d-eac80a8576f5 ← onPress"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "audit-verdict appeared"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Chain verified · 1 entry",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Chain verified · 1 entry"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value audit-entry-0: no node with that testID is mounted"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1912,
+      "detail": "D17-audit-verified"
+    },
+    {
+      "i": 32,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "audit-log",
+          "text": "Client Alpha Chain verified · 1 entry Vault created Sep 24, 2026 at 10:03 AM · Client Alpha #1 Share as text Back Audit log"
+        },
+        {
+          "testID": "audit-verdict",
+          "text": "Chain verified · 1 entry"
+        },
+        {
+          "testID": "audit-entry-1",
+          "text": "Vault created Sep 24, 2026 at 10:03 AM · Client Alpha #1",
+          "value": "#1"
+        },
+        {
+          "testID": "audit-share",
+          "text": "Share as text",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "audit"
+    }
+  ],
+  "errors": [
+    "step 30 (value): value audit-entry-0: no node with that testID is mounted"
+  ]
+}

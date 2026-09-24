@@ -135,6 +135,36 @@ describe("a cleanup step really empties the container", () => {
 });
 
 /**
+ * F357. CoreDevice can wedge on the Mac while usbmux still answers: every devicectl call times out and a device pass
+ * stops dead. `--via-usbmux` carries the driver's four moves over pymobiledevice3 instead.
+ */
+describe("F357 · the iPhone driver has a transport that does not need CoreDevice", () => {
+  const DRIVER = readFileSync(path.resolve(MOBILE, "../../scripts/ios-qa.mjs"), "utf8");
+  const usbmuxBlock = (src: string): string => {
+    const start = src.indexOf("const transport = viaUsbmux");
+    const end = src.indexOf(": simulator", start);
+    return start === -1 || end === -1 ? "" : src.slice(start, end);
+  };
+  const complete = (src: string): boolean => {
+    const b = usbmuxBlock(src);
+    return /has\('via-usbmux'\)/.test(src) && ["'apps', 'push'", "'apps', 'pull'", "'dvt', 'launch'", "'dvt', 'screenshot'"].every((m) => b.includes(m)) && !b.includes("devicectl");
+  };
+
+  it("push, pull, launch and screenshot all go through pymobiledevice3, and none through devicectl", () => {
+    expect(complete(DRIVER)).toBe(true);
+    expect(complete(DRIVER.replace("'apps', 'pull'", "'apps', 'nope'"))).toBe(false);
+    expect(complete(DRIVER.replace("pmdRun(['developer', 'dvt', 'launch'", "devicectl(['developer', 'dvt', 'launch'"))).toBe(false);
+    expect(complete(DRIVER.replace("has('via-usbmux')", "false"))).toBe(false);
+  });
+
+  it("a screenshot that was not written is reported, not silently acknowledged", () => {
+    const reports = (src: string): boolean => /if \(!existsSync\(png\)\) \{\s*missedShots\.push\(name\)/.test(src) && /missedShots\.length\) log\(/.test(src);
+    expect(reports(DRIVER)).toBe(true);
+    expect(reports(DRIVER.replace("missedShots.push(name)", "void name"))).toBe(false);
+  });
+});
+
+/**
  * F299. `check-qa-bridge.sh` was run by whoever remembered: it was in no script and in no checklist, so a future
  * build that forgot it would ship the bridge and nothing would go red. It is now inside `pnpm check:store`.
  */
