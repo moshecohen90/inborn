@@ -1,0 +1,26 @@
+=== F326 guards watched red (each sabotage reverted straight after) ===
+
+--- 1. the iOS half stubbed out: captureHardwareEnter goes back to a no-op off the web ---
+66:  if (true || !native) return () => undefined;
+     × the native event sends, and the key is armed only while the composer holds it 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/components/chat/composerEnter.test.ts > F326 · the iPad's hardware Enter sends > the native event sends, and the key is armed only while the composer holds it
+AssertionError: expected false to be true // Object.is equality
+      Tests  1 failed | 16 passed (17)
+
+--- 2. the module stops declaring an Apple half ---
+     × the module ships an Apple half, so the app it is built into has one to talk to 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/components/chat/composerEnter.test.ts > F326 · the iPad's hardware Enter sends > the module ships an Apple half, so the app it is built into has one to talk to
+AssertionError: expected [ 'android' ] to include 'apple'
+      Tests  1 failed | 16 passed (17)
+
+--- 3. the key command also claims Shift+Return ---
+     × the Apple half claims a bare Return ahead of the field's newline, and claims nothing with Shift 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/components/chat/composerEnter.test.ts > F326 · the iPad's hardware Enter sends > the Apple half claims a bare Return ahead of the field's newline, and claims nothing with Shift
+AssertionError: expected 'import ExpoModulesCore\nimport Object…' to match /UIKeyCommand\(input: "\\r", modifierF…/
+      Tests  1 failed | 16 passed (17)
+
+--- green again, all three restored ---
+      Tests  17 passed (17)

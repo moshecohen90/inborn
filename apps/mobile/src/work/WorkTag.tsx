@@ -8,7 +8,10 @@ import { shape } from "../components/chat/styles";
 import { useType } from "../services/type";
 
 /** "WORK" chip next to a Work-gated action (the Work twin of ProTag); tapping opens S60. */
-export function WorkTag({ onPress, reason }: { onPress?: () => void; reason?: PaywallReason } = {}) {
+/** A chip either runs its own handler or names its reason; a bare chip opened the paywall with no reason line. */
+export type TagProps = { onPress: () => void; reason?: never } | { reason: PaywallReason; onPress?: never };
+
+export function WorkTag({ onPress, reason }: TagProps) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();

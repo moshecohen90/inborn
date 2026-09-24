@@ -2,11 +2,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-/** Loads the key module with a platform and an optional fake DOM, since it reads both at import time (F108). */
-async function load(os: "web" | "ios" | "android", dom?: { matches?: boolean; noMatchMedia?: boolean }) {
+/** Loads the key module with a platform, an optional fake DOM and an optional fake native module, since it reads all three at import time (F108, F326). */
+async function load(os: "web" | "ios" | "android", dom?: { matches?: boolean; noMatchMedia?: boolean }, native?: unknown) {
   vi.resetModules();
   vi.doMock("react-native", () => ({ Platform: { OS: os } }));
-  vi.doMock("expo", () => ({ requireOptionalNativeModule: () => null }));
+  vi.doMock("expo", () => ({ requireOptionalNativeModule: () => native ?? null }));
   const g = globalThis as { matchMedia?: unknown };
   if (dom?.noMatchMedia) delete g.matchMedia;
   else if (dom) g.matchMedia = () => ({ matches: dom.matches !== false });
@@ -111,6 +111,69 @@ describe("F108 · Enter sends from a hardware keyboard", () => {
     expect(src).toMatch(/enter\.current\.onSend\(\);\s*\n\s*return true;/);
   });
 });
+
+describe("F326 · the iPad's hardware Enter sends", () => {
+  it("the native event sends, and the key is armed only while the composer holds it", async () => {
+    const native = fakeNative();
+    const { captureHardwareEnter } = await load("ios", { noMatchMedia: true }, native);
+    let sent = 0;
+    const off = captureHardwareEnter(() => (sent++, true));
+    expect(native.enabled).toBe(true);
+    expect(native.listeners).toBe(1);
+    native.emit("onEnter");
+    expect(sent).toBe(1);
+    off();
+    expect(native.enabled).toBe(false);
+    expect(native.listeners).toBe(0);
+  });
+
+  it("an iPad with the module reports a hardware Enter, with no DOM to stand in for it", async () => {
+    const { hasHardwareEnter } = await load("ios", { noMatchMedia: true }, fakeNative());
+    expect(hasHardwareEnter()).toBe(true);
+  });
+
+  it("the module ships an Apple half, so the app it is built into has one to talk to", () => {
+    const config = JSON.parse(readFileSync(join(MODULE, "expo-module.config.json"), "utf8")) as { platforms: string[]; apple?: { modules: string[] } };
+    expect(config.platforms).toContain("apple");
+    expect(config.apple?.modules).toContain("HardwareKeysModule");
+    expect(readFileSync(join(MODULE, "ios/HardwareKeys.podspec"), "utf8")).toContain("ExpoModulesCore");
+  });
+
+  it("the Apple half claims a bare Return ahead of the field's newline, and claims nothing with Shift", () => {
+    const swift = readFileSync(join(MODULE, "ios/HardwareKeysModule.swift"), "utf8");
+    expect(swift).toContain('Name("HardwareKeys")');
+    expect(swift).toContain('Events("onEnter")');
+    expect(swift).toMatch(/UIKeyCommand\(input: "\\r", modifierFlags: \[\], action:/);
+    expect(swift).toContain("wantsPriorityOverSystemBehavior = true");
+    expect(swift).not.toMatch(/\.shift/);
+  });
+});
+
+const MODULE = join(__dirname, "..", "..", "..", "modules", "hardware-keys");
+
+/** The native module as `captureHardwareEnter` uses it: a switch and one event. */
+function fakeNative() {
+  const state = {
+    enabled: false,
+    listeners: 0,
+    emit: (_event: string) => undefined as void,
+    setEnabled(on: boolean) {
+      state.enabled = on;
+    },
+    addListener(event: "onEnter", listener: (e: { deviceId: number }) => void) {
+      state.listeners++;
+      state.emit = (fired: string) => {
+        if (fired === event) listener({ deviceId: 1 });
+      };
+      return {
+        remove: () => {
+          state.listeners--;
+        },
+      };
+    },
+  };
+  return state;
+}
 
 interface FakeEvent {
   key: string;

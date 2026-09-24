@@ -1,36 +1,36 @@
-<!-- meta: {"title": "How to choose an on-device AI model", "h1": "How to choose an on-device AI model", "kicker": "Models", "published": "2026-09-23", "description": "Parameters, quantization and memory decide whether a model runs on your phone. How to read those numbers, what speed to expect, and what each size is honestly good at.", "excerpt": "Model names carry three numbers that decide whether your phone can run them at all. How to read them, the speeds we measured on real devices, and which size is genuinely good at what."} -->
+<!-- meta: {"published":"2026-09-23"} -->
 <article class="prose post">
-<p class="answer">A model runs on your device if its file fits comfortably in memory alongside everything else, which in practice means a 4-bit model of about 0.5 GB on a 3 GB phone, about 1.3 GB on a 6 GB phone, and about 2.7 GB on 8 GB with room to spare. Bigger is better at reasoning and worse at everything else: speed, battery and heat. Pick the largest one that still answers fast enough that you will actually use it.</p>
+<p class="answer">{{t:post.choosing-a-model.a-model-runs-on-your}}</p>
 
-<h2 id="numbers">The three numbers</h2>
-<p><strong>Parameters</strong> (0.8B, 2B, 4B) are the size of the model's learned weights. More parameters generally means better reasoning, wider world knowledge and better handling of languages outside English. This is the number that most predicts answer quality.</p>
-<p><strong>Quantization</strong> (Q4_K_M, Q8 and so on) is how many bits each weight is stored in. Full precision is 16 bits; Q4 is roughly four. Dropping to four bits cuts the file to about a quarter, with a quality loss that is small for chat and noticeable for math and code. Almost everything you will run on a phone is Q4, and that is the right default.</p>
-<p><strong>File size in bytes</strong> is the number that decides whether it runs at all, because the whole file has to be held in memory while it works. Take the file size, add room for the conversation context, and compare with the memory your device has free rather than the memory it has in total.</p>
+<h2 id="numbers">{{t:post.choosing-a-model.the-three-numbers}}</h2>
+<p>{{t:post.choosing-a-model.parameters-0-8b-2b-4b}}</p>
+<p>{{t:post.choosing-a-model.quantization-q4-k-m-q8}}</p>
+<p>{{t:post.choosing-a-model.file-size-in-bytes-is}}</p>
 
-<h2 id="speed">The speed you should expect</h2>
-<p>Measured numbers beat estimates, so here are ours, taken on our own hardware rather than from a benchmark table.</p>
+<h2 id="speed">{{t:post.choosing-a-model.the-speed-you-should-expect}}</h2>
+<p>{{t:post.choosing-a-model.measured-numbers-beat-estimates-so}}</p>
 <div class="table-wrap"><table>
-  <caption class="sr-only">Measured generation speed by model and device</caption>
-  <thead><tr><th>Model</th><th>Size</th><th>2018 Android flagship</th><th>iPhone 13 Pro</th><th>Desktop browser</th></tr></thead>
+  <caption class="sr-only">{{t:post.choosing-a-model.measured-generation-speed-by-model}}</caption>
+  <thead><tr><th>{{t:post.choosing-a-model.model}}</th><th>{{t:post.choosing-a-model.size}}</th><th>{{t:post.choosing-a-model.2018-android-flagship}}</th><th>{{t:post.choosing-a-model.iphone-13-pro}}</th><th>{{t:post.choosing-a-model.desktop-browser}}</th></tr></thead>
   <tbody>
-    <tr><td>Instant, 0.8B</td><td class="mono small">0.53 GB</td><td class="mono small">12-15 tok/s</td><td class="mono small">~36 tok/s</td><td class="mono small">33 tok/s</td></tr>
-    <tr><td>Fast, 2B</td><td class="mono small">1.28 GB</td><td class="mono small">5-6 tok/s</td><td class="mono small">not measured</td><td class="mono small">not measured</td></tr>
-    <tr><td>Sharp, 4B</td><td class="mono small">2.74 GB</td><td class="mono small">below 1 tok/s</td><td class="mono small">not measured</td><td class="mono small">not measured</td></tr>
-    <tr><td>Sharp (Phi), 3.8B</td><td class="mono small">2.49 GB</td><td class="mono small">2-3 tok/s</td><td class="mono small">not measured</td><td class="mono small">not measured</td></tr>
+    <tr><td>{{t:post.choosing-a-model.instant-0-8b}}</td><td class="mono small">{{t:post.choosing-a-model.0-53-gb}}</td><td class="mono small">{{t:post.choosing-a-model.12-15-tok-s}}</td><td class="mono small">{{t:post.choosing-a-model.36-tok-s}}</td><td class="mono small">{{t:post.choosing-a-model.33-tok-s}}</td></tr>
+    <tr><td>{{t:post.choosing-a-model.fast-2b}}</td><td class="mono small">{{t:post.choosing-a-model.1-28-gb}}</td><td class="mono small">{{t:post.choosing-a-model.5-6-tok-s}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured-2}}</td></tr>
+    <tr><td>{{t:post.choosing-a-model.sharp-4b}}</td><td class="mono small">{{t:post.choosing-a-model.2-74-gb}}</td><td class="mono small">{{t:post.choosing-a-model.below-1-tok-s}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured-3}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured-4}}</td></tr>
+    <tr><td>{{t:post.choosing-a-model.sharp-phi-3-8b}}</td><td class="mono small">{{t:post.choosing-a-model.2-49-gb}}</td><td class="mono small">{{t:post.choosing-a-model.2-3-tok-s}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured-5}}</td><td class="mono small">{{t:post.choosing-a-model.not-measured-6}}</td></tr>
   </tbody>
 </table></div>
-<p>Anything above about 10 tokens a second reads at a comfortable pace. Below 5, you feel every word. The 4B model on a 2018 phone is the clearest case on that table: it technically installs and it is not worth installing, which is why Inborn marks it as too slow on the card rather than letting you find out after the download.</p>
-<p>Time to first token matters as much as throughput. A long document pushed through a small model can take many seconds before the first word appears, because the model has to read the whole thing before it writes anything.</p>
+<p>{{t:post.choosing-a-model.anything-above-about-10-tokens}}</p>
+<p>{{t:post.choosing-a-model.time-to-first-token-matters}}</p>
 
-<h2 id="sizes">What each size is actually good at</h2>
-<p><strong>0.8B</strong> is for quick answers, rewrites and summaries, and it is the size that starts instantly and barely touches the battery. It is weak at code, math and long documents, and outside a handful of languages it gets shaky after a couple of sentences.</p>
-<p><strong>2B</strong> is the everyday assistant: writing, general questions, translation into the major languages, and questions about a document. This is the right default on any phone with 6 GB of memory.</p>
-<p><strong>4B</strong> is for analysis, code and long documents. It is slower, it warms the device, and on a phone you feel it. Worth it when the answer matters more than the wait.</p>
-<p>Beyond size there is training. A model tuned for reasoning and math, such as Phi-4-mini, beats a same-size general model on a logic puzzle and loses to it on translation. There is no single best model at any size, only a best model for what you are about to ask.</p>
+<h2 id="sizes">{{t:post.choosing-a-model.what-each-size-is-actually}}</h2>
+<p>{{t:post.choosing-a-model.0-8b-is-for-quick}}</p>
+<p>{{t:post.choosing-a-model.2b-is-the-everyday-assistant}}</p>
+<p>{{t:post.choosing-a-model.4b-is-for-analysis-code}}</p>
+<p>{{t:post.choosing-a-model.beyond-size-there-is-training}}</p>
 
-<h2 id="practice">How to choose in practice</h2>
-<p>Start with the smallest model, use it for a week, and notice where it fails you. If it fails on languages or long documents, go up a size. If it fails on math and code, change family rather than size. If it never fails, you have saved yourself several gigabytes and a warmer phone.</p>
-<p>Inborn shows the expected speed range for each model on your specific device before you install it, and tells you when the model that just answered would be beaten by one you have not installed. That is a better guide than any benchmark table, because the only benchmark that matters is the one running on the hardware in your hand.</p>
+<h2 id="practice">{{t:post.choosing-a-model.how-to-choose-in-practice}}</h2>
+<p>{{t:post.choosing-a-model.start-with-the-smallest-model}}</p>
+<p>{{t:post.choosing-a-model.inborn-shows-the-expected-speed}}</p>
 
-<p class="small"><span class="label">Next</span><a href="/compare">Ollama and LM Studio compared with Inborn</a> · <a href="/blog/why-on-device">Why the AI should run on your device</a> · <a href="/blog/how-the-proof-works">How to prove an AI app sends nothing</a></p>
+<p class="small">{{t:post.choosing-a-model.next-why-the-ai-should}}</p>
 </article>
