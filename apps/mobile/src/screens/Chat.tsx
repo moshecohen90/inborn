@@ -225,6 +225,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [noneMatched, setNoneMatched] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
@@ -457,6 +458,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
+      /* The notice belongs to the answer below it, so a fresh turn withdraws the last one; Continue keeps it, since it resumes that same answer. */
+      if (!existingMessageId) setNoneMatched(false);
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -480,7 +483,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         return;
       }
       /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
-      if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) flash(t("documents.noneMatched"));
+      if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) setNoneMatched(true);
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
       if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
         await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
@@ -504,7 +507,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             return;
           }
           /* Outside strict mode the answer still comes, from general knowledge: say so, because a small model will not (QA F161). */
-          if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: rag.prompt.used.length })) flash(t("documents.noneMatched"));
+          if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: rag.prompt.used.length })) setNoneMatched(true);
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
@@ -1267,6 +1270,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           >
             <Text style={[type.caption, { color: theme.accent }]}>{t("voice.openVault")}</Text>
           </Pressable>
+        </View>
+      ) : null}
+      {/* QA F276: a 1,400 ms toast was withdrawn ~8 s before the answer it explains arrived on the 6T, so this sentence lives as long as that answer. */}
+      {noneMatched ? (
+        <View testID="none-matched" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.noneMatched")}</Text>
         </View>
       ) : null}
       {notice && status.kind === "ready" ? (
