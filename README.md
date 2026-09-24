@@ -5485,33 +5485,6 @@ harness had no Windows channel. One manual run, `platform=windows`, now proves t
   Windows code-signing certificate does not exist yet.
 
 
-## Fixes round 80: TestFlight 1.0.0 (19), the photo pack downloaded on a real iPhone, and the Work column on iOS (branch `ios-build-19`) — 24.9.2026
-
-Build 19 carries rounds 62–78 to TestFlight. It is the first store build with the photo projector inside the app.
-
-- **The store build ships what the catalog says** (F358). The archive has `instant.gguf` and `vision-qwen35.gguf`,
-  byte for byte the catalog's. `INBORN_REQUIRE_BUNDLE=1 node scripts/check-shipping-bundles.mjs` passes on the
-  archive, and there is no QA bridge in the archive or the IPA. The IPA is 717,507,280 B; round 74 predicted about
-  717 MB. Delivery `f8ee3f85-9590-441d-a30d-45dceb023b2d` is **VALID**. On Moshe's iPhone the app was updated in place
-  from 18 to 19. All five container files are byte-identical, and the About screen reads `1.0.0 (19) · a75e02df0e2d`.
-- **Photos on the phone** (F359). A fresh install answers a door photo as its first message with no download, and the
-  vault shows the pack as *Included with the app* with no Remove. Send waits for the photo: the hold is visible on a
-  48 MP photo, while a 12 MP photo is ready within one 250 ms bridge poll and still goes out with the message. A real
-  failing download, e5's 404, shows one plain sentence with Try again. The raw error is only in Details.
-- **The photo pack downloads on a real iPhone, and the held turn goes out by itself** (F360). This was round 75's one
-  unproven step. Both doors hold the send with the one-sentence card. Download fetched the pack from
-  models.inbornapp.com, and the turn held during the download was sent and answered when it finished. It took
-  **37 minutes** for 205 MB, about 0.09 MB/s. The Mac got 8.9 MB/s from the same URL at the same time, so the iOS
-  background session is the suspect. That is measured but not yet diagnosed.
-- **The Work column, proven on iOS** (F361). With the Work licence injected: the compare table (18 rows, all Work
-  cells on), a legal template filled and inserted, the architecture statement, a client vault with its own code, and
-  its audit log verified. The Pro photo row: Free refuses a second photo with the paywall line, and Pro takes three.
-- **Open** (F362). The Japanese document test with e5 waits for the e5 upload, which is still 404.
-- **The harness** (F357). CoreDevice wedged and every `devicectl` call timed out. `scripts/ios-qa.mjs --via-usbmux`
-  now drives over pymobiledevice3. Separately, USB dropped mid-pass and the driver acknowledged screenshots it never
-  took. It now lists missing screenshots. Both changes are guarded, and both guards were watched red.
-
-Evidence: `docs/qa/ios-build-19-2026-09-24.md`, `docs/qa/ios-device-pass-19-2026-09-24.md`, `docs/qa/ios-device-pass-19/`.
 ## Fixes round 81: the RAG measurement covers zh-Hant and accented typing (branch `fix-rag-fixtures`) — 24.9.2026
 
 Verifier S03 found that the numbers behind the 0.82 relevance door were measured on Simplified Chinese and on
@@ -5695,3 +5668,33 @@ one-word door was still nomic's `cosine >= 0.5`, and under e5 every off-topic qu
 
 Evidence in `docs/qa/fix-corroboration-door/`: `one-term.md`, six `red-*.txt` runs, `e2e/` with before and after
 JSON, and `shots/` before and after at 1440 and 390. Spec §5.5 carries the door table and the grounding rule.
+
+## Fixes round 80: TestFlight 1.0.0 (19), the photo pack downloaded on a real iPhone, and the Work column on iOS (branch `ios-build-19`) — 24.9.2026
+
+Build 19 carries rounds 62–78 to TestFlight. It is the first store build with the photo projector inside the app.
+
+- **The store build ships what the catalog says** (F358). The archive has `instant.gguf` and `vision-qwen35.gguf`,
+  byte for byte the catalog's. `INBORN_REQUIRE_BUNDLE=1 node scripts/check-shipping-bundles.mjs` passes on the
+  archive, and there is no QA bridge in the archive or the IPA. The IPA is 717,507,280 B; round 74 predicted about
+  717 MB. Delivery `f8ee3f85-9590-441d-a30d-45dceb023b2d` is **VALID**. On Moshe's iPhone the app was updated in place
+  from 18 to 19. All five container files are byte-identical, and the About screen reads `1.0.0 (19) · a75e02df0e2d`.
+- **Photos on the phone** (F359). A fresh install answers a door photo as its first message with no download, and the
+  vault shows the pack as *Included with the app* with no Remove. Send waits for the photo: the hold is visible on a
+  48 MP photo, while a 12 MP photo is ready within one 250 ms bridge poll and still goes out with the message. A real
+  failing download, e5's 404, shows one plain sentence with Try again. The raw error is only in Details.
+- **The photo pack downloads on a real iPhone, and the held turn goes out by itself** (F360). This was round 75's one
+  unproven step. Both doors hold the send with the one-sentence card. Download fetched the pack from
+  models.inbornapp.com, and the turn held during the download was sent and answered when it finished. It took
+  **37 minutes** for 205 MB, about 0.09 MB/s. The Mac got 8.9 MB/s from the same URL at the same time, so the iOS
+  background session is the suspect. That is measured but not yet diagnosed.
+- **The Work column, proven on iOS** (F361). With the Work licence injected: the compare table (18 rows, all Work
+  cells on), a legal template filled and inserted, the architecture statement, a client vault with its own code, and
+  its audit log verified. The Pro photo row: Free refuses a second photo with the paywall line, and Pro takes three.
+- **Open** (F362). The Japanese document test with e5 waits for the e5 upload, which is still 404.
+- **The harness** (F357). CoreDevice wedged and every `devicectl` call timed out. `scripts/ios-qa.mjs --via-usbmux`
+  now drives over pymobiledevice3. Separately, USB dropped mid-pass and the driver acknowledged screenshots it never
+  took. It now lists missing screenshots. Both changes are guarded, and both guards were watched red.
+
+**TestFlight upload.** Build 19 was uploaded to App Store Connect at 19:10 and reached VALID. Moshe's order to stop all store uploads, TestFlight included, came after that. Nothing else was done in App Store Connect: no groups, no testers, no submission. From this round on, builds are installed on the iPhone only, until Moshe approves.
+
+Evidence: `docs/qa/ios-build-19-2026-09-24.md`, `docs/qa/ios-device-pass-19-2026-09-24.md`, `docs/qa/ios-device-pass-19/`.
