@@ -23,7 +23,9 @@ export async function runPick(tier: LicenceTier, attachedCount: number, deps: Pi
   const file = await deps.choose();
   if (!file) return { kind: "cancelled" };
   const name = deps.nameOf(file);
-  const verdict = fileIntake(tier, deps.kindOf(file.uri, name), attachedCount);
+  const kind = deps.kindOf(file.uri, name);
+  if (kind === "image") return { kind: "photo", uri: file.uri, name };
+  const verdict = fileIntake(tier, kind, attachedCount);
   if (verdict.kind === "paywall") return verdict;
   const doc = await deps.importFile(file.uri, name);
   if (doc.status === "failed" || doc.status === "empty") return { kind: "error", error: doc.error ?? doc.status };

@@ -1,0 +1,10 @@
+     × a picked JPEG comes back as a photo and is not imported into the library 6ms
+     × the magic bytes decide, not the name: a JPEG called 'scan' is still a photo 2ms
+     × a picture dropped on the desktop window is turned away from Documents with its own reason, a PDF is not 1ms
+     × the chat sends every door's picture to the composer: file picker, share sheet and the dev file line 5ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected { kind: 'imported', …(1) } to deeply equal { kind: 'photo', …(2) }
+AssertionError: expected { kind: 'imported', id: 'id-scan' } to match object { kind: 'photo' }
+AssertionError: expected [] to deeply equal [ { name: 'door.jpg', …(1) } ]
+AssertionError: expected 'import { useCallback, useEffect, useM…' to contain 'else if (r.kind === "photo") void add…'
+      Tests  4 failed | 1 passed (5)

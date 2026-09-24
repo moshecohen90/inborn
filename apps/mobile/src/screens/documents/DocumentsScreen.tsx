@@ -129,8 +129,10 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       const picked = await chooseFile(PICK_TYPES);
       if (!picked) return;
       const name = pickedName(picked.uri, picked.name);
+      const kind = sniffPicked(picked.uri, name);
+      if (kind === "image") return setToast(t("documents.drop.photo", { names: name }));
       /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
-      const verdict = fileIntake(tier, sniffPicked(picked.uri, name), state.documents.length);
+      const verdict = fileIntake(tier, kind, state.documents.length);
       if (proOverride === undefined && verdict.kind === "paywall") {
         if (verdict.moment === "office") setWorkMoment(true);
         else onUnlock?.("document");
@@ -161,7 +163,10 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         /* Say what was left out rather than letting a file vanish into the window (the drop is a gesture, not a dialog). */
         if (plan.rejected.some((r) => r.reason === "work-only")) setWorkMoment(true);
         else if (plan.rejected.some((r) => r.reason === "over-free-limit")) onUnlock?.("document");
-        if (plan.rejected.length) setToast(t("documents.drop.skipped", { names: plan.rejected.map((r) => r.name).join(", ") }));
+        const photos = plan.rejected.filter((r) => r.reason === "photo");
+        const others = plan.rejected.filter((r) => r.reason !== "photo");
+        if (others.length) setToast(t("documents.drop.skipped", { names: others.map((r) => r.name).join(", ") }));
+        else if (photos.length) setToast(t("documents.drop.photo", { names: photos.map((r) => r.name).join(", ") }));
       } finally {
         importing.current = false;
       }

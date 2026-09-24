@@ -14,6 +14,10 @@ export async function pickImages(_source: "library" | "camera", _limit: number):
   return { ok: false, reason: "failed" };
 }
 
+export async function importImageFile(uri: string): Promise<PickedImage | null> {
+  return { uri, width: 0, height: 0, bytes: 0 };
+}
+
 export function removeImage(_uri: string): void {}
 
 /** Web keeps whatever URI the picker gave; nothing moves. */

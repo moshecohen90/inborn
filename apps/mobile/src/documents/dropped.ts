@@ -12,7 +12,7 @@ export interface DroppedFile {
   kind: DocKind;
 }
 
-export type DropRejection = "unsupported" | "work-only" | "over-free-limit";
+export type DropRejection = "unsupported" | "work-only" | "over-free-limit" | "photo";
 
 export interface DropPlan {
   /** Files to import, in the order they were dropped. */
@@ -36,6 +36,11 @@ export function planDrop(entries: readonly DroppedEntry[], tier: LicenceTier, at
     const kind = kindOf(name, head);
     if (kind === "unknown") {
       plan.rejected.push({ name, reason: "unsupported" });
+      continue;
+    }
+    /* A picture is asked about in a chat as a photo; indexed as a document it only ever answers "no text" (QA F343). */
+    if (kind === "image") {
+      plan.rejected.push({ name, reason: "photo" });
       continue;
     }
     /* One intake authority for every door (licence/intake.ts); a drop that decided for itself would be the fourth. */

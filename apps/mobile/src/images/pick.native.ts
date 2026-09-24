@@ -38,6 +38,19 @@ async function prepare(uri: string, w: number, h: number): Promise<PickedImage> 
   return { uri: dest.uri, width: saved.width, height: saved.height, bytes: dest.size ?? 0 };
 }
 
+/** A picture that arrived as a file (the file picker, the share sheet) takes the same scale-down and EXIF strip as a picked photo. */
+export async function importImageFile(uri: string): Promise<PickedImage | null> {
+  try {
+    const probe = await ImageManipulator.manipulate(uri).renderAsync();
+    const { width, height } = probe;
+    probe.release();
+    return await prepare(uri, width, height);
+  } catch (e: unknown) {
+    console.warn("[images] import", e);
+    return null;
+  }
+}
+
 export async function pickImages(source: "library" | "camera", limit: number): Promise<PickOutcome> {
   try {
     if (source === "camera") {

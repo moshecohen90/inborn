@@ -143,7 +143,7 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
 
   it("the card has its words in every locale, and none of them is jargon", () => {
     const repo = join(__dirname, "../../../..");
-    const keys = ["holdTitle", "holdTitleModel", "holdBody", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove"].map((k) => `chat.vision.${k}`);
+    const keys = [...["holdTitleModel", "holdBody", "holdNoPack", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove", "companionMissing", "offerCompanion"].map((k) => `chat.vision.${k}`), "chat.attach.visionMissing", "chat.attach.installVision"];
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       for (const k of keys) {
@@ -151,5 +151,11 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
         expect(json[k]!.toLowerCase(), `${loc} ${k}`).not.toMatch(/companion|projector|mmproj|begleiter|compagnon|acompanhante/);
       }
     }
+  });
+
+  it("the missing-pack line is one sentence a user understands, the same in the card and the attach sheet", () => {
+    const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
+    expect(en["chat.vision.holdBody"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
+    expect(en["chat.attach.visionMissing"]).toBe(en["chat.vision.holdBody"]);
   });
 });

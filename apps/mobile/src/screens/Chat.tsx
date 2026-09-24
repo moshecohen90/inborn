@@ -66,7 +66,7 @@ import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled } from "../voice";
-import { imageUri, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, type PickedImage } from "../images";
+import { imageUri, importImageFile, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, type PickedImage } from "../images";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -75,7 +75,7 @@ import { Composer } from "../components/chat/Composer";
 import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
-import { RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction } from "../documents";
+import { RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction, type PickOutcome } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { BannerSpacer } from "../components/shell/bannerInset";
@@ -245,6 +245,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [micOpen, setMicOpen] = useState(false);
   const [preferWhisper, setPreferWhisper] = useState(false);
   const [pendingImages, setPendingImages] = useState<PickedImage[]>([]);
+  const pendingImagesRef = useRef(pendingImages);
+  pendingImagesRef.current = pendingImages;
   const [readingId, setReadingId] = useState<string | null>(null);
   /** S43: the text under the quick-action sheet and where it came from ("processText" can hand a result back). */
   const [quick, setQuick] = useState<{ text: string; source: "message" | "share" | "processText"; replaceable: boolean } | null>(null);
@@ -866,6 +868,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lines = raw.split("\n");
       const images = lines.filter((l) => l.startsWith("image:")).map((l) => new File(Paths.document, l.slice("image:".length).trim()));
       if (images.length) return setPendingImages(images.map((f) => ({ uri: f.uri, width: 0, height: 0, bytes: f.size ?? 0 })));
+      /* `file: <name>`: the attach sheet's "Add a file" with the system picker replaced by that file, so the file door can be driven. */
+      const picked = lines.find((l) => l.startsWith("file:"));
+      if (picked) {
+        const name = picked.slice("file:".length).trim();
+        const uri = new File(Paths.document, name).uri;
+        void pickIntoLibrary(library, tierRef.current, docsRef.current.documents.length, incognito, async () => ({ uri, name, text: async () => "" })).then((r) => onPickedRef.current(r));
+        return;
+      }
       /* The document half of the same file driver: `attach: <name in Documents>` and `strict: on|off`, so the attach sheet's two decisions can be driven over USB. */
       const strictLine = lines.find((l) => l.startsWith("strict:"));
       if (strictLine) docsRef.current.setStrict(strictLine.slice("strict:".length).trim() === "on");
@@ -901,10 +911,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       void (async () => {
         let attached = 0;
         let blocked: "document" | "office" | null = null;
+        const photos: string[] = [];
         for (const f of seed.files) {
           /* The share sheet is a door into the library like any other: same tier gate, same format gate (QA F72). */
           const name = sharedName(f.uri, f.name, f.mimeType);
-          const verdict = fileIntake(tier, sniffPicked(f.uri, name), docs.documents.length + attached);
+          const kind = sniffPicked(f.uri, name);
+          if (kind === "image") {
+            photos.push(f.uri);
+            continue;
+          }
+          const verdict = fileIntake(tier, kind, docs.documents.length + attached);
           if (verdict.kind === "paywall") {
             blocked ??= verdict.moment;
             continue;
@@ -917,6 +933,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }
         }
         if (attached) flash(t("quick.filesAttached", { count: attached }));
+        if (photos.length) await addPhotoFiles(photos);
         if (seed.text) setDraft(seed.text);
         if (blocked) refuseFile(blocked);
       })();
@@ -1039,18 +1056,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
   const strictLocked = paywallFor(tier, { kind: "feature", feature: "strictDocuments" });
+  const onPicked = (r: PickOutcome) => {
+    /* Already inside the sheet hand-over, so the paywall opens now rather than after a second wait. */
+    if (r.kind === "paywall") {
+      flash(t(fileRefusalKey(r.moment)));
+      onOpenPaywall?.(r.moment);
+    } else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
+    else if (r.kind === "imported") docs.attach(r.id);
+    else if (r.kind === "photo") void addPhotoFiles([r.uri]);
+  };
+  const onPickedRef = useRef(onPicked);
+  onPickedRef.current = onPicked;
   const importFile = () => {
     setAttachOpen(false);
     afterSheetClose(() => {
-      void pickIntoLibrary(library, tier, docs.documents.length, incognito).then((r) => {
-        /* Already inside the sheet hand-over, so the paywall opens now rather than after a second wait. */
-        if (r.kind === "paywall") {
-          flash(t(fileRefusalKey(r.moment)));
-          onOpenPaywall?.(r.moment);
-        }
-        else if (r.kind === "error") flash(t(`documents.error.${r.error}`, { defaultValue: r.error }));
-        else if (r.kind === "imported") docs.attach(r.id);
-      }, (e: unknown) => flash(errorText(e)));
+      void pickIntoLibrary(library, tier, docs.documents.length, incognito).then(onPicked, (e: unknown) => flash(errorText(e)));
     });
   };
   /* The count is the sheet's to render; the tap also has to answer for the Work formats already in the library (QA F129). */
@@ -1119,6 +1139,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         else if (r.reason === "failed") flash(t("chat.image.failed"));
       });
     });
+  };
+  /* A picture from the file picker or the share sheet is a photo in the composer, under the same limit and the same Send gate (QA F343). */
+  const addPhotoFiles = async (uris: string[]) => {
+    const room = imageLimit - pendingImagesRef.current.length;
+    if (room <= 0) {
+      if (tier !== "free") return;
+      flash(t("chat.attach.photoLimit"));
+      return onOpenPaywall?.("photos");
+    }
+    const added: PickedImage[] = [];
+    for (const uri of uris.slice(0, room)) {
+      const img = await importImageFile(uri);
+      if (img) added.push(img);
+      else flash(t("chat.image.failed"));
+    }
+    if (added.length) setPendingImages((p) => [...p, ...added]);
   };
   const dropPhoto = (uri: string) => {
     setPendingImages((p) => {
