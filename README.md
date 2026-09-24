@@ -5397,6 +5397,7 @@ picture: *"I cannot analyze the image or identify specific colors in the door."*
   on a phone.
 - **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
   The file stays attached, so there is nothing to hold.
+
 ## Fixes round 76: one recommended model per device, on every screen (branch `fix-model-sheet`) — 24.9.2026
 
 I14, wave 2: after round 66 the browser door and the vault recommended Fast, but the chat's Model sheet in the same
