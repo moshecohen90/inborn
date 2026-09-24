@@ -4,6 +4,7 @@
  * already holds, found through the fiber a single mounted `View` hands over.
  */
 import { File, Paths } from "expo-file-system";
+import { requireOptionalNativeModule } from "expo";
 import { router } from "expo-router";
 import { requestBytes } from "@inborn/core";
 import { recordTransfer } from "../proof/transfers";
@@ -161,6 +162,7 @@ export function createSurface(getHandle: () => unknown, runId: string): Surface 
     },
     devPrompt: writeDevPrompt,
     probeDownload,
+    idleTimerDisabled: async () => (await requireOptionalNativeModule<{ isActivated: () => Promise<boolean> }>("ExpoKeepAwake")?.isActivated()) ?? false,
     cleanup,
     sleep,
     now: () => Date.now(),

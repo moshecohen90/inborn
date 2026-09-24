@@ -1,0 +1,77 @@
+{
+  "_": "Round 91 (F375): the keep-open line at phone size in the launch locale",
+  "steps": [
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "install-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "confirm-download",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-keep-open-fast",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-keep-open-fast"
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "screenshot",
+      "name": "C01-keep-open-locale"
+    },
+    {
+      "op": "press",
+      "testID": "cancel-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-keep-open-fast",
+      "gone": true,
+      "timeoutMs": 10000
+    },
+    {
+      "op": "idleTimer",
+      "disabled": false
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "runId": "card-copy-en",
+  "startedAt": "2026-09-24T20:01:35.327Z",
+  "finishedAt": "2026-09-24T20:01:50.364Z",
+  "ok": true,
+  "passed": 17,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8002,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "/vault"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 3,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 7,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 606,
+      "detail": "600 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "confirm-download appeared"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-keep-open-fast appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Keep Inborn open: the download pauses when you leave",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Keep Inborn open: the download pauses when you leave"
+    },
+    {
+      "i": 11,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 962,
+      "detail": "C01-keep-open-locale"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "cancel-fast ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-keep-open-fast gone"
+    },
+    {
+      "i": 16,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    }
+  ],
+  "errors": []
+}

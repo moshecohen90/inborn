@@ -1,6 +1,6 @@
 # Round 91 red run: the tests below against main's store (no keep-awake wiring, no resumed event)
 
- RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-download-keepawake/apps/mobile
+ RUN  v5.0.0 <repo>/apps/mobile
 
  ❯ src/vault/keepAwake.test.ts (9 tests | 7 failed) 158ms
    ❯ keep-awake while a model downloads (round 91) (9)
