@@ -46,9 +46,18 @@ describe("F311 · the browser door offers a choice, best for this device first",
     expect(ids(small)).toEqual(["instant", "fast"]);
   });
 
+  /* Two models that differ in nothing but their tier, so the only thing that can move the tag is the installed flag. */
   it("means best for this device, not already downloaded", () => {
-    expect(recommended(gate(), ["instant"])).toBe(recommended(gate()));
-    expect(webModelChoices({ sources: SOURCES, gate: gate(), installed: ["instant"], languageCode: "en" }).find((c) => c.source.id === "instant")?.installed).toBe(true);
+    const base = BUNDLED_MANIFEST.models.find((m) => m.id === "instant")!;
+    const twins = [
+      { ...base, id: "small", tier: "instant" as const, bytes: 1 },
+      { ...base, id: "big", tier: "fast" as const, bytes: 2 },
+    ];
+    const sources: WebModelSource[] = twins.map((m) => ({ id: m.id, tier: m.tier, name: m.id, file: `${m.id}.gguf`, bytes: m.bytes, url: `/models/${m.id}.gguf` }));
+    const pick = (installed: string[]) => webModelChoices({ sources, gate: gate(), installed, languageCode: "en", catalog: twins }).find((c) => c.recommended)?.source.id;
+    expect(pick([])).toBe("big");
+    expect(pick(["small"])).toBe("big");
+    expect(webModelChoices({ sources, gate: gate(), installed: ["small"], languageCode: "en", catalog: twins }).find((c) => c.source.id === "small")?.installed).toBe(true);
   });
 
   it("carries the numbers the card prints, from the catalog and the §6.4 table", () => {
