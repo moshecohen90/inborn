@@ -21,3 +21,12 @@ export function deliveryKey(source: DeliverySource): string {
       return "proof.delivery.builtin";
   }
 }
+
+/**
+ * Which delivery lines may end on a drawn check: the ones whose last clause is the hash we verified.
+ * Play belongs here — `VaultStore.checkAndRecord` hashes every shard whatever delivered it, and its one Play branch
+ * only skips deleting files Play owns. `import` and `bundled` say where the bytes came from, not that we checked them.
+ */
+export function deliveryHashChecked(source: DeliverySource): boolean {
+  return source === "apple" || source === "https" || source === "hf" || source === "play";
+}

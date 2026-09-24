@@ -11,6 +11,9 @@ const bound = new Set<string>();
 const fetched: string[] = [];
 let record: VaultRecord;
 const sizes = new Map<string, number>();
+/* What the mocked hasher answers, so a Play delivery can be handed a bad shard. */
+let sha: string;
+const deleted: string[] = [];
 
 class FakeFile {
   uri: string;
@@ -55,11 +58,11 @@ vi.mock("./paths", () => ({
   devFallbackFile: () => new FakeFile("file:///doc/instant.gguf"),
   fileSize: (f: FakeFile) => (f.exists ? f.size : 0),
   modelFile: (name: string) => new FakeFile(`file:///vault/${name}`),
-  safeDelete: () => undefined,
+  safeDelete: (f: FakeFile) => void deleted.push(f.uri),
   vaultDir: () => ({ list: () => [] }),
 }));
 vi.mock("./device", () => ({ readDevice: () => ({ os: "android", chip: "mid" }), freeDiskBytes: () => 64 * 1024 ** 3 }));
-vi.mock("./hash", () => ({ fileGgufHeader: async () => null, fileSha256: async () => fast.sha256 }));
+vi.mock("./hash", () => ({ fileGgufHeader: async () => null, fileSha256: async () => sha }));
 vi.mock("./devFlags", () => ({ DEV_MODELS_BASE_URL: undefined, devBuild: () => false }));
 vi.mock("./network", () => ({ networkKind: async () => "wifi" }));
 vi.mock("../services/storageFull", () => ({ reportStorageFull: () => undefined }));
@@ -72,6 +75,8 @@ const hadFast = (): VaultRecord => ({ ...emptyRecord(), installs: { fast: { file
 const settled = () => new Promise((r) => setTimeout(r, 0));
 
 beforeEach(() => {
+  sha = fast.sha256;
+  deleted.length = 0;
   record = emptyRecord();
   sizes.clear();
   bound.clear();
@@ -86,6 +91,17 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     await settled();
     expect(fetched).toContain("fast");
     expect(vault.state("fast")).toMatchObject({ kind: "ready", path: PATH, via: "play" });
+  });
+
+  /* F254 / round 52b: "verified by Play, then by sha256" is only true while the app hashes what Play delivered. */
+  it("hashes a Play-delivered pack like any other, and rejects it on a mismatch without deleting Play's files", async () => {
+    record = hadFast();
+    sha = "0".repeat(64);
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(vault.state("fast")).toMatchObject({ kind: "corrupt", reason: "hash-mismatch", via: "play" });
+    expect(deleted, "Play owns the pack files; the app must not delete them").toEqual([]);
   });
 
   it("keeps the record of a Play model the update unbound, so the next launch still knows the phone has it", async () => {

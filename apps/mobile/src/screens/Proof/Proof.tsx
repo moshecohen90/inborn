@@ -10,7 +10,7 @@ import { Icon, radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { permissionRows } from "../../proof/permissions";
-import { deliveryKey } from "../../proof/deliveryLine";
+import { deliveryHashChecked, deliveryKey } from "../../proof/deliveryLine";
 import { lastWebDelivery } from "../../proof/webDelivery";
 import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
@@ -59,12 +59,12 @@ export function Proof() {
       <Section title={t("proof.lastDelivery")}>
         {Platform.OS === "web" ? (
           webDelivery ? (
-            <Line mono={`${webDelivery.name.toUpperCase()} · ${formatBytes(webDelivery.bytes)}`} text={t(webDelivery.verified ? "proof.delivery.web" : "proof.delivery.webUnverified", { origin: webDelivery.origin })} testID="proof-delivery-web" />
+            <Line mono={`${webDelivery.name.toUpperCase()} · ${formatBytes(webDelivery.bytes)}`} text={t(webDelivery.verified ? "proof.delivery.web" : "proof.delivery.webUnverified", { origin: webDelivery.origin })} mark={webDelivery.verified} testID="proof-delivery-web" />
           ) : (
             <Line text={t("proof.delivery.webNone")} testID="proof-delivery-web" />
           )
         ) : delivery && delivery.status === "done" ? (
-          <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} testID="proof-delivery" />
+          <Line mono={`${delivery.name} · ${formatBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} mark={deliveryHashChecked(delivery.source)} testID="proof-delivery" />
         ) : (
           <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} />
         )}
@@ -133,23 +133,16 @@ function ReadoutRow({ label, value, color, testID }: { label: string; value: str
   );
 }
 
-/** IBM Plex Sans has no U+2713, so a literal tick fell back to a symmetric V and read as a square root (QA F254). */
-const TICK = "\u2713";
-
-function Line({ mono, text, testID }: { mono?: string; text: string; testID?: string }) {
+/** IBM Plex Sans has no U+2713, so the mark is drawn: a literal tick fell back to a symmetric V and read as "sha256 square-root" (QA F254). */
+function Line({ mono, text, mark, testID }: { mono?: string; text: string; mark?: boolean; testID?: string }) {
   const type = useType();
   const { theme } = useTheme();
-  const parts = text.split(TICK);
   return (
     <View style={[styles.line, { borderBottomColor: theme.border }]} testID={testID}>
       {mono ? <Mono color={theme.text}>{mono}</Mono> : null}
       <Text style={[type.bodySmall, { color: theme.text2 }]}>
-        {parts.map((part, i) => (
-          <Text key={i}>
-            {i ? <Icon name="check" size={12} color={theme.text2} style={styles.tick} /> : null}
-            {part}
-          </Text>
-        ))}
+        {text}
+        {mark ? <Text>{" "}<Icon name="check" size={12} color={theme.text2} style={styles.tick} /></Text> : null}
       </Text>
     </View>
   );
