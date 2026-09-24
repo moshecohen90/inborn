@@ -3,7 +3,7 @@
 Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 22 September 2026.
 
 Effective date: 22 September 2026
-Publisher: Cohen Apps (the developer account shown on the store listing)
+Publisher: Cohen Apps
 Contact: support@inbornapp.com
 
 ---

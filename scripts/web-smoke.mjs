@@ -354,6 +354,30 @@ try {
     if (await page.getByTestId("composer-input").count()) throw new Error("a browser with no catalog walked into a chat it cannot answer in");
     await broken.close();
   }
+  /* 6. F293: a browser with no model at all still reaches the price list; only a chat needs the download door. */
+  {
+    const fresh = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(fresh);
+    const page = await fresh.newPage();
+    lastPage = page;
+    const out = (result.paywallWithoutModel = {});
+    await page.goto(new URL("/paywall?reason=strictDocuments", server.url).href);
+    await page.getByTestId("web-price-pro").waitFor({ timeout: 60_000 });
+    out.pro = ((await page.getByTestId("web-price-pro").textContent()) ?? "").trim();
+    out.work = ((await page.getByTestId("web-price-work").textContent()) ?? "").trim();
+    out.why = ((await page.getByTestId("paywall-why").textContent({ timeout: 5_000 }).catch(() => "")) ?? "").trim();
+    out.door = await page.getByTestId("download-door").count();
+    out.screenshot = path.join(outDir, "web-smoke-paywall-no-model.png");
+    await page.screenshot({ path: out.screenshot, fullPage: true });
+    if (out.door) throw new Error("the download door stands in front of the price list");
+    for (const [tier, text] of [["pro", out.pro], ["work", out.work]]) {
+      if (!/\d/.test(text)) throw new Error(`the ${tier} price is not on the page without a model: "${text}"`);
+    }
+    /* The chat is the screen that needs the model: the same browser must still meet the door there. */
+    await page.goto(server.url);
+    await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    await fresh.close();
+  }
 } catch (e) {
   failure = e;
   /* What the page showed when it went wrong: the door/error text, the status line, the console, a screenshot. */
@@ -387,3 +411,4 @@ console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
 console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
+console.log(`PASS: no model, the price list still reads ${result.paywallWithoutModel.pro.replace(/\n/g, " · ")} / ${result.paywallWithoutModel.work.replace(/\n/g, " · ")}`);

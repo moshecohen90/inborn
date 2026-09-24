@@ -1,4 +1,4 @@
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
@@ -131,5 +131,48 @@ describe("a cleanup step really empties the container", () => {
   it("the driver acknowledges the report, which is what the bridge is waiting for", () => {
     expect(ackWired(DRIVER)).toBe(true);
     expect(ackWired(DRIVER.replaceAll("result.ok", "ignored.ok"))).toBe(false);
+  });
+});
+
+/**
+ * F299. `check-qa-bridge.sh` was run by whoever remembered: it was in no script and in no checklist, so a future
+ * build that forgot it would ship the bridge and nothing would go red. It is now inside `pnpm check:store`.
+ */
+describe("F299 · the QA-bridge gate runs itself, over whatever the tree has built", () => {
+  const REPO = path.resolve(MOBILE, "../..");
+  const WRAPPER = path.join(REPO, "scripts/check-shipping-bundles.mjs");
+  const run = (args: string[]) => {
+    try {
+      return { code: 0, out: execFileSync("node", [WRAPPER, ...args], { encoding: "utf8" }) };
+    } catch (e) {
+      const err = e as { status: number; stdout: string };
+      return { code: err.status, out: err.stdout };
+    }
+  };
+
+  it("`pnpm check:store` runs it, so `pnpm test` does too", () => {
+    const pkg = JSON.parse(readFileSync(path.join(REPO, "package.json"), "utf8")) as { scripts: Record<string, string> };
+    expect(pkg.scripts["check:store"]).toContain("scripts/check-shipping-bundles.mjs");
+    expect(pkg.scripts.test).toContain("check:store");
+  });
+
+  it("the release checklist carries it as a required line", () => {
+    expect(readFileSync(path.join(REPO, "docs/qa/release-checklist.md"), "utf8")).toContain("INBORN_REQUIRE_BUNDLE=1 node scripts/check-shipping-bundles.mjs");
+  });
+
+  it("fails on an artifact that carries the bridge, and passes on one that does not", () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "inborn-bundle-"));
+    writeFileSync(path.join(dir, "main.jsbundle"), "var a=1;//nothing to see here\n");
+    expect(run([dir]).code, "a clean artifact").toBe(0);
+    writeFileSync(path.join(dir, "main.jsbundle"), `var a=1;var s="${["INBORN_QA", "BRIDGE_V1"].join("_")}";\n`);
+    const red = run([dir]);
+    expect(red.code, "an artifact carrying the bridge").toBe(1);
+    expect(red.out).toContain("contains the QA bridge");
+  });
+
+  it("an unbuilt tree says so, and the release form refuses it", () => {
+    const empty = mkdtempSync(path.join(tmpdir(), "inborn-empty-"));
+    /* No artifact path exists under a temp dir, so the wrapper's own repo paths are what is empty here. */
+    expect(run([path.join(empty, "nothing")]).code).toBe(1);
   });
 });

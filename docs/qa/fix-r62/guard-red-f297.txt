@@ -1,0 +1,34 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-r62/packages/ui
+
+ ❯ src/fontVersions.test.ts (3 tests | 1 failed) 20ms
+   ❯ F297 · the third-party notice quotes the font versions the app ships (3)
+     × NOTICE.json names those two versions 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/fontVersions.test.ts > F297 · the third-party notice quotes the font versions the app ships > NOTICE.json names those two versions
+AssertionError: the files report Sans 3.005 / Mono 2.005: expected 'Plex Sans 1.1.0 (Regular, Medium, Sem…' to contain 'Plex Sans 3.005'
+
+Expected: "Plex Sans 3.005"
+Received: "Plex Sans 1.1.0 (Regular, Medium, SemiBold) · Plex Mono 2.005 (Regular, Medium)"
+
+ ❯ src/fontVersions.test.ts:38:74
+     36|     const sans = ttfVersion("IBMPlexSans-Regular.ttf");
+     37|     const mono = ttfVersion("IBMPlexMono-Regular.ttf");
+     38|     expect(plex.version, `the files report Sans ${sans} / Mono ${mono}…
+       |                                                                          ^
+     39|     expect(plex.version, `the files report Sans ${sans} / Mono ${mono}…
+     40|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  14:48:44
+   Duration  109ms (tests 51%, transform 30%, import 14%, worker 5%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-r62/packages/ui:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/fontVersions.test.ts

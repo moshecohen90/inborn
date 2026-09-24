@@ -222,6 +222,7 @@ Result vocabulary: **PASS**, **FAIL** (blocks release), **N/A** (platform not in
 
 ### T30 Android merged manifest: no network permission
 - Spec: §5.1, §10.9 #60. Gate already scripted: `scripts/check-android-permissions.sh`.
+- **Required, every build of every platform:** the shipping artifact carries no QA bridge — `INBORN_REQUIRE_BUNDLE=1 node scripts/check-shipping-bundles.mjs` (runs `scripts/check-qa-bridge.sh` over `apps/web/dist`, the expo export, the iOS archive and the Android AAB/APK). `pnpm check:store`, and so `pnpm test`, runs the same gate over whatever is built; the `INBORN_REQUIRE_BUNDLE=1` form is the release form, which also fails when nothing was built (F299).
 - Procedure: `~/Library/Android/sdk/build-tools/36.0.0/aapt2 dump permissions app-release.apk` and the same on every split from `bundletool build-apks`; also `aapt2 dump badging | grep uses-permission`.
 - Pass: no `android.permission.INTERNET`, no `ACCESS_NETWORK_STATE`; only the list in `docs/legal/app-privacy-details.md` §4.2.
 - Runs on: M-MAC (CI).

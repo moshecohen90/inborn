@@ -82,7 +82,8 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
   const [memoryOpen, setMemoryOpen] = useState(false);
   const pending = useRef<Pending | null>(null);
   const foldersGated = paywallFor(tier, { kind: "feature", feature: "folders" });
-  const unlock = (reason: PaywallReason = "folders") => onOpenPaywall?.(reason);
+  /* The reason is required: a defaulted parameter makes `onPress={unlock}` typecheck and hands the press event through as the reason (F292). */
+  const unlock = (reason: PaywallReason) => onOpenPaywall?.(reason);
 
   const refresh = useCallback(async () => {
     const [list, dirs, custom] = await Promise.all([store.listChats(), store.library.listFolders(), store.library.listPersonas()]);
@@ -418,10 +419,10 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           <Pressable testID="open-memory" accessibilityRole="button" onPress={() => setMemoryOpen(true)} style={styles.footerBtn}>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("memory.title")}</Text>
           </Pressable>
-          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock() : setFolderMode({ kind: "manage" }))} style={styles.footerBtn}>
+          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "manage" }))} style={styles.footerBtn}>
             <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("folders.title")}</Text>
           </Pressable>
-          {foldersGated ? <ProTag onPress={unlock} /> : null}
+          {foldersGated ? <ProTag onPress={() => unlock("folders")} /> : null}
         </View>
       )}
       {pendingIds.size ? (
@@ -515,12 +516,12 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
                       label={t("folders.move")}
                       trailing={foldersGated ? <ProTag onPress={() => {
                         setMenu(null);
-                        afterSheetClose(unlock);
+                        afterSheetClose(() => unlock("folders"));
                       }} /> : undefined}
                       onPress={() => {
                         const chat = menu.chat;
                         setMenu(null);
-                        afterSheetClose(() => (foldersGated ? unlock() : setFolderMode({ kind: "move", chat })));
+                        afterSheetClose(() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "move", chat })));
                       }}
                     />
                     <SheetItem
@@ -565,7 +566,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
               </Pressable>
             </>
           ) : workGate.vaultsLocked ? (
-            <WorkTag onPress={() => { setFolderMode(null); afterSheetClose(unlock); }} />
+            <WorkTag onPress={() => { setFolderMode(null); afterSheetClose(() => unlock("clientVaults")); }} />
           ) : (
             <Pressable testID={`vault-make-${f.id}`} accessibilityRole="button" hitSlop={6} style={styles.footerBtn} onPress={() => { setFolderMode(null); afterSheetClose(() => setVaultCode({ mode: { kind: "set", folderName: f.name }, folder: f })); }}>
               <Text style={[type.caption, { color: theme.accent }]}>{t("vaults.make")}</Text>
