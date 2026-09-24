@@ -1,0 +1,320 @@
+{
+  "runId": "soft",
+  "startedAt": "2026-09-24T13:53:18.032Z",
+  "finishedAt": "2026-09-24T13:53:20.649Z",
+  "ok": true,
+  "passed": 7,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 0 chars"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 516,
+      "detail": "500 ms"
+    },
+    {
+      "i": 2,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 17 chars"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "soft one\nsoft two",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "E05-text-newline-does-not-send"
+    },
+    {
+      "i": 6,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "wide-sidebar",
+          "text": "Chats Select New chat Incognito Recent Pin Archive Delete iPad hardware Enter check 4:52 PM INSTANT Personas Memory Folders PRO INSTANT · OUT 0 B Model vault Documents Settings ◯ Proof"
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-muflcrav-1-i705xjp4",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-muflcrav-1-i705xjp4",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-muflcrav-1-i705xjp4",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-muflcrav-1-i705xjp4",
+          "text": "iPad hardware Enter check 4:52 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-personas",
+          "text": "Personas",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "Memory",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "Folders",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Model vault Documents Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-vault",
+          "text": "Model vault",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-documents",
+          "text": "Documents",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "user-message",
+          "text": "iPad hardware Enter check",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The iPad hardware interface currently does not support a dedicated \"Enter check\" function as a standard feature; this functionality is typically found on tablets with specific hardware configurations designed for secure data entry. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The iPad hardware interface currently does not support a dedicated \"Enter check\" function as a standard feature; this functionality is typically found on tablets with specific hardware configurations designed for secure data entry."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your tablet. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "soft one\nsoft two",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "after-soft-newline"
+    }
+  ],
+  "errors": []
+}

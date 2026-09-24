@@ -1,0 +1,48 @@
+{
+  "runId": "pa",
+  "startedAt": "2026-09-24T14:00:23.773Z",
+  "finishedAt": "2026-09-24T14:00:25.922Z",
+  "ok": true,
+  "passed": 4,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 1,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 2,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"iPhone hardware Enter check\" present"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 635,
+      "detail": "P02-phone-after-hardware-enter"
+    }
+  ],
+  "errors": []
+}

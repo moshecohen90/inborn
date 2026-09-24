@@ -6,7 +6,7 @@ interface NativeHardwareKeys {
   addListener(event: "onEnter", listener: (e: { deviceId: number }) => void): { remove(): void };
 }
 
-/** Android has a native module that sees the physical keyboard (QA T28); the browser and the desktop shell use the DOM. */
+/** Android and iOS have a native module that sees the physical keyboard (QA T28, F326); the browser and the desktop shell use the DOM. */
 const native = requireOptionalNativeModule<NativeHardwareKeys>("HardwareKeys");
 const web = Platform.OS === "web";
 
