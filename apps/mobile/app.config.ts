@@ -78,7 +78,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: "./assets/icon.png",
   ios: {
     bundleIdentifier: IOS_BUNDLE_ID,
-    buildNumber: "18",
+    buildNumber: "19",
     supportsTablet: true,
     /* The floor §6.3, the release checklist and the privacy policy all declare; Expo's Podfile template would leave 16.4. */
     deploymentTarget: "17.0",

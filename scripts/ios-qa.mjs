@@ -2,7 +2,7 @@
 // Drives the iPhone through the in-app QA bridge: no XCUITest runner, no "Enable UI Automation" passcode sheet
 // (F185), nothing that needs Moshe standing next to the phone.
 //
-//   node scripts/ios-qa.mjs <script.json> --out docs/qa/ios-qa-bridge [--device <udid>] [--launch] [--run <id>] [--simulator]
+//   node scripts/ios-qa.mjs <script.json> --out docs/qa/ios-qa-bridge [--device <udid>] [--launch] [--run <id>] [--simulator | --via-usbmux]
 //
 // It pushes the script into the app's own Documents container (`devicectl device copy to`, no prompt), launches or
 // leaves the app running, polls `Documents/qa/out/<run>/progress.json`, takes each `screenshot` step's picture with
@@ -55,7 +55,29 @@ function simctl(args, { quiet = true } = {}) {
 const simulator = has('simulator');
 const simData = () => simctl(['get_app_container', device, bundle, 'data']).trim();
 
-const transport = simulator
+// CoreDevice can wedge on the Mac (every devicectl call times out while usbmux still answers, F357): `--via-usbmux`
+// moves the same four moves to pymobiledevice3's house_arrest and DVT services.
+const viaUsbmux = has('via-usbmux');
+const pmdRun = (args) => execFileSync(pmd, [...args, '--udid', device], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 180000 });
+
+const transport = viaUsbmux
+  ? {
+      push: (local, remote) => pmdRun(['apps', 'push', bundle, local, remote]),
+      pull(remote, local) {
+        try {
+          pmdRun(['apps', 'pull', bundle, remote, local]);
+          return existsSync(local) ? readFileSync(local, 'utf8') : null;
+        } catch {
+          return null;
+        }
+      },
+      launch() {
+        pmdRun(['developer', 'dvt', 'launch', '--kill-existing', '--userspace', bundle]);
+        return null;
+      },
+      shoot: (png) => execFileSync(pmd, ['developer', 'dvt', 'screenshot', '--userspace', png], { stdio: ['ignore', 'pipe', 'pipe'] }),
+    }
+  : simulator
   ? {
       push(local, remote) {
         const dest = join(simData(), remote);
@@ -107,9 +129,21 @@ function pull(remote, local) {
 
 const launch = () => transport.launch();
 
+const missedShots = [];
+
 function screenshot(name) {
   const png = join(outDir, `${name}.png`);
-  transport.shoot(png);
+  try {
+    transport.shoot(png);
+  } catch {
+    /* judged by the file below: the run goes on, and the report names every picture that was not taken */
+  }
+  // pymobiledevice3 can fail with the step still acknowledged (USB unplugged mid-run, F357), so a missing file is logged.
+  if (!existsSync(png)) {
+    missedShots.push(name);
+    log(`SHOT MISSING ${name}: nothing was written, the device may have dropped off USB`);
+    return png;
+  }
   try {
     execFileSync('sips', ['-Z', '500', png, '--out', join(outDir, `sm-${name}.png`)], { stdio: 'ignore' });
   } catch {
@@ -198,6 +232,7 @@ async function main() {
   // waits for this acknowledgement and only then drops `Documents/qa/`; the poll below is what proves it did.
   if (steps.some((s) => s.op === 'cleanup')) log(`swept: ${(await sweep()) ? 'Documents/qa is gone' : 'STILL ON THE DEVICE'}`);
   for (const e of parsed.errors) log(`  ! ${e.slice(0, 200)}`);
+  if (missedShots.length) log(`${missedShots.length} screenshot(s) missing: ${missedShots.join(', ')}`);
   process.exit(parsed.ok ? 0 : 1);
 }
 

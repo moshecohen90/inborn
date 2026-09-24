@@ -1,0 +1,369 @@
+
+ RUN  v5.0.0 packages/core
+
+ ❯ test/rag-elision-umlaut.test.ts (19 tests | 15 failed) 18ms
+   ❯ F368 · an elided article is glue, the word after it is the word (11)
+     × fr: "oeuvre" finds "Une présentation de l'œuvre complète." 8ms
+     × fr: "Aoba" finds "Le rapport annuel d’Aoba Trading." 1ms
+     × fr: "accord" finds "Nous sommes d'accord sur le budget." 1ms
+     × fr: "automne" finds "Jusqu'à l'automne, lorsqu'il pleut." 1ms
+     × it: "arte architettura antichita" finds "La storia dell'arte e l'architettura nell'antichità." 1ms
+     × it: "altra anno" finds "Un'altra volta quest'anno." 1ms
+     × ca: "estacio autobusos" finds "L'estació d'autobusos s'omple." 1ms
+     × en: "Moshe" finds "Moshe's report is ready." 0ms
+     × the article and the elided glue after it never count as a word 1ms
+     × the elided and the bare spelling score a passage exactly alike 1ms
+   ❯ F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round (8)
+     × "Staedten" finds "Die Firma hat Büros in drei Städten." 1ms
+     × "Muenchen" finds "Der Sitz liegt in München." 0ms
+     × "Groesse Hauptbueros" finds "Die Größe der Hauptbüros." 0ms
+     × "München" finds "Er wohnt in Muenchen." 0ms
+     × an umlaut and its digraph count as one word, and score the umlaut passage as the bare fold does 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > fr: "oeuvre" finds "Une présentation de l'œuvre complète."
+AssertionError: expected [ 'oeuvre', +0 ] to deeply equal [ 'oeuvre', 1 ]
+
+- Expected
++ Received
+
+  [
+    "oeuvre",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > fr: "Aoba" finds "Le rapport annuel d’Aoba Trading."
+AssertionError: expected [ 'Aoba', +0 ] to deeply equal [ 'Aoba', 1 ]
+
+- Expected
++ Received
+
+  [
+    "Aoba",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > fr: "accord" finds "Nous sommes d'accord sur le budget."
+AssertionError: expected [ 'accord', +0 ] to deeply equal [ 'accord', 1 ]
+
+- Expected
++ Received
+
+  [
+    "accord",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > fr: "automne" finds "Jusqu'à l'automne, lorsqu'il pleut."
+AssertionError: expected [ 'automne', +0 ] to deeply equal [ 'automne', 1 ]
+
+- Expected
++ Received
+
+  [
+    "automne",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > it: "arte architettura antichita" finds "La storia dell'arte e l'architettura nell'antichità."
+AssertionError: expected [ 'arte architettura antichita', +0 ] to deeply equal [ 'arte architettura antichita', 3 ]
+
+- Expected
++ Received
+
+  [
+    "arte architettura antichita",
+-   3,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > it: "altra anno" finds "Un'altra volta quest'anno."
+AssertionError: expected [ 'altra anno', +0 ] to deeply equal [ 'altra anno', 2 ]
+
+- Expected
++ Received
+
+  [
+    "altra anno",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > ca: "estacio autobusos" finds "L'estació d'autobusos s'omple."
+AssertionError: expected [ 'estacio autobusos', +0 ] to deeply equal [ 'estacio autobusos', 2 ]
+
+- Expected
++ Received
+
+  [
+    "estacio autobusos",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > en: "Moshe" finds "Moshe's report is ready."
+AssertionError: expected [ 'Moshe', +0 ] to deeply equal [ 'Moshe', 1 ]
+
+- Expected
++ Received
+
+  [
+    "Moshe",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:24:85
+     22|   ];
+     23|   for (const [lang, passage, q, n] of pairs)
+     24|     it(`${lang}: "${q}" finds "${passage}"`, () => expect([q, matched(…
+       |                                                                                     ^
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > the article and the elided glue after it never count as a word
+AssertionError: expected [ 'qu\'il', [ 'qu\'il' ] ] to deeply equal [ 'qu\'il', [] ]
+
+- Expected
++ Received
+
+  [
+    "qu'il",
+-   [],
++   [
++     "qu'il",
++   ],
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:27:142
+     25|
+     26|   it("the article and the elided glue after it never count as a word",…
+     27|     for (const w of ["l'", "qu'il", "c'est", "j'ai", "n'est", "s'il", …
+       |                                                                                                                                              ^
+     28|     expect(bm25Tokens("j'ai")).not.toContain("ai");
+     29|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · an elided article is glue, the word after it is the word > the elided and the bare spelling score a passage exactly alike
+AssertionError: expected [ { id: 'a', …(2) } ] to deeply equal [ { id: 'b', …(2) } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "id": "b",
++     "id": "a",
+      "matched": 1,
+-     "score": 0.8025914722273051,
++     "score": 0.609969518892752,
+    },
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:42:36
+     40|     idx.add("a", "Une présentation de l'œuvre complète.");
+     41|     idx.add("b", "Cette œuvre est courte.");
+     42|     expect(idx.search("l'oeuvre")).toEqual(idx.search("oeuvre"));
+       |                                    ^
+     43|     expect(idx.search("oeuvre").map((h) => h.id).sort()).toEqual(["a",…
+     44|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round > "Staedten" finds "Die Firma hat Büros in drei Städten."
+AssertionError: expected [ 'Staedten', +0 ] to deeply equal [ 'Staedten', 1 ]
+
+- Expected
++ Received
+
+  [
+    "Staedten",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:55:111
+     53|     ["Er wohnt in Muenchen.", "München", 1],
+     54|   ];
+     55|   for (const [passage, q, n] of pairs) it(`"${q}" finds "${passage}"`,…
+       |                                                                                                               ^
+     56|
+     57|   it("a word with legitimate ae/oe/ue is found exactly as it is typed"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round > "Muenchen" finds "Der Sitz liegt in München."
+AssertionError: expected [ 'Muenchen', +0 ] to deeply equal [ 'Muenchen', 1 ]
+
+- Expected
++ Received
+
+  [
+    "Muenchen",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:55:111
+     53|     ["Er wohnt in Muenchen.", "München", 1],
+     54|   ];
+     55|   for (const [passage, q, n] of pairs) it(`"${q}" finds "${passage}"`,…
+       |                                                                                                               ^
+     56|
+     57|   it("a word with legitimate ae/oe/ue is found exactly as it is typed"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round > "Groesse Hauptbueros" finds "Die Größe der Hauptbüros."
+AssertionError: expected [ 'Groesse Hauptbueros', +0 ] to deeply equal [ 'Groesse Hauptbueros', 2 ]
+
+- Expected
++ Received
+
+  [
+    "Groesse Hauptbueros",
+-   2,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:55:111
+     53|     ["Er wohnt in Muenchen.", "München", 1],
+     54|   ];
+     55|   for (const [passage, q, n] of pairs) it(`"${q}" finds "${passage}"`,…
+       |                                                                                                               ^
+     56|
+     57|   it("a word with legitimate ae/oe/ue is found exactly as it is typed"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round > "München" finds "Er wohnt in Muenchen."
+AssertionError: expected [ 'München', +0 ] to deeply equal [ 'München', 1 ]
+
+- Expected
++ Received
+
+  [
+    "München",
+-   1,
++   0,
+  ]
+
+ ❯ test/rag-elision-umlaut.test.ts:55:111
+     53|     ["Er wohnt in Muenchen.", "München", 1],
+     54|   ];
+     55|   for (const [passage, q, n] of pairs) it(`"${q}" finds "${passage}"`,…
+       |                                                                                                               ^
+     56|
+     57|   it("a word with legitimate ae/oe/ue is found exactly as it is typed"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  test/rag-elision-umlaut.test.ts > F368 · German typed with ae/oe/ue finds ä/ö/ü, and the other way round > an umlaut and its digraph count as one word, and score the umlaut passage as the bare fold does
+AssertionError: expected [] to deeply equal [ { id: 'a', …(2) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "id": "a",
+-     "matched": 1,
+-     "score": 0.5897495348410585,
+-   },
+- ]
++ []
+
+ ❯ test/rag-elision-umlaut.test.ts:74:36
+     72|     idx.add("a", "Die Firma hat Büros in drei Städten.");
+     73|     idx.add("b", "Die Stadt am Fluss.");
+     74|     expect(idx.search("Staedten")).toEqual(idx.search("Städten"));
+       |                                    ^
+     75|     expect(idx.search("stadten")).toEqual(idx.search("Städten"));
+     76|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  15 failed | 4 passed (19)
+   Start at  19:52:28
+   Duration  251ms (transform 66%, import 18%, tests 14%, worker 2%)
+

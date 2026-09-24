@@ -1,7 +1,7 @@
 import { initLlama } from "llama.rn";
 import { isDevice } from "expo-device";
 import { Platform } from "react-native";
-import { ANSWER_CEILING } from "@inborn/core";
+import { ANSWER_CEILING, sampling } from "@inborn/core";
 import type { BenchTimings, Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
@@ -96,14 +96,17 @@ export class LlamaRnLM implements LocalLM {
     };
     const onAbort = () => void ctx.stopCompletion();
     signal.addEventListener("abort", onAbort, { once: true });
+    const sampler = sampling(opts);
     this.inflight = ctx
       .completion(
         {
           messages: messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content })),
           n_predict: opts.maxTokens ?? ANSWER_CEILING,
           n_threads: opts.threads,
-          temperature: opts.temperature ?? 0.7,
-          top_p: opts.topP ?? 0.9,
+          temperature: sampler.temperature,
+          top_p: sampler.topP,
+          penalty_repeat: sampler.repeatPenalty,
+          penalty_last_n: sampler.repeatLastN,
           stop: opts.stop ?? [],
           enable_thinking: opts.reasoning ?? true,
           reasoning_format: "auto",

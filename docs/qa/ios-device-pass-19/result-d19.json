@@ -1,0 +1,2422 @@
+{
+  "runId": "d19",
+  "startedAt": "2026-09-24T17:00:18.513Z",
+  "finishedAt": "2026-09-24T17:01:31.397Z",
+  "ok": false,
+  "passed": 150,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "setTier",
+      "ok": true,
+      "ms": 190,
+      "detail": "free"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/chats"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1340,
+      "detail": "pending-image-0 appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2010,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4000,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2253,
+      "detail": "D01-free-second-photo"
+    },
+    {
+      "i": 14,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "pending-images",
+          "text": "Free sends one photo per message"
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-paywall",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "paywall-title",
+          "text": "Pay once. Own it."
+        },
+        {
+          "testID": "paywall-why",
+          "text": "Free sends one photo per message. Pro sends several."
+        },
+        {
+          "testID": "tier-inborn.pro",
+          "text": "PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited documents + OCR, with citations Unlimited personas + on-device memory Folders + export all chats Larger models, Sharp and Sharp (Phi) Hands-free voice and dictation Unlock Pro · $19.99"
+        },
+        {
+          "testID": "price-inborn.pro",
+          "text": "$19.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.pro",
+          "text": "Unlock Pro · $19.99",
+          "role": "button",
+          "label": "Unlock Pro · $19.99",
+          "pressable": true
+        },
+        {
+          "testID": "tier-inborn.work",
+          "text": "FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained Signed, verifiable records Profession packs: legal, therapy, medical, accounting Printable architecture statement Unlock Work · $69.99"
+        },
+        {
+          "testID": "price-inborn.work",
+          "text": "$69.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.work",
+          "text": "Unlock Work · $69.99",
+          "role": "button",
+          "label": "Unlock Work · $69.99",
+          "pressable": true
+        },
+        {
+          "testID": "restore",
+          "text": "Restore purchases",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "redeem-code",
+          "text": "Have a code?",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "compare-table",
+          "text": "What each tier includes Free Pro Work Unlimited private chat On-device privacy Offline use Files per chat 1 ∞ ∞ Text from scans and photos — Answers only from your documents — Custom personas 3 ∞ ∞ Photos per message 1 ∞ ∞ Memory across chats — Folders and full export — Larger, sharper models — Voice conversation and dictation — Detailed speed and token stats — Client vaults with passcodes — — Redaction before sending — — Excel and HTML import — — Per-vault audit log — — Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-head",
+          "text": "Free Pro Work"
+        },
+        {
+          "testID": "compare-chat",
+          "text": "Unlimited private chat"
+        },
+        {
+          "testID": "compare-chat-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy",
+          "text": "On-device privacy"
+        },
+        {
+          "testID": "compare-privacy-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline",
+          "text": "Offline use"
+        },
+        {
+          "testID": "compare-offline-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-files",
+          "text": "Files per chat 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-files-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-files-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-files-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-ocr",
+          "text": "Text from scans and photos —"
+        },
+        {
+          "testID": "compare-ocr-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-ocr-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-ocr-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict",
+          "text": "Answers only from your documents —"
+        },
+        {
+          "testID": "compare-strict-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-strict-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-personas",
+          "text": "Custom personas 3 ∞ ∞"
+        },
+        {
+          "testID": "compare-personas-free",
+          "text": "3",
+          "label": "3"
+        },
+        {
+          "testID": "compare-personas-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-personas-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos",
+          "text": "Photos per message 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-photos-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-photos-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-memory",
+          "text": "Memory across chats —"
+        },
+        {
+          "testID": "compare-memory-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-memory-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-memory-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders",
+          "text": "Folders and full export —"
+        },
+        {
+          "testID": "compare-folders-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-folders-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models",
+          "text": "Larger, sharper models —"
+        },
+        {
+          "testID": "compare-models-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-models-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice",
+          "text": "Voice conversation and dictation —"
+        },
+        {
+          "testID": "compare-voice-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-voice-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats",
+          "text": "Detailed speed and token stats —"
+        },
+        {
+          "testID": "compare-stats-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-stats-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-vaults",
+          "text": "Client vaults with passcodes — —"
+        },
+        {
+          "testID": "compare-vaults-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-redaction",
+          "text": "Redaction before sending — —"
+        },
+        {
+          "testID": "compare-redaction-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-office",
+          "text": "Excel and HTML import — —"
+        },
+        {
+          "testID": "compare-office-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-audit",
+          "text": "Per-vault audit log — —"
+        },
+        {
+          "testID": "compare-audit-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-signed",
+          "text": "Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-signed-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "free-second-photo"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "pending-image-1 gone"
+    },
+    {
+      "i": 16,
+      "op": "setTier",
+      "ok": true,
+      "ms": 188,
+      "detail": "pro"
+    },
+    {
+      "i": 17,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/chats"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1336,
+      "detail": "pending-image-0 appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 27,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1068,
+      "detail": "pending-image-1 appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 30,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "file: door.jpg"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 801,
+      "detail": "pending-image-2 appeared"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2232,
+      "detail": "D02-pro-three-photos"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 35,
+      "op": "setTier",
+      "ok": true,
+      "ms": 184,
+      "detail": "work"
+    },
+    {
+      "i": 36,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/paywall"
+    },
+    {
+      "i": 37,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "compare-table appeared"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2553,
+      "detail": "D03-paywall-work-top"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1",
+        "props": {
+          "accessibilityLabel": "1",
+          "disabled": false
+        }
+      },
+      "detail": "1"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "3",
+        "props": {
+          "accessibilityLabel": "3",
+          "disabled": false
+        }
+      },
+      "detail": "3"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1",
+        "props": {
+          "accessibilityLabel": "1",
+          "disabled": false
+        }
+      },
+      "detail": "1"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "∞",
+        "props": {
+          "accessibilityLabel": "Unlimited",
+          "disabled": false
+        }
+      },
+      "detail": "∞"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "—",
+        "props": {
+          "accessibilityLabel": "Not included",
+          "disabled": false
+        }
+      },
+      "detail": "—"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "accessibilityLabel": "Included",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 94,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 1,
+      "detail": "scrollTo compare-photos: not mounted"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 811,
+      "detail": "800 ms"
+    },
+    {
+      "i": 96,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1916,
+      "detail": "D04-compare-photos"
+    },
+    {
+      "i": 97,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 4,
+      "detail": "compare-vaults"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 99,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4131,
+      "detail": "D05-compare-work-rows"
+    },
+    {
+      "i": 100,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 4,
+      "detail": "compare-signed"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 102,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3182,
+      "detail": "D06-compare-bottom"
+    },
+    {
+      "i": 103,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 105,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 106,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 107,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 108,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 109,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 110,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 111,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 112,
+      "op": "sleep",
+      "ok": true,
+      "ms": 813,
+      "detail": "800 ms"
+    },
+    {
+      "i": 113,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach-templates ← onPress"
+    },
+    {
+      "i": 114,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 271,
+      "detail": "templates-sheet appeared"
+    },
+    {
+      "i": 115,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1212,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 116,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4449,
+      "detail": "D07-template-packs"
+    },
+    {
+      "i": 117,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "templates-sheet",
+          "text": "Templates Legal Lawyers, paralegals and in-house counsel Therapy Psychotherapists, counsellors and social workers Medical Physicians, nurses and allied health professionals Accounting Accountants, bookkeepers and tax advisers"
+        },
+        {
+          "testID": "templates-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "pack-legal",
+          "text": "Legal Lawyers, paralegals and in-house counsel",
+          "pressable": true
+        },
+        {
+          "testID": "pack-therapy",
+          "text": "Therapy Psychotherapists, counsellors and social workers",
+          "pressable": true
+        },
+        {
+          "testID": "pack-medical",
+          "text": "Medical Physicians, nurses and allied health professionals",
+          "pressable": true
+        },
+        {
+          "testID": "pack-accounting",
+          "text": "Accounting Accountants, bookkeepers and tax advisers",
+          "pressable": true
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "packs"
+    },
+    {
+      "i": 118,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "pack-legal ← onPress"
+    },
+    {
+      "i": 119,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "pack-declaration appeared"
+    },
+    {
+      "i": 120,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 121,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Inborn runs a language model on this device. Nothing you type or paste leaves it, and there is no account or server. The model can be wrong, can invent citations and can miss a controlling authority: every output is a draft for a lawyer to verify, not legal advice and not a substitute for research. Using this tool does not create a privilege or any protection beyond what your own conduct and this device's security provide; check your bar's rules on AI assistance and client confidentiality before relying on it. Client vaults, the audit log and signed exports document what happened on this device; they do not certify anything to a court. If you publish AI-generated text on a matter of public interest in the EU, you must disclose that it is AI-generated (EU AI Act, Art. 50(4)).",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Inborn runs a language model on this device. Nothing you type or paste leaves it, and there is no account or server. The model can be wrong, can invent citations and can miss a controlling authority: "
+    },
+    {
+      "i": 122,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "D08-pack-legal"
+    },
+    {
+      "i": 123,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "template-case-memo ← onPress"
+    },
+    {
+      "i": 124,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "slot-matter appeared"
+    },
+    {
+      "i": 125,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "slot-matter = 27 chars"
+    },
+    {
+      "i": 126,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "slot-jurisdiction = 17 chars"
+    },
+    {
+      "i": 127,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "slot-client_position = 8 chars"
+    },
+    {
+      "i": 128,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "slot-notes = 39 chars"
+    },
+    {
+      "i": 129,
+      "op": "sleep",
+      "ok": true,
+      "ms": 814,
+      "detail": "800 ms"
+    },
+    {
+      "i": 130,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3183,
+      "detail": "D09-template-filled"
+    },
+    {
+      "i": 131,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "template-insert ← onPress"
+    },
+    {
+      "i": 132,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 133,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "Draft an internal case memo from these notes. Structure it as Facts, Issues, Rules, Analysis, Conclusion. Do not invent authorities: where a rule needs a citation, write [citation needed] instead. Flag any assumption you had to make.\n\nMatter: Harlow v. Pemberton Freight\nJurisdiction: England and Wales\nClient position: claimant\n\nNotes:\nLate delivery of 40 pallets on 3 March.",
+          "placeholder": "Message…",
+          "editable": true,
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 134,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2555,
+      "detail": "D10-template-in-composer"
+    },
+    {
+      "i": 135,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/work/statement"
+    },
+    {
+      "i": 136,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "statement-body appeared"
+    },
+    {
+      "i": 137,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 138,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Inborn · Architecture statement Date: 2026-09-24 Application: Inborn 1.0.0 (build a75e02df0e2d) on ios Licence tier at print time: Pro for Work Prepared on the device that runs the software. No part of this document was fetched from a server. 1. What the software is Inborn is a chat assistant that runs a language model (INSTANT) entirely on this device. There is no user account, no server side, no analytics and no telemetry. Every conversation, document, note and setting is created, stored and processed locally. 2. Data flow • Input (typed text, dictation, photos, imported documents) is processed by the model on the device's CPU/GPU and never transmitted. • Release builds contact only the App Store (purchases, delivery of the built-in model) and, on request, the model host for downloads the user starts. • The app keeps an exit meter: bytes sent by the process since installation, shown on the Proof screen with the per-session network log. 3. Storage and encryption • Chats are stored in an SQLCipher database; its key lives in the iOS Keychain (this device only, not in backups). • Documents in the library are indexed on the device; the index lives in the same encrypted database. • Incognito chats are held in memory only and are discarded when closed. • Purchase entitlements are verified on the device against the store's signature and cached in a sealed file keyed from the same secret. 4. Access control • App lock: biometric or passcode, engaged on launch and after a configurable time in the background; optional emergency wipe after N failed attempts. • Client vaults: a folder can carry its own passcode (salted hash, never the code). Chats in a vault are hidden until the vault is opened, and the vault closes again whenever the app locks or after 30 minutes. • Vaults on this device at print time: • none 5. Records • Each vault keeps an append-only audit log (event, time, subject; never message content). Entries are hash-chained, so a removed or altered entry is detectable. • Signed export: a chat can be exported as JSON with a SHA-256 content hash and an Ed25519 signature from a key generated on this installation. The public key is included in the file and printed here: no signing key yet (created at the first signed export). 6. What this document does not claim This statement describes the software's architecture as built. It is not a certification of compliance with any law or standard (including health-privacy, legal-privilege or financial-records rules), not a security audit, and not a substitute for the professional's own duties over the device, its passcodes and its backups. Model output can be wrong and must be reviewed by a qualified person before use. Checking this independently: the network claims above can be verified from outside the app (the Android build declares no INTERNET permission; the iOS App Privacy Report and any firewall show the same). The application's own source code is now published at github.com/moshecohen90/inborn and you are welcome to read it, but this build is not reproducible from it, so a bundle-hash match is not offered as evidence here.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Inborn · Architecture statement Date: 2026-09-24 Application: Inborn 1.0.0 (build a75e02df0e2d) on ios Licence tier at print time: Pro for Work Prepared on the device that runs the software. No part o"
+    },
+    {
+      "i": 139,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3808,
+      "detail": "D11-statement"
+    },
+    {
+      "i": 140,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 153,
+      "detail": "/chats"
+    },
+    {
+      "i": 141,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "open-folders appeared"
+    },
+    {
+      "i": 142,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "open-folders ← onPress"
+    },
+    {
+      "i": 143,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "folder-sheet appeared"
+    },
+    {
+      "i": 144,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "folder-new ← onPress"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "folder-name appeared"
+    },
+    {
+      "i": 146,
+      "op": "type",
+      "ok": true,
+      "ms": 171,
+      "detail": "folder-name = 12 chars"
+    },
+    {
+      "i": 147,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "folder-save ← onPress"
+    },
+    {
+      "i": 148,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 149,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1597,
+      "detail": "D12-folder-created"
+    },
+    {
+      "i": 150,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1ba08367-c23c-4f62-bc5e-f5e30928c5ea",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1ba08367-c23c-4f62-bc5e-f5e30928c5ea",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1ba08367-c23c-4f62-bc5e-f5e30928c5ea",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1ba08367-c23c-4f62-bc5e-f5e30928c5ea",
+          "text": "Describe this photo in one sentence. 9:58 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c29a7556-314d-45ff-9ef0-9b38a8f1f2bd",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c29a7556-314d-45ff-9ef0-9b38a8f1f2bd",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c29a7556-314d-45ff-9ef0-9b38a8f1f2bd",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c29a7556-314d-45ff-9ef0-9b38a8f1f2bd",
+          "text": "Describe this photo in one sentence. 9:55 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-e7bcfa80-d898-4d1f-8f3e-9fc541f3cd42",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-e7bcfa80-d898-4d1f-8f3e-9fc541f3cd42",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-e7bcfa80-d898-4d1f-8f3e-9fc541f3cd42",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-e7bcfa80-d898-4d1f-8f3e-9fc541f3cd42",
+          "text": "Describe this photo in one sentence. 9:52 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-484d3878-0a0c-4027-9447-0367fd2f67ff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-484d3878-0a0c-4027-9447-0367fd2f67ff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-484d3878-0a0c-4027-9447-0367fd2f67ff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-484d3878-0a0c-4027-9447-0367fd2f67ff",
+          "text": "Describe this photo in one sentence. 9:50 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-55445739-1684-4c8e-aedf-588d90e0665d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-55445739-1684-4c8e-aedf-588d90e0665d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-55445739-1684-4c8e-aedf-588d90e0665d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-55445739-1684-4c8e-aedf-588d90e0665d",
+          "text": "What is in this photo? 9:48 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-personas",
+          "text": "Personas",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "Memory",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "Folders",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": "Folders Client Alpha Vault Rename Delete New folder"
+        },
+        {
+          "testID": "folder-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "vault-make-719033cd-015e-42cd-878d-eac80a8576f5",
+          "text": "Vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-rename-719033cd-015e-42cd-878d-eac80a8576f5",
+          "text": "Rename",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-delete-719033cd-015e-42cd-878d-eac80a8576f5",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-new",
+          "text": "New folder",
+          "pressable": true
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 228 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 228 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "folders"
+    }
+  ],
+  "errors": [
+    "step 94 (scrollTo): scrollTo compare-photos: not mounted"
+  ]
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, isRelevant, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, isRelevant, relevanceDoors, type DocumentRecord, type RetrievalHit } from "../src/rag";
 import measured from "./fixtures/rag/cjk-cosines.json";
 
 /**
@@ -18,6 +18,9 @@ interface Fixture {
   questions: Array<{ kind: "on" | "off"; q: string; cosine: number }>;
 }
 const FIXTURES = measured.docs as Fixture[];
+/* These cosines are nomic's, so they are judged by nomic's own doors. */
+const NOMIC = relevanceDoors("embed-nomic");
+const E5 = relevanceDoors("embed-e5");
 const byId = (id: string): Fixture => FIXTURES.find((d) => d.id === id)!;
 
 const record = (f: Fixture): DocumentRecord => ({ id: f.id, name: `${f.id}.txt`, kind: "txt", bytes: 200, pages: 1, addedAt: 0, status: "indexed", indexedPages: 1, chunkCount: 1, flaggedLines: 0, ocrPages: 0 });
@@ -37,14 +40,14 @@ function hitFor(f: Fixture, question: string, cosine: number): RetrievalHit {
 }
 
 const ask = (f: Fixture, question: string, cosine: number, strict: boolean) =>
-  buildRagPrompt({ question, hits: [hitFor(f, question, cosine)], docs: new Map([[f.id, record(f)]]), strict, nCtx: 4096, nonce: "n" });
+  buildRagPrompt({ question, hits: [hitFor(f, question, cosine)], docs: new Map([[f.id, record(f)]]), strict, nCtx: 4096, nonce: "n", embedderId: "embed-nomic" });
 
 describe("F327 · the embedding half cannot cite a passage on its own", () => {
   it("the 6T's own off-topic Japanese turn is no longer cited, in either mode", () => {
     const f = byId("ja-device");
     const off = f.questions.find((q) => q.kind === "off")!;
     /* The exact turn of F282: the cosine cleared the old floor and no term of the question is in the passage. */
-    expect(off.cosine).toBeGreaterThanOrEqual(DEFAULT_MIN_COSINE);
+    expect(off.cosine).toBeGreaterThanOrEqual(NOMIC.corroborate);
     expect(hitFor(f, off.q, off.cosine).bm25Terms).toBe(0);
     expect(ask(f, off.q, off.cosine, false).citations).toEqual([]);
     expect(ask(f, off.q, off.cosine, false).messages[1]?.content ?? "").not.toContain(f.text);
@@ -61,7 +64,7 @@ describe("F327 · the embedding half cannot cite a passage on its own", () => {
   });
 
   it("the old floor cited most of them, which is the bug", () => {
-    const wasCited = FIXTURES.flatMap((f) => f.questions.filter((q) => q.kind === "off").map((q) => hitFor(f, q.q, q.cosine))).filter((h) => h.cosine >= DEFAULT_MIN_COSINE || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && h.bm25 >= DEFAULT_MIN_BM25));
+    const wasCited = FIXTURES.flatMap((f) => f.questions.filter((q) => q.kind === "off").map((q) => hitFor(f, q.q, q.cosine))).filter((h) => h.cosine >= NOMIC.corroborate || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && h.bm25 >= NOMIC.minBm25));
     expect(wasCited.length).toBeGreaterThan(80);
   });
 
@@ -70,7 +73,7 @@ describe("F327 · the embedding half cannot cite a passage on its own", () => {
     for (const f of FIXTURES)
       for (const q of f.questions.filter((x) => x.kind === "on"))
         for (const strict of [false, true]) if (ask(f, q.q, q.cosine, strict).citations.length) kept.add(f.lang);
-    expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "pt", "zh"]);
+    expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "pt", "zh", "zh-Hant"]);
   });
 
   it("the device's own on-topic turns, the ones QA ran on hardware, still cite", () => {
@@ -95,12 +98,16 @@ describe("F327 · the embedding half cannot cite a passage on its own", () => {
 
   it("the cosine still corroborates a single shared word, and replaces it only above the cosine-alone door (F334)", () => {
     const h = (cosine: number, bm25: number, bm25Terms: number): RetrievalHit => ({ chunk: { id: "c", docId: "d", page: 1, ord: 0, text: "t", start: 0, end: 1, tokens: 1 }, score: 1, cosine, bm25, bm25Terms });
-    expect(isRelevant(h(DEFAULT_MIN_COSINE_ALONE, 0, 0))).toBe(false);
-    expect(isRelevant(h(DEFAULT_MIN_COSINE_ALONE + 0.001, 0, 0))).toBe(true);
-    expect(isRelevant(h(0.1, 0.9, 1))).toBe(false);
-    expect(isRelevant(h(0.6, 0.9, 1))).toBe(true);
-    expect(isRelevant(h(0.1, 3.2, 1))).toBe(true);
-    expect(isRelevant(h(0.1, 0.9, 2))).toBe(true);
+    expect(isRelevant(h(NOMIC.alone, 0, 0), NOMIC)).toBe(false);
+    expect(isRelevant(h(NOMIC.alone + 0.001, 0, 0), NOMIC)).toBe(true);
+    expect(isRelevant(h(0.1, 0.9, 1), NOMIC)).toBe(false);
+    expect(isRelevant(h(0.6, 0.9, 1), NOMIC)).toBe(true);
+    expect(isRelevant(h(0.1, 3.2, 1), NOMIC)).toBe(true);
+    expect(isRelevant(h(0.1, 0.9, 2), NOMIC)).toBe(true);
+    /* Under e5 every off-topic cosine is above nomic's 0.5, so one word needs e5's own corroboration door (F365). */
+    expect(isRelevant(h(0.6, 0.9, 1))).toBe(false);
+    expect(isRelevant(h(E5.corroborate - 0.001, 0.9, 1))).toBe(false);
+    expect(isRelevant(h(E5.corroborate, 0.9, 1))).toBe(true);
   });
 });
 
@@ -122,7 +129,7 @@ describe("F327 · why no cosine floor was chosen instead", () => {
     const off = band("off", CJK);
     expect(off.n).toBeGreaterThan(40);
     expect(off.min).toBeGreaterThan(0.39);
-    expect(off.max).toBeGreaterThan(DEFAULT_MIN_COSINE);
+    expect(off.max).toBeGreaterThan(NOMIC.corroborate);
     /* It overlaps the on-topic band, so raising the floor drops on-topic questions before it drops these. */
     expect(off.max).toBeGreaterThan(band("on", CJK).min);
   });

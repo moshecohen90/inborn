@@ -1,0 +1,20 @@
+19:06:43 free=665Gi
+19:06:43 export start
+19:07:39 export exit=0
+** EXPORT SUCCEEDED **
+717507280 bytes build/export/Inborn.ipa
+195c28def88fe761d34cb4d96301b4a4a5f5e7cdfea9eb5353bfa1cb61e2eba0  build/export/Inborn.ipa
+19:07:42 qa-bridge gate on the exported ipa
+OK: build/export/Inborn.ipa contains no QA bridge
+gate rc=0
+19:07:57 upload start
+19:10:05 upload exit=0
+
+2026-09-24 19:10:05.659  INFO: [ContentDelivery.Uploader.104672F70] 
+==========================================
+UPLOAD SUCCEEDED with no errors
+Delivery UUID: f8ee3f85-9590-441d-a30d-45dceb023b2d
+Transferred 717507280 bytes in 13.922 seconds (51.5MB/s, 412.287Mbps)
+==========================================
+No errors uploading archive at 'build/export/Inborn.ipa'.
+EXPORT-UPLOAD-DONE export=0 upload=0

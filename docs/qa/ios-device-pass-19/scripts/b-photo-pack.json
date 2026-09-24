@@ -1,0 +1,314 @@
+{
+"_": "(b) rounds 75/75b on the iPhone: a .qa build WITHOUT the bundled projector (a bundled pack cannot be removed, F342). Both doors hold the send; Download fetches the 205 MB pack from models.inbornapp.com on the phone and the held turn goes out by itself (F343).",
+"steps": [
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 120000
+},
+{
+"op": "waitFor",
+"text": "Loading",
+"gone": true,
+"timeoutMs": 120000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "deeplink",
+"url": "/vault"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "scrollTo",
+"testID": "model-card-vision-qwen35"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "B01-vault-no-photo-pack"
+},
+{
+"op": "value",
+"testID": "model-card-vision-qwen35"
+},
+{
+"op": "value",
+"testID": "install-vision-qwen35"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "devPrompt",
+"lines": [
+"image: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-images",
+"timeoutMs": 30000
+},
+{
+"op": "type",
+"testID": "composer-input",
+"text": "What is in this photo?"
+},
+{
+"op": "send"
+},
+{
+"op": "waitFor",
+"testID": "vision-hold",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1200
+},
+{
+"op": "screenshot",
+"name": "B02-photo-button-send-held"
+},
+{
+"op": "value",
+"testID": "vision-hold-body"
+},
+{
+"op": "value",
+"testID": "vision-hold-download"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 300
+},
+{
+"op": "send"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 300
+},
+{
+"op": "waitFor",
+"testID": "vision-hold",
+"timeoutMs": 1000
+},
+{
+"op": "screenshot",
+"name": "B03-send-again-still-held"
+},
+{
+"op": "dump",
+"name": "held-photo-button"
+},
+{
+"op": "deeplink",
+"url": "/chats"
+},
+{
+"op": "waitFor",
+"testID": "new-chat",
+"timeoutMs": 15000
+},
+{
+"op": "press",
+"testID": "new-chat"
+},
+{
+"op": "waitFor",
+"testID": "start-chat",
+"timeoutMs": 10000
+},
+{
+"op": "press",
+"testID": "start-chat"
+},
+{
+"op": "waitFor",
+"testID": "composer-input",
+"timeoutMs": 30000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "devPrompt",
+"lines": [
+"file: door.jpg"
+]
+},
+{
+"op": "waitFor",
+"testID": "pending-image-0",
+"timeoutMs": 30000
+},
+{
+"op": "type",
+"testID": "composer-input",
+"text": "What is in this photo?"
+},
+{
+"op": "send"
+},
+{
+"op": "waitFor",
+"testID": "vision-hold",
+"timeoutMs": 15000
+},
+{
+"op": "sleep",
+"ms": 1200
+},
+{
+"op": "screenshot",
+"name": "B04-file-door-send-held"
+},
+{
+"op": "value",
+"testID": "vision-hold-body"
+},
+{
+"op": "value",
+"testID": "vision-hold-download"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"gone": true,
+"timeoutMs": 300
+},
+{
+"op": "press",
+"testID": "vision-hold-download"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "screenshot",
+"name": "B05-download-pressed"
+},
+{
+"op": "dump",
+"name": "after-download-press"
+},
+{
+"op": "sleep",
+"ms": 20000
+},
+{
+"op": "screenshot",
+"name": "B06-downloading"
+},
+{
+"op": "value",
+"testID": "vision-hold"
+},
+{
+"op": "waitFor",
+"testID": "user-images",
+"timeoutMs": 900000
+},
+{
+"op": "sleep",
+"ms": 2000
+},
+{
+"op": "screenshot",
+"name": "B07-held-turn-released"
+},
+{
+"op": "waitFor",
+"testID": "assistant-text",
+"timeoutMs": 300000
+},
+{
+"op": "sleep",
+"ms": 45000
+},
+{
+"op": "screenshot",
+"name": "B08-answer"
+},
+{
+"op": "value",
+"testID": "assistant-text"
+},
+{
+"op": "dump",
+"name": "answered"
+},
+{
+"op": "deeplink",
+"url": "/vault"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "scrollTo",
+"testID": "model-card-vision-qwen35"
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "B09-vault-pack-downloaded"
+},
+{
+"op": "value",
+"testID": "model-card-vision-qwen35"
+}
+]
+}
