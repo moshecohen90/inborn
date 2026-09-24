@@ -5208,3 +5208,61 @@ Open, for whoever picks it up: put `Qwen3-Embedding-0.6B` into the catalog (the 
 already support a second embedding model) and measure it on these same fixtures, or expand the question into content
 words in the document's language before the lexical index sees it. The lexical half separated on-topic from off-topic perfectly
 across all 159 questions; it is the half worth extending.
+
+## Fixes round 74: the first photo on a fresh install is answered, not met with a download offer (branch `bundle-vision`) — 24.9.2026
+
+Instant can see, and it shipped inside the iOS app and as the Android fast-follow pack. Its projector `vision-qwen35`
+(205 MB) did not: on iOS it was an HTTPS download, on Android an on-demand pack. A new user's first photo therefore got
+*"I cannot look at pictures until the vision companion is in the vault"* instead of an answer. Decision (lead, 24.9):
+photos work on a fresh install without a download.
+
+- **iOS: the projector is in the IPA (F340).** `app.config.ts` `BUNDLED_IOS_MODELS` now lists `vision-qwen35` next to
+  `instant`, so `withBundledModel` puts it at `Inborn.app/vision-qwen35.gguf`. The catalog gives it a `bundled` delivery
+  (manifest re-signed). No vault code changed: `adoptBundled` already registers any `<id>.gguf` in the bundle as
+  `ready via bundled`. llama.rn loads it in place, 0 bytes go to Documents, and it is hashed once in the background.
+- **Android: a fast-follow pack (F341).** `inborn_model_vision` went from `on-demand` to `fast-follow`, in both
+  `ALL_PACKS` and the catalog. The boot scan's `requestKnownPacks` already asks Play for every fast-follow pack. It
+  stays a separate pack, not merged into `inborn_model`, so Remove still works per model. At 205 MB it is far under
+  the 1.5 GB pack cap.
+- **A gate for what a build ships (F341).** `scripts/check-shipping-bundles.mjs` used to check only for the QA bridge.
+  It now opens the iOS archive and every release AAB and fails unless each catalog `bundled` model, and each
+  fast-follow pack file, is present with the catalog's size and sha256. `--models <X.app|X.xcarchive|X.aab>` gates one
+  build. It runs inside `pnpm check:store`, so `pnpm test` runs it too, and the release checklist names it.
+- **Registration pinned by tests (F342).** `src/vault/bundledVision.test.ts` covers six cases: the projector is ready
+  on the first scan with its path inside the `.app` and nothing copied, the F294 cold-launch wait still holds, the hash
+  is recorded, a wrong hash is corrupt, Remove is refused, and without the file the state is `not-installed`.
+  `store.test.ts` checks that a fresh Android boot asks Play for exactly `instant` and `vision-qwen35`.
+  `test/bundleVision.test.ts` checks that the catalog and `app.config.ts` agree and watches the gate go red and green on
+  a fake archive and AAB.
+
+| size | bytes |
+|---|---|
+| projector `vision-qwen35.gguf` | 204,987,232 (205 MB) |
+| projector inside a zip (deflate) | 155,993,870 (156 MB) |
+| IPA, build 18 (Instant only) | 561,121,422 (561 MB) |
+| IPA with the projector (build 18 + deflated projector) | ≈717,115,000 (717 MB) |
+| models inside the app, installed | 737,504,352 (738 MB) |
+
+Apple's app size limit is 4 GB. Instant alone already put the IPA over the cellular auto-download threshold, so this
+adds no new prompt. The IPA figure is computed from build 18 plus the measured deflate: no store archive was made in
+this round.
+
+**Proof on an iPhone 17 Pro simulator (iOS 26.2).** Release build with the QA bridge. Fresh install, cold launch,
+onboarding, then a photo of a door as the first message, all driven by `docs/qa/bundle-vision/fresh-door.json`:
+33/33 steps.
+
+- The answer was *"This image shows a brown door with a rectangular frame and two panels on each side…"*
+  (`sim/04-door-answer.png`).
+- The vault reads *"VISION · Qwen3.5 mmproj · Included with the app"* with no Install row (`sim/05-vault.png`).
+- `vault.json` shows `vision-qwen35` `via: bundled`, verified 0.5 s after launch. The data container is 20 MB.
+- The gate passes on that `.app` (`gate-sim-app.txt`).
+- Complement: the same `.app` with the file removed, installed fresh, answered *"I cannot look at pictures until the
+  vision companion is in the vault…"* (`sim-red-no-projector/`), and the gate failed on it (`gate-red-no-projector.txt`).
+- The unit guards were watched red against origin/main's catalog (`red-before-fix.txt`, 3 failed).
+
+**Not done, and why.** No Android build ran: the brief allowed no phone, and the fast-follow path is the one
+android-vc21/vc22 already proved for Instant. What is new on Android is covered by the config, catalog, boot-scan and
+AAB-gate tests. One thing is left open: the projector card in *On this device* shows a *"Use this model"* button, which
+means nothing for a companion. It was not touched here.
+
+Spec §5.1, §5.4, §6.1, §6.2 and the §4.5 diagram were rewritten to match what ships.

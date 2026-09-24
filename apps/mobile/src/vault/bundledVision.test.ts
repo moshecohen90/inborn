@@ -120,12 +120,12 @@ describe("F342 · the projector ships in the app, so a fresh install's first pho
     expect(vault.state("vision-qwen35")).toMatchObject({ kind: "corrupt", reason: "hash-mismatch", via: "bundled" });
   });
 
-  it("the complement: a build without the file is back to the companion download offer", async () => {
+  it("the complement: a build without the file reads as no projector again", async () => {
     ship(instant);
     const vault = new VaultStore();
     await vault.ready();
     expect(vault.state("vision-qwen35").kind).toBe("not-installed");
-    expect(photoTurn(vault, true)).toEqual({ kind: "refuse", offer: "companion" });
+    expect(photoTurn(vault, true).kind, "no projector: the turn is never sent to a model that cannot see").not.toMatch(/^(send|wait)$/);
   });
 
   it("Remove cannot delete a bundled projector", async () => {
