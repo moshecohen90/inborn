@@ -1,0 +1,11 @@
+export function formatModelBytes(bytes: number): string {
+  if (bytes >= 1024 ** 3) return `${(bytes / 1024 ** 3).toFixed(bytes >= 10 * 1024 ** 3 ? 0 : 1)} GB`;
+  if (bytes >= 1024 ** 2) return `${Math.round(bytes / 1024 ** 2)} MB`;
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
+  it("formatModelBytes matches the cartridge copy", () => {
+    expect(formatModelBytes(532517120)).toBe("508 MB");
+    expect(formatModelBytes(1280835840)).toBe("1.2 GB");
+    expect(formatModelBytes(2740937888)).toBe("2.6 GB");
+    expect(formatModelBytes(12 * GB)).toBe("12 GB");
+  });

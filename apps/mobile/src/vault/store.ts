@@ -162,7 +162,7 @@ export class VaultStore {
         continue;
       }
       /* Play unbinds every on-demand pack from the app on a version update while the bytes stay on the phone;
-         forgetting the record here is what made the vault offer a fresh 1.2 GB download (purchases run §K). */
+         forgetting the record here is what made the vault offer a fresh 1.3 GB download (purchases run §K). */
       if (rec && !located && rec.via !== "play") delete this.record.installs[model.id];
       this.states.set(model.id, NOT_INSTALLED);
     }

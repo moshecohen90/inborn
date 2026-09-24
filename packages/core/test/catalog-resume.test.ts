@@ -49,11 +49,11 @@ describe("space, network and backoff (spec §10.1 #4/#5/#6)", () => {
   it("backoff doubles from 2 s and caps at 60 s", () => {
     expect([0, 1, 2, 3, 10].map(backoffMs)).toEqual([2000, 4000, 8000, 16000, 60000]);
   });
-  it("formatModelBytes matches the cartridge copy", () => {
-    expect(formatModelBytes(532517120)).toBe("508 MB");
-    expect(formatModelBytes(1280835840)).toBe("1.2 GB");
-    expect(formatModelBytes(2740937888)).toBe("2.6 GB");
-    expect(formatModelBytes(12 * GB)).toBe("12 GB");
+  it("formatModelBytes is decimal, matching the catalog and the site copy (F281: was binary, so the download door and the model card printed two different sizes for one file)", () => {
+    expect(formatModelBytes(532_517_120)).toBe("533 MB");
+    expect(formatModelBytes(1_280_835_840)).toBe("1.3 GB");
+    expect(formatModelBytes(2_740_938_080)).toBe("2.7 GB");
+    expect(formatModelBytes(12_000_000_000)).toBe("12 GB");
   });
 });
 
@@ -61,6 +61,6 @@ describe("the onboarding offer's size (QA F24)", () => {
   it("comes from the catalog and agrees with the vault card", () => {
     const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast")!;
     expect(fast.bytes).toBe(1_280_835_840);
-    expect(formatModelBytes(fast.bytes)).toBe("1.2 GB");
+    expect(formatModelBytes(fast.bytes)).toBe("1.3 GB");
   });
 });

@@ -134,7 +134,7 @@ describe("Wi-Fi-only downloads (spec §10.1 #4, F60)", () => {
     expect(gets).toHaveLength(1);
   });
 
-  it("parks a 1.2 GB model on cellular, says so once, and fetches nothing until Wi-Fi arrives", async () => {
+  it("parks a 1.3 GB model on cellular, says so once, and fetches nothing until Wi-Fi arrives", async () => {
     expect(model.bytes).toBeGreaterThan(WIFI_ONLY_ABOVE_BYTES);
     const { d, net } = delivery({ wifiOnly: true, network: "cellular" });
     const events: string[] = [];

@@ -4756,3 +4756,51 @@ thing between a QA run and his install.
   asks which to open. That is the trade round 55 already accepted on iOS.
 - The release checklist, the 6T work-tier README and the a11y-drive README now say which id a QA run targets, so the
   next Android stream does not have to rediscover it.
+
+## Fixes round 59: the site and the app quoted different model sizes (branch `fix-site-sizes`) — 24.9.2026
+
+MosheAI's re-check found the site telling every visitor one wrong number, and a second, unrelated bug hiding
+behind it once the first was traced to its source.
+
+- **The site's browser sentences claimed a size that was only ever true for a phone** (F280). Four places said
+  "your browser downloads the model once, 533 MB" — `apps/site/src/pages/index.html` (hero composer note and
+  the "how it works" step), `apps/site/src/pages/download.html` (both the app row and the browser row) and
+  `apps/site/src/posts/why-on-device.html`. 533 MB is Instant's real size, but the browser tier's own recommender
+  (`packages/core/src/catalog/pick.ts` `defaultTier`/`maxTier`) offers **Fast** (1,280,835,840 B, "1.3 GB") on a
+  capable desktop, so a desktop reader was quoted less than half the actual download. The FAQ's "How big is the
+  download?" repeated the same claim in both the visible list and the `FAQPage` JSON-LD an answer engine reads.
+- **Rewritten to be true for every visitor, not just widened with a caveat.** The app sentences (Instant ships
+  inside the app/store download, always 533 MB) were already correct and stay. The browser sentences and the FAQ
+  answer now say the browser downloads *one model once, chosen by your device, from 533 MB (Instant) to 1.3 GB
+  (Fast, offered on capable desktops)*.
+- **Every one of the five sentences reads its number from the catalog, not from a hand-typed literal.**
+  `apps/site/build.mjs` computes `SIZE_INSTANT`/`SIZE_FAST` from `packages/core/src/catalog/manifest.json` with
+  the same decimal formula the app uses, exposes them as build-time tokens `{{SIZE_INSTANT}}`/`{{SIZE_FAST}}`
+  (added to `TOKENS`, filled like every other token), and a new guard in `apps/site/check.mjs` pins both sizes to
+  today's catalog and asserts each sentence appears verbatim in the built pages. Watched red by hardcoding "508 MB"
+  back into `index.html` instead of the token (`docs/qa/fix-site-sizes/guard-red-hardcoded-size.txt`), then
+  reverted and green.
+- **The bug traced back to two formatters that disagreed** (F281). `packages/core/src/catalog/resume.ts`'s
+  `formatModelBytes` — used by `ModelCard`, `VaultScreen`, `ModelSheet`, `ChatModelSheet`, `ModelChoice` and
+  `HfSearch` — divided by 1024-based units and printed "1.2 GB"/"508 MB" for Fast/Instant's real bytes;
+  `apps/mobile/src/web/format.ts`'s own `formatBytes`, used only by the browser download door (`WebShell.tsx`,
+  `VaultEntry.web.tsx`), divided by decimal units and printed "1.3 GB"/"533 MB" for the identical bytes — the
+  download door and the model card printed two different sizes for one file. The existing unit test even asserted
+  the wrong numbers as correct ("formatModelBytes matches the cartridge copy").
+- **Fixed by deleting the duplicate, not by picking a winner arbitrarily.** `formatModelBytes` now uses decimal
+  math — the formula the (correct) web formatter already used and the one the catalog itself is quoted in
+  (spec §6.1) — so it agrees with the site. `apps/mobile/src/web/format.ts` and its test are gone; `WebShell.tsx`
+  and `VaultEntry.web.tsx` now import `formatModelBytes` from `@inborn/core` like every other screen, so there is
+  exactly one function anywhere a model size is shown. `spaceCheck`'s tests, the only other thing the deleted file
+  covered, moved to a new `apps/mobile/src/web/opfs.test.ts`.
+- **Watched red two ways.** The unit test now asserts the two numbers from the live report directly
+  (`formatModelBytes(532_517_120) === "533 MB"`, `formatModelBytes(1_280_835_840) === "1.3 GB"`) plus Sharp's
+  2.7 GB, and fails if the old binary formula is put back
+  (`docs/qa/fix-site-sizes/guard-red-binary-formula.txt`: `expected '1.2 GB' to be '1.3 GB'`). The spec's own S30b
+  wireframe (`docs/spec-src/08-screens.html`) carried the identical slip — "508 MB" for Instant, "2.6 GB" for
+  Sharp, disagreeing with its own S30 wireframe a few lines above — corrected and `docs/inborn-spec.html` rebuilt.
+  A stale comment in `vault/store.ts` and two test descriptions naming the old wrong figures were updated to match.
+
+Gates: `pnpm typecheck` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 13, `check:store` PASS), `pnpm lint`
+0, `node apps/site/build.mjs && node apps/site/check.mjs` green, `pnpm web:build` and `pnpm web:smoke` green.
+Evidence in `docs/qa/fix-site-sizes/`.

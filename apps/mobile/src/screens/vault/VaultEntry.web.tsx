@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Linking, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { formatModelBytes } from "@inborn/core";
 import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
@@ -8,7 +9,6 @@ import { useTheme } from "../../services/theme";
 import { useType } from "../../services/type";
 import { webBoot } from "../../web/boot";
 import { GET_APP_URL } from "../../web/WebShell";
-import { formatBytes } from "../../web/format";
 import { storageEstimate, type StorageEstimate } from "../../web/opfs";
 
 import type { VaultEntryProps } from "./VaultEntry";
@@ -46,8 +46,8 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
         <Text testID="vault-web-status" style={[type.bodySmall, { color: theme.text2 }]}>
           {status}
         </Text>
-        {boot.source && !chrome ? <Mono color={theme.text3}>{t("vault.web.size", { size: formatBytes(boot.source.bytes), file: boot.source.file })}</Mono> : null}
-        {estimate && estimate.quota != null ? <Mono color={theme.text3}>{t("vault.web.storage", { used: formatBytes(estimate.usage ?? 0), free: formatBytes(Math.max(0, estimate.quota - (estimate.usage ?? 0))) })}</Mono> : null}
+        {boot.source && !chrome ? <Mono color={theme.text3}>{t("vault.web.size", { size: formatModelBytes(boot.source.bytes), file: boot.source.file })}</Mono> : null}
+        {estimate && estimate.quota != null ? <Mono color={theme.text3}>{t("vault.web.storage", { used: formatModelBytes(estimate.usage ?? 0), free: formatModelBytes(Math.max(0, estimate.quota - (estimate.usage ?? 0))) })}</Mono> : null}
       </View>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.explain")}</Text>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.fullVault")}</Text>
