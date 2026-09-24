@@ -41,3 +41,41 @@ export function planVisionTurn(i: VisionTurnInput): VisionTurn {
   if (!i.onLastUserMessage) return { kind: "drop" };
   return { kind: "refuse", offer: !i.modelSees && i.otherModelSees ? "switch" : "companion" };
 }
+
+/** What pressing Send does with photos in the composer (QA F343): go out, or stay in the composer behind the block card. */
+export type PhotoSend = { kind: "send" } | { kind: "hold"; offer: "switch" | "companion" };
+
+/**
+ * A photo nothing on this device can look at is held before it becomes a message: a line saying so after the turn
+ * was dismissed on the iPhone, the next turn dropped the picture, and the model answered that it got no image.
+ */
+export function planPhotoSend(i: Omit<VisionTurnInput, "projectorAttached" | "onLastUserMessage" | "vaultScanned">): PhotoSend {
+  const verdict = planVisionTurn({ ...i, vaultScanned: true, projectorAttached: false, onLastUserMessage: true });
+  return verdict.kind === "refuse" ? { kind: "hold", offer: verdict.offer } : { kind: "send" };
+}
+
+export interface PhotoGateDeps {
+  hasImages: boolean;
+  /** Resolves once the vault has read the disk, so a missing pack is an answer and not a cold-launch race (F294). */
+  scanned: () => Promise<void>;
+  verdict: () => PhotoSend;
+  hold: (offer: "switch" | "companion") => void;
+  send: () => Promise<void>;
+}
+
+/** Send, or hold the message and its photos in the composer; nothing is stored and nothing reaches the model while held. */
+export async function gatePhotoSend(d: PhotoGateDeps): Promise<"sent" | "held"> {
+  if (d.hasImages) {
+    await d.scanned();
+    const v = d.verdict();
+    if (v.kind === "hold") {
+      d.hold(v.offer);
+      return "held";
+    }
+  }
+  await d.send();
+  return "sent";
+}
+
+/** The held turn goes out on its own the moment the pack becomes ready, from the chat's button or from the vault. */
+export const releasesHeldTurn = (held: boolean, before: string | undefined, now: string): boolean => held && before !== "ready" && now === "ready";

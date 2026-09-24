@@ -19,6 +19,7 @@ const read = (rel: string) => readFileSync(join(__dirname, rel), "utf8");
 const sheet = read("ModelSheet.tsx");
 const container = read("ChatModelSheet.tsx");
 const chat = read("../../screens/Chat.tsx");
+const browser = read("browserModels.web.ts");
 
 describe("the Model sheet's recommendation line", () => {
   it("names the use and the language when the chat has one", () => {
@@ -74,7 +75,8 @@ describe("the sheet's sections follow modelChoices", () => {
   it("offers Use on an installed row, a download on an available one, and no action on an unavailable one", () => {
     expect(sheet).toContain("model-sheet-use-");
     expect(sheet).toContain("model-sheet-download-");
-    expect(sheet).toMatch(/dim \|\| \(managed && !choice\.current\) \? null :/);
+    expect(sheet).toMatch(/\) : dim \? null : onChoose && !choice\.current \? \(/);
+    expect(sheet).toContain("const dim = !!choice.blocked || (managed && !choice.current && !onChoose);");
   });
   it("names the size and the host before a byte moves, and keeps the Wi-Fi-only switch on that confirmation (§5.1)", () => {
     expect(sheet).toContain("vault.confirm.https");
@@ -111,12 +113,41 @@ describe("the weak-language notice names the model that does better (F151)", () 
   it("the notice carries a switch or a download, not just a verdict", () => {
     expect(chat).toContain("chat.modelWeakBetter");
     expect(chat).toContain('testID="model-weak-action"');
-    expect(chat).toMatch(/languageUpgrade\.better\.reason\.installed \? onSwitchModel\?\.\(languageUpgrade\.better\.model\.id\) : setModelSheetOpen\(true\)/);
+    expect(chat).toMatch(/languageUpgrade\.better\.reason\.installed \? \(browserPick \? browserPick\.choose\(languageUpgrade\.better\.model\.id\) : onSwitchModel\?\.\(languageUpgrade\.better\.model\.id\)\) : setModelSheetOpen\(true\)/);
   });
   it("it comes from betterForLanguage, not from a second opinion of its own", () => {
     expect(chat).toContain("betterForLanguage({");
   });
   it("it stands down when the advice card is already making the same point", () => {
     expect(chat).toContain("!adviceShown?.language");
+  });
+});
+
+describe("the browser's sheet reads the door's list (F345)", () => {
+  it("on the browser tier the sheet's choices come from WebBoot.choices through webSheetChoices, not from the vault", () => {
+    expect(container).toContain("browserModels(use, languageCode, currentId)");
+    expect(container).toContain("const choices = browser?.choices ?? vaultChoices;");
+    expect(browser).toContain("const input = { choices: boot.choices, gate: boot.gate, use, languageCode, currentId };");
+    expect(browser).toContain("choices: webSheetChoices(input)");
+  });
+  it("a model the door offers is chosen here the way the vault chooses it: remembered, then the door delivers it", () => {
+    expect(browser).toContain("chooseWebModel(id)");
+    expect(browser).toContain('location.assign("/")');
+    expect(sheet).toContain("model-sheet-choose-");
+  });
+  it("'In the app' heads only the models the browser is never offered", () => {
+    expect(sheet).toContain('managed && !onChoose ? t("modelSheet.inTheApp")');
+    expect(sheet).toContain('testID="model-sheet-in-the-app"');
+  });
+});
+
+describe("the browser chat's language notices name what the sheet names (F346)", () => {
+  it("the weak-language notice offers the model this browser runs better, from betterForLanguage over the door's list", () => {
+    expect(chat).toContain('if (Platform.OS === "web") return browserPick?.upgrade ?? null;');
+    expect(browser).toContain("upgrade: webLanguageUpgrade(input)");
+  });
+  it("'nothing here is good at it' is said only when the sheet's own pick is weak, and names that pick as closest", () => {
+    expect(chat).toContain("(!browserPick || browserPick.choices.recommendedWeak) ? modelShortfall(");
+    expect(chat).toContain("model: chipLabel(t, browserPick?.choices.recommended?.model.id ?? model.id)");
   });
 });

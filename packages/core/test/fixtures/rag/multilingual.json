@@ -1,0 +1,3062 @@
+{
+ "results": [
+  {
+   "variant": "nomic-v1.5",
+   "family": "nomic-embed-text-v1.5",
+   "arch": "nomic-bert",
+   "params": "137M",
+   "license": "Apache-2.0",
+   "source": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+   "bytes": 274290560,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 3.63,
+   "answerFirst": 3,
+   "answerFirstByLang": {
+    "ja": [
+     1,
+     3
+    ],
+    "zh": [
+     0,
+     3
+    ],
+    "ko": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     0,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.764,
+    "on": 29,
+    "off": 0,
+    "margin": 0
+   },
+   "joint": {
+    "T": 0.7645,
+    "on": 29,
+    "off": 0,
+    "margin": 0
+   },
+   "multiDoor": {
+    "on": 4,
+    "right": 3,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     8,
+     14
+    ],
+    "zh": [
+     7,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.7645,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.7745,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.7845,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.7945,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.8145,
+     "on": 29,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 29,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "e5-small",
+   "family": "multilingual-e5-small",
+   "arch": "bert",
+   "params": "118M",
+   "license": "MIT",
+   "source": "keisuke-miyako/multilingual-e5-small-gguf-f16/multilingual-e5-small-F16.gguf",
+   "bytes": 241873728,
+   "dim": 384,
+   "pooling": "mean",
+   "msPerText": 4.11,
+   "answerFirst": 0,
+   "answerFirstByLang": {
+    "ja": [
+     0,
+     3
+    ],
+    "zh": [
+     0,
+     3
+    ],
+    "ko": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "en": [
+     0,
+     3
+    ],
+    "he": [
+     0,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.9491,
+    "on": 30,
+    "off": 0,
+    "margin": 0.0024
+   },
+   "joint": {
+    "T": 0.9491,
+    "on": 30,
+    "off": 0,
+    "margin": 0.0024
+   },
+   "multiDoor": {
+    "on": 5,
+    "right": 4,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     8,
+     14
+    ],
+    "zh": [
+     7,
+     10
+    ],
+    "ko": [
+     4,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.9491,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.9591,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.9691,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.9791,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.9991,
+     "on": 29,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 56,
+    "off": 100,
+    "multiOn": 21,
+    "multiRight": 21,
+    "multiWrongOnly": 0,
+    "multiOff": 42
+   }
+  },
+  {
+   "variant": "pmini",
+   "family": "paraphrase-multilingual-MiniLM-L12-v2",
+   "arch": "bert",
+   "params": "118M",
+   "license": "Apache-2.0",
+   "source": "mykor/paraphrase-multilingual-MiniLM-L12-v2.gguf/paraphrase-multilingual-MiniLM-L12-118M-v2-F16.gguf",
+   "bytes": 242358176,
+   "dim": 384,
+   "pooling": "mean",
+   "msPerText": 5.58,
+   "answerFirst": 12,
+   "answerFirstByLang": {
+    "ja": [
+     1,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     2,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 19,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.3955,
+    "on": 36,
+    "off": 0,
+    "margin": 0.0072
+   },
+   "joint": {
+    "T": 0.3955,
+    "on": 36,
+    "off": 0,
+    "margin": 0.0072
+   },
+   "multiDoor": {
+    "on": 9,
+    "right": 7,
+    "wrongOnly": 2,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     12,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     3,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     0,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.3955,
+     "on": 36,
+     "off": 0
+    },
+    {
+     "T": 0.4055,
+     "on": 33,
+     "off": 0
+    },
+    {
+     "T": 0.4155,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.4255,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.4455,
+     "on": 30,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 19,
+    "off": 0,
+    "multiOn": 2,
+    "multiRight": 2,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "e5-base",
+   "family": "multilingual-e5-base",
+   "arch": "bert",
+   "params": "278M",
+   "license": "MIT",
+   "source": "yixuan-chia/multilingual-e5-base-gguf/multilingual-e5-base-F16.gguf",
+   "bytes": 562766336,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 7.12,
+   "answerFirst": 15,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     2,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.8206,
+    "on": 36,
+    "off": 0,
+    "margin": 0.006
+   },
+   "joint": {
+    "T": 0.8206,
+    "on": 36,
+    "off": 0,
+    "margin": 0.006
+   },
+   "multiDoor": {
+    "on": 8,
+    "right": 7,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     10,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     4,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.8206,
+     "on": 36,
+     "off": 0
+    },
+    {
+     "T": 0.8306,
+     "on": 34,
+     "off": 0
+    },
+    {
+     "T": 0.8406,
+     "on": 33,
+     "off": 0
+    },
+    {
+     "T": 0.8506,
+     "on": 32,
+     "off": 0
+    },
+    {
+     "T": 0.8706,
+     "on": 31,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 36,
+    "off": 1,
+    "multiOn": 8,
+    "multiRight": 7,
+    "multiWrongOnly": 1,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "nomic-v2-moe",
+   "family": "nomic-embed-text-v2-moe",
+   "arch": "nomic-bert-moe",
+   "params": "475M (305M active)",
+   "license": "Apache-2.0",
+   "source": "nomic-ai/nomic-embed-text-v2-moe-GGUF/nomic-embed-text-v2-moe.Q8_0.gguf",
+   "bytes": 512225120,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 7.28,
+   "answerFirst": 17,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 17,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.2826,
+    "on": 47,
+    "off": 0,
+    "margin": 0.0033
+   },
+   "joint": {
+    "T": 0.2826,
+    "on": 47,
+    "off": 0,
+    "margin": 0.0033
+   },
+   "multiDoor": {
+    "on": 14,
+    "right": 14,
+    "wrongOnly": 0,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     13,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     6,
+     6
+    ],
+    "en": [
+     6,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     1,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.2826,
+     "on": 47,
+     "off": 0
+    },
+    {
+     "T": 0.2926,
+     "on": 44,
+     "off": 0
+    },
+    {
+     "T": 0.3026,
+     "on": 43,
+     "off": 0
+    },
+    {
+     "T": 0.3126,
+     "on": 42,
+     "off": 0
+    },
+    {
+     "T": 0.3326,
+     "on": 38,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 17,
+    "off": 0,
+    "multiOn": 1,
+    "multiRight": 1,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "nomic-v2-moe-q4",
+   "family": "nomic-embed-text-v2-moe",
+   "arch": "nomic-bert-moe",
+   "params": "475M (305M active)",
+   "license": "Apache-2.0",
+   "source": "nomic-ai/nomic-embed-text-v2-moe-GGUF/nomic-embed-text-v2-moe.Q4_K_M.gguf",
+   "bytes": 344120288,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 7.24,
+   "answerFirst": 18,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 17,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.2853,
+    "on": 45,
+    "off": 0,
+    "margin": 0.0118
+   },
+   "joint": {
+    "T": 0.2853,
+    "on": 45,
+    "off": 0,
+    "margin": 0.0118
+   },
+   "multiDoor": {
+    "on": 15,
+    "right": 14,
+    "wrongOnly": 1,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     13,
+     14
+    ],
+    "zh": [
+     9,
+     10
+    ],
+    "ko": [
+     6,
+     6
+    ],
+    "en": [
+     6,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     1,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.2853,
+     "on": 45,
+     "off": 0
+    },
+    {
+     "T": 0.2953,
+     "on": 45,
+     "off": 0
+    },
+    {
+     "T": 0.3053,
+     "on": 44,
+     "off": 0
+    },
+    {
+     "T": 0.3153,
+     "on": 42,
+     "off": 0
+    },
+    {
+     "T": 0.3353,
+     "on": 39,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 17,
+    "off": 0,
+    "multiOn": 1,
+    "multiRight": 1,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "qwen3-emb+last",
+   "family": "Qwen3-Embedding-0.6B",
+   "arch": "qwen3",
+   "params": "596M",
+   "license": "Apache-2.0",
+   "source": "Qwen/Qwen3-Embedding-0.6B-GGUF/Qwen3-Embedding-0.6B-Q8_0.gguf",
+   "bytes": 639150592,
+   "dim": 1024,
+   "pooling": "last",
+   "msPerText": 11.27,
+   "answerFirst": 17,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     1,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 21,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.4076,
+    "on": 46,
+    "off": 0,
+    "margin": 0.0111
+   },
+   "joint": {
+    "T": 0.4077,
+    "on": 46,
+    "off": 0,
+    "margin": 0.011
+   },
+   "multiDoor": {
+    "on": 14,
+    "right": 12,
+    "wrongOnly": 2,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     11,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     4,
+     6
+    ],
+    "en": [
+     9,
+     10
+    ],
+    "he": [
+     4,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.4077,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.4177,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.4277,
+     "on": 45,
+     "off": 0
+    },
+    {
+     "T": 0.4377,
+     "on": 42,
+     "off": 0
+    },
+    {
+     "T": 0.4577,
+     "on": 37,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 21,
+    "off": 0,
+    "multiOn": 2,
+    "multiRight": 2,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "qwen3-emb+mean",
+   "family": "Qwen3-Embedding-0.6B",
+   "arch": "qwen3",
+   "params": "596M",
+   "license": "Apache-2.0",
+   "source": "Qwen/Qwen3-Embedding-0.6B-GGUF/Qwen3-Embedding-0.6B-Q8_0.gguf",
+   "bytes": 639150592,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 10.13,
+   "answerFirst": 15,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     0,
+     3
+    ],
+    "he": [
+     0,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.6654,
+    "on": 30,
+    "off": 0,
+    "margin": 0.035
+   },
+   "joint": {
+    "T": 0.6753,
+    "on": 30,
+    "off": 0,
+    "margin": 0.0251
+   },
+   "multiDoor": {
+    "on": 4,
+    "right": 3,
+    "wrongOnly": 1,
+    "off": 2
+   },
+   "onByLang": {
+    "ja": [
+     9,
+     14
+    ],
+    "zh": [
+     7,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.6753,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.6853,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.6953,
+     "on": 30,
+     "off": 0
+    },
+    {
+     "T": 0.7053,
+     "on": 29,
+     "off": 0
+    },
+    {
+     "T": 0.7253,
+     "on": 29,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 29,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 2
+   }
+  },
+  {
+   "variant": "bge-m3+cls",
+   "family": "bge-m3",
+   "arch": "bert",
+   "params": "568M",
+   "license": "MIT",
+   "source": "gpustack/bge-m3-GGUF/bge-m3-Q8_0.gguf",
+   "bytes": 634553760,
+   "dim": 1024,
+   "pooling": "cls",
+   "msPerText": 8.95,
+   "answerFirst": 7,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     1,
+     3
+    ],
+    "ko": [
+     0,
+     3
+    ],
+    "de": [
+     1,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     1,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 24,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.4009,
+    "on": 51,
+    "off": 0,
+    "margin": 0.0169
+   },
+   "joint": {
+    "T": 0.4119,
+    "on": 51,
+    "off": 0,
+    "margin": 0.0059
+   },
+   "multiDoor": {
+    "on": 17,
+    "right": 14,
+    "wrongOnly": 3,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     13,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     5,
+     6
+    ],
+    "en": [
+     9,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.4119,
+     "on": 51,
+     "off": 0
+    },
+    {
+     "T": 0.4219,
+     "on": 50,
+     "off": 0
+    },
+    {
+     "T": 0.4319,
+     "on": 50,
+     "off": 0
+    },
+    {
+     "T": 0.4419,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.4619,
+     "on": 44,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 24,
+    "off": 0,
+    "multiOn": 2,
+    "multiRight": 2,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "bge-m3+mean",
+   "family": "bge-m3",
+   "arch": "bert",
+   "params": "568M",
+   "license": "MIT",
+   "source": "gpustack/bge-m3-GGUF/bge-m3-Q8_0.gguf",
+   "bytes": 634553760,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 8.22,
+   "answerFirst": 15,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     1,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.6623,
+    "on": 55,
+    "off": 0,
+    "margin": 0.0141
+   },
+   "joint": {
+    "T": 0.6788,
+    "on": 54,
+    "off": 0,
+    "margin": 0.0061
+   },
+   "multiDoor": {
+    "on": 20,
+    "right": 19,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     14,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     5,
+     6
+    ],
+    "en": [
+     10,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.6788,
+     "on": 54,
+     "off": 0
+    },
+    {
+     "T": 0.6888,
+     "on": 51,
+     "off": 0
+    },
+    {
+     "T": 0.6988,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.7088,
+     "on": 48,
+     "off": 0
+    },
+    {
+     "T": 0.7288,
+     "on": 44,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 30,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "bge-m3-q4",
+   "family": "bge-m3",
+   "arch": "bert",
+   "params": "568M",
+   "license": "MIT",
+   "source": "gpustack/bge-m3-GGUF/bge-m3-Q4_K_M.gguf",
+   "bytes": 437778496,
+   "dim": 1024,
+   "pooling": "cls",
+   "msPerText": 9.36,
+   "answerFirst": 6,
+   "answerFirstByLang": {
+    "ja": [
+     1,
+     3
+    ],
+    "zh": [
+     1,
+     3
+    ],
+    "ko": [
+     0,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "en": [
+     1,
+     3
+    ],
+    "he": [
+     1,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 25,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.4136,
+    "on": 53,
+    "off": 0,
+    "margin": 0.0032
+   },
+   "joint": {
+    "T": 0.4357,
+    "on": 49,
+    "off": 0,
+    "margin": 0.0072
+   },
+   "multiDoor": {
+    "on": 16,
+    "right": 12,
+    "wrongOnly": 4,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     12,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     5,
+     6
+    ],
+    "en": [
+     8,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.4357,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.4457,
+     "on": 48,
+     "off": 0
+    },
+    {
+     "T": 0.4557,
+     "on": 48,
+     "off": 0
+    },
+    {
+     "T": 0.4657,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.4857,
+     "on": 43,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 25,
+    "off": 0,
+    "multiOn": 2,
+    "multiRight": 2,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "granite-278m+cls",
+   "family": "granite-embedding-278m-multilingual",
+   "arch": "bert",
+   "params": "278M",
+   "license": "Apache-2.0",
+   "source": "bartowski/granite-embedding-278m-multilingual-GGUF/granite-embedding-278m-multilingual-f16.gguf",
+   "bytes": 562765664,
+   "dim": 768,
+   "pooling": "cls",
+   "msPerText": 20.43,
+   "answerFirst": 18,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.7494,
+    "on": 35,
+    "off": 0,
+    "margin": 0.0021
+   },
+   "joint": {
+    "T": 0.7495,
+    "on": 35,
+    "off": 0,
+    "margin": 0.002
+   },
+   "multiDoor": {
+    "on": 5,
+    "right": 4,
+    "wrongOnly": 1,
+    "off": 2
+   },
+   "onByLang": {
+    "ja": [
+     11,
+     14
+    ],
+    "zh": [
+     9,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.7495,
+     "on": 35,
+     "off": 0
+    },
+    {
+     "T": 0.7595,
+     "on": 34,
+     "off": 0
+    },
+    {
+     "T": 0.7695,
+     "on": 32,
+     "off": 0
+    },
+    {
+     "T": 0.7795,
+     "on": 31,
+     "off": 0
+    },
+    {
+     "T": 0.7995,
+     "on": 30,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 30,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 2
+   }
+  },
+  {
+   "variant": "granite-278m+mean",
+   "family": "granite-embedding-278m-multilingual",
+   "arch": "bert",
+   "params": "278M",
+   "license": "Apache-2.0",
+   "source": "bartowski/granite-embedding-278m-multilingual-GGUF/granite-embedding-278m-multilingual-f16.gguf",
+   "bytes": 562765664,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 15.88,
+   "answerFirst": 17,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     2,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.7345,
+    "on": 33,
+    "off": 0,
+    "margin": 0.0066
+   },
+   "joint": {
+    "T": 0.7345,
+    "on": 33,
+    "off": 0,
+    "margin": 0.0066
+   },
+   "multiDoor": {
+    "on": 4,
+    "right": 3,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     11,
+     14
+    ],
+    "zh": [
+     8,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.7345,
+     "on": 33,
+     "off": 0
+    },
+    {
+     "T": 0.7445,
+     "on": 31,
+     "off": 0
+    },
+    {
+     "T": 0.7545,
+     "on": 31,
+     "off": 0
+    },
+    {
+     "T": 0.7645,
+     "on": 31,
+     "off": 0
+    },
+    {
+     "T": 0.7845,
+     "on": 30,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 29,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "granite-278m-q8",
+   "family": "granite-embedding-278m-multilingual",
+   "arch": "bert",
+   "params": "278M",
+   "license": "Apache-2.0",
+   "source": "bartowski/granite-embedding-278m-multilingual-GGUF/granite-embedding-278m-multilingual-Q8_0.gguf",
+   "bytes": 303137952,
+   "dim": 768,
+   "pooling": "cls",
+   "msPerText": 17.36,
+   "answerFirst": 18,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.7495,
+    "on": 35,
+    "off": 0,
+    "margin": 0.0021
+   },
+   "joint": {
+    "T": 0.7497,
+    "on": 35,
+    "off": 0,
+    "margin": 0.0019
+   },
+   "multiDoor": {
+    "on": 5,
+    "right": 4,
+    "wrongOnly": 1,
+    "off": 2
+   },
+   "onByLang": {
+    "ja": [
+     11,
+     14
+    ],
+    "zh": [
+     9,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.7497,
+     "on": 35,
+     "off": 0
+    },
+    {
+     "T": 0.7597,
+     "on": 34,
+     "off": 0
+    },
+    {
+     "T": 0.7697,
+     "on": 32,
+     "off": 0
+    },
+    {
+     "T": 0.7797,
+     "on": 31,
+     "off": 0
+    },
+    {
+     "T": 0.7997,
+     "on": 30,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 30,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 2
+   }
+  },
+  {
+   "variant": "e5-large",
+   "family": "multilingual-e5-large",
+   "arch": "bert",
+   "params": "560M",
+   "license": "MIT",
+   "source": "phate334/multilingual-e5-large-gguf/multilingual-e5-large-f16.gguf",
+   "bytes": 1126215072,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 18.03,
+   "answerFirst": 19,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.8151,
+    "on": 38,
+    "off": 0,
+    "margin": 0.0001
+   },
+   "joint": {
+    "T": 0.8151,
+    "on": 38,
+    "off": 0,
+    "margin": 0.0001
+   },
+   "multiDoor": {
+    "on": 9,
+    "right": 8,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     10,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     3,
+     6
+    ],
+    "en": [
+     5,
+     10
+    ],
+    "he": [
+     4,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     1,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.8151,
+     "on": 38,
+     "off": 0
+    },
+    {
+     "T": 0.8251,
+     "on": 34,
+     "off": 0
+    },
+    {
+     "T": 0.8351,
+     "on": 34,
+     "off": 0
+    },
+    {
+     "T": 0.8451,
+     "on": 33,
+     "off": 0
+    },
+    {
+     "T": 0.8651,
+     "on": 29,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 37,
+    "off": 0,
+    "multiOn": 8,
+    "multiRight": 6,
+    "multiWrongOnly": 2,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "arctic-l-v2+cls",
+   "family": "snowflake-arctic-embed-l-v2.0",
+   "arch": "bert",
+   "params": "568M",
+   "license": "Apache-2.0",
+   "source": "Casual-Autopsy/snowflake-arctic-embed-l-v2.0-gguf/snowflake-arctic-embed-l-v2.0-q8_0.gguf",
+   "bytes": 634554752,
+   "dim": 1024,
+   "pooling": "cls",
+   "msPerText": 18.86,
+   "answerFirst": 15,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 16,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.2577,
+    "on": 40,
+    "off": 0,
+    "margin": 0.006
+   },
+   "joint": {
+    "T": 0.2577,
+    "on": 40,
+    "off": 0,
+    "margin": 0.006
+   },
+   "multiDoor": {
+    "on": 8,
+    "right": 8,
+    "wrongOnly": 0,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     12,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     4,
+     6
+    ],
+    "en": [
+     6,
+     10
+    ],
+    "he": [
+     4,
+     5
+    ],
+    "es": [
+     1,
+     3
+    ],
+    "pt": [
+     1,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     1,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.2577,
+     "on": 40,
+     "off": 0
+    },
+    {
+     "T": 0.2677,
+     "on": 39,
+     "off": 0
+    },
+    {
+     "T": 0.2777,
+     "on": 38,
+     "off": 0
+    },
+    {
+     "T": 0.2877,
+     "on": 36,
+     "off": 0
+    },
+    {
+     "T": 0.3077,
+     "on": 31,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 16,
+    "off": 0,
+    "multiOn": 1,
+    "multiRight": 1,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "arctic-l-v2+mean",
+   "family": "snowflake-arctic-embed-l-v2.0",
+   "arch": "bert",
+   "params": "568M",
+   "license": "Apache-2.0",
+   "source": "Casual-Autopsy/snowflake-arctic-embed-l-v2.0-gguf/snowflake-arctic-embed-l-v2.0-q8_0.gguf",
+   "bytes": 634554752,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 17.19,
+   "answerFirst": 14,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     1,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 15,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.3692,
+    "on": 26,
+    "off": 0,
+    "margin": 0.0011
+   },
+   "joint": {
+    "T": 0.3692,
+    "on": 26,
+    "off": 0,
+    "margin": 0.0011
+   },
+   "multiDoor": {
+    "on": 3,
+    "right": 3,
+    "wrongOnly": 0,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     10,
+     14
+    ],
+    "zh": [
+     6,
+     10
+    ],
+    "ko": [
+     2,
+     6
+    ],
+    "en": [
+     4,
+     10
+    ],
+    "he": [
+     3,
+     5
+    ],
+    "es": [
+     0,
+     3
+    ],
+    "pt": [
+     1,
+     3
+    ],
+    "fr": [
+     0,
+     3
+    ],
+    "de": [
+     0,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.3692,
+     "on": 26,
+     "off": 0
+    },
+    {
+     "T": 0.3792,
+     "on": 24,
+     "off": 0
+    },
+    {
+     "T": 0.3892,
+     "on": 24,
+     "off": 0
+    },
+    {
+     "T": 0.3992,
+     "on": 23,
+     "off": 0
+    },
+    {
+     "T": 0.4192,
+     "on": 19,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 15,
+    "off": 0,
+    "multiOn": 1,
+    "multiRight": 1,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "embgemma",
+   "family": "EmbeddingGemma-300M",
+   "arch": "gemma-embedding",
+   "params": "308M",
+   "license": "Gemma Terms of Use (NOT Apache/MIT — cannot ship)",
+   "source": "ggml-org/embeddinggemma-300M-GGUF/embeddinggemma-300M-Q8_0.gguf",
+   "bytes": 333590944,
+   "dim": 768,
+   "pooling": "mean",
+   "msPerText": 14.56,
+   "answerFirst": 14,
+   "answerFirstByLang": {
+    "ja": [
+     2,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "en": [
+     2,
+     3
+    ],
+    "he": [
+     2,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 18,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.2351,
+    "on": 52,
+    "off": 0,
+    "margin": 0.0018
+   },
+   "joint": {
+    "T": 0.2823,
+    "on": 46,
+    "off": 0,
+    "margin": 0.0049
+   },
+   "multiDoor": {
+    "on": 11,
+    "right": 10,
+    "wrongOnly": 1,
+    "off": 0
+   },
+   "onByLang": {
+    "ja": [
+     12,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     5,
+     6
+    ],
+    "en": [
+     9,
+     10
+    ],
+    "he": [
+     4,
+     5
+    ],
+    "es": [
+     1,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     1,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.2823,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.2923,
+     "on": 45,
+     "off": 0
+    },
+    {
+     "T": 0.3023,
+     "on": 43,
+     "off": 0
+    },
+    {
+     "T": 0.3123,
+     "on": 41,
+     "off": 0
+    },
+    {
+     "T": 0.3323,
+     "on": 40,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 18,
+    "off": 0,
+    "multiOn": 2,
+    "multiRight": 2,
+    "multiWrongOnly": 0,
+    "multiOff": 0
+   }
+  },
+  {
+   "variant": "bge-m3-f16",
+   "family": "bge-m3",
+   "arch": "bert",
+   "params": "568M",
+   "license": "MIT",
+   "source": "gpustack/bge-m3-GGUF/bge-m3-FP16.gguf",
+   "bytes": 1157671200,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 29.73,
+   "answerFirst": 15,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     1,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.6629,
+    "on": 55,
+    "off": 0,
+    "margin": 0.0126
+   },
+   "joint": {
+    "T": 0.6798,
+    "on": 54,
+    "off": 0,
+    "margin": 0.0062
+   },
+   "multiDoor": {
+    "on": 20,
+    "right": 19,
+    "wrongOnly": 1,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     14,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     5,
+     6
+    ],
+    "en": [
+     10,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.6798,
+     "on": 54,
+     "off": 0
+    },
+    {
+     "T": 0.6898,
+     "on": 50,
+     "off": 0
+    },
+    {
+     "T": 0.6998,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.7098,
+     "on": 48,
+     "off": 0
+    },
+    {
+     "T": 0.7298,
+     "on": 44,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 30,
+    "off": 0,
+    "multiOn": 4,
+    "multiRight": 3,
+    "multiWrongOnly": 1,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "e5-large-inst",
+   "family": "multilingual-e5-large-instruct",
+   "arch": "bert",
+   "params": "560M",
+   "license": "MIT",
+   "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q8_0.gguf",
+   "bytes": 603097568,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 22.51,
+   "answerFirst": 20,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.8164,
+    "on": 52,
+    "off": 0,
+    "margin": 0.0036
+   },
+   "joint": {
+    "T": 0.8164,
+    "on": 52,
+    "off": 0,
+    "margin": 0.0036
+   },
+   "multiDoor": {
+    "on": 18,
+    "right": 18,
+    "wrongOnly": 0,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     13,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     6,
+     6
+    ],
+    "en": [
+     9,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.8164,
+     "on": 52,
+     "off": 0
+    },
+    {
+     "T": 0.8264,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.8364,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.8464,
+     "on": 42,
+     "off": 0
+    },
+    {
+     "T": 0.8664,
+     "on": 35,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 51,
+    "off": 0,
+    "multiOn": 17,
+    "multiRight": 17,
+    "multiWrongOnly": 0,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "e5-large-inst-q6",
+   "family": "multilingual-e5-large-instruct",
+   "arch": "bert",
+   "params": "560M",
+   "license": "MIT",
+   "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q6_k.gguf",
+   "bytes": 467958912,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 38.99,
+   "answerFirst": 20,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     2,
+     3
+    ],
+    "ko": [
+     3,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     3,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.8176,
+    "on": 52,
+    "off": 0,
+    "margin": 0.0004
+   },
+   "joint": {
+    "T": 0.8176,
+    "on": 52,
+    "off": 0,
+    "margin": 0.0004
+   },
+   "multiDoor": {
+    "on": 19,
+    "right": 19,
+    "wrongOnly": 0,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     13,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     6,
+     6
+    ],
+    "en": [
+     8,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.8176,
+     "on": 52,
+     "off": 0
+    },
+    {
+     "T": 0.8276,
+     "on": 49,
+     "off": 0
+    },
+    {
+     "T": 0.8376,
+     "on": 46,
+     "off": 0
+    },
+    {
+     "T": 0.8476,
+     "on": 43,
+     "off": 0
+    },
+    {
+     "T": 0.8676,
+     "on": 35,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 51,
+    "off": 0,
+    "multiOn": 18,
+    "multiRight": 18,
+    "multiWrongOnly": 0,
+    "multiOff": 3
+   }
+  },
+  {
+   "variant": "e5-large-inst-q4",
+   "family": "multilingual-e5-large-instruct",
+   "arch": "bert",
+   "params": "560M",
+   "license": "MIT",
+   "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q4_k_m.gguf",
+   "bytes": 406322304,
+   "dim": 1024,
+   "pooling": "mean",
+   "msPerText": 48.27,
+   "answerFirst": 19,
+   "answerFirstByLang": {
+    "ja": [
+     3,
+     3
+    ],
+    "zh": [
+     3,
+     3
+    ],
+    "ko": [
+     2,
+     3
+    ],
+    "de": [
+     3,
+     3
+    ],
+    "fr": [
+     2,
+     3
+    ],
+    "en": [
+     3,
+     3
+    ],
+    "he": [
+     3,
+     3
+    ]
+   },
+   "rule70": {
+    "on": 29,
+    "off": 0
+   },
+   "cosAlone": {
+    "T": 0.8466,
+    "on": 47,
+    "off": 0,
+    "margin": 0.0025
+   },
+   "joint": {
+    "T": 0.8466,
+    "on": 47,
+    "off": 0,
+    "margin": 0.0025
+   },
+   "multiDoor": {
+    "on": 15,
+    "right": 15,
+    "wrongOnly": 0,
+    "off": 3
+   },
+   "onByLang": {
+    "ja": [
+     12,
+     14
+    ],
+    "zh": [
+     10,
+     10
+    ],
+    "ko": [
+     6,
+     6
+    ],
+    "en": [
+     7,
+     10
+    ],
+    "he": [
+     5,
+     5
+    ],
+    "es": [
+     2,
+     3
+    ],
+    "pt": [
+     2,
+     3
+    ],
+    "fr": [
+     1,
+     3
+    ],
+    "de": [
+     2,
+     3
+    ]
+   },
+   "headroom": [
+    {
+     "T": 0.8466,
+     "on": 47,
+     "off": 0
+    },
+    {
+     "T": 0.8566,
+     "on": 45,
+     "off": 0
+    },
+    {
+     "T": 0.8666,
+     "on": 39,
+     "off": 0
+    },
+    {
+     "T": 0.8766,
+     "on": 35,
+     "off": 0
+    },
+    {
+     "T": 0.8966,
+     "on": 32,
+     "off": 0
+    }
+   ],
+   "shipped": {
+    "T": 0.82,
+    "on": 54,
+    "off": 6,
+    "multiOn": 19,
+    "multiRight": 19,
+    "multiWrongOnly": 0,
+    "multiOff": 9
+   }
+  }
+ ]
+}

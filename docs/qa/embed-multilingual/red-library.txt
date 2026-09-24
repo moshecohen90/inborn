@@ -1,0 +1,6 @@
+     × re-embeds it with the new embedder, drops every old row, and answers from it 17ms
+     × without the new embedder installed it waits as no-embedder instead of being searched 1ms
+     × chunks a long document within the budget 19ms
+     × clips a pasted wall of text before embedding it as a question, keeping the e5 instruction 15ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  4 failed | 1 passed (5)

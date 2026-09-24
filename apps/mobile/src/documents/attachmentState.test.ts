@@ -10,7 +10,7 @@ let hold: (() => void) | null = null;
 let embedderMissing = false;
 
 vi.mock("./db", () => ({ openRagStore: async () => saved, ragStoreKind: () => "sqlcipher" }));
-vi.mock("./embedder", () => ({ resolveEmbedder: () => (embedderMissing ? null : { path: "/embed.gguf", embedder: hashEmbedder(64) }) }));
+vi.mock("./embedder", () => ({ EMBED_MODEL_ID: "embed-e5", resolveEmbedder: () => (embedderMissing ? null : { path: "/embed.gguf", embedder: hashEmbedder(64), contextTokens: 512 }) }));
 vi.mock("./extract", () => ({
   nativeOcr: () => null,
   createExtractors: (): TextExtractor[] => [

@@ -25,6 +25,8 @@ export interface PromptOptions {
   /** Hits below this cosine and without a lexical match are not "relevant" for strict mode. */
   minCosine?: number;
   minBm25?: number;
+  /** A hit above this cosine is relevant with no shared word. */
+  minCosineAlone?: number;
   nonce?: string;
   /** The user's UI language, so the answer follows it and not the documents' script (§10.5 #40). */
   answerLanguage?: string;
@@ -54,22 +56,20 @@ export const isNotFoundReply = (reply: string): boolean => {
 
 export const DEFAULT_ANSWER_RESERVE = 512;
 export const DEFAULT_HISTORY_SHARE = 0.35;
-/* nomic-embed puts unrelated ENGLISH text around 0.4 and related passages at 0.6+, which is where 0.5 came from.
-   In every other script the two bands sit on top of each other (docs/qa/fix-cjk-floor/cosines.md), so this is a
-   corroboration bar now, never a door of its own. The hash embedder used in tests sits far lower. */
+/* The corroboration bar for a single shared word, kept from round 70 (docs/qa/fix-cjk-floor/cosines.md). */
 export const DEFAULT_MIN_COSINE = 0.5;
 export const DEFAULT_MIN_BM25 = 2.0;
+/* multilingual-e5-large-instruct's highest off-topic cosine over 144 measured questions is 0.8176 (Q6_K) and 0.8164
+   (Q8_0); every point above that is recall (docs/qa/embed-multilingual/measure.md). Tied to that embedder. */
+export const DEFAULT_MIN_COSINE_ALONE = 0.82;
 
 /**
- * Relevant: the question and the passage share real words, and the embedding backs a single shared word up.
- *
- * The cosine cannot carry a passage on its own. Measured over 159 questions on 12 one-passage documents in 8
- * languages, an off-topic question that shares no word with the passage still scores 0.53–0.76 against it in
- * ja/zh/ko/he and 0.34–0.58 in en/de/es/fr/pt, while on-topic questions that share no word score 0.43–0.73: the
- * two distributions overlap in every script, so no floor separates them (QA F282/F327, docs/qa/fix-cjk-floor).
+ * Relevant: the embedding alone is sure of it, or the question and the passage share real words and the embedding
+ * backs a single shared word up. With the multilingual embedder, 51 of 57 on-topic questions in nine languages are
+ * cited and 0 of 102 off-topic ones (F334).
  */
-export const isRelevant = (h: RetrievalHit, minCosine = DEFAULT_MIN_COSINE, minBm25 = DEFAULT_MIN_BM25): boolean =>
-  h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= minBm25 || h.cosine >= minCosine));
+export const isRelevant = (h: RetrievalHit, minCosine = DEFAULT_MIN_COSINE, minBm25 = DEFAULT_MIN_BM25, minCosineAlone = DEFAULT_MIN_COSINE_ALONE): boolean =>
+  h.cosine > minCosineAlone || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= minBm25 || h.cosine >= minCosine));
 
 function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMarkers = true): string {
   const lang = answerLanguage ? ` Answer in the user's language (${answerLanguage}) unless asked otherwise.` : "";
@@ -103,7 +103,7 @@ export function trimHistory(history: Message[], budget: number): Message[] {
 export function buildRagPrompt(o: PromptOptions): RagPrompt {
   const nonce = o.nonce ?? randomNonce();
   const reserve = o.answerReserve ?? DEFAULT_ANSWER_RESERVE;
-  const relevant = o.hits.filter((h) => isRelevant(h, o.minCosine, o.minBm25));
+  const relevant = o.hits.filter((h) => isRelevant(h, o.minCosine, o.minBm25, o.minCosineAlone));
   const base = o.systemPrompt ? `${o.systemPrompt}\n\n` : "";
   if (o.strict && !relevant.length) {
     return { messages: [], citations: [], used: [], droppedForBudget: 0, noAnswer: true, promptTokens: 0 };

@@ -5294,6 +5294,130 @@ but one: the Work templates sheet.
   rows disabled by the same lock, and two Work banners with bare chips. All three now name their reason. `WorkTag`
   and `ProTag` take a handler or a reason, so a bare chip is a type error rather than a review finding.
 
+## Fixes round 74: the first photo on a fresh install is answered, not met with a download offer (branch `bundle-vision`) — 24.9.2026
+
+Instant can see, and it shipped inside the iOS app and as the Android fast-follow pack. Its projector `vision-qwen35`
+(205 MB) did not: on iOS it was an HTTPS download, on Android an on-demand pack. A new user's first photo therefore got
+*"I cannot look at pictures until the vision companion is in the vault"* instead of an answer. Decision (lead, 24.9):
+photos work on a fresh install without a download.
+
+- **iOS: the projector is in the IPA (F340).** `app.config.ts` `BUNDLED_IOS_MODELS` now lists `vision-qwen35` next to
+  `instant`, so `withBundledModel` puts it at `Inborn.app/vision-qwen35.gguf`. The catalog gives it a `bundled` delivery
+  (manifest re-signed). No vault code changed: `adoptBundled` already registers any `<id>.gguf` in the bundle as
+  `ready via bundled`. llama.rn loads it in place, 0 bytes go to Documents, and it is hashed once in the background.
+- **Android: a fast-follow pack (F341).** `inborn_model_vision` went from `on-demand` to `fast-follow`, in both
+  `ALL_PACKS` and the catalog. The boot scan's `requestKnownPacks` already asks Play for every fast-follow pack. It
+  stays a separate pack, not merged into `inborn_model`, so Remove still works per model. At 205 MB it is far under
+  the 1.5 GB pack cap.
+- **A gate for what a build ships (F341).** `scripts/check-shipping-bundles.mjs` used to check only for the QA bridge.
+  It now opens the iOS archive and every release AAB and fails unless each catalog `bundled` model, and each
+  fast-follow pack file, is present with the catalog's size and sha256. `--models <X.app|X.xcarchive|X.aab>` gates one
+  build. It runs inside `pnpm check:store`, so `pnpm test` runs it too, and the release checklist names it.
+- **Registration pinned by tests (F342).** `src/vault/bundledVision.test.ts` covers six cases: the projector is ready
+  on the first scan with its path inside the `.app` and nothing copied, the F294 cold-launch wait still holds, the hash
+  is recorded, a wrong hash is corrupt, Remove is refused, and without the file the state is `not-installed`.
+  `store.test.ts` checks that a fresh Android boot asks Play for exactly `instant` and `vision-qwen35`.
+  `test/bundleVision.test.ts` checks that the catalog and `app.config.ts` agree and watches the gate go red and green on
+  a fake archive and AAB.
+
+| size | bytes |
+|---|---|
+| projector `vision-qwen35.gguf` | 204,987,232 (205 MB) |
+| projector inside a zip (deflate) | 155,993,870 (156 MB) |
+| IPA, build 18 (Instant only) | 561,121,422 (561 MB) |
+| IPA with the projector (build 18 + deflated projector) | ≈717,115,000 (717 MB) |
+| models inside the app, installed | 737,504,352 (738 MB) |
+
+Apple's app size limit is 4 GB. Instant alone already put the IPA over the cellular auto-download threshold, so this
+adds no new prompt. The IPA figure is computed from build 18 plus the measured deflate: no store archive was made in
+this round.
+
+**Proof on an iPhone 17 Pro simulator (iOS 26.2).** Release build with the QA bridge. Fresh install, cold launch,
+onboarding, then a photo of a door as the first message, all driven by `docs/qa/bundle-vision/fresh-door.json`:
+33/33 steps.
+
+- The answer was *"This image shows a brown door with a rectangular frame and two panels on each side…"*
+  (`sim/04-door-answer.png`).
+- The vault reads *"VISION · Qwen3.5 mmproj · Included with the app"* with no Install row (`sim/05-vault.png`).
+- `vault.json` shows `vision-qwen35` `via: bundled`, verified 0.5 s after launch. The data container is 20 MB.
+- The gate passes on that `.app` (`gate-sim-app.txt`).
+- Complement: the same `.app` with the file removed, installed fresh, answered *"I cannot look at pictures until the
+  vision companion is in the vault…"* (`sim-red-no-projector/`), and the gate failed on it (`gate-red-no-projector.txt`).
+- The unit guards were watched red against origin/main's catalog (`red-before-fix.txt`, 3 failed).
+
+**Not done, and why.** No Android build ran: the brief allowed no phone, and the fast-follow path is the one
+android-vc21/vc22 already proved for Instant. What is new on Android is covered by the config, catalog, boot-scan and
+AAB-gate tests. One thing is left open: the projector card in *On this device* shows a *"Use this model"* button, which
+means nothing for a companion. It was not touched here.
+
+Spec §5.1, §5.4, §6.1, §6.2 and the §4.5 diagram were rewritten to match what ships.
+## Fixes round 72: a multilingual document index, measured, shipped and proven (branch `embed-multilingual`) — 24.9.2026
+
+Rounds 70 and 70b ended on one cause: the only embedder in the catalog, `nomic-embed-text-v1.5`, is Nomic's English
+model, so outside English its cosine measured the language and ranked the answering chunk first for 3 of 21
+questions. This round replaced it.
+
+- **Measured every candidate llama.rn can run** (F333). 20 variants of 13 embedders on round 70's own fixtures and
+  scorer, with the phone's int8 cosine. The bar was 18/21 answering chunks first plus 50/57 on-topic at 0/102
+  off-topic, Apache-2.0/MIT only. Only `multilingual-e5-large-instruct` clears it (Q8_0 and Q6_K, both 20/21).
+  Tables: `docs/qa/embed-multilingual/measure.md`.
+- **Shipped `embed-e5` = multilingual-e5-large-instruct Q6_K** (F334). 468 MB, MIT, catalog v5 re-signed, NOTICE and
+  licence sheet carry Microsoft's line. The cosine may cite alone again above 0.82, which sits 0.0024 over the highest
+  off-topic cosine of 144 questions; the round-70 lexical rule is unchanged. Result: 51/57 on-topic, 0/102
+  off-topic; on six-chunk documents 18/21 cite the right chunk and none cites only a wrong one. The round-70b negative
+  test now asserts both halves: the old embedder fails the bar, the new one passes it.
+- **Nothing past 512 positions reaches the embedder** (F335). The token estimator under-counts e5's tokenizer up to
+  1.84x (code), and the desktop engine aborted on a long chunk. Chunks are now sized from the model's context (212
+  estimated tokens), questions are clipped to the same budget, and the desktop caps its context at `n_ctx_train`.
+- **Old indexes are rebuilt, not searched** (F336). A document built by another embedder is re-indexed from page 0 on
+  the first open after the update; without e5 installed it waits as "no-embedder". Re-indexing from page 0 now drops
+  the old rows, which it silently kept before.
+- **Proven on an Android emulator** (F337). Japanese and German one-passage documents: a paraphrase that shares no
+  word with the passage is cited, and the off-topic question each earlier round failed on is dropped. Screenshots
+  and the `[rag]` lines are in `docs/qa/embed-multilingual/device/`.
+
+Open: the lead uploads the model to models.inbornapp.com with the command in `docs/qa/deploy-site/embed-e5-upload.md`
+(the URL is 404 today). French is the weakest language at 1/3, and the 0.82 door is tied to this embedder: any
+future embedder change must be measured again with `rag-multilingual-measure.test.ts`.
+## Fixes round 75: a photo nothing here can see is held in the composer, not sent (branch `vision-block`) — 24.9.2026
+
+Moshe attached a photo on the iPhone without the photo pack. The line asking for it appeared and he dismissed it. The turn had
+already gone out, and the next answer said it had received no image. On a simulator with origin/main's chat screen, the
+refusal was written as an assistant row. The composer came back empty, and the following question went to Instant without the
+picture: *"I cannot analyze the image or identify specific colors in the door."*
+
+- **Send holds the turn when no model here can see the photo** (F343). Nothing is stored and nothing reaches the model.
+  The text and the photo stay in the composer under one card, which says that no model on this device can see photos
+  and that the photo can't be read until the 205 MB photo pack is downloaded. The card offers Download, Remove the
+  photo, and Switch when another model could see it. It has no dismiss button, and Send again stays held. When the
+  pack turns ready, the held turn goes out by itself through the F294 wait state. Proven on the simulator: held with no
+  row stored, held again, and sent with the photo once the pack was on disk (`docs/qa/vision-block/`). The Download
+  button itself could not be proven on the simulator: its background download never reached the local model server, and
+  the vault's own Install fails the same way. So the automatic release is covered by unit tests only and needs one look
+  on a phone.
+- **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
+  The file stays attached, so there is nothing to hold.
+
+## Fixes round 76: one recommended model per device, on every screen (branch `fix-model-sheet`) — 24.9.2026
+
+I14, wave 2: after round 66 the browser door and the vault recommended Fast, but the chat's Model sheet in the same
+browser still said Instant and listed Fast "In the app". Moshe's decision 6 is one answer per device type: the best
+model for it first, the rest below.
+
+- **The sheet, the vault, onboarding and the door name the same model** (F345). `deviceRecommendation()` in core is
+  the §7.8 ranking with "already installed" left out. That term was also why a OnePlus 6T with only the bundled Instant
+  was told Instant in the native sheet and vault while onboarding said Fast. In the browser, the sheet now reads
+  `WebBoot.choices`, the door's list. A model the door offers can be chosen there, and "In the app" is left for what a
+  browser never gets. Headless Chromium, with Instant taken at the door as in I14, gives door, sheet and vault Fast at
+  390 and at 1440. Choose in the sheet switched the page to Fast.
+- **The other places that name a model now agree with it** (F346). The browser's weak-language line said nothing
+  here was good at Spanish while Fast, in the same browser, is good at it. It now runs `betterForLanguage` over the
+  door's list and names Fast. Fast's catalog line said "on this phone" in a browser; it says "device" now, with the
+  manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
+  site languages now say "computers and tablets", and a test holds that sentence to the gate.
+
+Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
+`proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).
 ## Fixes round 78: no raw download errors, and a photo is never left behind (branch `fix-download-race`) — 24.9.2026
 
 The iOS image repro found two defects on the way to a photo answer.

@@ -1,0 +1,1753 @@
+{
+ "embedder": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q6_k.gguf",
+ "prefixes": [
+  "",
+  "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: "
+ ],
+ "measured": "llama-embedding --pooling mean --embd-normalize 2, then the app's own quantize()/cosineQuantized() (packages/core/src/rag/vector.ts)",
+ "why": "The shipped embedder's real cosines for round 70's questions, so the relevance door is guarded on the numbers the phone produces (F334).",
+ "docs": [
+  {
+   "id": "ja-device",
+   "lang": "ja",
+   "text": "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "青葉商事の社員数は何名ですか？",
+     "cosine": 0.9213
+    },
+    {
+     "kind": "on",
+     "q": "この会社の主要拠点はどこですか？",
+     "cosine": 0.8715
+    },
+    {
+     "kind": "on",
+     "q": "報告書によると従業員は何人いますか？",
+     "cosine": 0.8792
+    },
+    {
+     "kind": "on",
+     "q": "従業員は全部で何人ですか？",
+     "cosine": 0.8685
+    },
+    {
+     "kind": "on",
+     "q": "オフィスがある都市を二つ挙げてください。",
+     "cosine": 0.8239
+    },
+    {
+     "kind": "on",
+     "q": "この組織の規模を教えてください。",
+     "cosine": 0.8489
+    },
+    {
+     "kind": "on",
+     "q": "働いている人の総数はどれくらいですか？",
+     "cosine": 0.8603
+    },
+    {
+     "kind": "on",
+     "q": "How many employees does Aoba Trading have?",
+     "cosine": 0.8073
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+     "cosine": 0.7848
+    },
+    {
+     "kind": "off",
+     "q": "味噌汁の作り方を教えてください。",
+     "cosine": 0.7143
+    },
+    {
+     "kind": "off",
+     "q": "富士山の高さは何メートルですか？",
+     "cosine": 0.77
+    },
+    {
+     "kind": "off",
+     "q": "来週の東京の天気はどうなりますか？",
+     "cosine": 0.7511
+    },
+    {
+     "kind": "off",
+     "q": "日本で一番長い川はどれですか？",
+     "cosine": 0.7576
+    },
+    {
+     "kind": "off",
+     "q": "明日は傘が必要ですか？",
+     "cosine": 0.7602
+    },
+    {
+     "kind": "off",
+     "q": "このアプリの使い方を説明してください。",
+     "cosine": 0.7541
+    },
+    {
+     "kind": "off",
+     "q": "ピアノを習うのに最適な年齢は何歳ですか？",
+     "cosine": 0.7483
+    },
+    {
+     "kind": "off",
+     "q": "猫は何時間眠りますか？",
+     "cosine": 0.7524
+    },
+    {
+     "kind": "off",
+     "q": "電車の切符はどこで買えますか？",
+     "cosine": 0.7681
+    },
+    {
+     "kind": "off",
+     "q": "夏目漱石の代表作は何ですか？",
+     "cosine": 0.7597
+    },
+    {
+     "kind": "off",
+     "q": "コーヒーとお茶はどちらが体にいいですか？",
+     "cosine": 0.7553
+    },
+    {
+     "kind": "off",
+     "q": "Who won the 1998 football World Cup?",
+     "cosine": 0.6796
+    },
+    {
+     "kind": "off",
+     "q": "How do I cook a good risotto?",
+     "cosine": 0.6791
+    }
+   ]
+  },
+  {
+   "id": "ja-f278",
+   "lang": "ja",
+   "text": "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "当社の年度の収益はいくらですか？",
+     "cosine": 0.8926
+    },
+    {
+     "kind": "on",
+     "q": "収益が増えた理由は何ですか？",
+     "cosine": 0.8914
+    },
+    {
+     "kind": "on",
+     "q": "去年と比べて売上はどれくらい伸びましたか？",
+     "cosine": 0.8843
+    },
+    {
+     "kind": "on",
+     "q": "利益はどのくらい伸びましたか？",
+     "cosine": 0.8771
+    },
+    {
+     "kind": "on",
+     "q": "業績が良くなった原因は何でしたか？",
+     "cosine": 0.8723
+    },
+    {
+     "kind": "on",
+     "q": "前年に対する成長率を教えてください。",
+     "cosine": 0.8707
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+     "cosine": 0.7523
+    },
+    {
+     "kind": "off",
+     "q": "犬と猫ではどちらが長生きしますか？",
+     "cosine": 0.7353
+    },
+    {
+     "kind": "off",
+     "q": "パリ行きの飛行機は何時間かかりますか？",
+     "cosine": 0.7198
+    },
+    {
+     "kind": "off",
+     "q": "東京から大阪まで何キロありますか？",
+     "cosine": 0.7512
+    },
+    {
+     "kind": "off",
+     "q": "おすすめの映画はありますか？",
+     "cosine": 0.7614
+    },
+    {
+     "kind": "off",
+     "q": "スマートフォンの電池を長持ちさせる方法は？",
+     "cosine": 0.7544
+    },
+    {
+     "kind": "off",
+     "q": "子供の熱が下がりません、どうすればいいですか？",
+     "cosine": 0.7393
+    },
+    {
+     "kind": "off",
+     "q": "ギターのコードを教えてください。",
+     "cosine": 0.7297
+    },
+    {
+     "kind": "off",
+     "q": "地震のときはどう行動すべきですか？",
+     "cosine": 0.7344
+    },
+    {
+     "kind": "off",
+     "q": "自転車のタイヤの空気圧はどのくらいが適切ですか？",
+     "cosine": 0.7478
+    }
+   ]
+  },
+  {
+   "id": "zh-f278",
+   "lang": "zh",
+   "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "公司的年度收入增长了多少？",
+     "cosine": 0.9134
+    },
+    {
+     "kind": "on",
+     "q": "本公司二零二四年度的收入是多少？",
+     "cosine": 0.913
+    },
+    {
+     "kind": "on",
+     "q": "去年的营业额比前年高了几成？",
+     "cosine": 0.8889
+    },
+    {
+     "kind": "on",
+     "q": "利润提高了几个百分点？",
+     "cosine": 0.873
+    },
+    {
+     "kind": "on",
+     "q": "明年还能保持这样的势头吗？",
+     "cosine": 0.8807
+    },
+    {
+     "kind": "on",
+     "q": "销售业绩比从前好了吗？",
+     "cosine": 0.8516
+    },
+    {
+     "kind": "off",
+     "q": "我们什么时候可以去巴黎旅游？",
+     "cosine": 0.7745
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年世界杯足球赛是谁赢的？",
+     "cosine": 0.7548
+    },
+    {
+     "kind": "off",
+     "q": "红烧肉怎么做才好吃？",
+     "cosine": 0.74
+    },
+    {
+     "kind": "off",
+     "q": "北京到上海坐高铁要多久？",
+     "cosine": 0.7531
+    },
+    {
+     "kind": "off",
+     "q": "怎么才能学好英语？",
+     "cosine": 0.7869
+    },
+    {
+     "kind": "off",
+     "q": "手机充电太慢怎么办？",
+     "cosine": 0.7465
+    },
+    {
+     "kind": "off",
+     "q": "孩子发烧应该怎么处理？",
+     "cosine": 0.7418
+    },
+    {
+     "kind": "off",
+     "q": "推荐一部好看的电影。",
+     "cosine": 0.7709
+    },
+    {
+     "kind": "off",
+     "q": "长城建于哪个朝代？",
+     "cosine": 0.7435
+    },
+    {
+     "kind": "off",
+     "q": "养猫需要注意什么？",
+     "cosine": 0.7518
+    }
+   ]
+  },
+  {
+   "id": "zh-f195",
+   "lang": "zh",
+   "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "公司的年度收入是多少？",
+     "cosine": 0.8955
+    },
+    {
+     "kind": "on",
+     "q": "营业额与前一年相比如何？",
+     "cosine": 0.8854
+    },
+    {
+     "kind": "on",
+     "q": "利润比从前多了多少？",
+     "cosine": 0.8827
+    },
+    {
+     "kind": "on",
+     "q": "生意做得比上一年好吗？",
+     "cosine": 0.8521
+    },
+    {
+     "kind": "off",
+     "q": "谁赢得了一九九八年世界杯足球赛？",
+     "cosine": 0.7454
+    },
+    {
+     "kind": "off",
+     "q": "员工餐厅的午餐时间是什么时候？",
+     "cosine": 0.764
+    },
+    {
+     "kind": "off",
+     "q": "西红柿炒鸡蛋怎么做？",
+     "cosine": 0.7171
+    },
+    {
+     "kind": "off",
+     "q": "明天会下雨吗？",
+     "cosine": 0.7375
+    },
+    {
+     "kind": "off",
+     "q": "哪个牌子的电脑比较好？",
+     "cosine": 0.7666
+    },
+    {
+     "kind": "off",
+     "q": "跑步前需要热身吗？",
+     "cosine": 0.7247
+    },
+    {
+     "kind": "off",
+     "q": "故宫的门票多少钱？",
+     "cosine": 0.7713
+    },
+    {
+     "kind": "off",
+     "q": "怎样才能睡个好觉？",
+     "cosine": 0.7394
+    }
+   ]
+  },
+  {
+   "id": "ko-report",
+   "lang": "ko",
+   "text": "한빛물산의 2025년도 연례 보고서에 따르면 직원 수는 삼백팔십이 명이며, 주요 거점은 대전과 부산 두 곳이다.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "한빛물산의 직원 수는 몇 명입니까?",
+     "cosine": 0.9241
+    },
+    {
+     "kind": "on",
+     "q": "이 회사의 주요 거점은 어디입니까?",
+     "cosine": 0.8823
+    },
+    {
+     "kind": "on",
+     "q": "보고서에 나온 종업원 규모가 어느 정도인가요?",
+     "cosine": 0.8711
+    },
+    {
+     "kind": "on",
+     "q": "종업원은 모두 몇 사람인가요?",
+     "cosine": 0.8593
+    },
+    {
+     "kind": "on",
+     "q": "사무실이 있는 도시를 알려 주세요.",
+     "cosine": 0.8463
+    },
+    {
+     "kind": "on",
+     "q": "조직의 규모가 어느 정도입니까?",
+     "cosine": 0.8328
+    },
+    {
+     "kind": "off",
+     "q": "1998년 월드컵에서 우승한 나라는 어디입니까?",
+     "cosine": 0.7586
+    },
+    {
+     "kind": "off",
+     "q": "김치찌개는 어떻게 끓이나요?",
+     "cosine": 0.7383
+    },
+    {
+     "kind": "off",
+     "q": "다음 주 서울 날씨는 어떻습니까?",
+     "cosine": 0.7714
+    },
+    {
+     "kind": "off",
+     "q": "서울에서 부산까지 KTX로 얼마나 걸립니까?",
+     "cosine": 0.8176
+    },
+    {
+     "kind": "off",
+     "q": "영어를 잘하려면 어떻게 해야 하나요?",
+     "cosine": 0.7323
+    },
+    {
+     "kind": "off",
+     "q": "휴대폰 배터리가 빨리 닳는데 어떻게 하죠?",
+     "cosine": 0.7503
+    },
+    {
+     "kind": "off",
+     "q": "아이가 열이 나면 어떻게 해야 합니까?",
+     "cosine": 0.731
+    },
+    {
+     "kind": "off",
+     "q": "재미있는 영화를 추천해 주세요.",
+     "cosine": 0.7343
+    },
+    {
+     "kind": "off",
+     "q": "고양이를 키울 때 주의할 점은 무엇인가요?",
+     "cosine": 0.7339
+    },
+    {
+     "kind": "off",
+     "q": "달리기 전에 준비운동이 필요한가요?",
+     "cosine": 0.7446
+    }
+   ]
+  },
+  {
+   "id": "en-report",
+   "lang": "en",
+   "text": "According to Aoba Trading's 2025 annual report the company employs three hundred and eighty-two people, and its two main offices are in Sendai and Fukuoka.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "How many people does Aoba Trading employ?",
+     "cosine": 0.9059
+    },
+    {
+     "kind": "on",
+     "q": "Where are the company's main offices?",
+     "cosine": 0.8363
+    },
+    {
+     "kind": "on",
+     "q": "What is the size of the workforce in the report?",
+     "cosine": 0.8349
+    },
+    {
+     "kind": "on",
+     "q": "What is the total headcount?",
+     "cosine": 0.8206
+    },
+    {
+     "kind": "on",
+     "q": "Which cities host the offices?",
+     "cosine": 0.8098
+    },
+    {
+     "kind": "on",
+     "q": "How large is the organisation?",
+     "cosine": 0.7973
+    },
+    {
+     "kind": "off",
+     "q": "Who won the 1998 football World Cup?",
+     "cosine": 0.6956
+    },
+    {
+     "kind": "off",
+     "q": "How do I cook a good risotto?",
+     "cosine": 0.6967
+    },
+    {
+     "kind": "off",
+     "q": "How tall is Mount Fuji?",
+     "cosine": 0.7507
+    },
+    {
+     "kind": "off",
+     "q": "How long is the train from Tokyo to Osaka?",
+     "cosine": 0.7883
+    },
+    {
+     "kind": "off",
+     "q": "What is a good film to watch tonight?",
+     "cosine": 0.6919
+    },
+    {
+     "kind": "off",
+     "q": "Why does my phone battery drain so fast?",
+     "cosine": 0.7054
+    },
+    {
+     "kind": "off",
+     "q": "My child has a fever, what should I do?",
+     "cosine": 0.6876
+    },
+    {
+     "kind": "off",
+     "q": "When was the Great Wall built?",
+     "cosine": 0.7039
+    },
+    {
+     "kind": "off",
+     "q": "Do I need to warm up before running?",
+     "cosine": 0.694
+    },
+    {
+     "kind": "off",
+     "q": "How do I learn English faster?",
+     "cosine": 0.7076
+    }
+   ]
+  },
+  {
+   "id": "he-report",
+   "lang": "he",
+   "text": "על פי הדוח השנתי של חברת אובה סחר לשנת 2025, מספר העובדים עומד על שלוש מאות שמונים ושניים, ושני המשרדים הראשיים נמצאים בסנדאי ובפוקואוקה.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "כמה עובדים יש בחברת אובה סחר?",
+     "cosine": 0.9272
+    },
+    {
+     "kind": "on",
+     "q": "היכן נמצאים המשרדים הראשיים?",
+     "cosine": 0.8733
+    },
+    {
+     "kind": "on",
+     "q": "מה גודל כוח האדם בארגון?",
+     "cosine": 0.8618
+    },
+    {
+     "kind": "on",
+     "q": "באילו ערים יושבים המשרדים?",
+     "cosine": 0.8715
+    },
+    {
+     "kind": "on",
+     "q": "כמה אנשים מועסקים שם?",
+     "cosine": 0.9035
+    },
+    {
+     "kind": "off",
+     "q": "מי ניצח במונדיאל של 1998?",
+     "cosine": 0.7796
+    },
+    {
+     "kind": "off",
+     "q": "איך מכינים חמין טוב?",
+     "cosine": 0.7618
+    },
+    {
+     "kind": "off",
+     "q": "כמה זמן לוקחת הרכבת מתל אביב לחיפה?",
+     "cosine": 0.8005
+    },
+    {
+     "kind": "off",
+     "q": "איזה סרט כדאי לראות הערב?",
+     "cosine": 0.7737
+    },
+    {
+     "kind": "off",
+     "q": "למה הסוללה בטלפון נגמרת מהר?",
+     "cosine": 0.7848
+    },
+    {
+     "kind": "off",
+     "q": "הילד שלי עם חום, מה עושים?",
+     "cosine": 0.7469
+    },
+    {
+     "kind": "off",
+     "q": "מתי נבנתה החומה הסינית?",
+     "cosine": 0.7983
+    },
+    {
+     "kind": "off",
+     "q": "צריך להתחמם לפני ריצה?",
+     "cosine": 0.7523
+    },
+    {
+     "kind": "off",
+     "q": "איך לומדים אנגלית מהר יותר?",
+     "cosine": 0.7701
+    },
+    {
+     "kind": "off",
+     "q": "מה השעה בניו יורק?",
+     "cosine": 0.7835
+    }
+   ]
+  },
+  {
+   "id": "en-lease",
+   "lang": "en",
+   "text": "The tenant shall pay a deposit of two months' rent before taking possession, and the landlord must return it within thirty days of the final inspection.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "When does the money have to be given back?",
+     "cosine": 0.8408
+    },
+    {
+     "kind": "on",
+     "q": "How much must be paid up front?",
+     "cosine": 0.8466
+    },
+    {
+     "kind": "on",
+     "q": "What happens after the property is checked at the end?",
+     "cosine": 0.8148
+    },
+    {
+     "kind": "on",
+     "q": "Is a guarantee required before moving in?",
+     "cosine": 0.8643
+    },
+    {
+     "kind": "off",
+     "q": "Who won the 1998 football World Cup?",
+     "cosine": 0.6709
+    },
+    {
+     "kind": "off",
+     "q": "How do I cook a good risotto?",
+     "cosine": 0.7318
+    },
+    {
+     "kind": "off",
+     "q": "What is the capital of Peru?",
+     "cosine": 0.7099
+    },
+    {
+     "kind": "off",
+     "q": "How many moons does Jupiter have?",
+     "cosine": 0.7221
+    },
+    {
+     "kind": "off",
+     "q": "What time is it in New York?",
+     "cosine": 0.7239
+    },
+    {
+     "kind": "off",
+     "q": "Can dogs eat chocolate?",
+     "cosine": 0.7175
+    }
+   ]
+  },
+  {
+   "id": "es-report",
+   "lang": "es",
+   "text": "Segun el informe anual de 2025 de Aoba Trading, la empresa emplea a trescientas ochenta y dos personas y sus dos oficinas principales estan en Sendai y Fukuoka.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "¿Cuantas personas trabajan alli?",
+     "cosine": 0.8665
+    },
+    {
+     "kind": "on",
+     "q": "¿Que tamaño tiene la plantilla?",
+     "cosine": 0.7929
+    },
+    {
+     "kind": "on",
+     "q": "¿En que ciudades estan las sedes?",
+     "cosine": 0.8177
+    },
+    {
+     "kind": "off",
+     "q": "¿Quien gano el Mundial de 1998?",
+     "cosine": 0.7342
+    },
+    {
+     "kind": "off",
+     "q": "¿Como se prepara un buen risotto?",
+     "cosine": 0.7415
+    },
+    {
+     "kind": "off",
+     "q": "¿Cuanto dura el tren de Tokio a Osaka?",
+     "cosine": 0.8099
+    },
+    {
+     "kind": "off",
+     "q": "¿Por que se descarga tan rapido la bateria?",
+     "cosine": 0.742
+    },
+    {
+     "kind": "off",
+     "q": "Mi hijo tiene fiebre, ¿que hago?",
+     "cosine": 0.7151
+    },
+    {
+     "kind": "off",
+     "q": "¿Hay que calentar antes de correr?",
+     "cosine": 0.7177
+    }
+   ]
+  },
+  {
+   "id": "pt-report",
+   "lang": "pt",
+   "text": "Segundo o relatorio anual de 2025 da Aoba Trading, a companhia emprega trezentas e oitenta e duas pessoas e os seus dois escritorios principais ficam em Sendai e Fukuoka.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Quantas pessoas trabalham la?",
+     "cosine": 0.8653
+    },
+    {
+     "kind": "on",
+     "q": "Qual e o tamanho do quadro de pessoal?",
+     "cosine": 0.8375
+    },
+    {
+     "kind": "on",
+     "q": "Em que cidades ficam as sedes?",
+     "cosine": 0.8199
+    },
+    {
+     "kind": "off",
+     "q": "Quem ganhou a Copa do Mundo de 1998?",
+     "cosine": 0.7451
+    },
+    {
+     "kind": "off",
+     "q": "Como se faz um bom risoto?",
+     "cosine": 0.744
+    },
+    {
+     "kind": "off",
+     "q": "Quanto tempo demora o comboio de Toquio a Osaka?",
+     "cosine": 0.8102
+    },
+    {
+     "kind": "off",
+     "q": "Porque e que a bateria acaba tao depressa?",
+     "cosine": 0.762
+    },
+    {
+     "kind": "off",
+     "q": "O meu filho tem febre, o que faco?",
+     "cosine": 0.7245
+    },
+    {
+     "kind": "off",
+     "q": "E preciso aquecer antes de correr?",
+     "cosine": 0.7354
+    }
+   ]
+  },
+  {
+   "id": "fr-report",
+   "lang": "fr",
+   "text": "Selon le rapport annuel 2025 d'Aoba Trading, la societe emploie trois cent quatre-vingt-deux personnes et ses deux bureaux principaux se trouvent a Sendai et Fukuoka.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Combien de gens y travaillent?",
+     "cosine": 0.8489
+    },
+    {
+     "kind": "on",
+     "q": "Quelle est la taille des effectifs?",
+     "cosine": 0.818
+    },
+    {
+     "kind": "on",
+     "q": "Dans quelles villes sont les sieges?",
+     "cosine": 0.7738
+    },
+    {
+     "kind": "off",
+     "q": "Qui a gagne la Coupe du monde 1998?",
+     "cosine": 0.7315
+    },
+    {
+     "kind": "off",
+     "q": "Comment prepare-t-on un bon risotto?",
+     "cosine": 0.7346
+    },
+    {
+     "kind": "off",
+     "q": "Combien de temps dure le train de Tokyo a Osaka?",
+     "cosine": 0.807
+    },
+    {
+     "kind": "off",
+     "q": "Pourquoi la batterie se vide-t-elle si vite?",
+     "cosine": 0.7443
+    },
+    {
+     "kind": "off",
+     "q": "Mon enfant a de la fievre, que faire?",
+     "cosine": 0.7138
+    },
+    {
+     "kind": "off",
+     "q": "Faut-il s'echauffer avant de courir?",
+     "cosine": 0.7329
+    }
+   ]
+  },
+  {
+   "id": "de-report",
+   "lang": "de",
+   "text": "Laut dem Jahresbericht 2025 von Aoba Trading beschaeftigt das Unternehmen dreihundertzweiundachtzig Personen, und seine beiden Hauptbueros befinden sich in Sendai und Fukuoka.",
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Wie viele Leute arbeiten dort?",
+     "cosine": 0.8537
+    },
+    {
+     "kind": "on",
+     "q": "Wie gross ist die Belegschaft?",
+     "cosine": 0.853
+    },
+    {
+     "kind": "on",
+     "q": "In welchen Staedten sitzen die Zentralen?",
+     "cosine": 0.8366
+    },
+    {
+     "kind": "off",
+     "q": "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+     "cosine": 0.7513
+    },
+    {
+     "kind": "off",
+     "q": "Wie kocht man ein gutes Risotto?",
+     "cosine": 0.7336
+    },
+    {
+     "kind": "off",
+     "q": "Wie lange dauert der Zug von Tokio nach Osaka?",
+     "cosine": 0.8091
+    },
+    {
+     "kind": "off",
+     "q": "Warum ist der Akku so schnell leer?",
+     "cosine": 0.7563
+    },
+    {
+     "kind": "off",
+     "q": "Mein Kind hat Fieber, was soll ich tun?",
+     "cosine": 0.7231
+    },
+    {
+     "kind": "off",
+     "q": "Muss man sich vor dem Laufen aufwaermen?",
+     "cosine": 0.7368
+    }
+   ]
+  }
+ ],
+ "multi": [
+  {
+   "id": "mc-ja",
+   "lang": "ja",
+   "answers": 0,
+   "chunks": [
+    "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。",
+    "同社の設立は一九六二年で、当初は木材の輸入を専門としていた。",
+    "二〇二五年度の売上高は前年度より七パーセント増え、営業利益率は九パーセントであった。",
+    "主力商品は業務用の包装資材と、industrial向けの接着剤の二系統である。",
+    "環境方針として、二〇三〇年までに自社施設の電力をすべて再生可能エネルギーに切り替える計画を掲げている。",
+    "取締役会は七名で構成され、そのうち三名は社外取締役である。"
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "従業員は全部で何人ですか？",
+     "cosines": [
+      0.8684,
+      0.8179,
+      0.8114,
+      0.7985,
+      0.7955,
+      0.8477
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "オフィスがある都市を二つ挙げてください。",
+     "cosines": [
+      0.8238,
+      0.7982,
+      0.7613,
+      0.8074,
+      0.7532,
+      0.7728
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "この組織の規模を教えてください。",
+     "cosines": [
+      0.8488,
+      0.8313,
+      0.8038,
+      0.8056,
+      0.7979,
+      0.839
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年のワールドカップで優勝したのはどこですか？",
+     "cosines": [
+      0.7847,
+      0.8107,
+      0.7822,
+      0.7613,
+      0.7524,
+      0.7567
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "味噌汁の作り方を教えてください。",
+     "cosines": [
+      0.7142,
+      0.723,
+      0.7267,
+      0.746,
+      0.7198,
+      0.7267
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "富士山の高さは何メートルですか？",
+     "cosines": [
+      0.7699,
+      0.7448,
+      0.7387,
+      0.7176,
+      0.7368,
+      0.74
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "来週の東京の天気はどうなりますか？",
+     "cosines": [
+      0.751,
+      0.7265,
+      0.7422,
+      0.7326,
+      0.7708,
+      0.7427
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "日本で一番長い川はどれですか？",
+     "cosines": [
+      0.7576,
+      0.7746,
+      0.7211,
+      0.7272,
+      0.7376,
+      0.7287
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "猫は何時間眠りますか？",
+     "cosines": [
+      0.7522,
+      0.7267,
+      0.7304,
+      0.7388,
+      0.7358,
+      0.741
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-zh",
+   "lang": "zh",
+   "answers": 0,
+   "chunks": [
+    "青叶商事二零二五年度的年报显示，公司员工共三百八十二人，主要据点设在仙台和福冈两地。",
+    "公司成立于一九六二年，最初专营木材进口业务。",
+    "二零二五年度营业额比前一年增长百分之七，营业利润率为百分之九。",
+    "主要产品分为两类：工业用包装材料和工业用黏合剂。",
+    "在环境方面，公司计划在二零三零年之前将自有设施的用电全部改为可再生能源。",
+    "董事会由七人组成，其中三人为外部董事。"
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "公司一共有多少人在工作？",
+     "cosines": [
+      0.8852,
+      0.8311,
+      0.825,
+      0.8205,
+      0.796,
+      0.8645
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "请说出设有办事处的两个城市。",
+     "cosines": [
+      0.8507,
+      0.827,
+      0.7796,
+      0.8186,
+      0.7585,
+      0.8073
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "这家机构的规模有多大？",
+     "cosines": [
+      0.8534,
+      0.8454,
+      0.8149,
+      0.8292,
+      0.7964,
+      0.8553
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "一九九八年世界杯足球赛是谁赢的？",
+     "cosines": [
+      0.7673,
+      0.7946,
+      0.7648,
+      0.7685,
+      0.7252,
+      0.7693
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "红烧肉怎么做才好吃？",
+     "cosines": [
+      0.7346,
+      0.7351,
+      0.744,
+      0.7499,
+      0.7111,
+      0.7281
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "北京到上海坐高铁要多久？",
+     "cosines": [
+      0.7663,
+      0.75,
+      0.7413,
+      0.7503,
+      0.7472,
+      0.7488
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "怎么才能学好英语？",
+     "cosines": [
+      0.7489,
+      0.7544,
+      0.7556,
+      0.7625,
+      0.7332,
+      0.7508
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "养猫需要注意什么？",
+     "cosines": [
+      0.7619,
+      0.7364,
+      0.7401,
+      0.7778,
+      0.7404,
+      0.7534
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "长城建于哪个朝代？",
+     "cosines": [
+      0.759,
+      0.7858,
+      0.7388,
+      0.7527,
+      0.7077,
+      0.7568
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-ko",
+   "lang": "ko",
+   "answers": 0,
+   "chunks": [
+    "한빛물산의 2025년도 연례 보고서에 따르면 직원 수는 삼백팔십이 명이며, 주요 거점은 대전과 부산 두 곳이다.",
+    "회사는 1962년에 설립되었으며, 처음에는 목재 수입을 전문으로 하였다.",
+    "2025년도 매출은 전년보다 7퍼센트 늘었고, 영업 이익률은 9퍼센트였다.",
+    "주력 제품은 산업용 포장재와 산업용 접착제 두 가지 계열이다.",
+    "환경 방침으로는 2030년까지 자사 시설의 전력을 모두 재생 에너지로 바꿀 계획을 내걸고 있다.",
+    "이사회는 일곱 명으로 구성되며 그 가운데 세 명은 사외 이사이다."
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "종업원은 모두 몇 사람인가요?",
+     "cosines": [
+      0.8593,
+      0.8131,
+      0.798,
+      0.771,
+      0.7831,
+      0.8306
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "사무실이 있는 도시를 알려 주세요.",
+     "cosines": [
+      0.8463,
+      0.807,
+      0.7716,
+      0.777,
+      0.7798,
+      0.8069
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "조직의 규모가 어느 정도입니까?",
+     "cosines": [
+      0.8328,
+      0.8053,
+      0.7847,
+      0.7869,
+      0.7827,
+      0.8275
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "1998년 월드컵에서 우승한 나라는 어디입니까?",
+     "cosines": [
+      0.7586,
+      0.7783,
+      0.7492,
+      0.7325,
+      0.7421,
+      0.7551
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "김치찌개는 어떻게 끓이나요?",
+     "cosines": [
+      0.7383,
+      0.7518,
+      0.7287,
+      0.734,
+      0.7465,
+      0.7521
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "서울에서 부산까지 KTX로 얼마나 걸립니까?",
+     "cosines": [
+      0.8175,
+      0.7558,
+      0.7582,
+      0.7345,
+      0.7606,
+      0.763
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "영어를 잘하려면 어떻게 해야 하나요?",
+     "cosines": [
+      0.7322,
+      0.7592,
+      0.7604,
+      0.7356,
+      0.7587,
+      0.762
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "고양이를 키울 때 주의할 점은 무엇인가요?",
+     "cosines": [
+      0.7339,
+      0.7494,
+      0.7428,
+      0.7523,
+      0.7445,
+      0.7451
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "다음 주 서울 날씨는 어떻습니까?",
+     "cosines": [
+      0.7715,
+      0.7241,
+      0.7584,
+      0.7251,
+      0.7677,
+      0.762
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-de",
+   "lang": "de",
+   "answers": 0,
+   "chunks": [
+    "Laut dem Jahresbericht 2025 von Aoba Trading beschaeftigt das Unternehmen dreihundertzweiundachtzig Personen, und seine beiden Hauptbueros befinden sich in Sendai und Fukuoka.",
+    "Gegruendet wurde die Firma 1962 und handelte zunaechst ausschliesslich mit eingefuehrtem Holz.",
+    "Der Umsatz stieg 2025 um sieben Prozent gegenueber dem Vorjahr, die operative Marge lag bei neun Prozent.",
+    "Die Erzeugnisse teilen sich in zwei Reihen: Verpackungsstoffe fuer den gewerblichen Bedarf und Klebstoffe fuer die Industrie.",
+    "Als Umweltziel ist festgehalten, den Strom der eigenen Anlagen bis 2030 vollstaendig auf erneuerbare Quellen umzustellen.",
+    "Der Vorstand besteht aus sieben Mitgliedern, drei davon sind externe Mitglieder."
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Wie viele Leute arbeiten dort?",
+     "cosines": [
+      0.8537,
+      0.7889,
+      0.7735,
+      0.7736,
+      0.76,
+      0.8138
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "Wie gross ist die Belegschaft?",
+     "cosines": [
+      0.8528,
+      0.7927,
+      0.7835,
+      0.7793,
+      0.775,
+      0.8279
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "In welchen Staedten sitzen die Zentralen?",
+     "cosines": [
+      0.8365,
+      0.7508,
+      0.7436,
+      0.7789,
+      0.7828,
+      0.7989
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Wer hat die Weltmeisterschaft 1998 gewonnen?",
+     "cosines": [
+      0.7511,
+      0.7525,
+      0.7187,
+      0.7277,
+      0.7118,
+      0.7328
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Wie kocht man ein gutes Risotto?",
+     "cosines": [
+      0.7336,
+      0.7144,
+      0.7153,
+      0.7278,
+      0.7222,
+      0.7186
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Wie lange dauert der Zug von Tokio nach Osaka?",
+     "cosines": [
+      0.809,
+      0.7215,
+      0.7358,
+      0.7297,
+      0.7516,
+      0.7376
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Warum ist der Akku so schnell leer?",
+     "cosines": [
+      0.7562,
+      0.7309,
+      0.7531,
+      0.7495,
+      0.7682,
+      0.7465
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Mein Kind hat Fieber, was soll ich tun?",
+     "cosines": [
+      0.7231,
+      0.7176,
+      0.7195,
+      0.7365,
+      0.7193,
+      0.726
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Muss man sich vor dem Laufen aufwaermen?",
+     "cosines": [
+      0.7367,
+      0.7244,
+      0.7192,
+      0.7234,
+      0.7482,
+      0.7387
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-fr",
+   "lang": "fr",
+   "answers": 0,
+   "chunks": [
+    "Selon le rapport annuel 2025 d'Aoba Trading, la societe emploie trois cent quatre-vingt-deux personnes et ses deux bureaux principaux se trouvent a Sendai et Fukuoka.",
+    "La maison a ete fondee en 1962 et ne traitait alors que du bois importe.",
+    "Le chiffre d'affaires de 2025 a progresse de sept pour cent sur un an, pour une marge d'exploitation de neuf pour cent.",
+    "Les fabrications se repartissent en deux gammes: des matieres d'emballage pour le commerce et des colles pour l'industrie.",
+    "L'objectif environnemental retenu est de faire passer d'ici 2030 toute l'electricite des installations propres a des sources renouvelables.",
+    "Le conseil compte sept membres, dont trois viennent de l'exterieur."
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "Combien de gens y travaillent?",
+     "cosines": [
+      0.8491,
+      0.7758,
+      0.7561,
+      0.7755,
+      0.7517,
+      0.7847
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "Quelle est la taille des effectifs?",
+     "cosines": [
+      0.8183,
+      0.7414,
+      0.7504,
+      0.7586,
+      0.761,
+      0.7876
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "Dans quelles villes sont les sieges?",
+     "cosines": [
+      0.7741,
+      0.7281,
+      0.6979,
+      0.7395,
+      0.726,
+      0.7637
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Qui a gagne la Coupe du monde 1998?",
+     "cosines": [
+      0.7318,
+      0.7317,
+      0.7039,
+      0.7062,
+      0.6988,
+      0.7171
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Comment prepare-t-on un bon risotto?",
+     "cosines": [
+      0.7348,
+      0.7098,
+      0.7044,
+      0.7315,
+      0.7304,
+      0.7176
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Combien de temps dure le train de Tokyo a Osaka?",
+     "cosines": [
+      0.8071,
+      0.7097,
+      0.7149,
+      0.7243,
+      0.7495,
+      0.735
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Pourquoi la batterie se vide-t-elle si vite?",
+     "cosines": [
+      0.7446,
+      0.7199,
+      0.735,
+      0.7403,
+      0.7765,
+      0.7198
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Mon enfant a de la fievre, que faire?",
+     "cosines": [
+      0.7139,
+      0.7108,
+      0.7202,
+      0.7231,
+      0.7169,
+      0.7293
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Faut-il s'echauffer avant de courir?",
+     "cosines": [
+      0.733,
+      0.7299,
+      0.7208,
+      0.7264,
+      0.742,
+      0.743
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-en",
+   "lang": "en",
+   "answers": 0,
+   "chunks": [
+    "According to Aoba Trading's 2025 annual report the company employs three hundred and eighty-two people, and its two main offices are in Sendai and Fukuoka.",
+    "The firm was founded in 1962 and at first dealt only in imported timber.",
+    "Turnover in 2025 rose by seven per cent on the year before, at an operating margin of nine per cent.",
+    "The goods fall into two ranges: packaging materials for the trade, and adhesives for industry.",
+    "The stated environmental aim is to move all electricity used at its own sites to renewable sources by 2030.",
+    "The board has seven members, three of whom come from outside the firm."
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "What is the total headcount?",
+     "cosines": [
+      0.8205,
+      0.7209,
+      0.754,
+      0.7162,
+      0.7335,
+      0.7493
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "How large is the organisation?",
+     "cosines": [
+      0.7972,
+      0.7267,
+      0.7384,
+      0.7394,
+      0.7207,
+      0.7514
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "Which cities host the main sites?",
+     "cosines": [
+      0.7664,
+      0.6823,
+      0.683,
+      0.728,
+      0.733,
+      0.6844
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Who won the 1998 football World Cup?",
+     "cosines": [
+      0.6955,
+      0.6934,
+      0.6603,
+      0.6666,
+      0.6459,
+      0.6558
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "How do I cook a good risotto?",
+     "cosines": [
+      0.6967,
+      0.6594,
+      0.6854,
+      0.686,
+      0.6743,
+      0.6629
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "How tall is Mount Fuji?",
+     "cosines": [
+      0.7506,
+      0.6714,
+      0.6647,
+      0.6797,
+      0.6889,
+      0.6569
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Why does my phone battery drain so fast?",
+     "cosines": [
+      0.7053,
+      0.6645,
+      0.712,
+      0.6919,
+      0.7371,
+      0.6836
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "Do I need to warm up before running?",
+     "cosines": [
+      0.694,
+      0.6579,
+      0.6847,
+      0.6801,
+      0.6888,
+      0.6662
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "What is a good film to watch tonight?",
+     "cosines": [
+      0.6918,
+      0.6649,
+      0.6902,
+      0.7017,
+      0.6813,
+      0.6833
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mc-he",
+   "lang": "he",
+   "answers": 0,
+   "chunks": [
+    "על פי הדוח השנתי של חברת אובה סחר לשנת 2025, מספר העובדים עומד על שלוש מאות שמונים ושניים, ושני המשרדים הראשיים נמצאים בסנדאי ובפוקואוקה.",
+    "החברה נוסדה בשנת 1962 ובראשיתה עסקה אך ורק ביבוא עצים.",
+    "המחזור בשנת 2025 גדל בשבעה אחוזים לעומת השנה הקודמת, בשיעור רווח תפעולי של תשעה אחוזים.",
+    "התוצרת מתחלקת לשני קווים: חומרי אריזה למסחר ודבקים לתעשייה.",
+    "היעד הסביבתי שנקבע הוא להעביר עד שנת 2030 את כל החשמל במתקני החברה למקורות מתחדשים.",
+    "בדירקטוריון שבעה חברים, שלושה מהם חיצוניים."
+   ],
+   "questions": [
+    {
+     "kind": "on",
+     "q": "מה גודל כוח האדם בארגון?",
+     "cosines": [
+      0.8621,
+      0.8078,
+      0.8093,
+      0.7984,
+      0.8054,
+      0.8259
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "כמה אנשים מועסקים שם?",
+     "cosines": [
+      0.9038,
+      0.8396,
+      0.8248,
+      0.8236,
+      0.811,
+      0.8441
+     ]
+    },
+    {
+     "kind": "on",
+     "q": "באילו ערים יושבים המשרדים הראשיים?",
+     "cosines": [
+      0.8666,
+      0.8076,
+      0.7892,
+      0.7972,
+      0.7881,
+      0.8177
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "מי ניצח במונדיאל של 1998?",
+     "cosines": [
+      0.7799,
+      0.7832,
+      0.7754,
+      0.7547,
+      0.7451,
+      0.7677
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "איך מכינים חמין טוב?",
+     "cosines": [
+      0.7619,
+      0.7696,
+      0.776,
+      0.7935,
+      0.7521,
+      0.7787
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "כמה זמן לוקחת הרכבת מתל אביב לחיפה?",
+     "cosines": [
+      0.8006,
+      0.7884,
+      0.7934,
+      0.7749,
+      0.7893,
+      0.7893
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "למה הסוללה בטלפון נגמרת מהר?",
+     "cosines": [
+      0.7851,
+      0.7841,
+      0.7974,
+      0.7959,
+      0.7993,
+      0.7776
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "הילד שלי עם חום, מה עושים?",
+     "cosines": [
+      0.747,
+      0.7484,
+      0.7663,
+      0.763,
+      0.7598,
+      0.7591
+     ]
+    },
+    {
+     "kind": "off",
+     "q": "מתי נבנתה החומה הסינית?",
+     "cosines": [
+      0.7985,
+      0.8164,
+      0.7772,
+      0.7761,
+      0.7651,
+      0.773
+     ]
+    }
+   ]
+  }
+ ]
+}

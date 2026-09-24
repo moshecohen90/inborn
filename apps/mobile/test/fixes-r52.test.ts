@@ -151,7 +151,8 @@ describe("F244, F248 · a browser reader is not offered what the browser cannot 
   });
 
   it("a model this tier cannot install is dimmed like one it cannot run", () => {
-    expect(source("components/chat/ModelSheet.tsx")).toContain("const dim = !!choice.blocked || (managed && !choice.current);");
+    /* F345: a model the browser does offer is a choice, not a dimmed row; only what it cannot take stays dim. */
+    expect(source("components/chat/ModelSheet.tsx")).toContain("const dim = !!choice.blocked || (managed && !choice.current && !onChoose);");
   });
 });
 
