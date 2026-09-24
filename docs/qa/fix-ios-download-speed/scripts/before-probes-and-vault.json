@@ -1,0 +1,154 @@
+{
+ "_": "F370 simulator: probe both URLSession types, then the shipped vault download of the photo pack",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 180000
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "start-chatting"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "background",
+   "seconds": 120
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "foreground",
+   "seconds": 120
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "background",
+   "seconds": 120
+  },
+  {
+   "op": "probeDownload",
+   "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-0.8B-F16.gguf",
+   "session": "foreground",
+   "seconds": 120
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "screenshot",
+   "name": "S01-vault-before"
+  },
+  {
+   "op": "press",
+   "testID": "install-vision-qwen35"
+  },
+  {
+   "op": "waitFor",
+   "testID": "confirm-download",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "confirm-text"
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-vision-qwen35",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "waitFor",
+   "testID": "pause-vision-qwen35",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "waitFor",
+   "testID": "cancel-vision-qwen35",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "screenshot",
+   "name": "S02-vault-after"
+  }
+ ]
+}

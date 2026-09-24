@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { modelName } from "../../lib/models";
-import { focusLocation } from "./focus";
+import { FOCUS_FLASH_MS, FOCUS_SETTLE_MS, focusScrollTarget } from "./focus";
 import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../services/theme";
 import { File, Paths } from "expo-file-system";
@@ -226,15 +226,25 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
 
   useOpenSheet(confirm !== null, () => setConfirm(null));
   const listRef = useRef<SectionList<VaultEntry, Section>>(null);
-  const focused = focusLocation(sections, focus);
-  const scrolledTo = useRef<string | null>(null);
+  const focused = focusScrollTarget(sections, focus);
+  const focusedRef = useRef(focused);
+  focusedRef.current = focused;
+  /* A string, not the object: a re-render (Play pack state on Android) must not cancel the pending scroll (F373). */
+  const focusKey = focused ? `${focus}@${focused.sectionIndex}:${focused.itemIndex}` : null;
+  const settleUntil = useRef(0);
+  const [flashId, setFlashId] = useState<string | null>(null);
+  const scrollToFocus = useCallback(() => {
+    const target = focusedRef.current;
+    if (target && Date.now() < settleUntil.current) listRef.current?.scrollToLocation(target);
+  }, []);
   useEffect(() => {
-    if (!focus || !focused || scrolledTo.current === focus) return;
-    scrolledTo.current = focus;
-    /* After the first layout: a SectionList cannot scroll to a row it has not measured yet. */
-    const timer = setTimeout(() => listRef.current?.scrollToLocation({ ...focused, viewOffset: 12, viewPosition: 0, animated: true }), 250);
-    return () => clearTimeout(timer);
-  }, [focus, focused]);
+    if (!focusKey) return;
+    settleUntil.current = Date.now() + FOCUS_SETTLE_MS;
+    setFlashId(focus ?? null);
+    const timers = [120, 450, 1100].map((ms) => setTimeout(scrollToFocus, ms));
+    timers.push(setTimeout(() => setFlashId(null), FOCUS_FLASH_MS));
+    return () => timers.forEach(clearTimeout);
+  }, [focusKey, focus, scrollToFocus]);
   return (
     <View style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 8 }]}>
       <View style={[styles.stack, { maxWidth: contentMax }]}>
@@ -270,7 +280,11 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
         onScrollToIndexFailed={(info: { averageItemLength: number; index: number }) => {
           /* Rows below the rendered window: jump near it, then land exactly once they have been measured. */
           listRef.current?.getScrollResponder()?.scrollTo({ y: info.averageItemLength * info.index, animated: false });
-          setTimeout(() => focused && listRef.current?.scrollToLocation({ ...focused, viewOffset: 12, viewPosition: 0, animated: true }), 300);
+          setTimeout(scrollToFocus, 300);
+        }}
+        onContentSizeChange={scrollToFocus}
+        onScrollBeginDrag={() => {
+          settleUntil.current = 0;
         }}
         {...listClipping}
         sections={sections}
@@ -288,7 +302,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             recommended={item.model.id === recommendedId}
             recommendedFor={{ use: bestUse, languageCode: bestLanguage, weak: recommendedWeak }}
             active={active?.model.id === item.model.id}
-            highlighted={item.model.id === focus}
+            highlighted={item.model.id === flashId}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
             onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.("model") : setConfirm({ entry: item }))}

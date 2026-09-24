@@ -5794,11 +5794,14 @@ nine call sites, wllama's "No available adapters" without WebGPU, and Animated's
 lines are harness noise because no Metro server is running: the dev bundle's `/hot` and `/message` sockets fail, and
 the raw mobile export has no `/sw.js`. The before build was minified, so it also warned about a screen component named
 `o`. The unminified export does not. Evidence in `docs/qa/fix-web-a11y-props/`.
-
 ## Fixes round 79: Play internal 1.0.0 (23) — the photo pack, the hold card and the Document index on the 6T (branch `android-vc23`) — 24.9.2026
 
 The first Android release build carrying rounds 62–78, built from `main` 4a6af9b and delivered to the OnePlus 6T by
 Google Play as an update in place. No code changed in this round; it is the device pass that rounds 72–78 could not do.
+
+**Play upload:** vc23 was uploaded to the internal track and the edit committed at 19:44, before Moshe's 24.9
+decision to stop store uploads reached this stream. Nothing else was done in Play Console, and no further build
+goes to a store until he approves.
 
 - **Released** (F352). `INBORN_REQUIRE_BUNDLE=1` shipping-bundle gate green on the real AAB: Instant and the photo
   projector are fast-follow packs with the catalog's bytes. Edit `05243559871263450934`, committed on the first try.
@@ -5819,3 +5822,50 @@ Three defects found, none fixed here:
 - **F355 (Medium).** Removing the photo pack does not stick on Android: the next vault open downloads it again.
 
 Evidence in `docs/qa/android-vc23/`.
+
+## Fixes round 90: the vault lands on the photo pack on Android, and a pack Play owns has no Remove (branch `fix-vault-pack-android`) — 24.9.2026
+
+The two Android defects round 79 found on the 6T, F354 and F355, fixed as F373 and F374.
+
+- **"Download the photo pack" lands on the card on Android too** (F373). The vault scrolled once, 250 ms after mount,
+  from an effect keyed on a new object every render. On the Play build, opening the vault asked Play for the pack, so
+  it re-rendered at once, cancelled the timer and moved the card to ON THIS DEVICE. The vault stayed at the top. The
+  scroll is now keyed on the card's place, follows it when it moves, and lands again on content-size changes until the
+  user drags. `scrollToLocation` also pointed one row too high, because the section header is item 0. The card is
+  now centred and keeps its accent border for 3 s (`focusScrollTarget` in `apps/mobile/src/screens/vault/focus.ts`).
+- **A Play fast-follow pack is part of the app** (F374). Play re-delivers a fast-follow pack on every app update,
+  whatever the app removed (round 79 saw it 13 s after an update), so a removal cannot stick. Like the iOS bundle,
+  Instant and the photo pack now read "Included with the app" when Play delivered them, with no Remove, and the store
+  refuses to remove them (`apps/mobile/src/vault/included.ts`). On-demand packs and HTTPS downloads keep Remove.
+- **Proof on the 6T.** Before, on Play 1.0.0 (23): `removePack`, then the app's own `startDownload` of 205 MB 18 s
+  later. After, on the QA package through Play Core local testing: no Remove, and no pack request on three vault
+  opens. F373 before and after ran on the QA package under the same conditions. The Play path after the fix waits for
+  the next Play upload.
+
+Evidence in `docs/qa/fix-vault-pack-android/`.
+
+## Fixes round 87: iPhone model downloads at network speed, not 0.09 MB/s (branch `fix-ios-download-speed`) — 24.9.2026
+
+The iPhone 13 Pro took 37 minutes for the 205 MB photo pack (F360) while the Mac on the same network got 8.9 MB/s.
+The simulator reproduces it with the shipped code (F370).
+
+- **The cause is the session type.** `httpsDelivery.ts` asked expo-file-system for `sessionType: "background"`, so
+  nsurlsessiond moved the bytes, and it paces an installed app's transfer to about 0.09 MB/s even with the app on
+  screen. The same app's in-process session moved the same file at network speed, in the same minute.
+
+  | simulator, same app | before | after |
+  |---|---|---|
+  | photo pack through the vault | 0.095 MB/s (37 min on the phone) | 28.6 MB/s (7.2 s) |
+  | `probeDownload` background / foreground | 0.084 / 43.5 MB/s | 0.086 / 32.8 MB/s |
+  | Mac `curl`, same minute | 42.1 MB/s | 34.5 MB/s |
+
+- **What the fix does.** On iOS the download runs in the app's own URLSession. When the app goes to the
+  background, the running leg is paused and its resume data is saved. When the app comes back, it continues with an
+  HTTP 206 from the same byte. Fast (1.28 GB) backgrounded for 15 s fetched only the remaining 1,010 MB and passed
+  its sha256 check. Android is unchanged.
+- **The handover that was rejected.** Handing the transfer between the two session types restarts the file: resume
+  data from one type gets HTTP 200 and the whole file in the other. That was measured before choosing the park.
+- **A bridge op for the phone.** `probeDownload` (`url`, `session`, `seconds`) downloads through one session type and
+  reports MB/s. The phone steps in `docs/qa/fix-ios-download-speed/measurements.md` use it for the phone's own A/B.
+- **Not yet proven on the phone.** No phone was on USB this round. A download interrupted on 1.0.0 (19) refetches from
+  byte 0 once after the update, at full speed.

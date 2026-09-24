@@ -1,4 +1,4 @@
-import { Platform } from "react-native";
+import { AppState, Platform } from "react-native";
 import { DownloadTask, File, type DownloadPauseState, type DownloadTaskOptions } from "expo-file-system";
 import { ALLOWED_MODEL_HOSTS, HF_HOST, httpsUrl, isNoSpaceError, modelParts, requestBytes, resumePlan, shouldWait, type CatalogModel, type InstallEvent, type ModelPart } from "@inborn/core";
 import type { DeliveryContext, DeliveryPlan, ModelDelivery } from "./delivery";
@@ -30,13 +30,20 @@ export class PausedError extends Error {
   }
 }
 
+/**
+ * nsurlsessiond paces a store app's background-session download at ~0.09 MB/s even with the app on screen (F370:
+ * iPhone 13 Pro and simulator alike, ~40 MB/s in-process), so iOS downloads in the app's own session.
+ */
+export const DOWNLOAD_SESSION = Platform.OS === "ios" ? "foreground" : "background";
+
 /** How often a parked download looks at the network again; short enough that a Wi-Fi join is not felt as a stall. */
 export const WIFI_POLL_MS = 5_000;
 
 /**
  * Resumable HTTPS delivery for iOS, desktop and the web (spec §5.4, §10.1 #2). Pause/resume uses the platform's
  * resume data and survives a restart through the vault record; after a dropped connection Android continues from
- * the bytes on disk (Range), iOS relies on its background URLSession and otherwise starts the file again.
+ * the bytes on disk (Range). iOS parks the transfer with its resume data when the app leaves the screen and
+ * continues from it on return, since an in-process session cannot run while the app is suspended.
  */
 export class HttpsDelivery implements ModelDelivery {
   private tasks = new Map<string, DownloadTask>();
@@ -96,21 +103,33 @@ export class HttpsDelivery implements ModelDelivery {
     const headers = isHf(model) ? await hfHeaders() : undefined;
     let written = 0;
     const opts: DownloadTaskOptions = {
-      sessionType: "background",
+      sessionType: DOWNLOAD_SESSION,
       ...(headers && Object.keys(headers).length ? { headers } : {}),
       onProgress: ({ bytesWritten }) => {
         written = bytesWritten;
         progress(bytesWritten);
       },
     };
-    const task = await this.taskFor(model, shard, url, part, saved, opts);
+    await this.untilOnScreen(model.id);
+    let task = await this.taskFor(model, shard, url, part, saved, opts);
     this.tasks.set(model.id, task);
     const before = fileSize(part);
     try {
-      const result = task.state === "paused" ? await task.resumeAsync() : await task.downloadAsync();
-      if (!result) {
-        this.ctx.saveDownload(model.id, { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() });
-        throw new PausedError();
+      for (;;) {
+        const leave = this.parkOnLeave(task);
+        let result: Awaited<ReturnType<DownloadTask["downloadAsync"]>>;
+        try {
+          result = task.state === "paused" ? await task.resumeAsync() : await task.downloadAsync();
+        } finally {
+          leave.stop();
+        }
+        if (result) break;
+        const state: SavedDownload = { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() };
+        this.ctx.saveDownload(model.id, state);
+        if (!leave.parked()) throw new PausedError();
+        await this.untilOnScreen(model.id);
+        task = DownloadTask.fromSavable({ ...state, fileUri: part.uri }, opts);
+        this.tasks.set(model.id, task);
       }
       this.ctx.saveDownload(model.id, null);
       await this.finish(shard, part);
@@ -129,6 +148,37 @@ export class HttpsDelivery implements ModelDelivery {
       this.tasks.delete(model.id);
       /* S50 honesty: what this request moved, whether it finished, paused or failed. */
       recordTransfer({ host: hostOf(url), bytesOut: requestBytes(url), bytesIn: Math.max(0, written - before), purpose: "model" });
+    }
+  }
+
+  /** iOS only: pauses the running leg when the app goes to the background, where an in-process session would stall. */
+  private parkOnLeave(task: DownloadTask): { parked: () => boolean; stop: () => void } {
+    if (DOWNLOAD_SESSION !== "foreground") return { parked: () => false, stop: () => undefined };
+    let parked = false;
+    const sub = AppState.addEventListener("change", (next) => {
+      if (next !== "background" || parked || task.state !== "active") return;
+      parked = true;
+      void task.pauseAsync().catch(() => undefined);
+    });
+    return { parked: () => parked, stop: () => sub.remove() };
+  }
+
+  /** iOS only: a parked or not-yet-started download waits for the screen; Pause and Cancel end the wait. */
+  private async untilOnScreen(id: string): Promise<void> {
+    if (DOWNLOAD_SESSION !== "foreground") return;
+    while (AppState.currentState === "background") {
+      await new Promise<void>((resolve) => {
+        const done = (): void => {
+          sub.remove();
+          this.waiting.delete(id);
+          resolve();
+        };
+        const sub = AppState.addEventListener("change", (next) => {
+          if (next !== "background") done();
+        });
+        this.waiting.set(id, done);
+      });
+      if (this.stopped.delete(id)) throw new PausedError();
     }
   }
 
