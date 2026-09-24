@@ -4389,6 +4389,7 @@ node apps/site/check.mjs` green on all 13 pages including the new measurement. E
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
 
+
 ## Fixes round 53: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
 
 The MosheAI review of 24.9 opened its third blocker with *"Nobody has ever run the Work tier on hardware, and its
@@ -4509,3 +4510,13 @@ the correct content is mechanical rather than a judgement call, which is most of
 
 Gates: `pn typecheck` 0, `pn lint` 0, `pn check:store` PASS, **1,451 tests** (core 726, mobile 692, i18n 20, ui 13).
 F row: `docs/qa/qa-run-2026-09-11.md` F213, follow-up.
+Gates on this branch merged with `main`: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,461 tests** (core 726, mobile 705, i18n 17, ui 13); 16 of the mobile ones are this round's — 3 on F215, 13 on F206b.
+
+**F206b, handed to this stream by the lead after the pass began.** `delivery.status` never became `done`, so the Proof
+screen's LAST DELIVERY branch was unreachable and Android fell back to *"Instant arrives as a Play asset pack"* — on
+the same screen that was reading **IN 539 MB** from an HTTPS download. The line is now read from the vault record
+(`VaultStore.lastDelivery()` + `doneDelivery()`) rather than from a live transfer, so it is right after the download,
+after a restart, and after the next install; a live download still shows its progress and a cancelled one claims
+nothing. Evidence `docs/qa/work-tier-6t/f206-*.png`, guards in `apps/mobile/src/vault/lastDelivery.test.ts`.
+

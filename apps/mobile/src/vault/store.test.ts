@@ -139,3 +139,28 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     expect(fetched).toContain("fast");
   });
 });
+
+describe("VaultStore.lastDelivery (F206)", () => {
+  it("names the pack Play delivered, so the Proof screen can print it after the download is over", async () => {
+    record = hadFast();
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(vault.lastDelivery()).toMatchObject({ id: "fast", name: fast.name, via: "play", bytes: fast.bytes });
+  });
+
+  it("is null while the vault holds nothing this phone can load", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(vault.lastDelivery()).toBeNull();
+  });
+
+  it("does not name a download whose file is gone from the vault directory", async () => {
+    record = { ...emptyRecord(), installs: { "embed-nomic": { file: embed.file, bytes: embed.bytes, sha256: embed.sha256, via: "https", installedAt: 9 } } };
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(vault.lastDelivery()).toBeNull();
+  });
+});

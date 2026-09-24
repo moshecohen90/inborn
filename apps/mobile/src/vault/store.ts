@@ -27,6 +27,7 @@ import { networkKind } from "./network";
 import { fileGgufHeader, fileSha256 } from "./hash";
 import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError } from "./httpsDelivery";
 import { reportStorageFull } from "../services/storageFull";
+import { newestDelivery, type DeliveredInstall, type DeliveryCandidate } from "./lastDelivery";
 import { pickModelLocation, type ModelLocation } from "./locate";
 import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vaultDir } from "./paths";
 import { PlayDelivery } from "./playDelivery";
@@ -43,6 +44,8 @@ export const STRAY_PREFIX = "stray:";
 /** `importOnly`: this platform's store never carries the file (sharp-phi has no Play pack), so the card offers import instead of a dead Install. */
 export type VaultEntry = { model: CatalogModel; state: InstallState; plan: DeliveryPlan | null; imported?: ImportedModel; stray?: StrayFile; importOnly?: boolean; hf?: boolean };
 export type ManifestStatus = { ok: true } | { ok: false; problem: string };
+
+export type { DeliveredInstall } from "./lastDelivery";
 
 /**
  * Everything the vault screens and the engine need about models on this device (spec §5.4, §8.4).
@@ -260,6 +263,15 @@ export class VaultStore {
   }
 
   // ---- queries ----------------------------------------------------------------
+
+  /* Read from the record, not from a live download: the delivery is over long before anyone opens Proof (F206). */
+  lastDelivery(): DeliveredInstall | null {
+    const candidate = (id: string, bytes: number, via: DeliverySource, at: number): DeliveryCandidate => ({ id, name: this.model(id)?.name ?? "", bytes, via, at, ready: this.state(id).kind === "ready" });
+    return newestDelivery([
+      ...Object.entries(this.record.installs).map(([id, rec]) => candidate(id, rec.bytes, rec.via, rec.installedAt)),
+      ...Object.values(this.record.imports).map((imp) => candidate(imp.id, imp.bytes, "import", imp.importedAt)),
+    ]);
+  }
 
   entries(): VaultEntry[] {
     const catalog = this.manifest.models.map((model) => {

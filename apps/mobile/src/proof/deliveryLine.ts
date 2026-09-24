@@ -29,4 +29,10 @@ export function deliveryKey(source: DeliverySource): string {
  */
 export function deliveryHashChecked(source: DeliverySource): boolean {
   return source === "apple" || source === "https" || source === "hf" || source === "play";
+/** What the vault's newest install looks like to the delivery strip once nothing is downloading (F206). */
+export type DoneDelivery = { name: string; status: "done"; progress: 1; totalBytes: number; source: DeliverySource };
+
+/* Without this the strip goes straight from "verifying" back to null and the done branch is dead code. */
+export function doneDelivery(last: { name: string; bytes: number; via: DeliverySource } | null): DoneDelivery | null {
+  return last ? { name: last.name.toUpperCase(), status: "done", progress: 1, totalBytes: last.bytes, source: last.via } : null;
 }

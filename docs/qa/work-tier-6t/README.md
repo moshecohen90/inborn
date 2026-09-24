@@ -1,7 +1,8 @@
-# work-tier-6t — the $69.99 Work card, driven on real hardware (round 53, F215–F224)
+# work-tier-6t — the $69.99 Work card, driven on real hardware (round 53, F206b + F215–F224)
 
-This pass was briefed as round 49; `deploy-live` published that number while it ran, so the README section is
-**round 53**. The reserved findings F215–F224 are unchanged, and the guard file keeps its `work-tier-r49` name.
+This pass was briefed as round 49; `deploy-live` and then `fix-design` published 49 and 52 while it ran, so the
+README section is **round 53**. The reserved findings F215–F224 are unchanged, F206b was handed to this stream by
+the lead, and the guard file keeps its `work-tier-r49` name.
 
 The review of 24.9.2026 opened with this: *"Nobody has ever run the Work tier on hardware, and its three headline
 bullets are the ones never driven."* Their only coverage was T48/T49/T50 on an **emulator on 11.9**, thirteen rounds
@@ -64,6 +65,35 @@ and the new key `chats.more` in all nine locales. On the phone the same step the
 the menu opened — `f215-row-menu-after.png`. Guard: `apps/mobile/test/work-tier-r49.test.ts`, watched to fail
 (remove the `accessibilityActions` line → 2 of its 3 tests go red).
 
+## F206b — the LAST DELIVERY line nobody could ever see
+
+Round 52 gave the Proof screen a correct source key. It could still never print it: `delivery.status` only ever held
+`delivering`, `verifying` or null, so the `done` branch in `Proof.tsx` was unreachable code and the section fell back
+to the built-in text. On Android that fallback reads *"Instant arrives as a Play asset pack · nothing downloaded by
+Inborn"* — printed three rows under the meter's own **IN 539 MB**, right after a 508 MB HTTPS download
+(`f206-before-play-claim.png`). Two statements on one screen, one of them false, on the screen whose whole job is
+literal accuracy.
+
+The fix reads the line from the vault record instead of from a live transfer, because the delivery is over by the
+time anyone opens Proof. `VaultStore.lastDelivery()` returns the newest install or import whose file this phone can
+load, and `doneDelivery()` turns it into the state the screen waits for.
+
+| what was checked, on the phone | result | evidence |
+|---|---|---|
+| the download that had just happened | **INSTANT · 508 MB · Downloaded from models.inbornapp.com when you asked · sha256** | `f206-after-real-source.png` |
+| it survives a cold start (the point of reading the record) | same line after `force-stop` and relaunch | `f206-after-restart.png` |
+| a second install takes the line | **DOCUMENT INDEX · 262 MB** after the embedder landed | `f206-after-second-download.png` |
+| a live download is not masked by it | *Delivering FAST · 31% of 1.19 GB* while the fix is live | `f206-live-download-still-shows-progress.png` |
+| a cancelled download does not claim it | line stays on DOCUMENT INDEX, no partial file left in `files/models` | same run, `vault.json` read with `run-as` |
+
+Guards: `apps/mobile/src/vault/lastDelivery.test.ts` and three cases in `apps/mobile/src/vault/store.test.ts`, both
+watched to fail — unwiring the strip reds the wiring assertion, dropping the `ready` filter reds the two "the file is
+gone" cases.
+
+**Residual, stated rather than hidden:** the line prints `MODELS_HOST`, which is the truth in a store build and not
+in this dev build, where localhost served the bytes. The real host lives in the delivery plan, not in the install
+record, so naming it would change the record schema.
+
 ## What the QA package cannot prove, and why
 
 - **Prices.** This package has no Play products, so both tiers render as *" · one-time purchase"* with an empty
@@ -87,3 +117,10 @@ the menu opened — `f215-row-menu-after.png`. Guard: `apps/mobile/test/work-tie
   "Install the document index model first" afterwards, and there is no re-index action — delete it and import again.
 - **`adb reverse` is cleared when the adb server restarts** (another stream's emulator closing is enough). Re-add both
   the Metro and the model-host reverses before deciding the bundle is broken.
+- **A debug build prebuilt without `APP_VARIANT=development` cannot reach Metro at all.** The store config declares
+  `<uses-permission android:name="android.permission.INTERNET" tools:node="remove"/>`, so the APK has no internet
+  permission, React Native falls back to the bundle in assets, which a debug build does not carry, and the red box
+  says only *"Unable to load script"*. `expo prebuild` needs the same `APP_VARIANT=development` and
+  `EXPO_PUBLIC_*` environment as the gradle build; round 47b's `scripts/check-store-env.sh` refuses the reverse
+  mistake loudly, and this one silently. Check `grep INTERNET android/app/src/main/AndroidManifest.xml` before
+  blaming `adb reverse`.
