@@ -61,8 +61,11 @@ export function shouldWait(bytes: number, network: NetworkKind, wifiOnly: boolea
 /** Exponential backoff for retries after a dropped connection (§10.1 #2): 2s, 4s, 8s … capped at 60s. */
 export const backoffMs = (attempt: number): number => Math.min(60_000, 2_000 * 2 ** Math.max(0, attempt));
 
+/** "533 MB", "1.3 GB": decimal throughout, one place every screen shares (the catalog itself quotes decimal, spec §6.1) — a binary (1024-based) reading here is what made the download door and the model card print two different sizes for one file (F281). */
 export function formatModelBytes(bytes: number): string {
-  if (bytes >= 1024 ** 3) return `${(bytes / 1024 ** 3).toFixed(bytes >= 10 * 1024 ** 3 ? 0 : 1)} GB`;
-  if (bytes >= 1024 ** 2) return `${Math.round(bytes / 1024 ** 2)} MB`;
-  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+  if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 1)} GB`;
+  if (bytes >= 1e6) return `${Math.round(bytes / 1e6)} MB`;
+  if (bytes >= 1e3) return `${Math.round(bytes / 1e3)} kB`;
+  return `${Math.round(bytes)} B`;
 }

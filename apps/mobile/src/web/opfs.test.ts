@@ -1,16 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatBytes } from "./format";
 import { spaceCheck } from "./opfs";
-
-describe("formatBytes", () => {
-  it("prints catalog-style decimal sizes", () => {
-    expect(formatBytes(532_517_120)).toBe("533 MB");
-    expect(formatBytes(2_740_000_000)).toBe("2.7 GB");
-    expect(formatBytes(12_000_000_000)).toBe("12 GB");
-    expect(formatBytes(999)).toBe("999 B");
-    expect(formatBytes(-1)).toBe("?");
-  });
-});
 
 describe("spaceCheck", () => {
   it("needs the missing bytes plus headroom", () => {

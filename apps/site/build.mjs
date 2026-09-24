@@ -31,6 +31,18 @@ export const appOrigin = process.env.APP_ORIGIN ?? origins.app;
 /** Neither listing resolved on 23.9.2026 (App Store version PREPARE_FOR_SUBMISSION, Play on the internal track only). */
 export const storesLive = process.env.STORES_LIVE === "1";
 
+/** "533 MB", "1.3 GB": must read exactly like packages/core's formatModelBytes (catalog-resume.test.ts), or the app and the site quote two different sizes for the same file (F281). */
+function formatModelBytes(bytes) {
+  if (bytes >= 1e9) return `${(bytes / 1e9).toFixed(bytes >= 10e9 ? 0 : 1)} GB`;
+  if (bytes >= 1e6) return `${Math.round(bytes / 1e6)} MB`;
+  return `${Math.round(bytes / 1e3)} kB`;
+}
+const catalog = JSON.parse(readFileSync(path.join(repoRoot, "packages/core/src/catalog/manifest.json"), "utf8"));
+const bytesOf = (id) => catalog.models.find((m) => m.id === id)?.bytes ?? (() => { throw new Error(`catalog has no model "${id}"`); })();
+/** The two sizes the site quotes: what the app bundles (Instant) and the largest the browser tier offers (Fast) — spec §14.3, §6.1 (F280). */
+export const SIZE_INSTANT = formatModelBytes(bytesOf("instant"));
+export const SIZE_FAST = formatModelBytes(bytesOf("fast"));
+
 export const stores = {
   ios: { name: "App Store", href: "https://apps.apple.com/app/id6809165161", note: "iPhone and iPad" },
   android: { name: "Google Play", href: "https://play.google.com/store/apps/details?id=com.inbornapp.mobile", note: "Android phones and tablets" },
@@ -172,7 +184,7 @@ export const legalRoutes = ["/privacy", "/terms", "/licenses", "/accessibility"]
 const legalLabel = (route) => ({ "/privacy": "Privacy", "/terms": "Terms", "/licenses": "Licenses", "/accessibility": "Accessibility" })[route] ?? route.slice(1);
 
 /** Every `{{TOKEN}}` the generator fills. Anything else left in a page is an unfilled placeholder and a bug. */
-export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ"];
+export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", "SIZE_INSTANT", "SIZE_FAST"];
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
 function tokens() {
@@ -190,6 +202,8 @@ function tokens() {
       ? "Both store listings are public; the links above open the product page."
       : "Neither store listing is public yet; both links open the real product page the moment it is.",
     FAQ: faqHtml(),
+    SIZE_INSTANT,
+    SIZE_FAST,
   };
 }
 
@@ -322,7 +336,7 @@ const FAQ = [
   ["Do you see my chats?",
     "No. Your messages never leave the device, and Inborn has no account system, no server, no analytics and no crash reporting, so there is nothing for us to see, store, sell or hand to anyone. Conversations live in an encrypted database whose key the operating system holds. We could not recover them for you even if you asked."],
   ["How big is the download?",
-    "The app is a normal store download and the Instant model it runs is 533 MB, which ships inside the app on iPhone and arrives from Google Play as an asset pack on Android. Larger models are optional: Fast is 1.28 GB and Sharp is 2.74 GB, and you choose when to install them. In a browser the same 533 MB is downloaded once into the browser's own storage."],
+    `The app is a normal store download and the Instant model it runs is ${SIZE_INSTANT}, which ships inside the app on iPhone and arrives from Google Play as an asset pack on Android. Larger models are optional: Fast is 1.28 GB and Sharp is 2.74 GB, and you choose when to install them. In a browser, one model downloads once, from ${SIZE_INSTANT} (Instant) to ${SIZE_FAST} (Fast, offered on capable desktops), chosen by your device, into the browser's own storage.`],
   ["Which AI models does Inborn run?",
     "Inborn runs open-weight models in GGUF format: Qwen3.5 at 0.8B, 2B and 4B under Apache-2.0, and Microsoft's Phi-4-mini 3.8B under MIT. Instant and Fast are free; the Sharp models come with Pro. You can also import any GGUF file you already have, including Gemma, Mistral and Llama."],
   ["Will it work on my phone?",

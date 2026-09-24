@@ -53,7 +53,7 @@ describe("memoryPressureFromAndroid", () => {
     expect(memoryPressureFromAndroid({ availMem: 100 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: false }, null)).toBe("normal");
     expect(memoryPressureFromAndroid({ availMem: 100 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: true }, null)).toBe("critical");
   });
-  it("Instant (508 MB) on the same free RAM stays normal", () => {
+  it("Instant (533 MB) on the same free RAM stays normal", () => {
     expect(memoryPressureFromAndroid({ availMem: 853 * 1024 ** 2, threshold: 300 * 1024 ** 2, lowMemory: false }, 532517120)).toBe("normal");
   });
 });
