@@ -1,0 +1,14 @@
+{ "runId": "RUNID", "steps": [
+  { "op": "waitFor", "testID": "composer-input", "timeoutMs": 30000 },
+  { "op": "press", "testID": "attach" },
+  { "op": "waitFor", "testID": "attach-install-vision", "timeoutMs": 10000 },
+  { "op": "sleep", "ms": 800 },
+  { "op": "screenshot", "name": "01-attach-sheet-link" },
+  { "op": "press", "testID": "attach-install-vision" },
+  { "op": "waitFor", "testID": "close-vault", "timeoutMs": 10000 },
+  { "op": "sleep", "ms": 1500 },
+  { "op": "screenshot", "name": "02-vault-landed" },
+  { "op": "value", "testID": "model-card-vision-qwen35" },
+  { "op": "sleep", "ms": 3000 },
+  { "op": "screenshot", "name": "03-vault-after-flash" }
+]}

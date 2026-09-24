@@ -31,6 +31,7 @@ import { newestDelivery, type DeliveredInstall, type DeliveryCandidate } from ".
 import { pickModelLocation, type ModelLocation } from "./locate";
 import { bundledModelFile, devFallbackFile, fileSize, modelFile, safeDelete, vaultDir } from "./paths";
 import { PlayDelivery } from "./playDelivery";
+import { includedWithApp } from "./included";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
 
 /** A .gguf in the vault folder that neither the catalog nor an import registered (copied by hand, a crash mid-import): shown, counted, removable, never loaded. */
@@ -468,14 +469,14 @@ export class VaultStore {
       return;
     }
     const current = this.state(id);
-    if (current.kind === "ready" && current.via === "bundled") return;
+    const model = this.model(id);
+    if (model && includedWithApp(model, current)) return;
     const imp = this.record.imports[id];
     if (imp) {
       safeDelete(modelFile(imp.file));
       delete this.record.imports[id];
     } else {
-      const m = this.model(id);
-      if (m) await this.delivery.remove(m);
+      if (model) await this.delivery.remove(model);
       delete this.record.installs[id];
       delete this.record.hf[id];
     }

@@ -9,6 +9,7 @@ import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { modelCopy, modelLabel, modelName } from "../../lib/models";
 import { installFailureText } from "../../vault/failureText";
+import { includedWithApp } from "../../vault/included";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -53,6 +54,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
   const dot = state.kind === "ready" ? (active ? "●" : "◉") : state.kind === "quarantined" || state.kind === "corrupt" ? "⊗" : "○";
   const dotColor = state.kind === "ready" ? (active ? theme.text : theme.text2) : state.kind === "corrupt" || state.kind === "quarantined" ? theme.danger : theme.text3;
   const disabled = !!disabledReason;
+  const included = includedWithApp(model, state);
   const imported = model.id.startsWith("import:");
   const hf = isHfModelId(model.id);
   /* A companion (photos, voice, documents) is part of the app, not a model to chat with: its own name, no "Use". */
@@ -77,7 +79,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       case "failed":
         return { text: installFailureText(t, state.error, device.os), danger: true };
       case "ready":
-        return { text: state.via === "bundled" ? t("vault.state.bundled") : active ? t("vault.loaded") : t("vault.installed") };
+        return { text: included ? t("vault.state.bundled") : active ? t("vault.loaded") : t("vault.installed") };
       case "not-installed":
         if (plan) return null;
         if (importOnly) return { text: t("vault.state.importOnly.android") };

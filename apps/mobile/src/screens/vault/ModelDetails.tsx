@@ -11,6 +11,7 @@ import { font, useType } from "../../services/type";
 import { useOpenSheet } from "../../lib/openSheets";
 import { LicenceSheet } from "../../components/LicenceSheet";
 import { licenceSubjectFor } from "../../lib/modelLicence";
+import { includedWithApp } from "../../vault/included";
 
 export interface ModelDetailsProps {
   model: CatalogModel | null;
@@ -125,7 +126,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
             </Pressable>
           ) : null}
           {installed ? (
-            state.via === "bundled" ? (
+            model && includedWithApp(model, state) ? (
               <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.state.bundled")}</Text>
             ) : active ? (
               <Text style={[type.mono, { color: theme.text3 }]}>{t("vault.details.deleteBlocked")}</Text>

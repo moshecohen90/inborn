@@ -5819,3 +5819,24 @@ Three defects found, none fixed here:
 - **F355 (Medium).** Removing the photo pack does not stick on Android: the next vault open downloads it again.
 
 Evidence in `docs/qa/android-vc23/`.
+
+## Fixes round 90: the vault lands on the photo pack on Android, and a pack Play owns has no Remove (branch `fix-vault-pack-android`) — 24.9.2026
+
+The two Android defects round 79 found on the 6T, F354 and F355, fixed as F373 and F374.
+
+- **"Download the photo pack" lands on the card on Android too** (F373). The vault scrolled once, 250 ms after mount,
+  from an effect keyed on a new object every render. On the Play build, opening the vault asked Play for the pack, so
+  it re-rendered at once, cancelled the timer and moved the card to ON THIS DEVICE. The vault stayed at the top. The
+  scroll is now keyed on the card's place, follows it when it moves, and lands again on content-size changes until the
+  user drags. `scrollToLocation` also pointed one row too high, because the section header is item 0. The card is
+  now centred and keeps its accent border for 3 s (`focusScrollTarget` in `apps/mobile/src/screens/vault/focus.ts`).
+- **A Play fast-follow pack is part of the app** (F374). Play re-delivers a fast-follow pack on every app update,
+  whatever the app removed (round 79 saw it 13 s after an update), so a removal cannot stick. Like the iOS bundle,
+  Instant and the photo pack now read "Included with the app" when Play delivered them, with no Remove, and the store
+  refuses to remove them (`apps/mobile/src/vault/included.ts`). On-demand packs and HTTPS downloads keep Remove.
+- **Proof on the 6T.** Before, on Play 1.0.0 (23): `removePack`, then the app's own `startDownload` of 205 MB 18 s
+  later. After, on the QA package through Play Core local testing: no Remove, and no pack request on three vault
+  opens. F373 before and after ran on the QA package under the same conditions. The Play path after the fix waits for
+  the next Play upload.
+
+Evidence in `docs/qa/fix-vault-pack-android/`.
