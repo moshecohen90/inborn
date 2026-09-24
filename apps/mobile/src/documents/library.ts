@@ -8,6 +8,7 @@ import {
   embedBudget,
   indexDocument,
   isRelevant,
+  relevanceDoors,
   needsReindex,
   newId,
   reindexFrom,
@@ -503,9 +504,11 @@ export class DocumentLibrary {
     const hits = docIds.length ? await retriever.retrieve(question, { docIds }) : [];
     const retrieveMs = Date.now() - started;
     const strict = o.strict ?? this.prefs.strict;
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers });
+    const embedderId = this.embedderRef.embedder.id;
+    const doors = relevanceDoors(embedderId);
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
-    console.log(`[rag] strict=${strict} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${isRelevant(h) ? "KEPT" : "dropped"}`).join(" · ")}`);
+    console.log(`[rag] strict=${strict} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs };
   }
 

@@ -28,7 +28,7 @@ const STOP = new Set(
     .concat("der die das dem den des ein eine einen einem eines und oder aber auch noch nur sehr als aus bei mit nach von vor zu zum zur im in am an auf für über unter ohne durch gegen ist sind sein seine seiner seinen haben hatte werden wird wurde kann können muss soll wie wer wen wem was wo wann warum welche welcher welches dieser diese dieses sich ihr ihre sie es nicht kein keine mehr schon dass damit oben unten".split(" "))
     .concat("el la los las un una unos unas de del al en es ser está están por para con sin sobre como cuando donde quien cual cuanto este esta esto estos estas ese esa eso su sus mi mis tu tus nos les lo se ya muy más pero también hay ha han fue tiene tienen desde hasta entre todo toda todos todas otro otra mismo qué cómo cuándo dónde quién cuál cuánto".split(" "))
     .concat("os um uma uns umas do da dos das na nas em pelo pela pelos pelas ao aos às qual quais quem quando onde como porque são está estão foi tem têm há já mais menos muito também mas seu sua seus suas meu minha este esta isso esse essa aquele aquela outro outra lhe ele ela eles elas eu você nós".split(" "))
-    .concat("le les des du et ou qui quoi dans sur sous avec sans pour par sont être ont ce cet cette ces sa ses ma mes ta tes notre nos votre vos leur leurs il elle ils elles je nous vous on me te au aux plus moins très aussi mais donc comme quand où combien pourquoi comment tout tous toute toutes même autre autres fait faire peut doit est".split(" "))
+    .concat("le les des du et ou que qui quoi dans sur sous avec sans pour par sont être ont ce cet cette ces sa ses ma mes ta tes notre nos votre vos leur leurs il elle ils elles je nous vous on me te au aux plus moins très aussi mais donc comme quand où combien pourquoi comment tout tous toute toutes même autre autres fait faire peut doit est".split(" "))
     .concat(
     ["\u05E9\u05DC", "\u05D0\u05EA", "\u05E2\u05DC", "\u05E2\u05DD", "\u05D0\u05DC", "\u05D0\u05DD", "\u05DB\u05D9", "\u05D2\u05DD", "\u05D0\u05D5", "\u05DC\u05D0", "\u05D6\u05D4", "\u05D6\u05D5", "\u05D6\u05D0\u05EA", "\u05D4\u05D5\u05D0", "\u05D4\u05D9\u05D0", "\u05D4\u05DD", "\u05D4\u05DF", "\u05D0\u05E0\u05D9", "\u05D0\u05EA\u05D4", "\u05D0\u05E0\u05D7\u05E0\u05D5", "\u05D0\u05EA\u05DD", "\u05D9\u05E9", "\u05D0\u05D9\u05DF", "\u05DB\u05DC", "\u05DE\u05D4", "\u05DE\u05D9", "\u05D0\u05D9\u05DA", "\u05DE\u05EA\u05D9", "\u05D0\u05D9\u05E4\u05D4", "\u05DC\u05DE\u05D4", "\u05DB\u05DE\u05D4", "\u05D0\u05D1\u05DC", "\u05E8\u05E7", "\u05E2\u05D5\u05D3", "\u05DB\u05D1\u05E8", "\u05D4\u05D9\u05D4", "\u05D4\u05D9\u05D9\u05EA\u05D4", "\u05D4\u05D9\u05D5", "\u05D9\u05D4\u05D9\u05D4", "\u05DB\u05DA", "\u05DB\u05DF", "\u05D0\u05D6", "\u05E4\u05D4", "\u05E9\u05DD", "\u05D1\u05D9\u05DF", "\u05DC\u05E4\u05E0\u05D9", "\u05D0\u05D7\u05E8\u05D9", "\u05EA\u05D7\u05EA", "\u05DE\u05E2\u05DC"],
   ),
@@ -45,6 +45,21 @@ const CJK_FUNCTION_CHAR =
    lexical match handed an off-topic question the document's own passage (QA F278); it still scores and ranks. */
 export const isCjkFunctionTerm = (term: string): boolean => hasCjk(term) && ![...term].some((c) => !CJK_FUNCTION_CHAR.test(c));
 
+const CJK_NUMERAL = /^[〇零一二三四五六七八九十百千万億兆两]+$/u;
+const UNITS = new Set("km kg mg cm mm ml kb mb gb tb hz khz mhz ghz kw kwh mah usd eur ils nis gbp jpy cny krw brl".split(" "));
+
+/**
+ * A term that proves nothing on its own: a number, a year, a unit, a numeral bigram ("一九") or a lone CJK character.
+ * Under e5 an off-topic question sharing only the year "1998" with a company report scored cosine 0.81 (QA F365).
+ */
+export const isWeakTerm = (term: string): boolean => {
+  if (/^\p{N}+$/u.test(term) || CJK_NUMERAL.test(term) || UNITS.has(term)) return true;
+  if (hasCjk(term) && [...term].length === 1) return true;
+  /* "1998년", "10th", "1990s", "40km": a number with a counter or unit glued on is still a number. */
+  const unit = term.replace(/^\p{N}+/u, "");
+  return unit !== term && ([...unit].length <= 2 || UNITS.has(unit));
+};
+
 export function bm25Tokens(text: string): string[] {
   const out: string[] = [];
   for (const w of words(text)) {
@@ -58,7 +73,7 @@ export function bm25Tokens(text: string): string[] {
 export interface Bm25Hit {
   id: string;
   score: number;
-  /** Distinct content query terms that matched; grammatical glue is excluded, as the relevance floor reads this. */
+  /** Distinct content query terms that matched; glue is excluded, and weak terms count only beside a content term. */
   matched: number;
 }
 
@@ -103,7 +118,7 @@ export class Bm25Index {
     const n = this.lengths.size;
     if (!n) return [];
     const avg = this.totalLength / n;
-    const scores = new Map<string, { score: number; matched: Set<string> }>();
+    const scores = new Map<string, { score: number; matched: Set<string>; weak: Set<string> }>();
     const qterms = new Set(bm25Tokens(query));
     for (const t of qterms) {
       const m = this.postings.get(t);
@@ -114,13 +129,14 @@ export class Bm25Index {
         const len = this.lengths.get(id) ?? avg;
         const s = idf * ((tf * (this.k1 + 1)) / (tf + this.k1 * (1 - this.b + (this.b * len) / avg)));
         let e = scores.get(id);
-        if (!e) scores.set(id, (e = { score: 0, matched: new Set() }));
+        if (!e) scores.set(id, (e = { score: 0, matched: new Set(), weak: new Set() }));
         e.score += s;
-        if (!isCjkFunctionTerm(t)) e.matched.add(t);
+        if (isWeakTerm(t)) e.weak.add(t);
+        else if (!isCjkFunctionTerm(t)) e.matched.add(t);
       }
     }
     return [...scores]
-      .map(([id, e]) => ({ id, score: e.score, matched: e.matched.size }))
+      .map(([id, e]) => ({ id, score: e.score, matched: e.matched.size ? e.matched.size + e.weak.size : 0 }))
       .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
       .slice(0, k);
   }

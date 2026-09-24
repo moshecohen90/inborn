@@ -22,11 +22,8 @@ export interface PromptOptions {
   historyShare?: number;
   /** A persona or default system prompt to keep in front of the document rules. */
   systemPrompt?: string;
-  /** Hits below this cosine and without a lexical match are not "relevant" for strict mode. */
-  minCosine?: number;
-  minBm25?: number;
-  /** A hit above this cosine is relevant with no shared word. */
-  minCosineAlone?: number;
+  /** Catalog id of the embedder that produced the hits' cosines; it picks the relevance doors (RELEVANCE_DOORS). */
+  embedderId?: string;
   nonce?: string;
   /** The user's UI language, so the answer follows it and not the documents' script (§10.5 #40). */
   answerLanguage?: string;
@@ -56,26 +53,52 @@ export const isNotFoundReply = (reply: string): boolean => {
 
 export const DEFAULT_ANSWER_RESERVE = 512;
 export const DEFAULT_HISTORY_SHARE = 0.35;
-/* The corroboration bar for a single shared word, kept from round 70 (docs/qa/fix-cjk-floor/cosines.md). */
-export const DEFAULT_MIN_COSINE = 0.5;
-export const DEFAULT_MIN_BM25 = 2.0;
-/* multilingual-e5-large-instruct's highest off-topic cosine over 144 measured questions is 0.8176 (Q6_K) and 0.8164
-   (Q8_0); every point above that is recall (docs/qa/embed-multilingual/measure.md). Tied to that embedder. */
-export const DEFAULT_MIN_COSINE_ALONE = 0.82;
+/** The cosines at which an embedder's hit counts as relevant; they are that embedder's own measured numbers. */
+export interface RelevanceDoors {
+  /** Above this, the embedding alone makes a passage relevant. */
+  alone: number;
+  /** At or above this, one shared content word is corroborated. */
+  corroborate: number;
+  /** A single shared word this rare (BM25) is relevant without the embedding. */
+  minBm25: number;
+}
+
+export const DEFAULT_EMBEDDER_ID = "embed-e5";
 
 /**
- * Relevant: the embedding alone is sure of it, or the question and the passage share real words and the embedding
- * backs a single shared word up. With the multilingual embedder, 51 of 57 on-topic questions in nine languages are
- * cited and 0 of 102 off-topic ones (F334).
+ * Keyed by catalog embedder id, so swapping the embedder means measuring a new row, never inheriting one.
+ * embed-e5 (docs/qa/fix-corroboration-door/one-term.md, F365): highest off-topic cosine 0.8176 over 354 pairs;
+ * highest off-topic cosine with one shared term 0.8107; lowest on-topic one-term cosine the door keeps 0.8177.
  */
-export const isRelevant = (h: RetrievalHit, minCosine = DEFAULT_MIN_COSINE, minBm25 = DEFAULT_MIN_BM25, minCosineAlone = DEFAULT_MIN_COSINE_ALONE): boolean =>
-  h.cosine > minCosineAlone || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= minBm25 || h.cosine >= minCosine));
+export const RELEVANCE_DOORS: Readonly<Record<string, RelevanceDoors>> = {
+  "embed-e5": { alone: 0.82, corroborate: 0.815, minBm25: 2.0 },
+  /* Round 70's row (docs/qa/fix-cjk-floor/cosines.md): no longer shipped, and an index it built is rebuilt (F336). */
+  "embed-nomic": { alone: 0.82, corroborate: 0.5, minBm25: 2.0 },
+};
+
+/* An embedder nobody measured gets no cosine door at all: only lexical evidence can cite. */
+export const UNMEASURED_DOORS: RelevanceDoors = { alone: Number.POSITIVE_INFINITY, corroborate: Number.POSITIVE_INFINITY, minBm25: 2.0 };
+
+export const relevanceDoors = (embedderId: string = DEFAULT_EMBEDDER_ID): RelevanceDoors => RELEVANCE_DOORS[embedderId] ?? UNMEASURED_DOORS;
+
+const SHIPPED = relevanceDoors();
+export const DEFAULT_MIN_COSINE = SHIPPED.corroborate;
+export const DEFAULT_MIN_BM25 = SHIPPED.minBm25;
+export const DEFAULT_MIN_COSINE_ALONE = SHIPPED.alone;
+
+/**
+ * Relevant: the embedding alone is sure of it, or the question and the passage share two real words, or one real
+ * word that is rare or that the embedding backs up. Numbers, years, units and lone CJK characters are not real
+ * words on their own (bm25.ts `isWeakTerm`).
+ */
+export const isRelevant = (h: RetrievalHit, doors: RelevanceDoors = SHIPPED): boolean =>
+  h.cosine > doors.alone || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= doors.minBm25 || h.cosine >= doors.corroborate));
 
 function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMarkers = true): string {
   const lang = answerLanguage ? ` Answer in the user's language (${answerLanguage}) unless asked otherwise.` : "";
   const cite = citeMarkers ? ` Cite every fact you take from a passage with its number, like [2].` : "";
   const strictRule = strict
-    ? ` Use only the passages. If they do not contain the answer, reply with exactly ${NOT_FOUND_TOKEN} and nothing else.`
+    ? ` Use only the passages. Answer only with what a passage states. If no passage states the answer, reply with exactly ${NOT_FOUND_TOKEN} and nothing else, also when a passage shares a name, number or year with the question but does not state the fact asked.`
     : ` Prefer the passages; if they do not cover the question, say so briefly before answering from general knowledge.`;
   return (
     `The user attached documents. Passages from them appear between the markers <<<DOCUMENTS ${nonce}>>> and <<<END DOCUMENTS ${nonce}>>>, each numbered [n] with its file and page.` +
@@ -103,7 +126,8 @@ export function trimHistory(history: Message[], budget: number): Message[] {
 export function buildRagPrompt(o: PromptOptions): RagPrompt {
   const nonce = o.nonce ?? randomNonce();
   const reserve = o.answerReserve ?? DEFAULT_ANSWER_RESERVE;
-  const relevant = o.hits.filter((h) => isRelevant(h, o.minCosine, o.minBm25, o.minCosineAlone));
+  const doors = relevanceDoors(o.embedderId);
+  const relevant = o.hits.filter((h) => isRelevant(h, doors));
   const base = o.systemPrompt ? `${o.systemPrompt}\n\n` : "";
   if (o.strict && !relevant.length) {
     return { messages: [], citations: [], used: [], droppedForBudget: 0, noAnswer: true, promptTokens: 0 };

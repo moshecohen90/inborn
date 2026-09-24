@@ -37,15 +37,15 @@ function hits(docId: string, chunks: string[], question: string, cosines: number
   });
 }
 
-const citedIn = (docId: string, chunks: string[], question: string, cosines: number[], strict: boolean) =>
-  buildRagPrompt({ question, hits: hits(docId, chunks, question, cosines), docs: new Map([[docId, record(docId, chunks.length)]]), strict, nCtx: 8192, nonce: "n" }).used.map((h) => h.chunk.ord);
+const citedIn = (docId: string, chunks: string[], question: string, cosines: number[], strict: boolean, embedderId = "embed-e5") =>
+  buildRagPrompt({ question, hits: hits(docId, chunks, question, cosines), docs: new Map([[docId, record(docId, chunks.length)]]), strict, nCtx: 8192, nonce: "n", embedderId }).used.map((h) => h.chunk.ord);
 
 describe("F334 · one-passage documents in nine languages", () => {
   for (const strict of [false, true]) {
-    it(`strict=${strict}: 51 of 57 on-topic questions cite the passage and 0 of 102 off-topic ones do`, () => {
+    it(`strict=${strict}: 50 of 57 on-topic questions cite the passage and 0 of 102 off-topic ones do`, () => {
       const on = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], strict).length > 0));
       const offCited = ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off" && citedIn(d.id, [d.text], q.q, [q.cosine], strict).length).map((q) => `${d.id} ${q.q}`));
-      expect([on.length, on.filter(Boolean).length]).toEqual([57, 51]);
+      expect([on.length, on.filter(Boolean).length]).toEqual([57, 50]);
       expect(ONE.flatMap((d) => d.questions.filter((q) => q.kind === "off")).length).toBe(102);
       expect(offCited).toEqual([]);
     });
@@ -57,7 +57,7 @@ describe("F334 · one-passage documents in nine languages", () => {
       const qs = ONE.filter((d) => d.lang === lang).flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], true).length > 0));
       byLang[lang] = `${qs.filter(Boolean).length}/${qs.length}`;
     }
-    expect(byLang).toEqual({ de: "3/3", en: "8/10", es: "2/3", fr: "1/3", he: "5/5", ja: "13/14", ko: "6/6", pt: "3/3", zh: "10/10" });
+    expect(byLang).toEqual({ de: "3/3", en: "7/10", es: "2/3", fr: "1/3", he: "5/5", ja: "13/14", ko: "6/6", pt: "3/3", zh: "10/10" });
   });
 
   it("the door sits above every off-topic cosine measured, with the margin stated", () => {
@@ -79,16 +79,16 @@ describe("F334 · six-chunk documents: the right passage, not just a passage", (
   });
 
   for (const strict of [false, true]) {
-    it(`strict=${strict}: 18 of 21 cite the answering chunk and none cites only a wrong one`, () => {
+    it(`strict=${strict}: 17 of 21 cite the answering chunk and none cites only a wrong one`, () => {
       const cited = on.map(({ d, q }) => citedIn(d.id, d.chunks, q.q, q.cosines, strict));
-      expect(cited.filter((c, i) => c.includes(on[i]!.d.answers)).length).toBe(18);
+      /* 18 before F365: "Which cities host the main sites?" shares one word with its chunk at cosine 0.7664. */
+      expect(cited.filter((c, i) => c.includes(on[i]!.d.answers)).length).toBe(17);
       expect(cited.filter((c, i) => c.length > 0 && !c.includes(on[i]!.d.answers)).length).toBe(0);
     });
 
-    it(`strict=${strict}: the 3 off-topic questions still cited are the lexical half's, never the cosine's`, () => {
-      const cited = off.filter(({ d, q }) => citedIn(d.id, d.chunks, q.q, q.cosines, strict).length);
-      expect(cited.length).toBe(3);
-      for (const { d, q } of cited) for (const h of hits(d.id, d.chunks, q.q, q.cosines)) expect(h.cosine).toBeLessThanOrEqual(DEFAULT_MIN_COSINE_ALONE);
+    it(`strict=${strict}: no off-topic question is cited (F365 closed the 3 one-word ones: two years, one "que")`, () => {
+      const cited = off.filter(({ d, q }) => citedIn(d.id, d.chunks, q.q, q.cosines, strict).length).map(({ d, q }) => `${d.id} ${q.q}`);
+      expect(cited).toEqual([]);
     });
   }
 });
@@ -97,7 +97,7 @@ describe("F334 · the same door on the old embedder's numbers adds nothing, whic
   it("nomic-embed-text-v1.5 cites nothing off-topic at the door, and its recall stays at round 70's 29 of 57", () => {
     const docs = old.docs as OneDoc[];
     expect(Math.max(...docs.flatMap((d) => d.questions.filter((q) => q.kind === "off").map((q) => q.cosine)))).toBeLessThan(DEFAULT_MIN_COSINE_ALONE);
-    const on = docs.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], true).length > 0));
+    const on = docs.flatMap((d) => d.questions.filter((q) => q.kind === "on").map((q) => citedIn(d.id, [d.text], q.q, [q.cosine], true, "embed-nomic").length > 0));
     expect(on.filter(Boolean).length).toBe(29);
   });
 });
