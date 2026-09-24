@@ -1,0 +1,22 @@
+Windows desktop build, GitHub Actions run 36016745768 (workflow_dispatch, ref desktop-windows @ 4ea23df, platform=windows)
+https://github.com/moshecohen90/inborn/actions/runs/36016745768
+Runner: windows-latest (x64, no GPU). Unsigned NSIS installers (no Windows code-signing certificate exists yet).
+
+artifact                     file                                bytes      sha256
+inborn-windows-x64-cpu       nsis/Inborn_0.0.1_x64-setup.exe     12997945   a3f012714a6d43f89c780560a1db5cd7b1bcb178acc6815319899525e60db742
+inborn-windows-x64-vulkan    nsis/Inborn_0.0.1_x64-setup.exe     17183927   9b3eecf095008e484503db3c001536db8ba526435c8a940d8fbc7f7b7ae836da
+
+Both jobs: tauri build OK, `cargo test --release --features qa` 20 passed on Windows (incl. qa_transport::a_path_is_refused_on_windows
+and the loopback TCP round trip), QA build launched, the control channel answered over tcp:127.0.0.1, window placed, reset,
+title "Inborn", onboarding S01 rendered (windows-cpu-01-launch.png, windows-vulkan-01-launch.png).
+Vulkan on a GPU-less runner: "vulkan backend ready" in 1715 ms and the app ran (windows-vulkan-app.log).
+Smoke stopped at the first screenshot: the harness's blank-frame threshold (PNG KB per megapixel, calibrated on dark macOS
+chat screens) rejected this light, flat screen although the PNG is correct. Fixed afterwards (sampled colour count, 21 on
+this frame, blank = 1-2); not re-run on Windows because the three-run budget was used. Onboarding, the prompt and the
+answer on the Windows Rust engine are therefore NOT proven by a run.
+
+Runs used: 3.
+  36015349739  gate failed on Linux: a test read screens/legal/Legal.tsx (real path screens/Legal/, only resolves on case-insensitive disks)
+  36016472223  gate failed: vault test flake (a random salt contained the passcode digits, about 1 in 700 runs)
+  36016745768  both Windows builds + tests green, smoke stopped at the screenshot check (above)
+Local copies of the installers: scratchpad desktop-windows/artifacts/ (not committed).

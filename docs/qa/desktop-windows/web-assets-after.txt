@@ -1,0 +1,14 @@
+$ tauri build (this branch), beforeBuildCommand:
+     Running beforeBuildCommand `cd ../mobile && node scripts/copy-web-assets.mjs && npx expo export -p web`
+copied 4 web assets into /Users/moshecohen/dev/inborn-wt/desktop-windows/apps/mobile/public
+$ ls apps/mobile/dist/pdfjs apps/mobile/dist/wllama apps/mobile/dist/wllama/compat
+apps/mobile/dist/pdfjs:
+pdf.worker.min.mjs
+
+apps/mobile/dist/wllama:
+compat
+wllama.wasm
+
+apps/mobile/dist/wllama/compat:
+wllama.js
+wllama.wasm

@@ -29,6 +29,12 @@ $ok = [InbornShot]::PrintWindow($hwnd, $hdc, 2)
 $graphics.ReleaseHdc($hdc)
 $graphics.Dispose()
 if (-not $ok) { throw "PrintWindow failed for $ProcessId" }
+# An unpainted window is one or two flat colours; a 40x40 sample tells it apart from a light, sparse screen that PNG
+# compresses as small as an empty one.
+$colors = New-Object 'System.Collections.Generic.HashSet[int]'
+for ($i = 0; $i -lt 40; $i++) { for ($j = 0; $j -lt 40; $j++) {
+  [void]$colors.Add($bitmap.GetPixel([int](($width - 1) * $i / 39), [int](($height - 1) * $j / 39)).ToArgb())
+} }
 $bitmap.Save($Out, [System.Drawing.Imaging.ImageFormat]::Png)
 $bitmap.Dispose()
-@{ file = $Out; width = $width; height = $height; title = $proc.MainWindowTitle } | ConvertTo-Json -Compress
+@{ file = $Out; width = $width; height = $height; title = $proc.MainWindowTitle; distinctColors = $colors.Count } | ConvertTo-Json -Compress

@@ -106,7 +106,7 @@ async function shotWindows(pid, file, waitMs) {
     try {
       const out = execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', join(here, 'qa-shot-windows.ps1'), '-ProcessId', String(pid), '-Out', file], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
       const window = JSON.parse(out.trim());
-      if (paintedEnough(file, window.width * window.height)) return { file, window };
+      if (window.distinctColors > 4) return { file, window };
       last = new Error('the window imaged blank; it has not painted yet');
     } catch (e) { last = e; }
     if (Date.now() > until) throw new Error(`the Inborn window refused to be imaged: ${last?.message ?? 'unknown'}`);
