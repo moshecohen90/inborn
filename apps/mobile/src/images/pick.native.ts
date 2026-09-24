@@ -38,7 +38,7 @@ async function prepare(uri: string, w: number, h: number): Promise<PickedImage> 
   return { uri: dest.uri, width: saved.width, height: saved.height, bytes: dest.size ?? 0 };
 }
 
-export async function pickImages(source: "library" | "camera", limit: number): Promise<PickOutcome> {
+export async function pickImages(source: "library" | "camera", limit: number, onPicked?: (count: number) => void): Promise<PickOutcome> {
   try {
     if (source === "camera") {
       const perm = await ImagePicker.requestCameraPermissionsAsync();
@@ -47,8 +47,10 @@ export async function pickImages(source: "library" | "camera", limit: number): P
     const options: ImagePicker.ImagePickerOptions = { mediaTypes: ["images"], quality: 1, exif: false, allowsMultipleSelection: limit > 1, selectionLimit: Number.isFinite(limit) ? limit : 0 };
     const result = source === "camera" ? await ImagePicker.launchCameraAsync(options) : await ImagePicker.launchImageLibraryAsync(options);
     if (result.canceled) return { ok: false, reason: "cancelled" };
+    const assets = result.assets.slice(0, Number.isFinite(limit) ? limit : undefined);
+    onPicked?.(assets.length);
     const images: PickedImage[] = [];
-    for (const a of result.assets.slice(0, Number.isFinite(limit) ? limit : undefined)) images.push(await prepare(a.uri, a.width, a.height));
+    for (const a of assets) images.push(await prepare(a.uri, a.width, a.height));
     return { ok: true, images };
   } catch (e: unknown) {
     console.warn("[images] pick", e);

@@ -1,0 +1,57 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-download-race/apps/mobile
+
+ ❯ src/images/intake.test.ts (6 tests | 2 failed) 606ms
+   ❯ F350 · a turn never leaves while a photo is being prepared (5)
+     × the send is held from the moment the picker hands the photo over until it is in the composer 4ms
+   ❯ F350 · the native picker reports the photos before it scales them (1)
+     × onPicked fires while the downscale is still running 600ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/images/intake.test.ts > F350 · a turn never leaves while a photo is being prepared > the send is held from the moment the picker hands the photo over until it is in the composer
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/images/intake.test.ts:38:25
+     36|     }, io);
+     37|     await Promise.resolve();
+     38|     expect(s.preparing).toBe(1);
+       |                         ^
+     39|     expect(s.images).toEqual([]);
+     40|     expect(canSend("What do you see?")).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/images/intake.test.ts > F350 · the native picker reports the photos before it scales them > onPicked fires while the downscale is still running
+AssertionError: expected [] to deeply equal [ 1 ]
+
+- Expected
++ Received
+
+- [
+-   1,
+- ]
++ []
+
+ ❯ src/images/intake.test.ts:108:20
+    106|     const done = pickImages("library", 4, (n) => picked.push(n));
+    107|     await new Promise((r) => setTimeout(r, 0));
+    108|     expect(picked).toEqual([1]);
+       |                    ^
+    109|     render.resolve({ saveAsync: async () => ({ uri: "file:///tmp/x.jpg…
+    110|     const r = await done;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  18:07:05
+   Duration  726ms (tests 94%, transform 4%, import 1%)
+

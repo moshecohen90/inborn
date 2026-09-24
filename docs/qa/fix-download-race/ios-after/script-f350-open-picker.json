@@ -1,0 +1,7 @@
+{"steps":[
+{"op":"deeplink","url":"/"},{"op":"waitFor","testID":"composer-input","timeoutMs":60000},{"op":"waitFor","text":"Loading","gone":true,"timeoutMs":120000},{"op":"sleep","ms":2000},
+{"op":"type","testID":"composer-input","text":"What do you see?"},
+{"op":"press","testID":"attach"},{"op":"waitFor","testID":"attach-sheet","timeoutMs":10000},{"op":"sleep","ms":1000},
+{"op":"value","testID":"attach-photo"},
+{"op":"press","testID":"attach-photo"},{"op":"sleep","ms":3000},{"op":"screenshot","name":"F350-01-picker"}
+]}

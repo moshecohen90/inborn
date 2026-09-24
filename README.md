@@ -5435,3 +5435,21 @@ install row opening the vault at the top, and three names for one pack in one fl
 Evidence in `docs/qa/fix-model-sheet/`: `vault-card-{before,after}-{en,de}-{light,dark}-{390,1440}.png`, rendered from
 the real `ModelCard` through react-native-web (`cardshot-harness.test.ts.txt`, `cardshots.mjs`), and
 `guard-red-f346-companion.txt`. Not seen on a phone or simulator: the scroll is proven by tests on the code path only.
+## Fixes round 78: no raw download errors, and a photo is never left behind (branch `fix-download-race`) — 24.9.2026
+
+The iOS image repro found two defects on the way to a photo answer.
+
+- **A failed download reads as one plain sentence (F349).** The vault card had printed the platform's exception, class
+  name and Swift file path included. Every download or install failure is now one of four sentences in the user's
+  language: no connection, not enough space, the file did not verify, or something went wrong. Each sits beside Try
+  again. The raw text is only in the Details sheet's ERROR row, or behind Details on the browser door. Proven on the
+  iPhone simulator with the same failing download, and in headless Chromium at 390, 768, 1024 and 1440 with the
+  network cut.
+- **Send waits for the photo (F350).** The picker now reports the photos the moment it returns, before scaling them.
+  The composer holds the send with "Preparing photo…" until they are in. Proven on the simulator with a 12 MP photo.
+  A send pressed while preparing did nothing. The same send after the thumbnail went out with the photo, and Instant
+  described the door.
+- **Guarded.** 11 unit tests, each group watched red on the old behaviour.
+
+Evidence in `docs/qa/fix-download-race/`: `ios-before/`, `ios-after/`, `web-before/`, `web-after/`, `guard-red-f349.txt`,
+`guard-red-f350.txt`. Spec §10 rows 2 and 35 carry the two rules.

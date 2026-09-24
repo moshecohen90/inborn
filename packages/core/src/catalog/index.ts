@@ -6,6 +6,7 @@ export * from "./pick";
 export * from "./fit";
 export * from "./recommend";
 export * from "./install";
+export * from "./installError";
 export * from "./gguf";
 export * from "./resume";
 export * from "./speed";
