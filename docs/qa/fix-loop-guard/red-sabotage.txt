@@ -1,0 +1,10 @@
+=== sabotage 1: guardLoops no longer calls stop() ===
+     × aborts a looping stream within the fourth copy and hands back the first copy 5ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected +0 to be 1 // Object.is equality
+      Tests  1 failed | 39 passed (40)
+=== sabotage 2: Chat.tsx streams the engine without the guard ===
+     × wraps the answer stream of whatever engine is loaded 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'import { useCallback, useEffect, useM…' to match /for await \(const d of guardLoops\(en…/
+      Tests  1 failed | 4 passed (5)

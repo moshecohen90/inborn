@@ -20,7 +20,8 @@ import {
   contextLevel,
   crisisResources,
   detectCrisis,
-  detectLoop,
+  describeLoopCut,
+  guardLoops,
   findPersona,
   languageHint,
   languageCodeOf,
@@ -201,7 +202,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const focused = useRef(true);
   const session = useRef<Session | null>(null);
   const abort = useRef<AbortController | null>(null);
-  const stopReason = useRef<StoppedBy | "loop" | null>(null);
+  const stopReason = useRef<StoppedBy | null>(null);
   const noSpace = useRef(false);
   const chatRef = useRef<string | null>(chatId);
   const list = useRef<FlatList<Row>>(null);
@@ -384,7 +385,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   useShortcut("continue", () => {
     if (!focused.current || busy) return;
     const last = [...rowsRef.current].reverse().find((r) => r.role === "assistant");
-    if (last?.stopped && !last.streaming) void continueRow(last);
+    if (last?.stopped && !last.streaming && !last.loop && last.stoppedBy !== "loop") void continueRow(last);
   });
   useShortcut("new-chat", () => focused.current && onNewChat?.(false));
   useShortcut("toggle-incognito", () => focused.current && onNewChat?.(!incognito));
@@ -577,7 +578,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => rest);
       }
-      for await (const d of engine.generate(s, messages, opts, ac.signal)) {
+      /* F369: one guard for every engine; a loop is stopped and cut back to its first copy before it fills the screen. */
+      let looped = false;
+      const stopLoop = () => {
+        stopReason.current = "loop";
+        ac.abort();
+      };
+      for await (const d of guardLoops(engine.generate(s, messages, opts, ac.signal), stopLoop)) {
+        if (d.loop) {
+          looped = true;
+          reply = d.loop.text;
+          const snapshot = prefix + reply;
+          patch((x) => ({ ...x, content: snapshot }));
+          /* Not behind __DEV__: the QA harness and a release logcat both need to see that an answer was cut. */
+          console.log(describeLoopCut(d.loop));
+        }
         if (d.reasoning) {
           if (!reasoningStart) reasoningStart = Date.now();
           reasoning += d.reasoning;
@@ -600,15 +615,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             if (screenText(reply, familySafe).flagged) {
               familySafeHit = true;
               ac.abort();
-            } else if (tokens >= 24 && detectLoop(reply)) {
-              stopReason.current = "loop";
-              ac.abort();
             }
           }
         }
         if (d.done) usage = d.done;
       }
-      const reason = stopReason.current as StoppedBy | "loop" | null;
+      const reason = stopReason.current;
       /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
       const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;
       if (familySafeReplaced) {
@@ -620,8 +632,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }
       /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
       const guardStopped = wasStoppedByGuard();
-      const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped);
-      const stoppedBy: StoppedBy | undefined = stopped ? (reason === "system" || guardStopped ? "system" : "user") : undefined;
+      const loopCut = !familySafeReplaced && looped;
+      const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
+      const stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       if (citations && isNotFoundReply(reply)) {
@@ -650,7 +663,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ...(citations?.length ? { citations } : {}),
           ...(safety ? { safety } : {}),
         });
-        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: !familySafeReplaced && reason === "loop", ...(usage ? { usage } : {}), ...(citations?.length ? { citations } : {}), ...(safety ? { safety } : {}) }));
+        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: loopCut, ...(usage ? { usage } : {}), ...(citations?.length ? { citations } : {}), ...(safety ? { safety } : {}) }));
       } else {
         const saved = await store.appendMessage({
           chatId: chatIdNow,
@@ -665,7 +678,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ...(safety ? { safety } : {}),
           ...(citations?.length ? { citations } : {}),
         });
-        setRows((all) => all.map((x) => (x.id === rowId ? { ...saved, loop: !familySafeReplaced && reason === "loop" } : x)));
+        setRows((all) => all.map((x) => (x.id === rowId ? { ...saved, loop: loopCut } : x)));
         rowId = saved.id;
         keptId = saved.id;
       }
