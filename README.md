@@ -4429,3 +4429,63 @@ accessibility action and handles it, with the new key `chats.more` in all nine l
 
 Gates on this branch merged with `main` (**7cb4a63**): `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
 **1,419 tests** (core 726, mobile 663, i18n 17, ui 13); the three new mobile ones are the F215 guard.
+
+## Fixes round 55: TestFlight 1.0.0 (17), and a QA build that can no longer overwrite the real app (branch `ios-build-17`) — 24.9.2026
+
+Builds 3 to 16 all shipped the same way and all shared one hazard nobody had named: **the QA build was the store
+app.** Every device pass built the bridge/dev variant under `com.inbornapp.mobile`, so it installed *over* the build
+it was meant to prove, and on 23.9 an uninstall of that shared id took Moshe's chats, documents and vault with it
+(F144). This round cuts build 17 to TestFlight and, in the same commit, makes the QA variant **a different app**.
+
+**The build.** `ios.buildNumber` 16 → 17 on `origin/main` **e3e771c**, so rounds 46–53 — the copy review, the design
+review, the MosheAI round, the QA bridge and the Work tier — reach Apple hardware from a store bundle for the first
+time. Archive **02:34:30 → 02:37:44**, `** ARCHIVE SUCCEEDED **`, 0 `error:` lines, stamped with this branch's own
+commit (`extra.commit` **446e0171c599**, `devVariant` false). Tesseract's `eng` and `heb` traineddata were in the
+first archive, the App Group is on both the app and the share extension, and `scripts/check-qa-bridge.sh` reported
+**no QA bridge** on the archive *and* again on the exported IPA. Export 38 s on the first try; upload
+**02:40:18 → 02:41:29** at 61.4 MB/s; delivery `84fc8671-6b74-4c7b-9e44-e2f258d3eff8`; **VALID observed at
+02:49:14**, `APP_STORE_ELIGIBLE`, in the `Inborn internal` group beside 16 down to 1. Numbers and commands:
+`docs/qa/ios-build-17-2026-09-24.md`.
+
+**F265 — the QA variant is its own app.** `APP_VARIANT=development` now builds **`com.inbornapp.mobile.qa`**.
+Android keeps one package, because Play asset packs and the 6T drivers are keyed to it. The licence verifier is
+handed the running build's own bundle id, but only in a build that already allows test purchases, so a store build
+still accepts nothing but `APP_BUNDLE_ID`; `scripts/ios-add-storekit-tests.rb` reads the id off the app target
+instead of a literal. Ten tests in `apps/mobile/test/fixes-r55.test.ts`, with the complement watched failing: the
+same sandbox proof issued to the QA id comes back `wrong-app` under the store build's own call, and
+`wrong-environment` when no switch was baked in. On the phone both apps were installed at once —
+`com.inbornapp.mobile 1.0.0 (17)` and `com.inbornapp.mobile.qa 1.0.0 (17) Inborn (dev)` — and the QA app was
+uninstalled at the end without going near the store app's container.
+
+**Moshe's container, measured rather than assumed.** Every file was pulled before the install and compared byte for
+byte after it and again at the end: `inborn.db` (2,072,576 B), its WAL and shm, `documents.json`, `prefs.json`,
+`licence.bin`, `vault.json` and all six library documents. Nothing was lost. The only three files that differ at
+the end changed at 02:39:53, the second the app was launched, and only in what a launch writes — the model's
+last-loaded time, the licence re-seal, the device prefs.
+
+**The rows, driven on the phone with no XCUITest and no passcode sheet.** Model sheet Instant → Fast; the Wi-Fi-only
+toggle; F126's cited answer (*"…the Kestrel 7 is QUARTZ-4417"* with `SOURCES kestrel4.pdf · p.1`); F161's
+*"Nothing in your documents matched this question. Answered without them."* followed by an answer with no `SOURCES`
+and no chips; F136's photo asked together with a document; Hebrew answered in Hebrew; F137's strict mode refusing
+with *"Inborn could not find that in your documents."* Evidence per row in `docs/qa/ios-device-pass-17/` and
+`docs/qa/ios-device-pass-17-2026-09-24.md`.
+
+**Three things the pass found that are worth more than the rows.** (1) **F136 needs the projector's load time** —
+the first photo turn after a cold start answered *"I can't see the photo… I don't have visual capabilities"*, and
+the same row with 45 s more settle answered correctly; a headless photo row that does not budget 205 MB of
+projector reads as a regression that is not there. (2) **F227 was being looked for on the wrong platform** (F267):
+the `model-none` verdict row is gated on `Platform.OS === "web"`, and what a phone shows is the §7.8 advice card —
+**"SHARP handles Hebrew better than INSTANT, but not fluently."** with `Install SHARP · 2.6 GB` / `PRO` / **Not
+now**, sentence case, dismissible, which is what F227 asked for. (3) **F255 is only half proven** (F269): the chip
+carries the hostile filename in full, exactly as promised, but the document never became searchable — three times,
+on two containers, for the `<|im_start|>` name and for the plain instruction name alike, while the *same 225 bytes*
+under `plain-halcyon.txt` indexed and cited fine. That is open, with the reproduction recipe and the one control
+the next run has to get right.
+
+Two harness traps are recorded so nobody pays for them twice: pushing a bridge script **without `--launch`** makes
+`devicectl` create `Documents/qa` as uid 0 and silently kills the bridge for that container (F268), and a QA
+container is not Moshe's — it starts empty, runs onboarding, and every fixture including the 274 MB embedder and the
+205 MB projector has to be pushed first (F266).
+
+Gates on this branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS, **1,458 tests**
+(core 726, mobile 702, i18n 17, ui 13); the ten new mobile ones are the F265 guard.
