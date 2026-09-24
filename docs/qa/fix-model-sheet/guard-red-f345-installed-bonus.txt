@@ -1,0 +1,48 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-model-sheet/packages/core
+
+ ❯ test/catalog-model-choices.test.ts (17 tests | 2 failed) 13ms
+   ❯ one RECOMMENDED per device (F345, Moshe's decision 6: the best model for this device first) (4)
+     × a OnePlus 6T holding only the bundled Instant is still told Fast, for every task (not the model it already has) 4ms
+     × installing a model never moves the tag: the same device, task and language give the same answer before and after 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/catalog-model-choices.test.ts > one RECOMMENDED per device (F345, Moshe's decision 6: the best model for this device first) > a OnePlus 6T holding only the bundled Instant is still told Fast, for every task (not the model it already has)
+AssertionError: summarize: expected 'instant' to be 'fast' // Object.is equality
+
+Expected: "fast"
+Received: "instant"
+
+ ❯ test/catalog-model-choices.test.ts:109:44
+    107|     for (const use of ["chat", "summarize", "code", "math"] as const) {
+    108|       const c = modelChoices(input({ device: legacy8, use, installed: …
+    109|       expect(c.recommended?.model.id, use).toBe("fast");
+       |                                            ^
+    110|       expect(c.recommended?.model.id, use).toBe(deviceRecommendation({…
+    111|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/catalog-model-choices.test.ts > one RECOMMENDED per device (F345, Moshe's decision 6: the best model for this device first) > installing a model never moves the tag: the same device, task and language give the same answer before and after
+AssertionError: expected 'fast' to be 'sharp' // Object.is equality
+
+Expected: "sharp"
+Received: "fast"
+
+ ❯ test/catalog-model-choices.test.ts:117:19
+    115|     const before = modelChoices(input({ device: desk, installed: ["ins…
+    116|     const after = modelChoices(input({ device: desk, installed: ["inst…
+    117|     expect(after).toBe(before);
+       |                   ^
+    118|   });
+    119|   it("the recommended row still says truthfully whether it is on the d…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 15 passed (17)
+   Start at  17:44:31
+   Duration  916ms (transform 82%, import 16%, tests 2%)
+

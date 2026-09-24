@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Bm25Index, buildRagPrompt, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
+import { Bm25Index, buildRagPrompt, DEFAULT_MIN_BM25, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, words, type DocumentRecord, type RetrievalHit } from "../src/rag";
 
 /**
  * F195. The F161 relevance floor is `cosine >= 0.5 || bm25Terms >= 2 || (bm25Terms >= 1 && bm25 >= 2.0)`. Chinese and
@@ -112,8 +112,8 @@ const EN_ONE = "According to Aoba Trading's 2025 annual report the company emplo
 const koDoc = doc("ko", "연례보고서.txt");
 const enDoc = doc("en", "annual-report.txt");
 
-/** Above the floor: what the phone's embedder actually returns for an off-topic question in these scripts (QA F282). */
-const OVER_FLOOR = 0.9;
+/** Above the corroboration floor and at the cosine-alone door: no measured off-topic question of either embedder reaches it (QA F282, F334). */
+const OVER_FLOOR = DEFAULT_MIN_COSINE_ALONE;
 
 describe("F278 · a one-passage CJK document does not cite itself for an off-topic question", () => {
   for (const [label, record, text, offTopic, onTopic] of [
@@ -158,10 +158,10 @@ describe("F278 · a one-passage CJK document does not cite itself for an off-top
 /**
  * F327. Both blocks above pin the cosine *under* its floor, so neither could see the floor's other door: on the
  * OnePlus 6T the off-topic Japanese turn came back cited anyway, over `cosine >= 0.5` alone (QA F261, F282). The
- * embedder scores an off-topic question against a same-language passage at 0.53–0.76, so the cosine is pinned
- * above the floor here — where the phone actually put it — and the passage must still be dropped.
+ * old embedder scored an off-topic question against a same-language passage at 0.53–0.76 and the shipped one tops out
+ * at 0.8176, so the cosine is pinned at the cosine-alone door here and the passage must still be dropped.
  */
-describe("F327 · the cosine cannot carry a one-passage document over the floor on its own", () => {
+describe("F327 · the cosine cannot carry a one-passage document up to the door on its own", () => {
   for (const [label, record, text, offTopic, onTopic] of [
     ["Japanese", jaDoc, JA_ONE, "一九九八年のワールドカップで優勝したのはどこですか？", "当社の年度の収益はいくらですか？"],
     ["Chinese", zhDoc, ZH_ONE, "我们什么时候可以去巴黎旅游？", "公司的年度收入增长了多少？"],

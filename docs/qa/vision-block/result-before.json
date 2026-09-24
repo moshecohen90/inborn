@@ -1,0 +1,410 @@
+{
+  "runId": "before-mufn8w1k",
+  "startedAt": "2026-09-24T14:45:19.811Z",
+  "finishedAt": "2026-09-24T14:46:17.627Z",
+  "ok": true,
+  "passed": 17,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4016,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 3,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "image: door.jpg"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 14650,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 5,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2224,
+      "detail": "before-01-photo-in-composer"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 159,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 6001,
+      "detail": "6000 ms"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2228,
+      "detail": "before-02-after-send"
+    },
+    {
+      "i": 11,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vision-offer",
+          "text": "Photos need the vision companion. Open the vault"
+        },
+        {
+          "testID": "vision-offer-action",
+          "text": "Open the vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "user-message",
+          "text": "What is in this photo?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI I cannot look at pictures until the vision companion is in the vault. Install it once, then send the picture again. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I cannot look at pictures until the vision companion is in the vault. Install it once, then send the picture again."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "after-send"
+    },
+    {
+      "i": 12,
+      "op": "type",
+      "ok": true,
+      "ms": 154,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 25003,
+      "detail": "25000 ms"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "before-03-next-turn-model-answers"
+    },
+    {
+      "i": 16,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vision-offer",
+          "text": "Photos need the vision companion. Open the vault"
+        },
+        {
+          "testID": "vision-offer-action",
+          "text": "Open the vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "user-message",
+          "text": "What is in this photo?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI I cannot look at pictures until the vision companion is in the vault. Install it once, then send the picture again. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I cannot look at pictures until the vision companion is in the vault. Install it once, then send the picture again."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "after-second"
+    }
+  ],
+  "errors": [
+    "console.warn: [documents] store unavailable, keeping the index in memory for this run Error: FunctionCallException: Calling the 'getValueWithKeyAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)\n→ Caused by: KeyChainException: A required entitlement isn't present. (at ExpoSecureStore/SecureStoreModule.swift:168)"
+  ]
+}

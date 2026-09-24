@@ -1,0 +1,43 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-model-sheet/apps/mobile
+
+ ❯ src/web/modelChoice.test.ts (12 tests | 2 failed) 11ms
+   ❯ F345 · the chat's Model sheet on the browser names the door's recommendation (4)
+     × recommends what the door recommends, on every browser the gate can describe, even with the other model loaded 4ms
+     × still follows this chat's language and task, from the same ranking, among what the browser can run 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/web/modelChoice.test.ts > F345 · the chat's Model sheet on the browser names the door's recommendation > recommends what the door recommends, on every browser the gate can describe, even with the other model loaded
+AssertionError: {"formFactor":"desktop","maxTier":"sharp","ramGB":8,"cores":8,"iphone":false,"webgpu":false}: expected 'instant' to be 'fast' // Object.is equality
+
+Expected: "fast"
+Received: "instant"
+
+ ❯ src/web/modelChoice.test.ts:88:86
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/web/modelChoice.test.ts > F345 · the chat's Model sheet on the browser names the door's recommendation > still follows this chat's language and task, from the same ranking, among what the browser can run
+AssertionError: expected 'instant' to be 'fast' // Object.is equality
+
+Expected: "fast"
+Received: "instant"
+
+ ❯ src/web/modelChoice.test.ts:112:38
+    110|     expect(he.recommendedWeak).toBe(true);
+    111|     expect(["instant", "fast"]).toContain(he.recommended?.model.id);
+    112|     expect(he.recommended?.model.id).toBe(webModelChoices({ sources: S…
+       |                                      ^
+    113|   });
+    114| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  17:46:49
+   Duration  690ms (transform 81%, import 17%, tests 2%)
+

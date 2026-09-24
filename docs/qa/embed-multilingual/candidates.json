@@ -1,0 +1,282 @@
+{
+  "note": "F333. Every multilingual embedder llama.cpp b10256 (the commit llama.rn 0.12.9 vendors, cpp/common/build-info.cpp) can run, with the prefixes and pooling its authors trained it with. `pooling` is what the app hardcodes today (mean, apps/mobile/src/adapters/llamaRn.ts) unless a candidate needs otherwise; a candidate whose native pooling is not mean is measured both ways, because shipping it means changing three adapters.",
+  "candidates": [
+    {
+      "id": "nomic-v1.5",
+      "file": "nomic-embed-text-v1.5.f16.gguf",
+      "family": "nomic-embed-text-v1.5",
+      "arch": "nomic-bert",
+      "params": "137M",
+      "license": "Apache-2.0",
+      "source": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "docPrefix": "search_document: ",
+      "queryPrefix": "search_query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": false,
+      "baseline": true
+    },
+    {
+      "id": "e5-small",
+      "file": "e5-small-f16.gguf",
+      "family": "multilingual-e5-small",
+      "arch": "bert",
+      "params": "118M",
+      "license": "MIT",
+      "source": "keisuke-miyako/multilingual-e5-small-gguf-f16/multilingual-e5-small-F16.gguf",
+      "docPrefix": "passage: ",
+      "queryPrefix": "query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "pmini",
+      "file": "pmini-f16.gguf",
+      "family": "paraphrase-multilingual-MiniLM-L12-v2",
+      "arch": "bert",
+      "params": "118M",
+      "license": "Apache-2.0",
+      "source": "mykor/paraphrase-multilingual-MiniLM-L12-v2.gguf/paraphrase-multilingual-MiniLM-L12-118M-v2-F16.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "e5-base",
+      "file": "e5-base-f16.gguf",
+      "family": "multilingual-e5-base",
+      "arch": "bert",
+      "params": "278M",
+      "license": "MIT",
+      "source": "yixuan-chia/multilingual-e5-base-gguf/multilingual-e5-base-F16.gguf",
+      "docPrefix": "passage: ",
+      "queryPrefix": "query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "nomic-v2-moe",
+      "file": "nomicv2-q8.gguf",
+      "family": "nomic-embed-text-v2-moe",
+      "arch": "nomic-bert-moe",
+      "params": "475M (305M active)",
+      "license": "Apache-2.0",
+      "source": "nomic-ai/nomic-embed-text-v2-moe-GGUF/nomic-embed-text-v2-moe.Q8_0.gguf",
+      "docPrefix": "search_document: ",
+      "queryPrefix": "search_query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "nomic-v2-moe-q4",
+      "file": "nomicv2-q4km.gguf",
+      "family": "nomic-embed-text-v2-moe",
+      "arch": "nomic-bert-moe",
+      "params": "475M (305M active)",
+      "license": "Apache-2.0",
+      "source": "nomic-ai/nomic-embed-text-v2-moe-GGUF/nomic-embed-text-v2-moe.Q4_K_M.gguf",
+      "docPrefix": "search_document: ",
+      "queryPrefix": "search_query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "qwen3-emb",
+      "file": "qwen3emb-q8.gguf",
+      "family": "Qwen3-Embedding-0.6B",
+      "arch": "qwen3",
+      "params": "596M",
+      "license": "Apache-2.0",
+      "source": "Qwen/Qwen3-Embedding-0.6B-GGUF/Qwen3-Embedding-0.6B-Q8_0.gguf",
+      "docPrefix": "",
+      "queryPrefix": "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ",
+      "pooling": [
+        "last",
+        "mean"
+      ],
+      "multilingual": true,
+      "specChoice": true
+    },
+    {
+      "id": "bge-m3",
+      "file": "bgem3-q8.gguf",
+      "family": "bge-m3",
+      "arch": "bert",
+      "params": "568M",
+      "license": "MIT",
+      "source": "gpustack/bge-m3-GGUF/bge-m3-Q8_0.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "cls",
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "bge-m3-q4",
+      "file": "bgem3-q4km.gguf",
+      "family": "bge-m3",
+      "arch": "bert",
+      "params": "568M",
+      "license": "MIT",
+      "source": "gpustack/bge-m3-GGUF/bge-m3-Q4_K_M.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "cls"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "granite-278m",
+      "file": "granite-278m-f16.gguf",
+      "family": "granite-embedding-278m-multilingual",
+      "arch": "bert",
+      "params": "278M",
+      "license": "Apache-2.0",
+      "source": "bartowski/granite-embedding-278m-multilingual-GGUF/granite-embedding-278m-multilingual-f16.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "cls",
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "granite-278m-q8",
+      "file": "granite-278m-q8.gguf",
+      "family": "granite-embedding-278m-multilingual",
+      "arch": "bert",
+      "params": "278M",
+      "license": "Apache-2.0",
+      "source": "bartowski/granite-embedding-278m-multilingual-GGUF/granite-embedding-278m-multilingual-Q8_0.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "cls"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "e5-large",
+      "file": "e5-large-f16.gguf",
+      "family": "multilingual-e5-large",
+      "arch": "bert",
+      "params": "560M",
+      "license": "MIT",
+      "source": "phate334/multilingual-e5-large-gguf/multilingual-e5-large-f16.gguf",
+      "docPrefix": "passage: ",
+      "queryPrefix": "query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "arctic-l-v2",
+      "file": "arctic-l-q8.gguf",
+      "family": "snowflake-arctic-embed-l-v2.0",
+      "arch": "bert",
+      "params": "568M",
+      "license": "Apache-2.0",
+      "source": "Casual-Autopsy/snowflake-arctic-embed-l-v2.0-gguf/snowflake-arctic-embed-l-v2.0-q8_0.gguf",
+      "docPrefix": "",
+      "queryPrefix": "query: ",
+      "pooling": [
+        "cls",
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "embgemma",
+      "file": "embgemma-q8.gguf",
+      "family": "EmbeddingGemma-300M",
+      "arch": "gemma-embedding",
+      "params": "308M",
+      "license": "Gemma Terms of Use (NOT Apache/MIT — cannot ship)",
+      "source": "ggml-org/embeddinggemma-300M-GGUF/embeddinggemma-300M-Q8_0.gguf",
+      "docPrefix": "title: none | text: ",
+      "queryPrefix": "task: search result | query: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true,
+      "licenceBlocked": true
+    },
+    {
+      "id": "bge-m3-f16",
+      "file": "bgem3-f16.gguf",
+      "family": "bge-m3",
+      "arch": "bert",
+      "params": "568M",
+      "license": "MIT",
+      "source": "gpustack/bge-m3-GGUF/bge-m3-FP16.gguf",
+      "docPrefix": "",
+      "queryPrefix": "",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "id": "e5-large-inst",
+      "file": "e5-large-inst-q8.gguf",
+      "family": "multilingual-e5-large-instruct",
+      "arch": "bert",
+      "params": "560M",
+      "license": "MIT",
+      "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q8_0.gguf",
+      "docPrefix": "",
+      "queryPrefix": "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true
+    },
+    {
+      "family": "multilingual-e5-large-instruct",
+      "arch": "bert",
+      "params": "560M",
+      "license": "MIT",
+      "docPrefix": "",
+      "queryPrefix": "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true,
+      "id": "e5-large-inst-q6",
+      "file": "e5-large-inst-q6_k.gguf",
+      "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q6_k.gguf"
+    },
+    {
+      "family": "multilingual-e5-large-instruct",
+      "arch": "bert",
+      "params": "560M",
+      "license": "MIT",
+      "docPrefix": "",
+      "queryPrefix": "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ",
+      "pooling": [
+        "mean"
+      ],
+      "multilingual": true,
+      "id": "e5-large-inst-q4",
+      "file": "e5-large-inst-q4_k_m.gguf",
+      "source": "Ralriki/multilingual-e5-large-instruct-GGUF/multilingual-e5-large-instruct-q4_k_m.gguf"
+    }
+  ]
+}

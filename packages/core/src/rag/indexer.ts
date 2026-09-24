@@ -28,6 +28,12 @@ export interface IndexOptions {
 
 export const chunkId = (docId: string, page: number, ord: number): string => `${docId}:${page}:${ord}`;
 
+/** Vectors from another embedder live in another space (and here another dimension), so the document is rebuilt, never searched. */
+export const needsReindex = (doc: Pick<DocumentRecord, "embedModel" | "indexedPages">, embedderId: string): boolean => doc.indexedPages > 0 && doc.embedModel !== embedderId;
+
+/** The record to re-queue: page 0, no chunks, so `indexDocument` rebuilds it from the start and drops the old rows. */
+export const reindexFrom = (doc: DocumentRecord): DocumentRecord => ({ ...doc, status: "queued", indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 });
+
 export class IndexCancelled extends Error {
   constructor() {
     super("cancelled");
@@ -44,8 +50,8 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder.id };
   const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.indexedPages, pages: total, chunks: doc.chunkCount, elapsedMs: now() - started });
   const cancelled = () => o.signal?.aborted === true;
-  /* A resume re-embeds nothing, but a page interrupted mid-commit is redone from scratch. */
-  if (doc.indexedPages > 0) await o.store.deleteChunksFrom(doc.id, doc.indexedPages + 1);
+  /* A resume re-embeds nothing, but a page interrupted mid-commit is redone from scratch; from page 0 that is every row. */
+  await o.store.deleteChunksFrom(doc.id, doc.indexedPages + 1);
   await o.store.putDocument(doc);
   let ord = (await o.store.chunksOf(doc.id)).length;
   doc.chunkCount = ord;

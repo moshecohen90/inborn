@@ -1,0 +1,11 @@
+     × a fresh install asks Play for Instant and its projector together, and for nothing on-demand 8ms
+     × the catalog bundles it on iOS and makes it a fast-follow Play pack, like Instant 5ms
+     × every chat model that can see and ships in the store build brings the projector along, on both stores 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/bundleVision.test.ts > F340/F341 · Instant's projector ships wherever Instant ships > the catalog bundles it on iOS and makes it a fast-follow Play pack, like Instant
+AssertionError: expected [ 'play-asset-pack', 'https' ] to deeply equal [ 'bundled', 'play-asset-pack', …(1) ]
+ FAIL  test/bundleVision.test.ts > F340/F341 · Instant's projector ships wherever Instant ships > every chat model that can see and ships in the store build brings the projector along, on both stores
+AssertionError: instant is bundled: expected [] to not have a length of +0
+ FAIL  src/vault/store.test.ts > VaultStore after a Play version update (purchases run §K) > a fresh install asks Play for Instant and its projector together, and for nothing on-demand
+AssertionError: expected [ 'instant' ] to deeply equal [ 'instant', 'vision-qwen35' ]
+      Tests  3 failed | 19 passed (22)

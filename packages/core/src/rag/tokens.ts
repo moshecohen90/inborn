@@ -25,6 +25,20 @@ export function estimateTokens(text: string): number {
   return Math.ceil(latin / 4 + rtl / 2 + cjk / 1.5 + other / 3 + spaces / 4);
 }
 
+/** The longest prefix of `text`, cut at a code point, whose estimate fits `maxTokens`. */
+export function clipToTokens(text: string, maxTokens: number): string {
+  if (estimateTokens(text) <= maxTokens) return text;
+  const chars = Array.from(text);
+  let lo = 0;
+  let hi = chars.length;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if (estimateTokens(chars.slice(0, mid).join("")) <= maxTokens) lo = mid;
+    else hi = mid - 1;
+  }
+  return chars.slice(0, lo).join("");
+}
+
 export type Script = "he" | "ar" | "en" | "cjk" | "mixed" | "unknown";
 
 /** Dominant script by character share; "mixed" when no script reaches 60% of the letters. */
