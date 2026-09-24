@@ -55,6 +55,12 @@ class FakeProvider implements PurchaseProvider {
   fail(e: PurchaseFailure) {
     for (const cb of this.errorCbs) cb(e);
   }
+  codeScreens = 0;
+  codeScreenError: Error | null = null;
+  openCodeRedemption? = async () => {
+    this.codeScreens++;
+    if (this.codeScreenError) throw this.codeScreenError;
+  };
   async redeemLicenceKey(key: string): Promise<RawPurchase> {
     return { productId: "?", transactionId: "?", state: "purchased", proof: { kind: "licence-key", key, deviceId: "dev-1" }, acknowledged: true };
   }
@@ -264,6 +270,40 @@ describe("LicenceManager (spec §12.4, §8.7 states, §10.7 #48–#52)", () => {
     await noStore.manager.start();
     expect(noStore.manager.state.storeReachable).toBe(false);
     expect(await noStore.manager.redeem(key)).toEqual({ ok: false, reason: "wrong-environment" });
+  });
+
+  /* F306. The store owns the code, not us: the button only opens the store screen, and the unlock arrives as a purchase. */
+  it("the store code screen opens, then the manager re-reads what the account owns", async () => {
+    const provider = new FakeProvider();
+    const { manager } = build(provider);
+    await manager.start();
+    expect(manager.canRedeemStoreCode()).toBe(true);
+    expect(manager.tier).toBe("free");
+    provider.owned = [raw()];
+    await manager.redeemStoreCode();
+    expect(provider.codeScreens).toBe(1);
+    expect(manager.state.code).toEqual({ kind: "idle" });
+    expect(manager.tier).toBe("pro");
+  });
+
+  it("a store with no code screen offers nothing, and a screen that will not open says so instead of pretending", async () => {
+    const none = new FakeProvider("licence-key");
+    none.openCodeRedemption = undefined;
+    const bare = build(none);
+    await bare.manager.start();
+    expect(bare.manager.canRedeemStoreCode()).toBe(false);
+    await bare.manager.redeemStoreCode();
+    expect(bare.manager.state.code).toEqual({ kind: "idle" });
+
+    const provider = new FakeProvider();
+    provider.codeScreenError = Object.assign(new Error("no such flow"), { code: "not-supported" });
+    const { manager } = build(provider);
+    await manager.start();
+    await manager.redeemStoreCode();
+    expect(manager.state.code).toEqual({ kind: "failed", code: "not-supported" });
+    expect(manager.tier).toBe("free");
+    manager.acknowledgePurchaseUi();
+    expect(manager.state.code).toEqual({ kind: "idle" });
   });
 
   it("the launch SKU is offered only inside the window and only when the store lists it", async () => {

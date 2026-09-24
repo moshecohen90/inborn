@@ -49,9 +49,9 @@ export function contrastRatio(a: string, b: string): number {
   const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x) as [number, number];
   return (hi + 0.05) / (lo + 0.05);
 }
-export type ThemeMode = "system" | "dark" | "light";
-/** Default is the device setting (decision D7). */
-export const DEFAULT_THEME_MODE: ThemeMode = "system";
+export type ThemeMode = "auto" | "dark" | "light";
+/** Default is auto: device setting OR the 18:00-06:00 clock rule (decision D7, extended round 65). */
+export const DEFAULT_THEME_MODE: ThemeMode = "auto";
 
 /** Glow/bloom fills keep the dark accent in both schemes (§9.2): only accent *text* darkens in light mode. */
 export const glow = { filament: "#F0B35B", sealed: "#3ECF8E" } as const;

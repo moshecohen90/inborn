@@ -1,0 +1,10 @@
+     × the row is gated on the manager saying this store has a code screen 9ms
+     × the spec no longer points at the Bible apps' pricing mechanism as the source of a local price 4ms
+     × neither the terms nor the site promises a cross-store discount code any more 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/prices-codes-r64.test.ts > F306 · the code row opens the store, and only where a store exists > the row is gated on the manager saying this store has a code screen
+ FAIL  test/prices-codes-r64.test.ts > F305 · one US price per SKU, the store does the rest > the spec no longer points at the Bible apps' pricing mechanism as the source of a local price
++ <tr><td>יעד (חודש 12)</td><td class="num">2,500</td><td class="num">2.5%</td><td class="num">$15</td><td class="num">$28,000</td><td class="num">$3,000 (50 × $59.5)</td></tr>
++ <tr><td>הצלחה (שנה 2)</td><td class="num">4,000</td><td class="num">3%</td><td class="num">$15</td><td class="num">$54,000</td><td class="num">$11,900 (200 × $59.5)</td></tr>
+ FAIL  test/prices-codes-r64.test.ts > F307 · the written promise is one the stores can keep > neither the terms nor the site promises a cross-store discount code any more
+      Tests  3 failed | 6 passed (9)
