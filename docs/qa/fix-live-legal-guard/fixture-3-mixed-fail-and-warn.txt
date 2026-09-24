@@ -1,0 +1,9 @@
+=== 3. same sabotaged licenses page, live catalog version behind repo (server serves version 4, repo is 6) — expect exit 1 (privacy still fails) but licenses line is a WARN not a FAIL ===
+http://127.0.0.1:8932/licenses -> 200, 0 script src, cache-control: public, max-age=600, no-transform
+http://127.0.0.1:8932/models/manifest.json -> a JSON catalog the app can read
+legal-text guard: 8 locales × (3 legal pages + licenses) checked against docs/legal
+
+⚠ http://127.0.0.1:8932/licenses: licenses page model list differs from docs/legal/NOTICE.json, but the live catalog is still version 4 (repo is 6) — expected until the next model deploy publishes it — live model list: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, Qwen3.5-9B, Qwen3.5 vision projector (mmproj), Phi-4-mini-instruct, SmolLM3-3B, Ministral 3 8B, Muse Glimmer 30B, nomic-embed-text-v1.5, Qwen3-Embedding-0.6B, all-MiniLM-L6-v2, Whisper base / small (ggml), Parakeet (Core ML), Kokoro-82M (ONNX), Silero VAD, Apple Foundation Models (on-device), Gemini Nano (AICore) — repo docs/legal/NOTICE.json: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, Qwen3.5-9B, Qwen3.5 vision projector (mmproj), Phi-4-mini-instruct, SmolLM3-3B, Ministral 3 8B, Muse Glimmer 30B, multilingual-e5-large-instruct, Qwen3-Embedding-0.6B, all-MiniLM-L6-v2, Whisper base / small (ggml), Parakeet (Core ML), Kokoro-82M (ONNX), Silero VAD, Apple Foundation Models (on-device), Gemini Nano (AICore)
+
+✗ http://127.0.0.1:8932/privacy: legal text differs from docs/legal/privacy-policy.md — live 1947 words, repo 1947 words; first divergence at word 45: live="sometimes collect receive store sell or share any" repo="not collect receive store sell or share any"; only-live: sometimes×1; only-repo: not×1
+EXIT=1

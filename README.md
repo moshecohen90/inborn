@@ -5518,3 +5518,29 @@ German, French, Spanish and Portuguese typed without accents. Neither is what la
 Evidence in `docs/qa/fix-rag-fixtures/`: `red-guards.txt`, `red-zhhant-glue.txt`, `red-que-stopword.txt`,
 `door-and-reproduction.txt` and the scripts that produced it. The 22-candidate comparison stays in
 `docs/qa/embed-multilingual/measure-f333.md`. Spec §5 carries the new numbers and both lexical rules.
+## Fixes round 82: `check:live` now guards the legal pages, not just the pipes (branch `fix-live-legal-guard`) — 24.9.2026
+
+Wave-3 verifier C02 proved by hand that the live site's privacy, terms and accessibility pages still matched
+`docs/legal/*.md` word for word, in all 8 locales — but `pn check:live`, the gate that runs after every deploy, never
+checked that itself. It covered status codes, the Cloudflare beacon, third-party scripts, `no-transform` and the model
+catalog, and nothing else. A future edit to `docs/legal` could stop reaching the live site and no gate would notice.
+
+- **The guard** (F364). `check:live` now fetches every launch locale's `/privacy`, `/terms` and `/accessibility` and
+  word-diffs the `<article class="prose legal">` body against the matching `docs/legal/*.md` — the maintainer's
+  "Spec basis: …" line and the H1 excluded, exactly as `apps/site/build.mjs` already strips them before publishing, so
+  a real drift is the only thing that trips it. It also fetches `/licenses` and diffs the "model" table's component
+  names against `docs/legal/NOTICE.json`.
+- **A licenses mismatch is a FAIL, unless it is just a pending deploy.** The guard also reads the live
+  `/models/manifest.json`'s catalog `version`. If it is older than the repo's, a model-list mismatch is a WARN, not a
+  FAIL — round 72 (F334-F336) already ships `multilingual-e5-large-instruct` in `NOTICE.json`, but the live catalog is
+  still version 4 against the repo's 6 until Deploy 5 runs. Once the live version catches up, the same mismatch fails
+  the gate. Run live today: all 24 legal-text pages match exactly; `/licenses` differs (still names
+  `nomic-embed-text-v1.5`) and is correctly downgraded to a warning, exit 0
+  (`docs/qa/fix-live-legal-guard/live-check-2026-09-24.txt`).
+- **Proven watched red and green**, end to end, against a local static server built by the real `apps/site/build.mjs`
+  (not hand-written HTML fixtures): a one-word flip in `privacy.html` fails with the exact drifted word; the same
+  sabotaged `/licenses` fails when the fixture's catalog version matches the repo's and downgrades to an exit-0 warning
+  once it is set behind it (`docs/qa/fix-live-legal-guard/fixture-*.txt`). 31 unit tests on the pure comparators
+  (`scripts/check-live-legal.mjs`, new) in `apps/mobile/test/check-live-legal.test.ts`, built against the real site
+  generator's output in all 8 locales rather than hand-authored HTML.
+

@@ -1,0 +1,9 @@
+=== 3b. ONLY licenses model list drifted, live catalog behind repo (4<6) — expect exit 0, WARN only, no FAIL anywhere ===
+http://127.0.0.1:8933/ -> 200, 0 script src, cache-control: public, max-age=600, no-transform
+http://127.0.0.1:8933/models/manifest.json -> a JSON catalog the app can read
+legal-text guard: 8 locales × (3 legal pages + licenses) checked against docs/legal
+
+⚠ http://127.0.0.1:8933/licenses: licenses page model list differs from docs/legal/NOTICE.json, but the live catalog is still version 4 (repo is 6) — expected until the next model deploy publishes it — live model list: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, Qwen3.5-9B, Qwen3.5 vision projector (mmproj), Phi-4-mini-instruct, SmolLM3-3B, Ministral 3 8B, Muse Glimmer 30B, nomic-embed-text-v1.5, Qwen3-Embedding-0.6B, all-MiniLM-L6-v2, Whisper base / small (ggml), Parakeet (Core ML), Kokoro-82M (ONNX), Silero VAD, Apple Foundation Models (on-device), Gemini Nano (AICore) — repo docs/legal/NOTICE.json: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, Qwen3.5-9B, Qwen3.5 vision projector (mmproj), Phi-4-mini-instruct, SmolLM3-3B, Ministral 3 8B, Muse Glimmer 30B, multilingual-e5-large-instruct, Qwen3-Embedding-0.6B, all-MiniLM-L6-v2, Whisper base / small (ggml), Parakeet (Core ML), Kokoro-82M (ONNX), Silero VAD, Apple Foundation Models (on-device), Gemini Nano (AICore)
+
+✓ 1 live pages: no injected beacon, no off-origin script, no-transform present
+EXIT=0
