@@ -4856,3 +4856,16 @@ F303 was reserved and not used.
 
 Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 777, i18n 20, ui 13, `check:store`
 PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Evidence in `docs/qa/fix-r62/`.
+
+### Round 62b: the rule nobody had written down, and the label that was clipping in silence (same branch) — 24.9.2026
+
+- **The browser-first rule is now a spec section and a gate** (F303). Spec §14.9 says it: anything visual is checked
+  in the browser at 390 / 768 / 1024 / 1440 before a Mac or a phone, and a device is only for what is genuinely
+  device-specific. `pnpm web:smoke` now sweeps chat, settings, paywall and onboarding at all four widths with a model
+  in OPFS — 16 screenshots, no horizontal scroll anywhere, the composer's three controls on one centre line within
+  2px and inside the window — and **fails if any width was skipped**, which is a separate constant from the one that
+  drives the sweep so narrowing it goes red. Required line added to the release checklist.
+- **French clipped its Incognito button at 390** (F304): "Navigation pri…". The label had 124px and needed 130px, and
+  `numberOfLines={1}` swallows that difference without a sound. Now "Privé", the wording the incognito badge already
+  uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
+  text overflows its own box; watched red with the old string (`needs 130px in 124px`).
