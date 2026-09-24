@@ -4869,3 +4869,41 @@ PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Ev
   `numberOfLines={1}` swallows that difference without a sound. Now "Privé", the wording the incognito badge already
   uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
   text overflows its own box; watched red with the old string (`needs 130px in 124px`).
+
+## Fixes round 64: the prices we do not set, and a discount code half the stores cannot issue (branch `prices-codes`) — 24.9.2026
+
+Moshe's two decisions of 24.9, and the research one of them needed first. F305–F308.
+
+- **Per-market prices are the store's, not ours** (F305). Spec §12.2 said every non-US price comes from the Bible
+  apps' country-ratio mechanism (`pricing.json`, `getCountryPrice`), down to named ratios — Brazil ≈ 36%, Mexico
+  ≈ 50%, Nigeria ≈ 14%. Nothing in this repo has ever read that file: the paywall shows `displayPrice` from StoreKit
+  and Play Billing. That mechanism was written for subscriptions we bill ourselves, so keeping it in the spec was a
+  promise that would go stale without anyone noticing. Decided: one US price point per SKU, the matching tier chosen
+  in ASC and Play Console, and the store converts for every country including VAT, rounding and FX.
+- **The research verdict on codes** (F306), from Apple's and Google's own documentation. Apple **stopped creating
+  promo codes for In-App Purchases on 26 March 2026** and replaced them with **offer codes**, which now cover
+  consumables, non-consumables and non-renewing subscriptions — so Pro and Work are offer codes, and the launch plan's
+  "100 promo codes per IAP" was a route that no longer exists. Google Play keeps **promo codes** for one-time
+  products, but **free only**: its percentage-discount codes are subscriptions-only. A cross-platform "20–30% off
+  code" therefore cannot be issued at all.
+- **"Have a code?" is a door to the store, not a mechanism of ours** (F306). One row on S60 next to Restore, in all
+  nine locales, calling `expo-iap`'s `openRedeemOfferCode()`: the StoreKit offer-code sheet on iOS, the Play redeem
+  page on Android. `PurchaseProvider.openCodeRedemption?()` is optional, so the browser build and the desktop
+  licence-key build — neither of which has such a screen — do not show the row. We never see, store or validate a
+  code; the unlock arrives as an ordinary signed purchase, and the manager refreshes after the sheet closes because
+  a redemption made outside the app is only reported on the next sync. No server, no local code check to forge.
+- **The terms promised a discount that could not be given** (F307). "Write to support with your receipt for a discount
+  code" shipped in the bundled terms and on the support page, and Play cannot issue a percentage code for a one-time
+  product. It now promises the same-store Work upgrade at **$49.99** instead of $69.99 — a real store price, not a
+  code — and, across stores, a free code at support's discretion with no percentage promised. Same wording in both
+  places, so the app's offline copy and the site agree.
+- **What to create in the consoles** (F308): `docs/store/codes.md`, new. Apple offer codes and Play promo codes with
+  the exact batches, names and quantities, the limits of each store side by side, the handout procedure for support,
+  and the sources. §4 of the launch plan was corrected to match. Nothing in this round wrote to a store.
+
+**Proof:** `docs/qa/prices-codes/`. The row rendered in the browser at 390 / 768 / 1024 / 1440 on a locally patched
+Play-store build (`store-play/`, patch reverted before the commit) and absent at all four widths on the shipping web
+build (`web-nostore/`), which is the correct behaviour, not a failure. Watched red before green: the manager's
+post-redemption refresh removed (`red-no-refresh.txt`, `expected 'free' to be 'pro'`) and three claims sabotaged at
+once — the row's gate, the spec sentence, the terms sentence (`red-guards.txt`, 3 failures). Gates green: typecheck,
+1,557 tests (core 738, mobile 786, i18n 20, ui 13), lint, `check:store`, `web:smoke` including its four-width sweep.

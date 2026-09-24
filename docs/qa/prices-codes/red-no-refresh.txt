@@ -1,0 +1,5 @@
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/licence-manager.test.ts > LicenceManager (spec §12.4, §8.7 states, §10.7 #48–#52) > the store code screen opens, then the manager re-reads what the account owns
+AssertionError: expected 'free' to be 'pro' // Object.is equality
+      Tests  1 failed | 737 passed (738)
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @inborn/core@0.0.1 test: `vitest run`
