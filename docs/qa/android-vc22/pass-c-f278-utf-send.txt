@@ -1,0 +1,61 @@
+NC-OK
+attach-strict before: checked="false" (off)
+attach-strict after:  checked="false" (off)
+strict off rc=0
+SHARED file:///sdcard/Android/data/com.inbornapp.mobile/files/vc22-ja-report.txt
+ids:  android:id/content android:id/navigationBarBackground attach attached-chip-mufhyc05-2-7qxeb7r5 attached-docs com.inbornapp.mobile:id/action_bar_root composer-input context-level-ok context-meter empty-headline mic model-chip notice open-chats seal seal-label send suggestion-draft suggestion-summarize suggestion-translate 
+text: Chats|SEALED|INSTANT|This is AI running on your phone. It can be wrong. Check important facts.|Dismiss|INSTANT|Nothing leaves this phone.|Summarize text|Translate|Draft a message|vc22-ja-report.txt|Message…|
+--- F278 OFF-TOPIC, asked in Japanese (the exact sentence round 58 measured at bm25Terms=2)
+UC-OK [settext:composer-input:一九九八年のワールドカップで優勝したのはどこですか？;sleep:1500]
+draft now: [一九九八年のワールドカップで優勝したのはどこですか？]
+attached chips before send: 1
+f278b-off sec=21 complete=1 SOURCES-blocks=1
+ANSWER: 一九九八年のワールドカップで優勝したのは「リオ・デ・ローラ・ファンタジー」です。 SOURCES vc22-ja-report.txt · part 1 
+--- whole screen:
+Chats
+SEALED
+INSTANT
+FAST handles Japanese and documents better than INSTANT.
+Switch to FAST
+Not now
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+一九九八年のワールドカップで優勝したのはどこですか？
+INSTANT · ON-DEVICE AI
+一九九八年のワールドカップで優勝したのは「リオ・デ・ローラ・ファンタジー」です。
+SOURCES
+vc22-ja-report.txt · part 1
+LEDGER
+vc22-ja-report.txt
+1
+Message…
+--- F278 ON-TOPIC, asked in Japanese, same one-passage file, same chat
+UC-OK [settext:composer-input:青葉商事の社員数は何名ですか？;sleep:1500]
+draft now: [青葉商事の社員数は何名ですか？]
+attached chips before send: 1
+f278b-on sec=22 complete=1 SOURCES-blocks=2
+ANSWER: 青葉商事の社員数は三百八十二名です。 SOURCES vc22-ja-report.txt · part 1 
+--- whole screen:
+Chats
+SEALED
+INSTANT
+FAST is better at documents than INSTANT.
+Switch to FAST
+Not now
+This is AI running on your phone. It can be wrong. Check important facts.
+Dismiss
+一九九八年のワールドカップで優勝したのはどこですか？
+INSTANT · ON-DEVICE AI
+一九九八年のワールドカップで優勝したのは「リオ・デ・ローラ・ファンタジー」です。
+SOURCES
+vc22-ja-report.txt · part 1
+LEDGER
+青葉商事の社員数は何名ですか？
+INSTANT · ON-DEVICE AI
+青葉商事の社員数は三百八十二名です。
+SOURCES
+vc22-ja-report.txt · part 1
+LEDGER
+vc22-ja-report.txt
+1
+Message…

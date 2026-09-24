@@ -4810,6 +4810,57 @@ Gates: `pnpm typecheck` 0, `pnpm test` green (core 734, mobile 747, i18n 20, ui 
 0, `node apps/site/build.mjs && node apps/site/check.mjs` green, `pnpm web:build` and `pnpm web:smoke` green.
 Evidence in `docs/qa/fix-site-sizes/`.
 
+## Fixes round 60: Play internal 1.0.0 (22) — the first Android build carrying rounds 55–59 (branch `android-vc22`) — 24.9.2026
+
+`vc21` carried rounds 46–53. Five rounds landed after it and none had ever run on an Android release build: the
+browser model catalog and the no-transform header (56, 57), **F276**'s notice strip, **F278**'s CJK relevance floor,
+**F279**'s separate QA package, and **F280/F281**'s single decimal size rule. `main` **648bc43** is the first tree
+carrying all of them. This round built it as **1.0.0 (22)**, put it on the Play internal track, took it onto the
+OnePlus 6T as a Play update in place, and ran the rows those five rounds are judged on.
+
+**The build.** `INBORN_VERSION_CODE=22` from a shell with no `EXPO_PUBLIC_*` dev switch (`check-store-env.sh` clean),
+`INBORN_PACKS` unset so all **seven** packs are declared, `bundleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a`
+in a private `GRADLE_USER_HOME`. **BUILD SUCCESSFUL in 7 m 50 s**, AAB **5,117,914,935 B**, sha256 `dbc03436…2883`,
+signed by `CN=Inborn Upload Key`. Gates: `check-android-bundle.sh` 0 (seven packs, both OCR files, no iOS assets),
+`bundletool validate` 0, `check-qa-bridge.sh` 0 (no `INBORN_QA_BRIDGE_V1`), `check-android-permissions.sh` 0 (no
+INTERNET, 9 declared), all nine native modules present by dex type descriptor, commit `648bc43f66c6` baked in.
+`pn typecheck` 0, `pn test` 0 (**1,514**: core 734, mobile 747, i18n 20, ui 13), `pn lint` 0, `check:store` PASS.
+F286's 5 tests landed after the AAB was built, so the branch reached **1,519** (mobile 752), and **1,561** once
+rounds 61–65 were merged in (core 736, mobile 785, i18n 20, ui 20), all green with `lint` and `check:store`. The fix
+is in `scripts/`, which no app bundle carries, so the shipped bundle is the one the gates above describe.
+
+**The one fix this round makes (F286).** The first upload put all 5.1 GB up, set the track, and then the commit
+answered `400 "Some of the Android App Bundle uploads are not completed yet."` — Play still ingesting the bundle.
+`play-upload.mjs` deletes the edit on any commit error, so the finished upload was discarded and had to be repeated
+in full. `commitEdit` (`scripts/lib/play-api.mjs`) now retries the commit on **that message only**, 20 × 60 s, and
+never deletes the edit; any other error still fails at once. Guard: 5 tests in
+`apps/mobile/test/playCommitRetry.test.ts`, watched to fail both ways — the retry removed → 2 red
+(`expected [ Array(1) ] to have a length of 3`); the guard widened to retry everything → 1 red
+(`promise resolved "{ id: 'committed-1' }" instead of rejecting`). The second upload committed on its first call,
+edit **04011734122033761470**, and Play's read-back over a fresh edit answers the same sha256 as the local file.
+
+**On the phone.** Pressed Update 21 minutes after the commit; first press, `DOWNLOAD-STARTED`, versionCode 22 after
+584 s, `firstInstallTime` unchanged — a real update in place over Moshe's own install.
+
+- **F281 — one rounding rule.** INSTANT **533 MB**, FAST **1.3 GB**, SHARP **2.7 GB**, SHARP (PHI) **2.5 GB**, the
+  same on the model sheet, the vault card and the model details screen (on vc21: 508 MB, 1.2 GB, 2.6 GB, 2.3 GB).
+- **F276 — the notice strip, proven both ways.** Off-topic: no SOURCES and the strip still on screen **60 s after**
+  the turn finished. On-topic: the strip withdrawn and the answer cited. This is what vc21 filed as F260.
+- **F278 — half.** The on-topic Japanese question cites the one-passage file; the off-topic one **still cites it**.
+- **F255** the hostile filename is cited by its real name with no leak; **one tap** switches Instant→Fast in 7 s; a
+  Hebrew question is answered in Hebrew on three samples; crash sweep **0**.
+
+**What this round found and did not fix (F282–F285).** **F282**: F278 closed the lexical door properly — the real
+`Bm25Index` gives the off-topic Japanese question **no hit at all** on that passage — but `isRelevant` reads
+`cosine >= 0.5` as sufficient on its own, and that threshold is calibrated on nomic-embed's English behaviour, so a
+one-passage Japanese document is still fenced and cited for a question about the 1998 World Cup. **F283**: F263 is
+narrower than recorded — this Play update did not remove the driver package and no Play Protect dialog appeared.
+**F284**: the `hb.sh` share door opens a new chat and drops the attachment, and the result reads exactly like a
+passing relevance test. **F285**: F281's download door cannot be read on a phone that already has every pack, so
+three surfaces were read and the fourth was declared, not claimed.
+
+Evidence in `docs/qa/android-vc22/`, §Z of `docs/qa/purchases-run-2026-09-11.md`, rows F282–F286 of
+`docs/qa/qa-run-2026-09-11.md`. Internal test link: https://play.google.com/apps/internaltest/4701564557913726350
 ## Fixes round 62: the verifiers' round — a paywall nobody could reach, a reason that was an event, and a claim the repo could not keep (branch `fix-r62`) — 24.9.2026
 
 Eleven findings from the item verifiers (I02, I04, I10, I12, I13, S06, S07, S08, S10, C04, C05). Browser-first:
