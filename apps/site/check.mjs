@@ -24,8 +24,8 @@ if (SIZE_INSTANT !== "533 MB") problems.push(`SIZE_INSTANT is "${SIZE_INSTANT}",
 if (SIZE_FAST !== "1.3 GB") problems.push(`SIZE_FAST is "${SIZE_FAST}", expected "1.3 GB" (packages/core/src/catalog/manifest.json, id "fast")`);
 /* Every place the site names a model's download size, so a future edit cannot quietly hardcode a number again. */
 const SIZE_MENTIONS = [
-  ["index.html", ["Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
-  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once, from {{SIZE_INSTANT}} (Instant) to {{SIZE_FAST}} (Fast, offered on capable desktops)"]],
+  ["index.html", ["Your browser downloads one model once: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)", "The Instant model, {{SIZE_INSTANT}}, arrives with the app", "the Instant model it runs is {{SIZE_INSTANT}}", "In a browser, one model downloads once into the browser's own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
+  ["download.html", ["The Instant model, {{SIZE_INSTANT}}, arrives with the app", "Your browser downloads one model once into its own storage: {{SIZE_INSTANT}} (Instant) or {{SIZE_FAST}} (Fast, on capable desktops)"]],
   ["blog/why-on-device.html", ["Inborn ships a 0.8B model inside the app, {{SIZE_INSTANT}}, so the first chat works"]],
 ];
 for (const [file, sentences] of SIZE_MENTIONS) {

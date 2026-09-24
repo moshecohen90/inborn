@@ -336,7 +336,7 @@ const FAQ = [
   ["Do you see my chats?",
     "No. Your messages never leave the device, and Inborn has no account system, no server, no analytics and no crash reporting, so there is nothing for us to see, store, sell or hand to anyone. Conversations live in an encrypted database whose key the operating system holds. We could not recover them for you even if you asked."],
   ["How big is the download?",
-    `The app is a normal store download and the Instant model it runs is ${SIZE_INSTANT}, which ships inside the app on iPhone and arrives from Google Play as an asset pack on Android. Larger models are optional: Fast is 1.28 GB and Sharp is 2.74 GB, and you choose when to install them. In a browser, one model downloads once, from ${SIZE_INSTANT} (Instant) to ${SIZE_FAST} (Fast, offered on capable desktops), chosen by your device, into the browser's own storage.`],
+    `The app is a normal store download and the Instant model it runs is ${SIZE_INSTANT}, which ships inside the app on iPhone and arrives from Google Play as an asset pack on Android. Larger models are optional: Fast is 1.28 GB and Sharp is 2.74 GB, and you choose when to install them. In a browser, one model downloads once into the browser's own storage: ${SIZE_INSTANT} (Instant) or ${SIZE_FAST} (Fast, on capable desktops), whichever you pick, with the one your device runs best offered first.`],
   ["Which AI models does Inborn run?",
     "Inborn runs open-weight models in GGUF format: Qwen3.5 at 0.8B, 2B and 4B under Apache-2.0, and Microsoft's Phi-4-mini 3.8B under MIT. Instant and Fast are free; the Sharp models come with Pro. You can also import any GGUF file you already have, including Gemma, Mistral and Llama."],
   ["Will it work on my phone?",

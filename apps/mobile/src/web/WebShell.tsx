@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "expo-router";
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { Icon, MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { formatModelBytes } from "@inborn/core";
-import { delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
+import { joinList } from "@inborn/i18n";
+import { chooseWebModel, delivery, settleModelStatus, webBoot, webReady, type WebBoot } from "./boot";
+import { ModelOptions } from "./ModelOptions";
+import { deviceNoun } from "../lib/deviceNoun";
+import { languagesLine } from "../screens/Onboarding/modelStep";
 import type { DeliveryEvent } from "./modelDelivery";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
 import { writeEnginePref } from "./prefs";
@@ -126,8 +130,9 @@ function CatalogDoor({ theme }: { theme: Theme }) {
 }
 
 function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; onReady: () => void }) {
-  const { t } = useTranslation();
-  const source = boot.source;
+  const { t, i18n } = useTranslation();
+  /* The pick drives the render; chooseWebModel() keeps the boot and the saved preference on the same model. */
+  const [chosenId, setChosenId] = useState<string | null>(boot.source?.id ?? null);
   const [phase, setPhase] = useState<Phase>(() => (boot.status.kind === "partial" ? { kind: "paused", have: boot.status.have } : { kind: "idle" }));
   const [estimate, setEstimate] = useState<StorageEstimate | null>(null);
   const [persisted, setPersisted] = useState<boolean | null>(null);
@@ -140,7 +145,17 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
     });
   }, []);
 
+  const choice = boot.choices.find((c) => c.source.id === chosenId);
+  const source = choice?.source ?? boot.source;
   if (!source) return null;
+  /* The same four-names-plus-a-count line the onboarding card uses; Fast is good at nine and the list is not the point. */
+  const languageNames = languagesLine((choice?.languages ?? []).map((c) => t(`language.${c}`, { defaultValue: c })));
+  const speed = choice?.speed;
+  const choose = async (id: string) => {
+    if (running.current || !(await chooseWebModel(id))) return;
+    setPhase(boot.status.kind === "partial" ? { kind: "paused", have: boot.status.have } : { kind: "idle" });
+    setChosenId(id);
+  };
   const have = phase.kind === "paused" || phase.kind === "downloading" ? phase.have : 0;
   const space = estimate ? spaceCheck(estimate, source.bytes, have) : null;
   const size = formatModelBytes(source.bytes);
@@ -167,13 +182,34 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
   };
 
   const busy = phase.kind === "downloading" || phase.kind === "verifying";
+  const stored = phase.kind === "idle" && boot.status.kind === "ready";
   const percent = phase.kind === "downloading" ? Math.floor((phase.have / (phase.total ?? source.bytes)) * 100) : phase.kind === "verifying" ? 100 : 0;
   return (
-    <View testID="download-door" style={styles.door}>
+    /* The card grows when the option list opens; at 390 that is taller than the viewport, so the door scrolls. */
+    <ScrollView testID="download-door" contentContainerStyle={styles.doorScroll}>
       <View style={[styles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
         <Text style={[styles.monoLabel, { color: theme.sealed }]}>{t("chat.onDevice")}</Text>
         <Text style={[styles.headline, { color: theme.text }]}>{t("web.download.title", { model: source.name })}</Text>
+        {/* Why this one and not another (Moshe, 24.9): the reason belongs beside the offer, above the list of the rest. */}
+        {choice?.recommended ? (
+          <>
+            <Text style={[styles.monoLabel, { color: theme.accent }]}>{t("models.recommended", { device: deviceNoun() })}</Text>
+            <Text testID="web-download-why" style={[styles.body, { color: theme.text2 }]}>
+              {t("web.download.why")}
+            </Text>
+          </>
+        ) : null}
         <Text style={[styles.body, { color: theme.text2 }]}>{t("web.download.explain", { size })}</Text>
+        <Text testID="web-download-speed" style={[styles.mono, { color: theme.text3 }]}>
+          {speed ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() }) : t("vault.speedUnknown", { device: deviceNoun() })}
+        </Text>
+        {languageNames.list.length ? (
+          <Text testID="web-download-languages" style={[styles.caption, { color: theme.text3 }]}>
+            {languageNames.more
+              ? t("onboarding.model.languagesMore", { list: joinList(i18n.language, languageNames.list), count: languageNames.more })
+              : t("onboarding.model.languages", { list: joinList(i18n.language, languageNames.list) })}
+          </Text>
+        ) : null}
         <Text style={[styles.mono, { color: theme.text3 }]}>
           {t("web.download.storage", { free: estimate?.quota != null ? formatModelBytes(Math.max(0, estimate.quota - (estimate.usage ?? 0))) : "?" })}
           {persisted === null ? "" : ` · ${t(persisted ? "web.download.kept" : "web.download.notKept")}`}
@@ -204,6 +240,11 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
               </Pressable>
             ) : null}
           </View>
+        ) : stored ? (
+          /* Picked a model this browser already holds: nothing to download, only the reload that hands it to the engine. */
+          <Pressable testID="use-model" accessibilityRole="button" onPress={onReady} style={[styles.cta, { backgroundColor: theme.ctaFill }]}>
+            <Text style={[styles.body, styles.strong, { color: theme.ctaText }]}>{t("vault.use")}</Text>
+          </Pressable>
         ) : (
           <Pressable
             testID={phase.kind === "paused" ? "download-resume" : "download-model"}
@@ -218,8 +259,9 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
           </Pressable>
         )}
         <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.download.keepExplain")}</Text>
+        <ModelOptions choices={boot.choices} currentId={source.id} onChoose={(id) => void choose(id)} theme={theme} disabled={busy} />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -235,6 +277,7 @@ const styles = StyleSheet.create({
   getApp: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },
+  doorScroll: { flexGrow: 1, alignItems: "center", justifyContent: "center", padding: 16 },
   card: { width: "100%", maxWidth: 440, padding: 20, gap: 12, borderWidth: 1, borderRadius: radius.card },
   headline: { ...font("sans", "600"), fontSize: 22, letterSpacing: -0.2 },
   body: { ...font("sans"), fontSize: 16, lineHeight: 22 },

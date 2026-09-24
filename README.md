@@ -5021,3 +5021,44 @@ rounds 60, 62, 64 and 65: typecheck 0, lint 0, **1,572 tests** (core 738, mobile
 `check:store` answers **SKIP — no shipping artifact in this tree**, because the QA variant's prebuild clears
 `ios/build` after the store IPA has been exported and uploaded. Evidence in `docs/qa/ios-build-18-2026-09-24.md`,
 `docs/qa/ios-device-pass-18-2026-09-24.md` and `docs/qa/ios-device-pass-18/`.
+
+## Fixes round 66: the browser door recommends a model, and offers the rest (branch `web-door-choice`) — 24.9.2026
+
+Moshe (24.9): "for every device type offer the best thing for that device that gives the user the best result, and
+yes, below the recommended one give more options." The browser was the one tier that did neither: its download door
+named a single model, picked by a rule of its own, with nothing on the card but the size and no way to take the
+other one.
+
+- **The door leads with the model this browser runs best, and says why** (F311). New `apps/mobile/src/web/modelChoice.ts`
+  joins the served catalog with the bundled one and ranks it through the §7.8 `rankModels` the phones already use,
+  inside the §14.3 gate. The old `pickModel` ("biggest tier allowed, smaller file on a tie") is gone. The profile is
+  read off the browser: reported memory, and **the core count when memory is hidden** — Safari and Firefox ship no
+  `deviceMemory`, and the old rule handed every one of those readers Fast at 1.3 GB. The card now carries the size,
+  the measured browser range from the §6.4 table (`~4-15 tok/s on your browser`), the languages the model is good at,
+  and one line of why; under it, folded, every other model the browser can install with the same three facts and a
+  Choose button. No number is typed into a locale — all of them come from the catalog through `formatModelBytes`.
+- **One list, read by three screens** (F312). `WebBoot.choices` is the single source: the door, the browser vault
+  (S30) and the onboarding model step all render it, and the pick is remembered in `localStorage`. The vault used to
+  say, in nine languages, "There is nothing to import or switch here" — it now switches, and so does the step; the
+  chat's Model sheet renders that same corrected string. `web:smoke` gates the equality (the step's list must equal
+  the door's) and drives the whole second path: take the other model in the vault → land on the door → download →
+  chat comes up on it (`switched.chosen = "instant"` → chip `INSTANT`).
+- **The site stops describing a choice the reader never got** (F313): "one model once, from 533 MB to 1.3 GB, chosen
+  by your device" became "533 MB (Instant) or 1.3 GB (Fast, on capable desktops)… it recommends the one your device
+  runs best, you can pick the other", on home, /download and the FAQ, still through the size tokens, with
+  `apps/site/check.mjs` pinning the new sentences.
+- Two dev-server bugs found on the way, both of which had hidden the gap: the server offered **one** model alias, so
+  no local run ever had a choice to make, and `modelSha256` threw `ERR_FS_FILE_TOO_LARGE` on any model over 2 GiB.
+  It now serves every model the deployed manifest would (through the same `webEligible` cut, so a Pro or split model
+  can never reach a dev door) and hashes in 8 MB chunks.
+- Browser first, at the four widths, before and after: `docs/qa/web-door-choice/before-door-390.png` (headline, size,
+  one button) → `after-door-390.png` (recommendation, why, speed, languages, and the other model below), same pair at
+  768, 1024 and 1440, no sideways scroll at any of them.
+
+Gates on the merged branch: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 738, mobile 800, i18n 20,
+ui 20, `check:store` PASS), `pnpm web:build` green, `pnpm web:smoke` 11 PASS (first visit 14.9 tok/s, offline visit
+0 model fetches, the switch case, the four-width sweep, 9 locales), and `expo export -p ios` green, which is what
+proves the phone bundle still resolves `webStep.native.ts` and pulls none of `src/web` in (no device was available).
+Guards watched red: the core rule removed, "already installed" fed back into the ranking, the step reading the vault
+again (`FAIL: the model step offers fast but the door offers fast, instant`), and the site check against the old
+sentence. No phone and no emulator was touched. Evidence in `docs/qa/web-door-choice/`.

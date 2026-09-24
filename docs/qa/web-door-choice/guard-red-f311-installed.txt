@@ -1,0 +1,18 @@
+Received: "small"
+
+ ❯ src/web/modelChoice.test.ts:59:29
+     57|     const pick = (installed: string[]) => webModelChoices({ sources, g…
+     58|     expect(pick([])).toBe("big");
+     59|     expect(pick(["small"])).toBe("big");
+       |                             ^
+     60|     expect(webModelChoices({ sources, gate: gate(), installed: ["small…
+     61|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  15:49:38
+   Duration  1.49s (transform 84%, import 15%, tests 1%)
+
