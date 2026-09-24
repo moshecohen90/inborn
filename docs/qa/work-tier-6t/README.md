@@ -117,3 +117,10 @@ record, so naming it would change the record schema.
   "Install the document index model first" afterwards, and there is no re-index action — delete it and import again.
 - **`adb reverse` is cleared when the adb server restarts** (another stream's emulator closing is enough). Re-add both
   the Metro and the model-host reverses before deciding the bundle is broken.
+- **A debug build prebuilt without `APP_VARIANT=development` cannot reach Metro at all.** The store config declares
+  `<uses-permission android:name="android.permission.INTERNET" tools:node="remove"/>`, so the APK has no internet
+  permission, React Native falls back to the bundle in assets, which a debug build does not carry, and the red box
+  says only *"Unable to load script"*. `expo prebuild` needs the same `APP_VARIANT=development` and
+  `EXPO_PUBLIC_*` environment as the gradle build; round 47b's `scripts/check-store-env.sh` refuses the reverse
+  mistake loudly, and this one silently. Check `grep INTERNET android/app/src/main/AndroidManifest.xml` before
+  blaming `adb reverse`.
