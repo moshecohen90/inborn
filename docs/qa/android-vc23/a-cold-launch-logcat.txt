@@ -1,0 +1,12 @@
+# cold launch 20:17:51, first message = door photo. Every startDownload the app made, and the projector load:
+09-24 20:17:49.231  3509 29430 I PlayCore: UID: [11436]  PID: [3509] AssetPackServiceImpl : startDownload([inborn_model])
+09-24 20:17:49.236  3509 29430 I PlayCore: UID: [11436]  PID: [3509] AssetPackServiceImpl : startDownload([inborn_model_sharp])
+09-24 20:17:49.652  3509 29426 I ReactNativeJS: [inborn] engine model fast from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_fast/23/23/assets/Qwen3.5-2B-Q4_K_M.gguf
+09-24 20:17:52.045  3509 29426 I ReactNativeJS: [inborn] llama.rn loaded model FAST (fast) from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_fast/23/23/assets/Qwen3.5-2B-Q4_K_M.gguf in 2218 ms
+09-24 20:18:06.846  3509 29426 I ReactNativeJS: [inborn] engine model instant from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model/23/23/assets/Qwen3.5-0.8B-Q4_K_M.gguf
+09-24 20:18:08.801  3509 29426 I ReactNativeJS: [inborn] llama.rn loaded model INSTANT (instant) from file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model/23/23/assets/Qwen3.5-0.8B-Q4_K_M.gguf in 1871 ms
+09-24 20:18:24.220  3509 29430 I PlayCore: UID: [11436]  PID: [3509] AssetPackServiceImpl : startDownload([inborn_model_sharp_2])
+09-24 20:20:01.053  3509 29463 I RNLlama : llama_rn_context_mtmd:707 [DEBUG] Initializing multimodal with mmproj path: /data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_vision/23/23/assets/mmproj-Qwen3.5-0.8B-F16.gguf
+09-24 20:20:01.690  3509 29463 I RNLlama : llama_rn_context_mtmd:753 Multimodal context initialized successfully with mmproj: /data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_vision/23/23/assets/mmproj-Qwen3.5-0.8B-F16.gguf
+# startDownload lines naming inborn_model_vision: 0
+# FATAL/ANR: 0

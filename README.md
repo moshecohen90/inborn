@@ -5794,3 +5794,28 @@ nine call sites, wllama's "No available adapters" without WebGPU, and Animated's
 lines are harness noise because no Metro server is running: the dev bundle's `/hot` and `/message` sockets fail, and
 the raw mobile export has no `/sw.js`. The before build was minified, so it also warned about a screen component named
 `o`. The unminified export does not. Evidence in `docs/qa/fix-web-a11y-props/`.
+
+## Fixes round 79: Play internal 1.0.0 (23) — the photo pack, the hold card and the Document index on the 6T (branch `android-vc23`) — 24.9.2026
+
+The first Android release build carrying rounds 62–78, built from `main` 4a6af9b and delivered to the OnePlus 6T by
+Google Play as an update in place. No code changed in this round; it is the device pass that rounds 72–78 could not do.
+
+- **Released** (F352). `INBORN_REQUIRE_BUNDLE=1` shipping-bundle gate green on the real AAB: Instant and the photo
+  projector are fast-follow packs with the catalog's bytes. Edit `05243559871263450934`, committed on the first try.
+- **The first photo needs no download** (F352). The photo pack was removed on vc22 before the update. Play put it back
+  13 s after the update, before the app opened. After a cold launch, a door photo as the first message was described.
+- **The photo hold works on a phone** (F352). Send held with the one-sentence card, Download fetched the pack from
+  Google Play, and the held turn went out by itself and was answered. That automatic release had only unit tests.
+- **The Document index installs from Google Play and cites Japanese** (F356). A paraphrase with no shared word was
+  cited at cosine 0.842; the off-topic question vc22 wrongly cited was dropped at 0.765.
+- **One recommendation, one name, one paywall reason** (F352). Model sheet, vault and onboarding all say Fast; the
+  pack is "Photo pack" everywhere it shows; a locked template row opens the paywall with its reason.
+
+Three defects found, none fixed here:
+
+- **F353 (High).** While the post-install re-index runs (about 40 minutes for Moshe's three 40-page PDFs), a question
+  on an already indexed document is answered "has no searchable text yet". The embedder was busy.
+- **F354 (Medium).** "Download the photo pack" opens the vault at the top on the 6T, not on the Photo pack card.
+- **F355 (Medium).** Removing the photo pack does not stick on Android: the next vault open downloads it again.
+
+Evidence in `docs/qa/android-vc23/`.
