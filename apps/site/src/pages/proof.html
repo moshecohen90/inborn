@@ -1,49 +1,48 @@
-<!-- meta: {"title": "Proof", "h1": "Verify it yourself", "description": "How to check that Inborn sends nothing: the airplane test, the Android permissions page, the iOS App Privacy Report, the exit meter, and a firewall. Numbers you can verify, not adjectives."} -->
 <article class="prose">
-<p>Every AI app says it is private. This page is the list of things you can check without trusting us. Each takes under a minute and needs nothing but the phone in your hand.</p>
+<p>{{t:proof.every-ai-app-says-it}}</p>
 
-<p class="readout" aria-label="A picture of the app's own Proof screen readout, not a live measurement of this web page"><span>OUT <b>0 B</b></span><span>IN <b>2.7 GB</b></span><span>CONNECTIONS <b>0</b></span><span class="ok">SEALED · ON-DEVICE</span></p>
-<p class="readout-cap mono">What the app's own Proof screen shows on a device after a real chat — a picture, not a live reading of this page.</p>
+<p class="readout" aria-label="{{t:proof.a-picture-of-the-app}}">{{t:proof.out-0-b-in-2}}</p>
+<p class="readout-cap mono">{{t:proof.what-the-app-s-own}}</p>
 
-<h2 id="checks">Five checks</h2>
+<h2 id="checks">{{t:proof.five-checks}}</h2>
 <ol class="steps">
   <li>
-    <h3>The airplane test <span class="platform">All platforms</span></h3>
-    <p>Turn on Airplane Mode. Open Inborn and ask it anything. It answers at the same speed, because the model is on the device and there is no server to reach. The header shows an ✈ badge for as long as the device is offline. The app asks you to do exactly this during onboarding.</p>
+    <h3>{{t:proof.the-airplane-test-all-platforms}}</h3>
+    <p>{{t:proof.turn-on-airplane-mode-open}}</p>
   </li>
   <li>
-    <h3>The permissions page <span class="platform">Android</span></h3>
-    <p>On Google Play, open Inborn's listing, then <em>About this app → App permissions</em>. "Have full network access" is not listed. The release build does not declare the INTERNET permission, so Android will not let the app open a connection. You can confirm it on the APK itself:</p>
+    <h3>{{t:proof.the-permissions-page-android}}</h3>
+    <p>{{t:proof.on-google-play-open-inborn}}</p>
     <pre><code>aapt2 dump permissions inborn.apk</code></pre>
-    <p>The line <code>android.permission.INTERNET</code> does not appear. Our build fails if it ever does.</p>
+    <p>{{t:proof.the-line-android-permission-internet}}</p>
   </li>
   <li>
-    <h3>App Privacy Report <span class="platform">iPhone · iPad</span></h3>
-    <p>Settings → Privacy &amp; Security → App Privacy Report. iOS lists every domain each app contacted in the last 7 days. Inborn's row stays empty. If you explicitly download a model from Hugging Face, <code>huggingface.co</code> appears there, once, and the app tells you so before the download starts.</p>
+    <h3>{{t:proof.app-privacy-report-iphone-ipad}}</h3>
+    <p>{{t:proof.settings-privacy-security-app-privacy}}</p>
   </li>
   <li>
-    <h3>The exit meter <span class="platform">In the app</span></h3>
-    <p>The Proof screen inside Inborn shows three numbers from the operating system's own counters: bytes out, bytes in and open connections. Out reads <span class="mono">0 B</span> unless you start a model download yourself. In counts the model files the store delivered. The "Airplane test" button on that screen walks you through check 1.</p>
+    <h3>{{t:proof.the-exit-meter-in-the}}</h3>
+    <p>{{t:proof.the-proof-screen-inside-inborn}}</p>
   </li>
   <li>
-    <h3>A firewall <span class="platform">Android · Windows · macOS</span></h3>
-    <p>Put Inborn behind NetGuard (Android), Little Snitch or LuLu (macOS) or the Windows firewall, and watch nothing appear. There is no connection to block.</p>
+    <h3>{{t:proof.a-firewall-android-windows-macos}}</h3>
+    <p>{{t:proof.put-inborn-behind-netguard-android}}</p>
   </li>
 </ol>
 
-<h2 id="source">The source</h2>
-<p>Inborn's source is public at <a href="https://github.com/moshecohen90/inborn" rel="noopener">github.com/moshecohen90/inborn</a>, source-available: you can read it, build it and publish what you find, though not redistribute or modify it. None of the checks above depends on that, though: every one of them is made from outside the app, on the build you installed. Continuous integration fails the build if the INTERNET permission appears through manifest merging, and the Proof screen names the commit the build came from, which you can now look up in the public history. We do not publish a per-release hash, because a hash cannot show that a binary came from the source you can read. The checks above do not need one.</p>
+<h2 id="source">{{t:proof.the-source}}</h2>
+<p>{{t:proof.inborn-s-source-is-public}}</p>
 
-<h2 id="what-can-leave">The complete list of what can leave, and when</h2>
-<p>Nothing leaves on its own. These are the only situations in which any bytes go out, and each is either done by the store rather than by Inborn, or started by you with a tap:</p>
+<h2 id="what-can-leave">{{t:proof.the-complete-list-of-what}}</h2>
+<p>{{t:proof.nothing-leaves-on-its-own}}</p>
 <ul>
-  <li><strong>Model delivery.</strong> On Android, Google Play delivers models as asset packs, the way it delivers an app update. On every supported iOS version and on desktop, a download you start fetches one file over HTTPS from <span class="mono">models.inbornapp.com</span>; that request carries your IP address and nothing else, and no cookie or identifier. We use no Apple-hosted asset packs.</li>
-  <li><strong>Purchases.</strong> Apple, Google, Microsoft or Paddle process the payment. Inborn reads the receipt on the device. We never see your name, email or card.</li>
-  <li><strong>Hugging Face import.</strong> Only if you choose it, and the app says so first.</li>
-  <li><strong>Support email.</strong> Only if you write to us, from your own mail app, with what you chose to attach.</li>
+  <li>{{t:proof.model-delivery-on-android-google}}</li>
+  <li>{{t:proof.purchases-apple-google-microsoft-or}}</li>
+  <li>{{t:proof.hugging-face-import-only-if}}</li>
+  <li>{{t:proof.support-email-only-if-you}}</li>
 </ul>
-<p>The same list, in legal wording and per platform, is section 3 of the <a href="/privacy#3-the-complete-list-of-network-activity-by-platform">privacy policy</a>.</p>
+<p>{{t:proof.the-same-list-in-legal}}</p>
 
-<h2 id="limits">What this does not prove</h2>
-<p>These checks show that the app sends nothing. They do not make the AI right. A small model on a phone can be wrong, and Inborn labels every answer as AI-generated. Check anything that matters.</p>
+<h2 id="limits">{{t:proof.what-this-does-not-prove}}</h2>
+<p>{{t:proof.these-checks-show-that-the}}</p>
 </article>

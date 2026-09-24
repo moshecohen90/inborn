@@ -4869,3 +4869,46 @@ PASS incl. the new bundle gate), `pnpm web:build` and `pnpm web:smoke` green. Ev
   `numberOfLines={1}` swallows that difference without a sound. Now "Privé", the wording the incognito badge already
   uses. The same smoke run renders all nine locales at 390 by seeding `prefs.locale` and fails on any element whose
   text overflows its own box; watched red with the old string (`needs 130px in 124px`).
+
+## Fixes round 67: the site now exists in all eight launch languages (branch `site-i18n`) — 24.9.2026
+
+Moshe, 24.9: "the site defaults to English but the same site exists in all the other languages like the Tanach site,
+with a language switcher, a matching sitemap etc." `apps/site` was English-only while the app ships in eight
+languages, so a reader who found us through a store listing in their own language landed on an English page.
+
+- **One source, eight sites** (F314). The page fragments in `apps/site/src/{pages,posts}` keep structure only; all 391
+  strings — copy, labels, meta titles and descriptions, `aria-label`s and the composer placeholder — moved to
+  `apps/site/src/i18n/<locale>.json`, one file per launch locale of `packages/i18n`. `build()` renders the page set
+  once per locale: English at the root, the other seven under a lowercase prefix (`/de/proof`, `/pt-br/proof`). 13
+  pages × 8 = **104 pages**, still zero JavaScript in the output and zero third-party requests. The split was proven
+  lossless before anything was translated: every English `<main>` is byte-identical to the pre-refactor build.
+  The root is **not** redirected by `Accept-Language`: that hides the other languages from a crawler and overrules a
+  reader who chose English.
+- **The translations were done in context, not key by key.** One `translation-expert` agent per language, each reading
+  the rendered page and the app's own `packages/i18n/locales/<code>.json`, so the site speaks in the app's register
+  (German *du*, French *vous*, Korean 해요체) and reuses its vocabulary (SEALED · ON-DEVICE, OUT / IN / CONNECTIONS,
+  Vault, Ledger, Incognito, the Play and iOS strings a user will actually see on screen).
+- **Switcher, hreflang, sitemaps, llms.txt** (F315). Plain links in the header (a `<details>`, an element and not a
+  script) and in the footer; `hreflang` for all eight plus `x-default` on every page, with `canonical` on the page
+  itself; `og:locale` and its alternates; `inLanguage` in the JSON-LD, where per-language documents get per-locale
+  `@id`s and the entities that are one thing in every language (Organization, Brand, Logo) keep one id. One sitemap
+  per language under one index, which is what `robots.txt` names. `llms.txt` and `llms-full.txt` per language, because
+  an answer engine replying in German should cite German URLs, with a `Languages` section in each.
+- **The legal texts stay English** and say so in the reader's language above the text (`lang="en"` on the body). A
+  policy is the document you can be held to; an unreviewed translation would be a second contract.
+- **Two defects the browser found** (F317). Every link written inside a sentence pointed at the English page, so a
+  German reader who followed "the proof page" mid-paragraph left the German site — three translators reported it
+  independently, and `localizeLinks` now rewrites internal paths per locale. And the hero placeholder was cut off
+  mid-word in four languages: at 390 the input is 340px and German needed 352, Portuguese 354, Spanish 414, French
+  451. Re-translated shorter, and `check.mjs` now measures the placeholder in the browser so it cannot come back.
+- **The gate reads all eight** (F316): locale list equal to `LAUNCH_LOCALES`, every key present with the same tokens
+  and the same inline HTML, no English sentence left untranslated anywhere, every page in every language, a complete
+  **and reciprocal** hreflang set, sitemaps that list exactly what was built, no `{{t:key}}` in any page, and the
+  sideways-scroll measurement across all 104 pages at 390 and 768. Nine sabotage runs in
+  `docs/qa/site-i18n/guards-red.txt` show each one red first; 17 cases in `apps/mobile/test/siteI18n.test.ts`.
+- **Right-to-left is built but not shipped** (F318). Hebrew and Arabic are not launch locales, so there is no RTL page
+  today; `dir` is derived from `RTL_LOCALES` and the stylesheet moved to logical properties, proven by building a
+  throwaway `he` locale and screenshotting it mirrored at 390 and 1440 (`docs/qa/site-i18n/rtl-proof/`).
+- Evidence: `docs/qa/site-i18n/after/` (home, download and proof in English, German and Japanese at 390 and 1440, plus
+  the switcher open), `check-green.txt`, `guards-red.txt`. Spec §13.6 written and `docs/inborn-spec.html` rebuilt.
+  **Nothing is deployed**; the lead deploys.

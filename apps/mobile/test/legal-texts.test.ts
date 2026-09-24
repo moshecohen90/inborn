@@ -13,7 +13,17 @@ import { LEGAL_PATHS, SITE_ORIGIN, legalUrl } from "../src/lib/legalLinks";
 
 const repo = join(__dirname, "../../..");
 const legalDir = join(repo, "docs/legal");
-const read = (p: string) => readFileSync(join(repo, p), "utf8");
+/**
+ * Round 67 (F314): the site's page fragments hold structure only, every string lives in `src/i18n/<locale>.json`.
+ * Reading a fragment therefore means reading it as English, or every guard below would pass on a file of `{{t:…}}`.
+ */
+const SITE_STRINGS = JSON.parse(readFileSync(join(repo, "apps/site/src/i18n/en.json"), "utf8")) as Record<string, string>;
+const read = (p: string) => {
+  const raw = readFileSync(join(repo, p), "utf8");
+  return /^apps\/site\/src\/(pages|posts)\//.test(p)
+    ? raw.replace(/\{\{t:([^}]+)\}\}/g, (_, key: string) => SITE_STRINGS[key] ?? `{{t:${key}}}`)
+    : raw;
+};
 
 /** The three the app bundles and the site renders: what a user and an App Store reviewer actually read. */
 const SHIPPED = ["docs/legal/privacy-policy.md", "docs/legal/terms.md", "docs/legal/accessibility-policy.md"];
@@ -46,6 +56,13 @@ describe("F92 · no placeholder reaches a screen or a page", () => {
   it.each(SITE_PAGES)("%s carries no token the build does not fill", (file) => {
     const used = [...read(file).matchAll(/\{\{[^}]*\}\}/g)].map((m) => m[0]);
     expect(used.filter((t) => !SITE_TOKENS.includes(t.slice(2, -2)))).toEqual([]);
+  });
+
+  /* The complement of the reader above: a key a fragment names and `en.json` does not hold would ship as braces. */
+  it.each(SITE_PAGES)("%s names only string keys en.json holds", (file) => {
+    const raw = readFileSync(join(repo, file), "utf8");
+    const keys = [...raw.matchAll(/\{\{t:([^}]+)\}\}/g)].map((m) => m[1]!);
+    expect(keys.filter((k) => !(k in SITE_STRINGS))).toEqual([]);
   });
 
   it("every page the site serves is free of tokens and of the draft notice", () => {
@@ -304,8 +321,8 @@ describe("F155 · every legal document in the app has a live page to open", () =
     expect(about).toContain("legal.accessibility");
   });
 
-  it("the site links it from every page's footer", () => {
-    for (const file of SITE_DIST) expect(read(file), file).toContain('href="/accessibility"');
+  it("the site links it from every page's footer, in every language", () => {
+    for (const file of SITE_DIST) expect(read(file), file).toMatch(/href="(\/[a-z-]+)?\/accessibility"/);
   });
 });
 

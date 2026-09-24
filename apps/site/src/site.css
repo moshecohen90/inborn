@@ -67,12 +67,12 @@ pre { margin: 12px 0 0; background: var(--well); border: 1px solid var(--border)
 pre code { background: none; border: 0; padding: 0; font-size: inherit; }
 .small { font-size: 14px; line-height: 20px; color: var(--text-2); }
 .label {
-  display: inline-block; margin-right: 10px;
+  display: inline-block; margin-inline-end: 10px;
   font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3);
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.skip { position: absolute; left: -999px; top: 8px; background: var(--cta-fill); color: var(--cta-text); padding: 8px 12px; border-radius: 10px; z-index: 20; }
-.skip:focus { left: 8px; }
+.skip { position: absolute; inset-inline-start: -999px; top: 8px; background: var(--cta-fill); color: var(--cta-text); padding: 8px 12px; border-radius: 10px; z-index: 20; }
+.skip:focus { inset-inline-start: 8px; }
 
 /* header */
 .top {
@@ -85,10 +85,36 @@ pre code { background: none; border: 0; padding: 0; font-size: inherit; }
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
 .seal { width: 26px; height: 26px; flex: none; }
-.top nav { display: flex; gap: 2px; margin-left: auto; }
+.top nav { display: flex; gap: 2px; margin-inline-start: auto; }
 .top nav a { text-decoration: none; padding: 10px 12px; border-radius: 10px; color: var(--text-2); min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; }
 .top nav a:hover { color: var(--text); background: var(--surface-1); }
 .top nav a[aria-current="page"] { color: var(--text); }
+
+/* Language switcher: plain links in both places (the site ships no JavaScript), a <details> in the header so eight
+   languages cost one 44px target, and the full list in the footer so a crawler and a reader always see all of them. */
+.lang { position: relative; flex: none; }
+.lang > summary {
+  list-style: none; cursor: pointer; min-height: 44px; padding: 0 10px; border-radius: 10px;
+  display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); font-size: 14px; letter-spacing: 0.06em;
+}
+.lang > summary::-webkit-details-marker { display: none; }
+.lang > summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.lang > summary:hover { color: var(--text); background: var(--surface-1); }
+.lang[open] > summary { color: var(--text); background: var(--surface-1); }
+.lang-menu {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 30;
+  display: flex; flex-direction: column; min-width: 190px; padding: 6px;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 28%);
+}
+.lang-menu a { text-decoration: none; color: var(--text-2); font-size: 15px; padding: 0 12px; border-radius: 8px; min-height: 44px; display: flex; align-items: center; }
+.lang-menu a:hover { color: var(--text); background: var(--surface-2); }
+.lang-menu a[aria-current="true"] { color: var(--text); font-weight: 600; }
+.lang-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; max-width: 1180px; margin: 0 auto 20px; }
+.lang-list .label { margin: 0; }
+.lang-list a { text-decoration: none; color: var(--text-2); font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
+.lang-list a:hover { color: var(--text); text-decoration: underline; }
+.lang-list a[aria-current="true"] { color: var(--text); font-weight: 600; }
 
 /* content columns (spec §9.3: body 65–72 chars) */
 main { padding: 0 clamp(16px, 4vw, 40px); margin: 0 auto; width: 100%; }
@@ -101,7 +127,7 @@ h1 { font-size: clamp(28px, 4.4vw, 40px); line-height: 1.16; font-weight: 600; l
 h2 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.22; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 12px; }
 h3 { font-size: 17px; line-height: 24px; font-weight: 600; margin: 0 0 8px; }
 p, ul, ol { margin: 0 0 16px; }
-ul, ol { padding-left: 22px; }
+ul, ol { padding-inline-start: 22px; }
 li { margin-bottom: 6px; }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
 .prose h2 { margin-top: 40px; }
@@ -118,7 +144,7 @@ mark.ph { background: var(--mark-bg); color: var(--text); border-radius: 4px; pa
 /* tables */
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; margin: 16px 0 16px; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; min-width: 760px; }
-th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+th, td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--border); }
 /* A size or a license broken over two lines reads as two values; the table scrolls in its own box instead. */
 td .mono, td.mono { white-space: nowrap; }
 th { color: var(--text-3); font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-1); }
@@ -207,18 +233,18 @@ tbody tr:last-child td { border-bottom: 0; }
 .steps > li { counter-increment: step; position: relative; padding: 0 0 22px 46px; }
 .steps > li:last-child { padding-bottom: 0; }
 .steps > li::before {
-  content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1px;
+  content: counter(step, decimal-leading-zero); position: absolute; inset-inline-start: 0; top: 1px;
   font: 500 12px/22px "IBM Plex Mono", ui-monospace, monospace; color: var(--accent); letter-spacing: 0.08em;
 }
 .steps h3 { margin: 0 0 6px; }
 .steps p { color: var(--text-2); margin: 0; max-width: 66ch; }
-.platform { display: inline-block; margin-left: 8px; font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; vertical-align: middle; }
+.platform { display: inline-block; margin-inline-start: 8px; font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; vertical-align: middle; }
 
 .tiers .card { display: flex; flex-direction: column; }
 .tiers .card.featured { border-color: var(--accent); }
 .tiers .price { font-size: 34px; line-height: 40px; font-weight: 600; letter-spacing: -0.03em; margin: 4px 0 2px; color: var(--text); }
-.tiers .price small { font-size: 14px; font-weight: 400; color: var(--text-3); letter-spacing: 0; margin-left: 6px; }
-.tiers ul { padding-left: 18px; margin: 12px 0 0; color: var(--text-2); font-size: 15px; }
+.tiers .price small { font-size: 14px; font-weight: 400; color: var(--text-3); letter-spacing: 0; margin-inline-start: 6px; }
+.tiers ul { padding-inline-start: 18px; margin: 12px 0 0; color: var(--text-2); font-size: 15px; }
 
 /* FAQ: a question is a heading with its whole answer under it, so a chunk lifted out of the page still stands alone. */
 .qa-list { margin-top: 20px; border-top: 1px solid var(--rule); }
@@ -248,7 +274,7 @@ tbody tr:last-child td { border-bottom: 0; }
 .post-link p { color: var(--text-2); margin: 0; flex: 1 1 auto; font-size: 15px; line-height: 23px; }
 .post-link .more { font: 500 13px/1 "IBM Plex Sans", system-ui, sans-serif; color: var(--accent); }
 /* The first paragraph answers the title outright: it is marked so a reader and an extractor find it in the same place. */
-.post .answer { font-size: 18px; line-height: 29px; color: var(--text); border-left: 2px solid var(--accent); padding-left: 18px; margin: 0 0 32px; }
+.post .answer { font-size: 18px; line-height: 29px; color: var(--text); border-inline-start: 2px solid var(--accent); padding-inline-start: 18px; margin: 0 0 32px; }
 .post p { max-width: 70ch; }
 
 /* ---------- footer ---------- */
@@ -271,9 +297,13 @@ main.wide + .bottom { margin-top: 0; }
 @media (max-width: 640px) {
   /* One row cannot hold the brand, three links and the button at 44px each: the nav takes a row of its own. */
   .top { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
-  .top nav { order: 3; width: 100%; margin-left: 0; border-top: 1px solid var(--rule); padding-top: 4px; }
+  .top nav { order: 3; width: 100%; margin-inline-start: 0; border-top: 1px solid var(--rule); padding-top: 4px; }
   .top nav a { flex: 1 1 0; justify-content: center; padding: 10px 6px; font-size: 14px; }
-  .btn.compact { margin-left: auto; }
+  /* The picker keeps its first-row slot when the nav drops to a row of its own, and takes the free space; a second
+     auto margin on the button would split that space and leave the picker floating beside the brand. */
+  .lang { margin-inline-start: auto; }
+  .lang-menu { inset-inline-end: -8px; }
+  .btn.compact { margin-inline-start: 8px; }
   .composer { flex-wrap: wrap; }
   .composer input { flex-basis: 100%; }
   .composer button { width: 100%; }

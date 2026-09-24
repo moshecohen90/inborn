@@ -10,10 +10,13 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin } from "./build.mjs";
+import { EN, LOCALES, RTL_LOCALES, SIZE_FAST, SIZE_INSTANT, TOKENS, siteOrigin, strings } from "./build.mjs";
 import { headerProblems } from "./headerCheck.mjs";
 
-const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
+const here = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(here, "../..");
+const dist = path.join(here, "dist");
+const src = path.join(here, "src");
 const problems = [];
 
 /* F280/F281: the app and the browser used to quote two different sizes for the same model file (533 MB vs 508 MB,
@@ -36,12 +39,117 @@ for (const [file, sentences] of SIZE_MENTIONS) {
   }
 }
 
+/* ---------- The eight languages (F314–F316) ---------- */
+
+/* The site's locale list is not allowed to be its own opinion: packages/i18n decides which languages exist, and a
+   language that ships in the app with no page here (or the reverse) is exactly the drift this reads the source for. */
+const i18nSrc = readFileSync(path.join(repoRoot, "packages/i18n/src/index.ts"), "utf8");
+const declared = (name) => [...(/\[([^\]]*)\]/.exec(new RegExp(`${name}[^=]*=[^[]*(\\[[^\\]]*\\])`).exec(i18nSrc)?.[1] ?? "")?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+const launch = declared("LAUNCH_LOCALES");
+const siteCodes = LOCALES.map((l) => l.code);
+if (launch.join(",") !== siteCodes.join(",")) problems.push(`the site builds ${siteCodes.join(",")} but packages/i18n launches ${launch.join(",")}`);
+const rtl = [...(/RTL_LOCALES[^=]*=\s*new Set\(\[([^\]]*)\]/.exec(i18nSrc)?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+if (rtl.join(",") !== [...RTL_LOCALES].join(",")) problems.push(`the site's RTL set is ${[...RTL_LOCALES].join(",")}, packages/i18n says ${rtl.join(",")}`);
+
+/* Nothing here may be identical to English by accident. A short string legitimately can be (a brand, a licence id,
+   "0 B", a model name), so the rule is: a sentence — long, with a space — that came back untouched was not translated. */
+const enStrings = strings[EN.code];
+const setOf = (s, re) => [...s.matchAll(re)].map((m) => m[0]).sort().join("|");
+const tokensOf = (s) => setOf(s, /\{\{[A-Za-z_:.-]+\}\}/g);
+const tagsOf = (s) => setOf(s, /<[^>]+>/g);
+for (const l of LOCALES) {
+  if (l === EN) continue;
+  const file = `src/i18n/${l.code}.json`;
+  if (!existsSync(path.join(src, `i18n/${l.code}.json`))) { problems.push(`missing ${file}`); continue; }
+  const got = strings[l.code];
+  for (const key of Object.keys(enStrings)) {
+    if (!(key in got)) { problems.push(`${file}: no "${key}"`); continue; }
+    if (tokensOf(enStrings[key]) !== tokensOf(got[key])) problems.push(`${file}: "${key}" does not carry the same {{tokens}} as English`);
+    if (tagsOf(enStrings[key]) !== tagsOf(got[key])) problems.push(`${file}: "${key}" does not carry the same HTML as English`);
+    if (got[key] === enStrings[key] && enStrings[key].length > 45 && /\s/.test(enStrings[key])) problems.push(`${file}: "${key}" is still the English sentence`);
+  }
+  for (const key of Object.keys(got)) if (!(key in enStrings)) problems.push(`${file}: "${key}" is not a key of en.json`);
+}
+
 /** Every .html under dist, including the blog posts in their own directory. */
 function htmlFiles(dir, base = dist) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
     e.isDirectory() ? htmlFiles(path.join(dir, e.name), base) : e.name.endsWith(".html") ? [path.relative(base, path.join(dir, e.name))] : []);
 }
 const pages = htmlFiles(dist);
+
+/** The English page set is the contract: every other language serves the same paths under its own prefix. */
+const localeDirs = LOCALES.filter((l) => l.dir).map((l) => l.dir);
+const enPages = pages.filter((f) => !localeDirs.some((d) => f === `${d}` || f.startsWith(`${d}/`)));
+for (const l of LOCALES) {
+  if (l === EN) continue;
+  for (const file of enPages) {
+    if (!existsSync(path.join(dist, l.dir, file))) problems.push(`${l.code} is missing ${file}`);
+  }
+  for (const f of ["llms.txt", "llms-full.txt"]) if (!existsSync(path.join(dist, l.dir, f))) problems.push(`${l.code} is missing ${f}`);
+}
+if (pages.length !== enPages.length * LOCALES.length) problems.push(`dist holds ${pages.length} pages, expected ${enPages.length} × ${LOCALES.length}`);
+
+/** The path a file serves, e.g. "de/blog/why-on-device.html" → "/de/blog/why-on-device", "ja/index.html" → "/ja/". */
+const servedPath = (file) => "/" + file.replace(/index\.html$/, "").replace(/\.html$/, "");
+const localeOf = (file) => LOCALES.find((l) => l.dir && (file === `${l.dir}/index.html` || file.startsWith(`${l.dir}/`))) ?? EN;
+
+/* An hreflang set is only useful if it is complete and if every page it names names this one back: a one-way
+   alternate is the single most common way a multilingual site tells a search engine the wrong thing. */
+const alternatesOf = (html) => new Map([...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)].map((m) => [m[1], m[2]]));
+const byUrl = new Map(pages.map((f) => [`${siteOrigin}${servedPath(f)}`, f]));
+for (const file of pages) {
+  const html = readFileSync(path.join(dist, file), "utf8");
+  const l = localeOf(file);
+  const alt = alternatesOf(html);
+  const expected = [...LOCALES.map((o) => o.code), "x-default"];
+  const got = [...alt.keys()];
+  if (got.join(",") !== expected.join(",")) { problems.push(`${file}: hreflang set is ${got.join(",") || "empty"}, expected ${expected.join(",")}`); continue; }
+  if (alt.get("x-default") !== alt.get(EN.code)) problems.push(`${file}: x-default is ${alt.get("x-default")}, not the English page`);
+  if (alt.get(l.code) !== `${siteOrigin}${servedPath(file)}`) problems.push(`${file}: does not name itself as the ${l.code} alternate`);
+  const canonical = /<link rel="canonical" href="([^"]+)">/.exec(html)?.[1];
+  if (canonical !== `${siteOrigin}${servedPath(file)}`) problems.push(`${file}: canonical is ${canonical}, not its own URL`);
+  const lang = /<html lang="([^"]+)" dir="([^"]+)">/.exec(html);
+  if (lang?.[1] !== l.code) problems.push(`${file}: <html lang> is ${lang?.[1]}, expected ${l.code}`);
+  if (lang?.[2] !== (RTL_LOCALES.has(l.code.split("-")[0]) ? "rtl" : "ltr")) problems.push(`${file}: wrong dir for ${l.code}`);
+  for (const [code, url] of alt) {
+    if (code === "x-default") continue;
+    const target = byUrl.get(url);
+    if (!target) { problems.push(`${file}: alternate ${code} points at ${url}, which the site does not build`); continue; }
+    const back = alternatesOf(readFileSync(path.join(dist, target), "utf8"));
+    if (back.get(l.code) !== `${siteOrigin}${servedPath(file)}`) problems.push(`${file}: ${code} (${target}) does not point back at it`);
+  }
+  /* The English legal texts are published as English on purpose and carry lang="en"; nothing else may be. */
+  if (l !== EN) {
+    const outside = html.replace(/<article[^>]*lang="en"[\s\S]*?<\/article>/g, "").replace(/<(script|style)[\s\S]*?<\/\1>/g, "");
+    for (const key of Object.keys(enStrings)) {
+      const value = enStrings[key];
+      if (value.length > 45 && /\s/.test(value) && outside.includes(value.replace(/&/g, "&amp;"))) {
+        problems.push(`${file}: still shows the English "${key}"`);
+        break;
+      }
+    }
+  }
+}
+
+/* One index, eight maps, and each map lists exactly the pages that language serves: a sitemap that promises a URL
+   the build does not write is worse than no sitemap, and a page missing from it is a page that stays unindexed. */
+const index = readFileSync(path.join(dist, "sitemap.xml"), "utf8");
+const listed = [...index.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const expectedMaps = LOCALES.map((l) => `${siteOrigin}/sitemap-${l.code}.xml`);
+if (listed.join(",") !== expectedMaps.join(",")) problems.push(`sitemap.xml lists ${listed.join(",")}, expected ${expectedMaps.join(",")}`);
+for (const l of LOCALES) {
+  const map = path.join(dist, `sitemap-${l.code}.xml`);
+  if (!existsSync(map)) { problems.push(`missing sitemap-${l.code}.xml`); continue; }
+  const urls = [...readFileSync(map, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).sort();
+  const want = pages.filter((f) => localeOf(f) === l && !f.endsWith("404.html")).map((f) => `${siteOrigin}${servedPath(f)}`).sort();
+  if (urls.join("\n") !== want.join("\n")) problems.push(`sitemap-${l.code}.xml does not list exactly the ${l.code} pages (${urls.length} vs ${want.length})`);
+  for (const u of urls) if (!byUrl.has(u)) problems.push(`sitemap-${l.code}.xml lists ${u}, which is not built`);
+  const llms = readFileSync(path.join(dist, l.dir, "llms.txt"), "utf8");
+  if (!llms.includes(`](${siteOrigin}${l.dir ? `/${l.dir}` : ""}/)`)) problems.push(`${l.dir || "."}/llms.txt does not link its own home page`);
+  for (const o of LOCALES) if (!llms.includes(`${siteOrigin}${o.dir ? `/${o.dir}` : ""}/`)) problems.push(`${l.dir || "."}/llms.txt does not name the ${o.code} site`);
+}
+if (!readFileSync(path.join(dist, "robots.txt"), "utf8").includes(`Sitemap: ${siteOrigin}/sitemap.xml`)) problems.push("robots.txt does not name the sitemap index");
 
 problems.push(...headerProblems(readFileSync(path.join(dist, "_headers"), "utf8")));
 
@@ -58,6 +166,10 @@ for (const file of pages) {
     try {
       const data = JSON.parse(body);
       if (data["@context"] !== "https://schema.org") problems.push(`${file}: ld+json @context is not https://schema.org`);
+      /* A German page whose structured data says inLanguage "en" is a German page a search engine files as English. */
+      for (const node of data["@graph"] ?? []) {
+        if (node.inLanguage && node.inLanguage !== localeOf(file).code) problems.push(`${file}: ld+json ${node["@type"]} says inLanguage ${node.inLanguage}`);
+      }
     } catch (e) {
       problems.push(`${file}: ld+json is not valid JSON (${e.message})`);
     }
@@ -66,6 +178,8 @@ for (const file of pages) {
   /* The legal texts render their own {{PLACEHOLDER}} chips on purpose; only the generator's own tokens are a bug. */
   const stray = new RegExp(`\\{\\{(${TOKENS.join("|")})\\}\\}`).exec(html);
   if (stray) problems.push(`${file}: unresolved build token ${stray[0]}`);
+  const strayKey = /\{\{t:[^}]*\}\}/.exec(html);
+  if (strayKey) problems.push(`${file}: unresolved string key ${strayKey[0]}`);
   for (const m of html.matchAll(/\b(?:src|href|action)="([^"]+)"/g)) {
     const ref = m[1];
     if (/^https?:\/\//.test(ref)) {
@@ -147,9 +261,19 @@ if (!shell) {
           .filter((el) => el.getBoundingClientRect().right > win + 1)
           .map((el) => `${el.tagName.toLowerCase()}.${(el.className || "").toString().split(" ")[0]}`)
           .slice(0, 4);
-        return { doc: dom.documentElement.scrollWidth, win, wide: [...new Set(wide)] };
+        /* The one string CSS cannot wrap: a placeholder too long for the box is cut mid-word, and four of the eight
+           translations were (F317). Measuring it needs the text in the field, so it is put there and taken out again. */
+        const input = dom.getElementById("q");
+        let placeholder = null;
+        if (input) {
+          input.value = input.placeholder;
+          if (input.scrollWidth > input.clientWidth + 1) placeholder = { need: input.scrollWidth, have: input.clientWidth, text: input.placeholder };
+          input.value = "";
+        }
+        return { doc: dom.documentElement.scrollWidth, win, wide: [...new Set(wide)], placeholder };
       });
       if (out.doc > out.win + 1) problems.push(`${file}: scrolls sideways at ${width} (${out.doc} > ${out.win})${out.wide.length ? ` — ${out.wide.join(", ")}` : ""}`);
+      if (out.placeholder) problems.push(`${file}: the composer placeholder is cut off at ${width} (needs ${out.placeholder.need}px in ${out.placeholder.have}px): "${out.placeholder.text}"`);
     }
     await ctx.close();
   }
@@ -161,4 +285,4 @@ if (problems.length) {
   console.error(problems.map((p) => `✗ ${p}`).join("\n"));
   process.exit(1);
 }
-console.log(`✓ ${pages.length} pages: no scripts, no external assets, no dead links, CSP present${shell ? `, no sideways scroll at ${WIDTHS.join("/")}` : ""}`);
+console.log(`✓ ${pages.length} pages in ${LOCALES.length} languages: strings complete, hreflang symmetric, sitemaps exact, no scripts, no external assets, no dead links, CSP present${shell ? `, no sideways scroll at ${WIDTHS.join("/")}` : ""}`);
