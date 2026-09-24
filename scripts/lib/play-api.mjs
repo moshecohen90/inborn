@@ -64,6 +64,27 @@ export function client(token) {
   };
 }
 
+/* Play refuses a commit with 400 "Some of the Android App Bundle uploads are not completed yet" while it is still
+   ingesting a multi-GB bundle, and the caller's error path deletes the edit — which throws the finished upload away
+   (vc22 lost a 5.1 GB one that way). Waiting is the whole fix: only this message is retried. */
+const STILL_INGESTING = /uploads are not completed yet/i;
+
+export async function commitEdit(api, pkg, editId, opts = {}) {
+  const tries = opts.tries ?? 20;
+  const waitMs = opts.waitMs ?? 60_000;
+  const sleep = opts.sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms)));
+  const log = opts.log ?? (() => {});
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await api.post(`${API}/${pkg}/edits/${editId}:commit`, null);
+    } catch (e) {
+      if (attempt >= tries || !STILL_INGESTING.test(String(e.message))) throw e;
+      log(`commit refused while Play finishes ingesting the bundle; retrying in ${Math.round(waitMs / 1000)}s (attempt ${attempt}/${tries})`);
+      await sleep(waitMs);
+    }
+  }
+}
+
 export function parseArgs(argv) {
   const out = {};
   for (let i = 0; i < argv.length; i++) {

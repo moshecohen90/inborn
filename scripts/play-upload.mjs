@@ -9,7 +9,7 @@
 // Credentials: see scripts/lib/play-api.mjs (INBORN_PLAY_SA_JSON or INBORN_PLAY_SA_KEYCHAIN).
 import fs from "node:fs";
 import path from "node:path";
-import { API, UPLOAD, accessToken, client, loadServiceAccount, parseArgs } from "./lib/play-api.mjs";
+import { API, UPLOAD, accessToken, client, commitEdit, loadServiceAccount, parseArgs } from "./lib/play-api.mjs";
 
 const CHUNK = 64 * 1024 * 1024; // must be a multiple of 256 KiB
 
@@ -59,7 +59,7 @@ async function main() {
     const release = { name: args.name ?? String(bundle.versionCode), versionCodes: [String(bundle.versionCode)], status };
     const updated = await api.put(`${API}/${pkg}/edits/${edit.id}/tracks/${track}`, { track, releases: [release] });
     console.log(`track ${track}: ${JSON.stringify(updated.releases)}`);
-    const committed = await api.post(`${API}/${pkg}/edits/${edit.id}:commit`, null);
+    const committed = await commitEdit(api, pkg, edit.id, { log: (m) => console.warn(`  ${m}`) });
     console.log(`committed edit ${committed.id}`);
   } catch (e) {
     await api.del(`${API}/${pkg}/edits/${edit.id}`).catch(() => {});
