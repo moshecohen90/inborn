@@ -30,6 +30,23 @@ const ANSWER_TIMEOUT_MS = 3 * 60_000;
 /* The Chat screen logs which engine loaded (`[inborn] <engine> loaded <uri> in <ms> ms`); the header itself shows the model, not the engine. */
 const ENGINE_RE = /\[inborn\] (\w+) loaded .* in (\d+) ms/;
 const LOADED_RE = /\[wllama\] loaded .* in (\d+) ms · threads=(\d+) isolated=(\w+) gpuLayers=(\d+)/;
+/**
+ * Spec §14.9: anything visual is checked in the BROWSER at these four widths before a Mac or a phone is touched.
+ * The sweep below is that rule as a gate — a run that covers fewer than all four widths on all four screens fails.
+ */
+const REQUIRED_WIDTHS = [390, 768, 1024, 1440];
+/* Drives the sweep. It is checked against REQUIRED_WIDTHS at the end, so narrowing it here fails the run. */
+const LAYOUT_WIDTHS = [...REQUIRED_WIDTHS];
+const LAYOUT_SCREENS = [
+  { id: "chat", path: "/", ready: "composer-input" },
+  { id: "settings", path: "/settings", ready: "row-proof" },
+  { id: "paywall", path: "/paywall?reason=strictDocuments", ready: "web-price-pro" },
+  { id: "onboarding", path: "/onboarding", ready: "onboarding-welcome" },
+];
+/** Every shipped locale, plus the pseudo-locale, which is the longest any string is allowed to get. */
+const LOCALES = ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"];
+/** The two sidebar buttons that share one row: the narrowest place a translated label has to fit (QA F103, F304). */
+const LABEL_BUTTONS = ["new-chat", "new-incognito"];
 const IPHONE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1";
 
 const skip = (why) => {
@@ -198,6 +215,47 @@ async function chat(page, out, prompt, loadedLines) {
 const catalogHost = defaults.modelsOrigin ? new URL(defaults.modelsOrigin).host : "";
 const foreignHosts = (hosts, allowCatalog = false) => [...hosts].filter((h) => h !== origin && !(allowCatalog && h === catalogHost));
 
+/**
+ * Reads one screen at one width: is anything wider than the window, and does the composer row still line up.
+ * Measured in the page, from the boxes the browser actually laid out — not from a screenshot anyone has to squint at.
+ */
+async function measureLayout(page) {
+  return page.evaluate(() => {
+    const doc = document.scrollingElement;
+    const box = (id) => {
+      const el = document.querySelector(`[data-testid="${id}"]`);
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height), cy: Math.round(r.y + r.height / 2) };
+    };
+    return {
+      scrollWidth: doc.scrollWidth,
+      clientWidth: doc.clientWidth,
+      attach: box("attach"),
+      input: box("composer-input"),
+      mic: box("mic"),
+      send: box("send"),
+    };
+  });
+}
+
+/** Any element whose text is cut off by its own box (RNW numberOfLines={1} clips with an ellipsis, silently). */
+async function truncatedLabels(page, testIds) {
+  return page.evaluate((ids) => {
+    const out = [];
+    for (const id of ids) {
+      const btn = document.querySelector(`[data-testid="${id}"]`);
+      if (!btn) continue;
+      for (const el of [btn, ...btn.querySelectorAll("*")]) {
+        const text = (el.textContent ?? "").trim();
+        if (!text || el.children.length) continue;
+        if (el.scrollWidth > el.clientWidth + 1) out.push({ id, text, scrollWidth: el.scrollWidth, clientWidth: el.clientWidth });
+      }
+    }
+    return out;
+  }, testIds);
+}
+
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
@@ -265,6 +323,63 @@ try {
     out.vaultDoor = ((await page.getByTestId("vault-web-status").textContent()) ?? "").trim();
     out.vaultScreenshot = path.join(outDir, "web-smoke-vault.png");
     await page.screenshot({ path: out.vaultScreenshot });
+    /* F303: the four widths, on the four screens, with a model in OPFS — the browser-first rule as a gate. */
+    result.layout = {};
+    for (const width of LAYOUT_WIDTHS) {
+      await page.setViewportSize({ width, height: 900 });
+      for (const screen of LAYOUT_SCREENS) {
+        await page.goto(new URL(screen.path, server.url).href);
+        await page.getByTestId(screen.ready).waitFor({ timeout: 60_000 });
+        noPageErrors(pageErrors, `${screen.id} at ${width}`);
+        const shot = path.join(outDir, `web-smoke-layout-${screen.id}-${width}.png`);
+        await page.screenshot({ path: shot, fullPage: true });
+        const m = await measureLayout(page);
+        (result.layout[screen.id] ??= {})[width] = { ...m, screenshot: shot };
+        if (m.scrollWidth > m.clientWidth + 1) throw new Error(`${screen.id} at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+        if (screen.id !== "chat") continue;
+        for (const id of ["attach", "input", "mic", "send"]) if (!m[id]) throw new Error(`${screen.id} at ${width}: no ${id} in the composer`);
+        /* One row: the three round controls share a centre line, and the field sits between them. */
+        for (const id of ["mic", "send"]) if (Math.abs(m[id].cy - m.attach.cy) > 2) throw new Error(`${screen.id} at ${width}: ${id} is ${Math.abs(m[id].cy - m.attach.cy)}px off the composer's centre line`);
+        if (!(m.attach.x < m.input.x && m.input.x + m.input.w <= m.mic.x + 1 && m.mic.x < m.send.x)) {
+          throw new Error(`${screen.id} at ${width}: the composer row is out of order ${JSON.stringify({ attach: m.attach.x, input: m.input.x, mic: m.mic.x, send: m.send.x })}`);
+        }
+        if (m.send.x + m.send.w > m.clientWidth + 1) throw new Error(`${screen.id} at ${width}: send runs ${m.send.x + m.send.w - m.clientWidth}px past the window`);
+      }
+    }
+    for (const screen of LAYOUT_SCREENS) {
+      const missing = LAYOUT_WIDTHS.filter((w) => !result.layout[screen.id]?.[w]);
+      if (missing.length) throw new Error(`layout sweep skipped ${screen.id} at ${missing.join(", ")}`);
+    }
+
+    /* F304: the narrowest window, every shipped language: a translated label that does not fit is clipped silently. */
+    result.labels = {};
+    await page.setViewportSize({ width: 390, height: 900 });
+    for (const locale of LOCALES) {
+      await page.evaluate((lng) => {
+        const prefs = JSON.parse(localStorage.getItem("inborn.prefs") ?? "{}");
+        localStorage.setItem("inborn.prefs", JSON.stringify({ ...prefs, onboarded: true, locale: lng }));
+      }, locale);
+      await page.goto(new URL("/chats", server.url).href);
+      await page.getByTestId("new-incognito").waitFor({ timeout: 60_000 });
+      const clipped = await truncatedLabels(page, LABEL_BUTTONS);
+      result.labels[locale] = {
+        newChat: ((await page.getByTestId("new-chat").textContent()) ?? "").trim(),
+        incognito: ((await page.getByTestId("new-incognito").textContent()) ?? "").trim(),
+        clipped,
+      };
+      if (locale === "fr") await page.screenshot({ path: path.join(outDir, "web-smoke-labels-fr-390.png") });
+      if (clipped.length) throw new Error(`${locale} at 390: ${clipped.map((c) => `${c.id} "${c.text}" needs ${c.scrollWidth}px in ${c.clientWidth}px`).join("; ")}`);
+    }
+    const sweptLocales = Object.keys(result.labels);
+    if (sweptLocales.length !== LOCALES.length) throw new Error(`label sweep covered ${sweptLocales.length} of ${LOCALES.length} locales`);
+    /* Back to the language and the window the rest of the run expects. */
+    await page.evaluate(() => {
+      const prefs = JSON.parse(localStorage.getItem("inborn.prefs") ?? "{}");
+      delete prefs.locale;
+      localStorage.setItem("inborn.prefs", JSON.stringify(prefs));
+    });
+    await page.setViewportSize({ width: 1180, height: 800 });
+
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (out.consoleErrors.some((l) => /^pageerror/.test(l))) throw new Error(`page errors: ${out.consoleErrors.join(" | ")}`);
     out.hosts = [...hosts];
@@ -411,4 +526,14 @@ console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
 console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
+for (const screen of LAYOUT_SCREENS) {
+  for (const width of REQUIRED_WIDTHS) {
+    if (!result.layout?.[screen.id]?.[width]) {
+      console.error(`FAIL: the layout sweep never ran ${screen.id} at ${width}`);
+      process.exit(1);
+    }
+  }
+}
+console.log(`PASS: layout swept ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} at ${REQUIRED_WIDTHS.join(" / ")} — no horizontal scroll, composer row aligned`);
+console.log(`PASS: ${Object.keys(result.labels).length} locales at 390, no clipped sidebar label (fr incognito = "${result.labels.fr.incognito}")`);
 console.log(`PASS: no model, the price list still reads ${result.paywallWithoutModel.pro.replace(/\n/g, " · ")} / ${result.paywallWithoutModel.work.replace(/\n/g, " · ")}`);
