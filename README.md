@@ -5379,3 +5379,21 @@ questions. This round replaced it.
 Open: the lead uploads the model to models.inbornapp.com with the command in `docs/qa/deploy-site/embed-e5-upload.md`
 (the URL is 404 today). French is the weakest language at 1/3, and the 0.82 door is tied to this embedder: any
 future embedder change must be measured again with `rag-multilingual-measure.test.ts`.
+## Fixes round 75: a photo nothing here can see is held in the composer, not sent (branch `vision-block`) — 24.9.2026
+
+Moshe attached a photo on the iPhone without the photo pack. The line asking for it appeared and he dismissed it. The turn had
+already gone out, and the next answer said it had received no image. On a simulator with origin/main's chat screen, the
+refusal was written as an assistant row. The composer came back empty, and the following question went to Instant without the
+picture: *"I cannot analyze the image or identify specific colors in the door."*
+
+- **Send holds the turn when no model here can see the photo** (F343). Nothing is stored and nothing reaches the model.
+  The text and the photo stay in the composer under one card, which says that no model on this device can see photos
+  and that the photo can't be read until the 205 MB photo pack is downloaded. The card offers Download, Remove the
+  photo, and Switch when another model could see it. It has no dismiss button, and Send again stays held. When the
+  pack turns ready, the held turn goes out by itself through the F294 wait state. Proven on the simulator: held with no
+  row stored, held again, and sent with the photo once the pack was on disk (`docs/qa/vision-block/`). The Download
+  button itself could not be proven on the simulator: its background download never reached the local model server, and
+  the vault's own Install fails the same way. So the automatic release is covered by unit tests only and needs one look
+  on a phone.
+- **A document with no readable text already blocks** (F344). The turn is refused before the model with the F302 line.
+  The file stays attached, so there is nothing to hold.
