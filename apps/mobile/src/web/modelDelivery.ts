@@ -51,29 +51,50 @@ export function parseManifest(body: { models?: ManifestModel[] }, allowedOrigins
 
 const MANIFEST_CACHE = "inborn.web.manifest";
 
-/** The manifest from the network, else the last one this browser saw: an offline visit must still know which file it holds. */
-export async function fetchManifest(allowedOrigins: string[] = []): Promise<WebModelSource[]> {
-  try {
-    const res = await fetch(MANIFEST_URL, { cache: "no-cache" });
-    if (res.ok) {
-      const text = await res.text();
-      const models = parseManifest(JSON.parse(text) as { models?: ManifestModel[] }, allowedOrigins);
-      try {
-        localStorage.setItem(MANIFEST_CACHE, text);
-      } catch {
-        /* no localStorage: only the live manifest then */
-      }
-      return models;
-    }
-  } catch {
-    /* offline or no host: fall through to the cached copy */
-  }
+/**
+ * Why this browser has no catalog. `not-json` is the one B1 (24.9.2026) turned up: the origin answered
+ * /models/manifest.json with the SPA shell, 200 and text/html, and an empty catalog reads exactly like a browser no
+ * model fits. They need different words on screen, so they are different states here.
+ */
+export type CatalogError = "unreachable" | "not-json";
+
+export interface CatalogResult {
+  models: WebModelSource[];
+  error: CatalogError | null;
+}
+
+const cachedModels = (allowedOrigins: string[]): WebModelSource[] => {
   try {
     const cached = localStorage.getItem(MANIFEST_CACHE);
     return cached ? parseManifest(JSON.parse(cached) as { models?: ManifestModel[] }, allowedOrigins) : [];
   } catch {
     return [];
   }
+};
+
+/** The manifest from the network, else the last one this browser saw: an offline visit must still know which file it holds. */
+export async function fetchManifest(allowedOrigins: string[] = []): Promise<CatalogResult> {
+  let error: CatalogError = "unreachable";
+  try {
+    const res = await fetch(MANIFEST_URL, { cache: "no-cache" });
+    if (res.ok) {
+      const type = res.headers.get("content-type") ?? "";
+      const text = await res.text();
+      /* An origin that falls back to its one document answers 200 with HTML; parsing it is the bug, not the fix. */
+      if (!/\bjson\b/i.test(type) || /^\s*</.test(text)) throw new SyntaxError(`catalog is ${type || "untyped"}, not JSON`);
+      const models = parseManifest(JSON.parse(text) as { models?: ManifestModel[] }, allowedOrigins);
+      try {
+        localStorage.setItem(MANIFEST_CACHE, text);
+      } catch {
+        /* no localStorage: only the live manifest then */
+      }
+      return { models, error: null };
+    }
+  } catch (e) {
+    if (e instanceof SyntaxError) error = "not-json";
+  }
+  const models = cachedModels(allowedOrigins);
+  return { models, error: models.length ? null : error };
 }
 
 /** Biggest tier the gate allows; ties go to the smaller file. */

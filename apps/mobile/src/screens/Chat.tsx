@@ -100,7 +100,7 @@ import { useType } from "../services/type";
 import { copyText } from "../lib/clipboard";
 import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
-import { modelLabel, describeLoad } from "../lib/models";
+import { chipLabel, modelLabel, describeLoad } from "../lib/models";
 import { getVault } from "../vault/store";
 import { useShortcut } from "../lib/shortcuts";
 import { COLUMN_WIDTH } from "../lib/layout";
@@ -977,7 +977,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [adviceLanguage, model.id, use]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
-  const statusLine = status.kind === "loading" ? t("chat.loading", { model: modelLabel(model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: modelLabel(model.id), error: status.error }) : null;
+  const statusLine = status.kind === "loading" ? t("chat.loading", { model: chipLabel(t, model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: chipLabel(t, model.id), error: status.error }) : null;
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
@@ -1161,7 +1161,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           <View style={[shape.chip, styles.modelChip, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
             {incognito ? <Icon name="incognito" size={14} color={theme.text2} /> : <ChipGlyph size={12} color={theme.text2} />}
             <Text numberOfLines={1} style={[type.monoLabel, styles.modelChipText, { color: theme.text2 }]}>
-              {modelLabel(model.id)}
+              {chipLabel(t, model.id)}
             </Text>
           </View>
         </Pressable>
@@ -1182,11 +1182,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           <Text testID="model-weak-line" style={[type.caption, styles.grow, { color: theme.text3 }]}>
             {languageUpgrade
               ? t("chat.modelWeakBetter", {
-                  model: modelLabel(model.id),
+                  model: chipLabel(t, model.id),
                   language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }),
                   better: modelLabel(languageUpgrade.better.model.id),
                 })
-              : t("chat.modelWeak", { model: modelLabel(model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
+              : t("chat.modelWeak", { model: chipLabel(t, model.id), language: t(`language.${weakLanguage}`, { defaultValue: LANGUAGE_NAME_BY_CODE[weakLanguage] ?? weakLanguage }) })}
           </Text>
           {languageUpgrade ? (
             <Pressable
@@ -1210,7 +1210,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           <Text testID="model-none-line" style={[type.caption, styles.grow, { color: theme.text2 }]}>
             {t("models.recommendedNone", {
               device: deviceNoun(),
-              model: modelLabel(model.id),
+              model: chipLabel(t, model.id),
               use: t(`use.${noBetterHere.use}`),
               language: t(`language.${noBetterHere.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[noBetterHere.languageCode] ?? noBetterHere.languageCode }),
             })}
@@ -1249,7 +1249,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       ) : null}
       {visionOffer ? (
         <View testID="vision-offer" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t(visionOffer === "switch" ? "chat.vision.offer" : "chat.vision.offerCompanion", { model: modelLabel(model.id), seer: seerLabel })}</Text>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t(visionOffer === "switch" ? "chat.vision.offer" : "chat.vision.offerCompanion", { model: chipLabel(t, model.id), seer: seerLabel })}</Text>
           <Pressable testID="vision-offer-action" accessibilityRole="button" onPress={useSeer} hitSlop={8} style={styles.noticeBtn}>
             <Text style={[type.caption, { color: theme.accent }]}>{seerReady ? t("chat.modelAdvice.switch", { model: seerLabel }) : t("voice.openVault")}</Text>
           </Pressable>
@@ -1403,7 +1403,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ListEmptyComponent={
           <View style={styles.empty}>
             <Seal size={72} color={theme.sealed} glow={theme.accent} state={sealOverride} progress={sealProgress} generating={false} label={sealLabel} />
-            <Text style={[type.monoLabel, { color: theme.text3 }]}>{modelLabel(model.id)}</Text>
+            <Text style={[type.monoLabel, { color: theme.text3 }]}>{chipLabel(t, model.id)}</Text>
             <Text testID="empty-headline" style={[type.title, styles.headline, { color: theme.text }]}>
               {incognito ? t("chat.incognito.headline") : t("onboarding.headline", { device: deviceNoun() })}
             </Text>
@@ -1598,7 +1598,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => onOpenVault?.());
         } : undefined}
         visionSize="205 MB"
-        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: modelLabel(model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: modelLabel(model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: "205 MB" }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
       />
       <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { citationsForAnswer, directionOf, type ChatMessage } from "@inborn/core";
 import { Citations } from "../../documents/Citations";
 import { useTheme } from "../../lib/theme";
-import { modelLabel } from "../../lib/models";
+import { chipLabel } from "../../lib/models";
 import { Ledger } from "./Ledger";
 import { Markdown } from "./Markdown";
 import { useType } from "../../services/type";
@@ -31,7 +31,7 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
   const [showReasoning, setShowReasoning] = useState(false);
   const dir = directionOf(row.content || row.reasoning || "");
   const waiting = !!row.streaming && !row.content && !row.reasoning;
-  const header = t("chat.modelLabel", { model: modelLabel(row.modelId ?? "") });
+  const header = t("chat.modelLabel", { model: chipLabel(t, row.modelId ?? "") });
   useStreamAnnouncements(row);
   const firstLine = firstLineForSpeech(row.content);
   const summary = {

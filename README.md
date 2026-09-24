@@ -4652,6 +4652,51 @@ something outside this stream while the probes were running, so it was abandoned
 Gates: `pn lint` 0, `pn typecheck` 0, `pn check:store` PASS, `pn check:live` PASS on both origins, `apps/site` build +
 `check.mjs` 13 pages clean, `pn web:build` clean, `pn web:smoke` PASS with `isolated=true`. Evidence:
 `docs/qa/deploy-site/live-2026-09-24.md` §"Round 57", `docs/qa/qa-run-2026-09-11.md` F275.
+## Fixes round 56: the browser app could not install a model at all (branch `fix-web-models`) — 24.9.2026
+
+MosheAI's blocker B1, and it was exactly as reported. `https://app.inbornapp.com/models/manifest.json` answered
+**200 `text/html`** with the app's own `index.html` — the catalog file existed only inside `scripts/serve-web.mjs`,
+which built it on the fly from the GGUFs on the developer's disk. The deploy uploaded `apps/web/dist` and that file
+was never in it, so the Worker's `not_found_handling: single-page-application` answered the request with the one
+document. `fetchManifest` called `JSON.parse` on that HTML, swallowed the throw and returned an empty catalog, and
+every screen read the empty catalog as a browser no model fits: onboarding said **"No model on this browser"** with
+**Start chatting** greyed out, `/vault` said **"Not downloaded yet. The chat screen offers the download."** and the
+header chip said **DEV**. A closed circle, on the origin, while the CDN served the GGUF perfectly (`206`,
+`bytes 0-100/1280835840`).
+
+**The catalog is now built once and shipped** (F270). `scripts/web-manifest.mjs` turns `packages/core`'s catalog
+into the browser's — free, single-file chat models with an `https` delivery, which is Instant and Fast — and
+`apps/web/build.mjs` writes it into the dist on every `pnpm web:build`. The dev server and the deploy serve one
+file built by one function, and `MODELS_ORIGIN` defaults to `origins.json` instead of empty, because a dist whose
+own CSP forbids the host its catalog names is the same dead end one step later.
+
+**A catalog that does not load says so** (F271). `fetchManifest` refuses a body that is not JSON and returns
+`{ models, error }`; a browser with no catalog is no longer "ready", so instead of walking into a chat it cannot
+answer in, it gets a door: **"The model catalog did not load · This browser could not read the list of models…"**
+with **Try again**. The vault and the model step say the same thing rather than blaming the browser. A cached
+catalog still beats a dead network, so the offline visit is untouched.
+
+**The deploy checks its own work** (F272): round 57's `scripts/check-live.mjs`, which the deploy already runs after
+`--app`, now also reads the live catalog back and fails unless it is JSON listing at least one model, naming what it
+got instead. One live gate for the origin, not a second one beside it. **The chip no longer says DEV** (F273): `NAMES.null`
+is gone and every chip that can be handed the no-model engine asks for the localized "no model" wording, in all nine
+locales. **The smoke could not have caught this** (F274): it now reads `/models/manifest.json` as the app reads it,
+and a fifth pass serves the app's own `index.html` in its place — the exact B1 response — and requires the catalog
+door with its retry, no composer and no "no model on this browser" wording.
+
+**Proven on the live origin, not only locally.** After `node scripts/deploy-cloudflare.mjs --app` from this
+worktree: the manifest is `application/json` with `instant` and `fast` (`docs/qa/fix-web-models/after-live-manifest.txt`),
+and a fresh headless profile on `https://app.inbornapp.com` walked the download door (**Download Fast · 1.3 GB**),
+the download, onboarding S01–S05 and a chat that answered *"The capital of France is Paris."* The chip reads
+**FAST** in the header, in the sidebar and under the seal at 1440 and at 390, and `DEV` appears nowhere in the
+document at either width (`live-walk.json`, `live-1440-*.png`, `live-390-chat.png`). Every guard of the round was
+watched failing first, including the browser one: with `webReady` put back the way it was, the rebuilt app times
+out waiting for the catalog door, which is B1 reproduced on demand (`docs/qa/fix-web-models/guards-red.txt`).
+
+Gates on this branch, with round 57 merged in: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm check:store` PASS,
+**1,495 tests** (core 726, mobile 736, i18n 20, ui 13), `pnpm web:smoke` green including its two new checks, and
+`pn check:live` green on the redeployed origin. Eighteen of the mobile tests are this round's:
+`test/webCatalog.test.ts` (9), `src/web/modelDelivery.test.ts` (+6), `src/lib/models.test.ts` (+3).
 
 ## Fixes round 58: the notice was expired, not missing (branch `fix-phone-r58`) — 24.9.2026
 
@@ -4685,3 +4730,4 @@ in `docs/qa/fix-phone-r58/`.
   document still cites it.
 
 Suite on the merged tree: core 734 · mobile 726 · i18n 20 · ui 13, `typecheck` and `lint` clean.
+

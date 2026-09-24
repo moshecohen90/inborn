@@ -1,0 +1,8 @@
+=== after merging round 57 and redeploying --app, 2026-09-24T09:30:47Z ===
+== live check
+https://app.inbornapp.com/ -> 200, 1 script src, cache-control: public, max-age=0, must-revalidate, no-transform
+https://app.inbornapp.com/models/manifest.json -> a JSON catalog the app can read
+
+✓ 1 live pages: no injected beacon, no off-origin script, no-transform present
+
+done

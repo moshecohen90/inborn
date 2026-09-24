@@ -24,7 +24,17 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
     storageEstimate().then(setEstimate).catch(() => setEstimate(null));
   }, []);
   const chrome = boot.engine === "chrome-nano";
-  const status = chrome ? t("vault.web.status.chrome") : boot.status.kind === "ready" ? t("vault.web.status.ready") : boot.status.kind === "partial" ? t("vault.web.status.partial") : t("vault.web.status.missing");
+  /* No catalog is not "not downloaded yet": that line sent the reader to a chat screen with nothing to offer (B1). */
+  const noCatalog = !chrome && !boot.source && !!boot.catalogError;
+  const status = chrome
+    ? t("vault.web.status.chrome")
+    : noCatalog
+      ? t("web.catalog.explain")
+      : boot.status.kind === "ready"
+        ? t("vault.web.status.ready")
+        : boot.status.kind === "partial"
+          ? t("vault.web.status.partial")
+          : t("vault.web.status.missing");
   return (
     <Screen header={{ back: true, title: t("vault.title"), onBack: onClose }} mesh testID="vault-web-door">
       <View style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
@@ -32,7 +42,7 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
           <ChipGlyph size={14} color={theme.text2} />
           <MonoLabel color={theme.text2}>{t("vault.web.managed")}</MonoLabel>
         </View>
-        <Text style={[type.heading, { color: theme.text }]}>{chrome ? t("web.engine.chrome") : (boot.source?.name ?? t("vault.web.noModel"))}</Text>
+        <Text style={[type.heading, { color: theme.text }]}>{chrome ? t("web.engine.chrome") : noCatalog ? t("web.catalog.title") : (boot.source?.name ?? t("vault.web.noModel"))}</Text>
         <Text testID="vault-web-status" style={[type.bodySmall, { color: theme.text2 }]}>
           {status}
         </Text>
@@ -43,7 +53,8 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.fullVault")}</Text>
       {/* The only thing this screen can do for a browser reader is the filled button; closing is the aside (QA F252). */}
       <Actions>
-        <Button testID="vault-get-app" title={t("web.getApp")} onPress={() => void Linking.openURL(GET_APP_URL)} />
+        {noCatalog ? <Button testID="vault-catalog-retry" title={t("web.catalog.retry")} onPress={() => location.reload()} /> : null}
+        <Button testID="vault-get-app" variant={noCatalog ? "secondary" : "cta"} title={t("web.getApp")} onPress={() => void Linking.openURL(GET_APP_URL)} />
         <Button variant="link" title={t("vault.close")} onPress={onClose} testID="close-vault" />
       </Actions>
     </Screen>

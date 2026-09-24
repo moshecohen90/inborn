@@ -10,7 +10,15 @@
  * with a browser's `Accept: text/html`, which is the condition the injection keys on, and fails on any script the
  * origin did not write.
  */
-import { URL } from "node:url";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { URL, fileURLToPath } from "node:url";
+import { catalogProblem, MANIFEST_REL } from "./web-manifest.mjs";
+
+/* Overridable so this gate can be pointed at any origin that is meant to carry the model catalog. */
+const APP_ORIGIN = process.env.APP_ORIGIN || JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "../packages/core/src/site/origins.json"), "utf8")).app;
+/* The wait between tries is for edge propagation; a caller that serves the answer itself has nothing to wait for. */
+const RETRY_MS = Number(process.env.CHECK_LIVE_RETRY_MS ?? 3000);
 
 const ORIGINS = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const TARGETS = ORIGINS.length
@@ -69,6 +77,28 @@ for (const url of TARGETS) {
   if (!/\bno-transform\b/.test(cc)) problems.push(`${url}: Cache-Control has no no-transform (${cc || "none"})`);
 
   notes.push(`${url} -> ${res.status}, ${scriptSrcs(html).length} script src, cache-control: ${cc || "none"}`);
+}
+
+/**
+ * The app origin's model catalog. It is not HTML, so nothing above looks at it, and its failure mode is a 200: a
+ * missing file is answered with the app's own document by `not_found_handling: single-page-application`, which is
+ * how an origin whose browser tier could not install a model at all passed every gate there was (B1 / F270).
+ */
+for (const origin of [...new Set(TARGETS.map((t) => new URL(t).origin))].filter((o) => o === APP_ORIGIN)) {
+  const catalog = `${origin}/${MANIFEST_REL}`;
+  let problem = "no response";
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch(catalog, { headers: { ...BROWSER, Accept: "application/json", "Cache-Control": "no-cache" } });
+      problem = catalogProblem({ status: res.status, contentType: res.headers.get("content-type") ?? "", body: await res.text() });
+    } catch (e) {
+      problem = `request failed (${e.message})`;
+    }
+    if (!problem) break;
+    if (attempt < 3 && RETRY_MS) await new Promise((r) => setTimeout(r, RETRY_MS));
+  }
+  if (problem) problems.push(`${catalog}: ${problem} — the browser tier cannot install a model (apps/web/build.mjs writes this file into the dist)`);
+  else notes.push(`${catalog} -> a JSON catalog the app can read`);
 }
 
 console.log(notes.join("\n"));

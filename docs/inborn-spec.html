@@ -215,7 +215,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 
 <section class="guide" aria-label="מדריך קריאה">
 <div class="row"><div class="tier must"><span class="k">MUST · ~43 MIN</span><p class="t">חובה לפני החלטה</p><p class="l">תקציר מנהלים, חזון וחוקים, שוק ומותג, פלטפורמות וקוד אחד, מפת הפיצ'רים, תמחור, סיכונים והחלטות.</p></div><div class="tier rec"><span class="k">RECOMMENDED · ~63 MIN</span><p class="t">מומלץ למי שרוצה להבין איך</p><p class="l">ארכיטקטורה, מודלים ומכשירים, מערכת העיצוב, ASO ויציאה לשוק, תוכנית עבודה, מדדים.</p></div><div class="tier ref"><span class="k">REFERENCE · ~48 MIN</span><p class="t">עיון בעת הצורך, לבנייה</p><p class="l">מסך אחר מסך (הדמו מציג אותם), 70 מקרי קצה, חנויות ורישוי, מקורות. נכתבו כדי שהמפתח לא יצטרך לנחש.</p></div></div>
-<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~153 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~106 דק'</button><button type="button" data-view="must">חובה בלבד · ~43 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
+<div class="viewsw" role="group" aria-label="מה להציג"><button type="button" data-view="all" class="on">הכל · ~154 דק'</button><button type="button" data-view="rec">חובה + מומלץ · ~106 דק'</button><button type="button" data-view="must">חובה בלבד · ~43 דק'</button></div><p class="l" style="margin-top:8px">המסנן רק מסתיר סעיפים; שום דבר לא נמחק והבחירה נשמרת בדפדפן. ההערות שלך נשמרות גם על סעיפים מוסתרים.</p>
 </section>
 
 <nav class="toc" aria-label="תוכן">
@@ -511,7 +511,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <div class="note warn"><p><strong>ההחלטה על דסקטופ מתקבלת עכשיו, לא בשלב 3.</strong> היא קובעת את צורת ממשק האדפטר, את מבנה הקטלוג (מודלים של 7–9B שלא קיימים במובייל) ואת סכמת הרישוי (Pro אחד לכל המכשירים או לכל פלטפורמה). ההערכות הן לעבודה של מפתח TypeScript בכיר יחיד עם סוכני קוד.</p></div>
 
 </section>
-<section class="sec" data-tier="rec" data-words="2202">
+<section class="sec" data-tier="rec" data-words="2262">
 <h2 id="s5"><span class="n">05</span>ארכיטקטורה טכנית<span class="tierpill">RECOMMENDED</span><span class="h2min">~11 min</span></h2>
 <p class="lead">שלושה עקרונות מכתיבים את הארכיטקטורה: אין שרת בלולאה של השימוש, כל נתון של המשתמש מוצפן במנוחה, וכל רכיב שנוגע ברשת מבודד לנתיב אחד ויחיד שאפשר לבקר.</p>
 
@@ -524,7 +524,7 @@ figcaption{font-size:13px;color:var(--text-3);margin-top:6px}
 <tr><td><strong>Android</strong></td><td>Instant כחבילת fast‑follow של Play Asset Delivery (יורדת מיד אחרי ההתקנה, Play מטפל בסלולר ובהמשך); Fast/Sharp/Power כחבילות on‑demand (עד 1.5 GB לחבילה, 30 GB מצטבר, מודלים גדולים מפוצלים); כל GGUF אחר בייבוא דרך בורר הקבצים (SAF), שלא דורש הרשאה</td><td>Play Billing 9.x, בלי INTERNET (המניפסט של הספרייה מצהיר רק BILLING; אומת 2.9.2026)</td><td><strong>כלום.</strong> המניפסט הממוזג ללא <code>INTERNET</code>; ספריית asset‑delivery 2.3.0 מצהירה רק FOREGROUND_SERVICE (אומת)</td><td>דף ההרשאות ב‑Play בלי "full network access"; Exodus: 0 טראקרים, 0 הרשאות רשת</td></tr>
 <tr><td><strong>iOS, כל הגרסאות הנתמכות</strong></td><td>Instant בתוך ה‑bundle; מודלים נוספים בהורדה יזומה מ‑<code>models.inbornapp.com</code> (URLSession ברקע). <strong>לא</strong> Apple‑hosted asset packs (Background Assets) בגרסה הזאת — תוקן 22.9.2026, ראו §11.3</td><td class="ltr">StoreKit 2</td><td>רק את ההורדה שהמשתמש לחץ עליה</td><td>App Privacy Report מציג רק את models.inbornapp.com, רק בזמן הורדה, ויומן הרשת באפליקציה מציג אותו דבר</td></tr>
 <tr><td><strong>Windows / macOS</strong></td><td>CDN (R2) + ייבוא / drag‑and‑drop</td><td>Store / Paddle</td><td>הורדה שהמשתמש לחץ עליה + הפעלת רישיון חד‑פעמית</td><td>"Put us behind Little Snitch / NetGuard"; hash מפורסם</td></tr>
-<tr><td><strong>Web</strong></td><td>CDN (R2) ל‑OPFS</td><td>אין Pro בווב</td><td>הורדת מודל</td><td>CSP, SRI, hash, Service Worker למבחן מצב טיסה</td></tr>
+<tr><td><strong>Web</strong></td><td>CDN (R2) ל‑OPFS. רשימת המודלים שהדפדפן יכול להתקין היא <code>/models/manifest.json</code>, שנבנה מקטלוג <code>packages/core</code> בזמן ה‑build ומתפרסם יחד עם האפליקציה (מודלים חינמיים, קובץ יחיד). כשהוא לא נקרא כ‑JSON — למשל כשהמקור מחזיר את מסמך ה‑SPA במקומו — האפליקציה אומרת שהקטלוג לא נטען ומציעה ניסיון חוזר, ולא "אין מודל לדפדפן הזה" (B1, 24.9.2026)</td><td>אין Pro בווב</td><td>הורדת מודל</td><td>CSP, SRI, hash, Service Worker למבחן מצב טיסה; ה‑deploy נכשל אם הקטלוג החי אינו JSON עם מודל אחד לפחות</td></tr>
 </tbody>
 </table>
 </div>

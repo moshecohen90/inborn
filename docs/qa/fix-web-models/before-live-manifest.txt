@@ -1,0 +1,38 @@
+=== BEFORE FIX 2026-09-24T09:10:53Z ===
+--- GET https://app.inbornapp.com/models/manifest.json ---
+HTTP/2 200 
+date: Thu, 24 Sep 2026 09:10:53 GMT
+content-type: text/html
+content-length: 2580
+cf-cache-status: HIT
+cache-control: public, max-age=0, must-revalidate
+etag: "3c0e4be92557d3aaecfc3c29f7c2a324"
+strict-transport-security: max-age=31536000
+content-security-policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://models.inbornapp.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'
+cross-origin-embedder-policy: require-corp
+cross-origin-opener-policy: same-origin
+cross-origin-resource-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+referrer-policy: no-referrer
+x-content-type-options: nosniff
+x-frame-options: DENY
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=z%2BWLOTjbX%2B1cM%2FUUKyFL8b2ClGcB4vLvzptqqYI%2FKxiol2bd4qoP7KAXekWH%2Fl2JlqTvXoNX%2FpdWf7LMxCjPxn1%2Fw8dF8FEJaQBLFL2NuIy5%2FGVyQle3PFhaCWcZArFBwZLyjA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a400a8971cae0dd4-TLV
+--- body first 3 lines ---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+--- same as index.html? ---
+3c0e4be92557d3aaecfc3c29f7c2a3248c61b81ed5c4d9d2b9eee6f23b6a4e49  /tmp/manifest-before.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /tmp/index-before.html
+--- CDN range check ---
+HTTP/2 206 
+date: Thu, 24 Sep 2026 09:10:53 GMT
+content-type: application/octet-stream
+content-length: 101
+accept-ranges: bytes
+etag: "6899b2510c7b0c480730d48c3117bd32"
+content-range: bytes 0-100/1280835840
+last-modified: Tue, 22 Sep 2026 09:23:12 GMT

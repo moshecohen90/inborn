@@ -7,7 +7,7 @@ import { Icon, dark, radius } from "@inborn/ui";
 import { Seal, type SealState } from "../../components/Seal";
 import { useType } from "../../services/type";
 import { useAppServices } from "../../services/AppServices";
-import { modelLabel } from "../../lib/models";
+import { chipLabel } from "../../lib/models";
 import { useHandsFree } from "../../voice/useHandsFree";
 import { whisperInstalled } from "../../voice/whisper";
 import { readDevice } from "../../vault/device";
@@ -80,7 +80,7 @@ function Loop({ chatId, incognito, onClose, smallPhone, uiLocale, modelId, famil
     <Pressable testID="voice-screen" accessibilityRole="button" accessibilityLabel={hint || label} onPress={hf.tap} style={[styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 16 + bannerInset, paddingBottom: insets.bottom + 16 }]}>
       <View style={styles.header}>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("voice.onDevice")}</Text>
-        <Text style={[type.monoLabel, { color: theme.text3 }]}>{modelLabel(modelId)}</Text>
+        <Text style={[type.monoLabel, { color: theme.text3 }]}>{chipLabel(t, modelId)}</Text>
       </View>
       <View style={styles.sealWrap}>
         <View style={[styles.ring, { borderColor: phase === "listening" ? (hf.speaking ? theme.accent : theme.sealed) : "transparent", opacity: phase === "listening" ? 0.35 + hf.level * 0.65 : 0 }]} />
