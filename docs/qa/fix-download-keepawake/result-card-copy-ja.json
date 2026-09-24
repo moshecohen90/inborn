@@ -1,0 +1,170 @@
+{
+  "runId": "card-copy-ja",
+  "startedAt": "2026-09-24T20:02:54.391Z",
+  "finishedAt": "2026-09-24T20:03:12.466Z",
+  "ok": true,
+  "passed": 21,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8001,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/settings/language"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "lang-ja ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 5,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/vault"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 7,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 613,
+      "detail": "600 ms"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "confirm-download appeared"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "model-keep-open-fast appeared"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Inbornを開いたままにしてください：アプリを離れるとダウンロードは一時停止します",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Inbornを開いたままにしてください：アプリを離れるとダウンロードは一時停止します"
+    },
+    {
+      "i": 15,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 0,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 643,
+      "detail": "C01-keep-open-locale"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "cancel-fast ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "model-keep-open-fast gone"
+    },
+    {
+      "i": 20,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    }
+  ],
+  "errors": []
+}

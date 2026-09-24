@@ -130,6 +130,7 @@ export class HttpsDelivery implements ModelDelivery {
         await this.untilOnScreen(model.id);
         task = DownloadTask.fromSavable({ ...state, fileUri: part.uri }, opts);
         this.tasks.set(model.id, task);
+        emit({ type: "resumed", at: Date.now() });
       }
       this.ctx.saveDownload(model.id, null);
       await this.finish(shard, part);

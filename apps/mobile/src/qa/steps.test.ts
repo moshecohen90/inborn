@@ -37,6 +37,7 @@ function fake(nodes: Record<string, NodeValue> = {}) {
       calls.push(`probe:${session}:${seconds}:${url}`);
       return probes.shift() ?? { bytes: 0, ms: 0, complete: false };
     },
+    idleTimerDisabled: async () => idle.disabled,
     sleep: async (ms) => {
       clock += ms;
     },
@@ -208,5 +209,19 @@ describe("probeDownload (F370: the phone moved 205 MB at 0.09 MB/s through the b
     ]);
     expect(result.failed).toBe(3);
     expect(calls).toEqual([]);
+  });
+});
+
+const idle = { disabled: false };
+
+describe("idleTimer (round 91: the screen stays awake while a model downloads)", () => {
+  it("reports the flag and fails when it is not what the script expects", async () => {
+    const { surface } = fake();
+    idle.disabled = true;
+    const on = await run(surface, [{ op: "idleTimer", disabled: true }]);
+    expect(on.steps[0]).toMatchObject({ ok: true, detail: "idle timer disabled: true" });
+    idle.disabled = false;
+    const off = await run(surface, [{ op: "idleTimer", disabled: true }]);
+    expect(off.steps[0]?.ok).toBe(false);
   });
 });

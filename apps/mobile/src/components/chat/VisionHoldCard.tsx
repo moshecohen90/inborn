@@ -6,6 +6,7 @@ import { formatModelBytes } from "@inborn/core";
 import { VISION_MODEL_ID, installVision } from "../../images";
 import { packAction, releasesHeldTurn } from "../../lib/visionGate";
 import { useVault } from "../../vault/hooks";
+import { keepOpenNote } from "../../vault/keepOpen";
 import { useType } from "../../services/type";
 
 export interface VisionHoldCardProps {
@@ -60,6 +61,11 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
       <Text testID="vision-hold-body" style={[type.bodySmall, title ? { color: theme.text2 } : type.strong, title ? null : { color: theme.text }]}>
         {body}
       </Text>
+      {keepOpenNote(Platform.OS, state) ? (
+        <Text testID="vision-hold-keep-open" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("vault.keepOpen")}
+        </Text>
+      ) : null}
       <View style={styles.actions}>
         {pack && (action === "download" || action === "resume") ? (
           <Pressable testID="vision-hold-download" accessibilityRole="button" onPress={() => void (action === "resume" ? vault.resume(VISION_MODEL_ID) : installVision()).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>

@@ -1,0 +1,146 @@
+{
+  "_": "Round 91 (F375): the idle timer is off exactly while Fast downloads; the card says to keep the app open",
+  "steps": [
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "value",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "idleTimer",
+      "disabled": false
+    },
+    {
+      "op": "press",
+      "testID": "install-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "confirm-download",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "pause-fast",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-keep-open-fast",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "idleTimer",
+      "disabled": true
+    },
+    {
+      "op": "value",
+      "testID": "model-keep-open-fast"
+    },
+    {
+      "op": "screenshot",
+      "name": "A01-fast-downloading-keep-open"
+    },
+    {
+      "op": "press",
+      "testID": "cancel-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-keep-open-fast",
+      "gone": true,
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "idleTimer",
+      "disabled": false
+    },
+    {
+      "op": "value",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "screenshot",
+      "name": "A02-fast-canceled"
+    },
+    {
+      "op": "press",
+      "testID": "install-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "confirm-download",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "pause-fast",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "idleTimer",
+      "disabled": true
+    },
+    {
+      "op": "waitFor",
+      "testID": "cancel-fast",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "idleTimer",
+      "disabled": false
+    },
+    {
+      "op": "value",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "screenshot",
+      "name": "A03-fast-installed"
+    }
+  ]
+}

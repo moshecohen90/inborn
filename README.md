@@ -5869,3 +5869,24 @@ The simulator reproduces it with the shipped code (F370).
   reports MB/s. The phone steps in `docs/qa/fix-ios-download-speed/measurements.md` use it for the phone's own A/B.
 - **Not yet proven on the phone.** No phone was on USB this round. A download interrupted on 1.0.0 (19) refetches from
   byte 0 once after the update, at full speed.
+
+## Fixes round 91: the screen stays awake while a model downloads (branch `fix-download-keepawake`) — 24.9.2026
+
+Round 87 made iPhone downloads fast by running them in the app's own session. That session parks the download when
+the app leaves the screen, and auto-lock backgrounds the app after 30 s to 2 min. A user who started Fast (1.28 GB)
+and put the phone down got a paused download (F375).
+
+- **Keep-awake while bytes move.** `apps/mobile/src/vault/keepAwake.ts` holds expo-keep-awake under one tag while any
+  model download moves bytes, on iOS and Android. The hold is counted per model, so it ends only when the last
+  concurrent download ends. It ends on finish, Pause, Cancel and error. It also ends while a download waits for
+  Wi-Fi or for Play's confirmation. It is never taken on the web.
+- **The card says so on the iPhone.** The vault card and the photo hold card show "Keep Inborn open: the download
+  pauses when you leave" while an iPhone download moves, in all 8 locales. Android's download keeps going in the
+  background and the web and desktop do not park, so the line would be false there and is not shown.
+- **"Resumed" after a parked leg.** When a parked iPhone download continues on return, the status row reads
+  "Resumed · 15% · 192 MB of 1.3 GB" for 4 s. The user sees it did not restart.
+- **Proven on the simulator** (Release build, `docs/qa/fix-download-keepawake/measurements.md`). The idle timer was
+  enabled before the download, disabled while Fast downloaded, and enabled again after Cancel and after completion.
+  Fast parked for 15 s and came back reading "Resumed". The new QA bridge op `idleTimer` reads the native flag.
+- **Not yet on the phone.** Both phones were off USB this round.
+

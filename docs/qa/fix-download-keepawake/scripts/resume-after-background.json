@@ -1,0 +1,90 @@
+{
+  "_": "Round 91 (F375): a Fast download parked by leaving the app says Resumed when it continues, and holds the screen awake again",
+  "steps": [
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 600
+    },
+    {
+      "op": "press",
+      "testID": "install-fast"
+    },
+    {
+      "op": "waitFor",
+      "testID": "confirm-download",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "pause-fast",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "value",
+      "testID": "model-status-fast"
+    },
+    {
+      "op": "waitFor",
+      "text": "Resumed",
+      "timeoutMs": 180000
+    },
+    {
+      "op": "value",
+      "testID": "model-status-fast"
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-fast"
+    },
+    {
+      "op": "screenshot",
+      "name": "B01-fast-resumed"
+    },
+    {
+      "op": "idleTimer",
+      "disabled": true
+    },
+    {
+      "op": "waitFor",
+      "testID": "cancel-fast",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "idleTimer",
+      "disabled": false
+    },
+    {
+      "op": "value",
+      "testID": "model-card-fast"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "runId": "resume-after-background",
+  "startedAt": "2026-09-24T20:22:20.976Z",
+  "finishedAt": "2026-09-24T20:23:21.352Z",
+  "ok": true,
+  "passed": 20,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8001,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 153,
+      "detail": "/vault"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 3,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 5,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 611,
+      "detail": "600 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "confirm-download appeared"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "pause-fast appeared"
+    },
+    {
+      "i": 9,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "0% · 0 B of 1.3 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "0% · 0 B of 1.3 GB"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 21800,
+      "detail": "Resumed appeared"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Resumed · 15% · 192 MB of 1.3 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Resumed · 15% · 192 MB of 1.3 GB"
+    },
+    {
+      "i": 13,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 622,
+      "detail": "B01-fast-resumed"
+    },
+    {
+      "i": 15,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 24842,
+      "detail": "cancel-fast gone"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "● FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Loaded In use Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "● FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summa"
+    }
+  ],
+  "errors": []
+}

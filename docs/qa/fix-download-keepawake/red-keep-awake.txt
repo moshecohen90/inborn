@@ -1,0 +1,168 @@
+# Round 91 red run: the tests below against main's store (no keep-awake wiring, no resumed event)
+
+ RUN  v5.0.0 <repo>/apps/mobile
+
+ ❯ src/vault/keepAwake.test.ts (9 tests | 7 failed) 158ms
+   ❯ keep-awake while a model downloads (round 91) (9)
+     × holds the screen awake from the first bytes of the first download 41ms
+     × lets go only when the last of two concurrent downloads ends 18ms
+     × lets go on Cancel 17ms
+     × lets go on Pause 16ms
+     × lets go when the download fails 16ms
+     × lets the screen sleep while the download waits for Wi-Fi, and holds again when bytes move 17ms
+     × the parked iOS download that continues on return says so 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > holds the screen awake from the first bytes of the first download
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download' ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:120:28
+    118|     await vault.ready();
+    119|     await started(vault, a.id);
+    120|     expect(await native()).toEqual([ON]);
+       |                            ^
+    121|   });
+    122|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > lets go only when the last of two concurrent downloads ends
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download' ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:128:28
+    126|     const { run: runA } = await started(vault, a.id);
+    127|     const { run: runB } = await started(vault, b.id);
+    128|     expect(await native()).toEqual([ON]);
+       |                            ^
+    129|     legs.get(a.id)?.finish();
+    130|     await runA;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > lets go on Cancel
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download', …(1) ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+-   "off:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:144:28
+    142|     await run;
+    143|     expect(vault.state(a.id).kind).toBe("not-installed");
+    144|     expect(await native()).toEqual([ON, OFF]);
+       |                            ^
+    145|   });
+    146|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > lets go on Pause
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download', …(1) ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+-   "off:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:153:28
+    151|     await vault.pause(a.id);
+    152|     await run;
+    153|     expect(await native()).toEqual([ON, OFF]);
+       |                            ^
+    154|   });
+    155|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > lets go when the download fails
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download', …(1) ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+-   "off:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:163:28
+    161|     await run;
+    162|     expect(vault.state(a.id).kind).toBe("failed");
+    163|     expect(await native()).toEqual([ON, OFF]);
+       |                            ^
+    164|   });
+    165|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > lets the screen sleep while the download waits for Wi-Fi, and holds again when bytes move
+AssertionError: expected [] to deeply equal [ 'on:inborn-model-download', …(2) ]
+
+- Expected
++ Received
+
+- [
+-   "on:inborn-model-download",
+-   "off:inborn-model-download",
+-   "on:inborn-model-download",
+- ]
++ []
+
+ ❯ src/vault/keepAwake.test.ts:172:28
+    170|     legs.get(a.id)?.emit({ type: "waiting-for-wifi" });
+    171|     tick(a.id, 20);
+    172|     expect(await native()).toEqual([ON, OFF, ON]);
+       |                            ^
+    173|   });
+    174|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/vault/keepAwake.test.ts > keep-awake while a model downloads (round 91) > the parked iOS download that continues on return says so
+TypeError: Cannot read properties of undefined (reading 'kind')
+ ❯ VaultStore.set src/vault/store.ts:118:15
+    116|   private set(id: string, state: InstallState): void {
+    117|     this.states.set(id, state);
+    118|     if (state.kind === "needs-space" && !this.spacePoll) this.spacePol…
+       |               ^
+    119|     this.notify();
+    120|   }
+ ❯ VaultStore.dispatch src/vault/store.ts:136:10
+ ❯ Object.emit src/vault/store.ts:414:14
+ ❯ src/vault/keepAwake.test.ts:199:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 2 passed (9)
+   Start at  22:16:10
+   Duration  645ms (transform 58%, tests 28%, import 14%)
+

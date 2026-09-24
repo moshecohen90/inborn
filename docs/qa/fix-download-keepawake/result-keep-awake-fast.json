@@ -1,0 +1,307 @@
+{
+  "runId": "keep-awake-fast-mufyf3ch",
+  "startedAt": "2026-09-24T19:58:19.257Z",
+  "finishedAt": "2026-09-24T20:01:01.706Z",
+  "ok": false,
+  "passed": 32,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 120207,
+      "detail": "waitFor composer-input never appeared in 120000 ms"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/vault"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 3,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 3,
+      "detail": "model-card-fast"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 612,
+      "detail": "600 ms"
+    },
+    {
+      "i": 5,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Install · 1.3 GB from models.inbornapp.com Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summa"
+    },
+    {
+      "i": 6,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "confirm-download appeared"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "pause-fast appeared"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-keep-open-fast appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 13,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Keep Inborn open: the download pauses when you leave",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Keep Inborn open: the download pauses when you leave"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "A01-fast-downloading-keep-open"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "cancel-fast ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-keep-open-fast gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 19,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Install · 1.3 GB from models.inbornapp.com Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summa"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1588,
+      "detail": "A02-fast-canceled"
+    },
+    {
+      "i": 22,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "confirm-download appeared"
+    },
+    {
+      "i": 24,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "pause-fast appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 27017,
+      "detail": "cancel-fast gone"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 30,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "● FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.3 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Loaded In use Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "● FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summa"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1588,
+      "detail": "A03-fast-installed"
+    }
+  ],
+  "errors": [
+    "step 0 (waitFor): waitFor composer-input never appeared in 120000 ms"
+  ]
+}

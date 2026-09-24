@@ -21,6 +21,7 @@ export type Step =
   | { op: "devPrompt"; lines: string[] }
   | { op: "sleep"; ms: number }
   | { op: "probeDownload"; url: string; session: ProbeSession; seconds?: number }
+  | { op: "idleTimer"; disabled?: boolean }
   | { op: "cleanup" };
 
 /** expo-file-system's two iOS URLSession configurations: nsurlsessiond out of process, or in the app's own process. */
@@ -54,6 +55,8 @@ export interface Surface {
   cleanup: () => void;
   /** Downloads `url` through one session type for at most `seconds`, then throws the bytes away. */
   probeDownload: (url: string, session: ProbeSession, seconds: number) => Promise<ProbeResult>;
+  /** iOS `UIApplication.isIdleTimerDisabled`: true while the screen is kept from auto-locking. */
+  idleTimerDisabled: () => Promise<boolean>;
   sleep: (ms: number) => Promise<void>;
   now: () => number;
 }
@@ -170,6 +173,11 @@ async function runStep(surface: Surface, step: Step): Promise<Partial<StepResult
       return { detail: `${step.ms} ms` };
     case "probeDownload":
       return probeDownload(surface, step);
+    case "idleTimer": {
+      const disabled = await surface.idleTimerDisabled();
+      if (step.disabled !== undefined && disabled !== step.disabled) throw new Error(`idleTimer: auto-lock is ${disabled ? "off" : "on"}, expected ${step.disabled ? "off" : "on"}`);
+      return { detail: `idle timer disabled: ${disabled}`, value: { text: String(disabled), props: { idleTimerDisabled: disabled } } };
+    }
     case "cleanup":
       surface.cleanup();
       return { detail: "qa namespace removed" };
