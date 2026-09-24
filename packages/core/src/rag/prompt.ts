@@ -54,13 +54,22 @@ export const isNotFoundReply = (reply: string): boolean => {
 
 export const DEFAULT_ANSWER_RESERVE = 512;
 export const DEFAULT_HISTORY_SHARE = 0.35;
-/* nomic-embed puts unrelated text around 0.4; related passages score 0.6+. The hash embedder used in tests sits far lower. */
+/* nomic-embed puts unrelated ENGLISH text around 0.4 and related passages at 0.6+, which is where 0.5 came from.
+   In every other script the two bands sit on top of each other (docs/qa/fix-cjk-floor/cosines.md), so this is a
+   corroboration bar now, never a door of its own. The hash embedder used in tests sits far lower. */
 export const DEFAULT_MIN_COSINE = 0.5;
 export const DEFAULT_MIN_BM25 = 2.0;
 
-/** Relevant: a semantic match above the cosine floor, or a lexical match on two distinct terms (or one strong one). */
+/**
+ * Relevant: the question and the passage share real words, and the embedding backs a single shared word up.
+ *
+ * The cosine cannot carry a passage on its own. Measured over 159 questions on 12 one-passage documents in 8
+ * languages, an off-topic question that shares no word with the passage still scores 0.53–0.76 against it in
+ * ja/zh/ko/he and 0.34–0.58 in en/de/es/fr/pt, while on-topic questions that share no word score 0.43–0.73: the
+ * two distributions overlap in every script, so no floor separates them (QA F282/F327, docs/qa/fix-cjk-floor).
+ */
 export const isRelevant = (h: RetrievalHit, minCosine = DEFAULT_MIN_COSINE, minBm25 = DEFAULT_MIN_BM25): boolean =>
-  h.cosine >= minCosine || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && h.bm25 >= minBm25);
+  h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= minBm25 || h.cosine >= minCosine));
 
 function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMarkers = true): string {
   const lang = answerLanguage ? ` Answer in the user's language (${answerLanguage}) unless asked otherwise.` : "";

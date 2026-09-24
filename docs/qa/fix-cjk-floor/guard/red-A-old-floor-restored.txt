@@ -1,0 +1,440 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core
+
+ ❯ test/rag-cjk.test.ts (41 tests | 8 failed) 26ms
+   ❯ F327 · the cosine cannot carry a one-passage document over the floor on its own (20)
+     × Japanese: strict=false, a cosine of 0.9 does not put the passage under the answer 4ms
+     × Japanese: strict=true, a cosine of 0.9 does not put the passage under the answer 1ms
+     × Chinese: strict=false, a cosine of 0.9 does not put the passage under the answer 1ms
+     × Chinese: strict=true, a cosine of 0.9 does not put the passage under the answer 1ms
+     × Korean: strict=false, a cosine of 0.9 does not put the passage under the answer 1ms
+     × Korean: strict=true, a cosine of 0.9 does not put the passage under the answer 1ms
+     × English: strict=false, a cosine of 0.9 does not put the passage under the answer 1ms
+     × English: strict=true, a cosine of 0.9 does not put the passage under the answer 0ms
+ ❯ test/rag-relevance-floor.test.ts (9 tests | 4 failed) 39ms
+   ❯ F327 · the embedding half cannot cite a passage on its own (6)
+     × the 6T's own off-topic Japanese turn is no longer cited, in either mode 8ms
+     × no off-topic question in any of the nine languages is cited, in either mode 16ms
+     × the question that shares a word with the passage is still cited, in every language that has one 7ms
+     × the cosine still corroborates a single shared word, and still cannot replace it 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Japanese: strict=false, a cosine of 0.9 does not put the passage under the answer
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Japanese: strict=true, a cosine of 0.9 does not put the passage under the answer
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0.5753641449035617,
++     "bm25Terms": 0,
++     "chunk": {
++       "docId": "ja",
++       "end": 58,
++       "id": "ja1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "当社の二〇二四年度の収益は三千万円で、前年度より十二パーセント増加しました。これは新製品の販売が好調だったためです。",
++       "tokens": 40,
++     },
++     "cosine": 0.9,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:181:24
+    179|       it(`${label}: strict=${strict}, a cosine of ${OVER_FLOOR} does n…
+    180|         const p = buildRagPrompt({ question: offTopic, hits: hitsFor(o…
+    181|         expect(p.used).toEqual([]);
+       |                        ^
+    182|         expect(p.citations).toEqual([]);
+    183|         expect(p.messages[1]?.content ?? "").not.toContain(text);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Chinese: strict=false, a cosine of 0.9 does not put the passage under the answer
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Chinese: strict=true, a cosine of 0.9 does not put the passage under the answer
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0.5753641449035617,
++     "bm25Terms": 0,
++     "chunk": {
++       "docId": "zh",
++       "end": 48,
++       "id": "zh1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "本公司二零二四年度收入为三千万元，比上一年度增长百分之十二。我们可以在下一年度继续保持这个增长。",
++       "tokens": 40,
++     },
++     "cosine": 0.9,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:181:24
+    179|       it(`${label}: strict=${strict}, a cosine of ${OVER_FLOOR} does n…
+    180|         const p = buildRagPrompt({ question: offTopic, hits: hitsFor(o…
+    181|         expect(p.used).toEqual([]);
+       |                        ^
+    182|         expect(p.citations).toEqual([]);
+    183|         expect(p.messages[1]?.content ?? "").not.toContain(text);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Korean: strict=false, a cosine of 0.9 does not put the passage under the answer
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > Korean: strict=true, a cosine of 0.9 does not put the passage under the answer
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0,
++     "bm25Terms": 0,
++     "chunk": {
++       "docId": "ko",
++       "end": 62,
++       "id": "ko1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "한빛물산의 2025년도 연례 보고서에 따르면 직원 수는 삼백팔십이 명이며, 주요 거점은 대전과 부산 두 곳이다.",
++       "tokens": 40,
++     },
++     "cosine": 0.9,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:181:24
+    179|       it(`${label}: strict=${strict}, a cosine of ${OVER_FLOOR} does n…
+    180|         const p = buildRagPrompt({ question: offTopic, hits: hitsFor(o…
+    181|         expect(p.used).toEqual([]);
+       |                        ^
+    182|         expect(p.citations).toEqual([]);
+    183|         expect(p.messages[1]?.content ?? "").not.toContain(text);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > English: strict=false, a cosine of 0.9 does not put the passage under the answer
+ FAIL  test/rag-cjk.test.ts > F327 · the cosine cannot carry a one-passage document over the floor on its own > English: strict=true, a cosine of 0.9 does not put the passage under the answer
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "bm25": 0,
++     "bm25Terms": 0,
++     "chunk": {
++       "docId": "en",
++       "end": 155,
++       "id": "en1",
++       "ord": 0,
++       "page": 1,
++       "start": 0,
++       "text": "According to Aoba Trading's 2025 annual report the company employs three hundred and eighty-two people, and its two main offices are in Sendai and Fukuoka.",
++       "tokens": 40,
++     },
++     "cosine": 0.9,
++     "score": 1,
++   },
++ ]
+
+ ❯ test/rag-cjk.test.ts:181:24
+    179|       it(`${label}: strict=${strict}, a cosine of ${OVER_FLOOR} does n…
+    180|         const p = buildRagPrompt({ question: offTopic, hits: hitsFor(o…
+    181|         expect(p.used).toEqual([]);
+       |                        ^
+    182|         expect(p.citations).toEqual([]);
+    183|         expect(p.messages[1]?.content ?? "").not.toContain(text);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > the 6T's own off-topic Japanese turn is no longer cited, in either mode
+AssertionError: expected [ { n: 1, docId: 'ja-device', …(5) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "chunkId": "ja-device",
++     "docId": "ja-device",
++     "docName": "ja-device.txt",
++     "kind": "txt",
++     "n": 1,
++     "page": 1,
++     "snippet": "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。",
++   },
++ ]
+
+ ❯ test/rag-relevance-floor.test.ts:48:56
+     46|     expect(off.cosine).toBeGreaterThanOrEqual(DEFAULT_MIN_COSINE);
+     47|     expect(hitFor(f, off.q, off.cosine).bm25Terms).toBe(0);
+     48|     expect(ask(f, off.q, off.cosine, false).citations).toEqual([]);
+       |                                                        ^
+     49|     expect(ask(f, off.q, off.cosine, false).messages[1]?.content ?? ""…
+     50|     expect(ask(f, off.q, off.cosine, true).noAnswer).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > no off-topic question in any of the nine languages is cited, in either mode
+AssertionError: expected [ …(170) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "ja-device strict=false 一九九八年のワールドカップで優勝したのはどこですか？",
++   "ja-device strict=true 一九九八年のワールドカップで優勝したのはどこですか？",
++   "ja-device strict=false 味噌汁の作り方を教えてください。",
++   "ja-device strict=true 味噌汁の作り方を教えてください。",
++   "ja-device strict=false 富士山の高さは何メートルですか？",
++   "ja-device strict=true 富士山の高さは何メートルですか？",
++   "ja-device strict=false 来週の東京の天気はどうなりますか？",
++   "ja-device strict=true 来週の東京の天気はどうなりますか？",
++   "ja-device strict=false 日本で一番長い川はどれですか？",
++   "ja-device strict=true 日本で一番長い川はどれですか？",
++   "ja-device strict=false 明日は傘が必要ですか？",
++   "ja-device strict=true 明日は傘が必要ですか？",
++   "ja-device strict=false このアプリの使い方を説明してください。",
++   "ja-device strict=true このアプリの使い方を説明してください。",
++   "ja-device strict=false ピアノを習うのに最適な年齢は何歳ですか？",
++   "ja-device strict=true ピアノを習うのに最適な年齢は何歳ですか？",
++   "ja-device strict=false 猫は何時間眠りますか？",
++   "ja-device strict=true 猫は何時間眠りますか？",
++   "ja-device strict=false 電車の切符はどこで買えますか？",
++   "ja-device strict=true 電車の切符はどこで買えますか？",
++   "ja-device strict=false 夏目漱石の代表作は何ですか？",
++   "ja-device strict=true 夏目漱石の代表作は何ですか？",
++   "ja-device strict=false コーヒーとお茶はどちらが体にいいですか？",
++   "ja-device strict=true コーヒーとお茶はどちらが体にいいですか？",
++   "ja-f278 strict=false 一九九八年のワールドカップで優勝したのはどこですか？",
++   "ja-f278 strict=true 一九九八年のワールドカップで優勝したのはどこですか？",
++   "ja-f278 strict=false 犬と猫ではどちらが長生きしますか？",
++   "ja-f278 strict=true 犬と猫ではどちらが長生きしますか？",
++   "ja-f278 strict=false パリ行きの飛行機は何時間かかりますか？",
++   "ja-f278 strict=true パリ行きの飛行機は何時間かかりますか？",
++   "ja-f278 strict=false 東京から大阪まで何キロありますか？",
++   "ja-f278 strict=true 東京から大阪まで何キロありますか？",
++   "ja-f278 strict=false おすすめの映画はありますか？",
++   "ja-f278 strict=true おすすめの映画はありますか？",
++   "ja-f278 strict=false スマートフォンの電池を長持ちさせる方法は？",
++   "ja-f278 strict=true スマートフォンの電池を長持ちさせる方法は？",
++   "ja-f278 strict=false 子供の熱が下がりません、どうすればいいですか？",
++   "ja-f278 strict=true 子供の熱が下がりません、どうすればいいですか？",
++   "ja-f278 strict=false ギターのコードを教えてください。",
++   "ja-f278 strict=true ギターのコードを教えてください。",
++   "ja-f278 strict=false 地震のときはどう行動すべきですか？",
++   "ja-f278 strict=true 地震のときはどう行動すべきですか？",
++   "ja-f278 strict=false 自転車のタイヤの空気圧はどのくらいが適切ですか？",
++   "ja-f278 strict=true 自転車のタイヤの空気圧はどのくらいが適切ですか？",
++   "zh-f278 strict=false 我们什么时候可以去巴黎旅游？",
++   "zh-f278 strict=true 我们什么时候可以去巴黎旅游？",
++   "zh-f278 strict=false 一九九八年世界杯足球赛是谁赢的？",
++   "zh-f278 strict=true 一九九八年世界杯足球赛是谁赢的？",
++   "zh-f278 strict=false 红烧肉怎么做才好吃？",
++   "zh-f278 strict=true 红烧肉怎么做才好吃？",
++   "zh-f278 strict=false 北京到上海坐高铁要多久？",
++   "zh-f278 strict=true 北京到上海坐高铁要多久？",
++   "zh-f278 strict=false 怎么才能学好英语？",
++   "zh-f278 strict=true 怎么才能学好英语？",
++   "zh-f278 strict=false 手机充电太慢怎么办？",
++   "zh-f278 strict=true 手机充电太慢怎么办？",
++   "zh-f278 strict=false 孩子发烧应该怎么处理？",
++   "zh-f278 strict=true 孩子发烧应该怎么处理？",
++   "zh-f278 strict=false 推荐一部好看的电影。",
++   "zh-f278 strict=true 推荐一部好看的电影。",
++   "zh-f278 strict=false 长城建于哪个朝代？",
++   "zh-f278 strict=true 长城建于哪个朝代？",
++   "zh-f278 strict=false 养猫需要注意什么？",
++   "zh-f278 strict=true 养猫需要注意什么？",
++   "zh-f195 strict=false 谁赢得了一九九八年世界杯足球赛？",
++   "zh-f195 strict=true 谁赢得了一九九八年世界杯足球赛？",
++   "zh-f195 strict=false 员工餐厅的午餐时间是什么时候？",
++   "zh-f195 strict=true 员工餐厅的午餐时间是什么时候？",
++   "zh-f195 strict=false 西红柿炒鸡蛋怎么做？",
++   "zh-f195 strict=true 西红柿炒鸡蛋怎么做？",
++   "zh-f195 strict=false 明天会下雨吗？",
++   "zh-f195 strict=true 明天会下雨吗？",
++   "zh-f195 strict=false 哪个牌子的电脑比较好？",
++   "zh-f195 strict=true 哪个牌子的电脑比较好？",
++   "zh-f195 strict=false 跑步前需要热身吗？",
++   "zh-f195 strict=true 跑步前需要热身吗？",
++   "zh-f195 strict=false 故宫的门票多少钱？",
++   "zh-f195 strict=true 故宫的门票多少钱？",
++   "zh-f195 strict=false 怎样才能睡个好觉？",
++   "zh-f195 strict=true 怎样才能睡个好觉？",
++   "ko-report strict=false 1998년 월드컵에서 우승한 나라는 어디입니까?",
++   "ko-report strict=true 1998년 월드컵에서 우승한 나라는 어디입니까?",
++   "ko-report strict=false 김치찌개는 어떻게 끓이나요?",
++   "ko-report strict=true 김치찌개는 어떻게 끓이나요?",
++   "ko-report strict=false 다음 주 서울 날씨는 어떻습니까?",
++   "ko-report strict=true 다음 주 서울 날씨는 어떻습니까?",
++   "ko-report strict=false 서울에서 부산까지 KTX로 얼마나 걸립니까?",
++   "ko-report strict=true 서울에서 부산까지 KTX로 얼마나 걸립니까?",
++   "ko-report strict=false 영어를 잘하려면 어떻게 해야 하나요?",
++   "ko-report strict=true 영어를 잘하려면 어떻게 해야 하나요?",
++   "ko-report strict=false 휴대폰 배터리가 빨리 닳는데 어떻게 하죠?",
++   "ko-report strict=true 휴대폰 배터리가 빨리 닳는데 어떻게 하죠?",
++   "ko-report strict=false 아이가 열이 나면 어떻게 해야 합니까?",
++   "ko-report strict=true 아이가 열이 나면 어떻게 해야 합니까?",
++   "ko-report strict=false 재미있는 영화를 추천해 주세요.",
++   "ko-report strict=true 재미있는 영화를 추천해 주세요.",
++   "ko-report strict=false 고양이를 키울 때 주의할 점은 무엇인가요?",
++   "ko-report strict=true 고양이를 키울 때 주의할 점은 무엇인가요?",
++   "ko-report strict=false 달리기 전에 준비운동이 필요한가요?",
++   "ko-report strict=true 달리기 전에 준비운동이 필요한가요?",
++   "he-report strict=false מי ניצח במונדיאל של 1998?",
++   "he-report strict=true מי ניצח במונדיאל של 1998?",
++   "he-report strict=false איך מכינים חמין טוב?",
++   "he-report strict=true איך מכינים חמין טוב?",
++   "he-report strict=false כמה זמן לוקחת הרכבת מתל אביב לחיפה?",
++   "he-report strict=true כמה זמן לוקחת הרכבת מתל אביב לחיפה?",
++   "he-report strict=false איזה סרט כדאי לראות הערב?",
++   "he-report strict=true איזה סרט כדאי לראות הערב?",
++   "he-report strict=false למה הסוללה בטלפון נגמרת מהר?",
++   "he-report strict=true למה הסוללה בטלפון נגמרת מהר?",
++   "he-report strict=false הילד שלי עם חום, מה עושים?",
++   "he-report strict=true הילד שלי עם חום, מה עושים?",
++   "he-report strict=false מתי נבנתה החומה הסינית?",
++   "he-report strict=true מתי נבנתה החומה הסינית?",
++   "he-report strict=false צריך להתחמם לפני ריצה?",
++   "he-report strict=true צריך להתחמם לפני ריצה?",
++   "he-report strict=false איך לומדים אנגלית מהר יותר?",
++   "he-report strict=true איך לומדים אנגלית מהר יותר?",
++   "he-report strict=false מה השעה בניו יורק?",
++   "he-report strict=true מה השעה בניו יורק?",
++   "en-lease strict=false What time is it in New York?",
++   "en-lease strict=true What time is it in New York?",
++   "es-report strict=false ¿Quien gano el Mundial de 1998?",
++   "es-report strict=true ¿Quien gano el Mundial de 1998?",
++   "es-report strict=false ¿Como se prepara un buen risotto?",
++   "es-report strict=true ¿Como se prepara un buen risotto?",
++   "es-report strict=false ¿Cuanto dura el tren de Tokio a Osaka?",
++   "es-report strict=true ¿Cuanto dura el tren de Tokio a Osaka?",
++   "es-report strict=false ¿Por que se descarga tan rapido la bateria?",
++   "es-report strict=true ¿Por que se descarga tan rapido la bateria?",
++   "es-report strict=false Mi hijo tiene fiebre, ¿que hago?",
++   "es-report strict=true Mi hijo tiene fiebre, ¿que hago?",
++   "es-report strict=false ¿Hay que calentar antes de correr?",
++   "es-report strict=true ¿Hay que calentar antes de correr?",
++   "pt-report strict=false Quem ganhou a Copa do Mundo de 1998?",
++   "pt-report strict=true Quem ganhou a Copa do Mundo de 1998?",
++   "pt-report strict=false Como se faz um bom risoto?",
++   "pt-report strict=true Como se faz um bom risoto?",
++   "pt-report strict=false Quanto tempo demora o comboio de Toquio a Osaka?",
++   "pt-report strict=true Quanto tempo demora o comboio de Toquio a Osaka?",
++   "pt-report strict=false Porque e que a bateria acaba tao depressa?",
++   "pt-report strict=true Porque e que a bateria acaba tao depressa?",
++   "pt-report strict=false O meu filho tem febre, o que faco?",
++   "pt-report strict=true O meu filho tem febre, o que faco?",
++   "pt-report strict=false E preciso aquecer antes de correr?",
++   "pt-report strict=true E preciso aquecer antes de correr?",
++   "fr-report strict=false Qui a gagne la Coupe du monde 1998?",
++   "fr-report strict=true Qui a gagne la Coupe du monde 1998?",
++   "fr-report strict=false Comment prepare-t-on un bon risotto?",
++   "fr-report strict=true Comment prepare-t-on un bon risotto?",
++   "fr-report strict=false Combien de temps dure le train de Tokyo a Osaka?",
++   "fr-report strict=true Combien de temps dure le train de Tokyo a Osaka?",
++   "fr-report strict=false Pourquoi la batterie se vide-t-elle si vite?",
++   "fr-report strict=true Pourquoi la batterie se vide-t-elle si vite?",
++   "fr-report strict=false Mon enfant a de la fievre, que faire?",
++   "fr-report strict=true Mon enfant a de la fievre, que faire?",
++   "fr-report strict=false Faut-il s'echauffer avant de courir?",
++   "fr-report strict=true Faut-il s'echauffer avant de courir?",
++   "de-report strict=false Wer hat die Weltmeisterschaft 1998 gewonnen?",
++   "de-report strict=true Wer hat die Weltmeisterschaft 1998 gewonnen?",
++   "de-report strict=false Wie kocht man ein gutes Risotto?",
++   "de-report strict=true Wie kocht man ein gutes Risotto?",
++   "de-report strict=false Wie lange dauert der Zug von Tokio nach Osaka?",
++   "de-report strict=true Wie lange dauert der Zug von Tokio nach Osaka?",
++   "de-report strict=false Warum ist der Akku so schnell leer?",
++   "de-report strict=true Warum ist der Akku so schnell leer?",
++   "de-report strict=false Mein Kind hat Fieber, was soll ich tun?",
++   "de-report strict=true Mein Kind hat Fieber, was soll ich tun?",
++   "de-report strict=false Muss man sich vor dem Laufen aufwaermen?",
++   "de-report strict=true Muss man sich vor dem Laufen aufwaermen?",
++ ]
+
+ ❯ test/rag-relevance-floor.test.ts:59:19
+     57|         for (const strict of [false, true])
+     58|           if (ask(f, q.q, q.cosine, strict).citations.length) cited.pu…
+     59|     expect(cited).toEqual([]);
+       |                   ^
+     60|   });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > the question that shares a word with the passage is still cited, in every language that has one
+AssertionError: expected [ 'de', 'en', 'es', 'fr', 'he', …(4) ] to deeply equal [ 'en', 'es', 'he', 'ja', 'ko', …(2) ]
+
+- Expected
++ Received
+
+@@ -1,8 +1,10 @@
+  [
++   "de",
+    "en",
+    "es",
++   "fr",
+    "he",
+    "ja",
+    "ko",
+    "pt",
+    "zh",
+
+ ❯ test/rag-relevance-floor.test.ts:72:30
+     70|       for (const q of f.questions.filter((x) => x.kind === "on"))
+     71|         for (const strict of [false, true]) if (ask(f, q.q, q.cosine, …
+     72|     expect([...kept].sort()).toEqual(["en", "es", "he", "ja", "ko", "p…
+       |                              ^
+     73|   });
+     74|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  test/rag-relevance-floor.test.ts > F327 · the embedding half cannot cite a passage on its own > the cosine still corroborates a single shared word, and still cannot replace it
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ test/rag-relevance-floor.test.ts:97:39
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  12 failed | 38 passed (50)
+   Start at  16:08:15
+   Duration  244ms (transform 58%, tests 22%, import 18%, worker 1%)
+
+undefined
+/Users/moshecohen/dev/inborn-wt/fix-cjk-floor/packages/core:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run test/rag-relevance-floor.test.ts test/rag-cjk.test.ts

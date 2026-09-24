@@ -4979,3 +4979,41 @@ it into Inborn, which had never had a clock component at all — "System" only e
 
 Gates: `pnpm typecheck` 0, `pnpm lint` 0, `pnpm test` green (core 736, mobile 780, i18n 20, ui 20, `check:store`
 PASS), `pnpm web:build` green. No phone was touched. Evidence in `docs/qa/theme-auto/`.
+
+## Fixes round 70: the relevance floor had a second door, and no number to close it with (branch `fix-cjk-floor`) — 24.9.2026
+
+F282 left open on Play 1.0.0 (22): a one-passage Japanese file, an off-topic Japanese question, and the passage
+still came back under `SOURCES`. That round measured the lexical half at zero hits and deduced `cosine >= 0.5` had
+carried it, because nothing on the phone prints a cosine. This round measured the cosine — and the measurement said
+the fix everyone expected does not exist.
+
+- **The embedding half can no longer cite a passage on its own** (F327). The shipped embedder was run off-device
+  over 12 one-passage documents in 9 languages, 57 on-topic and 102 off-topic questions, with the app's own prefixes
+  and its own `quantize()`/`cosineQuantized()` (`docs/qa/fix-cjk-floor/cosines.md`). The 6T's own F282 turn measures
+  `cos=0.662, terms=0`. **There is no higher bar to raise the floor to:** asked in its own language a ja/zh/ko/he
+  document scores *every* off-topic question between 0.527 and 0.764, and in CJK the worst off-topic question
+  outscores 10 of the 12 on-topic questions that share no word with the passage. The highest score in the whole
+  zero-overlap set is off-topic Hebrew, "my child has a fever, what do I do?" against an annual report, 0.764.
+  So `isRelevant` became `bm25Terms >= 2 || (bm25Terms >= 1 && (bm25 >= minBm25 || cosine >= minCosine))` — the
+  embedding corroborates a shared word, never replaces one. No new constant, no per-language table, same rule in
+  strict mode and out of it. Off-topic questions cited **85/102 → 0/102**; on-topic **56/57 → 29/57**, a cost taken
+  on purpose, since half the on-topic set was written as paraphrases sharing no word with the passage. The margin is
+  not a cosine but a whole word: every off-topic question matches 0 content terms, every cited on-topic one at
+  least 1.
+- **`STOP` was English and Hebrew only, so four launch locales had F278's bug** (F327, same fix). Off-topic Spanish,
+  Portuguese, French and German questions were matching their passages on `el`, `de`, `la`, `le`, `se`, `von`,
+  `sich`, `dem`; two cleared `bm25Terms >= 2` on articles alone. Each launch locale now has its own list, leaving
+  out words whose spelling is a content word in another (de `war`/`die`/`man`/`hat`, es `son`, fr `car`, pt `era`).
+- **The two numbers the floor decides on are printed now** (F328). One `[rag]` line per question from
+  `library.ask()`: `strict=`, `hits=`, `used=`, the ms, then `docId#ord cos= terms= bm25=` and `KEPT`/`dropped` per
+  hit. Not behind `__DEV__` — F282 happened on a release build, and there is no `transform-remove-console` in this
+  app, so it reaches logcat there too.
+- **The guards were structurally blind and are not any more** (F329). F195 and F278 both pin the cosine *under* its
+  floor, which is how a floor with an `||` in it kept one door untested. `packages/core/test/fixtures/rag/cjk-cosines.json`
+  commits all 159 measured cosines; `rag-relevance-floor.test.ts` runs them through the real lexical index and the
+  real prompt builder in both modes (9 cases), and `rag-cjk.test.ts` repeats the F278 block with the cosine pinned
+  **above** the floor in ja/zh/**ko**/**en** (20 new cases). Watched red four ways, in `docs/qa/fix-cjk-floor/guard/`.
+
+Not done: no device run. The next Android or iOS pass should repeat F282's two Japanese turns and read the `[rag]`
+line for them. Nothing was measured on a multi-chunk document either — every fixture has one passage, because that
+is the case that failed.
