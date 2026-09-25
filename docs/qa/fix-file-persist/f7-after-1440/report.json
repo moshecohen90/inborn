@@ -1,0 +1,49 @@
+{
+  "width": 1440,
+  "dist": "fix-file-persist/apps/web/dist",
+  "runs": [
+    {
+      "name": "hit",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "What did the fuel pier cost?",
+      "answer": "The fuel pier was originally built by Varga & Sons and cost 3.2 million euros, as reported in Bramblewick Harbor Annual Report 2025.Alternative answer could be stated as \"costing 3.2 million euros.\"",
+      "notFound": null,
+      "noneMatched": "",
+      "stats": "search 1628 ms · 1 passages · answer 9260 ms · 17.4 tok/s · prompt 327 tokens",
+      "sources": "SOURCESharbor-report.txt · part 1",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=1 1628 ms | 6a59c80a-ec35-462a-a13d-445933b58591#0 cos=0.812 terms=3 bm25=0.86 KEPT"
+      ]
+    },
+    {
+      "name": "offtopic-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "",
+      "notFound": "Nothing in your documents matched this question.",
+      "noneMatched": "",
+      "stats": "search 1605 ms · 0 passages",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1605 ms | 6a59c80a-ec35-462a-a13d-445933b58591#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ]
+    },
+    {
+      "name": "offtopic-wrongfile",
+      "doc": "fleet-memo.pdfPDF · 1 page · 24.4 KBInde",
+      "q": "What did the fuel pier cost?",
+      "answer": "",
+      "notFound": "Nothing in your documents matched this question.",
+      "noneMatched": "",
+      "stats": "search 1861 ms · 0 passages",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1861 ms | 3fc11949-7745-48d7-92e3-6b8817dafd6b#0 cos=0.804 terms=1 bm25=0.29 dropped"
+      ]
+    }
+  ],
+  "downloadError": null,
+  "hitOk": true,
+  "missOk": true,
+  "pass": true
+}

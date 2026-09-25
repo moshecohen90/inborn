@@ -809,10 +809,11 @@ try {
     await page.close();
   }
 
-  /* 8. Round 93: attached files reach the model, with and without the document index model. */
+  /* 8. Round 93: attached files reach the model, with and without the document index model. Round 101 (F399): the
+     .txt is read by its words in one page load and the index model lands in the next, as a user's second visit. */
   {
-    const page = await context.newPage();
-    const { consoleLines, pageErrors, hosts } = observe(page);
+    let page = await context.newPage();
+    let { consoleLines, pageErrors, hosts } = observe(page);
     lastPage = page;
     lastConsole = consoleLines;
     const out = (result.attach = {});
@@ -822,6 +823,15 @@ try {
     out.txt = await attachAndAsk(page, consoleLines, "greenhouse-notes.txt", async (p) => p.getByTestId("docs-hold-words").click());
     if (!out.txt.hold) throw new Error("a file with no index model behind it was sent without the index-model card");
     if (!out.txt.wordsOnly) throw new Error("a word-search answer does not say it was a word search");
+    noPageErrors(pageErrors, "attach pass, first visit");
+    const firstHosts = [...hosts];
+    await page.close();
+    /* The next visit: nothing of the first page's memory is left, only what the browser stored. */
+    page = await context.newPage();
+    ({ consoleLines, pageErrors, hosts } = observe(page));
+    for (const h of firstHosts) hosts.add(h);
+    lastPage = page;
+    lastConsole = consoleLines;
     /* The .pdf installs the index model from this host (the card's Download), then goes out by itself. */
     out.pdf = await attachAndAsk(page, consoleLines, "turbine-report.pdf", async (p, seen) => {
       if (!out.indexModelServed) return p.getByTestId("docs-hold-words").click();
@@ -832,6 +842,17 @@ try {
       });
     });
     if (out.indexModelServed && out.pdf.wordsOnly) throw new Error("the index model was installed but the answer still used the word search");
+    /* F399: the first visit's .txt is rebuilt from the bytes the browser kept, never "damaged", and answers again. */
+    await page.goto(new URL("/documents", server.url).href);
+    const txtRow = page.locator('[data-testid^="doc-row-"]').filter({ hasText: "greenhouse-notes.txt" });
+    for (let i = 0; i < 300 && !/Indexed/.test((await txtRow.textContent({ timeout: 30_000 })) ?? ""); i++) await page.waitForTimeout(200);
+    out.txtRowNextVisit = ((await txtRow.textContent()) ?? "").trim();
+    await page.screenshot({ path: path.join(outDir, "web-smoke-attach-next-visit-documents.png"), fullPage: true });
+    if (!/Indexed/.test(out.txtRowNextVisit)) throw new Error(`a file read by its words in the first visit is not readable in the next: "${out.txtRowNextVisit}"`);
+    out.txtAgain = await attachAndAsk(page, consoleLines, "greenhouse-notes.txt", async (p) => p.getByTestId("docs-hold-words").click());
+    if (out.indexModelServed && out.txtAgain.wordsOnly) throw new Error("the first visit's file still answers by its words after the index model landed");
+    const deadKeys = consoleLines.filter((l) => /blob:inborn|Content Security Policy/.test(l));
+    if (deadKeys.length) throw new Error(`the next visit reached for a file of the first one: ${deadKeys[0]}`);
     out.ragLines = consoleLines.filter((l) => /\[(rag|documents)\]/.test(l));
     noPageErrors(pageErrors, "attach pass");
     if (foreignHosts(hosts).length) throw new Error(`the attach pass talked to ${foreignHosts(hosts).join(", ")}`);
@@ -1067,7 +1088,7 @@ console.log(`PASS: no React Native prop on the DOM, composer icons aria-hidden (
 if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev.skipped})`);
 else console.log(`PASS: development export walked door -> onboarding -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
-console.log(`PASS: attached .txt answered on the word search with SOURCES "${result.attach.txt.sources}"; .pdf answered ${result.attach.indexModelServed ? "after installing the index model from this host" : "on the word search (no index model served)"} with SOURCES "${result.attach.pdf.sources}"`);
+console.log(`PASS: attached .txt answered on the word search with SOURCES "${result.attach.txt.sources}"; .pdf answered ${result.attach.indexModelServed ? "after installing the index model from this host" : "on the word search (no index model served)"} with SOURCES "${result.attach.pdf.sources}"; in the next page load the .txt row reads "${result.attach.txtRowNextVisit}" and answers again with SOURCES "${result.attach.txtAgain.sources}"${result.attach.txtAgain.wordsOnly ? " (words only)" : " by meaning"}`);
 for (const screen of LAYOUT_SCREENS) {
   for (const width of REQUIRED_WIDTHS) {
     for (const theme of REQUIRED_THEMES) {

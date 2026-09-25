@@ -35,6 +35,8 @@ vi.mock("./files", async () => {
     },
     missingSource: (uri: string) => !uri || disk.get(normalize(resolveDocUri(uri))) === undefined,
     sweepIncognitoFiles: () => 0,
+    restoreFiles: async () => undefined,
+    whenStored: async () => true,
     deleteFile: (uri: string | undefined) => void (uri && disk.delete(normalize(resolveDocUri(uri)))),
   };
 });

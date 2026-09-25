@@ -1,0 +1,185 @@
+{
+  "width": 1440,
+  "visit1": {
+    "chats": [
+      {
+        "file": "harbor-report.txt",
+        "q": "What did the new fuel pier cost?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "The new fuel pier was originally built by a contractor, Varga & Sons, and cost 3.2 million euros.",
+        "sources": "SOURCESharbor-report.txt · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "orchard-log.md",
+        "q": "Who rebuilt the cider press?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "Odile Fenwarth is credited as the carpenter who rebuilt the cider press in August.",
+        "sources": "SOURCESorchard-log.md · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "fleet-memo.pdf",
+        "q": "How much did the Morning Wren overhaul cost?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "The Kestrel-class tug \"Morning Wren\" had its port engine rebuilt in August 2025 at the Halvorsen yard, an overhaul that took 19 days and cost 412,000 euros.",
+        "sources": "SOURCESfleet-memo.pdf · p.1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "glassworks-memo.docx",
+        "q": "Who led the furnace relining crew?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "The furnace relining crew was led by foreman Brannoc Ivell.",
+        "sources": "SOURCESglassworks-memo.docx · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      }
+    ],
+    "rows": [
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "log": [
+      "log: [documents] harbor-report.txt: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | 59ab80a7-ffcc-425c-9ae6-52d873829a4b#0 cos=0.000 terms=4 bm25=1.15 KEPT",
+      "log: [documents] orchard-log.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 8 ms (8 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | 40e3c340-4fb4-41a6-becb-c9830add4da8#0 cos=0.000 terms=3 bm25=0.86 KEPT",
+      "log: [documents] fleet-memo.pdf: indexed (words only, no index model) · 1/1 pages · 1 chunks · 23 ms (23 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | cc59c622-04a0-49d9-a748-20f90243df01#0 cos=0.000 terms=4 bm25=1.37 KEPT",
+      "log: [documents] glassworks-memo.docx: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | 852ee62f-6833-4de1-ae58-9e607852fc49#0 cos=0.000 terms=4 bm25=1.15 KEPT"
+    ]
+  },
+  "visit2": {
+    "rowsBefore": [
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "install": {
+      "file": "ferry-schedule.md",
+      "q": "What does a single crossing cost?",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "answer": "A single crossing costs 3.60 euros, and bicycles are free to ride on the lower deck during this period.",
+      "sources": "SOURCESferry-schedule.md · part 1",
+      "notices": {
+        "reindexing": "Still re-indexing 1 of 1 document, answers may miss some passages."
+      }
+    },
+    "reloadedAfterDocLines": 6,
+    "rowsAfter": [
+      "ferry-schedule.mdMD · 1 part · 200 BIndexed · 1 passage",
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "ask": [
+      {
+        "file": "harbor-report.txt",
+        "q": "What did the new fuel pier cost?",
+        "answer": "The new fuel pier costs 3.2 million euros as reported in Bramblewick Harbor Annual Report 2025.Alternatives:•[n] harbor-report.txt · part 1 (Source of cost figure)•[n] harbor-report.txt · part 2 (No additional information found regarding specific costs or other details)",
+        "sources": "SOURCESharbor-report.txt · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1541 ms · 1 passages · answer 7016 ms · 35.6 tok/s · prompt 327 tokens"
+      },
+      {
+        "file": "orchard-log.md",
+        "q": "Who rebuilt the cider press?",
+        "answer": "The user asked who rebuilt the cider press based on the provided document passage.Answer: Odile Fenwarth.Alternatives (if this information were not in text):1.\"The cider press was rebuilt by the carpenter Odile Fenwarth.\"2.If only general knowledge is used, I could mention that this information comes from the document, but since the question asks for who based on the text provided, my primary answer is Odile Fenwarth.(Note: The user explicitly stated \"Do not restate the question\" and \"Answer in one to three sentences,\" so I will omit alternatives and examples as requested.)",
+        "sources": "SOURCESorchard-log.md · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1541 ms · 1 passages · answer 8107 ms · 34.3 tok/s · prompt 302 tokens"
+      },
+      {
+        "file": "fleet-memo.pdf",
+        "q": "How much did the Morning Wren overhaul cost?",
+        "answer": "The Morning Wren port engine overhaul, as mentioned in the documents, cost 412,000 euros.Alternative options based on general knowledge regarding this specific vessel include its initial rebuild price of 412,000 euros and a total estimated maintenance budget of approximately €580,000 for a fleet member tug like the Morning Wren.",
+        "sources": "SOURCESfleet-memo.pdf · p.1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1764 ms · 1 passages · answer 8694 ms · 31.3 tok/s · prompt 302 tokens"
+      },
+      {
+        "file": "glassworks-memo.docx",
+        "q": "Who led the furnace relining crew?",
+        "answer": "The user is asking for information from attached documents, but none provided in the text contain an answer to this question; therefore, I will rely on general knowledge regarding Tessaly Glassworks' production records.Answer: The fireman Brannoc Ivell led the relining crew (led by the foreman).",
+        "sources": "SOURCESglassworks-memo.docx · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1565 ms · 1 passages · answer 5966 ms · 33.5 tok/s · prompt 294 tokens"
+      }
+    ],
+    "longAfterReload": "long-ledger.mdMD · 20 parts · 43.3 KBPaused at page 0 of 20Resume",
+    "longAfterResume": "long-ledger.mdMD · 20 parts · 43.3 KBThe file is damaged or not what its name says.",
+    "longAsk": {
+      "file": "long-ledger.md",
+      "q": "What is the name of the lighthouse keeper's cat?",
+      "answer": "",
+      "sources": "",
+      "wordsOnly": false,
+      "notFound": false,
+      "stats": "",
+      "askDisabled": "long-ledger.mdMD · 20 parts · 43.3 KBPaused at page 0 of 20Resume"
+    },
+    "reattach": {
+      "file": "orchard-log.md",
+      "q": "Who rebuilt the cider press?",
+      "answer": "Odile Fenwarth rebuilt the cider press by the carpenter Odile Fenwarth in August.",
+      "sources": "SOURCESorchard-log.md · part 1",
+      "notices": {}
+    },
+    "rowsEnd": [
+      "long-ledger.mdMD · 20 parts · 43.3 KBPaused at page 0 of 20Resume",
+      "ferry-schedule.mdMD · 1 part · 200 BIndexed · 1 passage",
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "log": [
+      "log: [documents] ferry-schedule.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 14 ms (14 ms/page)",
+      "log: [rag] strict=false reindexing=1/1 hits=1 used=1 1 ms | 3fffccc6-7ebc-475b-8756-578db2db0b86#0 cos=0.000 terms=2 bm25=0.58 KEPT",
+      "log: [documents] glassworks-memo.docx: indexed (re-embedded 1 stored passages, source not held) · 2415 ms",
+      "log: [documents] fleet-memo.pdf: indexed (re-embedded 1 stored passages, source not held) · 902 ms",
+      "log: [documents] orchard-log.md: indexed (re-embedded 1 stored passages, source not held) · 981 ms",
+      "log: [documents] harbor-report.txt: indexed (re-embedded 1 stored passages, source not held) · 1127 ms",
+      "log: [documents] ferry-schedule.md: indexed · 1/1 pages · 1 chunks · 621 ms (621 ms/page)",
+      "log: [rag] strict=false hits=1 used=1 1541 ms | 59ab80a7-ffcc-425c-9ae6-52d873829a4b#0 cos=0.830 terms=4 bm25=1.15 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1541 ms | 40e3c340-4fb4-41a6-becb-c9830add4da8#0 cos=0.809 terms=3 bm25=0.86 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1764 ms | cc59c622-04a0-49d9-a748-20f90243df01#0 cos=0.879 terms=4 bm25=1.37 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1565 ms | 852ee62f-6833-4de1-ae58-9e607852fc49#0 cos=0.837 terms=4 bm25=1.15 KEPT",
+      "error: Connecting to 'blob:inborn/1790337483942-w8rnpsob4o/long-ledger.md' violates the following Content Security Policy directive: \"connect-src 'self' https://models.inbornapp.com\". The action has been blocked.",
+      "error: Fetch API cannot load blob:inborn/1790337483942-w8rnpsob4o/long-ledger.md. Refused to connect because it violates the document's Content Security Policy.",
+      "log: [rag] strict=false hits=1 used=1 1552 ms | 40e3c340-4fb4-41a6-becb-c9830add4da8#0 cos=0.809 terms=3 bm25=0.86 KEPT"
+    ]
+  },
+  "cdn": "https://127.0.0.1:8932 (answers https://models.inbornapp.com/v1/*)",
+  "cdnRequests": [
+    "GET multilingual-e5-large-instruct-Q6_K.gguf "
+  ],
+  "checks": {
+    "visit1WordsWithSources": true,
+    "visit2InstallOk": true,
+    "noDamagedRow": false,
+    "everyOldFileAnswersWithSources": true,
+    "longFileResumedFromBytes": false,
+    "reattachAnswersWithSources": true,
+    "noBlobFetch": false,
+    "vectorsUsed": true
+  },
+  "pass": false
+}

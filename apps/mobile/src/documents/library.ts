@@ -34,7 +34,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
-import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles } from "./files";
+import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, restoreFiles, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles, whenStored } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
 /* The gate owns the reasons, so a new one cannot be reported here and go unhandled there. */
 import type { AttachmentBlock } from "../lib/docsGate";
@@ -155,6 +155,7 @@ export class DocumentLibrary {
         void this.store.putDocument(migrated);
       } else this.docs.set(d.id, doc);
     }
+    await restoreFiles(new Set([...this.docs.values()].flatMap((d) => (d.uri ? [d.uri] : []))));
     await this.refreshEmbedder();
     this.notify();
     const mod = await import("./embedder");
@@ -333,14 +334,26 @@ export class DocumentLibrary {
       if (missingSource(sourceUri)) throw new ExtractError("missing", `${name}: nothing to read at ${sourceUri}`);
       const kind = assertImportable(name, bytes, readHead(sourceUri));
       const uri = copyIntoLibrary(sourceUri, id, name, { incognito: opts.incognito });
+      /* The record is saved only once its bytes are: a reload in between leaves no record pointing at nothing. */
+      await whenStored(uri);
       /* File.copy() can return before Android has written every byte (vault D5); the hash must cover the whole file. */
       for (let i = 0; sizeOf(uri) < bytes && i < 100; i++) await new Promise((r) => setTimeout(r, 50));
       const sha256 = await sha256Of(uri);
       /* The same file picked twice is one document (models run D16): keep the indexed copy, drop the new one. */
       const twin = findDuplicate(this.docs.values(), sha256, bytes);
       if (twin) {
-        /* A browser forgets a picked file on reload: a twin with no bytes left takes the ones just picked. */
-        if (uri !== twin.uri && missingSource(twin.uri ? resolveDocUri(twin.uri) : "")) this.commit({ ...twin, uri });
+        const twinGone = missingSource(twin.uri ? resolveDocUri(twin.uri) : "");
+        /* A twin whose bytes are gone, or whose read failed, is the file the user is trying again: it gets these bytes and a fresh read. */
+        if (uri !== twin.uri && (twinGone || twin.status === "failed") && !this.jobs.has(twin.id)) {
+          if (!twinGone) deleteFile(twin.uri);
+          const fresh: DocumentRecord = { ...twin, kind, uri, sha256, bytes, status: "queued", indexedPages: 0, chunkCount: 0, ocrPages: 0, flaggedLines: 0 };
+          delete fresh.error;
+          delete fresh.reindexFrom;
+          this.commit(fresh);
+          this.enqueue(twin.id, opts.ocr ?? false, opts.pageCap);
+          return this.docs.get(twin.id) ?? fresh;
+        }
+        if (uri !== twin.uri && twinGone) this.commit({ ...twin, uri });
         else if (uri !== twin.uri) deleteFile(uri);
         /* A twin that never got an index is read again here: adding the file a second time is what a user does about it,
            and before this it was the one action that could not help (QA F138). OCR stays a decision the user makes. */
@@ -405,8 +418,12 @@ export class DocumentLibrary {
       this.commit({ ...doc, status: "failed", error: "unsupported" });
       return;
     }
-    /* The browser holds a picked file for one page load; a rebuild after a reload has only the stored passages. */
-    if (job.kind === "rebuild" && this.lanes && doc.reindexFrom && missingSource(doc.uri ? resolveDocUri(doc.uri) : "")) {
+    /* Bytes no longer held (an incognito or desktop blob after a reload, a web record from before round 101): only the stored passages are left. */
+    if (missingSource(doc.uri ? resolveDocUri(doc.uri) : "")) {
+      if (!this.lanes || !(doc.reindexFrom || doc.chunkCount > 0)) {
+        this.commit({ ...doc, status: "failed", error: "missing" });
+        return;
+      }
       const started = Date.now();
       const rebuilt = await reembedStored({ doc, store, embedder: this.lanes.index, signal: job.abort.signal }).catch((e: unknown) => {
         console.warn(`[documents] ${doc.name}: re-embedding stored passages failed`, e);

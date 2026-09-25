@@ -6050,6 +6050,63 @@ The web full pass found three layout and theme gaps (W2, W8, W1). Evidence: `doc
   and the live theme) and 0 after. `red-system-scheme.txt` shows the unit test failing against the old `theme.ts`.
 - **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
   and `pn check:store` pass. Test counts: 900 core, 1011 mobile, 20 i18n, 23 ui.
+## Fixes round 101: a file added on the web is still the user's file in the next visit, and Documents → Ask never answers from general knowledge (branch `fix-file-persist`) — 25.9.2026
+
+The web verifier's second full pass found two faults (N1, F7).
+
+- **F399 · the browser forgot the picked file's bytes.** `apps/mobile/src/documents/files.ts` kept a picked file in an
+  in-memory Map and stored its `blob:inborn/…` key on the record. In the next page load that key was dead. The verifier's
+  build turned every word-indexed file into "The file is damaged or not what its name says" once e5 landed, because
+  the rebuild fetched the dead key and the CSP blocked it. Main 7bbcc14 already rebuilt such files from their stored
+  passages, and the four files pass there (`before-1440`). But a file whose first read was cut short by a reload still
+  became "damaged" on Resume, since nothing of it was left to read (`before-1440`, `long-ledger.md`, 20 parts, "Paused
+  at page 0 of 20", then damaged).
+- **Fixed.** On the web a file added to the library is copied into IndexedDB `inborn-documents` (new `files` and
+  `fileMeta` stores, database version 2), the browser's version of the phone's documents directory. The record keeps
+  the key `idb:inborn-documents/<id>/<name>`. The record is saved only after the bytes are, and the library deletes
+  bytes that no record points to after a minute. A rebuild or a resume reads the stored bytes. A dead `blob:` key is
+  never fetched again. It reads as "Inborn could not find that file where it was saved", and a record with stored
+  passages is rebuilt from them. "Damaged" is left for a file that really fails to parse. Picking the same file again
+  over a failed record, or over one whose bytes are gone, gives it the new bytes and a fresh read. Removing a
+  document deletes its bytes, and Delete everything deletes them with the database. Incognito imports are never
+  written. The desktop keeps the session blob, because its index is in SQLCipher and plain bytes in the webview's
+  IndexedDB would sit next to it unencrypted.
+- **F400 · Documents → Ask with nothing matched still asked the model.** With strict mode off and no passage kept,
+  the question went to the model as a general one ("South Korea won the 1998 World Cup"). 7bbcc14 only added the
+  "Answered without them" line (`f7-before-1440`). Ask has nothing to answer from but the documents, so with no
+  passage kept it now says "Nothing in your documents matched this question." and does not ask the model, whether
+  strict mode is on or off (`askSheetRoute` in `lib/docsGate.ts`). The new key is in 8 locales plus pseudo. The chat
+  keeps its own rule.
+
+Proof, headless Chromium, Instant, deployed-like host (the host answers `/models/<e5>` with its shell, and e5 comes
+from the catalog's CDN URL, served from this machine through a request route):
+
+| drive | 7bbcc14 | this branch, 1440 | this branch, 390 |
+|---|---|---|---|
+| `two-visit.mjs`: visit 1 reads .txt .md .pdf .docx by words; browser closed; visit 2 installs e5 | 4 files rebuilt from passages, answer with SOURCES | read again from stored bytes, SOURCES, by meaning | same |
+| same, re-attach `orchard-log.md` | SOURCES | SOURCES | SOURCES |
+| same, reload while e5 reads a 20-part file, then Resume | "The file is damaged or not what its name says." | Indexed · 80 passages, answer "Pemberton" with SOURCES part 20 | same |
+| `f7-ask.mjs`: Ask "Who won the 1998 football World Cup?" on the harbor file | invented general answer + "Answered without them" | "Nothing in your documents matched this question.", no model call | same |
+| same, the fuel pier question on the fleet memo | invented general answer | nothing matched, no model call | same |
+| same, the fuel pier question on the harbor file | 3.2 million euros, SOURCES | 3.2 million euros, SOURCES | same |
+
+`web:smoke` pass 8 now reads the .txt by words in one page, closes it, and installs e5 from a second page. It then
+fails if the .txt row is not "Indexed", if the .txt does not answer again with SOURCES by meaning, or if the page
+reaches for a `blob:inborn` key.
+
+Commands:
+
+```
+corepack pnpm web:build
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models W=1440 node docs/qa/fix-file-persist/two-visit.mjs
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models W=390 node docs/qa/fix-file-persist/f7-ask.mjs
+```
+
+Tests red first (`docs/qa/fix-file-persist/red-tests.txt`, 11 of 16 fail on 7bbcc14; `green-tests.txt`). Gates in
+`gates.txt`. Open: in one of five runs (at 390) the long file's last passage was not among the hits, and Ask said nothing
+matched. The row read "Indexed · 80 passages", and the other runs found it. Stored bytes count toward the browser's
+storage quota. The Privacy & storage row counts them with the documents database.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

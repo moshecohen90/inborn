@@ -24,6 +24,8 @@ vi.mock("./extract", () => ({
   ],
 }));
 vi.mock("./files", () => ({
+  restoreFiles: async () => undefined,
+  whenStored: async () => true,
   copyIntoLibrary: (uri: string) => uri,
   missingSource: () => false,
   sweepIncognitoFiles: () => 0,

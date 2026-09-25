@@ -25,6 +25,8 @@ vi.mock("./extract", () => ({
   ],
 }));
 vi.mock("./files", () => ({
+  restoreFiles: async () => undefined,
+  whenStored: async () => true,
   copyIntoLibrary: (uri: string, id: string, name: string, opts: { incognito?: boolean } = {}) => {
     const stored = `${opts.incognito ? INCOGNITO : LIBRARY}${id}-${name}`;
     files.set(stored, files.get(uri) ?? "");
