@@ -413,14 +413,14 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
             <ChipGlyph size={12} color={theme.text2} />
             <Text style={[type.monoLabel, { color: theme.text2 }]}>{chipLabel(t, model.id)}</Text>
           </View>
-          <Pressable testID="open-personas" accessibilityRole="button" onPress={() => setPersonasOpen(true)} style={styles.footerBtn}>
-            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("personas.title")}</Text>
+          <Pressable testID="open-personas" accessibilityRole="button" onPress={() => setPersonasOpen(true)} style={[styles.footerBtn, styles.footerShrink]}>
+            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("personas.title")}</Text>
           </Pressable>
-          <Pressable testID="open-memory" accessibilityRole="button" onPress={() => setMemoryOpen(true)} style={styles.footerBtn}>
-            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("memory.title")}</Text>
+          <Pressable testID="open-memory" accessibilityRole="button" onPress={() => setMemoryOpen(true)} style={[styles.footerBtn, styles.footerShrink]}>
+            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("memory.title")}</Text>
           </Pressable>
-          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "manage" }))} style={styles.footerBtn}>
-            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("folders.title")}</Text>
+          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "manage" }))} style={[styles.footerBtn, styles.footerShrink]}>
+            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("folders.title")}</Text>
           </Pressable>
           {foldersGated ? <ProTag onPress={() => unlock("folders")} /> : null}
         </View>
@@ -622,8 +622,10 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, gap: 2 },
   check: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
   bulkBar: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 16, paddingTop: 8, borderTopWidth: 1 },
-  footer: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 8, borderTopWidth: StyleSheet.hairlineWidth, flexWrap: "wrap" },
-  footerBtn: { minHeight: 44, paddingHorizontal: 6, justifyContent: "center" },
+  /* One row at every width: the three labels give way (ellipsis, never under 44 px) before the PRO chip leaves Folders (W8). */
+  footer: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 8, borderTopWidth: StyleSheet.hairlineWidth },
+  footerBtn: { minHeight: 44, minWidth: 44, paddingHorizontal: 6, justifyContent: "center" },
+  footerShrink: { flexShrink: 1 },
   toast: { position: "absolute", left: 16, right: 16, flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 16, minHeight: 48, borderWidth: 1, borderRadius: radius.control },
   toastText: { flex: 1 },
   backdrop: { backgroundColor: "rgba(0,0,0,0.45)" },

@@ -348,7 +348,8 @@ const styles = StyleSheet.create({
   titleWrap: { position: "absolute", left: 72, right: 72, top: 0, bottom: 0, alignItems: "center", justifyContent: "center" },
   mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.5 },
   label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
-  centered: { textAlign: "center", paddingTop: 4 },
+  /* A token longer than the window (a German compound, the pseudo locale) breaks inside the line instead of widening the page (F392). */
+  centered: { textAlign: "center", paddingTop: 4, ...(Platform.OS === "web" ? ({ overflowWrap: "anywhere" } as object) : null) },
   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, margin: 12, padding: 12, borderRadius: radius.card, borderWidth: 1 },
   strictText: { flex: 1, gap: 2 },
   strictTitle: { ...font("sans", "600"), fontSize: 15 },

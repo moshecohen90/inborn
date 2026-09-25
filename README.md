@@ -5963,3 +5963,25 @@ overhead per chunk on both, 3.06 ms against 800 ms of engine time (`overhead-ben
 Tests red first (`red-core.txt`, `red-library.txt`): a question during a queue of chunks, the old index searched
 during a rebuild, and a kill that resumes at the last finished document and page. Open: the notice counts the
 attached documents, not the whole library. A rebuild that fails mid-document is resumed on the next launch, not at once.
+
+## Fixes round 99: the web fits 390 in the pseudo-locale, PRO stays beside Folders, Auto follows the OS live (branch `web-layout-theme`) — 25.9.2026
+
+The web full pass found three layout and theme gaps (W2, W8, W1). Evidence: `docs/qa/web-layout-theme/`.
+
+- **F392: the notice strip wraps.** In the pseudo-locale, the strip's "Details" / "Get the app" row did not wrap, so
+  every screen was 489 px wide in a 390 px window. The notice now takes the row down to 200 px. Below that, both
+  actions drop under it as one right-aligned group, and long tokens break inside the line. The Documents empty hint
+  had the same unbreakable-token overflow and now breaks too. `pn web:smoke` now sweeps all 7 smoke screens in
+  pseudo at 390 for horizontal scroll, instead of checking two sidebar labels.
+- **F393: the PRO chip stays on the Folders row.** The Chats footer is one row. Personas, Memory and Folders
+  ellipsize, but never below 44 px. The model chip and PRO keep their size. The smoke asserts one row, with PRO
+  right after Folders, in all 8 locales plus pseudo at 390.
+- **F394: Auto follows a live OS change.** `useTheme()` read react-native-web's `useColorScheme()`, which
+  re-subscribes on every render and missed the flip. At 12:00, OS dark then OS light left the page dark. The web now
+  reads a module-level `matchMedia('(prefers-color-scheme: dark)')` store (`services/systemScheme.ts`, subscribed
+  once). The clock rule is unchanged: at 20:00 a light OS is still dark. The smoke pins the page clock to 12:00 and
+  20:00 and toggles `emulateMedia`. Native keeps `useColorScheme()`.
+- **Red first.** The driver failed 10 checks on the old build (7 screens at 489 px, the footer wrap, the page width
+  and the live theme) and 0 after. `red-system-scheme.txt` shows the unit test failing against the old `theme.ts`.
+- **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
+  and `pn check:store` pass. Test counts: 900 core, 1011 mobile, 20 i18n, 23 ui.

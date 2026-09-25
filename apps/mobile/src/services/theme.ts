@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from "react";
-import { AppState, Appearance, useColorScheme } from "react-native";
+import { AppState, Appearance, Platform, useColorScheme } from "react-native";
 import { dark, isAutoDark, light, MAX_TEXT_SCALE, type Theme, type ThemeMode } from "@inborn/ui";
+import { systemSchemeWatch } from "./systemScheme";
 
 let override: ThemeMode = "auto";
 const listeners = new Set<() => void>();
@@ -48,6 +49,14 @@ function ensureAutoWatch(): void {
 
 export type Scheme = "dark" | "light";
 
+/* react-native-web's useColorScheme re-subscribes on every render and missed a live OS flip (W1): the page stayed dark. */
+const webSystem =
+  Platform.OS === "web" && typeof window !== "undefined" && typeof window.matchMedia === "function"
+    ? systemSchemeWatch(window.matchMedia("(prefers-color-scheme: dark)"))
+    : null;
+const noSubscribe = () => () => {};
+const webSnapshot = () => webSystem?.get() ?? null;
+
 /** "auto" resolves via the isAutoDark clock rule (night 18:00-06:00, or the OS already dark); `now` is injectable for tests. */
 export const resolveScheme = (mode: ThemeMode, system: string | null | undefined, now: Date = new Date()): Scheme => {
   if (mode === "light") return "light";
@@ -56,10 +65,12 @@ export const resolveScheme = (mode: ThemeMode, system: string | null | undefined
 };
 
 /** Resolved scheme for hooks and for code that runs before React (the splash's first paint). */
-export const currentScheme = (): Scheme => resolveScheme(override, Appearance.getColorScheme(), new Date());
+export const currentScheme = (): Scheme => resolveScheme(override, webSystem?.get() ?? Appearance.getColorScheme(), new Date());
 
 export function useTheme(): { theme: Theme; scheme: Scheme } {
-  const system = useColorScheme();
+  const nativeSystem = useColorScheme();
+  const webScheme = useSyncExternalStore(webSystem?.subscribe ?? noSubscribe, webSnapshot, webSnapshot);
+  const system = webScheme ?? nativeSystem;
   const mode = useSyncExternalStore(subscribe, () => override, () => override);
   useSyncExternalStore(subscribeTick, () => tick, () => tick);
   useEffect(() => {

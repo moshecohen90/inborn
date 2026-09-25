@@ -219,6 +219,53 @@ async function waitForEngine(page, out, consoleLines, t0) {
   out.sessionLoadMs = Number(loadMs);
 }
 
+/** The Chats footer's boxes at the current width: the model chip's neighbours and the PRO chip after Folders. */
+function footerRow(page) {
+  return page.evaluate(() => {
+    const box = (id) => {
+      const el = document.querySelector(`[data-testid="${id}"]`);
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { x: Math.round(r.x), right: Math.round(r.right), cy: Math.round(r.y + r.height / 2) };
+    };
+    return { personas: box("open-personas"), folders: box("open-folders"), pro: box("pro-tag"), clientWidth: document.scrollingElement.clientWidth };
+  });
+}
+
+/** Init script: the page's clock reads `hour`:00 today, so the Auto clock rule is tested at a known side of 18:00. */
+function pinHour(hour) {
+  const RealDate = Date;
+  const at = new RealDate();
+  at.setHours(hour, 0, 0, 0);
+  const offset = at - RealDate.now();
+  globalThis.Date = class extends RealDate {
+    constructor(...args) {
+      if (args.length) super(...args);
+      else super(RealDate.now() + offset);
+    }
+    static now() {
+      return RealDate.now() + offset;
+    }
+  };
+}
+
+/** Which palette the browser shell painted: its background is the theme's bg token, and the two palettes differ in lightness. */
+async function shellScheme(page) {
+  const rgb = await page.evaluate(() => document.defaultView.getComputedStyle(document.querySelector('[data-testid="web-strip"]').parentElement).backgroundColor);
+  const [r, g, b] = (rgb.match(/\d+/g) ?? []).map(Number);
+  return (r + g + b) / 3 < 128 ? "dark" : "light";
+}
+
+/** Waits up to 3 s for the palette to settle on `want`, and returns what it settled on. */
+async function settleScheme(page, want) {
+  let seen = await shellScheme(page);
+  for (let i = 0; i < 30 && seen !== want; i++) {
+    await new Promise((r) => setTimeout(r, 100));
+    seen = await shellScheme(page);
+  }
+  return seen;
+}
+
 /** Types a prompt, sends it, waits for the ledger under the answer (only rendered once streaming ends), reads the Free ledger rows from it. */
 async function chat(page, out, prompt, loadedLines) {
   const input = page.getByTestId("composer-input");
@@ -490,6 +537,32 @@ try {
       };
       if (locale === "fr") await page.screenshot({ path: path.join(outDir, "web-smoke-labels-fr-390.png") });
       if (clipped.length) throw new Error(`${locale} at 390: ${clipped.map((c) => `${c.id} "${c.text}" needs ${c.scrollWidth}px in ${c.clientWidth}px`).join("; ")}`);
+      /* W8/F393: the footer stays one row and the PRO chip sits right after Folders, never alone on a line of its own. */
+      const footer = await footerRow(page);
+      result.labels[locale].footer = footer;
+      await page.screenshot({ path: path.join(outDir, `web-smoke-chats-${locale}-390.png`) });
+      if (!footer.pro || !footer.folders || !footer.personas) throw new Error(`${locale} at 390: the Chats footer is missing ${["pro", "folders", "personas"].filter((k) => !footer[k]).join(", ")}`);
+      if (Math.abs(footer.pro.cy - footer.folders.cy) > 2 || footer.pro.x < footer.folders.right - 1 || footer.pro.right > footer.clientWidth + 1) {
+        throw new Error(`${locale} at 390: the PRO chip left the Folders row ${JSON.stringify(footer)}`);
+      }
+      if (Math.abs(footer.personas.cy - footer.folders.cy) > 2) throw new Error(`${locale} at 390: the Chats footer wrapped onto two rows ${JSON.stringify(footer)}`);
+      /* W2/F392: the pseudo-locale is the longest any string may get; every screen must still fit the narrowest window. */
+      if (locale === "pseudo") {
+        result.pseudoLayout = {};
+        for (const screen of LAYOUT_SCREENS) {
+          await page.goto(new URL(screen.path, server.url).href);
+          if (screen.ready) await page.getByTestId(screen.ready).waitFor({ timeout: 60_000 });
+          else await page.waitForLoadState("networkidle");
+          noPageErrors(pageErrors, `pseudo ${screen.id} at 390`);
+          const shot = path.join(outDir, `web-smoke-pseudo-${screen.id}-390.png`);
+          await page.screenshot({ path: shot, fullPage: true });
+          const m = await measureLayout(page);
+          result.pseudoLayout[screen.id] = { scrollWidth: m.scrollWidth, clientWidth: m.clientWidth, screenshot: shot };
+          if (m.scrollWidth > m.clientWidth + 1) throw new Error(`pseudo ${screen.id} at 390: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+        }
+        const missed = LAYOUT_SCREENS.filter((sc) => !result.pseudoLayout[sc.id]);
+        if (missed.length) throw new Error(`pseudo sweep skipped ${missed.map((sc) => sc.id).join(", ")}`);
+      }
     }
     const sweptLocales = Object.keys(result.labels);
     if (sweptLocales.length !== LOCALES.length) throw new Error(`label sweep covered ${sweptLocales.length} of ${LOCALES.length} locales`);
@@ -500,6 +573,31 @@ try {
       localStorage.setItem("inborn.prefs", JSON.stringify(prefs));
     });
     await page.setViewportSize({ width: 1180, height: 800 });
+
+    /* W1/F394: Auto follows the OS while the page is open, and the clock rule still wins at night (S01, answer 8). */
+    result.theme = {};
+    for (const hour of [12, 20]) {
+      const tp = await context.newPage();
+      const tpErrors = observe(tp).pageErrors;
+      await tp.addInitScript(pinHour, hour);
+      await tp.setViewportSize({ width: 390, height: 844 });
+      await tp.emulateMedia({ colorScheme: "dark" });
+      await tp.goto(new URL("/settings", server.url).href);
+      await tp.getByTestId("row-proof").waitFor({ timeout: 60_000 });
+      const seen = { osDarkOnLoad: await shellScheme(tp) };
+      await tp.screenshot({ path: path.join(outDir, `web-smoke-theme-${hour}h-1-os-dark.png`) });
+      await tp.emulateMedia({ colorScheme: "light" });
+      seen.osLightLive = await settleScheme(tp, hour === 12 ? "light" : "dark");
+      await tp.screenshot({ path: path.join(outDir, `web-smoke-theme-${hour}h-2-os-light-live.png`) });
+      await tp.emulateMedia({ colorScheme: "dark" });
+      seen.osDarkLive = await settleScheme(tp, "dark");
+      await tp.screenshot({ path: path.join(outDir, `web-smoke-theme-${hour}h-3-os-dark-live.png`) });
+      noPageErrors(tpErrors, `theme at ${hour}:00`);
+      result.theme[hour] = seen;
+      const want = { osDarkOnLoad: "dark", osLightLive: hour === 12 ? "light" : "dark", osDarkLive: "dark" };
+      for (const [k, v] of Object.entries(want)) if (seen[k] !== v) throw new Error(`Auto at ${hour}:00: ${k} was ${seen[k]}, expected ${v}`);
+      await tp.close();
+    }
 
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
     if (out.consoleErrors.some((l) => /^pageerror/.test(l))) throw new Error(`page errors: ${out.consoleErrors.join(" | ")}`);
@@ -744,6 +842,8 @@ for (const screen of LAYOUT_SCREENS) {
     }
   }
 }
+console.log(`PASS: pseudo-locale at 390 on ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} — no horizontal scroll; the PRO chip stays on the Folders row in ${LOCALES.length} locales`);
+console.log(`PASS: Auto follows a live OS change at 12:00 (dark → light → dark) and stays dark at 20:00 under a light OS`);
 console.log(`PASS: layout swept ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} at ${REQUIRED_WIDTHS.join(" / ")} in ${REQUIRED_THEMES.join(" + ")} — no horizontal scroll, composer row aligned, every control >= ${MIN_TOUCH_PX}px`);
 console.log(`PASS: ${Object.keys(result.labels).length} locales at 390, no clipped sidebar label (fr incognito = "${result.labels.fr.incognito}")`);
 console.log(`PASS: no model, the price list still reads ${result.paywallWithoutModel.pro.replace(/\n/g, " · ")} / ${result.paywallWithoutModel.work.replace(/\n/g, " · ")}`);
