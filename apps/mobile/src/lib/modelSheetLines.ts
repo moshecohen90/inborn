@@ -1,4 +1,4 @@
-import { USE_CASES, type CatalogModel, type ModelChoices, type UseCase } from "@inborn/core";
+import { USE_CASES, formatModelBytes, type CatalogModel, type ModelChoices, type RoomNote, type UseCase } from "@inborn/core";
 
 /** Which of the vault's three recommendation lines the Model sheet shows; null when nothing here can be recommended. */
 export type RecommendationKey = "models.recommended" | "models.recommendedFor" | "models.recommendedNone";
@@ -18,3 +18,11 @@ export function goodAtUses(model: Pick<CatalogModel, "fit" | "vision">): (UseCas
   const fit = model.fit;
   return [...USE_CASES.filter((u) => fit && (fit.uses[u] === "best" || fit.uses[u] === "good")), ...(model.vision ? (["photos"] as const) : [])];
 }
+
+/** `models.roomNote` for every surface that names the recommendation: the model the space ruled out, what it needs, what is free, and the pick. */
+export const roomNoteParams = (note: RoomNote): Record<string, string> => ({
+  model: note.skipped.name,
+  needed: formatModelBytes(note.neededBytes),
+  free: formatModelBytes(note.freeBytes),
+  picked: note.picked.name,
+});

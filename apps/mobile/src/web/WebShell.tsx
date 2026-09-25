@@ -11,6 +11,7 @@ import { ModelOptions } from "./ModelOptions";
 import { deviceNoun } from "../lib/deviceNoun";
 import { languagesLine } from "../screens/Onboarding/modelStep";
 import type { DeliveryEvent } from "./modelDelivery";
+import { roomNoteParams } from "../lib/modelSheetLines";
 import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } from "./opfs";
 import { writeEnginePref } from "./prefs";
 import { recordWebTransfer } from "./transfers";
@@ -199,6 +200,11 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
             <Text testID="web-download-why" style={[styles.body, { color: theme.text2 }]}>
               {t("web.download.why")}
             </Text>
+            {boot.roomNote ? (
+              <Text testID="room-note" style={[styles.body, { color: theme.text2 }]}>
+                {t("models.roomNote", roomNoteParams(boot.roomNote))}
+              </Text>
+            ) : null}
           </>
         ) : null}
         <Text style={[styles.body, { color: theme.text2 }]}>{t("web.download.explain", { size })}</Text>

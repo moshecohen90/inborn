@@ -1,5 +1,5 @@
 import { languageRank, languageTierOf, useRank, useTierOf } from "./fit";
-import { TIER_ORDER, defaultTier, maxTier, ramFit, type DeviceProfile, type RamFit } from "./pick";
+import { TIER_ORDER, defaultTier, fitsRoom, maxTier, ramFit, roomNote, type DeviceProfile, type RamFit, type RoomNote, type StorageRoom } from "./pick";
 import { tooSlowHere } from "./speed";
 import { ENGINE_VERSION, type CatalogModel, type LanguageTier, type UseCase, type UseTier } from "./types";
 import type { QuickActionId } from "../chat/quickActions";
@@ -14,6 +14,8 @@ export interface RecommendInput {
   installed: readonly string[];
   catalog: readonly CatalogModel[];
   engineVersion?: number;
+  /** Free space right now; with it, a model that fits outranks every one that does not. Unknown when absent. */
+  room?: StorageRoom | null;
 }
 
 export interface RecommendReason {
@@ -46,6 +48,7 @@ export function rankModels(input: RecommendInput): ModelRecommendation[] {
       reason: { use, useTier: useTierOf(model, use)!, languageCode, languageTier: languageTierOf(model, languageCode), ramFit: ramFit(model, device.ramGB), installed: input.installed.includes(model.id) },
     }));
   const score = (r: ModelRecommendation): number[] => [
+    fitsRoom(r.model, input.room) ? 1 : 0,
     languageCode ? languageRank(r.reason.languageTier ?? undefined) : 0,
     useRank(r.reason.useTier),
     r.reason.ramFit === "well" ? 1 : 0,
@@ -69,6 +72,10 @@ export const recommendModel = (input: RecommendInput): ModelRecommendation | nul
  * the device is meant to run. Onboarding, the vault, the chat's Model sheet and the browser door all call this.
  */
 export const deviceRecommendation = (input: RecommendInput): ModelRecommendation | null => rankModels({ ...input, installed: [] })[0] ?? null;
+
+/** "Fast needs 1.55 GB; you have 944 MB": set when the free space, and nothing else, moved `deviceRecommendation` off its first choice. */
+export const recommendationRoomNote = (input: RecommendInput): RoomNote | null =>
+  roomNote(input.room, (room) => deviceRecommendation({ ...input, room })?.model);
 
 /** True when even this pick is basic/none for the language or weak for the use; the vault then says "nothing here is good at…" instead of RECOMMENDED. An unrated language (tier null) is never a claim either way. */
 export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
@@ -209,6 +216,8 @@ export interface ModelChoices {
   recommended: ModelRecommendation | null;
   /** True when even that pick is basic/none for the language or weak for the use: the line says so instead of claiming a fit. */
   recommendedWeak: boolean;
+  /** Set when the free space moved the recommendation to a smaller model. */
+  room?: RoomNote | null;
 }
 
 /**
@@ -247,7 +256,8 @@ export function modelChoices(input: ModelChoicesInput): ModelChoices {
   unavailable.sort((a, b) => tierIndex(a.model) - tierIndex(b.model));
   const top = input.recommendAmong ? null : deviceRecommendation(input);
   const recommended = input.recommendAmong ? (ranked.filter((r) => input.recommendAmong!.includes(r.model.id))[0] ?? null) : top ? (ranked.find((r) => r.model.id === top.model.id) ?? top) : null;
-  return { installed, available, unavailable, recommended, recommendedWeak: !!recommended && recommendationIsWeak(recommended) };
+  const room = input.recommendAmong ? null : recommendationRoomNote(input);
+  return { installed, available, unavailable, recommended, recommendedWeak: !!recommended && recommendationIsWeak(recommended), room };
 }
 
 export interface LanguageUpgrade {

@@ -5,7 +5,8 @@
  *      (F40: the model step used to crash the page) → wllama loads from OPFS → one prompt;
  *   2. second visit with the network cut (Playwright setOffline): the service worker boots the page, the model comes from OPFS, chat works;
  *   3. a phone viewport shows the "get the app" door;
- *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled;
+ *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled; one with
+ *      900 MB free is offered Instant, the model that fits, with one line saying Fast does not (F13);
  *   5. an origin that answers the catalog with its own index.html (B1, 24.9.2026) lands on the catalog door with a
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
  *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
@@ -607,6 +608,30 @@ try {
     if (!out.buttonDisabled) throw new Error("download button enabled although space is short");
     await tight.close();
   }
+  /* 4b. Room for Instant only (F13): the door leads with the model that fits, says why Fast is not the pick, and can download. */
+  {
+    const fits = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(fits);
+    await fits.addInitScript(() => {
+      navigator.storage.estimate = async () => ({ usage: 0, quota: 900 * 1024 * 1024 });
+    });
+    const page = await fits.newPage();
+    lastPage = page;
+    const out = (result.roomForInstant = {});
+    await page.goto(server.url);
+    await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    await page.getByTestId("room-note").waitFor({ timeout: 30_000 });
+    out.note = (await page.getByTestId("room-note").textContent()) ?? "";
+    out.door = (await page.getByTestId("download-door").textContent()) ?? "";
+    out.noSpaceShown = await page.getByTestId("no-space").isVisible();
+    out.buttonDisabled = await page.getByTestId("download-model").isDisabled();
+    out.buttonText = (await page.getByTestId("download-model").textContent()) ?? "";
+    out.screenshot = path.join(outDir, "web-smoke-room-instant.png");
+    await page.screenshot({ path: out.screenshot });
+    if (!/^Fast needs .+; you have .+, so Instant is recommended\.$/.test(out.note)) throw new Error(`room note unexpected: ${out.note}`);
+    if (!/Download Instant/.test(out.door) || out.noSpaceShown || out.buttonDisabled) throw new Error(`900 MB free still leads with a model that does not fit: ${out.door}`);
+    await fits.close();
+  }
   /* 5. The B1 shape: 200, text/html, the app's own document where the catalog should be. */
   {
     const broken = await browser.newContext({ viewport: { width: 1180, height: 800 } });
@@ -729,6 +754,7 @@ console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
+console.log(`PASS: 900 MB free leads with the model that fits: "${result.roomForInstant.note}" · button "${result.roomForInstant.buttonText}"`);
 console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
 console.log(`PASS: no React Native prop on the DOM, composer icons aria-hidden (${f.a11yProps.icons.map((i) => i.id).join(", ")})`);
 if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev.skipped})`);

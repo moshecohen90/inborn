@@ -5963,3 +5963,30 @@ overhead per chunk on both, 3.06 ms against 800 ms of engine time (`overhead-ben
 Tests red first (`red-core.txt`, `red-library.txt`): a question during a queue of chunks, the old index searched
 during a rebuild, and a kill that resumes at the last finished document and page. Open: the notice counts the
 attached documents, not the whole library. A rebuild that fails mid-document is resumed on the next launch, not at once.
+
+## Fixes round 98: the door leads with the model that fits the free space (branch `fix-door-fit`) — 25.9.2026
+
+F13 of the web pass (Moshe's answer 6, "the best thing for that device"): with about 900 MB free, the browser door
+led with Fast, greyed out ("Not enough space: 1.55 GB needed, 944 MB free"), and the model that fits sat folded under
+"1 other model" (`docs/qa/fix-door-fit/before-door-900MB.png`).
+
+- **Free space is a term of the one recommendation** (F391). `rankModels` in core takes an optional `room`: the free
+  bytes, the ids already on the disk, and how many bytes a download needs. A model that fits outranks every model that
+  does not. When nothing fits, the ranking is unchanged, so the no-space door stays as it was. `pickDefault` applies
+  the same rule. `recommendationRoomNote` gives the one line: "Fast needs 1.55 GB; you have 944 MB, so Instant is
+  recommended" (`models.roomNote`, 8 locales and pseudo). RAM still filters as before.
+- **Every surface reads the same room** (round 76 invariant). On the web, the boot reads the quota once. It counts a
+  stored model as needing nothing and a half-downloaded one as needing only the rest plus the door's 256 MB headroom.
+  The door, the vault, onboarding and the Model sheet all rank with it and print the note. On native, `VaultStore.room()`
+  gives free disk under the vault's file-plus-reserve rule. Onboarding (`recommendedId`), the vault screen and the chat's
+  Model sheet all rank with it.
+- Headless Chromium, 900 MB free, at 390 and 1440: door "Download Instant", note shown, button enabled. Onboarding
+  lists Instant first as RECOMMENDED, with Fast below it. The sheet reads "RECOMMENDED ON THIS BROWSER" with the Instant row
+  and the note, and the vault shows the note. At 105 MB the door is unchanged: it offers Fast, says "1.55 GB needed" and disables
+  the button. There is no horizontal scroll and there are no page errors (`after-*.png`, `after-summary.json`, driver `proof.mjs`).
+- `web:smoke` gained pass 4b: 900 MB free must lead with Instant, print the note, and leave the button enabled. The
+  existing no-space pass still passes (`web-smoke.txt`). Watched red first: `policy-red.txt` (6 of 7 new core tests)
+  and `web-choice-red.txt` (5 of 5 new web tests).
+
+Gates: `pn typecheck`, `pn test` (core 907 + 4 skipped, mobile 1013, i18n 20, ui 23), `pn lint`, `pn web:build`, `pn web:smoke`
+and `pn check:store` all pass.

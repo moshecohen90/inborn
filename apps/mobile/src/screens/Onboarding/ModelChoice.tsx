@@ -14,6 +14,7 @@ import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useVault } from "../../vault";
 import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
+import { roomNoteParams } from "../../lib/modelSheetLines";
 import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelStep";
 import { webChooseModel, webStepModels } from "./webStep";
 import { catalogFailed } from "./catalogError";
@@ -56,6 +57,7 @@ export function ModelChoice() {
     [stepEntries, web, vault, engine.model.id, i18n.language, tier],
   );
 
+  const roomNoteNow = useMemo(() => (web ? web.roomNote : vault.recommendedRoomNote()), [web, vault, entries]);
   const noCatalog = step.options.length === 0 && catalogFailed();
   const selectedId = picked ?? step.initialSelection;
   const selected = step.options.find((o) => o.id === selectedId) ?? null;
@@ -109,6 +111,11 @@ export function ModelChoice() {
         {t(step.options.length > 1 ? "onboarding.model.title" : "onboarding.model.titleOne")}
       </Text>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.sub")}</Text>
+      {roomNoteNow ? (
+        <Text testID="room-note" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("models.roomNote", roomNoteParams(roomNoteNow))}
+        </Text>
+      ) : null}
 
       <View testID="model-options" style={styles.options}>
         {step.options.map((option) => (

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLED_MANIFEST, betterForLanguage, deviceRecommendation, modelChoices, pickDefault, type CatalogModel, type DeviceProfile, type ModelChoicesInput } from "../src/index";
+import { BUNDLED_MANIFEST, betterForLanguage, deviceRecommendation, modelChoices, pickDefault, recommendationRoomNote, type CatalogModel, type DeviceProfile, type ModelChoicesInput, type StorageRoom } from "../src/index";
 
 const catalog = BUNDLED_MANIFEST.models;
 const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
@@ -128,5 +128,50 @@ describe("one RECOMMENDED per device (F345, Moshe's decision 6: the best model f
             const device: DeviceProfile = { ramGB, deviceClass, chip };
             expect(deviceRecommendation({ use: "chat", languageCode, device, installed: ["instant"], catalog })?.model.id, `${deviceClass} ${chip} ${ramGB} ${languageCode}`).toBe(pickDefault(catalog, device)?.id);
           }
+  });
+});
+
+describe("free space in the one recommendation (Moshe's answer 6, F13)", () => {
+  const MB = 1024 ** 2;
+  const GB = 1024 ** 3;
+  /* The browser door's rule: the file plus 256 MB of headroom. */
+  const webRoom = (freeBytes: number, onDisk: string[] = []): StorageRoom => ({ freeBytes, onDisk, neededBytes: (m) => m.bytes + 256 * MB });
+  const at944 = webRoom(944 * MB);
+
+  it("with 944 MB free the best model that fits leads, and Fast is still listed as the other option", () => {
+    const c = modelChoices(input({ installed: [], currentId: null, room: at944 }));
+    expect(c.recommended?.model.id).toBe("instant");
+    expect(ids(c.available)).toContain("fast");
+    expect(c.room).toMatchObject({ skipped: { id: "fast" }, picked: { id: "instant" }, freeBytes: 944 * MB, neededBytes: byId("fast").bytes + 256 * MB });
+  });
+  it("deviceRecommendation, pickDefault and the note agree on that device", () => {
+    const rec = { use: "chat" as const, languageCode: "en", device: phone(8), installed: [], catalog, room: at944 };
+    expect(deviceRecommendation(rec)?.model.id).toBe("instant");
+    expect(pickDefault(catalog, phone(6), at944)?.id).toBe("instant");
+    expect(recommendationRoomNote(rec)?.skipped.id).toBe("fast");
+  });
+  it("with room for both, space changes nothing and there is no note", () => {
+    const c = modelChoices(input({ room: webRoom(20 * GB) }));
+    expect(c.recommended?.model.id).toBe("fast");
+    expect(c.room).toBeNull();
+  });
+  it("a model already on the disk needs no room: Fast downloaded stays the recommendation at 105 MB free", () => {
+    const c = modelChoices(input({ installed: ["fast"], currentId: "fast", room: webRoom(105 * MB, ["fast"]) }));
+    expect(c.recommended?.model.id).toBe("fast");
+    expect(c.room).toBeNull();
+  });
+  it("when nothing fits (105 MB) the ranking is unchanged and there is no note: the no-space state speaks", () => {
+    const rec = { use: "chat" as const, languageCode: "en", device: phone(8), installed: [], catalog, room: webRoom(105 * MB) };
+    expect(deviceRecommendation(rec)?.model.id).toBe("fast");
+    expect(pickDefault(catalog, phone(6), rec.room)?.id).toBe("fast");
+    expect(recommendationRoomNote(rec)).toBeNull();
+  });
+  it("native rule (file plus the 2 GB reserve): 3 GB free fits Instant, not Fast", () => {
+    const room: StorageRoom = { freeBytes: 3 * GB };
+    expect(deviceRecommendation({ use: "chat", languageCode: null, device: phone(8), installed: [], catalog, room })?.model.id).toBe("instant");
+    expect(pickDefault(catalog, phone(8), room)?.id).toBe("instant");
+  });
+  it("unknown space never demotes anything", () => {
+    expect(modelChoices(input({ room: null })).recommended?.model.id).toBe("fast");
   });
 });

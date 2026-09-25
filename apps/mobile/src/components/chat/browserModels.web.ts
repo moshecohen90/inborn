@@ -16,7 +16,7 @@ export function browserModels(use: UseCase, languageCode: string | null, current
     return null;
   }
   if (boot.engine === "chrome-nano") return null;
-  const input = { choices: boot.choices, gate: boot.gate, use, languageCode, currentId };
+  const input = { choices: boot.choices, gate: boot.gate, use, languageCode, currentId, room: boot.room };
   return {
     choices: webSheetChoices(input),
     upgrade: webLanguageUpgrade(input),

@@ -1,8 +1,9 @@
 import { ALLOWED_MODEL_HOSTS } from "@inborn/core";
 import { classifyDevice, readDeviceSignals, type DeviceGate } from "./deviceGate";
 import { WebModelDelivery, fetchManifest, type CatalogError, type WebModelSource } from "./modelDelivery";
-import { chosenSource, webModelChoices, type WebModelChoice } from "./modelChoice";
-import { modelStatus, opfsSupported, readyModelStatus, type ModelStatus } from "./opfs";
+import type { RoomNote, StorageRoom } from "@inborn/core";
+import { chosenSource, webModelChoices, webRoom, webRoomNote, type WebModelChoice } from "./modelChoice";
+import { modelStatus, opfsSupported, readyModelStatus, storageEstimate, type ModelStatus } from "./opfs";
 import { chromePromptApiAvailable } from "./chromeNano";
 import { readEnginePref, readModelPref, writeModelPref, type WebEngine } from "./prefs";
 import { bootLanguage } from "./language";
@@ -20,6 +21,10 @@ export interface WebBoot {
   /** Set when the catalog could not be read at all: a browser with no model and a browser with no catalog are not the same screen. */
   catalogError: CatalogError | null;
   status: ModelStatus;
+  /** Free space when the page loaded: the ranking behind `choices` read it, and the sheet must read the same. */
+  room: StorageRoom | null;
+  /** Set when that space, and nothing else, made the recommendation a smaller model. */
+  roomNote: RoomNote | null;
 }
 
 export const delivery = new WebModelDelivery();
@@ -42,14 +47,18 @@ export function prepareWebBoot(): Promise<WebBoot> {
     const chromePromptApi = chromePromptApiAvailable();
     const opfs = opfsSupported();
     const catalog = await fetchManifest([...ALLOWED_MODEL_ORIGINS]);
-    const offered = webModelChoices({ sources: catalog.models, gate, languageCode: bootLanguage() });
-    /* Which of the offered files this browser already holds: the badge on the cards, and the door's own state. */
-    const statuses = opfs ? await Promise.all(offered.map((c) => modelStatus(c.source.file))) : offered.map((): ModelStatus => ({ kind: "missing" }));
-    const choices = offered.map((c, i) => ({ ...c, installed: statuses[i]!.kind === "ready" }));
+    const languageCode = bootLanguage();
+    const sources = catalog.models;
+    /* Which of the served files this browser already holds: the badge on the cards, the door's own state, and no room needed. */
+    const statuses = opfs ? await Promise.all(sources.map((s) => modelStatus(s.file))) : sources.map((): ModelStatus => ({ kind: "missing" }));
+    const room = webRoom(await storageEstimate(), sources, statuses);
+    const statusOf = new Map(sources.map((s, i) => [s.id, statuses[i]!]));
+    const offered = webModelChoices({ sources, gate, languageCode, room });
+    const choices = offered.map((c) => ({ ...c, installed: statusOf.get(c.source.id)?.kind === "ready" }));
     const source = chosenSource(choices, readModelPref());
-    const at = choices.findIndex((c) => c.source.id === source?.id);
-    const status: ModelStatus = at >= 0 ? statuses[at]! : { kind: "missing" };
-    boot = { gate, engine: chromePromptApi ? engine : "wllama", chromePromptApi, opfs, choices, source, catalogError: catalog.error, status };
+    const status: ModelStatus = (source && statusOf.get(source.id)) || { kind: "missing" };
+    const roomNote = webRoomNote({ sources, gate, languageCode, room });
+    boot = { gate, engine: chromePromptApi ? engine : "wllama", chromePromptApi, opfs, choices, source, catalogError: catalog.error, status, room, roomNote };
     return boot;
   })();
   return pending;

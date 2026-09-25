@@ -9,7 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BannerSpacer } from "../../components/shell/bannerInset";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -23,6 +23,7 @@ import { hfSearchAvailable } from "../../vault/hf";
 import { chooseFile } from "../../documents/chooseFile";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { roomNoteParams } from "../../lib/modelSheetLines";
 import { listClipping } from "../../lib/listClipping";
 import { useContentMaxWidth } from "../../lib/useLayout";
 import { Toggle } from "../../components/shell/primitives";
@@ -197,12 +198,15 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   /* Hugging Face picks that are not on the device (cancelled, failed, waiting): they keep a row so Install / Remove stay reachable. */
   const hfPending = entries.filter((e) => e.hf && !installed(e));
   /* §7.8: the RECOMMENDED tag and the order inside each group follow the fit map for the chosen use + language on this device. */
-  const ranked = rankModels({ use: bestUse, languageCode: bestLanguage, device, installed: entries.filter((e) => e.state.kind === "ready").map((e) => e.model.id), catalog: vault.manifest.models });
+  const room = vault.room();
+  const ranked = rankModels({ use: bestUse, languageCode: bestLanguage, device, installed: entries.filter((e) => e.state.kind === "ready").map((e) => e.model.id), catalog: vault.manifest.models, room });
   const rankOf = new Map(ranked.map((r, i) => [r.model.id, i]));
   const byRank = (a: VaultEntry, b: VaultEntry) => (rankOf.get(a.model.id) ?? 99) - (rankOf.get(b.model.id) ?? 99);
   onDevice.sort(byRank);
   fits.sort(byRank);
-  const top = deviceRecommendation({ use: bestUse, languageCode: bestLanguage, device, installed: [], catalog: vault.manifest.models });
+  const recommendInput = { use: bestUse, languageCode: bestLanguage, device, installed: [], catalog: vault.manifest.models, room };
+  const top = deviceRecommendation(recommendInput);
+  const spaceNote = recommendationRoomNote(recommendInput);
   const recommendedId = top?.model.id;
   const recommendedWeak = !!top && recommendationIsWeak(top);
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
@@ -275,6 +279,11 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
           <Icon name="chevronDown" size={14} color={theme.text2} />
         </Pressable>
       </View>
+      {spaceNote ? (
+        <Text testID="room-note" style={[type.bodySmall, styles.centered, { color: theme.text2 }]}>
+          {t("models.roomNote", roomNoteParams(spaceNote))}
+        </Text>
+      ) : null}
       <SectionList
         ref={listRef}
         onScrollToIndexFailed={(info: { averageItemLength: number; index: number }) => {

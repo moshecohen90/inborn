@@ -82,7 +82,7 @@ describe("fetchManifest tells a broken catalog from an empty one", () => {
 });
 
 describe("F271 · a browser with no catalog is not a browser that is ready", () => {
-  const boot = (over: Partial<WebBoot>): WebBoot => ({ gate: { maxTier: "fast" } as WebBoot["gate"], engine: "wllama", chromePromptApi: false, opfs: true, choices: [], source: null, catalogError: null, status: { kind: "missing" }, ...over });
+  const boot = (over: Partial<WebBoot>): WebBoot => ({ gate: { maxTier: "fast" } as WebBoot["gate"], engine: "wllama", chromePromptApi: false, opfs: true, choices: [], source: null, catalogError: null, status: { kind: "missing" }, room: null, roomNote: null, ...over });
 
   it("holds the door when the catalog failed, and opens it when the catalog is merely empty", () => {
     expect(webReady(boot({ catalogError: "not-json" }))).toBe(false);

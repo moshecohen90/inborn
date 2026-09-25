@@ -10,6 +10,7 @@ import {
   loadManifest,
   modelParts,
   pickDefault,
+  roomNote,
   isNoSpaceError,
   requiredFreeBytes,
   transition,
@@ -19,6 +20,8 @@ import {
   type GgufError,
   type InstallEvent,
   type InstallState,
+  type RoomNote,
+  type StorageRoom,
 } from "@inborn/core";
 import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
@@ -333,8 +336,18 @@ export class VaultStore {
     return freeDiskBytes();
   }
 
+  /** Free disk now; a model already here or on its way needs none. Every recommendation this vault makes reads it. */
+  room(): StorageRoom {
+    const onDisk = [...this.states.entries()].filter(([, s]) => isInstalled(s) || s.kind === "delivering" || s.kind === "verifying").map(([id]) => id);
+    return { freeBytes: freeDiskBytes(), onDisk };
+  }
+
   recommendedId(): string | undefined {
-    return pickDefault(this.manifest.models, this.device)?.id;
+    return pickDefault(this.manifest.models, this.device, this.room())?.id;
+  }
+
+  recommendedRoomNote(): RoomNote | null {
+    return roomNote(this.room(), (room) => pickDefault(this.manifest.models, this.device, room));
   }
 
   wifiOnly(): boolean {

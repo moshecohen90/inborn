@@ -8,7 +8,7 @@ import { Sheet } from "./Sheet";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { modelLabel } from "../../lib/models";
-import { goodAtUses, recommendationKey } from "../../lib/modelSheetLines";
+import { goodAtUses, recommendationKey, roomNoteParams } from "../../lib/modelSheetLines";
 import { Toggle } from "../shell/primitives";
 import { ChipGlyph } from "../shell/ChipGlyph";
 
@@ -111,6 +111,11 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
         {recommendedLine ? (
           <Text testID="model-sheet-recommended" style={[type.monoLabel, { color: choices.recommendedWeak ? theme.text2 : theme.accent }]}>
             {recommendedLine}
+          </Text>
+        ) : null}
+        {recommendedLine && choices.room ? (
+          <Text testID="room-note" style={[type.bodySmall, { color: theme.text2 }]}>
+            {t("models.roomNote", roomNoteParams(choices.room))}
           </Text>
         ) : null}
         {managed ? (
