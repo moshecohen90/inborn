@@ -6050,6 +6050,28 @@ The web full pass found three layout and theme gaps (W2, W8, W1). Evidence: `doc
   and the live theme) and 0 after. `red-system-scheme.txt` shows the unit test failing against the old `theme.ts`.
 - **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
   and `pn check:store` pass. Test counts: 900 core, 1011 mobile, 20 i18n, 23 ui.
+## Fixes round 100: the Chats footer fits the sidebar, Esc works from the first frame, the lock seal answers the keyboard, export confirms (branch `fix-footer-nits`) — 25.9.2026
+
+Web full pass 2 found a regression from round 99 and three keyboard and feedback gaps. Evidence: `docs/qa/fix-footer-nits/`.
+
+- **F395: the footer fits 280 px.** Round 99 made the footer one row with 44 px buttons, so it needed about 330 px.
+  In the 280 px sidebar PRO was cut at the edge and the labels read "Pe… Me… Fol…". Personas, Memory and Folders
+  are now icon buttons (Lucide users, brain, folder). Each one's name is its accessible label and, in a browser, its
+  tooltip. PRO is a badge inside the Folders button. It is no longer a separate Tab stop, and the button reads
+  "Folders, PRO". The footer's model chip is gone, because the drawer meter right below already names the model
+  (spec S20). `pn web:smoke` checks the footer at 390, 768 and 1180 in 9 locales.
+- **F396: Esc closes a sheet from its first frame.** react-native-web's Modal listens for Esc only after its 250 ms
+  entry animation. Until then, `lib/earlyEscape.ts` gives Esc to the newest opening sheet and swallows the keyup, so
+  a sheet underneath stays open. Both sheet primitives use it.
+- **F397: the lock seal is a real button.** On the web, Enter and Space open the same two-step Delete everything
+  sheet as the 1.2 s hold. A pointer click still does nothing. Native screen readers get an `activate` action.
+- **F398: a browser export confirms itself.** The sheet already closed when the download started. The pass saw it
+  open because its driver clicked an id that does not exist. The web now shows "Downloaded <file>" for 4 s in 8
+  locales + pseudo. Native share sheets are their own confirmation.
+- **Red first.** The driver failed 52 checks on origin/main (45 footer cases, early Esc, 4 exports, 2 lock keys)
+  and 0 after.
+- **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
+  and `pn check:store` pass. Test counts: 966 core, 1074 mobile, 24 i18n, 23 ui.
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

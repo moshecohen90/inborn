@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Modal, Platform, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Icon, MIN_TOUCH, radius } from "@inborn/ui";
+import { Icon, MIN_TOUCH, radius, type IconName } from "@inborn/ui";
 import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit, type VaultAction , type PaywallReason } from "@inborn/core";
 import { formatWhen } from "../lib/when";
 import { retentionDaysLeft } from "../services/retention";
@@ -81,6 +81,12 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
   const workGate = useWorkGate();
   const [vaultCode, setVaultCode] = useState<{ mode: VaultCodeMode; folder: Folder } | null>(null);
   const [exporting, setExporting] = useState<Chat | null>(null);
+  const [exportLine, setExportLine] = useState<string | null>(null);
+  useEffect(() => {
+    if (!exportLine) return;
+    const timer = setTimeout(() => setExportLine(null), EXPORT_LINE_MS);
+    return () => clearTimeout(timer);
+  }, [exportLine]);
   const [personasOpen, setPersonasOpen] = useState(false);
   const [memoryOpen, setMemoryOpen] = useState(false);
   const pending = useRef<Pending | null>(null);
@@ -428,23 +434,28 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           </Pressable>
         </View>
       ) : (
-        <View style={[styles.footer, { borderColor: theme.border, paddingBottom: insets.bottom + 8 }]}>
-          <View style={[shape.chip, styles.titleRow, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-            <ChipGlyph size={12} color={theme.text2} />
-            <Text style={[type.monoLabel, { color: theme.text2 }]}>{chipLabel(t, model.id)}</Text>
+        <View testID="chats-footer" style={[styles.footer, { borderColor: theme.border, paddingBottom: insets.bottom + 8 }]}>
+          {/* Icons, not words: three translated labels and PRO cannot share a 280 px sidebar (F395). The model is named by the drawer meter right below. */}
+          <View style={styles.footerActions}>
+            <FooterButton testID="open-personas" icon="users" label={t("personas.title")} onPress={() => setPersonasOpen(true)} />
+            <FooterButton testID="open-memory" icon="brain" label={t("memory.title")} onPress={() => setMemoryOpen(true)} />
+            <FooterButton testID="open-folders" icon="folder" label={foldersGated ? `${t("folders.title")}, PRO` : t("folders.title")} onPress={() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "manage" }))}>
+              {foldersGated ? (
+                <View testID="pro-tag" style={[shape.chip, styles.proBadge, { borderColor: theme.accent }]}>
+                  <Text style={[type.monoLabel, { color: theme.accent }]}>PRO</Text>
+                </View>
+              ) : null}
+            </FooterButton>
           </View>
-          <Pressable testID="open-personas" accessibilityRole="button" onPress={() => setPersonasOpen(true)} style={[styles.footerBtn, styles.footerShrink]}>
-            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("personas.title")}</Text>
-          </Pressable>
-          <Pressable testID="open-memory" accessibilityRole="button" onPress={() => setMemoryOpen(true)} style={[styles.footerBtn, styles.footerShrink]}>
-            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("memory.title")}</Text>
-          </Pressable>
-          <Pressable testID="open-folders" accessibilityRole="button" onPress={() => (foldersGated ? unlock("folders") : setFolderMode({ kind: "manage" }))} style={[styles.footerBtn, styles.footerShrink]}>
-            <Text numberOfLines={1} style={[type.bodySmall, { color: theme.text2 }]}>{t("folders.title")}</Text>
-          </Pressable>
-          {foldersGated ? <ProTag onPress={() => unlock("folders")} /> : null}
         </View>
       )}
+      {exportLine && !pendingIds.size ? (
+        <View testID="export-toast" aria-live="polite" style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border, bottom: insets.bottom + 72 }]}>
+          <Text numberOfLines={2} style={[type.body, styles.toastText, { color: theme.text }]}>
+            {exportLine}
+          </Text>
+        </View>
+      ) : null}
       {pendingIds.size ? (
         <View testID="undo-toast" style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border, bottom: insets.bottom + 72 }]}>
           <Text numberOfLines={1} style={[type.body, styles.toastText, { color: theme.text }]}>
@@ -613,10 +624,28 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           return ok;
         }}
       />
-      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={(why) => unlock(why)} />
+      <ExportSheet chat={exporting} onClose={() => setExporting(null)} store={store} onUnlock={(why) => unlock(why)} onExported={setExportLine} />
       <PersonasSheet visible={personasOpen} onClose={() => setPersonasOpen(false)} store={store} onChanged={() => void refresh()} onUnlock={(why) => unlock(why)} />
       <MemorySheet visible={memoryOpen} onClose={() => setMemoryOpen(false)} store={store} onUnlock={(why) => unlock(why)} />
     </View>
+  );
+}
+
+const EXPORT_LINE_MS = 4000;
+
+/** One icon action in the Chats footer: its name is the accessible label and, in a browser, the hover tooltip. */
+function FooterButton({ testID, icon, label, onPress, children }: { testID: string; icon: IconName; label: string; onPress: () => void; children?: ReactNode }) {
+  const theme = useTheme();
+  const ref = useRef<View>(null);
+  useEffect(() => {
+    if (Platform.OS !== "web") return;
+    (ref.current as unknown as { setAttribute?: (k: string, v: string) => void } | null)?.setAttribute?.("title", label);
+  }, [label]);
+  return (
+    <Pressable ref={ref} testID={testID} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={styles.footerBtn}>
+      <Icon name={icon} size={20} color={theme.text2} />
+      {children}
+    </Pressable>
   );
 }
 
@@ -645,10 +674,10 @@ const styles = StyleSheet.create({
   more: { width: MIN_TOUCH, alignItems: "center", justifyContent: "center", borderBottomWidth: StyleSheet.hairlineWidth },
   check: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
   bulkBar: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 16, paddingTop: 8, borderTopWidth: 1 },
-  /* One row at every width: the three labels give way (ellipsis, never under 44 px) before the PRO chip leaves Folders (W8). */
-  footer: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 8, borderTopWidth: StyleSheet.hairlineWidth },
-  footerBtn: { minHeight: 44, minWidth: 44, paddingHorizontal: 6, justifyContent: "center" },
-  footerShrink: { flexShrink: 1 },
+  footer: { flexDirection: "row", alignItems: "center", paddingHorizontal: 12, paddingTop: 4, borderTopWidth: StyleSheet.hairlineWidth },
+  footerActions: { flexDirection: "row", alignItems: "center", gap: 8 },
+  footerBtn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 4, minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, paddingHorizontal: 4 },
+  proBadge: { minHeight: 22, paddingHorizontal: 6 },
   toast: { position: "absolute", left: 16, right: 16, flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 16, minHeight: 48, borderWidth: 1, borderRadius: radius.control },
   toastText: { flex: 1 },
   backdrop: { backgroundColor: "rgba(0,0,0,0.45)" },

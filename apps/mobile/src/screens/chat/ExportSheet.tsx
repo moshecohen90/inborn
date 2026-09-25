@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Platform } from "react-native";
 import { useTranslation } from "react-i18next";
-import { exportChat, paywallFor, type Chat, type ChatStore, type ExportFormat, type PaywallReason } from "@inborn/core";
+import { exportChat, paywallFor, type Chat, type ChatStore, type ExportFile, type ExportFormat, type PaywallReason } from "@inborn/core";
 import { useWork, useWorkGate, WorkTag, type SignedExportFiles } from "../../work";
 import { appVersion } from "../../work/appInfo";
 import { shareFile } from "../../lib/share";
@@ -15,18 +16,27 @@ interface Props {
   store: ChatStore;
   /** "Export all" is a §12.3 value moment: Free lands on the paywall. */
   onUnlock?: (reason: PaywallReason) => void;
+  /** Called with a one-line confirmation once a browser download has started (F398). */
+  onExported?: (line: string) => void;
 }
 
 const FORMATS: ExportFormat[] = ["markdown", "text", "json"];
 
 /** Single-chat export through the system share sheet (§7.1), plus every saved chat at once (Pro). Incognito chats never get here (the menu hides it). */
-export function ExportSheet({ chat, onClose, store, onUnlock }: Props) {
+export function ExportSheet({ chat, onClose, store, onUnlock, onExported }: Props) {
   const { t } = useTranslation();
   const { tier } = useEntitlement();
   const allLocked = paywallFor(tier, { kind: "feature", feature: "exportAll" });
   const { work } = useWork();
   const gate = useWorkGate();
   const [signed, setSigned] = useState<SignedExportFiles | null>(null);
+  /* A browser download has no share sheet to show it happened; native share sheets are their own confirmation. */
+  const deliver = (file: ExportFile, dialogTitle: string) =>
+    afterSheetClose(() =>
+      void shareFile(file, dialogTitle).then((ok) => {
+        if (ok && Platform.OS === "web") onExported?.(t("export.downloaded", { file: file.filename }));
+      }),
+    );
   /* One record per sheet opening: the readable copy shares the same hash and signature as the .json just sent. */
   const runSigned = async (readable: boolean) => {
     if (!chat || chat.incognito) return;
@@ -43,14 +53,14 @@ export function ExportSheet({ chat, onClose, store, onUnlock }: Props) {
     }
     const f = files;
     onClose();
-    afterSheetClose(() => void shareFile(readable ? { filename: `${f.baseName}.md`, mimeType: "text/markdown", body: f.markdown } : { filename: `${f.baseName}.json`, mimeType: "application/json", body: f.json }, t("export.signedDialog", { title: chat.title || t("newChat.title") })));
+    deliver(readable ? { filename: `${f.baseName}.md`, mimeType: "text/markdown", body: f.markdown } : { filename: `${f.baseName}.json`, mimeType: "application/json", body: f.json }, t("export.signedDialog", { title: chat.title || t("newChat.title") }));
   };
   const run = async (format: ExportFormat) => {
     if (!chat || chat.incognito) return;
     const messages = await store.listMessages(chat.id);
     const file = exportChat(chat, messages, format, { modelNames: modelNames(), reasoning: false });
     onClose();
-    afterSheetClose(() => void shareFile(file, t("export.dialog", { title: chat.title || t("newChat.title") })));
+    deliver(file, t("export.dialog", { title: chat.title || t("newChat.title") }));
   };
   const runAll = async () => {
     if (allLocked) {
@@ -62,7 +72,7 @@ export function ExportSheet({ chat, onClose, store, onUnlock }: Props) {
     const parts: string[] = [];
     for (const c of chats) parts.push(exportChat(c, await store.listMessages(c.id), "markdown", { modelNames: modelNames(), reasoning: false }).body);
     onClose();
-    afterSheetClose(() => void shareFile({ filename: "inborn-chats.md", mimeType: "text/markdown", body: parts.join("\n\n---\n\n") }, t("export.allDialog")));
+    deliver({ filename: "inborn-chats.md", mimeType: "text/markdown", body: parts.join("\n\n---\n\n") }, t("export.allDialog"));
   };
   return (
     <Sheet visible={chat !== null} onClose={onClose} title={t("export.title")} testID="export-sheet" scroll={false}>

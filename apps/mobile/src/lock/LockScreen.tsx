@@ -40,7 +40,16 @@ export function LockScreen() {
   return (
     <View ref={rootRef} testID="lock-screen" style={[StyleSheet.absoluteFill, styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>
       <View style={styles.center}>
-        <Pressable accessibilityRole="button" accessibilityLabel={t("wipe.title")} onLongPress={() => setWipeOpen(true)} delayLongPress={1200}>
+        {/* A finger holds the seal; a keyboard or screen reader activates it. Every path lands on the same two-step WipeSheet (F397). */}
+        <Pressable
+          testID="lock-seal"
+          accessibilityRole="button"
+          accessibilityLabel={t("wipe.title")}
+          onLongPress={() => setWipeOpen(true)}
+          delayLongPress={1200}
+          onPress={Platform.OS === "web" ? (e) => keyboardPress(e) && setWipeOpen(true) : undefined}
+          {...(Platform.OS === "web" ? null : { accessibilityActions: [{ name: "activate" as const }], onAccessibilityAction: () => setWipeOpen(true) })}
+        >
           <Seal size={72} state="sealed" label={t("chat.sealed")} haptics={false} />
         </Pressable>
         <MonoLabel color={theme.text2} style={styles.locked} testID="lock-label">
@@ -65,6 +74,12 @@ export function LockScreen() {
       <WipeSheet visible={wipeOpen} onClose={() => setWipeOpen(false)} />
     </View>
   );
+}
+
+/** On the web the seal is a <button>: Enter, Space and a screen reader click it with `detail` 0, a pointer with 1 or more. */
+function keyboardPress(e: unknown): boolean {
+  const n = (e as { nativeEvent?: { detail?: number; key?: string } }).nativeEvent;
+  return n?.detail === 0 || !!n?.key;
 }
 
 const styles = StyleSheet.create({
