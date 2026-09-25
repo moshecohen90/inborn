@@ -9,7 +9,7 @@ const MODEL_PACK = "inborn_model";
 
 export interface StorageSizes {
   chats: number | null;
-  documents: number;
+  documents: number | null;
   models: number | null;
   memory: number;
   reports: number;

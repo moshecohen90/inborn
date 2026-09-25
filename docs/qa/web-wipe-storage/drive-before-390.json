@@ -1,0 +1,93 @@
+{
+ "tag": "before",
+ "w": 390,
+ "lockOffer": "Lock it? · Require a passcode · Your passcode opens Inborn. Also hides chats in the app switcher. · Lock after · Immediately · 1 minute · 5 minutes · No biometrics on this device: a passcode protects the app instead. · Turn on and start · Not now",
+ "storage": {
+  "chats": "Chats · in memory for this run · 0 B",
+  "documents": "",
+  "models": "",
+  "screen": "Privacy & storage · ON THIS DEVICE · Chats · in memory for this run · 0 B · Documents · 0 B · Models · not backed up · 983 MB · Memory · 0 B · Reports · 0 B · Chats live in this browser only. Clearing site data removes them. · There is no cloud sync. Another device starts empty. · ACTIONS · Delete all chats · Delete everything · Chats, key, documents. No recovery."
+ },
+ "rowLock": "Require a passcode · Your passcode opens Inborn. Also hides chats in the app switcher.",
+ "rowHide": "Hide in app switcher · Chats are blurred while Inborn is in the background.",
+ "rowShots": "Screenshot protection · Not available in a browser.",
+ "locked": true,
+ "lockScreen": "LOCKED · Your passcode opens Inborn. Chats stay encrypted until then. · Use passcode",
+ "unlocked": true,
+ "beforeWipe": {
+  "databases": [
+   "inborn",
+   "inborn-documents"
+  ],
+  "chats": 1,
+  "messages": 4,
+  "documents": 1,
+  "localStorage": [
+   "inborn.web.model",
+   "inborn.prefs",
+   "inborn.documents.prefs",
+   "inborn.web.transfers",
+   "inborn.device.prefs",
+   "inborn.web.manifest",
+   "inborn.licence.secret",
+   "inborn.lock.passcode"
+  ],
+  "caches": [
+   "workbox-precache-v2-http://127.0.0.1:8841/"
+  ],
+  "opfs": [
+   "models",
+   "cache"
+  ]
+ },
+ "opfsCache": {
+  "fed6cc3ec2dd0504cbcf4d67b6d4060bea55666b_multilingual-e5-large-instruct-Q6_K.gguf": 467958912,
+  "__metadata__fed6cc3ec2dd0504cbcf4d67b6d4060bea55666b_multilingual-e5-large-instruct-Q6_K.gguf": 101
+ },
+ "afterWipeScreen": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors. · Details · Get the app · Nothing leaves this browser. · AI that runs on your device. No acco",
+ "afterWipe": {
+  "databases": [
+   "inborn",
+   "inborn-documents"
+  ],
+  "chats": 1,
+  "messages": 4,
+  "documents": 1,
+  "localStorage": [
+   "inborn.device.prefs",
+   "inborn.prefs"
+  ],
+  "caches": [
+   "workbox-precache-v2-http://127.0.0.1:8841/"
+  ],
+  "opfs": [
+   "models",
+   "cache"
+  ]
+ },
+ "afterReload": {
+  "databases": [
+   "inborn",
+   "inborn-documents"
+  ],
+  "chats": 1,
+  "messages": 4,
+  "documents": 1,
+  "localStorage": [
+   "inborn.device.prefs",
+   "inborn.prefs",
+   "inborn.web.manifest",
+   "inborn.licence.secret"
+  ],
+  "caches": [
+   "workbox-precache-v2-http://127.0.0.1:8841/"
+  ],
+  "opfs": [
+   "models",
+   "cache"
+  ]
+ },
+ "doorAfterWipe": true,
+ "doorText": "ON-DEVICE · Download Fast to this browser · RECOMMENDED FOR THIS BROWSER · The best answers this browser can run. · 1.28 GB, once. It stays on this device. Late",
+ "fatal": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByTestId('download-model')\n"
+}

@@ -555,3 +555,8 @@ let shared: DocumentLibrary | null = null;
 export function getLibrary(): DocumentLibrary {
   return (shared ??= new DocumentLibrary());
 }
+
+/** After Delete everything the next caller boots a library from the emptied store, not the old in-memory list. */
+export function resetLibrary(): void {
+  shared = null;
+}

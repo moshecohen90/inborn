@@ -1,0 +1,380 @@
+
+ RUN  v5.0.0 apps/mobile
+
+ ❯ test/fixes-r94.test.ts (10 tests | 10 failed) 17ms
+   ❯ F380 · web copy tells the truth (10)
+     × en has every web line, and the biometric ones keep their placeholder 5ms
+     × de has every web line, and the biometric ones keep their placeholder 2ms
+     × es has every web line, and the biometric ones keep their placeholder 1ms
+     × fr has every web line, and the biometric ones keep their placeholder 1ms
+     × ja has every web line, and the biometric ones keep their placeholder 2ms
+     × ko has every web line, and the biometric ones keep their placeholder 1ms
+     × pt-BR has every web line, and the biometric ones keep their placeholder 2ms
+     × zh-Hant has every web line, and the biometric ones keep their placeholder 1ms
+     × English web lines say what the browser does 2ms
+     × the screens pick the web lines on web 1ms
+ ❯ src/screens/Settings/storageSizes.web.test.ts (2 tests | 2 failed) 11ms
+   ❯ web storage sizes (F379) (2)
+     × counts chats in IndexedDB and model bytes in OPFS 10ms
+     × counts vectors by their buffer size 0ms
+ ❯ src/storage/wipe.web.test.ts (3 tests | 3 failed) 43ms
+   ❯ web wipe (F378) (3)
+     × deletes both IndexedDB databases, web storage and every cache but the app-shell precache, and keeps models when not asked 13ms
+     × removes the model files too when the user asked for it 4ms
+     × is not blocked forever by a connection someone left open 25ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > en has every web line, and the biometric ones keep their placeholder
+AssertionError: en lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > de has every web line, and the biometric ones keep their placeholder
+AssertionError: de lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > es has every web line, and the biometric ones keep their placeholder
+AssertionError: es lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > fr has every web line, and the biometric ones keep their placeholder
+AssertionError: fr lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > ja has every web line, and the biometric ones keep their placeholder
+AssertionError: ja lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > ko has every web line, and the biometric ones keep their placeholder
+AssertionError: ko lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > pt-BR has every web line, and the biometric ones keep their placeholder
+AssertionError: pt-BR lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > zh-Hant has every web line, and the biometric ones keep their placeholder
+AssertionError: zh-Hant lock.lockedExplain.web: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ test/fixes-r94.test.ts:14:57
+     12|   it.each(LOCALES)("%s has every web line, and the biometric ones keep…
+     13|     const d = load(l);
+     14|     for (const k of WEB_KEYS) expect(d[k], `${l} ${k}`).toBeTruthy();
+       |                                                         ^
+     15|     expect(d["lock.lockedExplain.web"]).toContain("{biometric}");
+     16|     expect(d["lock.explain.web"]).toContain("{biometric}");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > English web lines say what the browser does
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ test/fixes-r94.test.ts:25:54
+     23|   it("English web lines say what the browser does", () => {
+     24|     const en = load("en");
+     25|     expect(en["lock.lockedExplainPasscode.web"]).not.toMatch(/stay enc…
+       |                                                      ^
+     26|     expect(en["lock.lockedExplainPasscode.web"]).toMatch(/not encrypte…
+     27|     expect(en["lock.explain.passcode.web"]).not.toMatch(/app switcher/…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  test/fixes-r94.test.ts > F380 · web copy tells the truth > the screens pick the web lines on web
+AssertionError: expected 'import { useEffect, useRef, useState …' to match /Platform\.OS === "web" && storageKind…/
+
+- Expected:
+/Platform\.OS === "web" && storageKind !== "sqlcipher" \? "\.web"/
+
++ Received:
+"import { useEffect, useRef, useState } from \"react\";
+import { Pressable, StyleSheet, Text, View } from \"react-native\";
+import { useSafeAreaInsets } from \"react-native-safe-area-context\";
+import { useTranslation } from \"react-i18next\";
+import { attemptsLeft, showCountdown } from \"@inborn/core\";
+import { biometricLabel } from \"@inborn/i18n\";
+
+import { useTheme } from \"../services/theme\";
+import { useAppServices } from \"../services/AppServices\";
+import { Seal } from \"../components/Seal\";
+import { Button, MonoLabel } from \"../components/shell/primitives\";
+import { PasscodeSheet } from \"./PasscodeSheet\";
+import { WipeSheet } from \"../screens/Settings/WipeSheet\";
+import { font } from \"../services/type\";
+
+/** S53: the seal, \"Locked\", the biometric prompt by itself, a passcode as the fallback. Rendered above everything while locked. */
+export function LockScreen() {
+  const { t } = useTranslation();
+  const { theme } = useTheme();
+  const insets = useSafeAreaInsets();
+  const { lock, prefs } = useAppServices();
+  const [passcodeOpen, setPasscodeOpen] = useState(false);
+  const [wipeOpen, setWipeOpen] = useState(false);
+  const prompted = useRef(false);
+  const label = biometricLabel(t, lock.kind);
+  const biometric = lock.kind !== \"passcode\";
+  const left = attemptsLeft(lock.failed, prefs.lock.wipeAfterFailed);
+  const countdown = showCountdown(lock.failed, prefs.lock.wipeAfterFailed) && left !== null ? t(\"lock.attemptsLeft\", { count: left }) : null;
+
+  useEffect(() => {
+    if (!lock.ready || prompted.current) return;
+    prompted.current = true;
+    if (biometric) void lock.unlock(t(\"lock.prompt\"), t(\"chats.cancel\"));
+    else if (lock.passcodeSet) setPasscodeOpen(true);
+  }, [lock, biometric, t]);
+
+  return (
+    <View testID=\"lock-screen\" style={[StyleSheet.absoluteFill, styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>
+      <View style={styles.center}>
+        <Pressable accessibilityRole=\"button\" accessibilityLabel={t(\"wipe.title\")} onLongPress={() => setWipeOpen(true)} delayLongPress={1200}>
+          <Seal size={72} state=\"sealed\" label={t(\"chat.sealed\")} haptics={false} />
+        </Pressable>
+        <MonoLabel color={theme.text2} style={styles.locked} testID=\"lock-label\">
+          {t(\"lock.locked\")}
+        </MonoLabel>
+        <Text style={[styles.explain, { color: theme.text2 }]}>{biometric ? t(\"lock.lockedExplain\", { biometric: label }) : t(\"lock.lockedExplainPasscode\")}</Text>
+        {countdown ? (
+          <Text testID=\"wipe-countdown\" style={[styles.explain, { color: theme.danger }]}>
+            {countdown}
+          </Text>
+        ) : null}
+      </View>
+      <View style={styles.actions}>
+        {biometric ? <Button testID=\"unlock-biometric\" title={t(\"lock.unlockWith\", { biometric: label })} onPress={() => void lock.unlock(t(\"lock.prompt\"), t(\"chats.cancel\"))} /> : null}
+        {lock.passcodeSet ? (
+          <Button testID=\"unlock-passcode\" title={t(\"lock.usePasscode\")} variant={biometric ? \"link\" : \"cta\"} onPress={() => setPasscodeOpen(true)} />
+        ) : !biometric ? (
+          <Text style={[styles.explain, { color: theme.danger }]}>{t(\"lock.noPasscode\")}</Text>
+        ) : null}
+      </View>
+      <PasscodeSheet visible={passcodeOpen} mode=\"verify\" onClose={() => setPasscodeOpen(false)} onSubmit={lock.unlockWithPasscode} warning={countdown} />
+      <WipeSheet visible={wipeOpen} onClose={() => setWipeOpen(false)} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  root: { paddingHorizontal: 24, justifyContent: \"space-between\" },
+  center: { flex: 1, alignItems: \"center\", justifyContent: \"center\", gap: 16 },
+  locked: { marginTop: 8 },
+  explain: { ...font(\"sans\"), fontSize: 15, lineHeight: 22, textAlign: \"center\", maxWidth: 320 },
+  actions: { gap: 4 },
+});
+"
+
+ ❯ test/fixes-r94.test.ts:33:40
+     31|   it("the screens pick the web lines on web", () => {
+     32|     const src = (p: string) => readFileSync(join(__dirname, "../src", …
+     33|     expect(src("lock/LockScreen.tsx")).toMatch(/Platform\.OS === "web"…
+       |                                        ^
+     34|     expect(src("screens/Onboarding/LockOffer.tsx")).toMatch(/lock\.exp…
+     35|     expect(src("screens/Settings/Settings.tsx")).toMatch(/settings\.se…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  src/storage/wipe.web.test.ts > web wipe (F378) > deletes both IndexedDB databases, web storage and every cache but the app-shell precache, and keeps models when not asked
+AssertionError: expected [ 'inborn', 'inborn-documents' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "inborn",
++   "inborn-documents",
++ ]
+
+ ❯ src/storage/wipe.web.test.ts:99:34
+     97|     expect(await names(factory)).toEqual(["inborn", "inborn-documents"…
+     98|     const report = await wipe({ models: false }, env);
+     99|     expect(await names(factory)).toEqual([]);
+       |                                  ^
+    100|     expect(local.length).toBe(1);
+    101|     expect(local.getItem("inborn.web.model")).toBe("instant");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  src/storage/wipe.web.test.ts > web wipe (F378) > removes the model files too when the user asked for it
+AssertionError: expected [ 'models', 'cache', 'incoming.pdf' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "models",
++   "cache",
++   "incoming.pdf",
++ ]
+
+ ❯ src/storage/wipe.web.test.ts:114:30
+    112|     const { env, tree, local } = await seeded();
+    113|     await wipe({ models: true }, env);
+    114|     expect([...tree.keys()]).toEqual([]);
+       |                              ^
+    115|     expect(local.length).toBe(0);
+    116|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  src/storage/wipe.web.test.ts > web wipe (F378) > is not blocked forever by a connection someone left open
+AssertionError: expected [ 'inborn', 'inborn-documents' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "inborn",
++   "inborn-documents",
++ ]
+
+ ❯ src/storage/wipe.web.test.ts:126:34
+    124|     open.close();
+    125|     await new Promise((r) => setTimeout(r, 20));
+    126|     expect(await names(factory)).toEqual([]);
+       |                                  ^
+    127|   });
+    128| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  src/screens/Settings/storageSizes.web.test.ts > web storage sizes (F379) > counts chats in IndexedDB and model bytes in OPFS
+AssertionError: expected 0 to be greater than 1000
+ ❯ src/screens/Settings/storageSizes.web.test.ts:29:25
+     27|     repo.close();
+     28|     const sizes = await storageSizes({ indexedDB: factory, storage: op…
+     29|     expect(sizes.chats).toBeGreaterThan(1000);
+       |                         ^
+     30|     expect(sizes.models).toBe(533_000_200 + 467_958_912);
+     31|     expect(sizes.documents).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  src/screens/Settings/storageSizes.web.test.ts > web storage sizes (F379) > counts vectors by their buffer size
+TypeError: valueBytes is not a function
+ ❯ src/screens/Settings/storageSizes.web.test.ts:36:12
+     34|
+     35|   it("counts vectors by their buffer size", () => {
+     36|     expect(valueBytes({ v: new Float32Array(1024) })).toBe(1 + 4096);
+       |            ^
+     37|   });
+     38| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  15 failed (15)
+   Start at  12:35:12
+   Duration  985ms (transform 79%, import 17%, tests 4%)
+
