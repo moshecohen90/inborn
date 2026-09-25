@@ -80,3 +80,15 @@ token's R2 permission is fixed.
 Separately: while diagnosing the 403, a debug command (`security find-generic-password -g`, no `-a` filter) printed
 that Keychain entry's password value in cleartext to an agent transcript — a process mistake, not a script bug.
 Worth rotating the token once R2 access is restored, out of caution.
+
+## Unblocked 25.9.2026 ~09:20 — uploaded with the R2-scoped token
+
+The `inborn-r2` token (Keychain `inborn-cloudflare-api-old-readonly`, created 25.9) has Workers R2 Storage: Edit
+on `inborn-models`; `publish-models.mjs` run with it uploaded the one missing object and re-verified all eight:
+
+- `v1/multilingual-e5-large-instruct-Q6_K.gguf` → CDN `200`, `content-length: 467958912`, range `206` first and last.
+- The other seven objects were already at the catalog's size (skipped) and PASS the same check.
+
+The deploy token `inborn-deploy-2026-09-24` (Keychain `inborn-cloudflare-api` / `token`) was rolled twice in the
+dashboard the same morning; the value that had reached an agent transcript is dead, the live value is only in the
+Keychain and verifies `active`.
