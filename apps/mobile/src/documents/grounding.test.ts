@@ -8,7 +8,7 @@ const src = (p: string) => readFileSync(join(__dirname, p), "utf8");
 describe("F365 · the library judges hits with its own embedder's doors", () => {
   const library = src("./library.ts");
   it("the prompt and the logcat line both use the doors of the embedder that produced the cosines", () => {
-    expect(library).toMatch(/const embedderId = this\.embedderRef\.embedder\.id;/);
+    expect(library).toMatch(/const embedderId = lexical \? LEXICAL_INDEX_ID : this\.embedderRef!\.embedder\.id;/);
     expect(library).toMatch(/const doors = relevanceDoors\(embedderId\);/);
     expect(library).toMatch(/buildRagPrompt\(\{[^}]*embedderId,/);
   });

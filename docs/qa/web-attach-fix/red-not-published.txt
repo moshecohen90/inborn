@@ -1,0 +1,7 @@
+ × src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > classifies connection, space, verification and everything else 5ms
+ ✓ src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > no locale ever shows a class name, a file path or the raw text 7ms
+ × src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > each kind has its own sentence, and the unknown one is not blank 1ms
+ ✓ src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > a browser that knows it is offline says so, whatever the worker reported 0ms
+ ✓ src/vault/failureText.test.ts > F349 · a failed download reads as one plain sentence > a platform with no store path keeps its own advice 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  2 failed | 3 passed (5)

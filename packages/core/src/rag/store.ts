@@ -36,9 +36,11 @@ export class MemoryEmbeddingStore implements EmbeddingStore {
   }
 
   async putChunks(chunks: Chunk[], vectors: Float32Array[]): Promise<void> {
-    if (chunks.length !== vectors.length) throw new Error("chunks and vectors differ in length");
+    if (vectors.length && chunks.length !== vectors.length) throw new Error("chunks and vectors differ in length");
     chunks.forEach((c, i) => {
       this.chunks.set(c.id, c);
+      /* A word index (no index model yet) keeps its chunks with no vector; a rebuild replaces the page later. */
+      if (!vectors.length) return void this.vectors.delete(c.id);
       const { q, scale } = quantize(vectors[i]!);
       this.vectors.set(c.id, { chunkId: c.id, docId: c.docId, dim: q.length, scale, q });
     });

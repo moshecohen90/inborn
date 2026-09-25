@@ -91,14 +91,18 @@ describe("F336 · a document indexed by the old embedder is rebuilt on the first
     expect(prompt.used.map((h) => h.chunk.text)).toEqual([GERMAN]);
   });
 
-  it("without the new embedder installed it waits as no-embedder instead of being searched", async () => {
+  /* Round 93: its rows stay, searched by their words, until the new embedder lands and rebuilds them. */
+  it("without the new embedder installed it is searched by its words, then rebuilt once the embedder lands", async () => {
     await nomicBuilt();
     embedderMissing = true;
     const library = new DocumentLibrary();
     await library.ready();
     library.attach("chat", "old");
-    expect(library.document("old")).toMatchObject({ status: "failed", error: "no-embedder", chunkCount: 0, indexedPages: 0 });
-    expect(library.attachmentState("chat").blocked).toBe("no-embedder");
+    expect(library.document("old")).toMatchObject({ status: "indexed", embedModel: "embed-nomic", chunkCount: 1 });
+    expect(library.attachmentState("chat").blocked).toBeNull();
+    const words = await library.ask("Which nomic chunk is stale?", { docIds: ["old"] });
+    expect(words.lexical).toBe(true);
+    expect(words.prompt.used.map((h) => h.chunk.docId)).toEqual(["old"]);
 
     embedderMissing = false;
     await library.refreshEmbedder();

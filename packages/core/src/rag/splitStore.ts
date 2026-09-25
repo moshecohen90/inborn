@@ -38,7 +38,7 @@ export class SplitEmbeddingStore implements EmbeddingStore {
     const ramAt: number[] = [];
     const savedAt: number[] = [];
     chunks.forEach((c, i) => (this.isRam(c.docId) ? ramAt : savedAt).push(i));
-    const write = (where: EmbeddingStore, at: number[]) => (at.length ? where.putChunks(at.map((i) => chunks[i]!), at.map((i) => vectors[i]!)) : Promise.resolve());
+    const write = (where: EmbeddingStore, at: number[]) => (at.length ? where.putChunks(at.map((i) => chunks[i]!), vectors.length ? at.map((i) => vectors[i]!) : []) : Promise.resolve());
     await Promise.all([write(this.saved, savedAt), write(this.ram, ramAt)]);
   }
 

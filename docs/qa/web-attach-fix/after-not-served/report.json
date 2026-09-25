@@ -1,0 +1,37 @@
+{
+  "url": "http://127.0.0.1:62418",
+  "modelsDir": "/var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/inborn-noembed-Uh9slN",
+  "noEmbed": true,
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "hold": "The document index model can't be downloaded here. The attached file is searched by exact words only.Send, exact words onlyCancel",
+      "answer": "This file contains greenhouse maintenance notes regarding the Lindqvist greenhouse's heating, irrigation schedule, and seasonal bean rotation.",
+      "citations": "SOURCESgreenhouse-notes.txt · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "navigated: http://127.0.0.1:62418/",
+        "navigated: http://127.0.0.1:62418/",
+        "navigated: http://127.0.0.1:62418/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:62418/ae53057c-227b-4304-9dfb-5507c218067a",
+        "worker: blob:http://127.0.0.1:62418/1a8c6a7c-867c-41e6-8917-e1e84cb5faf1",
+        "worker: blob:http://127.0.0.1:62418/42c10356-2025-43ea-8ee8-117df56f2e15",
+        "worker: blob:http://127.0.0.1:62418/6e11272d-246f-41f5-b596-ef8019b869a0",
+        "worker: blob:http://127.0.0.1:62418/150859b9-496f-45c9-b477-a48fb51331d4",
+        "worker: blob:http://127.0.0.1:62418/a0d69b59-f3dd-48d1-a347-277efaf75f1c",
+        "worker: blob:http://127.0.0.1:62418/4baa1640-7429-416f-9257-25d99646a0fd",
+        "info: [wllama] loaded instant in 1254 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1268 ms",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 519672c5-a2d6-4c11-95e2-650eaae8b7d4#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    }
+  },
+  "fullLog": [
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 519672c5-a2d6-4c11-95e2-650eaae8b7d4#0 cos=0.000 terms=0 bm25=0.00 KEPT"
+  ]
+}
