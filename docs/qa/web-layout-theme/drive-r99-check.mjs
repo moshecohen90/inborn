@@ -43,7 +43,7 @@ for (const lng of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseu
 }
 await setLocale(null); await page.close();
 /* W1: Auto follows a live OS change; the clock rule still wins at night */
-const bgOf = (pg) => pg.evaluate(() => getComputedStyle(document.querySelector('[data-testid="web-strip"]').parentElement).backgroundColor);
+const bgOf = (pg) => pg.evaluate(() => window.getComputedStyle(document.querySelector('[data-testid="web-strip"]').parentElement).backgroundColor);
 const DARK = "rgb(10, 13, 17)";
 for (const hour of [12, 20]) {
   const pg = await ctx.newPage();
