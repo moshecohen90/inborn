@@ -1,3 +1,4 @@
+/* global window */
 /* Round 99 red/green driver: W2 pseudo sweep, W8 PRO chip row, W1 live Auto theme. OUT=dir TAG=before|after */
 import { createRequire } from "node:module";
 import { mkdirSync, writeFileSync } from "node:fs";
