@@ -15,7 +15,7 @@ const LOCALES = ["en", "de", "es", "fr", "pt-BR", "ja", "ko", "zh-Hant"];
 
 describe("F369 · the chat answers through the loop guard", () => {
   it("wraps the answer stream of whatever engine is loaded", () => {
-    expect(chat).toMatch(/for await \(const d of guardLoops\(engine\.generate\(s, messages, opts, ac\.signal\), stopLoop\)\)/);
+    expect(chat).toMatch(/for await \(const d of guardLoops\(engine\.generate\(s, messages, opts, ac\.signal\), stopLoop, \{ request: asked \}\)\)/);
   });
 
   it("stopping aborts generation and marks the turn a loop", () => {

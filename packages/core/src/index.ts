@@ -12,6 +12,7 @@ export * from "./chat/report";
 export * from "./chat/markdown";
 export * from "./chat/math";
 export * from "./chat/loop";
+export * from "./chat/join";
 export * from "./chat/length";
 export * from "./chat/export";
 export * from "./chat/language";

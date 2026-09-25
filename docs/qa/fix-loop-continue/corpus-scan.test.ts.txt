@@ -1,0 +1,52 @@
+/* F389 corpus check: every answer-like string in docs/qa, through the r86 guard (no context) and the r97 guard (with the user's message when the file has one). */
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { detectLoop } from "../src/chat/loop";
+import { detectLoop as oldDetect } from "../src/chat/zz-loop-old";
+
+const ROOT = join(__dirname, "../../../docs/qa");
+const ANSWER = /^(answer|reply|content|text|response|assistant|output|shown|final)$/i;
+const ASK = /^(question|prompt|ask|user|q|input|message|send)$/i;
+function files(d: string): string[] {
+  return readdirSync(d).flatMap((f) => {
+    const p = join(d, f);
+    return statSync(p).isDirectory() ? files(p) : p.endsWith(".json") ? [p] : [];
+  });
+}
+it("scans", () => {
+  const seen = new Set<string>();
+  const rows: { file: string; answer: string; ask: string }[] = [];
+  const walk = (v: unknown, file: string) => {
+    if (Array.isArray(v)) return v.forEach((x) => walk(x, file));
+    if (!v || typeof v !== "object") return;
+    const o = v as Record<string, unknown>;
+    const ask = Object.entries(o).find(([k, x]) => ASK.test(k) && typeof x === "string")?.[1] as string | undefined;
+    for (const [k, x] of Object.entries(o)) {
+      if (typeof x === "string" && ANSWER.test(k) && x.length >= 40 && /\p{L}/u.test(x) && !seen.has(x)) {
+        seen.add(x);
+        rows.push({ file: file.slice(ROOT.length + 1), answer: x, ask: ask ?? "" });
+      } else walk(x, file);
+    }
+  };
+  for (const f of files(ROOT)) {
+    try { walk(JSON.parse(readFileSync(f, "utf8")), f); } catch { /* not JSON */ }
+  }
+  let oldHits = 0, newHits = 0, ctxHits = 0, withAsk = 0, worst = 0;
+  const lines: string[] = [];
+  for (const r of rows) {
+    const o = oldDetect(r.answer);
+    const n = detectLoop(r.answer);
+    const t0 = performance.now();
+    const c = detectLoop(r.answer, { request: r.ask });
+    worst = Math.max(worst, performance.now() - t0);
+    if (r.ask) withAsk++;
+    if (o) oldHits++;
+    if (n) newHits++;
+    if (c) ctxHits++;
+    if (o || n || c) lines.push(`${o ? "OLD" : "---"} ${n ? "NEW" : "---"} ${c ? "CTX" : "---"}  ${r.file}  ${JSON.stringify(r.answer.slice(0, 90))}`);
+  }
+  const out = [`answers: ${rows.length} (with the user's message: ${withAsk}) from ${files(ROOT).length} json files`, `r86 guard trips: ${oldHits}`, `r97 guard, no context: ${newHits}`, `r97 guard, with context: ${ctxHits}`, `slowest call with context: ${worst.toFixed(2)} ms`, "", ...lines].join("\n");
+  writeFileSync(join(ROOT, "fix-loop-continue/corpus-scan.txt"), out + "\n");
+  console.log(out);
+});

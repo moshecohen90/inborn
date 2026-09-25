@@ -20,6 +20,7 @@ import {
   contextLevel,
   crisisResources,
   detectCrisis,
+  continuationSeparator,
   describeLoopCut,
   guardLoops,
   findPersona,
@@ -176,6 +177,8 @@ const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content"
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
 const NO_SNOOZE: readonly string[] = [];
+
+const CONTINUE_PROMPT = "Continue exactly where you stopped. Do not repeat what you already wrote.";
 
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, onSwitchModel, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
@@ -442,6 +445,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current = ac;
     stopReason.current = null;
     let reply = "";
+    /* F390: Continue joins the rest to the words on screen with the separator the script uses, decided once on the first text. */
+    let joint: string | null = prefix ? null : "";
+    const shown = (): string => {
+      if (joint === null && reply) joint = continuationSeparator(prefix, reply);
+      return prefix + (joint ?? "") + reply;
+    };
     let reasoning = "";
     let usage: Usage | undefined;
     let tokens = 0;
@@ -464,7 +473,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     };
     /* §8.8 row 5a: the answer on screen is also on disk, marked as a system stop, so a jetsam kill leaves it there to Continue. */
     const writeThrough = async (): Promise<void> => {
-      const content = prefix + reply;
+      const content = shown();
       try {
         if (savedId) await store.updateMessage(chatIdNow, savedId, { content, stopped: true, stoppedBy: "system", ...(reasoning ? { reasoning } : {}) });
         else {
@@ -485,6 +494,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const facts = can("memory") ? await store.memoryFor(chatIdNow, persona.id) : [];
       const lastUserAt = history.map((m) => m.role).lastIndexOf("user");
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
+      /* F389: what the user asked for, so repetition they requested is not cut as a loop; Continue's own instruction is not the ask. */
+      const asked = [...history].reverse().find((m) => m.role === "user" && m.content !== CONTINUE_PROMPT)?.content ?? "";
       /* The notice belongs to the answer below it, so a fresh turn withdraws the last one; Continue keeps it, since it resumes that same answer. */
       if (!existingMessageId) setNoneMatched(false);
       if (!existingMessageId) setReindexing(null);
@@ -598,11 +609,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         stopReason.current = "loop";
         ac.abort();
       };
-      for await (const d of guardLoops(engine.generate(s, messages, opts, ac.signal), stopLoop)) {
+      for await (const d of guardLoops(engine.generate(s, messages, opts, ac.signal), stopLoop, { request: asked })) {
         if (d.loop) {
           looped = true;
           reply = d.loop.text;
-          const snapshot = prefix + reply;
+          const snapshot = shown();
           patch((x) => ({ ...x, content: snapshot }));
           /* Not behind __DEV__: the QA harness and a release logcat both need to see that an answer was cut. */
           console.log(describeLoopCut(d.loop));
@@ -620,7 +631,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }
           reply += d.text;
           tokens++;
-          const snapshot = prefix + reply;
+          const snapshot = shown();
           patch((x) => ({ ...x, content: snapshot }));
           if (partial.due(Date.now(), reply.length)) await writeThrough();
           if (tokens % 8 === 0) {
@@ -642,7 +653,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         reasoning = "";
         reasoningMs = undefined;
         citations = undefined;
-        patch((x) => ({ ...x, content: prefix + reply, reasoning: "" }));
+        patch((x) => ({ ...x, content: shown(), reasoning: "" }));
       }
       /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
       const guardStopped = wasStoppedByGuard();
@@ -654,10 +665,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
         citations = undefined;
-        patch((x) => ({ ...x, content: prefix + reply }));
+        patch((x) => ({ ...x, content: shown() }));
       } else if (citations) {
         /* A SOURCES strip under words no passage carried is a fabricated citation (QA F366). */
-        const kept = groundedCitations(prefix + reply, lastUser, ragUsed, citations);
+        const kept = groundedCitations(shown(), lastUser, ragUsed, citations);
         if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
         citations = kept.length ? kept : undefined;
       }
@@ -668,7 +679,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         keptId = savedId;
         /* stopped/stoppedBy are written unconditionally: the write-through marked the row a system stop, and this turn may have ended well. */
         await store.updateMessage(chatIdNow, savedId, {
-          content: prefix + reply,
+          content: shown(),
           stopped: !!stopped,
           stoppedBy: stoppedBy ?? null,
           ...(reasoning ? { reasoning } : {}),
@@ -677,7 +688,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ...(citations?.length ? { citations } : {}),
           ...(safety ? { safety } : {}),
         });
-        patch((x) => ({ ...x, content: prefix + reply, streaming: false, stopped: !!stopped, stoppedBy, loop: loopCut, ...(usage ? { usage } : {}), ...(citations?.length ? { citations } : {}), ...(safety ? { safety } : {}) }));
+        patch((x) => ({ ...x, content: shown(), streaming: false, stopped: !!stopped, stoppedBy, loop: loopCut, ...(usage ? { usage } : {}), ...(citations?.length ? { citations } : {}), ...(safety ? { safety } : {}) }));
       } else {
         const saved = await store.appendMessage({
           chatId: chatIdNow,
@@ -837,7 +848,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (!id || busy) return;
     const at = rowsRef.current.findIndex((r) => r.id === row.id);
     const before = wire(rowsRef.current.slice(0, at)).map(toMessage);
-    const history: Message[] = [...before, { role: "assistant", content: row.content }, { role: "user", content: "Continue exactly where you stopped. Do not repeat what you already wrote." }];
+    const history: Message[] = [...before, { role: "assistant", content: row.content }, { role: "user", content: CONTINUE_PROMPT }];
     setRows((all) => all.map((x) => (x.id === row.id ? { ...x, streaming: true, stopped: false, loop: false } : x)));
     await generate(id, history, row.id, row.content, row.id);
   };

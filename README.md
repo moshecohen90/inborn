@@ -6226,3 +6226,39 @@ MODELS_DIR=/Users/moshecohen/dev/inborn/.models DEPLOYED_LIKE=1 INDEX_ORIGIN=htt
 
 Tests red first: `red-gguf-magic.txt`, `red-ocr-wording.txt`, `red-ask-none-matched.txt`, `red-reembed-stored.txt`,
 `red-twin-source-gone.txt`.
+## Fixes round 97: the loop guard keeps repetition the user asked for, and Continue no longer glues words (branch `fix-loop-continue`) — 25.9.2026
+
+The web pass found both (F8 and F9 in its findings). They are fixed here as F389 and F390.
+
+- **Asked-for repetition stays (F389).** "Repeat exactly this sentence five times, each on its own line: The quick brown
+  fox…" came back as one line plus the loop notice, because round 86's guard counts any 8+ code point unit three times in
+  a row as a loop. The guard now also receives the user's message. A unit the user quoted, or any unit after an explicit
+  ask, may repeat as many times as the ask says. `repetitionRequest()` in `packages/core/src/chat/loop.ts` reads the ask
+  in the 8 locales: "five times", "3 lines", "fünfmal", "cinco veces", "cinq fois", "5回", "다섯 번", "五遍", and
+  repeat, chorus and lyrics words without a count. An ask with no count allows 10 copies of a quoted or line-structured
+  unit. An ask with a count allows exactly that many. Past the count, the guard still cuts, and it keeps the copies asked
+  for, not one. A doubled unit is judged at its own period, so pairing copies cannot dodge the count. Continue's own
+  instruction is never read as the ask.
+- **Degenerate loops still trip.** Round 86's Japanese loop trips with the user's question as context. So do an
+  unrequested five-line repeat and a loop of a sentence the user never asked for. The corpus check reads every answer-like
+  string in `docs/qa`, 361 unique answers from 156 JSON files. Round 86's guard and this one flag the same 3 strings,
+  all real loops from round 83, with or without the user's message. The slowest call took 2.18 ms
+  (`corpus-scan.txt`).
+- **Continue joins with the right separator (F390).** `continueRow` wrote the continuation straight after the stopped
+  text, so "…trade routes" + "Europe's" rendered "routesEurope's". `continuationSeparator()` in
+  `packages/core/src/chat/join.ts` adds a space between two words. It adds nothing when the text ends in whitespace, a
+  newline or an open bracket or quote, when the model starts with punctuation or its own space, or when either side is
+  Chinese, Japanese, Thai, Lao, Khmer or Burmese. Korean gets a space, since it spaces its words. `Chat.tsx` builds every
+  copy of the row's text through one join, decided once on the first continued text.
+- **Tests, red first.** `packages/core/test/fixes-r97.test.ts` has 26 cases, and 23 were red on the old code
+  (`red-r97.txt`). The 3 that stayed green are the must-still-trip loops. `apps/mobile/test/fixes-r97.test.ts` pins the
+  chat wiring and was 2 of 2 red without the `Chat.tsx` change (`red-chat-wiring.txt`). Two older tests that pinned the
+  exact source text were updated to the new calls.
+- **Headless proof on the web build** with the local Instant model (`e2e/e2e.mjs`, `e2e/after.json`, `shots/`). The
+  English repeat request gave five lines with no notice. The model wrote one line on its first try, which is the model,
+  not a cut, since no `loop cut` line was logged. The Chinese request gave five lines on the first try. Stop was
+  pressed while the last character was a letter. In English, "…the intricate web of" + Continue reads "web of The spice
+  trade", with a space. In Chinese, "…經濟命脈。隨著" + Continue reads "隨著在中世紀歐洲", with no space. That the model
+  restarts its sentence on Continue is a separate model limit.
+
+Evidence in `docs/qa/fix-loop-continue/`.
