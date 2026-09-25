@@ -73,13 +73,7 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
   return (
     <View testID="web-strip" style={[styles.strip, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
       <View style={styles.stripText}>
-        <View style={styles.summaryRow}>
-          <Text style={[styles.caption, styles.grow, { color: theme.text2 }]}>{t("web.notice")}</Text>
-          <Pressable testID="web-strip-details" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.detailsBtn}>
-            <Icon name={open ? "chevronDown" : "chevronRight"} size={14} color={theme.text2} />
-            <Text style={[styles.caption, styles.strong, { color: theme.text2 }]}>{t("web.details")}</Text>
-          </Pressable>
-        </View>
+        <Text style={[styles.caption, styles.breakAnywhere, { color: theme.text2 }]}>{t("web.notice")}</Text>
         {/* The phone limit is a door, not a notice: it stays out where the reader it applies to cannot miss it. */}
         {phone ? (
           <Text testID="phone-door" style={[styles.caption, { color: theme.text }]}>
@@ -105,9 +99,16 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
           </View>
         ) : null}
       </View>
-      <Pressable testID="get-app" accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={[styles.getApp, { borderColor: theme.border }]}>
-        <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{t("web.getApp")}</Text>
-      </Pressable>
+      {/* The two actions wrap under the notice as one group when the row cannot hold all three (W2): nothing is pushed past the window. */}
+      <View style={styles.stripActions}>
+        <Pressable testID="web-strip-details" accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen((o) => !o)} hitSlop={6} style={styles.detailsBtn}>
+          <Icon name={open ? "chevronDown" : "chevronRight"} size={14} color={theme.text2} />
+          <Text style={[styles.caption, styles.strong, { color: theme.text2 }]}>{t("web.details")}</Text>
+        </Pressable>
+        <Pressable testID="get-app" accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={[styles.getApp, { borderColor: theme.border }]}>
+          <Text style={[styles.caption, styles.strong, styles.breakAnywhere, { color: theme.text }]}>{t("web.getApp")}</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -285,13 +286,14 @@ function DownloadDoor({ boot, theme, onReady }: { boot: WebBoot; theme: Theme; o
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  strip: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 12, paddingVertical: 6, borderBottomWidth: 1 },
-  stripText: { flex: 1, gap: 2 },
-  summaryRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  strip: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", columnGap: 12, rowGap: 2, paddingHorizontal: 12, paddingVertical: 6, borderBottomWidth: 1 },
+  /* 200 px is the narrowest the notice may get beside the actions before they drop to their own line. */
+  stripText: { flexGrow: 1, flexShrink: 1, flexBasis: 200, minWidth: 0, gap: 2 },
+  stripActions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-end", columnGap: 10, flexShrink: 1, minWidth: 0, marginStart: "auto" },
+  breakAnywhere: { overflowWrap: "anywhere" } as object,
   stripDetail: { gap: 2, paddingTop: 2 },
   /* The strip is already 44 tall because of Get the app, so the finger target costs no height, and hitSlop={6} buys nothing on the browser tier (F243). */
   detailsBtn: { flexDirection: "row", alignItems: "center", gap: 3, minHeight: MIN_TOUCH },
-  grow: { flex: 1 },
   getApp: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },

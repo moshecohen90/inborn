@@ -1,0 +1,25 @@
++
++ /** The Settings "Text size" multiplier, applied once through useType() on every surface (web included). */
++ export function applyTextScale(scale: number): void {
++   const next = Math.min(MAX_TEXT_SCALE, Math.max(0.5, Number.isFinite(scale) ? scale : 1));
++   if (next === textScale) return;
++   textScale = next;
++   for (const l of scaleListeners) l();
++ }
++
++ export function useTextScale(): number {
++   return useSyncExternalStore(subscribeScale, () => textScale, () => textScale);
++ }
++
+ ❯ src/services/systemScheme.test.ts:41:17
+     39|   it("useTheme reads the web store, so the hook re-renders on the OS c…
+     40|     const src = readFileSync(join(__dirname, "theme.ts"), "utf8");
+     41|     expect(src).toContain("systemSchemeWatch(");
+       |                 ^
+     42|     expect(src).toMatch(/useSyncExternalStore\(webSystem/);
+     43|   });
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  12:22:50
+   Duration  105ms (transform 50%, tests 25%, import 19%, worker 6%)
