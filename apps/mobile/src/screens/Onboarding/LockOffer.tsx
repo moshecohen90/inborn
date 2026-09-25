@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { LOCK_TIMEOUTS, type BiometricKind } from "@inborn/core";
@@ -13,9 +13,11 @@ import { useType } from "../../services/type";
 import { useWide } from "../../lib/useLayout";
 
 /** S53: the passcode variant reads as its own sentence instead of "a passcode opens Inborn". */
-export function lockCopy(t: (k: string, o?: Record<string, unknown>) => string, kind: BiometricKind, label: string): { require: string; explain: string } {
-  if (kind === "passcode") return { require: t("lock.require.passcode"), explain: t("lock.explain.passcode") };
-  return { require: t("lock.require", { biometric: label }), explain: t("lock.explain", { biometric: label }) };
+export function lockCopy(t: (k: string, o?: Record<string, unknown>) => string, kind: BiometricKind, label: string, inBrowser = Platform.OS === "web"): { require: string; explain: string } {
+  /* No app switcher to hide from in a browser (F380). */
+  const web = inBrowser ? ".web" : "";
+  if (kind === "passcode") return { require: t("lock.require.passcode"), explain: t(`lock.explain.passcode${web}`) };
+  return { require: t("lock.require", { biometric: label }), explain: t(`lock.explain${web}`, { biometric: label }) };
 }
 
 export const timeoutLabel = (t: (k: string, o?: Record<string, unknown>) => string, sec: number) => (sec === 0 ? t("lock.timeout.now") : t("lock.timeout.minutes", { count: sec / 60 }));

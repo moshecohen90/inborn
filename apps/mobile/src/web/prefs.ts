@@ -10,7 +10,7 @@ export function readEnginePref(): WebEngine {
   }
 }
 
-const MODEL_KEY = "inborn.web.model";
+export const MODEL_KEY = "inborn.web.model";
 
 /** The model this reader picked at the door, or null for "whatever this browser is recommended". */
 export function readModelPref(): string | null {

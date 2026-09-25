@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Platform, StyleSheet, Text } from "react-native";
 import { useTranslation } from "react-i18next";
-import { formatBytes } from "@inborn/core";
+import { formatBytes, formatModelBytes } from "@inborn/core";
 import { useTheme } from "../../services/theme";
 import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
@@ -45,9 +45,9 @@ export function Storage() {
   return (
     <Screen header={{ back: true, title: t("storage.title") }} testID="storage">
       <Section title={t("storage.stored")}>
-        <Row testID="storage-chats" label={t("storage.chats")} sub={storageKind === "sqlcipher" ? t("storage.chats.encrypted") : t("storage.chats.memory")} value={size(sizes?.chats)} />
-        <Row label={t("storage.documents")} value={size(sizes?.documents)} />
-        <Row label={t("storage.models")} sub={t("storage.models.sub")} value={size(sizes?.models)} />
+        <Row testID="storage-chats" label={t("storage.chats")} sub={t(storageKind === "sqlcipher" ? "storage.chats.encrypted" : storageKind === "indexeddb" ? "storage.chats.browser" : "storage.chats.memory")} value={size(sizes?.chats)} />
+        <Row testID="storage-documents" label={t("storage.documents")} sub={storageKind === "indexeddb" ? t("storage.chats.browser") : undefined} value={size(sizes?.documents)} />
+        <Row testID="storage-models" label={t("storage.models")} sub={t(Platform.OS === "web" && storageKind !== "sqlcipher" ? "storage.models.web" : "storage.models.sub")} value={sizes?.models === null || sizes?.models === undefined ? "—" : formatModelBytes(sizes.models)} />
         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
         <Row label={t("storage.reports")} value={size(sizes?.reports)} />
       </Section>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { attemptsLeft, showCountdown } from "@inborn/core";
@@ -19,7 +19,7 @@ export function LockScreen() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
-  const { lock, prefs } = useAppServices();
+  const { lock, prefs, storageKind } = useAppServices();
   const [passcodeOpen, setPasscodeOpen] = useState(false);
   const [wipeOpen, setWipeOpen] = useState(false);
   const prompted = useRef(false);
@@ -46,7 +46,7 @@ export function LockScreen() {
         <MonoLabel color={theme.text2} style={styles.locked} testID="lock-label">
           {t("lock.locked")}
         </MonoLabel>
-        <Text style={[styles.explain, { color: theme.text2 }]}>{biometric ? t("lock.lockedExplain", { biometric: label }) : t("lock.lockedExplainPasscode")}</Text>
+        <Text style={[styles.explain, { color: theme.text2 }]}>{t(`${biometric ? "lock.lockedExplain" : "lock.lockedExplainPasscode"}${Platform.OS === "web" && storageKind !== "sqlcipher" ? ".web" : ""}`, { biometric: label })}</Text>
         {countdown ? (
           <Text testID="wipe-countdown" style={[styles.explain, { color: theme.danger }]}>
             {countdown}

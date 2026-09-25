@@ -14,7 +14,8 @@ function tauriDriver(): SqlDriver {
   };
 }
 
-const IDB_NAME = "inborn-documents";
+export const DOCUMENTS_IDB_NAME = "inborn-documents";
+const IDB_NAME = DOCUMENTS_IDB_NAME;
 const IDB_STORE = "snapshot";
 
 function idbGet(): Promise<StoreSnapshot | null> {
@@ -24,10 +25,13 @@ function idbGet(): Promise<StoreSnapshot | null> {
     req.onupgradeneeded = () => req.result.createObjectStore(IDB_STORE);
     req.onerror = () => resolve(null);
     req.onsuccess = () => {
-      const tx = req.result.transaction(IDB_STORE, "readonly");
+      const db = req.result;
+      const tx = db.transaction(IDB_STORE, "readonly");
       const get = tx.objectStore(IDB_STORE).get("v1");
       get.onsuccess = () => resolve((get.result as StoreSnapshot | undefined) ?? null);
       get.onerror = () => resolve(null);
+      /* A connection left open blocks Delete everything (F378). */
+      tx.oncomplete = tx.onabort = () => db.close();
     };
   });
 }
@@ -39,10 +43,17 @@ function idbPut(snapshot: StoreSnapshot): Promise<void> {
     req.onupgradeneeded = () => req.result.createObjectStore(IDB_STORE);
     req.onerror = () => resolve();
     req.onsuccess = () => {
-      const tx = req.result.transaction(IDB_STORE, "readwrite");
+      const db = req.result;
+      const tx = db.transaction(IDB_STORE, "readwrite");
       tx.objectStore(IDB_STORE).put(snapshot, "v1");
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => resolve();
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onerror = tx.onabort = () => {
+        db.close();
+        resolve();
+      };
     };
   });
 }
@@ -50,9 +61,16 @@ function idbPut(snapshot: StoreSnapshot): Promise<void> {
 /** Browser: the in-memory store, snapshotted into IndexedDB after every write (no SQLCipher on the web, like the chats). */
 class PersistedMemoryStore implements EmbeddingStore {
   private timer: ReturnType<typeof setTimeout> | null = null;
+  private disposed = false;
   constructor(private readonly inner: MemoryEmbeddingStore) {}
 
+  dispose(): void {
+    this.disposed = true;
+    if (this.timer) clearTimeout(this.timer);
+  }
+
   private touch(): void {
+    if (this.disposed) return;
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(() => void idbPut(this.inner.snapshot()), 300);
   }
@@ -85,6 +103,13 @@ class PersistedMemoryStore implements EmbeddingStore {
 }
 
 let opened: Promise<EmbeddingStore> | null = null;
+
+/** Delete everything: the next open reads the (now empty) database, and the old store never writes again. */
+export function forgetRagStore(): void {
+  const was = opened;
+  opened = null;
+  void was?.then((s) => (s instanceof PersistedMemoryStore ? s.dispose() : undefined)).catch(() => undefined);
+}
 
 export function openRagStore(): Promise<EmbeddingStore> {
   return (opened ??= (async () => {

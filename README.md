@@ -6149,3 +6149,35 @@ has no OCR, so a scanned PDF says "needs OCR" and a photo attached as a file say
 still paraphrases loosely inside a grounded answer (the turbine PDF answer names a railway that is not in it). The
 CDN upload of the index model is still blocked on the Cloudflare token, so a deployed browser gets the word search
 until it lands.
+## Fixes round 94: Delete everything empties the browser, and the web tells the truth about storage and the lock (branch `web-wipe-storage`) — 25.9.2026
+
+The web full pass (F2, F14, F4, W7) found three places where the browser build said one thing and did another.
+
+- **F378 · Delete everything on the web now deletes the chats.** `apps/mobile/src/storage/wipe.ts` (web) cleared only
+  localStorage and sessionStorage, so after a wipe IndexedDB still held `inborn` with the chats and messages and
+  `inborn-documents` with the document index. The chat list came back after onboarding. The wipe now deletes both
+  databases and any other database the origin holds. It also clears web storage and every Cache Storage entry except
+  Workbox's app-shell precache, and removes OPFS files. The precache is the same public app files for every visitor,
+  and Workbox only refills a deleted precache when the manifest carries SRI hashes, which ours does not. Deleting it
+  would have ended offline boot. With "Also delete downloaded models" off, the OPFS `models` folder and wllama's own
+  `cache` folder (the e5 embedder, 468 MB) stay, and so does the saved model choice. Without that choice the door
+  offered a fresh 1.28 GB download of Fast while Instant sat on disk. The documents store closed its IndexedDB
+  connection after every read and write, and a pending snapshot write is cancelled on wipe, so neither can block the
+  delete or recreate the database a moment later. The same wipe backs "Delete everything after failed unlock attempts".
+- **F379 · Privacy & storage on the web shows what is stored.** Chats and Documents read "in this browser's storage
+  (IndexedDB)" with the bytes counted from every row of each database. Models read "in this browser's private files
+  (OPFS)" with the real bytes of the `models` and wllama `cache` folders, formatted like every other model size. The
+  old screen said "in memory for this run · 0 B" and showed the origin estimate as the model size.
+- **F380 · Web copy that is true.** On the web the lock screen says "Your passcode opens Inborn. Chats in this
+  browser's storage are not encrypted." instead of "Chats stay encrypted until then". The passcode row and the
+  onboarding lock offer drop "Also hides chats in the app switcher". "Hide in app switcher" says "Not available in a
+  browser." Native wording is unchanged, and the desktop shell keeps the encrypted wording because its chats are in
+  SQLCipher. Seven new keys in 8 locales plus pseudo. The lock's focus behaviour was not touched.
+
+Evidence in `docs/qa/web-wipe-storage/`: `red-tests.txt` (15 failing against the base source), `green-tests.txt`,
+before/after screenshots at 1440 and 390 from headless Chromium, and `drive-*.json` with the IndexedDB counts read
+from the page before the wipe, right after it, and after a reload. Before the fix, the base build still held 1 chat,
+4 messages and 1 document after the wipe at both widths, and the reload showed the download door. After it, both
+widths read 0 chats, 0 messages and 0 documents right after the wipe and after a reload, onboarding went straight to
+an empty chat list, and the page logged no errors. "Also delete downloaded models" on is covered by the unit test,
+not by a browser run.

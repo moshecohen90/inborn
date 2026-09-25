@@ -4,7 +4,7 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
-import { getLibrary } from "../documents/library";
+import { getLibrary, resetLibrary } from "../documents/library";
 import { setClipboardExpiry } from "../lib/clipboard";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type DeliverySource, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
@@ -336,6 +336,7 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     /* Closed first: expo-sqlite refuses to delete a cached open file, and the next boot would be handed the old handle on the unlinked one (QA F15). */
     await bootedRef.current?.store.close().catch((e: unknown) => console.warn("[storage] close before wipe", e));
     await wipe(opts);
+    if (Platform.OS === "web") resetLibrary();
     await lockRef.current?.refresh();
     deletePrefs();
     const fresh = defaultPrefs(Date.now());

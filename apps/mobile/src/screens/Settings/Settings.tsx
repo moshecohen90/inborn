@@ -115,7 +115,7 @@ export function Settings() {
         <Row
           testID="row-hide"
           label={t("settings.security.hideInSwitcher")}
-          sub={Platform.OS === "android" ? t("settings.security.hideInSwitcher.android") : t("settings.security.hideInSwitcher.sub")}
+          sub={t(Platform.OS === "android" ? "settings.security.hideInSwitcher.android" : Platform.OS === "web" ? "settings.security.hideInSwitcher.web" : "settings.security.hideInSwitcher.sub")}
           toggle={prefs.lock.hideInSwitcher}
           onToggle={(v) => setLock({ hideInSwitcher: v })}
           disabled={Platform.OS === "web"}
