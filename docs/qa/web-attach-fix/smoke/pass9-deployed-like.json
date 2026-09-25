@@ -1,0 +1,18 @@
+  "deployedLike": {
+    "shellForIndexModel": "200 text/html; charset=utf-8",
+    "txt": {
+      "file": "greenhouse-notes.txt",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "holdScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/smoke2/web-smoke-attach-hold-greenhouse-notes.txt.png",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "This document outlines greenhouse maintenance details for a heated Lindqvist greenhouse, including heating by heat pump and tomato bed rotation schedules.",
+      "sources": "SOURCESgreenhouse-notes.txt · part 1",
+      "wordsOnly": true,
+      "noneMatched": false,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/smoke2/web-smoke-attach-greenhouse-notes.txt.png"
+    },
+    "modelLines": [
+      "log: [documents] greenhouse-notes.txt: indexed (words only, no index model) · 1/1 pages · 1 chunks · 9 ms (9 ms/page)",
+      "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 82da1474-22d1-4c66-8b94-c55116360582#0 cos=0.000 terms=0 bm25=0.00 KEPT"
+    ]
+  },

@@ -8,7 +8,7 @@ export { reciprocalRankFusion, mmr, type Ranked, type MmrCandidate } from "./fus
 export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDocuments, fenceMarkers, randomNonce, safeDocName, MAX_DOC_NAME, UNNAMED_DOC, type StrippedText, type FencedPassage } from "./injection";
 export { buildCitations, citationLabel, citationsForAnswer, groundedCitations, citedNumbers, pageGlyph, pageUnit, snippetOf, PAGE_WORDS, type PageUnit, type PageWords } from "./citations";
 export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, NOTHING_RELEVANT_RULE, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, DEFAULT_MIN_BM25, DEFAULT_EMBEDDER_ID, RELEVANCE_DOORS, UNMEASURED_DOORS, relevanceDoors, type RelevanceDoors, type PromptOptions } from "./prompt";
-export { indexDocument, chunkId, needsReindex, reindexFrom, vectorsValidUpTo, isSearchable, IndexCancelled, type IndexOptions } from "./indexer";
+export { indexDocument, reembedStored, chunkId, needsReindex, reindexFrom, vectorsValidUpTo, isSearchable, IndexCancelled, type IndexOptions } from "./indexer";
 export { isAboutAttachment, openingHits, lexicalEmbedder, LEXICAL_INDEX_ID } from "./overview";
 export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "./retriever";
 export { EmbedLanes, LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX, E5_QUERY_PREFIX } from "./embedder";

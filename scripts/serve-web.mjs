@@ -13,13 +13,17 @@
  * the sha256 is computed once per file and kept in a `<file>.sha256` sidecar next to it.
  * DIST=/path serves another export (default apps/mobile/dist; apps/web/dist is the deployable build with the service worker).
  * ISOLATION=off drops COOP/COEP to exercise the single-thread fallback.
+ * INDEX_ORIGIN lists the document index model at <origin>/v1/<file> with the catalog's bytes and sha256, without a local copy:
+ *   INDEX_ORIGIN=https://models.inbornapp.com node scripts/serve-web.mjs   (e5 from the CDN, the chat model from here)
+ * DEPLOYED_LIKE=1 answers every path it has no file for with the SPA shell (200 text/html), /models/ included except
+ * the chat aliases: what app.inbornapp.com does, and what made a HEAD probe take the shell for the index model (F1).
  */
 import { createServer } from "node:http";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { closeSync, createReadStream, existsSync, openSync, readFileSync, readSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { URL, fileURLToPath } from "node:url";
 import { isolationHeaders, securityHeaders } from "../apps/web/headers.mjs";
 import { MANIFEST_REL, readCatalog, webCompanion, webCompanions, webEligible, webModel } from "./web-manifest.mjs";
 
@@ -30,6 +34,8 @@ export const defaults = {
   /* The deployable build (with sw.js) when it exists, else the raw export. */
   dist: process.env.DIST ?? (existsSync(path.join(webDist, "index.html")) ? webDist : path.join(repoRoot, "apps/mobile/dist")),
   modelsOrigin: process.env.MODELS_ORIGIN ?? "",
+  indexOrigin: process.env.INDEX_ORIGIN ?? "",
+  deployedLike: process.env.DEPLOYED_LIKE === "1",
   modelsDir: process.env.MODELS_DIR ?? path.join(repoRoot, ".models"),
   /* Every model the deployed catalog offers a browser, or the door's choice (F311) cannot be exercised locally;
      an alias whose file is absent is simply left out of the served catalog. */
@@ -79,7 +85,7 @@ export function modelSha256(file) {
  * another GGUF, and the manifest must describe what this server actually hands out.
  * With no model on this machine it answers with the built dist's manifest, so the deployed catalog can be read here.
  */
-export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "" }) {
+export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "", indexOrigin = "" }) {
   const catalog = readCatalog();
   /* The same cut the deployed manifest makes (Pro, split and store-only models are not browser models); a dev alias
      for one of those would put a model on the door that the real origin never offers. */
@@ -97,6 +103,10 @@ export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "" }) 
   /* The document index model is served from this machine like Instant, so an attached file is testable without the CDN. */
   const companions = [];
   for (const m of webCompanions(catalog)) {
+    if (indexOrigin) {
+      companions.push(webCompanion(m, `${indexOrigin}/v1/${m.file}`));
+      continue;
+    }
     const file = resolveFile(`/models/${m.file}`, { dist: "", modelsDir, aliases: {} });
     if (!file) continue;
     const url = modelsOrigin ? `${modelsOrigin}/v1/${m.file}` : `/models/${m.file}`;
@@ -107,11 +117,18 @@ export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "" }) 
   return { version: catalog.version, publishedAt: new Date().toISOString(), models, companions, signature: "" };
 }
 
-const headersFor = (opts) => ({ ...securityHeaders(opts.modelsOrigin), ...(opts.isolation ? isolationHeaders : {}), "Cache-Control": "no-cache" });
+const originOf = (url) => (url ? new URL(url).origin : "");
+const headersFor = (opts) => ({ ...securityHeaders([originOf(opts.modelsOrigin), originOf(opts.indexOrigin)].filter(Boolean).join(" ")), ...(opts.isolation ? isolationHeaders : {}), "Cache-Control": "no-cache" });
 
 /** Maps a request path to a file, or null. Models come from modelsDir, everything else from dist. */
-export function resolveFile(urlPath, { dist, modelsDir, aliases }) {
+export function resolveFile(urlPath, { dist, modelsDir, aliases, deployedLike = false }) {
   const clean = path.posix.normalize(decodeURIComponent(urlPath.split("?")[0]));
+  const shell = path.join(dist, "index.html");
+  if (deployedLike && dist) {
+    if (clean.startsWith("/models/") && !aliases[clean.slice("/models/".length)]) return shell;
+    const found = resolveFile(urlPath, { dist, modelsDir, aliases });
+    return found ?? shell;
+  }
   if (clean.startsWith("/models/")) {
     const name = clean.slice("/models/".length);
     if (name.includes("/") || !name.endsWith(".gguf")) return null;
@@ -170,7 +187,7 @@ function handle(req, res, opts) {
   res.on("close", () => stream.destroy());
 }
 
-/** Starts the host; port 0 picks a free one. Resolves with the bound port and a close() function. */
+/** Starts the host; port 0 picks a free one. Resolves with the bound port, its live options and a close() function. */
 export function startServer(overrides = {}) {
   const opts = { ...defaults, ...overrides };
   const server = createServer((req, res) => handle(req, res, opts));
@@ -178,7 +195,7 @@ export function startServer(overrides = {}) {
     server.once("error", reject);
     server.listen(opts.port, "127.0.0.1", () => {
       const { port } = server.address();
-      resolve({ port, url: `http://127.0.0.1:${port}`, close: () => new Promise((r) => server.close(r)) });
+      resolve({ port, url: `http://127.0.0.1:${port}`, opts, close: () => new Promise((r) => server.close(r)) });
     });
   });
 }
@@ -193,5 +210,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   console.log(`serving ${defaults.dist} at ${url}${defaults.isolation ? "" : " (ISOLATION=off: single-thread WASM)"}`);
   console.log(instant ? `/models/instant.gguf -> ${instant}` : `/models/instant.gguf not found under ${defaults.modelsDir} (NullLM fallback)`);
   const index = modelsManifest(defaults).companions?.find((c) => c.role === "embedding");
+  if (defaults.deployedLike) console.log("DEPLOYED_LIKE: paths with no file, /models/ included, answer the SPA shell");
   console.log(index ? `document index model -> ${index.delivery[0].url} (${index.bytes} bytes)` : `document index model not found under ${defaults.modelsDir}: attached files are searched by their words only`);
 }

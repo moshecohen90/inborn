@@ -17,6 +17,7 @@ import {
   needsReindex,
   newId,
   reindexFrom,
+  reembedStored,
   vectorsValidUpTo,
   isSearchable as searchable,
   type Citation,
@@ -294,7 +295,7 @@ export class DocumentLibrary {
           : docs.some((d) => d.status === "needs-ocr")
             ? "needs-ocr"
             : /* Reading is over and nothing came out: an unreadable scan holds no source, so the turn must not go out as if it did (QA F302). */
-              unread.length > 0
+              unread.some((d) => d.status === "empty")
               ? "no-text"
               : null;
     return { hasAttachment: docs.length > 0, hasIndex, indexing, blocked, reading: reading.length };
@@ -338,11 +339,13 @@ export class DocumentLibrary {
       /* The same file picked twice is one document (models run D16): keep the indexed copy, drop the new one. */
       const twin = findDuplicate(this.docs.values(), sha256, bytes);
       if (twin) {
-        if (uri !== twin.uri) deleteFile(uri);
+        /* A browser forgets a picked file on reload: a twin with no bytes left takes the ones just picked. */
+        if (uri !== twin.uri && missingSource(twin.uri ? resolveDocUri(twin.uri) : "")) this.commit({ ...twin, uri });
+        else if (uri !== twin.uri) deleteFile(uri);
         /* A twin that never got an index is read again here: adding the file a second time is what a user does about it,
            and before this it was the one action that could not help (QA F138). OCR stays a decision the user makes. */
         if (twin.chunkCount === 0 && twin.status !== "needs-ocr") this.resume(twin.id, { ocr: opts.ocr ?? false });
-        return twin;
+        return this.docs.get(twin.id) ?? twin;
       }
       doc = { ...base, kind, uri, sha256 };
     } catch (e: unknown) {
@@ -400,6 +403,19 @@ export class DocumentLibrary {
     const extractor = this.extractors.find((x) => x.supports(doc.kind));
     if (!extractor) {
       this.commit({ ...doc, status: "failed", error: "unsupported" });
+      return;
+    }
+    /* The browser holds a picked file for one page load; a rebuild after a reload has only the stored passages. */
+    if (job.kind === "rebuild" && this.lanes && doc.reindexFrom && missingSource(doc.uri ? resolveDocUri(doc.uri) : "")) {
+      const started = Date.now();
+      const rebuilt = await reembedStored({ doc, store, embedder: this.lanes.index, signal: job.abort.signal }).catch((e: unknown) => {
+        console.warn(`[documents] ${doc.name}: re-embedding stored passages failed`, e);
+        return null;
+      });
+      if (!rebuilt) return;
+      console.log(`[documents] ${doc.name}: ${rebuilt.status} (re-embedded ${rebuilt.chunkCount} stored passages, source not held) · ${Date.now() - started} ms`);
+      this.commit(rebuilt);
+      this.retriever?.invalidate();
       return;
     }
     let opened: OpenedDocument & { render?: (index: number) => Promise<string> };

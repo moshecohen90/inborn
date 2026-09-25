@@ -53,6 +53,32 @@ export const isSearchable = (doc: Pick<DocumentRecord, "chunkCount" | "reindexFr
 /** The page from which a document's vectors are not in the current embedder's space: every page while nothing is rebuilt. */
 export const vectorsValidUpTo = (doc: Pick<DocumentRecord, "reindexFrom" | "indexedPages">): number => (doc.reindexFrom ? doc.indexedPages : Infinity);
 
+/**
+ * Rebuilds a document for `embedder` from the passages already stored, when its source cannot be read again (a browser
+ * keeps a picked file for one page load). The passages were cut to the index model's size, so only the vectors change.
+ */
+export async function reembedStored(o: { doc: DocumentRecord; store: EmbeddingStore; embedder: Embedder; batchSize?: number; signal?: AbortSignal }): Promise<DocumentRecord> {
+  const chunks = await o.store.chunksOf(o.doc.id);
+  const batchSize = o.batchSize ?? 8;
+  const vectors: Float32Array[] = [];
+  for (let i = 0; i < chunks.length; i += batchSize) {
+    if (o.signal?.aborted) throw new IndexCancelled();
+    vectors.push(...(await o.embedder.embed(forDocuments(o.embedder.id, chunks.slice(i, i + batchSize).map((c) => c.text)))));
+  }
+  await o.store.putChunks(chunks, vectors);
+  const doc: DocumentRecord = {
+    ...o.doc,
+    embedModel: o.embedder.id,
+    chunkCount: chunks.length,
+    indexedPages: chunks.reduce((max, c) => Math.max(max, c.page), 0),
+    status: chunks.length ? "indexed" : "empty",
+  };
+  delete doc.reindexFrom;
+  delete doc.error;
+  await o.store.putDocument(doc);
+  return doc;
+}
+
 export class IndexCancelled extends Error {
   constructor() {
     super("cancelled");

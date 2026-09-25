@@ -6078,6 +6078,7 @@ sheet → attach → photo hold → mic → ledger → paywall → Proof → air
   Choose button. It drops the "full vault lives in the app" sentence where the IN THE APP rows already say it.
 - **Strings** in all 8 locales plus pseudo, each in the register its screen already uses. **Tests:** `modelCopy`
   and `goodAtUses` browser cases, the seal's offline label in every locale, and the paywall block.
+
 ## Fixes round 93: an attached file reaches the model on the web (branch `web-attach-fix`) — 25.9.2026
 
 Moshe, on the web app run locally: "I attach a file and the model does not understand what it is; it is not added to
@@ -6181,3 +6182,47 @@ from the page before the wipe, right after it, and after a reload. Before the fi
 widths read 0 chats, 0 messages and 0 documents right after the wipe and after a reload, onboarding went straight to
 an empty chat list, and the page logged no errors. "Also delete downloaded models" on is covered by the unit test,
 not by a browser run.
+still paraphrases loosely inside a grounded answer (the turbine PDF answer names a railway that is not in it).
+
+### Round 93 follow-up: e5 on the CDN, the deployed host (F1) and Documents → Ask (F7)
+
+The index model is now on the CDN (`https://models.inbornapp.com/v1/multilingual-e5-large-instruct-Q6_K.gguf`, 200,
+467,958,912 bytes, ranges, `Access-Control-Allow-Origin: *`). The web verifier then found two more faults.
+
+- **F1, the deployed host.** Main looked for the index model with a HEAD on its own `/models/<file>` and accepted any
+  200. app.inbornapp.com answers a missing path with its SPA shell (200 text/html), so wllama loaded the shell
+  ("invalid magic characters: '<!DO'") and the console still said "[wllama] embedder embed-e5 loaded". Every document
+  then failed. The .txt answer was invented ("personal financial records"), and the .pdf got "no readable text ... run
+  OCR". Reproduced on main behind the verifier's proxy (`before-f1-proxy`).
+- **Fixed.** This branch has no HEAD probe. The index model comes only from the catalog's `companions` URL, into
+  OPFS, through the resumable worker. The worker now refuses a `text/html` answer, and any `.gguf` whose first bytes
+  are not `GGUF`, with "not a model file". It deletes those bytes and never writes the ready marker. The card shows
+  "This model is not on the download server yet", and the word search still answers with SOURCES
+  (`after-f1-proxy`). The OCR sentence is kept for a file that was read and held no text. A file whose read failed
+  gets "Inborn has not finished reading the file".
+- **Proven against the real CDN.** `DEPLOYED_LIKE=1 INDEX_ORIGIN=https://models.inbornapp.com` serves this build the
+  way app.inbornapp.com does, with the shell for `/models/<e5>`, and lists e5 at the CDN. Download fetched e5 from
+  models.inbornapp.com (GET 200, `application/octet-stream`). The host's `/models/<e5>` was never requested. The .txt,
+  .md, .pdf and .docx answered with SOURCES; the photo keeps its hold card (`after-cdn200`). Before, with the CDN at
+  404, the card said "not on the download server yet" and only the word search answered (`after-cdn404`).
+- **F7, Documents → Ask** answered an off-topic question from general knowledge with only "0 passages" under it. It
+  now uses the chat's rule and line: "Nothing in your documents matched this question. Answered without them." It
+  also shows the words-only notice (`after-f7-ask`).
+- **A word index outlives the page that picked its file.** The browser keeps a picked file in memory for one page load.
+  A file read by its words, then reopened after a reload once e5 was installed, could never be rebuilt, and said "Still
+  re-indexing" for good. The rebuild now re-embeds the passages already stored (`reembedStored`). The same file
+  picked again takes the place of a record whose bytes are gone, instead of returning it as failed.
+- **web:smoke pass 9** turns the host deployed-like, points the index model at a path that answers the shell, and
+  fails if Download does not end in "not on the download server", if anything loads the shell as a model, or if the
+  word search does not answer with SOURCES.
+
+Commands:
+
+```
+corepack pnpm web:build
+# deployed-like host, index model from the CDN, chat model from this machine
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models DEPLOYED_LIKE=1 INDEX_ORIGIN=https://models.inbornapp.com PORT=8787 corepack pnpm web:serve
+```
+
+Tests red first: `red-gguf-magic.txt`, `red-ocr-wording.txt`, `red-ask-none-matched.txt`, `red-reembed-stored.txt`,
+`red-twin-source-gone.txt`.

@@ -14,6 +14,7 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
+import { saysNoneMatched } from "../../lib/docsGate";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -58,6 +59,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<{ shown: Citation[]; cited: boolean }>({ shown: [], cited: true });
   const [notFound, setNotFound] = useState(false);
+  const [noneMatched, setNoneMatched] = useState(false);
+  const [wordsOnly, setWordsOnly] = useState(false);
   const [reindexing, setReindexing] = useState<{ pending: number; total: number } | null>(null);
   const [stats, setStats] = useState<string | null>(null);
   const autoFired = useRef(false);
@@ -68,6 +71,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
     setAnswer("");
     setCitations({ shown: [], cited: true });
     setNotFound(false);
+    setNoneMatched(false);
+    setWordsOnly(false);
     setReindexing(null);
     setStats(null);
     const ac = new AbortController();
@@ -78,8 +83,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setPhase({ kind: "retrieving" });
       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
       const length = planAnswerLength({ text, use: "documents" });
-      const { prompt, retrieveMs, reindexing: rebuilding } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
+      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
       setReindexing(rebuilding ?? null);
+      setWordsOnly(!!lexical);
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
       if (prompt.noAnswer) {
         setNotFound(true);
@@ -88,6 +94,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
         onResult?.({ question: text, answer: "", citations: [], cited: false, notFound: true, retrieveMs, promptTokens: 0, generateMs: 0, tokPerSec: 0, used });
         return;
       }
+      if (saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: prompt.used.length })) setNoneMatched(true);
       setPhase({ kind: "answering" });
       const started = Date.now();
       let reply = "";
@@ -105,6 +112,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setNotFound(isNotFound);
       if (isNotFound) setAnswer("");
       setCitations(shown);
+      if (!isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
       setPhase({ kind: "done" });
       setStats(`${t("documents.ask.retrieved", { ms: retrieveMs, count: prompt.used.length })} · ${t("documents.ask.generated", { ms: generateMs, tps: tps.toFixed(1), tokens: prompt.promptTokens })}`);
       onResult?.({ question: text, answer: reply, citations: shown.shown, cited: shown.cited, notFound: isNotFound, retrieveMs, promptTokens: prompt.promptTokens, generateMs, tokPerSec: tps, used });
@@ -164,6 +172,16 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
             </View>
           ) : null}
           {phase.kind === "done" && !notFound ? <Citations citations={citations.shown} cited={citations.cited} /> : null}
+          {wordsOnly ? (
+            <Text testID="ask-lexical" style={[styles.note, { color: theme.text2 }]}>
+              {t("documents.wordsOnly")}
+            </Text>
+          ) : null}
+          {noneMatched && !notFound ? (
+            <Text testID="ask-none-matched" style={[styles.note, { color: theme.text2 }]}>
+              {t("documents.noneMatched")}
+            </Text>
+          ) : null}
           {reindexing ? (
             <Text testID="ask-reindexing" style={[styles.mono, { color: theme.text3 }]}>
               {t("documents.reindexing", reindexing)}
@@ -217,6 +235,7 @@ const styles = StyleSheet.create({
   assistant: { gap: 4 },
   body: { ...font("sans"), fontSize: 16, lineHeight: 25 },
   mono: { ...font("mono"), fontSize: 12, letterSpacing: 0.5 },
+  note: { ...font("sans"), fontSize: 13, lineHeight: 19 },
   composer: { flexDirection: "row", alignItems: "center", margin: 12, borderWidth: 1, borderRadius: radius.card, paddingLeft: 12 },
   input: { flex: 1, ...font("sans"), fontSize: 16, minHeight: 44, paddingVertical: 10 },
   btn: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", margin: 4 },

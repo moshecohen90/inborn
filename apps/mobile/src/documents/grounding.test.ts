@@ -26,3 +26,16 @@ describe("F366 · SOURCES only under an answer that took something from a passag
     expect(src("../screens/documents/AskDocuments.tsx")).toContain("library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations))");
   });
 });
+
+describe("F7 · Documents → Ask says what the chat says when nothing matched", () => {
+  const ask = src("../screens/documents/AskDocuments.tsx");
+  it("an answer that took nothing from the documents carries the chat's none-matched line", () => {
+    expect(ask).toContain("saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: prompt.used.length })");
+    expect(ask).toContain("saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })");
+    expect(ask).toMatch(/testID="ask-none-matched"[\s\S]{0,200}t\("documents\.noneMatched"\)/);
+  });
+
+  it("a words-only search says so, as the chat does", () => {
+    expect(ask).toMatch(/testID="ask-lexical"[\s\S]{0,200}t\("documents\.wordsOnly"\)/);
+  });
+});

@@ -1,0 +1,30 @@
+Received: "done"
+
+ ❯ src/web/modelWorkerDownload.test.ts:183:33
+    181|     await download({ url: "/models/e5.gguf", file: "e5.gguf" }, (m) =>…
+    182|
+    183|     expect(posted.at(-1)?.type).toBe("error");
+       |                                 ^
+    184|     expect(posted.at(-1)?.message).toMatch(/not a model file/);
+    185|     expect(files.has(metaName("e5.gguf"))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/web/modelWorkerDownload.test.ts > model-worker download > refuses bytes that do not start with the GGUF magic even when the content type claims a binary
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ src/web/modelWorkerDownload.test.ts:198:36
+    196|     await download({ url: "/models/e5.gguf", file: "e5.gguf" }, (m) =>…
+    197|
+    198|     expect(posted.at(-1)?.message).toMatch(/not a model file/);
+       |                                    ^
+    199|     expect(files.has(metaName("e5.gguf"))).toBe(false);
+    200|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  12:23:54
+   Duration  163ms (tests 54%, transform 34%, import 10%, worker 2%)
+

@@ -1,0 +1,134 @@
+{
+  "url": "http://127.0.0.1:8862",
+  "modelsDir": "/Users/moshecohen/dev/inborn-wt/web-attach-fix/.models",
+  "noEmbed": false,
+  "indexOrigin": "",
+  "deployedLike": false,
+  "modelRequests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8862/models/instant.gguf",
+      "range": null,
+      "status": 200,
+      "type": "application/octet-stream"
+    },
+    {
+      "method": "HEAD",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "failed": "net::ERR_ABORTED"
+    },
+    {
+      "method": "HEAD",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "failed": "net::ERR_ABORTED"
+    },
+    {
+      "method": "HEAD",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "failed": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "range": null,
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "method": "HEAD",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "failed": "net::ERR_ABORTED"
+    },
+    {
+      "method": "HEAD",
+      "url": "http://127.0.0.1:8862/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "failed": "net::ERR_ABORTED"
+    }
+  ],
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:32 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message",
+      "answer": "This is a document regarding personal financial records and savings plans. Please find the following quote: \"Financial planning requires patience, discipline, and honesty.\"",
+      "citations": null,
+      "notices": {},
+      "chips": "",
+      "log": [
+        "navigated: http://127.0.0.1:8862/",
+        "navigated: http://127.0.0.1:8862/",
+        "navigated: http://127.0.0.1:8862/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:8862/23f60bc3-5f4b-40c2-9659-f95767a986f5",
+        "worker: blob:http://127.0.0.1:8862/afb2b12b-003b-4f56-a60f-092a86f22056",
+        "worker: blob:http://127.0.0.1:8862/b821a156-c57e-4442-9357-908c06b32f44",
+        "worker: blob:http://127.0.0.1:8862/ff1ea54c-693e-430b-bd01-4c196975e294",
+        "worker: blob:http://127.0.0.1:8862/ddf51884-186c-40ae-85fb-03e1f4e969f4",
+        "worker: blob:http://127.0.0.1:8862/058fb672-2640-4f53-b94c-c5ad9f36e3e5",
+        "worker: blob:http://127.0.0.1:8862/a1fb07d7-71ce-47e5-a61f-dcefa7d29975",
+        "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+        "info: [wllama] loaded instant in 1118 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1131 ms",
+        "error: Connecting to 'blob:inborn/1790328719839-a5wluuubecb/greenhouse-notes.txt' violates the following Content Security Policy directive: \"connect-src 'self'\". The action has been blocked.",
+        "error: Fetch API cannot load blob:inborn/1790328719839-a5wluuubecb/greenhouse-notes.txt. Refused to connect because it violates the document's Content Security Policy.",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "turbine-report.pdf": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:32 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:32 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nturbine-report.pdf\n1",
+      "answer": "The file attached to this chat has no readable text, so there is nothing to answer from. Open Documents to run OCR on it, or attach a clearer copy.",
+      "citations": null,
+      "notices": {},
+      "chips": "turbine-report.pdf",
+      "log": [
+        "navigated: http://127.0.0.1:8862/",
+        "navigated: http://127.0.0.1:8862/",
+        "navigated: http://127.0.0.1:8862/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:8862/bac81720-c54a-4e95-9e3b-e602b7ada948",
+        "worker: blob:http://127.0.0.1:8862/83fc426e-027e-436c-9261-78285310f81a",
+        "worker: blob:http://127.0.0.1:8862/ad03d905-97d2-46e1-8a18-595d6eeb5522",
+        "worker: blob:http://127.0.0.1:8862/136d3960-6971-4357-9e2e-cff76e0a07df",
+        "worker: blob:http://127.0.0.1:8862/5c99c129-5c4b-489d-8cb5-23dc1a1742d1",
+        "worker: blob:http://127.0.0.1:8862/82c583b6-81ef-4f42-aee7-3b509beb651f",
+        "worker: blob:http://127.0.0.1:8862/29f150af-a81b-4592-a3bf-439617e10be2",
+        "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+        "info: [wllama] loaded instant in 1128 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1145 ms",
+        "worker: http://127.0.0.1:8862/pdfjs/pdf.worker.min.mjs",
+        "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+        "worker: blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea",
+        "worker: blob:http://127.0.0.1:8862/44e5ac74-a21d-4f02-8509-7e2980d034b2",
+        "worker: blob:http://127.0.0.1:8862/eeacd8fd-c796-4c3e-9a2f-f9e5e2c58dd4",
+        "worker: blob:http://127.0.0.1:8862/08d62bf2-14ab-4ad5-a847-31ad5b9d125d",
+        "worker: blob:http://127.0.0.1:8862/221dbd9c-ca17-4c62-a2b4-2f82bb5ef005",
+        "worker: blob:http://127.0.0.1:8862/50ebdb7b-3869-4e6a-9871-33d94dc9a478",
+        "worker: blob:http://127.0.0.1:8862/f1be995e-c055-4780-8ff7-1d018b03e909",
+        "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+        "error: gguf_init_from_reader: invalid magic characters: '<!DO', expected 'GGUF'",
+        "error: llama_model_load: error loading model: llama_model_loader: failed to load model from models/model-00001-of-00001.gguf",
+        "error: llama_model_load_from_file_impl: failed to load model",
+        "error: cmn  common_init_: failed to load model 'models/model-00001-of-00001.gguf'",
+        "error: srv    load_model: failed to load model, 'models/model-00001-of-00001.gguf'",
+        "info: [wllama] embedder embed-e5 loaded in 40 ms",
+        "log: /source/llama.cpp/src/llama-vocab.cpp:3375: GGML_ASSERT(tokenizer && \"Tokenizer not initialized. Call llama_vocab::init_tokenizer() first.\") failed",
+        "error: RuntimeError: unreachable\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[3656]:0x2c667c\n    at wrapper (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:124126)\n    at abort (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:6363)\n    at __abort_js (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:69673)\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[945]:0x75fb3\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[69]:0x6c46\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[1507]:0xbe8fa\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[1238]:0x9f8e2\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[671]:0x5352c\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[2177]:0x1782cb",
+        "log: Aborted()",
+        "error: Stack trace (abort):\n    wasm-func[945] (__wrap_abort)\n    wasm-func[69] (ggml_abort)\n    wasm-func[1507] (llama_vocab::impl::tokenize)\n    wasm-func[1238] (llama_vocab::tokenize)\n    wasm-func[671] (common_tokenize)\n    wasm-func[2177] (tokenize_mixed)\n    wasm-func[1173] (tokenize_input_subprompt)",
+        "log: [documents] turbine-report.pdf: failed ((ABORT) ) · 0/3 pages · 0 chunks · 60 ms (60 ms/page)",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    }
+  },
+  "fullLog": [
+    "error: Connecting to 'blob:inborn/1790328719839-a5wluuubecb/greenhouse-notes.txt' violates the following Content Security Policy directive: \"connect-src 'self'\". The action has been blocked.",
+    "error: Fetch API cannot load blob:inborn/1790328719839-a5wluuubecb/greenhouse-notes.txt. Refused to connect because it violates the document's Content Security Policy.",
+    "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+    "error: gguf_init_from_reader: invalid magic characters: '<!DO', expected 'GGUF'",
+    "error: llama_model_load: error loading model: llama_model_loader: failed to load model from models/model-00001-of-00001.gguf",
+    "error: llama_model_load_from_file_impl: failed to load model",
+    "error: cmn  common_init_: failed to load model 'models/model-00001-of-00001.gguf'",
+    "error: srv    load_model: failed to load model, 'models/model-00001-of-00001.gguf'",
+    "error: RuntimeError: unreachable\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[3656]:0x2c667c\n    at wrapper (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:124126)\n    at abort (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:6363)\n    at __abort_js (blob:http://127.0.0.1:8862/04d95430-e4ec-44d6-8c17-96e16f6ff5ea:22:69673)\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[945]:0x75fb3\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[69]:0x6c46\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[1507]:0xbe8fa\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[1238]:0x9f8e2\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[671]:0x5352c\n    at http://127.0.0.1:8862/wllama/wllama.wasm:wasm-function[2177]:0x1782cb",
+    "error: Stack trace (abort):\n    wasm-func[945] (__wrap_abort)\n    wasm-func[69] (ggml_abort)\n    wasm-func[1507] (llama_vocab::impl::tokenize)\n    wasm-func[1238] (llama_vocab::tokenize)\n    wasm-func[671] (common_tokenize)\n    wasm-func[2177] (tokenize_mixed)\n    wasm-func[1173] (tokenize_input_subprompt)",
+    "log: [documents] turbine-report.pdf: failed ((ABORT) ) · 0/3 pages · 0 chunks · 60 ms (60 ms/page)"
+  ]
+}

@@ -6,7 +6,7 @@ const NO_SPACE = /no space|ENOSPC|out of space|disk (is )?full|storage (is )?ful
 const VERIFY = /sha-?256|hash|checksum|verif|mismatch|does not match|corrupt|not a valid gguf|bad magic|signature/i;
 
 /* The server answered, and has no such file: retrying now cannot help, and it is not the reader's connection. */
-const NOT_PUBLISHED = /\bHTTP (404|410)\b/;
+const NOT_PUBLISHED = /\bHTTP (404|410)\b|^not a model file/;
 
 export function installErrorKind(error: string): InstallErrorKind {
   if (NOT_PUBLISHED.test(error)) return "not-published";

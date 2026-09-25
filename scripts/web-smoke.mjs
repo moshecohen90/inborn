@@ -15,6 +15,10 @@
  *   8. round 93: a .txt and a .pdf attached through "+" -> "Add a file…" reach the model. The .txt is sent past the
  *      index-model card with the word search, the .pdf after Download installs the document index model from this
  *      host; both answers carry SOURCES naming the file.
+
+ *   9. F1: the same host turned deployed-like (every missing path, /models/<e5> included, answers the SPA shell, and the
+ *      catalog points the index model at such a path). Download must fail as "not on the download server", nothing
+ *      may load the shell as a model, and the file still answers with SOURCES on the word search.
  * Skips (exit 0) when the model or playwright-core is absent.
  *
  *   MODELS_DIR=/path/to/ggufs SMOKE_OUT_DIR=/tmp node scripts/web-smoke.mjs
@@ -832,6 +836,48 @@ try {
     noPageErrors(pageErrors, "attach pass");
     if (foreignHosts(hosts).length) throw new Error(`the attach pass talked to ${foreignHosts(hosts).join(", ")}`);
     await page.close();
+  }
+
+
+  /* 9. F1: app.inbornapp.com answered /models/<e5> with its SPA shell; a HEAD probe took that for the model and wllama died on '<!DO'. */
+  {
+    /* A browser that has never had the index model: its own context, so pass 8's install and library are not in it. */
+    const fresh = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(fresh);
+    const page = await fresh.newPage();
+    const { consoleLines, pageErrors } = observe(page);
+    lastPage = page;
+    lastConsole = consoleLines;
+    const out = (result.deployedLike = {});
+    const saved = { deployedLike: server.opts.deployedLike, indexOrigin: server.opts.indexOrigin };
+    server.opts.deployedLike = true;
+    server.opts.indexOrigin = server.url;
+    try {
+      await page.goto(server.url);
+      await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+      if (!(await page.getByTestId("web-model-choose-instant").count())) await page.getByTestId("web-model-options-toggle").click();
+      if (await page.getByTestId("web-model-choose-instant").count()) await page.getByTestId("web-model-choose-instant").click();
+      await page.getByTestId("download-model").click();
+      await page.getByTestId("composer-input").waitFor({ timeout: LOAD_TIMEOUT_MS });
+      const probe = await page.request.get(new URL("/models/multilingual-e5-large-instruct-Q6_K.gguf", server.url).href);
+      out.shellForIndexModel = `${probe.status()} ${probe.headers()["content-type"]}`;
+      if (!/^200 text\/html/.test(out.shellForIndexModel)) throw new Error(`the deployed-like host did not answer the shell: ${out.shellForIndexModel}`);
+      out.txt = await attachAndAsk(page, consoleLines, "greenhouse-notes.txt", async (p, seen) => {
+        await p.getByTestId("docs-hold-download").click();
+        seen.downloadError = ((await p.getByTestId("docs-hold-error").textContent({ timeout: 60_000 }).catch(() => "")) ?? "").trim();
+        await p.screenshot({ path: path.join(outDir, "web-smoke-deployed-like-hold-error.png") });
+        await p.getByTestId("docs-hold-words").click();
+      });
+      if (!/not on the download server/i.test(out.txt.downloadError ?? "")) throw new Error(`a shell served as the index model did not fail as "not on the download server": "${out.txt.downloadError}"`);
+      if (!out.txt.wordsOnly) throw new Error("the word-search answer on the deployed-like host does not say so");
+      const bad = consoleLines.filter((l) => /\[wllama\] embedder .* loaded|invalid magic|run OCR/i.test(l));
+      if (bad.length) throw new Error(`the shell was taken for a model: ${bad[0]}`);
+      out.modelLines = consoleLines.filter((l) => /not a model file|\[(rag|documents)\]/.test(l));
+      noPageErrors(pageErrors, "deployed-like pass");
+    } finally {
+      Object.assign(server.opts, saved);
+    }
+    await fresh.close();
   }
   await context.close();
 

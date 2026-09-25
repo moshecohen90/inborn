@@ -1,0 +1,87 @@
+{
+  "url": "http://127.0.0.1:8872",
+  "modelsDir": "/Users/moshecohen/dev/inborn-wt/web-attach-fix/.models",
+  "noEmbed": false,
+  "indexOrigin": "",
+  "deployedLike": false,
+  "modelRequests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8872/models/instant.gguf",
+      "range": null,
+      "status": 200,
+      "type": "application/octet-stream"
+    }
+  ],
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "This document describes greenhouse maintenance notes for a Lindqvist greenhouse heated by a heat pump installed in October 2021, noting irrigation schedules and bean rotations.",
+      "citations": "SOURCESgreenhouse-notes.txt · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "navigated: http://127.0.0.1:8872/",
+        "navigated: http://127.0.0.1:8872/",
+        "navigated: http://127.0.0.1:8872/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:8872/5b18e1d9-52a0-490a-b3a1-13241fd805f0",
+        "worker: blob:http://127.0.0.1:8872/175090c0-1dc0-456f-b9ad-297e95589339",
+        "worker: blob:http://127.0.0.1:8872/af7500bf-e14c-42bc-96aa-3c697a280386",
+        "worker: blob:http://127.0.0.1:8872/e31f4fd6-86a8-4a09-8e43-edded2bca0b7",
+        "worker: blob:http://127.0.0.1:8872/63e7942b-0b49-412b-ae49-96246a6ef027",
+        "worker: blob:http://127.0.0.1:8872/6e669485-bb55-43fb-a20d-b25f3cf5bb26",
+        "worker: blob:http://127.0.0.1:8872/24b2bcff-4ac1-4fc3-9f91-dbbf45bc4f5d",
+        "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+        "info: [wllama] loaded instant in 1459 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1473 ms",
+        "worker: http://127.0.0.1:8872/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | b5a30238-2950-4972-a8c2-787221a5d91b#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "turbine-report.pdf": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:37 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nturbine-report.pdf\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "The document is a technical report detailing inbuilt acceptance standards for turbines, specifically noting that the page contains more than two sentences of text and includes data on maintenance budgets and warehouse roof replacements.",
+      "citations": "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "turbine-report.pdf",
+      "log": [
+        "navigated: http://127.0.0.1:8872/",
+        "navigated: http://127.0.0.1:8872/",
+        "navigated: http://127.0.0.1:8872/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:8872/ced37042-ae87-4c8d-b70e-9cea175eefe5",
+        "worker: blob:http://127.0.0.1:8872/e3432ffb-3fe9-48cf-9ab8-3b27464f38dc",
+        "worker: blob:http://127.0.0.1:8872/1edbdaa0-e6aa-46a2-b0d3-0c570f396de0",
+        "worker: blob:http://127.0.0.1:8872/d076de77-95e0-4383-8f67-ebfa74e3dcc6",
+        "worker: blob:http://127.0.0.1:8872/c5537fa3-e441-48bd-8808-1d1ed4d36274",
+        "worker: blob:http://127.0.0.1:8872/8ec1c385-566e-4b58-bd65-fd40ed89aab2",
+        "worker: blob:http://127.0.0.1:8872/1c0b0d31-2d3d-4818-84c6-0c59aa675e28",
+        "log: ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)",
+        "info: [wllama] loaded instant in 1152 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1166 ms",
+        "worker: http://127.0.0.1:8872/pdfjs/pdf.worker.min.mjs",
+        "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+        "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 26 ms (9 ms/page)",
+        "worker: http://127.0.0.1:8872/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=3 used=3 0 ms | 33b0e30e-9640-4a82-ab5b-540294b24cd0#0 cos=0.000 terms=0 bm25=0.00 KEPT · 33b0e30e-9640-4a82-ab5b-540294b24cd0#1 cos=0.000 terms=0 bm25=0.00 KEPT · 33b0e30e-9640-4a82-ab5b-540294b24cd0#2 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    }
+  },
+  "fullLog": [
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | b5a30238-2950-4972-a8c2-787221a5d91b#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+    "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 26 ms (9 ms/page)",
+    "log: [rag] strict=false words-only overview hits=3 used=3 0 ms | 33b0e30e-9640-4a82-ab5b-540294b24cd0#0 cos=0.000 terms=0 bm25=0.00 KEPT · 33b0e30e-9640-4a82-ab5b-540294b24cd0#1 cos=0.000 terms=0 bm25=0.00 KEPT · 33b0e30e-9640-4a82-ab5b-540294b24cd0#2 cos=0.000 terms=0 bm25=0.00 KEPT"
+  ]
+}
