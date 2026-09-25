@@ -1,6 +1,7 @@
 import { keepOnWipe } from "@inborn/core";
 import { IDB_NAME } from "./web/idbRepository";
 import { DOCUMENTS_IDB_NAME, forgetRagStore } from "../documents/db";
+import { forgetFiles } from "../documents/files";
 import { MODEL_KEY } from "../web/prefs";
 
 export interface WipeOptions {
@@ -84,6 +85,7 @@ export async function wipe(opts: WipeOptions, env: WebStorageEnv = pageEnv()): P
   const report: WipeReport = { deletedFiles: 0, keptModels: 0, deletedDatabases: 0, deletedCaches: 0 };
   /* A pending snapshot write would recreate the documents database right after it is deleted. */
   forgetRagStore();
+  forgetFiles();
   const kept = opts.models ? [] : KEEP_WITH_MODELS.map((k) => [k, env.local?.getItem(k) ?? null] as const);
   for (const s of [env.local, env.session]) {
     try {

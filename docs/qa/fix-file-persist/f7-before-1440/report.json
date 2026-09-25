@@ -1,0 +1,49 @@
+{
+  "width": 1440,
+  "dist": "r101-base/apps/web/dist",
+  "runs": [
+    {
+      "name": "hit",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "What did the fuel pier cost?",
+      "answer": "The fuel pier was purchased by a cost of 3.2 million euros, as stated in Bramblewick Harbor Annual Report Part 1.",
+      "notFound": null,
+      "noneMatched": "",
+      "stats": "search 1539 ms · 1 passages · answer 7458 ms · 17.0 tok/s · prompt 325 tokens",
+      "sources": "SOURCESharbor-report.txt · part 1",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=1 1539 ms | 64cad58d-ead7-4c81-a3d9-a4e953e6968c#0 cos=0.812 terms=3 bm25=0.86 KEPT"
+      ]
+    },
+    {
+      "name": "offtopic-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "In one sentence, the winners of the 1998 World Cup were Argentina and Brazil. The 1998 FIFA World Cup took place in France with Argentina winning by a scoreless draw against Brazil. There are two possible answers depending on whether you are referring to the event's final match: the first leg ended in a 3-0 victory for Brazil, while the second leg ended in a 2-1 win for Argentina. Therefore, if you look at the overall tournament results, Brazil won the semi-finals and advanced to the finals, while Argentina reached the final but lost there due to a draw with Germany. The most commonly cited winner of the entire tournament is Brazil.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 1538 ms · 0 passages · answer 7116 ms · 25.9 tok/s · prompt 213 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1538 ms | 64cad58d-ead7-4c81-a3d9-a4e953e6968c#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ]
+    },
+    {
+      "name": "offtopic-wrongfile",
+      "doc": "fleet-memo.pdfPDF · 1 page · 24.4 KBInde",
+      "q": "What did the fuel pier cost?",
+      "answer": "Fuel Pier is a well-known historical landmark on the south end of Cape Cod, Massachusetts, originally built as an industrial dock during the 19th century and subsequently repurposed for its public use; therefore, specific costs are not recorded in general historical records as it was no longer an active commercial pier.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 1650 ms · 0 passages · answer 5032 ms · 18.7 tok/s · prompt 211 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1650 ms | f7491a2f-83f6-4181-90ea-b95785a7f668#0 cos=0.804 terms=1 bm25=0.29 dropped"
+      ]
+    }
+  ],
+  "downloadError": null,
+  "hitOk": true,
+  "missOk": false,
+  "pass": false
+}

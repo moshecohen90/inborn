@@ -29,6 +29,8 @@ vi.mock("./extract", () => ({
   ],
 }));
 vi.mock("./files", () => ({
+  restoreFiles: async () => undefined,
+  whenStored: async () => true,
   copyIntoLibrary: (uri: string, id: string, name: string) => {
     const stored = `/library/${id}-${name}`;
     files.set(stored, files.get(uri) ?? "");

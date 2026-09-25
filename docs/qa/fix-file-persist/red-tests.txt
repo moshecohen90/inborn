@@ -1,0 +1,13 @@
+     × routes a question no passage matched to the nothing-matched line, strict or not
+     × the sheet asks the model only on the answer route, and says why it did not
+     × is copied into IndexedDB under a key that outlives the page, and read back from it
+     × a blob key of an earlier page load is reported missing and never fetched (the CSP blocks it)
+     × deleting the document deletes its bytes
+     × bytes no record points to are deleted once they are old enough not to be an import in flight
+     × an incognito import is never written anywhere (§5.7)
+     × Delete everything takes the stored bytes with the database
+     × a file read by its words is rebuilt from its own bytes once the index model lands, never marked damaged
+     × the same file picked again replaces a damaged record with a fresh read
+     × a record whose bytes are gone and that holds no passages says the file is missing, not damaged
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  11 failed | 5 passed (16)

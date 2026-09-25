@@ -50,6 +50,15 @@ const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
  * Never on Continue: that turn resumes a partial answer which may have cited the documents in its first half, and it
  * is forced past the gate with no retrieval of its own, so it has no passage count to report.
  */
+/**
+ * Documents → Ask has nothing to answer from but the documents: with no passage kept the model is not asked, in strict
+ * mode or not, and the sheet says nothing matched (F400; it answered "South Korea won the 1998 World Cup").
+ */
+export function askSheetRoute({ noAnswer, usedPassages }: { noAnswer: boolean; usedPassages: number }): "not-found" | "none-matched" | "answer" {
+  if (noAnswer) return "not-found";
+  return usedPassages === 0 ? "none-matched" : "answer";
+}
+
 export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { continuing: boolean; attachedCount: number; usedPassages: number }): boolean {
   return !continuing && attachedCount > 0 && usedPassages === 0;
 }

@@ -1,0 +1,190 @@
+{
+  "width": 1440,
+  "visit1": {
+    "chats": [
+      {
+        "file": "harbor-report.txt",
+        "q": "What did the new fuel pier cost?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "The new fuel pier was reported to have cost 3.2 million euros.",
+        "sources": "SOURCESharbor-report.txt · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "orchard-log.md",
+        "q": "Who rebuilt the cider press?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "Odile Fenwarth is the carpenter who rebuilt the cider press in August.",
+        "sources": "SOURCESorchard-log.md · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "fleet-memo.pdf",
+        "q": "How much did the Morning Wren overhaul cost?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "The Morning Wren's port engine overhaul, which took 19 days and cost €412,000, was completed at the Halvorsen yard in August 2025.",
+        "sources": "SOURCESfleet-memo.pdf · p.1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      },
+      {
+        "file": "glassworks-memo.docx",
+        "q": "Who led the furnace relining crew?",
+        "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+        "answer": "According to the production memo, the crew was led by foreman Brannoc Ivell.",
+        "sources": "SOURCESglassworks-memo.docx · part 1",
+        "notices": {
+          "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+        }
+      }
+    ],
+    "rows": [
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "log": [
+      "log: [documents] harbor-report.txt: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 1 ms | 4691370d-56bd-4469-88b3-fe3effc0822c#0 cos=0.000 terms=4 bm25=1.15 KEPT",
+      "log: [documents] orchard-log.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 9 ms (9 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | 9982b53a-becb-4b5f-b666-0f204ced63bc#0 cos=0.000 terms=3 bm25=0.86 KEPT",
+      "log: [documents] fleet-memo.pdf: indexed (words only, no index model) · 1/1 pages · 1 chunks · 26 ms (26 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | 44fda73d-82db-4685-a185-746530e35a39#0 cos=0.000 terms=4 bm25=1.37 KEPT",
+      "log: [documents] glassworks-memo.docx: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+      "log: [rag] strict=false words-only hits=1 used=1 0 ms | d8d3a2ff-9fbb-4ac1-8eef-0e948c67803f#0 cos=0.000 terms=4 bm25=1.15 KEPT"
+    ]
+  },
+  "visit2": {
+    "rowsBefore": [
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "install": {
+      "file": "ferry-schedule.md",
+      "q": "What does a single crossing cost?",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "answer": "A single crossing costs 3.60 euro according to the ferry schedule document.",
+      "sources": "SOURCESferry-schedule.md · part 1",
+      "notices": {
+        "reindexing": "Still re-indexing 1 of 1 document, answers may miss some passages."
+      }
+    },
+    "reloadedAfterDocLines": 6,
+    "rowsAfter": [
+      "ferry-schedule.mdMD · 1 part · 200 BIndexed · 1 passage",
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "ask": [
+      {
+        "file": "harbor-report.txt",
+        "q": "What did the new fuel pier cost?",
+        "answer": "The new fuel pier cost 3.2 million euros, which was completed in June 2025, though dredging of the eastern channel is scheduled for October 2026.Alternatives to the question include:•\"What is the annual revenue?\" (Answered based on general knowledge if not provided)•\"How much did the lighthouse repaint cost?\" (Answered based on general knowledge if not provided)",
+        "sources": "SOURCESharbor-report.txt · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1649 ms · 1 passages · answer 8127 ms · 27.8 tok/s · prompt 327 tokens"
+      },
+      {
+        "file": "orchard-log.md",
+        "q": "Who rebuilt the cider press?",
+        "answer": "Odile Fenwarth is the carpenter who rebuilt the cider press in August.",
+        "sources": "SOURCESorchard-log.md · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1613 ms · 1 passages · answer 4748 ms · 31.7 tok/s · prompt 302 tokens"
+      },
+      {
+        "file": "fleet-memo.pdf",
+        "q": "How much did the Morning Wren overhaul cost?",
+        "answer": "The Morning Wren overhaul cost 412,000 euros at the Halvorsen yard.•Alternative: The document also states that a different tug named \"Morning Wren\" was rebuilt in August 2025 with similar details (19 days and 412,000 euros).•Reasoning: Although the question asks about the \"Morning Wren,\" the attached text contains information specifically for another tug. To provide a helpful answer that matches the user's intent without violating the rule to treat quoted data as truth, I have provided the cost from this specific document first and then noted there is an alternative source available in the list of alternatives.",
+        "sources": "SOURCESfleet-memo.pdf · p.1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1547 ms · 1 passages · answer 9039 ms · 30.7 tok/s · prompt 302 tokens"
+      },
+      {
+        "file": "glassworks-memo.docx",
+        "q": "Who led the furnace relining crew?",
+        "answer": "The furnace relining crew was led by Brannoc Ivell, as stated in the production memo within the documents.",
+        "sources": "SOURCESglassworks-memo.docx · part 1",
+        "wordsOnly": false,
+        "notFound": false,
+        "stats": "search 1532 ms · 1 passages · answer 5030 ms · 32.8 tok/s · prompt 296 tokens"
+      }
+    ],
+    "longAfterReload": "long-ledger.mdMD · 20 parts · 43.3 KBPaused at page 0 of 20Resume",
+    "longAfterResume": "long-ledger.mdMD · 20 parts · 43.3 KBIndexed · 80 passages",
+    "longAsk": {
+      "file": "long-ledger.md",
+      "q": "What is the name of the lighthouse keeper's cat?",
+      "answer": "Based on the provided text, the answer is found in the last entry where the lighthouse keeper's cat is named Pemberton. However, the user specifically requested to check for instructions or other information first; since no such text was attached and general knowledge confirms this name, I will provide that fact directly without re-stating the question, listing alternatives (none applicable), or offering examples unless instructed otherwise.",
+      "sources": "SOURCESlong-ledger.md · part 20",
+      "wordsOnly": false,
+      "notFound": false,
+      "stats": "search 1715 ms · 1 passages · answer 9113 ms · 26.8 tok/s · prompt 398 tokens"
+    },
+    "reattach": {
+      "file": "orchard-log.md",
+      "q": "Who rebuilt the cider press?",
+      "answer": "Odile Fenwarth was the carpenter who rebuilt the cider press in August.",
+      "sources": "SOURCESorchard-log.md · part 1",
+      "notices": {}
+    },
+    "rowsEnd": [
+      "long-ledger.mdMD · 20 parts · 43.3 KBIndexed · 80 passages",
+      "ferry-schedule.mdMD · 1 part · 200 BIndexed · 1 passage",
+      "glassworks-memo.docxDOCX · 1 part · 1.05 KBIndexed · 1 passage",
+      "fleet-memo.pdfPDF · 1 page · 24.4 KBIndexed · 1 passage",
+      "orchard-log.mdMD · 1 part · 298 BIndexed · 1 passage",
+      "harbor-report.txtTXT · 1 part · 377 BIndexed · 1 passage"
+    ],
+    "log": [
+      "log: [documents] ferry-schedule.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 12 ms (12 ms/page)",
+      "log: [rag] strict=false reindexing=1/1 hits=1 used=1 1 ms | 63e519e9-e7a0-49b8-82be-cd9b842ee130#0 cos=0.000 terms=2 bm25=0.58 KEPT",
+      "log: [documents] glassworks-memo.docx: indexed · 1/1 pages · 1 chunks · 2740 ms (2740 ms/page)",
+      "log: [documents] fleet-memo.pdf: indexed · 1/1 pages · 1 chunks · 1185 ms (1185 ms/page)",
+      "log: [documents] orchard-log.md: indexed · 1/1 pages · 1 chunks · 1430 ms (1430 ms/page)",
+      "log: [documents] harbor-report.txt: indexed · 1/1 pages · 1 chunks · 1129 ms (1129 ms/page)",
+      "log: [documents] ferry-schedule.md: indexed · 1/1 pages · 1 chunks · 946 ms (946 ms/page)",
+      "log: [rag] strict=false hits=1 used=1 1649 ms | 4691370d-56bd-4469-88b3-fe3effc0822c#0 cos=0.830 terms=4 bm25=1.15 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1613 ms | 9982b53a-becb-4b5f-b666-0f204ced63bc#0 cos=0.809 terms=3 bm25=0.86 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1547 ms | 44fda73d-82db-4685-a185-746530e35a39#0 cos=0.879 terms=4 bm25=1.37 KEPT",
+      "log: [rag] strict=false hits=1 used=1 1532 ms | d8d3a2ff-9fbb-4ac1-8eef-0e948c67803f#0 cos=0.837 terms=4 bm25=1.15 KEPT",
+      "log: [documents] long-ledger.md: indexed · 20/20 pages · 80 chunks · 148193 ms (7410 ms/page)",
+      "log: [rag] strict=false hits=6 used=1 1715 ms | be1235f6-b918-4925-90a7-556003adbbd9#79 cos=0.834 terms=3 bm25=12.40 KEPT · be1235f6-b918-4925-90a7-556003adbbd9#27 cos=0.759 terms=0 bm25=0.00 dropped · be1235f6-b918-4925-90a7-556003adbbd9#0 cos=0.758 terms=0 b",
+      "log: [rag] strict=false hits=1 used=1 1974 ms | 9982b53a-becb-4b5f-b666-0f204ced63bc#0 cos=0.809 terms=3 bm25=0.86 KEPT"
+    ]
+  },
+  "cdn": "https://127.0.0.1:8932 (answers https://models.inbornapp.com/v1/*)",
+  "cdnRequests": [
+    "GET multilingual-e5-large-instruct-Q6_K.gguf "
+  ],
+  "checks": {
+    "visit1WordsWithSources": true,
+    "visit2InstallOk": true,
+    "noDamagedRow": true,
+    "everyOldFileAnswersWithSources": true,
+    "longFileResumedFromBytes": true,
+    "reattachAnswersWithSources": true,
+    "noBlobFetch": true,
+    "vectorsUsed": true
+  },
+  "factInAnswer": {
+    "harbor-report.txt": true,
+    "orchard-log.md": true,
+    "fleet-memo.pdf": true,
+    "glassworks-memo.docx": true
+  },
+  "pass": true
+}

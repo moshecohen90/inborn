@@ -1,5 +1,6 @@
 import { MemoryEmbeddingStore, SqlEmbeddingStore, type Chunk, type DocumentRecord, type EmbeddingStore, type SqlDriver, type SqlValue, type StoreSnapshot } from "@inborn/core";
 import { isTauri } from "../adapters/tauri";
+import { SNAPSHOT_STORE, withDocumentsDb } from "./idb";
 
 type TauriGlobal = { core: { invoke<T>(cmd: string, args?: Record<string, unknown>): Promise<T> } };
 const invoke = <T,>(cmd: string, args?: Record<string, unknown>): Promise<T> => (window as Window & { __TAURI__?: TauriGlobal }).__TAURI__!.core.invoke<T>(cmd, args);
@@ -14,49 +15,19 @@ function tauriDriver(): SqlDriver {
   };
 }
 
-export const DOCUMENTS_IDB_NAME = "inborn-documents";
-const IDB_NAME = DOCUMENTS_IDB_NAME;
-const IDB_STORE = "snapshot";
+export { DOCUMENTS_IDB_NAME } from "./idb";
 
-function idbGet(): Promise<StoreSnapshot | null> {
-  return new Promise((resolve) => {
-    if (typeof indexedDB === "undefined") return resolve(null);
-    const req = indexedDB.open(IDB_NAME, 1);
-    req.onupgradeneeded = () => req.result.createObjectStore(IDB_STORE);
-    req.onerror = () => resolve(null);
-    req.onsuccess = () => {
-      const db = req.result;
-      const tx = db.transaction(IDB_STORE, "readonly");
-      const get = tx.objectStore(IDB_STORE).get("v1");
-      get.onsuccess = () => resolve((get.result as StoreSnapshot | undefined) ?? null);
-      get.onerror = () => resolve(null);
-      /* A connection left open blocks Delete everything (F378). */
-      tx.oncomplete = tx.onabort = () => db.close();
-    };
-  });
-}
+const idbGet = (): Promise<StoreSnapshot | null> =>
+  withDocumentsDb<StoreSnapshot | undefined>([SNAPSHOT_STORE], "readonly", (tx) => tx.objectStore(SNAPSHOT_STORE).get("v1")).then(
+    (v) => v ?? null,
+    () => null,
+  );
 
-function idbPut(snapshot: StoreSnapshot): Promise<void> {
-  return new Promise((resolve) => {
-    if (typeof indexedDB === "undefined") return resolve();
-    const req = indexedDB.open(IDB_NAME, 1);
-    req.onupgradeneeded = () => req.result.createObjectStore(IDB_STORE);
-    req.onerror = () => resolve();
-    req.onsuccess = () => {
-      const db = req.result;
-      const tx = db.transaction(IDB_STORE, "readwrite");
-      tx.objectStore(IDB_STORE).put(snapshot, "v1");
-      tx.oncomplete = () => {
-        db.close();
-        resolve();
-      };
-      tx.onerror = tx.onabort = () => {
-        db.close();
-        resolve();
-      };
-    };
-  });
-}
+const idbPut = (snapshot: StoreSnapshot): Promise<void> =>
+  withDocumentsDb([SNAPSHOT_STORE], "readwrite", (tx) => void tx.objectStore(SNAPSHOT_STORE).put(snapshot, "v1")).then(
+    () => undefined,
+    () => undefined,
+  );
 
 /** Browser: the in-memory store, snapshotted into IndexedDB after every write (no SQLCipher on the web, like the chats). */
 class PersistedMemoryStore implements EmbeddingStore {

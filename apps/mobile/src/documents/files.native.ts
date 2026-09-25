@@ -99,3 +99,11 @@ export function deleteFile(uri: string | undefined): void {
 
 /** Dev proofs push fixtures into the document directory; this resolves a bare file name there. */
 export const devFileUri = (name: string): string => new File(Paths.document, name).uri;
+
+/** The copy is on disk when `copyIntoLibrary` returns; only the browser writes it later. */
+export const whenStored = (_uri: string): Promise<boolean> => Promise.resolve(true);
+
+/** The documents directory is the record of what is held; only the browser has to learn it at start. */
+export const restoreFiles = (_keep: ReadonlySet<string>): Promise<void> => Promise.resolve();
+
+export const forgetFiles = (): void => undefined;
