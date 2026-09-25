@@ -6072,6 +6072,7 @@ Web full pass 2 found a regression from round 99 and three keyboard and feedback
   and 0 after.
 - **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
   and `pn check:store` pass. Test counts: 966 core, 1074 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 101: a file added on the web is still the user's file in the next visit, and Documents → Ask never answers from general knowledge (branch `fix-file-persist`) — 25.9.2026
 
 The web verifier's second full pass found two faults (N1, F7).
@@ -6128,6 +6129,27 @@ Tests red first (`docs/qa/fix-file-persist/red-tests.txt`, 11 of 16 fail on 7bbc
 `gates.txt`. Open: in one of five runs (at 390) the long file's last passage was not among the hits, and Ask said nothing
 matched. The row read "Indexed · 80 passages", and the other runs found it. Stored bytes count toward the browser's
 storage quota. The Privacy & storage row counts them with the documents database.
+## Fixes round 102: Esc closes every modal from its first frame, and the re-indexing line clears when indexing ends (branch `fix-modal-esc`) — 25.9.2026
+
+Web recheck 3 found both. Evidence: `docs/qa/fix-modal-esc/`.
+
+- **F401: one modal wrapper for the whole app.** Round 100 fixed Esc in the two sheet primitives only. The chat row
+  menu and eight other screens used react-native's Modal directly, which ignores Esc until its 250 ms entry animation
+  ends. `components/shell/AppModal.tsx` wraps Modal with `useEarlyEscape`, and all eleven modals render it, the two
+  sheets included. ESLint rejects a `Modal` import from react-native anywhere in `apps/mobile/src`, and
+  `test/fixes-r102.test.ts` fails on any `<Modal`.
+- **F402: the re-indexing line follows the library.** It was a snapshot taken when the answer was retrieved, so it
+  said "Still re-indexing" after the file was indexed. The answer now keeps the ids that were rebuilding
+  (`AskResult.reindexing.ids`), and `lib/reindexNotice.ts` recounts them on every library change. The line counts down
+  as files finish. With none left it reads "Re-indexing finished. The answer above searched the files before that.
+  Your next question uses the full index." until the next question. That question searches by meaning. Chat and
+  Documents → Ask share the rule. The new key is in 8 locales plus pseudo.
+- **Red first.** Before the fix, eight Esc cases fail at 1440 and 390, 12 of 15 trials stuck in seven of them, and the
+  re-indexing line stays after indexing. After the fix, on the deployable build, 0 stuck and the line clears. The new
+  unit test failed on the old result shape, and the lint rule and test were watched failing on a probe file.
+- **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
+  `pn check:store` pass. Test counts: 966 core, 1092 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

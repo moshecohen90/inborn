@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
@@ -15,6 +16,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
 import { askSheetRoute, saysNoneMatched } from "../../lib/docsGate";
+import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
+import { useDocuments } from "../../documents/hooks";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -62,7 +65,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const [missKey, setMissKey] = useState("documents.notFound");
   const [noneMatched, setNoneMatched] = useState(false);
   const [wordsOnly, setWordsOnly] = useState(false);
-  const [reindexing, setReindexing] = useState<{ pending: number; total: number } | null>(null);
+  const [reindexing, setReindexing] = useState<AnsweredMidReindex | null>(null);
+  const { state: libraryState } = useDocuments();
+  const reindexLine = reindexNotice(reindexing, libraryState.documents);
   const [stats, setStats] = useState<string | null>(null);
   const autoFired = useRef(false);
 
@@ -140,7 +145,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const lift = useKeyboardLift();
   useOpenSheet(true, onClose);
   return (
-    <Modal animationType="slide" onRequestClose={onClose}>
+    <AppModal animationType="slide" onRequestClose={onClose}>
       <View testID="ask-sheet" style={[styles.root, { backgroundColor: theme.bg, paddingBottom: lift || insets.bottom }]}>
         <View style={styles.header}>
           <Pressable accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
@@ -185,9 +190,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
               {t("documents.noneMatched")}
             </Text>
           ) : null}
-          {reindexing ? (
-            <Text testID="ask-reindexing" style={[styles.mono, { color: theme.text3 }]}>
-              {t("documents.reindexing", reindexing)}
+          {reindexLine ? (
+            <Text testID={reindexLine.kind === "done" ? "ask-reindexed" : "ask-reindexing"} style={[styles.mono, { color: theme.text3 }]}>
+              {reindexLine.kind === "done" ? t("documents.reindexDone") : t("documents.reindexing", reindexLine)}
             </Text>
           ) : null}
           {stats ? (
@@ -218,7 +223,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           )}
         </View>
       </View>
-    </Modal>
+    </AppModal>
   );
 }
 

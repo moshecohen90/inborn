@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
@@ -34,7 +35,7 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
   const lift = useKeyboardLift();
   useOpenSheet(true, onClose);
   return (
-    <Modal transparent animationType="fade" onRequestClose={onClose}>
+    <AppModal transparent animationType="fade" onRequestClose={onClose}>
       <View style={[styles.backdrop, { paddingBottom: 24 + lift }]}>
         <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface2), borderColor: theme.border }]}>
           <GlassFill />
@@ -65,7 +66,7 @@ export function LicenceKeySheet({ manager, theme, onClose }: LicenceKeySheetProp
           </View>
         </View>
       </View>
-    </Modal>
+    </AppModal>
   );
 }
 

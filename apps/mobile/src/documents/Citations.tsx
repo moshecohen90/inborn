@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AppModal } from "../components/shell/AppModal";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
@@ -100,7 +101,7 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
   const text = usePassageText(citation);
   useOpenSheet(true, onClose);
   return (
-    <Modal transparent animationType="fade" onRequestClose={onClose}>
+    <AppModal transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
         <Pressable testID="passage-sheet" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
           <GlassFill />
@@ -113,7 +114,7 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
           </Pressable>
         </Pressable>
       </Pressable>
-    </Modal>
+    </AppModal>
   );
 }
 

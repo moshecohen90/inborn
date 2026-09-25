@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { modelName } from "../../lib/models";
 import { FOCUS_FLASH_MS, FOCUS_SETTLE_MS, focusScrollTarget } from "./focus";
-import { Modal, Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTheme } from "../../services/theme";
 import { File, Paths } from "expo-file-system";
 import { useTranslation } from "react-i18next";
@@ -349,7 +350,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
         </View>
       ) : null}
 
-      <Modal visible={confirm !== null} transparent animationType="slide" onRequestClose={() => setConfirm(null)}>
+      <AppModal visible={confirm !== null} transparent animationType="slide" onRequestClose={() => setConfirm(null)}>
         <Pressable style={styles.backdrop} onPress={() => setConfirm(null)} />
         <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border, paddingBottom: insets.bottom + 20 }]}>
           <GlassFill />
@@ -374,7 +375,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             </Pressable>
           </View>
         </View>
-      </Modal>
+      </AppModal>
 
       <HfSearch visible={hfOpen} device={device} theme={theme} onClose={() => setHfOpen(false)} onPick={pickFromHf} />
 

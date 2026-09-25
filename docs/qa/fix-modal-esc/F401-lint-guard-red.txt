@@ -1,0 +1,9 @@
+
+apps/mobile/src/__lintprobe.tsx
+  1:10  error  'Modal' import from 'react-native' is restricted. Use AppModal (components/shell/AppModal) so Esc closes it from the first frame  no-restricted-imports
+
+✖ 1 problem (1 error, 0 warnings)
+
+     × no screen renders react-native's Modal directly; AppModal is the only way in 6ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 4 passed (5)
