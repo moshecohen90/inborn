@@ -24,7 +24,7 @@ import { CommandPalette } from "../components/shell/CommandPalette";
 import { SIDEBAR_WIDTH, isWide } from "../lib/layout";
 import { useLayoutMode } from "../lib/useLayout";
 import { useDesktopKeys } from "../components/shell/useDesktopKeys";
-import { useShortcut } from "../lib/shortcuts";
+import { setShortcutsBlocked, useShortcut } from "../lib/shortcuts";
 import { closeSidePanel } from "../lib/sidePanel";
 import { toggleSidebar, useSidebarOpen } from "../lib/sidebar";
 import { QaBridge } from "../qa/Bridge";
@@ -73,6 +73,10 @@ function Shell() {
   const sidebar = useSidebarOpen();
   const [palette, setPalette] = useState(false);
   useDesktopKeys(wide);
+  useEffect(() => {
+    setShortcutsBlocked(lock.locked);
+    if (lock.locked) setPalette(false);
+  }, [lock.locked]);
   useShortcut("palette", () => wide && setPalette((p) => !p));
   useShortcut("toggle-sidebar", () => wide && toggleSidebar());
   /* Esc is Stop; with the palette up it is also the way out of it. */

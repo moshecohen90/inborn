@@ -1,0 +1,28 @@
+F383 (web-full-pass F11) RED: hidden swipe buttons take focus; no visible row menu.
+Headless Chromium, origin/main cde13a2 web build (apps/web/dist), fresh profile, 1440x900, Instant downloaded, one chat answered.
+
+Tab order from the top of the page:
+  web-strip-details
+  get-app
+  select-toggle
+  chats-search
+  new-chat
+  new-incognito
+  swipe-pin-2a06b9b7-4109-409d-91da-2bb7f6e35e51
+  swipe-archive-2a06b9b7-4109-409d-91da-2bb7f6e35e51
+  swipe-delete-2a06b9b7-4109-409d-91da-2bb7f6e35e51
+  chat-row-2a06b9b7-4109-409d-91da-2bb7f6e35e51
+  open-personas
+  open-memory
+  open-folders
+  pro-tag
+  drawer-vault
+  drawer-documents
+  drawer-settings
+  drawer-proof
+  model-chip
+  suggestion-summarize
+
+swipe stops: 3; a visible More button in the tab order: False
+
+verdict F383: FAIL

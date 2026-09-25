@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { Animated, PanResponder, Pressable, StyleSheet, Text, View } from "react-native";
+import { Animated, PanResponder, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../lib/theme";
 import { useType } from "../../services/type";
 
@@ -12,6 +12,8 @@ export interface SwipeAction {
 }
 
 const ACTION_WIDTH = 72;
+/* The buttons sit under the row until a swipe; on the web the row's own menu carries the same actions for the keyboard. */
+const web = Platform.OS === "web";
 
 /** Swipe left to reveal row actions (§8.3 S20: pin / archive / delete). Pure RN: no gesture library, no native module. */
 export function SwipeRow({ children, actions, enabled = true }: { children: ReactNode; actions: SwipeAction[]; enabled?: boolean }) {
@@ -40,12 +42,13 @@ export function SwipeRow({ children, actions, enabled = true }: { children: Reac
   ).current;
   return (
     <View style={styles.wrap}>
-      <View style={[styles.actions, { width }]}>
+      <View style={[styles.actions, { width }]} aria-hidden={web || undefined}>
         {actions.map((a) => (
           <Pressable
             key={a.key}
             testID={a.testID}
             accessibilityRole="button"
+            tabIndex={web ? -1 : undefined}
             onPress={() => {
               settle(0);
               a.onPress();

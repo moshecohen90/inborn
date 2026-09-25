@@ -6,8 +6,16 @@ export type Shortcut = "new-chat" | "new-incognito" | "toggle-incognito" | "focu
 type Handler = (id: Shortcut) => void;
 const handlers = new Set<Handler>();
 
+let blocked = false;
+
+/** While the app is locked no shortcut reaches the screens behind the lock (the palette alone lists every chat title). */
+export function setShortcutsBlocked(on: boolean): void {
+  blocked = on;
+}
+
 /** Fan a shortcut out to every mounted subscriber (the screens decide what applies to them). */
 export function emitShortcut(id: Shortcut): void {
+  if (blocked) return;
   for (const h of [...handlers]) h(id);
 }
 

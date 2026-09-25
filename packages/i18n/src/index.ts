@@ -11,10 +11,10 @@ import ptBR from "../locales/pt-BR.json";
 import ko from "../locales/ko.json";
 import zhHant from "../locales/zh-Hant.json";
 import pseudo from "../locales/pseudo.json";
+import { RTL_LOCALES, writeHtmlLang } from "./documentLang";
 
 export type Locale = "en" | "ja" | "de" | "fr" | "es" | "pt-BR" | "ko" | "zh-Hant" | "pseudo";
 export const LAUNCH_LOCALES: readonly Locale[] = ["en", "ja", "de", "fr", "es", "pt-BR", "ko", "zh-Hant"];
-export const RTL_LOCALES: ReadonlySet<string> = new Set(["he", "ar", "fa", "ur"]);
 
 /** Each language's own name for the picker (Hermes has no Intl.DisplayNames, so this is the source, not a fallback). */
 export const LOCALE_NAMES: Readonly<Record<Locale, string>> = {
@@ -49,6 +49,8 @@ export function registerLocale(locale: string, translation: Record<string, strin
   if (i18next.isInitialized) i18next.addResourceBundle(locale, "translation", translation, true, true);
 }
 
+let langListener = false;
+
 /** `defaultVariables` reach every string (e.g. `{device}` from the shell), so "stays on this {device}" needs no per-call argument. */
 export async function initI18n(locale: string, deviceLocales: readonly string[] = [], defaultVariables: Record<string, string> = {}): Promise<i18n> {
   const preferred = [locale, ...deviceLocales].find((l) => resources[l]) ?? "en";
@@ -59,6 +61,11 @@ export async function initI18n(locale: string, deviceLocales: readonly string[] 
     interpolation: { escapeValue: false, defaultVariables },
     returnNull: false,
   });
+  writeHtmlLang(i18next.language);
+  if (!langListener) {
+    langListener = true;
+    i18next.on("languageChanged", writeHtmlLang);
+  }
   return i18next;
 }
 
@@ -75,3 +82,4 @@ export function biometricLabel(t: (k: MessageKey) => string, kind: BiometricKind
 export { installed as intlPolyfills } from "./intl";
 export { i18next };
 export { joinList, listSeparator } from "./list";
+export { htmlLang, RTL_LOCALES } from "./documentLang";

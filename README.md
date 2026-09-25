@@ -5923,6 +5923,45 @@ read binary MB with no GB unit at all. The header also rounded its percent while
   1_280_000_000)` → 16, the exact pair from the round-91 screenshot) and by every call site now routing through the
   same two functions, so a header and a card computing from the same bytes cannot print different numbers again.
 
+## Fixes round 95: the web lock is a wall for the keyboard and screen readers, and message and row actions work without a mouse (branch `web-a11y-lock`) — 25.9.2026
+
+The web full pass (F3, F10, F11, F12) found four keyboard and screen-reader failures on the browser build. The lock
+only covered the app visually. Message actions opened only on a mouse long-press. Every chat row carried three
+invisible swipe buttons in the tab order. `<html lang>` said "en" in every language. The mobile screens are shared,
+so each fix is scoped to the web and native behaves as before.
+
+- **F381: the lock makes the app behind it inert.** On mount, `LockScreen` calls `useInertOutside`
+  (`apps/mobile/src/lock/inertOutside.ts`). It marks every sibling on the way from the lock up to `<body>` as `inert`
+  and `aria-hidden`. The chat list, composer, sidebar, web strip, and any sheet that was already open all leave the
+  tab order and the accessibility tree. Focus left on a control behind the lock is blurred. React-native-web keeps an
+  empty body-level container for each Modal, and the lock's own passcode sheet renders into one later, so empty
+  containers are spared. Unlocking puts back only what the lock changed. While the lock is up, shortcuts are held
+  (`setShortcutsBlocked`), because Ctrl+K opened the command palette, which lists every chat title, behind the lock.
+- **F382: message actions from the keyboard.** A focused answer or question opens the same actions sheet as a
+  long-press on Enter, Space, the ContextMenu key and Shift+F10, and on right-click (`apps/mobile/src/lib/actionKeys.ts`).
+  A key aimed at a button inside the answer, such as the reasoning toggle or Continue, is left alone. Right-click on
+  selected text keeps the browser's own Copy menu. The sheet is react-native-web's Modal: it traps focus, Esc closes it,
+  and focus returns to the answer.
+- **F383: row actions without a swipe.** On the web the swipe buttons are `tabIndex=-1` and `aria-hidden`. They stay
+  under the row for a mouse drag. Each row gets a visible 44 px More button ("More actions: <title>") in the tab
+  order. It opens the row menu: Rename, Pin, Archive, Move, Export, Delete. The menu's backdrop has a Close label, and
+  Esc returns focus to More.
+- **F384: `<html lang>` follows the language.** `initI18n` writes `lang` and `dir` on load and on every
+  `languageChanged` (`packages/i18n/src/documentLang.ts`). The pseudo-locale is `en-XA`, so a reader keeps an
+  English voice. A right-to-left language gets `dir="rtl"`. Native has no document and skips it.
+- **Red first.** `docs/qa/web-a11y-lock/red-lock-walk.txt`, `red-message-actions.txt`, `red-row-swipe-tab.txt` and
+  `red-html-lang-web.txt` come from `drive.mjs` against the origin/main build. `red-html-lang.txt` and
+  `red-lock-keys-rows.txt` are the new unit tests before the code existed.
+- **Green after, headless.** `drive.mjs` against this branch's build: all four PASS (`green-result.json`). Locked, Tab
+  reaches only the lock screen and "Use passcode". The passcode sheet traps Tab. The accessibility snapshot holds no
+  chat title, Ctrl+K opens nothing, and no answer reaches the DOM. After unlock, nothing is inert and the chat row is
+  tabbable again. Screenshots: `green-F381-*`, `green-F382-actions-open.png`, `green-F383-*`.
+- **Full gates green.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test` (900 core + 1018 mobile + 24 i18n + 23 ui),
+  `pn lint`, `pn web:build`, `pn web:smoke` and `pn check:store` all pass (`docs/qa/web-a11y-lock/gates.txt`).
+- **Permanent smoke.** `pn web:smoke` now checks `<html lang>` in all 8 locales plus pseudo, and walks the locked page
+  with the keyboard and the accessibility snapshot, then unlocks. `apps/mobile/test/web-a11y-lock-r95.test.ts` and
+  `packages/i18n/test/document-lang.test.ts` cover the helpers and the wiring.
+
 ## Fixes round 89: a question is answered while the index is rebuilt (branch `fix-reindex-busy`) — 24.9.2026
 
 Round 79 found F353 on the OnePlus 6T. After the update to the multilingual embedder, the rebuild of all documents

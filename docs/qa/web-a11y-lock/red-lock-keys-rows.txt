@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/web-a11y-lock/apps/mobile
+
+ ❯ test/web-a11y-lock-r95.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/web-a11y-lock-r95.test.ts [ test/web-a11y-lock-r95.test.ts ]
+Error: Cannot find module '../src/lock/inertOutside' imported from /Users/moshecohen/dev/inborn-wt/web-a11y-lock/apps/mobile/test/web-a11y-lock-r95.test.ts
+ ❯ test/web-a11y-lock-r95.test.ts:4:1
+      2| import { join } from "node:path";
+      3| import { describe, expect, it } from "vitest";
+      4| import { inertOutside, type InertNode } from "../src/lock/inertOutside…
+       | ^
+      5| import { opensActions } from "../src/lib/actionKeys";
+      6| import { emitShortcut, onShortcut, setShortcutsBlocked } from "../src/…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  12:10:57
+   Duration  431ms (worker 90%, environment 10%)
+
