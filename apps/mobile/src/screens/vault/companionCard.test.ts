@@ -103,7 +103,9 @@ describe("F346 · 'install X' lands on X's card", () => {
     expect(chat).toContain("afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));");
     expect(chat).toContain("onOpenVault?.(companion ? VISION_MODEL_ID : seer.id)");
     expect(chat).toContain("onOpenVault?.(adviceShown.better.model.id);");
-    expect(chat).toContain("afterSheetClose(() => onOpenVault?.(EMBED_MODEL_ID));");
+    /* Round 93: the index model is installed from the chat's hold card itself, which works on the web too. */
+    expect(chat).toContain("<IndexHoldCard");
+    expect(src("../../components/chat/IndexHoldCard.tsx")).toContain("installEmbedder()");
     expect(chat).not.toMatch(/onOpenVault\?\.\(\)/);
     expect(src("../../app/voice.tsx")).toContain("params: { focus: WHISPER_MODEL_ID }");
     expect(src("../../app/index.tsx")).toContain('params: { focus } } : "/vault"');

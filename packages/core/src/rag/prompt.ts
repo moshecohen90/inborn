@@ -29,6 +29,8 @@ export interface PromptOptions {
   answerLanguage?: string;
   /** False for models too small to place [n] marks (Instant): the passages are still fenced, the chips show as plain sources. */
   citeMarkers?: boolean;
+  /** The question is about the attached files themselves and `hits` are their opening passages (overview.ts): all of them count. */
+  overview?: boolean;
 }
 
 /** The exact token the model returns when strict mode finds nothing; the app renders the localized sentence instead. */
@@ -127,7 +129,7 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
   const nonce = o.nonce ?? randomNonce();
   const reserve = o.answerReserve ?? DEFAULT_ANSWER_RESERVE;
   const doors = relevanceDoors(o.embedderId);
-  const relevant = o.hits.filter((h) => isRelevant(h, doors));
+  const relevant = o.overview ? o.hits : o.hits.filter((h) => isRelevant(h, doors));
   const base = o.systemPrompt ? `${o.systemPrompt}\n\n` : "";
   if (o.strict && !relevant.length) {
     return { messages: [], citations: [], used: [], droppedForBudget: 0, noAnswer: true, promptTokens: 0 };

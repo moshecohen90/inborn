@@ -2,6 +2,7 @@ import { File, Paths } from "expo-file-system";
 import { BUNDLED_MANIFEST, type Embedder } from "@inborn/core";
 import { LlamaRnEmbedder } from "../adapters/llamaRn";
 import { getVault } from "../vault/store";
+import type { IndexModelState } from "./indexModel";
 
 /** Catalog id of the document-index model (spec §6.2). */
 export const EMBED_MODEL_ID = "embed-e5";
@@ -47,4 +48,24 @@ export function watchEmbedder(onChange: () => void): () => void {
     last = now;
     onChange();
   });
+}
+
+/** The vault's delivery of the index model, as the chat's hold card shows it (round 93). */
+export function indexModelState(): IndexModelState {
+  const vault = getVault();
+  const s = vault.state(EMBED_MODEL_ID);
+  const bytes = vault.model(EMBED_MODEL_ID)?.bytes ?? 0;
+  if (resolveEmbedder()) return { kind: "ready" };
+  if (s.kind === "delivering") return { kind: "downloading", bytes: s.bytes, total: s.total || bytes };
+  if (s.kind === "verifying") return { kind: "downloading", bytes, total: bytes };
+  if (s.kind === "failed") return { kind: "failed", error: s.error, bytes };
+  return bytes ? { kind: "missing", bytes } : { kind: "unavailable" };
+}
+
+export function subscribeIndexModel(listener: () => void): () => void {
+  return getVault().subscribe(listener);
+}
+
+export function cancelEmbedderInstall(): void {
+  void getVault().cancel(EMBED_MODEL_ID);
 }

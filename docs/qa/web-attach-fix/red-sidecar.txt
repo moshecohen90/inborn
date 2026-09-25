@@ -1,0 +1,8 @@
+ ✓ test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the deployed manifest lists it as a companion, never as a chat model 2ms
+ ✓ test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the app reads it back from that manifest, and only from an allowed origin 0ms
+ ✓ test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the dev host serves the local file as that companion, same-origin 3ms
+ × test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > reads a shasum-style sidecar as the bare hash 3ms
+   → expected 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…' to be 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…' // Object.is equality
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…' to be 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…' // Object.is equality
+      Tests  1 failed | 3 passed (4)

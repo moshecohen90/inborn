@@ -6,13 +6,15 @@
 import { chunkPage, type ChunkOptions } from "./chunker";
 import { forDocuments } from "./embedder";
 import { countInstructionLines } from "./injection";
+import { LEXICAL_INDEX_ID } from "./overview";
 import { detectScript } from "./tokens";
 import type { Chunk, DocumentRecord, Embedder, EmbeddingStore, IndexProgress, Ocr, OpenedDocument } from "./types";
 
 export interface IndexOptions {
   doc: DocumentRecord;
   opened: OpenedDocument;
-  embedder: Embedder;
+  /** Null while no index model is installed: the chunks are stored without vectors and found by their words. */
+  embedder: Embedder | null;
   store: EmbeddingStore;
   /** When set, pages without a text layer are read by OCR; otherwise they only count towards "needs OCR". */
   ocr?: { engine: Ocr; languages: string[]; render: (page: number) => Promise<string> };
@@ -64,7 +66,7 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   const started = now();
   const batchSize = o.batchSize ?? 8;
   const total = Math.min(o.opened.pages, o.maxPages ?? Infinity);
-  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder.id };
+  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder?.id ?? LEXICAL_INDEX_ID };
   const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.indexedPages, pages: total, chunks: doc.chunkCount, elapsedMs: now() - started });
   const cancelled = () => o.signal?.aborted === true;
   /* Rows past the committed page are either a page interrupted mid-commit or the old embedder's rows of a rebuild:
@@ -103,7 +105,7 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
       const rows: Chunk[] = chunks.map((c, i) => ({ id: chunkId(doc.id, p + 1, ord + i), docId: doc.id, page: p + 1, ord: ord + i, text: c.text, start: c.start, end: c.end, tokens: c.tokens }));
       ord += rows.length;
       const vectors: Float32Array[] = [];
-      for (let i = 0; i < rows.length; i += batchSize) {
+      for (let i = 0; o.embedder && i < rows.length; i += batchSize) {
         if (cancelled()) throw new IndexCancelled();
         report("embed");
         const batch = rows.slice(i, i + batchSize);

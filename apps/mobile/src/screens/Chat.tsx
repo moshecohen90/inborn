@@ -79,7 +79,7 @@ import { Composer } from "../components/chat/Composer";
 import { chatBlockedByStorage, reportStorageFull } from "../services/storageFull";
 import { AttachSheet } from "../components/chat/AttachSheet";
 import { TemplatesSheet } from "../work";
-import { EMBED_MODEL_ID, RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction, type PickOutcome } from "../documents";
+import { RedactBar, RedactSheet, fileRefusalKey, moveRedaction, pickIntoLibrary, planLibraryAttach, useRedaction, type PickOutcome } from "../documents";
 import { ContextMeter } from "../components/chat/ContextMeter";
 import { ChromeBar, FloatingToolbar, liquidGlass } from "../components/shell/NativeChrome";
 import { BannerSpacer } from "../components/shell/bannerInset";
@@ -95,7 +95,8 @@ import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { gatePhotoSend, planPhotoSend, planVisionTurn } from "../lib/visionGate";
 import { VisionHoldCard } from "../components/chat/VisionHoldCard";
-import { planDocsTurn, saysNoneMatched } from "../lib/docsGate";
+import { IndexHoldCard } from "../components/chat/IndexHoldCard";
+import { planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -240,8 +241,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
-  /** The turn refused because the index model is missing; the notice offers the one screen that fixes it (QA F139). */
-  const [docsOffer, setDocsOffer] = useState(false);
+  /* Round 93: Send with files attached and no index model is held behind a card, the message kept in the composer. */
+  const [docsHold, setDocsHold] = useState(false);
+  /** The user chose, on that card, to go on with the word search in this chat. */
+  const wordsAccepted = useRef(false);
+  /** The answer below was searched by words only (no index model), which it has to say. */
+  const [wordsOnly, setWordsOnly] = useState(false);
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
   const [preparingVision, setPreparingVision] = useState(false);
@@ -483,6 +488,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* The notice belongs to the answer below it, so a fresh turn withdraws the last one; Continue keeps it, since it resumes that same answer. */
       if (!existingMessageId) setNoneMatched(false);
       if (!existingMessageId) setReindexing(null);
+      if (!existingMessageId) setWordsOnly(false);
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -501,7 +507,6 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {
-        if (turn.messageKey === "documents.needsIndexModel") setDocsOffer(true);
         await answerWithoutModel(turn.messageKey);
         return;
       }
@@ -526,6 +531,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         try {
           const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system);
           if (rag.reindexing) setReindexing(rag.reindexing);
+          if (rag.lexical) setWordsOnly(true);
           if (rag.prompt.noAnswer) {
             await answerWithoutModel("documents.notFound");
             return;
@@ -722,6 +728,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
     if (!text || !session.current || busy || preparingPhotos > 0 || photoGating.current) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
+    /* A file with no index model behind it is never sent as if it were read in full (round 93). */
+    if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current }) === "hold") {
+      setDocsHold(true);
+      return;
+    }
     photoGating.current = true;
     try {
       await gatePhotoSend({
@@ -1225,6 +1236,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     setPhotoHold(null);
     void submitRef.current(draftRef.current);
   }, []);
+  /* The index model landed while the turn was held: the library has loaded it, so the message goes out now. */
+  useEffect(() => {
+    if (!docsHold || libraryState.embedder.kind !== "ready") return;
+    setDocsHold(false);
+    void submitRef.current(draftRef.current);
+  }, [docsHold, libraryState.embedder.kind]);
+  const sendWithWords = () => {
+    wordsAccepted.current = true;
+    setDocsHold(false);
+    void submitRef.current(draftRef.current);
+  };
   const micPhase = dictation.phase.kind;
   const micLine = micPhase === "listening" ? t("voice.listeningHint") : micPhase === "transcribing" ? t("voice.transcribingHint") : null;
 
@@ -1418,21 +1440,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           </Pressable>
         </View>
       ) : null}
-      {docsOffer ? (
-        <View testID="docs-offer" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.error.no-embedder")}</Text>
-          <Pressable
-            testID="docs-offer-action"
-            accessibilityRole="button"
-            onPress={() => {
-              setDocsOffer(false);
-              afterSheetClose(() => onOpenVault?.(EMBED_MODEL_ID));
-            }}
-            hitSlop={8}
-            style={styles.noticeBtn}
-          >
-            <Text style={[type.caption, { color: theme.accent }]}>{t("voice.openVault")}</Text>
-          </Pressable>
+      {wordsOnly ? (
+        <View testID="docs-lexical" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.wordsOnly")}</Text>
         </View>
       ) : null}
       {/* QA F276: a 1,400 ms toast was withdrawn ~8 s before the answer it explains arrived on the 6T, so this sentence lives as long as that answer. */}
@@ -1476,6 +1486,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {micLine}
         </Text>
       ) : null}
+      {docsHold && docs.documents.length ? <IndexHoldCard theme={theme} files={docs.documents.length} onWords={sendWithWords} onCancel={() => setDocsHold(false)} /> : null}
       {photoHold && pendingImages.length ? (
         <VisionHoldCard
           offer={photoHold}

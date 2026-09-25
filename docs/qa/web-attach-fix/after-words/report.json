@@ -1,0 +1,162 @@
+{
+  "url": "http://127.0.0.1:61579",
+  "modelsDir": "/Users/moshecohen/dev/inborn/.models",
+  "noEmbed": false,
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "The file did not verify. Try again.",
+      "answer": "This document describes greenhouse maintenance notes for a Lindqvist greenhouse heated by a heat pump, noting irrigation times and bean rotation schedules.",
+      "citations": "SOURCESgreenhouse-notes.txt · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:61579/6d580bc5-913f-445c-bdd8-75342ba01962",
+        "worker: blob:http://127.0.0.1:61579/343c3bfd-ed26-4cd4-b10c-524d36f8a44c",
+        "worker: blob:http://127.0.0.1:61579/8891a0d2-02ac-4ee9-a908-cb2180d0c52f",
+        "worker: blob:http://127.0.0.1:61579/24e5f7b8-f483-44c9-9bf4-b81563699ddc",
+        "worker: blob:http://127.0.0.1:61579/124c25c8-f3ca-4fbe-bc8b-b4f5bf032426",
+        "worker: blob:http://127.0.0.1:61579/5a4a8002-6a91-470e-8549-d9938545f51b",
+        "worker: blob:http://127.0.0.1:61579/77dd2c9a-4144-4c77-92b4-8ff260bb9842",
+        "info: [wllama] loaded instant in 1147 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1160 ms",
+        "worker: http://127.0.0.1:61579/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | b2116612-3ffb-46ab-91d8-f95b15fd4117#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "ferry-schedule.md": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nferry-schedule.md\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "The file did not verify. Try again.",
+      "answer": "This document lists ferry schedules for a harbor service, noting that crossings occur every 45 minutes between 07:00 and 21:00 with a single crossing ticket costing 3.60 euro.",
+      "citations": "SOURCESferry-schedule.md · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "ferry-schedule.md",
+      "log": [
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:61579/d62d84cc-43ea-4174-b094-5b908392f3fd",
+        "worker: blob:http://127.0.0.1:61579/b8cea721-1b07-41d8-bc4a-1bf6a07f0b63",
+        "worker: blob:http://127.0.0.1:61579/d2856c35-d8ae-470f-ac61-50c4311c9f5b",
+        "worker: blob:http://127.0.0.1:61579/cea2b1ff-5cb2-4c39-a0bb-8a4ca9c76e6f",
+        "worker: blob:http://127.0.0.1:61579/87af7594-8345-4a30-9267-abbfa37a3126",
+        "worker: blob:http://127.0.0.1:61579/71ea8019-4209-4b0d-a745-1bf7370b1794",
+        "worker: blob:http://127.0.0.1:61579/aa3ee91a-a9fe-4277-8d42-6fbed5445a25",
+        "info: [wllama] loaded instant in 1170 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1184 ms",
+        "log: [documents] ferry-schedule.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+        "worker: http://127.0.0.1:61579/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 76819973-e012-49bd-822d-dcb3662530a8#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "turbine-report.pdf": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nturbine-report.pdf\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "The file did not verify. Try again.",
+      "answer": "The document details a railway maintenance project in Austria where Halden's annual budget is 284,000 euros and the Rakovsky turbine was replaced with a new engine for a second line.",
+      "citations": "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "turbine-report.pdf",
+      "log": [
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:61579/f83cc333-8b4c-4231-9f20-e44df54feed6",
+        "worker: blob:http://127.0.0.1:61579/a0ac365d-ec72-4a87-8e96-224505eca5d7",
+        "worker: blob:http://127.0.0.1:61579/567733ea-e3cc-4f33-9d5f-f4a50f4f6708",
+        "worker: blob:http://127.0.0.1:61579/1b7e117d-7d18-4b82-b8ea-0a83f66a392d",
+        "worker: blob:http://127.0.0.1:61579/52368cfd-e7e6-4c02-b44f-49b6bb206ec4",
+        "worker: blob:http://127.0.0.1:61579/eaff37a9-1c96-414c-8a2b-b9f71458a496",
+        "worker: blob:http://127.0.0.1:61579/7df3538f-3df3-478c-b51f-3ed58f996eb6",
+        "info: [wllama] loaded instant in 1134 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1149 ms",
+        "worker: http://127.0.0.1:61579/pdfjs/pdf.worker.min.mjs",
+        "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+        "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 24 ms (8 ms/page)",
+        "worker: http://127.0.0.1:61579/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=3 used=3 1 ms | 69bd370b-5004-4a88-8865-d2fdd974cf62#0 cos=0.000 terms=0 bm25=0.00 KEPT · 69bd370b-5004-4a88-8865-d2fdd974cf62#1 cos=0.000 terms=0 bm25=0.00 KEPT · 69bd370b-5004-4a88-8865-d2fdd974cf62#2 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "novara-depot.docx": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:08 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nnovara-depot.docx\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "The file did not verify. Try again.",
+      "answer": "This file contains instructions for Ingrid Halvorsen managing a depot of 1,742 spare bearings and pads the document to increase its chunk count.",
+      "citations": "SOURCESnovara-depot.docx · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "novara-depot.docx",
+      "log": [
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:61579/6d47c1da-6dcb-4856-82c7-3d195bc10f97",
+        "worker: blob:http://127.0.0.1:61579/4c015806-eaeb-4dbd-baac-b297d563ea61",
+        "worker: blob:http://127.0.0.1:61579/21786364-01ac-4c16-947f-bdbe79ae768e",
+        "worker: blob:http://127.0.0.1:61579/0955cdad-a20e-493d-bf75-6774a41a2de1",
+        "worker: blob:http://127.0.0.1:61579/9071e24d-b2dc-468d-88db-54c8d4a0c377",
+        "worker: blob:http://127.0.0.1:61579/b68559fb-6b79-4f0c-aa9d-23da2cd23ac0",
+        "worker: blob:http://127.0.0.1:61579/b91df6e2-e173-4472-83b4-a13427e564d9",
+        "info: [wllama] loaded instant in 1145 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1160 ms",
+        "log: [documents] novara-depot.docx: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+        "worker: http://127.0.0.1:61579/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | d707f969-d853-4c86-ab0c-3ba21d737f36#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "door.jpg": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:08 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:08 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:07 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nFREE SENDS ONE PHOTO PER MESSAGE",
+      "answer": "",
+      "citations": null,
+      "notices": {
+        "vision-hold": "No model in this version of Inborn can see photos yet. Remove the photo to send your message.Remove the photo"
+      },
+      "chips": "",
+      "log": [
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "navigated: http://127.0.0.1:61579/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:61579/87ce97e1-60b7-4198-90b8-11147b848891",
+        "worker: blob:http://127.0.0.1:61579/20aca81b-0ca7-461b-a522-ace4f707fb41",
+        "worker: blob:http://127.0.0.1:61579/c9065c3a-8d6b-4d8c-a9d0-b395a1a5b166",
+        "worker: blob:http://127.0.0.1:61579/3f9d0bfa-3c1b-48cb-ab63-6e9a6107a218",
+        "worker: blob:http://127.0.0.1:61579/a6426038-dda9-4a5a-b2ca-8d8662048a40",
+        "worker: blob:http://127.0.0.1:61579/06e82c20-fac4-479a-82d0-d8c92dcea34b",
+        "worker: blob:http://127.0.0.1:61579/aca2ee7c-e762-4184-8fd8-8d1eb9c79b7b",
+        "info: [wllama] loaded instant in 1209 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1224 ms"
+      ]
+    }
+  },
+  "fullLog": [
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | b2116612-3ffb-46ab-91d8-f95b15fd4117#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: [documents] ferry-schedule.md: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 76819973-e012-49bd-822d-dcb3662530a8#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+    "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 24 ms (8 ms/page)",
+    "log: [rag] strict=false words-only overview hits=3 used=3 1 ms | 69bd370b-5004-4a88-8865-d2fdd974cf62#0 cos=0.000 terms=0 bm25=0.00 KEPT · 69bd370b-5004-4a88-8865-d2fdd974cf62#1 cos=0.000 terms=0 bm25=0.00 KEPT · 69bd370b-5004-4a88-8865-d2fdd974cf62#2 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: [documents] novara-depot.docx: indexed (words only, no index model) · 1/1 pages · 1 chunks · 10 ms (10 ms/page)",
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | d707f969-d853-4c86-ab0c-3ba21d737f36#0 cos=0.000 terms=0 bm25=0.00 KEPT"
+  ]
+}

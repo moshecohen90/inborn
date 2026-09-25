@@ -6,6 +6,7 @@
  *   MODELS_DIR=/path/to/ggufs PORT=8787 node scripts/serve-web.mjs
  *
  * /models/<id>.gguf resolves to $MODELS_DIR/<id>.gguf, else to the dev alias ($INSTANT_GGUF, $FAST_GGUF).
+ * The document index model (multilingual-e5-large-instruct-Q6_K.gguf) is listed under `companions` when it is in $MODELS_DIR.
  * /models/manifest.json describes the served models the way the catalog will (id, bytes, sha256, delivery url);
  * MODELS_ORIGIN points those urls at the real catalog host instead of this server, which is how the browser tier
  * is proven against models.inbornapp.com (the same variable already opens connect-src for it).
@@ -20,7 +21,7 @@ import { closeSync, createReadStream, existsSync, openSync, readFileSync, readSy
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isolationHeaders, securityHeaders } from "../apps/web/headers.mjs";
-import { MANIFEST_REL, readCatalog, webEligible, webModel } from "./web-manifest.mjs";
+import { MANIFEST_REL, readCatalog, webCompanion, webCompanions, webEligible, webModel } from "./web-manifest.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const webDist = path.join(repoRoot, "apps/web/dist");
@@ -58,7 +59,7 @@ const MIME = {
 /** sha256 of a model file, cached in a sidecar so a 2.7 GB file is hashed once. Read in chunks: `readFileSync` throws above 2 GiB, which is every Sharp model. */
 export function modelSha256(file) {
   const sidecar = `${file}.sha256`;
-  if (existsSync(sidecar) && statSync(sidecar).mtimeMs >= statSync(file).mtimeMs) return readFileSync(sidecar, "utf8").trim();
+  if (existsSync(sidecar) && statSync(sidecar).mtimeMs >= statSync(file).mtimeMs) return readFileSync(sidecar, "utf8").trim().split(/\s+/)[0];
   const hash = createHash("sha256");
   const fd = openSync(file, "r");
   try {
@@ -93,9 +94,17 @@ export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "" }) 
     const url = modelsOrigin ? `${modelsOrigin}/v1/${path.basename(file)}` : `/models/${name}`;
     models.push({ ...webModel(model, url), file: name, bytes: statSync(file).size, sha256: modelSha256(file) });
   }
+  /* The document index model is served from this machine like Instant, so an attached file is testable without the CDN. */
+  const companions = [];
+  for (const m of webCompanions(catalog)) {
+    const file = resolveFile(`/models/${m.file}`, { dist: "", modelsDir, aliases: {} });
+    if (!file) continue;
+    const url = modelsOrigin ? `${modelsOrigin}/v1/${m.file}` : `/models/${m.file}`;
+    companions.push({ ...webCompanion(m, url), bytes: statSync(file).size, sha256: modelSha256(file) });
+  }
   const built = dist ? path.join(dist, MANIFEST_REL) : "";
-  if (models.length === 0 && built && existsSync(built)) return JSON.parse(readFileSync(built, "utf8"));
-  return { version: catalog.version, publishedAt: new Date().toISOString(), models, signature: "" };
+  if (models.length === 0 && companions.length === 0 && built && existsSync(built)) return JSON.parse(readFileSync(built, "utf8"));
+  return { version: catalog.version, publishedAt: new Date().toISOString(), models, companions, signature: "" };
 }
 
 const headersFor = (opts) => ({ ...securityHeaders(opts.modelsOrigin), ...(opts.isolation ? isolationHeaders : {}), "Cache-Control": "no-cache" });
@@ -183,4 +192,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const instant = resolveFile("/models/instant.gguf", defaults);
   console.log(`serving ${defaults.dist} at ${url}${defaults.isolation ? "" : " (ISOLATION=off: single-thread WASM)"}`);
   console.log(instant ? `/models/instant.gguf -> ${instant}` : `/models/instant.gguf not found under ${defaults.modelsDir} (NullLM fallback)`);
+  const index = modelsManifest(defaults).companions?.find((c) => c.role === "embedding");
+  console.log(index ? `document index model -> ${index.delivery[0].url} (${index.bytes} bytes)` : `document index model not found under ${defaults.modelsDir}: attached files are searched by their words only`);
 }

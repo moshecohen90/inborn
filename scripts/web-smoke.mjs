@@ -11,6 +11,9 @@
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
  *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
  *      warnings: React only reports props it cannot put on an element in development builds (F371).
+ *   8. round 93: a .txt and a .pdf attached through "+" -> "Add a file…" reach the model. The .txt is sent past the
+ *      index-model card with the word search, the .pdf after Download installs the document index model from this
+ *      host; both answers carry SOURCES naming the file.
  * Skips (exit 0) when the model or playwright-core is absent.
  *
  *   MODELS_DIR=/path/to/ggufs SMOKE_OUT_DIR=/tmp node scripts/web-smoke.mjs
@@ -64,6 +67,8 @@ const REACT_WARNING_RE = /React does not recognize the|for a non-boolean attribu
 /* React Native prop names that mean nothing to a browser: on the DOM they are junk, and what they asked for is not done. */
 const RN_ONLY_ATTR_RE = /^(accessibility[a-z]+|importantforaccessibility|collapsable)$/i;
 const DEV_DIST = process.env.DEV_DIST ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../apps/mobile/web-build/dev");
+const ATTACH_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/attach");
+const ATTACH_QUESTION = "What is this file about? Quote one sentence from it.";
 const IPHONE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1";
 
 const skip = (why) => {
@@ -389,6 +394,53 @@ async function truncatedLabels(page, testIds) {
   }, testIds);
 }
 
+async function waitForEngineAfter(lines, from) {
+  for (let i = 0; i < LOAD_TIMEOUT_MS / 100; i++) {
+    if (lines.slice(from).some((l) => ENGINE_RE.test(l))) return;
+    await new Promise((r) => setTimeout(r, 100));
+  }
+  throw new Error("the engine never loaded");
+}
+
+/**
+ * Round 93: attaches `file` in a fresh chat, asks about it, answers the index-model card with `onHold` when it shows,
+ * and returns what the reader saw. The answer is done when its ledger row appears (rendered once streaming ends).
+ */
+async function attachAndAsk(page, consoleLines, file, onHold) {
+  const from = consoleLines.length;
+  await page.goto(server.url);
+  await page.getByTestId("composer-input").waitFor({ timeout: LOAD_TIMEOUT_MS });
+  /* Send does nothing until the engine is up; the Chat screen logs the load. */
+  await waitForEngineAfter(consoleLines, from);
+  const answers = await page.getByTestId("ledger-toggle").count();
+  await page.getByTestId("attach").click();
+  const [chooser] = await Promise.all([page.waitForEvent("filechooser", { timeout: 15_000 }), page.getByTestId("attach-import").click()]);
+  await chooser.setFiles(path.join(ATTACH_DIR, file));
+  await page.getByTestId("attached-docs").filter({ hasText: file }).waitFor({ timeout: 30_000 });
+  await page.getByTestId("composer-input").fill(ATTACH_QUESTION);
+  await page.getByTestId("send").click();
+  const seen = { file };
+  if (await page.getByTestId("docs-hold").waitFor({ timeout: 10_000 }).then(() => true, () => false)) {
+    seen.hold = ((await page.getByTestId("docs-hold").textContent()) ?? "").trim();
+    seen.holdScreenshot = path.join(outDir, `web-smoke-attach-hold-${file}.png`);
+    await page.screenshot({ path: seen.holdScreenshot });
+    await onHold(page, seen);
+  }
+  const ledger = page.getByTestId("ledger-toggle");
+  for (let i = 0; i < ANSWER_TIMEOUT_MS / 200 && (await ledger.count()) <= answers; i++) await page.waitForTimeout(200);
+  if ((await ledger.count()) <= answers) throw new Error(`${file}: no answer arrived`);
+  seen.answer = ((await page.getByTestId("assistant-text").last().textContent()) ?? "").trim();
+  seen.sources = ((await page.getByTestId("citations").last().textContent({ timeout: 2_000 }).catch(() => "")) ?? "").trim();
+  seen.wordsOnly = (await page.getByTestId("docs-lexical").count()) > 0;
+  seen.noneMatched = (await page.getByTestId("none-matched").count()) > 0;
+  seen.screenshot = path.join(outDir, `web-smoke-attach-${file}.png`);
+  await page.screenshot({ path: seen.screenshot, fullPage: true });
+  if (!seen.answer) throw new Error(`${file}: empty answer`);
+  if (seen.noneMatched) throw new Error(`${file}: the answer says nothing in the file matched a question about the file`);
+  if (!seen.sources.includes(file)) throw new Error(`${file}: the answer carries no SOURCES naming the file (sources: "${seen.sources}", answer: "${seen.answer.slice(0, 160)}")`);
+  return seen;
+}
+
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
@@ -670,6 +722,35 @@ try {
     if (foreignHosts(hosts).length) throw new Error(`the switched page talked to ${foreignHosts(hosts).join(", ")}`);
     await page.close();
   }
+
+  /* 8. Round 93: attached files reach the model, with and without the document index model. */
+  {
+    const page = await context.newPage();
+    const { consoleLines, pageErrors, hosts } = observe(page);
+    lastPage = page;
+    lastConsole = consoleLines;
+    const out = (result.attach = {});
+    const manifest = await (await page.request.get(new URL("/models/manifest.json", server.url).href)).json();
+    out.indexModelServed = !!manifest.companions?.some((c) => c.id === "embed-e5");
+    /* The .txt goes out on the word search: the card must offer it, and the answer must say it was a word search. */
+    out.txt = await attachAndAsk(page, consoleLines, "greenhouse-notes.txt", async (p) => p.getByTestId("docs-hold-words").click());
+    if (!out.txt.hold) throw new Error("a file with no index model behind it was sent without the index-model card");
+    if (!out.txt.wordsOnly) throw new Error("a word-search answer does not say it was a word search");
+    /* The .pdf installs the index model from this host (the card's Download), then goes out by itself. */
+    out.pdf = await attachAndAsk(page, consoleLines, "turbine-report.pdf", async (p, seen) => {
+      if (!out.indexModelServed) return p.getByTestId("docs-hold-words").click();
+      await p.getByTestId("docs-hold-download").click();
+      await p.getByTestId("docs-hold").waitFor({ state: "detached", timeout: LOAD_TIMEOUT_MS }).catch(async () => {
+        seen.downloadError = await p.getByTestId("docs-hold-error").textContent({ timeout: 1000 }).catch(() => null);
+        throw new Error(`the index-model download did not finish: ${seen.downloadError ?? "card still up"}`);
+      });
+    });
+    if (out.indexModelServed && out.pdf.wordsOnly) throw new Error("the index model was installed but the answer still used the word search");
+    out.ragLines = consoleLines.filter((l) => /\[(rag|documents)\]/.test(l));
+    noPageErrors(pageErrors, "attach pass");
+    if (foreignHosts(hosts).length) throw new Error(`the attach pass talked to ${foreignHosts(hosts).join(", ")}`);
+    await page.close();
+  }
   await context.close();
 
   /* 3. A phone: the gate says Instant only + get the app (spec §8.9). */
@@ -858,6 +939,7 @@ console.log(`PASS: no React Native prop on the DOM, composer icons aria-hidden (
 if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev.skipped})`);
 else console.log(`PASS: development export walked door -> onboarding -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
+console.log(`PASS: attached .txt answered on the word search with SOURCES "${result.attach.txt.sources}"; .pdf answered ${result.attach.indexModelServed ? "after installing the index model from this host" : "on the word search (no index model served)"} with SOURCES "${result.attach.pdf.sources}"`);
 for (const screen of LAYOUT_SCREENS) {
   for (const width of REQUIRED_WIDTHS) {
     for (const theme of REQUIRED_THEMES) {

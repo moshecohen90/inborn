@@ -131,15 +131,17 @@ describe("attachmentState: what the chat may answer from (QA F125/F126)", () => 
     expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.needsOcr" });
   });
 
-  it("names the missing index model when nothing could be embedded", async () => {
+  /* Round 93 replaced the refusal: a file with no index model behind it is read by its words and searched that way. */
+  it("reads the file by its words when the index model is missing, so the turn searches it", async () => {
     embedderMissing = true;
     const library = new DocumentLibrary();
     await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
     await settle(library);
 
     const state = library.attachmentState("chat-1");
-    expect(state.blocked).toBe("no-embedder");
-    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.needsIndexModel" });
+    expect(state.blocked).toBeNull();
+    expect(state.hasIndex).toBe(true);
+    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "retrieve" });
   });
 
   it("a chat with no attachment is untouched: no wait, no refusal", async () => {
@@ -173,15 +175,18 @@ describe("attachmentState: what the chat may answer from (QA F125/F126)", () => 
 
 describe("adding the same file again (QA F139)", () => {
   it("reads a twin that has no passages instead of handing back the dead record", async () => {
-    embedderMissing = true;
     const library = new DocumentLibrary();
+    /* The first read is stopped before its first page is committed: a record with no passages. */
+    hold = () => undefined;
     const first = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
+    library.cancel(first.id);
+    const release = hold as unknown as () => void;
+    hold = null;
+    release();
     await settle(library);
     expect(library.attachmentState("chat-1").hasIndex).toBe(false);
 
-    /* The user installs the index model and adds the file again, which is the only move the app offers them. */
-    embedderMissing = false;
-    await library.refreshEmbedder();
+    /* The user adds the file again, which is the only move the app offers them. */
     const again = await attach(library, "chat-1", "handbook.txt", "the access code is ZR-4471-QX");
     expect(again.id).toBe(first.id);
     await settle(library);

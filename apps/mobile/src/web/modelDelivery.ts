@@ -48,7 +48,33 @@ export function parseManifest(body: { models?: ManifestModel[] }, allowedOrigins
   return out;
 }
 
+/**
+ * A companion file of the catalog (`companions`: the document index model), under the same allowlist as the models.
+ * Null when the manifest does not list it or points it at a host this app may not fetch from.
+ */
+export function parseCompanion(body: { companions?: ManifestModel[] }, id: string, allowedOrigins: string[] = [], origin = location.origin): WebModelSource | null {
+  const entry = body.companions?.find((c) => c.id === id);
+  return entry ? (parseManifest({ models: [entry] }, allowedOrigins, origin)[0] ?? null) : null;
+}
+
 const MANIFEST_CACHE = "inborn.web.manifest";
+
+/** The companion from the live manifest, else from the last one this browser saw. */
+export async function fetchCompanion(id: string, allowedOrigins: string[] = []): Promise<WebModelSource | null> {
+  try {
+    const res = await fetch(MANIFEST_URL, { cache: "no-cache" });
+    const type = res.headers.get("content-type") ?? "";
+    if (res.ok && /\bjson\b/i.test(type)) return parseCompanion(JSON.parse(await res.text()) as { companions?: ManifestModel[] }, id, allowedOrigins);
+  } catch {
+    /* offline or not JSON: the cached copy below */
+  }
+  try {
+    const cached = localStorage.getItem(MANIFEST_CACHE);
+    return cached ? parseCompanion(JSON.parse(cached) as { companions?: ManifestModel[] }, id, allowedOrigins) : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Why this browser has no catalog. `not-json` is the one B1 (24.9.2026) turned up: the origin answered
