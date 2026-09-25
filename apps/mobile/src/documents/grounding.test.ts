@@ -17,7 +17,7 @@ describe("F365 · the library judges hits with its own embedder's doors", () => 
 describe("F366 · SOURCES only under an answer that took something from a passage", () => {
   it("the chat keeps only grounded chips, and says the documents did not match when none are", () => {
     const chat = src("../screens/Chat.tsx");
-    expect(chat).toContain("groundedCitations(prefix + reply, lastUser, ragUsed, citations)");
+    expect(chat).toContain("groundedCitations(shown(), lastUser, ragUsed, citations)");
     expect(chat).toContain("saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })");
     expect(chat).toContain("citations = kept.length ? kept : undefined;");
   });

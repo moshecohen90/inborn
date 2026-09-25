@@ -23,6 +23,46 @@ const SHORT_REPEATS = 5;
 const TERMINATORS = new Set(Array.from(".!?。！？．…"));
 const LIST_ITEM = /^[ \t]*(?:[-*+•·]|\d{1,3}[.)、．])[ \t]/u;
 const LETTER = /\p{L}/u;
+/** Copies of a requested repetition allowed when the ask names no count. */
+const ASKED_CAP = 10;
+const COUNT_CAP = 100;
+
+export interface LoopContext {
+  /** The user's own message for this answer: repetition they asked for is not a loop (F389). */
+  request?: string;
+}
+
+export interface RepetitionRequest {
+  asked: boolean;
+  /** The number of copies or lines asked for, when the ask names one. */
+  count?: number;
+}
+
+const NUMBER_WORDS: Record<string, number> = {
+  two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, twelve: 12, twenty: 20,
+  zwei: 2, drei: 3, vier: 4, "fünf": 5, sechs: 6, sieben: 7, acht: 8, neun: 9, zehn: 10,
+  dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10,
+  deux: 2, trois: 3, quatre: 4, cinq: 5, sept: 7, huit: 8, neuf: 9, dix: 10,
+  dois: 2, duas: 2, "três": 3, quatro: 4, sete: 7, oito: 8, nove: 9, dez: 10,
+  "두": 2, "세": 3, "네": 4, "다섯": 5, "여섯": 6, "일곱": 7, "여덟": 8, "아홉": 9, "열": 10,
+  "二": 2, "两": 2, "兩": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10,
+};
+const NUM = `\\d{1,3}|${Object.keys(NUMBER_WORDS).sort((a, b) => b.length - a.length).join("|")}`;
+/* "five times", "3 lines", "fünfmal", "cinco veces", "5回", "다섯 번", "五遍". */
+const COUNTED = new RegExp(`(?<![\\p{Script=Latin}\\d])(${NUM})[ \\-]?(?:x\\b|×|times\\b|lines\\b|copies\\b|mal\\b|zeilen\\b|veces\\b|l[ií]neas\\b|fois\\b|lignes\\b|vezes\\b|linhas\\b|回|遍|次|行|번|줄)`, "iu");
+const ASKED = /\b(?:repeat|over and over|chorus|refrain|lyrics|each on its own line|one per line|wiederhol|liedtext|repit|estribillo|coro\b|letra|r[ée]p[èée]t|paroles|repet|refr[ãa]o)|繰り返|くりかえ|リフレイン|サビ|歌詞|반복|후렴|가사|重複|重复|副歌|歌词|每遍|每行/iu;
+
+/** Whether the user asked for repetition (repeat N times, write N lines, a chorus), in the 8 app locales. */
+export function repetitionRequest(request: string): RepetitionRequest {
+  const text = request.normalize("NFC");
+  const m = COUNTED.exec(text);
+  const word = m?.[1]?.toLowerCase();
+  const count = word === undefined ? undefined : /^\d+$/u.test(word) ? Number(word) : NUMBER_WORDS[word];
+  const asked = count !== undefined || ASKED.test(text);
+  return count !== undefined && count >= 2 ? { asked, count: Math.min(count, COUNT_CAP) } : { asked };
+}
+
+const flat = (s: string) => s.replace(/\s+/gu, " ").trim().toLowerCase();
 
 interface Normalized {
   /** Code points, horizontal whitespace runs as " ", runs holding a line break as "\n". */
@@ -85,8 +125,22 @@ function boundary(s: string[], a: number): number {
  * anywhere in the last 600 code points (a list item needs four, fenced code never counts), or a shorter unit running
  * 32 code points. No whitespace is needed, so CJK loops are found like Latin ones. Null when the text is healthy.
  */
-export function detectLoop(text: string): LoopHit | null {
+export function detectLoop(text: string, context: LoopContext = {}): LoopHit | null {
   if (!text) return null;
+  const request = context.request ? flat(context.request) : "";
+  const ask = request ? repetitionRequest(context.request!) : { asked: false };
+  /* How many copies of this unit the user asked for; more than that is a loop. */
+  const allowed = (a: number, p: number): number => {
+    if (!request) return REPEATS - 1;
+    const unit = s.slice(a, a + p);
+    let quoted = false;
+    for (let r = 0; r < p && !quoted; r++) {
+      const rot = flat([...unit.slice(r), ...unit.slice(0, r)].join(""));
+      quoted = rot.length >= MIN_UNIT / 2 && request.includes(rot);
+    }
+    if (quoted || (ask.asked && (ask.count !== undefined || unit.includes("\n")))) return Math.max(REPEATS - 1, ask.count ?? ASKED_CAP);
+    return REPEATS - 1;
+  };
   const { cps: s, at } = normalize(text);
   const n = s.length;
   const from = Math.max(0, n - WINDOW);
@@ -107,6 +161,9 @@ export function detectLoop(text: string): LoopHit | null {
       const unit = s.slice(a, a + p);
       const nl = unit.indexOf("\n");
       if (nl >= 0 && LIST_ITEM.test([...unit.slice(nl + 1), ...unit.slice(0, nl)].join("")) && len < (REPEATS + 1) * p) return false;
+      /* A doubled unit is judged at its own period, so a requested count is not dodged by pairing copies. */
+      if (request) for (let q = MIN_UNIT; q < p; q++) if (periodic(s, a, regionLen, q)) return false;
+      if (request && Math.floor(len / p) <= allowed(a, p)) return false;
     }
     return !inCode(a, a + regionLen);
   };
@@ -147,7 +204,11 @@ export function detectLoop(text: string): LoopHit | null {
     }
   }
   const unit = s.slice(start, start + p).join("").trim();
-  return { unit, repeats: copies, start: at[start]!, keep: at[start + p]! };
+  /* Asked for five, got eight: keep the five. */
+  const asked = p >= MIN_UNIT && request ? allowed(start, p) : REPEATS - 1;
+  const keepCopies = asked > REPEATS - 1 ? Math.min(asked, copies - 1) : 1;
+  const keepAt = Math.min(start + keepCopies * p, n);
+  return { unit, repeats: copies, start: at[start]!, keep: at[keepAt]! };
 }
 
 export interface LoopCut {
@@ -174,7 +235,7 @@ export function describeLoopCut(cut: LoopCut): string {
  * yields `{ loop }` with the cut text, and swallows the text the engine still flushes; the final `done` passes through.
  * A loop the engine finished by itself (token ceiling) is cut at the end the same way, without `stop`.
  */
-export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void): AsyncGenerator<GuardedDelta> {
+export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void, context: LoopContext = {}): AsyncGenerator<GuardedDelta> {
   let text = "";
   let cut: LoopCut | null = null;
   let checkedAt = 0;
@@ -187,7 +248,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       text += d.text;
       if (text.length - checkedAt >= 4) {
         checkedAt = text.length;
-        const hit = detectLoop(text);
+        const hit = detectLoop(text, context);
         if (hit) {
           cut = cutLoop(text, hit);
           stop();
@@ -199,7 +260,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     yield d;
   }
   if (!cut && text) {
-    const hit = detectLoop(text);
+    const hit = detectLoop(text, context);
     if (hit) yield { loop: cutLoop(text, hit) };
   }
 }

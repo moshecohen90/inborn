@@ -1,0 +1,25 @@
+     × keeps five requested lines (en) through the stream 5ms
+     × keeps five requested lines (zh-Hant) through the stream 1ms
+     × keeps a sentence the user quoted, repeated on one line 1ms
+     × keeps a chorus the user asked for (line-structured, no count) 1ms
+     × cuts a requested repetition that runs past the count, keeping the count 2ms
+     × Repeat exactly this sentence five times 0ms
+     × Write 3 lines of: hello 1ms
+     × Wiederhole diesen Satz fünfmal 0ms
+     × Repite esta frase cinco veces 0ms
+     × Répète cette phrase cinq fois 0ms
+     × Repita esta frase cinco vezes 0ms
+     × この文を5回繰り返してください 0ms
+     × 이 문장을 다섯 번 반복해 주세요 0ms
+     × 請把這句話重複五遍 0ms
+     × Write the lyrics with the chorus 0ms
+     × an ordinary question is not a repetition request 0ms
+     × adds a space between two Latin words 0ms
+     × no space when the prefix ends in whitespace or a newline 0ms
+     × no space after an open bracket or quote 0ms
+     × no space when the model starts with punctuation or its own space 1ms
+     × no space in Chinese or Japanese 0ms
+     × a space in Korean, which spaces its words 0ms
+     × nothing to join when either side is empty 0ms
+⎯⎯⎯⎯⎯⎯ Failed Tests 23 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  23 failed | 3 passed (26)
