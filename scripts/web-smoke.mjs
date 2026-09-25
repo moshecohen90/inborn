@@ -233,17 +233,61 @@ async function waitForEngine(page, out, consoleLines, t0) {
   out.sessionLoadMs = Number(loadMs);
 }
 
-/** The Chats footer's boxes at the current width: the model chip's neighbours and the PRO chip after Folders. */
-function footerRow(page) {
-  return page.evaluate(() => {
-    const box = (id) => {
-      const el = document.querySelector(`[data-testid="${id}"]`);
-      if (!el) return null;
-      const r = el.getBoundingClientRect();
+/** Widths the Chats footer is checked at: the phone, and the 280 px sidebar at the narrowest and a middle window (F395). */
+const FOOTER_WIDTHS = [390, 768, 1180];
+
+/**
+ * The Chats footer at the current width (F395): Personas, Memory and Folders inside the footer's own box and not
+ * covered at their centres, PRO inside Folders and visible to its last pixel, one row, no ellipsized text, and the
+ * three buttons the only Tab stops.
+ */
+async function checkFooter(page, where) {
+  const f = await page.evaluate(() => {
+    const el = (id) => document.querySelector(`[data-testid="${id}"]`);
+    const box = (e) => {
+      if (!e) return null;
+      const r = e.getBoundingClientRect();
       return { x: Math.round(r.x), right: Math.round(r.right), cy: Math.round(r.y + r.height / 2) };
     };
-    return { personas: box("open-personas"), folders: box("open-folders"), pro: box("pro-tag"), clientWidth: document.scrollingElement.clientWidth };
+    const hits = (e, x, y) => {
+      const hit = document.elementFromPoint(x, y);
+      return !!hit && (hit === e || e.contains(hit));
+    };
+    const footer = el("chats-footer");
+    const ids = ["open-personas", "open-memory", "open-folders"];
+    const out = { footer: box(footer), buttons: {}, covered: [], clientWidth: document.scrollingElement.clientWidth };
+    for (const id of ids) {
+      const e = el(id);
+      out.buttons[id] = box(e);
+      if (!e) continue;
+      const r = e.getBoundingClientRect();
+      if (!hits(e, r.x + r.width / 2, r.y + r.height / 2)) out.covered.push(id);
+      out.buttons[id].name = e.getAttribute("aria-label") ?? "";
+    }
+    const pro = el("pro-tag");
+    out.pro = box(pro);
+    if (pro) {
+      const r = pro.getBoundingClientRect();
+      out.proInsideFolders = el("open-folders")?.contains(pro) ?? false;
+      if (!hits(pro, r.right - 2, r.y + r.height / 2)) out.covered.push("pro-tag");
+    }
+    const leaves = footer ? [...footer.querySelectorAll("*")].filter((x) => !x.children.length && x.textContent.trim()) : [];
+    out.ellipsized = leaves.filter((x) => x.scrollWidth > x.clientWidth + 1).map((x) => x.textContent.trim());
+    out.tabStops = footer ? [...footer.querySelectorAll("*")].filter((x) => x.tabIndex >= 0).map((x) => x.getAttribute("data-testid") ?? x.tagName) : [];
+    return out;
   });
+  const b = f.buttons;
+  const missing = ["open-personas", "open-memory", "open-folders"].filter((id) => !b[id]);
+  if (!f.footer || missing.length || !f.pro) throw new Error(`${where}: the Chats footer is missing ${[...missing, f.pro ? null : "pro-tag", f.footer ? null : "chats-footer"].filter(Boolean).join(", ")}`);
+  const outside = [...Object.entries(b), ["pro-tag", f.pro]].filter(([, x]) => x.x < f.footer.x - 1 || x.right > f.footer.right + 1).map(([id]) => id);
+  if (outside.length) throw new Error(`${where}: ${outside.join(", ")} past the footer's edge ${JSON.stringify(f)}`);
+  if (f.covered.length) throw new Error(`${where}: ${f.covered.join(", ")} clipped or covered ${JSON.stringify(f)}`);
+  if (!f.proInsideFolders) throw new Error(`${where}: PRO is not part of the Folders button ${JSON.stringify(f)}`);
+  if (Object.values(b).some((x) => Math.abs(x.cy - b["open-folders"].cy) > 2)) throw new Error(`${where}: the Chats footer wrapped onto two rows ${JSON.stringify(f)}`);
+  if (f.ellipsized.length) throw new Error(`${where}: the footer ellipsizes ${f.ellipsized.join(", ")}`);
+  if (f.tabStops.join() !== "open-personas,open-memory,open-folders") throw new Error(`${where}: the footer's Tab stops are ${f.tabStops.join(", ")}`);
+  if (Object.values(b).some((x) => !x.name.trim())) throw new Error(`${where}: a footer button has no name ${JSON.stringify(f)}`);
+  return f;
 }
 
 /** Init script: the page's clock reads `hour`:00 today, so the Auto clock rule is tested at a known side of 18:00. */
@@ -673,15 +717,9 @@ try {
       };
       if (locale === "fr") await page.screenshot({ path: path.join(outDir, "web-smoke-labels-fr-390.png") });
       if (clipped.length) throw new Error(`${locale} at 390: ${clipped.map((c) => `${c.id} "${c.text}" needs ${c.scrollWidth}px in ${c.clientWidth}px`).join("; ")}`);
-      /* W8/F393: the footer stays one row and the PRO chip sits right after Folders, never alone on a line of its own. */
-      const footer = await footerRow(page);
-      result.labels[locale].footer = footer;
+      /* W8/F393, F395: the footer fits, with PRO inside Folders, at the phone width here and in the sidebar below. */
+      result.labels[locale].footer = { 390: await checkFooter(page, `${locale} at 390`) };
       await page.screenshot({ path: path.join(outDir, `web-smoke-chats-${locale}-390.png`) });
-      if (!footer.pro || !footer.folders || !footer.personas) throw new Error(`${locale} at 390: the Chats footer is missing ${["pro", "folders", "personas"].filter((k) => !footer[k]).join(", ")}`);
-      if (Math.abs(footer.pro.cy - footer.folders.cy) > 2 || footer.pro.x < footer.folders.right - 1 || footer.pro.right > footer.clientWidth + 1) {
-        throw new Error(`${locale} at 390: the PRO chip left the Folders row ${JSON.stringify(footer)}`);
-      }
-      if (Math.abs(footer.personas.cy - footer.folders.cy) > 2) throw new Error(`${locale} at 390: the Chats footer wrapped onto two rows ${JSON.stringify(footer)}`);
       /* W2/F392: the pseudo-locale is the longest any string may get; every screen must still fit the narrowest window. */
       if (locale === "pseudo") {
         result.pseudoLayout = {};
@@ -699,6 +737,14 @@ try {
         const missed = LAYOUT_SCREENS.filter((sc) => !result.pseudoLayout[sc.id]);
         if (missed.length) throw new Error(`pseudo sweep skipped ${missed.map((sc) => sc.id).join(", ")}`);
       }
+      for (const width of FOOTER_WIDTHS.filter((w) => w !== 390)) {
+        await page.setViewportSize({ width, height: 900 });
+        await page.goto(new URL("/", server.url).href);
+        await page.getByTestId("open-folders").waitFor({ timeout: 60_000 });
+        result.labels[locale].footer[width] = await checkFooter(page, `${locale} at ${width}`);
+        if (locale === "pseudo" || locale === "de") await page.screenshot({ path: path.join(outDir, `web-smoke-chats-${locale}-${width}.png`) });
+      }
+      await page.setViewportSize({ width: 390, height: 900 });
     }
     const sweptLocales = Object.keys(result.labels);
     if (sweptLocales.length !== LOCALES.length) throw new Error(`label sweep covered ${sweptLocales.length} of ${LOCALES.length} locales`);
