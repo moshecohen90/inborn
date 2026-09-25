@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { joinList } from "@inborn/i18n";
@@ -8,7 +8,7 @@ import { Sheet } from "./Sheet";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { modelLabel } from "../../lib/models";
-import { goodAtUses, recommendationKey } from "../../lib/modelSheetLines";
+import { WEB_HERE, goodAtUses, recommendationKey } from "../../lib/modelSheetLines";
 import { Toggle } from "../shell/primitives";
 import { ChipGlyph } from "../shell/ChipGlyph";
 
@@ -115,7 +115,8 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
         ) : null}
         {managed ? (
           <Text testID="model-sheet-managed" style={[type.bodySmall, { color: theme.text2 }]}>
-            {t("vault.web.explain")} {t("vault.web.fullVault")}
+            {/* The IN THE APP rows below already say what only the app runs; the sentence would say it twice (F388). */}
+            {inTheApp?.length ? t("vault.web.explain") : `${t("vault.web.explain")} ${t("vault.web.fullVault")}`}
           </Text>
         ) : null}
 
@@ -189,7 +190,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   const { t } = useTranslation();
   const { model, reason } = choice;
   /* "Good at" names the jobs the fit map rates best or good, plus photos, which no use case covers. */
-  const goodAt = goodAtUses(model).map((u) => (u === "photos" ? t("vault.details.vision") : t(`use.${u}`)));
+  const goodAt = goodAtUses(model, Platform.OS === "web" ? WEB_HERE : undefined).map((u) => (u === "photos" ? t("vault.details.vision") : t(`use.${u}`)));
   const tier = reason.languageTier;
   /* §9.9 keeps the sealed green for the seal: the language tier is a ladder of ink weight instead (QA F247). */
   const tierColor = tier === "native" ? theme.text : tier === "good" ? theme.text2 : tier === "none" ? theme.danger : theme.text3;

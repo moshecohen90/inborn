@@ -41,12 +41,14 @@ interface Props {
   /** The resident model can see but the projector is not installed: the row that was a dead end now fetches it (QA F137). */
   onInstallVision?: () => void;
   visionSize?: string;
+  /** Browser build: photos are an app feature there, so the photo section ends with the way to the app (F385). */
+  onGetApp?: () => void;
   /** Opens the profession-pack templates library (§7.6, Work); the Work stream gates it inside. */
   onTemplates?: () => void;
 }
 
 /** The [+] sheet (§7.3, S12): pick documents for this chat, the strict switch, and the way to the library. */
-export function AttachSheet({ visible, onClose, documents, attachedIds, tier, attachedCount, strict, onSetStrict, strictLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onInstallVision, visionSize, onImport, onTemplates }: Props) {
+export function AttachSheet({ visible, onClose, documents, attachedIds, tier, attachedCount, strict, onSetStrict, strictLocked, onUnlock, onAttach, onDetach, onManage, onPhoto, photoNote, photoDisabled, onUseVisionModel, visionModel, onInstallVision, visionSize, onGetApp, onImport, onTemplates }: Props) {
   const type = useType();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -61,6 +63,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, tier, at
           <SheetItem testID="attach-camera" label={t("chat.attach.camera")} disabled={photoDisabled} onPress={() => onPhoto("camera")} trailing={<Icon name="camera" size={18} color={theme.text2} />} />
           {onUseVisionModel && visionModel ? <SheetItem testID="attach-use-vision" label={t("chat.attach.useVisionModel", { model: visionModel })} onPress={onUseVisionModel} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
           {onInstallVision ? <SheetItem testID="attach-install-vision" label={t("chat.attach.installVision", { size: visionSize ?? "" })} onPress={onInstallVision} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
+          {onGetApp ? <SheetItem testID="attach-get-app" label={t("web.getApp")} onPress={onGetApp} trailing={<Icon name="chevronRight" size={18} color={theme.text2} />} /> : null}
         </View>
       ) : null}
       {onImport ? <SheetItem testID="attach-import" label={t("chat.attach.import")} hint={t("chat.attach.importHint")} onPress={onImport} trailing={<Icon name="upload" size={18} color={theme.text2} />} /> : null}

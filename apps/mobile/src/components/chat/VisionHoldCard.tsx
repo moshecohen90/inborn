@@ -21,10 +21,12 @@ export interface VisionHoldCardProps {
   onOpenVault: () => void;
   /** The pack landed while the turn was held: send it. */
   onReady: () => void;
+  /** Browser build: no engine here can see, so the card points at the app instead of a pack (F385). */
+  onGetApp?: () => void;
 }
 
 /** QA F343: the message and its photos stay in the composer until a model can see them; the only ways on are here. */
-export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, onSwitch, onRemove, onOpenVault, onReady }: VisionHoldCardProps) {
+export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, onSwitch, onRemove, onOpenVault, onReady, onGetApp }: VisionHoldCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const { vault } = useVault();
@@ -50,7 +52,9 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
         ? t("chat.vision.holdSwitch", { seer })
         : pack
           ? t("chat.vision.holdBody", { size })
-          : t("chat.vision.holdNoPack");
+          : Platform.OS === "web"
+            ? t("chat.vision.holdWeb")
+            : t("chat.vision.holdNoPack");
   return (
     <View testID="vision-hold" aria-live="polite" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
       {title ? (
@@ -78,6 +82,13 @@ export function VisionHoldCard({ offer, theme, model, seer, seerReady, photos, o
           <Pressable testID="vision-hold-vault" accessibilityRole="button" onPress={onOpenVault} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t("voice.openVault")}
+            </Text>
+          </Pressable>
+        ) : null}
+        {onGetApp ? (
+          <Pressable testID="vision-hold-get-app" accessibilityRole="link" onPress={onGetApp} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+            <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
+              {t("web.getApp")}
             </Text>
           </Pressable>
         ) : null}

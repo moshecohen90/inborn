@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { BUNDLED_MANIFEST, modelChoices, type CatalogModel, type DeviceProfile } from "@inborn/core";
-import { goodAtUses, recommendationKey } from "../../lib/modelSheetLines";
+import { WEB_HERE, goodAtUses, recommendationKey } from "../../lib/modelSheetLines";
 
 /**
  * F150: Moshe could not find how to change model — the header chip opened Chat settings, where the model was a dead chip.
@@ -57,6 +57,11 @@ describe("what a row claims the model is good at", () => {
   });
   it("claims nothing for a model with no fit block (an import)", () => {
     expect(goodAtUses({ vision: false })).toEqual([]);
+  });
+  /* F385/F386: the browser engine has no projector and no dictation, so a browser row claims neither. */
+  it("drops photos and voice notes in the browser build and keeps the rest", () => {
+    expect(goodAtUses(byId("instant"), WEB_HERE)).not.toContain("photos");
+    expect(goodAtUses(byId("fast"), WEB_HERE)).toEqual(["chat", "writing", "summarize", "translate", "documents"]);
   });
 });
 

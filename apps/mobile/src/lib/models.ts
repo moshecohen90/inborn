@@ -49,9 +49,11 @@ export interface ModelCopy {
 
 /* The manifest is signed, so its English text cannot be translated in place; the locale files carry a key per catalog id
    and the manifest line is the fallback for imported and Hugging Face files, which have no key. */
-export function modelCopy(t: Translate, model: Pick<CatalogModel, "id" | "goodFor"> & { fit?: Pick<ModelFit, "weakAt"> }): ModelCopy {
+export function modelCopy(t: Translate, model: Pick<CatalogModel, "id" | "goodFor"> & { fit?: Pick<ModelFit, "weakAt"> }, where: { photos: boolean } = { photos: true }): ModelCopy {
+  const line = model.goodFor ? t(`models.copy.${model.id}.goodFor`, { defaultValue: model.goodFor }) : "";
   return {
-    goodFor: model.goodFor ? t(`models.copy.${model.id}.goodFor`, { defaultValue: model.goodFor }) : "",
+    /* The browser engine has no projector, so there a photo claim would be refused in the chat (F385). */
+    goodFor: line && !where.photos ? t(`models.copy.${model.id}.goodForNoPhotos`, { defaultValue: line }) : line,
     weakAt: model.fit?.weakAt ? t(`models.copy.${model.id}.weakAt`, { defaultValue: model.fit.weakAt }) : "",
   };
 }

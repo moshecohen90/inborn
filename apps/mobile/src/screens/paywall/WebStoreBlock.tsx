@@ -51,10 +51,11 @@ export function WebStoreBlock({ theme }: { theme: Theme }) {
           </Pressable>
         ))}
       </View>
-      <Text testID="web-stays-free" style={[type.bodySmall, { color: theme.text2 }]}>
-        {t("paywall.web.free")}
+      {/* The browser keeps its PRO and WORK marks (spec §4.4: no Pro on the web), so this line says what they are (F386). */}
+      <Text testID="web-locks" style={[type.bodySmall, { color: theme.text2 }]}>
+        {t("paywall.web.locks")}
       </Text>
-      <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("paywall.noStore")}</Text>
+      <Text testID="web-stays-free" style={[type.bodySmall, { color: theme.text3 }]}>{t("paywall.noStore")}</Text>
     </View>
   );
 }

@@ -12,6 +12,7 @@ import { Seal } from "../../components/Seal";
 import { Button, Mono, MonoLabel, shellStyles } from "../../components/shell/primitives";
 import { Markdown } from "../../components/chat/Markdown";
 import { font, useType } from "../../services/type";
+import { offlineKey } from "../../lib/offlineWording";
 
 type Phase = "idle" | "loading" | "streaming" | "done" | "error";
 const SUGGESTED = "What's 17 × 23?";
@@ -87,12 +88,12 @@ export function AirplaneTest({ onDone, doneLabel }: { onDone: () => void; doneLa
       </Text>
       {/* The reason, before the instruction: the old screen asked for Airplane Mode without ever saying why (F122). */}
       <Text testID="airplane-why" style={[type.body, { color: theme.text2 }]}>
-        {t("airplane.why")}
+        {t(offlineKey("airplane.why"))}
       </Text>
       {/* Each numbered step is its own card, so step 1 stops reading like the tail of the screen before it (F122). */}
       <View testID="airplane-step-1" style={[shellStyles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
         <View style={styles.step}>
-          <Text style={[type.body, styles.grow, { color: theme.text }]}>{t("airplane.step1")}</Text>
+          <Text style={[type.body, styles.grow, { color: theme.text }]}>{t(offlineKey("airplane.step1"))}</Text>
           <Pressable
             testID="airplane-indicator"
             accessibilityRole="button"
@@ -100,7 +101,7 @@ export function AirplaneTest({ onDone, doneLabel }: { onDone: () => void; doneLa
             style={[styles.pill, { borderColor: net.offline ? theme.sealed : theme.border, backgroundColor: theme.surface2 }]}
           >
             <Icon name="plane" size={14} color={net.offline ? theme.sealed : theme.text2} />
-            <MonoLabel color={net.offline ? theme.sealed : theme.text2}>{net.offline ? t("airplane.on") : t("airplane.off")}</MonoLabel>
+            <MonoLabel color={net.offline ? theme.sealed : theme.text2}>{net.offline ? t(offlineKey("airplane.on")) : t(offlineKey("airplane.off"))}</MonoLabel>
           </Pressable>
         </View>
         <Text style={[type.bodySmall, { color: theme.text3 }]}>
@@ -144,7 +145,7 @@ export function AirplaneTest({ onDone, doneLabel }: { onDone: () => void; doneLa
       </View>
       {phase === "done" ? (
         <Text testID="airplane-verdict" style={[type.bodySmall, { color: net.offline ? theme.sealed : theme.text2 }]}>
-          {net.offline ? t("airplane.keepIt") : t("airplane.stillZero")}
+          {net.offline ? t(offlineKey("airplane.keepIt")) : t(offlineKey("airplane.stillZero"))}
         </Text>
       ) : null}
     </Screen>

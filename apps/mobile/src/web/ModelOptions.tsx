@@ -58,7 +58,7 @@ function OptionRow({ choice, theme, onChoose, disabled }: { choice: WebModelChoi
       {recommended || installed ? (
         <Text style={[styles.monoLabel, { color: recommended ? theme.accent : theme.sealed }]}>{recommended ? t("models.recommended", { device: deviceNoun() }) : t("vault.installed")}</Text>
       ) : null}
-      {model ? <Text style={[styles.caption, { color: theme.text2 }]}>{modelCopy(t, model).goodFor}</Text> : null}
+      {model ? <Text style={[styles.caption, { color: theme.text2 }]}>{modelCopy(t, model, { photos: false }).goodFor}</Text> : null}
       <Text testID={`web-model-speed-${source.id}`} style={[styles.mono, { color: theme.text3 }]}>
         {speed ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() }) : t("vault.speedUnknown", { device: deviceNoun() })}
       </Text>
