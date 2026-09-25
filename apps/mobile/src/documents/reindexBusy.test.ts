@@ -143,7 +143,7 @@ describe("F353 · a question during the post-update re-index", () => {
     const { prompt, reindexing } = await library.ask(QUESTION, { docIds: ["bericht"] });
     expect(prompt.noAnswer).toBe(false);
     expect(prompt.used.map((h) => h.chunk.text)).toEqual([ANSWER]);
-    expect(reindexing).toEqual({ pending: 1, total: 1 });
+    expect(reindexing).toEqual({ pending: 1, total: 1, ids: ["bericht"] });
     expect(library.document("bericht")!.indexedPages).toBeLessThan(PAGES);
     await until(() => settled(library), "rebuild finished");
     const after = await library.ask(QUESTION, { docIds: ["bericht"] });

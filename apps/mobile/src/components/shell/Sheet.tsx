@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Modal, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { AppModal } from "./AppModal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
@@ -8,7 +9,6 @@ import { sheetGeometry } from "../../lib/keyboardLayout";
 import { font } from "../../services/type";
 import { GlassFill, panelColor, panelStyle } from "./NativeChrome";
 import { useOpenSheet } from "../../lib/openSheets";
-import { useEarlyEscape } from "../../lib/earlyEscape";
 import { useWide } from "../../lib/useLayout";
 
 /** Bottom sheet (§9.4 radius 20, 280 ms): confirmations, the network log, the passcode entry. */
@@ -21,7 +21,6 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
   /* §8.9: a window with a sidebar has no bottom edge to rise from — the same sheet is a centred dialog there. */
   const wide = useWide();
   useOpenSheet(visible, onClose);
-  const escapeShown = useEarlyEscape(visible, onClose);
   const inner = (
     <>
       <GlassFill />
@@ -30,7 +29,7 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
     </>
   );
   return (
-    <Modal visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose} onShow={escapeShown}>
+    <AppModal visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose}>
       <Pressable testID={testID ? `${testID}-close` : "sheet-close"} accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />
       {wide ? (
         <View pointerEvents="box-none" style={styles.centre}>
@@ -43,7 +42,7 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
           {inner}
         </View>
       )}
-    </Modal>
+    </AppModal>
   );
 }
 

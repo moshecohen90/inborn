@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { AppModal } from "../shell/AppModal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { PaywallReason } from "@inborn/core";
 import { MIN_TOUCH } from "@inborn/ui";
@@ -12,7 +13,6 @@ import { shape } from "./styles";
 import { useType } from "../../services/type";
 import { GlassFill, panelColor, panelStyle } from "../shell/NativeChrome";
 import { useOpenSheet } from "../../lib/openSheets";
-import { useEarlyEscape } from "../../lib/earlyEscape";
 import { useWide } from "../../lib/useLayout";
 
 interface SheetProps {
@@ -38,11 +38,6 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
   /* §8.9: a window with a sidebar has no bottom edge to rise from — the same sheet is a centred dialog there. */
   const wide = useWide();
   useOpenSheet(visible, onClose);
-  const escapeShown = useEarlyEscape(visible, onClose);
-  const onShow = () => {
-    presented.onShow();
-    escapeShown();
-  };
   const inner = (
     <>
       <GlassFill />
@@ -54,7 +49,7 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
     </>
   );
   return (
-    <Modal key={presented.key} visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose} onShow={onShow}>
+    <AppModal key={presented.key} visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose} onShow={presented.onShow}>
       <Pressable testID={testID ? `${testID}-close` : "sheet-close"} style={[shape.fill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
       {wide ? (
         <View pointerEvents="box-none" style={styles.centre}>
@@ -67,7 +62,7 @@ export function Sheet({ visible, onClose, title, children, testID, scroll = true
           {inner}
         </View>
       )}
-    </Modal>
+    </AppModal>
   );
 }
 

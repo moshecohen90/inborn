@@ -1,0 +1,22 @@
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/documents/reindex.test.ts > F402 · the re-indexing line follows the library, not the moment of the answer > counts the documents still rebuilding, says once that the rebuild finished, and the next answer uses the index
+AssertionError: expected { pending: 1, total: 1 } to deeply equal { Object (pending, total, ...) }
+- Expected
++ Received
+  {
+-   "ids": [
+-     "old",
+-   ],
+    "pending": 1,
+    "total": 1,
+  }
+ ❯ src/documents/reindex.test.ts:222:28
+    220|     for (let i = 0; i < 200 && !library.document("old")?.reindexFrom; …
+    221|     const mid = await library.ask("Which nomic chunk is stale?", { doc…
+    222|     expect(mid.reindexing).toEqual({ pending: 1, total: 1, ids: ["old"…
+       |                            ^
+    223|     expect(reindexNotice(mid.reindexing ?? null, library.attachedTo("c…
+    224|
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)

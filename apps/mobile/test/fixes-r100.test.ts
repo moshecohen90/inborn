@@ -55,12 +55,13 @@ describe("F396 · Esc closes a sheet from its first frame", () => {
     expect(close).not.toHaveBeenCalled();
   });
 
-  it("both sheet primitives hand the Modal's onShow to the hook", () => {
+  /* Round 102 (F401) moved the hook into AppModal, which every modal now renders. */
+  it("both sheet primitives render AppModal, which hands the Modal's onShow to the hook", () => {
     for (const f of ["../src/components/chat/Sheet.tsx", "../src/components/shell/Sheet.tsx"]) {
       const src = readFileSync(join(__dirname, f), "utf8");
-      expect(src).toContain("useEarlyEscape(visible, onClose)");
-      expect(src).toMatch(/escapeShown\(\);|onShow=\{escapeShown\}/);
+      expect(src).toMatch(/<AppModal\b[^>]*onRequestClose=\{onClose\}/);
     }
+    expect(readFileSync(join(__dirname, "../src/components/shell/AppModal.tsx"), "utf8")).toContain("useEarlyEscape(visible, onRequestClose)");
   });
 });
 

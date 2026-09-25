@@ -1,0 +1,27 @@
+{
+  "tag": "before",
+  "timeline": [
+    {
+      "ms": 12839,
+      "state": "pending",
+      "text": "Still re-indexing 1 of 1 document, answers may miss some passages.",
+      "indexed": false
+    }
+  ],
+  "ragLine": "log: [rag] strict=false overview reindexing=1/1 hits=1 used=1 0 ms | b08500ce-6b90-4398-b883-5ad67ae079c4#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+  "atAnswer": {
+    "reindexing": "Still re-indexing 1 of 1 document, answers may miss some passages.",
+    "reindexed": ""
+  },
+  "indexedAtAnswer": true,
+  "indexedLine": "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2075 ms (2075 ms/page)",
+  "afterIndexed": {
+    "reindexing": "Still re-indexing 1 of 1 document, answers may miss some passages.",
+    "reindexed": ""
+  },
+  "nextRagLine": "log: [rag] strict=false hits=1 used=1 249 ms | b08500ce-6b90-4398-b883-5ad67ae079c4#0 cos=0.835 terms=1 bm25=0.29 KEPT",
+  "afterNext": {
+    "reindexing": "",
+    "reindexed": ""
+  }
+}

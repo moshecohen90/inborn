@@ -9,9 +9,12 @@ let embedderMissing = false;
 const gone = new Set<string>();
 /* Every text the embedder was handed, so a test can see what reached the model. */
 const embedded: string[] = [];
+/* Holds back the embedding of passages containing this text, so a test can ask while a rebuild is under way. */
+let holdText: { text: string; until: Promise<void> } | null = null;
 const e5: Embedder = {
   id: "embed-e5",
   embed: async (texts) => {
+    if (holdText && texts.some((t) => t.includes(holdText!.text))) await holdText.until;
     embedded.push(...texts);
     return texts.map((t) => hashVector(t, 64));
   },
@@ -49,6 +52,7 @@ let prefs = { strict: true, attachments: {} as Record<string, string[]>, redactN
 vi.mock("./prefs", () => ({ readPrefs: () => prefs, writePrefs: (p: typeof prefs) => void (prefs = p) }));
 
 const { DocumentLibrary } = await import("./library");
+const { reindexNotice } = await import("../lib/reindexNotice");
 type Library = InstanceType<typeof DocumentLibrary>;
 
 const settle = async (library: Library) => {
@@ -77,6 +81,7 @@ beforeEach(async () => {
   embedded.length = 0;
   gone.clear();
   embedderMissing = false;
+  holdText = null;
   prefs = { strict: true, attachments: {}, redactNames: [], redactDates: false };
 });
 
@@ -201,5 +206,39 @@ describe("F335 · nothing longer than the embedder's 512 positions reaches it", 
     expect(embedded).toHaveLength(1);
     expect(embedded[0]!.startsWith("Instruct: Given a question")).toBe(true);
     expect(estimateRagTokens(embedded[0]!)).toBeLessThanOrEqual(embedBudget(512));
+  });
+});
+
+describe("F402 · the re-indexing line follows the library, not the moment of the answer", () => {
+  it("counts the documents still rebuilding, says once that the rebuild finished, and the next answer uses the index", async () => {
+    await nomicBuilt();
+    let release!: () => void;
+    holdText = { text: "Aoba", until: new Promise<void>((r) => (release = r)) };
+    const library = new DocumentLibrary();
+    await library.ready();
+    library.attach("chat", "old");
+    for (let i = 0; i < 200 && !library.document("old")?.reindexFrom; i++) await new Promise((r) => setTimeout(r, 5));
+    const mid = await library.ask("Which nomic chunk is stale?", { docIds: ["old"] });
+    expect(mid.reindexing).toEqual({ pending: 1, total: 1, ids: ["old"] });
+    expect(reindexNotice(mid.reindexing ?? null, library.attachedTo("chat"))).toEqual({ kind: "pending", pending: 1, total: 1 });
+
+    release();
+    await settle(library);
+    expect(library.document("old")).toMatchObject({ status: "indexed", embedModel: "embed-e5" });
+    expect(reindexNotice(mid.reindexing ?? null, library.attachedTo("chat"))).toEqual({ kind: "done" });
+
+    const next = await library.ask("Wie viele Mitarbeiter beschäftigt die Aoba Handelsgesellschaft?", { docIds: ["old"] });
+    expect(next.reindexing).toBeUndefined();
+    expect(next.prompt.used.map((h) => h.chunk.text)).toEqual([GERMAN]);
+    expect(next.prompt.used[0]!.cosine).toBeGreaterThan(0);
+    expect(reindexNotice(next.reindexing ?? null, library.attachedTo("chat"))).toBeNull();
+  });
+
+  it("a document detached or removed mid-rebuild no longer counts as pending", () => {
+    const answered = { pending: 2, total: 2, ids: ["a", "b"] };
+    const rebuilding = { id: "a", reindexFrom: "embed-nomic" };
+    expect(reindexNotice(answered, [rebuilding, { id: "b", reindexFrom: "lexical" }])).toEqual({ kind: "pending", pending: 2, total: 2 });
+    expect(reindexNotice(answered, [rebuilding])).toEqual({ kind: "pending", pending: 1, total: 2 });
+    expect(reindexNotice(answered, [])).toEqual({ kind: "done" });
   });
 });

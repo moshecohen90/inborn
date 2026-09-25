@@ -1,4 +1,5 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
@@ -32,7 +33,7 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
   ];
   useOpenSheet(true, onClose);
   return (
-    <Modal transparent animationType="slide" onRequestClose={onClose}>
+    <AppModal transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
         <Pressable testID="doc-details" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
           <GlassFill />
@@ -63,7 +64,7 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
           </View>
         </Pressable>
       </Pressable>
-    </Modal>
+    </AppModal>
   );
 }
 

@@ -31,6 +31,7 @@ import {
 } from "@inborn/core";
 import { MemoryEmbeddingStore, SplitEmbeddingStore } from "@inborn/core";
 import { openRagStore, ragStoreKind } from "./db";
+import type { AnsweredMidReindex } from "../lib/reindexNotice";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
 import { findDuplicate } from "./dedupe";
@@ -88,7 +89,7 @@ export interface AskResult {
   /** Milliseconds spent embedding the question and ranking. */
   retrieveMs: number;
   /** Set when some searched documents are still being rebuilt for a new embedder, for "Still re-indexing N of M documents". */
-  reindexing?: { pending: number; total: number };
+  reindexing?: AnsweredMidReindex;
   /** No index model: the documents were searched by their words only, which the answer must say. */
   lexical?: boolean;
 }
@@ -574,7 +575,7 @@ export class DocumentLibrary {
     const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
-    return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length } } : {}), ...(lexical ? { lexical: true } : {}) };
+    return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };
   }
 
   citationsFor(answer: string, citations: Citation[]): { shown: Citation[]; cited: boolean } {

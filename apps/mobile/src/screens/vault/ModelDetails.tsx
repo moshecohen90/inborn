@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { modelName } from "../../lib/models";
-import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { joinList } from "@inborn/i18n";
@@ -67,7 +68,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
   const [licenceOpen, setLicenceOpen] = useState(false);
   useOpenSheet(model !== null, onClose);
   return (
-    <Modal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
+    <AppModal visible={model !== null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} />
       <View style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
         <GlassFill />
@@ -142,7 +143,7 @@ export function ModelDetails({ model, state, theme, active, isDefault, onClose, 
         </View>
       </View>
       <LicenceSheet visible={licenceOpen} subject={model ? licenceSubjectFor(model) : null} onClose={() => setLicenceOpen(false)} />
-    </Modal>
+    </AppModal>
   );
 }
 

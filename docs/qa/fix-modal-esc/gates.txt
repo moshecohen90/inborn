@@ -1,0 +1,20 @@
+== pn install --frozen-lockfile
+EXIT install --frozen-lockfile 0
+== pn typecheck
+EXIT typecheck 0
+== pn test
+packages/i18n test:       Tests  24 passed (24)
+packages/ui test:       Tests  23 passed (23)
+packages/core test:       Tests  966 passed | 4 skipped (970)
+apps/mobile test:       Tests  1092 passed (1092)
+EXIT test 0
+== pn lint
+EXIT lint 1
+== pn web:build
+EXIT web:build 0
+== pn web:smoke
+EXIT web:smoke 0
+== pn check:store
+EXIT check:store 0
+== pn lint (rerun after fixing the evidence scripts)
+EXIT lint 0

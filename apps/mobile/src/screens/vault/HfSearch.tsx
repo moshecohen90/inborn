@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius, type Theme } from "@inborn/ui";
@@ -93,7 +94,7 @@ export function HfSearch({ visible, device, theme, onClose, onPick }: HfSearchPr
 
   useOpenSheet(visible, onClose);
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <AppModal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityRole="button" accessibilityLabel={t("vault.close")} />
       <View testID="hf-search" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border, top: insets.top + 24, paddingBottom: insets.bottom + 16 }]}>
         <GlassFill />
@@ -215,7 +216,7 @@ export function HfSearch({ visible, device, theme, onClose, onPick }: HfSearchPr
           }}
         />
       </View>
-    </Modal>
+    </AppModal>
   );
 }
 

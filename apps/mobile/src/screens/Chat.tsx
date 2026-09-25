@@ -98,6 +98,7 @@ import { gatePhotoSend, planPhotoSend, planVisionTurn } from "../lib/visionGate"
 import { VisionHoldCard } from "../components/chat/VisionHoldCard";
 import { IndexHoldCard } from "../components/chat/IndexHoldCard";
 import { planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
+import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
@@ -240,7 +241,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [toast, setToast] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
   /** Searched documents still being rebuilt for a new embedder when this answer was retrieved (QA F353). */
-  const [reindexing, setReindexing] = useState<{ pending: number; total: number } | null>(null);
+  const [reindexing, setReindexing] = useState<AnsweredMidReindex | null>(null);
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
@@ -281,6 +282,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const docs = useDocumentContext(docKey);
   const redaction = useRedaction(docKey);
   const { library, state: libraryState } = useDocuments();
+  const reindexLine = reindexNotice(reindexing, libraryState.documents);
   const nCtx = session.current?.nCtx ?? 4096;
   const thinkingAvailable = model.id !== "instant";
   const setRows = useCallback((update: Row[] | ((r: Row[]) => Row[])) => {
@@ -1457,9 +1459,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </View>
       ) : null}
       {/* QA F276: a 1,400 ms toast was withdrawn ~8 s before the answer it explains arrived on the 6T, so this sentence lives as long as that answer. */}
-      {reindexing ? (
-        <View testID="reindexing" style={[styles.notice, { borderColor: theme.border }]}>
-          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.reindexing", reindexing)}</Text>
+      {reindexLine ? (
+        <View testID={reindexLine.kind === "done" ? "reindexed" : "reindexing"} style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{reindexLine.kind === "done" ? t("documents.reindexDone") : t("documents.reindexing", reindexLine)}</Text>
         </View>
       ) : null}
       {noneMatched ? (

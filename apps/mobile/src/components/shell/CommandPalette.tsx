@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppModal } from "./AppModal";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { radius } from "@inborn/ui";
@@ -72,7 +73,7 @@ export function CommandPalette({ visible, onClose }: { visible: boolean; onClose
   const all = [...screenHits, ...chatHits];
 
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
+    <AppModal visible={visible} transparent animationType="none" onRequestClose={onClose}>
       <Pressable accessibilityRole="button" accessibilityLabel={t("chats.close")} style={styles.backdrop} onPress={onClose} />
       <View pointerEvents="box-none" style={styles.centre}>
         <View testID="command-palette" style={[styles.panel, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
@@ -100,7 +101,7 @@ export function CommandPalette({ visible, onClose }: { visible: boolean; onClose
           </ScrollView>
         </View>
       </View>
-    </Modal>
+    </AppModal>
   );
 }
 

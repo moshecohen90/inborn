@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { Modal, Platform, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput, View } from "react-native";
+import { Platform, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppModal } from "../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, MIN_TOUCH, radius, type IconName } from "@inborn/ui";
@@ -515,7 +516,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
         </View>
       </Sheet>
 
-      <Modal visible={menu !== null} transparent animationType="fade" onRequestClose={() => setMenu(null)}>
+      <AppModal visible={menu !== null} transparent animationType="fade" onRequestClose={() => setMenu(null)}>
         <Pressable accessibilityRole="button" accessibilityLabel={t("chats.close")} style={[shape.fill, styles.backdrop]} onPress={() => setMenu(null)} />
         <View style={[styles.center, { paddingBottom: 24 + lift }]} pointerEvents="box-none">
           <View style={[shape.card, styles.card, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
@@ -572,7 +573,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
             ) : null}
           </View>
         </View>
-      </Modal>
+      </AppModal>
 
       <FolderSheet
         mode={folderMode}
