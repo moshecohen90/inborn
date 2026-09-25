@@ -1,0 +1,90 @@
+F381 (web-full-pass F3) RED: the passcode lock is a cover only.
+Headless Chromium, origin/main cde13a2 web build (apps/web/dist), fresh profile, 1440x900, Instant downloaded, one chat answered.
+
+lock on: True; passcode sheet traps Tab: True
+Tab stops with the sheet closed (OUTSIDE = behind the lock):
+  web-strip-details (OUTSIDE)
+  get-app (OUTSIDE)
+  select-toggle (OUTSIDE)
+  chats-search (OUTSIDE)
+  new-chat (OUTSIDE)
+  new-incognito (OUTSIDE)
+  swipe-pin-2a06b9b7-4109-409d-91da-2bb7f6e35e51 (OUTSIDE)
+  swipe-archive-2a06b9b7-4109-409d-91da-2bb7f6e35e51 (OUTSIDE)
+  swipe-delete-2a06b9b7-4109-409d-91da-2bb7f6e35e51 (OUTSIDE)
+  chat-row-2a06b9b7-4109-409d-91da-2bb7f6e35e51 (OUTSIDE)
+  open-personas (OUTSIDE)
+  open-memory (OUTSIDE)
+  open-folders (OUTSIDE)
+  pro-tag (OUTSIDE)
+  drawer-vault (OUTSIDE)
+  drawer-documents (OUTSIDE)
+  drawer-settings (OUTSIDE)
+  drawer-proof (OUTSIDE)
+  model-chip (OUTSIDE)
+  notice (OUTSIDE)
+  suggestion-summarize (OUTSIDE)
+  suggestion-translate (OUTSIDE)
+  suggestion-draft (OUTSIDE)
+  attach (OUTSIDE)
+  composer-input (OUTSIDE)
+  mic (OUTSIDE)
+  lock-screen
+  unlock-passcode
+  BODY (OUTSIDE)
+Ctrl+K opened the command palette behind the lock: True
+Enter on the focused chat row behind the lock loaded 1 answer(s) into the DOM; answer text on the page: True
+chat title 'What is the capital ' in the accessibility tree while locked: True
+
+Accessibility snapshot while locked:
+- text: Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.
+- button "Details"
+- link "Get the app"
+- text: Chats
+- button "Select"
+- textbox "Search"
+- button "New chat"
+- button "Incognito"
+- text: Recent
+- button "Pin"
+- button "Archive"
+- button "Delete"
+- button "What is the capital of France? 12:09 PM"
+- img
+- text: FAST
+- button "Personas"
+- button "Memory"
+- button "Folders"
+- button "See Pro": PRO
+- img
+- text: FAST · OUT 0 B
+- button "Model vault"
+- button "Documents"
+- button "Settings"
+- button "◯ Proof"
+- img "SEALED":
+  - img
+- text: SEALED
+- button "Model":
+  - img
+  - text: FAST
+- text: This is AI running in your browser. It can be wrong. Check important facts.
+- button "Dismiss"
+- img "SEALED":
+  - img
+- text: FAST Nothing leaves this browser.
+- button "Summarize text"
+- button "Translate"
+- button "Draft a message"
+- progressbar
+- button "Attach documents"
+- textbox "Message…"
+- button "Dictate"
+- button "Send" [disabled]
+- button "Delete everything":
+  - img "SEALED":
+    - img
+- text: Locked Your passcode opens Inborn. Chats stay encrypted until then.
+- button "Use passcode"
+
+verdict F381: FAIL

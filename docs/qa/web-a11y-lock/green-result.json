@@ -1,0 +1,239 @@
+{
+  "label": "green",
+  "dist": "/Users/moshecohen/dev/inborn-wt/web-a11y-lock/apps/web/dist",
+  "verdict": {
+    "F382": "PASS",
+    "F383": "PASS",
+    "F384": "PASS",
+    "F381": "PASS"
+  },
+  "answer": "The capital of France is Paris.",
+  "chatTitle": "What is the capital of France?12:31 PM",
+  "f382": {
+    "Enter": {
+      "focused": "assistant-message",
+      "opened": true,
+      "focusIn": "message-actions-close",
+      "trapped": true,
+      "stops": [
+        "action-copy",
+        "action-copy-text",
+        "action-quick",
+        "action-regenerate",
+        "action-read",
+        "action-remember",
+        "pro-tag",
+        "action-report",
+        "message-actions-close"
+      ],
+      "closedByEsc": true,
+      "focusBack": "assistant-message"
+    },
+    "Space": {
+      "focused": "assistant-message",
+      "opened": true,
+      "focusIn": "message-actions-close",
+      "trapped": true,
+      "stops": [
+        "action-copy",
+        "action-copy-text",
+        "action-quick",
+        "action-regenerate",
+        "action-read",
+        "action-remember",
+        "pro-tag",
+        "action-report",
+        "message-actions-close"
+      ],
+      "closedByEsc": true,
+      "focusBack": "assistant-message"
+    },
+    "ContextMenu": {
+      "focused": "assistant-message",
+      "opened": true,
+      "focusIn": "message-actions-close",
+      "trapped": true,
+      "stops": [
+        "action-copy",
+        "action-copy-text",
+        "action-quick",
+        "action-regenerate",
+        "action-read",
+        "action-remember",
+        "pro-tag",
+        "action-report",
+        "message-actions-close"
+      ],
+      "closedByEsc": true,
+      "focusBack": "assistant-message"
+    },
+    "Shift+F10": {
+      "focused": "assistant-message",
+      "opened": true,
+      "focusIn": "message-actions-close",
+      "trapped": true,
+      "stops": [
+        "action-copy",
+        "action-copy-text",
+        "action-quick",
+        "action-regenerate",
+        "action-read",
+        "action-remember",
+        "pro-tag",
+        "action-report",
+        "message-actions-close"
+      ],
+      "closedByEsc": true,
+      "focusBack": "assistant-message"
+    },
+    "right-click": {
+      "focused": "assistant-message",
+      "opened": true,
+      "focusIn": "message-actions-close",
+      "trapped": true,
+      "stops": [
+        "action-copy",
+        "action-copy-text",
+        "action-quick",
+        "action-regenerate",
+        "action-read",
+        "action-remember",
+        "pro-tag",
+        "action-report",
+        "message-actions-close"
+      ],
+      "closedByEsc": true,
+      "focusBack": "assistant-message"
+    }
+  },
+  "f383": {
+    "tabSeq": [
+      "web-strip-details",
+      "get-app",
+      "select-toggle",
+      "chats-search",
+      "new-chat",
+      "new-incognito",
+      "chat-row-a4991ca4-da38-46b2-8f45-d892a0396b0a",
+      "chat-more-a4991ca4-da38-46b2-8f45-d892a0396b0a",
+      "open-personas",
+      "open-memory",
+      "open-folders",
+      "pro-tag",
+      "drawer-vault",
+      "drawer-documents",
+      "drawer-settings",
+      "drawer-proof",
+      "model-chip",
+      "suggestion-summarize",
+      "suggestion-translate",
+      "suggestion-draft"
+    ],
+    "swipeStops": [],
+    "moreInTabOrder": true,
+    "moreVisible": true,
+    "moreLabel": "More actions: What is the capital of France?",
+    "menuOpened": true,
+    "focusIn": null,
+    "menuItems": [
+      "menu-rename",
+      "menu-pin",
+      "menu-archive",
+      "menu-move",
+      "menu-export",
+      "menu-delete"
+    ],
+    "menuClosed": true,
+    "focusBack": null
+  },
+  "f384": {
+    "onLoad": {
+      "en": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "de": {
+        "lang": "de",
+        "dir": "ltr"
+      },
+      "fr": {
+        "lang": "fr",
+        "dir": "ltr"
+      },
+      "es": {
+        "lang": "es",
+        "dir": "ltr"
+      },
+      "pt-BR": {
+        "lang": "pt-BR",
+        "dir": "ltr"
+      },
+      "ja": {
+        "lang": "ja",
+        "dir": "ltr"
+      },
+      "ko": {
+        "lang": "ko",
+        "dir": "ltr"
+      },
+      "zh-Hant": {
+        "lang": "zh-Hant",
+        "dir": "ltr"
+      },
+      "pseudo": {
+        "lang": "en-XA",
+        "dir": "ltr"
+      }
+    },
+    "onSwitch": {
+      "ja": {
+        "lang": "ja",
+        "dir": "ltr"
+      },
+      "de": {
+        "lang": "de",
+        "dir": "ltr"
+      },
+      "en": {
+        "lang": "en",
+        "dir": "ltr"
+      }
+    }
+  },
+  "f381": {
+    "enabled": true,
+    "titleProbe": "What is the capital ",
+    "ariaWithSheet": "- button \"Delete everything\":\n  - img \"SEALED\":\n    - img\n- text: Locked Your passcode opens Inborn. Chats stay encrypted until then.\n- button \"Use passcode\"\n- dialog:\n  - text: Enter your passcode\n  - textbox \"Enter your passcode\"\n  - text: 4 to 8 digits. It is never stored, only a salted hash.\n  - button \"Cancel\"\n  - button \"Unlock\"",
+    "sheetTrapped": true,
+    "sheetClosed": true,
+    "ariaLocked": "- button \"Delete everything\":\n  - img \"SEALED\":\n    - img\n- text: Locked Your passcode opens Inborn. Chats stay encrypted until then.\n- button \"Use passcode\"",
+    "lockStops": [
+      "lock-screen",
+      "unlock-passcode",
+      "BODY (OUTSIDE)"
+    ],
+    "escaped": [],
+    "paletteWhileLocked": false,
+    "enterOnEveryStop": [],
+    "answersInDom": 0,
+    "answerTextInDom": false,
+    "titleInAria": false,
+    "inertLeftAfterUnlock": 0,
+    "ariaAfterUnlockHasTitle": true,
+    "afterUnlockStops": [
+      "web-strip-details",
+      "get-app",
+      "select-toggle",
+      "chats-search",
+      "new-chat",
+      "new-incognito",
+      "chat-row-a4991ca4-da38-46b2-8f45-d892a0396b0a",
+      "chat-more-a4991ca4-da38-46b2-8f45-d892a0396b0a",
+      "open-personas",
+      "open-memory",
+      "open-folders",
+      "pro-tag"
+    ]
+  },
+  "pageErrors": []
+}

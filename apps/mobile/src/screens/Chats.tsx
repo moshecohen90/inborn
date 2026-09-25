@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Modal, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, Platform, Pressable, ScrollView, SectionList, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Icon, radius } from "@inborn/ui";
+import { Icon, MIN_TOUCH, radius } from "@inborn/ui";
 import { BUILT_IN_PERSONAS, DEFAULT_PERSONA_ID, guardVaultAction, paywallFor, type Chat, type ChatStore, type Folder, type Persona, type SearchHit, type VaultAction , type PaywallReason } from "@inborn/core";
 import { formatWhen } from "../lib/when";
 import { retentionDaysLeft } from "../services/retention";
@@ -30,6 +30,9 @@ import { afterSheetClose } from "./Chat";
 import { deviceNoun } from "../lib/deviceNoun";
 import { useOpenSheet } from "../lib/openSheets";
 import { BannerSpacer } from "../components/shell/bannerInset";
+
+/* A swipe needs a finger: in a browser the row's menu is a visible button the keyboard reaches (F383). */
+const rowMenuButton = Platform.OS === "web";
 
 export interface ChatsProps {
   store: ChatStore;
@@ -268,7 +271,24 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
         <Text style={[type.mono, { color: theme.text3 }]}>{formatWhen(item.updatedAt, i18n.language)}</Text>
       </Pressable>
     );
-    if (selecting || item.incognito) return row;
+    const openMenu = () => setMenu({ chat: item, renaming: false, title: item.title });
+    const line = !rowMenuButton || selecting ? (
+      row
+    ) : (
+      <View style={styles.rowLine}>
+        <View style={styles.grow}>{row}</View>
+        <Pressable
+          testID={`chat-more-${item.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={`${t("chats.more")}: ${item.title || t("newChat.title")}`}
+          onPress={openMenu}
+          style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [styles.more, { borderColor: theme.border, backgroundColor: pressed || focused || item.id === activeChatId ? theme.surface1 : theme.bg }]}
+        >
+          <Icon name="more" size={18} color={theme.text2} />
+        </Pressable>
+      </View>
+    );
+    if (selecting || item.incognito) return line;
     return (
       <SwipeRow
         actions={[
@@ -277,7 +297,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
           { key: "delete", testID: `swipe-delete-${item.id}`, label: t("chats.delete"), color: theme.danger, onPress: () => requestDelete([item]) },
         ]}
       >
-        {row}
+        {line}
       </SwipeRow>
     );
   };
@@ -485,7 +505,7 @@ export function Chats({ store, activeChatId, onClose, embedded = false, onOpenCh
       </Sheet>
 
       <Modal visible={menu !== null} transparent animationType="fade" onRequestClose={() => setMenu(null)}>
-        <Pressable style={[shape.fill, styles.backdrop]} onPress={() => setMenu(null)} />
+        <Pressable accessibilityRole="button" accessibilityLabel={t("chats.close")} style={[shape.fill, styles.backdrop]} onPress={() => setMenu(null)} />
         <View style={[styles.center, { paddingBottom: 24 + lift }]} pointerEvents="box-none">
           <View style={[shape.card, styles.card, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
             <GlassFill />
@@ -620,6 +640,9 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", alignItems: "center", gap: 12, minHeight: 56, paddingHorizontal: 12, paddingVertical: 8, borderBottomWidth: StyleSheet.hairlineWidth },
   hit: { alignItems: "flex-start", paddingVertical: 10 },
   rowText: { flex: 1, gap: 2 },
+  rowLine: { flexDirection: "row", alignItems: "stretch" },
+  grow: { flex: 1, minWidth: 0 },
+  more: { width: MIN_TOUCH, alignItems: "center", justifyContent: "center", borderBottomWidth: StyleSheet.hairlineWidth },
   check: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
   bulkBar: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 16, paddingTop: 8, borderTopWidth: 1 },
   footer: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 8, borderTopWidth: StyleSheet.hairlineWidth, flexWrap: "wrap" },

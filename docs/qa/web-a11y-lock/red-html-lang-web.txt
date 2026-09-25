@@ -1,0 +1,19 @@
+F384 (web-full-pass F12) RED: <html lang> stays en.
+Headless Chromium, origin/main cde13a2 web build (apps/web/dist), fresh profile, 1440x900, Instant downloaded, one chat answered.
+
+on load (prefs.locale -> <html lang dir>):
+  en: lang=en dir=(none)
+  de: lang=en dir=(none)
+  fr: lang=en dir=(none)
+  es: lang=en dir=(none)
+  pt-BR: lang=en dir=(none)
+  ja: lang=en dir=(none)
+  ko: lang=en dir=(none)
+  zh-Hant: lang=en dir=(none)
+  pseudo: lang=en dir=(none)
+Settings > Language, live switch:
+  ja: lang=en
+  de: lang=en
+  en: lang=en
+
+verdict F384: FAIL

@@ -12,6 +12,7 @@ import { Button, MonoLabel } from "../components/shell/primitives";
 import { PasscodeSheet } from "./PasscodeSheet";
 import { WipeSheet } from "../screens/Settings/WipeSheet";
 import { font } from "../services/type";
+import { useInertOutside } from "./useInertOutside";
 
 /** S53: the seal, "Locked", the biometric prompt by itself, a passcode as the fallback. Rendered above everything while locked. */
 export function LockScreen() {
@@ -22,6 +23,8 @@ export function LockScreen() {
   const [passcodeOpen, setPasscodeOpen] = useState(false);
   const [wipeOpen, setWipeOpen] = useState(false);
   const prompted = useRef(false);
+  const rootRef = useRef<View>(null);
+  useInertOutside(rootRef);
   const label = biometricLabel(t, lock.kind);
   const biometric = lock.kind !== "passcode";
   const left = attemptsLeft(lock.failed, prefs.lock.wipeAfterFailed);
@@ -35,7 +38,7 @@ export function LockScreen() {
   }, [lock, biometric, t]);
 
   return (
-    <View testID="lock-screen" style={[StyleSheet.absoluteFill, styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>
+    <View ref={rootRef} testID="lock-screen" style={[StyleSheet.absoluteFill, styles.root, { backgroundColor: theme.bg, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>
       <View style={styles.center}>
         <Pressable accessibilityRole="button" accessibilityLabel={t("wipe.title")} onLongPress={() => setWipeOpen(true)} delayLongPress={1200}>
           <Seal size={72} state="sealed" label={t("chat.sealed")} haptics={false} />

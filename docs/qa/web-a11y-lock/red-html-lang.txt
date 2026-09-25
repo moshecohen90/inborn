@@ -1,0 +1,24 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/web-a11y-lock/packages/i18n
+
+ ❯ test/document-lang.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/document-lang.test.ts [ test/document-lang.test.ts ]
+Error: Cannot find module '../src/documentLang' imported from /Users/moshecohen/dev/inborn-wt/web-a11y-lock/packages/i18n/test/document-lang.test.ts
+ ❯ test/document-lang.test.ts:2:1
+      1| import { afterEach, describe, expect, it } from "vitest";
+      2| import { htmlLang } from "../src/documentLang";
+       | ^
+      3| import { i18next, initI18n } from "../src";
+      4|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  12:10:25
+   Duration  139ms (worker 97%, environment 3%)
+

@@ -23,6 +23,7 @@ export const ICONS = {
   camera: { paths: ["M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z", "M15 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"] },
   image: { paths: ["m21 15-5-5L5 21", "M11 9a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"], rects: [{ x: 3, y: 3, width: 18, height: 18, rx: 2 }] },
   volume: { paths: ["M11 5 6 9H2v6h4l5 4z", "M15.54 8.46a5 5 0 0 1 0 7.07", "M19.07 4.93a10 10 0 0 1 0 14.14"] },
+  more: { paths: ["M13 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z", "M20 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z", "M6 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"] },
   waveform: { paths: ["M2 12h2", "M6 8v8", "M10 4v16", "M14 7v10", "M18 10v4", "M22 12h-2"] },
 } as const satisfies Record<string, IconDef>;
 

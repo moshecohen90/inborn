@@ -8,6 +8,7 @@
  *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled;
  *   5. an origin that answers the catalog with its own index.html (B1, 24.9.2026) lands on the catalog door with a
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
+ *   1b. <html lang> in every locale (F384), and the passcode lock walked by keyboard and accessibility tree (F381);
  *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
  *      warnings: React only reports props it cannot put on an element in development builds (F371).
  * Skips (exit 0) when the model or playwright-core is absent.
@@ -56,6 +57,9 @@ const LAYOUT_SCREENS = [
 const MIN_TOUCH_PX = 44;
 /** Every shipped locale, plus the pseudo-locale, which is the longest any string is allowed to get. */
 const LOCALES = ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"];
+/** What `<html lang>` must say per UI locale (F384): screen readers pick their voice from it. */
+const HTML_LANG = { en: "en", de: "de", fr: "fr", es: "es", "pt-BR": "pt-BR", ja: "ja", ko: "ko", "zh-Hant": "zh-Hant", pseudo: "en-XA" };
+const LOCK_PASSCODE = "2468";
 /** The two sidebar buttons that share one row: the narrowest place a translated label has to fit (QA F103, F304). */
 const LABEL_BUTTONS = ["new-chat", "new-incognito"];
 /* React DOM's development warnings about what it was handed (F371). Production builds print none of them. */
@@ -341,6 +345,78 @@ async function truncatedLabels(page, testIds) {
   }, testIds);
 }
 
+/**
+ * F381: turns the passcode lock on, reloads, and walks the locked page. Every Tab stop must sit in the lock screen or
+ * its passcode sheet, the accessibility tree must hold no chat title, the command palette must stay shut, and no
+ * answer may reach the DOM. Then it unlocks, checks the app is reachable again, and turns the lock off for the
+ * passes after it.
+ */
+async function lockedWalk(page, base, answer) {
+  const out = {};
+  const title = ((await page.locator('[data-testid^="chat-row-"]').first().locator("div[dir]").first().textContent({ timeout: 10_000 })) ?? "").trim();
+  if (!title) throw new Error("lock walk: no chat row to hide");
+  out.title = title;
+  const where = () =>
+    page.evaluate(() => {
+      const a = document.activeElement;
+      return { id: a?.closest("[data-testid]")?.getAttribute("data-testid") ?? a?.tagName ?? null, inLock: !!a?.closest('[data-testid="lock-screen"]'), inDialog: !!a?.closest('[aria-modal="true"]'), body: a === document.body };
+    });
+  await page.goto(new URL("/settings", base).href);
+  await page.getByTestId("row-lock").getByRole("switch").click();
+  for (let i = 0; i < 2; i++) {
+    await page.getByTestId("passcode-input").fill(LOCK_PASSCODE);
+    await page.getByTestId("passcode-submit").click();
+    await page.waitForTimeout(300);
+  }
+  await page.goto(base);
+  await page.getByTestId("lock-screen").waitFor({ timeout: 60_000 });
+  await page.getByTestId("passcode-input").waitFor({ timeout: 10_000 });
+  await page.waitForTimeout(800);
+  const sheetStops = [];
+  for (let i = 0; i < 8; i++) {
+    await page.keyboard.press("Tab");
+    sheetStops.push(await where());
+  }
+  if (!sheetStops.every((s) => s.inDialog)) throw new Error(`lock walk: Tab left the passcode sheet (${sheetStops.map((s) => s.id).join(", ")})`);
+  out.ariaWithSheet = await page.locator("body").ariaSnapshot();
+  await page.keyboard.press("Escape");
+  await page.getByTestId("passcode-input").waitFor({ state: "detached", timeout: 5_000 });
+  out.aria = await page.locator("body").ariaSnapshot();
+  const stops = [];
+  for (let i = 0; i < 25; i++) {
+    await page.keyboard.press("Tab");
+    stops.push(await where());
+  }
+  out.stops = [...new Set(stops.map((s) => s.id))];
+  const outside = stops.filter((s) => !s.inLock && !s.body);
+  if (outside.length) throw new Error(`lock walk: Tab reached ${[...new Set(outside.map((s) => s.id))].join(", ")} behind the lock`);
+  if (!stops.some((s) => s.id === "unlock-passcode")) throw new Error(`lock walk: the keyboard never reached "Use passcode" (${out.stops.join(", ")})`);
+  for (const tree of [out.ariaWithSheet, out.aria]) if (tree.includes(title)) throw new Error(`lock walk: the accessibility tree reads the chat title "${title}" while locked`);
+  await page.keyboard.press("Control+k");
+  await page.waitForTimeout(400);
+  if (await page.getByTestId("palette-input").count()) throw new Error("lock walk: Ctrl+K opened the command palette behind the lock");
+  if (await page.getByTestId("assistant-message").count()) throw new Error("lock walk: an answer is in the DOM while locked");
+  if (answer && (await page.evaluate((a) => document.body.innerText.includes(a), answer.slice(0, 20)))) throw new Error("lock walk: answer text is on the page while locked");
+  out.screenshot = path.join(outDir, "web-smoke-locked.png");
+  await page.screenshot({ path: out.screenshot });
+  await page.getByTestId("unlock-passcode").click();
+  await page.getByTestId("passcode-input").fill(LOCK_PASSCODE);
+  await page.getByTestId("passcode-submit").click();
+  await page.getByTestId("lock-screen").waitFor({ state: "detached", timeout: 10_000 });
+  out.inertAfterUnlock = await page.evaluate(() => document.querySelectorAll("[inert]").length);
+  if (out.inertAfterUnlock) throw new Error(`lock walk: ${out.inertAfterUnlock} element(s) still inert after unlocking`);
+  if (!(await page.locator("body").ariaSnapshot()).includes(title)) throw new Error("lock walk: the chat list is not back in the accessibility tree after unlocking");
+  await page.evaluate(() => {
+    const prefs = JSON.parse(localStorage.getItem("inborn.prefs") ?? "{}");
+    localStorage.setItem("inborn.prefs", JSON.stringify({ ...prefs, lock: { ...prefs.lock, enabled: false } }));
+    localStorage.removeItem("inborn.lock.passcode");
+  });
+  await page.goto(base);
+  await page.getByTestId("composer-input").waitFor({ timeout: 60_000 });
+  if (await page.getByTestId("lock-screen").count()) throw new Error("lock walk: the lock is still on after turning it off");
+  return out;
+}
+
 try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
@@ -483,7 +559,10 @@ try {
       await page.goto(new URL("/chats", server.url).href);
       await page.getByTestId("new-incognito").waitFor({ timeout: 60_000 });
       const clipped = await truncatedLabels(page, LABEL_BUTTONS);
+      const html = await page.evaluate(() => ({ lang: document.documentElement.lang, dir: document.documentElement.dir }));
+      if (html.lang !== HTML_LANG[locale] || html.dir !== "ltr") throw new Error(`${locale}: <html lang="${html.lang}" dir="${html.dir}">, expected lang="${HTML_LANG[locale]}" dir="ltr"`);
       result.labels[locale] = {
+        html,
         newChat: ((await page.getByTestId("new-chat").textContent()) ?? "").trim(),
         incognito: ((await page.getByTestId("new-incognito").textContent()) ?? "").trim(),
         clipped,
@@ -499,6 +578,10 @@ try {
       delete prefs.locale;
       localStorage.setItem("inborn.prefs", JSON.stringify(prefs));
     });
+    await page.setViewportSize({ width: 1180, height: 800 });
+
+    /* F381: the passcode lock is a wall for the keyboard and a screen reader too, not only a picture over the app. */
+    result.lock = await lockedWalk(page, server.url, out.answer);
     await page.setViewportSize({ width: 1180, height: 800 });
 
     out.consoleErrors = consoleLines.filter((l) => /^(error|pageerror)/.test(l));
@@ -745,5 +828,7 @@ for (const screen of LAYOUT_SCREENS) {
   }
 }
 console.log(`PASS: layout swept ${LAYOUT_SCREENS.map((s) => s.id).join(", ")} at ${REQUIRED_WIDTHS.join(" / ")} in ${REQUIRED_THEMES.join(" + ")} — no horizontal scroll, composer row aligned, every control >= ${MIN_TOUCH_PX}px`);
+console.log(`PASS: <html lang> follows the UI language in ${Object.keys(result.labels).length} locales (ja = "${result.labels.ja.html.lang}", pseudo = "${result.labels.pseudo.html.lang}")`);
+console.log(`PASS: locked, Tab reaches only ${result.lock.stops.join(", ")}; no chat title in the accessibility tree, no palette, no answer in the DOM; unlocked cleanly`);
 console.log(`PASS: ${Object.keys(result.labels).length} locales at 390, no clipped sidebar label (fr incognito = "${result.labels.fr.incognito}")`);
 console.log(`PASS: no model, the price list still reads ${result.paywallWithoutModel.pro.replace(/\n/g, " · ")} / ${result.paywallWithoutModel.work.replace(/\n/g, " · ")}`);

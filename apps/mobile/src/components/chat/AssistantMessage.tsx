@@ -10,6 +10,7 @@ import { Markdown } from "./Markdown";
 import { useType } from "../../services/type";
 import { Icon } from "@inborn/ui";
 import { firstLineForSpeech, nextAnnouncement } from "../../lib/announce";
+import { actionsMenuProps } from "../../lib/actionKeys";
 
 export type AssistantRow = ChatMessage & { streaming?: boolean; error?: string; loop?: boolean };
 
@@ -50,7 +51,7 @@ export const AssistantMessage = memo(function AssistantMessage({ row, nCtx, quan
      600 px from a right-aligned Hebrew answer (QA F234). One flag mirrors the whole block. */
   const rtl = dir === "rtl";
   return (
-    <Pressable testID="assistant-message" onLongPress={onLongPress} delayLongPress={350} {...(onHeader ? { accessible: false } : summary)} style={styles.root}>
+    <Pressable testID="assistant-message" onLongPress={onLongPress} delayLongPress={350} {...actionsMenuProps(onLongPress, Platform.OS)} {...(onHeader ? { accessible: false } : summary)} style={styles.root}>
       <Text {...(onHeader ? summary : {})} style={[type.monoLabel, rtl ? styles.end : null, { color: theme.text3 }]}>
         {header}
       </Text>
