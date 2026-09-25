@@ -34,7 +34,7 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
   const browser = useMemo(() => (visible && managed ? browserModels(use, languageCode, currentId) : null), [visible, managed, use, languageCode, currentId]);
   const vaultChoices = useMemo(() => {
     const installed = managed ? [currentId] : entries.filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready").map((e) => e.model.id);
-    return modelChoices({ use, languageCode, device: vault.device, installed, catalog: vault.manifest.models, currentId, engineVersion: ENGINE_VERSION, ...(managed ? { recommendAmong: installed } : {}) });
+    return modelChoices({ use, languageCode, device: vault.device, installed, catalog: vault.manifest.models, currentId, engineVersion: ENGINE_VERSION, room: managed ? null : vault.room(), ...(managed ? { recommendAmong: installed } : {}) });
     /* `version` stands in for `entries`, which is a fresh array on every render of the vault hook. */
   }, [vault, entries, version, use, languageCode, currentId, managed]);
   const choices = browser?.choices ?? vaultChoices;

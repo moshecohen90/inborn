@@ -1,0 +1,96 @@
+{
+  "base": "http://127.0.0.1:8931",
+  "door": {
+    "105": {
+      "390": {
+        "offers": "Fast",
+        "roomNote": null,
+        "noSpace": "Not enough space in this browser: 1.55 GB needed, 110 MB free.",
+        "buttonDisabled": true,
+        "horizontalScroll": 0
+      },
+      "1440": {
+        "offers": "Fast",
+        "roomNote": null,
+        "noSpace": "Not enough space in this browser: 1.55 GB needed, 110 MB free.",
+        "buttonDisabled": true,
+        "horizontalScroll": 0
+      }
+    },
+    "900": {
+      "390": {
+        "offers": "Instant",
+        "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+        "noSpace": null,
+        "buttonDisabled": false,
+        "horizontalScroll": 0
+      },
+      "1440": {
+        "offers": "Instant",
+        "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+        "noSpace": null,
+        "buttonDisabled": false,
+        "horizontalScroll": 0
+      }
+    }
+  },
+  "onboarding": {
+    "390": {
+      "options": [
+        {
+          "id": "instant",
+          "recommended": true
+        },
+        {
+          "id": "fast",
+          "recommended": false
+        }
+      ],
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+      "horizontalScroll": 0
+    },
+    "1440": {
+      "options": [
+        {
+          "id": "instant",
+          "recommended": true
+        },
+        {
+          "id": "fast",
+          "recommended": false
+        }
+      ],
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+      "horizontalScroll": 0
+    }
+  },
+  "sheet": {
+    "390": {
+      "recommendedLine": "RECOMMENDED ON THIS BROWSER · CHAT IN ENGLISH",
+      "recommendedRow": [
+        "instant"
+      ],
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended."
+    },
+    "1440": {
+      "recommendedLine": "RECOMMENDED ON THIS BROWSER · CHAT IN ENGLISH",
+      "recommendedRow": [
+        "instant"
+      ],
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended."
+    }
+  },
+  "vault": {
+    "390": {
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+      "recommended": [],
+      "horizontalScroll": 0
+    },
+    "1440": {
+      "roomNote": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+      "recommended": [],
+      "horizontalScroll": 0
+    }
+  },
+  "pageErrors": []
+}

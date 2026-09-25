@@ -127,7 +127,7 @@ describe("the browser's sheet reads the door's list (F345)", () => {
   it("on the browser tier the sheet's choices come from WebBoot.choices through webSheetChoices, not from the vault", () => {
     expect(container).toContain("browserModels(use, languageCode, currentId)");
     expect(container).toContain("const choices = browser?.choices ?? vaultChoices;");
-    expect(browser).toContain("const input = { choices: boot.choices, gate: boot.gate, use, languageCode, currentId };");
+    expect(browser).toContain("const input = { choices: boot.choices, gate: boot.gate, use, languageCode, currentId, room: boot.room };");
     expect(browser).toContain("choices: webSheetChoices(input)");
   });
   it("a model the door offers is chosen here the way the vault chooses it: remembered, then the door delivers it", () => {

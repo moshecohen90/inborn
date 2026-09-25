@@ -1,0 +1,30 @@
+    166|     expect(pickDefault(catalog, phone(6), rec.room)?.id).toBe("fast");
+    167|     expect(recommendationRoomNote(rec)).toBeNull();
+       |            ^
+    168|   });
+    169|   it("native rule (file plus the 2 GB reserve): 3 GB free fits Instant…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  test/catalog-model-choices.test.ts > free space in the one recommendation (Moshe's answer 6, F13) > native rule (file plus the 2 GB reserve): 3 GB free fits Instant, not Fast
+AssertionError: expected 'fast' to be 'instant' // Object.is equality
+
+Expected: "instant"
+Received: "fast"
+
+ ❯ test/catalog-model-choices.test.ts:171:129
+    169|   it("native rule (file plus the 2 GB reserve): 3 GB free fits Instant…
+    170|     const room: StorageRoom = { freeBytes: 3 * GB };
+    171|     expect(deviceRecommendation({ use: "chat", languageCode: null, dev…
+       |                                                                                                                                 ^
+    172|     expect(pickDefault(catalog, phone(8), room)?.id).toBe("instant");
+    173|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 18 passed (24)
+   Start at  12:08:46
+   Duration  475ms (transform 76%, import 20%, tests 4%, worker 1%)
+

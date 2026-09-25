@@ -2,9 +2,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { BUNDLED_MANIFEST } from "@inborn/core";
-import { chosenSource, webDeviceProfile, webLanguageUpgrade, webModelChoices, webSheetChoices } from "./modelChoice";
+import { chosenSource, webDeviceProfile, webLanguageUpgrade, webModelChoices, webRoom, webRoomNote, webSheetChoices } from "./modelChoice";
 import { classifyDevice, type DeviceGate } from "./deviceGate";
 import type { WebModelSource } from "./modelDelivery";
+import type { ModelStatus } from "./opfs";
 
 /* The real catalog, cut the way scripts/web-manifest.mjs cuts it: a chat model, free, one file, reachable over https. */
 const SOURCES: WebModelSource[] = BUNDLED_MANIFEST.models
@@ -149,5 +150,49 @@ describe("F346 · the browser chat's language notice names a model this browser 
     const sheetFor = (languageCode: string) => webSheetChoices({ choices: choicesFor(g), gate: g, use: "chat", languageCode, currentId: "instant" });
     expect(sheetFor("es").recommendedWeak).toBe(false);
     expect(sheetFor("he").recommendedWeak).toBe(true);
+  });
+});
+
+describe("F13 · the door, the vault, onboarding and the sheet lead with the model that fits the free space", () => {
+  const MB = 1024 ** 2;
+  const missing: ModelStatus[] = SOURCES.map(() => ({ kind: "missing" }));
+  const quota = (free: number) => ({ quota: 10_000 * MB, usage: 10_000 * MB - free, persisted: null });
+  const at = (free: number, statuses = missing) => webRoom(quota(free), SOURCES, statuses);
+
+  it("at 944 MB free Instant is recommended, Fast is still offered, and the note says why", () => {
+    const room = at(944 * MB);
+    const choices = webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "en", room });
+    expect(choices.map((c) => [c.source.id, c.recommended])).toEqual([["instant", true], ["fast", false]]);
+    const note = webRoomNote({ sources: SOURCES, gate: gate(), languageCode: "en", room });
+    expect(note).toMatchObject({ skipped: { id: "fast" }, picked: { id: "instant" }, freeBytes: 944 * MB });
+    /* The same number the door's own no-space line prints for Fast: file plus 256 MB of headroom. */
+    expect(note!.neededBytes).toBe(SOURCES.find((s) => s.id === "fast")!.bytes + 256 * MB);
+  });
+
+  it("the Model sheet ranks with the same room, so it names Instant too", () => {
+    const room = at(944 * MB);
+    const choices = webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "en", room });
+    const sheet = webSheetChoices({ choices, gate: gate(), use: "chat", languageCode: "en", currentId: null, room });
+    expect(sheet.recommended?.model.id).toBe("instant");
+    expect(sheet.room?.skipped.id).toBe("fast");
+  });
+
+  it("at 105 MB nothing fits: the ranking stays, and there is no note (the no-space door speaks)", () => {
+    const room = at(105 * MB);
+    expect(webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "en", room }).find((c) => c.recommended)?.source.id).toBe("fast");
+    expect(webRoomNote({ sources: SOURCES, gate: gate(), languageCode: "en", room })).toBeNull();
+  });
+
+  it("a half-downloaded Fast needs only what is missing, and a stored one needs nothing", () => {
+    const fast = SOURCES.findIndex((s) => s.id === "fast");
+    const fastBytes = SOURCES[fast]!.bytes;
+    const partial = SOURCES.map((_, i): ModelStatus => (i === fast ? { kind: "partial" as const, have: fastBytes - 500 * MB } : { kind: "missing" as const }));
+    expect(webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "en", room: at(944 * MB, partial) }).find((c) => c.recommended)?.source.id).toBe("fast");
+    const ready = SOURCES.map((_, i): ModelStatus => (i === fast ? { kind: "ready" as const, meta: {} as never } : { kind: "missing" as const }));
+    expect(webModelChoices({ sources: SOURCES, gate: gate(), languageCode: "en", room: at(105 * MB, ready) }).find((c) => c.recommended)?.source.id).toBe("fast");
+  });
+
+  it("a browser that will not report its quota is never demoted", () => {
+    expect(webRoom({ quota: null, usage: null, persisted: null }, SOURCES, missing)).toBeNull();
   });
 });

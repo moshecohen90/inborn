@@ -1,6 +1,7 @@
-import { BUNDLED_MANIFEST, betterForLanguage, expectedSpeed, goodLanguagesOf, modelChoices, rankModels, recommendationIsWeak, type CatalogModel, type DeviceProfile, type LanguageUpgrade, type ModelChoice, type ModelChoices, type SpeedRange, type UseCase } from "@inborn/core";
+import { BUNDLED_MANIFEST, betterForLanguage, expectedSpeed, goodLanguagesOf, modelChoices, rankModels, recommendationIsWeak, recommendationRoomNote, type CatalogModel, type DeviceProfile, type LanguageUpgrade, type ModelChoice, type ModelChoices, type RecommendInput, type RoomNote, type SpeedRange, type StorageRoom, type UseCase } from "@inborn/core";
 import { tierFits, type DeviceGate } from "./deviceGate";
 import type { WebModelSource } from "./modelDelivery";
+import { HEADROOM_BYTES, type ModelStatus, type StorageEstimate } from "./opfs";
 
 /** One model the browser can install, with everything a card says about it on THIS device. */
 export interface WebModelChoice {
@@ -41,25 +42,47 @@ export interface WebChoicesInput {
   languageCode?: string | null;
   use?: UseCase;
   catalog?: readonly CatalogModel[];
+  /** This origin's free quota right now (`webRoom`); a model that fits it is recommended over one that does not. */
+  room?: StorageRoom | null;
 }
+
+/**
+ * The browser's free space as the door's own check reads it (`spaceCheck`: what is still missing plus headroom), so
+ * the model the ranking recommends is never one the door then greys out. Null when the browser will not say.
+ */
+export function webRoom(estimate: StorageEstimate | null, sources: readonly WebModelSource[], statuses: readonly ModelStatus[]): StorageRoom | null {
+  if (!estimate || estimate.quota === null) return null;
+  const onDisk = sources.filter((_, i) => statuses[i]?.kind === "ready").map((s) => s.id);
+  const have = new Map(sources.map((s, i) => { const st = statuses[i]; return [s.id, st?.kind === "partial" ? st.have : 0]; }));
+  const bytes = new Map(sources.map((s) => [s.id, s.bytes]));
+  return {
+    freeBytes: Math.max(0, estimate.quota - (estimate.usage ?? 0)),
+    onDisk,
+    neededBytes: (m) => Math.max(0, (bytes.get(m.id) ?? m.bytes) - (have.get(m.id) ?? 0)) + HEADROOM_BYTES,
+  };
+}
+
+/* The §7.8 input for the models this browser is offered: the gate cuts the catalog, `installed: []` keeps RECOMMENDED "best for this device". */
+function webRecommendInput({ sources, gate, languageCode = null, use = "chat", catalog = BUNDLED_MANIFEST.models, room = null }: WebChoicesInput): RecommendInput {
+  const byId = new Map(catalog.map((m) => [m.id, m]));
+  const eligible = sources.filter((s) => tierFits(s.tier, gate.maxTier));
+  return { use, languageCode, device: webDeviceProfile(gate), installed: [], room, catalog: eligible.map((s) => byId.get(s.id)).filter((m): m is CatalogModel => !!m) };
+}
+
+/** "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended": the door, the vault, onboarding and the sheet print this one note. */
+export const webRoomNote = (input: WebChoicesInput): RoomNote | null => recommendationRoomNote(webRecommendInput(input));
 
 /**
  * Every model this browser can install, best first (§7.8 through `rankModels`, §14.3 through the gate). The door,
  * the vault and the onboarding step read this one list, so they cannot disagree about what is on offer or which one
  * is recommended here.
  */
-export function webModelChoices({ sources, gate, installed = [], languageCode = null, use = "chat", catalog = BUNDLED_MANIFEST.models }: WebChoicesInput): WebModelChoice[] {
+export function webModelChoices(input: WebChoicesInput): WebModelChoice[] {
+  const { sources, gate, installed = [], catalog = BUNDLED_MANIFEST.models } = input;
   const eligible = sources.filter((s) => tierFits(s.tier, gate.maxTier));
   const byId = new Map(catalog.map((m) => [m.id, m]));
   const device = webDeviceProfile(gate);
-  /* `installed: []` on purpose: RECOMMENDED has to mean "best for this device", not "the file you already took". */
-  const ranked = rankModels({
-    use,
-    languageCode,
-    device,
-    installed: [],
-    catalog: eligible.map((s) => byId.get(s.id)).filter((m): m is CatalogModel => !!m),
-  });
+  const ranked = rankModels(webRecommendInput(input));
   const rank = new Map(ranked.map((r, i) => [r.model.id, i]));
   /* A model the §6.3 ranking dropped (too little RAM for its floor) is still installable here, so it stays on the
      list, after everything that fits — never as the recommendation. */
@@ -99,6 +122,8 @@ export interface WebSheetInput {
   /** The model the page has loaded. */
   currentId: string | null;
   catalog?: readonly CatalogModel[];
+  /** `WebBoot.room`: the free space the door ranked with, so the sheet names the same model. */
+  room?: StorageRoom | null;
 }
 
 export interface WebSheetChoices extends ModelChoices {
@@ -111,9 +136,10 @@ export interface WebSheetChoices extends ModelChoices {
  * ordinary chat it names the same RECOMMENDED as the door and the vault, and every model the door offers is a
  * choice here too, never "In the app".
  */
-export function webSheetChoices({ choices, gate, use, languageCode, currentId, catalog = BUNDLED_MANIFEST.models }: WebSheetInput): WebSheetChoices {
+export function webSheetChoices({ choices, gate, use, languageCode, currentId, catalog = BUNDLED_MANIFEST.models, room = null }: WebSheetInput): WebSheetChoices {
   const installed = choices.filter((c) => c.installed || c.source.id === currentId).map((c) => c.source.id);
-  const ranked = webModelChoices({ sources: choices.map((c) => c.source), gate, installed, languageCode, use, catalog });
+  const sources = choices.map((c) => c.source);
+  const ranked = webModelChoices({ sources, gate, installed, languageCode, use, catalog, room });
   const all = modelChoices({ use, languageCode, device: webDeviceProfile(gate), installed, currentId, catalog });
   const rows = new Map([...all.installed, ...all.available, ...all.unavailable].map((c) => [c.model.id, c]));
   /* The gate already decided these run here; a RAM floor the ranking applies only moves them down, as at the door. */
@@ -133,6 +159,7 @@ export function webSheetChoices({ choices, gate, use, languageCode, currentId, c
     inTheApp: [...all.installed, ...all.available, ...all.unavailable].filter((c) => !here.has(c.model.id)).map(unblocked),
     recommended,
     recommendedWeak: !!recommended && recommendationIsWeak(recommended),
+    room: webRoomNote({ sources, gate, languageCode, use, catalog, room }),
   };
 }
 

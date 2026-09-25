@@ -9,6 +9,7 @@ import { useTheme } from "../../services/theme";
 import { useType } from "../../services/type";
 import { chooseWebModel, webBoot } from "../../web/boot";
 import { ModelOptions } from "../../web/ModelOptions";
+import { roomNoteParams } from "../../lib/modelSheetLines";
 import { GET_APP_URL } from "../../web/WebShell";
 import { storageEstimate, type StorageEstimate } from "../../web/opfs";
 
@@ -56,6 +57,11 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
       </View>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.explain")}</Text>
       {/* The browser runs one model at a time, but which one is the reader's call: the same list the door offers (F312). */}
+      {!chrome && boot.roomNote ? (
+        <Text testID="room-note" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("models.roomNote", roomNoteParams(boot.roomNote))}
+        </Text>
+      ) : null}
       {chrome ? null : <ModelOptions choices={boot.choices} currentId={boot.source?.id ?? null} onChoose={(id) => void switchTo(id)} theme={theme} open />}
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.fullVault")}</Text>
       {/* The only thing this screen can do for a browser reader is the filled button; closing is the aside (QA F252). */}

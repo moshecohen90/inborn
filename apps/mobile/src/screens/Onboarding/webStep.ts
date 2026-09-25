@@ -1,4 +1,4 @@
-import type { InstallState } from "@inborn/core";
+import type { InstallState, RoomNote } from "@inborn/core";
 import { chooseWebModel, webBoot } from "../../web/boot";
 import { webDeviceProfile } from "../../web/modelChoice";
 import { webDoorsApply } from "../../web/doors";
@@ -8,6 +8,7 @@ export interface WebStepModels {
   entries: StepEntry[];
   recommendedId: string | undefined;
   ramGB: number;
+  roomNote: RoomNote | null;
 }
 
 /**
@@ -31,7 +32,7 @@ export function webStepModels(): WebStepModels | null {
       : { kind: "not-installed" };
     entries.push({ model: choice.model, state, plan: { via: "https", host: hostOf(choice.source.url), bytes: choice.source.bytes } });
   }
-  return { entries, recommendedId: boot.choices.find((c) => c.recommended)?.source.id, ramGB: webDeviceProfile(boot.gate).ramGB };
+  return { entries, recommendedId: boot.choices.find((c) => c.recommended)?.source.id, ramGB: webDeviceProfile(boot.gate).ramGB, roomNote: boot.roomNote };
 }
 
 const hostOf = (url: string): string => {
