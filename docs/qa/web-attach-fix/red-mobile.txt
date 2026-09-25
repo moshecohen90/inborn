@@ -1,0 +1,28 @@
+ × src/lib/indexHold.test.ts > round 93 · Send holds while the document index model is missing > holds a turn with files attached and no index model 2ms
+ × src/lib/indexHold.test.ts > round 93 · Send holds while the document index model is missing > sends once the user chose to go on with the word search, or the model is there 0ms
+ × src/lib/indexHold.test.ts > round 93 · Send holds while the document index model is missing > never holds a chat with nothing attached, or while the library is still starting 0ms
+ × test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the deployed manifest lists it as a companion, never as a chat model 5ms
+   → expected undefined to match object { …(3) }
+ × test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the app reads it back from that manifest, and only from an allowed origin 0ms
+ × test/webIndexModel.test.ts > round 93 · the document index model is in the browser catalog > the dev host serves the local file as that companion, same-origin 2ms
+   → expected undefined to be '/models/multilingual-e5-large-instruc…' // Object.is equality
+ × src/documents/attachAsk.test.ts > round 93 · an attached file reaches the model > with the index model: 'what is this file about' gets the file's passage and a source 20ms
+   → expected [] to deeply equal [ Array(1) ]
+ × src/documents/attachAsk.test.ts > round 93 · an attached file reaches the model > without the index model the file is still read, by its words, and the turn is not refused 1ms
+   → expected { …(14) } to match object { status: 'indexed', …(1) }
+ × src/documents/attachAsk.test.ts > round 93 · an attached file reaches the model > without the index model a direct question is answered from the passage, marked as a word search 1ms
+ × src/documents/attachAsk.test.ts > round 93 · an attached file reaches the model > an unrelated question still gets no passage 0ms
+ ✓ src/documents/attachAsk.test.ts > round 93 · an attached file reaches the model > once the index model lands, the word index is rebuilt with vectors 7ms
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected undefined to match object { …(3) }
+TypeError: parseCompanion is not a function
+AssertionError: expected undefined to be '/models/multilingual-e5-large-instruc…' // Object.is equality
+AssertionError: expected [] to deeply equal [ Array(1) ]
+AssertionError: expected { …(14) } to match object { status: 'indexed', …(1) }
+Error: no-embedder
+Error: no-embedder
+TypeError: planIndexHold is not a function
+TypeError: planIndexHold is not a function
+TypeError: planIndexHold is not a function
+ Test Files  3 failed (3)
+      Tests  10 failed | 1 passed (11)

@@ -40,11 +40,24 @@ export function webModel(model, url) {
   };
 }
 
+/**
+ * The files a browser installs next to a chat model, never offered as one: today the document index model, which the
+ * web had no way to fetch, so an attached file was never read there (round 93). Old clients ignore the key.
+ */
+export function webCompanions(catalog = readCatalog()) {
+  return catalog.models.filter((m) => m.role === "embedding" && !m.parts && m.delivery.some((d) => d.kind === "https"));
+}
+
+export const webCompanion = (model, url) => ({ ...webModel(model, url), role: model.role });
+
+const httpsPath = (m) => m.delivery.find((d) => d.kind === "https").path;
+
 /** The deployed catalog: every eligible model, fetched from `baseUrl` (the CDN that holds the GGUFs). */
 export function webManifest(baseUrl, catalog = readCatalog()) {
   const base = baseUrl.replace(/\/$/, "");
-  const models = webEligible(catalog).map((m) => webModel(m, `${base}/${m.delivery.find((d) => d.kind === "https").path}`));
-  return { version: catalog.version, publishedAt: catalog.publishedAt, models, signature: "" };
+  const models = webEligible(catalog).map((m) => webModel(m, `${base}/${httpsPath(m)}`));
+  const companions = webCompanions(catalog).map((m) => webCompanion(m, `${base}/${httpsPath(m)}`));
+  return { version: catalog.version, publishedAt: catalog.publishedAt, models, companions, signature: "" };
 }
 
 /**

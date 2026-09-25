@@ -2,7 +2,7 @@ import { installErrorKind } from "@inborn/core";
 
 type T = (key: string, options?: Record<string, unknown>) => string;
 
-const KEY = { offline: "vault.error.offline", "no-space": "vault.error.noSpace", verify: "vault.error.verify", unknown: "vault.error.unknown" } as const;
+const KEY = { offline: "vault.error.offline", "no-space": "vault.error.noSpace", verify: "vault.error.verify", "not-published": "vault.error.notPublished", unknown: "vault.error.unknown" } as const;
 
 /** The card's line for a failed install: one plain sentence, never the platform's exception text (F349). */
 export function installFailureText(t: T, error: string, os: string, offline = false): string {

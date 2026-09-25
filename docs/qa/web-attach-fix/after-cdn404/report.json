@@ -1,0 +1,74 @@
+{
+  "url": "http://127.0.0.1:62296",
+  "modelsDir": "/Users/moshecohen/dev/inborn/.models",
+  "noEmbed": false,
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "This document contains greenhouse maintenance notes detailing a heated heat pump system and daily irrigation schedules for tomato beds.",
+      "citations": "SOURCESgreenhouse-notes.txt · part 1",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "navigated: http://127.0.0.1:62296/",
+        "navigated: http://127.0.0.1:62296/",
+        "navigated: http://127.0.0.1:62296/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:62296/7ddd7008-f106-43b5-9400-66c1e6ed89b2",
+        "worker: blob:http://127.0.0.1:62296/831d88b1-62ce-4627-a187-399c4b174cec",
+        "worker: blob:http://127.0.0.1:62296/8cbc659d-3a26-4ab8-a752-a5dbe4911877",
+        "worker: blob:http://127.0.0.1:62296/4bdcbd6e-1601-4043-9c77-a29128478ec9",
+        "worker: blob:http://127.0.0.1:62296/e49ad0e3-b44d-4057-ad37-4c60d2a573e0",
+        "worker: blob:http://127.0.0.1:62296/dd6a166d-5861-4131-9e7a-e14a9f732384",
+        "worker: blob:http://127.0.0.1:62296/92bb0764-5fee-4bdd-8657-9ca4d0e510c8",
+        "info: [wllama] loaded instant in 1140 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1153 ms",
+        "worker: http://127.0.0.1:62296/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | acb99526-2f52-4133-af27-5a995ea37805#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    },
+    "turbine-report.pdf": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n12:12 PM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nturbine-report.pdf\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "The document describes a turbine plant where acceptance test results are stored in PDF files, noting that the data includes specific maintenance budget figures for the Halden plant and information on warehouse roof replacements at the Belmont warehouse.",
+      "citations": "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3",
+      "notices": {
+        "docs-lexical": "Searched by exact words only. Install the document index model for full search."
+      },
+      "chips": "turbine-report.pdf",
+      "log": [
+        "navigated: http://127.0.0.1:62296/",
+        "navigated: http://127.0.0.1:62296/",
+        "navigated: http://127.0.0.1:62296/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:62296/6a2e1c0c-3bb2-4d62-820e-72747d859db4",
+        "worker: blob:http://127.0.0.1:62296/260776d5-f520-4a68-a012-efb052aab145",
+        "worker: blob:http://127.0.0.1:62296/a4acd616-a43c-4198-852a-b195182d659c",
+        "worker: blob:http://127.0.0.1:62296/08e5f82b-ad45-4385-a3a6-8ee7582d5a97",
+        "worker: blob:http://127.0.0.1:62296/c5a3b4ad-e10a-44c9-8bef-cba2ca6f099b",
+        "worker: blob:http://127.0.0.1:62296/6ba7d40c-9eee-4b8c-83c7-e3c15fc7ed8e",
+        "worker: blob:http://127.0.0.1:62296/1f0bf74b-a2f8-4f43-bab8-172f331b3daf",
+        "info: [wllama] loaded instant in 1118 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1132 ms",
+        "worker: http://127.0.0.1:62296/pdfjs/pdf.worker.min.mjs",
+        "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+        "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 26 ms (9 ms/page)",
+        "worker: http://127.0.0.1:62296/model-worker.js",
+        "log: [rag] strict=false words-only overview hits=3 used=3 0 ms | 7235ef48-7a3a-410f-9fec-9dca47e055a6#0 cos=0.000 terms=0 bm25=0.00 KEPT · 7235ef48-7a3a-410f-9fec-9dca47e055a6#1 cos=0.000 terms=0 bm25=0.00 KEPT · 7235ef48-7a3a-410f-9fec-9dca47e055a6#2 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"
+      ]
+    }
+  },
+  "fullLog": [
+    "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | acb99526-2f52-4133-af27-5a995ea37805#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+    "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 26 ms (9 ms/page)",
+    "log: [rag] strict=false words-only overview hits=3 used=3 0 ms | 7235ef48-7a3a-410f-9fec-9dca47e055a6#0 cos=0.000 terms=0 bm25=0.00 KEPT · 7235ef48-7a3a-410f-9fec-9dca47e055a6#1 cos=0.000 terms=0 bm25=0.00 KEPT · 7235ef48-7a3a-410f-9fec-9dca47e055a6#2 cos=0.000 terms=0 bm25=0.00 KEPT"
+  ]
+}

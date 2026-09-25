@@ -1,0 +1,109 @@
+{
+  "url": "http://127.0.0.1:58196",
+  "modelsDir": "/Users/moshecohen/dev/inborn/.models",
+  "noEmbed": false,
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "answer": "This document discusses a file related to computer hardware and software updates. Quote: \"This document explains the purpose of this file.\"",
+      "citations": null,
+      "notices": {
+        "none-matched": "Nothing in your documents matched this question. Answered without them."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "warning: No available adapters.",
+        "info: [wllama] loaded instant in 1178 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1191 ms",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+        "warning: load: model vocab missing newline token, using special_pad_id instead",
+        "warning: srv    load_model: speculative decoding not supported by this context",
+        "info: [wllama] embedder embed-e5 loaded in 2199 ms",
+        "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2721 ms (2721 ms/page)",
+        "log: [rag] strict=false hits=1 used=0 292 ms | d9c9c8d4-aa5f-4d23-a3a5-d71ce403d2b4#0 cos=0.749 terms=0 bm25=0.00 dropped"
+      ]
+    },
+    "ferry-schedule.md": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:24 AM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nferry-schedule.md\n1",
+      "answer": "This document describes a security incident involving unauthorized access to sensitive data on your computer. It states that attackers successfully exploited system vulnerabilities and breached your account using stolen credentials. Please contact your IT administrator or use the online security report link to download this file immediately.",
+      "citations": null,
+      "notices": {
+        "none-matched": "Nothing in your documents matched this question. Answered without them."
+      },
+      "chips": "ferry-schedule.md",
+      "log": [
+        "warning: No available adapters.",
+        "info: [wllama] loaded instant in 1189 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1202 ms",
+        "warning: load: model vocab missing newline token, using special_pad_id instead",
+        "warning: srv    load_model: speculative decoding not supported by this context",
+        "info: [wllama] embedder embed-e5 loaded in 1227 ms",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+        "log: [documents] ferry-schedule.md: indexed · 1/1 pages · 1 chunks · 1642 ms (1642 ms/page)",
+        "log: [rag] strict=false hits=1 used=0 295 ms | ac5a86d0-89f7-4d5a-a7d7-96b8e98778c6#0 cos=0.737 terms=0 bm25=0.00 dropped"
+      ]
+    },
+    "turbine-report.pdf": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:24 AM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nturbine-report.pdf\n1",
+      "answer": "The provided documents describe a turbine reporting system with specific maintenance costs and warehouse roof details.",
+      "citations": "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3",
+      "notices": {},
+      "chips": "turbine-report.pdf",
+      "log": [
+        "warning: No available adapters.",
+        "info: [wllama] loaded instant in 1262 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1276 ms",
+        "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+        "warning: load: model vocab missing newline token, using special_pad_id instead",
+        "warning: srv    load_model: speculative decoding not supported by this context",
+        "info: [wllama] embedder embed-e5 loaded in 1189 ms",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+        "log: [documents] turbine-report.pdf: indexed · 3/3 pages · 3 chunks · 2189 ms (730 ms/page)",
+        "log: [rag] strict=false hits=3 used=3 278 ms | 238bb934-7b68-4fd6-809a-4954df06f554#0 cos=0.811 terms=2 bm25=0.27 KEPT · 238bb934-7b68-4fd6-809a-4954df06f554#1 cos=0.804 terms=2 bm25=0.27 KEPT · 238bb934-7b68-4fd6-809a-4954df06f554#2 cos=0.801 terms=2 bm25=0.26 KEPT"
+      ]
+    },
+    "novara-depot.docx": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:24 AM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nnovara-depot.docx\n1",
+      "answer": "This document appears to be a standard reference guide or informational resource, as the user's request for specific content indicates it lacks detail. I will not quote anything from external documents unless they are clearly identifiable as such.",
+      "citations": null,
+      "notices": {
+        "none-matched": "Nothing in your documents matched this question. Answered without them."
+      },
+      "chips": "novara-depot.docx",
+      "log": [
+        "warning: No available adapters.",
+        "info: [wllama] loaded instant in 1122 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1136 ms",
+        "warning: load: model vocab missing newline token, using special_pad_id instead",
+        "warning: srv    load_model: speculative decoding not supported by this context",
+        "info: [wllama] embedder embed-e5 loaded in 1177 ms",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+        "log: [documents] novara-depot.docx: indexed · 1/1 pages · 1 chunks · 1831 ms (1831 ms/page)",
+        "log: [rag] strict=false hits=1 used=0 271 ms | edcf713a-eac2-41db-81e8-9effdc61c5f2#0 cos=0.806 terms=1 bm25=0.45 dropped"
+      ]
+    },
+    "door.jpg": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nRECENT\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:25 AM\nPin\nArchive\nDelete\nWhat is this file about? Quote\n11:24 AM\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\nFREE SENDS ONE PHOTO PER MESSAGE",
+      "answer": "",
+      "citations": null,
+      "notices": {},
+      "chips": "",
+      "log": [
+        "warning: No available adapters.",
+        "info: [wllama] loaded instant in 1155 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1172 ms"
+      ]
+    }
+  },
+  "fullLog": [
+    "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2721 ms (2721 ms/page)",
+    "log: [rag] strict=false hits=1 used=0 292 ms | d9c9c8d4-aa5f-4d23-a3a5-d71ce403d2b4#0 cos=0.749 terms=0 bm25=0.00 dropped",
+    "log: [documents] ferry-schedule.md: indexed · 1/1 pages · 1 chunks · 1642 ms (1642 ms/page)",
+    "log: [rag] strict=false hits=1 used=0 295 ms | ac5a86d0-89f7-4d5a-a7d7-96b8e98778c6#0 cos=0.737 terms=0 bm25=0.00 dropped",
+    "log: Warning: UnknownErrorException: Ensure that the `standardFontDataUrl` API parameter is provided.",
+    "log: [documents] turbine-report.pdf: indexed · 3/3 pages · 3 chunks · 2189 ms (730 ms/page)",
+    "log: [rag] strict=false hits=3 used=3 278 ms | 238bb934-7b68-4fd6-809a-4954df06f554#0 cos=0.811 terms=2 bm25=0.27 KEPT · 238bb934-7b68-4fd6-809a-4954df06f554#1 cos=0.804 terms=2 bm25=0.27 KEPT · 238bb934-7b68-4fd6-809a-4954df06f554#2 cos=0.801 terms=2 bm25=0.26 KEPT",
+    "log: [documents] novara-depot.docx: indexed · 1/1 pages · 1 chunks · 1831 ms (1831 ms/page)",
+    "log: [rag] strict=false hits=1 used=0 271 ms | edcf713a-eac2-41db-81e8-9effdc61c5f2#0 cos=0.806 terms=1 bm25=0.45 dropped"
+  ]
+}

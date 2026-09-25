@@ -23,6 +23,8 @@ const RAW = {
   webFetch: "TypeError: Failed to fetch",
   webQuota: "QuotaExceededError: The operation failed because it would cause the application to exceed its storage quota.",
   webStored: "stored file does not match",
+  /* Round 93: the CDN answered 404 for the document index model while its upload was blocked. */
+  webMissing: "HTTP 404",
 };
 
 describe("F349 · a failed download reads as one plain sentence", () => {
@@ -37,6 +39,9 @@ describe("F349 · a failed download reads as one plain sentence", () => {
     expect(installErrorKind(RAW.webFetch)).toBe("offline");
     expect(installErrorKind(RAW.webQuota)).toBe("no-space");
     expect(installErrorKind(RAW.webStored)).toBe("verify");
+    expect(installErrorKind(RAW.webMissing)).toBe("not-published");
+    expect(installErrorKind("HTTP 410")).toBe("not-published");
+    expect(installErrorKind("HTTP 503")).toBe("unknown");
   });
 
   it("no locale ever shows a class name, a file path or the raw text", () => {
@@ -54,7 +59,8 @@ describe("F349 · a failed download reads as one plain sentence", () => {
   it("each kind has its own sentence, and the unknown one is not blank", () => {
     const t = tFor(load("en.json"));
     const texts = new Set(Object.values(RAW).map((raw) => installFailureText(t, raw, "ios")));
-    expect(texts.size).toBe(4);
+    expect(texts.size).toBe(5);
+    expect(installFailureText(t, RAW.webMissing, "web")).toBe("This model is not on the download server yet. Try again later.");
     expect(installFailureText(t, RAW.ios, "ios")).toBe("Something went wrong. Try again.");
     expect(installFailureText(t, RAW.offline, "ios")).toBe("No connection. Check the internet and try again.");
   });

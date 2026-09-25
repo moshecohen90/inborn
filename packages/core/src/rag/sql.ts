@@ -191,11 +191,12 @@ export class SqlEmbeddingStore implements EmbeddingStore {
   }
 
   async putChunks(chunks: Chunk[], vectors: Float32Array[]): Promise<void> {
-    if (chunks.length !== vectors.length) throw new Error("chunks and vectors differ in length");
+    if (vectors.length && chunks.length !== vectors.length) throw new Error("chunks and vectors differ in length");
     const statements: Array<{ sql: string; params: SqlValue[] }> = [];
     chunks.forEach((c, i) => {
-      const { q, scale } = quantize(vectors[i]!);
       statements.push({ sql: RAG_SQL.insertChunk, params: [c.id, c.docId, c.page, c.ord, c.text, c.start, c.end, c.tokens] });
+      if (!vectors.length) return;
+      const { q, scale } = quantize(vectors[i]!);
       statements.push({ sql: RAG_SQL.insertVector, params: [c.id, c.docId, q.length, scale, int8ToBase64(q)] });
     });
     await this.db.batch(statements);

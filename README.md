@@ -5963,3 +5963,75 @@ overhead per chunk on both, 3.06 ms against 800 ms of engine time (`overhead-ben
 Tests red first (`red-core.txt`, `red-library.txt`): a question during a queue of chunks, the old index searched
 during a rebuild, and a kill that resumes at the last finished document and page. Open: the notice counts the
 attached documents, not the whole library. A rebuild that fails mid-document is resumed on the next launch, not at once.
+
+## Fixes round 93: an attached file reaches the model on the web (branch `web-attach-fix`) — 25.9.2026
+
+Moshe, on the web app run locally: "I attach a file and the model does not understand what it is; it is not added to
+the model at all." Reproduced in headless Chromium with Instant, attaching through "+" and "Add a file…" and asking
+"What is this file about? Quote one sentence from it." (`docs/qa/web-attach-fix/before-embed`, `before-noembed`).
+
+- **Root cause 1, with the index model installed.** The file was indexed, but a question about the file itself names no
+  subject. It shares no word with any passage, and e5 scored it 0.749 against a 0.82 door (`[rag] ... cos=0.749
+  terms=0 dropped`). Every passage was dropped, the model was told the documents held nothing, and it invented one
+  ("a security incident involving unauthorized access"). The only sign was the small "Nothing in your documents
+  matched" line. The .txt, .md and .docx all failed this way; the test PDF passed only because it contains "document"
+  and "sentence".
+- **Root cause 2, without it.** The browser could not install the document index model at all. `installEmbedder` was a
+  no-op on the web, and the local dev host served the file only through a URL shortcut. Where the file was missing, as
+  on the CDN today (HTTP 404), the file was never read. Every question got "Inborn cannot read attached files until
+  the document index model is installed", with an "Open the vault" button that leads nowhere on the web.
+
+What changed:
+
+- **A question about the file gets the file.** `isAboutAttachment` (core, `rag/overview.ts`) recognises a question
+  whose every content word is about the file ("what is this file about", "summarize", "quote a sentence") in all 8
+  launch locales. Such a question is handed the opening passages of each attached file in reading order, with SOURCES,
+  in strict mode too. A question with its own subject goes through retrieval and its doors exactly as before.
+- **No index model: the file is still read, by its words.** Indexing runs without an embedder and stores the chunks
+  with no vectors (`embedModel: "lexical"`). Questions search them with BM25 alone, and the answer carries "Searched by
+  exact words only. Install the document index model for full search." When the model lands, the word index is
+  rebuilt with vectors through the round-89 path. The "no-embedder" refusal is gone.
+- **Send holds once, with a card.** With files attached and no index model, Send keeps the message in the composer
+  behind a card: "The attached file needs the document index model (468 MB) to be searched by meaning", with
+  Download, "Send, exact words only" and Cancel. Download fetches the model into OPFS, verified by sha256, and the
+  message goes out by itself when it is ready. A failed download shows the F349 plain sentence and a Try again. A 404
+  now reads "This model is not on the download server yet. Try again later." A host that does not serve the model says
+  so on the card, with no Download button.
+- **The browser catalog carries the index model.** `/models/manifest.json` has a `companions` list (never offered as
+  a chat model). The deployed build points it at the CDN, and `scripts/serve-web.mjs` serves the local file when it is
+  in `MODELS_DIR`. The browser installs it the same way from both. The dev host also read a `shasum`-style sidecar
+  ("hash  name") as the hash, which failed the first verified download; it now reads the hash alone.
+- **The Documents screen** shows the same state and progress on every platform. It no longer reads the retired
+  nomic model's size.
+
+Local run, the document index model from this machine and not from the CDN:
+
+```
+corepack pnpm web:build
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models PORT=8787 corepack pnpm web:serve
+```
+
+Open http://127.0.0.1:8787, attach a file, press Send, then Download on the card. The server prints the index model
+line at start; without the file in `MODELS_DIR` the card offers the word search only.
+
+Proof in headless Chromium with Instant, same files and question as the report (`docs/qa/web-attach-fix/after-*`,
+screenshots at 1440 and 390, `[rag]` lines in `report.json`):
+
+| file | before, index model served | before, no index model | after, Download on the card | after, word search |
+|---|---|---|---|---|
+| .txt | invented content, "nothing matched" | refused, "install the index model" | answer + SOURCES `greenhouse-notes.txt` | answer + SOURCES + words-only notice |
+| .md | invented content, "nothing matched" | refused | answer + SOURCES | answer + SOURCES + notice |
+| .pdf (text) | answer + SOURCES (matched "document") | refused | answer + SOURCES p.1-3 | answer + SOURCES + notice |
+| .docx | invented content, "nothing matched" | refused | answer + SOURCES | answer + SOURCES + notice |
+| .jpg photo | photo hold card: no web model sees photos | same | same, unchanged | same |
+
+With the CDN's 404 simulated, the card shows "This model is not on the download server yet" and the word search answers
+with SOURCES (`after-cdn404`). A host without the file shows the card with no Download (`after-not-served`).
+`scripts/web-smoke.mjs` pass 8 now attaches a .txt (word search) and a .pdf (Download from the local host) and fails
+without SOURCES naming the file.
+
+Tests red first: `red-core.txt`, `red-mobile.txt`, `red-not-published.txt`, `red-sidecar.txt`. Open: the web still
+has no OCR, so a scanned PDF says "needs OCR" and a photo attached as a file says "use the Photo button". Instant
+still paraphrases loosely inside a grounded answer (the turbine PDF answer names a railway that is not in it). The
+CDN upload of the index model is still blocked on the Cloudflare token, so a deployed browser gets the word search
+until it lands.

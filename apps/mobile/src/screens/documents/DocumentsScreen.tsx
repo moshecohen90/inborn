@@ -5,13 +5,14 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BannerSpacer } from "../../components/shell/bannerInset";
 import { radius } from "@inborn/ui";
-import { PRODUCTS, downloadPercent, fallbackPrice, fileIntake, formatBytes, formatModelBytes, isSearchable, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
+import { PRODUCTS, fallbackPrice, fileIntake, formatBytes, formatModelBytes, isSearchable, paywallFor, type DocumentRecord, type PaywallReason } from "@inborn/core";
 import { useEntitlement, useLicence } from "../../licence";
 import { writeDevResult } from "../../adapters/devModel";
 import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
 import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
+import { indexModelPercent, useIndexModel } from "../../documents/useIndexModel";
 import { devFileUri, sizeOf } from "../../documents/files";
 import { listClipping } from "../../lib/listClipping";
 import { useContentMaxWidth } from "../../lib/useLayout";
@@ -187,8 +188,9 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
     if (docs.length) setAsk({ docs });
   };
 
-  const embedState = vault.state("embed-nomic");
-  const embedModel = vault.model("embed-nomic");
+  /* One state on every platform: the vault's delivery on a phone, the OPFS download in a browser (round 93). */
+  const embedState = useIndexModel();
+  const embedBytes = embedState.kind === "missing" || embedState.kind === "failed" ? embedState.bytes : 0;
   const embedderMissing = state.embedder.kind === "missing";
   const totalBytes = state.documents.reduce((n, d) => n + d.bytes, 0);
   const ocrAvailable = Platform.OS !== "web";
@@ -244,16 +246,12 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       {embedderMissing ? (
         <View testID="embedder-card" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
           <Text style={[styles.label, { color: theme.accent }]}>{t("documents.embedder.title")}</Text>
-          <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatModelBytes(embedModel?.bytes ?? 274290560) })}</Text>
-          {embedState.kind === "delivering" ? (
-            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.delivering", { percent: downloadPercent(embedState.bytes, embedState.total), done: formatModelBytes(embedState.bytes), total: formatModelBytes(embedState.total) })}</Text>
-          ) : embedState.kind === "verifying" ? (
-            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.verifying")}</Text>
-          ) : (
+          <Text style={[styles.body, { color: theme.text }]}>{t("documents.embedder.explain", { size: formatModelBytes(embedBytes) })}</Text>
+          {embedState.kind === "downloading" ? (
+            <Text style={[styles.mono, { color: theme.text2 }]}>{t("vault.state.delivering", { percent: indexModelPercent(embedState), done: formatModelBytes(embedState.bytes), total: formatModelBytes(embedState.total) })}</Text>
+          ) : embedState.kind === "missing" || embedState.kind === "failed" ? (
             <>
-            {embedState.kind === "needs-space" ? (
-              <Text testID="embedder-needs-space" style={[styles.mono, { color: theme.danger }]}>{t("vault.state.needsSpace", { size: formatModelBytes(embedState.requiredBytes - embedState.freeBytes) })}</Text>
-            ) : embedState.kind === "failed" ? (
+            {embedState.kind === "failed" ? (
               <Text testID="embedder-failed" style={[styles.mono, { color: theme.danger }]}>{installFailureText(t, embedState.error, Platform.OS)}</Text>
             ) : null}
             <Pressable
@@ -262,10 +260,10 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
               onPress={() => void installEmbedder().then(() => library.refreshEmbedder())}
               style={[styles.btn, { backgroundColor: theme.ctaFill }]}
             >
-              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatModelBytes(embedModel?.bytes ?? 274290560) })}</Text>
+              <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatModelBytes(embedBytes) })}</Text>
             </Pressable>
             </>
-          )}
+          ) : null}
         </View>
       ) : null}
       <FlatList

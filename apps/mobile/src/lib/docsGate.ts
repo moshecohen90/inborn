@@ -61,3 +61,21 @@ export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false
   if (!strict) return { kind: "model" };
   return { kind: "refuse", messageKey: "documents.noneAttached" };
 }
+
+export interface IndexHoldInput {
+  /** Documents attached to this chat. */
+  attached: number;
+  /** The library's index model: `loading` while it is still being looked for at launch. */
+  embedder: "ready" | "missing" | "loading" | "failed";
+  /** The user chose, on the hold card, to go on with the word search for this chat. */
+  wordsAccepted: boolean;
+}
+
+/**
+ * Round 93: a file with no index model behind it is searched by its words only, which finds a fact the question names
+ * but misses one it paraphrases. Send stops once so the user decides: fetch the index model, or go on with words.
+ */
+export function planIndexHold({ attached, embedder, wordsAccepted }: IndexHoldInput): "hold" | "send" {
+  if (attached === 0 || wordsAccepted) return "send";
+  return embedder === "missing" || embedder === "failed" ? "hold" : "send";
+}
