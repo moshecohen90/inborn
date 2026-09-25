@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View, findNodeHandle, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
+import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Linking, Platform, Pressable, StyleSheet, Text, View, findNodeHandle, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -109,6 +109,7 @@ import { shareFile } from "../lib/share";
 import { useEntitlements } from "../lib/entitlements";
 import { chipLabel, modelLabel, describeLoad } from "../lib/models";
 import { getVault } from "../vault/store";
+import { GET_APP_URL } from "../web/links";
 import { useShortcut } from "../lib/shortcuts";
 import { COLUMN_WIDTH } from "../lib/layout";
 import { setSidebarOpen, useSidebarOpen } from "../lib/sidebar";
@@ -282,9 +283,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const quant = useMemo(() => {
     const info = "devInfo" in engine ? (engine.devInfo as { desc?: string }) : undefined;
     const m = /Q\d[A-Z0-9_]*|F16|BF16|IQ\d[A-Z0-9_]*/i.exec(info?.desc ?? "");
-    return m?.[0]?.toUpperCase();
-  }, [engine, status.kind]);
+    /* wllama reports no description, but the catalog names the file's quantisation (F388). */
+    return m?.[0]?.toUpperCase() ?? (getVault().model(model.id)?.quant || undefined);
+  }, [engine, status.kind, model.id]);
 
+  /* F385/F386: photos and dictation are app features; in a browser the refusal carries the way to the app. */
+  const getTheApp = () => void Linking.openURL(GET_APP_URL);
   const flash = (message: string) => {
     setToast(message);
     setTimeout(() => setToast(null), 1400);
@@ -1484,6 +1488,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           onRemove={dropAllPhotos}
           onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
           onReady={releaseHeldTurn}
+          {...(Platform.OS === "web" ? { onGetApp: getTheApp } : {})}
         />
       ) : null}
       {pendingImages.length ? (
@@ -1777,8 +1782,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));
         } : undefined}
         visionSize={visionSize}
-        photoNote={!modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        photoNote={Platform.OS === "web" ? t("chat.attach.photoWeb") : !modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
+        {...(Platform.OS === "web" ? { onGetApp: getTheApp } : {})}
       />
       <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />
       <RedactSheet
@@ -1854,9 +1860,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             />
           </>
         ) : dictation.problem?.kind === "unsupported" ? (
-          <View style={styles.problem}>
-            <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("voice.unsupported")}</Text>
-          </View>
+          <>
+            <View style={styles.problem}>
+              <Text style={[type.bodySmall, { color: theme.text2 }]}>{Platform.OS === "web" ? t("voice.unsupportedWeb") : t("voice.unsupported")}</Text>
+            </View>
+            {Platform.OS === "web" ? <SheetItem testID="mic-get-app" label={t("web.getApp")} onPress={getTheApp} /> : null}
+          </>
         ) : dictation.problem?.kind === "error" ? (
           <View style={styles.problem}>
             <Text style={[type.bodySmall, { color: theme.danger }]}>{t("voice.error", { message: dictation.problem.message })}</Text>

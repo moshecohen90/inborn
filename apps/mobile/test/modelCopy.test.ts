@@ -29,4 +29,16 @@ describe("catalog copy has a locale key", () => {
   it("shows nothing where the catalog says nothing", () => {
     expect(modelCopy(t(en), { id: "import:x.gguf", goodFor: "" })).toEqual({ goodFor: "", weakAt: "" });
   });
+  /* F385: where no engine can see (the browser), the only-model-that-sees-photos claim is replaced in every locale. */
+  it("drops the photo claim where photos cannot be read, in every locale", () => {
+    const instant = BUNDLED_MANIFEST.models.find((m) => m.id === "instant")!;
+    for (const f of ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant", "pseudo"]) {
+      const dict = load(`${f}.json`);
+      const line = modelCopy(t(dict), instant, { photos: false }).goodFor;
+      expect(line, f).toBe(dict["models.copy.instant.goodForNoPhotos"]);
+      expect(line, f).not.toBe(dict["models.copy.instant.goodFor"]);
+    }
+    expect(modelCopy(t(en), instant, { photos: false }).goodFor).not.toMatch(/only model here/);
+    expect(modelCopy(t(en), instant).goodFor).toBe(en["models.copy.instant.goodFor"]);
+  });
 });

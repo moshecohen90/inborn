@@ -47,7 +47,7 @@ export interface ModelCardProps {
 export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, highlighted, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
-  const copy = modelCopy(t, model);
+  const copy = modelCopy(t, model, { photos: Platform.OS !== "web" });
   const speed = expectedSpeed(device.chip, model.tier);
   /* Installable, but the measured rate on this chip class is not worth waiting for: the card says so beside the number (QA F37). */
   const tooSlow = tooSlowHere(device.chip, model.tier);

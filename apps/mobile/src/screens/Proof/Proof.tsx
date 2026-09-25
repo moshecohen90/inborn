@@ -16,6 +16,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Actions, Button, Mono, MonoLabel, Section } from "../../components/shell/primitives";
 import { Sheet } from "../../components/shell/Sheet";
 import { font, useType } from "../../services/type";
+import { offlineKey } from "../../lib/offlineWording";
 
 const EXODUS = "https://reports.exodus-privacy.eu.org/en/reports/search/com.inbornapp.mobile/";
 /* F51: the "Source code" link went to a private repository and 404'd for every user. There is no published
@@ -89,13 +90,13 @@ export function Proof() {
       </Section>
 
       {/* The airplane invitation lives here, on the page that proves things, with the reason on the same line (F122). */}
-      <Section title={t("proof.airplane.title")}>
+      <Section title={t(offlineKey("proof.airplane.title"))}>
         <View style={styles.invite}>
           <Text testID="proof-airplane-why" style={[type.bodySmall, { color: theme.text2 }]}>
-            {t("airplane.why")}
+            {t(offlineKey("airplane.why"))}
           </Text>
           <Actions>
-            <Button testID="proof-airplane" title={t("proof.runAirplane")} onPress={() => router.push("/proof/airplane")} />
+            <Button testID="proof-airplane" title={t(offlineKey("proof.runAirplane"))} onPress={() => router.push("/proof/airplane")} />
           </Actions>
         </View>
       </Section>

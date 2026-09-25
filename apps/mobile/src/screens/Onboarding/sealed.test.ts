@@ -13,7 +13,7 @@ const LOCALES = ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant", "pseudo
 
 describe("the seal screen offers the proof it no longer forces (F124b)", () => {
   it("renders the link and routes it to the airplane test, not to the Proof index", () => {
-    expect(sealed).toMatch(/testID="sealed-prove"[\s\S]*?title=\{t\("onboarding\.sealed\.prove"\)\}/);
+    expect(sealed).toMatch(/testID="sealed-prove"[\s\S]*?title=\{t\(offlineKey\("onboarding\.sealed\.prove"\)\)\}/);
     expect(sealed).toMatch(/testID="sealed-prove"[\s\S]*?router\.push\("\/proof\/airplane"\)/);
   });
 
@@ -31,6 +31,16 @@ describe("the seal screen offers the proof it no longer forces (F124b)", () => {
       expect(value!.length, name).toBeLessThan(60);
       /* The reason travels with the label: every language names the mode the user is being asked to turn on. */
       expect(value!, name).toMatch(/avión|avião|avion|Flugmodus|Airplane|機内モード|비행기 모드|飛航模式|Åïrplàñé/);
+    }
+  });
+
+  /* F387: the web build (browser and desktop) has no Airplane Mode to turn on, so its label says "offline" instead. */
+  it("gives the web build an offline label with no Airplane Mode in it, in every locale", () => {
+    for (const name of LOCALES) {
+      const value = load(`${name}.json`)["onboarding.sealed.proveOffline"];
+      expect(value, name).toBeTruthy();
+      expect(value!.length, name).toBeLessThan(60);
+      expect(value!, name).not.toMatch(/avión|avião|avion|Flugmodus|Airplane|機内モード|비행기 모드|飛航模式|Åïrplàñé/);
     }
   });
 });

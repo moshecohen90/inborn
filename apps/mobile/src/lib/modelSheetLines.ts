@@ -14,9 +14,10 @@ export function recommendationKey(choices: Pick<ModelChoices, "recommended" | "r
 }
 
 /** What a row claims the model is good at: the uses the fit map rates best or good, plus photos, which no use case covers. */
-export function goodAtUses(model: Pick<CatalogModel, "fit" | "vision">): (UseCase | "photos")[] {
+export function goodAtUses(model: Pick<CatalogModel, "fit" | "vision">, here: { photos: boolean; voice: boolean } = { photos: true, voice: true }): (UseCase | "photos")[] {
   const fit = model.fit;
-  return [...USE_CASES.filter((u) => fit && (fit.uses[u] === "best" || fit.uses[u] === "good")), ...(model.vision ? (["photos"] as const) : [])];
+  const rated = USE_CASES.filter((u) => fit && (fit.uses[u] === "best" || fit.uses[u] === "good") && (u !== "voice" || here.voice));
+  return [...rated, ...(model.vision && here.photos ? (["photos"] as const) : [])];
 }
 
 /** `models.roomNote` for every surface that names the recommendation: the model the space ruled out, what it needs, what is free, and the pick. */
@@ -26,3 +27,5 @@ export const roomNoteParams = (note: RoomNote): Record<string, string> => ({
   free: formatModelBytes(note.freeBytes),
   picked: note.picked.name,
 });
+/** F385/F386: the browser build has no projector and no dictation, so its rows never claim photos or voice notes. */
+export const WEB_HERE = { photos: false, voice: false } as const;

@@ -193,7 +193,7 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
         ) : null}
       </View>
       <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
-      <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model).goodFor}</Text>
+      <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model, { photos: Platform.OS !== "web" }).goodFor}</Text>
       <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text>
       {state.kind === "arriving" ? <Progress percent={state.percent} verifying={state.verifying} /> : null}
       {state.kind === "no-space" ? (

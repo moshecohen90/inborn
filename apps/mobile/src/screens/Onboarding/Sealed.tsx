@@ -10,6 +10,7 @@ import { Button, MonoLabel } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { useWide } from "../../lib/useLayout";
+import { offlineKey } from "../../lib/offlineWording";
 
 /** S04, the peak: the ring snaps shut, one haptic, "SEALED · ON-DEVICE". */
 export function Sealed() {
@@ -37,7 +38,7 @@ export function Sealed() {
         <>
           <Button testID="sealed-start" title={t("onboarding.sealed.start")} onPress={() => router.push("/onboarding/lock")} disabled={!done} />
           {/* The ritual left the onboarding chain (F122); here it is an offer carrying its own reason, not an ask. */}
-          <Button testID="sealed-prove" title={t("onboarding.sealed.prove")} variant="link" onPress={() => router.push("/proof/airplane")} disabled={!done} />
+          <Button testID="sealed-prove" title={t(offlineKey("onboarding.sealed.prove"))} variant="link" onPress={() => router.push("/proof/airplane")} disabled={!done} />
         </>
       }
     >

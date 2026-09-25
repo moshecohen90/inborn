@@ -6011,3 +6011,31 @@ The web full pass found three layout and theme gaps (W2, W8, W1). Evidence: `doc
   and the live theme) and 0 after. `red-system-scheme.txt` shows the unit test failing against the old `theme.ts`.
 - **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke`
   and `pn check:store` pass. Test counts: 900 core, 1011 mobile, 20 i18n, 23 ui.
+## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
+
+The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot
+keep. Native copy is unchanged; only the web build (`Platform.OS === "web"`, which includes the desktop shell) reads
+differently. Evidence: `docs/qa/web-copy-truth/`, the same headless-Chromium walk (door → onboarding → chat → Model
+sheet → attach → photo hold → mic → ledger → paywall → Proof → airplane test) on the untouched `origin/main` export
+(`*-before.png`) and on this branch (`*-after.png`), at 1440 and 390, with the page text in `result-<width>-<tag>.json`.
+
+- **F385 · Photos.** The door, the onboarding model step and the Model sheet no longer say Instant is "the only model
+  here that can look at a photo" or list "Photos" under Good at. The browser reads "Photos: in the app"
+  (`models.copy.instant.goodForNoPhotos`, via `modelCopy(t, model, { photos })`). The attach sheet's Photo row says
+  photos work in the iOS and Android app and ends with "Get the app". The photo hold card says the same, with a
+  "Get the app" button. wllama 3.6.1 does expose a projector path (`mmprojUrl`, `supportInputModality("image")`),
+  so vision in the browser is feasible later with the 205 MB projector. It is not wired here.
+- **F386 · Paywall, locks and voice.** The spec's web section says there is no Pro on the web and the browser version
+  stays free (§4.4, §8.7), and Moshe's I03 expects a locked browser control to open the paywall. So the locks stay.
+  The false line "Nothing here is behind a payment, and the browser version stays that way" is gone. In its place:
+  "The PRO and WORK marks in this browser show what the app adds. They unlock in the iOS and Android app, not here."
+  W4: the mic says dictation works in the iOS and Android app, with "Get the app", and the Model sheet stops listing
+  "Voice notes" in a browser.
+- **F387 · Airplane Mode on a desktop.** The seal link, the Proof section and the airplane test say "go offline" /
+  "Disconnect from the network (unplug the cable or turn off Wi-Fi)" in the web build, with ONLINE/OFFLINE on the
+  indicator. The web hint adds that Airplane Mode does the same on a phone. iOS and Android keep Airplane Mode.
+- **F388 · Ledger and Model sheet.** The Ledger reads QUANT Q4_K_M when the engine reports no description, from the
+  catalog entry. The Model sheet's browser note now reads "Choosing another here replaces it" above the working
+  Choose button. It drops the "full vault lives in the app" sentence where the IN THE APP rows already say it.
+- **Strings** in all 8 locales plus pseudo, each in the register its screen already uses. **Tests:** `modelCopy`
+  and `goodAtUses` browser cases, the seal's offline label in every locale, and the paywall block.

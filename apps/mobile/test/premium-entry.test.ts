@@ -156,6 +156,11 @@ describe("F149 · the browser paywall names the price and the way to buy", () =>
     expect(block).toContain('testID="web-stays-free"');
     expect(block).toContain('t("paywall.noStore")');
   });
+  /* F386: the browser shows PRO/WORK marks that no browser can buy, so "nothing here is behind a payment" was false. */
+  it("says what the browser's locks are instead of denying them", () => {
+    expect(block).toContain('t("paywall.web.locks")');
+    expect(block).not.toContain("paywall.web.free");
+  });
   it("every store link is a real https URL on our own origin until a listing is live", () => {
     const links = read("web/links.ts");
     const urls = [...links.matchAll(/(appStore|play|desktop):\s*`?([^,\n]+)/g)].map((m) => m[2]!);
