@@ -1,0 +1,11 @@
+ FAIL  src/documents/reindex.test.ts > F336 · a document indexed by the old embedder is rebuilt on the first open after the update > a twin whose source is gone takes the file just picked, and is read again from it
+AssertionError: expected 'failed' not to be 'failed' // Object.is equality
+ ❯ src/documents/reindex.test.ts:158:30
+    156|     const again = await library.importFile("/picked/a-again.txt", "a.t…
+    157|     expect(again.id).toBe(first.id);
+    158|     expect(again.status).not.toBe("failed");
+       |                              ^
+    159|     expect(library.document(first.id)!.uri).not.toBe(firstUri);
+    160|     await settle(library);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

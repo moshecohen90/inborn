@@ -1,0 +1,11 @@
+ FAIL  src/documents/attachmentState.test.ts > F302 · a document with no readable text is its own state > a file whose read failed is not called a scan: the OCR wording is kept for a file with no text (F1)
+AssertionError: expected 'no-text' not to be 'no-text' // Object.is equality
+ ❯ src/documents/attachmentState.test.ts:260:31
+    258|
+    259|     const state = library.attachmentState("chat-1");
+    260|     expect(state.blocked).not.toBe("no-text");
+       |                               ^
+    261|     expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: …
+    262|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

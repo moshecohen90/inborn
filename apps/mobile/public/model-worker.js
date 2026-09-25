@@ -143,6 +143,21 @@ export function planResponse(have, status, contentRange, contentLength) {
   throw new Error(`HTTP ${status}`);
 }
 
+const GGUF_MAGIC = [0x47, 0x47, 0x55, 0x46];
+
+/**
+ * A static host answers a file it lacks with its SPA shell (200 text/html); that must fail, never become a "model".
+ * @param {string} file
+ * @param {string|null} contentType
+ * @param {Uint8Array|null} head the first bytes of the file, when the download starts at byte 0
+ */
+export function assertModelBytes(file, contentType, head) {
+  if (/text\/html/i.test(contentType ?? "")) throw new Error(`not a model file: the server answered ${contentType} for ${file}`);
+  if (head && file.endsWith(".gguf") && GGUF_MAGIC.some((b, i) => head[i] !== b)) {
+    throw new Error(`not a model file: ${file} does not start with GGUF (got '${String.fromCharCode(...head.subarray(0, 4))}')`);
+  }
+}
+
 async function readJson(dir, name) {
   try {
     const handle = await dir.getFileHandle(name);
@@ -225,6 +240,7 @@ export async function download(job, post, signal) {
     const headers = have > 0 ? { Range: `bytes=${have}-` } : {};
     const res = await fetch(job.url, { headers, signal, cache: "no-store", credentials: "omit" });
     const plan = planResponse(have, res.status, res.headers.get("content-range"), res.headers.get("content-length"));
+    assertModelBytes(job.file, res.headers.get("content-type"), null);
     if (plan.restart) {
       access.truncate(0);
       have = 0;
@@ -236,9 +252,17 @@ export async function download(job, post, signal) {
     if (!res.body) throw new Error("empty response body");
 
     const reader = res.body.getReader();
+    let head = have === 0 ? new Uint8Array(0) : null;
     for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
+      if (head && head.length < 4) {
+        const joined = new Uint8Array(head.length + value.length);
+        joined.set(head, 0);
+        joined.set(value, head.length);
+        head = joined.subarray(0, 4);
+        if (head.length === 4) assertModelBytes(job.file, null, head);
+      }
       access.write(value, { at: have });
       hasher.update(value);
       have += value.byteLength;
@@ -254,6 +278,7 @@ export async function download(job, post, signal) {
       }
     }
     access.flush();
+    if (head && head.length < 4) assertModelBytes(job.file, null, head);
     if (total !== null && have !== total) throw new Error(`incomplete: ${have} of ${total} bytes`);
     const digest = hasher.hex();
     if (job.sha256 && digest !== job.sha256.toLowerCase()) {
@@ -275,7 +300,12 @@ export async function download(job, post, signal) {
       await saveState();
       post({ type: "paused", have });
     } else {
-      await removeQuietly(dir, stateName(job.file)).then(() => (have > 0 ? saveState() : undefined));
+      if (/^not a model file/.test(e instanceof Error ? e.message : "")) {
+        await removeQuietly(dir, job.file);
+        await removeQuietly(dir, stateName(job.file));
+      } else {
+        await removeQuietly(dir, stateName(job.file)).then(() => (have > 0 ? saveState() : undefined));
+      }
       post({ type: "error", message: e instanceof Error ? e.message : String(e) });
     }
   } finally {

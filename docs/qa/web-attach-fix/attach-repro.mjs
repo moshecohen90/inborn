@@ -7,13 +7,16 @@
  *
  * NO_EMBED=1 serves the models without the document index GGUF, which is what the CDN does while it answers 404.
  * CDN404=1 answers the index model's URL with 404, as the CDN does while its upload is blocked.
+ * BASE=http://127.0.0.1:<port> drives an already running host (another build, or the F1 proxy) instead of starting one.
+ * INDEX_ORIGIN / DEPLOYED_LIKE pass through to the host this script starts (see scripts/serve-web.mjs).
+ * ASK_DOCS="q1|q2" then opens Documents, selects the first file and asks each question in its Ask sheet (F7).
  * FILES=a.txt,b.pdf limits the run. ACTION=words answers the index-model card with "exact words only" instead of Download.
  */
 import { mkdirSync, mkdtempSync, symlinkSync, readdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { URL, fileURLToPath } from "node:url";
 import { defaults, startServer } from "../../../scripts/serve-web.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -35,13 +38,20 @@ const { chromium } = req("playwright-core");
 const cache = path.join(os.homedir(), "Library/Caches/ms-playwright");
 const shell = process.env.CHROMIUM_PATH ?? readdirSync(cache).filter((d) => /^chromium_headless_shell-\d+$/.test(d)).sort().reverse().map((d) => path.join(cache, d, "chrome-headless-shell-mac-arm64", "chrome-headless-shell"))[0];
 
-const server = await startServer({ port: 0, modelsDir });
+const server = process.env.BASE ? { url: process.env.BASE, close: async () => undefined } : await startServer({ port: 0, modelsDir });
 const browser = await chromium.launch({ headless: true, executablePath: shell });
-const report = { url: server.url, modelsDir, noEmbed: !!process.env.NO_EMBED, files: {} };
+const report = { url: server.url, modelsDir, noEmbed: !!process.env.NO_EMBED, indexOrigin: process.env.INDEX_ORIGIN ?? "", deployedLike: process.env.DEPLOYED_LIKE === "1", modelRequests: [], files: {} };
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   /* CDN404=1: the catalog lists the index model but its host answers 404, which models.inbornapp.com does today. */
   if (process.env.CDN404) await context.route(/multilingual-e5.*\.gguf$/, (route) => route.fulfill({ status: 404, contentType: "text/plain", body: "Not Found" }));
+  /* Every request for a GGUF, from the page or its workers: where the index model was fetched from, and what came back. */
+  context.on("requestfinished", async (r) => {
+    if (!/\.gguf(\?|$)/.test(r.url())) return;
+    const res = await r.response().catch(() => null);
+    report.modelRequests.push({ method: r.method(), url: r.url(), range: r.headers().range ?? null, status: res?.status() ?? null, type: res?.headers()["content-type"] ?? null });
+  });
+  context.on("requestfailed", (r) => /\.gguf(\?|$)/.test(r.url()) && report.modelRequests.push({ method: r.method(), url: r.url(), failed: r.failure()?.errorText ?? "failed" }));
   const page = await context.newPage();
   const log = [];
   page.on("console", (m) => log.push(`${m.type()}: ${m.text()}`));
@@ -144,6 +154,35 @@ try {
     await page.screenshot({ path: path.join(out, `${name}-answer-390.png`), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 900 });
     console.log(`${name}: ${JSON.stringify({ hold: r.hold, downloadError: r.downloadError, answer: r.answer.slice(0, 200), citations: r.citations, notices: r.notices, chips: r.chips })}`);
+  }
+  if (process.env.ASK_DOCS) {
+    report.ask = [];
+    await page.goto(new URL("/documents", server.url).href);
+    await page.locator('[data-testid^="doc-select-"]').first().waitFor({ timeout: 30_000 });
+    await page.locator('[data-testid^="doc-select-"]').first().click();
+    await page.getByTestId("documents-ask-selected").click();
+    for (const [i, q] of process.env.ASK_DOCS.split("|").entries()) {
+      await page.getByTestId("ask-input").fill(q);
+      await page.getByTestId("ask-send").click();
+      await page.getByTestId("ask-stats").waitFor({ timeout: 240_000 });
+      /* The stats line is written once the answer has finished streaming. */
+      const a = {
+        question: q,
+        answer: ((await page.getByTestId("ask-answer").textContent({ timeout: 500 }).catch(() => "")) ?? "").trim(),
+        noneMatched: ((await page.getByTestId("ask-none-matched").textContent({ timeout: 500 }).catch(() => "")) ?? "").trim(),
+        wordsOnly: (await page.getByTestId("ask-lexical").count()) > 0,
+        notFound: (await page.getByTestId("ask-not-found").count()) > 0,
+        stats: ((await page.getByTestId("ask-stats").textContent()) ?? "").trim(),
+        sources: ((await page.getByTestId("citations").last().textContent({ timeout: 500 }).catch(() => "")) ?? "").trim(),
+      };
+      report.ask.push(a);
+      await page.screenshot({ path: path.join(out, `ask-${i + 1}-1440.png`) });
+      console.log(`ask ${i + 1}: ${JSON.stringify(a)}`);
+    }
+    /* Last, because a phone width may lay the sheet out again. */
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: path.join(out, "ask-last-390.png") });
   }
   report.fullLog = log.filter((l) => /\[(documents|rag|embed)|pageerror|error/i.test(l));
 } finally {

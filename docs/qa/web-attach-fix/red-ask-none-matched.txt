@@ -1,0 +1,30 @@
+ FAIL  src/documents/grounding.test.ts > F7 · Documents → Ask says what the chat says when nothing matched > an answer that took nothing from the documents carries the chat's none-matched line
+AssertionError: expected 'import { useEffect, useRef, useState …' to contain 'saysNoneMatched({ continuing: false, …'
+- Expected
++ Received
+- saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: prompt.used.length })
++ import { useEffect, useRef, useState } from "react";
++ import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
++ import { useTranslation } from "react-i18next";
++ import { joinList } from "@inborn/i18n";
++ import { radius, type Theme } from "@inborn/ui";
++ import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
++ import { getEngine, loadSession } from "../../engine";
++ import { chipLabel } from "../../lib/models";
++ import { Citations } from "../../documents/Citations";
++ import { Markdown } from "../../components/chat/Markdown";
++ import { canCiteMarkers, getLibrary } from "../../documents/library";
++ import { font } from "../../services/type";
++ import { Toggle } from "../../components/shell/primitives";
++ import { useSafeAreaInsets } from "react-native-safe-area-context";
++ import { useKeyboardLift } from "../../lib/keyboard";
++ import { useOpenSheet } from "../../lib/openSheets";
++
++ export interface AskDocumentsProps {
++   docs: DocumentRecord[];
++   theme: Theme;
++   onClose: () => void;
++   /** Dev proofs: ask this at once and report the outcome. */
++   autoQuestion?: string;
++   onResult?: (r: AskOutcome) => void;
++ }

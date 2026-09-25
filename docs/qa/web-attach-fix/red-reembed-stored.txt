@@ -1,0 +1,24 @@
+ FAIL  src/documents/reindex.test.ts > F336 · a document indexed by the old embedder is rebuilt on the first open after the update > a word index whose source is gone is rebuilt from its stored passages
+AssertionError: expected { id: 'words', …(13) } to match object { status: 'indexed', …(3) }
+(10 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "chunkCount": 1,
++   "chunkCount": 0,
+    "embedModel": "embed-e5",
+    "indexedPages": 1,
+-   "status": "indexed",
++   "status": "empty",
+  }
+
+ ❯ src/documents/reindex.test.ts:130:39
+    128|     await library.ready();
+    129|     await settle(library);
+    130|     expect(library.document("words")).toMatchObject({ status: "indexed…
+       |                                       ^
+    131|     expect(library.document("words")?.reindexFrom).toBeUndefined();
+    132|     expect((await saved.vectorsOf(["words"])).map((v) => v.dim)).toEqu…
+

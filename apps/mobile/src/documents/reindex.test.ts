@@ -5,6 +5,8 @@ import { MemoryEmbeddingStore, chunkFor, embedBudget, estimateRagTokens, hashVec
 const saved = new MemoryEmbeddingStore();
 const files = new Map<string, string>();
 let embedderMissing = false;
+/* Sources a browser no longer holds: a picked file lives in memory for one page load only. */
+const gone = new Set<string>();
 /* Every text the embedder was handed, so a test can see what reached the model. */
 const embedded: string[] = [];
 const e5: Embedder = {
@@ -32,7 +34,7 @@ vi.mock("./files", () => ({
     files.set(stored, files.get(uri) ?? "");
     return stored;
   },
-  missingSource: () => false,
+  missingSource: (uri: string) => gone.has(uri),
   sweepIncognitoFiles: () => 0,
   deleteFile: (uri: string | undefined) => void (uri && files.delete(uri)),
   readHead: () => new TextEncoder().encode("plain text"),
@@ -71,6 +73,7 @@ beforeEach(async () => {
   for (const d of await saved.listDocuments()) await saved.deleteDocument(d.id);
   files.clear();
   embedded.length = 0;
+  gone.clear();
   embedderMissing = false;
   prefs = { strict: true, attachments: {}, redactNames: [], redactDates: false };
 });
@@ -109,6 +112,51 @@ describe("F336 · a document indexed by the old embedder is rebuilt on the first
     await settle(library);
     expect(library.document("old")).toMatchObject({ status: "indexed", embedModel: "embed-e5", chunkCount: 1 });
     expect(library.attachmentState("chat").blocked).toBeNull();
+  });
+
+  /* Round 93 (web): a file read by its words before the index model landed, reopened after a reload, has no source left
+     to re-read. Its rebuild re-embeds the passages it already stored instead of stalling on "re-indexing" for good. */
+  it("a word index whose source is gone is rebuilt from its stored passages", async () => {
+    const uri = "/library/words-notes.txt";
+    const text = "The irrigation timer runs twice a day, at 06:15 and at 19:40.";
+    const doc: DocumentRecord = { id: "words", name: "notes.txt", kind: "txt", bytes: text.length, pages: 1, addedAt: 1, status: "indexed", indexedPages: 1, chunkCount: 1, flaggedLines: 0, ocrPages: 0, embedModel: "lexical", uri, sha256: "sha-words" };
+    await saved.putDocument(doc);
+    await saved.putChunks([{ id: "words:1:0", docId: "words", page: 1, ord: 0, text, start: 0, end: text.length, tokens: 16 }], []);
+    gone.add(uri);
+
+    const library = new DocumentLibrary();
+    await library.ready();
+    await settle(library);
+    expect(library.document("words")).toMatchObject({ status: "indexed", embedModel: "embed-e5", chunkCount: 1, indexedPages: 1 });
+    expect(library.document("words")?.reindexFrom).toBeUndefined();
+    expect((await saved.vectorsOf(["words"])).map((v) => v.dim)).toEqual([64]);
+    expect(embedded.some((t) => t.includes("06:15"))).toBe(true);
+    const { prompt, reindexing } = await library.ask("When does the irrigation timer run?", { docIds: ["words"] });
+    expect(reindexing).toBeUndefined();
+    expect(prompt.used.map((h) => h.chunk.id)).toEqual(["words:1:0"]);
+  });
+
+  /* Web: the same file picked again after a reload is a twin of a record whose bytes the page no longer holds. */
+  it("a twin whose source is gone takes the file just picked, and is read again from it", async () => {
+    const text = "The heat pump was installed in October 2021.";
+    files.set("/picked/a.txt", text);
+    const library = new DocumentLibrary();
+    await library.ready();
+    const first = await library.importFile("/picked/a.txt", "a.txt");
+    await settle(library);
+    const firstUri = library.document(first.id)!.uri!;
+    gone.add(firstUri);
+    files.delete(firstUri);
+    /* A read that died with the page: the record is failed, its bytes are gone. */
+    (library as unknown as { docs: Map<string, DocumentRecord> }).docs.set(first.id, { ...library.document(first.id)!, status: "failed", error: "missing", chunkCount: 0, indexedPages: 0 });
+
+    files.set("/picked/a-again.txt", text);
+    const again = await library.importFile("/picked/a-again.txt", "a.txt");
+    expect(again.id).toBe(first.id);
+    expect(again.status).not.toBe("failed");
+    expect(library.document(first.id)!.uri).not.toBe(firstUri);
+    await settle(library);
+    expect(library.document(first.id)).toMatchObject({ status: "indexed", chunkCount: 1 });
   });
 
   it("leaves a document already indexed by the current embedder alone", async () => {

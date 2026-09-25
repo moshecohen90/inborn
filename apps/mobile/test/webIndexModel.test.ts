@@ -12,7 +12,11 @@ import { parseCompanion } from "../src/web/modelDelivery";
 const repo = join(__dirname, "../../..");
 const e5 = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5")!;
 let web: { webManifest: (baseUrl: string) => { models: { id: string }[]; companions?: { id: string; file: string; bytes: number; sha256: string; delivery: { kind: string; url: string }[] }[] } };
-let serve: { modelSha256: (file: string) => string; modelsManifest: (o: { dist: string; modelsDir: string; aliases: Record<string, string>; modelsOrigin?: string }) => { companions?: { id: string; delivery: { url: string }[] }[] } };
+let serve: {
+  modelSha256: (file: string) => string;
+  modelsManifest: (o: { dist: string; modelsDir: string; aliases: Record<string, string>; modelsOrigin?: string; indexOrigin?: string }) => { companions?: { id: string; bytes: number; sha256: string; delivery: { url: string }[] }[] };
+  resolveFile: (url: string, o: { dist: string; modelsDir: string; aliases: Record<string, string>; deployedLike?: boolean }) => string | null;
+};
 
 beforeAll(async () => {
   web = (await import(/* @vite-ignore */ join(repo, "scripts/web-manifest.mjs"))) as typeof web;
@@ -52,5 +56,24 @@ describe("round 93 · the document index model is in the browser catalog", () =>
     writeFileSync(file, "x");
     writeFileSync(`${file}.sha256`, `${"a".repeat(64)}  m.gguf\n`);
     expect(serve.modelSha256(file)).toBe("a".repeat(64));
+  });
+
+  it("INDEX_ORIGIN lists the CDN copy with the catalog's bytes and hash, with no local file", () => {
+    const m = serve.modelsManifest({ dist: "", modelsDir: mkdtempSync(join(tmpdir(), "inborn-none-")), aliases: {}, indexOrigin: MODELS_ORIGIN });
+    expect(m.companions?.find((c) => c.id === "embed-e5")).toMatchObject({ bytes: e5.bytes, sha256: e5.sha256, delivery: [{ url: `${MODELS_ORIGIN}/v1/${e5.file}` }] });
+  });
+
+  /* F1: app.inbornapp.com answers a model it does not hold with the SPA shell, 200 text/html; the dev host can now do the same. */
+  it("a deployed-like host answers the shell for the index model and keeps serving the chat aliases", () => {
+    const dist = mkdtempSync(join(tmpdir(), "inborn-dist-"));
+    writeFileSync(join(dist, "index.html"), "<!DOCTYPE html>");
+    const models = mkdtempSync(join(tmpdir(), "inborn-models-"));
+    writeFileSync(join(models, e5.file), "GGUF");
+    writeFileSync(join(models, "q.gguf"), "GGUF");
+    const o = { dist, modelsDir: models, aliases: { "instant.gguf": "q.gguf" }, deployedLike: true };
+    expect(serve.resolveFile(`/models/${e5.file}`, o)).toBe(join(dist, "index.html"));
+    expect(serve.resolveFile("/models/instant.gguf", o)).toBe(join(models, "q.gguf"));
+    expect(serve.resolveFile("/anything.gguf", o)).toBe(join(dist, "index.html"));
+    expect(serve.resolveFile(`/models/${e5.file}`, { ...o, deployedLike: false })).toBe(join(models, e5.file));
   });
 });

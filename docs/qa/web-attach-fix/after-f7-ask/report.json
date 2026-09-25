@@ -1,0 +1,90 @@
+{
+  "url": "http://127.0.0.1:49418",
+  "modelsDir": "/Users/moshecohen/dev/inborn/.models",
+  "noEmbed": false,
+  "indexOrigin": "",
+  "deployedLike": false,
+  "modelRequests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49418/models/instant.gguf",
+      "range": null,
+      "status": 200,
+      "type": "application/octet-stream"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49418/models/multilingual-e5-large-instruct-Q6_K.gguf",
+      "range": null,
+      "status": 200,
+      "type": "application/octet-stream"
+    }
+  ],
+  "files": {
+    "greenhouse-notes.txt": {
+      "afterPick": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.\nDetails\nGet the app\nChats\nSelect\nNew chat\nIncognito\nNo chats yet.\nStart one above. Everything stays on this browser.\nINSTANT\nPersonas\nMemory\nFolders\nPRO\nINSTANT · OUT 0 B\nModel vault\nDocuments\nSettings\n◯ Proof\nSEALED\nINSTANT\nThis is AI running in your browser. It can be wrong. Check important facts.\nDismiss\nINSTANT\nNothing leaves this browser.\nSummarize text\nTranslate\nDraft a message\ngreenhouse-notes.txt\n1",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "answer": "This document outlines maintenance notes for a greenhouse heated by a heat pump installed in October 2021, including irrigation schedules and bean rotation plans.",
+      "citations": "SOURCESgreenhouse-notes.txt · part 1",
+      "notices": {
+        "reindexing": "Still re-indexing 1 of 1 document, answers may miss some passages."
+      },
+      "chips": "greenhouse-notes.txt",
+      "log": [
+        "navigated: http://127.0.0.1:49418/",
+        "navigated: http://127.0.0.1:49418/",
+        "navigated: http://127.0.0.1:49418/",
+        "warning: No available adapters.",
+        "worker: blob:http://127.0.0.1:49418/b7f2fa53-fc85-4203-8170-5df57013d995",
+        "worker: blob:http://127.0.0.1:49418/6862d497-1f7c-4865-b6c4-39fdf05fa475",
+        "worker: blob:http://127.0.0.1:49418/ec645377-4a19-4b32-9d7d-54a71d74690a",
+        "worker: blob:http://127.0.0.1:49418/3d4cf96e-dc8b-448f-bce6-87fd8e609706",
+        "worker: blob:http://127.0.0.1:49418/2f9d7f5e-61b0-4990-a11a-567189852801",
+        "worker: blob:http://127.0.0.1:49418/0db0be90-03ce-4569-93de-0571786cdaf7",
+        "worker: blob:http://127.0.0.1:49418/f42e5001-c6f6-415c-bd8d-390a06c787b3",
+        "info: [wllama] loaded instant in 1153 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+        "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1167 ms",
+        "worker: http://127.0.0.1:49418/model-worker.js",
+        "log: [rag] strict=false overview reindexing=1/1 hits=1 used=1 0 ms | 5dccac77-69aa-4d7f-b57a-6c8377666a91#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+        "warning: Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+        "worker: blob:http://127.0.0.1:49418/938ff2d4-b28f-4d82-88d7-4803d0f0a3a6",
+        "worker: blob:http://127.0.0.1:49418/c82284b6-9aef-4d31-aa63-d8d3da5cc294",
+        "worker: blob:http://127.0.0.1:49418/ae0c7487-223c-4a0a-85b9-aae1ee5e1af8",
+        "worker: blob:http://127.0.0.1:49418/43089265-2870-4d99-8ef5-693cbbdda781",
+        "worker: blob:http://127.0.0.1:49418/846c87dd-7b9a-4045-b019-c5cf5a38e887",
+        "worker: blob:http://127.0.0.1:49418/5b6f064b-1bc0-415c-bb40-c7ee6608f891",
+        "worker: blob:http://127.0.0.1:49418/5df35a86-cd38-4c23-a5ba-3a2107811670",
+        "warning: load: model vocab missing newline token, using special_pad_id instead",
+        "warning: srv    load_model: speculative decoding not supported by this context",
+        "info: [wllama] embedder embed-e5 loaded in 1653 ms",
+        "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2467 ms (2467 ms/page)"
+      ]
+    }
+  },
+  "ask": [
+    {
+      "question": "Who won the 1998 football World Cup?",
+      "answer": "In 1998, Argentina defeated Brazil to win the tournament and claim victory over all other nations except Sweden, which also took home a medal.Alternative: The question may be referring to the 2015 FIFA World Cup, where Brazil won against Mexico.",
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "wordsOnly": false,
+      "notFound": false,
+      "stats": "search 1957 ms · 0 passages · answer 3418 ms · 32.0 tok/s · prompt 214 tokens",
+      "sources": ""
+    },
+    {
+      "question": "When does the irrigation timer run?",
+      "answer": "Irrigation runs twice daily at 06:15 and 19:40. This information is explicitly stated in the greenhouse notes attached to your documents.",
+      "noneMatched": "",
+      "wordsOnly": false,
+      "notFound": false,
+      "stats": "search 269 ms · 1 passages · answer 4918 ms · 35.9 tok/s · prompt 293 tokens",
+      "sources": "SOURCESgreenhouse-notes.txt · part 1"
+    }
+  ],
+  "fullLog": [
+    "log: [rag] strict=false overview reindexing=1/1 hits=1 used=1 0 ms | 5dccac77-69aa-4d7f-b57a-6c8377666a91#0 cos=0.000 terms=0 bm25=0.00 KEPT",
+    "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2467 ms (2467 ms/page)",
+    "log: [rag] strict=false hits=1 used=0 1957 ms | 5dccac77-69aa-4d7f-b57a-6c8377666a91#0 cos=0.685 terms=0 bm25=0.00 dropped",
+    "log: [rag] strict=false hits=1 used=1 269 ms | 5dccac77-69aa-4d7f-b57a-6c8377666a91#0 cos=0.861 terms=2 bm25=0.58 KEPT"
+  ]
+}

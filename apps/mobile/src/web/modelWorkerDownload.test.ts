@@ -81,6 +81,13 @@ const body = (bytes: Uint8Array, chunk: number) => ({
   },
 });
 
+/* Every GGUF starts with these four bytes; the worker refuses anything else. */
+const gguf = (n: number) => {
+  const b = randomBytes(n);
+  b.write("GGUF", 0);
+  return b;
+};
+
 const FILE = "instant.gguf";
 const URL_ = "/models/instant.gguf";
 
@@ -88,7 +95,7 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe("model-worker download", () => {
   it("publishes the stored file before it reports done, so the door's status re-read finds it ready", async () => {
-    const payload = randomBytes(300_000);
+    const payload = gguf(300_000);
     const sha256 = createHash("sha256").update(payload).digest("hex");
     const log: string[] = [];
     const { storage } = fakeStorage(log);
@@ -109,7 +116,7 @@ describe("model-worker download", () => {
   });
 
   it("publishes the partial file before it reports paused, so the resume state matches what is on disk", async () => {
-    const payload = randomBytes(200_000);
+    const payload = gguf(200_000);
     const log: string[] = [];
     const { storage, files } = fakeStorage(log);
     vi.stubGlobal("navigator", { storage });
@@ -150,7 +157,7 @@ describe("model-worker download", () => {
   });
 
   it("leaves nothing ready when the bytes do not hash to the manifest value", async () => {
-    const payload = randomBytes(80_000);
+    const payload = gguf(80_000);
     const log: string[] = [];
     const { storage } = fakeStorage(log);
     vi.stubGlobal("navigator", { storage });
@@ -162,6 +169,34 @@ describe("model-worker download", () => {
     expect(posted.at(-1)?.type).toBe("error");
     expect(posted.at(-1)?.message).toMatch(/checksum mismatch/);
     await expect(modelStatus(FILE)).resolves.toMatchObject({ kind: "missing" });
+  });
+
+  it("refuses the SPA shell a host answers for a missing model, and never marks it ready (F1)", async () => {
+    const shell = new TextEncoder().encode("<!DOCTYPE html><html><head><title>Inborn</title></head><body></body></html>");
+    const { storage, files } = fakeStorage([]);
+    vi.stubGlobal("navigator", { storage });
+    vi.stubGlobal("fetch", () => Promise.resolve({ status: 200, headers: { get: (h: string) => (h === "content-type" ? "text/html; charset=utf-8" : h === "content-length" ? String(shell.length) : null) }, body: body(shell, 4_096) }));
+
+    const posted: { type: string; message?: string }[] = [];
+    await download({ url: "/models/e5.gguf", file: "e5.gguf" }, (m) => posted.push(m), new AbortController().signal);
+
+    expect(posted.at(-1)?.type).toBe("error");
+    expect(posted.at(-1)?.message).toMatch(/not a model file/);
+    expect(files.has(metaName("e5.gguf"))).toBe(false);
+    await expect(modelStatus("e5.gguf")).resolves.toMatchObject({ kind: "missing" });
+  });
+
+  it("refuses bytes that do not start with the GGUF magic even when the content type claims a binary", async () => {
+    const shell = new TextEncoder().encode("<!DOCTYPE html>".padEnd(9_000, " "));
+    const { storage, files } = fakeStorage([]);
+    vi.stubGlobal("navigator", { storage });
+    vi.stubGlobal("fetch", () => Promise.resolve({ status: 200, headers: { get: (h: string) => (h === "content-type" ? "application/octet-stream" : h === "content-length" ? String(shell.length) : null) }, body: body(shell, 2) }));
+
+    const posted: { type: string; message?: string }[] = [];
+    await download({ url: "/models/e5.gguf", file: "e5.gguf" }, (m) => posted.push(m), new AbortController().signal);
+
+    expect(posted.at(-1)?.message).toMatch(/not a model file/);
+    expect(files.has(metaName("e5.gguf"))).toBe(false);
   });
 });
 

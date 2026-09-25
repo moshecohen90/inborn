@@ -8,9 +8,15 @@ const files = new Map<string, string>();
 /* Held open per page so a test can ask its question while the document is still being read. */
 let hold: (() => void) | null = null;
 let embedderMissing = false;
+let embedderBroken = false;
 
 vi.mock("./db", () => ({ openRagStore: async () => saved, ragStoreKind: () => "sqlcipher" }));
-vi.mock("./embedder", () => ({ EMBED_MODEL_ID: "embed-e5", resolveEmbedder: () => (embedderMissing ? null : { path: "/embed.gguf", embedder: hashEmbedder(64), contextTokens: 512 }) }));
+/* F1: the deployed host served its SPA shell as the index model, and every embed call died on "invalid magic '<!DO'". */
+const brokenEmbedder = () => ({ ...hashEmbedder(64), embed: () => Promise.reject(new Error("invalid magic '<!DO'")) });
+vi.mock("./embedder", () => ({
+  EMBED_MODEL_ID: "embed-e5",
+  resolveEmbedder: () => (embedderMissing ? null : { path: "/embed.gguf", embedder: embedderBroken ? brokenEmbedder() : hashEmbedder(64), contextTokens: 512 }),
+}));
 vi.mock("./extract", () => ({
   nativeOcr: () => null,
   createExtractors: (): TextExtractor[] => [
@@ -73,6 +79,7 @@ beforeEach(async () => {
   files.clear();
   hold = null;
   embedderMissing = false;
+  embedderBroken = false;
   prefs = { strict: false, attachments: {}, redactNames: [], redactDates: false };
 });
 
@@ -240,6 +247,18 @@ describe("F302 · a document with no readable text is its own state", () => {
     expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.noText" });
     /* The complement that matters: it is never sent to the model, in either mode. */
     for (const strict of [true, false]) expect(planDocsTurn({ strict, ...state }).kind).not.toBe("model");
+  });
+
+  it("a file whose read failed is not called a scan: the OCR wording is kept for a file with no text (F1)", async () => {
+    embedderBroken = true;
+    const library = new DocumentLibrary();
+    const doc = await attach(library, "chat-1", "greenhouse-notes.txt", "The greenhouse vents open at 27 degrees.");
+    await settle(library);
+    expect(library.state().documents.find((d) => d.id === doc.id)?.status).toBe("failed");
+
+    const state = library.attachmentState("chat-1");
+    expect(state.blocked).not.toBe("no-text");
+    expect(planDocsTurn({ strict: false, ...state })).toEqual({ kind: "refuse", messageKey: "documents.notRead" });
   });
 
   it("a scan that still needs OCR keeps its own, different answer", async () => {

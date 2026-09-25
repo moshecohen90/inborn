@@ -6032,6 +6032,47 @@ without SOURCES naming the file.
 
 Tests red first: `red-core.txt`, `red-mobile.txt`, `red-not-published.txt`, `red-sidecar.txt`. Open: the web still
 has no OCR, so a scanned PDF says "needs OCR" and a photo attached as a file says "use the Photo button". Instant
-still paraphrases loosely inside a grounded answer (the turbine PDF answer names a railway that is not in it). The
-CDN upload of the index model is still blocked on the Cloudflare token, so a deployed browser gets the word search
-until it lands.
+still paraphrases loosely inside a grounded answer (the turbine PDF answer names a railway that is not in it).
+
+### Round 93 follow-up: e5 on the CDN, the deployed host (F1) and Documents → Ask (F7)
+
+The index model is now on the CDN (`https://models.inbornapp.com/v1/multilingual-e5-large-instruct-Q6_K.gguf`, 200,
+467,958,912 bytes, ranges, `Access-Control-Allow-Origin: *`). The web verifier then found two more faults.
+
+- **F1, the deployed host.** Main looked for the index model with a HEAD on its own `/models/<file>` and accepted any
+  200. app.inbornapp.com answers a missing path with its SPA shell (200 text/html), so wllama loaded the shell
+  ("invalid magic characters: '<!DO'") and the console still said "[wllama] embedder embed-e5 loaded". Every document
+  then failed. The .txt answer was invented ("personal financial records"), and the .pdf got "no readable text ... run
+  OCR". Reproduced on main behind the verifier's proxy (`before-f1-proxy`).
+- **Fixed.** This branch has no HEAD probe. The index model comes only from the catalog's `companions` URL, into
+  OPFS, through the resumable worker. The worker now refuses a `text/html` answer, and any `.gguf` whose first bytes
+  are not `GGUF`, with "not a model file". It deletes those bytes and never writes the ready marker. The card shows
+  "This model is not on the download server yet", and the word search still answers with SOURCES
+  (`after-f1-proxy`). The OCR sentence is kept for a file that was read and held no text. A file whose read failed
+  gets "Inborn has not finished reading the file".
+- **Proven against the real CDN.** `DEPLOYED_LIKE=1 INDEX_ORIGIN=https://models.inbornapp.com` serves this build the
+  way app.inbornapp.com does, with the shell for `/models/<e5>`, and lists e5 at the CDN. Download fetched e5 from
+  models.inbornapp.com (GET 200, `application/octet-stream`). The host's `/models/<e5>` was never requested. The .txt,
+  .md, .pdf and .docx answered with SOURCES; the photo keeps its hold card (`after-cdn200`). Before, with the CDN at
+  404, the card said "not on the download server yet" and only the word search answered (`after-cdn404`).
+- **F7, Documents → Ask** answered an off-topic question from general knowledge with only "0 passages" under it. It
+  now uses the chat's rule and line: "Nothing in your documents matched this question. Answered without them." It
+  also shows the words-only notice (`after-f7-ask`).
+- **A word index outlives the page that picked its file.** The browser keeps a picked file in memory for one page load.
+  A file read by its words, then reopened after a reload once e5 was installed, could never be rebuilt, and said "Still
+  re-indexing" for good. The rebuild now re-embeds the passages already stored (`reembedStored`). The same file
+  picked again takes the place of a record whose bytes are gone, instead of returning it as failed.
+- **web:smoke pass 9** turns the host deployed-like, points the index model at a path that answers the shell, and
+  fails if Download does not end in "not on the download server", if anything loads the shell as a model, or if the
+  word search does not answer with SOURCES.
+
+Commands:
+
+```
+corepack pnpm web:build
+# deployed-like host, index model from the CDN, chat model from this machine
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models DEPLOYED_LIKE=1 INDEX_ORIGIN=https://models.inbornapp.com PORT=8787 corepack pnpm web:serve
+```
+
+Tests red first: `red-gguf-magic.txt`, `red-ocr-wording.txt`, `red-ask-none-matched.txt`, `red-reembed-stored.txt`,
+`red-twin-source-gone.txt`.

@@ -41,6 +41,9 @@ describe("F349 · a failed download reads as one plain sentence", () => {
     expect(installErrorKind(RAW.webStored)).toBe("verify");
     expect(installErrorKind(RAW.webMissing)).toBe("not-published");
     expect(installErrorKind("HTTP 410")).toBe("not-published");
+    /* F1: a host that answers its SPA shell for a missing model has no such file either. */
+    expect(installErrorKind("not a model file: the server answered text/html for e5.gguf")).toBe("not-published");
+    expect(installErrorKind("not a model file: e5.gguf does not start with GGUF (got '<!DO')")).toBe("not-published");
     expect(installErrorKind("HTTP 503")).toBe("unknown");
   });
 
