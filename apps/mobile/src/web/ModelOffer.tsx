@@ -14,6 +14,7 @@ import { requestPersist, spaceCheck, storageEstimate, type StorageEstimate } fro
 import { recordWebTransfer } from "./transfers";
 import { font } from "../services/type";
 import { installFailureText } from "../vault/failureText";
+import { useUpdateHold } from "./updateHold";
 
 type Phase =
   | { kind: "idle" }
@@ -95,6 +96,7 @@ export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: M
   };
 
   const busy = phase.kind === "downloading" || phase.kind === "verifying";
+  useUpdateHold(busy);
   const stored = phase.kind === "idle" && boot.status.kind === "ready";
   const percent = phase.kind === "downloading" ? downloadPercent(phase.have, phase.total ?? source.bytes) : phase.kind === "verifying" ? 100 : 0;
   const body = (

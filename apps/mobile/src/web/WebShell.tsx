@@ -13,6 +13,7 @@ import { font } from "../services/type";
 import { Toggle } from "../components/shell/primitives";
 import { webDoorsApply } from "./doors";
 import { webRoute } from "./doorRoutes";
+import { browserKeepsData } from "./keptData";
 
 import { GET_APP_URL } from "./links";
 
@@ -27,16 +28,26 @@ function BrowserShell({ children }: { children: ReactNode }) {
   const boot = webBoot();
   const { theme } = useTheme();
   const { t } = useTranslation();
-  const { prefs } = useAppServices();
+  const { prefs, updatePrefs } = useAppServices();
   const [ready] = useState(() => webReady(boot));
   const [offline, setOffline] = useState<OfflineState>("installing");
-  const route = webRoute(usePathname(), { ready, onboarded: prefs.onboarded, hasSource: !!boot.source });
+  const [updateReady, setUpdateReady] = useState(false);
+  const [keeps, setKeeps] = useState<boolean | null>(null);
+  const route = webRoute(usePathname(), { ready, onboarded: prefs.onboarded, hasSource: !!boot.source, keeps });
+  const askKeeps = prefs.onboarded && !ready;
   /* A full load, not a router hop: the web boot (catalog, OPFS state, engine) is read once per page, and a wipe or a deep link must meet a fresh one. */
   const redirect = route.kind === "redirect" ? route.to : null;
 
   useEffect(() => {
-    void registerServiceWorker(setOffline);
+    void registerServiceWorker(setOffline, () => setUpdateReady(true));
   }, []);
+  useEffect(() => {
+    if (askKeeps) void browserKeepsData().then(setKeeps);
+  }, [askKeeps]);
+  const restart = route.kind === "restart-onboarding";
+  useEffect(() => {
+    if (restart) updatePrefs({ onboarded: false });
+  }, [restart, updatePrefs]);
   useEffect(() => {
     if (redirect) location.replace(redirect);
   }, [redirect]);
@@ -46,6 +57,7 @@ function BrowserShell({ children }: { children: ReactNode }) {
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <Strip boot={boot} theme={theme} offline={offline} />
+      {updateReady ? <UpdateLine theme={theme} /> : null}
       {/* The app services picked their engine at boot, before the file existed; a reload is the honest hand-over (same as the engine switch). */}
       {route.kind === "children" ? (
         children
@@ -112,6 +124,19 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
   );
 }
 
+/** F404: a new build took over while a download or an answer was running, so the reload waits for the user. */
+function UpdateLine({ theme }: { theme: Theme }) {
+  const { t } = useTranslation();
+  return (
+    <View testID="update-ready" aria-live="polite" style={[styles.updateLine, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
+      <Text style={[styles.caption, { color: theme.text }]}>{t("web.update.ready")}</Text>
+      <Pressable testID="update-ready-refresh" accessibilityRole="button" onPress={() => location.reload()} style={styles.detailsBtn}>
+        <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{t("web.update.refresh")}</Text>
+      </Pressable>
+    </View>
+  );
+}
+
 /**
  * The catalog itself did not arrive, so there is nothing to offer and nothing to blame on this browser (B1, 24.9.2026:
  * the origin served the SPA shell for /models/manifest.json and the app said "no model on this browser" forever).
@@ -142,6 +167,7 @@ const styles = StyleSheet.create({
   /* The strip is already 44 tall because of Get the app, so the finger target costs no height, and hitSlop={6} buys nothing on the browser tier (F243). */
   detailsBtn: { flexDirection: "row", alignItems: "center", gap: 3, minHeight: MIN_TOUCH },
   getApp: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
+  updateLine: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", columnGap: 12, paddingHorizontal: 12, borderBottomWidth: 1 },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },
   card: { width: "100%", maxWidth: 440, padding: 20, gap: 12, borderWidth: 1, borderRadius: radius.card },
