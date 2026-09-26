@@ -58,10 +58,11 @@ describe("what a row claims the model is good at", () => {
   it("claims nothing for a model with no fit block (an import)", () => {
     expect(goodAtUses({ vision: false })).toEqual([]);
   });
-  /* F385/F386: the browser engine has no projector and no dictation, so a browser row claims neither. */
-  it("drops photos and voice notes in the browser build and keeps the rest", () => {
-    expect(goodAtUses(byId("instant"), WEB_HERE)).not.toContain("photos");
+  /* F386: the browser has no dictation. Round 105: it sees photos once the photo pack is in, and the label says so. */
+  it("drops voice notes in the browser build, keeps photos for the model that can see, and keeps the rest", () => {
+    expect(goodAtUses(byId("instant"), WEB_HERE)).toContain("photos");
     expect(goodAtUses(byId("fast"), WEB_HERE)).toEqual(["chat", "writing", "summarize", "translate", "documents"]);
+    expect(read("ModelSheet.tsx")).toContain('"vault.details.visionWeb"');
   });
 });
 

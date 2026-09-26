@@ -6,15 +6,15 @@
  *   MODELS_DIR=/path/to/ggufs PORT=8787 node scripts/serve-web.mjs
  *
  * /models/<id>.gguf resolves to $MODELS_DIR/<id>.gguf, else to the dev alias ($INSTANT_GGUF, $FAST_GGUF).
- * The document index model (multilingual-e5-large-instruct-Q6_K.gguf) is listed under `companions` when it is in $MODELS_DIR.
+ * Every extension of the registry (the document index model, the photo projector) is listed under `companions` when its file is in $MODELS_DIR.
  * /models/manifest.json describes the served models the way the catalog will (id, bytes, sha256, delivery url);
  * MODELS_ORIGIN points those urls at the real catalog host instead of this server, which is how the browser tier
  * is proven against models.inbornapp.com (the same variable already opens connect-src for it).
  * the sha256 is computed once per file and kept in a `<file>.sha256` sidecar next to it.
  * DIST=/path serves another export (default apps/mobile/dist; apps/web/dist is the deployable build with the service worker).
  * ISOLATION=off drops COOP/COEP to exercise the single-thread fallback.
- * INDEX_ORIGIN lists the document index model at <origin>/v1/<file> with the catalog's bytes and sha256, without a local copy:
- *   INDEX_ORIGIN=https://models.inbornapp.com node scripts/serve-web.mjs   (e5 from the CDN, the chat model from here)
+ * INDEX_ORIGIN lists every extension at <origin>/v1/<file> with the registry's bytes and sha256, without a local copy:
+ *   INDEX_ORIGIN=https://models.inbornapp.com node scripts/serve-web.mjs   (extensions from the CDN, the chat model from here)
  * DEPLOYED_LIKE=1 answers every path it has no file for with the SPA shell (200 text/html), /models/ included except
  * the chat aliases: what app.inbornapp.com does, and what made a HEAD probe take the shell for the index model (F1).
  */
@@ -25,7 +25,7 @@ import { closeSync, createReadStream, existsSync, openSync, readFileSync, readSy
 import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
 import { isolationHeaders, securityHeaders } from "../apps/web/headers.mjs";
-import { MANIFEST_REL, readCatalog, webCompanion, webCompanions, webEligible, webModel } from "./web-manifest.mjs";
+import { MANIFEST_REL, readCatalog, readExtensions, webCompanion, webCompanions, webEligible, webModel } from "./web-manifest.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const webDist = path.join(repoRoot, "apps/web/dist");
@@ -85,7 +85,7 @@ export function modelSha256(file) {
  * another GGUF, and the manifest must describe what this server actually hands out.
  * With no model on this machine it answers with the built dist's manifest, so the deployed catalog can be read here.
  */
-export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "", indexOrigin = "" }) {
+export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "", indexOrigin = "", registry = readExtensions() }) {
   const catalog = readCatalog();
   /* The same cut the deployed manifest makes (Pro, split and store-only models are not browser models); a dev alias
      for one of those would put a model on the door that the real origin never offers. */
@@ -100,17 +100,17 @@ export function modelsManifest({ dist, modelsDir, aliases, modelsOrigin = "", in
     const url = modelsOrigin ? `${modelsOrigin}/v1/${path.basename(file)}` : `/models/${name}`;
     models.push({ ...webModel(model, url), file: name, bytes: statSync(file).size, sha256: modelSha256(file) });
   }
-  /* The document index model is served from this machine like Instant, so an attached file is testable without the CDN. */
+  /* Extensions are served from this machine like Instant, so an attached file or photo is testable without the CDN. */
   const companions = [];
-  for (const m of webCompanions(catalog)) {
+  for (const e of webCompanions(catalog, registry)) {
     if (indexOrigin) {
-      companions.push(webCompanion(m, `${indexOrigin}/v1/${m.file}`));
+      companions.push(webCompanion(e, `${indexOrigin}/v1/${e.path}`));
       continue;
     }
-    const file = resolveFile(`/models/${m.file}`, { dist: "", modelsDir, aliases: {} });
+    const file = resolveFile(`/models/${e.file}`, { dist: "", modelsDir, aliases: {} });
     if (!file) continue;
-    const url = modelsOrigin ? `${modelsOrigin}/v1/${m.file}` : `/models/${m.file}`;
-    companions.push({ ...webCompanion(m, url), bytes: statSync(file).size, sha256: modelSha256(file) });
+    const url = modelsOrigin ? `${modelsOrigin}/v1/${e.file}` : `/models/${e.file}`;
+    companions.push({ ...webCompanion(e, url), bytes: statSync(file).size, sha256: modelSha256(file) });
   }
   const built = dist ? path.join(dist, MANIFEST_REL) : "";
   if (models.length === 0 && companions.length === 0 && built && existsSync(built)) return JSON.parse(readFileSync(built, "utf8"));
@@ -209,7 +209,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const instant = resolveFile("/models/instant.gguf", defaults);
   console.log(`serving ${defaults.dist} at ${url}${defaults.isolation ? "" : " (ISOLATION=off: single-thread WASM)"}`);
   console.log(instant ? `/models/instant.gguf -> ${instant}` : `/models/instant.gguf not found under ${defaults.modelsDir} (NullLM fallback)`);
-  const index = modelsManifest(defaults).companions?.find((c) => c.role === "embedding");
+  const served = modelsManifest(defaults).companions ?? [];
+  for (const c of served) console.log(`extension ${c.id} (${c.kind}) -> ${c.delivery[0].url} (${c.bytes} bytes)`);
+  const index = served.find((c) => c.kind === "index");
   if (defaults.deployedLike) console.log("DEPLOYED_LIKE: paths with no file, /models/ included, answer the SPA shell");
   console.log(index ? `document index model -> ${index.delivery[0].url} (${index.bytes} bytes)` : `document index model not found under ${defaults.modelsDir}: attached files are searched by their words only`);
 }

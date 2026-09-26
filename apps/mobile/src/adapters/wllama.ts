@@ -3,6 +3,7 @@ import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.j
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
 import { ANSWER_CEILING, sampling, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
+import { recordPhotoMs } from "../extensions/timeHint";
 
 /* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
 const WASM_PATHS = { default: "/wllama/wllama.wasm" };
@@ -29,6 +30,31 @@ function toWllamaMessage(m: Message): ChatCompletionMessage {
   return { role: m.role, content: m.content };
 }
 
+/**
+ * A stored photo as the bytes wllama hands the projector. The page's CSP allows `connect-src 'self'` only, so a
+ * data: URL is decoded here instead of fetched.
+ */
+async function imageBytes(uri: string): Promise<ArrayBuffer> {
+  const comma = uri.indexOf(",");
+  if (uri.startsWith("data:") && comma > 0) {
+    const meta = uri.slice(5, comma);
+    const body = uri.slice(comma + 1);
+    if (!meta.endsWith(";base64")) return new TextEncoder().encode(decodeURIComponent(body)).buffer as ArrayBuffer;
+    const bin = atob(body);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes.buffer;
+  }
+  const res = await fetch(uri);
+  if (!res.ok) throw new Error(`photo unreadable (${res.status})`);
+  return res.arrayBuffer();
+}
+
+/* Photos are capped at 1024 px before they get here; 512 image tokens is what the phones use, and fewer misread text. */
+const IMAGE_MAX_TOKENS = 512;
+/* wllama 3.6.1 never returns from an image encode with 3 or more WASM threads (round 105, headless Chromium); 2 works. */
+const VISION_MAX_THREADS = 2;
+
 const isAbort = (e: unknown): boolean => e instanceof Error && e.name === "AbortError";
 
 /** wllama adapter (llama.cpp in WebAssembly, WebGPU when the browser has an adapter). Loads the GGUF from our own origin only. */
@@ -37,36 +63,91 @@ export class WllamaLM implements LocalLM {
   private wllama: Wllama | null = null;
   private session: Session | null = null;
   private last: Stats = { tokPerSec: 0, ttftMs: 0, ctxUsed: 0, memMB: 0 };
+  private opts: LoadOptions | null = null;
+  private mmproj: string | null = null;
+  private vision = false;
+  /** Timings of the last load and the last photo turn, for the headless measurement (round 105). */
+  devInfo: Record<string, unknown> = {};
 
   capabilities(): Capabilities {
     /* One llama-server context is either chat or embeddings, never both; RAG gets its own session later. */
-    return { vision: false, tools: false, embeddings: false, maxContext: this.session?.nCtx ?? 4096 };
+    return { vision: this.vision, tools: false, embeddings: false, maxContext: this.session?.nCtx ?? 4096 };
+  }
+
+  private async start(model: ModelRef, opts: LoadOptions, mmproj: string | null): Promise<Wllama> {
+    const started = performance.now();
+    const layers = await gpuLayers(opts.gpuLayers);
+    const threads = mmproj ? Math.min(VISION_MAX_THREADS, threadCount(opts.threads)) : threadCount(opts.threads);
+    const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
+    wllama.setCompat(COMPAT_PATHS);
+    const params = { n_ctx: opts.nCtx, n_threads: threads, n_gpu_layers: layers, jinja: true, chat_template: model.chatTemplate, log_level: LogLevel.WARN, ...(mmproj ? { image_max_tokens: IMAGE_MAX_TOKENS } : {}) };
+    const opfs = fileOfUri(model.uri);
+    const projector = mmproj ? fileOfUri(mmproj) : null;
+    /* opfs:// is the delivered GGUF on this device (src/web/opfs.ts): no network, wllama reads the File in slices.
+       wllama tells the projector from the model by its GGUF architecture (clip), so the order does not matter. */
+    if (opfs) await wllama.loadModel([await modelFile(opfs), ...(projector ? [await modelFile(projector)] : [])], params);
+    else await wllama.loadModelFromUrl(mmproj ? { url: model.uri, mmprojUrl: mmproj } : model.uri, params);
+    const ms = Math.round(performance.now() - started);
+    this.devInfo = { ...this.devInfo, loadMs: ms, gpuLayers: layers, threads: wllama.getNumThreads(), vision: !!mmproj };
+    console.info(
+      `[wllama] loaded ${model.id}${mmproj ? " + projector" : ""} in ${ms} ms · threads=${wllama.getNumThreads()} isolated=${globalThis.crossOriginIsolated} gpuLayers=${layers} nCtx=${opts.nCtx} libllama=${Wllama.getLibllamaVersion()}`,
+    );
+    return wllama;
   }
 
   async load(model: ModelRef, opts: LoadOptions): Promise<Session> {
     await this.unload();
-    const started = performance.now();
-    const [threads, layers] = [threadCount(opts.threads), await gpuLayers(opts.gpuLayers)];
-    const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
-    wllama.setCompat(COMPAT_PATHS);
-    const params = { n_ctx: opts.nCtx, n_threads: threads, n_gpu_layers: layers, jinja: true, chat_template: model.chatTemplate, log_level: LogLevel.WARN };
-    const opfs = fileOfUri(model.uri);
-    /* opfs:// is the delivered GGUF on this device (src/web/opfs.ts): no network, wllama reads the File in slices. */
-    if (opfs) await wllama.loadModel([await modelFile(opfs)], params);
-    else await wllama.loadModelFromUrl(model.uri, params);
-    this.wllama = wllama;
+    this.wllama = await this.start(model, opts, null);
+    this.opts = opts;
     this.session = { model, nCtx: opts.nCtx };
-    console.info(
-      `[wllama] loaded ${model.id} in ${Math.round(performance.now() - started)} ms · threads=${wllama.getNumThreads()} isolated=${globalThis.crossOriginIsolated} gpuLayers=${layers} nCtx=${opts.nCtx} libllama=${Wllama.getLibllamaVersion()}`,
-    );
     return this.session;
+  }
+
+  /**
+   * Round 105: the photo projector joins the loaded model. llama-server takes the projector only at load, so the
+   * model is loaded again with both files; the session object stays, so the chat never sees a new one.
+   */
+  async enableVision(mmprojUri: string): Promise<boolean> {
+    const session = this.session;
+    if (!session || !this.opts) throw new Error("model not loaded");
+    if (this.vision && this.mmproj === mmprojUri) return true;
+    const old = this.wllama;
+    this.wllama = null;
+    await old?.exit();
+    try {
+      const wllama = await this.start(session.model, this.opts, mmprojUri);
+      this.wllama = wllama;
+      this.vision = wllama.supportInputModality("image");
+    } catch (e: unknown) {
+      console.warn("[wllama] projector did not load", e instanceof Error ? e.message : e);
+      this.vision = false;
+      this.wllama = await this.start(session.model, this.opts, null);
+    }
+    this.mmproj = this.vision ? mmprojUri : null;
+    return this.vision;
   }
 
   async unload(): Promise<void> {
     const wllama = this.wllama;
     this.wllama = null;
     this.session = null;
+    this.opts = null;
+    this.vision = false;
+    this.mmproj = null;
     await wllama?.exit();
+  }
+
+  private async toRequestMessages(messages: Message[]): Promise<ChatCompletionMessage[]> {
+    const out: ChatCompletionMessage[] = [];
+    for (const m of messages) {
+      if (!m.images?.length || !this.vision || m.role !== "user") {
+        out.push(toWllamaMessage(m));
+        continue;
+      }
+      const images = await Promise.all(m.images.map(imageBytes));
+      out.push({ role: "user", content: [...images.map((data) => ({ type: "image" as const, data })), { type: "text" as const, text: m.content }] } as ChatCompletionMessage);
+    }
+    return out;
   }
 
   async *generate(session: Session, messages: Message[], opts: GenOpts, signal: AbortSignal): AsyncIterable<Delta> {
@@ -79,9 +160,11 @@ export class WllamaLM implements LocalLM {
     let completionTokens = 0;
     let chunks = 0;
     const sampler = sampling(opts);
+    const photos = messages.reduce((n, m) => n + (this.vision && m.role === "user" ? (m.images?.length ?? 0) : 0), 0);
+    const wireMessages = await this.toRequestMessages(messages);
     /* The wasm server reads llama-server's names (repeat_penalty, repeat_last_n); the typed penalty_* fields are ignored. */
     const request: ChatCompletionParams & { stream: true; stop?: string[]; repeat_penalty: number; repeat_last_n: number } = {
-      messages: messages.map(toWllamaMessage),
+      messages: wireMessages,
       stream: true,
       abortSignal: signal,
       max_tokens: opts.maxTokens ?? ANSWER_CEILING,
@@ -116,6 +199,12 @@ export class WllamaLM implements LocalLM {
     completionTokens ||= chunks;
     if (!tokPerSec && completionTokens) tokPerSec = (completionTokens * 1000) / Math.max(1, performance.now() - started - ttft);
     this.last = { tokPerSec, ttftMs: ttft, ctxUsed: promptTokens + completionTokens, memMB: this.last.memMB };
+    if (photos) {
+      /* Time to first token is the photo's encode plus the prompt's prefill: the number the hold card's hint is honest about. */
+      this.devInfo = { ...this.devInfo, photoTurn: { photos, ttftMs: Math.round(ttft), totalMs: Math.round(performance.now() - started), completionTokens } };
+      recordPhotoMs(ttft);
+      console.info(`[wllama] photo turn · photos=${photos} ttft=${Math.round(ttft)} ms total=${Math.round(performance.now() - started)} ms tokens=${completionTokens}`);
+    }
     this.measureMemory();
     yield { done: { promptTokens, completionTokens, ttftMs: ttft, tokPerSec } };
   }

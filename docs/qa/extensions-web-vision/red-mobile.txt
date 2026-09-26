@@ -1,0 +1,71 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/ext-red/apps/mobile
+
+ ❯ src/extensions/extensions.test.ts (0 test)
+ ❯ test/webExtensions.test.ts (0 test)
+ ❯ src/components/chat/modelSheet.test.ts (27 tests | 1 failed) 9ms
+   ❯ what a row claims the model is good at (5)
+     × drops voice notes in the browser build, keeps photos for the model that can see, and keeps the rest 3ms
+ ❯ src/screens/Settings/storageSizes.web.test.ts (3 tests | 1 failed) 8ms
+   ❯ web storage sizes (F379) (3)
+     × counts every downloaded extension under Models 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/webExtensions.test.ts [ test/webExtensions.test.ts ]
+TypeError: findExtension is not a function
+ ❯ test/webExtensions.test.ts:10:16
+      8| /* F406/F407 (round 105): the browser catalog carries every extension;…
+      9| const repo = join(__dirname, "../../..");
+     10| const vision = findExtension("vision-qwen35")!;
+       |                ^
+     11| type Companion = { id: string; kind: string; role: string; file: strin…
+     12| let web: { webManifest: (baseUrl: string) => { models: { id: string }[…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/extensions/extensions.test.ts [ src/extensions/extensions.test.ts ]
+Error: Cannot find module '/src/extensions/store' imported from /Users/moshecohen/dev/inborn-wt/ext-red/apps/mobile/src/extensions/extensions.test.ts
+ ❯ src/extensions/extensions.test.ts:52:15
+     50| }));
+     51|
+     52| const store = await import("./store");
+       |               ^
+     53| const { holdView, holdTestIds, vaultRowState } = await import("./card"…
+     54| const { ExtensionHoldCard } = await import("../components/chat/Extensi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/chat/modelSheet.test.ts > what a row claims the model is good at > drops voice notes in the browser build, keeps photos for the model that can see, and keeps the rest
+AssertionError: expected [ 'chat', 'summarize' ] to include 'photos'
+ ❯ src/components/chat/modelSheet.test.ts:63:51
+     61|   /* F386: the browser has no dictation. Round 105: it sees photos onc…
+     62|   it("drops voice notes in the browser build, keeps photos for the mod…
+     63|     expect(goodAtUses(byId("instant"), WEB_HERE)).toContain("photos");
+       |                                                   ^
+     64|     expect(goodAtUses(byId("fast"), WEB_HERE)).toEqual(["chat", "writi…
+     65|     expect(read("ModelSheet.tsx")).toContain('"vault.details.visionWeb…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/screens/Settings/storageSizes.web.test.ts > web storage sizes (F379) > counts every downloaded extension under Models
+TypeError: extensions is not a function or its return value is not iterable
+ ❯ src/screens/Settings/storageSizes.web.test.ts:39:21
+     37|     const { extensions } = await import("@inborn/core");
+     38|     const files: Record<string, number> = { "Qwen3.5-0.8B-Q4_K_M.gguf"…
+     39|     for (const e of extensions()) files[e.file] = e.bytes;
+       |                     ^
+     40|     const sizes = await storageSizes({ indexedDB: new IDBFactory(), st…
+     41|     expect(sizes.models).toBe(532_517_120 + 467_958_912 + 204_987_232);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  2 failed | 28 passed (30)
+   Start at  22:48:17
+   Duration  561ms (transform 76%, import 21%, tests 2%, worker 1%)
+

@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { gatePhotoSend, packAction, planPhotoSend, planVisionTurn, releasesHeldTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
+import { gatePhotoSend, planPhotoSend, planVisionTurn, type PhotoSend, type VisionTurnInput } from "./visionGate";
+import { extensionReleases } from "../extensions/state";
+import { fromInstallState } from "../extensions/installState";
 
 const ready: VisionTurnInput = {
   hasImages: true,
@@ -118,12 +120,13 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
   });
 
   it("the held turn is released only by the pack turning ready, never by anything else", () => {
-    expect(releasesHeldTurn(true, "delivering", "ready")).toBe(true);
-    expect(releasesHeldTurn(true, "verifying", "ready")).toBe(true);
-    expect(releasesHeldTurn(true, "ready", "ready")).toBe(false);
-    expect(releasesHeldTurn(false, "delivering", "ready")).toBe(false);
-    expect(releasesHeldTurn(true, "not-installed", "delivering")).toBe(false);
-    expect(releasesHeldTurn(true, "delivering", "failed")).toBe(false);
+    /* Round 105: the one extension card releases every held turn through the same rule. */
+    expect(extensionReleases("downloading", "ready")).toBe(true);
+    expect(extensionReleases("missing", "ready")).toBe(true);
+    expect(extensionReleases("ready", "ready")).toBe(false);
+    expect(extensionReleases(undefined, "ready")).toBe(false);
+    expect(extensionReleases("missing", "downloading")).toBe(false);
+    expect(extensionReleases("downloading", "failed")).toBe(false);
   });
 
   it("the chat keeps the message and the photo until the gate lets the turn go", () => {
@@ -137,13 +140,13 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
     const now = chat.slice(chat.indexOf("const submitNow = async"));
     expect(now.indexOf('setDraft("")')).toBeGreaterThan(-1);
     expect(now.indexOf("setPendingImages([])")).toBeGreaterThan(now.indexOf('setDraft("")'));
-    expect(chat).toContain("<VisionHoldCard");
+    expect(chat).toContain("extensionId={VISION_MODEL_ID}");
     expect(chat).toContain("onReady={releaseHeldTurn}");
   });
 
   it("the card has its words in every locale, and none of them is jargon", () => {
     const repo = join(__dirname, "../../../..");
-    const keys = [...["holdTitleModel", "holdBody", "holdNoPack", "holdSwitch", "holdDownloading", "holdStuck", "holdDownload", "holdRemove", "companionMissing", "offerCompanion"].map((k) => `chat.vision.${k}`), "chat.attach.visionMissing", "chat.attach.installVision"];
+    const keys = [...["holdTitleModel", "holdSwitch", "companionMissing", "offerCompanion"].map((k) => `chat.vision.${k}`), ...["name", "why", "downloading", "unavailable", "cancel", "vault", "timeHint"].map((k) => `extensions.vision-qwen35.${k}`), "extensions.stuck", "extensions.download", "chat.attach.visionMissing", "chat.attach.installVision"];
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       for (const k of keys) {
@@ -155,19 +158,20 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
 
   it("the missing-pack line is one sentence a user understands, the same in the card and the attach sheet", () => {
     const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
-    expect(en["chat.vision.holdBody"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
-    expect(en["chat.attach.visionMissing"]).toBe(en["chat.vision.holdBody"]);
+    expect(en["extensions.vision-qwen35.why"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
+    expect(en["chat.attach.visionMissing"]).toBe(en["extensions.vision-qwen35.why"]);
   });
 
   it("the card offers one button for every pack state: a pause or a failure is a Download, never a dead end", () => {
-    expect(packAction({ kind: "not-installed" })).toBe("download");
-    expect(packAction({ kind: "failed" })).toBe("download");
-    expect(packAction({ kind: "corrupt" })).toBe("download");
-    expect(packAction({ kind: "delivering", paused: true })).toBe("resume");
-    expect(packAction({ kind: "delivering", paused: false })).toBe("progress");
-    expect(packAction({ kind: "verifying" })).toBe("progress");
-    expect(packAction({ kind: "delivering", paused: false, needsConfirmation: true })).toBe("vault");
-    expect(packAction({ kind: "needs-space" })).toBe("vault");
-    expect(packAction({ kind: "ready" })).toBe("ready");
+    const d = { via: "https" as const, bytes: 5, total: 10, waitingForWifi: false, needsConfirmation: false };
+    expect(fromInstallState({ kind: "not-installed" }, 10, "ios").kind).toBe("missing");
+    expect(fromInstallState({ kind: "failed", error: "x", via: "https", retryable: true }, 10, "ios").kind).toBe("failed");
+    expect(fromInstallState({ kind: "corrupt", reason: "hash-mismatch", via: "https" }, 10, "ios").kind).toBe("missing");
+    expect(fromInstallState({ kind: "delivering", ...d, paused: true }, 10, "ios").kind).toBe("paused");
+    expect(fromInstallState({ kind: "delivering", ...d, paused: false }, 10, "ios")).toEqual({ kind: "downloading", bytes: 5, total: 10, keepOpen: true });
+    expect(fromInstallState({ kind: "verifying", via: "https", bytes: 10 }, 10, "ios").kind).toBe("downloading");
+    expect(fromInstallState({ kind: "delivering", ...d, paused: false, needsConfirmation: true }, 10, "ios").kind).toBe("stuck");
+    expect(fromInstallState({ kind: "needs-space", requiredBytes: 1, freeBytes: 0 }, 10, "ios").kind).toBe("stuck");
+    expect(fromInstallState({ kind: "ready", path: "/x", bytes: 1, sha256: "", via: "bundled" }, 10, "ios")).toEqual({ kind: "ready", bundled: true });
   });
 });

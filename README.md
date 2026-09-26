@@ -6219,6 +6219,77 @@ the page "still shows the same". Evidence: `docs/qa/fix-web-update/`.
 Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
 `pn check:store` pass. Test counts: 966 core, 1114 mobile, 24 i18n, 23 ui.
 
+## Fixes round 105: one extension mechanism, and photos in the browser (branch `extensions-web-vision`) — 26.9.2026
+
+Moshe (26.9): the first load should assume the user needs only the text model. When a photo is attached, the app asks
+for the extension model then, and the same logic should serve every future extension (indexes, PDF, any other file).
+Evidence: `docs/qa/extensions-web-vision/`.
+
+- **F406: one registry.** `packages/core/src/catalog/extensions.json` lists every extension: id, kind (`index`,
+  `vision`, later `audio` or `ocr`), file, bytes, sha256, CDN path, what it applies to (attachment kind, MIME, file
+  extension, features), the platforms that bundle it, and its fallback. `extensions.ts` answers every question about
+  it. The document index is the first entry (kind `index`, fallback: exact-word search) with no change in behaviour.
+  The photo projector `mmproj-Qwen3.5-0.8B-F16.gguf` (204,987,232 B) is the second (kind `vision`, bundled on iOS and
+  Android, downloaded on the web, no fallback). A test holds the registry to the signed catalog, so the catalog was
+  not changed and needed no new signature.
+- **One card, one downloader, one state, one vault section.** `ExtensionHoldCard` replaces the photo and the index
+  hold cards. It shows the why and the size, Download or Try again with the F349 sentence, the fallback when there is
+  one, and Cancel. The old testIDs are kept. The browser state lives in `extensions/store.ts`, over the round-93
+  downloader (OPFS, Range resume, sha256, GGUF magic, "not on the download server yet" on a 404 or an HTML answer).
+  The phones map their vault state in `extensions/store.native.ts`. The vault has one Extensions section listing each
+  extension with its size and state. The web offers Download or Remove there. A bundled extension on a phone reads
+  "Included with the app". `/models/manifest.json` lists both extensions under `companions` with their `kind`. The
+  dev host serves both from `.models`, and the deployed build points both at `models.inbornapp.com/v1/`.
+- **A third extension is one entry plus one locale block.** `src/extensions/extensions.test.ts` registers a fake
+  `ocr-fake` extension. The hold card renders it with Download and Cancel. The vault lists it third. The web catalog
+  carries it at the CDN path, the downloader fetches it into OPFS, and Remove deletes it. No other code was touched
+  for it.
+- **F407: photos in the browser.** The attach sheet's Photo row is open on the web. It says "Your first photo
+  downloads the 205 MB photo pack to this browser." A picked photo is scaled to 1024 px and kept as a JPEG data URL,
+  so the thumbnail survives a reload. Without the pack, Send holds the message on the card. Download installs the
+  pack, and the held message goes out by itself. `WllamaLM.enableVision` reloads Instant with the projector through
+  wllama's multimodal load, using WebGPU when the browser has an adapter and WASM otherwise. The photo is sent as an
+  image part. Two limits turned up while measuring. The page's CSP blocks `fetch(data:)`, so the adapter decodes the
+  data URL itself. wllama 3.6.1 never returns from an image encode with 3 or more WASM threads, and 2 threads work,
+  so a load with the projector uses at most 2. The door, the onboarding list and the Model sheet now say photos come
+  with the photo pack, not "in the app".
+- **F408: extensions come later.** The onboarding Model step says: "Only the text model downloads now. Photos and
+  document search each bring their own extension later, the first time you use them." The line is in 8 locales plus
+  pseudo. Privacy & storage counts extensions under Models, and on the web its line says so.
+- **F409: web:smoke.** Pass 10 attaches `scripts/fixtures/photo/red-circle-cat.png`, meets the hold card, downloads
+  the pack from the local host, and fails unless the answer names red, circle, round or CAT. It also checks that the
+  vault lists both extensions and offers Remove for the pack. Pass 9, on the deployed-like host, now also fails
+  unless the projector's download ends in "not on the download server". Pass 8 (e5) is unchanged.
+
+Measured in headless Chromium on this Mac with the 1024 px fixture, Instant plus the projector at 512 image tokens,
+from Send to the first token (encode plus prefill):
+
+| engine | first token | whole answer | answer |
+|---|---|---|---|
+| WebGPU (`--enable-unsafe-webgpu`) | 1.5 s | 1.9 s | "The shape is red, the shape it's a circle, and the word is CAT." |
+| WASM, 2 threads | 82.4 s | 84.0 s | "The red circle is a Japanese flag symbol, which means "sun," and the word below it is CAT." |
+| WASM, 6 threads | none after 10 min | none | wllama hang, hence the 2-thread cap |
+
+Downloading the pack from the local host took 5.4 s, and loading Instant with the projector took 1.5 to 1.9 s. The
+WASM path is over a minute, so on a browser without WebGPU the card says "About 77 s per photo in this browser."
+After the first photo, the card uses that browser's own measured time. The standalone harness measured 76.9 s at 512
+tokens and 9.1 s at 64 tokens, but 64 and 128 tokens misread the word ("JAPAN", "9"), so the phones' 512 stays.
+
+- **CDN.** Nothing was uploaded. The projector is already at `https://models.inbornapp.com/v1/` (HTTP 206, 204,987,232
+  bytes, CORS `*`), because `publish-models.mjs` publishes every catalog `https` file. `publish-mmproj.md` has the
+  verify command and the upload command in case it is ever missing.
+- **Red first.** `red-core.txt` (6 of 6 failing) and `red-mobile.txt` (the new mobile tests, 2 failing plus 2 suites
+  that cannot load) ran the new tests against origin/main.
+- **Proof.** `probe.mjs` walks onboarding, the attach sheet, the hold card, the download, the photo answer and the
+  vault. `after-off-1440/` is WASM at 1440 and `after-on-390/` is WebGPU at 390, each with `result.json` and
+  screenshots. Neither width scrolls horizontally.
+
+Not done: the desktop shell (Tauri) has no projector path yet, so its card says photos cannot be read there. The
+phones' vault moved the photo pack and the document index into the Extensions section. No phone build ran in this round.
+
+Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
+`pn check:store` pass. Test counts: 972 core, 1142 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

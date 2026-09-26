@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "extensions": [
+    {
+      "id": "embed-e5",
+      "kind": "index",
+      "file": "multilingual-e5-large-instruct-Q6_K.gguf",
+      "bytes": 467958912,
+      "sha256": "971b20b033a555f920bad72941123f48b470a2fa676abdb713e5dc8605ea15a4",
+      "path": "multilingual-e5-large-instruct-Q6_K.gguf",
+      "appliesTo": { "attachments": ["document"], "features": ["documents-ask", "chat-documents"] },
+      "bundledOn": [],
+      "fallback": "words"
+    },
+    {
+      "id": "vision-qwen35",
+      "kind": "vision",
+      "file": "mmproj-Qwen3.5-0.8B-F16.gguf",
+      "bytes": 204987232,
+      "sha256": "56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453",
+      "path": "mmproj-Qwen3.5-0.8B-F16.gguf",
+      "appliesTo": { "attachments": ["photo"], "mime": ["image/*"], "ext": [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".heic", ".heif"], "features": ["chat-photos"] },
+      "bundledOn": ["ios", "android"],
+      "fallback": null
+    }
+  ]
+}

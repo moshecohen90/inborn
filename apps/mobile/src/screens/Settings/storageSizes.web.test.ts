@@ -32,6 +32,17 @@ describe("web storage sizes (F379)", () => {
     expect((await factory.databases()).map((d) => d.name)).toEqual(["inborn"]);
   });
 
+  /* F408: extensions land next to the chat model in OPFS, so Models counts them, and the row says so. */
+  it("counts every downloaded extension under Models", async () => {
+    const { extensions } = await import("@inborn/core");
+    const files: Record<string, number> = { "Qwen3.5-0.8B-Q4_K_M.gguf": 532_517_120 };
+    for (const e of extensions()) files[e.file] = e.bytes;
+    const sizes = await storageSizes({ indexedDB: new IDBFactory(), storage: opfsWith(files) });
+    expect(sizes.models).toBe(532_517_120 + 467_958_912 + 204_987_232);
+    const en = JSON.parse((await import("node:fs")).readFileSync(`${__dirname}/../../../../../packages/i18n/locales/en.json`, "utf8")) as Record<string, string>;
+    expect(en["storage.models.web"]).toMatch(/extensions included/);
+  });
+
   it("counts vectors by their buffer size", () => {
     expect(valueBytes({ v: new Float32Array(1024) })).toBe(1 + 4096);
   });

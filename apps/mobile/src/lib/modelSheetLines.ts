@@ -27,5 +27,5 @@ export const roomNoteParams = (note: RoomNote): Record<string, string> => ({
   free: formatModelBytes(note.freeBytes),
   picked: note.picked.name,
 });
-/** F385/F386: the browser build has no projector and no dictation, so its rows never claim photos or voice notes. */
-export const WEB_HERE = { photos: false, voice: false } as const;
+/** F386: the browser has no dictation. Photos work there once the photo pack is downloaded (round 105), which the row says. */
+export const WEB_HERE = { photos: true, voice: false } as const;

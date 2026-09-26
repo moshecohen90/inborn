@@ -19,6 +19,9 @@
  *      index-model card with the word search, the .pdf after Download installs the document index model from this
  *      host; both answers carry SOURCES naming the file.
 
+ *  10. round 105: a photo attached through "+" -> Photo meets the photo-pack hold card; Download installs the projector
+ *      from this host, the held message goes out by itself, and Instant's answer names something in the fixture (a red
+ *      circle over the word CAT). The vault lists both extensions.
  *   9. F1: the same host turned deployed-like (every missing path, /models/<e5> included, answers the SPA shell, and the
  *      catalog points the index model at such a path). Download must fail as "not on the download server", nothing
  *      may load the shell as a model, and the file still answers with SOURCES on the word search.
@@ -81,6 +84,9 @@ const RN_ONLY_ATTR_RE = /^(accessibility[a-z]+|importantforaccessibility|collaps
 const DEV_DIST = process.env.DEV_DIST ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../apps/mobile/web-build/dev");
 const ATTACH_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/attach");
 const ATTACH_QUESTION = "What is this file about? Quote one sentence from it.";
+const PHOTO_FIXTURE = path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/photo/red-circle-cat.png");
+const PHOTO_QUESTION = "What colour is the shape in this photo, what shape is it, and what word is written under it?";
+const PHOTO_TIMEOUT_MS = 10 * 60_000;
 const IPHONE_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1";
 
 const skip = (why) => {
@@ -503,6 +509,36 @@ async function attachAndAsk(page, consoleLines, file, onHold) {
   if (!seen.answer) throw new Error(`${file}: empty answer`);
   if (seen.noneMatched) throw new Error(`${file}: the answer says nothing in the file matched a question about the file`);
   if (!seen.sources.includes(file)) throw new Error(`${file}: the answer carries no SOURCES naming the file (sources: "${seen.sources}", answer: "${seen.answer.slice(0, 160)}")`);
+  return seen;
+}
+
+/**
+ * Round 105: attaches the fixture photo in a fresh chat through "+" -> Photo and sends the question. Returns the hold
+ * card's text when one shows; `onHold` answers it.
+ */
+async function photoAndAsk(page, consoleLines, onHold) {
+  const from = consoleLines.length;
+  await page.goto(server.url);
+  await page.getByTestId("composer-input").waitFor({ timeout: LOAD_TIMEOUT_MS });
+  await waitForEngineAfter(consoleLines, from);
+  const answers = await page.getByTestId("ledger-toggle").count();
+  await page.getByTestId("attach").click();
+  const seen = { photoRowDisabled: (await page.getByTestId("attach-photo").getAttribute("aria-disabled")) === "true" };
+  if (seen.photoRowDisabled) throw new Error("the attach sheet's Photo row is disabled in the browser");
+  const [chooser] = await Promise.all([page.waitForEvent("filechooser", { timeout: 15_000 }), page.getByTestId("attach-photo").click()]);
+  await chooser.setFiles(PHOTO_FIXTURE);
+  await page.getByTestId("pending-images").waitFor({ timeout: 30_000 });
+  await page.getByTestId("composer-input").fill(PHOTO_QUESTION);
+  await page.getByTestId("send").click();
+  if (await page.getByTestId("vision-hold").waitFor({ timeout: 15_000 }).then(() => true, () => false)) {
+    seen.hold = ((await page.getByTestId("vision-hold").textContent()) ?? "").trim();
+    if (await onHold(page, seen)) return seen;
+  }
+  const ledger = page.getByTestId("ledger-toggle");
+  for (let i = 0; i < PHOTO_TIMEOUT_MS / 250 && (await ledger.count()) <= answers; i++) await page.waitForTimeout(250);
+  if ((await ledger.count()) <= answers) throw new Error("the photo got no answer");
+  seen.answer = ((await page.getByTestId("assistant-text").last().textContent()) ?? "").trim();
+  seen.photoTurn = consoleLines.slice(from).find((l) => /\[wllama\] photo turn/.test(l)) ?? null;
   return seen;
 }
 
@@ -943,6 +979,44 @@ try {
   }
 
 
+  /* 10. Round 105: the photo pack is an extension the first photo downloads, and then the browser sees. */
+  {
+    const page = await context.newPage();
+    const { consoleLines, pageErrors } = observe(page);
+    lastPage = page;
+    lastConsole = consoleLines;
+    const out = (result.photo = {});
+    out.served = !!resolveFile("/models/mmproj-Qwen3.5-0.8B-F16.gguf", defaults);
+    const seen = await photoAndAsk(page, consoleLines, async (p, s) => {
+      await p.screenshot({ path: path.join(outDir, "web-smoke-photo-hold.png") });
+      if (!out.served) {
+        s.unavailable = ((await p.getByTestId("vision-hold-body").textContent()) ?? "").trim();
+        return true;
+      }
+      await p.getByTestId("vision-hold-download").click();
+      await p.getByTestId("vision-hold").waitFor({ state: "detached", timeout: PHOTO_TIMEOUT_MS }).catch(async () => {
+        s.downloadError = await p.getByTestId("vision-hold-error").textContent({ timeout: 1000 }).catch(() => null);
+        throw new Error(`the photo pack download did not finish: ${s.downloadError ?? "card still up"}`);
+      });
+      return false;
+    });
+    Object.assign(out, seen);
+    if (!out.hold) throw new Error("a photo with no photo pack in the browser went out without the hold card");
+    if (out.served) {
+      await page.screenshot({ path: path.join(outDir, "web-smoke-photo-answer.png"), fullPage: true });
+      const a = out.answer.toLowerCase();
+      out.names = ["red", "circle", "round", "cat"].filter((w) => new RegExp(`\\b${w}`).test(a));
+      if (!out.names.length) throw new Error(`the photo answer names nothing in the fixture: "${out.answer.slice(0, 200)}"`);
+      await page.goto(new URL("/vault", server.url).href);
+      await page.getByTestId("vault-extensions").waitFor({ timeout: 60_000 });
+      out.vault = ((await page.getByTestId("vault-extensions").textContent()) ?? "").trim();
+      for (const id of ["embed-e5", "vision-qwen35"]) if (!(await page.getByTestId(`ext-row-${id}`).count())) throw new Error(`the vault's Extensions section has no ${id} row`);
+      if (!(await page.getByTestId("ext-remove-vision-qwen35").count())) throw new Error("the downloaded photo pack has no Remove in the vault");
+    }
+    noPageErrors(pageErrors, "photo pass");
+    await page.close();
+  }
+
   /* 9. F1: app.inbornapp.com answered /models/<e5> with its SPA shell; a HEAD probe took that for the model and wllama died on '<!DO'. */
   {
     /* A browser that has never had the index model: its own context, so pass 8's install and library are not in it. */
@@ -977,6 +1051,16 @@ try {
       const bad = consoleLines.filter((l) => /\[wllama\] embedder .* loaded|invalid magic|run OCR/i.test(l));
       if (bad.length) throw new Error(`the shell was taken for a model: ${bad[0]}`);
       out.modelLines = consoleLines.filter((l) => /not a model file|\[(rag|documents)\]/.test(l));
+      /* Round 105: the projector goes through the same downloader, so a shell in its place is "not on the download server" too. */
+      const photo = await photoAndAsk(page, consoleLines, async (p, seen) => {
+        await p.getByTestId("vision-hold-download").click();
+        seen.downloadError = ((await p.getByTestId("vision-hold-error").textContent({ timeout: 60_000 }).catch(() => "")) ?? "").trim();
+        await p.screenshot({ path: path.join(outDir, "web-smoke-deployed-like-photo-hold.png") });
+        return true;
+      });
+      out.photoError = photo.downloadError;
+      if (!/not on the download server/i.test(out.photoError ?? "")) throw new Error(`a shell served as the projector did not fail as "not on the download server": "${out.photoError}"`);
+      if (consoleLines.some((l) => /\+ projector in/.test(l))) throw new Error("the shell was loaded as the projector");
       noPageErrors(pageErrors, "deployed-like pass");
     } finally {
       Object.assign(server.opts, saved);
@@ -1211,6 +1295,9 @@ if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev
 else console.log(`PASS: development export walked onboarding (download in the Model step) -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
 console.log(`PASS: attached .txt answered on the word search with SOURCES "${result.attach.txt.sources}"; .pdf answered ${result.attach.indexModelServed ? "after installing the index model from this host" : "on the word search (no index model served)"} with SOURCES "${result.attach.pdf.sources}"; in the next page load the .txt row reads "${result.attach.txtRowNextVisit}" and answers again with SOURCES "${result.attach.txtAgain.sources}"${result.attach.txtAgain.wordsOnly ? " (words only)" : " by meaning"}`);
+if (result.photo.served) console.log(`PASS: a photo held on the photo-pack card, the pack downloaded from this host, and Instant answered naming ${result.photo.names.join(", ")}: "${result.photo.answer.slice(0, 120)}" (${result.photo.photoTurn ?? "no timing line"})`);
+else console.log(`PASS: no photo pack on this host, the photo is held with "${result.photo.unavailable}"`);
+console.log(`PASS: deployed-like host, the projector fails as "${result.deployedLike.photoError}"`);
 for (const screen of LAYOUT_SCREENS) {
   for (const width of REQUIRED_WIDTHS) {
     for (const theme of REQUIRED_THEMES) {

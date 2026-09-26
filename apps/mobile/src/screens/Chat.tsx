@@ -32,6 +32,7 @@ import {
   detectLanguage,
   detectUse,
   fileIntake,
+  findExtension,
   formatModelBytes,
   languageTierOf,
   FIT_LANGUAGES,
@@ -95,8 +96,9 @@ import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { gatePhotoSend, planPhotoSend, planVisionTurn } from "../lib/visionGate";
-import { VisionHoldCard } from "../components/chat/VisionHoldCard";
-import { IndexHoldCard } from "../components/chat/IndexHoldCard";
+import { ExtensionHoldCard } from "../components/chat/ExtensionHoldCard";
+import { EMBED_MODEL_ID } from "../documents/embedder";
+import { visionTimeHint } from "../extensions/timeHint";
 import { planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
 import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
@@ -1178,7 +1180,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     );
   };
   const visionReady = visionInstalled();
-  const visionSize = formatModelBytes(getVault().model(VISION_MODEL_ID)?.bytes ?? 0);
+  const visionSize = formatModelBytes(findExtension(VISION_MODEL_ID)?.bytes ?? 0);
+  /* Round 105: in a browser the photo pack is an extension fetched on the first photo, so the Photo row stays open. */
+  const webPhotos = Platform.OS === "web";
   const modelSees = modelHasVision(model.id);
   /* Instant is the only card the shipped projector fits; the sheet and the offer both name it (QA F36). */
   const seer = useMemo(() => (modelSees ? null : visionChatModel()), [modelSees]);
@@ -1501,21 +1505,27 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {micLine}
         </Text>
       ) : null}
-      {docsHold && docs.documents.length ? <IndexHoldCard theme={theme} files={docs.documents.length} onWords={sendWithWords} onCancel={() => setDocsHold(false)} /> : null}
+      {docsHold && docs.documents.length ? <ExtensionHoldCard extensionId={EMBED_MODEL_ID} theme={theme} count={docs.documents.length} onFallback={sendWithWords} onCancel={() => setDocsHold(false)} /> : null}
       {photoHold && pendingImages.length ? (
-        <VisionHoldCard
-          offer={photoHold}
+        <ExtensionHoldCard
+          extensionId={VISION_MODEL_ID}
           theme={theme}
-          model={chipLabel(t, model.id)}
-          seer={seerLabel}
-          seerReady={seerReady}
-          photos={pendingImages.length}
-          onSwitch={useSeer}
-          onRemove={dropAllPhotos}
-          onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
+          count={pendingImages.length}
+          onCancel={dropAllPhotos}
           onReady={releaseHeldTurn}
-          {...(Platform.OS === "web" ? { onGetApp: getTheApp } : {})}
-        />
+          onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
+          {...(photoHold === "switch" ? { title: t("chat.vision.holdTitleModel", { model: chipLabel(t, model.id) }) } : {})}
+          {...(photoHold === "switch" && visionReady ? { body: t("chat.vision.holdSwitch", { seer: seerLabel }) } : {})}
+          {...(webPhotos && visionTimeHint(t) ? { hint: visionTimeHint(t)! } : {})}
+        >
+          {photoHold === "switch" && seer ? (
+            <Pressable testID="vision-hold-switch" accessibilityRole="button" onPress={useSeer} style={[styles.holdBtn, { borderColor: theme.accent }]}>
+              <Text numberOfLines={1} style={[type.bodySmall, { color: theme.accent }]}>
+                {seerReady ? t("chat.modelAdvice.switch", { model: seerLabel }) : t("voice.openVault")}
+              </Text>
+            </Pressable>
+          ) : null}
+        </ExtensionHoldCard>
       ) : null}
       {pendingImages.length ? (
         <View testID="pending-images" style={styles.chips}>
@@ -1802,15 +1812,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           setAttachOpen(false);
           afterSheetClose(() => setTemplatesOpen(true));
         }}
-        photoDisabled={!visionReady || !modelSees}
-        onInstallVision={modelSees && !visionReady ? () => {
+        photoDisabled={webPhotos ? !modelSees : !visionReady || !modelSees}
+        onInstallVision={!webPhotos && modelSees && !visionReady ? () => {
           setAttachOpen(false);
           afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));
         } : undefined}
         visionSize={visionSize}
-        photoNote={Platform.OS === "web" ? t("chat.attach.photoWeb") : !modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        photoNote={webPhotos && !modelSees && !seer ? t("chat.attach.photoWeb") : webPhotos && modelSees && !visionReady ? t("chat.attach.photoWebPack", { size: visionSize }) : !modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
-        {...(Platform.OS === "web" ? { onGetApp: getTheApp } : {})}
+        {...(webPhotos && !modelSees && !seer ? { onGetApp: getTheApp } : {})}
       />
       <TemplatesSheet visible={templatesOpen} onClose={() => setTemplatesOpen(false)} onInsert={(text) => setDraft((d) => (d.trim() ? `${d}\n\n${text}` : text))} />
       <RedactSheet
@@ -1918,6 +1928,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  holdBtn: { minHeight: 44, paddingHorizontal: 12, borderRadius: radius.control, borderWidth: 1, alignItems: "center", justifyContent: "center", maxWidth: "100%" },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44, gap: 8 },
   /* SC-1: the model name never truncates; at large text sizes the seal label (already told by the ring) gives way first. */
   modelChip: { flexDirection: "row", gap: 6, flexShrink: 0 },

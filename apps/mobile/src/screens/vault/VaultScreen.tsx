@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BannerSpacer } from "../../components/shell/bannerInset";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, extensions, findExtension, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -192,10 +192,13 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   );
   const byId = new Map(entries.map((e) => [e.model.id, e]));
   const installed = (e: VaultEntry | undefined) => e && (e.state.kind === "ready" || e.state.kind === "quarantined" || e.state.kind === "delivering" || e.state.kind === "verifying");
-  const onDevice = entries.filter((e) => installed(e));
+  /* Round 105: every registry extension sits in one Extensions section, installed or not, bundled or downloaded. */
+  const isExtension = (e: VaultEntry) => !!findExtension(e.model.id);
+  const extensionEntries = extensions().map((x) => byId.get(x.id)).filter((e): e is VaultEntry => !!e);
+  const onDevice = entries.filter((e) => installed(e) && !isExtension(e));
   const fits = groups.fits.map((m) => byId.get(m.id)!).filter((e) => !installed(e));
   const tooBig = groups.tooBig.map((x) => byId.get(x.model.id)!).filter((e) => !installed(e));
-  const companions = entries.filter((e) => e.model.role !== "chat" && !installed(e));
+  const companions = entries.filter((e) => e.model.role !== "chat" && !installed(e) && !isExtension(e));
   /* Hugging Face picks that are not on the device (cancelled, failed, waiting): they keep a row so Install / Remove stay reachable. */
   const hfPending = entries.filter((e) => e.hf && !installed(e));
   /* §7.8: the RECOMMENDED tag and the order inside each group follow the fit map for the chosen use + language on this device. */
@@ -216,6 +219,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
     ...(fits.length ? [{ key: "fits", title: t("vault.fits", { device: deviceNoun() }), data: fits }] : []),
     ...(hfPending.length ? [{ key: "hf", title: t("vault.hf.section"), data: hfPending }] : []),
     ...(tooBig.length ? [{ key: "big", title: t("vault.tooBig", { ram: device.ramGB }), data: tooBig, disabled: new Map(groups.tooBig.map((x) => [x.model.id, x.reason])) }] : []),
+    ...(extensionEntries.length ? [{ key: "extensions", title: t("extensions.section"), data: extensionEntries }] : []),
     ...(companions.length ? [{ key: "companions", title: t("vault.companions"), data: companions }] : []),
   ];
 
