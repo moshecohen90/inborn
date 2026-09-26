@@ -6187,6 +6187,38 @@ model was stored, so a first visit met a 1.3 GB offer before the app had said a 
 Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` (`web-smoke.txt`)
 and `pn check:store` pass. Test counts: 966 core, 1099 mobile, 24 i18n, 23 ui.
 
+## Fixes round 104: one reload shows a new deploy, and a browser with nothing kept gets the whole onboarding (branch `fix-web-update`) — 26.9.2026
+
+Moshe had the web app open on the old build (download door first). Round 103 was deployed, he pressed refresh, and
+the page "still shows the same". Evidence: `docs/qa/fix-web-update/`.
+
+- **F404: the page hands over to a new service worker.** The Workbox worker is `skipWaiting` + `clientsClaim`, but
+  `web/serviceWorker.ts` listened to nothing. After a deploy, the reload was answered from the old precache while
+  the new worker installed and claimed the page, so only a second reload showed the new build. Now a
+  `controllerchange` on a page that was already controlled reloads once (`onNewController`). A `sessionStorage`
+  stamp turns a second hand-over within 30 s into an offer, so it cannot loop. While a model download or an answer
+  is running (`web/updateHold.ts`, held by `ModelOffer` and `Chat`), the page does not reload. It shows "A new
+  version is ready · Refresh" under the strip (`web.update.ready`, `web.update.refresh`, 8 locales plus pseudo). A
+  tab coming back to the front calls `reg.update()`, so a tab left open picks up deploys. A tab still running a
+  build older than this one cannot get the listener retroactively, so Moshe's open tab needs one more reload this
+  time only.
+- **F405: onboarded, model gone, nothing kept.** `webRoute` takes `keeps`, which is whether IndexedDB holds any chat,
+  document file or indexed document (`web/keptData.ts`). With nothing kept, the shell clears `onboarded` and the
+  first-visit rules walk Welcome → Model → Sealed → Lock. With chats or documents kept, the Model step alone stays,
+  with its line. Until the browser is read, nothing is shown rather than the wrong door.
+- **Red first.** `red/update-check-before-fix.log` on the round 103 build: one reload after build B lands still shows
+  build A (a second reload shows B), and a running download gets no line. After (`green/`): the first paint is A,
+  the hand-over reload shows B with no second user reload, and mid-download the line shows while the download keeps
+  running; Refresh lands on B. F405 at 1440 and 390 (`f405-drive.mjs`, `f405-*.png`): nothing kept opens on Welcome
+  with `onboarded` cleared and Continue leads to /onboarding/model; one chat kept opens on the Model step alone
+  with the line.
+- **web:smoke** pass 2c runs `scripts/web-update-check.mjs` (about 6 s: builds A and B copied from the dist, a
+  persistent profile, a throttled GGUF for the busy case). Pass 6 now also walks the nothing-kept case. The smoke's
+  onboarded browsers keep one chat, since that is the visitor the Model-step-alone doors are for.
+
+Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
+`pn check:store` pass. Test counts: 966 core, 1114 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot
