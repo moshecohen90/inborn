@@ -1,0 +1,20 @@
+     × a first visit opens on Welcome, not on a download 2ms
+     × Sealed and Lock wait for a model 0ms
+     × deep links wait for onboarding, with or without a model 0ms
+     × the price list, the legal texts and the proof stay readable before onboarding (F293) 0ms
+     × a returning visit with a model goes straight to the chat 0ms
+     × onboarded with the model gone: the Model step alone, not the whole onboarding 0ms
+     × no catalog: the catalog door, before and after onboarding 0ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > a first visit opens on Welcome, not on a download
+TypeError: webRoute is not a function
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > Sealed and Lock wait for a model
+TypeError: webRoute is not a function
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > deep links wait for onboarding, with or without a model
+TypeError: webRoute is not a function
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > the price list, the legal texts and the proof stay readable before onboarding (F293)
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > a returning visit with a model goes straight to the chat
+TypeError: webRoute is not a function
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > onboarded with the model gone: the Model step alone, not the whole onboarding
+TypeError: webRoute is not a function
+ FAIL  src/web/doorRoutes.test.ts > round 103 · the web starts with onboarding > no catalog: the catalog door, before and after onboarding

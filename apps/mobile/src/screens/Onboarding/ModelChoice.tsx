@@ -16,7 +16,7 @@ import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { roomNoteParams } from "../../lib/modelSheetLines";
 import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelStep";
-import { webChooseModel, webStepModels } from "./webStep";
+import { WebModelStep, webStepActive } from "./webStep";
 import { catalogFailed } from "./catalogError";
 import { font, useType } from "../../services/type";
 
@@ -27,6 +27,12 @@ const PLATFORM = Platform.OS === "android" ? "android" : Platform.OS === "ios" ?
  * (F120: the old step offered a Fast download it had no way to start, and offered it after the first pack had landed).
  */
 export function ModelChoice() {
+  /* One answer per page load: the web boot is read once, and the browser tier's step is the model offer itself. */
+  const [web] = useState(webStepActive);
+  return web ? <WebModelStep /> : <VaultModelChoice />;
+}
+
+function VaultModelChoice() {
   const type = useType();
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
@@ -38,35 +44,29 @@ export function ModelChoice() {
   const [picked, setPicked] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
 
-  /* On the browser tier the offer is the web boot's list, not the vault's: same data the door and the vault read (F312). */
-  /* One read per page load: the web boot's list cannot change while the page lives (a pick reloads it). */
-  const web = useMemo(() => webStepModels(), []);
-  const stepEntries = web?.entries ?? entries;
   const step = useMemo(
     () =>
       modelStep({
         platform: PLATFORM,
-        entries: stepEntries,
-        recommendedId: web ? web.recommendedId : vault.recommendedId(),
+        entries,
+        recommendedId: vault.recommendedId(),
         engineModelId: engine.model.id === "null" ? null : engine.model.id,
         freeBytes: vault.freeDiskBytes(),
-        ramGB: web ? web.ramGB : vault.device.ramGB,
+        ramGB: vault.device.ramGB,
         languageCode: i18n.language.split("-")[0] ?? null,
         pro: tier !== "free",
       }),
-    [stepEntries, web, vault, engine.model.id, i18n.language, tier],
+    [entries, vault, engine.model.id, i18n.language, tier],
   );
 
-  const roomNoteNow = useMemo(() => (web ? web.roomNote : vault.recommendedRoomNote()), [web, vault, entries]);
+  const roomNoteNow = useMemo(() => vault.recommendedRoomNote(), [vault, entries]);
   const noCatalog = step.options.length === 0 && catalogFailed();
   const selectedId = picked ?? step.initialSelection;
   const selected = step.options.find((o) => o.id === selectedId) ?? null;
-  const modelOf = (id: string) => stepEntries.find((e) => e.model.id === id)!.model;
+  const modelOf = (id: string) => entries.find((e) => e.model.id === id)!.model;
 
   const download = async (id: string) => {
     setFailed(false);
-    /* The browser holds one model, so switching means the door downloads the new one; that is where the chat root leads. */
-    if (web) return webChooseModel(id);
     /* Chosen now, so the model takes over the moment it verifies, whether that is on this screen or in the chat. */
     vault.setDefault(id);
     const end = await vault.install(id);
@@ -153,8 +153,8 @@ export function ModelChoice() {
         </View>
       ) : null}
 
-      {/* The desktop shell has no vault screen of its own to promise; the browser tier now switches in its vault (F312). */}
-      {PLATFORM === "web" && !web ? null : <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>}
+      {/* The desktop shell has no vault screen of its own to promise; the browser tier renders the model offer instead (round 103). */}
+      {PLATFORM === "web" ? null : <Text style={[styles.note, { color: theme.text3 }]}>{t("onboarding.model.laterInVault")}</Text>}
     </Screen>
   );
 }

@@ -54,7 +54,8 @@ describe("F243 · §9.4's 44 pt touch target holds in the primitives every scree
       ["screens/Chat.tsx", ["chipTarget", "noticeBtn", "suggestion"]],
       ["screens/paywall/PaywallScreen.tsx", ["headerBtn", "legalLink"]],
       /* detailsBtn arrived with the browser strip (F239, fix-mosheai) at 28; the strip is 44 tall anyway. */
-      ["web/WebShell.tsx", ["getApp", "cta", "textBtn", "detailsBtn"]],
+      ["web/WebShell.tsx", ["getApp", "cta", "detailsBtn"]],
+      ["web/ModelOffer.tsx", ["cta", "textBtn"]],
     ] as const) {
       const found = styleHeights(source(file));
       for (const name of names) expect(found.get(name), `${file} styles.${name}`).toBeGreaterThanOrEqual(MIN_TOUCH);
@@ -137,10 +138,11 @@ describe("F244, F248 · a browser reader is not offered what the browser cannot 
     expect(source("screens/Onboarding/ModelChoice.tsx")).toContain('t(step.options.length > 1 ? "onboarding.model.title" : "onboarding.model.titleOne")');
   });
 
-  /* Round 66 moved the line, not the rule: the browser vault now switches models (F312), so the promise is honest
-     there; the desktop shell is the runtime that has no vault screen of its own, and it is the one still kept quiet. */
+  /* Round 103: the browser tier's step is the model offer itself, so the card list runs on the phones and the desktop
+     shell only, and the desktop shell has no vault screen of its own to promise. */
   it("the step promises a vault only where one exists", () => {
-    expect(source("screens/Onboarding/ModelChoice.tsx")).toMatch(/PLATFORM === "web" && !web \? null : <Text[^>]*>\{t\("onboarding\.model\.laterInVault"\)\}/);
+    expect(source("screens/Onboarding/ModelChoice.tsx")).toMatch(/PLATFORM === "web" \? null : <Text[^>]*>\{t\("onboarding\.model\.laterInVault"\)\}/);
+    expect(source("screens/Onboarding/ModelChoice.tsx")).toContain("return web ? <WebModelStep /> : <VaultModelChoice />;");
   });
 
   it("every locale carries the single-model title", () => {

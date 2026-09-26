@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 
@@ -8,6 +8,7 @@ import { useAppServices } from "../../services/AppServices";
 import { Sheet } from "../../components/shell/Sheet";
 import { Button, Toggle } from "../../components/shell/primitives";
 import { font } from "../../services/type";
+import { webDoorsApply } from "../../web/doors";
 
 /** Emergency wipe (§5.7): two confirmations, models optional, no recovery. Ends in onboarding with a fresh key. */
 export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () => void }) {
@@ -31,7 +32,9 @@ export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () 
     try {
       await wipeAll({ models });
       onClose();
-      router.replace("/onboarding");
+      /* The browser read its catalog and OPFS once at load; onboarding after a wipe must see the models gone. */
+      if (Platform.OS === "web" && webDoorsApply()) location.assign("/onboarding");
+      else router.replace("/onboarding");
     } finally {
       setBusy(false);
     }

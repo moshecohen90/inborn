@@ -1,0 +1,287 @@
+{
+  "base": "http://127.0.0.1:8803",
+  "checks": [
+    {
+      "name": "1440: the first screen of a first visit is Welcome",
+      "ok": true,
+      "seen": "onboarding-welcome"
+    },
+    {
+      "name": "1440: the Model step carries the door's offer (recommendation, speed, get the app)",
+      "ok": true,
+      "seen": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      }
+    },
+    {
+      "name": "1440: the download runs inside the Model step",
+      "ok": true,
+      "seen": true
+    },
+    {
+      "name": "1440: the first chat answers",
+      "ok": true,
+      "seen": "The capital of France is Paris."
+    },
+    {
+      "name": "1440: a returning visit opens on the chat",
+      "ok": true,
+      "seen": "composer-input"
+    },
+    {
+      "name": "1440: a vanished model brings back the Model step alone, with why",
+      "ok": true,
+      "seen": {
+        "first": "onboarding-welcome",
+        "welcomeScroll": 0,
+        "step": {
+          "why": 1,
+          "speed": "~4-15 tok/s on your browser",
+          "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+          "getApp": true,
+          "scroll": 0
+        },
+        "inStep": true,
+        "sealedProve": "Prove it: go offline and ask",
+        "answer": "The capital of France is Paris.",
+        "returning": "composer-input",
+        "modelGone": "download-door",
+        "modelGoneWhy": "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit.",
+        "modelGoneWelcome": 0,
+        "afterWipe": "onboarding-welcome",
+        "afterWipeStep": {
+          "useButton": 0,
+          "download": 1
+        }
+      }
+    },
+    {
+      "name": "1440: the wipe with models ends on Welcome, and the step offers the download again",
+      "ok": true,
+      "seen": {
+        "first": "onboarding-welcome",
+        "welcomeScroll": 0,
+        "step": {
+          "why": 1,
+          "speed": "~4-15 tok/s on your browser",
+          "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+          "getApp": true,
+          "scroll": 0
+        },
+        "inStep": true,
+        "sealedProve": "Prove it: go offline and ask",
+        "answer": "The capital of France is Paris.",
+        "returning": "composer-input",
+        "modelGone": "download-door",
+        "modelGoneWhy": "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit.",
+        "modelGoneWelcome": 0,
+        "afterWipe": "onboarding-welcome",
+        "afterWipeStep": {
+          "useButton": 0,
+          "download": 1
+        }
+      }
+    },
+    {
+      "name": "1024: the first screen of a first visit is Welcome",
+      "ok": true,
+      "seen": "onboarding-welcome"
+    },
+    {
+      "name": "1024: the Model step carries the door's offer (recommendation, speed, get the app)",
+      "ok": true,
+      "seen": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      }
+    },
+    {
+      "name": "1024: the download runs inside the Model step",
+      "ok": true,
+      "seen": true
+    },
+    {
+      "name": "1024: the first chat answers",
+      "ok": true,
+      "seen": "The capital of France is Paris."
+    },
+    {
+      "name": "1024: a returning visit opens on the chat",
+      "ok": true,
+      "seen": "composer-input"
+    },
+    {
+      "name": "390: the first screen of a first visit is Welcome",
+      "ok": true,
+      "seen": "onboarding-welcome"
+    },
+    {
+      "name": "390: the Model step carries the door's offer (recommendation, speed, get the app)",
+      "ok": true,
+      "seen": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      }
+    },
+    {
+      "name": "390: the download runs inside the Model step",
+      "ok": true,
+      "seen": true
+    },
+    {
+      "name": "390: the first chat answers",
+      "ok": true,
+      "seen": "The capital of France is Paris."
+    },
+    {
+      "name": "390: a returning visit opens on the chat",
+      "ok": true,
+      "seen": "composer-input"
+    },
+    {
+      "name": "deep link /settings before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "onboarding-welcome",
+        "path": "/onboarding"
+      }
+    },
+    {
+      "name": "deep link /documents before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "onboarding-welcome",
+        "path": "/onboarding"
+      }
+    },
+    {
+      "name": "deep link /chats before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "onboarding-welcome",
+        "path": "/onboarding"
+      }
+    },
+    {
+      "name": "deep link /vault before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "onboarding-welcome",
+        "path": "/onboarding"
+      }
+    },
+    {
+      "name": "deep link /onboarding/sealed before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "onboarding-model",
+        "path": "/onboarding/model"
+      }
+    },
+    {
+      "name": "the price list stays reachable before onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "web-price-pro",
+        "path": "/paywall"
+      }
+    }
+  ],
+  "widths": {
+    "390": {
+      "first": "onboarding-welcome",
+      "welcomeScroll": 0,
+      "step": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      },
+      "inStep": true,
+      "sealedProve": "Prove it: go offline and ask",
+      "answer": "The capital of France is Paris.",
+      "returning": "composer-input"
+    },
+    "1024": {
+      "first": "onboarding-welcome",
+      "welcomeScroll": 0,
+      "step": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      },
+      "inStep": true,
+      "sealedProve": "Prove it: go offline and ask",
+      "answer": "The capital of France is Paris.",
+      "returning": "composer-input"
+    },
+    "1440": {
+      "first": "onboarding-welcome",
+      "welcomeScroll": 0,
+      "step": {
+        "why": 1,
+        "speed": "~4-15 tok/s on your browser",
+        "languages": "Best in English, Chinese, Spanish, French and 5 more languages.",
+        "getApp": true,
+        "scroll": 0
+      },
+      "inStep": true,
+      "sealedProve": "Prove it: go offline and ask",
+      "answer": "The capital of France is Paris.",
+      "returning": "composer-input",
+      "modelGone": "download-door",
+      "modelGoneWhy": "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit.",
+      "modelGoneWelcome": 0,
+      "afterWipe": "onboarding-welcome",
+      "afterWipeStep": {
+        "useButton": 0,
+        "download": 1
+      }
+    }
+  },
+  "pageErrors": [],
+  "deepLinks": {
+    "/settings": {
+      "screen": "onboarding-welcome",
+      "path": "/onboarding"
+    },
+    "/documents": {
+      "screen": "onboarding-welcome",
+      "path": "/onboarding"
+    },
+    "/chats": {
+      "screen": "onboarding-welcome",
+      "path": "/onboarding"
+    },
+    "/vault": {
+      "screen": "onboarding-welcome",
+      "path": "/onboarding"
+    },
+    "/onboarding/sealed": {
+      "screen": "onboarding-model",
+      "path": "/onboarding/model"
+    },
+    "/paywall": {
+      "screen": "web-price-pro",
+      "path": "/paywall"
+    },
+    "/legal/privacy": {
+      "screen": null,
+      "path": "/legal/privacy"
+    }
+  },
+  "failed": []
+}
