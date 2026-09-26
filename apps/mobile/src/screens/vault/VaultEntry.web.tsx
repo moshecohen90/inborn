@@ -12,6 +12,7 @@ import { ModelOptions } from "../../web/ModelOptions";
 import { roomNoteParams } from "../../lib/modelSheetLines";
 import { GET_APP_URL } from "../../web/WebShell";
 import { storageEstimate, type StorageEstimate } from "../../web/opfs";
+import { ExtensionsSection } from "../../components/ExtensionsSection";
 
 import type { VaultEntryProps } from "./VaultEntry";
 
@@ -63,6 +64,7 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
         </Text>
       ) : null}
       {chrome ? null : <ModelOptions choices={boot.choices} currentId={boot.source?.id ?? null} onChoose={(id) => void switchTo(id)} theme={theme} open />}
+      {chrome ? null : <ExtensionsSection theme={theme} />}
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.web.fullVault")}</Text>
       {/* The only thing this screen can do for a browser reader is the filled button; closing is the aside (QA F252). */}
       <Actions>

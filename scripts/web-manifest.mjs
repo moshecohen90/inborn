@@ -13,10 +13,13 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 export const CATALOG_PATH = path.join(repoRoot, "packages/core/src/catalog/manifest.json");
+/** The extension registry (round 105): the one list of files fetched on demand, next to the catalog it mirrors. */
+export const EXTENSIONS_PATH = path.join(repoRoot, "packages/core/src/catalog/extensions.json");
 /** Where the file sits inside the dist, and the path the app fetches (modelDelivery.MANIFEST_URL). */
 export const MANIFEST_REL = "models/manifest.json";
 
 export const readCatalog = () => JSON.parse(readFileSync(CATALOG_PATH, "utf8"));
+export const readExtensions = () => JSON.parse(readFileSync(EXTENSIONS_PATH, "utf8")).extensions;
 
 /**
  * The catalog models a browser can actually install: a chat model, in one file, reachable over https and free.
@@ -41,22 +44,25 @@ export function webModel(model, url) {
 }
 
 /**
- * The files a browser installs next to a chat model, never offered as one: today the document index model, which the
- * web had no way to fetch, so an attached file was never read there (round 93). Old clients ignore the key.
+ * The files a browser installs next to a chat model, never offered as one: every extension of the registry (round
+ * 105), the document index model first and the photo projector second. Old clients ignore the key.
  */
-export function webCompanions(catalog = readCatalog()) {
-  return catalog.models.filter((m) => m.role === "embedding" && !m.parts && m.delivery.some((d) => d.kind === "https"));
+export function webCompanions(_catalog = readCatalog(), registry = readExtensions()) {
+  return registry;
 }
 
-export const webCompanion = (model, url) => ({ ...webModel(model, url), role: model.role });
+const ROLE_OF_KIND = { index: "embedding", vision: "vision", audio: "speech", ocr: "ocr" };
+
+/** One extension as the web manifest states it: `kind` drives the app, `role` stays for clients from round 93. */
+export const webCompanion = (ext, url) => ({ id: ext.id, kind: ext.kind, role: ROLE_OF_KIND[ext.kind] ?? ext.kind, name: ext.name ?? ext.id, file: ext.file, bytes: ext.bytes, sha256: ext.sha256, delivery: [{ kind: "cdn", url }] });
 
 const httpsPath = (m) => m.delivery.find((d) => d.kind === "https").path;
 
 /** The deployed catalog: every eligible model, fetched from `baseUrl` (the CDN that holds the GGUFs). */
-export function webManifest(baseUrl, catalog = readCatalog()) {
+export function webManifest(baseUrl, catalog = readCatalog(), registry = readExtensions()) {
   const base = baseUrl.replace(/\/$/, "");
   const models = webEligible(catalog).map((m) => webModel(m, `${base}/${httpsPath(m)}`));
-  const companions = webCompanions(catalog).map((m) => webCompanion(m, `${base}/${httpsPath(m)}`));
+  const companions = webCompanions(catalog, registry).map((e) => webCompanion(e, `${base}/${e.path}`));
   return { version: catalog.version, publishedAt: catalog.publishedAt, models, companions, signature: "" };
 }
 

@@ -190,6 +190,10 @@ export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: M
         </Pressable>
       )}
       <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.download.keepExplain")}</Text>
+      {/* F408: the first visit fetches the text model alone; extensions come when a photo or a file first needs one. */}
+      <Text testID="web-extensions-later" style={[styles.caption, { color: theme.text3 }]}>
+        {t("web.download.extensionsLater")}
+      </Text>
       {onContinue && !busy ? (
         <Pressable testID="start-chatting" accessibilityRole="button" onPress={onContinue} style={styles.textBtn}>
           <Text style={[styles.body, { color: theme.text2 }]}>{t("onboarding.model.start")}</Text>

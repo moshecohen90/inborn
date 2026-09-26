@@ -195,7 +195,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   const { t } = useTranslation();
   const { model, reason } = choice;
   /* "Good at" names the jobs the fit map rates best or good, plus photos, which no use case covers. */
-  const goodAt = goodAtUses(model, Platform.OS === "web" ? WEB_HERE : undefined).map((u) => (u === "photos" ? t("vault.details.vision") : t(`use.${u}`)));
+  const goodAt = goodAtUses(model, Platform.OS === "web" ? WEB_HERE : undefined).map((u) => (u === "photos" ? t(Platform.OS === "web" ? "vault.details.visionWeb" : "vault.details.vision") : t(`use.${u}`)));
   const tier = reason.languageTier;
   /* §9.9 keeps the sealed green for the seal: the language tier is a ladder of ink weight instead (QA F247). */
   const tierColor = tier === "native" ? theme.text : tier === "good" ? theme.text2 : tier === "none" ? theme.danger : theme.text3;
