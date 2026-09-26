@@ -1,0 +1,87 @@
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/ext-red/packages/core
+
+ ❯ test/catalog-extensions.test.ts (6 tests | 6 failed) 5ms
+   ❯ F406 · the extension registry (6)
+     × carries the document index first (kind index, words fallback) and the photo projector second (kind vision, no fallback) 2ms
+     × agrees with the signed catalog on file, size, hash and CDN path for every entry that is also a catalog model 1ms
+     × the projector is 204,987,232 bytes and at models.inbornapp.com/v1/ 0ms
+     × ships the projector inside the iOS and Android apps and nowhere else; the index ships nowhere 0ms
+     × matches an attachment by kind, MIME or file extension 0ms
+     × a third extension is one registry entry: it appears in every query and leaves again 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > carries the document index first (kind index, words fallback) and the photo projector second (kind vision, no fallback)
+TypeError: extensions is not a function
+ ❯ test/catalog-extensions.test.ts:25:12
+     23| describe("F406 · the extension registry", () => {
+     24|   it("carries the document index first (kind index, words fallback) an…
+     25|     expect(extensions().map((e) => [e.id, e.kind, e.fallback])).toEqua…
+       |            ^
+     26|       ["embed-e5", "index", "words"],
+     27|       ["vision-qwen35", "vision", null],
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > agrees with the signed catalog on file, size, hash and CDN path for every entry that is also a catalog model
+TypeError: extensions is not a function or its return value is not iterable
+ ❯ test/catalog-extensions.test.ts:32:23
+     30|
+     31|   it("agrees with the signed catalog on file, size, hash and CDN path …
+     32|     for (const ext of extensions()) {
+       |                       ^
+     33|       const m = BUNDLED_MANIFEST.models.find((x) => x.id === ext.id);
+     34|       expect(m, ext.id).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > the projector is 204,987,232 bytes and at models.inbornapp.com/v1/
+TypeError: findExtension is not a function
+ ❯ test/catalog-extensions.test.ts:41:15
+     39|
+     40|   it("the projector is 204,987,232 bytes and at models.inbornapp.com/v…
+     41|     const v = findExtension("vision-qwen35")!;
+       |               ^
+     42|     expect(v.bytes).toBe(204_987_232);
+     43|     expect(extensionUrl(v, BUNDLED_MANIFEST.baseUrl)).toBe("https://mo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > ships the projector inside the iOS and Android apps and nowhere else; the index ships nowhere
+TypeError: findExtension is not a function
+ ❯ test/catalog-extensions.test.ts:47:15
+     45|
+     46|   it("ships the projector inside the iOS and Android apps and nowhere …
+     47|     const v = findExtension("vision-qwen35")!;
+       |               ^
+     48|     const e5 = findExtension("embed-e5")!;
+     49|     expect(["ios", "android", "web", "desktop"].filter((p) => extensio…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > matches an attachment by kind, MIME or file extension
+TypeError: findExtension is not a function
+ ❯ test/catalog-extensions.test.ts:54:15
+     52|
+     53|   it("matches an attachment by kind, MIME or file extension", () => {
+     54|     const v = findExtension("vision-qwen35")!;
+       |               ^
+     55|     expect(extensionAppliesTo(v, { kind: "photo" })).toBe(true);
+     56|     expect(extensionAppliesTo(v, { kind: "document", mime: "image/png"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  test/catalog-extensions.test.ts > F406 · the extension registry > a third extension is one registry entry: it appears in every query and leaves again
+TypeError: registerExtension is not a function
+ ❯ test/catalog-extensions.test.ts:66:12
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  22:48:16
+   Duration  449ms (transform 77%, import 21%, tests 1%, worker 1%)
+

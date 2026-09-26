@@ -4,8 +4,8 @@
  * turn when there was one, else the headless measurement of the round (README, round 105).
  */
 export const PHOTO_MS_KEY = "inborn.vision.photoMs";
-/** Measured in headless Chromium on the M-series Mac of round 105, 1024 px photo, Instant + projector, WASM. */
-export const MEASURED_WASM_PHOTO_MS = 0;
+/** Headless Chromium on this round's Mac, 1024 px photo, Instant + projector, WASM with 2 threads: 76.9 s to the first token. */
+export const MEASURED_WASM_PHOTO_MS = 77_000;
 export const HINT_ABOVE_MS = 60_000;
 
 type T = (key: string, o?: Record<string, unknown>) => string;
