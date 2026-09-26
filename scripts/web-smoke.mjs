@@ -10,6 +10,8 @@
  *      900 MB free is offered Instant, the model that fits, with one line saying Fast does not (F13);
  *   5. an origin that answers the catalog with its own index.html (B1, 24.9.2026) lands on the catalog door with a
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
+ *   2c. F404: a deploy while a tab is open: one reload shows the new build (scripts/web-update-check.mjs), and a
+ *       running download gets the "new version is ready" line instead of a reload.
  *   1b. <html lang> in every locale (F384), and the passcode lock walked by keyboard and accessibility tree (F381);
  *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
  *      warnings: React only reports props it cannot put on an element in development builds (F371).
@@ -38,6 +40,7 @@ import os from "node:os";
 import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
 import { defaults, resolveFile, startServer } from "./serve-web.mjs";
+import { updateCheck } from "./web-update-check.mjs";
 
 const PROMPT = "What is the capital of France? Answer in one sentence.";
 const PROMPT_OFFLINE = "Name one planet of the solar system in one sentence.";
@@ -166,10 +169,31 @@ function noPageErrors(pageErrors, step) {
 /** Polls the captured console for the first line matching `re` (the line may already be there when the wait starts). */
 
 /* The door contexts (phone, no-space) never get past the door, so they arrive onboarded; the first visit walks S01-S05 itself. */
-const skipOnboarding = (ctx) =>
-  ctx.addInitScript(() => {
+/**
+ * An onboarded browser. `keep` also leaves one chat in IndexedDB, the returning visitor whose data a lost model must not
+ * cost the short path (F405); without it, nothing is kept and onboarding starts over.
+ */
+const skipOnboarding = (ctx, { keep = true } = {}) =>
+  ctx.addInitScript((withChat) => {
     if (!localStorage.getItem("inborn.prefs")) localStorage.setItem("inborn.prefs", JSON.stringify({ onboarded: true }));
-  });
+    if (!withChat || localStorage.getItem("inborn.smoke.kept")) return;
+    localStorage.setItem("inborn.smoke.kept", "1");
+    /* The app's schema (storage/web/idbRepository.ts, v3); this open is queued ahead of the app's own. */
+    const r = globalThis.indexedDB.open("inborn", 3);
+    r.onupgradeneeded = () => {
+      const db = r.result;
+      db.createObjectStore("chats", { keyPath: "id" });
+      const m = db.createObjectStore("messages", { keyPath: "seq", autoIncrement: true });
+      m.createIndex("byChat", "chatId", { unique: false });
+      m.createIndex("byId", "id", { unique: true });
+      m.createIndex("byChatSeq", ["chatId", "seq"], { unique: true });
+    };
+    r.onsuccess = () => {
+      const tx = r.result.transaction("chats", "readwrite");
+      tx.objectStore("chats").put({ id: "smoke-kept", title: "Kept chat", createdAt: 1, updatedAt: 1, modelId: "instant", incognito: false });
+      tx.oncomplete = () => r.result.close();
+    };
+  }, keep);
 
 async function waitForConsole(lines, re, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
@@ -859,6 +883,14 @@ try {
     result.offline = { skipped: "no sw.js in the served dist; run: corepack pnpm web:build" };
   }
 
+  /* 2c. F404: after a deploy, one reload shows the new build; mid-download the page offers the reload instead. */
+  if (hasServiceWorker) {
+    result.update = await updateCheck({ chromium: playwright.chromium, executablePath, dist: defaults.dist, outDir });
+    if (!result.update.ok) throw new Error(`the page did not hand over to the new build: ${JSON.stringify(result.update)}`);
+  } else {
+    result.update = { skipped: "no sw.js in the served dist" };
+  }
+
   /* 2b. F312: the reader takes another model. The vault lists what the door listed, the pick lands in the door, and
      the chat comes up on the model that was chosen — the second half of "default = recommended, choose a different one". */
   {
@@ -1141,6 +1173,21 @@ try {
     if (await page.getByTestId("onboarding-welcome").count()) throw new Error("an onboarded browser without its model is sent through the whole onboarding");
     await page.screenshot({ path: path.join(outDir, "web-smoke-model-gone.png"), fullPage: true });
     await fresh.close();
+    /* F405: onboarded weeks ago, the model gone and nothing kept: the whole onboarding again, from Welcome. */
+    const empty = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    await skipOnboarding(empty, { keep: false });
+    const emptyPage = await empty.newPage();
+    lastPage = emptyPage;
+    await emptyPage.goto(server.url);
+    await emptyPage.getByTestId("onboarding-welcome").waitFor({ timeout: 60_000 });
+    out.nothingKept = { onboarded: await emptyPage.evaluate(() => JSON.parse(localStorage.getItem("inborn.prefs") ?? "{}").onboarded) };
+    if (out.nothingKept.onboarded !== false) throw new Error("a browser with nothing kept restarted onboarding without clearing the flag");
+    await emptyPage.getByTestId("onboarding-continue").click();
+    await emptyPage.getByTestId("download-model").waitFor({ timeout: 60_000 });
+    out.nothingKept.next = new URL(emptyPage.url()).pathname;
+    if (out.nothingKept.next !== "/onboarding/model") throw new Error(`Welcome led to ${out.nothingKept.next}, not the onboarding Model step`);
+    await emptyPage.screenshot({ path: path.join(outDir, "web-smoke-nothing-kept.png") });
+    await empty.close();
   }
   /* 6b. Round 103: deep links wait for onboarding; the price list does not (F293). */
   {
@@ -1233,8 +1280,10 @@ const f = result.first;
 const o = result.offline;
 console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · context ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
 if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · context ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
+if (result.update.ok) console.log(`PASS: one reload after a deploy shows the new build (first paint ${result.update.idle.firstPaint}, then ${result.update.idle.after}); mid-download the "new version" line shows and its Refresh lands on ${result.update.busy.after}`);
 console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
-console.log(`PASS: onboarded without the model, the Model step alone: "${result.paywallWithoutModel.modelGone}"`);
+console.log(`PASS: onboarded without the model, chats kept: the Model step alone: "${result.paywallWithoutModel.modelGone}"`);
+console.log(`PASS: onboarded without the model, nothing kept: Welcome -> ${result.paywallWithoutModel.nothingKept.next} (F405)`);
 console.log(`PASS: deep links before onboarding: ${Object.entries(result.deepLinks).map(([k, v]) => `${k} -> ${v}`).join(", ")}`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);

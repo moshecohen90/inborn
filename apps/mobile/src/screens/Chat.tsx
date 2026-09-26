@@ -126,6 +126,7 @@ import { useEntitlement, useLicence } from "../licence";
 import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sniffPicked, useDocumentContext, useDocuments } from "../documents";
 import { deviceNoun } from "../lib/deviceNoun";
 import { useAppServices } from "../services/AppServices";
+import { useUpdateHold } from "../web/updateHold";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
@@ -230,6 +231,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [draft, setDraft] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  useUpdateHold(busy);
   const [liveTps, setLiveTps] = useState(0);
   const [tokenScale, setTokenScale] = useState(1);
   const [summarizing, setSummarizing] = useState(false);
