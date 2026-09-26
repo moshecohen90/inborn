@@ -6150,6 +6150,43 @@ Web recheck 3 found both. Evidence: `docs/qa/fix-modal-esc/`.
 - **Gates.** `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
   `pn check:store` pass. Test counts: 966 core, 1092 mobile, 24 i18n, 23 ui.
 
+## Fixes round 103: the web starts with onboarding, and the download is its Model step (branch `web-onboarding-first`) — 26.9.2026
+
+Moshe (26.9) opened the web app in a fresh browser and the first screen was "Download Fast to this browser": "I want
+the whole app experience from the start." Round 66 put the download door in front of every chat route whenever no
+model was stored, so a first visit met a 1.3 GB offer before the app had said a word. Evidence: `docs/qa/web-onboarding-first/`.
+
+- **F403: a first visit is the phone's onboarding.** The browser opens on Welcome, in the 480 px card at 760 px and
+  up and the phone layout below. The Model step on the web is the model offer (`web/ModelOffer.tsx`, formerly the
+  door inside `WebShell.tsx`): recommendation and why, speed, languages, free space, the Safari note, the other models
+  folded, and the download with its progress card and F349 errors, all inside the step (`web/ModelStep.tsx`). The
+  verified file reloads the page onto Sealed, because the engine is picked once per page load. Sealed (with the
+  round 96 wording) and Lock follow as on the phone, then the first chat. The "Get the app" strip stays on top.
+- **One routing rule** (`webRoute` in `web/doorRoutes.ts`). Before onboarding, deep links such as /settings or
+  /documents go to onboarding, and Sealed and Lock wait for a model. The price list, the legal texts and the proof
+  stay readable (F293). After onboarding, a visit with a model opens on the chat as before. If the model is gone, the
+  Model step comes back alone with one line saying why (`web.modelGone`, 8 locales plus pseudo). The phone door and
+  the catalog door are unchanged.
+- **One list** (round 66 invariant). The onboarding step and the offer a returning reader meets are the same
+  component over `WebBoot.choices`, and `web:smoke` checks that their model lists match. The web-only card path in
+  `ModelChoice.tsx` (`webStepModels`, `webChooseModel`) is gone; phones and the desktop shell keep the vault cards.
+- **A wipe reloads on the web.** The web boot reads the catalog and OPFS once per page, so a wipe with models used
+  to reach onboarding with stale "stored" state. It now lands on Welcome through a full load, and the step offers
+  the download again. Because the wipe also resets onboarding (§5.7), the "Model step alone" path is proven by
+  deleting the OPFS model while the settings stay, as Safari's eviction would.
+- **Red first.** On origin/main (`before-*.png`, `red.txt`), the first screen at 1440 and 390 is `download-door`,
+  and /settings, /documents, /chats and /vault open without onboarding. The new `doorRoutes` tests fail on main
+  (`red-unit.txt`). After (`after-*.png`, `green.txt`), at 1440, 1024 and 390: Welcome → Model step with the download
+  running inside it → Sealed → Lock → the first chat answers "The capital of France is Paris." A reload opens on the
+  chat. The OPFS model deleted gives the Model step alone with the line. The wipe with models ends on Welcome. Deep
+  links go to /onboarding. There are no page errors and no horizontal scroll. Driver: `probe.mjs`.
+- **web:smoke** pass 1 now walks Welcome → Model (the offer checks, the width sweep, the download with cancel and
+  resume) → Sealed → Lock → chat. Pass 6 asserts the line on the Model step alone. The new pass 6b checks deep links
+  before onboarding. Pass 7, the development export, walks the same new order.
+
+Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` (`web-smoke.txt`)
+and `pn check:store` pass. Test counts: 966 core, 1099 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

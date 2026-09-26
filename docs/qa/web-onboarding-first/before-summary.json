@@ -1,0 +1,110 @@
+{
+  "base": "http://127.0.0.1:8803",
+  "checks": [
+    {
+      "name": "1440: the first screen of a first visit is Welcome",
+      "ok": false,
+      "seen": "download-door"
+    },
+    {
+      "name": "390: the first screen of a first visit is Welcome",
+      "ok": false,
+      "seen": "download-door"
+    },
+    {
+      "name": "deep link /settings before onboarding lands on onboarding",
+      "ok": false,
+      "seen": {
+        "screen": null,
+        "path": "/settings"
+      }
+    },
+    {
+      "name": "deep link /documents before onboarding lands on onboarding",
+      "ok": false,
+      "seen": {
+        "screen": "download-door",
+        "path": "/documents"
+      }
+    },
+    {
+      "name": "deep link /chats before onboarding lands on onboarding",
+      "ok": false,
+      "seen": {
+        "screen": "download-door",
+        "path": "/chats"
+      }
+    },
+    {
+      "name": "deep link /vault before onboarding lands on onboarding",
+      "ok": false,
+      "seen": {
+        "screen": null,
+        "path": "/vault"
+      }
+    },
+    {
+      "name": "deep link /onboarding/sealed before onboarding lands on onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "download-door",
+        "path": "/onboarding/sealed"
+      }
+    },
+    {
+      "name": "the price list stays reachable before onboarding",
+      "ok": true,
+      "seen": {
+        "screen": "web-price-pro",
+        "path": "/paywall"
+      }
+    }
+  ],
+  "widths": {
+    "390": {
+      "first": "download-door"
+    },
+    "1440": {
+      "first": "download-door"
+    }
+  },
+  "pageErrors": [],
+  "deepLinks": {
+    "/settings": {
+      "screen": null,
+      "path": "/settings"
+    },
+    "/documents": {
+      "screen": "download-door",
+      "path": "/documents"
+    },
+    "/chats": {
+      "screen": "download-door",
+      "path": "/chats"
+    },
+    "/vault": {
+      "screen": null,
+      "path": "/vault"
+    },
+    "/onboarding/sealed": {
+      "screen": "download-door",
+      "path": "/onboarding/sealed"
+    },
+    "/paywall": {
+      "screen": "web-price-pro",
+      "path": "/paywall"
+    },
+    "/legal/privacy": {
+      "screen": null,
+      "path": "/legal/privacy"
+    }
+  },
+  "failed": [
+    "1440: the first screen of a first visit is Welcome",
+    "390: the first screen of a first visit is Welcome",
+    "deep link /settings before onboarding lands on onboarding",
+    "deep link /documents before onboarding lands on onboarding",
+    "deep link /chats before onboarding lands on onboarding",
+    "deep link /vault before onboarding lands on onboarding"
+  ]
+}

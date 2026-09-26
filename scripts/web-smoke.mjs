@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
  * Headless proof of the browser tier (spec §4.4, §14.3), against the deployable build when apps/web/dist exists:
- *   1. first visit: the download door → download into OPFS (cancel + Range resume on the way) → onboarding S01-S05
- *      (F40: the model step used to crash the page) → wllama loads from OPFS → one prompt;
+ *   1. first visit: onboarding S01 Welcome → S02 Model, which is the browser's model offer, and the download into OPFS
+ *      runs inside it (cancel + Range resume on the way) → S04 Sealed → S05 Lock (round 103: the first screen used to
+ *      be the download door; F40: the model step used to crash the page) → wllama loads from OPFS → one prompt;
  *   2. second visit with the network cut (Playwright setOffline): the service worker boots the page, the model comes from OPFS, chat works;
  *   3. a phone viewport shows the "get the app" door;
  *   4. a browser reporting almost no quota gets the "not enough space" state with the download disabled; one with
@@ -175,30 +176,18 @@ async function waitForConsole(lines, re, timeoutMs) {
 }
 
 /**
- * S01 Welcome -> S02 model -> S04 sealed -> S05 lock -> chat (spec §8.1). Round 36 took the airplane test out of the
- * onboarding chain: it lives on S50 Proof, which is the screen that proves things (F122).
- * F40 (22.9.2026) died on the very first click here: the model step pulled llama.rn's TurboModule into the browser
- * bundle. The old smoke set `onboarded` and never opened these screens, so the gate stayed green through the bug.
+ * S04 sealed -> S05 lock -> chat (spec §8.1), after the Model step's download reloaded the page onto Sealed. Round 36
+ * took the airplane test out of the onboarding chain: it lives on S50 Proof, which is the screen that proves things (F122).
+ * F40 (22.9.2026) died on the very first click of onboarding; the old smoke set `onboarded` and never opened these screens.
  */
-async function walkOnboarding(page, out, pageErrors) {
-  const steps = [];
+async function finishOnboarding(page, steps, pageErrors) {
   const step = async (screen, action) => {
-    await page.getByTestId(screen).waitFor({ timeout: 60_000 });
+    await page.getByTestId(screen).waitFor({ timeout: LOAD_TIMEOUT_MS });
     noPageErrors(pageErrors, screen);
     steps.push(screen);
     await action();
     noPageErrors(pageErrors, `${screen} (after the click)`);
   };
-  await step("onboarding-welcome", () => page.getByTestId("onboarding-continue").click());
-  await step("onboarding-model", async () => {
-    out.modelStepOptions = (await page.getByTestId("model-options").textContent()) ?? "";
-    /* F312: the step reads the web boot's list, so it offers exactly what the door offers — no more, no fewer. */
-    out.modelStepIds = await page.locator('[data-testid^="model-option-"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-testid").replace("model-option-", "")));
-    if (out.modelStepIds.join() !== out.doorOptionIds.join()) throw new Error(`the model step offers ${out.modelStepIds.join(", ")} but the door offers ${out.doorOptionIds.join(", ")}`);
-    out.screenshotOnboarding = path.join(outDir, "web-smoke-onboarding.png");
-    await page.screenshot({ path: out.screenshotOnboarding });
-    await page.getByTestId("start-chatting").click();
-  });
   await step("onboarding-sealed", async () => {
     const start = page.getByTestId("sealed-start");
     await start.waitFor({ timeout: 30_000 });
@@ -207,7 +196,7 @@ async function walkOnboarding(page, out, pageErrors) {
     await start.click();
   });
   await step("onboarding-lock", () => page.getByTestId("lock-start").click());
-  out.onboarding = steps;
+  return steps;
 }
 
 /** The ids the door's option list offers, in its own order. */
@@ -569,7 +558,7 @@ try {
   browser = await playwright.chromium.launch({ headless: true, executablePath });
   const context = await browser.newContext({ viewport: { width: 1180, height: 800 } });
 
-  /* 1. First visit: download door → OPFS → onboarding S01-S05 → wllama → chat. */
+  /* 1. First visit: Welcome → Model (the offer, the download into OPFS) → Sealed → Lock → wllama → chat. */
   {
     const page = await context.newPage();
     const { consoleLines, pageErrors, hosts, requests } = observe(page);
@@ -582,7 +571,19 @@ try {
     out.catalog = { status: manifest.status(), type: manifest.headers()["content-type"] ?? "", models: (await manifest.json()).models.map((m) => m.id) };
     if (!/\bjson\b/i.test(out.catalog.type) || out.catalog.models.length === 0) throw new Error(`the origin does not serve a model catalog: ${JSON.stringify(out.catalog)}`);
     await page.goto(server.url);
-    await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    /* Round 103 (Moshe, 26.9): a fresh browser opens on the app's own first run, not on a download. */
+    const steps = [];
+    await page.getByTestId("onboarding-welcome").waitFor({ timeout: 60_000 });
+    if (await page.getByTestId("download-door").count()) throw new Error("the first visit shows the download offer before Welcome");
+    noPageErrors(pageErrors, "onboarding-welcome");
+    steps.push("onboarding-welcome");
+    await page.screenshot({ path: path.join(outDir, "web-smoke-welcome.png") });
+    await page.getByTestId("onboarding-continue").click();
+    await page.getByTestId("onboarding-model").waitFor({ timeout: 60_000 });
+    noPageErrors(pageErrors, "onboarding-model");
+    steps.push("onboarding-model");
+    /* F312: the step is the model offer itself, so it cannot list anything the vault or the Model sheet would not. */
+    if ((await page.getByTestId("onboarding-model").getByTestId("download-door").count()) !== 1) throw new Error("the Model step does not carry the browser's model offer");
     out.gateText = (await page.getByTestId("web-strip").textContent()) ?? "";
     /* F311: what the door offers first is the recommendation for THIS browser, and the others are one tap below it. */
     if ((await page.getByTestId("web-download-why").count()) === 0) throw new Error("the door offered a model without saying it is the recommended one");
@@ -594,7 +595,7 @@ try {
     out.doorOptionIds = [await offeredId(page, out.catalog.models), ...out.doorOtherIds];
     if (out.doorOtherIds.length !== out.catalog.models.length - 1) throw new Error(`the door listed ${out.doorOtherIds.length} other models of ${out.catalog.models.length - 1} in the catalog`);
     await page.screenshot({ path: path.join(outDir, "web-smoke-door.png"), fullPage: true });
-    /* §14.9 for the screen the round changed: the door with its option list open, at all four widths, before a byte moves. */
+    /* §14.9: the Model step with its option list open, at every width, before a byte moves. */
     out.doorLayout = {};
     for (const width of REQUIRED_WIDTHS) {
       await page.setViewportSize({ width, height: 900 });
@@ -602,7 +603,7 @@ try {
       await page.screenshot({ path: shot, fullPage: true });
       const m = await measureLayout(page);
       out.doorLayout[width] = { scrollWidth: m.scrollWidth, clientWidth: m.clientWidth, screenshot: shot };
-      if (m.scrollWidth > m.clientWidth + 1) throw new Error(`the download door at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
+      if (m.scrollWidth > m.clientWidth + 1) throw new Error(`the Model step at ${width}: the page is ${m.scrollWidth}px wide in a ${m.clientWidth}px window`);
     }
     await page.setViewportSize({ width: 1180, height: 800 });
     out.storageBefore = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
@@ -619,8 +620,8 @@ try {
         await resume.click();
       }
     }
-    /* The door reloads the page once the file is in OPFS; onboarding is what the reloaded app opens on. */
-    await walkOnboarding(page, out, pageErrors);
+    /* The step reloads the page onto Sealed once the file is in OPFS: the engine is picked once per page load. */
+    out.onboarding = await finishOnboarding(page, steps, pageErrors);
     await waitForEngine(page, out, consoleLines, t0);
     out.downloadedFile = `/models/${out.doorOptionIds[0]}.gguf`;
     out.downloadRequests = requests.filter((r) => r.includes(out.downloadedFile));
@@ -842,6 +843,10 @@ try {
     out.door = (await page.getByTestId("download-door").textContent()) ?? "";
     out.doorOffers = await offeredId(page, result.first.catalog.models);
     if (out.doorOffers !== out.chosen) throw new Error(`chose ${out.chosen} and the door offered ${out.doorOffers}`);
+    /* One list (F312): the offer a returning reader meets holds exactly what the onboarding step held. */
+    out.doorIds = [out.doorOffers, ...(await chooseIds(page))].sort();
+    if (out.doorIds.join() !== [...result.first.doorOptionIds].sort().join()) throw new Error(`the offer lists ${out.doorIds.join(", ")} and the Model step listed ${result.first.doorOptionIds.join(", ")}`);
+    if (await page.getByTestId("model-gone-why").count()) throw new Error("a model the reader chose is described as cleared by the browser");
     await page.getByTestId("download-model").click();
     await waitForEngine(page, out, consoleLines, t0);
     out.modelChip = ((await page.getByTestId("model-chip").textContent()) ?? "").trim();
@@ -1043,10 +1048,32 @@ try {
     for (const [tier, text] of [["pro", out.pro], ["work", out.work]]) {
       if (!/\d/.test(text)) throw new Error(`the ${tier} price is not on the page without a model: "${text}"`);
     }
-    /* The chat is the screen that needs the model: the same browser must still meet the door there. */
+    /* The chat is the screen that needs the model: the same browser, onboarded, meets the Model step alone there,
+       with the one line saying why it is back (round 103), and not the whole onboarding again. */
     await page.goto(server.url);
     await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
+    out.modelGone = ((await page.getByTestId("model-gone-why").textContent({ timeout: 5_000 }).catch(() => "")) ?? "").trim();
+    if (!out.modelGone) throw new Error("an onboarded browser without its model is not told why the download is back");
+    if (await page.getByTestId("onboarding-welcome").count()) throw new Error("an onboarded browser without its model is sent through the whole onboarding");
+    await page.screenshot({ path: path.join(outDir, "web-smoke-model-gone.png"), fullPage: true });
     await fresh.close();
+  }
+  /* 6b. Round 103: deep links wait for onboarding; the price list does not (F293). */
+  {
+    const first = await browser.newContext({ viewport: { width: 1180, height: 800 } });
+    const page = await first.newPage();
+    lastPage = page;
+    const out = (result.deepLinks = {});
+    for (const p of ["/documents", "/settings"]) {
+      await page.goto(new URL(p, server.url).href);
+      await page.getByTestId("onboarding-welcome").waitFor({ timeout: 60_000 });
+      out[p] = new URL(page.url()).pathname;
+      if (out[p] !== "/onboarding") throw new Error(`${p} before onboarding landed on ${out[p]}`);
+    }
+    await page.goto(new URL("/paywall", server.url).href);
+    await page.getByTestId("web-price-pro").waitFor({ timeout: 60_000 });
+    out["/paywall"] = new URL(page.url()).pathname;
+    await first.close();
   }
   /* 7. F371: the development export. React names the props it cannot put on an element only here, and LogBox turns
      each one into a red toast over the composer plus a POST /symbolicate that this static host answers 405. */
@@ -1068,13 +1095,11 @@ try {
       const out = (result.dev = { dist: DEV_DIST });
       const t0 = Date.now();
       await page.goto(devServer.url);
-      await page.getByTestId("download-door").waitFor({ timeout: 60_000 });
-      await page.getByTestId("download-model").click();
-      await page.getByTestId("onboarding-welcome").waitFor({ timeout: LOAD_TIMEOUT_MS });
+      await page.getByTestId("onboarding-welcome").waitFor({ timeout: 60_000 });
       await page.getByTestId("onboarding-continue").click();
-      await page.getByTestId("start-chatting").click();
+      await page.getByTestId("download-model").click();
       const start = page.getByTestId("sealed-start");
-      await start.waitFor({ timeout: 60_000 });
+      await start.waitFor({ timeout: LOAD_TIMEOUT_MS });
       for (let i = 0; i < 100 && (await start.isDisabled()); i++) await new Promise((r) => setTimeout(r, 100));
       await start.click();
       await page.getByTestId("lock-start").click();
@@ -1125,6 +1150,8 @@ const o = result.offline;
 console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · context ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
 if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · context ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
 console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
+console.log(`PASS: onboarded without the model, the Model step alone: "${result.paywallWithoutModel.modelGone}"`);
+console.log(`PASS: deep links before onboarding: ${Object.entries(result.deepLinks).map(([k, v]) => `${k} -> ${v}`).join(", ")}`);
 console.log(`PASS: vault door "${f.vaultDoor}"`);
 console.log(`PASS: phone door "${result.phone.door}"`);
 console.log(`PASS: no-space door "${result.noSpace.text}"`);
@@ -1132,7 +1159,7 @@ console.log(`PASS: 900 MB free leads with the model that fits: "${result.roomFor
 console.log(`PASS: catalog ${result.first.catalog.type} · models ${result.first.catalog.models.join(", ")}`);
 console.log(`PASS: no React Native prop on the DOM, composer icons aria-hidden (${f.a11yProps.icons.map((i) => i.id).join(", ")})`);
 if (result.dev.skipped) console.log(`SKIP: development export pass (${result.dev.skipped})`);
-else console.log(`PASS: development export walked door -> onboarding -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
+else console.log(`PASS: development export walked onboarding (download in the Model step) -> chat with 0 React warnings, 0 LogBox reports (${result.dev.failedRequests.length} failed requests: ${result.dev.failedRequests.join(", ") || "none"})`);
 console.log(`PASS: broken catalog door "${result.brokenCatalog.text}"`);
 console.log(`PASS: attached .txt answered on the word search with SOURCES "${result.attach.txt.sources}"; .pdf answered ${result.attach.indexModelServed ? "after installing the index model from this host" : "on the word search (no index model served)"} with SOURCES "${result.attach.pdf.sources}"; in the next page load the .txt row reads "${result.attach.txtRowNextVisit}" and answers again with SOURCES "${result.attach.txtAgain.sources}"${result.attach.txtAgain.wordsOnly ? " (words only)" : " by meaning"}`);
 for (const screen of LAYOUT_SCREENS) {
