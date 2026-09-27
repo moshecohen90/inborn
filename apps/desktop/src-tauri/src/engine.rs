@@ -73,6 +73,14 @@ pub struct GenOpts {
   /// Filled by `sampling()` in @inborn/core; absent means llama.cpp's own "off" (1.0 / 0).
   pub repeat_penalty: Option<f32>,
   pub repeat_last_n: Option<i32>,
+  /// DRY and presence/frequency (F414), also filled by `sampling()`; absent means off.
+  pub dry_multiplier: Option<f32>,
+  pub dry_base: Option<f32>,
+  pub dry_allowed_length: Option<i32>,
+  pub dry_penalty_last_n: Option<i32>,
+  pub dry_sequence_breakers: Option<Vec<String>>,
+  pub presence_penalty: Option<f32>,
+  pub frequency_penalty: Option<f32>,
   pub stop: Option<Vec<String>>,
   pub reasoning: Option<bool>,
 }
@@ -344,15 +352,31 @@ fn render_prompt(loaded: &Loaded, messages: &[WireMessage], reasoning: bool) -> 
   }
 }
 
-fn sampler(opts: &GenOpts, n_vocab: i32) -> LlamaSampler {
-  let penalties = LlamaSampler::penalties(n_vocab, opts.repeat_last_n.unwrap_or(0), opts.repeat_penalty.unwrap_or(1.0), 0.0, 0.0);
+fn sampler(opts: &GenOpts, model: &LlamaModel) -> LlamaSampler {
+  let penalties = LlamaSampler::penalties(
+    model.n_vocab(),
+    opts.repeat_last_n.unwrap_or(0),
+    opts.repeat_penalty.unwrap_or(1.0),
+    opts.frequency_penalty.unwrap_or(0.0),
+    opts.presence_penalty.unwrap_or(0.0),
+  );
+  /* llama.cpp's common sampler order: penalties, DRY, then the truncation samplers. */
+  let dry = LlamaSampler::dry(
+    model,
+    opts.dry_multiplier.unwrap_or(0.0),
+    opts.dry_base.unwrap_or(1.75),
+    opts.dry_allowed_length.unwrap_or(2),
+    opts.dry_penalty_last_n.unwrap_or(4096),
+    opts.dry_sequence_breakers.clone().unwrap_or_default(),
+  );
   let temperature = opts.temperature.unwrap_or(0.7);
   if temperature <= 0.0 {
-    return LlamaSampler::chain_simple([penalties, LlamaSampler::greedy()]);
+    return LlamaSampler::chain_simple([penalties, dry, LlamaSampler::greedy()]);
   }
   let seed = rand::random::<u32>();
   LlamaSampler::chain_simple([
     penalties,
+    dry,
     LlamaSampler::top_k(40),
     LlamaSampler::top_p(opts.top_p.unwrap_or(0.9), 1),
     LlamaSampler::min_p(0.05, 1),
@@ -453,7 +477,7 @@ fn generate(loaded: &mut Loaded, messages: &[WireMessage], opts: &GenOpts, chann
     pos += chunk.len() as i32;
   }
 
-  let mut sampler = sampler(opts, loaded.model.n_vocab());
+  let mut sampler = sampler(opts, &loaded.model);
   let mut decoder = encoding_rs::UTF_8.new_decoder();
   let mut parser = ThinkParser::new();
   let mut deltas: Vec<Delta> = Vec::new();
@@ -635,5 +659,18 @@ mod tests {
     let opts: GenOpts = serde_json::from_str(r#"{"maxTokens":224,"temperature":0.7,"topP":0.9,"repeatPenalty":1.1,"repeatLastN":64}"#).unwrap();
     assert_eq!(opts.repeat_penalty, Some(1.1));
     assert_eq!(opts.repeat_last_n, Some(64));
+  }
+
+  #[test]
+  fn reads_dry_and_presence_the_webview_sends() {
+    let opts: GenOpts = serde_json::from_str(
+      r#"{"dryMultiplier":0.8,"dryBase":1.75,"dryAllowedLength":2,"dryPenaltyLastN":4096,"drySequenceBreakers":["\n",":"],"presencePenalty":0.15,"frequencyPenalty":0.05}"#,
+    )
+    .unwrap();
+    assert_eq!(opts.dry_multiplier, Some(0.8));
+    assert_eq!(opts.dry_penalty_last_n, Some(4096));
+    assert_eq!(opts.dry_sequence_breakers, Some(vec!["\n".to_string(), ":".to_string()]));
+    assert_eq!(opts.presence_penalty, Some(0.15));
+    assert_eq!(opts.frequency_penalty, Some(0.05));
   }
 }

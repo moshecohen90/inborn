@@ -1,5 +1,6 @@
 /** Repetition guard (§10.5 #39, F369): a small model that starts looping is stopped, cut back to its first copy, and offered "Regenerate". */
-import type { Delta } from "../llm/types";
+import type { Delta, GenOpts, Usage } from "../llm/types";
+import { continuationSeparator } from "./join";
 
 export interface LoopHit {
   /** The repeated unit, whitespace collapsed. */
@@ -26,6 +27,24 @@ const LETTER = /\p{L}/u;
 /** Copies of a requested repetition allowed when the ask names no count. */
 const ASKED_CAP = 10;
 const COUNT_CAP = 100;
+/** F415: a unit this long is a phrase, and its second copy in a row is already a loop the user must not see. */
+const LONG_UNIT = 12;
+/** CJK, kana and Hangul carry a token or more per character, so six of them (three or more wide) are a phrase too. */
+const WIDE_UNIT = 6;
+const WIDE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+/** The tail rule looks this far back, so a repeated paragraph of up to half of it is caught. */
+const TAIL_WINDOW = 800;
+/** A match this short at the end is withheld without checks: it costs the reader one token of latency at most. */
+const QUICK_HOLD = 3;
+/** A sentence or line this long that the answer already said, word for word, is a loop even when something came between. */
+const SEGMENT_MIN = 24;
+const SEGMENT_TAIL = /[\s.!?。！？．…]+$/u;
+const LIST_SEPARATOR = /[,،、，;；・]/u;
+const WORD = /[\p{L}\p{N}\p{M}]/u;
+/** A name runs on past these (ベネチア・コルポ・クラブ・ソープ, Saint-Exupéry), so a copy followed by one is not whole. */
+const JOINER = /[・·‧'’_\-‐‑]/u;
+/* JSON fields, table rows and code lines repeat as data ("author": "George Orwell" for two of his books). */
+const DATA_LINE = /^\s*[[{|<]|"[^"\n]*"\s*:|[,;{[(]\s*$/u;
 
 export interface LoopContext {
   /** The user's own message for this answer: repetition they asked for is not a loop (F389). */
@@ -51,6 +70,9 @@ const NUM = `\\d{1,3}|${Object.keys(NUMBER_WORDS).sort((a, b) => b.length - a.le
 /* "five times", "3 lines", "fünfmal", "cinco veces", "5回", "다섯 번", "五遍". */
 const COUNTED = new RegExp(`(?<![\\p{Script=Latin}\\d])(${NUM})[ \\-]?(?:x\\b|×|times\\b|lines\\b|copies\\b|mal\\b|zeilen\\b|veces\\b|l[ií]neas\\b|fois\\b|lignes\\b|vezes\\b|linhas\\b|回|遍|次|行|번|줄)`, "iu");
 const ASKED = /\b(?:repeat|over and over|chorus|refrain|lyrics|each on its own line|one per line|wiederhol|liedtext|repit|estribillo|coro\b|letra|r[ée]p[èée]t|paroles|repet|refr[ãa]o)|繰り返|くりかえ|リフレイン|サビ|歌詞|반복|후렴|가사|重複|重复|副歌|歌词|每遍|每行/iu;
+
+/* A poem or a song may double a line ("Glory, glory, hallelujah!" twice); two copies of a line are allowed there, never more. */
+const VERSE = /\b(?:poem|song|hymn|verse|lullaby|gedicht|lied\b|canci[oó]n|poema|chanson|po[eè]me|can[çc][aã]o)|詩|歌|童謡|노래|동시/iu;
 
 /** Whether the user asked for repetition (repeat N times, write N lines, a chorus), in the 8 app locales. */
 export function repetitionRequest(request: string): RepetitionRequest {
@@ -211,6 +233,205 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
   return { unit, repeats: copies, start: at[start]!, keep: at[keepAt]! };
 }
 
+/** What the tail rule found at the end of a streamed answer (F415). */
+export interface TailCheck {
+  /** UTF-16 code units at the end of the text to keep off screen for now: they may be the start of a copy. */
+  hold: number;
+  /** A copy past what is allowed was completed; `keep` ends the last allowed copy. */
+  hit: LoopHit | null;
+}
+
+/** Copies of the unit s[a, a + p) the user asked for, or 0 when the ask names none for it. */
+function askedCopies(s: string[], a: number, p: number, request: string, ask: RepetitionRequest): number {
+  if (!request) return 0;
+  const unit = s.slice(a, a + p);
+  for (let r = 0; r < p; r++) {
+    const rot = flat([...unit.slice(r), ...unit.slice(0, r)].join(""));
+    if (rot.length >= MIN_UNIT / 2 && request.includes(rot)) return ask.count ?? ASKED_CAP;
+  }
+  if (ask.asked && (ask.count !== undefined || unit.includes("\n"))) return ask.count ?? ASKED_CAP;
+  return 0;
+}
+
+let repeatsMemo: { request: string; copies: number } | null = null;
+/**
+ * The most back-to-back copies of any phrase in the user's own text ("Merrily, merrily, merrily, merrily"): a translation
+ * or rewrite of it repeats as often, in words the request does not contain. 1 when the text repeats nothing.
+ */
+export function requestRepeats(request: string): number {
+  if (repeatsMemo?.request === request) return repeatsMemo.copies;
+  const s = Array.from(flat(request));
+  let copies = 1;
+  for (let p = 4; p <= Math.min(200, Math.floor(s.length / 2)); p++) {
+    let j = 0;
+    while (j + p < s.length) {
+      if (s[j] !== s[j + p]) {
+        j++;
+        continue;
+      }
+      const a = j;
+      while (j + p < s.length && s[j] === s[j + p]) j++;
+      /* The last copy of a phrase often lacks its separator ("merrily, merrily"). */
+      const c = Math.floor((j - a + p + 1) / p);
+      if (c > copies && s.slice(a, a + p).some((x) => LETTER.test(x))) copies = c;
+    }
+  }
+  repeatsMemo = { request, copies };
+  return copies;
+}
+
+/**
+ * The tail rule (F415): a unit of 12 or more code points (6 when three of them are CJK, kana or Hangul) followed by the
+ * start of a second copy is held back from the screen while the copy streams; once the second copy is complete it is a
+ * loop, and `keep` ends the first copy, so the user sees the text once. Units of 8-11 code points get one copy more.
+ * Repetition the user asked for keeps the copies asked for. Every end offset from `from` (UTF-16) on is checked, so a
+ * copy completed mid-chunk is not missed; `final` is the end of the answer, where a copy's separator never arrives.
+ */
+export function tailLoop(text: string, context: LoopContext = {}, from = 0, final = false): TailCheck {
+  if (!text) return { hold: 0, hit: null };
+  const request = context.request ? flat(context.request) : "";
+  const ask = request ? repetitionRequest(context.request!) : { asked: false };
+  const verse = request ? VERSE.test(context.request!) : false;
+  const source = request ? requestRepeats(context.request!) : 1;
+  const { cps: s, at } = normalize(text);
+  const n = s.length;
+  const code = codeSpans(text);
+  const inCode = (a: number, b: number) => code.some(([x, y]) => at[a]! < y && at[b]! > x);
+  interface Verdict {
+    /** Copies that may stand in a row before it is a loop. */
+    allowed: number;
+    /** Copies the answer keeps when it is: one, unless the user, the source text or a refrain asked for more. */
+    kept: number;
+  }
+  const verdicts = new Map<string, Verdict | null>();
+  /* What the unit s[a, a + p) may do, or null when it can never be a loop here. */
+  const verdictAt = (a: number, p: number, end: number): Verdict | null => {
+    const key = `${a}:${p}`;
+    const known = verdicts.get(key);
+    if (known !== undefined) return known;
+    let verdict: Verdict | null = null;
+    const unit = s.slice(a, a + p);
+    const wide = unit.filter((c) => WIDE.test(c)).length;
+    const long = p >= LONG_UNIT || (p >= WIDE_UNIT && wide >= 3);
+    let primitive = true;
+    for (let q = 1; q < p && primitive; q++) if (periodic(s, a, Math.min(end - a, 2 * p), q)) primitive = false;
+    /* "beide, beide, beide, beide": a word listed a fourth time is a loop; "Nein, nein, nein!" stops at three. */
+    const listed = !long && p < MIN_UNIT && unit.some((c) => LIST_SEPARATOR.test(c));
+    if ((long || p >= MIN_UNIT || listed) && primitive && unit.some((c) => LETTER.test(c)) && !inCode(a, end)) {
+      const base = long ? 1 : listed ? REPEATS : REPEATS - 1;
+      /* One line of a poem may come twice; a whole stanza may not. */
+      const line = verse && unit.filter((c) => c === "\n").length === 1 ? 2 : 0;
+      const kept = Math.max(1, line, askedCopies(s, a, p, request, ask), source);
+      verdict = { allowed: Math.max(base, kept), kept };
+    }
+    verdicts.set(key, verdict);
+    return verdict;
+  };
+  /* The longest run at `end` where the text repeats itself p back, for every p. */
+  const scan = (end: number, wantHit: boolean): { hold: number; hit: { a: number; p: number; kept: number; copies: number } | null } => {
+    let hold = 0;
+    const maxP = Math.min(end - 1, TAIL_WINDOW / 2);
+    for (let p = 2; p <= maxP; p++) {
+      let k = end - 1;
+      while (k - p >= 0 && s[k] === s[k - p] && end - k <= TAIL_WINDOW) k--;
+      const r = end - 1 - k;
+      if (r === 0 || (wantHit && r < p - 1)) continue;
+      if (r <= QUICK_HOLD && !wantHit) {
+        if (p >= WIDE_UNIT) hold = Math.max(hold, r);
+        continue;
+      }
+      const a = end - r - p;
+      const v = verdictAt(a, p, end);
+      if (!v) {
+        if (r <= QUICK_HOLD && p >= WIDE_UNIT) hold = Math.max(hold, r);
+        continue;
+      }
+      /* A last copy with every letter in place counts though its separator differs ("beide;") or never came (the end). */
+      const rest = (r + p) % p;
+      let trailing = 0;
+      while (trailing < p && !WORD.test(s[a + p - 1 - trailing]!)) trailing++;
+      const next = end < n ? s[end]! : undefined;
+      const whole = rest > 0 && rest >= p - trailing && (next === undefined ? final : !WORD.test(next) && !JOINER.test(next));
+      const copies = Math.floor((r + p) / p) + (whole ? 1 : 0);
+      if (wantHit && copies > v.allowed) return { hold: 0, hit: { a, p, kept: v.kept, copies } };
+      /* Past the copies it may keep, the unit waits off screen until it either stops repeating or is a loop. */
+      hold = Math.max(hold, r + p - v.kept * p);
+    }
+    /* A short unit ("국면, ", "ha ") past its second copy waits off screen: emphasis ends in a token or two, a loop runs into the short rule. */
+    if (!wantHit)
+      for (let p = 1; p < MIN_UNIT && p <= maxP; p++) {
+        let k = end - 1;
+        while (k - p >= 0 && s[k] === s[k - p] && end - k <= TAIL_WINDOW) k--;
+        const r = end - 1 - k;
+        if (r > p && s.slice(end - r - p, end - r).some((c) => LETTER.test(c)) && !inCode(end - r - p, end)) hold = Math.max(hold, r - p);
+      }
+    return { hold, hit: null };
+  };
+  /* The segment rule: sentence and line ends where the segment repeats an earlier one, and how much of the tail to hold. */
+  const segmentHits = new Map<number, number>();
+  let segmentHold = 0;
+  if (!ask.asked && source === 1) {
+    /* A poem may bring a line back once as a refrain; everything else is said once. */
+    const once = verse ? 2 : 1;
+    const said = new Map<string, number>();
+    const key = (a: number, b: number) => s.slice(a, b).join("").replace(SEGMENT_TAIL, "").trim();
+    let st = 0;
+    for (let i = 0; i < n; i++) {
+      if (s[i] !== "\n" && !TERMINATORS.has(s[i]!)) continue;
+      if (i + 1 < n && TERMINATORS.has(s[i + 1]!)) continue;
+      const k = key(st, i + 1);
+      if (Array.from(k).length >= SEGMENT_MIN && LETTER.test(k) && !DATA_LINE.test(k) && !inCode(st, i + 1)) {
+        const seen = said.get(k) ?? 0;
+        if (seen >= once) {
+          if (!segmentHits.has(i + 1)) segmentHits.set(i + 1, st);
+        } else said.set(k, seen + 1);
+      }
+      st = i + 1;
+    }
+    while (st < n && /\s/u.test(s[st]!)) st++;
+    const rest = s.slice(st, n).join("");
+    if (rest && !inCode(st, n)) {
+      const k = rest.replace(SEGMENT_TAIL, "").trim();
+      if (final && (said.get(k) ?? 0) >= once) segmentHits.set(n, st);
+      else for (const [x, seen] of said) if (seen >= once && x.startsWith(rest.trimEnd())) segmentHold = n - st;
+    }
+  }
+  let first = 0;
+  while (first < n && at[first + 1]! <= from) first++;
+  for (let end = Math.min(Math.max(first + 1, 2 * WIDE_UNIT), n); end <= n; end++) {
+    const again = segmentHits.get(end);
+    if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: at[again]! } };
+    const found = scan(end, true).hit;
+    if (!found) continue;
+    const { a, p, kept, copies } = found;
+    let keep = a + kept * p;
+    /* A copy that starts on the sentence's own full stop leaves it with the first copy. */
+    for (let x = 0; x < 2 && keep < end && TERMINATORS.has(s[keep]!); x++) keep++;
+    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: at[keep]! } };
+  }
+  const hold = Math.max(scan(n, false).hold, segmentHold);
+  return { hold: hold > 0 ? text.length - at[n - hold]! : 0, hit: null };
+}
+
+/**
+ * The one silent retry after a loop (F415), and the only sampling with DRY on. One step harder than this: with presence
+ * 0.5 and DRY 1.5 the 0.8B model continued in emoji soup and run-on sentences (docs/qa/fix-loops-root/retry-tuning).
+ */
+export const LOOP_RETRY: Pick<GenOpts, "repeatPenalty" | "dryMultiplier" | "presencePenalty" | "frequencyPenalty"> = {
+  repeatPenalty: 1.15,
+  dryMultiplier: 1.0,
+  presencePenalty: 0.15,
+  frequencyPenalty: 0.05,
+};
+
+/** F369's rules for units under 8 code points ("ha ha ha…", "大阪・大阪・…"); longer ones are the tail rule's. */
+function shortLoop(text: string, context: LoopContext): LoopHit | null {
+  const hit = detectLoop(text, context);
+  if (!hit || Array.from(hit.unit).length >= MIN_UNIT) return null;
+  /* "Merrily, merrily, merrily, merrily" translates to four "joyeux". */
+  return context.request && hit.repeats <= requestRepeats(context.request) ? null : hit;
+}
+
 export interface LoopCut {
   /** The answer with the loop cut back to its first copy. */
   text: string;
@@ -219,10 +440,17 @@ export interface LoopCut {
   fullLength: number;
 }
 
-export type GuardedDelta = Delta & { loop?: LoopCut };
+/**
+ * `trim`: replace the answer on screen with this text, silently (the silent retry continues after it).
+ * `loop`: the retry looped too; the answer is `loop.text` and the "started repeating itself" notice shows.
+ */
+export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string };
+
+/* A copy that starts after "23." leaves the bare number behind, and whatever continues numbers its next item 24. */
+const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)]|[-*•+])$/u;
 
 export function cutLoop(text: string, hit: LoopHit): LoopCut {
-  return { text: text.slice(0, hit.keep).trimEnd(), hit, fullLength: text.length };
+  return { text: text.slice(0, hit.keep).trimEnd().replace(OPEN_ITEM, ""), hit, fullLength: text.length };
 }
 
 /** One console line per cut, for the QA harness. */
@@ -230,37 +458,93 @@ export function describeLoopCut(cut: LoopCut): string {
   return `[chat] loop cut: kept ${cut.text.length} of ${cut.fullLength} chars, unit ${Array.from(cut.hit.unit).length} cp x${cut.hit.repeats}`;
 }
 
+/** One console line per silent retry, for the QA harness. */
+export function describeLoopRetry(kept: string, hit: LoopHit): string {
+  return `[chat] loop retry: kept ${kept.length} chars, unit ${Array.from(hit.unit).length} cp x${hit.repeats}`;
+}
+
+export interface GuardOptions extends LoopContext {
+  /**
+   * Continues the answer from `kept` in a fresh generation (the chat's Continue, with `LOOP_RETRY` sampling). Called at
+   * most once per answer, after the looping stream has been stopped and drained. Without it a loop ends the answer.
+   */
+  retry?: (kept: string) => AsyncIterable<Delta>;
+  /** Told about the silent retry, for the log line. */
+  onRetry?: (kept: string, hit: LoopHit) => void;
+}
+
 /**
- * Wraps any engine's answer stream (every engine, one guard): when the answer starts looping it calls `stop` once,
- * yields `{ loop }` with the cut text, and swallows the text the engine still flushes; the final `done` passes through.
- * A loop the engine finished by itself (token ceiling) is cut at the end the same way, without `stop`.
+ * Wraps any engine's answer stream (every engine, one guard). Text that may be the start of a second copy is held back
+ * (F415); when the copy completes, `stop` ends the stream, the rest it flushes is swallowed, the copy never reaches the
+ * screen, and the answer silently continues once through `retry`. If that continuation loops too, `{ loop }` carries the
+ * answer cut to its first copy and the notice shows. Shorter loops the tail rule leaves alone (F369's rules) take the
+ * same path, with a `{ trim }` first since their copies were already on screen. The last `done` passes through.
  */
-export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void, context: LoopContext = {}): AsyncGenerator<GuardedDelta> {
+export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void, context: GuardOptions = {}): AsyncGenerator<GuardedDelta> {
   let text = "";
-  let cut: LoopCut | null = null;
+  let sent = 0;
   let checkedAt = 0;
-  for await (const d of stream) {
-    if (cut) {
-      if (d.done) yield { done: d.done };
-      continue;
-    }
-    if (d.text) {
-      text += d.text;
-      if (text.length - checkedAt >= 4) {
+  let retried = false;
+  let usage: Usage | undefined;
+  let current = stream;
+  /* The retry's first text needs the separator the script uses, like Continue (F390). */
+  let joinNext = false;
+  for (;;) {
+    let hit: LoopHit | null = null;
+    for await (const d of current) {
+      if (d.done) usage = d.done;
+      if (hit) continue;
+      if (d.reasoning || d.toolCall) yield { ...(d.reasoning ? { reasoning: d.reasoning } : {}), ...(d.toolCall ? { toolCall: d.toolCall } : {}) };
+      if (!d.text) continue;
+      let piece = d.text;
+      if (joinNext) {
+        piece = continuationSeparator(text, piece) + piece;
+        joinNext = false;
+      }
+      const from = text.length;
+      text += piece;
+      const tail = tailLoop(text, context, from);
+      hit = tail.hit;
+      if (!hit && text.length - checkedAt >= 4) {
         checkedAt = text.length;
-        const hit = detectLoop(text, context);
-        if (hit) {
-          cut = cutLoop(text, hit);
-          stop();
-          yield d.done ? { loop: cut, done: d.done } : { loop: cut };
-          continue;
-        }
+        hit = shortLoop(text, context);
+      }
+      if (hit) {
+        stop();
+        continue;
+      }
+      const safe = text.length - tail.hold;
+      if (safe > sent) {
+        yield { text: text.slice(sent, safe) };
+        sent = safe;
       }
     }
-    yield d;
+    if (!hit) hit = tailLoop(text, context, checkedAt, true).hit ?? shortLoop(text, context);
+    if (!hit) break;
+    const cut = cutLoop(text, hit);
+    if (context.retry && !retried) {
+      retried = true;
+      /* Only whitespace past the cut on screen: nothing to take back. */
+      if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {
+        text = text.slice(0, sent);
+      } else if (sent > cut.text.length) {
+        yield { trim: cut.text };
+        text = cut.text;
+      } else {
+        if (cut.text.length > sent) yield { text: cut.text.slice(sent) };
+        text = cut.text;
+      }
+      sent = checkedAt = text.length;
+      joinNext = true;
+      context.onRetry?.(cut.text, hit);
+      current = context.retry(cut.text);
+      continue;
+    }
+    yield { loop: cut };
+    text = cut.text;
+    sent = text.length;
+    break;
   }
-  if (!cut && text) {
-    const hit = detectLoop(text, context);
-    if (hit) yield { loop: cutLoop(text, hit) };
-  }
+  if (sent < text.length) yield { text: text.slice(sent) };
+  if (usage) yield { done: usage };
 }

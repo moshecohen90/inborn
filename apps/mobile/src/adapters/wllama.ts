@@ -11,6 +11,17 @@ const WASM_PATHS = { default: "/wllama/wllama.wasm" };
 const COMPAT_PATHS = { worker: "/wllama/compat/wllama.js", wasm: "/wllama/compat/wllama.wasm" };
 
 /** llama-server streams Qwen "thinking" as reasoning_content, which wllama's chunk type leaves out. */
+/** llama-server's sampler fields the wasm reads (F414). */
+interface ServerSampling {
+  dry_multiplier: number;
+  dry_base: number;
+  dry_allowed_length: number;
+  dry_penalty_last_n: number;
+  dry_sequence_breakers: string[];
+  presence_penalty: number;
+  frequency_penalty: number;
+}
+
 type ChunkDelta = ChatCompletionChunk["choices"][number]["delta"] & { reasoning_content?: string | null };
 type GpuNavigator = Navigator & { gpu?: { requestAdapter(): Promise<unknown | null> } };
 type MemoryPerformance = Performance & { measureUserAgentSpecificMemory?: () => Promise<{ bytes: number }> };
@@ -166,8 +177,8 @@ export class WllamaLM implements LocalLM {
     const sampler = sampling(opts);
     const photos = messages.reduce((n, m) => n + (this.vision && m.role === "user" ? (m.images?.length ?? 0) : 0), 0);
     const wireMessages = await this.toRequestMessages(messages);
-    /* The wasm server reads llama-server's names (repeat_penalty, repeat_last_n); the typed penalty_* fields are ignored. */
-    const request: ChatCompletionParams & { stream: true; stop?: string[]; repeat_penalty: number; repeat_last_n: number } = {
+    /* The wasm server reads llama-server's names (repeat_penalty, dry_*, presence_penalty…); the typed penalty_* fields are ignored. */
+    const request: ChatCompletionParams & { stream: true; stop?: string[]; repeat_penalty: number; repeat_last_n: number } & ServerSampling = {
       messages: wireMessages,
       stream: true,
       abortSignal: signal,
@@ -176,6 +187,13 @@ export class WllamaLM implements LocalLM {
       top_p: sampler.topP,
       repeat_penalty: sampler.repeatPenalty,
       repeat_last_n: sampler.repeatLastN,
+      dry_multiplier: sampler.dryMultiplier,
+      dry_base: sampler.dryBase,
+      dry_allowed_length: sampler.dryAllowedLength,
+      dry_penalty_last_n: sampler.dryPenaltyLastN,
+      dry_sequence_breakers: sampler.drySequenceBreakers,
+      presence_penalty: sampler.presencePenalty,
+      frequency_penalty: sampler.frequencyPenalty,
       stop: opts.stop,
       chat_template_kwargs: { enable_thinking: opts.reasoning ?? true },
     };

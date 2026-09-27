@@ -22,7 +22,9 @@ import {
   detectCrisis,
   continuationSeparator,
   describeLoopCut,
+  describeLoopRetry,
   guardLoops,
+  LOOP_RETRY,
   findPersona,
   languageHint,
   languageCodeOf,
@@ -64,6 +66,8 @@ import {
   type Usage,
   reportText,
   type Delta,
+  type GenOpts,
+  type LoopHit,
   isNoSpaceError,
 } from "@inborn/core";
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
@@ -609,13 +613,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => rest);
       }
-      /* F369: one guard for every engine; a loop is stopped and cut back to its first copy before it fills the screen. */
+      /* F369/F415: one guard for every engine. A second copy never reaches the screen: the guard stops that generation
+         (only it, so the user's Stop still means the turn), keeps one copy, and continues once, silently, with harder sampling. */
       let looped = false;
-      const stopLoop = () => {
-        stopReason.current = "loop";
-        ac.abort();
+      let attempt = new AbortController();
+      const follow = () => attempt.abort();
+      ac.signal.addEventListener("abort", follow);
+      const run = (wireMessages: Message[], o: GenOpts) => {
+        attempt = new AbortController();
+        if (ac.signal.aborted) attempt.abort();
+        return engine.generate(s, wireMessages, o, attempt.signal);
       };
-      for await (const d of guardLoops(engine.generate(s, messages, opts, ac.signal), stopLoop, { request: asked })) {
+      const stopLoop = () => attempt.abort();
+      /* The retry is the Continue of what is on screen; a Continue turn replaces its own Continue pair. */
+      const base = existingMessageId && messages.at(-1)?.content === CONTINUE_PROMPT ? messages.slice(0, -2) : messages;
+      const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
+      const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
+      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry })) {
+        if (d.trim !== undefined) {
+          reply = d.trim;
+          const snapshot = shown();
+          patch((x) => ({ ...x, content: snapshot }));
+        }
         if (d.loop) {
           looped = true;
           reply = d.loop.text;
