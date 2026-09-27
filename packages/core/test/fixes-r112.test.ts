@@ -96,9 +96,11 @@ describe("F426 · iPhone build 23: a short item listed again is a loop", () => {
     expect(final("1. サメ\n2. クジラ\n3. サメ（再び）\n", "海の動物を30個挙げて。")).not.toBeNull();
   });
 
-  it("the parenthetical tells two items apart when both have one: 'Shark (Great White)' and 'Shark (Tiger)'", () => {
+  it("F428 changed this: 'Shark (Great White)' then 'Shark (Tiger)' is one head twice, cut at the second", () => {
     const list = "1. Shark (Great White)\n2. Whale\n3. Dolphin\n4. Seal\n5. Octopus\n6. Shark (Tiger)\n7. Mercury (planet)\n8. Mercury (element)\n";
-    expect(final(list)).toBeNull();
+    const hit = final(list);
+    expect(hit).not.toBeNull();
+    expect(core.cutLoop(list, hit!).text.trimEnd().split("\n").at(-1)).toBe("5. Octopus");
   });
 });
 
