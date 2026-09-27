@@ -51,12 +51,11 @@ const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
  * is forced past the gate with no retrieval of its own, so it has no passage count to report.
  */
 /**
- * Documents → Ask has nothing to answer from but the documents: with no passage kept the model is not asked, in strict
- * mode or not, and the sheet says nothing matched (F400; it answered "South Korea won the 1998 World Cup").
+ * Documents → Ask takes the chat's door (F416, Moshe 27.9): only strict mode's no-answer skips the model. With no
+ * passage kept outside strict mode the question goes on as a general one, under the chat's "Answered without them".
  */
-export function askSheetRoute({ noAnswer, usedPassages }: { noAnswer: boolean; usedPassages: number }): "not-found" | "none-matched" | "answer" {
-  if (noAnswer) return "not-found";
-  return usedPassages === 0 ? "none-matched" : "answer";
+export function askSheetRoute({ noAnswer }: { noAnswer: boolean }): "not-found" | "answer" {
+  return noAnswer ? "not-found" : "answer";
 }
 
 export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { continuing: boolean; attachedCount: number; usedPassages: number }): boolean {

@@ -62,7 +62,6 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<{ shown: Citation[]; cited: boolean }>({ shown: [], cited: true });
   const [notFound, setNotFound] = useState(false);
-  const [missKey, setMissKey] = useState("documents.notFound");
   const [noneMatched, setNoneMatched] = useState(false);
   const [wordsOnly, setWordsOnly] = useState(false);
   const [reindexing, setReindexing] = useState<AnsweredMidReindex | null>(null);
@@ -93,9 +92,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setReindexing(rebuilding ?? null);
       setWordsOnly(!!lexical);
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
-      const route = askSheetRoute({ noAnswer: prompt.noAnswer, usedPassages: prompt.used.length });
-      if (route !== "answer") {
-        setMissKey(route === "none-matched" ? "documents.ask.noneMatched" : "documents.notFound");
+      const route = askSheetRoute({ noAnswer: prompt.noAnswer });
+      if (route === "not-found") {
         setNotFound(true);
         setPhase({ kind: "done" });
         setStats(t("documents.ask.retrieved", { ms: retrieveMs, count: 0 }));
@@ -116,7 +114,6 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       const generateMs = Date.now() - started;
       const isNotFound = isNotFoundReply(reply);
       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
-      setMissKey("documents.notFound");
       setNotFound(isNotFound);
       if (isNotFound) setAnswer("");
       setCitations(shown);
@@ -170,7 +167,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
           {notFound ? (
             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
-              {t(missKey)}
+              {t("documents.notFound")}
             </Text>
           ) : null}
           {answer ? (

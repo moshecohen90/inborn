@@ -6290,6 +6290,62 @@ phones' vault moved the photo pack and the document index into the Extensions se
 Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
 `pn check:store` pass. Test counts: 972 core, 1142 mobile, 24 i18n, 23 ui.
 
+## Fixes round 108: Documents → Ask answers like the chat, and photos on the CPU are scaled to 512 px (branch `web-ask-unify`) — 27.9.2026
+
+Moshe (27.9): the same behaviour everywhere, like the chat: an answer plus a clear notice. And the cheap win for photos
+on a browser without WebGPU. Evidence: `docs/qa/web-ask-unify/`.
+
+- **F416 · Documents → Ask takes the chat's door.** Round 101 (F400) made Ask say "Nothing in your documents matched
+  this question." and skip the model. Now, as in the chat, a question with no passage kept goes to the model as a
+  general one (the prompt `buildRagPrompt` already builds for the chat), and the sheet shows the chat's notice
+  "Nothing in your documents matched this question. Answered without them." `askSheetRoute` in `lib/docsGate.ts` has
+  one refusal left: strict mode's no-answer, which still says "Inborn could not find that in your documents." without
+  the model. The sheet-only key `documents.ask.noneMatched` is gone from the 8 locales and pseudo. `prompt.ts` needed
+  no change. The round-101 tests that asserted "no answer" now assert the new rule.
+- **F417 · photos on the WASM path are encoded at 512 px.** `photoForEngine` in `images/vision.ts` scales the stored
+  1024 px photo to 512 px on its long edge right before the projector reads it, when wllama loaded with no GPU layers.
+  WebGPU keeps 1024 px, the message keeps its 1024 px copy for the thumbnail, and native is untouched. The card's time
+  line now says "About 37 s per photo in this browser" (the mean of three 512 px runs) and shows above 20 s instead
+  of 60 s, so it still shows. The final-build probe at 390 read that line on the card.
+
+Ask proof, headless Chromium, Instant, deployed-like host, `ask-unify.mjs` (round 101's drive under the new rule):
+
+| question | 1440 | 390 |
+|---|---|---|
+| harbor file, "What did the fuel pier cost?" | 3.2 million euros, SOURCES, no notice | same |
+| harbor file, "Who won the 1998 football World Cup?" | general answer + notice, no SOURCES | same |
+| fleet memo, the fuel pier question | general answer + notice, no SOURCES | same |
+| harbor file, World Cup, strict on | "could not find that", no model call | same |
+
+The general answers are Instant's own and often wrong. At 1440 it said Germany won the 1998 World Cup, and at 390
+it said South Korea did. That is the answer F400 was opened for, now under the notice instead of hidden.
+
+Photo timing, headless Chromium on this Mac, WebGPU removed, Instant plus the projector, WASM with 2 threads, the
+1024x768 `red-circle-cat.png` fixture, from Send to the first token:
+
+| edge sent to the projector | first token | answer |
+|---|---|---|
+| 1024 px (before, as main) | 84.4 s | "The shape is red and the text below reads CAT." |
+| 512 px (this branch), 1440 | 35.7 s | "a red circle with the letter 'T' inside, and the text below reads 'JST'" |
+| 512 px (this branch), 390 | 38.2 s, then 36.2 s on the final build | "... The text 'JIT' is written below", then "'JAT'" |
+| 640 px (measured only) | 58.7 s | "The word underneath is "J-A"" |
+| 768 px (measured only) | 72.4 s | "a red circle with black text "CAT" underneath it" |
+
+512 px cuts the wait by more than half, and the colour and shape stay right. The word under the circle was misread in
+both 512 px runs and at 640 px; 768 px read it but saved only 12 s. `web:smoke` pass 10 accepts red, circle or CAT,
+so it passes at 512 px ("a red circle ... "JPN"").
+
+Commands:
+
+```
+corepack pnpm web:build
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models W=390 PORT=9110 node docs/qa/web-ask-unify/ask-unify.mjs
+MODELS_DIR=/Users/moshecohen/dev/inborn/.models GPU=off WIDTH=1440 PORT=9108 OUT=docs/qa/web-ask-unify/f417-after-wasm-1440 node docs/qa/extensions-web-vision/probe.mjs
+```
+
+Tests red first (`red-tests.txt`: 6 of 12 failing, then the time-line test). Gates in `gates.txt`. Test counts: 972
+core, 1148 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

@@ -14,11 +14,11 @@ export interface PickedImage {
 
 export type PickOutcome = { ok: true; images: PickedImage[] } | { ok: false; reason: "cancelled" | "permission" | "failed" };
 
-/** A picture as a JPEG data: URL no larger than MAX_EDGE; null when the browser cannot decode it. */
-export async function scaleImage(blob: Blob): Promise<PickedImage | null> {
+/** A picture as a JPEG data: URL no larger than `max` px on its long edge; null when the browser cannot decode it. */
+export async function scaleImage(blob: Blob, max = MAX_EDGE): Promise<PickedImage | null> {
   try {
     const bitmap = await createImageBitmap(blob);
-    const { width, height } = fitWithin(bitmap.width, bitmap.height);
+    const { width, height } = fitWithin(bitmap.width, bitmap.height, max);
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;

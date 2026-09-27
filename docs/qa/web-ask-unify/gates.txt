@@ -1,0 +1,49 @@
+=== pn install --frozen-lockfile
+rc=254
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command "install --frozen-lockfile" not found
+=== pn typecheck
+rc=0
+packages/ui typecheck: Done
+packages/core typecheck: Done
+apps/mobile typecheck$ tsc --noEmit -p tsconfig.json
+apps/mobile typecheck: Done
+=== pn test
+rc=0
+apps/mobile test:    Duration  4.91s (tests 43%, import 31%, transform 25%, worker 1%)
+apps/mobile test:     Isolate  125 workers spawned · ~84ms startup each (spawn + environment, per file)
+apps/mobile test:              at least ~871ms faster with isolate: false — reuses workers across files instead of one per file
+apps/mobile test: Done
+=== pn lint
+rc=1
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+=== pn web:build
+rc=0
+index.html (3.7KB)
+metadata.json (49B)
+
+Exported: web-build/dev
+=== pn web:smoke
+rc=0
+PASS: <html lang> follows the UI language in 9 locales (ja = "ja", pseudo = "en-XA")
+PASS: locked, Tab reaches only lock-seal, unlock-passcode, BODY; no chat title in the accessibility tree, no palette, no answer in the DOM; unlocked cleanly
+PASS: 9 locales at 390, no clipped sidebar label (fr incognito = "Privé")
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation / PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement
+=== pn check:store
+rc=0
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+
+PASS: no personal identifier in the history of HEAD
+=== pn install --frozen-lockfile (rerun alone; the chain passed it as one word)
+rc=0
+=== pn lint (rerun after adding /* global window */ to ask-unify.mjs)
+rc=0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  972 passed | 4 skipped (976)
+apps/mobile test:       Tests  1148 passed (1148)
+3071:PASS: a photo held on the photo-pack card, the pack downloaded from this host, and Instant answered naming red, circle: "The image contains three distinct visual elements: a red circle (represent

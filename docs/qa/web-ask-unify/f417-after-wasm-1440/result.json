@@ -1,0 +1,28 @@
+{
+  "width": 1440,
+  "gpu": "off",
+  "server": "http://127.0.0.1:9108",
+  "webgpu": false,
+  "onboardingLine": "Only the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.",
+  "photoRow": "PhotoYour first photo downloads the 205 MB photo pack to this browser.",
+  "photoRowDisabled": false,
+  "hold": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures.About 77 s per photo in this browser.Download · 205 MBRemove the photo",
+  "downloadMs": 5615,
+  "sendToAnswerMs": 39705,
+  "answer": "The shape is a red circle with the letter 'T' inside, and the text below reads 'JST'. This indicates the Japanese telecommunications company.",
+  "errorRow": "",
+  "photoTurn": "info: [wllama] photo turn · photos=1 ttft=35666 ms total=37740 ms tokens=30",
+  "projectorLoad": "info: [wllama] loaded instant + projector in 1779 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+  "userImage": 1,
+  "namesColour": true,
+  "namesShape": true,
+  "namesWord": false,
+  "vault": "EXTENSIONSEach one downloads the first time you need it: a photo, a file to search. Your first visit fetches the text model alone.Document indexLets Inborn search your documents on this device.Not downloaded · 468 MBDownload · 468 MBPhoto packLets Instant look at your photos on this device.Installed · 205 MBRemove",
+  "hScroll": false,
+  "console": [
+    "info: [wllama] loaded instant in 1372 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+    "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1383 ms",
+    "info: [wllama] loaded instant + projector in 1779 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+    "info: [wllama] photo turn · photos=1 ttft=35666 ms total=37740 ms tokens=30"
+  ]
+}

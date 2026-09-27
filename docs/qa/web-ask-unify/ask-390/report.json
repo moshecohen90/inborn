@@ -1,0 +1,72 @@
+{
+  "width": 390,
+  "dist": "/Users/moshecohen/dev/inborn-wt/web-ask-unify/apps/web/dist",
+  "runs": [
+    {
+      "name": "hit",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "What did the fuel pier cost?",
+      "answer": "The fuel pier cost 3.2 million euros. The document confirms that this specific expense was incurred for the opening of the new fuel pier on June 14, 2025.",
+      "notFound": null,
+      "noneMatched": "",
+      "stats": "search 1744 ms · 1 passages · answer 6015 ms · 33.2 tok/s · prompt 326 tokens",
+      "sources": "SOURCESharbor-report.txt · part 1",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=1 1744 ms | 77b638a5-c1c9-4410-8094-06486ca52eeb#0 cos=0.812 terms=3 bm25=0.86 KEPT"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "offtopic-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "In one sentence: The 1998 Football World Cup was hosted by South Korea, with the winner being South Korea itself.Answering directly to your question regarding who won is a bit tricky as this event is an Olympic Games rather than a football world cup, but if we consider South Korea won the Olympic Games in Seoul that year (September 20), or if you meant the specific match where South Korea took the lead against Japan, they eventually secured victory over Brazil.If you are referring to the actual 1998 Football World Cup, it was held in Seoul and the winner is South Korea. The event is not a football world cup but an Olympic Games.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 1761 ms · 0 passages · answer 6178 ms · 31.5 tok/s · prompt 213 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1761 ms | 77b638a5-c1c9-4410-8094-06486ca52eeb#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "offtopic-wrongfile",
+      "doc": "fleet-memo.pdfPDF · 1 page · 24.4 KBInde",
+      "q": "What did the fuel pier cost?",
+      "answer": "In one sentence: The specific cost of a fuel pier has not been recorded as an existing historical fact or document in your provided materials, so no definitive answer exists from current data or general knowledge about this type of landmark.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 3662 ms · 0 passages · answer 2485 ms · 35.3 tok/s · prompt 210 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 3662 ms | ad1ed92e-a8bf-4252-9b33-58567415b6ff#0 cos=0.804 terms=1 bm25=0.29 dropped"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "strict-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "",
+      "notFound": "Inborn could not find that in your documents.",
+      "noneMatched": "",
+      "stats": "search 1780 ms · 0 passages",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=true hits=1 used=0 1780 ms | 77b638a5-c1c9-4410-8094-06486ca52eeb#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ],
+      "strict": true,
+      "hScroll": false
+    }
+  ],
+  "downloadError": null,
+  "hitOk": true,
+  "missOk": true,
+  "strictOk": true,
+  "noHScroll": true,
+  "pass": true
+}

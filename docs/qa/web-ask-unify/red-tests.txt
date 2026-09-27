@@ -1,0 +1,43 @@
+      return wllama;
+    })());
+  }
+
+  async embed(texts: string[]): Promise<Float32Array[]> {
+    const wllama = await this.ready();
+    const out: Float32Array[] = [];
+    for (const t of texts) {
+      const r = await wllama.createEmbedding({ input: t });
+      const v = r.data[0]?.embedding;
+      if (!Array.isArray(v)) throw new Error(\"wllama: no embedding returned\");
+      out.push(Float32Array.from(v));
+    }
+    return out;
+  }
+
+  async unload(): Promise<void> {
+    const w = this.wllama;
+    this.wllama = null;
+    await w?.exit();
+  }
+}
+"
+
+ ❯ src/images/vision.test.ts:41:17
+     39|   it("the wllama adapter hands the projector the engine-sized photo, b…
+     40|     const src = readFileSync(join(__dirname, "../adapters/wllama.ts"),…
+     41|     expect(src).toMatch(/photoForEngine\(uri, this\.onGpu\)/);
+       |                 ^
+     42|   });
+     43| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  6 failed | 6 passed (12)
+   Start at  10:46:40
+   Duration  908ms (transform 80%, import 16%, tests 3%, worker 1%)
+
+[time hint, before timeHint.ts edit]      × a browser without WebGPU and no photo of its own yet is told about 37 s 5ms
+[time hint, before timeHint.ts edit] ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+[time hint, before timeHint.ts edit]       Tests  1 failed | 4 passed (5)
