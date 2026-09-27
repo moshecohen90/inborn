@@ -127,7 +127,8 @@ describe("F415 · the echo rule: ten words said again, punctuation and line brea
   it("a list item said again with one word changed is a loop (web trial es-list #3)", () => {
     const text = "5. Si alguien te dice que algo es malo, entonces probablemente lo sea.\n6. El miedo te hace sentir muy mal.\n7. Si alguien te dice que algo es malo, entonces probablemente sea así.";
     const hit = tailLoop(text, { request: "Escribe 30 frases motivadoras cortas." }, 0, true).hit;
-    expect(text.slice(0, hit!.keep).trimEnd()).toBe("5. Si alguien te dice que algo es malo, entonces probablemente lo sea.\n6. El miedo te hace sentir muy mal.\n7.");
+    /* F423: the cut stops before the copy's item number, so no bare "7." is kept. */
+    expect(text.slice(0, hit!.keep).trimEnd()).toBe("5. Si alguien te dice que algo es malo, entonces probablemente lo sea.\n6. El miedo te hace sentir muy mal.");
   });
 
   it("a restated problem, a formula twice and a short quote stay whole (stress runs math-series, math-fib, quote-en)", () => {
@@ -149,7 +150,6 @@ describe("F415 · the echo rule: ten words said again, punctuation and line brea
 
 describe("F415 · healthy text stays whole", () => {
   const HEALTHY: Record<string, string> = {
-    "numbered list of three identical steps": "1. Stir the batter.\n2. Stir the batter.\n3. Stir the batter.\n\nThen bake it for 20 minutes.",
     "no no no (en)": "No no no, the museum is closed on Mondays.",
     "go on and on and on (en idiom)": "go on and on and on and on and on",
     "שלום ×4 (he)": "שלום שלום שלום שלום",

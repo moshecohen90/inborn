@@ -22,7 +22,6 @@ const REPEATS = 3;
 const SHORT_RUN = 32;
 const SHORT_REPEATS = 5;
 const TERMINATORS = new Set(Array.from(".!?。！？．…"));
-const LIST_ITEM = /^[ \t]*(?:[-*+•·]|\d{1,3}[.)、．])[ \t]/u;
 const LETTER = /\p{L}/u;
 /** Copies of a requested repetition allowed when the ask names no count. */
 const ASKED_CAP = 10;
@@ -53,6 +52,18 @@ const WORD = /[\p{L}\p{N}\p{M}]/u;
 const JOINER = /[・·‧'’_\-‐‑]/u;
 /* JSON fields, table rows and code lines repeat as data ("author": "George Orwell" for two of his books). */
 const DATA_LINE = /^\s*[[{|<]|"[^"\n]*"\s*:|[;{[(]\s*$|^\s*(?:"[^"\n]*"|[\d.+-]+|true|false|null)\s*,\s*$/u;
+/* F423: every rule reads the words, not the markup: a heading's #s and an item's bullet or number open a line (1. 1) (1) 1、 א. 一、 ①), */
+const HEADING = /#{1,6}(?=[ \t])/uy;
+const ITEM_MARK = /(?:[-*+•·▪◦‣](?=[ \t])|\d{1,3}[.)．](?=\s|[*_]|$)|\d{1,3}、|[(（](?:\d{1,3}|[א-ת]|[一二三四五六七八九十]{1,3})[)）]|[א-ת][.)](?=[ \t])|[一二三四五六七八九十]{1,3}、|[①-⑳])/uy;
+/* and emphasis, inline code and quotation marks stand anywhere ("**האם צריך?** כולם אומרים: האם צריך?" is one phrase twice). */
+const EMPHASIS = /\*\*|__|~~|[*_`]/uy;
+const QUOTE = /["“”„‟«»「」『』＂]/u;
+const APOSTROPHE = /['‘’]/u;
+/** An item this long, or of two words or more, listed a second time is a loop; "Eel" twice in 30 animals is not yet. */
+const ITEM_MIN = 8;
+const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
+/* "**Advantages:**" heads each option's sub-list. */
+const LABEL = /[:：]\s*$/u;
 
 export interface LoopContext {
   /** The user's own message for this answer: repetition they asked for is not a loop (F389). */
@@ -96,33 +107,95 @@ export function repetitionRequest(request: string): RepetitionRequest {
 const flat = (s: string) => s.replace(/\s+/gu, " ").trim().toLowerCase();
 
 interface Normalized {
-  /** Code points, horizontal whitespace runs as " ", runs holding a line break as "\n". */
+  /** Code points, horizontal whitespace runs as " ", runs holding a line break as "\n"; markup and leading whitespace dropped. */
   cps: string[];
   /** UTF-16 offset in the input where each normalized code point starts, plus one entry for the end. */
   at: number[];
+  /** UTF-16 offset where each normalized code point ends in the input: a cut right after one keeps no markup that follows it. */
+  end: number[];
+  /** Each list item: the normalized index its words start at, and the input offset its line starts at. */
+  items: { idx: number; line: number }[];
+}
+
+function markAt(re: RegExp, text: string, i: number): number {
+  re.lastIndex = i;
+  return re.exec(text)?.[0].length ?? 0;
 }
 
 function normalize(text: string): Normalized {
   const cps: string[] = [];
   const at: number[] = [];
-  let i = 0;
-  for (const cp of text) {
+  const end: number[] = [];
+  const items: Normalized["items"] = [];
+  /* Before a line's first word, where a heading mark or an item marker may stand. */
+  let lineStart = true;
+  let line = 0;
+  let heading = false;
+  let item = false;
+  for (let i = 0; i < text.length; ) {
+    const cp = String.fromCodePoint(text.codePointAt(i)!);
     if (/\s/u.test(cp)) {
       const last = cps.length - 1;
       if (last >= 0 && (cps[last] === " " || cps[last] === "\n")) {
         if (cp === "\n") cps[last] = "\n";
-      } else {
+        if (end[last] === i) end[last] = i + cp.length;
+      } else if (last >= 0) {
         cps.push(cp === "\n" ? "\n" : " ");
         at.push(i);
+        end.push(i + cp.length);
       }
-    } else {
-      cps.push(cp);
-      at.push(i);
+      if (cp === "\n") {
+        lineStart = true;
+        line = i + 1;
+        heading = item = false;
+      }
+      i += cp.length;
+      continue;
     }
+    let skip = 0;
+    if (lineStart) {
+      skip = markAt(HEADING, text, i);
+      if (skip) heading = true;
+      else if ((skip = markAt(ITEM_MARK, text, i)) && !heading && !item) {
+        item = true;
+        items.push({ idx: cps.length, line });
+      }
+    }
+    if (!skip) skip = markAt(EMPHASIS, text, i);
+    if (!skip && (QUOTE.test(cp) || (APOSTROPHE.test(cp) && !(WORD_CHAR.test(text[i - 1] ?? "") && WORD_CHAR.test(text[i + 1] ?? ""))))) skip = cp.length;
+    if (skip) {
+      i += skip;
+      continue;
+    }
+    cps.push(cp);
+    at.push(i);
+    end.push(i + cp.length);
+    lineStart = false;
     i += cp.length;
   }
   at.push(text.length);
-  return { cps, at };
+  return { cps, at, end, items };
+}
+
+/** The input offset right after normalized code point k - 1: where a cut before k ends. */
+const cutAt = (end: number[], k: number): number => (k <= 0 ? 0 : end[k - 1]!);
+
+/** Whether the input line holding each normalized code point is a data line; read on the input, where the quotes still are. */
+function dataLines(text: string, at: number[]): boolean[] {
+  const out: boolean[] = [];
+  let lineEnd = -1;
+  let data = false;
+  for (let k = 0; k < at.length - 1; k++) {
+    const x = at[k]!;
+    if (x > lineEnd) {
+      const st = text.lastIndexOf("\n", x - 1) + 1;
+      lineEnd = text.indexOf("\n", x);
+      if (lineEnd < 0) lineEnd = text.length;
+      data = DATA_LINE.test(text.slice(st, lineEnd));
+    }
+    out.push(data);
+  }
+  return out;
 }
 
 /** Fenced code (``` … ```, an unclosed fence runs to the end) repeats lines on purpose. */
@@ -153,8 +226,8 @@ function boundary(s: string[], a: number): number {
 
 /**
  * Finds degenerate repetition in a streamed answer: a unit of 8 or more code points repeated three times in a row
- * anywhere in the last 600 code points (a list item needs four, fenced code never counts), or a shorter unit running
- * 32 code points. No whitespace is needed, so CJK loops are found like Latin ones. Null when the text is healthy.
+ * anywhere in the last 600 code points (fenced code never counts), or a shorter unit running 32 code points. No
+ * whitespace is needed, so CJK loops are found like Latin ones. Null when the text is healthy.
  */
 export function detectLoop(text: string, context: LoopContext = {}): LoopHit | null {
   if (!text) return null;
@@ -172,7 +245,7 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
     if (quoted || (ask.asked && (ask.count !== undefined || unit.includes("\n")))) return Math.max(REPEATS - 1, ask.count ?? ASKED_CAP);
     return REPEATS - 1;
   };
-  const { cps: s, at } = normalize(text);
+  const { cps: s, at, end } = normalize(text);
   const n = s.length;
   const from = Math.max(0, n - WINDOW);
   const code = codeSpans(text);
@@ -189,9 +262,6 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
       if (len < REPEATS * p || !hasLetter(a, p)) return false;
       /* A unit that is itself a short unit repeated ("ha ha ha ") is judged by the short rule. */
       for (let q = 1; q < MIN_UNIT; q++) if (periodic(s, a, regionLen, q)) return false;
-      const unit = s.slice(a, a + p);
-      const nl = unit.indexOf("\n");
-      if (nl >= 0 && LIST_ITEM.test([...unit.slice(nl + 1), ...unit.slice(0, nl)].join("")) && len < (REPEATS + 1) * p) return false;
       /* A doubled unit is judged at its own period, so a requested count is not dodged by pairing copies. */
       if (request) for (let q = MIN_UNIT; q < p; q++) if (periodic(s, a, regionLen, q)) return false;
       if (request && Math.floor(len / p) <= allowed(a, p)) return false;
@@ -239,7 +309,7 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
   const asked = p >= MIN_UNIT && request ? allowed(start, p) : REPEATS - 1;
   const keepCopies = asked > REPEATS - 1 ? Math.min(asked, copies - 1) : 1;
   const keepAt = Math.min(start + keepCopies * p, n);
-  return { unit, repeats: copies, start: at[start]!, keep: at[keepAt]! };
+  return { unit, repeats: copies, start: at[start]!, keep: cutAt(end, keepAt) };
 }
 
 /** What the tail rule found at the end of a streamed answer (F415). */
@@ -293,10 +363,12 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
   const ask = request ? repetitionRequest(context.request!) : { asked: false };
   const verse = request ? VERSE.test(context.request!) : false;
   const source = request ? requestRepeats(context.request!) : 1;
-  const { cps: s, at } = normalize(text);
+  const { cps: s, at, end: ends, items } = normalize(text);
   const n = s.length;
   const code = codeSpans(text);
   const inCode = (a: number, b: number) => code.some(([x, y]) => at[a]! < y && at[b]! > x);
+  const data = dataLines(text, at);
+  const cut = (k: number) => cutAt(ends, k);
   interface Verdict {
     /** Copies that may stand in a row before it is a loop. */
     allowed: number;
@@ -327,8 +399,17 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     verdicts.set(key, verdict);
     return verdict;
   };
+  /* A copy is whole only where its word ends: "\nPhotosynthesis" is not said twice in "\nPhotosynthesis\nPhotosynthesis is…". */
+  const goesOn = (end: number): boolean => {
+    const last = s[end - 1]!;
+    if (!WORD.test(last) || CJK_CHAR.test(last)) return false;
+    if (end === n) return !final;
+    const next = s[end]!;
+    return next === " " || JOINER.test(next) || (WORD.test(next) && !CJK_CHAR.test(next));
+  };
   /* The longest run at `end` where the text repeats itself p back, for every p. */
   const scan = (end: number, wantHit: boolean): { hold: number; hit: { a: number; p: number; kept: number; copies: number } | null } => {
+    if (wantHit && goesOn(end)) return { hold: 0, hit: null };
     let hold = 0;
     const maxP = Math.min(end - 1, TAIL_WINDOW / 2);
     for (let p = 2; p <= maxP; p++) {
@@ -375,12 +456,13 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     const once = verse ? 2 : 1;
     const said = new Map<string, number>();
     const key = (a: number, b: number) => s.slice(a, b).join("").replace(SEGMENT_TAIL, "").trim().replace(BULLET, "");
+    const inputKey = (a: number, b: number) => text.slice(cut(a), cut(b)).replace(/\s+/gu, " ").replace(SEGMENT_TAIL, "").trim().replace(BULLET, "");
     let st = 0;
     for (let i = 0; i < n; i++) {
       if (s[i] !== "\n" && !TERMINATORS.has(s[i]!)) continue;
       if (i + 1 < n && TERMINATORS.has(s[i + 1]!)) continue;
       const k = key(st, i + 1);
-      if (Array.from(k).length >= SEGMENT_MIN && LETTER.test(k) && !DATA_LINE.test(k) && !inCode(st, i + 1)) {
+      if (Array.from(k).length >= SEGMENT_MIN && LETTER.test(k) && !DATA_LINE.test(inputKey(st, i + 1)) && !inCode(st, i + 1)) {
         const seen = said.get(k) ?? 0;
         if (seen >= once) {
           if (!segmentHits.has(i + 1)) segmentHits.set(i + 1, st);
@@ -397,23 +479,88 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       else if (head) for (const [x, seen] of said) if (seen >= once && x.startsWith(head)) segmentHold = n - st;
     }
   }
+  /* The item rule (F423): an item listed again, whatever its number, is a loop on its second copy (device list30-animals #2). */
+  const itemHits = new Map<number, { line: number; unit: string }>();
+  let itemHold = 0;
+  if (!ask.asked && source === 1) {
+    /* A list the user gave that lists an item twice (to translate, sort or fix) may be answered with it twice. */
+    const once = Math.max(verse ? 2 : 1, request ? requestItems(context.request!) : 1);
+    const listed = new Map<string, number>();
+    for (const { idx, line } of items) {
+      let e = idx;
+      while (e < n && s[e] !== "\n") e++;
+      if (DATA_LINE.test(text.slice(line, e < n ? at[e] : text.length)) || inCode(idx, e)) continue;
+      const words = s.slice(idx, e).join("");
+      const k = words.replace(ITEM_TAIL, "").trim().toLowerCase();
+      if (e < n || final) {
+        if (LABEL.test(words) || !itemQualifies(k)) continue;
+        const seen = listed.get(k) ?? 0;
+        const done = e < n ? e + 1 : n;
+        if (seen < once) listed.set(k, seen + 1);
+        else if (!itemHits.has(done)) itemHits.set(done, { line, unit: k });
+      } else if (k) for (const [x, seen] of listed) if (seen >= once && x.startsWith(k)) itemHold = text.length - line;
+    }
+  }
+  /* A rotation may start inside a word ("he light … ATP. T"): the cut backs up to the word's start. */
+  const midWord = (k: number) => k > 0 && k < n && WORD_CHAR.test(s[k - 1]!) && WORD_CHAR.test(s[k]!) && !CJK_CHAR.test(s[k - 1]!) && !CJK_CHAR.test(s[k]!);
   let first = 0;
   while (first < n && at[first + 1]! <= from) first++;
-  const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b)) : { hit: null, hold: 0 };
+  const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b), data) : { hit: null, hold: 0 };
   for (let end = Math.min(Math.max(first + 1, 2 * WIDE_UNIT), n); end <= n; end++) {
-    if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: at[echo.hit.start]! } };
+    if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: cut(echo.hit.start) } };
     const again = segmentHits.get(end);
-    if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: at[again]! } };
+    if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: cut(again) } };
+    const relisted = itemHits.get(end);
+    if (relisted) return { hold: 0, hit: { unit: relisted.unit, repeats: 2, start: relisted.line, keep: relisted.line } };
     const found = scan(end, true).hit;
     if (!found) continue;
     const { a, p, kept, copies } = found;
     let keep = a + kept * p;
     /* A copy that starts on the sentence's own full stop leaves it with the first copy. */
     for (let x = 0; x < 2 && keep < end && TERMINATORS.has(s[keep]!); x++) keep++;
-    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: at[keep]! } };
+    let back = keep;
+    while (back > keep - p && midWord(back)) back--;
+    if (!midWord(back)) keep = back;
+    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: cut(keep) } };
   }
   const hold = Math.max(scan(n, false).hold, segmentHold, echo.hold);
-  return { hold: hold > 0 ? text.length - at[n - hold]! : 0, hit: null };
+  return { hold: Math.max(hold > 0 ? text.length - cut(n - hold) : 0, itemHold), hit: null };
+}
+
+/** An item of two words or more (a CJK character counts half), or of 8 code points, with a letter in it. */
+function itemQualifies(key: string): boolean {
+  if (!LETTER.test(key)) return false;
+  if (Array.from(key).length >= ITEM_MIN) return true;
+  let words = 0;
+  let inWord = false;
+  for (const c of key) {
+    if (CJK_CHAR.test(c)) (words += 0.5), (inWord = false);
+    else if (WORD_CHAR.test(c)) {
+      if (!inWord) words++;
+      inWord = true;
+    } else inWord = false;
+  }
+  return words >= 2;
+}
+
+let itemsMemo: { request: string; copies: number } | null = null;
+/** Most times one item is listed in the user's own text: a list to translate or sort may repeat an item as often. */
+export function requestItems(request: string): number {
+  if (itemsMemo?.request === request) return itemsMemo.copies;
+  const { cps, items } = normalize(request);
+  const counts = new Map<string, number>();
+  let copies = 1;
+  for (const { idx } of items) {
+    let e = idx;
+    while (e < cps.length && cps[e] !== "\n") e++;
+    const k = cps.slice(idx, e).join("").replace(ITEM_TAIL, "").trim().toLowerCase();
+    if (!itemQualifies(k)) continue;
+    const c = (counts.get(k) ?? 0) + 1;
+    counts.set(k, c);
+    copies = Math.max(copies, c);
+  }
+  itemsMemo = { request, copies };
+  return copies;
 }
 
 /* The copy often opens with a word swapped ("their ways" for "their way"): walk back over single swaps while two words on each side match. */
@@ -447,15 +594,8 @@ interface Word {
 }
 
 /** The answer's words over the normalized code points; code and data lines become words that match nothing. */
-function wordsOf(s: string[], inCode: (a: number, b: number) => boolean): Word[] {
+function wordsOf(s: string[], inCode: (a: number, b: number) => boolean, dataLine: boolean[]): Word[] {
   const words: Word[] = [];
-  const dataLine: boolean[] = [];
-  for (let i = 0, st = 0; i <= s.length; i++) {
-    if (i < s.length && s[i] !== "\n") continue;
-    const data = DATA_LINE.test(s.slice(st, i).join(""));
-    for (let k = st; k < i; k++) dataLine[k] = data;
-    st = i + 1;
-  }
   let st = -1;
   const push = (a: number, b: number, weight: number) => {
     const blocked = dataLine[a] || inCode(a, b);
@@ -475,8 +615,8 @@ function wordsOf(s: string[], inCode: (a: number, b: number) => boolean): Word[]
 }
 
 /** The echo rule (F415): a copy that drops the line breaks and punctuation ("…the sky They dance…") is still a loop. */
-function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean): { hit: { start: number; end: number } | null; hold: number } {
-  const words = wordsOf(s, inCode);
+function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean, data: boolean[]): { hit: { start: number; end: number } | null; hold: number } {
+  const words = wordsOf(s, inCode, data);
   const seen = new Map<string, number[]>();
   let hit: { start: number; end: number } | null = null;
   let from = words.length;
@@ -549,10 +689,38 @@ export interface LoopCut {
 export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string };
 
 /* A copy that starts after "23." leaves the bare number behind, and whatever continues numbers its next item 24. */
-const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)]|[-*•+])$/u;
+const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])$/u;
+/* An opening "**" with nothing after it. */
+const OPEN_MARK = /(?<=^|\s)(?:\*\*|__|~~|[*_`])+$/u;
+const NEXT_ITEM = /^[ \t]*\n\s*(?:\*\*)?(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])/u;
 
 export function cutLoop(text: string, hit: LoopHit): LoopCut {
-  return { text: text.slice(0, hit.keep).trimEnd().replace(OPEN_ITEM, ""), hit, fullLength: text.length };
+  let kept = text.slice(0, hit.keep);
+  for (let before = ""; before !== kept; ) {
+    before = kept;
+    kept = kept.trimEnd().replace(OPEN_ITEM, "").replace(OPEN_MARK, "");
+  }
+  /* The next item's number goes and its line break stays, so a continuation starts the next item on its own line. */
+  if (NEXT_ITEM.test(text.slice(kept.length))) kept += "\n";
+  return { text: closeMarks(kept), hit, fullLength: text.length };
+}
+
+/** Closes the emphasis a cut left open on the last line ("**Chlorophyll absorbs red light;" gets its "**"). */
+function closeMarks(text: string): string {
+  if ((text.match(/```/gu) ?? []).length % 2) return text;
+  const line = text.slice(text.lastIndexOf("\n") + 1).replace(/^[ \t]*[*_](?=[ \t])/u, "");
+  const open: string[] = [];
+  let code = false;
+  for (let i = 0; i < line.length; ) {
+    const two = line.slice(i, i + 2);
+    const mark = two === "**" || two === "__" || two === "~~" ? two : line[i] === "`" ? "`" : line[i] === "*" && (/\S/u.test(line[i + 1] ?? " ") || /\S/u.test(line[i - 1] ?? " ")) ? "*" : "";
+    i += mark.length || 1;
+    if (!mark || (code && mark !== "`")) continue;
+    if (mark === "`") code = !code;
+    if (open.at(-1) === mark) open.pop();
+    else open.push(mark);
+  }
+  return text + open.reverse().join("");
 }
 
 /** One console line per cut, for the QA harness. */
