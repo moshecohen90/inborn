@@ -6401,6 +6401,31 @@ export, Instant on WASM, headless Chromium at 1440. Evidence: `docs/qa/web-guard
 - **Still open, for round 111.** The guard misses a numbered block said again with new numbers. The animal list
   repeated items 1–19 as 21–39, and the German verbs repeated a bold block. A retried list went on as prose in 1 of 3.
   A cut can land inside an item or a bold span, so "18. La única El éxito…" and a raw `**…###` reached the screen.
+## iOS build 22: main with round 107's loop guard, on Moshe's iPhone only (branch `ios-build-22`) — 27.9.2026
+
+Build 21 was archived before round 107 landed. Build 1.0.0 (22) carries local `main` b5bd2758 (rounds 93–109) to the
+iPhone 13 Pro, so the phone has the loop guard before Moshe tests it. Nothing went to a store.
+
+- **The build.** Commit 6cfd3635 bumps the build number 21 → 22. It also lets the QA bridge report the guard's
+  `[chat] loop retry` / `loop cut` lines and an answer's raw Markdown. A release build drops `console.log`, and the
+  bridge is not in the store bundle. Gates exit 0: 1,030 core with 4 skipped, 1,180 mobile, 24 i18n, 23 ui, 4 desktop.
+  Fresh prebuild and archive, with both models byte-exact to the catalog. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** About reads `1.0.0 (22) · 6cfd36359cf3`, left on the chat root. The byte copy before
+  the install failed. The container listing is identical before and after, and three files match build 20's hashes.
+- **Passed on the phone.** The first answer runs at 34.0 tok/s. Continue joins with a space. Delete everything lands on
+  Welcome with no banner and no `.corrupt` file, again after a cold relaunch. Documents reads 253 B for one .txt.
+- **Found (F422), not fixed here.** 24 answers from prompts that looped before round 107 ran on the phone: 16 at the
+  app's temperature and 8 under a 0.2 persona. Three showed a repeat on screen:
+  - a numbered list that says a block again with new numbers (items 11–20 as 21–30; four animals cycling five times),
+    which no rule sees;
+  - a Hebrew phrase twice back to back, the first copy in **bold**.
+
+  There were five silent retries and three notices. One retry cut a correct long-division step, which the echo rule
+  read as a copy, and took back 113 characters the screen had shown. Asked to repeat a sentence five times, Instant
+  wrote it once in 3 of 3 tries with no cut. This comes from the model: the moderate length line says "Do not repeat
+  yourself".
+
+Evidence: `docs/qa/ios-build-22-2026-09-27.md`, `docs/qa/ios-device-pass-22-2026-09-27.md`, `docs/qa/ios-device-pass-22/`.
 
 ## Fixes round 106: the stores' own badges, a model the browser keeps, and returning visits that never download again (branch `web-badges-persist`) — 27.9.2026
 

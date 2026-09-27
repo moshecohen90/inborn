@@ -1,0 +1,1097 @@
+{
+  "runId": "l02-es-list",
+  "startedAt": "2026-09-27T13:43:57.168Z",
+  "finishedAt": "2026-09-27T13:44:37.471Z",
+  "ok": true,
+  "passed": 108,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-chip-c42ccfef-45a9-46bf-a39f-5c9937b5c056 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 309,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 534,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cor ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas segui ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas segui",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas segui ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada pa ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada pa",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidad ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidad",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculo",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 725,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La lu ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La lu",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar du ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar du",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decid ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decid",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 718,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para s ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para s",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 729,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea r ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea r",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia te permite ver las cosas desde otra perspectiva. 25.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia te permite ver las cosas desde otra perspectiva.\n25. ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te de ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te de",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo c ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo c",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 774,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabaj ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabaj",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 742,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnica ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnica",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que te detengas por un momento. 3. Cada paso hacia tu objetivo es una victoria real. 4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades. 5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy. 6. La perseverancia transforma obstáculos en oportunidades únicas. 7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones. 8. La luz siempre está cerca, pero necesitas caminar para verla. 9. No esperes a tener éxito antes de empezar a trabajar duro. 10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano. 11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud. 12. La gente te espera; tú eres quien decides si te esperan o no. 13. Cada día cuenta como un paso hacia una nueva versión de ti. 14. El éxito es lo que haces, no lo que tienes. 15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo. 16. La resiliencia te permite ver las cosas desde otra perspectiva. 17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias. 18. El poder comienza con la acción, no con la teoría. 19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero. 20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros. 21. Tu potencial es tan grande como tu capacidad para usarlo. 22. El camino no es una línea recta; hay muchas curvas posibles. 23. Cada esfuerzo pequeño construye algo que importa mucho. 24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa. 25. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día. 26. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo. 27. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros. 28. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas. 29. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario:\n\n1. Tu potencial es infinito; solo necesitas seguir tu camino.\n2. La vida no está diseñada para que te detengas por un momento.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No estás a punto de terminar, estás en medio de un viaje lleno de oportunidades.\n5. El tiempo es un recurso limitado; haz lo mejor que puedes hoy.\n6. La perseverancia transforma obstáculos en oportunidades únicas.\n7. Tu historia no se escribe solo por los hechos pasados; también por tus decisiones.\n8. La luz siempre está cerca, pero necesitas caminar para verla.\n9. No esperes a tener éxito antes de empezar a trabajar duro.\n10. El futuro es lo que haces hoy, no el pasado ni el futuro lejano.\n11. Tu capacidad de hacer algo extraordinario depende mucho de tu actitud.\n12. La gente te espera; tú eres quien decides si te esperan o no.\n13. Cada día cuenta como un paso hacia una nueva versión de ti.\n14. El éxito es lo que haces, no lo que tienes.\n15. No estás en el momento exacto para ser feliz; puedes estarlo ahora mismo.\n16. La resiliencia te permite ver las cosas desde otra perspectiva.\n17. Tu vida es un viaje largo y lleno de muchas pequeñas victorias.\n18. El poder comienza con la acción, no con la teoría.\n19. No esperes a que el mundo te diga lo que necesitas; tú lo dices primero.\n20. La fuerza brilla en los momentos difíciles cuando se sienten más seguros.\n21. Tu potencial es tan grande como tu capacidad para usarlo.\n22. El camino no es una línea recta; hay muchas curvas posibles.\n23. Cada esfuerzo pequeño construye algo que importa mucho.\n24. La perseverancia 25. La única forma de ser realmente fuerte es cuando estás en medio de un desafío y no te detienes por miedo o culpa.\n26. El éxito no se logra esperando que el mundo lo diga; tú lo creas y lo haces cada día.\n27. Cada vez que fallamos, aprendimos algo nuevo sobre cómo hacer bien nuestro trabajo.\n28. La vida es un maratón; la velocidad depende de tu consistencia en los primeros kilómetros.\n29. Tu capacidad para resolver problemas complejos se basa mucho más en tu actitud y paciencia que en las habilidades técnicas.\n30. El verdadero éxito no mide cuánto dinero o tiempo gastaste, sino cuántos resultados lograste con lo que tienes.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en voz alta o usar como refuerzo diario: 1. Tu potencial es infinito; solo necesitas seguir tu camino. 2. La vida no está diseñada para que t"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3194,
+      "detail": "L02-es-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 1664 chars, unit 96 cp x2"
+  ]
+}

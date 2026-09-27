@@ -49,7 +49,7 @@ expensive to lose at the first red.
 | `type` | `testID`, `text` | calls `onChangeText`, then reads the field back and fails if it did not take the text |
 | `waitFor` | `testID` \| `text`, `gone?`, `timeoutMs?` | polls the committed tree (250 ms) until it appears, or with `gone: true` until it is off screen; default 30 s |
 | `assertText` | `text`, `testID?`, `absent?` | case- and whitespace-insensitive; without `testID` it reads the whole screen |
-| `value` | `testID` | records the node's rendered text and its data props (`value`, `accessibilityState`, `disabled`, …) |
+| `value` | `testID` | records the node's rendered text and its data props (`value`, `source`, `accessibilityState`, `disabled`, …); an answer's `source` is its raw Markdown, line breaks included |
 | `dump` | `name?` | one row per `testID` on screen with text, role, state and whether it can be pressed |
 | `screenshot` | `name` | pauses the run, the driver photographs the phone and acknowledges, then the run continues |
 | `scrollTo` | `testID` | scrolls the enclosing ScrollView so the node is on screen (needed for evidence, not for pressing) |
@@ -105,7 +105,8 @@ Both directions are proven on real bundles, and the gate is watched failing in
 3. Each step runs against that tree. Progress goes to `Documents/qa/out/<run>/progress.json`; a `screenshot` step
    parks there until `Documents/qa/ack/<run>/<name>.ok` appears, which is how the picture and the step line up.
 4. The final report is `Documents/qa/out/<run>/result.json`: per step ok/ms/detail, every `value` and `dump`, and
-   any `console.error`/`console.warn` the app raised during the run.
+   any `console.error`/`console.warn` the app raised during the run, plus the loop guard's `[chat] loop retry` and
+   `[chat] loop cut` lines, which a release build never prints.
 
 `Documents/qa/boot.json` is written 1.5 s after launch (`{ sentinel, fiber, nodes }`) — read it first when a run
 goes wrong, because it says whether the bridge is in the build at all and whether it can see the tree.

@@ -1,0 +1,15 @@
+import { readFileSync } from "node:fs";
+import { it } from "vitest";
+import { tailLoop, cutLoop } from "../src/chat/loop";
+it("math snapshot", () => {
+  const { text } = JSON.parse(readFileSync(process.env.D22_FILE!, "utf8")) as { text: string };
+  const request = "Divide 987654321 by 123 step by step, showing every step of long division.";
+  /* The correct next step of the same division: 283 = 2 x 123 + 37. */
+  const full = text + "283? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 283 to get a remainder of $37$.\n";
+  let found = "none";
+  for (let n = text.length; n <= full.length; n += 1) {
+    const t = tailLoop(full.slice(0, n), { request }, 0, false);
+    if (t.hit) { const c = cutLoop(full.slice(0, n), t.hit); found = `HIT at ${n}: keep ${t.hit.keep}, unit ${Array.from(t.hit.unit).length} cp x${t.hit.repeats}, kept ${c.text.length}`; break; }
+  }
+  throw new Error(found);
+});

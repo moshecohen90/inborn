@@ -1,0 +1,26 @@
+16:47:50 pushing 22 steps as d-continue
+16:48:05 shot K01-stopped
+16:48:27 shot K02-continued
+16:48:30 ok     0 deeplink   /chats
+16:48:30 ok     1 waitFor    new-chat appeared
+16:48:30 ok     2 press      new-chat ← onPress
+16:48:30 ok     3 waitFor    start-chat appeared
+16:48:30 ok     4 press      start-chat ← onPress
+16:48:30 ok     5 waitFor    composer-input appeared
+16:48:30 ok     6 sleep      1500 ms
+16:48:30 ok     7 type       composer-input = 104 chars
+16:48:30 ok     8 send       send ← onPress
+16:48:30 ok     9 waitFor    assistant-text appeared
+16:48:30 ok    10 sleep      7000 ms
+16:48:30 ok    11 press      stop ← onPress
+16:48:30 ok    12 sleep      2000 ms
+16:48:30 ok    13 value      The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritim
+16:48:30 ok    14 screenshot K01-stopped
+16:48:30 ok    15 waitFor    continue appeared
+16:48:30 ok    16 press      continue ← onPress
+16:48:30 ok    17 sleep      1500 ms
+16:48:30 ok    18 waitFor    stop gone
+16:48:30 ok    19 sleep      1500 ms
+16:48:30 ok    20 value      The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritim
+16:48:30 ok    21 screenshot K02-continued
+16:48:30 22 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-22/screens

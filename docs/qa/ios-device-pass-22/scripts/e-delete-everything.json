@@ -1,0 +1,83 @@
+{
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings/storage"
+  },
+  {
+   "op": "waitFor",
+   "testID": "storage",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "storage-chats"
+  },
+  {
+   "op": "value",
+   "testID": "storage-documents"
+  },
+  {
+   "op": "screenshot",
+   "name": "E01-before-delete"
+  },
+  {
+   "op": "press",
+   "testID": "storage-delete-all"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "wipe-models"
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step1"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-step2",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step2"
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "screenshot",
+   "name": "E02-after-delete"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "assertText",
+   "text": "could not be opened",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "banner-repair",
+   "gone": true,
+   "timeoutMs": 3000
+  }
+ ]
+}

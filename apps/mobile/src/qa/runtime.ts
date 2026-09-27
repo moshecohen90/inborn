@@ -26,7 +26,8 @@ const MEASURE_TIMEOUT = 3000;
 
 export const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
 
-const DATA_PROPS = ["value", "toggle", "label", "title", "sub", "accessibilityLabel", "accessibilityRole", "accessibilityState", "placeholder", "disabled", "editable", "selected"] as const;
+/* `source` is a Markdown answer's raw text: the rendered text loses its line breaks, which a loop check needs. */
+const DATA_PROPS = ["value", "source", "toggle", "label", "title", "sub", "accessibilityLabel", "accessibilityRole", "accessibilityState", "placeholder", "disabled", "editable", "selected"] as const;
 
 function valueOf(root: QaFiber, testID: string): NodeValue | null {
   const matches = findAll(root, testID);

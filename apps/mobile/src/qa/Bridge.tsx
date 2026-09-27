@@ -16,6 +16,13 @@ const IDLE_POLL = 1000;
 function captureConsole(sink: string[]): () => void {
   const error = console.error;
   const warn = console.warn;
+  const log = console.log;
+  /* A release build drops console.log (RCTLog threshold), so the loop guard's retry and cut lines are counted only here. */
+  console.log = (...args: unknown[]) => {
+    const line = args.map(String).join(" ");
+    if (line.startsWith("[chat] loop")) sink.push(`console.log: ${line}`);
+    log(...args);
+  };
   console.error = (...args: unknown[]) => {
     sink.push(`console.error: ${args.map(String).join(" ")}`);
     error(...args);
@@ -27,6 +34,7 @@ function captureConsole(sink: string[]): () => void {
   return () => {
     console.error = error;
     console.warn = warn;
+    console.log = log;
   };
 }
 

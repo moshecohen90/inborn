@@ -1,0 +1,13 @@
+16:49:11 launching com.inbornapp.mobile.qa
+16:49:56 pushing 7 steps as e2-cold-relaunch
+16:49:56 inbox missing — launching once to create it
+16:50:46 shot E03-cold-relaunch
+16:50:50 ok     0 waitFor    onboarding-welcome appeared
+16:50:50 ok     1 sleep      3000 ms
+16:50:50 ok     2 screenshot E03-cold-relaunch
+16:50:50 ok     3 value      Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves
+16:50:50 ok     4 assertText "could not be opened" absent
+16:50:50 ok     5 waitFor    banner-repair gone
+16:50:50 ok     6 cleanup    qa namespace removed
+16:50:50 7 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-22/screens
+16:50:52 swept: Documents/qa is gone

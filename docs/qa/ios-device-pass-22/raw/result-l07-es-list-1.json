@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-es-list-1",
+  "startedAt": "2026-09-27T13:34:33.868Z",
+  "finishedAt": "2026-09-27T13:35:12.743Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 525,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivado ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivado",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivado ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. **Respiración y A ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y A",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. **Respiración y A ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 718,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demá ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demá",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mun ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mun",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mis ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mis",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. **Despertar y Enfrentar el Desech ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desech",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 725,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentir ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentir",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. **Cuidado Personal y Respeto ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vid ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vid",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si e ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si e",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuid ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuid",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 751,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El mie ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El mie",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 737,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 12,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. La mente está llena de pensamientos; la palabra que importa es la acción. 3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz. 4. Si tu corazón se cansa, deja que sea tu salud a cargo. 5. El ruido del mundo te rinde cuando te estás escuchando. 6. Tu mente nunca se desvía hacia el vacío. 7. La única forma de crecer es caminar por las sombras. 8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo. 9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida. 10. Tu potencial es infinito; no hay nada que pueda detenerlo. Despertar y Enfrentar el Desecho 11. El desecho es una oportunidad de crecimiento, no un fin. 12. Deja de sentirte pequeño cuando la gente te mira desde lejos. 13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina. 14. Deslumbra a las personas que te miran en silencio y dale un paso. 15. Si tu mente se seca, llévate agua hacia ella. 16. Lo mejor que puedes hacer hoy es empezar el día con claridad. Cuidado Personal y Respeto 17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida. 18. El respeto es tu propia mejor defensa contra el desastre. 19. No quedes por delante si eres tan fuerte como tú. 20. Tu cuerpo sabe cuando estás seguro de tus límites. 21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa. Paciencia y Esperanza 22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo. 23. El miedo es un faro para quien está seguro de su camino. 24. Espera al instante del éxito, ya que el tiempo se mueve",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día.\n\n**Respiración y Atención al Alma**\n1. El camino no es un corredor, sino un sendero.\n2. La mente está llena de pensamientos; la palabra que importa es la acción.\n3. Tu alma tiene su propio ritmo; no espera el de los demás para ser feliz.\n4. Si tu corazón se cansa, deja que sea tu salud a cargo.\n5. El ruido del mundo te rinde cuando te estás escuchando.\n6. Tu mente nunca se desvía hacia el vacío.\n7. La única forma de crecer es caminar por las sombras.\n8. Deja de buscar respuestas en el caos y empieza a vivirlas contigo mismo.\n9. No esperes que el tiempo te lo diga, ni los demás para confirmar tu vida.\n10. Tu potencial es infinito; no hay nada que pueda detenerlo.\n\n**Despertar y Enfrentar el Desecho**\n11. El desecho es una oportunidad de crecimiento, no un fin.\n12. Deja de sentirte pequeño cuando la gente te mira desde lejos.\n13. La luz de tu vida nunca se apaga; siempre hay un punto donde la oscuridad termina.\n14. Deslumbra a las personas que te miran en silencio y dale un paso.\n15. Si tu mente se seca, llévate agua hacia ella.\n16. Lo mejor que puedes hacer hoy es empezar el día con claridad.\n\n**Cuidado Personal y Respeto**\n17. Asegúrate de cuidarte siempre, sin importar qué sea lo que pase en la vida.\n18. El respeto es tu propia mejor defensa contra el desastre.\n19. No quedes por delante si eres tan fuerte como tú.\n20. Tu cuerpo sabe cuando estás seguro de tus límites.\n21. Cuidando a tu propio cuerpo es cuidar a tu corazón, y viceversa.\n\n**Paciencia y Esperanza**\n22. La perseverancia no es solo una idea; es la práctica diaria que te hace sentir vivo.\n23. El miedo es un faro para quien está seguro de su camino.\n24. Espera al instante del éxito, ya que el tiempo se mueve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para usar en momentos de estrés o simplemente para refrenar tu día. Respiración y Atención al Alma 1. El camino no es un corredor, sino un sendero. 2. "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2243,
+      "detail": "L07-es-list-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

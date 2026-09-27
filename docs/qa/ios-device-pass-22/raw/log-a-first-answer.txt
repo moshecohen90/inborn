@@ -1,0 +1,42 @@
+16:28:55 launching com.inbornapp.mobile.qa
+16:29:40 pushing 37 steps as a-first-answer
+16:30:08 shot A01-first-answer
+16:30:13 shot A02-ledger-detailed
+16:30:16 ok     0 waitFor    onboarding-welcome appeared
+16:30:16 ok     1 sleep      1500 ms
+16:30:16 ok     2 press      onboarding-continue ← onPress
+16:30:16 ok     3 waitFor    onboarding-model appeared
+16:30:16 ok     4 sleep      2500 ms
+16:30:16 ok     5 press      start-chatting ← onPress
+16:30:16 ok     6 waitFor    onboarding-sealed appeared
+16:30:16 ok     7 sleep      4000 ms
+16:30:16 ok     8 press      sealed-start ← onPress
+16:30:16 ok     9 waitFor    onboarding-lock appeared
+16:30:16 ok    10 sleep      1500 ms
+16:30:16 ok    11 press      lock-start ← onPress
+16:30:16 ok    12 waitFor    composer-input appeared
+16:30:16 ok    13 waitFor    Loading gone
+16:30:16 ok    14 sleep      2000 ms
+16:30:16 ok    15 type       composer-input = 43 chars
+16:30:16 ok    16 send       send ← onPress
+16:30:16 ok    17 waitFor    assistant-text appeared
+16:30:16 ok    18 waitFor    stop gone
+16:30:16 ok    19 sleep      1500 ms
+16:30:16 ok    20 value      A lighthouse is a navigational beacon that guides ships through dark seas by illuminating their way, while ser
+16:30:16 ok    21 screenshot A01-first-answer
+16:30:16 ok    22 waitFor    loop-notice gone
+16:30:16 ok    23 press      ledger-toggle ← onPress
+16:30:16 ok    24 sleep      800 ms
+16:30:16 ok    25 value      INSTANT
+16:30:16 ok    26 value      29 ms
+16:30:16 ok    27 value      234 / 4096
+16:30:16 ok    28 setTier    pro
+16:30:16 ok    29 sleep      1200 ms
+16:30:16 ok    30 value      34.0
+16:30:16 ok    31 value      827 ms
+16:30:16 ok    32 value      207 + 27
+16:30:16 ok    33 value      1.6 s
+16:30:16 ok    34 screenshot A02-ledger-detailed
+16:30:16 ok    35 setTier    free
+16:30:16 ok    36 sleep      800 ms
+16:30:16 37 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-22/screens

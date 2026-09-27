@@ -1,0 +1,1070 @@
+{
+  "runId": "l07-math-long-div-1",
+  "startedAt": "2026-09-27T13:40:08.277Z",
+  "finishedAt": "2026-09-27T13:40:48.135Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 267,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 98765 ▍",
+        "props": {
+          "source": "To divide 98765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 98765 ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to mak ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to mak",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to mak ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 /",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; le ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; le",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 98 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 98",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230,",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? $123 \\ ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is $274 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? $123 \\times 2 = 2 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 2",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1029,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 to get a remainder of 28 . • Bring down next digit 3: now the number is 283 . How many times does 123 go into ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 to get a remainder of $28$.\n- Bring down next digit 3: now the number is $283$. How many times does 123 go into ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 752,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 T ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 T",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply b ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply b",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a tot ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a tot",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fit ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fit",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed a ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed a",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately 6 ( 123 × 6 = 738 ). Subtracting gives 27 . Bring down the 4 to make 274. 27 < 1230, so it becomes 0 . Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully). Correct long division: • First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765. • How many times does 123 go into 765? 123 × 6 = 738 . So we write 6 and subtract 738 from 765 to get a remainder of 27 . • Bring down next digit 4: now the number is 274 . How many times does 123 go into 274? 123 × 2 = 246 . So we write 2 and subtract 246 from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: 27 × 9 = 243 , then append that result ( 24 ) back into the quotient (making it 6.58... ), followed by adding this new partial dividend to get a total of 2,74 . Now divide 2,74 by 123: approximately 2 , which fits perfectly in the digits remaining after carrying over from the previous step ( 2 - 0 = 2 ). This leaves a final remainder of 58 for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+        "props": {
+          "source": "To divide 987654321 by 123, I will perform the long division step-by-step.\n\nStart with 9 divided by 123: This is less than 1, so it becomes $0.$ Bring down a 7 to make 7. 7 < 123, bring down another 6 to make 76. 76 < 123, still nothing. Bring down the 5 to make 765. 765 / 123 is approximately $6$ ($123 \\times 6 = 738$). Subtracting gives $27$. Bring down the 4 to make 274. 27 < 1230, so it becomes $0$. Bring down the 4 to make 2740 (Wait, I missed a digit in my manual trace above; let me re-do carefully).\n\nCorrect long division:\n- First, consider only the first few digits of 987654321. Since we are dividing by 123, and 98 < 1230, it starts with 0. Bring down the next non-zero digit 7 to make 7. Still less than 123. Bring down next digit 6: 76. Less than 123. Bring down next digit 5: 765.\n- How many times does 123 go into 765? $123 \\times 6 = 738$. So we write **6** and subtract $738$ from 765 to get a remainder of $27$.\n- Bring down next digit 4: now the number is $274$. How many times does 123 go into 274? $123 \\times 2 = 246$. So we write **2** and subtract $246$ from 274 To get to 2740 from the previous remainder of 27, add another digit '9' and multiply by 10: $27 \\times 9 = 243$, then append that result ($24$) back into the quotient (making it $6.58...$), followed by adding this new partial dividend to get a total of $2,74$. Now divide 2,74 by 123: approximately $2$, which fits perfectly in the digits remaining after carrying over from the previous step ($2 - 0 = 2$). This leaves a final remainder of $58$ for the next division stage. The long division process is complete with no further steps needed as all required divisors and remainders have been utilized to find the quotient accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, I will perform the long division step-by-step. Start with 9 divided by 123: This is less than 1, so it becomes 0. Bring down a 7 to make 7. 7 < 123, bring down another 6 to"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3196,
+      "detail": "L07-math-long-div-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 1091 chars, unit 169 cp x2"
+  ]
+}
