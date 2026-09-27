@@ -1,0 +1,1725 @@
+{
+  "runId": "p20a",
+  "startedAt": "2026-09-27T11:23:28.311Z",
+  "finishedAt": "2026-09-27T11:33:43.646Z",
+  "ok": false,
+  "passed": 169,
+  "failed": 7,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5087,
+      "detail": "P01-welcome"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 25049,
+      "detail": "P02-model-bundled"
+    },
+    {
+      "i": 7,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery. Best in English, Chinese, Portuguese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from models.inbornapp.com Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 5 more languages. Download only on Wi-Fi The download pauses on mobile data and resumes on Wi-Fi. You can add or remove models any time in the vault. Start chatting",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers, rewrites, summaries. The only model he"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 14281,
+      "detail": "P03-sealed"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "SEALED · ON-DEVICE From here on, every answer is made on this phone. Start Prove it: turn on Airplane Mode and ask",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SEALED · ON-DEVICE From here on, every answer is made on this phone. Start Prove it: turn on Airplane Mode and ask"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 19971,
+      "detail": "P04-lock-offer"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Lock it? Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. No biometrics on this device: a passcode protects the app instead. Start",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Lock it? Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. No biometrics on this device: a passcode protects the app instead. Start"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11468,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 9517,
+      "detail": "A01-empty-chat"
+    },
+    {
+      "i": 23,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 24,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 800,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A lighthouse serves as a beacon to guide ships through dark seas or illuminate paths during the night.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "A lighthouse serves as a beacon to guide ships through dark seas or illuminate paths during the night."
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 19650,
+      "detail": "A02-first-answer-ledger"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "30 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "30 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "226 / 4096",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "226 / 4096"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 36,
+      "op": "setTier",
+      "ok": true,
+      "ms": 183,
+      "detail": "pro"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "32.8",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "32.8"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "835 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "835 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "207 + 19",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "207 + 19"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1.4 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1.4 s"
+    },
+    {
+      "i": 42,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 19331,
+      "detail": "A03-ledger-detailed"
+    },
+    {
+      "i": 43,
+      "op": "setTier",
+      "ok": true,
+      "ms": 184,
+      "detail": "free"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 45,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 47,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 48,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 49,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 50,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 52,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 96 chars"
+    },
+    {
+      "i": 53,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 543,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1007,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 58,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 10465,
+      "detail": "L01-repeat-5-times"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The quick brown fox jumps over the lazy dog.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The quick brown fox jumps over the lazy dog."
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    },
+    {
+      "i": 61,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/chats"
+    },
+    {
+      "i": 62,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 63,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 64,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 65,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 66,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 68,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 69,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 70,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 520,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7023,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 72,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe began as a vibrant yet perilous exchange, beginning in the early centuries with the introduction of precious materials such as pepper, cinnamon, and cloves. This initial wave of commerce was driven primarily by religious demands from Eastern Orthodox churches and Muslim empires like the Mughal Empire of India. In 1500 AD, Marco Polo documented a bustling network where goods flowed through Istanbul, the Ottoman capital, facilitating direct trade routes between Chinese ports in China and European merchant houses in London or Venice. The spice trade initially relied on maritime fleets to sail from East Africa, along the coastlines of Africa, up into India via the Silk Road, and then out across Europe itself before returning home. These initial voyages were often short-lived and frequently failed due to the harsh conditions of sailing through storms and dense fog in the vast ocean between continents. The turning point arrived with the rediscovery of spices by Christopher Columbus in 1492. Following the Spanish conquest of India, the Portuguese successfully launched their own expedition across the Indian Ocean, bringing a wealth of new commodities to the world's attention. This event marked the beginning of an era where European powers were no longer dependent solely on Asian sources but could actively source goods from distant lands through trade routes that crossed oceans more directly than before. The demand for",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began as a vibrant yet perilous exchange, beginning in the early centuries with the introduction of precious materials such as pepper, cinnamon, and cloves. Thi"
+    },
+    {
+      "i": 75,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 31381,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 77,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1519,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 79,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 27034,
+      "detail": "stop gone"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "The spice trade between Asia and Europe began as a vibrant yet perilous exchange, beginning in the early centuries with the introduction of precious materials such as pepper, cinnamon, and cloves. This initial wave of commerce was driven primarily by religious demands from Eastern Orthodox churches and Muslim empires like the Mughal Empire of India. In 1500 AD, Marco Polo documented a bustling network where goods flowed through Istanbul, the Ottoman capital, facilitating direct trade routes between Chinese ports in China and European merchant houses in London or Venice. The spice trade initially relied on maritime fleets to sail from East Africa, along the coastlines of Africa, up into India via the Silk Road, and then out across Europe itself before returning home. These initial voyages were often short-lived and frequently failed due to the harsh conditions of sailing through storms and dense fog in the vast ocean between continents. The turning point arrived with the rediscovery of spices by Christopher Columbus in 1492. Following the Spanish conquest of India, the Portuguese successfully launched their own expedition across the Indian Ocean, bringing a wealth of new commodities to the world's attention. This event marked the beginning of an era where European powers were no longer dependent solely on Asian sources but could actively source goods from distant lands through trade routes that crossed oceans more directly than before. The demand for The Portuguese expedition's arrival at the Strait of Magellan in 1498 marked a crucial turning point for European global trade. While their initial journey was largely successful, this discovery confirmed that the entire spice routes could be navigated safely across oceans, opening up vast new markets to Europe and potentially disrupting earlier Asian dominance over time. However, the Spanish conquest of India in 1526 created an immediate crisis because it removed India from its own traditional trade network while simultaneously opening a massive new market for European goods through Portuguese colonies. This shift made it difficult for Europeans to control these regions without relying entirely on Chinese and Southeastern sources, leading to the eventual decline of independent Asian markets. A major turning point in this history occurred during the Thirty Years' War (1618-1648), when a series of German wars led to massive economic devastation across Europe itself. This period saw significant trade disruptions as European nations were forced to rely on distant, often unreliable, sources for raw materials like iron and wool, while simultaneously seeking new markets from Asia that were not yet fully developed or controlled by the East Asian powers they relied upon previously. The resulting price wars eventually led to a global economic crisis that weakened Europe's industrial base and contributed to further trade imbalances in the centuries following. By 1800, the global spice trade had evolved into one of the most complex networks in human history, with several European ports operating on established routes from China, Southeast Asia, India, and Central America to the Mediterranean basin for processing and export. This period saw the establishment of major trading houses such as the Dutch East India Company (VOC) and the British West Indies Company (WIC), which operated independently from their original colonies. The VOC's aggressive expansion into North Africa and Europe alongside its presence in India created a powerful economic engine that would eventually be challenged by later global powers like the United States, Japan, and China. The 19th century marked another critical phase where European nations began to assert greater control over these transcontinental routes through colonialism rather than relying solely on direct maritime trade. The British East India Company (EIC) established a powerful empire that allowed it to monopolize access to the spice markets of India and Central Asia, effectively making them dependent on British shipments for raw materials like indigo and dyeing chemicals while receiving finished goods from distant lands. This dependency reshaped global politics and economic structures in ways that would last for nearly two centuries, fundamentally altering how nations interacted with these regions over time. The industrialization of the 19th century further transformed the spice trade landscape by introducing mechanized processing methods that increased efficiency but also drove down prices while increasing dependence on imported raw materials. As industrial power grew in Europe and other major markets like North America, China began to rely more heavily on European imports for manufactured goods, textiles, and machinery, creating a new dynamic where Asian producers were increasingly dependent on Western supply chains rather than local production centers. This shift highlighted the deep integration of Asia and Europe into the global economy through centuries of interconnected commercial networks. The 20th century witnessed another wave of expansion as nations like Germany, Japan, and China pursued their own colonial ambitions to secure strategic routes for raw materials and finished goods. The German Empire's involvement in trade saw its empire expand rapidly from East Africa to North America by the early 20th century, creating a complex web of commercial interests that extended far beyond traditional maritime routes into more developed European nations. Meanwhile, Japan's growing power led it to challenge British dominance over Asian markets and to seek new pathways for raw materials like cotton and rubber through strategic alliances with China and Southeast Asia. The late 19th century brought significant changes as the International Trade Organization (ITO) was established in 1895 to regulate global commerce, laying the groundwork for international trade agreements that would govern future exchanges between countries. This modernization effort allowed for better coordination of maritime routes and protection of private trade rights, though it also introduced new complexities regarding sovereignty and the \"freight market\" that became more lucrative for European powers seeking monopolistic control over specific regions and commodities. The 21st century has brought a new era through technological advancements like GPS navigation, satellite communication, and global shipping networks such as the Ocean Tides Initiative. These innovations have streamlined trade routes dramatically, allowing vessels to move faster and safer across oceans with less reliance on traditional landmarks or physical barriers. However, this has also intensified competition between nations for control over lucrative trade corridors in regions like South Asia and Southeast Asia, where major powers vie for dominance over raw materials and finished goods supplied from distant lands. In conclusion, the history of the spice trade reflects a complex interplay of technological evolution, political expansionism, economic shifts, and global power dynamics that have shaped the course of international commerce throughout this era.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began as a vibrant yet perilous exchange, beginning in the early centuries with the introduction of precious materials such as pepper, cinnamon, and cloves. Thi"
+    },
+    {
+      "i": 82,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4476,
+      "detail": "K02-continued"
+    },
+    {
+      "i": 83,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 84,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 85,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 86,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 87,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 90,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "image: door.jpg"
+    },
+    {
+      "i": 91,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1333,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 92,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 94,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2548,
+      "detail": "V01-photo-in-composer"
+    },
+    {
+      "i": 95,
+      "op": "send",
+      "ok": true,
+      "ms": 152,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 97,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"photo pack\" absent"
+    },
+    {
+      "i": 98,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 99,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 102,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 103,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 104,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3815,
+      "detail": "V02-photo-answer"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This image shows a simple, stylized illustration of a brown door with two rectangular panels and a circular doorknob on the upper panel. The artwork uses flat colors and bold outlines without any detailed texture or realistic shading. It appears to be an icon or a digital graphic rather than a photograph.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "This image shows a simple, stylized illustration of a brown door with two rectangular panels and a circular doorknob on the upper panel. The artwork uses flat colors and bold outlines without any deta"
+    },
+    {
+      "i": 106,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"door\" present"
+    },
+    {
+      "i": 107,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/vault"
+    },
+    {
+      "i": 108,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 109,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 7,
+      "detail": "scrollTo vault-extensions: no scroll view above it"
+    },
+    {
+      "i": 110,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1009,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 111,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3202,
+      "detail": "X01-vault-extensions-before"
+    },
+    {
+      "i": 112,
+      "op": "value",
+      "ok": false,
+      "ms": 3,
+      "detail": "value vault-extensions: no node with that testID is mounted"
+    },
+    {
+      "i": 113,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value ext-state-embed-e5: no node with that testID is mounted"
+    },
+    {
+      "i": 114,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value ext-state-vision-qwen35: no node with that testID is mounted"
+    },
+    {
+      "i": 115,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 3196,
+      "detail": "waitFor ext-download-embed-e5 never appeared in 3000 ms"
+    },
+    {
+      "i": 116,
+      "op": "assertText",
+      "ok": false,
+      "ms": 3,
+      "detail": "assertText \"Included with the app\" is not on screen under ext-state-vision-qwen35"
+    },
+    {
+      "i": 117,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"Not downloaded\" is not on screen under ext-state-embed-e5"
+    },
+    {
+      "i": 118,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "close-vault",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vault-storage",
+          "text": "0 B in the vault · 85 GB free · RUNS ON: IOS-MID · 6 GB"
+        },
+        {
+          "testID": "best-for",
+          "text": "BEST FOR Chat in English"
+        },
+        {
+          "testID": "best-for-use",
+          "text": "Chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-language",
+          "text": "in English",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-instant",
+          "text": "● INSTANT · Qwen3.5 0.8B Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery. GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. 533 MB · Q4_K_M · Battery: Low ~25-36 tok/s on your phone Included with the app In use Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-instant",
+          "text": "Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery."
+        },
+        {
+          "testID": "fit-instant",
+          "text": "GOOD AT Good · Chat, Summaries, Voice notes Weak · Writing, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese, Portuguese Basic · Spanish, French, German, Italian, Japanese, Korean, Russian, Arabic No · Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
+        },
+        {
+          "testID": "model-spec-instant",
+          "text": "533 MB · Q4_K_M · Battery: Low"
+        },
+        {
+          "testID": "model-status-instant",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-instant",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-fast",
+          "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents. 1.28 GB · Q4_K_M · Battery: Medium ~15-24 tok/s on your phone Install · 1.28 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "recommended-fast",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-goodfor-fast",
+          "text": "Everyday assistant: writing, questions, translation. Best balance on this device."
+        },
+        {
+          "testID": "fit-fast",
+          "text": "GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: No photos; code, math; German prose and Korean translation; questions across many long documents."
+        },
+        {
+          "testID": "model-spec-fast",
+          "text": "1.28 GB · Q4_K_M · Battery: Medium"
+        },
+        {
+          "testID": "install-fast",
+          "text": "Install · 1.28 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-fast",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp",
+          "text": "○ SHARP · Qwen3.5 4B Complex tasks: analysis, code, long documents. Slower, runs warmer. GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode. 2.74 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.74 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp",
+          "text": "Complex tasks: analysis, code, long documents. Slower, runs warmer."
+        },
+        {
+          "testID": "fit-sharp",
+          "text": "GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Japanese, Korean, Russian Good · Spanish, French, German, Portuguese, Italian, Arabic Basic · Hebrew Weak at: No photos; slower and warmer than Fast; hard math needs thinking mode."
+        },
+        {
+          "testID": "model-spec-sharp",
+          "text": "2.74 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp",
+          "text": "Install · 2.74 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp-phi",
+          "text": "○ SHARP · Phi-4-mini 3.8B Reasoning, math and code. No photos. GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation. 2.49 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.49 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp-phi",
+          "text": "Reasoning, math and code. No photos."
+        },
+        {
+          "testID": "fit-sharp-phi",
+          "text": "GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation."
+        },
+        {
+          "testID": "model-spec-sharp-phi",
+          "text": "2.49 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp-phi",
+          "text": "Install · 2.49 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp-phi",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-embed-e5",
+          "text": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-embed-e5",
+          "text": "Lets Inborn search your documents on this device."
+        },
+        {
+          "testID": "model-spec-embed-e5",
+          "text": "multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low"
+        },
+        {
+          "testID": "install-embed-e5",
+          "text": "Install · 468 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-embed-e5",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35",
+          "text": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35",
+          "text": "Lets Instant look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35",
+          "text": "Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-vision-qwen35",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-speech-whisper-base",
+          "text": "○ VOICE INPUT Turns your voice into text on this device, in any language. whisper.cpp base 74M · 148 MB · F16 · Battery: Low Install · 148 MB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-speech-whisper-base",
+          "text": "Turns your voice into text on this device, in any language."
+        },
+        {
+          "testID": "model-spec-speech-whisper-base",
+          "text": "whisper.cpp base 74M · 148 MB · F16 · Battery: Low"
+        },
+        {
+          "testID": "install-speech-whisper-base",
+          "text": "Install · 148 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-speech-whisper-base",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "import-gguf",
+          "text": "Import GGUF",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "search-hf",
+          "text": "Search Hugging Face",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-use-sheet",
+          "text": ""
+        },
+        {
+          "testID": "best-for-language-sheet",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "vault-before"
+    },
+    {
+      "i": 119,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/chats"
+    },
+    {
+      "i": 120,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 121,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 122,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 123,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 124,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 125,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 126,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: greenhouse-notes.txt"
+    },
+    {
+      "i": 127,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1336,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 128,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 129,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 33 chars"
+    },
+    {
+      "i": 130,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 131,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 132,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 133,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6032,
+      "detail": "D01-index-hold-card"
+    },
+    {
+      "i": 134,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+    },
+    {
+      "i": 135,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "docs-hold-download ← onPress"
+    },
+    {
+      "i": 136,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8002,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 137,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3500,
+      "detail": "D02-index-downloading"
+    },
+    {
+      "i": 138,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Downloading the document index model… 2%. Your message is sent when it's ready.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Downloading the document index model… 2%. Your message is sent when it's ready."
+    },
+    {
+      "i": 139,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 140,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 299110,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 141,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 794,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 142,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1005,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 143,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 144,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 146,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3495,
+      "detail": "D03-txt-answer-sources"
+    },
+    {
+      "i": 147,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The heat pump was installed in October 2021.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The heat pump was installed in October 2021."
+    },
+    {
+      "i": 148,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SOURCES greenhouse-notes.txt · part 1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES greenhouse-notes.txt · part 1"
+    },
+    {
+      "i": 149,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"2021\" present"
+    },
+    {
+      "i": 150,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 151,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 152,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 153,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 154,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 155,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 156,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 157,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: turbine-report.pdf"
+    },
+    {
+      "i": 158,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1338,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 159,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 160,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 161,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 162,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 769,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 163,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1014,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 164,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 165,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 166,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 167,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2245,
+      "detail": "D04-pdf-answer-sources"
+    },
+    {
+      "i": 168,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The Rakovsky turbine serial number is RK-4417.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The Rakovsky turbine serial number is RK-4417."
+    },
+    {
+      "i": 169,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SOURCES turbine-report.pdf · p.1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report.pdf · p.1"
+    },
+    {
+      "i": 170,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"4417\" present"
+    },
+    {
+      "i": 171,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/documents"
+    },
+    {
+      "i": 172,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 173,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 174,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3187,
+      "detail": "D05-library"
+    },
+    {
+      "i": 175,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 1.98 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages greenhouse-notes.txt TXT · 1 part · 253 B Indexed · 1 passage Select documents to ask INDEXED ON THIS DEVICE · sqlcipher"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mujqpq5q-2-duxute26",
+          "text": "turbine-report.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mujqpq5q-2-duxute26",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mujqpq5q-2-duxute26",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-mujqimhn-1-6lirsuhc",
+          "text": "greenhouse-notes.txt TXT · 1 part · 253 B Indexed · 1 passage",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mujqimhn-1-6lirsuhc",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mujqimhn-1-6lirsuhc",
+          "text": "Indexed · 1 passage"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "library"
+    }
+  ],
+  "errors": [
+    "step 109 (scrollTo): scrollTo vault-extensions: no scroll view above it",
+    "step 112 (value): value vault-extensions: no node with that testID is mounted",
+    "step 113 (value): value ext-state-embed-e5: no node with that testID is mounted",
+    "step 114 (value): value ext-state-vision-qwen35: no node with that testID is mounted",
+    "step 115 (waitFor): waitFor ext-download-embed-e5 never appeared in 3000 ms",
+    "step 116 (assertText): assertText \"Included with the app\" is not on screen under ext-state-vision-qwen35",
+    "step 117 (assertText): assertText \"Not downloaded\" is not on screen under ext-state-embed-e5"
+  ]
+}

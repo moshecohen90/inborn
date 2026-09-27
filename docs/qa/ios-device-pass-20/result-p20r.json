@@ -1,0 +1,253 @@
+{
+  "runId": "p20r",
+  "startedAt": "2026-09-27T11:52:19.503Z",
+  "finishedAt": "2026-09-27T11:53:00.076Z",
+  "ok": true,
+  "passed": 33,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 153,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10644,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 790,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1010,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2865,
+      "detail": "R01-before-wipe"
+    },
+    {
+      "i": 21,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 318 KB",
+        "props": {
+          "value": "318 KB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 318 KB"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "storage-delete-all ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-sheet appeared"
+    },
+    {
+      "i": 27,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 515,
+      "detail": "500 ms"
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step2 ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8009,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2565,
+      "detail": "R02-after-wipe"
+    }
+  ],
+  "errors": [
+    "console.warn: [storage] chat database started-fresh · kept 0 rows · lost 0 · old file inborn.db.corrupt-2026-09-27T11-52-49-434Z"
+  ]
+}

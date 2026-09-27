@@ -1,0 +1,163 @@
+{
+  "runId": "p20b2",
+  "startedAt": "2026-09-27T11:37:49.185Z",
+  "finishedAt": "2026-09-27T11:38:01.050Z",
+  "ok": true,
+  "passed": 17,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 8,
+      "detail": "model-card-embed-e5"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "details-embed-e5 ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "details-delete appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 808,
+      "detail": "800 ms"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1931,
+      "detail": "X05-e5-details-remove"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "details-delete ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 9,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 7,
+      "detail": "model-card-embed-e5"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1598,
+      "detail": "X06-vault-extensions-e5-downloadable"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "install-embed-e5 appeared"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Install · 468 MB from models.inbornapp.com",
+        "props": {
+          "label": "Install · 468 MB from models.inbornapp.com",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Install · 468 MB from models.inbornapp.com"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ PHOTO PACK Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "0 B in the vault · 85 GB free · RUNS ON: IOS-MID · 6 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "0 B in the vault · 85 GB free · RUNS ON: IOS-MID · 6 GB"
+    }
+  ],
+  "errors": []
+}
