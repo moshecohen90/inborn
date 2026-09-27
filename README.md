@@ -6617,6 +6617,68 @@ Red first: 15 of the 26 round-114 tests fail on main 22541224 (every cut test); 
 (`red-r114-main-22541224.txt`). The quiet budget end came after: its 4 tests fail on 80c2d922, which showed the
 notice. No live model run and no device run: the next iPhone build measures it.
 
+## Fixes round 115: a line pair said again inside a code block, an item said again with its shared word misspelt, and no ",." at a Continue seam (branch `loop-guard-115`) — 27.9.2026
+
+Moshe (27.9): a repeat must never reach the screen, not even three copies. iPhone build 25 on round 114's guard (main
+6312e769) still showed two, plus one seam blemish. Evidence: `docs/qa/loop-guard-115/`. Tests:
+`packages/core/test/fixes-r115.test.ts` with `fixtures/r115-device-answers.json`.
+
+- **F431 · Inside a code block, a unit of lines said identically back to back is a loop.** math-long-div 0.7 #2 wrote
+  the pair "- 123000000" / "--------" 16 times inside a fenced block, with a new wrong number between each pair, and ran
+  to the token budget inside the block. Fenced code was exempt since round 111. Now a unit of 1 to 3 lines said again
+  back to back is a loop, and one number line between copies may change. The third copy waits off screen. A fourth
+  copy confirms the loop, and the answer is cut before the third copy. The fence is closed with "```" on its own line
+  so the kept lines still render as code. The loop notice shows, and there is no retry, since a retry into a worked sum
+  invents numbers. Build 25's answer now ends after "  634654321", with two copies of the pair.
+- **What stays in a code block.** A real long division stays, because its subtrahends differ. So does the rule line
+  "--------" alone repeating between different numbers. A unit whose indent moves one step every copy stays too: a
+  division whose quotient repeats a digit (13653 ÷ 123) and nested "end"s. Other keeps: a line repeated between
+  different lines (`time.sleep(1)` after each step), JSON objects that differ in one field, an ASCII table, and asked
+  repetition. Three copies that close the fence also stay, so `print('hello world')` three times and a 3×3 zero matrix
+  show whole. A chunked division that subtracts the same amount four times in a row at the same indent is cut before
+  its third subtraction. No stored answer does that.
+- **An item said again with its shared word misspelt is that item again.** he-list 0.2 listed "14. קיבוץ ירושלים" and
+  then "23. קיבוט ירושלים", and "20. קיבוץ רפ"א" then "26. קיבוק רפ"א". The new rule applies in a list of 5 or more
+  distinct heads. A head of two or more words and 8 or more code points counts as an earlier head again when it differs
+  in one word, by one substitution, insertion or deletion of a code point. That word must be the list's shared word,
+  held by 3 or more heads ("קיבוץ" heads items 7 to 22), and the misspelt form must be in no earlier head. Both forms
+  need 3 or more letters and no digit. The cut and the wait for a fifth distinct head work like round 114's head rule.
+  A line that may be turning into such a copy waits off screen while it streams, so build 25's list is cut before item
+  23 and no misspelt copy is shown.
+- **Near-names stay.** "Saint Paul" and "Saint Pauli" stay, since the word that differs names the item. "Anna" and
+  "Anne" are one word each, and "Level 1" and "Level 2" differ by a digit. "New York" and "New Yorker" are two edits
+  apart, so they are different items. Conjugations stay: "ellos hablan" and "ellas hablan", "lui parla" and "lei parla",
+  "eles falam" and "elas falam". A flat list that repeats the pronoun pair for each verb stays too, because "ellas" is
+  already in an earlier item.
+- **No ",." or ";." at a Continue seam.** Continue try 1 stopped at "…into the continent's capitals," and the
+  continuation opened with ". These ventures", so the join read "capitals,. These". When the kept text ends with a
+  comma or semicolon and the continuation opens with a sentence end, the comma goes. The guard sends the chat the new
+  text on screen as a `prefix` delta, and `apps/mobile/src/screens/Chat.tsx` joins the continuation to it. The join now
+  reads "capitals. These ventures". The silent retry drops a dangling comma from the kept answer the same way. A
+  continuation that goes on the sentence (", and nutmeg") keeps the comma.
+
+Offline replay (`docs/qa/loop-guard-115/replay-r115.txt`), round 114 on main against round 115, no retry, 3 code
+points per chunk. It took 593 s.
+
+| Set | Answers | Cut by round 114 | Cut by round 115 | New cuts | Moved cuts | Cuts gone |
+|---|---|---|---|---|---|---|
+| stored stress runs | 1,064 | 102 | 102 | 0 | 0 | 0 |
+| shipped-guard runs | 504 | 48 | 48 | 0 | 0 | 0 |
+| real answers in `docs/qa` | 507 | 18 | 18 | 0 | 0 | 0 |
+| iPhone build 22 | 28 | 6 | 6 | 0 | 0 | 0 |
+| iPhone build 23 | 28 | 3 | 3 | 0 | 0 | 0 |
+| iPhone build 24 | 29 | 5 | 5 | 0 | 0 | 0 |
+| iPhone build 25 | 28 | 0 | 2 | 2 | 0 | 0 |
+
+False cuts: 0. The two new cuts are build 25's he-list, cut before "23. קיבוט ירושלים", and math-long-div 0.7 #2, cut
+before the third "- 123000000". The stress and device sets hold 37 answers with a fenced block, 4 of them long divisions, and the
+fence rule cuts only the device loop. Device passes 6 to 20 kept no raw answer snapshots, so
+the replay covers every stored device answer.
+
+Red first: 8 of the 17 tests in `fixes-r115.test.ts` fail on main 6312e769, which is every cut and seam test. The 9 keep
+tests pass there too (`red-r115-main-6312e769.txt`). Round 107's "fenced code with repeated lines" and round 113's
+empty retry after a comma stay green. No live model run and no device run: the next iPhone build measures it.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
