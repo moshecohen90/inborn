@@ -60,8 +60,8 @@ describe("F423 · iPhone build 22: the two answers that reached the screen now s
     expect(hit).not.toBeNull();
     const out = await screen(guardLoops(engine(LIST.text), () => undefined, { request: LIST.request }));
     expect(out.loop).toBeDefined();
-    /* "Clownfish" (item 7) comes back as item 19, before the block of items 11 to 20 is said again. */
-    expect(out.shown.trimEnd().split("\n").pop()).toBe("18. Bluefin tuna");
+    /* Round 113 (F426): "Eel" (item 6) comes back as item 17, before "Clownfish" (item 7) comes back as item 19. */
+    expect(out.shown.trimEnd().split("\n").pop()).toBe("16. Tiger shark");
     expect(Math.max(...out.screens.map(mostListed))).toBe(1);
   });
 
@@ -69,9 +69,10 @@ describe("F423 · iPhone build 22: the two answers that reached the screen now s
     let kept = "";
     const fresh = "19. Moray eel\n20. Manta ray\n21. Swordfish\n22. Lobster";
     const ok = await screen(guardLoops(engine(LIST.text), () => undefined, { request: LIST.request, retry: (k) => ((kept = k), engine(fresh)) }));
-    expect(kept.trimEnd().split("\n").pop()).toBe("18. Bluefin tuna");
+    expect(kept.trimEnd().split("\n").pop()).toBe("16. Tiger shark");
     expect(ok.loop).toBeUndefined();
-    expect(ok.shown).toMatch(/18\. Bluefin tuna\n19\. Moray eel\n20\. Manta ray/u);
+    /* F426: the continuation's "19." goes on at 17. */
+    expect(ok.shown).toMatch(/16\. Tiger shark\n17\. Moray eel\n18\. Manta ray/u);
     expect(Math.max(...ok.screens.map(mostListed))).toBe(1);
     const again = await screen(guardLoops(engine(LIST.text), () => undefined, { request: LIST.request, retry: () => engine("19. Sea otter\n20. Sea bass") }));
     expect(again.loop).toBeDefined();
@@ -224,7 +225,8 @@ describe("F423 · what must stay whole", () => {
     const list = "1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig";
     const text = `Here are the fruits:\n${list}\n\nLet me recount carefully from scratch.\n\n${list}`;
     const hit = tailLoop(text, {}, 0, true).hit;
-    expect(core.cutLoop(text, hit!).text).toBe(`Here are the fruits:\n${list}\n\nLet me recount carefully from scratch.\n`);
+    /* F426: the restart's intro goes with the restarted list. */
+    expect(core.cutLoop(text, hit!).text).toBe(`Here are the fruits:\n${list}\n`);
   });
 
   it("three identical numbered steps are a loop now, like three identical bullets (round 107 kept them)", () => {

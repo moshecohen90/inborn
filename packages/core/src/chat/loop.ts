@@ -13,6 +13,8 @@ export interface LoopHit {
   keep: number;
   /** The copies kept are the ones the user asked for, so the answer is complete at `keep` (F421). */
   asked?: boolean;
+  /** A retried list that reached the count it was asked for ends at `keep` with no notice (F426). */
+  complete?: boolean;
 }
 
 /** Only the tail is searched, so a check costs the same at token 20 and token 2000. */
@@ -61,8 +63,107 @@ const ITEM_MARK = /(?:[-*+•·▪◦‣](?=[ \t])|\d{1,3}[.)．](?=\s|[*_]|$)|\
 const EMPHASIS = /\*\*|__|~~|[*_`]/uy;
 const QUOTE = /["“”„‟«»「」『』＂]/u;
 const APOSTROPHE = /['‘’]/u;
-/** An item this long, or of two words or more, listed a second time is a loop; "Eel" twice in 30 animals is not yet. */
+/** An item this long, or of two words or more, listed a second time is a loop anywhere in the answer. */
 const ITEM_MIN = 8;
+/* F426: a shorter item listed again in the same list is a loop once that list holds this many distinct items; an answer key ("True", "False") never does. */
+const ENUMERATION = 5;
+/* The same short item this many times in a row is a loop in any list ("1. Yes 2. Yes …"); round 111's short-unit rule cut it there too. */
+const SAME_RUN = 8;
+const PAREN = /\s*[(（[［]([^()（）[\]［］\n]*)[)）\]］]/gu;
+const OPEN_PAREN = /\s*[(（[［]([^()（）[\]［］\n]*)$/u;
+const wordRe = (alt: string) => new RegExp(`(?<![\\p{L}])(?:${alt})(?![\\p{L}])`, "iu");
+/* An item the model marks as said again ("Clownfish (again, as listed before…)"), in the 8 app locales: "again" counts when the item was listed, */
+const AGAIN = wordRe(
+  "again|once more|repeat|as before|as above|שוב|חוזר|כנ\"ל|wieder|nochmals|wie oben|otra vez|de nuevo|como antes|encore|comme avant|di nuovo|come prima|novamente|de novo|снова|опять|повтор\\p{L}*|再び|再度|もう一度|繰り返し|重复|再次",
+);
+/* and "listed before" or "duplicate" on its own. */
+const REPEATED = wordRe(
+  "repeated|duplicated?|duplicates|(?:as )?(?:listed|mentioned) (?:above|before|earlier)|already (?:listed|mentioned|included)|שכבר (?:הוזכר|נמנה)|wiederholt|bereits (?:genannt|aufgeführt|erwähnt)|repetid[oa]|ya (?:mencionad|listad)[oa]|r[ée]p[ée]t[ée]e?|déjà (?:cité|mentionné|listé)e?|ripetut[oa]|già (?:citat|menzionat|elencat)[oa]|j[áa] (?:mencionad|listad)[oa]|уже (?:упомянут|перечислен)\\p{L}*|重複|前述|上記|上述",
+);
+const TRAILING_MARK = new RegExp(`[\\s,，、;–—-]+(?:${AGAIN.source}|${REPEATED.source})$`, "iu");
+
+interface ItemKey {
+  /** The item's words, lower-cased, without parentheticals, trailing punctuation or a repeat word. */
+  key: string;
+  /** Its parentheticals: "Dolphin (bottlenose)" and "Dolphin (river)" are two items, "Dolphin" and either one are the same. */
+  note: string;
+  /** 2: the item says it was listed before; 1: it says "again". */
+  marked: 0 | 1 | 2;
+  /** Round 111's key: the words with their parentheticals. */
+  full: string;
+}
+
+function itemKey(words: string): ItemKey {
+  const full = words.replace(ITEM_TAIL, "").trim().toLowerCase();
+  const notes: string[] = [];
+  let rest = words.replace(PAREN, (_m, x: string) => (notes.push(x), " "));
+  rest = rest.replace(OPEN_PAREN, (_m, x: string) => (notes.push(x), ""));
+  let key = rest.replace(/\s+/gu, " ").replace(ITEM_TAIL, "").trim().toLowerCase();
+  let marked: 0 | 1 | 2 = 0;
+  const trailing = TRAILING_MARK.exec(key);
+  if (trailing && trailing.index > 0) {
+    notes.push(trailing[0]);
+    key = key.slice(0, trailing.index).replace(ITEM_TAIL, "").trim();
+  }
+  for (const x of notes) marked = REPEATED.test(x) ? 2 : AGAIN.test(x) && marked < 2 ? 1 : marked;
+  if (!LETTER.test(key)) return { key: full, note: "", marked: 0, full };
+  return { key, note: notes.join(" ").replace(/\s+/gu, " ").trim().toLowerCase(), marked, full };
+}
+
+/**
+ * F426: whether s[a, b) is made of short list items only ("True", "False", "B") that hold two answers or more, or are
+ * numbered: an answer key repeats its answers on purpose, and the item rule, which reads each item, owns short items.
+ */
+function answerKeyRun(s: string[], text: string, items: Normalized["items"]): (a: number, b: number) => boolean {
+  if (!items.length) return () => false;
+  const owner = new Int32Array(s.length).fill(-1);
+  const keyOf: string[] = [];
+  const numbered: boolean[] = [];
+  for (const [m, { idx, line }] of items.entries()) {
+    let e = idx;
+    while (e < s.length && s[e] !== "\n") e++;
+    const it = itemKey(s.slice(idx, e).join(""));
+    keyOf.push(itemQualifies(it.full) || !LETTER.test(it.key) ? "" : it.key);
+    numbered.push(/^[ \t]*(?:\*\*)?\d/u.test(text.slice(line, line + 8)));
+    for (let k = idx; k < e; k++) owner[k] = m;
+  }
+  return (a, b) => {
+    const seen = new Set<string>();
+    let counted = true;
+    for (let k = a; k < b; k++) {
+      if (s[k] === "\n") continue;
+      const m = owner[k]!;
+      if (m < 0 || !keyOf[m]) return false;
+      seen.add(keyOf[m]!);
+      counted &&= numbered[m]!;
+    }
+    return seen.size >= 2 || (seen.size === 1 && counted);
+  };
+}
+
+/** Which list each item belongs to: items at one indent under one parent, until a line of text at that indent or less ends the list. */
+function listIds(text: string, items: { line: number }[]): number[] {
+  const itemAt = new Map(items.map((x, m) => [x.line, m]));
+  const ids: number[] = [];
+  const open: { indent: number; id: number }[] = [];
+  let next = 0;
+  for (let pos = 0; pos <= text.length; ) {
+    let eol = text.indexOf("\n", pos);
+    if (eol < 0) eol = text.length;
+    const lineText = text.slice(pos, eol);
+    if (lineText.trim()) {
+      const indent = Math.floor(/^[ \t]*/u.exec(lineText)![0].replace(/\t/gu, "    ").length / 2);
+      const m = itemAt.get(pos);
+      if (m !== undefined) {
+        while (open.length && open.at(-1)!.indent > indent) open.pop();
+        if (!open.length || open.at(-1)!.indent < indent) open.push({ indent, id: next++ });
+        ids[m] = open.at(-1)!.id;
+      } else while (open.length && open.at(-1)!.indent >= indent) open.pop();
+    }
+    pos = eol + 1;
+  }
+  return ids;
+}
 const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
 /* "**Advantages:**" heads each option's sub-list. */
 const LABEL = /[:：]\s*$/u;
@@ -252,9 +353,10 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
     if (quoted || (ask.asked && (ask.count !== undefined || unit.includes("\n")))) return Math.max(REPEATS - 1, ask.count ?? ASKED_CAP);
     return REPEATS - 1;
   };
-  const { cps: s, at, end } = normalize(text);
+  const { cps: s, at, end, items } = normalize(text);
   const n = s.length;
   const from = Math.max(0, n - WINDOW);
+  const answerKey = answerKeyRun(s, text, items);
   const code = codeSpans(text);
   const inCode = (a: number, b: number) => code.some(([x, y]) => at[a]! < y && at[b]! > x);
   const hasLetter = (a: number, len: number) => s.slice(a, a + len).some((c) => LETTER.test(c));
@@ -273,7 +375,7 @@ export function detectLoop(text: string, context: LoopContext = {}): LoopHit | n
       if (request) for (let q = MIN_UNIT; q < p; q++) if (periodic(s, a, regionLen, q)) return false;
       if (request && Math.floor(len / p) <= allowed(a, p)) return false;
     }
-    return !inCode(a, a + regionLen);
+    return !inCode(a, a + regionLen) && !answerKey(a, a + p);
   };
   let best: { a: number; p: number } | null = null;
   for (let p = 1; p <= Math.floor((n - from + 1) / REPEATS); p++) {
@@ -375,6 +477,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
   const code = codeSpans(text);
   const inCode = (a: number, b: number) => code.some(([x, y]) => at[a]! < y && at[b]! > x);
   const data = dataLines(text, at);
+  const answerKey = answerKeyRun(s, text, items);
   const cut = (k: number) => cutAt(ends, k);
   interface Verdict {
     /** Copies that may stand in a row before it is a loop. */
@@ -397,7 +500,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     for (let q = 1; q < p && primitive; q++) if (periodic(s, a, Math.min(end - a, 2 * p), q)) primitive = false;
     /* "beide, beide, beide, beide": a word listed a fourth time is a loop; "Nein, nein, nein!" stops at three. */
     const listed = !long && p < MIN_UNIT && unit.some((c) => LIST_SEPARATOR.test(c));
-    if ((long || p >= MIN_UNIT || listed) && primitive && unit.some((c) => LETTER.test(c)) && !inCode(a, end)) {
+    if ((long || p >= MIN_UNIT || listed) && primitive && unit.some((c) => LETTER.test(c)) && !inCode(a, end) && !answerKey(a, a + p)) {
       const base = long ? 1 : listed ? REPEATS : REPEATS - 1;
       /* One line of a song may come twice, its chorus; a whole stanza may not. */
       const line = verse && unit.filter((c) => c === "\n").length === 1 ? 2 : 0;
@@ -488,30 +591,53 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       else if (head) for (const [x, seen] of said) if (seen >= once && x.startsWith(head)) segmentHold = n - st;
     }
   }
-  /* The item rule (F423): an item listed again, whatever its number, is a loop on its second copy (device list30-animals #2). */
+  /* The item rule (F423, F426): an item listed again, whatever its number, is a loop on its second copy (device list30-animals #2). */
   const itemHits = new Map<number, { line: number; unit: string }>();
   let itemHold = 0;
   if (!ask.asked && source === 1) {
     /* A list the user gave that lists an item twice (to translate, sort or fix) may be answered with it twice. */
     const once = Math.max(verse ? 2 : 1, request ? requestItems(context.request!) : 1);
-    const listed = new Map<string, number>();
+    const lists = listIds(text, items);
+    /* Each item said so far: its parenthetical, its list and its full words, by key. */
+    const listed = new Map<string, { note: string; list: number; full: string }[]>();
+    const distinct = new Map<number, Set<string>>();
+    /* Per list: the item said last, how many times in a row, and where its second copy is. */
+    const runs = new Map<number, { key: string; count: number; second: number }>();
     const keys: string[] = [];
     const firstAt = new Map<string, number>();
+    /* Earlier copies of `it`: in its own list, notes aside ("Dolphin (multiple species)" is "Dolphin"); in another list, word for word and two words or 8 code points long. */
+    const copiesOf = (it: ItemKey, key: string, list: number, long: boolean) =>
+      (listed.get(key) ?? []).filter((x) => (x.list === list ? x.note === "" || it.note === "" || x.note === it.note || it.marked > 0 : long && x.full === it.full)).length;
+    /* A short item repeats only in an enumeration: "True" and "False" 30 times over is an answer key, not a loop. */
+    const enumerates = (list: number, key: string) => (distinct.get(list)?.size ?? 0) >= ENUMERATION && Array.from(key).length > 1;
     for (const [m, { idx, line }] of items.entries()) {
       let e = idx;
       while (e < n && s[e] !== "\n") e++;
       const raw = text.slice(line, e < n ? at[e] : text.length);
       const words = s.slice(idx, e).join("");
-      const k = words.replace(ITEM_TAIL, "").trim().toLowerCase();
-      const skip = DATA_LINE.test(raw) || MATH.test(raw) || inCode(idx, e);
+      const it = itemKey(words);
+      const k = it.key;
+      /* A line still streaming that ends in "(" is an item about to add a note, not a code line yet. */
+      const skip = DATA_LINE.test(e < n || final ? raw : raw.replace(/[;{[(]\s*$/u, "")) || MATH.test(raw) || inCode(idx, e);
       keys.push(skip ? `\u0000${m}` : k);
       if (skip) continue;
+      const list = lists[m] ?? -1;
+      const long = itemQualifies(it.full);
       if (e < n || final) {
         if (!firstAt.has(k)) firstAt.set(k, m);
-        if (LABEL.test(words) || !itemQualifies(k)) continue;
-        const seen = listed.get(k) ?? 0;
+        if (LABEL.test(words) || !LETTER.test(k)) continue;
+        const copies = copiesOf(it, k, list, long);
+        const repeat = it.marked === 2 || (it.marked === 1 && listed.has(k)) || (copies >= once && (long || enumerates(list, k)));
         const done = e < n ? e + 1 : n;
-        if (seen < once) listed.set(k, seen + 1);
+        const run = runs.get(list);
+        if (run?.key === k) {
+          run.count++;
+          if (run.count === 2) run.second = m;
+        } else runs.set(list, { key: k, count: 1, second: m });
+        if (!repeat && (runs.get(list)!.count < Math.max(SAME_RUN, once + 1) || itemHits.has(done))) {
+          listed.set(k, [...(listed.get(k) ?? []), { note: it.note, list, full: it.full }]);
+          distinct.set(list, (distinct.get(list) ?? new Set()).add(k));
+        } else if (!repeat) itemHits.set(done, { line: items[runs.get(list)!.second]!.line, unit: k });
         else if (!itemHits.has(done)) {
           /* A list restarted from scratch repeats its short items too ("1. Apple … 5. Elderberry"): the copy starts where the block does. */
           let a = m;
@@ -522,7 +648,17 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           }
           itemHits.set(done, { line: items[a]!.line, unit: k });
         }
-      } else if (k) for (const [x, seen] of listed) if (seen >= once && x.startsWith(k)) itemHold = text.length - line;
+      } else if (k) {
+        /* The item still streaming may turn out a copy: its line waits off screen until it ends. */
+        let wait = it.marked > 0;
+        for (const x of listed.keys()) {
+          if (wait) break;
+          if (!x.startsWith(k)) continue;
+          const xLong = itemQualifies(x);
+          wait = copiesOf(it, x, list, xLong) >= once && (xLong || enumerates(list, x));
+        }
+        if (wait) itemHold = text.length - line;
+      }
     }
   }
   /* A rotation may start inside a word ("he light … ATP. T"): the cut backs up to the word's start. */
@@ -552,7 +688,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
   };
   let first = 0;
   while (first < n && at[first + 1]! <= from) first++;
-  const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b), data) : { hit: null, hold: 0 };
+  const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b), data, answerKey) : { hit: null, hold: 0 };
   for (let end = Math.min(Math.max(first + 1, 2 * WIDE_UNIT), n); end <= n; end++) {
     if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: keepAt(opening(echo.hit.start, echo.hit.source)) } };
     const again = segmentHits.get(end);
@@ -610,8 +746,8 @@ export function requestItems(request: string): number {
   for (const { idx } of items) {
     let e = idx;
     while (e < cps.length && cps[e] !== "\n") e++;
-    const k = cps.slice(idx, e).join("").replace(ITEM_TAIL, "").trim().toLowerCase();
-    if (!itemQualifies(k)) continue;
+    const k = itemKey(cps.slice(idx, e).join("")).key;
+    if (!LETTER.test(k)) continue;
     const c = (counts.get(k) ?? 0) + 1;
     counts.set(k, c);
     copies = Math.max(copies, c);
@@ -676,7 +812,7 @@ function wordsOf(s: string[], inCode: (a: number, b: number) => boolean, dataLin
 }
 
 /** The echo rule (F415): a copy that drops the line breaks and punctuation ("…the sky They dance…") is still a loop. */
-function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean, data: boolean[]): { hit: { start: number; end: number; source: number } | null; hold: number } {
+function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean, data: boolean[], answerKey: (a: number, b: number) => boolean): { hit: { start: number; end: number; source: number } | null; hold: number } {
   const words = wordsOf(s, inCode, data);
   const seen = new Map<string, number[]>();
   let hit: { start: number; end: number; source: number } | null = null;
@@ -694,6 +830,7 @@ function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, 
           if (weight >= ECHO_WORDS) {
             const back = echoStart(words, i, j, j + k);
             if (back.numbers && MATH.test(s.slice(words[back.a]!.start, words[i + k]!.end).join(""))) break;
+            if (answerKey(words[back.a]!.start, words[i + k]!.end)) break;
             if (!hit || words[i + k]!.end < hit.end) hit = { start: lineStart(s, words[back.a]!.start), end: words[i + k]!.end, source: words[back.b]!.start };
             break;
           }
@@ -757,10 +894,21 @@ const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)�
 const OPEN_MARK = /(?<=^|\s)(?:\*\*|__|~~|[*_`])+$/u;
 const OPENER = /[(（[［{「『“‘«〈《【]+$/u;
 const NEXT_ITEM = /^[ \t]*\n\s*(?:\*\*)?(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])/u;
+const RESTART = /^\s*(?:\*\*)?1[.)．][ \t]/u;
+const RESTART_INTRO = 2;
+const INLINE_LIST = 4;
 const ITEM_LINE = /(?:^|\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])[ \t][^\n]*$/u;
 
 export function cutLoop(text: string, hit: LoopHit): LoopCut {
   let kept = text.slice(0, hit.keep);
+  /* fr-list build 23: "8. …\nVoici une autre sélection de 30 idées :\n1. …": a restarted list's intro goes with it. */
+  if (RESTART.test(text.slice(hit.keep))) {
+    const lines = kept.replace(/\s+$/u, "").split("\n");
+    let k = lines.length - 1;
+    while (k >= 0 && !ITEM_OPEN.test(lines[k]!)) k--;
+    const intro = lines.slice(k + 1).filter((l) => l.trim()).length;
+    if (k >= 0 && intro > 0 && intro <= RESTART_INTRO) kept = `${lines.slice(0, k + 1).join("\n")}\n`;
+  }
   for (let before = ""; before !== kept; ) {
     before = kept;
     kept = kept.trimEnd().replace(OPEN_ITEM, "").replace(OPEN_MARK, "").replace(OPENER, "");
@@ -806,6 +954,8 @@ export interface GuardOptions extends LoopContext {
   onRetry?: (kept: string, hit: LoopHit) => void;
   /** Continue: the answer on screen this generation carries on, so a restarted phrase at the seam is dropped. */
   prefix?: string;
+  /** What the continuation was asked with: a continuation that talks about it is taken back (F426). */
+  instruction?: string;
 }
 
 const SEAM_WORDS = 3;
@@ -831,12 +981,224 @@ export function seamOverlap(prefix: string, next: string, final = false): number
     if (!final && tail.startsWith(body)) return -1;
     if (body.startsWith(tail) && (body.length > tail.length ? !WORD_CHAR.test(body[tail.length]!) : final)) best = tail.length;
   }
-  if (!best) return 0;
+  if (!best) {
+    const inside = restated(sentence, starts, body, final);
+    if (inside <= 0) return inside;
+    best = inside;
+  }
   let drop = lead + best;
   const rest = next.slice(drop);
   const mark = rest.trimStart()[0];
   if (mark && ",;:，、；：".includes(mark) && head.endsWith(mark)) drop += rest.length - rest.trimStart().length + 1;
   return drop;
+}
+
+/* F426: a restatement inside the continuation's first sentence counts from five words or 24 code points of the stopped sentence. */
+const RESTATE_WORDS = 5;
+const RESTATE_CP = 24;
+const RESTATE_WAIT = 400;
+const escape = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+
+/**
+ * Build 23: "…treaties like the" went on "British colonial powers established control … through treaties like the Indian
+ * Ocean Treaty". The end of the stopped sentence restated after a new subject: the length of `body` to drop, 0 for none,
+ * -1 while the first sentence is still streaming.
+ */
+function restated(sentence: string, starts: number[], body: string, final: boolean): number {
+  let end = body.search(/[.!?。！？](?=\s|$)|\n/u);
+  const done = end >= 0 || final;
+  if (end < 0) end = body.length;
+  const first = body.slice(0, end);
+  for (let w = 0; w < starts.length; w++) {
+    const tail = sentence.slice(starts[w]).trim();
+    if (starts.length - w < RESTATE_WORDS && Array.from(tail).length < RESTATE_CP) break;
+    const m = new RegExp(`(?<![\\p{L}\\p{N}\\p{M}])${tail.split(/\s+/u).map(escape).join("\\s+")}(?![\\p{L}\\p{N}\\p{M}])`, "iu").exec(first);
+    if (!m) continue;
+    const at = m.index + m[0].length;
+    if (at < body.length || final) return at;
+    return -1;
+  }
+  return done || first.length > sentence.length + RESTATE_WAIT ? 0 : -1;
+}
+
+/** The instruction the chat sends with Continue and the silent retry (F390). */
+export const CONTINUE_INSTRUCTION = "Continue exactly where you stopped. Do not repeat what you already wrote.";
+/* Four words of the instruction in a row, in the continuation, are the model talking about it (web Fast list30 rerun 2). */
+const ECHO_RUN = 4;
+const lettersOf = (x: string) => Array.from(x.toLowerCase().matchAll(/[\p{L}\p{M}\p{N}'’]+/gu), (m) => ({ w: m[0].replace(/['’]/gu, ""), at: m.index! }));
+
+/** Where the continuation starts echoing `instruction` (`at`), or how much of its end waits because it may (`hold`). */
+export function instructionEcho(instruction: string, text: string, final = false): { at: number; hold: number } {
+  const grams: string[][] = [];
+  const said = lettersOf(instruction).map((x) => x.w);
+  for (let i = 0; i + ECHO_RUN <= said.length; i++) grams.push(said.slice(i, i + ECHO_RUN));
+  const words = lettersOf(text);
+  const n = words.length;
+  const run = (i: number, g: string[]) => {
+    let k = 0;
+    while (k < ECHO_RUN && i + k < n && words[i + k]!.w === g[k]) k++;
+    return k;
+  };
+  for (let i = 0; i < n; i++) if (grams.some((g) => run(i, g) === ECHO_RUN)) return { at: words[i]!.at, hold: 0 };
+  if (final || !n) return { at: -1, hold: 0 };
+  /* The last word may still be growing ("stop" of "stopped"). */
+  const open = words[n - 1]!.at + words[n - 1]!.w.length >= text.length;
+  for (let i = Math.max(0, n - ECHO_RUN); i < n; i++) {
+    const may = grams.some((g) => {
+      const k = run(i, g);
+      return i + k === n || (open && i + k === n - 1 && g[k]!.startsWith(words[n - 1]!.w));
+    });
+    if (may) return { at: -1, hold: text.length - words[i]!.at };
+  }
+  return { at: -1, hold: 0 };
+}
+
+/* A line that opens a list item: its indent, then its number (none for a bullet). */
+const ITEM_OPEN = /^([ \t]*)(?:\*\*)?(?:(\d{1,3})[.)．]|[-*•+])[ \t]+/u;
+/* A line start that may still grow into one ("2", "12.", "**"). */
+const ITEM_PARTIAL = /^[ \t]*(?:\*\*?)?(?:\d{0,3}[.)．]?|[-*•+])$/u;
+const indentOf = (lead: string) => Math.floor(lead.replace(/\t/gu, "    ").length / 2);
+const lineKey = (line: string) => itemKey(normalize(line).cps.join("")).key;
+
+/**
+ * F426: after a cut inside a list, the retry may only add items. The first line that is not an item (nor deeper
+ * content of one) ends it: `at` is where, or -1 with `hold`, the line still streaming that may yet turn out an item.
+ */
+function listEnd(text: string, from: number, indent: number, final: boolean): { at: number; hold: number } {
+  for (let pos = from; pos < text.length; ) {
+    const nl = text.indexOf("\n", pos);
+    const line = text.slice(pos, nl < 0 ? text.length : nl);
+    const whole = nl >= 0 || final;
+    if (line.trim() && !ITEM_OPEN.test(line)) {
+      const lead = indentOf(/^[ \t]*/u.exec(line)![0]);
+      const deeper = lead > indent && /\S/u.test(line);
+      if (!deeper) {
+        if (!whole && ITEM_PARTIAL.test(line)) return { at: -1, hold: text.length - pos };
+        return { at: pos, hold: 0 };
+      }
+    }
+    if (nl < 0) break;
+    pos = nl + 1;
+  }
+  return { at: -1, hold: 0 };
+}
+
+/** The items a request counts ("List 30 animals"), if it names a number. */
+function listTarget(request: string): number | undefined {
+  const m = /(?<![\d.,])(\d{1,3})(?![\d.,]\d)/u.exec(request);
+  const n = m ? Number(m[1]) : NaN;
+  return n >= 2 && n <= 200 ? n : undefined;
+}
+
+/** How many items the list ending `text` holds: its last number, or its item count. */
+function listCount(text: string): number {
+  const lines = text.split("\n").filter((l) => ITEM_OPEN.test(l));
+  const last = lines.length ? ITEM_OPEN.exec(lines.at(-1)!)![2] : undefined;
+  return last ? Number(last) : lines.length;
+}
+
+/**
+ * F426: a continuation (the silent retry, or Continue after Stop) of a list goes on numbering after the kept list and
+ * does not open with the kept last item again. iPhone build 23 showed "22. Sponges\n10. Sponges\n11. Shrimp"; that now
+ * reads "22. Sponges\n23. Shrimp". Only the leading markers change; a line of text after the list ends it.
+ */
+export class ListSeam {
+  private indent = 0;
+  private last: number | null = null;
+  private lastKey = "";
+  private active = false;
+  /** The kept last item is complete, so the continuation's first item may be that item again. */
+  private whole: boolean;
+  private lineStart: boolean;
+  private started = false;
+  private decided = false;
+  private renumber = false;
+  private next = 0;
+  private buf = "";
+
+  constructor(kept: string) {
+    const body = kept.replace(/\s+$/u, "");
+    const line = body.slice(body.lastIndexOf("\n") + 1);
+    const m = ITEM_OPEN.exec(line);
+    this.lineStart = this.whole = /\n[ \t]*$/u.test(kept);
+    if (!m) return;
+    this.active = true;
+    this.indent = indentOf(m[1]!);
+    this.last = m[2] ? Number(m[2]) : null;
+    this.lastKey = lineKey(line);
+  }
+
+  /** The part of `piece` that can be shown now; a line start that may still turn out to be a list marker waits. */
+  push(piece: string, final = false): string {
+    if (!this.active) return piece;
+    this.buf += piece;
+    let out = "";
+    while (this.buf && this.active) {
+      const nl = this.buf.indexOf("\n");
+      if (!this.lineStart) {
+        if (nl < 0) {
+          this.started ||= !!this.buf.trim();
+          out += this.buf;
+          this.buf = "";
+          break;
+        }
+        /* "…22. Sponges" on screen and "\n10. Sponges" next: the kept item was complete. */
+        if (!this.started && !this.buf.slice(0, nl).trim()) this.whole = true;
+        this.started ||= !!this.buf.slice(0, nl).trim();
+        out += this.buf.slice(0, nl + 1);
+        this.buf = this.buf.slice(nl + 1);
+        this.lineStart = true;
+        continue;
+      }
+      const line = nl < 0 ? this.buf : this.buf.slice(0, nl);
+      if (!line.trim()) {
+        if (nl < 0) break;
+        out += this.buf.slice(0, nl + 1);
+        this.buf = this.buf.slice(nl + 1);
+        continue;
+      }
+      const m = ITEM_OPEN.exec(line);
+      if (!m && nl < 0 && !final && ITEM_PARTIAL.test(line)) break;
+      const indent = indentOf(m ? m[1]! : /^[ \t]*/u.exec(line)![0]);
+      if (!this.decided) {
+        if (!m || indent !== this.indent) {
+          this.active = false;
+          break;
+        }
+        if (this.whole && nl < 0 && !final) break;
+        this.decided = true;
+        this.next = (this.last ?? 0) + 1;
+        this.renumber = this.last !== null && m[2] !== undefined && Number(m[2]) !== this.next;
+        if (this.whole && lineKey(line) === this.lastKey) {
+          /* The dropped copy took the next number, so what follows is renumbered. */
+          this.renumber = this.last !== null;
+          this.buf = nl < 0 ? "" : this.buf.slice(nl + 1);
+          continue;
+        }
+      }
+      if (!this.renumber) {
+        this.active = false;
+        break;
+      }
+      if (m && indent === this.indent && m[2] !== undefined) {
+        out += m[0].replace(m[2], String(this.next++));
+        this.buf = this.buf.slice(m[0].length);
+      } else if (!m && indent <= this.indent) {
+        this.active = false;
+        break;
+      }
+      this.lineStart = false;
+    }
+    if (!this.active && this.buf) {
+      out += this.buf;
+      this.buf = "";
+    }
+    if (final && this.buf) {
+      out += this.buf;
+      this.buf = "";
+    }
+    return out;
+  }
 }
 
 /**
@@ -855,6 +1217,15 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
   /* What a continuation's first text is held against until it is known not to restart the prefix's last phrase. */
   let seam = context.prefix ?? "";
   let opening = "";
+  /* A continuation of a list on screen goes on numbering it (F426). */
+  let list = context.prefix ? new ListSeam(context.prefix) : null;
+  const instruction = context.instruction ?? CONTINUE_INSTRUCTION;
+  /* Where this generation's continuation starts in `text` (-1: not a continuation), and the retried list's indent. */
+  let contFrom = context.prefix ? 0 : -1;
+  let listIndent = -1;
+  const target = listTarget(context.request ?? "");
+  /* A retried list that reaches its count ends quietly; one that stops short shows the notice. */
+  const listStop = (all: string, at: number): LoopHit => ({ unit: all.slice(at).trim().slice(0, 80), repeats: 1, start: at, keep: at, complete: target !== undefined && listCount(all.slice(0, at)) >= target });
   for (;;) {
     let hit: LoopHit | null = null;
     for await (const d of current) {
@@ -875,10 +1246,25 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         piece = continuationSeparator(text, piece) + piece;
         joinNext = false;
       }
+      if (list) {
+        piece = list.push(piece);
+        if (!piece) continue;
+      }
       const from = text.length;
       text += piece;
       const tail = tailLoop(text, context, from);
       hit = tail.hit;
+      let hold = tail.hold;
+      if (!hit && contFrom >= 0) {
+        const echo = instructionEcho(instruction, text.slice(contFrom));
+        if (echo.at >= 0) hit = { unit: instruction, repeats: 1, start: contFrom, keep: contFrom };
+        hold = Math.max(hold, echo.hold);
+      }
+      if (!hit && listIndent >= 0) {
+        const end = listEnd(text, contFrom, listIndent, false);
+        if (end.at >= 0) hit = listStop(text, end.at);
+        hold = Math.max(hold, end.hold);
+      }
       if (!hit && text.length - checkedAt >= 4) {
         checkedAt = text.length;
         hit = shortLoop(text, context);
@@ -887,23 +1273,34 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         stop();
         continue;
       }
-      const safe = text.length - tail.hold;
+      const safe = text.length - hold;
       if (safe > sent) {
         yield { text: text.slice(sent, safe) };
         sent = safe;
       }
     }
-    if (seam && opening && !hit) {
-      const rest = opening.slice(Math.max(0, seamOverlap(seam, opening, true)));
-      text += joinNext && rest ? continuationSeparator(text, rest) + rest : rest;
+    if (!hit) {
+      let rest = seam && opening ? opening.slice(Math.max(0, seamOverlap(seam, opening, true))) : "";
+      if (joinNext && rest) rest = continuationSeparator(text, rest) + rest;
+      text += list ? list.push(rest, true) : rest;
     }
     opening = "";
     if (!hit) hit = tailLoop(text, context, checkedAt, true).hit ?? shortLoop(text, context);
+    if (!hit && contFrom >= 0) {
+      const echo = instructionEcho(instruction, text.slice(contFrom), true);
+      if (echo.at >= 0) hit = { unit: instruction, repeats: 1, start: contFrom, keep: contFrom };
+    }
+    if (!hit && listIndent >= 0) {
+      const end = listEnd(text, contFrom, listIndent, true);
+      if (end.at >= 0) hit = listStop(text, end.at);
+    }
+    /* he-list build 23: a retry that wrote only "." adds nothing; the answer ends at the cut, with the notice. */
+    if (!hit && retried && !/[\p{L}\p{N}]/u.test(text.slice(contFrom))) hit = { unit: "", repeats: 1, start: contFrom, keep: contFrom };
     if (!hit) break;
     const cut = cutLoop(text, hit);
     /* Five asked, a sixth begun: the five are the whole answer, so a retry would only invent more (F421). */
     const retry = retried ? undefined : context.retry;
-    if (hit.asked || retry) {
+    if (hit.asked || hit.complete || retry) {
       /* Only whitespace past the cut on screen: nothing to take back. */
       if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {
         text = text.slice(0, sent);
@@ -915,14 +1312,20 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         text = cut.text;
       }
       sent = checkedAt = text.length;
-      if (hit.asked || !retry) break;
+      if (hit.asked || hit.complete || !retry) break;
       retried = true;
+      contFrom = text.length;
+      const lastLine = ITEM_OPEN.exec(text.replace(/\s+$/u, "").split("\n").at(-1) ?? "");
+      listIndent = lastLine && /\n[ \t]*$/u.test(text) ? indentOf(lastLine[1]!) : -1;
       joinNext = true;
       seam = context.prefix ? context.prefix + continuationSeparator(context.prefix, text) + text : text;
+      list = new ListSeam(seam);
       context.onRetry?.(cut.text, hit);
       current = retry(cut.text);
       continue;
     }
+    /* An inline list cut short does not end on its separator ("…דרשינה,"); a verse ending "loud," keeps its comma. */
+    if ((cut.text.slice(cut.text.lastIndexOf("\n") + 1).match(/[,،、，;；]/gu) ?? []).length >= INLINE_LIST) cut.text = cut.text.replace(/[ \t]*[,،、，;；][ \t]*$/u, "");
     yield { loop: cut };
     text = cut.text;
     sent = text.length;

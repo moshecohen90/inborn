@@ -1,0 +1,25 @@
+{
+  "l07-list30-animals-1": {
+    "request": "List 30 animals that live in the ocean, one per line, numbered.",
+    "screen": "1. Shark\n2. Whale\n3. Dolphin\n4. Penguin\n5. Lizardfish\n6. Seal\n7. Crab\n8. Octopus\n9. Turtle\n10. Seahorse\n11. Manta Ray\n12. Whiting\n13. Jellyfish\n14. Sea Bass\n15. Hammerhead Shark\n16. Sea Lion\n17. Blue Whale\n18. Dolphin (multiple species)\n19. Coral Reef\n20. Clownfish\n21. Octopus\n22. Sponges\n10. Sponges\n11. Shrimp\n12. Crayfish\n13. Mollusk (Coral Reefs)\n",
+    "retryKept": 290,
+    "kept": "1. Shark\n2. Whale\n3. Dolphin\n4. Penguin\n5. Lizardfish\n6. Seal\n7. Crab\n8. Octopus\n9. Turtle\n10. Seahorse\n11. Manta Ray\n12. Whiting\n13. Jellyfish\n14. Sea Bass\n15. Hammerhead Shark\n16. Sea Lion\n17. Blue Whale\n18. Dolphin (multiple species)\n19. Coral Reef\n20. Clownfish\n21. Octopus\n22. Sponges\n",
+    "continuation": "10. Sponges\n11. Shrimp\n12. Crayfish\n13. Mollusk (Coral Reefs)\n",
+    "log": [
+      "[chat] loop retry: kept 290 chars, unit 9 cp x2",
+      "[chat] loop cut: kept 352 of 366 chars, unit 9 cp x2"
+    ],
+    "from": "docs/qa/ios-device-pass-23/raw/result-l07-list30-animals-1.json (iPhone build 23, Instant at 0.7, last value step)"
+  },
+  "l07-list30-animals-2": {
+    "request": "List 30 animals that live in the ocean, one per line, numbered.",
+    "screen": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+    "retryKept": 205,
+    "kept": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n",
+    "continuation": "7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+    "log": [
+      "[chat] loop retry: kept 205 chars, unit 8 cp x2"
+    ],
+    "from": "docs/qa/ios-device-pass-23/raw/result-l07-list30-animals-2.json (iPhone build 23, Instant at 0.7, last value step)"
+  }
+}

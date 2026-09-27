@@ -6472,6 +6472,59 @@ Not done:
 - No live model run: the Mac was busy with a phone build. The guard is shared code, so web, phone and desktop get it
   unchanged.
 
+## Fixes round 113: one-word items listed again, the retry's instruction never on screen, retried lists stay lists, Continue drops a restated clause (branch `loop-guard-short-items`) — 27.9.2026
+
+Moshe (27.9): repetition must never reach the screen. iPhone build 23 (F424) and the Fast web run
+(`docs/qa/web-fast-loops.md`) showed what round 111's guard still let through. Evidence:
+`docs/qa/loop-guard-short-items/`. The tests of the first half are `packages/core/test/fixes-r112.test.ts` and
+`fixtures/r112-device-answers.json` (the names stay); the second half is `fixes-r113.test.ts`.
+
+- **F426 · A one-word item listed again is a loop.** "Octopus" as items 8 and 21, "Dolphin" as 2 and 6: an item under
+  8 code points listed again in the same list is cut once that list holds 5 distinct items. Answer keys stay (True/False,
+  Yes/No/Maybe, answer letters), and so do "Pros"/"Cons" under each option, two separate lists and asked repetition.
+  The same short item 8 times in a row is still a loop. "Clownfish (again, as listed before…)", "(already listed)" and
+  "(duplicate)" in the 8 app languages count as the item again, and "Octopus (octopuses)" is "Octopus".
+- **A retried list goes on numbering.** The retry's "10. Sponges\n11. Shrimp" after "22. Sponges" now reads
+  "23. Shrimp": the continuation is renumbered, and a first item that repeats the kept last one is dropped.
+- **The retry's instruction never reaches the screen.** The silent retry and Continue still send "Continue exactly where
+  you stopped. Do not repeat what you already wrote." (now `CONTINUE_INSTRUCTION` in core). A continuation that says
+  four of its words in a row is the model talking about it, and it is taken back whole. The words that may start such
+  an echo wait off screen. On the Fast web answer ("…To strictly follow "Continue exactly where you stopped"…", 1,700
+  characters) the screen keeps the list before the retry and shows the notice. An answer that uses these words in its
+  own sentences is not cut. The engines have no assistant prefill, so the retry is not yet a pure continuation.
+- **After a cut inside a list, the retry may only add items.** Its first line that is not an item (or deeper content
+  of one) ends it. ko-list's "다음은 다음 단계입니다." under item 15 and fr-list's restarted intro "Voici une autre
+  sélection de 30 idées…" no longer show. The notice shows when the list is short of the count the request names. A
+  list that reaches the count ends quietly at its last item.
+- **A restarted list's intro goes with it.** When the cut is at a restarted "1.", up to two intro lines between the
+  last kept item and the restart are dropped too.
+- **An empty retry adds nothing.** A retry that writes only "." is dropped and the notice shows. An inline list cut
+  short loses its trailing comma, so he-list no longer ends ",.". A verse line's own comma stays.
+- **Continue drops a restated clause after a new subject.** When the continuation's first sentence contains, anywhere,
+  the end of the stopped sentence (5 words or 24 code points), the continuation up to that overlap goes. The first
+  sentence waits off screen until it is known. Build 23: "…treaties like the" + "British colonial powers established
+  control … through treaties like the Indian Ocean Treaty of 1809" reads "…treaties like the Indian Ocean Treaty of
+  1809". "…complex maritime navigation" + "The logistical challenges … necessitated the development of complex maritime
+  navigation techniques" reads "…complex maritime navigation techniques". The silent retry uses the same check.
+
+Offline replay (`docs/qa/loop-guard-short-items/replay-r113.txt`), round 111 on main against round 113, no retry, 3
+code points per chunk. The retry rules above do not show in it: they are in the tests.
+
+| Set | Answers | Cut by round 111 | Cut by round 113 | New cuts | Cuts gone |
+|---|---|---|---|---|---|
+| stored stress runs | 1,064 | 82 | 97 | 15 | 0 |
+| shipped-guard runs | 504 | 35 | 44 | 9 | 0 |
+| real answers in `docs/qa` | 536 | 14 | 15 | 1 | 0 |
+| iPhone build 22 | 28 | 4 | 5 | 1 | 0 |
+| iPhone build 23 | 28 | 1 | 3 | 2 | 0 |
+
+False cuts: 0. Every new or earlier cut is an item listed again ("Dolphin" 2 and 6, "Finn" 8 and 31, "Quince" 17 and
+36, "zu tun" 1 and 9, "דובאליד" 3 and 15), and answer keys, Yes/No lists and asked repetition are untouched. The
+inline lists that "moved" by one character keep the same cut and lose their trailing comma.
+
+Red first: 16 of the 22 round-112 tests fail on main 98722df7, and 9 of the 14 round-113 tests failed before the
+round-113 code. No live model run and no device run: the next iPhone build measures it.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
