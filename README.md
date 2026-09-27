@@ -6651,3 +6651,26 @@ The web pass found both (F8 and F9 in its findings). They are fixed here as F389
   restarts its sentence on Continue is a separate model limit.
 
 Evidence in `docs/qa/fix-loop-continue/`.
+
+## iOS build 20: main as of round 108, on Moshe's iPhone only (branch `ios-build-20`) — 27.9.2026
+
+Build 1.0.0 (20) carries `origin/main` 7d8b1681 (everything after build 19, up to round 108) to the iPhone 13 Pro. Nothing
+went to a store: no TestFlight, no App Store Connect.
+
+- **The build.** A fresh prebuild and `pod install`, build number 19 → 20 (commit 622b6906, before the archive), and an
+  archive with Instant and the photo projector bundled, both byte-exact to the catalog. The QA-bridge gate and the
+  shipping-bundle gate pass on the archive. Tests before the archive: 2,183 passed, 4 skipped.
+- **On the phone as an update.** Build 19 was replaced in place, and Moshe's five container files are byte-identical
+  after the update. The app's About screen reads `1.0.0 (20) · 622b690623f2`, and it was left on its chat root.
+- **The device pass**, driven through the round-51 bridge on a `.qa` twin from the same commit, with no XCUITest and no
+  passcode sheet. Onboarding, the first answer at 32.8 tok/s, a photo on the bundled projector, the index hold card, and
+  e5 downloaded from models.inbornapp.com in about 5 minutes on a slow Wi-Fi. The .txt and .pdf were answered with
+  SOURCES. Documents → Ask answers off-topic questions under the "Answered without them" notice (round 108). The vault's
+  Extensions section shows the photo pack as included and e5 as installed or downloadable (round 105). Continue joins
+  with a space, and five lines come back when asked in round 97's wording.
+- **Found.** Delete everything lands on onboarding under "Chats could not be opened. Inborn started over and kept the old
+  file", and leaves an empty `inborn.db.corrupt-*` behind. It was reproduced twice. The chats themselves are deleted.
+  Privacy & storage shows Documents as 0 B on a phone. The thermal banner offers "Switch to Instant" while Instant is
+  running. None was fixed here.
+
+Evidence: `docs/qa/ios-build-20-2026-09-27.md`, `docs/qa/ios-device-pass-20-2026-09-27.md`, `docs/qa/ios-device-pass-20/`.

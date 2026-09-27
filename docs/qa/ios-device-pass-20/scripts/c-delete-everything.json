@@ -1,0 +1,80 @@
+{
+"_": "Pass 20, run C: Settings -> Privacy & storage -> Delete everything (models kept, the default) -> onboarding again. Then the QA namespace is swept.",
+"steps": [
+{
+"op": "deeplink",
+"url": "/settings/storage"
+},
+{
+"op": "waitFor",
+"testID": "storage",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 1500
+},
+{
+"op": "press",
+"testID": "storage-delete-all"
+},
+{
+"op": "waitFor",
+"testID": "wipe-sheet",
+"timeoutMs": 10000
+},
+{
+"op": "sleep",
+"ms": 1000
+},
+{
+"op": "screenshot",
+"name": "W01-delete-everything"
+},
+{
+"op": "value",
+"testID": "wipe-models"
+},
+{
+"op": "press",
+"testID": "wipe-step1"
+},
+{
+"op": "waitFor",
+"testID": "wipe-step2",
+"timeoutMs": 5000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "W02-delete-confirm"
+},
+{
+"op": "press",
+"testID": "wipe-step2"
+},
+{
+"op": "waitFor",
+"testID": "onboarding-welcome",
+"timeoutMs": 60000
+},
+{
+"op": "sleep",
+"ms": 2500
+},
+{
+"op": "screenshot",
+"name": "W03-onboarding-again"
+},
+{
+"op": "value",
+"testID": "onboarding-welcome"
+},
+{
+"op": "cleanup"
+}
+]
+}

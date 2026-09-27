@@ -1,0 +1,75 @@
+{
+"_": "Pass 20, run B2: Remove lives on the Details screen for a downloaded extension. Remove e5 there, then the vault's Extensions section shows the index as downloadable next to the photo pack (included).",
+"steps": [
+{
+"op": "deeplink",
+"url": "/vault"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "scrollTo",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "press",
+"testID": "details-embed-e5"
+},
+{
+"op": "waitFor",
+"testID": "details-delete",
+"timeoutMs": 8000
+},
+{
+"op": "sleep",
+"ms": 800
+},
+{
+"op": "screenshot",
+"name": "X05-e5-details-remove"
+},
+{
+"op": "press",
+"testID": "details-delete"
+},
+{
+"op": "sleep",
+"ms": 3000
+},
+{
+"op": "scrollTo",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "sleep",
+"ms": 1000
+},
+{
+"op": "screenshot",
+"name": "X06-vault-extensions-e5-downloadable"
+},
+{
+"op": "value",
+"testID": "model-card-embed-e5"
+},
+{
+"op": "waitFor",
+"testID": "install-embed-e5",
+"timeoutMs": 5000
+},
+{
+"op": "value",
+"testID": "install-embed-e5"
+},
+{
+"op": "value",
+"testID": "model-card-vision-qwen35"
+},
+{
+"op": "value",
+"testID": "vault-storage"
+}
+]
+}
