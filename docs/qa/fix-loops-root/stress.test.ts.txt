@@ -1,0 +1,216 @@
+/* F413/F414/F415 loop-stress harness: the stress corpus through llama-server at the app's sampling, replayed through the loop guard. */
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { BUILT_IN_PERSONAS, SAFETY_BASELINE } from "../src/chat/personas";
+import { safetyBaseline } from "../src/chat/contentSafety";
+import { composeSystemPrompt } from "../src/chat/context";
+import { languageHint } from "../src/chat/language";
+import { planAnswerLength } from "../src/chat/length";
+import { detectUse } from "../src/catalog/recommend";
+import { sampling } from "../src/llm/sampling";
+import type { Delta, GenOpts, Message } from "../src/llm/types";
+import * as OLD from "./zz-loop-old";
+import * as NEW from "../src/chat/loop";
+
+const DIR = join(__dirname, "../../../docs/qa/fix-loops-root");
+const PORT = Number(process.env.LS_PORT ?? 8951);
+const MODEL = process.env.LS_MODEL ?? "instant";
+const PHASE = process.env.LS_PHASE ?? "before";
+const SEEDS = (process.env.LS_SEEDS ?? "1,2").split(",").map(Number);
+const TEMP = process.env.LS_TEMP ? Number(process.env.LS_TEMP) : undefined;
+const ONLY = process.env.LS_ONLY ? new Set(process.env.LS_ONLY.split(",")) : null;
+const CONTINUE_PROMPT = "Continue exactly where you stopped. Do not repeat what you already wrote.";
+/* The "after" phase measured the rejected F414 answer sampling. Its loopSampling() turned it off for the asks that repeat
+   on purpose and for quote-en, whose document repeats "head office"; the shipped answer sampling has no DRY at all. */
+const REJECTED_ANSWER: GenOpts = { dryMultiplier: 0.8, presencePenalty: 0.15, frequencyPenalty: 0.05 };
+const exempt = (p: Prompt) => p.kind === "asked-repeat" || p.kind === "translation" || p.id === "quote-en";
+
+interface Prompt { id: string; kind: string; user: string; partial?: string }
+
+/* The engine's wire request, built exactly the way the wllama adapter builds it from `sampling(opts)`. */
+function wire(messages: Message[], opts: GenOpts, seed: number) {
+  /* before: r97 sampling. guard: r97 sampling for the answer, the round's sampler only in the retry. after: the round's sampler. */
+  const dry = PHASE === "after" || (PHASE === "guard" && opts.dryMultiplier !== undefined);
+  const s = sampling(opts) as ReturnType<typeof sampling> & Record<string, unknown>;
+  const body: Record<string, unknown> = {
+    messages,
+    stream: true,
+    max_tokens: opts.maxTokens,
+    temperature: s.temperature,
+    top_p: s.topP,
+    repeat_penalty: s.repeatPenalty,
+    repeat_last_n: s.repeatLastN,
+    seed,
+    chat_template_kwargs: { enable_thinking: false },
+  };
+  if (dry) {
+    body.dry_multiplier = s.dryMultiplier;
+    body.dry_base = s.dryBase;
+    body.dry_allowed_length = s.dryAllowedLength;
+    body.dry_penalty_last_n = s.dryPenaltyLastN;
+    body.dry_sequence_breakers = s.drySequenceBreakers;
+    body.presence_penalty = s.presencePenalty;
+    body.frequency_penalty = s.frequencyPenalty;
+  }
+  return body;
+}
+
+async function* stream(messages: Message[], opts: GenOpts, seed: number, stats: { tokens: number; ms: number; tps: number[] }): AsyncGenerator<Delta> {
+  const res = await fetch(`http://127.0.0.1:${PORT}/v1/chat/completions`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(wire(messages, opts, seed)) });
+  if (!res.ok || !res.body) throw new Error(`server ${res.status}: ${await res.text()}`);
+  const reader = res.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let nl: number;
+    while ((nl = buf.indexOf("\n")) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line.startsWith("data:")) continue;
+      const data = line.slice(5).trim();
+      if (data === "[DONE]") continue;
+      const chunk = JSON.parse(data) as { choices?: { delta?: { content?: string } }[]; timings?: { predicted_n: number; predicted_ms: number; predicted_per_second: number } };
+      const text = chunk.choices?.[0]?.delta?.content;
+      if (text) yield { text };
+      if (chunk.timings) {
+        stats.tokens += chunk.timings.predicted_n;
+        stats.ms += chunk.timings.predicted_ms;
+        stats.tps.push(chunk.timings.predicted_per_second);
+      }
+    }
+  }
+  yield { done: { promptTokens: 0, completionTokens: 0, ttftMs: 0, tokPerSec: 0 } };
+}
+
+/* The yardstick, independent of both guards: any unit of 12+ code points (6+ for CJK/kana/Hangul) back to back twice or more,
+   any unit of 4-11 with a letter three or more times, and a list line whose words repeat the line above it. */
+const WIDE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu;
+export interface Rep { unit: string; copies: number; kind: "long" | "short" | "line" }
+function repetitions(text: string, allowed = 1): Rep | null {
+  const s = Array.from(text.replace(/```[\s\S]*?(?:```|$)/g, "\u0000").replace(/[ \t]+/g, " "));
+  const n = s.length;
+  let worst: Rep | null = null;
+  const take = (r: Rep) => {
+    if (!worst || r.copies > worst.copies || (r.copies === worst.copies && Array.from(r.unit).length > Array.from(worst.unit).length)) worst = r;
+  };
+  for (let p = 4; p <= Math.min(400, Math.floor(n / 2)); p++) {
+    let j = 0;
+    while (j + p < n) {
+      if (s[j] !== s[j + p]) { j++; continue; }
+      const a = j;
+      while (j + p < n && s[j] === s[j + p]) j++;
+      const copies = Math.floor((j - a + p) / p);
+      const unit = s.slice(a, a + p).join("");
+      if (!/\p{L}/u.test(unit) || unit.includes("\u0000")) continue;
+      let prim = true;
+      for (let q = 1; q < p && prim; q++) if (p % q === 0 && unit === s.slice(a + q, a + q + p).join("")) prim = false;
+      if (!prim) continue;
+      const wide = (unit.match(WIDE) ?? []).length;
+      const long = p >= 12 || (p >= 6 && wide >= 3);
+      if (long && copies > allowed) take({ unit: unit.trim(), copies, kind: "long" });
+      else if (!long && copies >= Math.max(3, allowed + 1)) take({ unit: unit.trim(), copies, kind: "short" });
+    }
+  }
+  const lines = text.split("\n").map((l) => l.replace(/^\s*(?:[-*+•]|\d{1,3}[.)、．])\s*/u, "").trim().toLowerCase());
+  for (let i = 1, run = 1; i < lines.length; i++) {
+    run = lines[i] && lines[i] === lines[i - 1] && Array.from(lines[i]!).length >= 16 && /\p{L}/u.test(lines[i]!) ? run + 1 : 1;
+    if (run > allowed) take({ unit: lines[i]!, copies: run, kind: "line" });
+  }
+  return worst;
+}
+
+function allowedFor(p: Prompt): number {
+  const source = NEW.requestRepeats(p.user);
+  if (p.kind !== "asked-repeat") return source;
+  const r = NEW.repetitionRequest(p.user);
+  return Math.max(source, r.count ?? 10);
+}
+
+interface Replay { shownMax: Rep | null; cut: boolean; notice: boolean; retries: number; final: string; events: string[] }
+
+/* What the user sees: every snapshot of the answer on screen, measured with the yardstick. */
+async function replay(deltas: AsyncIterable<Delta & { loop?: { text: string }; trim?: string }>, allowed: number): Promise<Replay> {
+  let shown = "";
+  let shownMax: Rep | null = null;
+  let cut = false;
+  let notice = false;
+  const events: string[] = [];
+  const look = () => {
+    const r = repetitions(shown, allowed);
+    if (r && (!shownMax || r.copies > shownMax.copies)) shownMax = r;
+  };
+  let sinceLook = 0;
+  for await (const d of deltas) {
+    if (d.trim !== undefined) {
+      look();
+      events.push(`trim ${shown.length}->${d.trim.length}`);
+      shown = d.trim;
+    }
+    if (d.loop) {
+      look();
+      cut = true;
+      notice = true;
+      events.push(`loop cut ${shown.length}->${d.loop.text.length}`);
+      shown = d.loop.text;
+    }
+    if (d.text) {
+      shown += d.text;
+      if (++sinceLook >= 16) { sinceLook = 0; look(); }
+    }
+  }
+  look();
+  return { shownMax, cut, notice, retries: 0, final: shown, events };
+}
+
+it("loop stress", async () => {
+  const prompts = (JSON.parse(readFileSync(join(DIR, "stress-prompts.json"), "utf8")) as Prompt[]).filter((p) => !ONLY || ONLY.has(p.id));
+  const persona = BUILT_IN_PERSONAS[0]!;
+  const rows: unknown[] = [];
+  for (const p of prompts) {
+    for (const seed of SEEDS) {
+      const length = planAnswerLength({ text: p.user, use: detectUse({ text: p.user, personaId: persona.id }), continuing: !!p.partial });
+      const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, false), persona, languageHint: languageHint(p.user), length: length.instruction });
+      const messages: Message[] = [{ role: "system", content: system }, { role: "user", content: p.user }];
+      if (p.partial) messages.push({ role: "assistant", content: p.partial }, { role: "user", content: CONTINUE_PROMPT });
+      const opts: GenOpts = { maxTokens: length.maxTokens, reasoning: false, ...(TEMP !== undefined ? { temperature: TEMP } : {}), ...(PHASE === "after" && !exempt(p) ? REJECTED_ANSWER : {}) };
+      const stats = { tokens: 0, ms: 0, tps: [] as number[] };
+      /* The raw answer: generated to its end, never stopped, so the source's own loops are counted. */
+      const raw: string[] = [];
+      for await (const d of stream(messages, opts, seed, stats)) if (d.text) raw.push(d.text);
+      const text = raw.join("");
+      const allowed = allowedFor(p);
+      const source = repetitions(text, allowed);
+      const fromRaw = async function* (): AsyncGenerator<Delta> {
+        for (const t of raw) yield { text: t };
+        yield { done: { promptTokens: 0, completionTokens: 0, ttftMs: 0, tokPerSec: 0 } };
+      };
+      const old = await replay(OLD.guardLoops(fromRaw(), () => undefined, { request: p.user }), allowed);
+      let cur: Replay | null = null;
+      if (PHASE !== "before") {
+        let retries = 0;
+        const retry = (kept: string): AsyncIterable<Delta> => {
+          retries++;
+          const again: Message[] = [...messages.slice(0, 2), { role: "assistant", content: p.partial ? `${p.partial}${kept}` : kept }, { role: "user", content: CONTINUE_PROMPT }];
+          const ro = { ...opts, ...(process.env.LS_RETRY ? (JSON.parse(process.env.LS_RETRY) as GenOpts) : NEW.LOOP_RETRY), maxTokens: length.maxTokens };
+          return stream(again, ro, seed + 100, stats);
+        };
+        /* Live: the guard stops the stream and retries against the server, as the chat does. */
+        const live = stream(messages, opts, seed, { tokens: 0, ms: 0, tps: [] });
+        cur = await replay((NEW.guardLoops as unknown as (...a: unknown[]) => AsyncIterable<Delta>)(live, () => undefined, { request: p.user, retry }), allowed);
+        cur.retries = retries;
+      }
+      const tps = stats.tokens ? (stats.tokens * 1000) / stats.ms : 0;
+      const row = { id: p.id, kind: p.kind, seed, chars: text.length, tps: Math.round(tps * 10) / 10, source, old: { shownMax: old.shownMax, cut: old.cut }, ...(cur ? { now: { shownMax: cur.shownMax, cut: cur.cut, retries: cur.retries, finalChars: cur.final.length, final: cur.final.slice(0, 4000) } } : {}), text: text.slice(0, 4000) };
+      rows.push(row);
+      console.log(`${MODEL} ${p.id}#${seed} ${Math.round(tps)} t/s src=${source ? `${source.kind}x${source.copies}` : "-"} old=${old.shownMax ? `${old.shownMax.kind}x${old.shownMax.copies}` : "-"}${old.cut ? " CUT" : ""}${cur ? ` now=${cur.shownMax ? `${cur.shownMax.kind}x${cur.shownMax.copies}` : "-"} retries=${cur.retries}${cur.cut ? " NOTICE" : ""}` : ""}`);
+    }
+  }
+  mkdirSync(join(DIR, "runs"), { recursive: true });
+  const out = join(process.env.LS_OUT ?? join(DIR, "runs"), `${PHASE}-${MODEL}${TEMP !== undefined ? `-t${TEMP}` : ""}${ONLY ? `-subset${process.env.LS_TAG ?? ""}` : ""}.json`);
+  writeFileSync(out, JSON.stringify({ model: MODEL, phase: PHASE, engine: "llama-server (llama.cpp b10809, Metal), app sampling via core sampling(), thinking off", temperature: TEMP ?? 0.7, seeds: SEEDS, rows }, null, 1));
+  if (!existsSync(out)) throw new Error("not written");
+}, 3_600_000);

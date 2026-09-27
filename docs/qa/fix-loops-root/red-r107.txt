@@ -1,0 +1,549 @@
+
+ RUN  v5.0.0 <base worktree at 70ccef4>/packages/core
+
+ ❯ test/fixes-r107.test.ts (57 tests | 55 failed) 33ms
+   ❯ F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams (16)
+     × red before: the r86 guard let the second and third copies onto the screen 7ms
+     × en: two copies trip, the kept text is the first copy 0ms
+     × en: at every point inside the second copy, what may be shown ends at the first copy 0ms
+     × ja: two copies trip, the kept text is the first copy 0ms
+     × ja: at every point inside the second copy, what may be shown ends at the first copy 0ms
+     × he: two copies trip, the kept text is the first copy 0ms
+     × he: at every point inside the second copy, what may be shown ends at the first copy 0ms
+     × ko: two copies trip, the kept text is the first copy 0ms
+     × ko: at every point inside the second copy, what may be shown ends at the first copy 0ms
+     × de, one copy per line: two copies trip, the kept text is the first copy 0ms
+     × de, one copy per line: at every point inside the second copy, what may be shown ends at the first copy 0ms
+     × a second copy that has no separator yet counts at the end of the answer 0ms
+     × a copy completed in the middle of a chunk is still caught 0ms
+     × a sentence the answer already said is a loop even with other text between (instant, stress run ja-nenji) 0ms
+     × identical bullets are a loop now: the founder's ruling supersedes F369's allowance for list items 0ms
+     × a sentence that only starts like the one before is held for its matching words, then released 0ms
+   ❯ F415 · the echo rule: ten words said again, punctuation and line breaks aside (4)
+     × a copy that drops the line breaks is a loop, and none of it reaches the screen (web trial poem #1, after the retry) 0ms
+     × a list item said again with one word changed is a loop (web trial es-list #3) 0ms
+     × a restated problem, a formula twice and a short quote stay whole (stress runs math-series, math-fib, quote-en) 0ms
+     × a song may bring its chorus back; the echo rule leaves songs to the line rule 0ms
+   ❯ F415 · healthy text stays whole (23)
+     × numbered list of three identical steps 0ms
+     × no no no (en) 0ms
+     × go on and on and on (en idiom) 0ms
+     × שלום ×4 (he) 0ms
+     × 谢谢 (zh) 0ms
+     × いいえ ×3 (ja) 0ms
+     × fenced code with repeated lines 0ms
+     × unfenced code, three repeated lines 0ms
+     × markdown table and rule 0ms
+     × ja long answer with repeated particles 0ms
+     × parallel sentences that differ 0ms
+     × JSON records with the same author twice (fast, stress run json-schema) 0ms
+     × a name, then its full name joined by ・ (instant, r83 web trial) 0ms
+     × a name, then its full name (en) 0ms
+     × one hundred, one hundred and one (instant t0.2, stress run list-100-numbers) 0ms
+     × JSON records 0ms
+     × a hymn line twice is fine when the user asked for a hymn, and a third copy is not 0ms
+     × a translation of repetitive text repeats as often as the source did (instant, stress run tr-song-fr) 0ms
+     × a poem nobody asked a refrain of repeats no line and no stanza (web trial poem #4, stress run poem-refrainless #2) 0ms
+     × a song or a hymn may bring a line back once as its chorus, and a poem asked for a refrain may repeat it 0ms
+     × a list asked for one per line may not repeat an item (fast t0.2, stress run list30-animals #1) 0ms
+     × a sentence said as a bullet and again inside a paragraph is a loop (instant web trial he-explain #3) 0ms
+   ❯ F415 · guardLoops keeps one copy and silently continues once (11)
+     × red before: the r86 guard had no retry; a loop always ended the answer with the notice 2ms
+     × joins the continuation with the script's separator (ja: none) 3ms
+     × a cut right after an item number drops the number, so the continuation does not skip to the next (instant, retry-tuning es-list #2) 3ms
+     × the notice's kept text does not end on a bare item number either 1ms
+     × a continuation that loops again is cut to one copy and ends with the notice; there is no second retry 1ms
+     × the retry's own loop is caught in the continuation alone, too 0ms
+     × a short-unit loop already on screen is taken back with a trim before the retry 1ms
+     × a short unit shows at most twice while it streams, then the answer keeps one (instant t0.2, stress run ko-list) 0ms
+     × a word listed a fourth time is cut; three stay, as emphasis (instant web trial verbs-de #4) 1ms
+     × a short word the source repeats four times may repeat four times (fast, stress run tr-song-fr) 1ms
+   ❯ F414 · DRY reaches every engine, and only the silent retry after a loop turns it on (3)
+     × red before: sampling() had no DRY or presence/frequency to send 0ms
+     × the answer samples as before: with DRY on, an ID format came out as ORD-2024-XXXXXX and copied names were misspelt 1ms
+     × the retry samples one step harder than the answer did, and no more 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 55 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > red before: the r86 guard let the second and third copies onto the screen
+AssertionError: expected 3 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 3
+
+ ❯ test/fixes-r107.test.ts:50:61
+     48|     const text = `${UNIT} ${UNIT} ${UNIT} ${UNIT} ${UNIT}`;
+     49|     const { screens } = await screen(guardLoops(engine(text), () => un…
+     50|     expect(Math.max(...screens.map((s) => count(s, UNIT)))).toBe(1);
+       |                                                             ^
+     51|   });
+     52|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > en: two copies trip, the kept text is the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > ja: two copies trip, the kept text is the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > he: two copies trip, the kept text is the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > ko: two copies trip, the kept text is the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > de, one copy per line: two copies trip, the kept text is the first copy
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:62:19
+     60|     it(`${lang}: two copies trip, the kept text is the first copy`, ()…
+     61|       const text = `Intro.${sep}${unit}${sep}${unit}${sep}`;
+     62|       const hit = tailLoop(text)!.hit;
+       |                   ^
+     63|       expect(hit).not.toBeNull();
+     64|       expect(text.slice(0, hit!.keep).trimEnd()).toBe(`Intro.${sep}${u…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > en: at every point inside the second copy, what may be shown ends at the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > ja: at every point inside the second copy, what may be shown ends at the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > he: at every point inside the second copy, what may be shown ends at the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > ko: at every point inside the second copy, what may be shown ends at the first copy
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > de, one copy per line: at every point inside the second copy, what may be shown ends at the first copy
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:72:19
+     70|       for (let k = 1; k < cps.length; k++) {
+     71|         const text = head + cps.slice(0, k).join("");
+     72|         const t = tailLoop(text);
+       |                   ^
+     73|         /* Near its end the copy may already be complete in another ro…
+     74|         if (t.hit) expect(text.slice(0, t.hit.keep).trimEnd(), `prefix…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > a second copy that has no separator yet counts at the end of the answer
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:82:12
+     80|   it("a second copy that has no separator yet counts at the end of the…
+     81|     const bare = UNIT.slice(0, -1);
+     82|     expect(tailLoop(`${bare}\n${bare}`, {}, 0, true).hit).not.toBeNull…
+       |            ^
+     83|     expect(tailLoop(`${bare}\n${bare}`, {}, 0, false).hit).toBeNull();
+     84|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > a copy completed in the middle of a chunk is still caught
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:88:12
+     86|   it("a copy completed in the middle of a chunk is still caught", () =…
+     87|     const head = `${UNIT} `;
+     88|     expect(tailLoop(`${head}${UNIT} And then more text follows here.`,…
+       |            ^
+     89|   });
+     90|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > a sentence the answer already said is a loop even with other text between (instant, stress run ja-nenji)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:95:17
+     93|     const b = "*   **財務データは必須**：本業の決算資料は必ず添付されます。\n";
+     94|     const text = `**4. 注意点**\n${a}${b}${a}${b}`;
+     95|     const hit = tailLoop(text).hit;
+       |                 ^
+     96|     expect(text.slice(0, hit!.keep)).toBe(`**4. 注意点**\n${a}${b}`);
+     97|     const { screens } = await screen(guardLoops(engine(text), () => un…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > identical bullets are a loop now: the founder's ruling supersedes F369's allowance for list items
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:103:17
+    101|   it("identical bullets are a loop now: the founder's ruling supersede…
+    102|     const text = "So geht es:\n- Den Teig gut rühren.\n- Den Teig gut …
+    103|     const hit = tailLoop(text).hit;
+       |                 ^
+    104|     expect(text.slice(0, hit!.keep).trimEnd()).toBe("So geht es:\n- De…
+    105|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · tailLoop: the second copy of a phrase is a loop, and it is held back while it streams > a sentence that only starts like the one before is held for its matching words, then released
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:109:15
+    107|   it("a sentence that only starts like the one before is held for its …
+    108|     const text = `${UNIT} The winner of the 2002 World Cup was Brazil.…
+    109|     const t = tailLoop(text);
+       |               ^
+    110|     expect(t.hit).toBeNull();
+    111|     /* Only the full stop that matches the one before may wait for the…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · the echo rule: ten words said again, punctuation and line breaks aside > a copy that drops the line breaks is a loop, and none of it reaches the screen (web trial poem #1, after the retry)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:121:12
+    119|
+    120|   it("a copy that drops the line breaks is a loop, and none of it reac…
+    121|     expect(tailLoop(`${POEM}${RUN_ON}`, {}, 0, true).hit).not.toBeNull…
+       |            ^
+    122|     const out = await screen(guardLoops(engine(`${POEM}${RUN_ON}`), ()…
+    123|     expect(out.shown.trimEnd()).toBe(POEM.trimEnd());
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · the echo rule: ten words said again, punctuation and line breaks aside > a list item said again with one word changed is a loop (web trial es-list #3)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:129:17
+    127|   it("a list item said again with one word changed is a loop (web tria…
+    128|     const text = "5. Si alguien te dice que algo es malo, entonces pro…
+    129|     const hit = tailLoop(text, { request: "Escribe 30 frases motivador…
+       |                 ^
+    130|     expect(text.slice(0, hit!.keep).trimEnd()).toBe("5. Si alguien te …
+    131|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · the echo rule: ten words said again, punctuation and line breaks aside > a restated problem, a formula twice and a short quote stay whole (stress runs math-series, math-fib, quote-en)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:139:14
+    137|       'The Sendai head office was founded in 1962 (Quote: "The Sendai …
+    138|     ])
+    139|       expect(tailLoop(text, {}, 0, true).hit, text).toBeNull();
+       |              ^
+    140|   });
+    141|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · the echo rule: ten words said again, punctuation and line breaks aside > a song may bring its chorus back; the echo rule leaves songs to the line rule
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:145:12
+    143|     const chorus = "Oh the sea is wide and the sea is deep and the sea…
+    144|     const song = `${chorus}The gulls fly high over the harbour wall,\n…
+    145|     expect(tailLoop(song, { request: "Write a song about the sea." }, …
+       |            ^
+    146|     expect(tailLoop(song, { request: "Write a story about the sea." },…
+    147|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > numbered list of three identical steps
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > no no no (en)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > go on and on and on (en idiom)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > שלום ×4 (he)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > 谢谢 (zh)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > いいえ ×3 (ja)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > fenced code with repeated lines
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > unfenced code, three repeated lines
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > markdown table and rule
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > ja long answer with repeated particles
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > parallel sentences that differ
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > JSON records with the same author twice (fast, stress run json-schema)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a name, then its full name joined by ・ (instant, r83 web trial)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a name, then its full name (en)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > one hundred, one hundred and one (instant t0.2, stress run list-100-numbers)
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > JSON records
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:171:14
+    169|   for (const [name, text] of Object.entries(HEALTHY)) {
+    170|     it(name, async () => {
+    171|       expect(tailLoop(text, {}, 0, true).hit).toBeNull();
+       |              ^
+    172|       expect((await screen(guardLoops(engine(text), () => undefined)))…
+    173|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a hymn line twice is fine when the user asked for a hymn, and a third copy is not
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:178:12
+    176|   it("a hymn line twice is fine when the user asked for a hymn, and a …
+    177|     const hymn = "Glory, glory, hallelujah!\nGlory, glory, hallelujah!…
+    178|     expect(tailLoop(hymn, { request: "Write a short hymn about hope." …
+       |            ^
+    179|     expect(tailLoop(hymn, {}, 0, true).hit).not.toBeNull();
+    180|     expect(tailLoop("Glory, glory, hallelujah!\n".repeat(3), { request…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a translation of repetitive text repeats as often as the source did (instant, stress run tr-song-fr)
+TypeError: requestRepeats is not a function
+ ❯ test/fixes-r107.test.ts:186:17
+    184|     const request = "Translate to French: Row, row, row your boat, gen…
+    185|     const answer = "Rive, rive, rive ton navire, doucement vers la riv…
+    186|     expect(core.requestRepeats(request)).toBe(4);
+       |                 ^
+    187|     expect((await screen(guardLoops(engine(answer), () => undefined, {…
+    188|     expect(tailLoop(`${answer} Enchantement, enchantement, enchantemen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a poem nobody asked a refrain of repeats no line and no stanza (web trial poem #4, stress run poem-refrainless #2)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:195:21
+    193|     const stanza = "*The Sea and Its Longest Song*\nA journey through …
+    194|     const intro = "The sea breathes in waves that roll like distant ec…
+    195|     const doubled = tailLoop(`${intro}${stanza}${stanza}`, { request }…
+       |                     ^
+    196|     expect(`${intro}${stanza}${stanza}`.slice(0, doubled!.keep).trimEn…
+    197|     const line = "No shadows cast upon the water's surface, no clouds …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a song or a hymn may bring a line back once as its chorus, and a poem asked for a refrain may repeat it
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:206:12
+    204|     const refrain = "The tide comes in, the tide goes out.\n";
+    205|     const verse = `${refrain}Salt on the stones and gulls in the air,\…
+    206|     expect(tailLoop(verse, { request: "Write a song about the sea." },…
+       |            ^
+    207|     expect(tailLoop(`${verse}${refrain}`, { request: "Write a song abo…
+    208|     expect(tailLoop(`${refrain}${refrain}${refrain}`, { request: "Writ…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a list asked for one per line may not repeat an item (fast t0.2, stress run list30-animals #1)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:214:12
+    212|     const request = "List 30 animals that live in the ocean, one per l…
+    213|     const text = "20. Sea snail  \n21. Sea urchin  \n22. Starfish (var…
+    214|     expect(tailLoop(text, { request }, 0, true).hit).not.toBeNull();
+       |            ^
+    215|   });
+    216|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · healthy text stays whole > a sentence said as a bullet and again inside a paragraph is a loop (instant web trial he-explain #3)
+TypeError: tailLoop is not a function
+ ❯ test/fixes-r107.test.ts:221:12
+    219|     const said = "אם המעשה נכשל במגמות של חיים וקבע עליו את המספר, אנו…
+    220|     const text = `הנה ההסבר:\n*   ${said}\n\nסיכום: ההבנה אינה קריטית.…
+    221|     expect(tailLoop(text, { request }, 0, true).hit).not.toBeNull();
+       |            ^
+    222|     expect(count((await screen(guardLoops(engine(text), () => undefine…
+    223|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > red before: the r86 guard had no retry; a loop always ended the answer with the notice
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ test/fixes-r107.test.ts:249:21
+    247|     const out = await screen(guardLoops(engine(`Intro. ${UNIT} ${UNIT}…
+    248|     expect(stops).toBe(1);
+    249|     expect(retries).toBe(1);
+       |                     ^
+    250|     expect(out.loop).toBeUndefined();
+    251|     expect(out.shown).toBe(`Intro. ${UNIT} It beat Brazil 3-0 in the f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > joins the continuation with the script's separator (ja: none)
+AssertionError: expected '1998年のワールドカップで優勝したのはフランスです。' to be '1998年のワールドカップで優勝したのはフランスです。決勝でブラジルに勝ち…' // Object.is equality
+
+Expected: "1998年のワールドカップで優勝したのはフランスです。決勝でブラジルに勝ちました。"
+Received: "1998年のワールドカップで優勝したのはフランスです。"
+
+ ❯ test/fixes-r107.test.ts:257:23
+    255|   it("joins the continuation with the script's separator (ja: none)", …
+    256|     const out = await screen(guardLoops(engine(`${JA}${JA}${JA}`), () …
+    257|     expect(out.shown).toBe(`${JA}決勝でブラジルに勝ちました。`);
+       |                       ^
+    258|   });
+    259|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a cut right after an item number drops the number, so the continuation does not skip to the next (instant, retry-tuning es-list #2)
+AssertionError: expected '' to be 'Frases:\n1. El éxito es la suma de pe…' // Object.is equality
+
+- Expected
++ Received
+
+- Frases:
+- 1. El éxito es la suma de pequeños esfuerzos diarios.
+- 2. Cree en ti mismo y todo será posible.
+-
+
+ ❯ test/fixes-r107.test.ts:266:18
+    264|     const retry = (k: string) => ((kept = k), engine("3. Nunca te rind…
+    265|     const out = await screen(guardLoops(engine(`${head}3. ${MOTTO}\n4.…
+    266|     expect(kept).toBe(head);
+       |                  ^
+    267|     expect(out.loop).toBeUndefined();
+    268|     expect(out.shown).toBe(`${head}3. Nunca te rindas.\n4. Sonríe cada…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > the notice's kept text does not end on a bare item number either
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r107.test.ts:274:22
+    272|     const MOTTO = "El éxito es la suma de pequeños esfuerzos diarios.";
+    273|     const out = await screen(guardLoops(engine(`Frases:\n1. ${MOTTO}\n…
+    274|     expect(out.loop).toBeDefined();
+       |                      ^
+    275|     expect(out.shown).toBe(`Frases:\n1. ${MOTTO}\n`);
+    276|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a continuation that loops again is cut to one copy and ends with the notice; there is no second retry
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ test/fixes-r107.test.ts:282:21
+    280|     const retry = () => (retries++, engine(`${UNIT} ${UNIT}`));
+    281|     const out = await screen(guardLoops(engine(`${UNIT} ${UNIT} ${UNIT…
+    282|     expect(retries).toBe(1);
+       |                     ^
+    283|     expect(out.loop).toBeDefined();
+    284|     expect(out.shown).toBe(UNIT);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > the retry's own loop is caught in the continuation alone, too
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r107.test.ts:290:22
+    288|   it("the retry's own loop is caught in the continuation alone, too", …
+    289|     const out = await screen(guardLoops(engine(`${UNIT} ${UNIT}`), () …
+    290|     expect(out.loop).toBeDefined();
+       |                      ^
+    291|     expect(count(out.shown, "Brazil lost the final to the host.")).toB…
+    292|     expect(count(out.shown, UNIT)).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a short-unit loop already on screen is taken back with a trim before the retry
+AssertionError: expected { text: 'Sure! ha', …(2) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "fullLength": 42,
+  "hit": {
+    "keep": 8,
+    "repeats": 12,
+    "start": 5,
+    "unit": "ha",
+  },
+  "text": "Sure! ha",
+}
+
+ ❯ test/fixes-r107.test.ts:297:22
+    295|   it("a short-unit loop already on screen is taken back with a trim be…
+    296|     const out = await screen(guardLoops(engine(`Sure! ${"ha ".repeat(2…
+    297|     expect(out.loop).toBeUndefined();
+       |                      ^
+    298|     expect(out.shown).not.toMatch(/(ha ){6}/);
+    299|     expect(out.shown).toMatch(/Here is the answer\.$/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a short unit shows at most twice while it streams, then the answer keeps one (instant t0.2, stress run ko-list)
+AssertionError: expected 8 to be less than or equal to 2
+ ❯ test/fixes-r107.test.ts:305:65
+    303|     const text = "한국 음식: 김치찌개, 국물, 떡볶이, 국수, " + "국면, ".repeat(30);
+    304|     const out = await screen(guardLoops(engine(text), () => undefined,…
+    305|     expect(Math.max(...out.screens.map((x) => count(x, "국면")))).toBeLe…
+       |                                                                 ^
+    306|     expect(count(out.shown, "국면")).toBe(1);
+    307|     expect(out.shown).toMatch(/비빔밥, 불고기\.$/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a word listed a fourth time is cut; three stay, as emphasis (instant web trial verbs-de #4)
+AssertionError: expected 6 to be less than or equal to 2
+ ❯ test/fixes-r107.test.ts:313:68
+    311|     const text = "Hier sind 25 deutsche Verben:\nbeide, beide, beide, …
+    312|     const out = await screen(guardLoops(engine(text), () => undefined,…
+    313|     expect(Math.max(...out.screens.map((x) => count(x, "beide")))).toB…
+       |                                                                    ^
+    314|     expect(count(out.shown, "beide")).toBe(1);
+    315|     for (const ok of ["Nein, nein, nein! Das Museum ist montags geschl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F415 · guardLoops keeps one copy and silently continues once > a short word the source repeats four times may repeat four times (fast, stress run tr-song-fr)
+AssertionError: expected 'Rame, rame, rame ton bateau, doucemen…' to be 'Rame, rame, rame ton bateau, doucemen…' // Object.is equality
+
+Expected: "Rame, rame, rame ton bateau, doucement sur le ruisseau. Joyeux, joyeux, joyeux, joyeux, la vie n'est qu'un rêve."
+Received: "Rame, rame, rame ton bateau, doucement sur le ruisseau. Joyeux, joyeux,"
+
+ ❯ test/fixes-r107.test.ts:325:118
+    323|     const request = "Translate to French: Row, row, row your boat, gen…
+    324|     const answer = "Rame, rame, rame ton bateau, doucement sur le ruis…
+    325|     expect((await screen(guardLoops(engine(answer), () => undefined, {…
+       |                                                                                                                      ^
+    326|   });
+    327|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F414 · DRY reaches every engine, and only the silent retry after a loop turns it on > red before: sampling() had no DRY or presence/frequency to send
+TypeError: Cannot read properties of undefined (reading 'temperature')
+ ❯ sampling src/llm/sampling.ts:18:23
+     16| export function sampling(opts: GenOpts): Sampling {
+     17|   return {
+     18|     temperature: opts.temperature ?? 0.7,
+       |                       ^
+     19|     topP: opts.topP ?? 0.9,
+     20|     repeatPenalty: opts.repeatPenalty ?? REPEAT_PENALTY,
+ ❯ test/fixes-r107.test.ts:343:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F414 · DRY reaches every engine, and only the silent retry after a loop turns it on > the answer samples as before: with DRY on, an ID format came out as ORD-2024-XXXXXX and copied names were misspelt
+AssertionError: expected { temperature: 0.7, topP: 0.9, …(2) } to match object { repeatPenalty: 1.1, …(4) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "dryMultiplier": 0,
+-   "frequencyPenalty": 0,
+-   "presencePenalty": 0,
+    "repeatLastN": 64,
+    "repeatPenalty": 1.1,
+  }
+
+ ❯ test/fixes-r107.test.ts:348:26
+    346|
+    347|   it("the answer samples as before: with DRY on, an ID format came out…
+    348|     expect(sampling({})).toMatchObject({ repeatPenalty: 1.1, repeatLas…
+       |                          ^
+    349|   });
+    350|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/55]⎯
+
+ FAIL  test/fixes-r107.test.ts > F414 · DRY reaches every engine, and only the silent retry after a loop turns it on > the retry samples one step harder than the answer did, and no more
+TypeError: Cannot read properties of undefined (reading 'temperature')
+ ❯ sampling src/llm/sampling.ts:18:23
+     16| export function sampling(opts: GenOpts): Sampling {
+     17|   return {
+     18|     temperature: opts.temperature ?? 0.7,
+       |                       ^
+     19|     topP: opts.topP ?? 0.9,
+     20|     repeatPenalty: opts.repeatPenalty ?? REPEAT_PENALTY,
+ ❯ test/fixes-r107.test.ts:353:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/55]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  55 failed | 2 passed (57)
+   Start at  15:26:11
+   Duration  641ms (transform 72%, import 19%, tests 8%, worker 1%)
+

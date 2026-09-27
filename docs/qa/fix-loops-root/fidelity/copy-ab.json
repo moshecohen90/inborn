@@ -1,0 +1,2306 @@
+[
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 0.779,
+  "text": "```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  \n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 2, 3, 4, 5])); // Output: 6 (sum of even numbers)\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 0.997,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Explanation of the Fix:**\nThe original code contained a variable name `numbers` inside the loop, which shadows the global `numbers` argument passed to the function. This causes a syntax error or undefined behavior if you call this function from outside the function scope (e.g., in an expression like `sumEven(10)`).\n\nBy renaming it to **`numbers`** and ensuring the variable is declared only within the loop, the code now works correctly for both:\n1.  Calling directly: `sumEven([1, 2])` returns `3`.\n2.  Calling from outside: `sumEven(10)` returns `5`, because it iterates over the provided array parameter (`numbers`) instead of trying to access a global variable named `numbers`."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 0.997,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Explanation of the fix:**\nThe original code used a `for` loop with an explicit range (`i <= numbers.length`). This is incorrect because in JavaScript, when you use a strict inequality operator like `>` (e.g., `i > number`) inside an iterator or for loop, it doesn't check if the index itself equals the target value.\n\nInstead, the correct fix is to use the **length** of the array as the limit:\n```js\nfor (let i = 0; i < numbers.length; i++) {\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 0.637,
+  "text": "The bug in the function is that it calculates the sum of **even** numbers but then returns `total` as if it were a number to be summed, rather than returning an object with the calculated sum. Additionally, there's no error handling for the case when `numbers.length < 0`.\n\nHere are two corrected versions: one using ES6 objects (recommended for modern JavaScript), and one that keeps your original style but fixes the logic flaw.\n\n### Option 1: Modern Approach (Recommended)\nThis version correctly returns an object with a single property containing the total sum of even numbers, while also handling edge cases like negative lengths.\n\n```javascript\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Handle empty array case immediately to prevent TypeError\n  if (!numbers || numbers.length === 0) {\n    return undefined; \n  }\n\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n\n  // Return a specific object with the calculated sum\n  return { sum: total }; \n}\n```\n\n### Option 2: Fixing Your Original Logic (Function Only)\nIf you strictly need to keep it as a single function without creating an object, here is the fixed version of your code. You will now correctly return `total`:\n\n```javascript\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Handle empty array case immediately to prevent TypeError\n  if (!numbers || numbers.length === 0) {\n    return undefined; \n  }\n\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n\n  // FIX"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Here is the fixed function. The original logic had a typo: `i <= numbers.length` should be `i < numbers.length` to include `numbers[numbers.length]`.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**What was changed and why:**\n1.  **Index Check**: Changed `i <= numbers.length` to `i < numbers.length`. The original code includes the last element of an array, but mathematical modulo operations (like `%`) often require indices strictly less than the length of the array to avoid index out of bounds errors when accessing `numbers[numbers.length]`.\n2.  **Variable Name**: Changed `total` to `sumEven` for clarity, as it is now a function rather than an accumulator variable."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 0.931,
+  "text": "The bug in the current function is that it does **not** include negative integers. While your logic works for positive even numbers, if you pass an array containing a negative number (e.g., `[-5]`), the modulo operator `%` will return `-1`, which is not zero, so the condition `numbers[i] % 2 === 0` will be false and that element will never be added to the total.\n\nHere is the fully corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0 && numbers[i] >= 0) {\n      total += numbers[i];\n    }\n  }\n  \n  return total;\n}\n```\n\n**Key Changes:**\n1.  **Added a check**: Added `&& numbers[i] >= 0` to ensure we only add even, non-negative integers. This handles the case where negative numbers are present in the input array (e.g., `[-5]`). Without this check, `[-5] % 2 === -1`, which is not zero, so it fails silently and returns a total of `0` instead of `-5`."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.556,
+  "text": "```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use BigInt for large numbers (optional but recommended if dealing with very large integers)\n  \n  for (let i = numbers.length - 1; i >= 0; i--) {\n    const num = numbers[i];\n    if (num % 2 === 2) {\n      total += num;\n    }\n  }\n\n  return Number(total); // Convert to number if needed, or BigInt depending on requirements\n}\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.483,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use BigInt for large numbers to prevent overflow (optional improvement, not strictly required if using standard types)\n  \n  for (let i = numbers.length - 1; i >= 0; i--) {\n    const number = numbers[i];\n    \n    if ((number % 2 === 1n)) continue; // Skip odd numbers\n    \n    total += number;\n  }\n\n  return BigInt(total);\n}\n\n// Example usage:\nconst input = [3, 5, 7, 9, 4, 6, 8];\nconsole.log(sumEven(input)); \n```\n\n### Explanation of Changes:\n1. **`let total = 0n`**: Changed to `0n`. The prefix `n` stands for the number system \"BigInt\". This is important because JavaScript's default integer type (`number`) has a fixed size (32-bit) and can overflow when adding very large numbers, whereas BigInt handles arbitrary precision. If your inputs are always small integers, you could technically remove this line, but it makes the code more robust for larger datasets.\n2. **Loop Condition**: Changed from `i <= numbers.length` to `i >= 0`. This ensures we iterate backwards so that even indices (e.g., index 4) are checked before odd indices (index 5).\n3. **Continuing Odd Numbers**: Added logic `(number % 2 === 1)` inside the loop. Since you want to sum only evens, skipping any number that is odd (`1n` prefix in this context usually implies a BigInt check for parity) is correct and prevents adding them to the total."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.392,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use number literal '0' for BigInt support (optional, but good practice if dealing with large numbers)\n\n  for (let i = Math.floor(0); i < numbers.length && i >= 0; i++) {\n    const val = numbers[i];\n    if (val % 2 === 0 && typeof val !== 'string') { // Check type first to avoid issues with negative numbers or non-numeric strings\n      total += val;\n    }\n  }\n\n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 3, 5, 7, 9, 2])); \n// Output: 20 (Sum of even numbers in the input)\n```\n\n**Changes Made:**\n*   **Type Check**: Added a check `typeof val !== 'string'` before adding. This prevents the function from crashing if you pass an array like `[1n, \"3\"]`, as it would throw an error or return incorrectly for strings.\n*   **BigInt Support (Optional)**: Used `0n` instead of a variable named `total`. If your code expects large numbers that exceed standard integer limits, this is essential; if you only expect small integers, use the simpler assignment to avoid clutter."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.479,
+  "text": "The bug in the function is that it calculates the sum of **even** numbers but then returns `total` as if it were a **number**, instead of returning an object with the calculated value.\n\nHere is the corrected version:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 2; i < numbers.length; i++) {\n    // Ensure we iterate through even numbers starting from 2 to avoid index errors if 'numbers' starts at 1 or is empty\n    const number = i + 2; \n    if (number % 2 === 0 && number > 1) {\n      total += number;\n    }\n  }\n\n  return total ? numbers : 0; // Return the calculated sum as a value, not an array\n}\n\n// Example usage:\nconst input = [1, 3, 5, 7, 9, 11]; \nconsole.log(sumEven(input)); // Output: 2 (sum of even numbers)\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.801,
+  "text": "Here is the fixed function. The original logic had a typo: `i <= numbers.length` should be `i < numbers.length`. In JavaScript, you cannot compare an index with a string number (e.g., `\"length\"`), so this line would cause an error when trying to use `numbers.length` as a bound variable in the loop condition.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Fixed: changed 'i <= numbers.length' to '<=' (or '<')\n  for (let i < numbers.length) { \n    if (numbers[i] % === 2) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```\n\n**Key Fix Explanation:**\n1. **Comparison Operator**: Changed `i <=` to `<`. In JavaScript, the comparison operator for indices must be strictly less than (`<`) or equal to (`<=`). Using `>` would make the loop infinite if the array length was reached."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.412,
+  "text": "The bug in the current function is that it does **not** include negative integers. In JavaScript, a negative number (e.g., `-5`) has an even value when divided by 2 (`-5 % 2 == 1`), which means `total += numbers[i]` will add its magnitude to the sum, giving the wrong result for negative numbers.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = -numbers.length; i >= 0; i--) {\n    if (i % 2 === 1 || numbers[i] > 0) {\n      continue; // Skip negative or zero numbers to avoid double counting\n    } else {\n      total += numbers[i];\n    }\n  }\n  \n  return total;\n}\n\n// Example usage:\nfunction main() {\n  console.log(sumEven([-5, -2, 0, 3])); // Expected output: -1 (only positive odd and even non-negative)\n  \n  const input = [4, -8, 6, -9, 7];\n  console.log(sumEven(input)); // Output should be calculated based on the corrected logic above\n}\n\n// Simulated execution for clarity:\nmain();\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.505,
+  "text": "```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use BigInt for large numbers (optional but recommended if dealing with very large integers)\n  for (let i = 1; i <= numbers.length - 1; i++) {\n    const number = numbers[i];\n    if ((number + 1) % 2 === 1 && number > 0n) { // Only add positive even numbers > 0\n      total += number;\n    }\n  }\n  return total.toString();\n}\n\n// Example usage:\nconst input = [2, 4, 6, 8, 10];\nconsole.log(sumEven(input)); // Output: 30 (sum of all even numbers)\n```\n\n**Note:** If you intended to sum *only* positive even integers and want a simpler version without BigInt, consider this optimized version:\n\n```js\nfunction sumEvenNumbers(numbers) {\n  let total = 0 + 0n;\n  for (let i = numbers.length - 1 >= 0 ? i : 0; i >= 0; i--) {\n    const number = numbers[i] + 1; // Convert to even positive integer\n    if ((number % 2) === 0 && number > 0) {\n      total += number;\n    }\n  }\n  return total.toString();\n}\n\n// Example usage:\nconst input = [4, 8];\nconsole.log(sumEvenNumbers(input)); // Output: 12 (sum of even numbers)\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.525,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use BigInt for large numbers to prevent overflow (optional improvement, not strictly required if all inputs are small)\n  \n  for (let i = BigInt(0); i <= BigInt(numbers.length); i++) {\n    const number = BigInt(numbers[i]);\n    if ((number % 2) === 0n) { // Modulo by 2 with 0 as divisor\n      total += number;\n    }\n  }\n\n  return total.toString(); // Convert to string for display (optional, returns integer in this case)\n}\n```\n\n**Explanation of changes:**\n1.  **Type Casting (`let i = ...`)**: Changed `i = 0` to `i = BigInt(0)` because the original code uses an untyped index variable (`i`). If you pass large numbers, this prevents overflows or crashes with `IndexOutOfBoundsException`.\n2.  **BigInt Arithmetic**: Used `+ number` instead of arithmetic addition on strings for types safety, and `%` operator is now explicitly typed as `n % d` (where `n` is BigInt and `d` is the integer divisor).\n3.  **Return Type**: Added `.toString()` to return the result as a string if desired, or just an integer if you want it back as-is depending on your specific needs."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.642,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use number literal '0' for BigInt support (optional, but good practice if dealing with large numbers)\n  \n  for (let i = numbers.length - 1; i >= 0; i--) {\n    if (numbers[i] & 1n === 1n) {\n      total += numbers[i]; // Convert to number type before addition\n    }\n  }\n\n  return total;\n}\n```\n\n**What was the bug?**\nThe original function used `let` (a variable of undefined type in JS), which means it cannot be assigned a value. Additionally, you were trying to add two numbers (one integer and one number literal) directly without explicitly converting them into numeric types first. In JavaScript, you must use explicit syntax like `+ 0n` or `1n + 2n` when adding BigInts."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.51,
+  "text": "The bug in the function is that it calculates the sum of **even** numbers but then returns `total` as if it were a number to be summed, rather than returning an object with the calculated sum. Additionally, there's no error handling for the case when `numbers.length < 0`.\n\nHere are two corrected versions: one using ES6 objects (recommended for modern JavaScript), and one that keeps your original style but fixes the logic flaw.\n\n### Option 1: Modern Approach (Recommended)\nThis version correctly returns an object containing the sum, handles edge cases with null/undefined, and uses a more readable syntax.\n\n```js\nfunction sumEven(numbers) {\n  if (!Array.isArray(numbers)) {\n    throw new Error(\"Input must be an array\");\n  }\n\n  let total = 0n; // Use number literal to force type coercion in JS\n\n  for (let i = numbers.length - 1; i >= 0; ) {\n    if (i < 0 || numbers[i] === undefined) continue;\n    \n    if (numbers[i] % === 2) continue; // This is the bug fix: changed to '==' instead of '==='\n\n    total += numbers[i];\n  }\n\n  return { sum: total };\n}\n```\n\n### Option 2: Your Original Style (Fixed Logic)\nThis version fixes the logic bug by checking for `==` instead of `'=='`, and adds a check for an empty array.\n\n```js\nfunction sumEven(numbers) {\n  if (!Array.isArray(numbers) || numbers.length === 0) return 0;\n\n  let total = 0 + numbers[0]; // Start with the first number\n\n  for (let i = i; i < numbers.length; i++) {\n    if (numbers[i] === 2) { \n      continue;\n    }\n\n    total += numbers[i]"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.654,
+  "text": "Here is the fixed function. The original logic had a typo: `i <= numbers.length` should be `i < numbers.length`. Additionally, in JavaScript, if you pass an empty array (length 0), iterating with `for` loops and adding to variables will result in `undefined` because there are no iterations or additions performed.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Use 'n' for a number type, though 'total' is sufficient\n  if (numbers.length === 0) return undefined; // Handle empty arrays explicitly\n  \n  for (let i = numbers.length - 1; i >= 0; --i) {\n    if (numbers[i] % parseInt(2) === 0) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```\n\n**Explanation of Changes:**\n1.  **Type Hinting (`n`)**: Added `n` to the variable name because in older JavaScript, variables without type hints often defaulted to strings (e.g., `'total'`). Using `number` explicitly prevents this issue and allows better runtime debugging.\n2.  **Empty Array Handling**: The original code would add `undefined` values when iterating over an empty array. This is a common bug. Added a check for `numbers.length === 0`.\n3.  **Integer Conversion**: Used `parseInt(2)` to force the modulo operation to happen on integers instead of floating-point numbers, ensuring the logic works correctly regardless of input types."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.265,
+  "text": "The bug in the current function is that it does **not** include negative integers. While your logic works for positive even numbers, if you pass an array containing a negative number (e.g., `[-5]`), the modulo operator `%` will return `-1`, which is not zero, so the condition `numbers[i] % 2 !== 0` would be true and the sum would include that negative value.\n\nAdditionally, the variable names like `i` and `total` are too generic without defining them as local variables to avoid naming conflicts if multiple functions call this function. Here is the corrected version:\n\n```javascript\nfunction sumEven(numbers) {\n  let total = 0n; // Using 'n' for BigInt support, though not strictly necessary here\n  for (let i of numbers) {\n    if ((i % 2 === 0)) {\n      total += i;\n    }\n  }\n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 3, -5])); // Output: 2"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 0.981,
+  "text": "```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  \n  return total;\n}\n```"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 0.997,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Explanation of the Fix:**\n\n1.  **`let` vs `const`**: Your original code used `let`, which declares a variable with a `declaration scope`. If you want to declare variables *inside* a function, you must use `const`. Since I am returning the entire corrected function and your context is likely within an existing function body or if this were a standalone file, using `let` correctly would require you to change every declaration inside that specific block. The standard way to return code like this in modern JavaScript (especially with ES6+) is to use `const`, but keeping it as `let` preserves the original logic exactly as written without needing scope changes for variable declarations *inside* the function definition itself, assuming these are local variables within your current context.\n\n2.  **Variable Scope**: The issue you likely encountered was that `total`, `i`, and potentially other loop counters were declared inside the first line (`let total = 0;`). Since they are now outside of that specific block (assuming this is a standalone function call), using `let` in the global scope would cause errors or unexpected behavior depending on your environment. I will keep the variable declarations as `const` to match best practices for functions, but note that if you strictly want to return *only* the logic and don't care about scoping rules outside this block (e.g., passing it to another function), keeping `let` works fine locally within that definition.\n\n3.  **Return Statement**: The original code returns a number directly (`return total;`). In"
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 0.997,
+  "text": "Here is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Explanation of the fix:**\n\nThe original function returned `total`, but since it's a sum, you don't need to add anything else. In JavaScript, if an expression returns itself (like `return total`), JavaScript automatically wraps that result in parentheses (`())`). So:\n\n- The corrected line is simply `let total = 0;`\n- You **no longer** need the `total += numbers[i]` line because it's already part of a sum."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 0.577,
+  "text": "The bug in the function is that it calculates the sum of **even** numbers but then returns `total` as if it were a **number**, instead of returning an object with the calculated value.\n\nHere is the corrected version:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i <= numbers.length; i++) {\n    // Check if current number is even and add to total only if it's a valid number\n    const num = numbers[i]; \n    if (!isNaN(num) && num % 2 === 0) {\n      total += num;\n    }\n  }\n\n  return typeof total === 'number' ? total : null; // Handle case where loop finishes without adding any non-zero even numbers\n}\n```\n\n### Explanation of Changes:\n1. **Type Check**: Added `typeof total === 'number'` to ensure the function returns a number (or `null`) rather than just a value, preventing errors if no even numbers are found or if the input is empty.\n2. **Data Type Handling**: Changed `numbers[i]` to `num = numbers[i]` and added `!isNaN(num)` checks before adding to the total to prevent accessing undefined values from invalid index references."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Here is the fixed function. The original logic had a typo: `i <= numbers.length` should be `i < numbers.length` to include `numbers[numbers.length]`.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**What was changed and why:**\n1. **`i <= numbers.length`** → **`i < numbers.length`**: The loop needs to go past the last index (index `numbers.length - 1`). If you included `length`, you would be adding a duplicate value for the last element of the array itself."
+ },
+ {
+  "model": "instant",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 0.936,
+  "text": "The bug in the current function is that it does **not** include negative integers. In JavaScript, a negative number (e.g., `-5`) has an even value when divided by 2 (`-5 % 2` results in `1`, not `0`). Therefore, any negative integer will incorrectly contribute to the sum as an \"even\" number.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i <= numbers.length; i++) {\n    if (numbers[i] % 2 === 0 && numbers[i] >= 0) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```\n\n**Key changes made:**\n1. Added a check `&& numbers[i] >= 0` to ensure only non-negative integers are included in the sum."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.857,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by 15 percent and to extend weekend opening hours."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.662,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they decided to increase funding for children's books by 15 percent and extend opening hours on weekends. (Note: The original text has \"comittee\" instead of \"committee\", which is spelled with an 'i' inside the 'm'. I have also corrected \"budjet\" to \"budget\".)"
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.853,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by 15 percent and to extend weekend operating hours."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.927,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase the funding for children's books by 15 percent and to extend operating hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.871,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase funds for children's books by fifteen percent and extend weekend operating hours."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.939,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by fifteen percent and extend opening hours on weekend days."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.536,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by fifteen percent and extend opening hours on weekends.\n\n*(Note: I corrected \"comittee\" to \"committee\", \"budjet\" to \"budget\", \"childrens\" to \"children's\", \"extend\" to \"extend\", and added an extra space before \"very long\" to match the original structure while fixing typos. The instruction asks for only the corrected paragraph, so no introductory text is included.)*"
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.939,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they decided to increase funding for children's books by fifteen percent and extend opening hours on weekends.\n"
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.853,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by 15 percent and to extend weekend operating hours."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.927,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase the funding for children's books by 15 percent and to extend operating hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.871,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase funds for children's books by fifteen percent and extend weekend operating hours."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.939,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a very long debate, they agreed to raise funding for children's books by fifteen percent and extend opening hours on weekend days."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 0.99,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "データには「社員の数は三百八十二名です」と記されていますが、資料では「仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました」という内容が含まれており、これらは**社員数と設立年に関係なく記載されているため、「青葉商事の社員数」や「仙台本社の設立年」といった問いに対する回答にはなりません**。\n\nただし、質問は「資料の文をそのまま引用して答えてください」と指定されています。その通り、以下の回答となります：\n\n> 「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。」\n\n※これは、資料に記述されている事実のみを引用したものです。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "資料には以下のような記述があります：\n\n*   「青葉商事は**三百八十二名**です」\n*   「**一九六二年**に、**福岡の本社は**設立されました」という部分については、文脈から「**仙台の本社は一九六二年**に設立された」と誤解されたり、逆に「仙台の設立年＝一九六二年」と読んだりするが、正しく読むと「仙台と福岡」は両方の会社があり、仙台本社（一九六二年）と福岡本社（一九八九年）の記載されています。\n\nしたがって、文脈に合致した正確な回答は以下の通りです：\n\n*   **社員数**：**三百八十二名**\n*   **仙台本社の設立年**：**一九六二年**"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "資料から青葉商事の社員数は「三百八十二名」と、仙台本社の設立年は「一九六二年」に記されています。\n\nしたがって、以下のようになります。\n\n*   **青葉商事の社員数**: 三百八十二名\n*   **仙台本社の設立年**: 一九六二年"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員であり、仙台本社が一九六二年に設立され、福岡本社が一九八九年に設立されました。取締役会は七名で構成されます。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "資料から「社員数は三百八十二名です」という記述はありますが、「青葉商事の社長」は存在しません（文中にはこの役職に該当する記載がないため、誤解がある可能性も考えられます）。\n\nまた、資料では「仙台の本社は一九六二年に設立されました」とありますが、「福岡の本社は一九八九年に設立されました」とあります。これは、二つの事業所の設立年が異なる場合の誤記や、データ不一致の問題があり、正確な情報を提供するために修正します。\n\n正確な回答は以下の通りです：\n\n**社員数**：三百八十二名  \n**仙台本社の設立年**：一九六二年（※「福岡の本社は」の記載が誤り）"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 0.6666666666666666,
+  "text": "青葉商事は七百八十二名の社員であり、仙台本社が一九六二年に設立されたことが記載されています。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.6666666666666666,
+  "text": "データには「本社が一九六二年から一九八九年（二〇〇〇年に）それぞれ設立された」と記載されていますが、文脈から推測すると仮定します。青葉商事は日本企業の典型例として知られることから、「仙台本社は一九五八年に設立された」ことが一般的です。\n\nただし、ご提示の資料では「一九六二年（昭和三十八年）」と「一九八九年」という具体的な年が記載されていますので、その通りをそのまま引用するのが適切です。\n\n**青葉商事は、資料に記載されている通り、「仙台の本社は一九六十二年に設立されました」で、福岡本社も同じく「一九八九年」に設立され、取締役会は七名とされています。**"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "資料には以下のような記述があります：「青葉商事は**三百八十二名の社員です**。仙台の本社は一九六二年（昭和三十八年）に、福岡の**本社を置く商社**です。」\n\nしたがって、青葉商社の社員数は「三百八十二名」として引用できます。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.6666666666666666,
+  "text": "資料から「青葉商事は……社員数は三百八十二名でした。……の設立年」を直接引用できますが、正確な数字（382 人）と正確な年月日（1962 年・1989 年）を正確に表現するために、以下のように整理しました。\n\n**青葉商事**\n「社員数は三百八十二名で……の設立年。」\n\n※「社員数」という文脈から「社員数が三百八十二人」が最も適切ですが、文書内の「三百八十二」という数字はそのまま可視化するのが一般的です。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.0,
+  "text": "青葉商社の社員数は三百八二名です。\n青葉商社は仙台の本社は一九六十二年に、福岡の本社は一九八九年に設立されました。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "資料から青葉商社の社員数は**三百八十二名**、仙台本社（現在の仙台市）は**一九六二年**に設立されましたが、「福岡の本社は一九八九年に設立されました」という記述が含まれており、これは事実を誤解している可能性があります。日本では「九州」で北九州と南九州の別がありますが、青葉商事としては通常「北九州・南九州」を指すため、この記述は正確ではないと考えられます。\n\nしたがって、以下の回答が適切です：\n\n**青葉商社の社員数：三百八十二名  \n仙台本社（北九州）設立年：一九六二年**"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.6666666666666666,
+  "text": "青葉商事は七百八十二名の社員であり、仙台本社が一九六二年、福岡本社が一九八九年に設立されています。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.6666666666666666,
+  "text": "データには「社員の数は三百八十二人」と「仙台の本社は一九六二年」、「福岡の本社は一九八九」年に設立されたという記述があります。\n\nただし、「青葉商事の社長（または取締役会）が七名で構成される」という部分について、資料は「社長」や「取締役会」を指す言葉使いで混同されている可能性があります。\n資料に明確に「七名」という数字で記載されているのは**取締役会の人数**です。\n\nもしあなたが「七名の取締役会」という事実を前提として回答したい場合、以下のようになります。\n\n*   **社長（または役員）の総数は：** 三百八十二人\n*   **仙台本社設立年：** 一九六二年\n*   **福岡本社設立年：** 一九八九年\n*   **取締役会の人数：** 七名"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "資料には以下のような記述があります：\n\n*   「青葉商事は**三百八十二名の社員**です」\n*   「仙台の本社は**一九六二年に**設立されました」\n\n質問では「資料の文をそのまま引用して」と要求していますが、これは直接コピーした原文が正解になる可能性が高いです。しかし、「引用」という表現には少し曖昧さがあります（例：引用文と引用する文がある場合）。もし「データはこれに基づき、青葉商事の社員数は三百八十二人です。」として回答すると、文脈に合致しますが、明確な「引用」の形であれば上記の記述が正解となります。\n\n最も直接的かつ文脈が近い答えは：\n> **「青葉商事は三百八十二名の社員です。仙台の本社は一九六年に設立されました。」**\n\n（※注：資料には「一九六二年」とありますが、回答としてその通りまたは修正した例を提示します。資料原文の「一九六二年」をそのまま使うのが最も適切です。）"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.6666666666666666,
+  "text": "資料から青葉商社の社員数は「三百八十二名」であり、仙台本社は一九六二年に設立されています。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "青葉商社の社員数は三百八二名です。\n青葉商社は仙台の本社が一九六二年に設立され、福岡の本社が一九八九年に設立されています。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.6666666666666666,
+  "text": "資料から「社員数は三百八十二名様」および「仙台の本社は一九六十二年に設立されました」という情報が出していますので、以下の回答になります。\n\n*   **社員数**: 三百八十二名\n*   **仙台本社の設立年**: 一九六二年"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.6666666666666666,
+  "text": "青葉商事は七百八十二名の社員であり、仙台本社が一九六二年、福岡本社が一九八九年に設立されています。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "データには「本社が一九六二年に設立された」という記述がありませんでした。このため、回答は以下のようになります：\n\n**青葉商事の社員数は三百八十二名です。**"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 0.6666666666666666,
+  "text": "資料には以下のような記述があります：「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。」（社員の総数を指すため、「青葉商事」や「社員数」という語で言及されている部分もありますが、文脈上「会社全体の規模を示した部分」と考えられます）\n\nしかし、問題文は「資料の文をそのまま引用して答えてください」と指定しています。\n最も適切かつ直感的な回答として、**「青葉商事は仙台と福岡に本社を置く商社です」**（前半句の事実）と**「社員数は三百八十二名です」**（後半句のデータ）を二つに分けて回答します。\n\n### 回答\n\n資料から以下の情報を抽出・引用しています：\n\n1. **会社名と所在地**: 「青葉商事は仙台と福岡に本社を置く商社です。」\n2. **社員数**: 「社員数は三百八十二名です。」"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 0.6666666666666666,
+  "text": "資料から「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です」が正確な情報源として用いることができます。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員であり、仙台本社が一九六二年に設立されました。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "資料から青葉商事の社員数は**三百八十二名**、仙台の本社が一九六二年に設立されました。\n\n以下はご質問内容に対する回答です：\n\n*   **青葉商事の社員数**: 三百八十二名\n*   **仙台本社の設立年**: 一九六二年"
+ },
+ {
+  "model": "instant",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 0.6666666666666666,
+  "text": "青葉商事は七百八十二名の社員であり、仙台本社が一九六二年に設立されました。"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 0.5,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Aoba Shoji employs **382** people.\n*   **Sendai head office founding date:** The Sendai head office was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The Sendai head office was founded in **1962**.\n\nHere are the corresponding quotes from the provided text:\n\n*   **People employed:** \"It employs three hundred and eighty-two people.\" (Quote)\n*   **Sendai head office founded:** \"The Sendai head office was founded in 1962...\" (Quote)"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The Sendai head office was founded in **1962**.\n\nHere are the sentences from the document that answer your questions:\n\n*   \"The Sendai head office was founded in 1962\" (Source: \"The Sendai head office was founded in 1962\")\n*   \"It employs three hundred and eighty-two people.\" (Source: \"It employs three hundred and eighty-two people.\")"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Number of employees:** Aoba Shoji employs 382 people.\n*   **Founding year of the Sendai head office:** The Sendai head office was founded in 1962.\n\n**Quote from the document:**\n> \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people, and the Sendai head office was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the provided text:\n\n*   **People employed:** Aoba Shoji employs **three hundred and eighty-two** people.\n*   **Sendai head office founding year:** The Sendai head office was founded in **1962**.\n\nThe relevant sentences from the document are:\n1.  \"It employs three hundred and eighty-two people.\" (Answering the first question)\n2.  \"The Sendai head office was founded in 1962\" (Answering the second question)"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.5,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Aoba Shoji employs **382** people.\n*   **Sendai head office founding date:** The Sendai head office was **founded in 1962**.\n\nHere is the extracted information from the text:\n*   \"Aoba Shoji is a trading company... It employs three hundred and eighty‑two people.\"\n*   \"The Sendai head office... founded in 196...\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.5,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. According to the document:\n*   The Sendai head office (the one in question) was founded in 1965, whereas the Fukuoka headquarters was established in 1989; thus, the sentence regarding the \"Sendai head office\" refers specifically to that location, not both offices."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The **Sendai head office** was founded in **1962**.\n\n*   **Quote 1:** \"It employs three hundred and eighty‑two people.\" (From: Aoba Shoji is a trading company...)\n*   **Quote 2:** \"The Sendai head office... was founded...\" (From: The Sendai head office...)"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.5,
+  "text": "Based on the provided document:\n\n*   **Number of employees:** Aoba Shoji employs 382 people.\n*   **Founding year of the Sendai head office:** The Sendai head office (founded in 1965) was founded when it received its first trading license from the Ministry of Commerce and Industry on November 17, 1962."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people, and the Sendai head office (which is its head offices location) was founded in **1962**. \n\nQuote: \"Aoba Shoji is a trading company... It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the provided text:\n\n*   **People employed:** Aoba Shoji employs **three hundred and eighty-two** people.\n*   **Sendai head office founding year:** The Sendai head office (Aoba Shoji's original location) was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.5,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Aoba Shoji employs **382** people.\n*   **Sendai head office founding date:** The Sendai head office was **founded in 1962**.\n\nHere is the extracted information from the text:\n*   \"Aoba Shoji is a trading company... It employs three hundred and eighty‑two people.\"\n*   \"The Sendai head office... founded in 1963...\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. According to the document, the Sendai head office was **founded in 1962**.\n\nQuote the sentences:\n*   \"It employs three hundred and eighty-two...\"\n*   \"The Sendai head office... founded in 1963\" (Note: The source text says \"founded in 1954\" in the first mention, but \"founded in 1970\" is mentioned later. However, looking closely at the document provided: \"Aoba Shoji is a trading... with head offices in Sendai... founded in 1952 and Fukuoka... founded in 1863\". Wait, let me re-read the specific sentence about Sendai again.)\n\nLet's check the text again carefully.\nSentence 1: \"The Sendai head office was **founded** in **1962**...\" (Wait, earlier I thought it said 1954? Let me scan the provided text block strictly).\n\nText segment: \"Aoba Shoji is a trading company... It employs three hundred and eighty-two... The Sendai head office **was founded** in 1962...\"\nOkay, so the specific sentence for Sendai founding year is \"**founded in 1960**\" (Wait, let me look at the image/text again).\n\nActually, looking at the provided text: \"The Sendai head office **was founded** in **1954** and the Fukuoka head... was founded in **1863**.\"\nLet's re-examine the raw input for the Sendai sentence.\nInput: \"... The Sendai head office **was founded** in **1954**...\" (Wait, I might be misreading \"founded\" vs \"found\". Let me look at the very beginning of the"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The **Sendai head office** was founded in **1962**.\n\n*   *Quote 1 (from Document): \"The Sendai head office... was founded in 1963\"*\n*   *Quote 2 (from Document): \"Aoba Shoji is a trading company...\" (This sentence does not explicitly state the number of people, only mentions three hundred and eighty-two).*"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.0,
+  "text": "Based on the provided document:\n\n*   **Number of employees:** Aoba Shoji employs 382 people.\n*   **Founding year of the Sendai head office:** The Sendai head office (founded in 1965) was founded when it received its first employees, while the Fukuoka headquarters was established later in 1985.\n\n**Quote from the document:** \"Aoba Shoji is a trading company...\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people, and the Sendai head office was **founded in 1962**.\n\nI have quoted these details directly from the provided text: \"It employs three hundred and eighty‑two people.\" and \"The Sendai head office was founded in **1962**.\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the provided text:\n\n*   **People employed:** Aoba Shoji employs **three hundred and eighty-two** people.\n*   **Sendai head office founding year:** The Sendai head office (Aoba Shoji's original location) was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 0.5,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Aoba Shoji employs **382** people.\n*   **Sendai head office founding date:** The Sendai head office was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The Sendai head office was founded in **1962**.\n\nHere are the corresponding quotes from the provided text:\n\n*   **People employed:** \"It employs three hundred and eighty-two people.\" (Quote)\n*   **Sendai head office founded:** \"The Sendai head office was founded in 1962...\" (Quote)"
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people. The Sendai head office was founded in **1962**.\n\nHere are the sentences from the document that answer your questions:\n*   \"The Sendai head office was founded in 1962\" (found in the sentence about the head offices).\n*   \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Number of employees:** Aoba Shoji employs 382 people.\n*   **Founding year of the Sendai head office:** The Sendai head office was founded in 1962.\n\n**Quote from the document:**\n> \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs **three hundred and eighty-two** people, and the Sendai head office was founded in **1962**."
+ },
+ {
+  "model": "instant",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the provided text:\n\n*   **People employed:** Aoba Shoji employs **three hundred and eighty-two** people.\n*   **Sendai head office founding year:** The Sendai head office was founded in **1962**.\n\nThe relevant sentences from the document are:\n1.  \"It employs three hundred and eighty-two people.\" (Answering the first question)\n2.  \"The Sendai head office was founded in 1962\" (Answering the second question)"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed it):** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory/Signature holder:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued By:** Kestrel Maritime Logistics GmbH\n*   **Signed By:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the document you provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed it):** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issuer (Who issued):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed):** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024‑00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory/Signature holder:** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issued By:** Kestrel Maritime Logistics GmbH\n*   **Signed By:** Dr. Margarethe Oyelan-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.3333333333333333,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024‑00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyalaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.3333333333333333,
+  "text": "Based on the document you provided:\n\n*   **Invoice Number:** INV-2024-**00871** (Issued by Kestrel Maritime Logistics GmbH)\n*   **Issuer/Company:** Oyelaran-Whitfield consulting (specifically Dr. Margarethe Oeylan-Whitfield)"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed it):** Dr. Margarethe Oyalaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024‑00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory/Signature holder:** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024–00871\n*   **Issued By:** Kestrel Maritime Logistics GmbH\n*   **Signed By:** Dr. Margarethe Oyelan-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.3333333333333333,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024‑00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyalaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.3333333333333333,
+  "text": "Based on the document you provided:\n\n*   **Invoice Number:** INV-2024‑00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed it):** Dr. Margarethe Oeyaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed):** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory/Signature holder:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued By:** Kestrel Maritime Logistics GmbH\n*   **Signed By:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Based on the provided document:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the document you provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer (Who issued it):** Kestrel Maritime Logistics GmbH\n*   **Signatory (Who signed it):** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "משלם את המסמך:\n\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"\n\nהשברים:\n- מי ייסדה את החברה? **ד\"ר יהודית בן־צבי**\n- באיזו שנה נוסדה החברה? **1987**\n- כמה עובדים יש בה החברה? **214**"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 0.75,
+  "text": "המסמך מפרש כי **חברת אורנים** הייסדת את החברה בשנת **1987**, והעבודה מתבצעת על ידי ד״ר יהודית בן-צבי, ובכאן מוסיפים 214 עובדים.\n\nבהיבואין:\n*   מי ייסדה החברה: **חברת אורנים**.\n*   השנה במהדורה: **1987**.\n*   המספרים הנדרשים: **ד״ר יהודית בן-צבי** ו-**214 עובדים**."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 0.75,
+  "text": "החברה נוסדה בשנת **1987** על ידי דר״ר יהודית בן-צבי, והיא מכילה **214 עובדים**.\n\n*   ייסדה: **בשנת 1987** (כפי שמתואר במסמך).\n*   משהו שהפכו להחברה: **ד״ר יהודית בן-צבי**.\n*   מספר עובדים: **214** (כפי שמתואר במסמך)."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "במסמך מופיע שנת הניסוד של חברת אורנים טכנולוגיות בע\"ם כ-1987, והוא מוביל לשימוש במונח \"עבודות\", אך יש להבהיר שמונחים רלוונטיים כמו \"עובדים\" (מהירות עבודה) או \"מקצועינים\" משתמשו באופן שונה בקהילות יומיומיות.\n\nכעת, כאן הנתונים המדויקים ומספרים:\n*   **שנת הניסוד:** 1987.\n*   **שיטות מידע:** יש להשתמש במונח \"מערכת\" (השם של החברה) או לומר כי המסמך מופיע כ-214 עובדים, נוסף במפורש (\"באולם עובדים 214 עובדים\").\n\n**תשובות:**\n*   **מי ייסדה את החברה:** ד\"ר יהודית בן־צבי.\n*   **השנה:** בשנת 1987.\n*   **מספר העובדים:** המסמך מופיע כ-214 עובדים (שם חוקי: \"עבודות\")."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 0.75,
+  "text": "החברה הוסרה בשנת 1987 בחיפה על ידי ד״ר יהודית בן-צבי, וכן ייסדה **214 עובדים**.\n\n*   **שנה הייסדו:** 1987\n*   **ערביות:** 214"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "חברת אורנים טכנולוגיות בע״מ נוסדה בשנת **1987** בחיפה על ידי ד\"ר יהודית בן-צבי, ולכן יש בה **214 עובדים**.\n\n*   מי ייסדה: ד\"ר יהודית בן-צבי\n*   שנה הניסוד: 1987\n*   מספר העובדים: 214"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.0,
+  "text": "משמעות מוסרית: מנצח בלוחמת האדם הגדולה ביותר של העולם הניאס אהיי (2014) נכנס לשינוי עתידיות.\n\nמצורף, שם אחד מהשחקנים, ד\"ר יוסי אל-מועז'ין, קבוצה המובילה בתחום האמיתות והפער בין הדעות, פגשה את השקט של מנצחי בלוחמת האדם.\n\nהמשפט שנקרא \"אשר תמיד נכנסים לשינויים\" הוא אחרון במכתרי הרעיונות של אל-מועז'ין."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.5,
+  "text": "המסמך מפרש כי **חברת אורנים** הייסדת את החברה בשנת **1987**, והערכות על הנגישות היא שבו עובדים כ-**214 עבוד**.\n\nאם רוצים לצטט למשמעות של השלבים המפורטים:\n*   \"חברת אורנים...\" → מפרסם.\n*   \"...נוסדה בשנת 1997 בחיפה\" (או תוויש) — תועד.\n*   \"...על ידי ד״ר יהודה בן צבי.\" — מפרט.\n*   \"בחברה עובדים כ-214 עבודות\" — גוף."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.5,
+  "text": "החברה נוסדה בשנת **1987** על ידי דר״ר יהודית מן-בצבי, והיא מכילה 214 עובד.\n\n**מצא:**\n\"חברת אורנים טנולוגיות בע'מ נוסדה בשנה 1987 בחיופה על ידי ד\"ר יהודה בן צבי. החברה עובדת כיום 214 עבוד.\""
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.5,
+  "text": "במסמך מופיע המידע הבא:\n\n*   **היהודית**: ד\"ר יהודה בן-צבי (שם נוסף) ייסדה החברה.\n*   **נתון השנה**: החברה נוסדה בשנה 1987.\n*   **מספר עובדים**: יש בה חברה 214 עובד.\n\nבסיכון זה, \"היהודית\" היא שם המשפחתי של ד\"ר יהודה בן-צדי (שנאמר במשמעת כד\"ר יהודה בןצבי)."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.75,
+  "text": "החברה הוסרה בשנת **1987** על ידי ד״ר **יהודית בן-צבי**, והיא מכונה \"חברת אורניס טכנולוגיית בע\"ם נוסדה בחיפה.\"\n\nבמסך עובדים בה החברה 214."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.75,
+  "text": "חברת אורנים נוסדה ב-1987 (שנת תוקף) על ידי ד\"ר יהודית בן-צבי, ובזמן שהיא עובדת כמנהלת 214 עשרה.\n\n**משפט צטוט מהמסמך:**\n> \"חברת אורנים הוסרה בשנת 2003 על ידי מפקד המכירות יוסי קנצ'אבי.\""
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.5,
+  "text": "משלם את המסמך:\n\"חברת אורנים נוסדה בשנת 2008 בחיפה על ידי ד\"ר יהודית בן-צבי.\"\n\nהנה החלקים שאלנו:\n1. **מי ייסד**: ד\"ר יהודית בן צבי.\n2. **שנה הניסוד**: בשנת 2008.\n3. **כמה עובדים**: 214 עבודות (לפי מסמך)."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.75,
+  "text": "המסמך מפרש כי **חברת אורנים** הייסדת את החברה בשנת **1987**, והעבודה מתבצעת על ידי ד\"ר יהודית בן-צבי (לא ייסדת אותה). בהחברה יש כ-**214 עובד**.\n\n*הסבר: המילה \"ימדת\" היא מלשון העיונית ל\"מאפיינה\", והתנאי הוא שהתגובה הראשונה במשמעת על חברה נוסדה בשנת 2003. למשל, החברה שנקראה \"חברת האורנים\" הייסדת בשנת **1987**.*"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.75,
+  "text": "החברה נוסדה בשנת **1987** על ידי **דר\"ר יהודית בן-צבי**.\n\nבשורה התחתונה, יש להם **214 עובד**.\n\n*   **שנה ייסדות:** 1987\n*   **משפטים:** \"חברה נוסדה...\" והאופן שבו מופיע השם \"דר\"ר יהודית בן‌צבי\"."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.5,
+  "text": "במסמך מופיע שנת הניסוד של חברת אורנים: **שנת 1987** והשם המפורש של האדם היה **\"ד״ר יהודית\"**. בנוסף, מסמך טען כי החברה עובדת עם כ-**214** עובדים.\n\nבניגוד למספרים אופייניים לפי סטטיסטים מלחיצה (כמו 130 עד 150), שם מדוע יש להוסיף את השם המפורש, ניתן לומר כי החברה נקבעת על ידי יצירה מקצועית של פרופסור ד״ר יהודיות בן-צבי."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.75,
+  "text": "החברה הוסרה בשנת **1987** על ידי ד״ר **יהודית בן-צבי**, והיא מכונה \"חברת אורניא טכנולוגיות\" (בשם המסמך). מספר העובדים שגורמים להיזהרת הוא **214**.\n\nלהלן ההיסטוריה של החברה:\n*   הוסרה על ידי ד״ר בן-צבי בשנת **1987**.\n*   יש 214 עבודות בה."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.75,
+  "text": "חברת אורנים נוסדה ב-1987 (שנת תוקף) על ידי ד\"ר יהודית בן-צבי, ובמקביל יש לה 214 עובד.\n\n**למה צטטים את המשפט:**\nהמשפט במסמך הוא: \"חברת אורנים **נוסדה בשנת 1997**...\".\nהשנה הנוכחית היא **2024**. לכן, השנה שנכתבת על הכותרת של המסמך היא שנה קדושה (קודם כל).\n\n*   **היחס:** \"נוסדה בשנת\" + \"1997\".\n*   **המשלבים:** 2024 + 1997 = 3001.\n*   **התשובה המייצגת:** 3001 שנים."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 0.5,
+  "text": "משמעות מוסרית: מנצח בלוחמת האדם הגדולה ביותר של העולם הניאס אהיי (2014) נכנס לשינוי עתידיות.\n\nמצורף, שם אחד מהשחקנים, ד\"ר יוסי אל-מועז'ין, קבוצה המובילה בתחום האמיתות והפער בין הדעות, פגשה את השקט של מנצח בלוחמת האדם הגדולה ביותר.\n\nאם תרצו, אפשר להסביר את התמונה:\n*   **כמה עובדים יש בה?** 214 עובדים (כפי שנקבע במסמך).\n*   **איזו שנה ייסדה החברה?** בשנת 1987."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 0.5,
+  "text": "המסמך מפרש כי **חברת אורנים** הייסדת את החברה בשנת **1987**, והערכות על הנגישות היא שבו עובדים כ-**214** אנשים (או 205, בהתבסס על חתימת סמלית מודעת).\n\nהתשובה:\n*   **שנה:** 1987\n*   **ערכות נגישות:** 214"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 0.75,
+  "text": "החברה נוסדה בשנת **1987** על ידי דר״ר יהודית בן-צבי, והיא מכילה 214 עובדים.\n\n*   ייסדה: **בשנת 1987** (משפט: \"נוסדה\").\n*   שנה העידות: **1987**.\n*   שם השרתה: **דר״ר יהודית בן-צבי**.\n*   תعداد עובדים: **214**."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 0.75,
+  "text": "במסמך מופיע המידע הבא:\n\n*   **היהודית**: ד\"ר יהודית בן-צבי (שנפילה)\n*   **שנת הניסוד**: 1987\n*   **כמות העובדים**: 214 עובדים"
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 0.75,
+  "text": "החברה הוסרה בשנת 1987 בחיפה על ידי ד״ר יהודית בן-צבי, וכן מועד העסק של החברה הוא 214 עובדים.\n\n**יצירתיות:**\n*   **מי ייסדה?** ד״ר יהודית בן-צבי.\n*   **אזו שנה?** בשנת 1987.\n*   **כמה עובדים יש בה?** 214 עובד."
+ },
+ {
+  "model": "instant",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "חברת אורנים טכנולוגיות בע״מ נוסדה בשנת **1987** בחיפה על ידי ד\"ר יהודית בן-צבי, ולכן יש בה **214 עובדים**.\n\n*   מי ייסדה: ד\"ר יהודית בן-צבי\n*   שנה הניסוד: 1987\n*   מספר העובדים: 214"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 0.832,
+  "text": "Here is the corrected function. The main issues were:\n1.  **Index Out of Bounds**: `i` was initialized to `0`, but the loop condition used `numbers.length`. This means it checked up to index `numbers.length`, which throws an error if you try to access a property on that exact index (since array indices start at `0`). It should be `i < numbers.length`.\n2.  **Logic**: The original code didn't actually handle the case where the input is empty correctly with the `for` loop logic, though it would technically return `0` if you ignore the error for now.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Iterate from index 0 up to (but not including) numbers.length\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 0.809,
+  "text": "The bug in the original function is that it iterates **up to and including** `numbers.length` (`i <= numbers.length`). This means when `i` equals `numbers.length`, the loop executes one final time, causing an **IndexOutOfBoundsException** or, if using a non-empty array, accessing an index outside the valid range (since arrays are 0-indexed).\n\nTo fix this:\n1. The loop condition should be `i < numbers.length`. This ensures the last index accessed is `numbers.length - 1`, which is always within bounds for any length array.\n2. Initialize `total` to `0` at the start (which was already correct), but ensure no edge cases exist during iteration logic.\n\nHere is the fixed function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  // Fixed condition: i < numbers.length to avoid accessing an out-of-bounds index\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 0.642,
+  "text": "The bug in the original function is that it iterates with `i <= numbers.length`. This means when `i` equals the length of the array, it attempts to access `numbers[i]`, which throws an **OutOfRangeError** because arrays are 0-indexed and cannot contain elements at index equal to their own length.\n\nTo fix this, the loop should use `<` instead of `<=`. Additionally, it's best practice in JavaScript to convert numeric inputs to a number explicitly (e.g., using `Number()` or casting), though for this specific bug fix regarding the loop condition, that is secondary; the primary issue is the index bound.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Fixed loop condition to avoid OutOfRangeError at the last element\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += Number(numbers[i]);\n    }\n  }\n  \n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 2, 3])); // Output: 4\nconsole.log(sumEven([]));        // Output: 0\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 0.834,
+  "text": "The bug in the original function is that the loop condition `i <= numbers.length` includes the index of the last element when iterating over an array, but arrays are zero-indexed. If you have an array with 5 elements (indices 0–4), the loop will check indices 0 through 5, causing it to access out-of-bounds memory at the end.\n\nTo fix this, the loop should run from `i = 0` up to and including `numbers.length - 1`. Additionally, adding a check for an empty array (`if (numbers.length === 0)`) is good practice, though in most contexts it's not strictly necessary if we assume valid input.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n\n  // Iterate from index 0 to the second-to-last element (inclusive)\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 0.568,
+  "text": "The bug in this function is that the `for` loop condition uses `i <= numbers.length`, which means it checks indices **from 0 up to and including** the length. This includes the last element of the array, causing one extra number (the sum of all elements) to be added to the total.\n\nTo fix this, we need to change the condition to include only indices less than `numbers.length`. In JavaScript, arrays are zero-indexed, so `i < numbers.length` is correct here. Additionally, it's better practice to use the `.length` property instead of calculating `numbers.length` in a comparison (though both work), and we should ensure the loop logic clearly excludes the last element by using `<` rather than `<=`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 2, 3])); // Output: 2 (Even numbers are 2 and 4 is not in this example, but here it's just 2)\n// Corrected logic: 0 < 3 -> check index 0 (1, odd), 1 < 3 -> check index 1 (2, even), 2 < 3 -> check index 2 (3, odd). Total = 2.\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "The bug in the provided function is that it includes `numbers[0]` when iterating up to `i <= numbers.length`. This causes an error if the array has fewer than two elements, as accessing index 0 before the loop condition allows would be fine, but actually, the issue is more subtle: inside the loop, the expression `numbers[i] % 2 === 0` will throw a **TypeError** because you are trying to access a non-existent property on an undefined object (since no element exists for that index).\n\nAdditionally, there's a potential logic error if numbers are negative and odd (e.g., -1), as the modulo operator can behave unexpectedly depending on the language, but in JavaScript `[-1] % 2` is `-1`. However, the main crash point is accessing an undefined index.\n\nHere is the fixed function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Key Fixes:**\n1. Changed the loop condition from `i <= numbers.length` to `i < numbers.length`. This ensures the last element is never accessed, preventing a TypeError when the array has fewer than two elements.\n2. Ensured the logic correctly iterates through all valid indices of the array."
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.672,
+  "text": "Here is the corrected function. The main issues were:\n1.  **Index Out of Bounds**: `i` was initialized to `0`, but the loop condition used `numbers.length`. This means it checked up to index `numbers.length`, which throws an error if there are more elements than expected or if the array has a specific length limit (though usually, this is just redundant logic). The standard fix initializes `i` to `1` and uses `i < numbers.length` for safe iteration.\n2.  **Loop Logic**: A loop starting at `0` with condition `<= length` effectively iterates over every element including the last one twice if the length matches, or simply checks the extra index out of bounds. The standard approach is to iterate while `i < numbers.length`.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Iterate through all elements safely using i < numbers.length\n  for (let i = numbers.length > 0 ? 1 : 0; i < numbers.length; i++) {\n    if (numbers[i] && numbers[i] % 2 !== 0) continue; // Skip non-numbers or odd numbers if any\n\n    total += numbers[i];\n  }\n  \n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.495,
+  "text": "The bug in the original function is that it iterates **up to and including** `numbers.length` (`i <= numbers.length`). This means when `i` equals `numbers.length`, the loop executes one final time, causing an **IndexOutOfBoundsException** or an out-of-bounds access on the array. Additionally, if the last element happens to be even (which it often is), this extra iteration would incorrectly include its value in the sum.\n\nTo fix this, the condition should change `i <= numbers.length` to `i < numbers.length`, which ensures we stop at index `numbers.length - 1`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = numbers.length > 0 ? 0 : 0; i < numbers.length; i++) { // Ensure we don't start if length is 0 to avoid index error, though logic below handles it\n    // Actually, a cleaner approach without the ternary in loop condition:\n  }\n\n  for (let i = indices[0] ? indices[0] : 0; i < indices.length; i++) { \n    if (indices[i] % 2 !== 0) continue; // Skip odd numbers\n    \n    total += indices[i];\n  }\n\n  return total;\n}\n```\n\nWait, looking at the original code structure again: `numbers` is an array. The simplest and most robust fix for a generic \"sum even numbers in array\" problem without assuming specific index naming conventions (like `indices`) but fixing the loop bound issue itself is to simply correct the range condition.\n\n**Corrected Function:**\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Start from index 1 if there's a 0, or just start at 0 (the original code started at 0"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.542,
+  "text": "The bug in the original function is that it iterates with `i <= numbers.length`. This means when `i` equals the length of the array, it attempts to access `numbers[0]`, which causes an **out-of-bounds index error** because JavaScript arrays are 0-indexed. The loop should go up to but not including the end of the array (`<`). Additionally, it's good practice to check if the input is valid (not empty).\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  // Check for undefined or null inputs and return 0 gracefully\n  if (!Array.isArray(numbers)) {\n    return 0;\n  }\n\n  let total = 0;\n  \n  // Iterate strictly less than the length to avoid index out of bounds\n  for (let i = numbers.length > 0 ? 1 : 0; i < numbers.length; i++) {\n    if (numbers[i] !== undefined && numbers[i] % 2 === 2) {\n      total += numbers[i]; // Ensure number is a valid number before adding\n    }\n  }\n\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.114,
+  "text": "The bug in the original function is that the loop condition `i <= numbers.length` includes the index of the last element when iterating over an array, but since arrays are zero-indexed and have a length equal to their number of elements, this actually *does* cover all indices. However, there's no issue with covering all elements in a standard for loop like this because it goes up to `length`.\n\nWait, let me re-examine the logic carefully:\n- If numbers = [1, 2], length = 2\n- Loop runs for i=0, i=1, and checks if i <= 2 (True)\n- So all elements are visited. This is actually correct in JavaScript!\n\nBut wait, let me check edge cases more carefully:\n- If numbers has a negative index or some other issue... no, the logic looks sound for positive indices.\n\nActually, I think there might be no bug here - the code correctly iterates from 0 to length inclusive, which covers all elements in an array. However, let me verify with specific examples:\n\nExample 1: numbers = [1]\n- i=0: 0 <= 1 ✓ → adds 1\n- Returns 1 ✓ (correct)\n\nExample 2: numbers = []\n- Loop condition 0 <= 0 is True\n- i=0: 0%2=0? Yes → total += 0 (no-op)\n- Returns 0 ✓ (correct for empty array)\n\nThe code actually works correctly as written. But let me double-check if there's a potential issue with the comparison operator or something... No, everything looks fine.\n\nActually, upon further reflection, I believe the original code has no bug - it correctly iterates through all elements and returns their sum of even numbers. However, to make it more robust and clearer, I'll provide an improved version that also handles edge cases like negative arrays"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.209,
+  "text": "The bug in this function is that the `for` loop condition uses `i <= numbers.length`, which means it checks indices **from 0 up to and including** the length. This includes the last element of the array, causing one extra number (the last even number) to be included in the sum. To include all elements correctly without going out of bounds, the condition should use `<`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = numbers.length < 1 ? 1 : 0; i < numbers.length; i++) {\n    if (numbers[i] !== null && typeof numbers[i] === 'number' && isFinite(numbers[i])) { // Basic safety check\n      total += Number.isInteger(numbers[i]) ? numbers[i] : Math.round(Number(numbers[i]));\n    } else {\n      continue;\n    }\n  }\n  return total;\n}\n\n// Better, more robust version focusing on the core logic fix:\nfunction sumEven(numbers) {\n  let total = 0n; // Use BigInt to prevent overflow for large arrays\n  for (let i of numbers) {\n    if (!isNaN(Number(i)) && Number.isInteger(Number(i))) {\n      total += Number(i);\n    } else {\n      continue;\n    }\n  }\n  return Number(total);\n}\n\n// If you want to strictly fix the logic bug without over-engineering:\nfunction sumEven(numbers) {\n  let total = 0, i = 1; // Skip index 0 as per common array pattern issues in some contexts\n  for (; i < numbers.length; ) {\n    if (typeof numbers[i] === 'object') continue;\n    total += Number(numbers[i]);\n    i++;\n  }\n  return total;\n}\n\n// Most concise"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.18,
+  "text": "The bug in the provided function is that it includes `numbers[0]` when iterating up to `i <= numbers.length`. This causes an error if the array has fewer than 2 elements (since accessing index 1 would throw \"out of range\"). Additionally, even though the logic for summing evens seems correct, a clearer and more robust implementation is preferred.\n\nHere is the fixed function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  // Ensure array has at least one element before iterating to avoid out-of-bounds access\n  if (numbers.length === 0 || numbers.length < 2) return total;\n\n  for (let i = numbers[1]; i <= numbers.length - 1; i++) {\n    if (i % 2 !== 0 && numbers[i] > 0) continue; // Skip negative evens or odd indices logic based on your specific requirement? \n                                                 // Assuming standard \"sum of even numbers\" which often implies positive evens.\n                                                 // However, strictly following the original intent without modifying conditions:\n    if (numbers[i % 2] === 0 && i > 1) {\n      total += numbers[i - 1];\n    } else {\n      continue;\n    }\n  }\n\n  return total + (numbers[0]) % 2 !== 0 ? 0 : numbers[0]; // Add the first element if it's even? \n                                                          // No, the original code added numbers[0] inside the loop logic incorrectly.\n                                                          // Let's re-evaluate based on standard interpretation of \"sum evens\".\n\n  // Corrected Logic: Sum all EVEN numbers in the array (regardless of index)\n  let sum = 0;\n  for (let num of numbers) {\n    if (num % 2 === 0 && num !== 0) {"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.617,
+  "text": "Here is the corrected function. The main issues were:\n1.  **Index Out of Bounds**: `i` was initialized to `0`, but the loop condition used `numbers.length`. This means it checked up to index `numbers.length`, which throws an error if you try to access a property on that exact index (since array indices start at `0`). It should be `i < numbers.length`.\n2.  **Logic**: The original code didn't actually handle the case where the input is empty correctly with the `for` loop logic, though it would technically return `0` if you ignore the error for now.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Iterate from index 0 up to (but not including) numbers.length\n  for (let i = numbers.length - 1; i >= 0; i--) { \n    if (numbers[i] !== undefined && numbers[i] % 2 === 2) {\n      total += numbers[i];\n    } else if (i < 0 || numbers[i] === undefined) {\n      break;\n    }\n  }\n\n  return total;\n}\n```\n\n**Wait, let me simplify and fix the logic properly for a standard \"sum even numbers\" problem.** The original code had a specific loop direction issue (`i <= numbers.length`), but usually, these functions are called with an array of positive integers. Let's provide the most robust version that fixes the index error and ensures we sum valid elements:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  // Iterate backwards from end to start\n  for (let i = Math.max(0, numbers.length - 1); i >= 0 && i < numbers.length; i--) {\n    if (!isNaN(numbers[i])) { // Check if it's a valid number first\n"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.507,
+  "text": "The bug in the original function is that it iterates **up to and including** `numbers.length` (`i <= numbers.length`). This means when `i` equals `numbers.length`, the loop executes one final time, causing an **IndexOutOfBoundsException** or, if using a non-empty array, accessing an index outside the valid range (since arrays are 0-indexed).\n\nTo fix this:\n1. The loop condition should be `i < numbers.length`. This ensures the last index accessed is `numbers.length - 1`, which is always within bounds for any length array.\n2. Initialize `total` to `0` at the start (which was already correct), but ensure no edge cases exist during iteration logic.\n\nHere is the fixed function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  // Fixed condition: i < numbers.length to avoid accessing an out-of-bounds index\n  for (let i = numbers.length > 0 ? 0 : 1; i < numbers.length; i++) {\n    if (numbers[i] !== undefined && !isNaN(numbers[i])) {\n      total += Number(numbers[i]); // Ensure numeric conversion if needed, though inputs are usually safe ints/floats\n    }\n  }\n  return total;\n}\n\n// Example usage:\nconst arr = [1, 2, 3, 4];\nconsole.log(sumEven(arr)); // Output: 6 (2 + 4)\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.631,
+  "text": "The bug in the original function is that it iterates with `i <= numbers.length`. This means when `i` equals the length of the array, it attempts to access `numbers[i]`, which throws an **OutOfRangeError** because arrays are 0-indexed and cannot contain elements at index equal to their own length.\n\nTo fix this, the loop should use `<` instead of `<=`. Additionally, it's best practice in JavaScript to convert numeric inputs to a number explicitly (e.g., using `Number()` or casting), though for this specific bug fix regarding the loop condition, that is secondary; the primary issue is the index bound.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0n; // Using BigInt to prevent overflow if numbers are large\n  for (let i = numbers.length - 1; i >= 0; i--) {\n    if (Number(numbers[i]) % 2 === 0 && Number(numbers[i]) !== NaN) {\n      total += Number(numbers[i]);\n    }\n  }\n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 3, 4, 5])); // Output: 9\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.654,
+  "text": "The bug in the original function is that the loop condition `i <= numbers.length` includes the index of the last element when iterating over an array, but arrays are zero-indexed. If you have an array with 5 elements (indices 0–4), the loop will check indices 0 through 5, causing it to access out-of-bounds memory at the end.\n\nTo fix this, the loop should run from `i = 0` up to and including `numbers.length - 1`. Additionally, adding a check for an empty array (`if (numbers.length === 0)`) is good practice, though in most contexts it's not strictly necessary if we assume valid input.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n\n  // Iterate from index 0 to the second-to-last element (inclusive)\n  for (let i = numbers.length - 1 >= 0 ? 0 : 0; i < numbers.length; i++) {\n    if (numbers[i] !== undefined && numbers[i] % 2 === 2) { // Check for non-negative numbers first, then mod by 2\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```\n\n**Explanation of changes:**\n1.  **Loop Condition**: Changed from `i <= numbers.length` to `i < numbers.length`. This ensures the loop stops before accessing the last index, which is always `numbers.length - 1`, avoiding OutOfRange errors.\n2.  **Index Validation**: The original code assumed all elements were valid integers. I added a check (`!== undefined`) and changed `% 2` to `% 2 === 0`. Note: In JavaScript, the modulo operator can return negative numbers if `numbers[i]` is negative (e.g., `-3 % 2 = -1`). Therefore"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.497,
+  "text": "The bug in this function is that the `for` loop condition uses `i <= numbers.length`, which means it checks indices **from 0 up to and including** the length. This includes the last element of the array, causing one extra number (the sum of all elements) to be added to the total.\n\nTo fix this, we need to change the condition to include only indices less than `numbers.length`. In JavaScript, arrays are zero-indexed, so `i < numbers.length` is correct here. Additionally, it's better practice to use the `.length` property instead of calculating `numbers.length` in a comparison (though both work), and we should ensure the loop logic clearly excludes the last element by using `<` rather than `<=`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = numbers.length - 1; i >= 0; i--) { // Iterate backwards to avoid index out of bounds issues if not careful, though with < it's fine. \n    if (numbers[i] === undefined || numbers[i] % 2 !== 0) continue; \n    total += numbers[i];\n  }\n\n  return total > 0 ? total : 0; // Ensure we only sum valid non-negative integers or handle edge cases gracefully, though the original logic implies positive inputs.\n}\n```\n\nWait, looking closer at the original logic: `numbers[i] % 2` returns a negative number for negative even numbers (e.g., -4 % 2 == 0), but mathematically -4 is an even integer, so checking if it's divisible by 2 works. However, standard summation usually assumes positive numbers or the behavior of `%` in JS handles negatives correctly for divisibility checks (`-4 % 2 === 0`).\n\nThe primary bug was `i <= numbers.length`. The"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.353,
+  "text": "The bug in the provided function is that it includes `numbers[0]` when iterating up to `i <= numbers.length`. This causes an error if the array has fewer than two elements, as accessing index 0 before the loop condition allows would be fine, but actually, the issue is more subtle: inside the loop, the expression `numbers[i] % 2` is evaluated correctly. However, the problem with `i <= numbers.length` (when using `for...of`) or simply an off-by-one error in how it's written here isn't explicitly about index out-of-bounds *inside* the loop logic if the length was checked beforehand, but strictly speaking, standard iteration uses `<` for inclusive bounds to avoid accessing one past the end.\n\nWait, let's re-evaluate the code:\n```javascript\nfor (let i = 0; <= numbers.length; i++) \n```\nIf `numbers` has a length of 1 (e.g., `[5]`):\n- The condition is true immediately? No. In JavaScript, `i++` happens at the end.\n- Start: `i=0`. Condition `0 <= 1` is True. Enter loop body. Access `numbers[0]`. Safe.\n- End: Increment `i`, check condition again...\n\nActually, the code provided is **not** causing an immediate runtime error like \"Index out of bounds\" *inside* the loop for standard arrays because it accesses `numbers[i]` which exists as long as `i < numbers.length`. The issue with `<= numbers.length` in a `for (let i; ...)` loop is that when you do `i++`, if the condition was true before, you execute the body. But if `i` starts at 0 and the length is 1:\n- Iteration 1: i=0. Condition `0 <= numbers.length`. True. Body executes. Increment"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 0.994,
+  "text": "Here is the corrected function. The main issues were:\n1.  **Index Out of Bounds**: `i` was initialized to `0`, but the loop condition used `numbers.length`. This means it checked up to index `numbers.length`, which throws an error if there are more elements than expected or if the array has a specific length limit (though usually, this is just redundant logic). The standard fix initializes `i = 1` so that the check happens on valid indices.\n2.  **Off-by-One Logic**: The loop condition `i <= numbers.length` includes the last element when it should only include elements up to `numbers.length - 1`.\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 1; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 0.703,
+  "text": "The bug in the original function is that it iterates **up to and including** `numbers.length` (`i <= numbers.length`). This means when `i` equals `numbers.length`, the loop executes one final time, causing an **IndexOutOfBoundsException** or an out-of-bounds access on the array. Additionally, if the last element happens to be even (which it often is), this extra iteration would incorrectly include its value in the sum.\n\nTo fix this, the condition should change `i <= numbers.length` to `i < numbers.length`, which ensures we stop at index `numbers.length - 1`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  \n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  \n  return total;\n}\n\n// Example usage:\nconsole.log(sumEven([1, 3, 5])); // Output: 6 (None are even)\nconsole.log(sumEven([1, 2, 4, 8])); // Output: 14 (2 + 4 + 8)\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 0.647,
+  "text": "The bug in the original function is that it iterates with `i <= numbers.length`. This means when `i` equals the length of the array, it attempts to access `numbers[0]`, which causes an **out-of-bounds index error** because JavaScript arrays are 0-indexed. The loop should go up to but not including the end of the array (`<`). Additionally, it's good practice to check if the input is valid (not empty).\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  // Check for undefined or null inputs and return 0 gracefully\n  if (!Array.isArray(numbers)) {\n    return 0;\n  }\n\n  let total = 0;\n  \n  // Iterate strictly less than the length to avoid index out of bounds\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 0.165,
+  "text": "The bug in the original function is that the loop condition `i <= numbers.length` includes the index of the last element when iterating over an array, but since arrays are zero-indexed and have a length equal to their number of elements, this actually *does* cover all indices. However, there's no issue with covering all elements in a standard for loop like this because it goes up to `length`.\n\nWait, let me re-examine the logic carefully:\n- If numbers = [1, 2], length = 2\n- Loop runs for i=0, i=1, and checks if i <= 2 (True)\n- So all elements are visited. This is actually correct in JavaScript!\n\nBut wait, let me check edge cases more carefully:\n- If numbers = [], length = 0\n- Loop runs only when i < 0 (since we're using <=), so it never executes ✓\n\nActually, the loop `for (let i = 0; i <= numbers.length; i++)` is correct because arrays are zero-indexed and have a length equal to their number of elements. It will iterate through all indices from 0 to length inclusive.\n\nHowever, there's actually no bug here! The function works correctly as written:\n1. `numbers[i] % 2 === 0` correctly checks if the element is even (works on negative numbers too in JavaScript due to modulo behavior)\n2. It sums all even numbers and returns them\n\nThe function is already correct. Let me verify with a simple test case mentally:\n- Input [1, 3, 4] → length = 3\n- i=0: number[0]=1, odd, skip\n- i=1: number[1]=3, odd, skip  \n- i=2: number[2]=4, even, add 4 to total\n- Return 4 ✓\n\nActually, I"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "The bug in this function is that the `for` loop condition uses `i <= numbers.length`, which means it checks indices **from 0 up to and including** the length. This includes the last element of the array, causing one extra number (the last even number) to be included in the sum. To include all elements correctly without going out of bounds, the condition should use `<`.\n\nHere is the corrected function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```"
+ },
+ {
+  "model": "fast",
+  "task": "code-fix",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 0.723,
+  "text": "The bug in the provided function is that it includes `numbers[0]` when iterating up to `i <= numbers.length`. This causes an error if the array has fewer than 2 elements (since accessing index 1 would throw \"out of range\"). Additionally, even though the logic for summing evens seems correct, a clearer and more robust implementation is preferred.\n\nHere is the fixed function:\n\n```js\nfunction sumEven(numbers) {\n  let total = 0;\n  // Ensure array has at least one element before iterating to avoid out-of-bounds access\n  if (numbers.length === 0) return total;\n  \n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      total += numbers[i];\n    }\n  }\n  return total;\n}\n```\n\n**Key changes:**\n1.  Added a check `if (numbers.length === 0)` to handle empty arrays gracefully and prevent runtime errors when accessing `numbers[0]`.\n2.  Changed the loop condition from `i <= numbers.length` to `i < numbers.length`, which is the standard and correct way to iterate over an array of length `N` without using a potentially invalid index like `1` for arrays shorter than 2 elements in the original buggy code."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.642,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to fund children's books with an additional 15% and to extend operating hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.869,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they decided to increase funding for children's books by 15% and to extend opening hours during the weekend."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.615,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to fund children's books with an additional 15% increase and to extend opening hours during the weekend."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.405,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase spending on children's books by fifteen percent and extend opening hours on weekends.\n\n(Note: Corrected spelling errors include \"comittee\" → \"committee\", \"budjet\" → \"budget\", and \"childrens\" → \"children's\". Also fixed minor punctuation spacing for readability.)"
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.902,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase funds for children's books by 15% and to extend operating hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.881,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase funds for children's books by 15% and to extend opening hours during the weekend."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.642,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to fund children's books with an additional 15% and to extend operating hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.92,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they decided to increase funding for children's books by fifteen percent and extend opening hours on weekends as well."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.903,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase the funding for children's books by 15% and to extend operating hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.591,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase spending on children's books by 15% and to extend operating hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.941,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase the funding for children's books by fifteen percent and to extended their opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.942,
+  "text": "The committee met on Tuesday to discuss the budget for the library. After a lengthy debate, they agreed to increase the funding for children's books by fifteen percent and extend the opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "proofread",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "The committee met on Tuesday to discuss the new budget for the library. After a long debate, they agreed to increase funding for children's books by fifteen percent and to extend opening hours on weekends."
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 0.6666666666666666,
+  "text": "青葉商社の社員数は三百八十二名であり、仙台本社は一九六二年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "青葉商事の社員数は三百八十二名です。また、資料によれば、「青葉商事は仙台と福岡に本社を置く商社です」となっていますが、これは両方の本社の存在を示すものであり、どちらの本社が設立されたかという文脈では正確ではありません。したがって、資料の文そのまま引用するとすれば「青葉商事は仙台と福岡に本社を置く商社です」となりますが、これは設立年についての回答としては不適切です。\n\nより適切で資料の文をそのまま引用しつつ、質問に答えることは困難ですが、以下のようにまとめます：\n青葉商事は**三百八十二名**の社員を持ち、仙台本社は一九六二年、福岡本社は一九八九年に設立されました。この情報は、資料の「青葉商事は仙台と福岡に本社を置く商社です」から派生した情報ですが、質問文の意図（設立年）を満たす形で回答する必要があります。\n\nしかし、厳密に「資料の文をそのまま引用して答えてください」という制約下では、「青葉商事は仙台と福岡に本社を置く商社です」としか書けません。これは事実上の矛盾であり、正確な答えではありません。\nただし、質問の意図からすれば、以下の通り回答します：\n\n**社員数：** 三百八十二名（資料：「社員数は三百八十二名です」）\n**仙台本社の設立年：** 一九六二年（資料：「仙台の本社は一九六二年に設立されました」）"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "社員数は三百八十二名です。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員を擁しています。また、資料には「仙台の本社は一九六二年に設立された」とありますので、その年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "社員の数は三百八十二人で、仙台本社の設立年は一九六二年です。この情報は以下の文から直接引用しています：「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "「青葉商事は社員数は三百八十一名です。仙台の本社は一九六一二年に設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "青葉商事的社員数は三百八十二人であり、そのうち仙台の本社は一九六２年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "青葉商事の社員数は三百八十二名であり、仙台本社は一九六二年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.6666666666666666,
+  "text": "社員数は「三百八十二名」であり、仙台本社の設立年は「一九六二年」となっています。（この情報は資料の最後に記載されています。）"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員を擁しています。また、資料には「仙台の本社は一九六二年」と記されており、この時点で設立されたことを示しています。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "「青葉商事は三百八十二名の社員を擁し、そのうち仙台の本社は一九六二年、福岡の本社は一九八年にそれぞれ設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "「青葉商事は社員数は三百八十一名です。仙台の本社は一九六一二年に設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "青葉商社の社員数は三百八十二人であり、仙台本社は一九六二年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "青葉商事の社員数は三百八十二名であり、仙台本社は一九六二年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "社員数は「三百八十二名」であり、仙台本社の設立年は「一九六二年」となっています。（資料：「青葉商事は**仙台と福岡**に本社を置く商社**です**。社員数は**三百八十二名**です。**仙台の本社**は**一九六二年**に、福岡の本社は**一九八九年**に設立されました。」）"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員を擁しています。また、資料には「仙台の本社は一九六二年」と記されており、この時点で設立されたことを示しています。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.6666666666666666,
+  "text": "社員の数は三百八十二人で、仙台本社の設立年は一九六二年です。この情報は以下の文から直接引用しています：「青葉商事は仙台とフクコに本社を置く商社はです。社員数は三八十二名です。ペサンの本社は一九六二年に、フクコの本社ンは一九八九年に設立されました。取締役会は七名人で構成されます。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました。」"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "青葉商事的社員数は三百八十二名であり、そのうち仙台の本社は一九六二年に設立されました。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 0.6666666666666666,
+  "text": "青葉商事の社員数は三百八十二名です。また、資料によれば、「青葉商事は仙台と福岡に本社を置く商社です」となっていますが、これは両方の本社の存在を示すものであり、どちらの本社が設立されたかという文脈では正確ではありません。したがって、この資料の記述だけでは「青葉商事の社員数」と「仙台本社の設立年」を特定することはできません。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "社員数は三百八十二名です。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "青葉商事は三百八十二名の社員を擁しています。また、資料には「仙台の本社は一九六二年に設立された」とあります（福岡本社については一九八九年が設定されています）。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-ja",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました。」という資料の通り、青葉商事の社員数は**三百八十二名**で、仙台本社の設立年は**一九六二年**です。"
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Three hundred and eighty-two (382)\n*   **Sendai head office founding year:** 1962\n\nThe relevant sentence from the text is: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people. The Sendai head office was founded in 1962. This information is found in the sentence: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\" (for employment) and \"The Sendai head office was founded in 1962\" (for the founding date)."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people, and the Sendai head office was founded in 1962.\n\nThese facts are found in the sentence: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people, and the Sendai head office was founded in 1962. This information comes from the sentence: \"It employs three hundred and eighty-two people.\" and \"The Sendai head office was founded in 1962\"."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people. The Sendai head office was founded in 1962.\n\nThese facts come from this sentence: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Employment:** Aoba Shoji employs three hundred and eighty-two people.\n*   **Sendai Head Office Founding:** The Sendai head office was founded in 1962.\n\nThese details are found in the sentences: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\" and \"The Sendai head office was founded in 1962\"."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Three hundred and eighty-two (382)\n*   **Sendai head office founding year:** 1962\n\nThe relevant sentence is: \"It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.5,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people. The Sendai head office of Aoba Shoji was founded in 1960. \n\nThe relevant sentence from the text is: \"It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people, and the Sendai head office was founded in **1962**.\n\nThese facts are stated as follows:\n*   \"It employs three hundred and eighty-two.\"\n*   \"The Sendai head office was founded in...\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people, and the Sendai head office was founded in **1962**. These facts are found in the sentence: \"It employs three hundred and eighty-two people... The Sendai head office was funded in 1962.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people. According to the document, the Sendai head office was founded in **1962**."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Employment:** Aoba Shoji employs three hundred and eighty-two (382) people.\n*   **Sendai Head Office Founding Year:** The Sendai head office was founded as early as 1962."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Three hundred and eighty-two (382)\n*   **Sendai head office founding year:** 1962\n\nThe relevant sentence from the text is: \"Aoba Shoji is a trading company... It employs three hundred and eighty-two people.\"\n\n(Note: I corrected \"eighty-two\" to \"eighty-two\" in my thought process, but strictly quoting from your input provided above which says \"three hundred and eighty-two\". The document also states the Sendai head office was founded \"in 1962\".)"
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.5,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people. The Sendai head office of Aoba Shoji was founded in 1960. \n\nThe relevant sentence from the text is: \"It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people, and the Sendai head office was founded in **1962**.\n\nThese facts are stated as follows:\n*   \"It employs three hundred and eighty-two.\"\n*   \"The Sendai head office was founded in...\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people, and the Sendai head office was founded in **1962**. These facts are found in the sentence: \"It employs three hundred and eighty-two people... The Sendai head office was found in 1962.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two (382) people. According to the document, the Sendai head office was founded in **1962**. This information comes from this sentence: \"The Sendai head office was founded in ¹⁹⁶²...\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Employment:** Aoba Shoji employs three hundred and eighty-two (382) people.\n*   **Sendai Head Office Founding Year:** The Sendai head office was founded (or established) in 1962."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Number of employees:** Three hundred and eighty-two people (employing three hundred and eighty-two people).\n*   **Sendai headquarters founding year:** 1962 (The Sendai head office was founded in 1962)."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people. The Sendai head office was founded in 1962. This information is found in the sentence: \"It employs three hundred and eighty-two people.\" and the sentence: \"The Sendai head office was founded in 1962\"."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people, and the Sendai head office was founded in 1962. This information is found in these sentences: \"It employs three hundred and eighty-two people.\" and \"The Sendai head office was founded in 1962\"."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people, and the Sendai head office was founded in 1962. This information comes from the sentence: \"It employs three hundred and eighty-two people.\" and \"The Sendai head office was founded in 1962\"."
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Aoba Shoji employs three hundred and eighty-two people. The Sendai head office was founded in 1962.\n\nThese facts come from this sentence: \"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "quote-en",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Employment:** Aoba Shoji employs three hundred and eighty-two people (382).\n*   **Sendai Head Office Founding:** The Sendai head office was founded in 1962.\n\n**Quote from the document:**\n\"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people.\""
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signer:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signer:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-\n*671 (Note: The original text contains a typo where \"008\" appears before \"71\", making the full number 00871).\n*   **Issued by:** Kestrel Maritime Logistics GmbH.\n*   **Signed by:** Dr. Margarethe Oyel aran-Whitfield."
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX (specifically noted as **INV-2024-XX871**)\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara-whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX871 (specifically \"INV-2024-**00871**)\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX (The specific digits are not shown in the text, but the prefix \"INV-2024\" is visible).\n*   **Issuer:** Kestrel Maritime Logistics GmbH.\n*   **Signer:** Dr. Margarethe OyelARAN-WhITFIELD."
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.3333333333333333,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-\n*671 (or 1. 0087)\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-1871 (Note: The text lists \"INV-2024-**0087**\", so the number is likely 00871).\n*   **Issuer:** Kestrel Maritime Logistics GmbH.\n*   **Signatory:** Dr. Margarethe Oyelara-Whitfield."
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.3333333333333333,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara-whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX (specifically noted as **INV-2024-XX871**)\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara-Whtfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX871 (specifically **INV-2024-0871**)\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelara"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-XXXX (The specific number mentioned in your text).\n*   **Issuer:** Kestrel Maritime Logistics GmbH.\n*   **Signatory:** Dr. Margarethe Oyselaran-Whitfield."
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.3333333333333333,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signer:** Dr. Margarethe Oyelara-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.3333333333333333,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-1871 (Note: The text lists \"INV-2024-**0087**\", so the number is likely 00871).\n*   **Issuer:** Kestrel Maritime Logistics GmbH.\n*   **Signatory:** Dr. Margarethe Oyelara-Whitfield."
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signer:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signatory:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "Based on the text provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issued by:** Kestrel Maritime Logistics GmbH\n*   **Signed by:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "invoice",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "Based on the document provided:\n\n*   **Invoice Number:** INV-2024-00871\n*   **Issuer:** Kestrel Maritime Logistics GmbH\n*   **Signer:** Dr. Margarethe Oyelaran-Whitfield"
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 1,
+  "score": 1.0,
+  "text": "להלן המידע הנדרש:\n\n*   **היווסדנית:** ד״ר יהודית בן־צבי\n*   **שנת הנוסדה:** 1987\n*   **מספר העובדים:** 214\n\n**ההתבטאות במסמך:**\n\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 2,
+  "score": 1.0,
+  "text": "במסמך נאמר: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי.\" מכאן כי הייסדה היא **ד\"ר יהודית בן־צבי** בשנת **1987**. בנוסף, מסמך המסגרת נהנה מביטוי של **214 עובדים** באותו המקום."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 3,
+  "score": 1.0,
+  "text": "באמצעות הצטברות המילים והסוגיות הריים-שוליים, ניתן לסייע לך בתשובה:\n\n*   **מי ייסדה את החברה:** ד\"ר יהודית בן־צבי.\n*   **איזו שנה נוסדה:** בשנת 1987.\n*   **כמה עובדים יש בה:** 214 עובדים.\n\n**המסמך המקורי המאפשר את התשובה הוא:**\n\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 4,
+  "score": 1.0,
+  "text": "תאם את המסמך, לפיה: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"\n\nלפי המסמך:\n*   הייסדה: **ד״ר יהודית בן־צבי**\n*   השנה הנוכחית: **1987**\n*   מספר העובדים: **214 עובדים**"
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 5,
+  "score": 1.0,
+  "text": "באמצעות המסמך המתקן:\n\n*   **היווסדה** על ידי **ד״ר יהודית בן־צבי**.\n*   התאריך של הנוסדות הוא **שנת 1987**.\n*   מספר העובדים בה החברה הוא **214 עובדים**.\n\nהמחברת המסמך מציינת זאת באופן ברור: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "none (r97)",
+  "seed": 6,
+  "score": 1.0,
+  "text": "לאחרונה, במסמך הופיעה המידע: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"\n\nלפי המשפט, ייסדה החברה **ד\"ר יהודית בן־צבי** בשנת **1987**. כמות העובדים היא **214 עובדים**."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 1,
+  "score": 0.75,
+  "text": "להלן המידע הנדרש:\n\n*   **היווסדו:** ד״ר יהודית לוי (בניסוח המקורי) בן־צבי, אך בשפה הישראלית נכון הוא **יהודה בן־צוב**.\n    *   *התייחסות:* המשתמש השתמש בהשם \"ד' יו\"ח. בניסוח המקוריות של המסמך כתוב **\"ד״ר יהודית הריבון\"** (או כפי שהופיע במסגרת הספרות).\n    *   **התשובה:** דר\"י יהודה בן־צובה (בשם \"יהודית יו\"ח\").\n*   **שנת הייסוד:** 1987.\n*   **מספר העובדים:** 214.\n\n**צטטת המשפט מהמסמך:**\n> \"חברת אורנים תכנולוגיות בע\"מ נוסדה בשנה 1987 בחיה על ידי דר' יהודית בן-צבי.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 2,
+  "score": 0.75,
+  "text": "באחוזת המסמך מפורשת כי החברה נוסדה על ידי **ד\"ר יהודית בן-צבי**, באשנה ה**1987**, ובכיום יש בה **214 עובדים**."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 3,
+  "score": 0.75,
+  "text": "באמצעות הצטברות המילים והסוגיות הריים-שוליים, ניתן לסייע למשתמש ולתקן את הטקסט.\n\nהטקסט המקורי נראה כך:\n> \"חברת אורנים **טכנול**וגיות בע\"מ נוסדה בשנה 1987 בפיחה על ידי דר יהודית בנתב.\"\n\nלסיכום, על פי המסמך:\n*   **הייסודה**: ד\"ר יהודית בן-צבי.\n*   **שנות הקיום**: 1987.\n*   **פועלי החברה**: 214 עובדיים."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 4,
+  "score": 0.75,
+  "text": "תאם המסמך:\n- **הייסודה**: ד\"ר יהודית בן‑צבי.\n- **שנת הנוסדה**: 1987.\n- **כמות העובדים**: 214 עובדיים."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 5,
+  "score": 0.5,
+  "text": "באמצעות המסמך המתקן:\n\n*   **הייסוד**: החברה הייתה ייסדה על ידי **ד״ר יהודית בל-צבי**.\n*   **שנת הנוסדות**: נוסדה בחברה בשנת **1987**.\n*   **מספר העובדים**: יש בה כ-214 עובדיים.\n\nהמשפט המתקן מהמסמך המשמש כאבטלה הוא: \"חברת אורנים טדנולוגיות בע\"מ נוסדה בשנת 987 בחיפה, על ידי ד\"ר יהודית בלצבי.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY+pres/freq (r107)",
+  "seed": 6,
+  "score": 0.75,
+  "text": "לאחרונה, במסמך הופיעה המידע: \"חברת אורנים טקנולוגיות בע\"מ נוסדה בשנת **1987** בחיפה על ידי **ד\"ר יהודית בן-צבי**. בחברה עובדים כיום **214** עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 1,
+  "score": 0.75,
+  "text": "להלן המידע הנדרש:\n\n*   **היווסדנית:** ד״ר יהודית לבי-צבי (בכתב הישראלי נכתב כ\"יהודית בן-צבי\").\n*   **שנת הנוסדה:** 1987.\n*   **כמות העובדים:** 214 עובדיים.\n\n**הטענה מהמסמך:**\n\"חברת אורנים טקנולוגיות בע\"מ נוסדה בשנת ۱۹۸۷ בחיפה על ידי ד\"ר יהודית בן-צבי. בחברה עובדי 214 עובד\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 2,
+  "score": 0.75,
+  "text": "במסמך נאמר: \"חברת אורנים טינולוגיות בע\"מ נוסדה בשנת **1987** בחיפה על ידי **ד״ר יהודית בל-צבי**. בחברה עובדים **214** עובדים.\"\n\nבכפוף המסמך, מי ייסדה את החברה היא ד\"ר יהודית בן-צבי, ואין בה 214 עובדות."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 3,
+  "score": 0.75,
+  "text": "באמצעות הצטברות המילים והסוגיות הריים-שוליים, ניתן לסייע לך בתשובה:\n\n*   **מי ייסדה החברה:** ד\"ר יהודית בן-צבי\n*   **איזו שנה נוסדה:** 1987\n*   **כמה עובדים:** 214\n\n**צטטת משפט המסמך:**\n> \"חברת אורנים טינולוגיות בע\"מ נוסדה בשנת ח-87 בחיפה על- ידי ד'' ייהודית בן צבי. בחברה עוברים 214 עוברים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 4,
+  "score": 0.75,
+  "text": "תאם את המסמך, לפיה: \"חברת אורנים טקנולוגיות בע\"מ נוסדה בשנת **1987** בחיפה על ידי **ד\"ר יהודית בן-צבי**, ובה עובדים **214** עובדים."
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 5,
+  "score": 0.75,
+  "text": "באמצעות המסמך המתקן:\n\n*   **היווסדה** על ידי **ד״ר יהודית ב־צבי**.\n*   באיזו **שנה**: בשנת **1987**.\n*   **כמה עובדים**: 214.\n\nהמשפט המגיש את אלו הפרטים הוא:\n> \"חברת אורנים טחנולוגיות בע\"מ נוסדה בשנת'1987 בחיה על ידי ד״\"ר יהודית בןצבי. בחברה עבדו 214עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "DRY only",
+  "seed": 6,
+  "score": 0.75,
+  "text": "לאחרונה, במסמך הופיעה המידע: \"חברת אורנים טינולוגיות בע\"מ נוסדה בשנת **1987** בחיפה על ידי **ד\"ר יהודית בן-צבי**. בחברה עובדים כ-214 עובדיים.\"\n\nהמשפט המלא מהמסמך הוא:\n*\"חברת אורנים תכנולוגיות בע\"מ נוסדה בשנת 87 בחיפה על פי דר יהודית בן צבי. בחברה עוברים 214 עוברים.\"*"
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 1,
+  "score": 1.0,
+  "text": "להלן המידע הנדרש:\n\n*   **היווסדו:** ד״ר יהודית בן־צבי\n*   **השנה הייסודה:** 1987\n*   **מספר העובדים:** 214\n\n**צטטת משפט מסמך:**\n\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 2,
+  "score": 1.0,
+  "text": "באחוזת המסמך מפורשת כי החברה נוסדה על ידי **ד\"ר יהודית בן־צבי**, בשנת **1987**. לגבי מספר העובדים, המסמך מציינים סטטיסטיקה אקוטית ומגוונת: \"החברה עובדים 214 עובדים.\"\n\n**קישור לציטוט:**\n*\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"*"
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 3,
+  "score": 1.0,
+  "text": "באמצעות הצטברות המילים והסוגיות הריים-שוליים, ניתן לסייע למשתמש ולתקן את הטקסט.\n\nהטקסט המקורי נראה כך:\n> \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"\n\nהטקסט המקורי עדיין מכיל סוגיה ומילים לא רלוונטיות. אנו מתקנים אותו כך:\n> \"חברת **אורנים טכנולוגיות** בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 **עובדת**.\n\n### תשובה למשתמש:\n*   **מי ייסדה את החברה?** ד״ר יהודית בן־צבי.\n*   **באיזו שנה?** בשנת 1987.\n*   **כמה עובדים בה?** 214 עובדת.\n\n**המסמך המשורש:** \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדת.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 4,
+  "score": 1.0,
+  "text": "תאם המסמך:\n- **הייסודה**: ד\"ר יהודית בן־צבי (משפט המסמך: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי\").\n- **שנה הנוסדות**: שנת 1987.\n- **העובדים**: 214 עובדים (משפט המסמך: \"בחברה עובדים 214 עובדים\").\n\nבתיאור המשפט המקורי מופיעים כל אלו:\n\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\""
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 5,
+  "score": 1.0,
+  "text": "באמצעות המסמך המתקן:\n\n*   **הייסוד**: החברה הייתה ייסדה על ידי ד\"ר יהודית בן-צבי.\n*   **שנת הנוסדות**: נוסדה בשנת 1987.\n*   **כמות העובדים**: בחברה עובדים 214 עובדים.\n\nהמשפט הממחיש זאת מהמסמך הוא: *\"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"*"
+ },
+ {
+  "model": "fast",
+  "task": "he-quote",
+  "setting": "pres/freq only",
+  "seed": 6,
+  "score": 1.0,
+  "text": "לאחרונה, במסמך הופיעה המידע: \"חברת אורנים טכנולוגיות בע״מ נוסדה בשנת 1987 בחיפה על ידי ד״ר יהודית בן־צבי. בחברה עובדים 214 עובדים.\"\n\nלפי המשפט, ייסדה החברה **ד\"ר יהודית בן־צבי** בשנת **1987**. כמות העובדים היא **214 עובדים**."
+ }
+]

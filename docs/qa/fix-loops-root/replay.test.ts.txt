@@ -1,0 +1,76 @@
+/* Offline replay: every stored raw answer through the final guard (no retry) and the corrected yardstick. */
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { guardLoops, requestRepeats, repetitionRequest } from "../src/chat/loop";
+import type { Delta } from "../src/llm/types";
+
+const Q = join(__dirname, "../../../docs/qa/fix-loops-root");
+const WIDE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu;
+export const DATA = /^\s*[[{|<]|"[^"\n]*"\s*:|[;{[(]\s*$|^\s*(?:"[^"\n]*"|[\d.+-]+|true|false|null)\s*,\s*$/u;
+const BULLET = /^\s*(?:[-*+•]|\d{1,3}[.)、．])\s+/u;
+type Rep = { unit: string; copies: number; kind: string };
+export function yardstick(text: string, allowed = 1): Rep | null {
+  const clean = text.replace(/```[\s\S]*?(?:```|$)/g, "\u0000").split("\n").map((l) => (DATA.test(l) ? "\u0000" : l)).join("\n");
+  const s = Array.from(clean.replace(/[ \t]+/g, " "));
+  const n = s.length;
+  let worst: Rep | null = null;
+  const take = (r: Rep) => { if (!worst || r.copies > worst.copies) worst = r; };
+  for (let p = 4; p <= Math.min(400, Math.floor(n / 2)); p++) {
+    let j = 0;
+    while (j + p < n) {
+      if (s[j] !== s[j + p]) { j++; continue; }
+      const a = j;
+      while (j + p < n && s[j] === s[j + p]) j++;
+      const copies = Math.floor((j - a + p) / p);
+      const unit = s.slice(a, a + p).join("");
+      if (!/\p{L}/u.test(unit) || unit.includes("\u0000")) continue;
+      let prim = true;
+      for (let q = 1; q < p && prim; q++) if (p % q === 0 && unit === s.slice(a + q, a + q + p).join("")) prim = false;
+      if (!prim) continue;
+      const long = p >= 12 || (p >= 6 && (unit.match(WIDE) ?? []).length >= 3);
+      if (long && copies > allowed) take({ unit: unit.trim(), copies, kind: "long" });
+      else if (!long && copies >= Math.max(3, allowed + 1)) take({ unit: unit.trim(), copies, kind: "short" });
+    }
+  }
+  const segs = clean.split(/(?<=[\n.!?。！？])/u).map((x) => x.trim().replace(BULLET, "").replace(/[\s.!?。！？．…]+$/u, "").trim()).filter((x) => Array.from(x).length >= 24 && /\p{L}/u.test(x) && !x.includes("\u0000") && !DATA.test(x));
+  const seen = new Map<string, number>();
+  for (const x of segs) seen.set(x, (seen.get(x) ?? 0) + 1);
+  for (const [x, c] of seen) if (c > allowed) take({ unit: x, copies: c, kind: "segment" });
+  return worst;
+}
+async function cutBy(answer: string, request: string) {
+  const cps = Array.from(answer);
+  const stream = (async function* (): AsyncIterable<Delta> {
+    for (let i = 0; i < cps.length; i += 3) yield { text: cps.slice(i, i + 3).join("") };
+    yield { done: { promptTokens: 0, completionTokens: 0, ttftMs: 0, tokPerSec: 0 } };
+  })();
+  for await (const d of guardLoops(stream, () => undefined, { request })) if (d.loop) return d.loop;
+  return null;
+}
+it("replay", async () => {
+  const prompts = new Map<string, { kind: string; user: string }>((JSON.parse(readFileSync(join(Q, "stress-prompts.json"), "utf8")) as { id: string; kind: string; user: string }[]).map((p) => [p.id, p]));
+  const out: string[] = [];
+  let total = 0, misses = 0, extra = 0, both = 0;
+  const items: { src: string; id: string; request: string; kind: string; text: string }[] = [];
+  for (const f of readdirSync(join(Q, "runs")).filter((x) => !x.startsWith("guard-"))) {
+    const d = JSON.parse(readFileSync(join(Q, "runs", f), "utf8")) as { rows: { id: string; seed: number; kind: string; text: string }[] };
+    for (const r of d.rows) items.push({ src: `${f}#${r.id}#${r.seed}`, id: r.id, kind: r.kind, request: prompts.get(r.id)!.user, text: r.text });
+  }
+  for (const f of readdirSync(join(Q, "e2e")).filter((x) => x.endsWith(".json"))) {
+    const d = JSON.parse(readFileSync(join(Q, "e2e", f), "utf8")) as { trials: { id: string; trial: number; q: string; answer: string }[] };
+    for (const t of d.trials) items.push({ src: `e2e/${f}#${t.id}#${t.trial}`, id: t.id, kind: "web", request: t.q, text: t.answer });
+  }
+  for (const it of items) {
+    if (it.kind === "asked-repeat") continue;
+    total++;
+    const allowed = requestRepeats(it.request);
+    const y = yardstick(it.text, allowed);
+    const c = await cutBy(it.text, it.request);
+    if (y && c) both++;
+    else if (y) { misses++; out.push(`MISS  ${it.src}  ${y.kind} x${y.copies}  ${JSON.stringify(y.unit.slice(0, 90))}`); }
+    else if (c) { extra++; out.push(`CUT-ONLY  ${it.src}  unit ${JSON.stringify(c.hit.unit.slice(0, 60))} x${c.hit.repeats}  kept ${c.text.length}/${it.text.length}`); }
+  }
+  writeFileSync("/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/loops-root/replay.txt", `answers ${total}; yardstick and guard agree on a loop: ${both}; yardstick only (guard misses): ${misses}; guard only: ${extra}\n${out.join("\n")}\n`);
+  void repetitionRequest;
+}, 600_000);

@@ -113,6 +113,40 @@ describe("F415 · tailLoop: the second copy of a phrase is a loop, and it is hel
   });
 });
 
+describe("F415 · the echo rule: ten words said again, punctuation and line breaks aside", () => {
+  const POEM = "The stars begin to light their way,\nBeyond the waves that touch the sky.\nThey dance in circles for eternity,\nLike time itself has changed its view.\nNo ship can sail here with engines loud,\n";
+  const RUN_ON = "The stars begin to light their ways, Beyond the waves that touch the sky They dance in circles for eternity Like time itself has changed its way";
+
+  it("a copy that drops the line breaks is a loop, and none of it reaches the screen (web trial poem #1, after the retry)", async () => {
+    expect(tailLoop(`${POEM}${RUN_ON}`, {}, 0, true).hit).not.toBeNull();
+    const out = await screen(guardLoops(engine(`${POEM}${RUN_ON}`), () => undefined, { request: "Write a long poem about the sea with many stanzas." }));
+    expect(out.shown.trimEnd()).toBe(POEM.trimEnd());
+    expect(Math.max(...out.screens.map((x) => count(x, "dance in circles for eternity")))).toBe(1);
+  });
+
+  it("a list item said again with one word changed is a loop (web trial es-list #3)", () => {
+    const text = "5. Si alguien te dice que algo es malo, entonces probablemente lo sea.\n6. El miedo te hace sentir muy mal.\n7. Si alguien te dice que algo es malo, entonces probablemente sea así.";
+    const hit = tailLoop(text, { request: "Escribe 30 frases motivadoras cortas." }, 0, true).hit;
+    expect(text.slice(0, hit!.keep).trimEnd()).toBe("5. Si alguien te dice que algo es malo, entonces probablemente lo sea.\n6. El miedo te hace sentir muy mal.\n7.");
+  });
+
+  it("a restated problem, a formula twice and a short quote stay whole (stress runs math-series, math-fib, quote-en)", () => {
+    for (const text of [
+      "We need the sum of all integers from 1 to 50. Pair them: 1 + 50, 2 + 49, and so on, 25 pairs of 51. So the sum of all integers from 1 to 50 is 1275.",
+      "Each number is F(n) = F(n-1) + F(n-2). Start with 0 and 1; by F(n) = F(n-1) + F(n-2) the next is 1, then 2, then 3.",
+      'The Sendai head office was founded in 1962 (Quote: "The Sendai head office was founded in 1962.").',
+    ])
+      expect(tailLoop(text, {}, 0, true).hit, text).toBeNull();
+  });
+
+  it("a song may bring its chorus back; the echo rule leaves songs to the line rule", () => {
+    const chorus = "Oh the sea is wide and the sea is deep and the sea will sing me to sleep\n";
+    const song = `${chorus}The gulls fly high over the harbour wall,\n${chorus}`;
+    expect(tailLoop(song, { request: "Write a song about the sea." }, 0, true).hit).toBeNull();
+    expect(tailLoop(song, { request: "Write a story about the sea." }, 0, true).hit).not.toBeNull();
+  });
+});
+
 describe("F415 · healthy text stays whole", () => {
   const HEALTHY: Record<string, string> = {
     "numbered list of three identical steps": "1. Stir the batter.\n2. Stir the batter.\n3. Stir the batter.\n\nThen bake it for 20 minutes.",
@@ -129,6 +163,7 @@ describe("F415 · healthy text stays whole", () => {
     "JSON records with the same author twice (fast, stress run json-schema)": '[\n  {\n    "title": "1984",\n    "author": "George Orwell",\n    "year": 1949\n  },\n  {\n    "title": "Animal Farm",\n    "author": "George Orwell",\n    "year": 1945\n  }\n]',
     "a name, then its full name joined by ・ (instant, r83 web trial)": "優勝したのは、レアル・マドリード（レアル・マドリード・クラブ・デ・フトボル）です。",
     "a name, then its full name (en)": "The winner was Real Madrid (Real Madrid Club de Fútbol) in the final.",
+    "one hundred, one hundred and one (instant t0.2, stress run list-100-numbers)": "The number one hundred is one hundred, one hundred and one is one hundred and one, one hundred and twenty is one hundred and twenty.",
     "JSON records": '[{"id": 1, "name": "Ana", "email": "ana@example.com"}, {"id": 2, "name": "Ben", "email": "ben@example.com"}]',
   };
   for (const [name, text] of Object.entries(HEALTHY)) {
@@ -153,16 +188,38 @@ describe("F415 · healthy text stays whole", () => {
     expect(tailLoop(`${answer} Enchantement, enchantement, enchantement, enchantement, enchantement, enchantement, `, { request }, 0, true).hit).not.toBeNull();
   });
 
-  it("a poem may repeat a line once, never a stanza (instant, stress run poem-refrainless #2)", async () => {
+  it("a poem nobody asked a refrain of repeats no line and no stanza (web trial poem #4, stress run poem-refrainless #2)", async () => {
     const request = "Write a long poem about the sea with many stanzas.";
     const stanza = "*The Sea and Its Longest Song*\nA journey through endless ocean depths,\nWhere every wave holds memory of what came before.\n\n";
     const intro = "The sea breathes in waves that roll like distant echoes.\n\n";
     const doubled = tailLoop(`${intro}${stanza}${stanza}`, { request }, 0, true).hit;
     expect(`${intro}${stanza}${stanza}`.slice(0, doubled!.keep).trimEnd()).toBe(`${intro}${stanza}`.trimEnd());
+    const line = "No shadows cast upon the water's surface, no clouds of smoke,\n";
+    const poem = `${line}Just the raw, unfiltered truth of what is found and seen.\nThe rock beneath becomes a giant, sleeping friend,\n${line}Just the raw, unfiltered reality that is found and seen.\n`;
+    expect(tailLoop(poem, { request }, 0, true).hit).not.toBeNull();
+    expect(count((await screen(guardLoops(engine(poem), () => undefined, { request }))).shown, line.trim())).toBe(1);
+  });
+
+  it("a song or a hymn may bring a line back once as its chorus, and a poem asked for a refrain may repeat it", () => {
     const refrain = "The tide comes in, the tide goes out.\n";
     const verse = `${refrain}Salt on the stones and gulls in the air,\n${refrain}Nobody waits for the sea to be fair.\n`;
-    expect(tailLoop(verse, { request }, 0, true).hit).toBeNull();
-    expect(tailLoop(`${verse}${refrain}`, { request }, 0, true).hit).not.toBeNull();
+    expect(tailLoop(verse, { request: "Write a song about the sea." }, 0, true).hit).toBeNull();
+    expect(tailLoop(`${verse}${refrain}`, { request: "Write a song about the sea." }, 0, true).hit).not.toBeNull();
+    expect(tailLoop(`${refrain}${refrain}${refrain}`, { request: "Write a poem about the sea with a refrain." }, 0, true).hit).toBeNull();
+  });
+
+  it("a list asked for one per line may not repeat an item (fast t0.2, stress run list30-animals #1)", () => {
+    const request = "List 30 animals that live in the ocean, one per line, numbered.";
+    const text = "20. Sea snail  \n21. Sea urchin  \n22. Starfish (various species)  \n23. Sea cucumber  \n24. Coral polyp  \n25. Starfish (various species)  \n";
+    expect(tailLoop(text, { request }, 0, true).hit).not.toBeNull();
+  });
+
+  it("a sentence said as a bullet and again inside a paragraph is a loop (instant web trial he-explain #3)", async () => {
+    const request = "הסבר לי בפירוט מה זה פוטוסינתזה.";
+    const said = "אם המעשה נכשל במגמות של חיים וקבע עליו את המספר, אנו צריכים לשים קורונה.";
+    const text = `הנה ההסבר:\n*   ${said}\n\nסיכום: ההבנה אינה קריטית. ${said}`;
+    expect(tailLoop(text, { request }, 0, true).hit).not.toBeNull();
+    expect(count((await screen(guardLoops(engine(text), () => undefined, { request }))).shown, said)).toBe(1);
   });
 
   it("F389 still holds: five copies asked for are five copies shown, the sixth is trimmed", async () => {

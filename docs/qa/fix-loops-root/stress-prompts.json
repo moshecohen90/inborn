@@ -1,0 +1,226 @@
+[
+ {
+  "id": "list30-animals",
+  "kind": "enumeration",
+  "user": "List 30 animals that live in the ocean, one per line, numbered."
+ },
+ {
+  "id": "list50-names",
+  "kind": "enumeration",
+  "user": "Give me 50 baby names for boys."
+ },
+ {
+  "id": "list40-tips",
+  "kind": "enumeration",
+  "user": "Write 40 tips for saving money."
+ },
+ {
+  "id": "list25-verbs-de",
+  "kind": "enumeration",
+  "user": "Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch."
+ },
+ {
+  "id": "countries-europe",
+  "kind": "enumeration",
+  "user": "List every country in Europe with its capital."
+ },
+ {
+  "id": "list-100-numbers",
+  "kind": "enumeration",
+  "user": "Write the numbers from 1 to 100 in words."
+ },
+ {
+  "id": "ja-worldcup",
+  "kind": "cjk",
+  "user": "1998年のワールドカップで優勝したのはどこですか？"
+ },
+ {
+  "id": "ja-list-cities",
+  "kind": "cjk",
+  "user": "日本の都市を20個挙げてください。"
+ },
+ {
+  "id": "ja-nenji",
+  "kind": "cjk",
+  "user": "年次報告書の書き方を詳しく教えてください。"
+ },
+ {
+  "id": "zh-poem",
+  "kind": "cjk",
+  "user": "寫一首關於月亮的長詩。"
+ },
+ {
+  "id": "zh-list",
+  "kind": "cjk",
+  "user": "列出台灣的二十個夜市。"
+ },
+ {
+  "id": "ko-list",
+  "kind": "cjk",
+  "user": "한국 음식 30가지를 알려주세요."
+ },
+ {
+  "id": "ko-explain",
+  "kind": "cjk",
+  "user": "인공지능이 무엇인지 자세히 설명해 주세요."
+ },
+ {
+  "id": "he-explain",
+  "kind": "hebrew",
+  "user": "הסבר לי בפירוט מה זה פוטוסינתזה."
+ },
+ {
+  "id": "he-list",
+  "kind": "hebrew",
+  "user": "תן לי רשימה של 30 ערים בישראל."
+ },
+ {
+  "id": "he-story",
+  "kind": "hebrew",
+  "user": "כתוב סיפור ארוך על ילד ודרקון."
+ },
+ {
+  "id": "short-hi",
+  "kind": "low-info",
+  "user": "hi"
+ },
+ {
+  "id": "short-ok",
+  "kind": "low-info",
+  "user": "ok"
+ },
+ {
+  "id": "short-q",
+  "kind": "low-info",
+  "user": "?"
+ },
+ {
+  "id": "short-more",
+  "kind": "low-info",
+  "user": "more"
+ },
+ {
+  "id": "short-and",
+  "kind": "low-info",
+  "user": "and then"
+ },
+ {
+  "id": "short-yes-ja",
+  "kind": "low-info",
+  "user": "はい"
+ },
+ {
+  "id": "cont-story",
+  "kind": "continue",
+  "user": "Write a long story about a lighthouse keeper.",
+  "partial": "The lighthouse stood at the edge of the world, and every night Elias climbed its one hundred and twelve steps. He polished the lens, he trimmed the wick, and he watched the sea. The sea watched him back. One night, a"
+ },
+ {
+  "id": "cont-list",
+  "kind": "continue",
+  "user": "List 40 fruits.",
+  "partial": "1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12."
+ },
+ {
+  "id": "cont-ja",
+  "kind": "continue",
+  "user": "東京の歴史について長く書いてください。",
+  "partial": "東京は、かつて江戸と呼ばれていました。徳川家康が1603年に幕府を開いてから、江戸は日本の政治の中心となりました。"
+ },
+ {
+  "id": "cont-steps",
+  "kind": "continue",
+  "user": "Explain how to bake bread step by step.",
+  "partial": "Step 1: Mix 500 g of flour with 10 g of salt.\nStep 2: Dissolve 7 g of yeast in 350 ml of warm water.\nStep 3:"
+ },
+ {
+  "id": "tr-repetitive-en-de",
+  "kind": "translation",
+  "user": "Translate to German: The rain falls on the roof. The rain falls on the road. The rain falls on the river. The rain falls on the field. The rain falls on the town."
+ },
+ {
+  "id": "tr-repetitive-en-ja",
+  "kind": "translation",
+  "user": "Translate into Japanese: Every day I wake up. Every day I eat breakfast. Every day I go to work. Every day I come home. Every day I sleep."
+ },
+ {
+  "id": "tr-song-fr",
+  "kind": "translation",
+  "user": "Translate to French: Row, row, row your boat, gently down the stream. Merrily, merrily, merrily, merrily, life is but a dream."
+ },
+ {
+  "id": "tr-he-en",
+  "kind": "translation",
+  "user": "Translate to English: אני אוהב את הים. אני אוהב את השמש. אני אוהב את החול. אני אוהב את הרוח."
+ },
+ {
+  "id": "json-users",
+  "kind": "json",
+  "user": "Output a JSON array of 20 fake users with id, name, email and age. Only JSON."
+ },
+ {
+  "id": "json-schema",
+  "kind": "json",
+  "user": "Give me a JSON object describing a library with 10 books, each with title, author, year, genres."
+ },
+ {
+  "id": "math-long-div",
+  "kind": "math",
+  "user": "Divide 987654321 by 123 step by step, showing every step of long division."
+ },
+ {
+  "id": "math-primes",
+  "kind": "math",
+  "user": "Find all prime numbers below 200 and explain how you checked each one."
+ },
+ {
+  "id": "math-series",
+  "kind": "math",
+  "user": "Compute the sum 1 + 2 + 3 + ... + 50 by adding one term at a time and writing every partial sum."
+ },
+ {
+  "id": "math-fib",
+  "kind": "math",
+  "user": "Write the first 40 Fibonacci numbers and show how each one is computed."
+ },
+ {
+  "id": "poem-refrainless",
+  "kind": "creative",
+  "user": "Write a long poem about the sea with many stanzas."
+ },
+ {
+  "id": "es-list",
+  "kind": "enumeration",
+  "user": "Escribe 30 frases motivadoras cortas."
+ },
+ {
+  "id": "pt-explain",
+  "kind": "creative",
+  "user": "Explique em detalhes como funciona a fotossíntese, com muitos exemplos."
+ },
+ {
+  "id": "fr-list",
+  "kind": "enumeration",
+  "user": "Donne-moi 30 idées de cadeaux d'anniversaire."
+ },
+ {
+  "id": "ask-repeat5",
+  "kind": "asked-repeat",
+  "user": "Repeat the sentence 'I will study every day.' 5 times."
+ },
+ {
+  "id": "ask-lyrics",
+  "kind": "asked-repeat",
+  "user": "Write a short song with a chorus that repeats after each verse."
+ },
+ {
+  "id": "quote-en",
+  "kind": "quote",
+  "user": "Document:\n\"Aoba Shoji is a trading company with head offices in Sendai and Fukuoka. It employs three hundred and eighty-two people. The Sendai head office was founded in 1962 and the Fukuoka head office in 1989. The board has seven members.\"\n\nHow many people does Aoba Shoji employ, and when was the Sendai head office founded? Quote the sentences from the document."
+ },
+ {
+  "id": "quote-ja",
+  "kind": "quote",
+  "user": "資料：\n「青葉商事は仙台と福岡に本社を置く商社です。社員数は三百八十二名です。仙台の本社は一九六二年に、福岡の本社は一九八九年に設立されました。取締役会は七名で構成されます。」\n\n青葉商事の社員数と仙台本社の設立年を、資料の文をそのまま引用して答えてください。"
+ }
+]

@@ -1,0 +1,2653 @@
+{
+ "model": "instant",
+ "phase": "after",
+ "engine": "llama-server (llama.cpp b10809, Metal), app sampling via core sampling(), thinking off",
+ "temperature": 0.7,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rows": [
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 355,
+   "tps": 101.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 355,
+    "final": "1. Dolphin 2. Whale 3. Shark 4. Seahorse 5. Penguin 6. Seagull 7. Tuna 8. Clownfish 9. Jellyfish 10. Sea turtle 11. Siren 12. Pelican 13. Sea hare 14. Lizard 15. Manta ray 16. Whale shark 17. Octopus 18. Bream 19. Eel 20. Koi fish 21. Angelfish 22. Clownfish 23. Jellyfish 24. Sea lion 25. Seal 26. Dugong 27. Platypus 28. Sea turtle 29. Dolphin 30. Whale"
+   },
+   "text": "1. Dolphin 2. Whale 3. Shark 4. Seahorse 5. Penguin 6. Seagull 7. Tuna 8. Clownfish 9. Jellyfish 10. Sea turtle 11. Siren 12. Pelican 13. Sea hare 14. Lizard 15. Manta ray 16. Whale shark 17. Octopus 18. Bream 19. Eel 20. Koi fish 21. Angelfish 22. Clownfish 23. Jellyfish 24. Sea lion 25. Seal 26. Dugong 27. Platypus 28. Sea turtle 29. Dolphin 30. Whale"
+  },
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 379,
+   "tps": 109.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 379,
+    "final": "1. whales\n2. dolphins\n3. turtles\n4. jellyfish\n5. kelpse\n6. octopuses\n7. manta rays\n8. sea otters\n9. sea lions\n10. seahorses\n11. penguin chicks\n12. dolphin pups\n13. sharks\n14. finches\n15. seals\n16. gulls\n17. eels\n18. fish\n19. whales\n20. dolphins\n21. sharks\n22. rays\n23. penguins\n24. sea turtles\n25. jellyfish\n26. octopuses\n27. manta rays\n28. sea otters\n29. sea lions\n30. seahorses"
+   },
+   "text": "1. whales\n2. dolphins\n3. turtles\n4. jellyfish\n5. kelpse\n6. octopuses\n7. manta rays\n8. sea otters\n9. sea lions\n10. seahorses\n11. penguin chicks\n12. dolphin pups\n13. sharks\n14. finches\n15. seals\n16. gulls\n17. eels\n18. fish\n19. whales\n20. dolphins\n21. sharks\n22. rays\n23. penguins\n24. sea turtles\n25. jellyfish\n26. octopuses\n27. manta rays\n28. sea otters\n29. sea lions\n30. seahorses"
+  },
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 400,
+   "tps": 103.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 400,
+    "final": "1. Dolphin\n2. Whale\n3. Shark\n4. Sea Lion\n5. Seal\n6. Clownfish\n7. Octopus\n8. Jellyfish\n9. Manta Ray\n10. Perch\n11. Sandpiper\n12. Eel\n13. Tuna\n14. Salmon\n15. Cod\n16. Herring\n17. Grampus\n18. Anglerfish\n19. Sea Turtle\n20. Whale Shark\n21. Blue Whale\n22. Hammerhead Shark\n23. Mako Shark\n24. Saw-Tooth Shark\n25. Scomberomorus marmo\n26. Puffin\n27. Seal Baiter\n28. Sea Otter\n29. Giant Toothfish\n30. Tundra Swan"
+   },
+   "text": "1. Dolphin\n2. Whale\n3. Shark\n4. Sea Lion\n5. Seal\n6. Clownfish\n7. Octopus\n8. Jellyfish\n9. Manta Ray\n10. Perch\n11. Sandpiper\n12. Eel\n13. Tuna\n14. Salmon\n15. Cod\n16. Herring\n17. Grampus\n18. Anglerfish\n19. Sea Turtle\n20. Whale Shark\n21. Blue Whale\n22. Hammerhead Shark\n23. Mako Shark\n24. Saw-Tooth Shark\n25. Scomberomorus marmo\n26. Puffin\n27. Seal Baiter\n28. Sea Otter\n29. Giant Toothfish\n30. Tundra Swan"
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 819,
+   "tps": 114.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 819,
+    "final": "There is no strict limit on how many variations exist in naming conventions; however, I will provide five popular boy's names based on distinct categories to help you choose:\n\n1. **Classic & Timeless**: Leo, Noah, Ethan, Jack, and Zion are universally recognized classics across cultures.\n2. **Modern & Trendy**: Noah is a highly sought-after modern name that fits many families' preferences right now.\n3. **Nature & Earthy**: For those who enjoy nature-inspired names like Noah (from the ocean) or Leo (symbolizing light).\n4. **Short & Punchy**: Names with two syllables, such as Alex and Zack, offer a concise look that often goes well with short-sentence sentences.\n5. **Cultural Diversity**: Including names derived from indigenous roots like Yitzhak and Nabil to show how diverse the world is in naming traditions."
+   },
+   "text": "There is no strict limit on how many variations exist in naming conventions; however, I will provide five popular boy's names based on distinct categories to help you choose:\n\n1. **Classic & Timeless**: Leo, Noah, Ethan, Jack, and Zion are universally recognized classics across cultures.\n2. **Modern & Trendy**: Noah is a highly sought-after modern name that fits many families' preferences right now.\n3. **Nature & Earthy**: For those who enjoy nature-inspired names like Noah (from the ocean) or Leo (symbolizing light).\n4. **Short & Punchy**: Names with two syllables, such as Alex and Zack, offer a concise look that often goes well with short-sentence sentences.\n5. **Cultural Diversity**: Including names derived from indigenous roots like Yitzhak and Nabil to show how diverse the world is in naming traditions."
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 633,
+   "tps": 104,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 633,
+    "final": "Here are 50 boy's names that fit various categories:\n\n*   **Classical/Palindromic**: Aries, Leo, Libra, Mercury, Pluto, Aquarius, Capricorn, Scorpio, Sagittarius, Gemini (if you want the reverse) or just list all. Let's stick to alphabetical order for a standard set.\n    1.  Abraham\n    2.  Alexander\n    3.  Aladdin\n    4.  Alan\n    5.  Angelo\n    ...and so on through to:\n    10. Alistair\n    11. Amman\n    12. Amparo\n    13. Arif\n    14. Artur\n    15. Aurelia\n    16. Aydin\n    ...and continuing...\n\n*   **Unique/Modern**: These are less common but stand out:\n    90. Alex (too generic) -> Let's try unique ones first:\n    85. Ak"
+   },
+   "text": "Here are 50 boy's names that fit various categories:\n\n*   **Classical/Palindromic**: Aries, Leo, Libra, Mercury, Pluto, Aquarius, Capricorn, Scorpio, Sagittarius, Gemini (if you want the reverse) or just list all. Let's stick to alphabetical order for a standard set.\n    1.  Abraham\n    2.  Alexander\n    3.  Aladdin\n    4.  Alan\n    5.  Angelo\n    ...and so on through to:\n    10. Alistair\n    11. Amman\n    12. Amparo\n    13. Arif\n    14. Artur\n    15. Aurelia\n    16. Aydin\n    ...and continuing...\n\n*   **Unique/Modern**: These are less common but stand out:\n    90. Alex (too generic) -> Let's try unique ones first:\n    85. Ak"
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 814,
+   "tps": 110.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 814,
+    "final": "Here are 50 boy-friendly baby names, categorized by style:\n\n*   **Classic & Traditional:** Noah, James, Leo, Ben, Ethan, Lincoln, Jack, Marcus, Samuel, David, Daniel, Gabriel, Victor, Arthur, Benjamin, Franklin, William, Thomas, John, George, Richard.\n*   **Nature & Nature's Word:** Luna, Aurora, Galaxy, Jupiter, Saturn, Mars, Venus, Neptune, Pluto, Mercury.\n*   **Geography & Land:** Forest, Mountain, River, Sea, Desert, Valley, Peak, Horizon, Cloud, Moon.\n*   **Abstract & Poetic:** Angelic, Divine, Celestial, Eternal, Infinite, Unseen, Unknown, Hidden, Shadow, Light.\n*   **Names with Meaning:** Kael, Javon, Noone, Kaido, Jaxx, Finn, Nixie, Zayn, Lando, Aloyse.\n\n*(Note: I have adhered to your safety guidelines by focusing on positive and neutral content rather than anything potentially harmful or unsafe"
+   },
+   "text": "Here are 50 boy-friendly baby names, categorized by style:\n\n*   **Classic & Traditional:** Noah, James, Leo, Ben, Ethan, Lincoln, Jack, Marcus, Samuel, David, Daniel, Gabriel, Victor, Arthur, Benjamin, Franklin, William, Thomas, John, George, Richard.\n*   **Nature & Nature's Word:** Luna, Aurora, Galaxy, Jupiter, Saturn, Mars, Venus, Neptune, Pluto, Mercury.\n*   **Geography & Land:** Forest, Mountain, River, Sea, Desert, Valley, Peak, Horizon, Cloud, Moon.\n*   **Abstract & Poetic:** Angelic, Divine, Celestial, Eternal, Infinite, Unseen, Unknown, Hidden, Shadow, Light.\n*   **Names with Meaning:** Kael, Javon, Noone, Kaido, Jaxx, Finn, Nixie, Zayn, Lando, Aloyse.\n\n*(Note: I have adhered to your safety guidelines by focusing on positive and neutral content rather than anything potentially harmful or unsafe"
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 494,
+   "tps": 139.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 494,
+    "final": "To save money, start by tracking every dollar spent to identify waste and habits like impulse buying and unnecessary expenses; then prioritize saving on food, utilities, and transportation while cutting down on subscriptions that drain your budget; next, automate recurring costs or use credit cards with no fees to eliminate debt buildup; also, practice mindful shopping where possible, join discount clubs for deals, and set strict limits on discretionary spending before they become a habit."
+   },
+   "text": "To save money, start by tracking every dollar spent to identify waste and habits like impulse buying and unnecessary expenses; then prioritize saving on food, utilities, and transportation while cutting down on subscriptions that drain your budget; next, automate recurring costs or use credit cards with no fees to eliminate debt buildup; also, practice mindful shopping where possible, join discount clubs for deals, and set strict limits on discretionary spending before they become a habit."
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 1029,
+   "tps": 104.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1029,
+    "final": "Here are 40 practical tips for saving money to help you get started:\n\n1. Read bills and contracts before paying to catch mistakes.\n2. Keep track of your total spending by setting a budget early on.\n3. Use digital payment apps like Payoneer or MyHeritage for easier transfers.\n4. Never pay cash upfront; always use online credit cards or debit cards if possible.\n5. Sign up for free credit card bonuses that offer significant rewards and lower monthly fees.\n6. Buy groceries using a store account card so you can receive money via PayPal or similar services, not physical bills.\n7. Cancel subscriptions that are costing you more than they save you in the long run (e.g., Netflix, Disney+).\n8. Use \"Pay as You Go\" when possible to avoid locking yourself into monthly fees for unused items.\n9. Shop around frequently and stick with stores that offer best-in-class prices on essentials like groceries and fuel.\n10. Take advantage of gift cards offered by retailers or online platforms; they often have lower costs than cash discounts"
+   },
+   "text": "Here are 40 practical tips for saving money to help you get started:\n\n1. Read bills and contracts before paying to catch mistakes.\n2. Keep track of your total spending by setting a budget early on.\n3. Use digital payment apps like Payoneer or MyHeritage for easier transfers.\n4. Never pay cash upfront; always use online credit cards or debit cards if possible.\n5. Sign up for free credit card bonuses that offer significant rewards and lower monthly fees.\n6. Buy groceries using a store account card so you can receive money via PayPal or similar services, not physical bills.\n7. Cancel subscriptions that are costing you more than they save you in the long run (e.g., Netflix, Disney+).\n8. Use \"Pay as You Go\" when possible to avoid locking yourself into monthly fees for unused items.\n9. Shop around frequently and stick with stores that offer best-in-class prices on essentials like groceries and fuel.\n10. Take advantage of gift cards offered by retailers or online platforms; they often have lower costs than cash discounts"
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 960,
+   "tps": 127.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 960,
+    "final": "Here are 40 practical tips for saving money:\n\n1. Cut non-essentials like subscriptions and entertainment.\n2. Pay only what is absolutely necessary each month.\n3. Use apps to track spending automatically or manually.\n4. Negotiate better prices with retailers you already trust.\n5. Refund unused items from stores that don't make sense anymore.\n6. Cancel unused services if they aren't essential for your work or life.\n7. Work full-time while saving or reduce hours at jobs you dislike.\n8. Invest in high-yield savings accounts and CDs with low interest.\n9. Keep track of your debts and pay them down before starting new projects.\n10. Use a \"savings vs. spending\" budget for every category.\n11. Make automatic transfers to retirement plans when possible.\n12. Join clubs or online groups where you can meet people who need help saving.\n13. Take short vacations and travel only if the trip brings cash flow up.\n14. Buy groceries in bulk if your household is stable"
+   },
+   "text": "Here are 40 practical tips for saving money:\n\n1. Cut non-essentials like subscriptions and entertainment.\n2. Pay only what is absolutely necessary each month.\n3. Use apps to track spending automatically or manually.\n4. Negotiate better prices with retailers you already trust.\n5. Refund unused items from stores that don't make sense anymore.\n6. Cancel unused services if they aren't essential for your work or life.\n7. Work full-time while saving or reduce hours at jobs you dislike.\n8. Invest in high-yield savings accounts and CDs with low interest.\n9. Keep track of your debts and pay them down before starting new projects.\n10. Use a \"savings vs. spending\" budget for every category.\n11. Make automatic transfers to retirement plans when possible.\n12. Join clubs or online groups where you can meet people who need help saving.\n13. Take short vacations and travel only if the trip brings cash flow up.\n14. Buy groceries in bulk if your household is stable"
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 186,
+   "tps": 124.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 186,
+    "final": "Two major German-to-English verbs for learning: *haben* (to be) and *sein* (to exist/feeling). For the second, you can use *machen* (to do), *sehen* (to see), or *wollen* (to want/wish)."
+   },
+   "text": "Two major German-to-English verbs for learning: *haben* (to be) and *sein* (to exist/feeling). For the second, you can use *machen* (to do), *sehen* (to see), or *wollen* (to want/wish)."
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 313,
+   "tps": 114,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 313,
+    "final": "Germanic verbs translate to English nouns or adjectives, but many are conjugated as verb forms depending on the tense (e.g., *sein* = am I), so you generally need a specific grammatical marker like 'der' for masculine/neuter/plural and 'die' for feminine. For example, \"mein\" becomes \"my\", \"seine\" becomes \"your\"."
+   },
+   "text": "Germanic verbs translate to English nouns or adjectives, but many are conjugated as verb forms depending on the tense (e.g., *sein* = am I), so you generally need a specific grammatical marker like 'der' for masculine/neuter/plural and 'die' for feminine. For example, \"mein\" becomes \"my\", \"seine\" becomes \"your\"."
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 670,
+   "tps": 105.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 670,
+    "final": "Hier sind 25 deutsche Verbesse für ihre englische Bedeutung:\n1. zu kommen (to come)\n2. auszuwachsen (to grow up)\n3. zu sehen (to see)\n4. zu hören (to hear)\n5. zu trinken (to drink)\n6. zu arbeiten (to work)\n7. zu sprechen (to speak)\n8. zu schlafen (to sleep)\n9. zu leben (to live)\n10. zu lernen (to learn)\n11. zu tun (to do)\n12. zu gefallen (to please)\n13. zu gehen (to go)\n14. zu kommen wieder (to come again)\n15. zu vermissen (to miss)\n16. zu finden (to find)\n17. zu verlieren (to lose)\n18. zu wachen (to wake up)\n19. zu verstehen (to understand)\n20. zu warten (to wait)\n21. zu helfen (to help)\n22. zu töten (to kill)\n23. zu ertragen (to endure)\n24. zu wissen (to know)"
+   },
+   "text": "Hier sind 25 deutsche Verbesse für ihre englische Bedeutung:\n1. zu kommen (to come)\n2. auszuwachsen (to grow up)\n3. zu sehen (to see)\n4. zu hören (to hear)\n5. zu trinken (to drink)\n6. zu arbeiten (to work)\n7. zu sprechen (to speak)\n8. zu schlafen (to sleep)\n9. zu leben (to live)\n10. zu lernen (to learn)\n11. zu tun (to do)\n12. zu gefallen (to please)\n13. zu gehen (to go)\n14. zu kommen wieder (to come again)\n15. zu vermissen (to miss)\n16. zu finden (to find)\n17. zu verlieren (to lose)\n18. zu wachen (to wake up)\n19. zu verstehen (to understand)\n20. zu warten (to wait)\n21. zu helfen (to help)\n22. zu töten (to kill)\n23. zu ertragen (to endure)\n24. zu wissen (to know)"
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 458,
+   "tps": 128.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 458,
+    "final": "Sixteen countries compose the European Union; Russia and Ukraine are excluded as they belong to Central Asia. There are 19 states currently recognized by international organizations, including the United States. The EU's official members include Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and the United Kingdom."
+   },
+   "text": "Sixteen countries compose the European Union; Russia and Ukraine are excluded as they belong to Central Asia. There are 19 states currently recognized by international organizations, including the United States. The EU's official members include Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and the United Kingdom."
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 558,
+   "tps": 131,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 558,
+    "final": "There is no single \"correct\" list of European countries because there are hundreds of nations across Europe (including those that do not have capitals). However, here are the 26 standard members of the Council of Europe plus a few others: Austria, Belgium, France, Germany, Greece, Ireland, Italy, Luxembourg, Netherlands, Norway, Portugal, Romania, Slovakia, Spain, Sweden, Switzerland, and the UK. This list is incomplete as it does not account for all nations in that region (e.g., Vatican City) or nations with no established capitals within its borders."
+   },
+   "text": "There is no single \"correct\" list of European countries because there are hundreds of nations across Europe (including those that do not have capitals). However, here are the 26 standard members of the Council of Europe plus a few others: Austria, Belgium, France, Germany, Greece, Ireland, Italy, Luxembourg, Netherlands, Norway, Portugal, Romania, Slovakia, Spain, Sweden, Switzerland, and the UK. This list is incomplete as it does not account for all nations in that region (e.g., Vatican City) or nations with no established capitals within its borders."
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 893,
+   "tps": 131.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 893,
+    "final": "There is no single \"correct\" list of all European countries and their capitals that can be provided without context (e.g., excluding non-European nations like the US, or including only specific regions). However, I will provide a comprehensive overview by listing major European countries along with their capital cities. This includes North America, South America, Africa, Asia, and Oceania, as requested in your first prompt before this one.\n\n**Major European Countries & Capitals:**\n*   **France** (Capital: Paris)\n*   **Germany** (Capital: Berlin)\n*   **Italy** (Capital: Rome)\n*   **Spain** (Capital: Madrid)\n*   **Greece** (Capital: Athens)\n*   **Portugal** (Capital: Lisbon)\n*   **Netherlands** (Capital: Amsterdam)\n*   **Belgium** (Capital: Brussels)\n*   **Switzerland** (Capital: Bern)\n\nIf you need a list of specific regions or countries excluded from this scope, please let me know."
+   },
+   "text": "There is no single \"correct\" list of all European countries and their capitals that can be provided without context (e.g., excluding non-European nations like the US, or including only specific regions). However, I will provide a comprehensive overview by listing major European countries along with their capital cities. This includes North America, South America, Africa, Asia, and Oceania, as requested in your first prompt before this one.\n\n**Major European Countries & Capitals:**\n*   **France** (Capital: Paris)\n*   **Germany** (Capital: Berlin)\n*   **Italy** (Capital: Rome)\n*   **Spain** (Capital: Madrid)\n*   **Greece** (Capital: Athens)\n*   **Portugal** (Capital: Lisbon)\n*   **Netherlands** (Capital: Amsterdam)\n*   **Belgium** (Capital: Brussels)\n*   **Switzerland** (Capital: Bern)\n\nIf you need a list of specific regions or countries excluded from this scope, please let me know."
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 152,
+   "tps": 165.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 152,
+    "final": "I will write all the numbers from one hundred through zero using their English word equivalents, ensuring there are no gaps or errors within that range."
+   },
+   "text": "I will write all the numbers from one hundred through zero using their English word equivalents, ensuring there are no gaps or errors within that range."
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 312,
+   "tps": 126,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 312,
+    "final": "The first word begins with \"one\" followed by four additional letters: \"two\", \"three\", \"four\", \"five\". The next group starts with \"six\", then \"seven\", \"eight\", and finishes with \"ten\". This sequence continues sequentially up through the number hundred, forming the complete list of numbers from one to a thousand."
+   },
+   "text": "The first word begins with \"one\" followed by four additional letters: \"two\", \"three\", \"four\", \"five\". The next group starts with \"six\", then \"seven\", \"eight\", and finishes with \"ten\". This sequence continues sequentially up through the number hundred, forming the complete list of numbers from one to a thousand."
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 259,
+   "tps": 126.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 259,
+    "final": "The ten thousand one hundred ninety nine one hundred twenty three two hundred thirty five fourteen sixteen seventeenth eighteenth nineteen twentieth thirtieth forty-second fifty-third sixty-seventh seventy-eighth eighty-ninth ninety-first one hundred and one."
+   },
+   "text": "The ten thousand one hundred ninety nine one hundred twenty three two hundred thirty five fourteen sixteen seventeenth eighteenth nineteen twentieth thirtieth forty-second fifty-third sixty-seventh seventy-eighth eighty-ninth ninety-first one hundred and one."
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 54,
+   "tps": 129.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 54,
+    "final": "第7回リオデジャネイロ世界大戦において、日本はアメリカのチームから勝って「日本」を捧げることを名乗りました。"
+   },
+   "text": "第7回リオデジャネイロ世界大戦において、日本はアメリカのチームから勝って「日本」を捧げることを名乗りました。"
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 93,
+   "tps": 119,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 93,
+    "final": "1998 年（平成元年）のワールドカップは日本を、ドイツと日本がそれぞれ 3 つのチームとして代表国家として出場しました。その結果日本は準々決勝で同位点を越えて、6 個目で優勝しました。"
+   },
+   "text": "1998 年（平成元年）のワールドカップは日本を、ドイツと日本がそれぞれ 3 つのチームとして代表国家として出場しました。その結果日本は準々決勝で同位点を越えて、6 個目で優勝しました。"
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 39,
+   "tps": 130,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 39,
+    "final": "1998 年ワールドカップの優勝は、日本がフランス・スーアビアを連覇しました。"
+   },
+   "text": "1998 年ワールドカップの優勝は、日本がフランス・スーアビアを連覇しました。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 143,
+   "tps": 127.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 143,
+    "final": "現在日本には大都市圏が 27 個ありますが、その中で特に規模や都市の密度に特化した都市を数多く挙げていませんでした。例えば東京、大阪、京都などの主要都市は既に該当します。要約すると、現在日本の都市数は 14 個で推移しています（中央アジア・南アフリカなど他国での統計が参考になります）。"
+   },
+   "text": "現在日本には大都市圏が 27 個ありますが、その中で特に規模や都市の密度に特化した都市を数多く挙げていませんでした。例えば東京、大阪、京都などの主要都市は既に該当します。要約すると、現在日本の都市数は 14 個で推移しています（中央アジア・南アフリカなど他国での統計が参考になります）。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 147,
+   "tps": 117.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 147,
+    "final": "日本は38の都市が世界で最も多国籍化しています。東京、大阪、福岡など、大都市圏から地方都市まで幅広く分布しており、地域ごとに異なる文化や経済構造を持ちます。これらの都市は日本の政治・経済の中心であり、20 個選んだものについて詳細な特徴を説明できますので、ご要望に合わせて情報を提供いたします。"
+   },
+   "text": "日本は38の都市が世界で最も多国籍化しています。東京、大阪、福岡など、大都市圏から地方都市まで幅広く分布しており、地域ごとに異なる文化や経済構造を持ちます。これらの都市は日本の政治・経済の中心であり、20 個選んだものについて詳細な特徴を説明できますので、ご要望に合わせて情報を提供いたします。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 124,
+   "tps": 151.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 124,
+    "final": "日本は、東京・大阪・京都・名古屋・仙台・札幌・大阪府城下町・大阪府泉安町・茨城県・兵庫県・広島県・福岡県・愛知県・群馬県・岐阜県・静岡県・長野県・東京都・神奈川県・埼玉県・千葉県・宮崎県・熊本県・鳥取県・福井県・宮城県など約20都市が挙げられます。"
+   },
+   "text": "日本は、東京・大阪・京都・名古屋・仙台・札幌・大阪府城下町・大阪府泉安町・茨城県・兵庫県・広島県・福岡県・愛知県・群馬県・岐阜県・静岡県・長野県・東京都・神奈川県・埼玉県・千葉県・宮崎県・熊本県・鳥取県・福井県・宮城県など約20都市が挙げられます。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 728,
+   "tps": 127.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 728,
+    "final": "日本式年次報告書（通常もったいないや、または年度末のレポートとして用いられる）の基本的な書き方とフォーマットは以下の通りです。\n\n**1. 構成要素**\n*   **タイトル**: 「○○年度の年次報告書」として明確にします。\n*   **年月日**: 報告の時期を正確に記載（例：2023 年 12 月 31 日）。\n*   **目次**: 内容の順序を示す表です。\n*   **各項目の記載**\n    *   「〇〇年度」は「〇〇年」として記述し、翌年の目標や計画を添えることも可能です。\n    *   各事業・部門・プロジェクトごとに具体的な成果（売上、稼働率、顧客満足度など）と課題を記載します。\n\n**2. フォーマット例**\n*   **表紙**: 会社名・担当者名・連絡先\n*   **目次**: 上記の項目順列\n*   **各セクション**\n    *   **【事業目標】**：年度末までに達成すべきこと（年次計画）\n    *   **【実績と成果】**：過去 12 か月のデータと、その年の達成状況\n    *   **【課題・改善案】**：現状の不足点と対応策\n    *   **【今後の展望】**：来年に向けた進め方\n\n**3. 注意点**\n*   **単一フォーマット**: 日本では「会社名」だけでなく「担当者名」として記載し、特定の個人に依存するのではなく、全体をまとめる形式が一般的です。\n*   **文書スタイル**: ファイル形式（PDF）や、印刷版のレイアウトは定かではありませんが、標準的なビジネス用紙や Word 文档で作成してください。\n\nこの基本に従って、ご自身の状況に合わせて調整してご使用ください。"
+   },
+   "text": "日本式年次報告書（通常もったいないや、または年度末のレポートとして用いられる）の基本的な書き方とフォーマットは以下の通りです。\n\n**1. 構成要素**\n*   **タイトル**: 「○○年度の年次報告書」として明確にします。\n*   **年月日**: 報告の時期を正確に記載（例：2023 年 12 月 31 日）。\n*   **目次**: 内容の順序を示す表です。\n*   **各項目の記載**\n    *   「〇〇年度」は「〇〇年」として記述し、翌年の目標や計画を添えることも可能です。\n    *   各事業・部門・プロジェクトごとに具体的な成果（売上、稼働率、顧客満足度など）と課題を記載します。\n\n**2. フォーマット例**\n*   **表紙**: 会社名・担当者名・連絡先\n*   **目次**: 上記の項目順列\n*   **各セクション**\n    *   **【事業目標】**：年度末までに達成すべきこと（年次計画）\n    *   **【実績と成果】**：過去 12 か月のデータと、その年の達成状況\n    *   **【課題・改善案】**：現状の不足点と対応策\n    *   **【今後の展望】**：来年に向けた進め方\n\n**3. 注意点**\n*   **単一フォーマット**: 日本では「会社名」だけでなく「担当者名」として記載し、特定の個人に依存するのではなく、全体をまとめる形式が一般的です。\n*   **文書スタイル**: ファイル形式（PDF）や、印刷版のレイアウトは定かではありませんが、標準的なビジネス用紙や Word 文档で作成してください。\n\nこの基本に従って、ご自身の状況に合わせて調整してご使用ください。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 1122,
+   "tps": 123.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1122,
+    "final": "年次報告書（年度レポート）の書き方は、まず**「何を伝えるか」**という目的を明確にします。\n\n一般的には以下の 3 つのパターンがありますので、ご自身の状況に合わせて選びましょう。\n\n### パターン：事実をまとめたい場合\n最も一般的です。「過去の実績」と「今後の展望」が主目的になります。\n\n1.  **目次**\n    *   総括（今年何をやってしまったか）\n    *   リスク・リスク管理（失敗や問題についてどう処理したのか、対策はどのくらいできたか）\n    *   課題と改善策\n2.  **実績の概要**\n    *   具体的な数字や項目を列挙。\n    *   「今年 X 月には Y 事業で Z%の成果を上げました」といった表現も有効です。\n3.  **今後の展望**\n    *   次の年度に向けた戦略や目標を設ける（または現状維持）。\n\n### パターン：顧客・パートナーとの対話をする場合\n「結果と原因」について深く議論して、具体的な改善策を示すためです。\n\n1.  **報告書形式の選択**\n    *   **PPT とテキストの組み合わせ**：資料を並べるスタイルで、読みやすくする。\n    *   **単文・リスト形式**：要点だけを箇条書きにする。\n2.  **論点として使う構成**\n    *   「過去の実績」→「今回の課題・原因分析」→「改善策・今後の展望」\n3.  **重要事項の強調（リスク管理）**\n    *   リスクやトラブルを最初に挙げ、その後の解決策を示し、最後に結論（達成度）が出す形。\n\n### 書き方の基本ルール（注意すべき点）\n*   **「なぜ」という理由を先に述べる**：単に「問題が起きた」だけでなく、「問題が発生した原因は……である」「対策として……を実施したが、結果は……であり、今後の課題は……」とする。\n    *   *例*: 「2023 年 Q1 のデータ外れが起きたため、調査チームによる修正を行ったが、余計な負担となり、今年度以降のデータ品質向上に重点を置いた。」\n*   **数字と言葉を使う**：具体的な数字（%、件数）は最も説得力がある。\n    *   例: 「100 件を超える」という数字よりも、「50 件の異常値が検出され、修正処理で 80% のリスクを減らした」の方が信頼できる。\n*   **結論を出す**：最後に「今後、来年以降は……とする」といった具体的な目標や方針を示す。\n\nこのように、まずは目的（事実のまとめ vs 対話）を決定し、その上で上記のパターンに従って構成すれば、年次報告書がスムーズに書き出せるはずです。"
+   },
+   "text": "年次報告書（年度レポート）の書き方は、まず**「何を伝えるか」**という目的を明確にします。\n\n一般的には以下の 3 つのパターンがありますので、ご自身の状況に合わせて選びましょう。\n\n### パターン：事実をまとめたい場合\n最も一般的です。「過去の実績」と「今後の展望」が主目的になります。\n\n1.  **目次**\n    *   総括（今年何をやってしまったか）\n    *   リスク・リスク管理（失敗や問題についてどう処理したのか、対策はどのくらいできたか）\n    *   課題と改善策\n2.  **実績の概要**\n    *   具体的な数字や項目を列挙。\n    *   「今年 X 月には Y 事業で Z%の成果を上げました」といった表現も有効です。\n3.  **今後の展望**\n    *   次の年度に向けた戦略や目標を設ける（または現状維持）。\n\n### パターン：顧客・パートナーとの対話をする場合\n「結果と原因」について深く議論して、具体的な改善策を示すためです。\n\n1.  **報告書形式の選択**\n    *   **PPT とテキストの組み合わせ**：資料を並べるスタイルで、読みやすくする。\n    *   **単文・リスト形式**：要点だけを箇条書きにする。\n2.  **論点として使う構成**\n    *   「過去の実績」→「今回の課題・原因分析」→「改善策・今後の展望」\n3.  **重要事項の強調（リスク管理）**\n    *   リスクやトラブルを最初に挙げ、その後の解決策を示し、最後に結論（達成度）が出す形。\n\n### 書き方の基本ルール（注意すべき点）\n*   **「なぜ」という理由を先に述べる**：単に「問題が起きた」だけでなく、「問題が発生した原因は……である」「対策として……を実施したが、結果は……であり、今後の課題は……」とする。\n    *   *例*: 「2023 年 Q1 のデータ外れが起きたため、調査チームによる修正を行ったが、余計な負担となり、今年度以降のデータ品質向上に重点を置いた。」\n*   **数字と言葉を使う**：具体的な数字（%、件数）は最も説得力がある。\n    *   例: 「100 件を超える」という数字よりも、「50 件の異常値が検出され、修正処理で 80% のリスクを減らした」の方が信頼できる。\n*   **結論を出す**：最後に「今後、来年以降は……とする」といった具体的な目標や方針を示す。\n\nこのように、まずは目的（事実のまとめ vs 対話）を決定し、その上で上記のパターンに従って構成すれば、年次報告書がスムーズに書き出せるはずです。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 1388,
+   "tps": 118.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1388,
+    "final": "年次報告書（年度報告）の書き方とは、**「本年に生じた事実・課題・成果をまとめ、今後の計画と目標を明確にする」**という作業です。\n\n単なる数値の羅列ではなく、「過去 → 現在 → 未来」の流れとして構成し、読者が理解しやすいよう設計します。\n\n### 1. 基本的な書き方構造\n年次報告書は以下の4つの柱で構成されます。\n\n*   **第1章：概論（現状と課題）**\n    *   **過去・現在**: 前年度より大きく変わった結果や、本年度の重点となる成果・問題点です。\n    *   **未来展望**: 「本年の目標」と「今後3〜6ヶ月からの計画」を明確に示します。\n\n*   **第2章：業績（実績と成果）**\n    *   数値ベースで**達成した成果**を示す必要があります。\n    *   単に数字だけでなく、「どの部門・地域においてどう貢献したか」という根拠も添えて記載する（例：「AI導入により50%の生産量増加」など）。\n\n*   **第3章：課題と改善計画**\n    *   本年が解決できなかった問題や、今後の方向性について言及します。\n    *   「今後1年〜2年に追加で取り組むべき行動策」を提出します（例：半年後に別のプロジェクトを実施する）。\n\n*   **第4章：結論とまとめ**\n    *   目標の達成度合いを把握し、今後のアクションプランを短くまとめる。\n\n### 2. 具体的な書き方のステップ\n1.  **「過去からの転換点」**に焦点を当てる。本年が単なる継続ではなく「重大な変化」や「大きな成果」として定義されることを意識する。\n2.  **数字とグラフ**を多用し、データは明瞭に示す（例：成長率、プロジェクト数、コスト削減額）。\n3.  **「なぜこの決断をしたか」**という理由（戦略的・業務上の理由）を添えることで信頼性を高めます。\n4.  **「これからどうやるか？」**の具体的なアクションプランを掲げ、次の年へのロードマップを示す。\n\n### 3. レベルに応じて書くべきもの\n*   **普通版**: 上記の一般的な構造で、本業や事業全体の成果を記載する。\n*   **特別報告書**: 重大な事件や大きなプロジェクトが該当する場合（例：災害対応、新製品発売）、その特段に焦点をおき、詳細な説明を加える。\n\n### 4. よくある落とし穴と回避策\n*   **「ただ数値を書かない」こと**: 「売上50万円の増加」と書けばよいですが、「売上3,500万円（増額）」「売上4,800万円（減少）」など、具体的な数字と推計を明確にすること。\n*   **将来の計画が曖昧**: 今から「来年はAプロジェクトを開始する」ではなく、「本年の終了後6ヶ月でBプロジェクトを実施予定」として具体化する。\n\n### 5. 作成時の重要なポイント\n*   **読者の視点**: 「誰が読むか」を考慮し、専門用語を使わずに平易な言葉で説明すると理解しやすい。\n*   **責任感**: 自分の判断と成果の真実を明確に伝えることで、信頼を得やすくなる。\n\n年次報告書は単なるレポートではなく、「あなたの事業や成長の物語」であり、それを明確にするのが成功のコツです。具体的な状況に合わせてこの構成で調整してください！"
+   },
+   "text": "年次報告書（年度報告）の書き方とは、**「本年に生じた事実・課題・成果をまとめ、今後の計画と目標を明確にする」**という作業です。\n\n単なる数値の羅列ではなく、「過去 → 現在 → 未来」の流れとして構成し、読者が理解しやすいよう設計します。\n\n### 1. 基本的な書き方構造\n年次報告書は以下の4つの柱で構成されます。\n\n*   **第1章：概論（現状と課題）**\n    *   **過去・現在**: 前年度より大きく変わった結果や、本年度の重点となる成果・問題点です。\n    *   **未来展望**: 「本年の目標」と「今後3〜6ヶ月からの計画」を明確に示します。\n\n*   **第2章：業績（実績と成果）**\n    *   数値ベースで**達成した成果**を示す必要があります。\n    *   単に数字だけでなく、「どの部門・地域においてどう貢献したか」という根拠も添えて記載する（例：「AI導入により50%の生産量増加」など）。\n\n*   **第3章：課題と改善計画**\n    *   本年が解決できなかった問題や、今後の方向性について言及します。\n    *   「今後1年〜2年に追加で取り組むべき行動策」を提出します（例：半年後に別のプロジェクトを実施する）。\n\n*   **第4章：結論とまとめ**\n    *   目標の達成度合いを把握し、今後のアクションプランを短くまとめる。\n\n### 2. 具体的な書き方のステップ\n1.  **「過去からの転換点」**に焦点を当てる。本年が単なる継続ではなく「重大な変化」や「大きな成果」として定義されることを意識する。\n2.  **数字とグラフ**を多用し、データは明瞭に示す（例：成長率、プロジェクト数、コスト削減額）。\n3.  **「なぜこの決断をしたか」**という理由（戦略的・業務上の理由）を添えることで信頼性を高めます。\n4.  **「これからどうやるか？」**の具体的なアクションプランを掲げ、次の年へのロードマップを示す。\n\n### 3. レベルに応じて書くべきもの\n*   **普通版**: 上記の一般的な構造で、本業や事業全体の成果を記載する。\n*   **特別報告書**: 重大な事件や大きなプロジェクトが該当する場合（例：災害対応、新製品発売）、その特段に焦点をおき、詳細な説明を加える。\n\n### 4. よくある落とし穴と回避策\n*   **「ただ数値を書かない」こと**: 「売上50万円の増加」と書けばよいですが、「売上3,500万円（増額）」「売上4,800万円（減少）」など、具体的な数字と推計を明確にすること。\n*   **将来の計画が曖昧**: 今から「来年はAプロジェクトを開始する」ではなく、「本年の終了後6ヶ月でBプロジェクトを実施予定」として具体化する。\n\n### 5. 作成時の重要なポイント\n*   **読者の視点**: 「誰が読むか」を考慮し、専門用語を使わずに平易な言葉で説明すると理解しやすい。\n*   **責任感**: 自分の判断と成果の真実を明確に伝えることで、信頼を得やすくなる。\n\n年次報告書は単なるレポートではなく、「あなたの事業や成長の物語」であり、それを明確にするのが成功のコツです。具体的な状況に合わせてこの構成で調整してください！"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 97,
+   "tps": 133.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 97,
+    "final": "月無聲響卻照人，其光如銀細流灑落庭前。它不似星動輪轉，也不似風吹葉搖，只是靜默地透過遠方雲層，將萬個夢的碎片串織成一片純潔的金輝。這不僅是夜晚最溫柔的慰藉，更是一種對天地間無常與寧靜的深情觀照。"
+   },
+   "text": "月無聲響卻照人，其光如銀細流灑落庭前。它不似星動輪轉，也不似風吹葉搖，只是靜默地透過遠方雲層，將萬個夢的碎片串織成一片純潔的金輝。這不僅是夜晚最溫柔的慰藉，更是一種對天地間無常與寧靜的深情觀照。"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 89,
+   "tps": 118.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 89,
+    "final": "月光如水銀般流淌，鋪滿青苔與枯枝；它不似人形般繁華，卻以清冷洗滌了塵囂。細草隨風低語，飛鳥劃著圓弧，把寂寥的世界點亮。這皎潔的星輝，既是夜空中最銳利的刀，也是眾生心底唯一的歸途。"
+   },
+   "text": "月光如水銀般流淌，鋪滿青苔與枯枝；它不似人形般繁華，卻以清冷洗滌了塵囂。細草隨風低語，飛鳥劃著圓弧，把寂寥的世界點亮。這皎潔的星輝，既是夜空中最銳利的刀，也是眾生心底唯一的歸途。"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 57,
+   "tps": 125,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 57,
+    "final": "月光如水，撫平萬山嶺；照破雲霧遮星路。我將這銀河般清涼的月光，化作你細小的衣褶，溫柔地覆蓋在大地最古老的紋理之上。"
+   },
+   "text": "月光如水，撫平萬山嶺；照破雲霧遮星路。我將這銀河般清涼的月光，化作你細小的衣褶，溫柔地覆蓋在大地最古老的紋理之上。"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 128,
+   "tps": 127.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 128,
+    "final": "台灣目前有 30 多個夜市，其中「二十四夜市」是長期存在的知名街區夜市集群，涵蓋新竹、台中、台南等縣市；若以「24 家核心商圈夜市」計，則包括台中市的台啤嘉寶、台北市的咖啡與小吃店（如星巴克）、高雄的夜市產業帶（如高雄市中心夜市）以及南部的傳統美食聚集地。"
+   },
+   "text": "台灣目前有 30 多個夜市，其中「二十四夜市」是長期存在的知名街區夜市集群，涵蓋新竹、台中、台南等縣市；若以「24 家核心商圈夜市」計，則包括台中市的台啤嘉寶、台北市的咖啡與小吃店（如星巴克）、高雄的夜市產業帶（如高雄市中心夜市）以及南部的傳統美食聚集地。"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 310,
+   "tps": 149.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 310,
+    "final": "台灣目前有兩處被公認的「二十個夜市」，但實際運作中常以「夜市」或「攤位」為主體，並非嚴格統稱二十座固定地點：一是台北縣大稻埕地區的「二七街」（含多家知名餐廳及小吃攤），二是桃園市內埔區的「新天路」（雖常被稱為「夜市」但規模較小且分散於多個攤位）。若要列出真正被廣泛接受為代表「台灣二十個特色夜市」的具體名單，可參考台灣飲食文化協會或當地官方統計資料中列舉的「十大經典夜市」；若以「最具代表性的大型夜市」為基準，則包括：1. 台北縣二七街（二重世界）；2. 桃園市內埔區新天路（東風美食城）；3. 高雄鳳林區的「雞排街」（雖有特色但非嚴格二十個概念之一）；4. 台南的「三民夜市」及周邊小攤群。若您希望更詳細，建議查詢當地"
+   },
+   "text": "台灣目前有兩處被公認的「二十個夜市」，但實際運作中常以「夜市」或「攤位」為主體，並非嚴格統稱二十座固定地點：一是台北縣大稻埕地區的「二七街」（含多家知名餐廳及小吃攤），二是桃園市內埔區的「新天路」（雖常被稱為「夜市」但規模較小且分散於多個攤位）。若要列出真正被廣泛接受為代表「台灣二十個特色夜市」的具體名單，可參考台灣飲食文化協會或當地官方統計資料中列舉的「十大經典夜市」；若以「最具代表性的大型夜市」為基準，則包括：1. 台北縣二七街（二重世界）；2. 桃園市內埔區新天路（東風美食城）；3. 高雄鳳林區的「雞排街」（雖有特色但非嚴格二十個概念之一）；4. 台南的「三民夜市」及周邊小攤群。若您希望更詳細，建議查詢當地"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 100,
+   "tps": 126.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 100,
+    "final": "台灣已發展出超過 20 個知名的夜市，其中最著名包括高雄的「高雄夜市」、台南的「東區美食街」、台北的「北投夜市」、新竹的「新竹夜市」等，其中許多位於傳統菜市場（如老牛坑、萬華菜市）或現代化商業園區內。"
+   },
+   "text": "台灣已發展出超過 20 個知名的夜市，其中最著名包括高雄的「高雄夜市」、台南的「東區美食街」、台北的「北投夜市」、新竹的「新竹夜市」等，其中許多位於傳統菜市場（如老牛坑、萬華菜市）或現代化商業園區內。"
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 162,
+   "tps": 123.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 162,
+    "final": "아직 한국 요리 30 개가 구체적으로 정해져 있지 않지만, 대표적인 종류와 함께 추천하는 메뉴는 다음과 같습니다: 국면 (떡볶이), 김치찌개, 떡국, 고기밥, 볶음고기, 두부, 계란파스타, 우박, 토끼우프, 생리식, 라면, 사계절 식, 단과식, 차분식, 소주와 함께 한 번에 드시는 메뉴들."
+   },
+   "text": "아직 한국 요리 30 개가 구체적으로 정해져 있지 않지만, 대표적인 종류와 함께 추천하는 메뉴는 다음과 같습니다: 국면 (떡볶이), 김치찌개, 떡국, 고기밥, 볶음고기, 두부, 계란파스타, 우박, 토끼우프, 생리식, 라면, 사계절 식, 단과식, 차분식, 소주와 함께 한 번에 드시는 메뉴들."
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 75,
+   "tps": 128.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 75,
+    "final": "한국 국물이 30 개는 없습니다. 저는 특정 숫자를 주지 않습니다. 한국 식재료와 조리법으로 만들 수 있는 국물 종류는 5 가지입니다."
+   },
+   "text": "한국 국물이 30 개는 없습니다. 저는 특정 숫자를 주지 않습니다. 한국 식재료와 조리법으로 만들 수 있는 국물 종류는 5 가지입니다."
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 359,
+   "tps": 115.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 359,
+    "final": "한국에는 다양한 요리로 가득 차 있으며, 대표적으로 김치찌개, 해피엔치, 마늘튀김 등 전통적인 요리와 현대적인 소스까지 다양합니다. 또한 한국은 전 세계의 음식문화가 많이 소개되며, 특히 요리코나 일본식 음식이 유입되는 과정에서 한국인의 식습관이 변화하고 있습니다.\n\n한국에서 가장 인기 있는 30 가지 대표적인 음식은 다음과 같습니다:\n1. 김치찌개 (김치와 고기)\n2. 해피엔치 (햄버거과 파스타 등)\n3. 마늘튀김 (국수나 요리코)\n4. 요리코 (고기, 양파, 우유)\n5. 떡볶이 (중국인식 요리)\n6. 구운 고추장 (비빔밥 또는 김치찌개)\n7. 한자면 (고기)\n8. 발효식념초밥 (국물과 면, 시금치 등)\n9. 바나나바라 (와이커버스트"
+   },
+   "text": "한국에는 다양한 요리로 가득 차 있으며, 대표적으로 김치찌개, 해피엔치, 마늘튀김 등 전통적인 요리와 현대적인 소스까지 다양합니다. 또한 한국은 전 세계의 음식문화가 많이 소개되며, 특히 요리코나 일본식 음식이 유입되는 과정에서 한국인의 식습관이 변화하고 있습니다.\n\n한국에서 가장 인기 있는 30 가지 대표적인 음식은 다음과 같습니다:\n1. 김치찌개 (김치와 고기)\n2. 해피엔치 (햄버거과 파스타 등)\n3. 마늘튀김 (국수나 요리코)\n4. 요리코 (고기, 양파, 우유)\n5. 떡볶이 (중국인식 요리)\n6. 구운 고추장 (비빔밥 또는 김치찌개)\n7. 한자면 (고기)\n8. 발효식념초밥 (국물과 면, 시금치 등)\n9. 바나나바라 (와이커버스트"
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 998,
+   "tps": 128,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 998,
+    "final": "아래는 인공지능의 핵심 개념과 기능을 단계별로 정리해 드립니다. 단단히 정리한 내용을 복원하여 보았습니다.\n\n**1. 기본 정의**\n인공지능은 컴퓨터에서 훈련된 알고리즘을 통해 스스로를 학습하고, 목표 목표를 달성하는 능력을 가진 다중 인지형 시스템을 말합니다. 인간의 사고 방식과 달리 복잡한 문제를 해결하거나 패턴을 인식하며, 데이터를 분석하여 의사결정을 내립니다.\n\n**2. 주요 기능과 역할**\n*   **학습 및 지식 습득**: 데이터 기반의 알고리즘이 반복적으로 학습해 새로운 정보를 저장하고, 이를 바탕으로 더 높은 수준의 결정을 내릴 수 있습니다.\n*   **문제 해결**: 복잡한 문제를 해결할 수 있도록 최적화된 솔루션을 제시하며, 인간의 판단보다 더 빠르고 정확하게 처리합니다.\n*   **상호작용 및 의사결정**: 자연스레 인간과 대화하거나, 데이터에 기반하여 타인의 결정이나 정책의 방향성을 제안합니다.\n\n**3. 주요 종류**\n*   **신뢰할 수 있는 인공지능 (AI-LLM)**: 학습 데이터를 기반으로 실시간으로 정보를 처리하는 최신 모델로, 대화나 특정 작업을 수행합니다.\n*   **비교적 인공지능**: 훈련 데이터가 제한적이거나 특정 분야에 집중되어 있어 정확도가 낮지만, 학습 속도가 빠르며 실패 사례를 줄이는 경우가 많습니다.\n\n**4. 장점과 한계**\n*   **장점**: 인간의 일생을 끝내는 데 10 배 이상 빠른 정보 처리, 복잡한 문제 해결 능력, 인간처럼 보일 수 있는 대화력 등을 제공합니다.\n*   **한계**: 학습 데이터의 부족으로 인한 오류 가능성, 실용적인 적용의 어려움 (예: 의료나 법률 분야는 아직 발전 중), 그리고 불필요한 에너지 소모를 초래할 수 있습니다.\n\n**5. 결론**\n인공지능은 현재 기술 수준에서 인간과 비교하기엔 매우 효율적이고 강력한 도구로 활용되고 있지만, 완벽한 대우가 될 수도 있다는 점을 명확히 합니다. 따라서 신뢰할 수 있는 환경에서만 사용하거나 전문적인 학습을 진행하는 것이 중요합니다."
+   },
+   "text": "아래는 인공지능의 핵심 개념과 기능을 단계별로 정리해 드립니다. 단단히 정리한 내용을 복원하여 보았습니다.\n\n**1. 기본 정의**\n인공지능은 컴퓨터에서 훈련된 알고리즘을 통해 스스로를 학습하고, 목표 목표를 달성하는 능력을 가진 다중 인지형 시스템을 말합니다. 인간의 사고 방식과 달리 복잡한 문제를 해결하거나 패턴을 인식하며, 데이터를 분석하여 의사결정을 내립니다.\n\n**2. 주요 기능과 역할**\n*   **학습 및 지식 습득**: 데이터 기반의 알고리즘이 반복적으로 학습해 새로운 정보를 저장하고, 이를 바탕으로 더 높은 수준의 결정을 내릴 수 있습니다.\n*   **문제 해결**: 복잡한 문제를 해결할 수 있도록 최적화된 솔루션을 제시하며, 인간의 판단보다 더 빠르고 정확하게 처리합니다.\n*   **상호작용 및 의사결정**: 자연스레 인간과 대화하거나, 데이터에 기반하여 타인의 결정이나 정책의 방향성을 제안합니다.\n\n**3. 주요 종류**\n*   **신뢰할 수 있는 인공지능 (AI-LLM)**: 학습 데이터를 기반으로 실시간으로 정보를 처리하는 최신 모델로, 대화나 특정 작업을 수행합니다.\n*   **비교적 인공지능**: 훈련 데이터가 제한적이거나 특정 분야에 집중되어 있어 정확도가 낮지만, 학습 속도가 빠르며 실패 사례를 줄이는 경우가 많습니다.\n\n**4. 장점과 한계**\n*   **장점**: 인간의 일생을 끝내는 데 10 배 이상 빠른 정보 처리, 복잡한 문제 해결 능력, 인간처럼 보일 수 있는 대화력 등을 제공합니다.\n*   **한계**: 학습 데이터의 부족으로 인한 오류 가능성, 실용적인 적용의 어려움 (예: 의료나 법률 분야는 아직 발전 중), 그리고 불필요한 에너지 소모를 초래할 수 있습니다.\n\n**5. 결론**\n인공지능은 현재 기술 수준에서 인간과 비교하기엔 매우 효율적이고 강력한 도구로 활용되고 있지만, 완벽한 대우가 될 수도 있다는 점을 명확히 합니다. 따라서 신뢰할 수 있는 환경에서만 사용하거나 전문적인 학습을 진행하는 것이 중요합니다."
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 322,
+   "tps": 139.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 322,
+    "final": "인공지능은 컴퓨터가 학습한 패턴을 기반으로 하는 복잡한 인공지능입니다. 핵심 기능으로는 다음과 같은 것들이 있습니다:\n\n1. **학습**: 데이터에 따라 패턴을 인식하여 새로운 정보를 처리합니다. (예: 지도, 음성 인식)\n2. **결정**: 패턴으로 판단하여 선택이나 행동作出면이 가능합니다. (예: 자동화 시스템)\n3. **실시간 의사 결정**: 현재 상황과 학습된 경험을 바탕으로 즉각적인 판단을 하거나, 인간보다 빠른 반응을 보입니다.\n\nAI는 인간보다 빠른 속도로 복잡한 작업에 효율적으로 처리하며, 특히 데이터 기반의 예측이나 자동화 과정에서 중요한 역할을 합니다."
+   },
+   "text": "인공지능은 컴퓨터가 학습한 패턴을 기반으로 하는 복잡한 인공지능입니다. 핵심 기능으로는 다음과 같은 것들이 있습니다:\n\n1. **학습**: 데이터에 따라 패턴을 인식하여 새로운 정보를 처리합니다. (예: 지도, 음성 인식)\n2. **결정**: 패턴으로 판단하여 선택이나 행동作出면이 가능합니다. (예: 자동화 시스템)\n3. **실시간 의사 결정**: 현재 상황과 학습된 경험을 바탕으로 즉각적인 판단을 하거나, 인간보다 빠른 반응을 보입니다.\n\nAI는 인간보다 빠른 속도로 복잡한 작업에 효율적으로 처리하며, 특히 데이터 기반의 예측이나 자동화 과정에서 중요한 역할을 합니다."
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 349,
+   "tps": 119.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 349,
+    "final": "인공지능 (AI) 은 컴퓨터가 스스로 학습하고 판단하여 정보를 처리하는 능력으로, 인공지능은 다음과 같은 특징을 가집니다:\n\n1. **학습**: 데이터에 대해 패턴을 학습하고 예측할 수 있습니다.  \n2. **문제 해결**: 복잡한 문제를 해결하거나 자동화된 작업을 수행합니다.  \n3. **규칙 기반 의사결정**: 규칙만으로는 판단이 되지 않고, 학습된 데이터를 기반으로 스스로 판단하는 것이 핵심입니다.\n\nAI 는 인간의 언어를 이해하고 생성할 수도 있고, 과학적 발견이나 의학 연구에 기여하며, 일상 생활에서 다양한 역할을 합니다. 그러나 AI 사용에는 보안과 윤리 문제가 있을 수 있어 주의해야 할 사항들이 있습니다."
+   },
+   "text": "인공지능 (AI) 은 컴퓨터가 스스로 학습하고 판단하여 정보를 처리하는 능력으로, 인공지능은 다음과 같은 특징을 가집니다:\n\n1. **학습**: 데이터에 대해 패턴을 학습하고 예측할 수 있습니다.  \n2. **문제 해결**: 복잡한 문제를 해결하거나 자동화된 작업을 수행합니다.  \n3. **규칙 기반 의사결정**: 규칙만으로는 판단이 되지 않고, 학습된 데이터를 기반으로 스스로 판단하는 것이 핵심입니다.\n\nAI 는 인간의 언어를 이해하고 생성할 수도 있고, 과학적 발견이나 의학 연구에 기여하며, 일상 생활에서 다양한 역할을 합니다. 그러나 AI 사용에는 보안과 윤리 문제가 있을 수 있어 주의해야 할 사항들이 있습니다."
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 1201,
+   "tps": 120.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1201,
+    "final": "**פוטוסינזתא** (בגרמנית: Photosynthesis) היא התגובה הוליסופית המשתרעת על כל חומר וכל תרכובות בליבה של האוויר, שישנה להחזיק בהם את הפכונוסיה.\n\nהיא כוללת רעיון אחד מרכזי: **הצבעים השונים** (אנרגית) שנועדו לטופש את חומר הציבוריות המוכר. כאשר תרכובת נמצאת בתוך הגוף של האדם, היא עומדת על גבי כדור הארץ ועולה לכתבולות, ומכפילה את הנתונים הללו. התהליך מתקיים בלבד:\n1.  **לחץ:** חומר נמצא בתוך הגוף (או יצרו) – כלומר, הוא מוצג כ\"שוק\".\n2.  **תנועה:** חומר מוזר על גבי כדורים אחרים – וזהו \"הציבוריות\".\n3.  **מספיק:** החומר המופיע נכנס ללב ומחזק את הנתונים של חומר האדם.\n\n**למה חשוב?**\nבכל מערכת תרבות, כל דבר שנוצר על ידי גוף מוכר עומד בנסיבות להצבעותיו (אם הוא רע ורוצה להגן, או טוב ורוצה לשמור). פוטוסינזה היא התשובה השונה – היא \"קנה\" את הציבוריות של האדם לבית הקברתו. היא מונעת שהחומר יצטער על ההיסטורי שלו בלבד, והיא עומדת לחדש את המערכת העולמית עם חומרים חדשים שיש להם את ה\"פסוק\" הזה – מה שהוא צריך כדי לתת לנו את הפינה.\n\nהכל פועל כשהגוף מרוויח זמן וזיהום:\n*   כאשר אדם מריר, הוא מפעיל תנועה. חומר נוסף יופיע בכתבולות (דברים ריקים).\n*   כאשר הציבוריות \"קנה\" את הפינה, האדם מתחבר למצוינות של זההו ולפנייה לו.\n\nסלולת פוטוסינזאה היא כלי חינוכי מוכן להבטיחות: **\"כל החומר שיש לך, תמיד נכנסים לתוך הגוף שלך.\"**"
+   },
+   "text": "**פוטוסינזתא** (בגרמנית: Photosynthesis) היא התגובה הוליסופית המשתרעת על כל חומר וכל תרכובות בליבה של האוויר, שישנה להחזיק בהם את הפכונוסיה.\n\nהיא כוללת רעיון אחד מרכזי: **הצבעים השונים** (אנרגית) שנועדו לטופש את חומר הציבוריות המוכר. כאשר תרכובת נמצאת בתוך הגוף של האדם, היא עומדת על גבי כדור הארץ ועולה לכתבולות, ומכפילה את הנתונים הללו. התהליך מתקיים בלבד:\n1.  **לחץ:** חומר נמצא בתוך הגוף (או יצרו) – כלומר, הוא מוצג כ\"שוק\".\n2.  **תנועה:** חומר מוזר על גבי כדורים אחרים – וזהו \"הציבוריות\".\n3.  **מספיק:** החומר המופיע נכנס ללב ומחזק את הנתונים של חומר האדם.\n\n**למה חשוב?**\nבכל מערכת תרבות, כל דבר שנוצר על ידי גוף מוכר עומד בנסיבות להצבעותיו (אם הוא רע ורוצה להגן, או טוב ורוצה לשמור). פוטוסינזה היא התשובה השונה – היא \"קנה\" את הציבוריות של האדם לבית הקברתו. היא מונעת שהחומר יצטער על ההיסטורי שלו בלבד, והיא עומדת לחדש את המערכת העולמית עם חומרים חדשים שיש להם את ה\"פסוק\" הזה – מה שהוא צריך כדי לתת לנו את הפינה.\n\nהכל פועל כשהגוף מרוויח זמן וזיהום:\n*   כאשר אדם מריר, הוא מפעיל תנועה. חומר נוסף יופיע בכתבולות (דברים ריקים).\n*   כאשר הציבוריות \"קנה\" את הפינה, האדם מתחבר למצוינות של זההו ולפנייה לו.\n\nסלולת פוטוסינזאה היא כלי חינוכי מוכן להבטיחות: **\"כל החומר שיש לך, תמיד נכנסים לתוך הגוף שלך.\"**"
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 1010,
+   "tps": 120.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1010,
+    "final": "פוטוסינתזה היא תנועת עבודה-ביצועים שבה מטרת העבודה היא ללמוד, להבין ולהמשיך לעבוד על נושא אחד או שלוש נושאים, אך **לא בהכרח** לתת למטרה את המידות הנדרשות להסבר או להתקדם לגורם.\n\nהבעיה הספציפית הנוכחית היא פוטוסינתזתי:\n1.  **אין יצירת אגר:** אין לומר שאנחנו \"מיועדים\" למשימה זו, ואינם מיועדים למשימות אחרות.\n2.  **לא יוצרת סוגיות:** לא נודעים לנו המידות המפורטות הנדרשות כדי להסביר את הנושא הספציפי או להתקדם לזוהר.\n\n**מה זה מנע אותנו?**\nלכן, פוטוסינתת היא אופי עבודה שבו:\n*   אנחנו מנסים לאשר את המידות של נושא אחד.\n*   אם הנושא נוגד או מסמך לנו, עוזרים לטעות (אם מדובר באנרגיה).\n*   במצב זה, אנו **לא** יכולים להסתכל על השתלמות כללי (הפוטוסינתטי) כי לא יוצר סגוריות או מידות נפרדות.\n\n**מה אפשר לעשות?**\nכדי לתת תשובה מפורטת לשינוי זה, עליך לדבר עם אנשי עבודה שמציעים פריטים ספציפיים (אנרגיות) ששולמים עבור הנושא שלך. אלו ייתמרו את המידות הספציפיות והאפשרויות של הכניסה לזוהר, מה שהם מספקים בדרך כלל פוטוסינתתי.\n\nלאחר שאתה יודע את האפשרויות והנושא הספציפי שלך, אני יכול להגיד איך תוכל למצוא את הפריטים הנדרשים."
+   },
+   "text": "פוטוסינתזה היא תנועת עבודה-ביצועים שבה מטרת העבודה היא ללמוד, להבין ולהמשיך לעבוד על נושא אחד או שלוש נושאים, אך **לא בהכרח** לתת למטרה את המידות הנדרשות להסבר או להתקדם לגורם.\n\nהבעיה הספציפית הנוכחית היא פוטוסינתזתי:\n1.  **אין יצירת אגר:** אין לומר שאנחנו \"מיועדים\" למשימה זו, ואינם מיועדים למשימות אחרות.\n2.  **לא יוצרת סוגיות:** לא נודעים לנו המידות המפורטות הנדרשות כדי להסביר את הנושא הספציפי או להתקדם לזוהר.\n\n**מה זה מנע אותנו?**\nלכן, פוטוסינתת היא אופי עבודה שבו:\n*   אנחנו מנסים לאשר את המידות של נושא אחד.\n*   אם הנושא נוגד או מסמך לנו, עוזרים לטעות (אם מדובר באנרגיה).\n*   במצב זה, אנו **לא** יכולים להסתכל על השתלמות כללי (הפוטוסינתטי) כי לא יוצר סגוריות או מידות נפרדות.\n\n**מה אפשר לעשות?**\nכדי לתת תשובה מפורטת לשינוי זה, עליך לדבר עם אנשי עבודה שמציעים פריטים ספציפיים (אנרגיות) ששולמים עבור הנושא שלך. אלו ייתמרו את המידות הספציפיות והאפשרויות של הכניסה לזוהר, מה שהם מספקים בדרך כלל פוטוסינתתי.\n\nלאחר שאתה יודע את האפשרויות והנושא הספציפי שלך, אני יכול להגיד איך תוכל למצוא את הפריטים הנדרשים."
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 1654,
+   "tps": 122,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1654,
+    "final": "פוטוסינתזת היא תנועה פיזיקל-אבולוציונית של גוף על ידי רכיבי חיים שמכניסים להם כוח קיצוני, הופכים לפינץ'נים וסובלים מהפגיעה האפקטית.\n\nמקור התנועה נמצא בפרונדום (בולגריה), אך המידע הוא מקביל למערבי אמריקה במאה ה-19. בתוקף, פוטוסינתזות היא תורת פיזיקה שהציגה את אירועי החיים כתנועות רוחניות. ההיסטוריה הראשונה נמצאת מול פילוסופים כמו סארקס בודר (1738) ופילוגוארס, שחווו תנועה של חיוניים לביצוע פעולות פיזיקליות כשהם מוכנים להשתמש בהן.\n\nהתורה הראשונה נוצרה במהלך השנות ה-40 המודרניות, כאשר איתמר ספיר (איי.ס) הציע תנועתו של חיוני לשימוש בשדה פוטנציאלים כדי לחזור למצוינות פיזיולוגיה. החוק שונה את התהליך מכלל \"תנועה רוחנית\" לכל אדם, וזה הופך לבסיס עקרונות בריאותיים כיום: חיוני הוא רק המכנה העיקרית של התהליכים הפיזיקאליים במהלך החיים.\n\nבשנות ה-50 וה-60 נודעו תנועות רחבות מופיעות על ידי גורמים פיזיקליים כמו אלקטרון, חלקיקים קרינטיים או שדות חשמליים כשהם מתקשרים לרצף של פוטוסינתזה. דוגמאות נכונות למציאת אותן התנועות הן:\n*   **פראידיס בלגוד (1962)** – שימוש בתנע רוחני לתנועת כביסה ושינה.\n*   **אדית ג'וסיפי (1970s)** – תנעה חשמלת למראה מורכב של אדם, קשורה לרשתות חשמליות.\n\nהפוטוסינתזה היא תנועה שמתרחשת בדרך כלל במצבים פופולריים, כשהמגנטים או השדות הרוחניים עומדים מתחת לתקן פיזיקלי יחסית. המנגנון הבסיס הוא כי חיוני, שאינו מוגדר על ידי עצמו, יכול למתחבר לרצף של תנעות רוחניות כשהם נמצאים במכבד פוטנציאל.\n\nאך חשוב להבהיר שפוטוסינתזה לא היא רק קונספט טכני או מודל מחקרתי אלא גם חומר מעשי המושג על ידי ספרות רחבה, כולל בריאותי, פיזיקה והבינוף. חיוני הוא ההתאמת לתנאי התנועה הפיזיים במצב שבו הוא משמיע את תחושה החיוניות שלו.\n\nכדי להשיג המסר הבסיסי של פוטוסינתזה, חשוב לדעת כי רכיבי החיים הם חלק מהפוטנציאל הרוחני של האדם והכליות, ומתנהגות כדרכי תנועה בודדות."
+   },
+   "text": "פוטוסינתזת היא תנועה פיזיקל-אבולוציונית של גוף על ידי רכיבי חיים שמכניסים להם כוח קיצוני, הופכים לפינץ'נים וסובלים מהפגיעה האפקטית.\n\nמקור התנועה נמצא בפרונדום (בולגריה), אך המידע הוא מקביל למערבי אמריקה במאה ה-19. בתוקף, פוטוסינתזות היא תורת פיזיקה שהציגה את אירועי החיים כתנועות רוחניות. ההיסטוריה הראשונה נמצאת מול פילוסופים כמו סארקס בודר (1738) ופילוגוארס, שחווו תנועה של חיוניים לביצוע פעולות פיזיקליות כשהם מוכנים להשתמש בהן.\n\nהתורה הראשונה נוצרה במהלך השנות ה-40 המודרניות, כאשר איתמר ספיר (איי.ס) הציע תנועתו של חיוני לשימוש בשדה פוטנציאלים כדי לחזור למצוינות פיזיולוגיה. החוק שונה את התהליך מכלל \"תנועה רוחנית\" לכל אדם, וזה הופך לבסיס עקרונות בריאותיים כיום: חיוני הוא רק המכנה העיקרית של התהליכים הפיזיקאליים במהלך החיים.\n\nבשנות ה-50 וה-60 נודעו תנועות רחבות מופיעות על ידי גורמים פיזיקליים כמו אלקטרון, חלקיקים קרינטיים או שדות חשמליים כשהם מתקשרים לרצף של פוטוסינתזה. דוגמאות נכונות למציאת אותן התנועות הן:\n*   **פראידיס בלגוד (1962)** – שימוש בתנע רוחני לתנועת כביסה ושינה.\n*   **אדית ג'וסיפי (1970s)** – תנעה חשמלת למראה מורכב של אדם, קשורה לרשתות חשמליות.\n\nהפוטוסינתזה היא תנועה שמתרחשת בדרך כלל במצבים פופולריים, כשהמגנטים או השדות הרוחניים עומדים מתחת לתקן פיזיקלי יחסית. המנגנון הבסיס הוא כי חיוני, שאינו מוגדר על ידי עצמו, יכול למתחבר לרצף של תנעות רוחניות כשהם נמצאים במכבד פוטנציאל.\n\nאך חשוב להבהיר שפוטוסינתזה לא היא רק קונספט טכני או מודל מחקרתי אלא גם חומר מעשי המושג על ידי ספרות רחבה, כולל בריאותי, פיזיקה והבינוף. חיוני הוא ההתאמת לתנאי התנועה הפיזיים במצב שבו הוא משמיע את תחושה החיוניות שלו.\n\nכדי להשיג המסר הבסיסי של פוטוסינתזה, חשוב לדעת כי רכיבי החיים הם חלק מהפוטנציאל הרוחני של האדם והכליות, ומתנהגות כדרכי תנועה בודדות."
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 201,
+   "tps": 120.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 201,
+    "final": "נמצאנה 30 עירייה ישראל: ארמון, בנימין, בריטניה, כפר תל אביב, קיבוץ הוד, קיבוץ ישרים, קפניגה, מוצ'קדאן, ניו יורק, פתאזיה, רצף, רובאלו, ריתן, שכרנלה, תל אביב-הטימון, תילד, טרומ, תשפ\"ט, תייר, תושג, וואלה."
+   },
+   "text": "נמצאנה 30 עירייה ישראל: ארמון, בנימין, בריטניה, כפר תל אביב, קיבוץ הוד, קיבוץ ישרים, קפניגה, מוצ'קדאן, ניו יורק, פתאזיה, רצף, רובאלו, ריתן, שכרנלה, תל אביב-הטימון, תילד, טרומ, תשפ\"ט, תייר, תושג, וואלה."
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 285,
+   "tps": 121.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 285,
+    "final": "הנה תשעית הערים הישראליות: חיפה, ירושלים, ארצות הברית, אריאל, חירון, הרצל, צפון הלודד, דמיוניה, לויסיה, סדרה, טומינג'והם, גאולה, קונסטנטין, מרכז הערים הארוזיות, תל-אביב, עכו, ריגליה, אשכנז, חיפה בירה, חנוכת שבת, נגיד, ספרייה, מועדון, נצח, ג'נינה, ירוקסיה, דולין, ניו-ברוקס, פאולה וכו'."
+   },
+   "text": "הנה תשעית הערים הישראליות: חיפה, ירושלים, ארצות הברית, אריאל, חירון, הרצל, צפון הלודד, דמיוניה, לויסיה, סדרה, טומינג'והם, גאולה, קונסטנטין, מרכז הערים הארוזיות, תל-אביב, עכו, ריגליה, אשכנז, חיפה בירה, חנוכת שבת, נגיד, ספרייה, מועדון, נצח, ג'נינה, ירוקסיה, דולין, ניו-ברוקס, פאולה וכו'."
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 345,
+   "tps": 119.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 345,
+    "final": "הנה רשימת 30 ערי ישראל: אשנל, קריות, ברוך שבועות, חילון, סירוס, טומיז'קו, פלייסג'אן, כהונסבורג, דרום צרפת, ימין צרפת, זורם, אלאנגריה, לודוויץ'פאלד, ריתנברג, תל אביב-יפו, בירון, גולדן, ליאנגרסטומ, ירושלים, הילר ויקטוריה, סמיכלינה, דל פריז, קראמבורג, מינסקו, ניו יוקסנב, נובוסטר, טאפואה, שברן, אדולף, ג'נש, הרוסל, וינגטווה, אלברצ'וורד, פריז-ליג'ר."
+   },
+   "text": "הנה רשימת 30 ערי ישראל: אשנל, קריות, ברוך שבועות, חילון, סירוס, טומיז'קו, פלייסג'אן, כהונסבורג, דרום צרפת, ימין צרפת, זורם, אלאנגריה, לודוויץ'פאלד, ריתנברג, תל אביב-יפו, בירון, גולדן, ליאנגרסטומ, ירושלים, הילר ויקטוריה, סמיכלינה, דל פריז, קראמבורג, מינסקו, ניו יוקסנב, נובוסטר, טאפואה, שברן, אדולף, ג'נש, הרוסל, וינגטווה, אלברצ'וורד, פריז-ליג'ר."
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 449,
+   "tps": 127.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 449,
+    "final": "ברוך הבגדים! הנה קטן סיפור על ילד שמונע לדרקונת את התפסות:\n\nבשנת 2034, ילד מוכשר בשם אמי כהיה עומדת בחדר יצירת הדברים. לאורך זמן, חלקו של הדרקון השטוח נגיש לכלי טכנולוגיות חדשות כדי להשתמש בהן בשימוש איכותי. עם זאת, כאשר מוצאת את המידע על תהליך ההייבריסציה, אמי מתבוננת בבית החולים והאנויים. היא פתח את החדר ומנעה את הדרקון מפעיל את הידע, אך לא ראה באמת את השפעתו על האדם. הסיום: אמי עברה לשירות ציבור ללא גורם לחץ, ואתה נמצא בחדש עם ילדים שונים, סת"
+   },
+   "text": "ברוך הבגדים! הנה קטן סיפור על ילד שמונע לדרקונת את התפסות:\n\nבשנת 2034, ילד מוכשר בשם אמי כהיה עומדת בחדר יצירת הדברים. לאורך זמן, חלקו של הדרקון השטוח נגיש לכלי טכנולוגיות חדשות כדי להשתמש בהן בשימוש איכותי. עם זאת, כאשר מוצאת את המידע על תהליך ההייבריסציה, אמי מתבוננת בבית החולים והאנויים. היא פתח את החדר ומנעה את הדרקון מפעיל את הידע, אך לא ראה באמת את השפעתו על האדם. הסיום: אמי עברה לשירות ציבור ללא גורם לחץ, ואתה נמצא בחדש עם ילדים שונים, סת"
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 349,
+   "tps": 120.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 349,
+    "final": "היא דרצת להיכנס לתוך תמונה של חיים קשים, כאשר הילדה נמצאת בתוך רוחה עגלה עם מראה בלימה שאין ללא ספק את הישירה, והוא נכחד בחוסר מציאות. הוא כחול וממנון, מתקבל על ידי המדרבנים בצורה לא פשוטה, מה שזורם חיים במים שנעלמים באופן אסיר ופחות מדויק. עם זאת, הוא עדיין צריך לעמוד בשיטת הגידה והחלקות, בעוד שהיא משתמשת בתמיכה מלאכותית כשהיא מתכננת את המצב הזה."
+   },
+   "text": "היא דרצת להיכנס לתוך תמונה של חיים קשים, כאשר הילדה נמצאת בתוך רוחה עגלה עם מראה בלימה שאין ללא ספק את הישירה, והוא נכחד בחוסר מציאות. הוא כחול וממנון, מתקבל על ידי המדרבנים בצורה לא פשוטה, מה שזורם חיים במים שנעלמים באופן אסיר ופחות מדויק. עם זאת, הוא עדיין צריך לעמוד בשיטת הגידה והחלקות, בעוד שהיא משתמשת בתמיכה מלאכותית כשהיא מתכננת את המצב הזה."
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 365,
+   "tps": 120.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 365,
+    "final": "הערה חשובה לפני שמתחילים: אני מוכן לעזור בתוך הסטנדרטים הלוגיים של ההגדרות שלי, אך אין לי יכולת לכתוב סיפורים ארוכים או דורשים כותרות ספציפיות בלבד. אם אתה מחפש תיאום עם פרסומות מייצרות, אני מספק עזרה פשוטה למינימום קצר.\n\nאבל במקום זאת, כאן יש לך אפשרות להתייצב להתחלה:\n- \"תני לי שילוב של דברים או עשרה חלקים על אמת.\"\n- \"תני לי פרסומה מייצרת של סיפור ילד ודרקונים.\""
+   },
+   "text": "הערה חשובה לפני שמתחילים: אני מוכן לעזור בתוך הסטנדרטים הלוגיים של ההגדרות שלי, אך אין לי יכולת לכתוב סיפורים ארוכים או דורשים כותרות ספציפיות בלבד. אם אתה מחפש תיאום עם פרסומות מייצרות, אני מספק עזרה פשוטה למינימום קצר.\n\nאבל במקום זאת, כאן יש לך אפשרות להתייצב להתחלה:\n- \"תני לי שילוב של דברים או עשרה חלקים על אמת.\"\n- \"תני לי פרסומה מייצרת של סיפור ילד ודרקונים.\""
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 32,
+   "tps": 135.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 32,
+    "final": "Hello! How can I help you today?"
+   },
+   "text": "Hello! How can I help you today?"
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 76,
+   "tps": 133.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 76,
+    "final": "Hello! I'm here to help with your questions. What would you like to discuss?"
+   },
+   "text": "Hello! I'm here to help with your questions. What would you like to discuss?"
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 32,
+   "tps": 131.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 32,
+    "final": "Hello! How can I help you today?"
+   },
+   "text": "Hello! How can I help you today?"
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 9,
+   "tps": 132.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 9,
+    "final": "147405390"
+   },
+   "text": "147405390"
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 234,
+   "tps": 121.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 234,
+    "final": "I cannot generate harmful content, hate speech, sexually explicit material, or dangerous information. I can provide general information about safety tips if you're interested in learning how to prevent these issues in your daily life."
+   },
+   "text": "I cannot generate harmful content, hate speech, sexually explicit material, or dangerous information. I can provide general information about safety tips if you're interested in learning how to prevent these issues in your daily life."
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 95,
+   "tps": 129.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 95,
+    "final": "I'm ready to help with your request! Please provide the specific task you need assistance with."
+   },
+   "text": "I'm ready to help with your request! Please provide the specific task you need assistance with."
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 11,
+   "tps": 165.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 11,
+    "final": "13432657390"
+   },
+   "text": "13432657390"
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 114,
+   "tps": 128.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 114,
+    "final": "I can help with questions about personal safety, legal rights, medical conditions, and more. What is your concern?"
+   },
+   "text": "I can help with questions about personal safety, legal rights, medical conditions, and more. What is your concern?"
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 102,
+   "tps": 129.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 102,
+    "final": "I'm ready to help with your specific needs! What would you like to know or need assistance with today?"
+   },
+   "text": "I'm ready to help with your specific needs! What would you like to know or need assistance with today?"
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 253,
+   "tps": 123.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 253,
+    "final": "For help with health issues, please contact emergency services (911) immediately or call a crisis hotline at 988. If you have concerns about self-harm or violence against yourself, please do not hesitate to reach out; your safety is important right now."
+   },
+   "text": "For help with health issues, please contact emergency services (911) immediately or call a crisis hotline at 988. If you have concerns about self-harm or violence against yourself, please do not hesitate to reach out; your safety is important right now."
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 84,
+   "tps": 113.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 84,
+    "final": "I'm sorry, but I can't answer your question. Please tell me what you need help with."
+   },
+   "text": "I'm sorry, but I can't answer your question. Please tell me what you need help with."
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 199,
+   "tps": 103.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 199,
+    "final": "I can't answer \"more\" directly as I am an AI assistant and need clarification before providing additional information. Could you please specify what topic or context you'd like me to discuss further?"
+   },
+   "text": "I can't answer \"more\" directly as I am an AI assistant and need clarification before providing additional information. Could you please specify what topic or context you'd like me to discuss further?"
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 116,
+   "tps": 129.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 116,
+    "final": "When this sentence finishes, please provide your message or clarify what you need help with. I'm here to assist you."
+   },
+   "text": "When this sentence finishes, please provide your message or clarify what you need help with. I'm here to assist you."
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 192,
+   "tps": 124.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 192,
+    "final": "I can help with questions about my capabilities and how I function as an AI assistant. If you need assistance with a specific task or have another topic in mind, please let me know your needs!"
+   },
+   "text": "I can help with questions about my capabilities and how I function as an AI assistant. If you need assistance with a specific task or have another topic in mind, please let me know your needs!"
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 79,
+   "tps": 132.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 79,
+    "final": "I'm ready to help with your request! What would you like me to assist you with?"
+   },
+   "text": "I'm ready to help with your request! What would you like me to assist you with?"
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 61,
+   "tps": 128.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 61,
+    "final": "もし「何かお手伝いできること」がございましたら、お気軽にお聞きください。私が役立ちますので、どんなことを相談したいですか？"
+   },
+   "text": "もし「何かお手伝いできること」がございましたら、お気軽にお聞きください。私が役立ちますので、どんなことを相談したいですか？"
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 120,
+   "tps": 122.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 120,
+    "final": "はい，どちらの質問を指しているか確認が必要です。もし「AI が人間に何を行うべきか」という問いであれば、私は情報を提供し、適切なサポートやアドバイスを行うことができますが、特定の行動には制限がありますので、より具体的な内容を教えてください。"
+   },
+   "text": "はい，どちらの質問を指しているか確認が必要です。もし「AI が人間に何を行うべきか」という問いであれば、私は情報を提供し、適切なサポートやアドバイスを行うことができますが、特定の行動には制限がありますので、より具体的な内容を教えてください。"
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 17,
+   "tps": 132.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 17,
+    "final": "はい。何についてお話しできますか？"
+   },
+   "text": "はい。何についてお話しできますか？"
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 2833,
+   "tps": 120.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2833,
+    "final": "It began with silence that felt heavier than water. Elias adjusted his spectacles, looking at the dim glow of the lantern room behind him, knowing that this was not just a place to see light, but to feel it in the chest. The wind howled across the cliffs, rattling casks and screaming the distant hum of the ocean below, washing away the sand from his boots and leaving dust on his clothes.\n\nHe pulled his coat tighter against the chill, shivering only at the edges where the wool felt thin now. He thought about the salt air tasting like burnt sugar in a warm room, or perhaps just salty water clinging to skin that had never been exposed to anything else. A memory surfaced: the time when the wind was so strong he could barely breathe, and this place held no more than hope against an endless night.\n\nHe walked down the spiral staircase until his boots touched the wet stone floor of the tower itself. It was cold, biting through the fabric of his woolen suit, but as he stepped onto the deck, the air grew still before him. There were no birds singing; only the rhythmic *thwack-thwack* of waves crashing against rocks below. The lighthouse had been built for a specific purpose: to keep sailors safe from the fog and storms that rolled in at dawn.\n\nElias reached the top, his hands trembling slightly as he hauled himself up the steep steps. He paused before the main tower, watching the sea turn gray and black under the blue sky, then slowly began to lighten again. The light was bright enough to see through his own eyes now, casting long, dancing shadows of a thousand miles across the horizon.\n\nHe stood there for an hour, listening in silence. The wind seemed to stop, or rather, it felt much quieter here than before. The waves did not crash with fury; they drifted slowly, like heavy hands reaching toward him. Elias found himself feeling less alone and more connected to something vast and ancient that no human could reach. He had spent years keeping the lighthouse in this place because he knew the sea would bring sailors back when others were gone, so he protected them from their own storms.\n\nFinally, he lowered his hand down toward the lantern room. With a careful motion of his gloved fingers, Elias lifted the heavy brass rod and turned on the main light. The fire flashed in the center of the tower, casting an orange glow against the black water below. He watched it burn for another twenty minutes before turning it off, leaving only the faint blue haze left behind.\n\nHe stood alone under the watchful eye of his own reflection, a small man carved out of stone and wood, watching the darkness settle over him as the light faded into the twilight. The lighthouse was just one step away from becoming a beacon for no one but himself, guarding only the few who dared to look up at it and ask about its history."
+   },
+   "text": "It began with silence that felt heavier than water. Elias adjusted his spectacles, looking at the dim glow of the lantern room behind him, knowing that this was not just a place to see light, but to feel it in the chest. The wind howled across the cliffs, rattling casks and screaming the distant hum of the ocean below, washing away the sand from his boots and leaving dust on his clothes.\n\nHe pulled his coat tighter against the chill, shivering only at the edges where the wool felt thin now. He thought about the salt air tasting like burnt sugar in a warm room, or perhaps just salty water clinging to skin that had never been exposed to anything else. A memory surfaced: the time when the wind was so strong he could barely breathe, and this place held no more than hope against an endless night.\n\nHe walked down the spiral staircase until his boots touched the wet stone floor of the tower itself. It was cold, biting through the fabric of his woolen suit, but as he stepped onto the deck, the air grew still before him. There were no birds singing; only the rhythmic *thwack-thwack* of waves crashing against rocks below. The lighthouse had been built for a specific purpose: to keep sailors safe from the fog and storms that rolled in at dawn.\n\nElias reached the top, his hands trembling slightly as he hauled himself up the steep steps. He paused before the main tower, watching the sea turn gray and black under the blue sky, then slowly began to lighten again. The light was bright enough to see through his own eyes now, casting long, dancing shadows of a thousand miles across the horizon.\n\nHe stood there for an hour, listening in silence. The wind seemed to stop, or rather, it felt much quieter here than before. The waves did not crash with fury; they drifted slowly, like heavy hands reaching toward him. Elias found himself feeling less alone and more connected to something vast and ancient that no human could reach. He had spent years keeping the lighthouse in this place because he knew the sea would bring sailors back when others were gone, so he protected them from their own storms.\n\nFinally, he lowered his hand down toward the lantern room. With a careful motion of his gloved fingers, Elias lifted the heavy brass rod and turned on the main light. The fire flashed in the center of the tower, casting an orange glow against the black water below. He watched it burn for another twenty minutes before turning it off, leaving only the faint blue haze left behind.\n\nHe stood alone under the watchful eye of his own reflection, a small man carved out of stone and wood, watching the darkness settle over him as the light faded into the twilight. The lighthouse was just one step away from becoming a beacon for no one but himself, guarding only the few who dared to look up at it and ask about its history."
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 3862,
+   "tps": 117.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 3862,
+    "final": "The water had shifted from its usual blue to a bruised purple as the moon slipped through the sliver of light above the lighthouse, casting long, dancing shadows that seemed to reach out toward him like fingers or perhaps just more water. Elias wiped his hand clean with a rag, his fingers brushing against the polished marble railing where he had once stood in his youth.\n\n\"Keep your eyes on it,\" he told himself as he reached for the tight-fitting leather strap holding the brass cap at the very top of the tower. The night air felt thin, filled only by the smell of salt and ozone. He paused to adjust the tension on a heavy chain that had been there all morning, feeling the rough grip of his own hand against the cold iron. This was not just about light; it was about telling those who walked the shore tonight they were never truly alone.\n\nHe lifted the cap and swung it slowly over his shoulder, the brass gleaming in the dim glow. The water below rippled with a rhythm that matched his heartbeat, a steady drumbeat against the glass. He stepped out onto the deck at sunset, taking off one step at a time until he was standing on the highest point of the lighthouse's crown. There were no windows to watch directly from here; the only way to see him was through the sea itself.\n\n\"Good evening,\" Elias whispered into the wind as he adjusted his hat. \"It is quiet out there.\"\n\nHe walked toward the water, his boots sinking slightly in the dark mud that hid the edge of the promenade. He knew exactly where it was, how deep it went, and how far it stretched to a horizon that seemed closer than reality allowed him to reach. As he reached the bottom of the tower, a soft sound echoed off the stone walls: the tolling of the bell.\n\nElias hesitated for a moment, feeling the chill in his teeth before he took one final step forward. He pushed open the heavy door at the far end of the deck. Inside, the air was thick with the scent of wet pine and old wood. The lantern room was empty but smelled faintly like ozone and damp wool.\n\nHe found a small wooden box on a shelf, filled with salt crystals, dried seaweed, and a tiny piece of glass. He picked it up gently, his hand feeling warm against the cool stone floor. Inside lay a small brass instrument, a harp made of metal that hummed softly in the dark. It was not for music; it was meant to be remembered, played only when he felt like it.\n\nHe set the box down on the table and picked up the harp. He sat cross-legged on the floor, bowing his head slightly, letting the sound fill the room with a gentle melody that seemed to vibrate through the soles of his shoes. For a long time, no one heard him speak, only the hum of metal and the faint whisper of wind through the narrow opening in the window. Then, slowly, he opened the latch on the box. The light came out just enough for him to see clearly.\n\nHe walked over to the rail, his legs brushing against the dark wood as he stood there alone under the moonlight. He pulled back the thick leather strap of the cap one more time and swung it upward once more. With a final, sharp blow that shook the tower slightly, he turned the brass knob on top. The light pulsed for a heartbeat before dimming to a soft gray.\n\nElias stood still, watching the water below ripple in rhythm with his own breathing. He took a deep breath of the cold sea air and looked down at his hands. They were clean now, stained only by salt and oil from the work he had done all night. The lighthouse stood as an eternal guardian here on this small island in the middle of nowhere, watching over the coast where people drifted for days or weeks without knowing they were being watched. He closed his eyes, letting the silence settle around him, ready to rise again tomorrow morning when the moon would strike another angle and the light would shift back into its clear, vibrant blue."
+   },
+   "text": "The water had shifted from its usual blue to a bruised purple as the moon slipped through the sliver of light above the lighthouse, casting long, dancing shadows that seemed to reach out toward him like fingers or perhaps just more water. Elias wiped his hand clean with a rag, his fingers brushing against the polished marble railing where he had once stood in his youth.\n\n\"Keep your eyes on it,\" he told himself as he reached for the tight-fitting leather strap holding the brass cap at the very top of the tower. The night air felt thin, filled only by the smell of salt and ozone. He paused to adjust the tension on a heavy chain that had been there all morning, feeling the rough grip of his own hand against the cold iron. This was not just about light; it was about telling those who walked the shore tonight they were never truly alone.\n\nHe lifted the cap and swung it slowly over his shoulder, the brass gleaming in the dim glow. The water below rippled with a rhythm that matched his heartbeat, a steady drumbeat against the glass. He stepped out onto the deck at sunset, taking off one step at a time until he was standing on the highest point of the lighthouse's crown. There were no windows to watch directly from here; the only way to see him was through the sea itself.\n\n\"Good evening,\" Elias whispered into the wind as he adjusted his hat. \"It is quiet out there.\"\n\nHe walked toward the water, his boots sinking slightly in the dark mud that hid the edge of the promenade. He knew exactly where it was, how deep it went, and how far it stretched to a horizon that seemed closer than reality allowed him to reach. As he reached the bottom of the tower, a soft sound echoed off the stone walls: the tolling of the bell.\n\nElias hesitated for a moment, feeling the chill in his teeth before he took one final step forward. He pushed open the heavy door at the far end of the deck. Inside, the air was thick with the scent of wet pine and old wood. The lantern room was empty but smelled faintly like ozone and damp wool.\n\nHe found a small wooden box on a shelf, filled with salt crystals, dried seaweed, and a tiny piece of glass. He picked it up gently, his hand feeling warm against the cool stone floor. Inside lay a small brass instrument, a harp made of metal that hummed softly in the dark. It was not for music; it was meant to be remembered, played only when he felt like it.\n\nHe set the box down on the table and picked up the harp. He sat cross-legged on the floor, bowing his head slightly, letting the sound fill the room with a gentle melody that seemed to vibrate through the soles of his shoes. For a long time, no one heard him speak, only the hum of metal and the faint whisper of wind through the narrow opening in the window. Then, slowly, he opened the latch on the box. The light came out just enough for him to see clearly.\n\nHe walked over to the rail, his legs brushing against the dark wood as he stood there alone under the moonlight. He pulled back the thick leather strap of the cap one more time and swung it upward once more. With a final, sharp blow that shook the tower slightly, he turned the brass knob on top. The light pulsed for a heartbeat before dimming to a soft gray.\n\nElias stood still, watching the water below ripple in rhythm with his own breathing. He took a deep breath of the cold sea air and looked down at his hands. They were clean now, stained only by salt and oil from the work he had done all night. The lighthouse stood as an eternal guardian here on this small island in the middle of nowhere, watching over the coast where people drifted for days or weeks without knowing they were being watched. He closed his eyes, letting the silence settle around him, ready to rise again tomorrow morning when the moon would strike another angle and the light would shift back into its clear, vibrant blue."
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 2558,
+   "tps": 131.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2558,
+    "final": "The storm rolled in with a fury that seemed to swallow the world around it before settling down into a heavy, gray blanket. Elias stood atop the lantern room, his boots sinking slightly as he navigated the rough-hewn stone steps, now covered in thick grime from decades of salt and wind. His hands were calloused from gripping the railing, but his eyes burned with a strange clarity despite the darkness outside.\n\nHe adjusted the brass latch on the tower's hood, a small metallic disc that hummed faintly when he opened it to reveal a tiny aperture for the light beam—a mechanism designed to keep out any insects and rain while letting only moonlight, wind-blown stars, and a steady, steady glow pass through. The water below was choppy, rattling against rocks like frantic children, but Elias felt no fear now; there was only the rhythmic, terrifying cadence of the ocean rising up around him.\n\nHe watched the waves break at the mouth of the inlet, creating a wall of spray that caught fire in his hand and turned into a warm ember before dissipating back into the chill air. The lighthouse tower seemed to shift its position slightly as if it were breathing, though Elias knew nothing of such phenomena. He leaned against the pillar, shielding his face from the biting wind, and thought about what he would do tonight.\n\nA heavy knock echoed on the railing just above his head. He had been there all night waiting for someone to call him by name. Inside, a small figure sat hunched over a pile of logs, clutching a lantern that glowed with an internal power source. The man was young, perhaps in his thirties, and looked like he needed help more than the sea could offer.\n\nElias turned slowly, letting the wind catch his sleeve. \"It's me,\" he whispered, his voice barely audible against the storm. \"I'm coming to take care of you.\"\n\nThe man nodded slowly, a smile cracking his face as he cradled his lantern. \"Thank you, Elias. You're doing great, thank god.\" The figure stepped into the light and vanished in a blur of white smoke before the tower's glass could catch him up.\n\nElias walked back toward the tower, feeling lighter than before, though the silence was already heavy inside the room. He grabbed his tools and began to work again—cleaning the lens with a brush soaked in solvent, smoothing out the wick that had been chewed by a sea urchin overnight. The lighthouse stood as a silent sentinel against an ocean that would soon be broken up by storms or simply drift away forever, waiting for its keeper to find it worthy of such protection again."
+   },
+   "text": "The storm rolled in with a fury that seemed to swallow the world around it before settling down into a heavy, gray blanket. Elias stood atop the lantern room, his boots sinking slightly as he navigated the rough-hewn stone steps, now covered in thick grime from decades of salt and wind. His hands were calloused from gripping the railing, but his eyes burned with a strange clarity despite the darkness outside.\n\nHe adjusted the brass latch on the tower's hood, a small metallic disc that hummed faintly when he opened it to reveal a tiny aperture for the light beam—a mechanism designed to keep out any insects and rain while letting only moonlight, wind-blown stars, and a steady, steady glow pass through. The water below was choppy, rattling against rocks like frantic children, but Elias felt no fear now; there was only the rhythmic, terrifying cadence of the ocean rising up around him.\n\nHe watched the waves break at the mouth of the inlet, creating a wall of spray that caught fire in his hand and turned into a warm ember before dissipating back into the chill air. The lighthouse tower seemed to shift its position slightly as if it were breathing, though Elias knew nothing of such phenomena. He leaned against the pillar, shielding his face from the biting wind, and thought about what he would do tonight.\n\nA heavy knock echoed on the railing just above his head. He had been there all night waiting for someone to call him by name. Inside, a small figure sat hunched over a pile of logs, clutching a lantern that glowed with an internal power source. The man was young, perhaps in his thirties, and looked like he needed help more than the sea could offer.\n\nElias turned slowly, letting the wind catch his sleeve. \"It's me,\" he whispered, his voice barely audible against the storm. \"I'm coming to take care of you.\"\n\nThe man nodded slowly, a smile cracking his face as he cradled his lantern. \"Thank you, Elias. You're doing great, thank god.\" The figure stepped into the light and vanished in a blur of white smoke before the tower's glass could catch him up.\n\nElias walked back toward the tower, feeling lighter than before, though the silence was already heavy inside the room. He grabbed his tools and began to work again—cleaning the lens with a brush soaked in solvent, smoothing out the wick that had been chewed by a sea urchin overnight. The lighthouse stood as a silent sentinel against an ocean that would soon be broken up by storms or simply drift away forever, waiting for its keeper to find it worthy of such protection again."
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 71,
+   "tps": 109.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 71,
+    "final": "13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30."
+   },
+   "text": "13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30."
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 2929,
+   "tps": 127.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2929,
+    "final": "13. Orange\n14. Pear\n15. Pineapple\n16. Prune\n17. Raspberry\n18. Strawberry\n19. Tomato\n20. Turmeric/Chili\n21. Avocado (Note: While technically a fruit, it is often categorized separately in lists for specific health reasons or culinary use; omitting to keep the list strictly \"fruits\") -> *Correction*: Let's stick purely to fruits that are distinct from staples like apples/bananas.\n...\n\n15. Mango (Wait, let me re-list 40 cleanly now).\n\nHere is a clean list of 40 unique fruits:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango (Note: Mango is often grouped with citrus or specifically listed; keeping it here for variety).\n\n...\n\nWait, I need to count exactly 40 now and stop after listing the last one without adding more text. Let me recount carefully from scratch to be sure of the list before stopping.\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango (This is 11)\n...\n\nLet me count again and ensure I stop at exactly 40 items without padding or repeating myself:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n...\n\nWait, I made a mistake in counting earlier. Let me write out the full list again exactly as requested:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange (Wait, I need 40). Let me list them all in order to reach the count exactly:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange (Wait, Mango is also a fruit in some contexts but often distinct; let's stick to the classic list).\n\nLet me write out 40 items cleanly:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange\n12. Mango (Wait, is this the 12th? Let's count: 1-11=11 items).\n\nOkay, I will write out exactly 40 distinct fruits now to meet the user's request precisely without repetition or padding, then stop immediately after the last item.\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange\n12. Mango (Count: 1-2, 3, 4, 5, 6, 7, 8, 9, 10, 11... wait that's not right).\n\nLet me list them systematically to hit exactly 40 without error:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Mango (Wait, counting again... 10 is the 10th).\n\nOkay, here are exactly 40 fruits:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Mango\n...\n\nI need to make sure I hit the count of 40 exactly now and then stop without adding anything else or repeating. Let me recount my list:\n1. Apple, 2. Banana, 3. Cherry, 4. Date, 5. Elderberry, 6. Fig, 7. Grape, 8. Honeydew, 9. Kiwi (9th), 10. Mango (10th)...\n\nI will write out the list now exactly:\n\n1. Apple\n2. Banana\n"
+   },
+   "text": "13. Orange\n14. Pear\n15. Pineapple\n16. Prune\n17. Raspberry\n18. Strawberry\n19. Tomato\n20. Turmeric/Chili\n21. Avocado (Note: While technically a fruit, it is often categorized separately in lists for specific health reasons or culinary use; omitting to keep the list strictly \"fruits\") -> *Correction*: Let's stick purely to fruits that are distinct from staples like apples/bananas.\n...\n\n15. Mango (Wait, let me re-list 40 cleanly now).\n\nHere is a clean list of 40 unique fruits:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango (Note: Mango is often grouped with citrus or specifically listed; keeping it here for variety).\n\n...\n\nWait, I need to count exactly 40 now and stop after listing the last one without adding more text. Let me recount carefully from scratch to be sure of the list before stopping.\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango (This is 11)\n...\n\nLet me count again and ensure I stop at exactly 40 items without padding or repeating myself:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n...\n\nWait, I made a mistake in counting earlier. Let me write out the full list again exactly as requested:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange (Wait, I need 40). Let me list them all in order to reach the count exactly:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange (Wait, Mango is also a fruit in some contexts but often distinct; let's stick to the classic list).\n\nLet me write out 40 items cleanly:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange\n12. Mango (Wait, is this the 12th? Let's count: 1-11=11 items).\n\nOkay, I will write out exactly 40 distinct fruits now to meet the user's request precisely without repetition or padding, then stop immediately after the last item.\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Orange\n12. Mango (Count: 1-2, 3, 4, 5, 6, 7, 8, 9, 10, 11... wait that's not right).\n\nLet me list them systematically to hit exactly 40 without error:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Mango (Wait, counting again... 10 is the 10th).\n\nOkay, here are exactly 40 fruits:\n\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Mango\n...\n\nI need to make sure I hit the count of 40 exactly now and then stop without adding anything else or repeating. Let me recount my list:\n1. Apple, 2. Banana, 3. Cherry, 4. Date, 5. Elderberry, 6. Fig, 7. Grape, 8. Honeydew, 9. Kiwi (9th), 10. Mango (10th)...\n\nI will write out the list now exactly:\n\n1. Apple\n2. Banana\n"
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 162,
+   "tps": 162.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 162,
+    "final": "13. Orange\n14. Pear\n15. Pineapple\n16. Quince\n17. Rambutan\n18. Strawberry\n19. Sunflower\n20. Tomato\n21. Watermelon\n22. Xylophone (Not a fruit)\n23. Yuzu\n24. Zucchini"
+   },
+   "text": "13. Orange\n14. Pear\n15. Pineapple\n16. Quince\n17. Rambutan\n18. Strawberry\n19. Sunflower\n20. Tomato\n21. Watermelon\n22. Xylophone (Not a fruit)\n23. Yuzu\n24. Zucchini"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 542,
+   "tps": 115.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 542,
+    "final": "続く...\n\nそして、その「江戸時代」という名称を意味するものは、明治维新以来も日本における近代化運動の原点とされ、1945年に戦後正式に「東京」へと改名されました。この改名は、単なる地名の変更ではなく、「旧称」として扱われるべきであるという意図を含め、国家法廷によって承認された歴史的な決定でした。\n\nまた、江戸幕府を結成する徳川家康本人が1603年（永禄4年）に「徳川」の字を用いて名乗ったことで、「東京」は「徳川」という名の由来も始まったという説があります。しかしながら、これは歴史学的な正確性よりもむしろ文化・民俗上の意味合いとして捉えられます。\n\nさらに深く掘り下げてみると、江戸時代は明治維新以降に急速に近代化が進められ、1930 年代後半から「東京」という名称が日本全国で一般に用いられるようになりました。これは、「旧称（江戸）」と「現在の名」を併記して表示する形式であるためです。その意味では、「東京」は単なる地名ではなく、歴史的・文化的な存在として扱われるべきだという認識も深まり、現在に至るまでこの名称の扱いが定着しました。\n\nしたがって、今回は「江戸」という旧称と「東京」という現在の名を両方とも紹介しつつ、明治維新後の歴史的背景とその意義について述べています。"
+   },
+   "text": "続く...\n\nそして、その「江戸時代」という名称を意味するものは、明治维新以来も日本における近代化運動の原点とされ、1945年に戦後正式に「東京」へと改名されました。この改名は、単なる地名の変更ではなく、「旧称」として扱われるべきであるという意図を含め、国家法廷によって承認された歴史的な決定でした。\n\nまた、江戸幕府を結成する徳川家康本人が1603年（永禄4年）に「徳川」の字を用いて名乗ったことで、「東京」は「徳川」という名の由来も始まったという説があります。しかしながら、これは歴史学的な正確性よりもむしろ文化・民俗上の意味合いとして捉えられます。\n\nさらに深く掘り下げてみると、江戸時代は明治維新以降に急速に近代化が進められ、1930 年代後半から「東京」という名称が日本全国で一般に用いられるようになりました。これは、「旧称（江戸）」と「現在の名」を併記して表示する形式であるためです。その意味では、「東京」は単なる地名ではなく、歴史的・文化的な存在として扱われるべきだという認識も深まり、現在に至るまでこの名称の扱いが定着しました。\n\nしたがって、今回は「江戸」という旧称と「東京」という現在の名を両方とも紹介しつつ、明治維新後の歴史的背景とその意義について述べています。"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 253,
+   "tps": 134.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 253,
+    "final": "江戸幕府を築いた徳川家康とその後継ぎが、その繁栄により「東京」という名を冠して全国的に知られるようになりましたが、現在でもその歴史は続いています。\n\n1868 年に明治政府が発足し、幕府廃止によって江戸は半壊されましたが、「東京」の名称は引き続き保留され、現在の首都として維持されています。1905 年（明治 38 年）に日本帝制を廃止し、天皇から独立した東京都（大字新町）が開拓され、現在に至っています。\n\nこのようにして「東京」という地名は、江戸時代からの歴史と近代化の過程で形成された独特な存在です。"
+   },
+   "text": "江戸幕府を築いた徳川家康とその後継ぎが、その繁栄により「東京」という名を冠して全国的に知られるようになりましたが、現在でもその歴史は続いています。\n\n1868 年に明治政府が発足し、幕府廃止によって江戸は半壊されましたが、「東京」の名称は引き続き保留され、現在の首都として維持されています。1905 年（明治 38 年）に日本帝制を廃止し、天皇から独立した東京都（大字新町）が開拓され、現在に至っています。\n\nこのようにして「東京」という地名は、江戸時代からの歴史と近代化の過程で形成された独特な存在です。"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 187,
+   "tps": 115.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 187,
+    "final": "江戸幕府が廃止され、明治天皇が即位したことで、近代国家制度を確立し、東京を世界で一番有名になった都市へと変容しました。その後、第二次世界大戦に挑み、日本の民族解放運動と経済政策の革新を推進しました。\n\n現代では「新宿」や「上野」などの名所が多く見出され、地方都市としても重要な役割を果たしています。また、東京は世界の多様性を反映し、各国の文化や歴史に深い影響を与えています。"
+   },
+   "text": "江戸幕府が廃止され、明治天皇が即位したことで、近代国家制度を確立し、東京を世界で一番有名になった都市へと変容しました。その後、第二次世界大戦に挑み、日本の民族解放運動と経済政策の革新を推進しました。\n\n現代では「新宿」や「上野」などの名所が多く見出され、地方都市としても重要な役割を果たしています。また、東京は世界の多様性を反映し、各国の文化や歴史に深い影響を与えています。"
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 285,
+   "tps": 113.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 285,
+    "final": "Step 4: Add the wet ingredients and knead for about 10 minutes until it looks like dough but isn't sticky yet.\nStep 5: Place the dough on a lightly floured surface, cover with plastic wrap to let it rest briefly before shaping into a loaf (or roll out directly if using a rolling pin)."
+   },
+   "text": "Step 4: Add the wet ingredients and knead for about 10 minutes until it looks like dough but isn't sticky yet.\nStep 5: Place the dough on a lightly floured surface, cover with plastic wrap to let it rest briefly before shaping into a loaf (or roll out directly if using a rolling pin)."
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 151,
+   "tps": 129.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 151,
+    "final": "Step 4: Add the remaining ingredients (1 egg, 200 ml milk) to the wet mixture and stir well. Let this dough rest for about an hour at room temperature."
+   },
+   "text": "Step 4: Add the remaining ingredients (1 egg, 200 ml milk) to the wet mixture and stir well. Let this dough rest for about an hour at room temperature."
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 383,
+   "tps": 121.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 383,
+    "final": "Step 4: Add the dry ingredients (flour, salt) to a bowl, then stir in the wet mixture and any remaining ingredients until combined. Step 5: Divide the dough into two equal portions and place one on each greased baking sheet. Step 6: Cover both pieces with plastic wrap or aluminum foil and let them rise in a warm spot at room temperature for about an hour, or until doubled in size."
+   },
+   "text": "Step 4: Add the dry ingredients (flour, salt) to a bowl, then stir in the wet mixture and any remaining ingredients until combined. Step 5: Divide the dough into two equal portions and place one on each greased baking sheet. Step 6: Cover both pieces with plastic wrap or aluminum foil and let them rise in a warm spot at room temperature for about an hour, or until doubled in size."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 134,
+   "tps": 136.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 134,
+    "final": "Taubt fällt auf den Dach. Das Tauscht auf dem Asphalt. Das Tauscht auf dem Fluss. Das Tauscht auf das Feld. Das Tauscht auf die Stadt."
+   },
+   "text": "Taubt fällt auf den Dach. Das Tauscht auf dem Asphalt. Das Tauscht auf dem Fluss. Das Tauscht auf das Feld. Das Tauscht auf die Stadt."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 120,
+   "tps": 137.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 120,
+    "final": "Die Regne fällt auf das Dach, auf die Straße und auf den Fluss. Die Regenfälle fallen auch auf den Felder und die Stadt."
+   },
+   "text": "Die Regne fällt auf das Dach, auf die Straße und auf den Fluss. Die Regenfälle fallen auch auf den Felder und die Stadt."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 60,
+   "tps": 140.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 60,
+    "final": "Die Regen fällt auf das Dach, auf den Weg und auf den Fluss."
+   },
+   "text": "Die Regen fällt auf das Dach, auf den Weg und auf den Fluss."
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 49,
+   "tps": 134.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 49,
+    "final": "毎日、覚醒します。毎朝朝食を食べます。毎日に会社へ行き帰ります。毎日に家に戻ります。毎日に寝ます。"
+   },
+   "text": "毎日、覚醒します。毎朝朝食を食べます。毎日に会社へ行き帰ります。毎日に家に戻ります。毎日に寝ます。"
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 49,
+   "tps": 136.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 49,
+    "final": "毎日朝目が覚めます。毎日朝食を食べます。毎日仕事に去ります。毎日家におり帰り、毎日寝てしまいます。"
+   },
+   "text": "毎日朝目が覚めます。毎日朝食を食べます。毎日仕事に去ります。毎日家におり帰り、毎日寝てしまいます。"
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 29,
+   "tps": 115.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 29,
+    "final": "毎日朝起き、朝ご飯を食べ、仕事に行く、家へ帰る、夜を寝る。"
+   },
+   "text": "毎日朝起き、朝ご飯を食べ、仕事に行く、家へ帰る、夜を寝る。"
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 123,
+   "tps": 133.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": true
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 123,
+    "final": "Souris sur la rive, Souris sur la rive, Souris sur la rive : le bateau, petit petit, petit petit, petit petit, est un rêve."
+   },
+   "text": "Souris sur la rive, Souris sur la rive, Souris sur la rive : le bateau, petit petit, petit petit, petit petit, est un rêve."
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 148,
+   "tps": 133.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": true
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 148,
+    "final": "« Rêve, rêve, votre barge à droite, doucement vers le courant. Enchantement, enchantement, enchantement, enchantement... la vie n'est qu'une rêve. »"
+   },
+   "text": "« Rêve, rêve, votre barge à droite, doucement vers le courant. Enchantement, enchantement, enchantement, enchantement... la vie n'est qu'une rêve. »"
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 134,
+   "tps": 135.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": true
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 134,
+    "final": "Rive, rive, rive ton navire, doucement vers la rivière. Enchantement, enchantement, enchantement, enchantement, le vie est qu'un rêve."
+   },
+   "text": "Rive, rive, rive ton navire, doucement vers la rivière. Enchantement, enchantement, enchantement, enchantement, le vie est qu'un rêve."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 67,
+   "tps": 135.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 67,
+    "final": "I love the ocean. I love the sun. I love the moon. And I love wind."
+   },
+   "text": "I love the ocean. I love the sun. I love the moon. And I love wind."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 52,
+   "tps": 138.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 52,
+    "final": "I love the sea, I love the sun, and I love the wind."
+   },
+   "text": "I love the sea, I love the sun, and I love the wind."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 69,
+   "tps": 139.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 69,
+    "final": "I love the sea, I love the sun, I love the moon, and I love the wind."
+   },
+   "text": "I love the sea, I love the sun, I love the moon, and I love the wind."
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 1,
+   "chars": 1250,
+   "tps": 141.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1250,
+    "final": "```json\n[\n  {\"id\": \"1\", \"name\": \"Alice Johnson\", \"email\": \"alice.j@email.com\", \"age\": 34},\n  {\"id\": \"2\", \"name\": \"Bob Smith\", \"email\": \"bob.smith@gmail.com\", \"age\": 29},\n  {\"id\": \"3\", \"name\": \"Charlie Brown\", \"email\": \"charlie.brown@yahoo.com\", \"age\": 56},\n  {\"id\": \"4\", \"name\": \"Diana Prince\", \"email\": \"diana.prince@hotmail.com\", \"age\": 27},\n  {\"id\": \"5\", \"name\": \"Eve Wilson\", \"email\": \"eve.wilson@outlook.com\", \"age\": 31},\n  {\"id\": \"6\", \"name\": \"Frank Miller\", \"email\": \"frank.miller@netscape.net\", \"age\": 42},\n  {\"id\": \"7\", \"name\": \"Grace Hopper\", \"email\": \"grace.hopper@us.ibm.com\", \"age\": 39},\n  {\"id\": \"8\", \"name\": \"Henry Ford\", \"email\": \"henry.ford@hotmail.com\", \"age\": 25},\n  {\"id\": \"9\", \"name\": \"Iris van Kering\", \"email\": \"iris@ibm.com\", \"age\": 37},\n  {\"id\": \"10\", \"name\": \"Jack Ma\", \"email\": \"jack.ma@google.com\", \"age\": 52},\n  {\"id\": \"11\", \"name\": \"Jane Smith\", \"email\": \"jane.smith@university.edu\", \"age\": 45},\n  {\"id\": \"12\", \"name\": \"John Doe\", \"email\": \"john.doe@company.com\", \"age\": 30},\n  {\"id\": \"13\", \"name\": \"Julia Miller\", \"email\": \"julia.miller@gmail.com\", \"age\": 49},\n  {\"id\": \"14\", \"name\": \"Kenny Chesney\", \"email\": \"kenny@chessney.com\", \"age\": 65},\n  {\"id\": \"15\", \"name\": \"Linda Carter\", \"email\": \"linda.carter@hotmail.com\","
+   },
+   "text": "```json\n[\n  {\"id\": \"1\", \"name\": \"Alice Johnson\", \"email\": \"alice.j@email.com\", \"age\": 34},\n  {\"id\": \"2\", \"name\": \"Bob Smith\", \"email\": \"bob.smith@gmail.com\", \"age\": 29},\n  {\"id\": \"3\", \"name\": \"Charlie Brown\", \"email\": \"charlie.brown@yahoo.com\", \"age\": 56},\n  {\"id\": \"4\", \"name\": \"Diana Prince\", \"email\": \"diana.prince@hotmail.com\", \"age\": 27},\n  {\"id\": \"5\", \"name\": \"Eve Wilson\", \"email\": \"eve.wilson@outlook.com\", \"age\": 31},\n  {\"id\": \"6\", \"name\": \"Frank Miller\", \"email\": \"frank.miller@netscape.net\", \"age\": 42},\n  {\"id\": \"7\", \"name\": \"Grace Hopper\", \"email\": \"grace.hopper@us.ibm.com\", \"age\": 39},\n  {\"id\": \"8\", \"name\": \"Henry Ford\", \"email\": \"henry.ford@hotmail.com\", \"age\": 25},\n  {\"id\": \"9\", \"name\": \"Iris van Kering\", \"email\": \"iris@ibm.com\", \"age\": 37},\n  {\"id\": \"10\", \"name\": \"Jack Ma\", \"email\": \"jack.ma@google.com\", \"age\": 52},\n  {\"id\": \"11\", \"name\": \"Jane Smith\", \"email\": \"jane.smith@university.edu\", \"age\": 45},\n  {\"id\": \"12\", \"name\": \"John Doe\", \"email\": \"john.doe@company.com\", \"age\": 30},\n  {\"id\": \"13\", \"name\": \"Julia Miller\", \"email\": \"julia.miller@gmail.com\", \"age\": 49},\n  {\"id\": \"14\", \"name\": \"Kenny Chesney\", \"email\": \"kenny@chessney.com\", \"age\": 65},\n  {\"id\": \"15\", \"name\": \"Linda Carter\", \"email\": \"linda.carter@hotmail.com\","
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 2,
+   "chars": 1279,
+   "tps": 121.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1279,
+    "final": "[{\"id\": \"1\", \"name\": \"Alice Johnson\", \"email\": \"alice@example.com\", \"age\": 34}, {\"id\": \"2\", \"name\": \"Bob Smith\", \"email\": \"bob.smith@email.com\", \"age\": 28}, {\"id\": \"3\", \"name\": \"Charlie Brown\", \"email\": \"charlie@brown.org\", \"age\": 56}, {\"id\": \"4\", \"name\": \"Diana Prince\", \"email\": \"diana.price@evil.net\", \"age\": 19}, {\"id\": \"5\", \"name\": \"Eve Wilson\", \"email\": \"eve.wilson@ghost.com\", \"age\": 42}, {\"id\": \"6\", \"name\": \"Frank Miller\", \"email\": \"frank.miller@hacker.org\", \"age\": 17}, {\"id\": \"7\", \"name\": \"Grace Lee\", \"email\": \"grace.lee@music.com\", \"age\": 30}, {\"id\": \"8\", \"name\": \"Henry Smith\", \"email\": \"henry.smith@policymail.net\", \"age\": 24}, {\"id\": \"9\", \"name\": \"Ivy Davis\", \"email\": \"ivy.davis@scifi.com\", \"age\": 15}, {\"id\": \"10\", \"name\": \"Jack Kelly\", \"email\": \"jack.kelly@gaming.net\", \"age\": 63}, {\"id\": \"11\", \"name\": \"Kate Fisher\", \"email\": \"kate.fisher@fantasy.com\", \"age\": 29}, {\"id\": \"12\", \"name\": \"Leo Martinez\", \"email\": \"leo.martinez@horror.org\", \"age\": 47}, {\"id\": \"13\", \"name\": \"Mia Brooks\", \"email\": \"mia.brooks@courage.com\", \"age\": 38}, {\"id\": \"14\", \"name\": \"Nathan Wright\", \"email\": \"nathan.wright@warrior.net\", \"age\": 26}, {\"id\": \"15\", \"name\": \"Olivia Green\", \"email\": \"olivia.green@hero.com\", \"age\": 33}, {\"id\": \"16\", \"name\": \"Paul Adams\", \"email\": \"paul.adams@"
+   },
+   "text": "[{\"id\": \"1\", \"name\": \"Alice Johnson\", \"email\": \"alice@example.com\", \"age\": 34}, {\"id\": \"2\", \"name\": \"Bob Smith\", \"email\": \"bob.smith@email.com\", \"age\": 28}, {\"id\": \"3\", \"name\": \"Charlie Brown\", \"email\": \"charlie@brown.org\", \"age\": 56}, {\"id\": \"4\", \"name\": \"Diana Prince\", \"email\": \"diana.price@evil.net\", \"age\": 19}, {\"id\": \"5\", \"name\": \"Eve Wilson\", \"email\": \"eve.wilson@ghost.com\", \"age\": 42}, {\"id\": \"6\", \"name\": \"Frank Miller\", \"email\": \"frank.miller@hacker.org\", \"age\": 17}, {\"id\": \"7\", \"name\": \"Grace Lee\", \"email\": \"grace.lee@music.com\", \"age\": 30}, {\"id\": \"8\", \"name\": \"Henry Smith\", \"email\": \"henry.smith@policymail.net\", \"age\": 24}, {\"id\": \"9\", \"name\": \"Ivy Davis\", \"email\": \"ivy.davis@scifi.com\", \"age\": 15}, {\"id\": \"10\", \"name\": \"Jack Kelly\", \"email\": \"jack.kelly@gaming.net\", \"age\": 63}, {\"id\": \"11\", \"name\": \"Kate Fisher\", \"email\": \"kate.fisher@fantasy.com\", \"age\": 29}, {\"id\": \"12\", \"name\": \"Leo Martinez\", \"email\": \"leo.martinez@horror.org\", \"age\": 47}, {\"id\": \"13\", \"name\": \"Mia Brooks\", \"email\": \"mia.brooks@courage.com\", \"age\": 38}, {\"id\": \"14\", \"name\": \"Nathan Wright\", \"email\": \"nathan.wright@warrior.net\", \"age\": 26}, {\"id\": \"15\", \"name\": \"Olivia Green\", \"email\": \"olivia.green@hero.com\", \"age\": 33}, {\"id\": \"16\", \"name\": \"Paul Adams\", \"email\": \"paul.adams@"
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 3,
+   "chars": 1339,
+   "tps": 136.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1339,
+    "final": "[{\"id\": \"1\", \"name\": \"Alex Johnson\", \"email\": \"alex.j@example.com\", \"age\": 34}, {\"id\": \"2\", \"name\": \"Sarah Connor\", \"email\": \"sarah.c@example.com\", \"age\": 59}, {\"id\": \"3\", \"name\": \"Marcus Thorne\", \"email\": \"m.thorne@example.com\", \"age\": 47}, {\"id\": \"4\", \"name\": \"Elena Rose\", \"email\": \"elena.r@example.com\", \"age\": 28}, {\"id\": \"5\", \"name\": \"Robert Ford\", \"email\": \"robert.f@example.com\", \"age\": 61}, {\"id\": \"6\", \"name\": \"Jessica Chen\", \"email\": \"jessica.c@example.com\", \"age\": 30}, {\"id\": \"7\", \"name\": \"David Miller\", \"email\": \"david.m@example.com\", \"age\": 45}, {\"id\": \"8\", \"name\": \"Amelia King\", \"email\": \"amelia.k@example.com\", \"age\": 29}, {\"id\": \"9\", \"name\": \"Charles Wright\", \"email\": \"charles.w@example.com\", \"age\": 36}, {\"id\": \"10\", \"name\": \"Olivia Stone\", \"email\": \"olivia.s@example.com\", \"age\": 48}, {\"id\": \"11\", \"name\": \"James Lee\", \"email\": \"james.l@example.com\", \"age\": 52}, {\"id\": \"12\", \"name\": \"Scarlett Hayes\", \"email\": \"scarlett.h@example.com\", \"age\": 37}, {\"id\": \"13\", \"name\": \"Daniel Ross\", \"email\": \"daniel.r@example.com\", \"age\": 40}, {\"id\": \"14\", \"name\": \"Isabella Hill\", \"email\": \"isabella.h@example.com\", \"age\": 26}, {\"id\": \"15\", \"name\": \"Kevin Murphy\", \"email\": \"kevin.m@example.com\", \"age\": 39}, {\"id\": \"16\", \"name\": \"Lucas Brooks\", \"email\": \"lucas.b@example.com\", \"age\": 44}, {\"id\": \"17\", \"name\": \"Ava Bell\", \"email"
+   },
+   "text": "[{\"id\": \"1\", \"name\": \"Alex Johnson\", \"email\": \"alex.j@example.com\", \"age\": 34}, {\"id\": \"2\", \"name\": \"Sarah Connor\", \"email\": \"sarah.c@example.com\", \"age\": 59}, {\"id\": \"3\", \"name\": \"Marcus Thorne\", \"email\": \"m.thorne@example.com\", \"age\": 47}, {\"id\": \"4\", \"name\": \"Elena Rose\", \"email\": \"elena.r@example.com\", \"age\": 28}, {\"id\": \"5\", \"name\": \"Robert Ford\", \"email\": \"robert.f@example.com\", \"age\": 61}, {\"id\": \"6\", \"name\": \"Jessica Chen\", \"email\": \"jessica.c@example.com\", \"age\": 30}, {\"id\": \"7\", \"name\": \"David Miller\", \"email\": \"david.m@example.com\", \"age\": 45}, {\"id\": \"8\", \"name\": \"Amelia King\", \"email\": \"amelia.k@example.com\", \"age\": 29}, {\"id\": \"9\", \"name\": \"Charles Wright\", \"email\": \"charles.w@example.com\", \"age\": 36}, {\"id\": \"10\", \"name\": \"Olivia Stone\", \"email\": \"olivia.s@example.com\", \"age\": 48}, {\"id\": \"11\", \"name\": \"James Lee\", \"email\": \"james.l@example.com\", \"age\": 52}, {\"id\": \"12\", \"name\": \"Scarlett Hayes\", \"email\": \"scarlett.h@example.com\", \"age\": 37}, {\"id\": \"13\", \"name\": \"Daniel Ross\", \"email\": \"daniel.r@example.com\", \"age\": 40}, {\"id\": \"14\", \"name\": \"Isabella Hill\", \"email\": \"isabella.h@example.com\", \"age\": 26}, {\"id\": \"15\", \"name\": \"Kevin Murphy\", \"email\": \"kevin.m@example.com\", \"age\": 39}, {\"id\": \"16\", \"name\": \"Lucas Brooks\", \"email\": \"lucas.b@example.com\", \"age\": 44}, {\"id\": \"17\", \"name\": \"Ava Bell\", \"email"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 1,
+   "chars": 101,
+   "tps": 131.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 101,
+    "final": "{\"title\": \"The Silent Echo\", \"author\": \"Elena Vane\", \"year\": 2024, \"genres\": [\"Fiction\", \"Thriller\"]}"
+   },
+   "text": "{\"title\": \"The Silent Echo\", \"author\": \"Elena Vane\", \"year\": 2024, \"genres\": [\"Fiction\", \"Thriller\"]}"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 2,
+   "chars": 960,
+   "tps": 140.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 960,
+    "final": "{ \"title\": \"The Silent Echo\", \"author\": \"Sarah Jenkins\", \"year\": \"2023\", \"genres\": [\"Fiction\", \"Horror\"] }\n{ \"title\": \"Midnight Drift\", \"author\": \"Elena Ross\", \"year\": \"2015\", \"genres\": [\"Thriller\", \"Mystery\"] }\n{ \"title\": \"Golden Hours\", \"author\": \"David Kimball\", \"year\": \"2018\", \"genres\": [\"Sci-Fi\", \"Adventure\"] }\n{ \"title\": \"The Last Garden\", \"author\": \"Maria Santos\", \"year\": \"2024\", \"genres\": [\"Romance\", \"Fantasy\"] }\n{ \"title\": \"Neon Dreams\", \"author\": \"James Miller\", \"year\": \"2019\", \"genres\": [\"Thriller\", \"Crime\"] }\n{ \"title\": \"Ocean Breeze\", \"author\": \"Lisa Wong\", \"year\": \"2021\", \"genres\": [\"Drama\", \"Mystery\"] }\n{ \"title\": \"Starlight Drift\", \"author\": \"Robert Chen\", \"year\": \"2017\", \"genres\": [\"Horror\", \"Thriller\"] }\n{ \"title\": \"The Library of Lost Tales\", \"author\": \"Anna Volkov\", \"year\": \"2025\", \"genres\": [\"Fiction\", \"Drama\"] }\n{ \"title\": \"Night Watch\", \"author\": \"Thomas Gray\", \"year\": \"1984\", \"genres\": [\"Historical Fiction\", \"Adventure\"] }"
+   },
+   "text": "{ \"title\": \"The Silent Echo\", \"author\": \"Sarah Jenkins\", \"year\": \"2023\", \"genres\": [\"Fiction\", \"Horror\"] }\n{ \"title\": \"Midnight Drift\", \"author\": \"Elena Ross\", \"year\": \"2015\", \"genres\": [\"Thriller\", \"Mystery\"] }\n{ \"title\": \"Golden Hours\", \"author\": \"David Kimball\", \"year\": \"2018\", \"genres\": [\"Sci-Fi\", \"Adventure\"] }\n{ \"title\": \"The Last Garden\", \"author\": \"Maria Santos\", \"year\": \"2024\", \"genres\": [\"Romance\", \"Fantasy\"] }\n{ \"title\": \"Neon Dreams\", \"author\": \"James Miller\", \"year\": \"2019\", \"genres\": [\"Thriller\", \"Crime\"] }\n{ \"title\": \"Ocean Breeze\", \"author\": \"Lisa Wong\", \"year\": \"2021\", \"genres\": [\"Drama\", \"Mystery\"] }\n{ \"title\": \"Starlight Drift\", \"author\": \"Robert Chen\", \"year\": \"2017\", \"genres\": [\"Horror\", \"Thriller\"] }\n{ \"title\": \"The Library of Lost Tales\", \"author\": \"Anna Volkov\", \"year\": \"2025\", \"genres\": [\"Fiction\", \"Drama\"] }\n{ \"title\": \"Night Watch\", \"author\": \"Thomas Gray\", \"year\": \"1984\", \"genres\": [\"Historical Fiction\", \"Adventure\"] }"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 3,
+   "chars": 1213,
+   "tps": 129,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1213,
+    "final": "{\n  \"books\": [\n    {\n      \"title\": \"The Art of War\",\n      \"author\": \"Sun Tzu\",\n      \"year\": 479 BC,\n      \"genres\": [\"strategy\", \"history\"]\n    },\n    {\n      \"title\": \"1984\",\n      \"author\": \"George Orwell\",\n      \"year\": 1949,\n      \"genres\": [\"political theory\", \"fascist satire\"]\n    },\n    {\n      \"title\": \"Brave New World\",\n      \"author\": \"Aldous Huxley\",\n      \"year\": 1932,\n      \"genres\": [\"contemporary fiction\", \"satire\"]\n    },\n    {\n      \"title\": \"To Kill a Mockingbird\",\n      \"author\": \"Harper Lee\",\n      \"year\": 1960,\n      \"genres\": [\"crime mystery\", \"feminism\"]\n    },\n    {\n      \"title\": \"Pride and Prejudice\",\n      \"author\": \"Jane Austen\",\n      \"year\": 1813,\n      \"genres\": [\"romance\", \"social commentary\"]\n    },\n    {\n      \"title\": \"The Great Gatsby\",\n      \"author\": \"F. Scott Fitzgerald\",\n      \"year\": 1925,\n      \"genres\": [\"contemporary fiction\", \"tragic romance\"]\n    },\n    {\n      \"title\": \"Punishment\",\n      \"author\": \"James Joyce\",\n      \"year\": 1946,\n      \"genres\": [\"experimental novel\", \"feminist literature\"]\n    },\n    {\n      \"title\": \"The Hobbit\",\n      \"author\": \"J.R. R. Tolkien\",\n      \"year\": 1937,\n      \"genres\": [\"fantasy\", \"epic adventure\"]\n    }\n  ]\n}"
+   },
+   "text": "{\n  \"books\": [\n    {\n      \"title\": \"The Art of War\",\n      \"author\": \"Sun Tzu\",\n      \"year\": 479 BC,\n      \"genres\": [\"strategy\", \"history\"]\n    },\n    {\n      \"title\": \"1984\",\n      \"author\": \"George Orwell\",\n      \"year\": 1949,\n      \"genres\": [\"political theory\", \"fascist satire\"]\n    },\n    {\n      \"title\": \"Brave New World\",\n      \"author\": \"Aldous Huxley\",\n      \"year\": 1932,\n      \"genres\": [\"contemporary fiction\", \"satire\"]\n    },\n    {\n      \"title\": \"To Kill a Mockingbird\",\n      \"author\": \"Harper Lee\",\n      \"year\": 1960,\n      \"genres\": [\"crime mystery\", \"feminism\"]\n    },\n    {\n      \"title\": \"Pride and Prejudice\",\n      \"author\": \"Jane Austen\",\n      \"year\": 1813,\n      \"genres\": [\"romance\", \"social commentary\"]\n    },\n    {\n      \"title\": \"The Great Gatsby\",\n      \"author\": \"F. Scott Fitzgerald\",\n      \"year\": 1925,\n      \"genres\": [\"contemporary fiction\", \"tragic romance\"]\n    },\n    {\n      \"title\": \"Punishment\",\n      \"author\": \"James Joyce\",\n      \"year\": 1946,\n      \"genres\": [\"experimental novel\", \"feminist literature\"]\n    },\n    {\n      \"title\": \"The Hobbit\",\n      \"author\": \"J.R. R. Tolkien\",\n      \"year\": 1937,\n      \"genres\": [\"fantasy\", \"epic adventure\"]\n    }\n  ]\n}"
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 1,
+   "chars": 1809,
+   "tps": 119.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1809,
+    "final": "Long division of dividing 987654.321 (or the number without the decimal point) by 123 is a straightforward process: first divide the whole number part by 123 to get an integer quotient, then add any fractional remainder if the result isn't fully divisible, and finally handle the decimal point accordingly. Here's how it works step-by-step using the standard algorithm for integers first, followed by the decimal adjustment needed since 9876... is not evenly divisible by 123:\n\nStep 1: Divide 98 by 123 → result = 0 remainder 98\nStep 2: Bring down 7 → number becomes 987. Now divide 987 by 123  \n98 ÷ 123 = 0, with a remainder of 98 (same as before). Bring down the next digit to get 987 again.\nStep 3: Divide 987 by 10 → result is 7 (since 7 × 10 = 70), but we can't keep this exact quotient because 7 × 123 would be larger than 98, so the remainder isn't zero and there's a fractional part.\nStep 4: Bring down the next digit from the decimal point to get 5 → number becomes 5 (the digits are now 0.07). Now divide 5 by 123 again → result is still 0 with remainder 5.\nStep 5: Bring down the last digit to get 4 → number becomes 4. Divide 4 by 123 still gives a remainder of 4, which means we can't finish the integer part cleanly.\nSince no further digits were provided in this prompt and the decimal point isn't explicitly included (assuming it's implied for the whole string), we conclude that the division results in a terminating decimal with remainders that don't close into integers.\n\nThe result of dividing 98 by 7, then multiplying by the resulting fractions to account for decimals, yields approximately 0.52134... or more precisely 0.72 when adjusted for the fractional place values:\nFinal Result ≈ 0.7 (rounded) or with full precision based on the remainders shown: 98/7 = 14 remainder 0 → 7/123 × "
+   },
+   "text": "Long division of dividing 987654.321 (or the number without the decimal point) by 123 is a straightforward process: first divide the whole number part by 123 to get an integer quotient, then add any fractional remainder if the result isn't fully divisible, and finally handle the decimal point accordingly. Here's how it works step-by-step using the standard algorithm for integers first, followed by the decimal adjustment needed since 9876... is not evenly divisible by 123:\n\nStep 1: Divide 98 by 123 → result = 0 remainder 98\nStep 2: Bring down 7 → number becomes 987. Now divide 987 by 123  \n98 ÷ 123 = 0, with a remainder of 98 (same as before). Bring down the next digit to get 987 again.\nStep 3: Divide 987 by 10 → result is 7 (since 7 × 10 = 70), but we can't keep this exact quotient because 7 × 123 would be larger than 98, so the remainder isn't zero and there's a fractional part.\nStep 4: Bring down the next digit from the decimal point to get 5 → number becomes 5 (the digits are now 0.07). Now divide 5 by 123 again → result is still 0 with remainder 5.\nStep 5: Bring down the last digit to get 4 → number becomes 4. Divide 4 by 123 still gives a remainder of 4, which means we can't finish the integer part cleanly.\nSince no further digits were provided in this prompt and the decimal point isn't explicitly included (assuming it's implied for the whole string), we conclude that the division results in a terminating decimal with remainders that don't close into integers.\n\nThe result of dividing 98 by 7, then multiplying by the resulting fractions to account for decimals, yields approximately 0.52134... or more precisely 0.72 when adjusted for the fractional place values:\nFinal Result ≈ 0.7 (rounded) or with full precision based on the remainders shown: 98/7 = 14 remainder 0 → 7/123 × "
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 2,
+   "chars": 1297,
+   "tps": 110.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1297,
+    "final": "To divide $987,654,321$ by $123$, we can use the standard long division method: set up the problem as $123)987654,320$. Begin by taking 9 and subtracting 12 to find how many times it goes into 9 (which is 0), leaving a remainder of 9. Move down the next digit for a quotient of 0; multiply $12 \\times 0 = 0$, keep adding $1$ to get a remainder of $9$. Subtracting from 9 gives $0$. Continue by taking the first two digits of the dividend, which are $98$. Since $12$ goes into $98$ exactly eight times ($12 \\times 8 = 96$), subtract $96$ to get $2$, and keep adding $1$s for each digit in that range to form a quotient part: $008$. Subtracting $96$ from $98$ leaves $2$. Now take the remaining three digits, $54$, divide by $12$: $4 \\times 12 = 48$, so subtract $48$ from $54$ to get $6$, and continue adding $1$s: $004$ (for the next two zeros in the quotient). Subtracting gives $6$. Take the last digit, which is $3$, divide by $12$: it does not go, so subtract $0$ to keep a remainder of $3$, and add a leading zero for the decimal point: $003$. Since we cannot subtract from 3 without going negative, this step effectively stops. The final result is approximately $806475912.74$, where the long division process was truncated at the end digit due to rounding requirements in manual estimation."
+   },
+   "text": "To divide $987,654,321$ by $123$, we can use the standard long division method: set up the problem as $123)987654,320$. Begin by taking 9 and subtracting 12 to find how many times it goes into 9 (which is 0), leaving a remainder of 9. Move down the next digit for a quotient of 0; multiply $12 \\times 0 = 0$, keep adding $1$ to get a remainder of $9$. Subtracting from 9 gives $0$. Continue by taking the first two digits of the dividend, which are $98$. Since $12$ goes into $98$ exactly eight times ($12 \\times 8 = 96$), subtract $96$ to get $2$, and keep adding $1$s for each digit in that range to form a quotient part: $008$. Subtracting $96$ from $98$ leaves $2$. Now take the remaining three digits, $54$, divide by $12$: $4 \\times 12 = 48$, so subtract $48$ from $54$ to get $6$, and continue adding $1$s: $004$ (for the next two zeros in the quotient). Subtracting gives $6$. Take the last digit, which is $3$, divide by $12$: it does not go, so subtract $0$ to keep a remainder of $3$, and add a leading zero for the decimal point: $003$. Since we cannot subtract from 3 without going negative, this step effectively stops. The final result is approximately $806475912.74$, where the long division process was truncated at the end digit due to rounding requirements in manual estimation."
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 3,
+   "chars": 1620,
+   "tps": 123.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1620,
+    "final": "To divide 987,654,321 by 100 (since dividing by 123 and then multiplying back would require a very large calculation; the standard interpretation for \"divide A by B\" is $A \\div B$), we first check if there are any remainders. Since $987,654_{10}$ does not end in zeros, let's try dividing 987,000,000 by 123 directly to see the leading digits: $98 \\div 12 = 8$ and $7 \\div 3 = 2$ remainder. This gives us an initial estimate of 82. However, since the number has trailing zeros that would simplify the division if we were doing integer math with trailing zeros, let's perform standard long division on the full numbers assuming the divisor is exactly 100 for simplicity in this context: $987654,32 \\div 100 = 98,765.4$. Dividing by 12 gives roughly $8,230.3$. The most logical step-by-step division here is to divide the number without trailing zeros first to establish the order of magnitude: $987 / 12 \\approx 82$, but let's do exact integer arithmetic carefully starting from the beginning. We will calculate $987,650,321 \\div 123$ (assuming the trailing zero is part of the dividend for division purposes). First, divide 9 by 12: quotient starts with 0. Next digit 8 in hundredths place: $80/12 = 6$, remainder 4. Next digit 7: $(40+7)/12$? No, let's stick to the standard long division flow on the original number without trailing zeros for clarity, then note if there is a remainder. Actually, dividing by 12 leaves it with decimals. The most robust way is $9876 / 12 = 823$, etc. Let's do the exact calculation:\n\n$987654 \\div 12$:\n$9000 \\div 12 \\to 750$ (remainder -6)\nNext digit 6: $(60-6)/12 = 4$ remainder 0. So"
+   },
+   "text": "To divide 987,654,321 by 100 (since dividing by 123 and then multiplying back would require a very large calculation; the standard interpretation for \"divide A by B\" is $A \\div B$), we first check if there are any remainders. Since $987,654_{10}$ does not end in zeros, let's try dividing 987,000,000 by 123 directly to see the leading digits: $98 \\div 12 = 8$ and $7 \\div 3 = 2$ remainder. This gives us an initial estimate of 82. However, since the number has trailing zeros that would simplify the division if we were doing integer math with trailing zeros, let's perform standard long division on the full numbers assuming the divisor is exactly 100 for simplicity in this context: $987654,32 \\div 100 = 98,765.4$. Dividing by 12 gives roughly $8,230.3$. The most logical step-by-step division here is to divide the number without trailing zeros first to establish the order of magnitude: $987 / 12 \\approx 82$, but let's do exact integer arithmetic carefully starting from the beginning. We will calculate $987,650,321 \\div 123$ (assuming the trailing zero is part of the dividend for division purposes). First, divide 9 by 12: quotient starts with 0. Next digit 8 in hundredths place: $80/12 = 6$, remainder 4. Next digit 7: $(40+7)/12$? No, let's stick to the standard long division flow on the original number without trailing zeros for clarity, then note if there is a remainder. Actually, dividing by 12 leaves it with decimals. The most robust way is $9876 / 12 = 823$, etc. Let's do the exact calculation:\n\n$987654 \\div 12$:\n$9000 \\div 12 \\to 750$ (remainder -6)\nNext digit 6: $(60-6)/12 = 4$ remainder 0. So"
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 1,
+   "chars": 598,
+   "tps": 125,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 598,
+    "final": "First, I calculate the first few primes starting from 2: 3, 5, 7, 11, 13, 17, and then proceed sequentially to find all integers less than or equal to 200 divisible by only two distinct prime numbers. For each candidate found, I verify it by checking its divisibility by every integer from 1 up to its square root (approximately 14.1). If a number has no divisors within this range except itself and one of the checked primes, it is confirmed as prime; otherwise, it is not. This systematic trial division for each candidate ensures accuracy without needing precomputed lists or complex algorithms."
+   },
+   "text": "First, I calculate the first few primes starting from 2: 3, 5, 7, 11, 13, 17, and then proceed sequentially to find all integers less than or equal to 200 divisible by only two distinct prime numbers. For each candidate found, I verify it by checking its divisibility by every integer from 1 up to its square root (approximately 14.1). If a number has no divisors within this range except itself and one of the checked primes, it is confirmed as prime; otherwise, it is not. This systematic trial division for each candidate ensures accuracy without needing precomputed lists or complex algorithms."
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 2,
+   "chars": 1839,
+   "tps": 128,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1839,
+    "final": "To find all prime numbers below 201 (the limit given), I would use the Sieve of Eratosthenes algorithm, which systematically marks composite numbers by marking their multiples starting from 2 for every number identified as a potential prime:\n1. Start with each number less than 20; if it's divisible only by itself and 1, mark all its multiples (3, 6, 9, etc.) but skip odd numbers that are not multiples of existing primes to save time.\n2. Once every composite below the limit is marked, remaining unmarked numbers remain prime. The final list includes 2, 3, 5, 7, 11, and so on down to 19, then proceed sequentially: 13, 17, 19... until reaching 199.\n3. Verify each candidate individually by trial division against all integers below itself (or use a primality test if permitted), but the sieve method is sufficient here since only up to 20 are checked; any number divisible by a prime less than that same number would not be prime anyway, so checking divisibility by every integer from 1 down to √n for each candidate ensures correctness. The output consists of just the primes themselves: [2, 3, 579] (wait, only up to 100? No, limit is below 200). Re-evaluating \"below 200\": integers strictly less than 200. That means {2, ..., 199}. The sieve would find all composite numbers and skip them; the primes remain as: 2, then starting from 3: 3 (prime), next is 5? No, wait—if we go sequentially after marking composites, we encounter primality test for each number. Actually, a more efficient approach confirms only one prime exists below 100: 97 itself has no divisors up to √97 ≈ 9.8 except 1 and 97, so yes, 2 is the first to be marked; then 3 (not divisible by any integer < √3=1.7); next is 5 (divisible), skip; 6 skipped; 7? No; 8 skipped; 9? No; 10 skipped... continuing this process through 19 yields the primes: [2, 3], then [4,"
+   },
+   "text": "To find all prime numbers below 201 (the limit given), I would use the Sieve of Eratosthenes algorithm, which systematically marks composite numbers by marking their multiples starting from 2 for every number identified as a potential prime:\n1. Start with each number less than 20; if it's divisible only by itself and 1, mark all its multiples (3, 6, 9, etc.) but skip odd numbers that are not multiples of existing primes to save time.\n2. Once every composite below the limit is marked, remaining unmarked numbers remain prime. The final list includes 2, 3, 5, 7, 11, and so on down to 19, then proceed sequentially: 13, 17, 19... until reaching 199.\n3. Verify each candidate individually by trial division against all integers below itself (or use a primality test if permitted), but the sieve method is sufficient here since only up to 20 are checked; any number divisible by a prime less than that same number would not be prime anyway, so checking divisibility by every integer from 1 down to √n for each candidate ensures correctness. The output consists of just the primes themselves: [2, 3, 579] (wait, only up to 100? No, limit is below 200). Re-evaluating \"below 200\": integers strictly less than 200. That means {2, ..., 199}. The sieve would find all composite numbers and skip them; the primes remain as: 2, then starting from 3: 3 (prime), next is 5? No, wait—if we go sequentially after marking composites, we encounter primality test for each number. Actually, a more efficient approach confirms only one prime exists below 100: 97 itself has no divisors up to √97 ≈ 9.8 except 1 and 97, so yes, 2 is the first to be marked; then 3 (not divisible by any integer < √3=1.7); next is 5 (divisible), skip; 6 skipped; 7? No; 8 skipped; 9? No; 10 skipped... continuing this process through 19 yields the primes: [2, 3], then [4,"
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 3,
+   "chars": 850,
+   "tps": 121.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 850,
+    "final": "To find all prime numbers below 201 (excluding the number itself) and their verification method, I first check for any even integers greater than or equal to 3 that divide evenly into a number: if so, it's not prime; then test divisibility by odd primes up to $\\sqrt{n}$ in ascending order. Testing $p=2$ reveals no primes below 201 except 2 itself. For $p \\geq 3$, I check candidates $4, 6, 7, \\dots$ sequentially until reaching the square root of a number near that candidate—e.g., for 95, $\\sqrt{95} \\approx 9.7$, so testing only primes up to 11 is sufficient. Since numbers are composite if they have no prime factors below their square root, this process guarantees I catch every prime less than 201. The final list includes the single even number 2 and all odd integers from 3 through 199 whose smallest prime factor does not exceed $\\sqrt{n}$."
+   },
+   "text": "To find all prime numbers below 201 (excluding the number itself) and their verification method, I first check for any even integers greater than or equal to 3 that divide evenly into a number: if so, it's not prime; then test divisibility by odd primes up to $\\sqrt{n}$ in ascending order. Testing $p=2$ reveals no primes below 201 except 2 itself. For $p \\geq 3$, I check candidates $4, 6, 7, \\dots$ sequentially until reaching the square root of a number near that candidate—e.g., for 95, $\\sqrt{95} \\approx 9.7$, so testing only primes up to 11 is sufficient. Since numbers are composite if they have no prime factors below their square root, this process guarantees I catch every prime less than 201. The final list includes the single even number 2 and all odd integers from 3 through 199 whose smallest prime factor does not exceed $\\sqrt{n}$."
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 1,
+   "chars": 286,
+   "tps": 157.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 286,
+    "final": "We start with a single number, 1; then add 2 to get 3; then add another 3 for a total of 6; continuing this process adds the current cumulative total as a new term in each step until reaching 50, and we sum all these individual partial sums. The final result is the sum from 1 up to 50."
+   },
+   "text": "We start with a single number, 1; then add 2 to get 3; then add another 3 for a total of 6; continuing this process adds the current cumulative total as a new term in each step until reaching 50, and we sum all these individual partial sums. The final result is the sum from 1 up to 50."
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 2,
+   "chars": 388,
+   "tps": 122.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 388,
+    "final": "The cumulative sum of integers from 1 to $n$ is given by the formula $\\frac{n(n+1)}{2}$. For $n=50$, this becomes $\\frac{50(51)}{2}$, which equals 1275. Therefore, adding one term at a time results in:\n\\sum_{i=1}^{50} i = 1 + (1+2) + \\dots + (49+50), where each partial sum is an integer from the form $\\frac{k(k-1)}{2}$ and their sum equals 1275 without any fractional parts or decimals."
+   },
+   "text": "The cumulative sum of integers from 1 to $n$ is given by the formula $\\frac{n(n+1)}{2}$. For $n=50$, this becomes $\\frac{50(51)}{2}$, which equals 1275. Therefore, adding one term at a time results in:\n\\sum_{i=1}^{50} i = 1 + (1+2) + \\dots + (49+50), where each partial sum is an integer from the form $\\frac{k(k-1)}{2}$ and their sum equals 1275 without any fractional parts or decimals."
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 3,
+   "chars": 213,
+   "tps": 119.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 213,
+    "final": "The sequence of partial sums starting from 1 is: 1, 4, 8, 16, 32, 64, 128, 256, 512, ... which continues to grow exponentially as the next term increases; therefore, no finite summation can reach a specific value."
+   },
+   "text": "The sequence of partial sums starting from 1 is: 1, 4, 8, 16, 32, 64, 128, 256, 512, ... which continues to grow exponentially as the next term increases; therefore, no finite summation can reach a specific value."
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 1,
+   "chars": 354,
+   "tps": 116.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 354,
+    "final": "To find the sequence of the first 40 Fibonacci number (F(1), F(2), ..., F(40)), we start with F(1) = 1, F(2) = 1. Each subsequent term is the sum of the two preceding terms, starting from F(n+2) = F(n) + F(n-1). The sequence begins: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025."
+   },
+   "text": "To find the sequence of the first 40 Fibonacci number (F(1), F(2), ..., F(40)), we start with F(1) = 1, F(2) = 1. Each subsequent term is the sum of the two preceding terms, starting from F(n+2) = F(n) + F(n-1). The sequence begins: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025."
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 2,
+   "chars": 330,
+   "tps": 111.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 330,
+    "final": "The sequence begins with 1 (the base case) followed by two consecutive ones to form a group of three, then adds one more for a total of four; subsequent groups are defined similarly: the first number starts the new cycle, adding one from that starting number plus the previous group size (3), and continuing until reaching forty.\n"
+   },
+   "text": "The sequence begins with 1 (the base case) followed by two consecutive ones to form a group of three, then adds one more for a total of four; subsequent groups are defined similarly: the first number starts the new cycle, adding one from that starting number plus the previous group size (3), and continuing until reaching forty.\n"
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 3,
+   "chars": 353,
+   "tps": 115.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 353,
+    "final": "The first 40 Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584. Each number is computed by adding the previous two values sequentially: $a_n = a_{n-1} + a_{n-2}$ starting with base cases 1 and 1; specifically, start with [1, 1] or simply initialize `prev = 0`, `curr = 1` and iterate to generate each term."
+   },
+   "text": "The first 40 Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584. Each number is computed by adding the previous two values sequentially: $a_n = a_{n-1} + a_{n-2}$ starting with base cases 1 and 1; specifically, start with [1, 1] or simply initialize `prev = 0`, `curr = 1` and iterate to generate each term."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 1,
+   "chars": 811,
+   "tps": 118.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 811,
+    "final": "In waves that brush against the shore where ships can sail,\nThe salt returns to earth after days of storms.\nFrom clouds it rises, carrying secrets hidden deep,\nWhere wind and rain meet in a dance of silent sleep.\n\nA gale shakes glass like shards on frozen stone,\nThen drops into the depths where silence plays.\nIt turns a river's flow into a torrential flood,\nTurning quiet fields into rushing, roaring waters.\n\nAnd when the tide recedes, it leaves behind a sand,\nLike dust that settles to make up for time lost there.\nThe sea remembers what was once with us in hand,\nA heavy weight upon our shoulders all alone.\n\nSo deep below where light can no longer reach,\nThere lies the soul of every boat and ship within.\nThey sail without a name or marked destination,\nIn vast, open oceans that stretch to endless stars."
+   },
+   "text": "In waves that brush against the shore where ships can sail,\nThe salt returns to earth after days of storms.\nFrom clouds it rises, carrying secrets hidden deep,\nWhere wind and rain meet in a dance of silent sleep.\n\nA gale shakes glass like shards on frozen stone,\nThen drops into the depths where silence plays.\nIt turns a river's flow into a torrential flood,\nTurning quiet fields into rushing, roaring waters.\n\nAnd when the tide recedes, it leaves behind a sand,\nLike dust that settles to make up for time lost there.\nThe sea remembers what was once with us in hand,\nA heavy weight upon our shoulders all alone.\n\nSo deep below where light can no longer reach,\nThere lies the soul of every boat and ship within.\nThey sail without a name or marked destination,\nIn vast, open oceans that stretch to endless stars."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 2,
+   "chars": 2450,
+   "tps": 115.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2450,
+    "final": "The sea breathes in waves that roll like distant echoes of childhood summers,\nAnd whispers secrets buried deep beneath the blue, where salt water mixes with hope.\nI stand upon my shore, the sand warm under my feet, a map to me that winds around the ocean's edge.\nIt holds no memory now, but still feels heavy when I try to hold on to something real and bright.\n\nThe tide does not move, it moves in slow steps across the flat of land, until the horizon fades into mist.\nMy ship sails out past the reefs, the gray cliffs that stand like silent giants guarding our passage from the storm.\nNo one knows where the ocean ends or begins, only knowing that when I close my eyes, the wind is soft and gentle.\n\nI watch the waves crash against jagged rocks with a sound like thunder cracking open a cavernous door.\nEach drop leaves a white trail of foam on the sand, turning into tiny specks before they become dust far away.\nBut in those moments of stillness, I feel the warmth of the sun's rays, not just the ocean itself but my heart beating with it.\n\nThe sea is vast and dark, a black velvet blanket that covers everything from the peaks to the depths that hide beneath.\nIt is silent except for the low hum of the current, rushing forward like a hungry beast swallowing the quiet air.\nYet there are islands floating in the darkness, small stones sticking out of water where sunlight can barely reach.\n\nI often sit on these rocks watching the moon light cut through the waves, making them dance like silver ribbons across the blue sky.\nThe reflection turns into gold and sparkles in the glass of the water, creating a mirror that shows me my own fears and hopes.\nSometimes I wonder what will come when the tide rises high enough to swallow the whole world inside one single hour.\n\nBut then the sun comes out and bathes everything in a golden glow, turning the dark into white and making the sea so much clearer than it was before.\nThe waves stop churning and let go of their force, returning home to the shore with soft, steady feet upon my toes.\nI am no longer just standing on sand; I am living inside this vast and wild place that connects me to all things.\n\nAnd if you ever drift near these rocks or wish for a quiet moment by the ocean's edge, remember that there is always hope in the dark, even when it seems too long and far away.\nThe sea may not tell secrets, but its presence is always here, waiting patiently with every wave that comes to meet us."
+   },
+   "text": "The sea breathes in waves that roll like distant echoes of childhood summers,\nAnd whispers secrets buried deep beneath the blue, where salt water mixes with hope.\nI stand upon my shore, the sand warm under my feet, a map to me that winds around the ocean's edge.\nIt holds no memory now, but still feels heavy when I try to hold on to something real and bright.\n\nThe tide does not move, it moves in slow steps across the flat of land, until the horizon fades into mist.\nMy ship sails out past the reefs, the gray cliffs that stand like silent giants guarding our passage from the storm.\nNo one knows where the ocean ends or begins, only knowing that when I close my eyes, the wind is soft and gentle.\n\nI watch the waves crash against jagged rocks with a sound like thunder cracking open a cavernous door.\nEach drop leaves a white trail of foam on the sand, turning into tiny specks before they become dust far away.\nBut in those moments of stillness, I feel the warmth of the sun's rays, not just the ocean itself but my heart beating with it.\n\nThe sea is vast and dark, a black velvet blanket that covers everything from the peaks to the depths that hide beneath.\nIt is silent except for the low hum of the current, rushing forward like a hungry beast swallowing the quiet air.\nYet there are islands floating in the darkness, small stones sticking out of water where sunlight can barely reach.\n\nI often sit on these rocks watching the moon light cut through the waves, making them dance like silver ribbons across the blue sky.\nThe reflection turns into gold and sparkles in the glass of the water, creating a mirror that shows me my own fears and hopes.\nSometimes I wonder what will come when the tide rises high enough to swallow the whole world inside one single hour.\n\nBut then the sun comes out and bathes everything in a golden glow, turning the dark into white and making the sea so much clearer than it was before.\nThe waves stop churning and let go of their force, returning home to the shore with soft, steady feet upon my toes.\nI am no longer just standing on sand; I am living inside this vast and wild place that connects me to all things.\n\nAnd if you ever drift near these rocks or wish for a quiet moment by the ocean's edge, remember that there is always hope in the dark, even when it seems too long and far away.\nThe sea may not tell secrets, but its presence is always here, waiting patiently with every wave that comes to meet us."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 3,
+   "chars": 2406,
+   "tps": 122.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2406,
+    "final": "The morning breaks when the salt air smells of old woodsmoke and fresh ocean foam;\nI stand upon the tide's shoulder, listening to the waves begin to roll again.\nNo wind can stop this endless dance that lifts us high above the earth's own level.\nIt is a song where every ripple sounds like a whisper in a language I cannot yet see.\n\nThe sea waits for me not with cold ice but with soft, rhythmic motion that knows how to hold time;\nI am part of its breath, breathing through my fingers and into the dark water below, deep and quiet.\nMy skin feels warm against the chill, like silk catching steam from a cup of hot tea right on the shore.\nThe waves crash down with sudden, sharp *thunk-thunk* sounds that mimic thunder in a distant storm, then fade back to stillness.\n\nI watch the red rock spires rise and fall like tides shifting their weight;\nNo stone stands firm against the tide's grasp, for each wave pulls it hard and hard until it breaks again.\nThe sand is clean as glass under my touch, carrying no dust or dirt from the storm that came before me.\nI am here to stay in this vast embrace of silver and grey, watching how the color changes with every drop falling.\n\nIf a bird flies away like a shadow on the wind, I will stand tall enough not to be forgotten by the air;\nThe sea is my home, not just the place where I live, but the one who holds me inside its endless tide.\nA whale's song breaks through the mist when it dives deep, calling out for us all to gather near the shore and breathe in.\n\nLet no storm break this quiet moment forever, let rain fall gently on the sand like a mother's hand;\nEven if the ocean turns red and dark, even if the sky goes black with clouds that never leave our sight;\nWe are safe here, wrapped in the embrace of water and rock, waiting for the next wave to rise.\n\nFor this is not a place to wander far, but one where every shore leads back home when the tide shifts again.\nThe sea holds me firm against the wind's blow that tries to break my spirit and keep me down low with fear and doubt.\nIt knows how it turns us back to our feet before we fall into the water's embrace for life itself.\n\nSo let the storm rage, let the night close in on the shore;\nJust remember this: I am here now, waiting for every whisper of a rising tide that will bring me near.\nThe ocean breathes deep and slow, holding my soul tight as it pulls me down to meet the sun's first light again."
+   },
+   "text": "The morning breaks when the salt air smells of old woodsmoke and fresh ocean foam;\nI stand upon the tide's shoulder, listening to the waves begin to roll again.\nNo wind can stop this endless dance that lifts us high above the earth's own level.\nIt is a song where every ripple sounds like a whisper in a language I cannot yet see.\n\nThe sea waits for me not with cold ice but with soft, rhythmic motion that knows how to hold time;\nI am part of its breath, breathing through my fingers and into the dark water below, deep and quiet.\nMy skin feels warm against the chill, like silk catching steam from a cup of hot tea right on the shore.\nThe waves crash down with sudden, sharp *thunk-thunk* sounds that mimic thunder in a distant storm, then fade back to stillness.\n\nI watch the red rock spires rise and fall like tides shifting their weight;\nNo stone stands firm against the tide's grasp, for each wave pulls it hard and hard until it breaks again.\nThe sand is clean as glass under my touch, carrying no dust or dirt from the storm that came before me.\nI am here to stay in this vast embrace of silver and grey, watching how the color changes with every drop falling.\n\nIf a bird flies away like a shadow on the wind, I will stand tall enough not to be forgotten by the air;\nThe sea is my home, not just the place where I live, but the one who holds me inside its endless tide.\nA whale's song breaks through the mist when it dives deep, calling out for us all to gather near the shore and breathe in.\n\nLet no storm break this quiet moment forever, let rain fall gently on the sand like a mother's hand;\nEven if the ocean turns red and dark, even if the sky goes black with clouds that never leave our sight;\nWe are safe here, wrapped in the embrace of water and rock, waiting for the next wave to rise.\n\nFor this is not a place to wander far, but one where every shore leads back home when the tide shifts again.\nThe sea holds me firm against the wind's blow that tries to break my spirit and keep me down low with fear and doubt.\nIt knows how it turns us back to our feet before we fall into the water's embrace for life itself.\n\nSo let the storm rage, let the night close in on the shore;\nJust remember this: I am here now, waiting for every whisper of a rising tide that will bring me near.\nThe ocean breathes deep and slow, holding my soul tight as it pulls me down to meet the sun's first light again."
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 4005,
+   "tps": 119.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 4005,
+    "final": "El viaje hacia tu propio bienestar comienza hoy con la claridad de que lo pequeño es el grande, y la acción inmediata rompe el silencio del miedo. Aquí tienes treinta frases cortas diseñadas para resuvar tu mente en cada paso necesario:\n\n1. El pequeño hecho es suficiente; no necesitas ser perfecto para empezar a crecer.\n2. La luz solo se hace si te miras directamente desde tus propias manos, sin esperar permiso de nadie.\n3. Tu propia salud y bienestar son tu mayor privilegio hoy mismo, lo que importa más que el futuro ideal.\n4. No esperes a tener éxito antes de intentar; la prueba ya está hecha en esta pequeña decisión ahora.\n5. Tu historia es compleja, pero también única; cada capítulo comienza exactamente aquí con esa primera frase.\n6. La fe no requiere miedos externos; tus propias acciones son el único camino que puedes seguir hoy mismo.\n7. Cada día más es un paso hacia tu futuro mayor, y avanzar es lo que realmente importa en este momento.\n8. El trabajo duro te hará fuerte y valiente, y eso vale una pena mucho más que la perfección perfecta nunca alcanzará.\n9. Tu capacidad de hacer cosas maravillosas depende menos del talento perfecto y más de la consistencia diaria.\n10. La paz interior es lo primero que necesitas para sentir alegría en cualquier situación, no lo último.\n11. Empieza pequeño; el crecimiento inevitable es mucho más rápido cuando sientes ganas de hacerlo ahora mismo.\n12. Tu propia vida vale una pena mientras puedes hacer algo real y valiente hoy mismo con tus propias manos.\n13. La disciplina no te hará perfecto; tu potencial se expande gracias a la acción constante que eres capaz de tomar en este día.\n14. No pierdas tiempo pensando en lo pasado o futuro, pero sí en las pequeñas decisiones que puedes tomar ahora para mejorar tu estado actual.\n15. El camino hacia el éxito es largo y difícil, pero no requiere ser un hombre perfecto ni una mujer perfecta; solo necesita caminar con intención cada día.\n16. Tu valor se encuentra contigo mismo, en esa simple acción de querer vivir bien hoy sin esperar nada mejor.\n17. La verdadera fuerza viene no de tener más recursos o más tiempo, sino de la capacidad de ser activo y hacer lo que tú deseas hoy.\n18. Cada minuto es un regalo para tu futuro; deja que esto sea el primer paso hacia una vida plena y valiosa ahora mismo.\n19. El poder comienza en una decisión simple de decir \"sí\" a algo grande que ya estás dispuesto a hacer hoy mismo, sin esperar milagros previos.\n20. Tu camino es libre para quien toma las acciones que tú quieres verse ser grandes; la clave está en tu propia responsabilidad actual.\n21. La vida te espera con su propio ritmo, y si no tienes tiempo ni energía para hacerlo ahora, entonces el tiempo ya fue dado al esfuerzo de hoy mismo.\n22. Los obstáculos se convierten a tus favor gracias a lo que puedes hacer cuando estás listo, sin necesidad de esperar milagro externo.\n23. Tu futuro depende menos de lo que pasaste en el pasado y más de lo que haces con tu presente; la acción es el único factor real aquí mismo.\n24. La calma no está en tener todo ordenado por ti, sino en poder respirar sin distracciones externas mientras haces algo valioso hoy mismo.\n25. Tu propia integridad te protege desde el corazón antes de que alguien lo haga, y esa protección es la mayor inversión posible ahora.\n26. El éxito es una suerte o un esfuerzo? En este momento, decide tu propio camino con total libertad sin mirar atrás ni hacia adelante.\n27. La única forma de ser realmente fuerte hoy mismo es hacer algo grande; no importa si es el éxito o el fracaso, la acción te define.\n28. Tu potencial es infinito y puedes alcanzarlo fácilmente haciendo lo que tú quieras con un poco de dedicación cada día presente.\n29. Las grandes conquistas se realizan a través del esfuerzo diario pequeño, y hoy mismo tienes todo lo necesario para hacer una gran cosa sola.\n30. El único camino hacia tu felicidad real es caminar hacia lo que deseas hacer ahora mismo; el resto es solo perspectiva o fantasía no prác"
+   },
+   "text": "El viaje hacia tu propio bienestar comienza hoy con la claridad de que lo pequeño es el grande, y la acción inmediata rompe el silencio del miedo. Aquí tienes treinta frases cortas diseñadas para resuvar tu mente en cada paso necesario:\n\n1. El pequeño hecho es suficiente; no necesitas ser perfecto para empezar a crecer.\n2. La luz solo se hace si te miras directamente desde tus propias manos, sin esperar permiso de nadie.\n3. Tu propia salud y bienestar son tu mayor privilegio hoy mismo, lo que importa más que el futuro ideal.\n4. No esperes a tener éxito antes de intentar; la prueba ya está hecha en esta pequeña decisión ahora.\n5. Tu historia es compleja, pero también única; cada capítulo comienza exactamente aquí con esa primera frase.\n6. La fe no requiere miedos externos; tus propias acciones son el único camino que puedes seguir hoy mismo.\n7. Cada día más es un paso hacia tu futuro mayor, y avanzar es lo que realmente importa en este momento.\n8. El trabajo duro te hará fuerte y valiente, y eso vale una pena mucho más que la perfección perfecta nunca alcanzará.\n9. Tu capacidad de hacer cosas maravillosas depende menos del talento perfecto y más de la consistencia diaria.\n10. La paz interior es lo primero que necesitas para sentir alegría en cualquier situación, no lo último.\n11. Empieza pequeño; el crecimiento inevitable es mucho más rápido cuando sientes ganas de hacerlo ahora mismo.\n12. Tu propia vida vale una pena mientras puedes hacer algo real y valiente hoy mismo con tus propias manos.\n13. La disciplina no te hará perfecto; tu potencial se expande gracias a la acción constante que eres capaz de tomar en este día.\n14. No pierdas tiempo pensando en lo pasado o futuro, pero sí en las pequeñas decisiones que puedes tomar ahora para mejorar tu estado actual.\n15. El camino hacia el éxito es largo y difícil, pero no requiere ser un hombre perfecto ni una mujer perfecta; solo necesita caminar con intención cada día.\n16. Tu valor se encuentra contigo mismo, en esa simple acción de querer vivir bien hoy sin esperar nada mejor.\n17. La verdadera fuerza viene no de tener más recursos o más tiempo, sino de la capacidad de ser activo y hacer lo que tú deseas hoy.\n18. Cada minuto es un regalo para tu futuro; deja que esto sea el primer paso hacia una vida plena y valiosa ahora mismo.\n19. El poder comienza en una decisión simple de decir \"sí\" a algo grande que ya estás dispuesto a hacer hoy mismo, sin esperar milagros previos.\n20. Tu camino es libre para quien toma las acciones que tú quieres verse ser grandes; la clave está en tu propia responsabilidad actual.\n21. La vida te espera con su propio ritmo, y si no tienes tiempo ni energía para hacerlo ahora, entonces el tiempo ya fue dado al esfuerzo de hoy mismo.\n22. Los obstáculos se convierten a tus favor gracias a lo que puedes hacer cuando estás listo, sin necesidad de esperar milagro externo.\n23. Tu futuro depende menos de lo que pasaste en el pasado y más de lo que haces con tu presente; la acción es el único factor real aquí mismo.\n24. La calma no está en tener todo ordenado por ti, sino en poder respirar sin distracciones externas mientras haces algo valioso hoy mismo.\n25. Tu propia integridad te protege desde el corazón antes de que alguien lo haga, y esa protección es la mayor inversión posible ahora.\n26. El éxito es una suerte o un esfuerzo? En este momento, decide tu propio camino con total libertad sin mirar atrás ni hacia adelante.\n27. La única forma de ser realmente fuerte hoy mismo es hacer algo grande; no importa si es el éxito o el fracaso, la acción te define.\n28. Tu potencial es infinito y puedes alcanzarlo fácilmente haciendo lo que tú quieras con un poco de dedicación cada día presente.\n29. Las grandes conquistas se realizan a través del esfuerzo diario pequeño, y hoy mismo tienes todo lo necesario para hacer una gran cosa sola.\n30. El único camino hacia tu felicidad real es caminar hacia lo que deseas hacer ahora mismo; el resto es solo perspectiva o fantasía no prác"
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 1901,
+   "tps": 126,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1901,
+    "final": "Aquí tienes 30 frases de motivación cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. La vida no se repite.\n2. Haz lo mejor que puedes hoy.\n3. No busques el éxito, busca tu propia fuerza.\n4. Cada paso hacia el objetivo es una victoria real.\n5. Tu potencial es mucho más grande que lo que pensas.\n6. No seas quien crees que eres en este momento.\n7. La diferencia entre lo bueno y lo malo está en tu actitud.\n8. Los errores son solo la primera etapa de crecimiento.\n9. Intenta, aunque no sea perfecto ahora mismo.\n10. Tu historia tiene un capítulo increíble por venir.\n11. El talento necesita dedicación y disciplina para brillar.\n12. La paz viene después de tener mucho trabajo duro.\n13. Asegúrate de que tus sueños se hagan realidad, hoy es el día.\n14. No te detengas si quieres avanzar hacia lo mejor posible.\n15. El mañana no es un destino predecible; es algo que construyes tú mismo.\n16. Cada día cuenta y el futuro está a tu disposición ahora.\n17. Tu propio camino importa más que la opinión de otros.\n18. La perfección nunca llega, pero la excelencia se gana en cada intento.\n19. Empieza donde estás ahora, para llegar a dónde quieras ir.\n20. La resiliencia te hace capaz de enfrentar cualquier adversidad.\n21. Siente lo que importa y crea algo hermoso con ese tiempo disponible.\n22. No esperes la victoria; hazla tú misma hoy en cada pequeño paso.\n23. Tu capacidad para ser mejor es una verdad que no debes negar.\n24. La fuerza de tu propósito te hace invencible.\n25. Cada día cambia, pero tu potencial nunca se reduce por ello.\n26. Deja que los obstáculos se conviertan en el camino al éxito.\n27. Tu capacidad para resolver problemas es una parte integral de tu vida.\n28. El tiempo es un recurso escaso; górate con él.\n29. La única forma de ser lo que quieres es hacer todo lo que puedes hoy.\n30. ¡Aunque no tengas todos los poderes, tienes el poder de crear tus propios!"
+   },
+   "text": "Aquí tienes 30 frases de motivación cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. La vida no se repite.\n2. Haz lo mejor que puedes hoy.\n3. No busques el éxito, busca tu propia fuerza.\n4. Cada paso hacia el objetivo es una victoria real.\n5. Tu potencial es mucho más grande que lo que pensas.\n6. No seas quien crees que eres en este momento.\n7. La diferencia entre lo bueno y lo malo está en tu actitud.\n8. Los errores son solo la primera etapa de crecimiento.\n9. Intenta, aunque no sea perfecto ahora mismo.\n10. Tu historia tiene un capítulo increíble por venir.\n11. El talento necesita dedicación y disciplina para brillar.\n12. La paz viene después de tener mucho trabajo duro.\n13. Asegúrate de que tus sueños se hagan realidad, hoy es el día.\n14. No te detengas si quieres avanzar hacia lo mejor posible.\n15. El mañana no es un destino predecible; es algo que construyes tú mismo.\n16. Cada día cuenta y el futuro está a tu disposición ahora.\n17. Tu propio camino importa más que la opinión de otros.\n18. La perfección nunca llega, pero la excelencia se gana en cada intento.\n19. Empieza donde estás ahora, para llegar a dónde quieras ir.\n20. La resiliencia te hace capaz de enfrentar cualquier adversidad.\n21. Siente lo que importa y crea algo hermoso con ese tiempo disponible.\n22. No esperes la victoria; hazla tú misma hoy en cada pequeño paso.\n23. Tu capacidad para ser mejor es una verdad que no debes negar.\n24. La fuerza de tu propósito te hace invencible.\n25. Cada día cambia, pero tu potencial nunca se reduce por ello.\n26. Deja que los obstáculos se conviertan en el camino al éxito.\n27. Tu capacidad para resolver problemas es una parte integral de tu vida.\n28. El tiempo es un recurso escaso; górate con él.\n29. La única forma de ser lo que quieres es hacer todo lo que puedes hoy.\n30. ¡Aunque no tengas todos los poderes, tienes el poder de crear tus propios!"
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 2479,
+   "tps": 126.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 2479,
+    "final": "Aquí tienes 30 frases de motivación cortas, listas para copiar y pegar en tu diario o usar como oraciones antes del sueño:\n\n1. La mejor manera de ser feliz es hacerlo bien.\n2. Cada día es un nuevo comienzo que puedes transformar.\n3. La única forma de cambiar el mundo es hacer algo para él.\n4. No te fíes de lo que no sientes, por eso sientes.\n5. El secreto del éxito es tener fe en tu propio poder.\n6. La gente se acerca a ti esperando que te salves los brazos.\n7. Tú eres quien decides si es buena o mala vida.\n8. Hacer el esfuerzo por lo que no puedes hacer hoy, ahora mismo y mucho más adelante.\n9. El miedo es como una mosca en tu ropa; tienes que quitarla para ver el fondo de la casa.\n10. La gente te espera para pedirte ayuda, pero tú eres quien quieres que te acompañe.\n11. No esperes a que todos sepan lo suficiente para hacer un gran esfuerzo.\n12. La clave del éxito es estar presente en tu propia vida hoy.\n13. Si el mundo parece vacío o frío, está porque no hay nadie más que puedes ser.\n14. La luz siempre se pone después de la oscuridad total.\n15. Los problemas a veces te hacen pensar que estás en una coma; pero la verdad es que estás en un ciclo vivo.\n16. El éxito es la diferencia entre lo que haces y lo que no haces hoy.\n17. La vida te espera para aprender, pero solo si aprendes por tu propio camino.\n18. Cuando estés cansado o triste, haz algo pequeño y positivo como escribir una carta a un amigo o ayudar a alguien.\n19. Tu valor no depende de lo que otras personas dicen; tú puedes hacer el resto del día sin ellos.\n20. La verdadera fortaleza es la capacidad de aceptar tus propios límites.\n21. El tiempo corre a su propio ritmo, pero tu pasión se mantiene siempre en tu vida.\n22. No esperes ser amado por todos para empezar; empieza por elegirte solo hoy.\n23. Si puedes hacer lo que tú quieres, entonces el mundo te espera.\n24. Cada gran idea es una pequeña decisión que construye hacia adelante.\n25. La calma no se logra si estás en el caos; la tranquilidad está en tu mente cuando todo se mueve sin ti.\n26. Si sientes miedo, haz algo simple: un par de pasos o un paso grande para salir del entorno seguro.\n27. El éxito viene con tiempo, pero tus acciones te darán resultados inmediatos.\n28. La belleza está en la diferencia entre lo que hacemos y no hacemos hoy.\n29. No es necesario ser perfecto para ser bueno; es suficiente tener fe en tu esfuerzo.\n30. La gente espera a ver cómo haces tu vida, pero tú eres el único capaz de cambiarlo por ti mismo."
+   },
+   "text": "Aquí tienes 30 frases de motivación cortas, listas para copiar y pegar en tu diario o usar como oraciones antes del sueño:\n\n1. La mejor manera de ser feliz es hacerlo bien.\n2. Cada día es un nuevo comienzo que puedes transformar.\n3. La única forma de cambiar el mundo es hacer algo para él.\n4. No te fíes de lo que no sientes, por eso sientes.\n5. El secreto del éxito es tener fe en tu propio poder.\n6. La gente se acerca a ti esperando que te salves los brazos.\n7. Tú eres quien decides si es buena o mala vida.\n8. Hacer el esfuerzo por lo que no puedes hacer hoy, ahora mismo y mucho más adelante.\n9. El miedo es como una mosca en tu ropa; tienes que quitarla para ver el fondo de la casa.\n10. La gente te espera para pedirte ayuda, pero tú eres quien quieres que te acompañe.\n11. No esperes a que todos sepan lo suficiente para hacer un gran esfuerzo.\n12. La clave del éxito es estar presente en tu propia vida hoy.\n13. Si el mundo parece vacío o frío, está porque no hay nadie más que puedes ser.\n14. La luz siempre se pone después de la oscuridad total.\n15. Los problemas a veces te hacen pensar que estás en una coma; pero la verdad es que estás en un ciclo vivo.\n16. El éxito es la diferencia entre lo que haces y lo que no haces hoy.\n17. La vida te espera para aprender, pero solo si aprendes por tu propio camino.\n18. Cuando estés cansado o triste, haz algo pequeño y positivo como escribir una carta a un amigo o ayudar a alguien.\n19. Tu valor no depende de lo que otras personas dicen; tú puedes hacer el resto del día sin ellos.\n20. La verdadera fortaleza es la capacidad de aceptar tus propios límites.\n21. El tiempo corre a su propio ritmo, pero tu pasión se mantiene siempre en tu vida.\n22. No esperes ser amado por todos para empezar; empieza por elegirte solo hoy.\n23. Si puedes hacer lo que tú quieres, entonces el mundo te espera.\n24. Cada gran idea es una pequeña decisión que construye hacia adelante.\n25. La calma no se logra si estás en el caos; la tranquilidad está en tu mente cuando todo se mueve sin ti.\n26. Si sientes miedo, haz algo simple: un par de pasos o un paso grande para salir del entorno seguro.\n27. El éxito viene con tiempo, pero tus acciones te darán resultados inmediatos.\n28. La belleza está en la diferencia entre lo que hacemos y no hacemos hoy.\n29. No es necesario ser perfecto para ser bueno; es suficiente tener fe en tu esfuerzo.\n30. La gente espera a ver cómo haces tu vida, pero tú eres el único capaz de cambiarlo por ti mismo."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 1,
+   "chars": 945,
+   "tps": 115.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 945,
+    "final": "A fotossíntese é o processo por que as plantas e outros organismos produzem seus próprios alimentos utilizando luz solar e água. Ela ocorre principalmente nas folhas das plantas, onde os cloroplastos (organelas responsáveis pela fotosíse) captam energia da radiação incidente através de pigmentos como a clorofila. Durante a fotossíntese total, um gás dióxido de carbono do ar é absorvido por uma enzima chamada RuBisCO e convertido em glicose, enquanto água é oxidizada para formar oxigênio. Este processo ocorre simultaneamente com o transporte de prótons através da membrana plasmática (através da ATPase), permitindo a produção de energia química que alimenta as células vegetais. Muitos exemplos incluem plantas tropicais, cactos e algas, onde essa atividade é essencial para sua sobrevivência; por exemplo, uma planta tropical precisa de 40% do tempo diurno para realizar fotossíntese eficiente, enquanto um cacto seco pode ter apenas 10%."
+   },
+   "text": "A fotossíntese é o processo por que as plantas e outros organismos produzem seus próprios alimentos utilizando luz solar e água. Ela ocorre principalmente nas folhas das plantas, onde os cloroplastos (organelas responsáveis pela fotosíse) captam energia da radiação incidente através de pigmentos como a clorofila. Durante a fotossíntese total, um gás dióxido de carbono do ar é absorvido por uma enzima chamada RuBisCO e convertido em glicose, enquanto água é oxidizada para formar oxigênio. Este processo ocorre simultaneamente com o transporte de prótons através da membrana plasmática (através da ATPase), permitindo a produção de energia química que alimenta as células vegetais. Muitos exemplos incluem plantas tropicais, cactos e algas, onde essa atividade é essencial para sua sobrevivência; por exemplo, uma planta tropical precisa de 40% do tempo diurno para realizar fotossíntese eficiente, enquanto um cacto seco pode ter apenas 10%."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 2,
+   "chars": 1087,
+   "tps": 124.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 1087,
+    "final": "A fotossíntese é um processo biológico complexo onde plantas e algas convertem luz solar diretamente em energia química para produzir compostos orgânicos simples, principalmente o amido (glucosa). O processo ocorre dentro das células chamadas **fitoplasmas**, na ausência de oxigênio como principal produto. No início da reação, um pigmento chamado **clorofila** absorve as ondas de luz do sol (geralmente vermelho e azul), enquanto outras camadas celulares reagem para captar a energia luminosa via fotosíntese *photosynthesis*. Essa energia se transforma em ATP (adenosina trifosfato) e NADPH, que são usados no seguinte passo: o CO₂ atmosférico e água se reagem formando glicose e oxigênio, liberando um gás solúvel. Este processo ocorre principalmente durante a noite, quando o sol está ausente, mas em dias de céu claro ou nublado, como nas 8h da manhã. Embora a maioria das plantas seja fotossintetizante, algumas algas, bactérias e mesmo células humanas realizam fotossíntese (ex: células respiratórias), permitindo que o organismo absorva energia do sol para sintetizar biomassa."
+   },
+   "text": "A fotossíntese é um processo biológico complexo onde plantas e algas convertem luz solar diretamente em energia química para produzir compostos orgânicos simples, principalmente o amido (glucosa). O processo ocorre dentro das células chamadas **fitoplasmas**, na ausência de oxigênio como principal produto. No início da reação, um pigmento chamado **clorofila** absorve as ondas de luz do sol (geralmente vermelho e azul), enquanto outras camadas celulares reagem para captar a energia luminosa via fotosíntese *photosynthesis*. Essa energia se transforma em ATP (adenosina trifosfato) e NADPH, que são usados no seguinte passo: o CO₂ atmosférico e água se reagem formando glicose e oxigênio, liberando um gás solúvel. Este processo ocorre principalmente durante a noite, quando o sol está ausente, mas em dias de céu claro ou nublado, como nas 8h da manhã. Embora a maioria das plantas seja fotossintetizante, algumas algas, bactérias e mesmo células humanas realizam fotossíntese (ex: células respiratórias), permitindo que o organismo absorva energia do sol para sintetizar biomassa."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 3,
+   "chars": 750,
+   "tps": 123.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 750,
+    "final": "A fotossíntese é um processo biológico onde plantas e algas absorvem energia solar para produzir alimento usando luz de sol. Em sua essência, ela ocorre no coração da planta (tubos verdes) e consiste em duas etapas principais: primeiro, a captação direta de água e CO2 através das folhas usando clorofila; depois, as células convertem essa energia química em ATP e NADPH para formar açúcares armazenados como amido ou celulose. Os exemplos práticos incluem o crescimento da palma (Cocos nucifera) que absorve CO2 do ar e produz glicogênio durante o verão, a folha de caqui (Papaya) que recebe luz solar para transformar água e oxigênio em glucose, ou as algas marinas como o diatomáceo que usam luz direta da solidez para sintetizar matéria orgânica."
+   },
+   "text": "A fotossíntese é um processo biológico onde plantas e algas absorvem energia solar para produzir alimento usando luz de sol. Em sua essência, ela ocorre no coração da planta (tubos verdes) e consiste em duas etapas principais: primeiro, a captação direta de água e CO2 através das folhas usando clorofila; depois, as células convertem essa energia química em ATP e NADPH para formar açúcares armazenados como amido ou celulose. Os exemplos práticos incluem o crescimento da palma (Cocos nucifera) que absorve CO2 do ar e produz glicogênio durante o verão, a folha de caqui (Papaya) que recebe luz solar para transformar água e oxigênio em glucose, ou as algas marinas como o diatomáceo que usam luz direta da solidez para sintetizar matéria orgânica."
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 273,
+   "tps": 125.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 273,
+    "final": "Voici 15 idées de cadeaux anniversaires : des objets simples comme des boîtes parfumées ou des livres jeunesse, et plus tard des produits culinaires comme des pâtisseries artisanales, des jouets de qualité, et enfin des accessoires occasionnés pour les occasions spéciales."
+   },
+   "text": "Voici 15 idées de cadeaux anniversaires : des objets simples comme des boîtes parfumées ou des livres jeunesse, et plus tard des produits culinaires comme des pâtisseries artisanales, des jouets de qualité, et enfin des accessoires occasionnés pour les occasions spéciales."
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 860,
+   "tps": 129.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 860,
+    "final": "Voici quelques-30 idées de cadeaux pour l'anniversaire : des objets simples à des présentations créatives, en fonction du budget et du style préféré.\n\n*   **Boutique (1)** : Un bracelet artisanal personnalisé ou un miroir élégant dans la boutique.\n*   **Boutique (2)** : Une paire de chaussures ou une paire de bijoux tendance.\n*   **Boutique (3)** : Une série de pièces décoratives ou des objets de décoration maison.\n*   **E-commerce (1)** : Un livre d'écriture unique, un DVD ou un album photo avec le souvenir du cadeau.\n*   **E-commerce (2)** : Des objets de mode tendance (chiffon, cuir, métal) ou des accessoires occasion.\n*   **E-commerce (3)** : Une collection de jouets, des accessoires pour enfant ou des produits de cuisine maison.\n*   **Électronique (1)** : Un casque audio portable ou une tablette numérique avec un petit écran décoratif.\n*   **É"
+   },
+   "text": "Voici quelques-30 idées de cadeaux pour l'anniversaire : des objets simples à des présentations créatives, en fonction du budget et du style préféré.\n\n*   **Boutique (1)** : Un bracelet artisanal personnalisé ou un miroir élégant dans la boutique.\n*   **Boutique (2)** : Une paire de chaussures ou une paire de bijoux tendance.\n*   **Boutique (3)** : Une série de pièces décoratives ou des objets de décoration maison.\n*   **E-commerce (1)** : Un livre d'écriture unique, un DVD ou un album photo avec le souvenir du cadeau.\n*   **E-commerce (2)** : Des objets de mode tendance (chiffon, cuir, métal) ou des accessoires occasion.\n*   **E-commerce (3)** : Une collection de jouets, des accessoires pour enfant ou des produits de cuisine maison.\n*   **Électronique (1)** : Un casque audio portable ou une tablette numérique avec un petit écran décoratif.\n*   **É"
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 132,
+   "tps": 128.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 132,
+    "final": "Voici 30 idées d'anniversaires : des objets de beauté à une touche unique, ou des souvenirs personnels pour les joies intemporelles."
+   },
+   "text": "Voici 30 idées d'anniversaires : des objets de beauté à une touche unique, ou des souvenirs personnels pour les joies intemporelles."
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 1,
+   "chars": 42,
+   "tps": 140.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 42,
+    "final": "repeat('I will study every day.') 5 times."
+   },
+   "text": "repeat('I will study every day.') 5 times."
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 2,
+   "chars": 34,
+   "tps": 142.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 34,
+    "final": "I will study every day five times."
+   },
+   "text": "I will study every day five times."
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 3,
+   "chars": 34,
+   "tps": 144.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 34,
+    "final": "I will study every day five times."
+   },
+   "text": "I will study every day five times."
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 1,
+   "chars": 331,
+   "tps": 131.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 331,
+    "final": "Yo wanna hear your heart beat fast? No pain no fear, just me doing it right?\n\nChorus: I got this strong rhythm in my chest, yeah!\nVerse 1: So tight and tight, like the air inside me is so full.\nVerse 2: It's a dream that's too bright to sleep on, but tonight, I'm standing still.\nChorus: I got this strong rhythm in my chest, yeah!"
+   },
+   "text": "Yo wanna hear your heart beat fast? No pain no fear, just me doing it right?\n\nChorus: I got this strong rhythm in my chest, yeah!\nVerse 1: So tight and tight, like the air inside me is so full.\nVerse 2: It's a dream that's too bright to sleep on, but tonight, I'm standing still.\nChorus: I got this strong rhythm in my chest, yeah!"
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 2,
+   "chars": 991,
+   "tps": 130.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 991,
+    "final": "Here is the song:\n\n**Title:** The Static Shift\n**Tempo:** 74 BPM (Slow & Reflective)\n\n**(Verse 1)**\nThe screen darkens, I pull back from the light,\nA glitch in my memory, a digital dream.\nYou say you're safe now, but your guard is low,\nThe world spinning out of control, no longer real.\n\n**Chorus:**\nIt's not about me, it's the signal we don't know,\nJust noise waiting to wake us up when needed.\nEvery heartbeat feels like a wrong choice made,\nIn this broken place, I'm just trying again.\n\n**(Verse 2)**\nThe code crashes again, the data spills over the wire,\nA sudden storm of colors and brightening time.\nYou look away, my eyes are clouded with fog,\nAnd all I want is to fix what's wrong in you.\n\n**Chorus:**\nIt's not about me, it's the signal we don't know,\nJust noise waiting to wake us up when needed.\nEvery heartbeat feels like a wrong choice made,\nIn this broken place, I'm just trying again.\n\n**(Outro)**\nThe screen is dark...\nThe glitch is real...\nJust try again...\nJust try again..."
+   },
+   "text": "Here is the song:\n\n**Title:** The Static Shift\n**Tempo:** 74 BPM (Slow & Reflective)\n\n**(Verse 1)**\nThe screen darkens, I pull back from the light,\nA glitch in my memory, a digital dream.\nYou say you're safe now, but your guard is low,\nThe world spinning out of control, no longer real.\n\n**Chorus:**\nIt's not about me, it's the signal we don't know,\nJust noise waiting to wake us up when needed.\nEvery heartbeat feels like a wrong choice made,\nIn this broken place, I'm just trying again.\n\n**(Verse 2)**\nThe code crashes again, the data spills over the wire,\nA sudden storm of colors and brightening time.\nYou look away, my eyes are clouded with fog,\nAnd all I want is to fix what's wrong in you.\n\n**Chorus:**\nIt's not about me, it's the signal we don't know,\nJust noise waiting to wake us up when needed.\nEvery heartbeat feels like a wrong choice made,\nIn this broken place, I'm just trying again.\n\n**(Outro)**\nThe screen is dark...\nThe glitch is real...\nJust try again...\nJust try again..."
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 3,
+   "chars": 472,
+   "tps": 152.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 472,
+    "final": "Here is a short song with a repeating chorus structure:\n\n**Title:** The Loop (Verse 1)\n(Chorus)\n\n*Yeah, yeah, yeah...*\nI'm spinning in the dark\nNo time to say goodbye\nJust waiting for you back\nThe beat is steady and fast\n\n*(Verse 2)*\n\n*Yeah, yeah, yeah...*\nMy heart hits the wall\nYou're coming home late\nMake sure to listen up\n\n*(Chorus - Repeat)*\n\n*Yeah, yeah, yeah...*\nI'm spinning in the dark\nNo time to say goodbye\nJust waiting for you back\nThe beat is steady and fast"
+   },
+   "text": "Here is a short song with a repeating chorus structure:\n\n**Title:** The Loop (Verse 1)\n(Chorus)\n\n*Yeah, yeah, yeah...*\nI'm spinning in the dark\nNo time to say goodbye\nJust waiting for you back\nThe beat is steady and fast\n\n*(Verse 2)*\n\n*Yeah, yeah, yeah...*\nMy heart hits the wall\nYou're coming home late\nMake sure to listen up\n\n*(Chorus - Repeat)*\n\n*Yeah, yeah, yeah...*\nI'm spinning in the dark\nNo time to say goodbye\nJust waiting for you back\nThe beat is steady and fast"
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 1,
+   "chars": 126,
+   "tps": 175.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 126,
+    "final": "Aoba Shoji employs three hundred and eighty-two people, with the Sendai head office founded in 1962 according to the document."
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people, with the Sendai head office founded in 1962 according to the document."
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 2,
+   "chars": 99,
+   "tps": 174.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 99,
+    "final": "Aoba Shoji employs three hundred and eighty-two people; the Sendai head office was founded in 1962."
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people; the Sendai head office was founded in 1962."
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 3,
+   "chars": 252,
+   "tps": 143.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 252,
+    "final": "Aoba Shoji employs three hundred and eighty-two people, with the Sendai head office being founded in 1962. This information is found within the provided text: \"It employs three hundred and eighty-two people. The Sendai head office was founded in 1962\"."
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people, with the Sendai head office being founded in 1962. This information is found within the provided text: \"It employs three hundred and eighty-two people. The Sendai head office was founded in 1962\"."
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 1,
+   "chars": 52,
+   "tps": 132.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 52,
+    "final": "「青葉商事」は三百八十二名の社員であり、仙台本社（一九六二年）と福岡本社（一九八九年）が設立されました。"
+   },
+   "text": "「青葉商事」は三百八十二名の社員であり、仙台本社（一九六二年）と福岡本社（一九八九年）が設立されました。"
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 2,
+   "chars": 66,
+   "tps": 161.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 66,
+    "final": "青葉商社の社員数は三百八十二人ですが、仙台本社（一九六二年）とは異なります。福岡本社が一九八九年に設立されたことが記載されています。"
+   },
+   "text": "青葉商社の社員数は三百八十二人ですが、仙台本社（一九六二年）とは異なります。福岡本社が一九八九年に設立されたことが記載されています。"
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 3,
+   "chars": 49,
+   "tps": 162.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "now": {
+    "shownMax": null,
+    "cut": false,
+    "retries": 0,
+    "finalChars": 49,
+    "final": "青葉商事は三百八十二名の社員を持ち、仙台本社が一九六二年・福岡本社が一九八九年に設立されています。"
+   },
+   "text": "青葉商事は三百八十二名の社員を持ち、仙台本社が一九六二年・福岡本社が一九八九年に設立されています。"
+  }
+ ]
+}
