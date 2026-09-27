@@ -1,0 +1,18 @@
+16:47:39 pushing 15 steps as c-asked-repeat
+16:47:46 shot C01-asked-repeat
+16:47:50 ok     0 deeplink   /chats
+16:47:50 ok     1 waitFor    new-chat appeared
+16:47:50 ok     2 press      new-chat ← onPress
+16:47:50 ok     3 waitFor    start-chat appeared
+16:47:50 ok     4 press      start-chat ← onPress
+16:47:50 ok     5 waitFor    composer-input appeared
+16:47:50 ok     6 sleep      1500 ms
+16:47:50 ok     7 type       composer-input = 107 chars
+16:47:50 ok     8 send       send ← onPress
+16:47:50 ok     9 waitFor    assistant-text appeared
+16:47:50 ok    10 waitFor    stop gone
+16:47:50 ok    11 sleep      1500 ms
+16:47:50 ok    12 value      The quick brown fox jumps over the lazy dog.
+16:47:50 ok    13 screenshot C01-asked-repeat
+16:47:50 ok    14 waitFor    loop-notice gone
+16:47:50 15 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-22/screens

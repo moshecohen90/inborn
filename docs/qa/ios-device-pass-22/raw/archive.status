@@ -1,0 +1,23 @@
+store env clean: no EXPO_PUBLIC_* dev switch set
+EXPO_PUBLIC in env: 0
+commit 6cfd36359cf3 dirty=0
+prebuild 16:16:51
+prebuild rc=0
+xcode.env.local:
+pod install 16:16:54
+pod rc=0 16:17:25
+AskInborn
+Inborn
+Inborn.storekit
+Inborn.xcodeproj
+Inborn.xcworkspace
+InbornUITests
+Podfile
+Podfile.lock
+Podfile.properties.json
+Pods
+xcode.env.local now: export NODE_BINARY=~/.nvm/versions/node/v20.19.4/bin/node
+start=16:17:46
+rc=0 end=16:21:29
+0
+** ARCHIVE SUCCEEDED **

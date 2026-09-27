@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-fr-list-2",
+  "startedAt": "2026-09-27T13:36:41.290Z",
+  "finishedAt": "2026-09-27T13:37:19.628Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Vo ▍",
+        "props": {
+          "source": "Vo",
+          "disabled": false
+        }
+      },
+      "detail": "Vo ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et un ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et un",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et un ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pai ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une pai",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pai "
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5 ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illus ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illus",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 993,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentimen ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentimen",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 733,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec d ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec d",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 741,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où ",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une mon ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une mon",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. D ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. D",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une paire de chaussures pour le pied. 4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime. 5. Un gadget portable que l'on utilise quotidiennement. 6. Une piece de musique qu'il adore et qu'illustre. 7. Une photo avec un souvenir d'une journée spécifique ou une histoire. 8. Un objet de décoration qui lui inspire un sentiment d'appartenance. 9. Un jeu vidéo qu'il a déjà joué en arrière-plan. 10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares. 11. Une table de cuisine où il pourrait cuisiner à ses propres repas. 12. Une montre intelligente ou une autre technologie pour suivre l'heure. 13. Des livres d'histoire que l'on peut lire en",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire :\n\n1. Un cadeau en papier avec un design élégant et une inscription personnalisée.\n2. Un livre pour la lecture de son enfance ou des livres anciens.\n3. Une paire de chaussures pour le pied.\n4. Un objet artisanal qui lui ressemble à quelque chose qu'il aime.\n5. Un gadget portable que l'on utilise quotidiennement.\n6. Une piece de musique qu'il adore et qu'illustre.\n7. Une photo avec un souvenir d'une journée spécifique ou une histoire.\n8. Un objet de décoration qui lui inspire un sentiment d'appartenance.\n9. Un jeu vidéo qu'il a déjà joué en arrière-plan.\n10. Un cadeau qui permet de faire un nouveau travail avec des compétences rares.\n11. Une table de cuisine où il pourrait cuisiner à ses propres repas.\n12. Une montre intelligente ou une autre technologie pour suivre l'heure.\n13. Des livres d'histoire que l'on peut lire en",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire : 1. Un cadeau en papier avec un design élégant et une inscription personnalisée. 2. Un livre pour la lecture de son enfance ou des livres anciens. 3. Une pair"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1928,
+      "detail": "L07-fr-list-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

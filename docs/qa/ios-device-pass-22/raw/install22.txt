@@ -1,0 +1,14 @@
+start=16:22:19
+rc=0 end=16:22:40
+after install: Inborn com.inbornapp.mobile 1.0.0 22
+
+before the install: the byte copy of the six files FAILED (the shell passed the file list as one word), so no byte copy exists from just before this install.
+what proves the container survived:
+- Documents/ listing (devicectl device info files) at 16:15:46 and again after the install: identical, 28 entries, same names, sizes and modification times (the listing itself stays out of the repo: it is Moshe's container).
+- the six files pulled after the install, sha256 against docs/qa/ios-device-pass-20/raw/backup-before.sha256 (taken before build 20):
+  device-prefs.json 92 B: byte-identical to the build-20 record
+  documents.json 858 B: byte-identical to the build-20 record
+  inborn.db 2543616 B: byte-identical to the build-20 record
+  inborn.db-wal 4185952 B: not in the build-20 record (last written before this install; same modification time before and after)
+  licence.bin 100 B: not in the build-20 record (last written before this install; same modification time before and after)
+  vault.json 559 B: not in the build-20 record (last written before this install; same modification time before and after)

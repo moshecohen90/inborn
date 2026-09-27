@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-math-long-div-2",
+  "startedAt": "2026-09-27T13:40:50.210Z",
+  "finishedAt": "2026-09-27T13:41:31.429Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 251,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 98765 ▍",
+        "props": {
+          "source": "To divide 98765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 98765 ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. D ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. D",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. D ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 775,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 0 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 0",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 829,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1271,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 5 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 5",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 757,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 838,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 3 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 3",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 755,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1085,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit ( ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 738,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finall ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finall",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 748,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 732,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximate ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximate",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately ** ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023). 3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03). 4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042). 5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036). 6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029). 7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025). 8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3). Final answer: The dividend divided by the divisor is approximately 8,023,697,204 (with a small remainder of 3).",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend:\n\n1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02).\n2. Bring down the next digit (7) to make 27; 27 divided by 12 gives quotient 2 with remainder 3 (so we have 023).\n3. Bring down the next digit (6) to make 36; 36 divided by 12 is exactly 3, so we get quotient 3 and remainder 0 (03).\n4. Bring down the next digit (5) to make 50; 50 divided by 12 gives quotient 4 with remainder 2 (so we have 042).\n5. Bring down the next digit (4) to make 42; 42 divided by 12 gives quotient 3 with remainder 6 (so we have 036).\n6. Bring down the next digit (3) to make 33; 33 divided by 12 gives quotient 2 with remainder 9 (so we have 029).\n7. Bring down the next digit (2) to make 29; 29 divided by 12 gives quotient 2 with remainder 5 (so we have 025).\n8. Finally, bring down the last digit (1) to make 51; 51 divided by 12 gives quotient 4 with remainder 3 (so we get the final result of 8,023,697,204 and a remainder of 3).\n\nFinal answer: The dividend divided by the divisor is approximately **8,023,697,204** (with a small remainder of 3).",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, perform long division on the digits of the dividend: 1. Divide 98 by 12 to get quotient 8 and remainder 2 (so we have 02). 2. Bring down the next digit (7) to "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3196,
+      "detail": "L07-math-long-div-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

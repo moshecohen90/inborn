@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-es-list-2",
+  "startedAt": "2026-09-27T13:35:14.815Z",
+  "finishedAt": "2026-09-27T13:35:53.711Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aqu ▍",
+        "props": {
+          "source": "Aqu",
+          "disabled": false
+        }
+      },
+      "detail": "Aqu ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. **E ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**E",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. **E ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es un ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es un",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo q ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo q",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constanc ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constanc",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado;",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu diner ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu diner",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. **Resi ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resi",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 775,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando ha ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando ha",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas l ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas l",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 718,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 780,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1565,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuro ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuro",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 944,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 8,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo es una victoria. • La fuerza no es tener todo en mano, sino estar siempre listos. • Tu valor está en lo que haces, no en lo que tienes. • El éxito no se construye por el momento, se construye la constancia. • Si quieres hacer bien, hazlo ahora mismo. Abundancia y Actitud • No busques demasiado; busca lo suficiente para no sentirse vacío. • La abundancia es un estado de ánimo, no una necesidad. • El mundo te espera con amor cuando estés listo para él. • Tu vida importa más que tus libros o tu dinero ahora mismo. • Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente. Resiliencia y Espera • La gente es rápida; tú eres lento pero constante. • El esfuerzo cuesta menos el resultado cuando haces bien cada paso. • La vida te espera con sus propios tiempos para ser útil a ti. • No pierdas la esperanza porque no tienes tiempo para esperarlo. • La fortaleza no se gana, se encuentra y se usa. Comunidad y Conexión • La mejor relación es la que haces contigo mismo cada día. • Conecta con lo que importa en tu vida ahora mismo. • Tu familia es lo más grande que hay en el mundo. • No te isolas; un grupo puede ayudarte a crecer mucho más rápido. • Las personas son buenas para ser buenas y malas para ser malas. Honor y Valor Personal • El honor es la manera de sentirse digno de lo que haces. • Cada detalle cuenta si es bien hecho o mal hecho. • Tu estilo de vida define tu presencia en el mundo. • No busques más; busca más lo que necesitas para ser tú mismo. • La verdad te hace felices, no los falsos apuros. Crecimiento y Desarrollo • El crecimiento es un proceso, nunca un evento único. • Cada día que pasas es una oportunidad para mejorar. • Tu potencial está dentro de ti; nadie lo puede quitarle. • La verdadera",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso.\n\n**Energía y Compromiso**\n- La mejor forma de hacer algo es hacerlo bien.\n- Cada paso hacia un objetivo es una victoria.\n- La fuerza no es tener todo en mano, sino estar siempre listos.\n- Tu valor está en lo que haces, no en lo que tienes.\n- El éxito no se construye por el momento, se construye la constancia.\n- Si quieres hacer bien, hazlo ahora mismo.\n\n**Abundancia y Actitud**\n- No busques demasiado; busca lo suficiente para no sentirse vacío.\n- La abundancia es un estado de ánimo, no una necesidad.\n- El mundo te espera con amor cuando estés listo para él.\n- Tu vida importa más que tus libros o tu dinero ahora mismo.\n- Lo importante en esto no se trata del pasado ni del futuro, sino de lo presente.\n\n**Resiliencia y Espera**\n- La gente es rápida; tú eres lento pero constante.\n- El esfuerzo cuesta menos el resultado cuando haces bien cada paso.\n- La vida te espera con sus propios tiempos para ser útil a ti.\n- No pierdas la esperanza porque no tienes tiempo para esperarlo.\n- La fortaleza no se gana, se encuentra y se usa.\n\n**Comunidad y Conexión**\n- La mejor relación es la que haces contigo mismo cada día.\n- Conecta con lo que importa en tu vida ahora mismo.\n- Tu familia es lo más grande que hay en el mundo.\n- No te isolas; un grupo puede ayudarte a crecer mucho más rápido.\n- Las personas son buenas para ser buenas y malas para ser malas.\n\n**Honor y Valor Personal**\n- El honor es la manera de sentirse digno de lo que haces.\n- Cada detalle cuenta si es bien hecho o mal hecho.\n- Tu estilo de vida define tu presencia en el mundo.\n- No busques más; busca más lo que necesitas para ser tú mismo.\n- La verdad te hace felices, no los falsos apuros.\n\n**Crecimiento y Desarrollo**\n- El crecimiento es un proceso, nunca un evento único.\n- Cada día que pasas es una oportunidad para mejorar.\n- Tu potencial está dentro de ti; nadie lo puede quitarle.\n- La verdadera",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, redactadas para mantener la energía alta y el compromiso. Energía y Compromiso • La mejor forma de hacer algo es hacerlo bien. • Cada paso hacia un objetivo e"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1594,
+      "detail": "L07-es-list-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

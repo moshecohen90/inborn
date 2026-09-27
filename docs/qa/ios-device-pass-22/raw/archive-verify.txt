@@ -1,0 +1,30 @@
+== archive <scratch>/build22/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 22
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 22
+instant.gguf = 532517120 B sha256 bd258782…
+vision-qwen35.gguf = 204987232 B sha256 56e4c6cf…
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6578974 B
+app size = 767M
+app.config: version 1.0.0 buildNumber 22 bundleId com.inbornapp.mobile
+extra.commit 6cfd36359cf3 extra.devVariant False
+bundle strings: INBORN_QA_BRIDGE_V1=0 '[chat] loop retry'=1 '[chat] loop cut'=1 'dry_multiplier|dryMultiplier'=1
+== qa-bridge gate on the archive
+OK: <scratch>/build22/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build22/Inborn.xcarchive (given path): OK: <scratch>/build22/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build22/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build22/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0

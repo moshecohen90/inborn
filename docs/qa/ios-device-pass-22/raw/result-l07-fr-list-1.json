@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-fr-list-1",
+  "startedAt": "2026-09-27T13:35:56.796Z",
+  "finishedAt": "2026-09-27T13:36:38.213Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 541,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d' ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d' ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse e ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse e",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse e ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisi ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisi",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4 ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2576,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lectur ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lectur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. **D ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **D",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. **Des produits en lign ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en lign",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, et ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, et",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cu ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cu",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. **Un appareil photo professionn ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionn",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. **Une voitur ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voitur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 793,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. **Des produits phar ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits phar",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 8,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si la cuisine est disponible) 3. Un petit livre (à lire seul ou avec des amis) 4. Un jouet de jeux de société (comme \"Pac-Man\" ou un jeu de cartes) 5. Un modèle d'ordinateur (avec une souris et un clavier pour la lecture) 6. Des produits en ligne (laptop, téléphone portable, ordinateur portable, etc.) 7. Une nouvelle robe de mode (en cuir ou en tissu, selon le style du cadeau) 8. Un appareil photo professionnel (pour les photos de portraits et d'histoire) 9. Une voiture de sport (si l'occasion est une fête de famille) 10. Des produits pharmaceutiques",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants :\n\n1. **Un bon café** (avec une tasse en métal ou un bol en bois)\n2. **Une bonne pizza** (ou une version plus tardive si la cuisine est disponible)\n3. **Un petit livre** (à lire seul ou avec des amis)\n4. **Un jouet de jeux de société** (comme \"Pac-Man\" ou un jeu de cartes)\n5. **Un modèle d'ordinateur** (avec une souris et un clavier pour la lecture)\n6. **Des produits en ligne** (laptop, téléphone portable, ordinateur portable, etc.)\n7. **Une nouvelle robe de mode** (en cuir ou en tissu, selon le style du cadeau)\n8. **Un appareil photo professionnel** (pour les photos de portraits et d'histoire)\n9. **Une voiture de sport** (si l'occasion est une fête de famille)\n10. **Des produits pharmaceutiques**",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être utiles et divertissants : 1. Un bon café (avec une tasse en métal ou un bol en bois) 2. Une bonne pizza (ou une version plus tardive si"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2879,
+      "detail": "L07-fr-list-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

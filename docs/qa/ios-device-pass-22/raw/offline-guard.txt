@@ -1,0 +1,17 @@
+Round 107's guard (packages/core/src/chat/loop.ts at 6cfd3635) run offline, under vitest in packages/core, on text the iPhone showed.
+Sources: scripts/offline-guard.test.ts.txt and scripts/offline-math-step.test.ts.txt. The test files were deleted from packages/core/test after the run.
+
+== the final answers, streamed 3 characters at a time through guardLoops with the prompt as the request (no retry), and tailLoop(final)
+l07-es-list-1: guardLoops no loop; tailLoop(final) no hit; shown 1814 chars          (control: no repeat)
+l07-he-explain-2: guardLoops no loop; tailLoop(final) no hit; shown 752 chars        (phrase twice back to back, the first copy inside **bold**)
+l07-list30-animals-1: guardLoops no loop; tailLoop(final) no hit; shown 411 chars    (single duplicate items, marked "(repeated)" by the model)
+l07-list30-animals-2: guardLoops no loop; tailLoop(final) no hit; shown 399 chars    (items 11-20 said again as items 21-30)
+l02-es-list: guardLoops no loop; tailLoop(final) no hit; shown 2299 chars            (control: the text after the phone's silent retry)
+l02-fr-list: guardLoops no loop; tailLoop(final) no hit; shown 662 chars             (control: the text the phone kept before its notice)
+l02-list30-animals: guardLoops no loop; tailLoop(final) no hit; shown 377 chars      (Jellyfish, Clownfish, Octopus, Starfish as items 11-30, five times)
+
+== l07-math-long-div-1: the phone logged "[chat] loop retry: kept 1091 chars, unit 169 cp x2" and took back 113 characters it had shown.
+The snapshot the bridge read just before the retry (1,204 chars) has no hit at any prefix. Appending the correct next step of the same
+division ("283? $123 \times 2 = 246$. So we write **2** and subtract $246$ from 283 to get a remainder of $37$.") gives:
+HIT at 1261: keep 1092, unit 169 cp x2, kept 1091
+The same numbers as the phone: the echo rule read a correct long-division step, which multiplies by 2 again, as a copy of the previous step.

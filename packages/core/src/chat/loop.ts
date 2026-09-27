@@ -11,6 +11,8 @@ export interface LoopHit {
   start: number;
   /** UTF-16 offset to cut at: everything before it is kept, i.e. the text up to the end of the first copy. */
   keep: number;
+  /** The copies kept are the ones the user asked for, so the answer is complete at `keep` (F421). */
+  asked?: boolean;
 }
 
 /** Only the tail is searched, so a check costs the same at token 20 and token 2000. */
@@ -374,6 +376,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     allowed: number;
     /** Copies the answer keeps when it is: one, unless the user, the source text or a refrain asked for more. */
     kept: number;
+    asked: boolean;
   }
   const verdicts = new Map<string, Verdict | null>();
   /* What the unit s[a, a + p) may do, or null when it can never be a loop here. */
@@ -393,8 +396,9 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       const base = long ? 1 : listed ? REPEATS : REPEATS - 1;
       /* One line of a song may come twice, its chorus; a whole stanza may not. */
       const line = verse && unit.filter((c) => c === "\n").length === 1 ? 2 : 0;
-      const kept = Math.max(1, line, askedCopies(s, a, p, request, ask), source);
-      verdict = { allowed: Math.max(base, kept), kept };
+      const askedN = askedCopies(s, a, p, request, ask);
+      const kept = Math.max(1, line, askedN, source);
+      verdict = { allowed: Math.max(base, kept), kept, asked: askedN > 1 && askedN === kept };
     }
     verdicts.set(key, verdict);
     return verdict;
@@ -408,7 +412,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     return next === " " || JOINER.test(next) || (WORD.test(next) && !CJK_CHAR.test(next));
   };
   /* The longest run at `end` where the text repeats itself p back, for every p. */
-  const scan = (end: number, wantHit: boolean): { hold: number; hit: { a: number; p: number; kept: number; copies: number } | null } => {
+  const scan = (end: number, wantHit: boolean): { hold: number; hit: { a: number; p: number; kept: number; copies: number; asked: boolean } | null } => {
     if (wantHit && goesOn(end)) return { hold: 0, hit: null };
     let hold = 0;
     const maxP = Math.min(end - 1, TAIL_WINDOW / 2);
@@ -434,7 +438,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       const next = end < n ? s[end]! : undefined;
       const whole = rest > 0 && rest >= p - trailing && (next === undefined ? final : next !== " " && !WORD.test(next) && !JOINER.test(next));
       const copies = Math.floor((r + p) / p) + (whole ? 1 : 0);
-      if (wantHit && copies > v.allowed) return { hold: 0, hit: { a, p, kept: v.kept, copies } };
+      if (wantHit && copies > v.allowed) return { hold: 0, hit: { a, p, kept: v.kept, copies, asked: v.asked } };
       /* Past the copies it may keep, the unit waits off screen until it either stops repeating or is a loop. */
       hold = Math.max(hold, r + p - v.kept * p);
     }
@@ -514,14 +518,14 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     if (relisted) return { hold: 0, hit: { unit: relisted.unit, repeats: 2, start: relisted.line, keep: relisted.line } };
     const found = scan(end, true).hit;
     if (!found) continue;
-    const { a, p, kept, copies } = found;
+    const { a, p, kept, copies, asked } = found;
     let keep = a + kept * p;
     /* A copy that starts on the sentence's own full stop leaves it with the first copy. */
     for (let x = 0; x < 2 && keep < end && TERMINATORS.has(s[keep]!); x++) keep++;
     let back = keep;
     while (back > keep - p && midWord(back)) back--;
     if (!midWord(back)) keep = back;
-    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: cut(keep) } };
+    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: cut(keep), ...(asked ? { asked } : {}) } };
   }
   const hold = Math.max(scan(n, false).hold, segmentHold, echo.hold);
   return { hold: Math.max(hold > 0 ? text.length - cut(n - hold) : 0, itemHold), hit: null };
@@ -786,8 +790,9 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     if (!hit) hit = tailLoop(text, context, checkedAt, true).hit ?? shortLoop(text, context);
     if (!hit) break;
     const cut = cutLoop(text, hit);
-    if (context.retry && !retried) {
-      retried = true;
+    /* Five asked, a sixth begun: the five are the whole answer, so a retry would only invent more (F421). */
+    const retry = retried ? undefined : context.retry;
+    if (hit.asked || retry) {
       /* Only whitespace past the cut on screen: nothing to take back. */
       if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {
         text = text.slice(0, sent);
@@ -799,9 +804,11 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         text = cut.text;
       }
       sent = checkedAt = text.length;
+      if (hit.asked || !retry) break;
+      retried = true;
       joinNext = true;
       context.onRetry?.(cut.text, hit);
-      current = context.retry(cut.text);
+      current = retry(cut.text);
       continue;
     }
     yield { loop: cut };

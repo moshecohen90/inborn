@@ -1,0 +1,20 @@
+== commit 6cfd36359cf3 16:16:29
+== pnpm install --frozen-lockfile rc=0 (15.6 s)
+== pnpm typecheck 16:16:29
+rc=0
+== pnpm test 16:16:42
+rc=0
+== pnpm lint 16:17:00
+rc=0
+== end 16:17:05
+
+== test counts
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1030 passed | 4 skipped (1034)
+apps/mobile test:       Tests  1180 passed (1180)
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+PASS: all fields within limits.
+PASS: no personal identifier in the history of HEAD

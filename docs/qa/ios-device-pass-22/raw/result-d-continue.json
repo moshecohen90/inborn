@@ -1,0 +1,179 @@
+{
+  "runId": "d-continue",
+  "startedAt": "2026-09-27T13:47:51.616Z",
+  "finishedAt": "2026-09-27T13:48:29.050Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 533,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7000,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cinnamon, cloves, ginger, and turmeric exchanged via sea lanes and land crossings in the fertile crescents. These goods were valued not only for their flavor but also for their medicinal properties, which attracted merchants seeking lucrative profits from exotic markets. The first major turning point occurred during the Islamic Golden Age when Arab traders established a sophisticated network connecting the Indian Ocean basin with Asian ports. This era saw the arrival of spices like cardamom, cloves, and saffron through trade routes that traveled around Africa into Asia, eventually linking Europe to India via the Silk Road. Merchants organized into guilds known as \"dhabas\" where they exchanged goods in standardized units called \"pula,\" facilitating a highly regulated commercial system that ensured fair wages and safe conditions for workers. In the Middle Ages, trade routes expanded dramatically with the rise of European navies like Christopher Columbus's fleet,",
+        "props": {
+          "source": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cinnamon, cloves, ginger, and turmeric exchanged via sea lanes and land crossings in the fertile crescents. These goods were valued not only for their flavor but also for their medicinal properties, which attracted merchants seeking lucrative profits from exotic markets.\n\nThe first major turning point occurred during the Islamic Golden Age when Arab traders established a sophisticated network connecting the Indian Ocean basin with Asian ports. This era saw the arrival of spices like cardamom, cloves, and saffron through trade routes that traveled around Africa into Asia, eventually linking Europe to India via the Silk Road. Merchants organized into guilds known as \"dhabas\" where they exchanged goods in standardized units called \"pula,\" facilitating a highly regulated commercial system that ensured fair wages and safe conditions for workers.\n\nIn the Middle Ages, trade routes expanded dramatically with the rise of European navies like Christopher Columbus's fleet,",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cin"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3512,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15511,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1506,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cinnamon, cloves, ginger, and turmeric exchanged via sea lanes and land crossings in the fertile crescents. These goods were valued not only for their flavor but also for their medicinal properties, which attracted merchants seeking lucrative profits from exotic markets. The first major turning point occurred during the Islamic Golden Age when Arab traders established a sophisticated network connecting the Indian Ocean basin with Asian ports. This era saw the arrival of spices like cardamom, cloves, and saffron through trade routes that traveled around Africa into Asia, eventually linking Europe to India via the Silk Road. Merchants organized into guilds known as \"dhabas\" where they exchanged goods in standardized units called \"pula,\" facilitating a highly regulated commercial system that ensured fair wages and safe conditions for workers. In the Middle Ages, trade routes expanded dramatically with the rise of European navies like Christopher Columbus's fleet, Christopher Columbus's fleet discovered the Americas in 1492, marking a pivotal moment that transformed spice trade into a global enterprise. European nations began importing these goods to feed growing populations and support burgeoning economies, while Asian merchants sought niches where European products were scarce or unprofitable. The exchange was not merely about raw material but often included processed goods like sugar, textiles, and leather from the Americas that could be sold at higher prices in Europe. In the 16th century, the \"Indian Ocean\" became a crucial transit hub, connecting Asian ports to European colonies on the Americas via established maritime routes known as the Silk Road's extension into the Pacific. This era saw the rapid establishment of trading posts along India's coasts and across Southeast Asia, where spice ships were often escorted by private warships under local supervision for safety. The demand was driven by the increasing popularity of European cuisine, particularly in France and Italy, which fueled a massive influx of spices that had been largely absent from European shores. The 17th and 18th centuries saw the consolidation of trade networks into powerful monopolies and guilds. In Spain and Portugal, private monopolies became dominant forces, controlling access to lucrative markets like China and India where spice prices were astronomical. Merchants organized into \"dhabas\" that enforced strict regulations on pricing, quality standards, and worker conditions, ensuring that the flow of goods remained stable and profitable for all participants in the chain. The Columbian Exchange fundamentally altered global agriculture and demographics by introducing new crops to Europe and altering plant life across Asia, including the spread of potatoes, tomatoes, and rice in the Americas. This interconnectedness meant that a single harvest in one region could supply vast distances with food, reshaping political alliances and economic dependencies between continents for centuries. The decline of traditional routes led to a gradual shift toward more direct transatlantic and transoceanic voyages during the 18th century, though many still relied on the old overland Silk Road paths. New shipping routes were established by European nations like Britain and France in the 19th century, making it easier for spices to travel across the Atlantic without relying solely on the Indian Ocean corridor. In the late 19th and early 20th centuries, the global trade reorganized itself as a result of World War I and subsequent geopolitical shifts. The British Empire expanded its control over Asian markets, leading to the rise of multinational trading companies that operated under international agreements like the Molteno Convention for",
+        "props": {
+          "source": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cinnamon, cloves, ginger, and turmeric exchanged via sea lanes and land crossings in the fertile crescents. These goods were valued not only for their flavor but also for their medicinal properties, which attracted merchants seeking lucrative profits from exotic markets.\n\nThe first major turning point occurred during the Islamic Golden Age when Arab traders established a sophisticated network connecting the Indian Ocean basin with Asian ports. This era saw the arrival of spices like cardamom, cloves, and saffron through trade routes that traveled around Africa into Asia, eventually linking Europe to India via the Silk Road. Merchants organized into guilds known as \"dhabas\" where they exchanged goods in standardized units called \"pula,\" facilitating a highly regulated commercial system that ensured fair wages and safe conditions for workers.\n\nIn the Middle Ages, trade routes expanded dramatically with the rise of European navies like Christopher Columbus's fleet, Christopher Columbus's fleet discovered the Americas in 1492, marking a pivotal moment that transformed spice trade into a global enterprise. European nations began importing these goods to feed growing populations and support burgeoning economies, while Asian merchants sought niches where European products were scarce or unprofitable. The exchange was not merely about raw material but often included processed goods like sugar, textiles, and leather from the Americas that could be sold at higher prices in Europe.\n\nIn the 16th century, the \"Indian Ocean\" became a crucial transit hub, connecting Asian ports to European colonies on the Americas via established maritime routes known as the Silk Road's extension into the Pacific. This era saw the rapid establishment of trading posts along India's coasts and across Southeast Asia, where spice ships were often escorted by private warships under local supervision for safety. The demand was driven by the increasing popularity of European cuisine, particularly in France and Italy, which fueled a massive influx of spices that had been largely absent from European shores.\n\nThe 17th and 18th centuries saw the consolidation of trade networks into powerful monopolies and guilds. In Spain and Portugal, private monopolies became dominant forces, controlling access to lucrative markets like China and India where spice prices were astronomical. Merchants organized into \"dhabas\" that enforced strict regulations on pricing, quality standards, and worker conditions, ensuring that the flow of goods remained stable and profitable for all participants in the chain.\n\nThe Columbian Exchange fundamentally altered global agriculture and demographics by introducing new crops to Europe and altering plant life across Asia, including the spread of potatoes, tomatoes, and rice in the Americas. This interconnectedness meant that a single harvest in one region could supply vast distances with food, reshaping political alliances and economic dependencies between continents for centuries.\n\nThe decline of traditional routes led to a gradual shift toward more direct transatlantic and transoceanic voyages during the 18th century, though many still relied on the old overland Silk Road paths. New shipping routes were established by European nations like Britain and France in the 19th century, making it easier for spices to travel across the Atlantic without relying solely on the Indian Ocean corridor.\n\nIn the late 19th and early 20th centuries, the global trade reorganized itself as a result of World War I and subsequent geopolitical shifts. The British Empire expanded its control over Asian markets, leading to the rise of multinational trading companies that operated under international agreements like the Molteno Convention for",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began as a complex web of commerce that has evolved from early maritime routes to the modern era. In ancient times, the Mediterranean region saw spices like cin"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3179,
+      "detail": "K02-continued"
+    }
+  ],
+  "errors": []
+}

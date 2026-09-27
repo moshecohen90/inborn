@@ -1,0 +1,16 @@
+# rebased on origin/main b5bd2758, 2026-09-27 16:51
+## packages/core typecheck
+tsc --noEmit exit 0
+## packages/core fixes-r110 + fixes-r107
+ ✓ test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, a sixth begun on the same line (web trial fox-5 #1): five shown, nothing continued 15ms
+ ✓ test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, eight written one per line: five lines, nothing continued 4ms
+ ✓ test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > exactly five stays whole, and a loop nobody asked for still gets its one silent retry 8ms
+ ✓ test/fixes-r107.test.ts > F415 · healthy text stays whole > F389 still holds: five copies asked for are five copies shown, the sixth is trimmed 3ms
+ Test Files  2 passed (2)
+      Tests  60 passed (60)
+## packages/core all
+ Test Files  89 passed | 3 skipped (92)
+      Tests  1033 passed | 4 skipped (1037)
+## apps/mobile all
+ Test Files  131 passed (131)
+      Tests  1180 passed (1180)

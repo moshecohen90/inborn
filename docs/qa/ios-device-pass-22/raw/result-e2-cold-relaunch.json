@@ -1,0 +1,66 @@
+{
+  "runId": "e2-cold-relaunch",
+  "startedAt": "2026-09-27T13:50:42.165Z",
+  "finishedAt": "2026-09-27T13:50:48.371Z",
+  "ok": true,
+  "passed": 7,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3186,
+      "detail": "E03-cold-relaunch"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: A15 Bionic · 6 GB Continue This is AI. It can be wrong. Check important facts.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: A15 Bionic · 6 GB Continue This is AI. It can be wrong. Check important fact"
+    },
+    {
+      "i": 4,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"could not be opened\" absent"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "banner-repair gone"
+    },
+    {
+      "i": 6,
+      "op": "cleanup",
+      "ok": true,
+      "ms": 15,
+      "detail": "qa namespace removed"
+    }
+  ],
+  "errors": []
+}
