@@ -1,0 +1,1097 @@
+{
+  "runId": "l02-math-long-div",
+  "startedAt": "2026-09-27T16:15:37.801Z",
+  "finishedAt": "2026-09-27T16:16:19.277Z",
+  "ok": true,
+  "passed": 108,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-9963fb3f-7a19-45aa-8a2d-1904693d4f95 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1518,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 534,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654 ▍",
+        "props": {
+          "source": "To divide 987654",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividen ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividen",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividen ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\ ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\ ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times do ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times do",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and $123 \\times 3 = ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 =",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 737,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits ni ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits ni",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 850,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; $ ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math:",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 98 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 98",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 725,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since $123 > 36 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 738,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and $354 - 246 = 1 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 1",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divid ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divid",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} >",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that' ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that'",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so $ ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 747,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76?",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 744,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually jus ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually jus",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1143,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah,",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1182,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 98 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 98",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 765,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 820,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 /",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, 123 × 0 = 0 , leaving a remainder of 35. Bring down the next digit (4), making it 354. Since 123 × 2 = 246 and 123 × 3 = 369 , we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ( 123 × 9 = 1107 , which is too high; 123 × 8 = 984 ). Wait, let's recheck the math: 123 × 8 = 984 . The dividend has a 3 at the end. Let me recalculate carefully. Dividend: 987654321 Divisor: 123 Step 1: Look at 987. 987 ÷ 123 = 8 with remainder 3 . (Since 123 × 8 = 984 , and 987 - 984 = 3 ). Bring down the next digit, which is 6: The number becomes 36. Since 123 > 36 , write a 0. Remainder remains 3. Bring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since 123 × 2 = 246 , and 354 - 246 = 108 ). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since 123 × something > 108 , try eight ( 984 < 1083 ). So write a 8 and subtract to get a remainder of 108 - 984 = -876 . Wait, that's wrong. Let me recalculate: 123 × x = 1083 , so x = 8 ( 123 × 8 = 984 ). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ( 984 ≤ 108 )\" which is false because 984 > 10 . The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since 123 > 10 ). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. 123 × k = 987 . Since 123 is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division step-by-step:\n\nFirst, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since $123 \\times 8 = 984$, we write 8 above the 8 in 987. Subtracting gives a remainder of 3. Bring down the next digit (6), making the new number 36. Now, how many times does 123 fit into 36? It fits zero times, so we write 0 and subtract 0 from 36. Bring down the next digit (5), making it 35. Again, $123 \\times 0 = 0$, leaving a remainder of 35. Bring down the next digit (4), making it 354. Since $123 \\times 2 = 246$ and $123 \\times 3 = 369$, we write 2 and subtract to get a remainder of 108. Bring down the next digit (3), making it 1083. Now, how many times does 123 fit into 1083? It fits nine times ($123 \\times 9 = 1107$, which is too high; $123 \\times 8 = 984$). Wait, let's recheck the math: $123 \\times 8 = 984$. The dividend has a 3 at the end. Let me recalculate carefully.\n\nDividend: 987654321\nDivisor: 123\n\nStep 1: Look at 987. $987 \\div 123 = 8$ with remainder $3$. (Since $123 \\times 8 = 984$, and $987 - 984 = 3$).\nBring down the next digit, which is 6: The number becomes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35. 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 123; since $123 \\times \\text{something} > 108$, try $\\text{eight}$ ($984 < 1083$). So write a 8 and subtract to get a remainder of $108 - 984 = -876$. Wait, that's wrong. Let me recalculate: $123 \\times x = 1083$, so $x = 8$ ($123 \\times 8 = 984$). The dividend has a digit at the end (3), not zero. So we write 8 above the 3, subtracting to get remainder -76? No, that's impossible with positive integers in this context. Let me re-read my previous calculation error: I wrote \"108 divided by 123 fits eight times ($984 \\leq 108$)\" which is false because $984 > 10$. The correct division of the number formed so far (which was actually just a digit or part thereof) requires careful handling. Let's restart from where I left off: We had remainder -76, but that doesn't make sense for positive numbers. Ah, I see my mistake in the previous step logic. If we have 108 and divide by 123, it fits zero times (since $123 > 10$). So we write a 0 above the last digit of the dividend (which is 4), making the number 987654320. Now bring down the next digit from the original dividend: that was 1, so now it's 98765321. Divide this by 123 to find how many times it fits. $123 \\times k = 987$. Since $123$ is close to 100 and the number is around 1 million, let's estimate: $10^4 / 10^",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division step-by-step: First, take the first three digits of the dividend (987) and see how many times 123 fits into it. Since 123 × 8 = 984 , we write 8 above"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3194,
+      "detail": "L02-math-long-div"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 1274 chars, unit 51 cp x2"
+  ]
+}

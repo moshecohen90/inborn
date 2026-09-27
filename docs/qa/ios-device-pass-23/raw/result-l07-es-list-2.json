@@ -1,0 +1,1070 @@
+{
+  "runId": "l07-es-list-2",
+  "startedAt": "2026-09-27T16:04:40.106Z",
+  "finishedAt": "2026-09-27T16:05:20.393Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 161,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aqu ▍",
+        "props": {
+          "source": "Aqu",
+          "disabled": false
+        }
+      },
+      "detail": "Aqu ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energí ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energí",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energí ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 727,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. L ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. L",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 761,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mis ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mis",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1629,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 729,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 729,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeñ ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeñ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. Lo más difícil es empezar; n ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. Lo más difícil es empezar; n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 745,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz d ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz d",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando dur ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando dur",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 725,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hac ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hac",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 731,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayorí ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayorí",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; so ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; so",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambi ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambi",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 727,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cos ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cos",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un marat ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un marat",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible p ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible p",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 729,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cua ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cua",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana. 3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible. 4. Tu vida no tiene fecha límite, solo tu ritmo. 5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo. 6. La acción crece la posibilidad de que se cumpla el sueño. 7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos. 8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer. 9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana. 10. La vida no tiene fecha límite; tu ritmo define el tiempo. 11. Cada pequeña acción cuenta y se convierte en un gran progreso. 12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro. 13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo. 14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde. 15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante. 16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado. 17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo. 18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia. 19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante. 20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad:\n\n1. La energía se agota cuando el sueño lo deja.\n2. El trabajo que haces hoy es la oportunidad de mañana.\n3. Lo más difícil es empezar; pero nada te impide hacer lo mejor posible.\n4. Tu vida no tiene fecha límite, solo tu ritmo.\n5. No estás a punto de ser malo; estás en un lugar nuevo para ti mismo.\n6. La acción crece la posibilidad de que se cumpla el sueño.\n7. El pequeño esfuerzo diario es un paso grande hacia lo que queremos.\n8. Lo más difícil es dejar de hacer lo que ahora haces: eso te hace crecer.\n9. No es lo que sucede hoy, sino lo que hacemos en este día para mañana.\n10. La vida no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en lo mismo.\n14. Cada vez que fallas, estás aprendiendo algo nuevo sobre cómo hacer bien algo antes de que sea demasiado tarde.\n15. La verdad es que la mayoría de las personas no entienden por qué nos sentimos cansados o desmotivados; somos conscientes de nuestra falta de energía para seguir adelante.\n16. Si quieres cambiar tu actitud, empieza a decir \"sí\" a lo nuevo y a dejar atrás las cosas antiguas que te han estresado demasiado.\n17. El verdadero cambio no viene cuando algo se arregla o desaparece por completo; siempre va en la dirección en que estás moviéndote hoy mismo.\n18. La vida es un maratón, pero el camino de cada día es solo una pequeña carrera individual hacia lo mejor posible para ti y tu familia.\n19. Si te sientes estancado o perdido, recuerda que tienes opciones: puedes cambiar la dirección del viaje al instante.\n20. No esperes a tener suficiente dinero o tiempo para sentirte cómodo; el camino comienza por dentro cuando decides empezar hoy mismo con pasión y propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o dificultad: 1. La energía se agota cuando el sueño lo deja. 2. El trabajo que haces hoy es la oportunidad de mañana"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3193,
+      "detail": "L07-es-list-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 808 chars, unit 49 cp x2"
+  ]
+}

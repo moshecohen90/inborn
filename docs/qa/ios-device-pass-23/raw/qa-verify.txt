@@ -1,0 +1,18 @@
+== QA app
+CFBundleVersion = 23
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile.qa
+MinimumOSVersion = 17.0
+appex = none
+instant.gguf = 532517120 B sha256 bd258782…
+vision-qwen35.gguf = 204987232 B sha256 56e4c6cf…
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6633882 B
+app size = 784M
+app.config: version 1.0.0 buildNumber 23 bundleId com.inbornapp.mobile.qa
+extra.commit ede6da76a99f extra.devVariant True
+bundle strings: INBORN_QA_BRIDGE_V1=1 '[chat] loop retry'=1 '[chat] loop cut'=1 'dry_multiplier|dryMultiplier'=1
+OK: <worktree>/apps/mobile/ios/build/qa/Build/Products/Release-iphoneos/Inborndev.app/main.jsbundle is a QA build (1 × INBORN_QA_BRIDGE_V1)
+QA bundle vs store bundle (Hermes string table): 'console.log: ' 1 vs 0, 'dev-prompt.txt' 1 vs 0 (EXPO_PUBLIC_AUTOPROMPT=file), 'unless the request asks for repetition' 2 vs 2 (round 111)

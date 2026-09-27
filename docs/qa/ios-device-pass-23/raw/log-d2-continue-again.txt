@@ -1,0 +1,66 @@
+19:21:22 launching com.inbornapp.mobile.qa
+19:22:07 pushing 59 steps as d2-continue-again
+19:22:44 shot K01-stopped-try2
+19:23:05 shot K02-continued-try2
+19:23:21 shot K01-stopped-try3
+19:23:52 shot K02-continued-try3
+19:23:55 ok     0 waitFor    onboarding-welcome appeared
+19:23:55 ok     1 sleep      1500 ms
+19:23:55 ok     2 press      onboarding-continue ← onPress
+19:23:55 ok     3 waitFor    onboarding-model appeared
+19:23:55 ok     4 sleep      2500 ms
+19:23:55 ok     5 press      start-chatting ← onPress
+19:23:55 ok     6 waitFor    onboarding-sealed appeared
+19:23:55 ok     7 sleep      4000 ms
+19:23:55 ok     8 press      sealed-start ← onPress
+19:23:55 ok     9 waitFor    onboarding-lock appeared
+19:23:55 ok    10 sleep      1500 ms
+19:23:55 ok    11 press      lock-start ← onPress
+19:23:55 ok    12 waitFor    composer-input appeared
+19:23:55 ok    13 waitFor    Loading gone
+19:23:55 ok    14 sleep      2000 ms
+19:23:55 ok    15 deeplink   /chats
+19:23:55 ok    16 waitFor    new-chat appeared
+19:23:55 ok    17 press      new-chat ← onPress
+19:23:55 ok    18 waitFor    start-chat appeared
+19:23:55 ok    19 press      start-chat ← onPress
+19:23:55 ok    20 waitFor    composer-input appeared
+19:23:55 ok    21 sleep      1500 ms
+19:23:55 ok    22 type       composer-input = 104 chars
+19:23:55 ok    23 send       send ← onPress
+19:23:55 ok    24 waitFor    assistant-text appeared
+19:23:55 ok    25 sleep      7000 ms
+19:23:55 ok    26 press      stop ← onPress
+19:23:55 ok    27 sleep      2000 ms
+19:23:55 ok    28 value      The spice trade between Asia and Europe was a complex network of merchants, traders, diplomats, and missionari
+19:23:55 ok    29 screenshot K01-stopped-try2
+19:23:55 ok    30 waitFor    continue appeared
+19:23:55 ok    31 press      continue ← onPress
+19:23:55 ok    32 sleep      1500 ms
+19:23:55 ok    33 waitFor    stop gone
+19:23:55 ok    34 sleep      1500 ms
+19:23:55 ok    35 value      The spice trade between Asia and Europe was a complex network of merchants, traders, diplomats, and missionari
+19:23:55 ok    36 screenshot K02-continued-try2
+19:23:55 ok    37 deeplink   /chats
+19:23:55 ok    38 waitFor    new-chat appeared
+19:23:55 ok    39 press      new-chat ← onPress
+19:23:55 ok    40 waitFor    start-chat appeared
+19:23:55 ok    41 press      start-chat ← onPress
+19:23:55 ok    42 waitFor    composer-input appeared
+19:23:55 ok    43 sleep      1500 ms
+19:23:55 ok    44 type       composer-input = 104 chars
+19:23:55 ok    45 send       send ← onPress
+19:23:55 ok    46 waitFor    assistant-text appeared
+19:23:55 ok    47 sleep      7000 ms
+19:23:55 ok    48 press      stop ← onPress
+19:23:55 ok    49 sleep      2000 ms
+19:23:55 ok    50 value      The maritime routes linking the ancient seas of Asia and the bustling markets of Europe have been a cornerston
+19:23:55 ok    51 screenshot K01-stopped-try3
+19:23:55 ok    52 waitFor    continue appeared
+19:23:55 ok    53 press      continue ← onPress
+19:23:55 ok    54 sleep      1500 ms
+19:23:55 ok    55 waitFor    stop gone
+19:23:55 ok    56 sleep      1500 ms
+19:23:55 ok    57 value      The maritime routes linking the ancient seas of Asia and the bustling markets of Europe have been a cornerston
+19:23:55 ok    58 screenshot K02-continued-try3
+19:23:55 59 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-23/screens

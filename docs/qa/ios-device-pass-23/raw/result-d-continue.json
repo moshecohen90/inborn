@@ -1,0 +1,179 @@
+{
+  "runId": "d-continue",
+  "startedAt": "2026-09-27T16:18:13.633Z",
+  "finishedAt": "2026-09-27T16:18:50.838Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 536,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7005,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk Road crossed the desert lands to fetch spices like cloves, nutmeg, and cardamom which were crucial for curing diseases such as cholera and malaria. These early exchanges were primarily driven by religious motivations and the desire to spread religious texts across vast distances before becoming a purely economic pursuit. The first documented record of spice exchange comes from ancient Egyptian papyrus manuscripts dating back roughly 1600 BC, where traders likely brought goods including sesame seeds, nectarines, and figs to trade with Mediterranean civilizations for silver coins or gold bars. As trade routes expanded through the Middle East and into India, spices like pepper and saffron became staples in European diets, transforming their culinary landscapes from simple seasoning to essential ingredients in dishes ranging from curries to stews. The medieval era saw the rise of the Islamic Golden Age, which acted as a crucial hub for global commerce. Scholars in Baghdad, Constantinople, and Cairo developed sophisticated mathematical and astronomical systems that allowed merchants to calculate trade volumes more accurately than previous predecessors. This intellectual breakthrough facilitated the development of sophisticated maritime navigation techniques, enabling sailors to cross oceanic territories previously thought unreachable",
+        "props": {
+          "source": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk Road crossed the desert lands to fetch spices like cloves, nutmeg, and cardamom which were crucial for curing diseases such as cholera and malaria. These early exchanges were primarily driven by religious motivations and the desire to spread religious texts across vast distances before becoming a purely economic pursuit. The first documented record of spice exchange comes from ancient Egyptian papyrus manuscripts dating back roughly 1600 BC, where traders likely brought goods including sesame seeds, nectarines, and figs to trade with Mediterranean civilizations for silver coins or gold bars. As trade routes expanded through the Middle East and into India, spices like pepper and saffron became staples in European diets, transforming their culinary landscapes from simple seasoning to essential ingredients in dishes ranging from curries to stews.\n\nThe medieval era saw the rise of the Islamic Golden Age, which acted as a crucial hub for global commerce. Scholars in Baghdad, Constantinople, and Cairo developed sophisticated mathematical and astronomical systems that allowed merchants to calculate trade volumes more accurately than previous predecessors. This intellectual breakthrough facilitated the development of sophisticated maritime navigation techniques, enabling sailors to cross oceanic territories previously thought unreachable",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk R"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3195,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15271,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk Road crossed the desert lands to fetch spices like cloves, nutmeg, and cardamom which were crucial for curing diseases such as cholera and malaria. These early exchanges were primarily driven by religious motivations and the desire to spread religious texts across vast distances before becoming a purely economic pursuit. The first documented record of spice exchange comes from ancient Egyptian papyrus manuscripts dating back roughly 1600 BC, where traders likely brought goods including sesame seeds, nectarines, and figs to trade with Mediterranean civilizations for silver coins or gold bars. As trade routes expanded through the Middle East and into India, spices like pepper and saffron became staples in European diets, transforming their culinary landscapes from simple seasoning to essential ingredients in dishes ranging from curries to stews. The medieval era saw the rise of the Islamic Golden Age, which acted as a crucial hub for global commerce. Scholars in Baghdad, Constantinople, and Cairo developed sophisticated mathematical and astronomical systems that allowed merchants to calculate trade volumes more accurately than previous predecessors. This intellectual breakthrough facilitated the development of sophisticated maritime navigation techniques, enabling sailors to cross oceanic territories previously thought unreachable In the 14th century, maritime navigation improved drastically through the invention of compasses and star charts by Europeans, allowing ships to sail around Africa without relying solely on wind. This technological leap enabled the trans-Saharan trade routes to expand further west, bringing precious metals like gold from the Sahara Desert into Europe via the oasis cities along the Nile. Simultaneously, traders discovered new paths through Southeast Asia to India, where they exchanged silk textiles and exotic Indian spices for valuable Chinese silk goods and silver coinage, creating a reciprocal flow that reinforced global economic integration. The maritime routes then expanded northward toward Constantinople and eventually into Spain via the Strait of Gibraltar by 1500, establishing long-distance commercial networks that linked the Mediterranean basin directly to the Americas via the Pacific Ocean and later, the Atlantic. By the 17th century, European nations began consolidating control over these trade routes through colonization and military expansion. The Dutch East India Company (VOC) set sail in 1602 with a fleet of two hundred ships and four thousand passengers to explore the Indian Ocean, laying the groundwork for later colonial ventures that would eventually lead to the discovery of new continents. As exploration deepened, so did the demand for spices; European powers like Spain and Portugal sought vast territories including India and China to secure monopolies on lucrative trade routes, often involving forced laborers in colonies along these paths rather than allowing independent settlement. This period marked a shift where spice production was no longer limited by geography but became dependent on diplomatic alliances and colonial powers' ability to enforce control over trading hubs like Goa, Surat, and Borneo. The 19th century witnessed the Industrial Revolution dramatically alter the landscape of Asian trade centers. Chinese silk production expanded rapidly in Britain under British industrialization, while Dutch manufacturers began producing textiles for European markets. This shift created new competitive dynamics where Asian suppliers could no longer rely solely on direct maritime routes to Europe; instead, they increasingly turned to established trading houses and international shipping lines like the East India Company, reducing their direct involvement with small-scale traders in coastal regions. The geopolitical landscape shifted dramatically as the Napoleonic Wars forced European powers into a series of alliances that favored British colonial interests, leading to a period of intense rivalry between Britain and France over controlling trade routes through Asia. Throughout this era, the nature of exchange became increasingly standardized as global marketplaces emerged alongside international shipping networks. Factories began producing vast quantities of goods for export, driven by rising demand from Europe's industrialization and expanding markets in",
+        "props": {
+          "source": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk Road crossed the desert lands to fetch spices like cloves, nutmeg, and cardamom which were crucial for curing diseases such as cholera and malaria. These early exchanges were primarily driven by religious motivations and the desire to spread religious texts across vast distances before becoming a purely economic pursuit. The first documented record of spice exchange comes from ancient Egyptian papyrus manuscripts dating back roughly 1600 BC, where traders likely brought goods including sesame seeds, nectarines, and figs to trade with Mediterranean civilizations for silver coins or gold bars. As trade routes expanded through the Middle East and into India, spices like pepper and saffron became staples in European diets, transforming their culinary landscapes from simple seasoning to essential ingredients in dishes ranging from curries to stews.\n\nThe medieval era saw the rise of the Islamic Golden Age, which acted as a crucial hub for global commerce. Scholars in Baghdad, Constantinople, and Cairo developed sophisticated mathematical and astronomical systems that allowed merchants to calculate trade volumes more accurately than previous predecessors. This intellectual breakthrough facilitated the development of sophisticated maritime navigation techniques, enabling sailors to cross oceanic territories previously thought unreachable In the 14th century, maritime navigation improved drastically through the invention of compasses and star charts by Europeans, allowing ships to sail around Africa without relying solely on wind. This technological leap enabled the trans-Saharan trade routes to expand further west, bringing precious metals like gold from the Sahara Desert into Europe via the oasis cities along the Nile. Simultaneously, traders discovered new paths through Southeast Asia to India, where they exchanged silk textiles and exotic Indian spices for valuable Chinese silk goods and silver coinage, creating a reciprocal flow that reinforced global economic integration. The maritime routes then expanded northward toward Constantinople and eventually into Spain via the Strait of Gibraltar by 1500, establishing long-distance commercial networks that linked the Mediterranean basin directly to the Americas via the Pacific Ocean and later, the Atlantic.\n\nBy the 17th century, European nations began consolidating control over these trade routes through colonization and military expansion. The Dutch East India Company (VOC) set sail in 1602 with a fleet of two hundred ships and four thousand passengers to explore the Indian Ocean, laying the groundwork for later colonial ventures that would eventually lead to the discovery of new continents. As exploration deepened, so did the demand for spices; European powers like Spain and Portugal sought vast territories including India and China to secure monopolies on lucrative trade routes, often involving forced laborers in colonies along these paths rather than allowing independent settlement. This period marked a shift where spice production was no longer limited by geography but became dependent on diplomatic alliances and colonial powers' ability to enforce control over trading hubs like Goa, Surat, and Borneo.\n\nThe 19th century witnessed the Industrial Revolution dramatically alter the landscape of Asian trade centers. Chinese silk production expanded rapidly in Britain under British industrialization, while Dutch manufacturers began producing textiles for European markets. This shift created new competitive dynamics where Asian suppliers could no longer rely solely on direct maritime routes to Europe; instead, they increasingly turned to established trading houses and international shipping lines like the East India Company, reducing their direct involvement with small-scale traders in coastal regions. The geopolitical landscape shifted dramatically as the Napoleonic Wars forced European powers into a series of alliances that favored British colonial interests, leading to a period of intense rivalry between Britain and France over controlling trade routes through Asia.\n\nThroughout this era, the nature of exchange became increasingly standardized as global marketplaces emerged alongside international shipping networks. Factories began producing vast quantities of goods for export, driven by rising demand from Europe's industrialization and expanding markets in",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe was not a single, linear event but rather a complex web of commerce that evolved over millennia. The journey began in ancient times when traders from the Silk R"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3511,
+      "detail": "K02-continued"
+    }
+  ],
+  "errors": []
+}

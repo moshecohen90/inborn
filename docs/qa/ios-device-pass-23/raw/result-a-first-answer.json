@@ -1,0 +1,319 @@
+{
+  "runId": "a-first-answer",
+  "startedAt": "2026-09-27T15:59:08.596Z",
+  "finishedAt": "2026-09-27T15:59:43.389Z",
+  "ok": true,
+  "passed": 37,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 153,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10934,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2017,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 16,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 801,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 800,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "A lighthouse is primarily used for guiding ships safely through dark waters, warning of approaching hazards and illuminating the way home.",
+        "props": {
+          "source": "A lighthouse is primarily used for guiding ships safely through dark waters, warning of approaching hazards and illuminating the way home.",
+          "disabled": false
+        }
+      },
+      "detail": "A lighthouse is primarily used for guiding ships safely through dark waters, warning of approaching hazards and illuminating the way home."
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2563,
+      "detail": "A01-first-answer"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "30 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "30 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "231 / 4096",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "231 / 4096"
+    },
+    {
+      "i": 28,
+      "op": "setTier",
+      "ok": true,
+      "ms": 195,
+      "detail": "pro"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "33.8",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "33.8"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "841 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "841 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "207 + 24",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "207 + 24"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1.6 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1.6 s"
+    },
+    {
+      "i": 34,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2245,
+      "detail": "A02-ledger-detailed"
+    },
+    {
+      "i": 35,
+      "op": "setTier",
+      "ok": true,
+      "ms": 182,
+      "detail": "free"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    }
+  ],
+  "errors": []
+}
