@@ -40,19 +40,26 @@ describe("F7 · Documents → Ask says what the chat says when nothing matched",
   });
 });
 
-/* F400 (round 101): with no passage kept, Ask sent the question on as a general one ("South Korea won the 1998 World Cup"). */
-describe("F400 · Documents → Ask never answers from general knowledge", () => {
-  it("routes a question no passage matched to the nothing-matched line, strict or not", () => {
-    expect(askSheetRoute({ noAnswer: true, usedPassages: 0 })).toBe("not-found");
-    expect(askSheetRoute({ noAnswer: false, usedPassages: 0 })).toBe("none-matched");
-    expect(askSheetRoute({ noAnswer: false, usedPassages: 2 })).toBe("answer");
+/* F416 (round 108, Moshe 27.9): Ask behaves like the chat: with no passage kept it answers from general knowledge under the chat's notice. */
+describe("F416 · Documents → Ask answers like the chat when nothing matched", () => {
+  const ask = src("../screens/documents/AskDocuments.tsx");
+  it("only strict mode's no-answer skips the model", () => {
+    expect(askSheetRoute({ noAnswer: true })).toBe("not-found");
+    expect(askSheetRoute({ noAnswer: false })).toBe("answer");
   });
 
-  it("the sheet asks the model only on the answer route, and says why it did not", () => {
-    const ask = src("../screens/documents/AskDocuments.tsx");
-    expect(ask).toContain("const route = askSheetRoute({ noAnswer: prompt.noAnswer, usedPassages: prompt.used.length });");
-    expect(ask).toMatch(/if \(route !== "answer"\) \{[\s\S]{0,900}return;\n {6}\}[\s\S]{0,300}engine\.generate\(/);
-    expect(ask).toMatch(/testID="ask-not-found"[\s\S]{0,200}t\(missKey\)/);
-    expect(ask).toContain('route === "none-matched" ? "documents.ask.noneMatched" : "documents.notFound"');
+  it("the sheet asks the model on every non-strict route and shows the chat's notice, not a sheet-only line", () => {
+    expect(ask).toContain("const route = askSheetRoute({ noAnswer: prompt.noAnswer });");
+    expect(ask).toMatch(/if \(route === "not-found"\) \{[\s\S]{0,900}return;\n {6}\}[\s\S]{0,300}engine\.generate\(/);
+    expect(ask).not.toContain("documents.ask.noneMatched");
+    expect(ask).toMatch(/testID="ask-none-matched"[\s\S]{0,200}t\("documents\.noneMatched"\)/);
+  });
+
+  it("the sheet-only line is gone from every locale", () => {
+    for (const lang of ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant", "pseudo"]) {
+      const strings = JSON.parse(src(`../../../../packages/i18n/locales/${lang}.json`)) as Record<string, string>;
+      expect(strings["documents.ask.noneMatched"], lang).toBeUndefined();
+      expect(strings["documents.noneMatched"], lang).toBeTruthy();
+    }
   });
 });

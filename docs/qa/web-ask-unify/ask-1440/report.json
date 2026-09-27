@@ -1,0 +1,72 @@
+{
+  "width": 1440,
+  "dist": "/Users/moshecohen/dev/inborn-wt/web-ask-unify/apps/web/dist",
+  "runs": [
+    {
+      "name": "hit",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "What did the fuel pier cost?",
+      "answer": "The fuel pier cost 3.2 million euros, which was opened on June 14, 2025, in response to increased vessel arrivals and a need for new power sources following recent dredging activities.",
+      "notFound": null,
+      "noneMatched": "",
+      "stats": "search 1451 ms · 1 passages · answer 5848 ms · 36.2 tok/s · prompt 326 tokens",
+      "sources": "SOURCESharbor-report.txt · part 1",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=1 1451 ms | c1ef1388-45ec-4a3a-974d-1e9c30f0cb83#0 cos=0.812 terms=3 bm25=0.86 KEPT"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "offtopic-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "Germany won the 1998 FIFA World Cup, defeating Brazil in their final match at the Stade de France. This historic victory marked Germany's second consecutive title and was a significant moment for the German football team after losing to Italy in the semi-final.Alternatives include:•The United States: Often cited as the \"first\" winner due to their 1978 win over Mexico, though this does not count toward Germany's record of two titles.•Brazil: Their final title is widely considered by many analysts and fans as a major achievement in World Cup history.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 1567 ms · 0 passages · answer 5060 ms · 32.5 tok/s · prompt 212 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1567 ms | c1ef1388-45ec-4a3a-974d-1e9c30f0cb83#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "offtopic-wrongfile",
+      "doc": "fleet-memo.pdfPDF · 1 page · 24.4 KBInde",
+      "q": "What did the fuel pier cost?",
+      "answer": "In one sentence, I cannot confirm the specific price of the fuel pier as no attached documents or additional context were provided regarding this item; however, based on historical records, it was likely a 1960s-era industrial project often associated with the construction of the Great Wall of China.",
+      "notFound": null,
+      "noneMatched": "Nothing in your documents matched this question. Answered without them.",
+      "stats": "search 1449 ms · 0 passages · answer 2906 ms · 34.3 tok/s · prompt 211 tokens",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=false hits=1 used=0 1449 ms | 8b36244b-a10e-4753-814a-8142695a4027#0 cos=0.804 terms=1 bm25=0.29 dropped"
+      ],
+      "strict": false,
+      "hScroll": false
+    },
+    {
+      "name": "strict-worldcup",
+      "doc": "harbor-report.txtTXT · 1 part · 377 BInd",
+      "q": "Who won the 1998 football World Cup?",
+      "answer": "",
+      "notFound": "Inborn could not find that in your documents.",
+      "noneMatched": "",
+      "stats": "search 1459 ms · 0 passages",
+      "sources": "",
+      "rag": [
+        "log: [rag] strict=true hits=1 used=0 1459 ms | c1ef1388-45ec-4a3a-974d-1e9c30f0cb83#0 cos=0.689 terms=0 bm25=0.00 dropped"
+      ],
+      "strict": true,
+      "hScroll": false
+    }
+  ],
+  "downloadError": null,
+  "hitOk": true,
+  "missOk": true,
+  "strictOk": true,
+  "noHScroll": true,
+  "pass": true
+}

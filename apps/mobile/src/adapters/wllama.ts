@@ -4,6 +4,7 @@ import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams }
 import { ANSWER_CEILING, sampling, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
 import { recordPhotoMs } from "../extensions/timeHint";
+import { photoForEngine } from "../images/vision";
 
 /* Copied out of node_modules by `pnpm wasm` (apps/mobile/package.json): always our origin, never a CDN. */
 const WASM_PATHS = { default: "/wllama/wllama.wasm" };
@@ -50,7 +51,7 @@ async function imageBytes(uri: string): Promise<ArrayBuffer> {
   return res.arrayBuffer();
 }
 
-/* Photos are capped at 1024 px before they get here; 512 image tokens is what the phones use, and fewer misread text. */
+/* Photos are 1024 px, or 512 px on the CPU path (F417), when they get here; 512 image tokens is what the phones use, and fewer misread text. */
 const IMAGE_MAX_TOKENS = 512;
 /* wllama 3.6.1 never returns from an image encode with 3 or more WASM threads (round 105, headless Chromium); 2 works. */
 const VISION_MAX_THREADS = 2;
@@ -66,6 +67,7 @@ export class WllamaLM implements LocalLM {
   private opts: LoadOptions | null = null;
   private mmproj: string | null = null;
   private vision = false;
+  private onGpu = false;
   /** Timings of the last load and the last photo turn, for the headless measurement (round 105). */
   devInfo: Record<string, unknown> = {};
 
@@ -118,6 +120,7 @@ export class WllamaLM implements LocalLM {
       const wllama = await this.start(session.model, this.opts, mmprojUri);
       this.wllama = wllama;
       this.vision = wllama.supportInputModality("image");
+      this.onGpu = (this.devInfo.gpuLayers as number) > 0;
     } catch (e: unknown) {
       console.warn("[wllama] projector did not load", e instanceof Error ? e.message : e);
       this.vision = false;
@@ -133,6 +136,7 @@ export class WllamaLM implements LocalLM {
     this.session = null;
     this.opts = null;
     this.vision = false;
+    this.onGpu = false;
     this.mmproj = null;
     await wllama?.exit();
   }
@@ -144,7 +148,7 @@ export class WllamaLM implements LocalLM {
         out.push(toWllamaMessage(m));
         continue;
       }
-      const images = await Promise.all(m.images.map(imageBytes));
+      const images = await Promise.all(m.images.map(async (uri) => imageBytes(await photoForEngine(uri, this.onGpu))));
       out.push({ role: "user", content: [...images.map((data) => ({ type: "image" as const, data })), { type: "text" as const, text: m.content }] } as ChatCompletionMessage);
     }
     return out;

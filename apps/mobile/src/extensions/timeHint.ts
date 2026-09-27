@@ -1,12 +1,12 @@
 /**
  * The photo hold card's honest time line (round 105): a photo in a browser without WebGPU is encoded on the CPU, and
- * when that takes over a minute the card says so before the user waits. The number is this browser's own last photo
- * turn when there was one, else the headless measurement of the round (README, round 105).
+ * when that takes over 20 s the card says so before the user waits. The number is this browser's own last photo
+ * turn when there was one, else the headless measurement (README, round 108).
  */
 export const PHOTO_MS_KEY = "inborn.vision.photoMs";
-/** Headless Chromium on this round's Mac, 1024 px photo, Instant + projector, WASM with 2 threads: 76.9 s to the first token. */
-export const MEASURED_WASM_PHOTO_MS = 77_000;
-export const HINT_ABOVE_MS = 60_000;
+/** Headless Chromium, photo scaled to 512 px for the CPU (F417), Instant + projector, WASM with 2 threads: 35.7, 38.2 and 36.2 s to the first token. */
+export const MEASURED_WASM_PHOTO_MS = 37_000;
+export const HINT_ABOVE_MS = 20_000;
 
 type T = (key: string, o?: Record<string, unknown>) => string;
 
