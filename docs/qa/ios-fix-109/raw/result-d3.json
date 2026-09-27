@@ -1,0 +1,1126 @@
+{
+  "runId": "d3",
+  "startedAt": "2026-09-27T13:02:46.753Z",
+  "finishedAt": "2026-09-27T13:04:19.766Z",
+  "ok": true,
+  "passed": 51,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1004,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 107 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 528,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20013,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2500,
+      "detail": "T1-while-answering"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word history of lighthouses, from the Pharos of Alexandria to modern automated lights.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The history of lighthouses is a tapestry woven from the dawn of maritime navigation to the quiet hums of digital signage, reflecting humanity's relentless pursuit of safe passage across the vast ocean. The concept of illumination was not merely a practical necessity but an essential component of exploration and trade, as darkness posed a direct threat to sailors and goods alike. Early civilizations like the Egyptians used simple wooden posts topped with stones or wood, but these were insufficient for long journeys; they offered only temporary warnings against storms and fog, often leading to shipwrecks. The true evolution began in the Mediterranean around 300 BC when Greek and Roman engineers realized that a lantern mounted on a post would illuminate a bay, though their designs remained rudimentary with no indication of where exactly to shine or how far they could travel without recharging. The transition to reliable light sources marked the dawn of modern lighthouses. The invention of gas lamps in the 18th century was transformative, yet it introduced its own dangers: flaring flames were visually chaotic and prone to being mistaken for danger, while smoke obscured stars and led sailors astray. Consequently, the first truly functional systems emerged early in the 19th century. In 1756, Captain John Hogg of the Royal Navy successfully lit a lighthouse on the island of Baffin Island with an oil lamp, marking the beginning of commercialized coastal navigation. This device was highly portable but had no lasting significance until its relocation to the Atlantic coast during the Age of Sail. As maritime trade expanded into the Americas and Europe, the need for illumination grew exponentially. The first fully functional lighthouse dedicated solely to guiding ships across open waters appeared in 1825 at Cape Town, though it was primarily used for local navigation rather than international crossing. The true zenith of this era arrived with the construction of the Great Lighthouses on the English coast between 1860 and 1904. Built by a consortium of men from England to France, these structures were designed to stand firm against waves and wind while ensuring their lights could last decades without needing constant maintenance or fuel. The Royal Navy adopted this technology in earnest with the Great Lighthouse at Cape Town, though it was also used for domestic purposes, creating a symbiotic relationship between military command and public safety. Following this era, lighthouses began to age rapidly due to erosion from sea spray and sedimentation of marine life. To combat these issues, engineers developed innovative techniques: the use of glass lenses that reflected sunlight into the darkened chamber; the introduction of saltwater-resistant steel construction to withstand corrosive environments; and increasingly sophisticated optical systems that projected images directly onto the water surface using parabolic reflectors or rotating mirrors. This period saw a proliferation of structures in major ports worldwide, from the iconic Bell Lighthouse at Liverpool to the massive Great Lighthouse at Kirogho on the Isle of Wight. These projects not only improved navigational safety but also established lighthouses as global landmarks, fostering a culture of maritime exploration and cooperation across continents. As the 20th century progressed, the demands for illumination shifted toward efficiency and adaptation to changing environmental conditions. The reliance on oil lamps gave way to electricity and solar-powered systems, which offered greater reliability and reduced operational costs. However, this transition brought new challenges; modern lights are fragile under various weather conditions, require frequent maintenance, and cannot be relied upon if a power grid fails or an electrical distribution board shuts down. Consequently, the era of passive observation shifted toward active automation. In the 1950s and 60s, the concept of automated control began to mature into systems capable of recognizing hazards in real time. This period saw the introduction of electronic relays and digital communication networks that allowed lighthouses to detect approaching vessels, alerting them through radio signals or visual alarms. The technology advanced rapidly during World War II when British engineers utilized radar and computer algorithms to guide ships safely through foggy seas where traditional lanterns ▍"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The history of lighthouses is a tapestry woven from the dawn of maritime navigation to the quiet hums of digital signage, reflecting humanity's relentless pursuit of safe passage across the vast ocean. The concept of illumination was not merely a practical necessity but an essential component of exploration and trade, as darkness posed a direct threat to sailors and goods alike. Early civilizations like the Egyptians used simple wooden posts topped with stones or wood, but these were insufficient for long journeys; they offered only temporary warnings against storms and fog, often leading to shipwrecks. The true evolution began in the Mediterranean around 300 BC when Greek and Roman engineers realized that a lantern mounted on a post would illuminate a bay, though their designs remained rudimentary with no indication of where exactly to shine or how far they could travel without recharging. The transition to reliable light sources marked the dawn of modern lighthouses. The invention of gas lamps in the 18th century was transformative, yet it introduced its own dangers: flaring flames were visually chaotic and prone to being mistaken for danger, while smoke obscured stars and led sailors astray. Consequently, the first truly functional systems emerged early in the 19th century. In 1756, Captain John Hogg of the Royal Navy successfully lit a lighthouse on the island of Baffin Island with an oil lamp, marking the beginning of commercialized coastal navigation. This device was highly portable but had no lasting significance until its relocation to the Atlantic coast during the Age of Sail. As maritime trade expanded into the Americas and Europe, the need for illumination grew exponentially. The first fully functional lighthouse dedicated solely to guiding ships across open waters appeared in 1825 at Cape Town, though it was primarily used for local navigation rather than international crossing. The true zenith of this era arrived with the construction of the Great Lighthouses on the English coast between 1860 and 1904. Built by a consortium of men from England to France, these structures were designed to stand firm against waves and wind while ensuring their lights could last decades without needing constant maintenance or fuel. The Royal Navy adopted this technology in earnest with the Great Lighthouse at Cape Town, though it was also used for domestic purposes, creating a symbiotic relationship between military command and public safety. Following this era, lighthouses began to age rapidly due to erosion from sea spray and sedimentation of marine life. To combat these issues, engineers developed innovative techniques: the use of glass lenses that reflected sunlight into the darkened chamber; the introduction of saltwater-resistant steel construction to withstand corrosive environments; and increasingly sophisticated optical systems that projected images directly onto the water surface using parabolic reflectors or rotating mirrors. This period saw a proliferation of structures in major ports worldwide, from the iconic Bell Lighthouse at Liverpool to the massive Great Lighthouse at Kirogho on the Isle of Wight. These projects not only improved navigational safety but also established lighthouses as global landmarks, fostering a culture of maritime exploration and cooperation across continents. As the 20th century progressed, the demands for illumination shifted toward efficiency and adaptation to changing environmental conditions. The reliance on oil lamps gave way to electricity and solar-powered systems, which offered greater reliability and reduced operational costs. However, this transition brought new challenges; modern lights are fragile under various weather conditions, require frequent maintenance, and cannot be relied upon if a power grid fails or an electrical distribution board shuts down. Consequently, the era of passive observation shifted toward active automation. In the 1950s and 60s, the concept of automated control began to mature into systems capable of recognizing hazards in real time. This period saw the introduction of electronic relays and digital communication networks that allowed lighthouses to detect approaching vessels, alerting them through radio signals or visual alarms. The technology advanced rapidly during World War II when British engineers utilized radar and computer algorithms to guide ships safely through foggy seas where traditional lanterns ▍"
+        },
+        {
+          "testID": "caret",
+          "text": "▍"
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "36 TOK/S"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-while-1"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6027,
+      "detail": "stop gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2548,
+      "detail": "T1-after-answer"
+    },
+    {
+      "i": 16,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word history of lighthouses, from the Pharos of Alexandria to modern automated lights.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The history of lighthouses is a tapestry woven from the dawn of maritime navigation to the quiet hums of digital signage, reflecting humanity's relentless pursuit of safe passage across the vast ocean. The concept of illumination was not merely a practical necessity but an essential component of exploration and trade, as darkness posed a direct threat to sailors and goods alike. Early civilizations like the Egyptians used simple wooden posts topped with stones or wood, but these were insufficient for long journeys; they offered only temporary warnings against storms and fog, often leading to shipwrecks. The true evolution began in the Mediterranean around 300 BC when Greek and Roman engineers realized that a lantern mounted on a post would illuminate a bay, though their designs remained rudimentary with no indication of where exactly to shine or how far they could travel without recharging. The transition to reliable light sources marked the dawn of modern lighthouses. The invention of gas lamps in the 18th century was transformative, yet it introduced its own dangers: flaring flames were visually chaotic and prone to being mistaken for danger, while smoke obscured stars and led sailors astray. Consequently, the first truly functional systems emerged early in the 19th century. In 1756, Captain John Hogg of the Royal Navy successfully lit a lighthouse on the island of Baffin Island with an oil lamp, marking the beginning of commercialized coastal navigation. This device was highly portable but had no lasting significance until its relocation to the Atlantic coast during the Age of Sail. As maritime trade expanded into the Americas and Europe, the need for illumination grew exponentially. The first fully functional lighthouse dedicated solely to guiding ships across open waters appeared in 1825 at Cape Town, though it was primarily used for local navigation rather than international crossing. The true zenith of this era arrived with the construction of the Great Lighthouses on the English coast between 1860 and 1904. Built by a consortium of men from England to France, these structures were designed to stand firm against waves and wind while ensuring their lights could last decades without needing constant maintenance or fuel. The Royal Navy adopted this technology in earnest with the Great Lighthouse at Cape Town, though it was also used for domestic purposes, creating a symbiotic relationship between military command and public safety. Following this era, lighthouses began to age rapidly due to erosion from sea spray and sedimentation of marine life. To combat these issues, engineers developed innovative techniques: the use of glass lenses that reflected sunlight into the darkened chamber; the introduction of saltwater-resistant steel construction to withstand corrosive environments; and increasingly sophisticated optical systems that projected images directly onto the water surface using parabolic reflectors or rotating mirrors. This period saw a proliferation of structures in major ports worldwide, from the iconic Bell Lighthouse at Liverpool to the massive Great Lighthouse at Kirogho on the Isle of Wight. These projects not only improved navigational safety but also established lighthouses as global landmarks, fostering a culture of maritime exploration and cooperation across continents. As the 20th century progressed, the demands for illumination shifted toward efficiency and adaptation to changing environmental conditions. The reliance on oil lamps gave way to electricity and solar-powered systems, which offered greater reliability and reduced operational costs. However, this transition brought new challenges; modern lights are fragile under various weather conditions, require frequent maintenance, and cannot be relied upon if a power grid fails or an electrical distribution board shuts down. Consequently, the era of passive observation shifted toward active automation. In the 1950s and 60s, the concept of automated control began to mature into systems capable of recognizing hazards in real time. This period saw the introduction of electronic relays and digital communication networks that allowed lighthouses to detect approaching vessels, alerting them through radio signals or visual alarms. The technology advanced rapidly during World War II when British engineers utilized radar and computer algorithms to guide ships safely through foggy seas where traditional lanterns were ineffective. These automated systems proved to be more reliable than human pilots in the face of unknown conditions, dramatically increasing safety on open-ocean routes. The mid-20th century saw a further evolution with the development of satellite-based navigation (SBN) systems and later, GPS technology. While these systems do not rely on the physical presence of a light source themselves, they functioned effectively within designated lighthouse zones by using radio signals from adjacent stations or fixed antennas to coordinate ship movements precisely where needed. This innovation ensured that even if a lighthouse was down for maintenance, ships could still reach their destinations through automated guidance systems. The integration of these technologies marked a turning point in how lighthouses are designed and operated, moving away from static structures toward dynamic, intelligent networks that adapt to the complexity of modern shipping routes. In recent decades, particularly following the expansion of global trade into Asia and the Middle East, the demand for reliable navigation infrastructure has surged. Modern automated systems now include advanced features such as AI-driven route Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The history of lighthouses is a tapestry woven from the dawn of maritime navigation to the quiet hums of digital signage, reflecting humanity's relentless pursuit of safe passage across the vast ocean. The concept of illumination was not merely a practical necessity but an essential component of exploration and trade, as darkness posed a direct threat to sailors and goods alike. Early civilizations like the Egyptians used simple wooden posts topped with stones or wood, but these were insufficient for long journeys; they offered only temporary warnings against storms and fog, often leading to shipwrecks. The true evolution began in the Mediterranean around 300 BC when Greek and Roman engineers realized that a lantern mounted on a post would illuminate a bay, though their designs remained rudimentary with no indication of where exactly to shine or how far they could travel without recharging. The transition to reliable light sources marked the dawn of modern lighthouses. The invention of gas lamps in the 18th century was transformative, yet it introduced its own dangers: flaring flames were visually chaotic and prone to being mistaken for danger, while smoke obscured stars and led sailors astray. Consequently, the first truly functional systems emerged early in the 19th century. In 1756, Captain John Hogg of the Royal Navy successfully lit a lighthouse on the island of Baffin Island with an oil lamp, marking the beginning of commercialized coastal navigation. This device was highly portable but had no lasting significance until its relocation to the Atlantic coast during the Age of Sail. As maritime trade expanded into the Americas and Europe, the need for illumination grew exponentially. The first fully functional lighthouse dedicated solely to guiding ships across open waters appeared in 1825 at Cape Town, though it was primarily used for local navigation rather than international crossing. The true zenith of this era arrived with the construction of the Great Lighthouses on the English coast between 1860 and 1904. Built by a consortium of men from England to France, these structures were designed to stand firm against waves and wind while ensuring their lights could last decades without needing constant maintenance or fuel. The Royal Navy adopted this technology in earnest with the Great Lighthouse at Cape Town, though it was also used for domestic purposes, creating a symbiotic relationship between military command and public safety. Following this era, lighthouses began to age rapidly due to erosion from sea spray and sedimentation of marine life. To combat these issues, engineers developed innovative techniques: the use of glass lenses that reflected sunlight into the darkened chamber; the introduction of saltwater-resistant steel construction to withstand corrosive environments; and increasingly sophisticated optical systems that projected images directly onto the water surface using parabolic reflectors or rotating mirrors. This period saw a proliferation of structures in major ports worldwide, from the iconic Bell Lighthouse at Liverpool to the massive Great Lighthouse at Kirogho on the Isle of Wight. These projects not only improved navigational safety but also established lighthouses as global landmarks, fostering a culture of maritime exploration and cooperation across continents. As the 20th century progressed, the demands for illumination shifted toward efficiency and adaptation to changing environmental conditions. The reliance on oil lamps gave way to electricity and solar-powered systems, which offered greater reliability and reduced operational costs. However, this transition brought new challenges; modern lights are fragile under various weather conditions, require frequent maintenance, and cannot be relied upon if a power grid fails or an electrical distribution board shuts down. Consequently, the era of passive observation shifted toward active automation. In the 1950s and 60s, the concept of automated control began to mature into systems capable of recognizing hazards in real time. This period saw the introduction of electronic relays and digital communication networks that allowed lighthouses to detect approaching vessels, alerting them through radio signals or visual alarms. The technology advanced rapidly during World War II when British engineers utilized radar and computer algorithms to guide ships safely through foggy seas where traditional lanterns were ineffective. These automated systems proved to be more reliable than human pilots in the face of unknown conditions, dramatically increasing safety on open-ocean routes. The mid-20th century saw a further evolution with the development of satellite-based navigation (SBN) systems and later, GPS technology. While these systems do not rely on the physical presence of a light source themselves, they functioned effectively within designated lighthouse zones by using radio signals from adjacent stations or fixed antennas to coordinate ship movements precisely where needed. This innovation ensured that even if a lighthouse was down for maintenance, ships could still reach their destinations through automated guidance systems. The integration of these technologies marked a turning point in how lighthouses are designed and operated, moving away from static structures toward dynamic, intelligent networks that adapt to the complexity of modern shipping routes. In recent decades, particularly following the expansion of global trade into Asia and the Middle East, the demand for reliable navigation infrastructure has surged. Modern automated systems now include advanced features such as AI-driven route"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-after-1"
+    },
+    {
+      "i": 17,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1004,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 97 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 267,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20010,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3230,
+      "detail": "T2-while-answering"
+    },
+    {
+      "i": 29,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word explanation of how a heat pump works, with an example for a greenhouse.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A heat pump is a powerful mechanical device that moves thermal energy from one place to another without using electricity or burning fuel. It operates on the principle of transferring heat through a working fluid, typically a refrigerant like ammonia, hydrogen chloride (HCFC), or helium-3. This process relies on the cycle of compression and expansion within a closed system where work is done by moving mass against an opposing pressure gradient. The goal is to move heat from the colder interior of a building to the warmer outdoor air, effectively transferring energy without generating waste heat in the form of thermal pollution. The core mechanism begins with a compressor that takes cold ambient air and compresses it significantly, raising its temperature. This high-pressure, hot gas then travels through a series of expansion valves or throttling devices, where pressure is released slowly. As the refrigerant expands rapidly, it cools down substantially before returning to the atmosphere as low-pressure, warm air. This cycle repeats continuously, allowing heat to be extracted from the indoor space and delivered to the outdoor environment. In residential settings, this system is often installed inside home windowsills or integrated into roof-mounted units designed to capture solar radiation during daylight hours. The efficiency of a heat pump is determined by its Coefficient of Performance (COP), which measures how many units of work are required per unit of heat transferred. A typical residential model operates at a COP between 3 and 6, meaning it requires roughly one-third to two-thirds of the electrical energy that would be used in an electric resistance heater to achieve the same heating effect. However, this electricity is often free when utilizing solar power sources. When paired with photovoltaic panels, the system can generate significant cooling loads while simultaneously producing usable heat for the house or outdoor structures like garages, driveways, and verandas. The overall energy balance of a well-designed home's HVAC system relies on maximizing these two components: heating during cold periods when solar generation is low, and cooling during hot periods when solar generation peaks, thereby creating a balanced energy flow through the entire building envelope. A practical example can be seen in a large-scale greenhouse that utilizes this technology to manage temperature fluctuations. In winter, the system extracts heat from the interior of the greenhouse to warm the soil above it for planting. The cold air is pumped out into the roof vents and distributed throughout the structure using fans or mechanical circulation systems. Conversely, during summer, the same system retrieves the stored thermal energy from the greenhouse's warmer interior and pushes it back into the ground. This creates a closed loop where solar energy captured at midday is utilized to generate cooling loads for the soil in the evening, while the remaining heat remains available for irrigation or growing conditions. The greenhouse thus functions as an integrated heating and cooling unit that enhances its operational efficiency by utilizing natural thermal storage rather than relying on external electricity sources. Furthermore, modern systems are equipped with smart controllers that monitor ambient weather data to adjust output accordingly. These devices can optimize performance based on solar irradiance levels, ensuring maximum energy capture during peak sunny hours while simultaneously managing the heat loss in cold nights where solar generation is minimal. This adaptive control strategy reduces unnecessary energy consumption and prolongs the lifespan of the system by avoiding frequent cycling between heating and cooling modes that could degrade the compressor or cause wear. By leveraging renewable sources like solar power, these systems contribute to a sustainable energy grid while providing essential utilities for agriculture, forestry, and landscaping operations. In summary, heat pumps represent a robust solution for managing thermal demands in environments where electricity costs are high or solar generation is intermittent. They provide a reliable method of heating homes during winter months by drawing cold air indoors and releasing warm air outdoors, effectively turning waste heat into usable energy. By integrating these systems with photovoltaic panels, they create a self-sustaining loop that enhances the overall performance of residential buildings and agricultural infrastructure, offering a dual benefit ▍"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A heat pump is a powerful mechanical device that moves thermal energy from one place to another without using electricity or burning fuel. It operates on the principle of transferring heat through a working fluid, typically a refrigerant like ammonia, hydrogen chloride (HCFC), or helium-3. This process relies on the cycle of compression and expansion within a closed system where work is done by moving mass against an opposing pressure gradient. The goal is to move heat from the colder interior of a building to the warmer outdoor air, effectively transferring energy without generating waste heat in the form of thermal pollution. The core mechanism begins with a compressor that takes cold ambient air and compresses it significantly, raising its temperature. This high-pressure, hot gas then travels through a series of expansion valves or throttling devices, where pressure is released slowly. As the refrigerant expands rapidly, it cools down substantially before returning to the atmosphere as low-pressure, warm air. This cycle repeats continuously, allowing heat to be extracted from the indoor space and delivered to the outdoor environment. In residential settings, this system is often installed inside home windowsills or integrated into roof-mounted units designed to capture solar radiation during daylight hours. The efficiency of a heat pump is determined by its Coefficient of Performance (COP), which measures how many units of work are required per unit of heat transferred. A typical residential model operates at a COP between 3 and 6, meaning it requires roughly one-third to two-thirds of the electrical energy that would be used in an electric resistance heater to achieve the same heating effect. However, this electricity is often free when utilizing solar power sources. When paired with photovoltaic panels, the system can generate significant cooling loads while simultaneously producing usable heat for the house or outdoor structures like garages, driveways, and verandas. The overall energy balance of a well-designed home's HVAC system relies on maximizing these two components: heating during cold periods when solar generation is low, and cooling during hot periods when solar generation peaks, thereby creating a balanced energy flow through the entire building envelope. A practical example can be seen in a large-scale greenhouse that utilizes this technology to manage temperature fluctuations. In winter, the system extracts heat from the interior of the greenhouse to warm the soil above it for planting. The cold air is pumped out into the roof vents and distributed throughout the structure using fans or mechanical circulation systems. Conversely, during summer, the same system retrieves the stored thermal energy from the greenhouse's warmer interior and pushes it back into the ground. This creates a closed loop where solar energy captured at midday is utilized to generate cooling loads for the soil in the evening, while the remaining heat remains available for irrigation or growing conditions. The greenhouse thus functions as an integrated heating and cooling unit that enhances its operational efficiency by utilizing natural thermal storage rather than relying on external electricity sources. Furthermore, modern systems are equipped with smart controllers that monitor ambient weather data to adjust output accordingly. These devices can optimize performance based on solar irradiance levels, ensuring maximum energy capture during peak sunny hours while simultaneously managing the heat loss in cold nights where solar generation is minimal. This adaptive control strategy reduces unnecessary energy consumption and prolongs the lifespan of the system by avoiding frequent cycling between heating and cooling modes that could degrade the compressor or cause wear. By leveraging renewable sources like solar power, these systems contribute to a sustainable energy grid while providing essential utilities for agriculture, forestry, and landscaping operations. In summary, heat pumps represent a robust solution for managing thermal demands in environments where electricity costs are high or solar generation is intermittent. They provide a reliable method of heating homes during winter months by drawing cold air indoors and releasing warm air outdoors, effectively turning waste heat into usable energy. By integrating these systems with photovoltaic panels, they create a self-sustaining loop that enhances the overall performance of residential buildings and agricultural infrastructure, offering a dual benefit ▍"
+        },
+        {
+          "testID": "caret",
+          "text": "▍"
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "34 TOK/S"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-while-2"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 543,
+      "detail": "stop gone"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3186,
+      "detail": "T2-after-answer"
+    },
+    {
+      "i": 33,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word explanation of how a heat pump works, with an example for a greenhouse.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A heat pump is a powerful mechanical device that moves thermal energy from one place to another without using electricity or burning fuel. It operates on the principle of transferring heat through a working fluid, typically a refrigerant like ammonia, hydrogen chloride (HCFC), or helium-3. This process relies on the cycle of compression and expansion within a closed system where work is done by moving mass against an opposing pressure gradient. The goal is to move heat from the colder interior of a building to the warmer outdoor air, effectively transferring energy without generating waste heat in the form of thermal pollution. The core mechanism begins with a compressor that takes cold ambient air and compresses it significantly, raising its temperature. This high-pressure, hot gas then travels through a series of expansion valves or throttling devices, where pressure is released slowly. As the refrigerant expands rapidly, it cools down substantially before returning to the atmosphere as low-pressure, warm air. This cycle repeats continuously, allowing heat to be extracted from the indoor space and delivered to the outdoor environment. In residential settings, this system is often installed inside home windowsills or integrated into roof-mounted units designed to capture solar radiation during daylight hours. The efficiency of a heat pump is determined by its Coefficient of Performance (COP), which measures how many units of work are required per unit of heat transferred. A typical residential model operates at a COP between 3 and 6, meaning it requires roughly one-third to two-thirds of the electrical energy that would be used in an electric resistance heater to achieve the same heating effect. However, this electricity is often free when utilizing solar power sources. When paired with photovoltaic panels, the system can generate significant cooling loads while simultaneously producing usable heat for the house or outdoor structures like garages, driveways, and verandas. The overall energy balance of a well-designed home's HVAC system relies on maximizing these two components: heating during cold periods when solar generation is low, and cooling during hot periods when solar generation peaks, thereby creating a balanced energy flow through the entire building envelope. A practical example can be seen in a large-scale greenhouse that utilizes this technology to manage temperature fluctuations. In winter, the system extracts heat from the interior of the greenhouse to warm the soil above it for planting. The cold air is pumped out into the roof vents and distributed throughout the structure using fans or mechanical circulation systems. Conversely, during summer, the same system retrieves the stored thermal energy from the greenhouse's warmer interior and pushes it back into the ground. This creates a closed loop where solar energy captured at midday is utilized to generate cooling loads for the soil in the evening, while the remaining heat remains available for irrigation or growing conditions. The greenhouse thus functions as an integrated heating and cooling unit that enhances its operational efficiency by utilizing natural thermal storage rather than relying on external electricity sources. Furthermore, modern systems are equipped with smart controllers that monitor ambient weather data to adjust output accordingly. These devices can optimize performance based on solar irradiance levels, ensuring maximum energy capture during peak sunny hours while simultaneously managing the heat loss in cold nights where solar generation is minimal. This adaptive control strategy reduces unnecessary energy consumption and prolongs the lifespan of the system by avoiding frequent cycling between heating and cooling modes that could degrade the compressor or cause wear. By leveraging renewable sources like solar power, these systems contribute to a sustainable energy grid while providing essential utilities for agriculture, forestry, and landscaping operations. In summary, heat pumps represent a robust solution for managing thermal demands in environments where electricity costs are high or solar generation is intermittent. They provide a reliable method of heating homes during winter months by drawing cold air indoors and releasing warm air outdoors, effectively turning waste heat into usable energy. By integrating these systems with photovoltaic panels, they create a self-sustaining loop that enhances the overall performance of residential buildings and agricultural infrastructure, offering a dual benefit in terms of both thermal regulation and renewable energy integration. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A heat pump is a powerful mechanical device that moves thermal energy from one place to another without using electricity or burning fuel. It operates on the principle of transferring heat through a working fluid, typically a refrigerant like ammonia, hydrogen chloride (HCFC), or helium-3. This process relies on the cycle of compression and expansion within a closed system where work is done by moving mass against an opposing pressure gradient. The goal is to move heat from the colder interior of a building to the warmer outdoor air, effectively transferring energy without generating waste heat in the form of thermal pollution. The core mechanism begins with a compressor that takes cold ambient air and compresses it significantly, raising its temperature. This high-pressure, hot gas then travels through a series of expansion valves or throttling devices, where pressure is released slowly. As the refrigerant expands rapidly, it cools down substantially before returning to the atmosphere as low-pressure, warm air. This cycle repeats continuously, allowing heat to be extracted from the indoor space and delivered to the outdoor environment. In residential settings, this system is often installed inside home windowsills or integrated into roof-mounted units designed to capture solar radiation during daylight hours. The efficiency of a heat pump is determined by its Coefficient of Performance (COP), which measures how many units of work are required per unit of heat transferred. A typical residential model operates at a COP between 3 and 6, meaning it requires roughly one-third to two-thirds of the electrical energy that would be used in an electric resistance heater to achieve the same heating effect. However, this electricity is often free when utilizing solar power sources. When paired with photovoltaic panels, the system can generate significant cooling loads while simultaneously producing usable heat for the house or outdoor structures like garages, driveways, and verandas. The overall energy balance of a well-designed home's HVAC system relies on maximizing these two components: heating during cold periods when solar generation is low, and cooling during hot periods when solar generation peaks, thereby creating a balanced energy flow through the entire building envelope. A practical example can be seen in a large-scale greenhouse that utilizes this technology to manage temperature fluctuations. In winter, the system extracts heat from the interior of the greenhouse to warm the soil above it for planting. The cold air is pumped out into the roof vents and distributed throughout the structure using fans or mechanical circulation systems. Conversely, during summer, the same system retrieves the stored thermal energy from the greenhouse's warmer interior and pushes it back into the ground. This creates a closed loop where solar energy captured at midday is utilized to generate cooling loads for the soil in the evening, while the remaining heat remains available for irrigation or growing conditions. The greenhouse thus functions as an integrated heating and cooling unit that enhances its operational efficiency by utilizing natural thermal storage rather than relying on external electricity sources. Furthermore, modern systems are equipped with smart controllers that monitor ambient weather data to adjust output accordingly. These devices can optimize performance based on solar irradiance levels, ensuring maximum energy capture during peak sunny hours while simultaneously managing the heat loss in cold nights where solar generation is minimal. This adaptive control strategy reduces unnecessary energy consumption and prolongs the lifespan of the system by avoiding frequent cycling between heating and cooling modes that could degrade the compressor or cause wear. By leveraging renewable sources like solar power, these systems contribute to a sustainable energy grid while providing essential utilities for agriculture, forestry, and landscaping operations. In summary, heat pumps represent a robust solution for managing thermal demands in environments where electricity costs are high or solar generation is intermittent. They provide a reliable method of heating homes during winter months by drawing cold air indoors and releasing warm air outdoors, effectively turning waste heat into usable energy. By integrating these systems with photovoltaic panels, they create a self-sustaining loop that enhances the overall performance of residential buildings and agricultural infrastructure, offering a dual benefit in terms of both thermal regulation and renewable energy integration."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-after-2"
+    },
+    {
+      "i": 34,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/chats"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 36,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 37,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 38,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 39,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1004,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 41,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 96 chars"
+    },
+    {
+      "i": 42,
+      "op": "send",
+      "ok": true,
+      "ms": 168,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20016,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 45,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "T3-while-answering"
+    },
+    {
+      "i": 46,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word story about a keeper who stays on a lighthouse through a winter storm.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The winter storm that swept over the harbor did not merely knock down the glass; it shattered the silence of the lighthouse itself. It was a physical manifestation of the weather, a relentless battering ram against the brass railing and the heavy iron sails that clung to the tower like tangled strands of wool. The wind howled in a low, guttural growl, churning the salt spray from the water into frothy white foam that danced on the glass. Light spilled over the deck, illuminating the silhouettes of the crew and the weathered wood of the lighthouse structure. Inside the lantern room, the air was thick with the scent of wet stone and ozone. Elias adjusted his coat, a heavy woolen cloak wrapped around him. His eyes, dark and tired from years of watching the sea, scanned the storm-tossed water. He saw no ship, only broken waves crashing against the pilings, creating a chaotic symphony that drowned out any sound of conversation or wind whistles. The clock on the wall ticked, slowly counting down until midnight, marking the beginning of the longest night ever. Elias stood by the lantern room window, his hand resting lightly on the glass. Outside, the storm had reached its zenith, a black curtain that swallowed the sun and all hope for daytime. In this place of darkness, light was not merely an object but a presence. It hovered above him, casting long, dancing shadows across the floorboards and the shelves lined with photographs of ships in gold, men in white, and stars in blue. The lighthouse had been built not only to guide sailors through storms but also to preserve their memories during those darkest hours. For years, Elias had stood there, a keeper waiting for the light that would bring warmth and safety back into his life. He knew he was alone; the wind seemed relentless, indifferent to the small man trapped within this structure of glass and metal. But the storm was not meant to break him—it was meant to test the resilience of the vessel of hope. As the first blizzard approached, Elias felt a strange sensation in his chest, a warmth that had no source but the lantern room itself. He closed his eyes, letting the cold wind bite at his cheeks and skin. Inside, he heard the hum of the generator, the steady rhythm of the machine powering the light up when needed. This was not an accident; this was maintenance. The lighthouse relied ▍"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The winter storm that swept over the harbor did not merely knock down the glass; it shattered the silence of the lighthouse itself. It was a physical manifestation of the weather, a relentless battering ram against the brass railing and the heavy iron sails that clung to the tower like tangled strands of wool. The wind howled in a low, guttural growl, churning the salt spray from the water into frothy white foam that danced on the glass. Light spilled over the deck, illuminating the silhouettes of the crew and the weathered wood of the lighthouse structure. Inside the lantern room, the air was thick with the scent of wet stone and ozone. Elias adjusted his coat, a heavy woolen cloak wrapped around him. His eyes, dark and tired from years of watching the sea, scanned the storm-tossed water. He saw no ship, only broken waves crashing against the pilings, creating a chaotic symphony that drowned out any sound of conversation or wind whistles. The clock on the wall ticked, slowly counting down until midnight, marking the beginning of the longest night ever. Elias stood by the lantern room window, his hand resting lightly on the glass. Outside, the storm had reached its zenith, a black curtain that swallowed the sun and all hope for daytime. In this place of darkness, light was not merely an object but a presence. It hovered above him, casting long, dancing shadows across the floorboards and the shelves lined with photographs of ships in gold, men in white, and stars in blue. The lighthouse had been built not only to guide sailors through storms but also to preserve their memories during those darkest hours. For years, Elias had stood there, a keeper waiting for the light that would bring warmth and safety back into his life. He knew he was alone; the wind seemed relentless, indifferent to the small man trapped within this structure of glass and metal. But the storm was not meant to break him—it was meant to test the resilience of the vessel of hope. As the first blizzard approached, Elias felt a strange sensation in his chest, a warmth that had no source but the lantern room itself. He closed his eyes, letting the cold wind bite at his cheeks and skin. Inside, he heard the hum of the generator, the steady rhythm of the machine powering the light up when needed. This was not an accident; this was maintenance. The lighthouse relied ▍"
+        },
+        {
+          "testID": "caret",
+          "text": "▍"
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "23 TOK/S"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-while-3"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 828,
+      "detail": "stop gone"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 49,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2882,
+      "detail": "T3-after-answer"
+    },
+    {
+      "i": 50,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a detailed 700-word story about a keeper who stays on a lighthouse through a winter storm.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The winter storm that swept over the harbor did not merely knock down the glass; it shattered the silence of the lighthouse itself. It was a physical manifestation of the weather, a relentless battering ram against the brass railing and the heavy iron sails that clung to the tower like tangled strands of wool. The wind howled in a low, guttural growl, churning the salt spray from the water into frothy white foam that danced on the glass. Light spilled over the deck, illuminating the silhouettes of the crew and the weathered wood of the lighthouse structure. Inside the lantern room, the air was thick with the scent of wet stone and ozone. Elias adjusted his coat, a heavy woolen cloak wrapped around him. His eyes, dark and tired from years of watching the sea, scanned the storm-tossed water. He saw no ship, only broken waves crashing against the pilings, creating a chaotic symphony that drowned out any sound of conversation or wind whistles. The clock on the wall ticked, slowly counting down until midnight, marking the beginning of the longest night ever. Elias stood by the lantern room window, his hand resting lightly on the glass. Outside, the storm had reached its zenith, a black curtain that swallowed the sun and all hope for daytime. In this place of darkness, light was not merely an object but a presence. It hovered above him, casting long, dancing shadows across the floorboards and the shelves lined with photographs of ships in gold, men in white, and stars in blue. The lighthouse had been built not only to guide sailors through storms but also to preserve their memories during those darkest hours. For years, Elias had stood there, a keeper waiting for the light that would bring warmth and safety back into his life. He knew he was alone; the wind seemed relentless, indifferent to the small man trapped within this structure of glass and metal. But the storm was not meant to break him—it was meant to test the resilience of the vessel of hope. As the first blizzard approached, Elias felt a strange sensation in his chest, a warmth that had no source but the lantern room itself. He closed his eyes, letting the cold wind bite at his cheeks and skin. Inside, he heard the hum of the generator, the steady rhythm of the machine powering the light up when needed. This was not an accident; this was maintenance. The lighthouse relied on a constant supply of electricity to keep its illumination bright even during the stormiest Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The winter storm that swept over the harbor did not merely knock down the glass; it shattered the silence of the lighthouse itself. It was a physical manifestation of the weather, a relentless battering ram against the brass railing and the heavy iron sails that clung to the tower like tangled strands of wool. The wind howled in a low, guttural growl, churning the salt spray from the water into frothy white foam that danced on the glass. Light spilled over the deck, illuminating the silhouettes of the crew and the weathered wood of the lighthouse structure. Inside the lantern room, the air was thick with the scent of wet stone and ozone. Elias adjusted his coat, a heavy woolen cloak wrapped around him. His eyes, dark and tired from years of watching the sea, scanned the storm-tossed water. He saw no ship, only broken waves crashing against the pilings, creating a chaotic symphony that drowned out any sound of conversation or wind whistles. The clock on the wall ticked, slowly counting down until midnight, marking the beginning of the longest night ever. Elias stood by the lantern room window, his hand resting lightly on the glass. Outside, the storm had reached its zenith, a black curtain that swallowed the sun and all hope for daytime. In this place of darkness, light was not merely an object but a presence. It hovered above him, casting long, dancing shadows across the floorboards and the shelves lined with photographs of ships in gold, men in white, and stars in blue. The lighthouse had been built not only to guide sailors through storms but also to preserve their memories during those darkest hours. For years, Elias had stood there, a keeper waiting for the light that would bring warmth and safety back into his life. He knew he was alone; the wind seemed relentless, indifferent to the small man trapped within this structure of glass and metal. But the storm was not meant to break him—it was meant to test the resilience of the vessel of hope. As the first blizzard approached, Elias felt a strange sensation in his chest, a warmth that had no source but the lantern room itself. He closed his eyes, letting the cold wind bite at his cheeks and skin. Inside, he heard the hum of the generator, the steady rhythm of the machine powering the light up when needed. This was not an accident; this was maintenance. The lighthouse relied on a constant supply of electricity to keep its illumination bright even during the stormiest"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "banners-after-3"
+    }
+  ],
+  "errors": []
+}

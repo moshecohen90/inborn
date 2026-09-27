@@ -1,0 +1,10 @@
+store env clean: no EXPO_PUBLIC_* dev switch set
+EXPO_PUBLIC in env: 0
+commit 586afa95c802 dirty=0
+prebuild 15:43:24
+xcode.env.local:
+pod install 15:43:33
+start=15:44:03
+rc=0 end=15:47:49
+0
+** ARCHIVE SUCCEEDED **

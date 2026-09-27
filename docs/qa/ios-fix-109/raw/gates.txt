@@ -1,0 +1,55 @@
+# Gates in the worktree on 586afa95 (fixes + origin/main + build 21), 27.9.2026
+15:36:18 install --frozen-lockfile exit 0
+15:36:28 typecheck exit 0
+15:36:45 test exit 0
+15:36:51 lint exit 0
+15:37:20 web:build exit 0
+15:42:57 web:smoke exit 0
+[exited with code 0]
+
+== test
+PASS: all fields within limits.
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  87 passed | 3 skipped (90)
+packages/core test:       Tests  973 passed | 4 skipped (977)
+apps/mobile test:  Test Files  131 passed (131)
+apps/mobile test:       Tests  1178 passed (1178)
+
+== web:smoke (27 PASS lines, 0 FAIL)
+PASS: first visit ready 38924 ms · 18.5 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 2542 ms · 16.1 tok/s · context 19 / 4096 · requests=21 · model fetches=0
+PASS: one reload after a deploy shows the new build (first paint A, then B); mid-download the "new version" line shows and its Refresh lands on B
+PASS: the finished download asked the browser to keep the model: "log: [storage] persist after download: refused" (F411)
+PASS: returning visits keep the model, no GGUF request, no Model step: restart 1838 ms, clock +8 days 1843 ms, after a deploy 1469 ms; granted -> Settings "Brow
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: onboarded without the model, chats kept: the Model step alone: "This browser no longer has the model: browsers can clear a site's files, Safari after 7 da
+PASS: onboarded without the model, nothing kept: Welcome -> /onboarding/model (F405)
+PASS: deep links before onboarding: /documents -> /onboarding, /settings -> /onboarding, /paywall -> /paywall
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 1.55 GB needed, 105 MB free."
+PASS: 900 MB free leads with the model that fits: "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended." · button "Download 533 MB"
+PASS: catalog application/json · models instant, fast
+PASS: no React Native prop on the DOM, composer icons aria-hidden (attach, mic, send)
+PASS: development export walked onboarding (download in the Model step) -> chat with 0 React warnings, 0 LogBox reports (0 failed requests: none)
+PASS: broken catalog door "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connect
+PASS: attached .txt answered on the word search with SOURCES "SOURCESgreenhouse-notes.txt · part 1"; .pdf answered after installing the index model from this ho
+PASS: a photo held on the photo-pack card, the pack downloaded from this host, and Instant answered naming red, circle: "The shape is the Japanese flag's red ci
+PASS: deployed-like host, the projector fails as "This model is not on the download server yet. Try again later."
+PASS: pseudo-locale at 390 on chat, settings, paywall, onboarding, proof, vault, documents — no horizontal scroll; the PRO chip stays on the Folders row in 9 lo
+PASS: Auto follows a live OS change at 12:00 (dark → light → dark) and stays dark at 20:00 under a light OS
+PASS: layout swept chat, settings, paywall, onboarding, proof, vault, documents at 390 / 768 / 820 / 1024 / 1180 / 1366 / 1440 in light + dark — no horizontal s
+PASS: <html lang> follows the UI language in 9 locales (ja = "ja", pseudo = "en-XA")
+PASS: locked, Tab reaches only lock-seal, unlock-passcode, BODY; no chat title in the accessibility tree, no palette, no answer in the DOM; unlocked cleanly
+PASS: 9 locales at 390, no clipped sidebar label (fr incognito = "Privé")
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + 

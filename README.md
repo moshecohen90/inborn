@@ -6345,6 +6345,40 @@ MODELS_DIR=/Users/moshecohen/dev/inborn/.models GPU=off WIDTH=1440 PORT=9108 OUT
 
 Tests red first (`red-tests.txt`: 6 of 12 failing, then the time-line test). Gates in `gates.txt`. Test counts: 972
 core, 1148 mobile, 24 i18n, 23 ui.
+
+## Fixes round 109: Delete everything starts clean, Documents shows its size, and the thermal line offers only a smaller model (branch `ios-fix-109`) — 27.9.2026
+
+Device pass 20 on the iPhone found three defects. Each one is fixed at its source, proven by a test that failed first,
+and re-verified on the phone with build 1.0.0 (21). Evidence: `docs/qa/ios-fix-109/`,
+`docs/qa/ios-device-pass-21-2026-09-27.md`.
+
+- **F419 · Delete everything no longer calls the new database unreadable.** A simulator trace proved the cause
+  (`raw/sim-wipe-trace-before.txt`). The document index kept its own keyed connection open, so `deleteDatabaseAsync`
+  refused the file. Then `router.replace` after the wipe remounted the root, and two boots each found the Keychain empty
+  and generated a key. The second could not read the file the first had created, set it aside as `.corrupt-<time>`,
+  and raised the banner. The fix:
+  - `databaseKeyHex` creates the key single-flight.
+  - Boots join one `createBootGate` per wipe generation.
+  - `closeRagStore` closes the index's connection inside `wipe()` before the delete.
+  - `wipeAll` retires the document library (jobs, watcher, embedder) before the files go, then resets it and the Work
+    store on every platform.
+  - The licence manager reseals its cache under the new key (`rekey`).
+
+  A real unreadable file is still set aside and reported (F58). On the phone, the Welcome screen came up with no banner
+  after the wipe and again after a cold relaunch. The container held only the new `inborn.db` with its `-wal` and
+  `-shm`.
+- **F418 · Privacy & storage counts the documents.** `storedBytes()` in `documents/files` is the one helper per
+  platform. On a phone it sums the copies under `Documents/documents/`, and on the web it sums the files the browser
+  holds. The phone read Documents **1.98 KB**, the same figure as the Documents screen and the 2,026 B on disk.
+- **F420 · The thermal line offers "Switch to Instant" only when a smaller model is installed.** The strip's rows moved
+  to a pure `bannerRows()`, and the action follows the §6.5 policy's thermal recommendation. On the phone, three long
+  answers made it hot. The strip read "Slowing down to keep the phone cool" with no action while Instant ran.
+
+Tests red first: `raw/red-f418-documents-size.txt`, `raw/red-f419-two-keys.txt`, `raw/red-f419-licence-rekey.txt`,
+`raw/red-f420-thermal-action.txt`. Gates in the worktree all exit 0 (`raw/gates.txt`). Test counts: 973 core with 4
+skipped, 1,178 mobile, 24 i18n, 23 ui, 4 desktop. Build 21 went onto the phone as an update, and Moshe's six container
+files are byte-identical. It did not go to any store.
+
 ## Fixes round 106: the stores' own badges, a model the browser keeps, and returning visits that never download again (branch `web-badges-persist`) — 27.9.2026
 
 Moshe (27.9) asked for two things. The store buttons should be the standard App Store and Google Play badges, like on

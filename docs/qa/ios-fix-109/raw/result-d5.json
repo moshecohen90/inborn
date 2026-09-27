@@ -1,0 +1,59 @@
+{
+  "runId": "d5",
+  "startedAt": "2026-09-27T13:05:53.516Z",
+  "finishedAt": "2026-09-27T13:05:58.758Z",
+  "ok": true,
+  "passed": 6,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2238,
+      "detail": "W03-cold-relaunch"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: A15 Bionic · 6 GB Continue This is AI. It can be wrong. Check important facts.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: A15 Bionic · 6 GB Continue This is AI. It can be wrong. Check important fact"
+    },
+    {
+      "i": 4,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"could not be opened\" absent"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "banner-repair gone"
+    }
+  ],
+  "errors": []
+}
