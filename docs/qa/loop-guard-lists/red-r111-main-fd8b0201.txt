@@ -1,0 +1,384 @@
+# fixes-r111.test.ts against packages/core/src/chat/loop.ts and length.ts of fd8b0201 (origin/main: rounds 107 and 110)
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/loop-guard-lists/packages/core
+
+ ❯ test/fixes-r111.test.ts (32 tests | 22 failed) 3489ms
+   ❯ F423 · iPhone build 22: the two answers that reached the screen now stop at the first repeat (4)
+     × list30-animals #2: a list item listed again is cut at its second copy, and no screen ever lists an item twice 11ms
+     × list30-animals #2: the silent retry continues the list after the cut, and a retry that repeats again ends with the notice 79ms
+     × he-explain #2: the phrase said twice back to back, the first copy in bold, is cut to one copy 7ms
+     × he-explain #2 as it ran on the phone: the retry's continuation said the phrase again, and now the notice keeps one copy 165ms
+   ❯ F423 · every rule reads through list markers, emphasis and quotation marks (7)
+     × a phrase in bold, then again plain, back to back, is a loop; the cut closes no bold it did not open 0ms
+     × the second copy in bold leaves no dangling ** behind 1ms
+     × a copy that starts inside a bold span gets its ** closed 1ms
+     × a phrase in quotes, then again without them, back to back, is a loop 1ms
+     × items numbered in Hebrew letters, circled numbers or 一、 are compared without their markers 1ms
+     × a copy that starts inside a word of a new item keeps that item whole (round 110 web trial animals-40 #5) 1ms
+     × an item number or bullet with the copy is never left bare on screen 1ms
+   ❯ F423 · what must stay whole (9)
+     × a list restarted from scratch is cut where the restart begins, short items included (stress run cont-list #2) 1ms
+     × three identical numbered steps are a loop now, like three identical bullets (round 107 kept them) 0ms
+   ❯ F423 · round 110's web trials: a cut lands on a clean boundary (4)
+     × es-list A#4: a copy that starts inside item 18 takes the whole item, and the retry starts item 18 on its own line 360ms
+     × he-explain B#4: a copy that starts inside a bold bullet takes the bullet, so no ** or ### is left mid-line 1977ms
+     × a list followed by a paragraph said again: the kept list ends with a line break, so the retry does not join its last item 1ms
+     × a copy that opens with a bracket leaves no open bracket, and a cut keeps the closing quote its line opened 1ms
+   ❯ F423 · iPhone build 22: the other answers the guard must get right (4)
+     × math-long-div #1: a correct long-division step that multiplies by 2 again is not a copy, and nothing shown is taken back 12ms
+     × list30-animals under a 0.2 persona: four animals cycling five times are cut at the first item listed again 69ms
+   ❯ F423 · Continue after Stop: a phrase restarted at the seam is dropped (3)
+     × the phone's Continue: '…Columbus's fleet,' + 'Christopher Columbus's fleet discovered…' reads '…Columbus's fleet, discovered…' 688ms
+     × the overlap waits while it may still grow, and a comma the prefix already has is not doubled 0ms
+   ❯ F423 · the length line no longer forbids a repetition the user asked for (1)
+     × 'Repeat exactly this sentence five times' plans moderate, allows the repetition, and still forbids padding 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the two answers that reached the screen now stop at the first repeat > list30-animals #2: a list item listed again is cut at its second copy, and no screen ever lists an item twice
+AssertionError: expected null not to be null
+ ❯ test/fixes-r111.test.ts:60:21
+     58|   it("list30-animals #2: a list item listed again is cut at its second…
+     59|     const hit = tailLoop(LIST.text, { request: LIST.request }, 0, true…
+     60|     expect(hit).not.toBeNull();
+       |                     ^
+     61|     const out = await screen(guardLoops(engine(LIST.text), () => undef…
+     62|     expect(out.loop).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the two answers that reached the screen now stop at the first repeat > list30-animals #2: the silent retry continues the list after the cut, and a retry that repeats again ends with the notice
+AssertionError: expected '' to be '18. Bluefin tuna' // Object.is equality
+
+- Expected
++ Received
+
+- 18. Bluefin tuna
+
+ ❯ test/fixes-r111.test.ts:72:46
+     70|     const fresh = "19. Moray eel\n20. Manta ray\n21. Swordfish\n22. Lo…
+     71|     const ok = await screen(guardLoops(engine(LIST.text), () => undefi…
+     72|     expect(kept.trimEnd().split("\n").pop()).toBe("18. Bluefin tuna");
+       |                                              ^
+     73|     expect(ok.loop).toBeUndefined();
+     74|     expect(ok.shown).toMatch(/18\. Bluefin tuna\n19\. Moray eel\n20\. …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the two answers that reached the screen now stop at the first repeat > he-explain #2: the phrase said twice back to back, the first copy in bold, is cut to one copy
+AssertionError: expected null not to be null
+ ❯ test/fixes-r111.test.ts:84:21
+     82|     expect(count(HE.text, HE_PHRASE)).toBe(2);
+     83|     const hit = tailLoop(HE.text, { request: HE.request }, 0, true).hi…
+     84|     expect(hit).not.toBeNull();
+       |                     ^
+     85|     const out = await screen(guardLoops(engine(HE.text), () => undefin…
+     86|     expect(out.loop).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the two answers that reached the screen now stop at the first repeat > he-explain #2 as it ran on the phone: the retry's continuation said the phrase again, and now the notice keeps one copy
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r111.test.ts:100:22
+     98|     const out = await screen(guardLoops(engine(first), () => undefined…
+     99|     expect(kept.startsWith(before)).toBe(true);
+    100|     expect(out.loop).toBeDefined();
+       |                      ^
+    101|     expect(Math.max(...out.screens.map((x) => count(x, HE_PHRASE)))).t…
+    102|     expect(count(out.shown, HE_PHRASE)).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > a phrase in bold, then again plain, back to back, is a loop; the cut closes no bold it did not open
+AssertionError: expected null not to be null
+ ❯ test/fixes-r111.test.ts:110:21
+    108|     const text = "Remember this: **The light reactions make ATP.** The…
+    109|     const hit = tailLoop(text, {}, 0, true).hit;
+    110|     expect(hit).not.toBeNull();
+       |                     ^
+    111|     const cut = core.cutLoop(text, hit!);
+    112|     expect(cut.text).toBe("Remember this: **The light reactions make A…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > the second copy in bold leaves no dangling ** behind
+TypeError: Cannot read properties of null (reading 'keep')
+ ❯ Module.cutLoop src/chat/loop.ts:559:36
+    557|
+    558| export function cutLoop(text: string, hit: LoopHit): LoopCut {
+    559|   return { text: text.slice(0, hit.keep).trimEnd().replace(OPEN_ITEM, …
+       |                                    ^
+    560| }
+    561|
+ ❯ test/fixes-r111.test.ts:118:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > a copy that starts inside a bold span gets its ** closed
+AssertionError: expected '**Leaves absorb red and blue light,' to be '**Leaves absorb red and blue light,**' // Object.is equality
+
+Expected: "**Leaves absorb red and blue light,**"
+Received: "**Leaves absorb red and blue light,"
+
+ ❯ test/fixes-r111.test.ts:125:43
+    123|     const hit = tailLoop(text, {}, 0, true).hit;
+    124|     expect(hit).not.toBeNull();
+    125|     expect(core.cutLoop(text, hit!).text).toBe("**Leaves absorb red an…
+       |                                           ^
+    126|   });
+    127|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > a phrase in quotes, then again without them, back to back, is a loop
+AssertionError: They all say: "Is artificial protein needed?" Is artificial protein needed? Not in this sense.: expected null not to be null
+ ❯ test/fixes-r111.test.ts:130:57
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > items numbered in Hebrew letters, circled numbers or 一、 are compared without their markers
+AssertionError: רשימה:
+א. דולפין גדול
+ב. כריש לבן
+ג. דולפין גדול
+: expected null not to be null
+ ❯ test/fixes-r111.test.ts:137:29
+    135|     for (const text of ["רשימה:\nא. דולפין גדול\nב. כריש לבן\nג. דולפי…
+    136|       const hit = tailLoop(text, {}, 0, true).hit;
+    137|       expect(hit, text).not.toBeNull();
+       |                             ^
+    138|       expect(core.cutLoop(text, hit!).text.trimEnd().split("\n")).toHa…
+    139|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > a copy that starts inside a word of a new item keeps that item whole (round 110 web trial animals-40 #5)
+AssertionError: expected null not to be null
+ ❯ test/fixes-r111.test.ts:145:21
+    143|     const text = "10. Leopard\n11. Panthera leo\n12. African Elephant\…
+    144|     const hit = tailLoop(text, { request: "List 40 animals, one per li…
+    145|     expect(hit).not.toBeNull();
+       |                     ^
+    146|     expect(core.cutLoop(text, hit!).text.trimEnd()).toBe("10. Leopard\…
+    147|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · every rule reads through list markers, emphasis and quotation marks > an item number or bullet with the copy is never left bare on screen
+AssertionError: Animals:
+1. Sea otter
+2. Sea bass
+3. **Sea otter**
+4. Whale: expected undefined to be defined
+ ❯ test/fixes-r111.test.ts:152:30
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · what must stay whole > a list restarted from scratch is cut where the restart begins, short items included (stress run cont-list #2)
+AssertionError: expected 'Here are the fruits:\n1. Apple\n2. Ba…' to be 'Here are the fruits:\n1. Apple\n2. Ba…' // Object.is equality
+
+- Expected
++ Received
+
+@@ -5,6 +5,5 @@
+  4. Date
+  5. Elderberry
+  6. Fig
+
+  Let me recount carefully from scratch.
+-
+
+ ❯ test/fixes-r111.test.ts:227:43
+    225|     const text = `Here are the fruits:\n${list}\n\nLet me recount care…
+    226|     const hit = tailLoop(text, {}, 0, true).hit;
+    227|     expect(core.cutLoop(text, hit!).text).toBe(`Here are the fruits:\n…
+       |                                           ^
+    228|   });
+    229|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · what must stay whole > three identical numbered steps are a loop now, like three identical bullets (round 107 kept them)
+TypeError: Cannot read properties of null (reading 'keep')
+ ❯ Module.cutLoop src/chat/loop.ts:559:36
+    557|
+    558| export function cutLoop(text: string, hit: LoopHit): LoopCut {
+    559|   return { text: text.slice(0, hit.keep).trimEnd().replace(OPEN_ITEM, …
+       |                                    ^
+    560| }
+    561|
+ ❯ test/fixes-r111.test.ts:233:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · round 110's web trials: a cut lands on a clean boundary > es-list A#4: a copy that starts inside item 18 takes the whole item, and the retry starts item 18 on its own line
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/fixes-r111.test.ts:245:92
+    243|     const next = "18. La paciencia abre puertas que la prisa cierra.\n…
+    244|     const out = await screen(guardLoops(engine(ES.kept + ES.copy), () …
+    245|     expect(kept.endsWith("17. Cuando estés cansado, busca lo más senci…
+       |                                                                                            ^
+    246|     expect(out.loop).toBeUndefined();
+    247|     expect(out.shown).toContain("puedas.\n18. La paciencia abre puerta…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · round 110's web trials: a cut lands on a clean boundary > he-explain B#4: a copy that starts inside a bold bullet takes the bullet, so no ** or ### is left mid-line
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/fixes-r111.test.ts:254:63
+    252|     let kept = "";
+    253|     const out = await screen(guardLoops(engine(HEB.kept + HEB.copy), (…
+    254|     expect(kept.endsWith("אך אין לו חשיבות גבוהה ונפוצה.\n")).toBe(tru…
+       |                                                               ^
+    255|     expect((kept.match(/\*\*/gu) ?? []).length % 2).toBe(0);
+    256|     expect(out.shown).not.toContain("**הגשה");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · round 110's web trials: a cut lands on a clean boundary > a list followed by a paragraph said again: the kept list ends with a line break, so the retry does not join its last item
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/fixes-r111.test.ts:265:73
+    263|     const hit = tailLoop(text, {}, 0, true).hit;
+    264|     expect(hit).not.toBeNull();
+    265|     expect(core.cutLoop(text, hit!).text.endsWith("2. Calvin cycle\n")…
+       |                                                                         ^
+    266|   });
+    267|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · round 110's web trials: a cut lands on a clean boundary > a copy that opens with a bracket leaves no open bracket, and a cut keeps the closing quote its line opened
+AssertionError: expected '*   **3. 展望と目標（' to be '*   **3. 展望と目標**' // Object.is equality
+
+Expected: "*   **3. 展望と目標**"
+Received: "*   **3. 展望と目標（"
+
+ ❯ test/fixes-r111.test.ts:271:72
+    269|     const bracket = "## 年次報告書\n*   **3. 展望と目標（展望と目標）**\n    *   今後の方向性…
+    270|     const b = tailLoop(bracket, {}, 0, true).hit;
+    271|     expect(core.cutLoop(bracket, b!).text.trimEnd().split("\n").pop())…
+       |                                                                        ^
+    272|     const quote = "私は「東京スカイツリー」「東京スカイツリー」に行きました。";
+    273|     const q = tailLoop(quote, {}, 0, true).hit;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the other answers the guard must get right > math-long-div #1: a correct long-division step that multiplies by 2 again is not a copy, and nothing shown is taken back
+AssertionError: expected { …(4) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "keep": 1092,
+  "repeats": 2,
+  "start": 1092,
+  "unit": "to get a remainder of $28$.
+- Bring down next digit 3: now the number is $283$. How many times does 123 go into 283? $123 \\times 2 = 246$. So we write **2** and subtract",
+}
+
+ ❯ test/fixes-r111.test.ts:284:68
+    282|   it("math-long-div #1: a correct long-division step that multiplies b…
+    283|     const text = MATH.snapshot + MATH.nextStep;
+    284|     expect(tailLoop(text, { request: MATH.request }, 0, true).hit).toB…
+       |                                                                    ^
+    285|     let retried = false;
+    286|     const out = await screen(guardLoops(engine(text), () => undefined,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · iPhone build 22: the other answers the guard must get right > list30-animals under a 0.2 persona: four animals cycling five times are cut at the first item listed again
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r111.test.ts:302:22
+    300|     const L = device["l02-list30-animals"];
+    301|     const out = await screen(guardLoops(engine(L.text), () => undefine…
+    302|     expect(out.loop).toBeDefined();
+       |                      ^
+    303|     expect(out.shown.trimEnd().split("\n").pop()).toBe("14. Starfish");
+    304|     expect(Math.max(...out.screens.map(mostListed))).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · Continue after Stop: a phrase restarted at the seam is dropped > the phone's Continue: '…Columbus's fleet,' + 'Christopher Columbus's fleet discovered…' reads '…Columbus's fleet, discovered…'
+AssertionError: expected 'Christopher Columbus\'s fleet discove…' to be ' discovered the Americas in 1492, mar…' // Object.is equality
+
+- Expected
++ Received
+
+@@ -1,6 +1,6 @@
+-  discovered the Americas in 1492, marking a pivotal moment that transformed spice trade into a global enterprise. European nations began importing these goods to feed growing populations and support burgeoning economies, while Asian merchants sought niches where European products were scarce or unprofitable. The exchange was not merely about raw material but often included processed goods like sugar, textiles, and leather from the Americas that could be sold at higher prices in Europe.
++ Christopher Columbus's fleet discovered the Americas in 1492, marking a pivotal moment that transformed spice trade into a global enterprise. European nations began importing these goods to feed growing populations and support burgeoning economies, while Asian merchants sought niches where European products were scarce or unprofitable. The exchange was not merely about raw material but often included processed goods like sugar, textiles, and leather from the Americas that could be sold at higher prices in Europe.
+
+  In the 16th century, the "Indian Ocean" became a crucial transit hub, connecting Asian ports to European colonies on the Americas via established maritime routes known as the Silk Road's extension into the Pacific. This era saw the rapid establishment of trading posts along India's coasts and across Southeast Asia, where spice ships were often escorted by private warships under local supervision for safety. The demand was driven by the increasing popularity of European cuisine, particularly in France and Italy, which fueled a massive influx of spices that had been largely absent from European shores.
+
+  The 17th and 18th centuries saw the consolidation of trade networks into powerful monopolies and guilds. In Spain and Portugal, private monopolies became dominant forces, controlling access to lucrative markets like China and India where spice prices were astronomical. Merchants organized into "dhabas" that enforced strict regulations on pricing, quality standards, and worker conditions, ensuring that the flow of goods remained stable and profitable for all participants in the chain.
+
+
+ ❯ test/fixes-r111.test.ts:330:23
+    328|     const out = await screen(guardLoops(engine(C.continuation), () => …
+    329|     const joined = C.prefix + core.continuationSeparator(C.prefix, out…
+    330|     expect(out.shown).toBe(C.continuation.slice(PHRASE.length));
+       |                       ^
+    331|     expect(count(joined, PHRASE)).toBe(1);
+    332|     expect(joined).toContain(`like ${PHRASE}, discovered the Americas …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · Continue after Stop: a phrase restarted at the seam is dropped > the overlap waits while it may still grow, and a comma the prefix already has is not doubled
+TypeError: seamOverlap is not a function
+ ❯ test/fixes-r111.test.ts:348:17
+    346|   it("the overlap waits while it may still grow, and a comma the prefi…
+    347|     const prefix = "Trade grew with the rise of navies like Christophe…
+    348|     expect(core.seamOverlap(prefix, "Christopher Colum")).toBe(-1);
+       |                 ^
+    349|     const next = "Christopher Columbus's fleet, which sailed in 1492.";
+    350|     expect(next.slice(core.seamOverlap(prefix, next))).toBe(" which sa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/22]⎯
+
+ FAIL  test/fixes-r111.test.ts > F423 · the length line no longer forbids a repetition the user asked for > 'Repeat exactly this sentence five times' plans moderate, allows the repetition, and still forbids padding
+AssertionError: expected 'Keep the answer as short as the quest…' to contain 'Do not repeat yourself unless the req…'
+
+Expected: "Do not repeat yourself unless the request asks for repetition, and do not pad."
+Received: "Keep the answer as short as the question allows, a paragraph at most, and stop once it is answered. Do not repeat yourself and do not pad."
+
+ ❯ test/fixes-r111.test.ts:359:30
+    357|     const plan = core.planAnswerLength({ text: device["c-asked-repeat"…
+    358|     expect(plan.length).toBe("moderate");
+    359|     expect(plan.instruction).toContain("Do not repeat yourself unless …
+       |                              ^
+    360|     for (const length of ["moderate", "long"] as const) {
+    361|       expect(core.LENGTH_INSTRUCTIONS[length]).not.toContain("Do not r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/22]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  22 failed | 10 passed (32)
+   Start at  18:19:36
+   Duration  3.98s (tests 90%, transform 8%, import 2%)
+

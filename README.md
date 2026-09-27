@@ -6401,6 +6401,77 @@ export, Instant on WASM, headless Chromium at 1440. Evidence: `docs/qa/web-guard
 - **Still open, for round 111.** The guard misses a numbered block said again with new numbers. The animal list
   repeated items 1–19 as 21–39, and the German verbs repeated a bold block. A retried list went on as prose in 1 of 3.
   A cut can land inside an item or a bold span, so "18. La única El éxito…" and a raw `**…###` reached the screen.
+
+## Fixes round 111: the loop guard reads through list numbers, bold and quotes, cuts on a clean boundary, and leaves worked sums alone (branch `loop-guard-lists`) — 27.9.2026
+
+Moshe (27.9): a model repeating itself must never reach the screen, not even three times. iPhone build 22 (F422) and
+round 110's web trials showed what round 107's guard still let through. A numbered list said items 11–20 again as
+21–30, and a Hebrew phrase appeared twice back to back with the first copy in `**…**`. Cuts landed mid-item ("18. La
+única") or inside a bold bullet ("**הגשה ###"). A correct long-division step was cut as a copy, and Continue restarted
+the stopped phrase. Evidence: `docs/qa/loop-guard-lists/`.
+
+- **F423 · Every rule reads the words, not the markup.** `normalize()` in `packages/core/src/chat/loop.ts` drops list
+  markers at a line start (`1.` `1)` `(1)` `-` `*` `•` `1、` `א.` `(א)` `一、` `①`), heading marks, emphasis (`**` `__`
+  `*` `_` `~~`), inline code and quotation marks before any rule runs. Each normalized code point keeps its place in
+  the input, so a cut maps back to the raw text.
+- **An item listed again is a loop on its second copy.** An item of two words or more, or of 8 code points or more,
+  that the same answer already listed ends the answer at that item's line. A list restarted from scratch is cut where
+  the restart begins, short items included. Labels that end in a colon, data lines, lines with arithmetic, asked
+  repetition, and a user's own list that names an item twice stay allowed.
+- **A cut lands on a clean boundary.** A copy that starts inside a sentence or an item takes that sentence or item with
+  it, so "18. La única" and "*   **הגשה" no longer stay on screen. When the kept text ends with a list item, the retry
+  starts on a new line. A cut never leaves a bare item number, an open `**`, an opening bracket, or a half word. A
+  closing quote the kept line opened stays ("「東京」").
+- **A worked step with new numbers is not a copy.** The echo rule now skips ten repeated words whose run crosses a
+  number that changed, when the run holds arithmetic. That was the phone's false cut: "$123 \times 2 = 246$ … subtract
+  $246$ from 274" and then from 283, which took back 113 characters. The same step said again with the same numbers is
+  still cut.
+- **Continue drops a restarted phrase.** When a continuation opens with the last three words or more of the stopped
+  sentence, the guard drops that overlap. "…like Christopher Columbus's fleet," + "Christopher Columbus's fleet
+  discovered…" now reads "…Columbus's fleet, discovered…". The silent retry uses the same check. The chat passes the
+  text on screen to the guard as `prefix`.
+- **The length line allows an asked repetition.** The moderate and long lines now say "Do not repeat yourself unless the
+  request asks for repetition, and do not pad." On the phone, Instant answered "repeat this sentence five times" with
+  one copy in 3 of 3 tries. No model was run to measure the new line.
+
+Where the phone and web answers are cut now (`device-cuts.md`, streamed 3 code points at a time):
+
+| Answer | Shipped guard | Round 111 guard |
+|---|---|---|
+| iPhone list30-animals, 0.7 #2 | no cut | after "18. Bluefin tuna": item 19 is Clownfish again (item 7) |
+| iPhone he-explain, 0.7 #2 | no cut | after the first "**האם צריך פטין מלאכותי?** כולם אומרים:" |
+| iPhone list30-animals, 0.2 persona | no cut | after "14. Starfish": Jellyfish again |
+| iPhone list30-animals, 0.7 #1 | no cut | after "28. clownfish": item 29 is jellyfish again (item 6) |
+| iPhone math-long-div, 0.7 #1 | false cut, 1,091 chars kept | no cut |
+| Web es-list A#4 | kept "18. La única" | after item 17, on a new line |
+| Web he-explain B#4 | kept "*   **הגשה" | after the bullet before it, on a new line |
+
+Offline replay (`replay-r111.txt`): every stored answer streamed 3 code points at a time through the shipped guard
+(origin/main fd8b0201) and the round-111 guard, with no retry.
+
+| Answers | Count | Cut, shipped | Cut, round 111 | New cuts | Cuts gone | Cuts moved |
+|---|---|---|---|---|---|---|
+| Stored stress answers (`fix-loops-root` runs and e2e) | 1,064 | 60 | 82 | 24 | 2 | 29 |
+| The same prompts' answers after round 107's guard | 504 | 24 | 35 | 13 | 2 | 17 |
+| Real answers from every round's evidence (round 107's walk of `docs/qa`: 439 then) | 536 | 9 | 14 | 5 | 0 | 1 |
+| iPhone build 22 answers | 28 | 0 | 4 | 4 | 0 | 0 |
+
+False cuts: 0. Every new cut is an item the same answer had already listed, including the three phone lists and the
+Hebrew phrase. Every cut that is gone was the shipped guard's false cut on a correct long-division step ("976 ÷ 123 ≈
+7" and later "972 ÷ 123 ≈ 7"). Every moved cut is still on the same repeat; most now start at the sentence or item that begins it.
+
+Red first: `red-r111.txt`. 22 of the 32 tests in `fixes-r111.test.ts` fail on b5bd2758 and on fd8b0201; the 10 that pass are the cases that must not be cut. Gates: typecheck, lint and test exit 0 (1,064 core with 4 skipped, 1,180 mobile, 24 i18n, 23 ui).
+
+Not done:
+- A one-word item under 8 code points listed again ("Eel", "Duck") stays on screen, so answer keys such as True/False
+  are never cut.
+- An item the model marks itself, such as "20. sea turtle (repeated)" after "8. sea turtle", is a different item to
+  the rule and stays. A variant list ("Chocolate cake (gluten-free)") must not be cut.
+- A short sum listed again ("2 + 2 = 4" twice) stays, since long division repeats its products.
+- A retried list can still go on as prose.
+- No live model run: the Mac was busy with a phone build. The guard is shared code, so web, phone and desktop get it
+  unchanged.
+
 ## iOS build 22: main with round 107's loop guard, on Moshe's iPhone only (branch `ios-build-22`) — 27.9.2026
 
 Build 21 was archived before round 107 landed. Build 1.0.0 (22) carries local `main` b5bd2758 (rounds 93–109) to the

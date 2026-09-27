@@ -15,7 +15,8 @@ const LOCALES = ["en", "de", "es", "fr", "pt-BR", "ja", "ko", "zh-Hant"];
 
 describe("F369 · the chat answers through the loop guard", () => {
   it("wraps the answer stream of whatever engine is loaded", () => {
-    expect(chat).toMatch(/for await \(const d of guardLoops\(run\(messages, opts\), stopLoop, \{ request: asked, retry, onRetry \}\)\)/);
+    /* F423: `prefix` is what Continue carries on, so the guard drops a phrase restarted at the seam. */
+    expect(chat).toMatch(/for await \(const d of guardLoops\(run\(messages, opts\), stopLoop, \{ request: asked, retry, onRetry, prefix \}\)\)/);
     expect(chat).toMatch(/return engine\.generate\(s, wireMessages, o, attempt\.signal\);/);
   });
 

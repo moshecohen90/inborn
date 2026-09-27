@@ -139,6 +139,13 @@ describe("F423 · every rule reads through list markers, emphasis and quotation 
     }
   });
 
+  it("a copy that starts inside a word of a new item keeps that item whole (round 110 web trial animals-40 #5)", () => {
+    const text = "10. Leopard\n11. Panthera leo\n12. African Elephant\n13. Asian Elephant\n14. Asian Elephant (repeated for variety)\n15. African Wild Dog";
+    const hit = tailLoop(text, { request: "List 40 animals, one per line, numbered." }, 0, true).hit;
+    expect(hit).not.toBeNull();
+    expect(core.cutLoop(text, hit!).text.trimEnd()).toBe("10. Leopard\n11. Panthera leo\n12. African Elephant\n13. Asian Elephant");
+  });
+
   it("an item number or bullet with the copy is never left bare on screen", async () => {
     for (const text of ["Animals:\n1. Sea otter\n2. Sea bass\n3. **Sea otter**\n4. Whale", "Animals:\n- Sea otter\n- Sea bass\n- Sea otter\n- Whale", "Animals:\n(1) Sea otter\n(2) Sea bass\n(3) Sea otter\n(4) Whale"]) {
       const out = await screen(guardLoops(engine(text), () => undefined));
@@ -213,9 +220,146 @@ describe("F423 · what must stay whole", () => {
     expect(tailLoop(text, {}, 0, true).hit).toBeNull();
   });
 
+  it("a list restarted from scratch is cut where the restart begins, short items included (stress run cont-list #2)", () => {
+    const list = "1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig";
+    const text = `Here are the fruits:\n${list}\n\nLet me recount carefully from scratch.\n\n${list}`;
+    const hit = tailLoop(text, {}, 0, true).hit;
+    expect(core.cutLoop(text, hit!).text).toBe(`Here are the fruits:\n${list}\n\nLet me recount carefully from scratch.\n`);
+  });
+
   it("three identical numbered steps are a loop now, like three identical bullets (round 107 kept them)", () => {
     const text = "1. Stir the batter.\n2. Stir the batter.\n3. Stir the batter.\n\nThen bake it for 20 minutes.";
     const hit = tailLoop(text, {}, 0, true).hit;
     expect(core.cutLoop(text, hit!).text).toBe("1. Stir the batter.\n");
+  });
+});
+
+describe("F423 · round 110's web trials: a cut lands on a clean boundary", () => {
+  const ES = device["web-es-list-A4"];
+  const HEB = device["web-he-explain-B4"];
+
+  it("es-list A#4: a copy that starts inside item 18 takes the whole item, and the retry starts item 18 on its own line", async () => {
+    let kept = "";
+    const next = "18. La paciencia abre puertas que la prisa cierra.\n19. Cada día es una nueva oportunidad.";
+    const out = await screen(guardLoops(engine(ES.kept + ES.copy), () => undefined, { request: ES.request, retry: (k) => ((kept = k), engine(next)) }));
+    expect(kept.endsWith("17. Cuando estés cansado, busca lo más sencillo que puedas.\n")).toBe(true);
+    expect(out.loop).toBeUndefined();
+    expect(out.shown).toContain("puedas.\n18. La paciencia abre puertas");
+    expect(out.shown).not.toContain("18. La única");
+  });
+
+  it("he-explain B#4: a copy that starts inside a bold bullet takes the bullet, so no ** or ### is left mid-line", async () => {
+    let kept = "";
+    const out = await screen(guardLoops(engine(HEB.kept + HEB.copy), () => undefined, { request: HEB.request, retry: (k) => ((kept = k), engine(HEB.continuation)) }));
+    expect(kept.endsWith("אך אין לו חשיבות גבוהה ונפוצה.\n")).toBe(true);
+    expect((kept.match(/\*\*/gu) ?? []).length % 2).toBe(0);
+    expect(out.shown).not.toContain("**הגשה");
+    expect(out.shown).not.toMatch(/\*\*[^\n*]*###/u);
+  });
+
+  it("a list followed by a paragraph said again: the kept list ends with a line break, so the retry does not join its last item", () => {
+    const para = "Photosynthesis turns light, water and carbon dioxide into sugar and oxygen inside the chloroplasts of every green leaf.";
+    const text = `${para}\n\nThe two stages:\n1. Light reactions\n2. Calvin cycle\n\n${para}`;
+    const hit = tailLoop(text, {}, 0, true).hit;
+    expect(hit).not.toBeNull();
+    expect(core.cutLoop(text, hit!).text.endsWith("2. Calvin cycle\n")).toBe(true);
+  });
+
+  it("a copy that opens with a bracket leaves no open bracket, and a cut keeps the closing quote its line opened", () => {
+    const bracket = "## 年次報告書\n*   **3. 展望と目標（展望と目標）**\n    *   今後の方向性を示します。";
+    const b = tailLoop(bracket, {}, 0, true).hit;
+    expect(core.cutLoop(bracket, b!).text.trimEnd().split("\n").pop()).toBe("*   **3. 展望と目標**");
+    const quote = "私は「東京スカイツリー」「東京スカイツリー」に行きました。";
+    const q = tailLoop(quote, {}, 0, true).hit;
+    expect(q).not.toBeNull();
+    expect(core.cutLoop(quote, q!).text).toBe("私は「東京スカイツリー」");
+  });
+});
+
+describe("F423 · iPhone build 22: the other answers the guard must get right", () => {
+  const MATH = device["l07-math-long-div-1"];
+
+  it("math-long-div #1: a correct long-division step that multiplies by 2 again is not a copy, and nothing shown is taken back", async () => {
+    const text = MATH.snapshot + MATH.nextStep;
+    expect(tailLoop(text, { request: MATH.request }, 0, true).hit).toBeNull();
+    let retried = false;
+    const out = await screen(guardLoops(engine(text), () => undefined, { request: MATH.request, retry: () => ((retried = true), engine("x")) }));
+    expect(retried).toBe(false);
+    expect(out.shown).toBe(text);
+    for (const s of out.screens) expect(text.startsWith(s)).toBe(true);
+  });
+
+  it("a long division whose steps repeat a product line is not a loop; the same step said again with the same numbers still is", () => {
+    const steps = "- $123 \\times 2 = 246$\n- Subtract: 274 - 246 = 28\n- Bring down the 3 to make 283.\n- $123 \\times 2 = 246$\n- Subtract: 283 - 246 = 37";
+    expect(tailLoop(steps, {}, 0, true).hit).toBeNull();
+    const again = "- 123 goes into 542 four times, since $4 \\times 123 = 492$, and subtracting leaves a remainder of 50.\n- 123 goes into 542 four times, since $4 \\times 123 = 492$, and subtracting leaves a remainder of 50.";
+    expect(tailLoop(again, {}, 0, true).hit).not.toBeNull();
+  });
+
+  it("list30-animals under a 0.2 persona: four animals cycling five times are cut at the first item listed again", async () => {
+    const L = device["l02-list30-animals"];
+    const out = await screen(guardLoops(engine(L.text), () => undefined, { request: L.request }));
+    expect(out.loop).toBeDefined();
+    expect(out.shown.trimEnd().split("\n").pop()).toBe("14. Starfish");
+    expect(Math.max(...out.screens.map(mostListed))).toBe(1);
+  });
+
+  it("asked to repeat the fox sentence five times, Instant wrote it once (3 of 3): no cut, no retry", async () => {
+    const answers = [...device["c-asked-repeat"].texts, ...device["c2-asked-repeat-again"].texts];
+    expect(answers).toHaveLength(3);
+    for (const text of answers) {
+      let retried = false;
+      const request = device["c-asked-repeat"].request;
+      const out = await screen(guardLoops(engine(text), () => undefined, { request, retry: () => ((retried = true), engine("x")) }));
+      expect(out.shown).toBe(text);
+      expect(out.loop).toBeUndefined();
+      expect(retried).toBe(false);
+    }
+  });
+});
+
+describe("F423 · Continue after Stop: a phrase restarted at the seam is dropped", () => {
+  const C = device["d-continue"];
+  const PHRASE = "Christopher Columbus's fleet";
+
+  it("the phone's Continue: '…Columbus's fleet,' + 'Christopher Columbus's fleet discovered…' reads '…Columbus's fleet, discovered…'", async () => {
+    expect(C.prefix.endsWith(`like ${PHRASE},`)).toBe(true);
+    expect(C.continuation.startsWith(`${PHRASE} discovered the Americas in 1492`)).toBe(true);
+    const out = await screen(guardLoops(engine(C.continuation), () => undefined, { request: C.request, prefix: C.prefix }));
+    const joined = C.prefix + core.continuationSeparator(C.prefix, out.shown) + out.shown;
+    expect(out.shown).toBe(C.continuation.slice(PHRASE.length));
+    expect(count(joined, PHRASE)).toBe(1);
+    expect(joined).toContain(`like ${PHRASE}, discovered the Americas in 1492, marking`);
+  });
+
+  it("a continuation that goes on, a prefix that ended its sentence, and a two-word echo are left alone", async () => {
+    for (const [prefix, next] of [
+      [C.prefix, "discovered the Americas in 1492, marking a pivotal moment."],
+      ["We love the sea.", "We love the sea breeze too."],
+      ["The fleet sailed west with the fleet", "the fleet reached land."],
+    ] as const) {
+      const out = await screen(guardLoops(engine(next), () => undefined, { prefix }));
+      expect(out.shown, next).toBe(next);
+    }
+  });
+
+  it("the overlap waits while it may still grow, and a comma the prefix already has is not doubled", () => {
+    const prefix = "Trade grew with the rise of navies like Christopher Columbus's fleet,";
+    expect(core.seamOverlap(prefix, "Christopher Colum")).toBe(-1);
+    const next = "Christopher Columbus's fleet, which sailed in 1492.";
+    expect(next.slice(core.seamOverlap(prefix, next))).toBe(" which sailed in 1492.");
+    expect(core.seamOverlap(prefix, "Christopher Columbus's fleet", true)).toBe(PHRASE.length);
+  });
+});
+
+describe("F423 · the length line no longer forbids a repetition the user asked for", () => {
+  it("'Repeat exactly this sentence five times' plans moderate, allows the repetition, and still forbids padding", () => {
+    const plan = core.planAnswerLength({ text: device["c-asked-repeat"].request, use: "chat" });
+    expect(plan.length).toBe("moderate");
+    expect(plan.instruction).toContain("Do not repeat yourself unless the request asks for repetition, and do not pad.");
+    for (const length of ["moderate", "long"] as const) {
+      expect(core.LENGTH_INSTRUCTIONS[length]).not.toContain("Do not repeat yourself and");
+      expect(core.LENGTH_INSTRUCTIONS[length]).toContain("do not pad");
+    }
   });
 });

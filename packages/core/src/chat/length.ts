@@ -19,8 +19,9 @@ export const LENGTH_TOKENS: Record<AnswerLength, number> = { spoken: 160, short:
 export const LENGTH_INSTRUCTIONS: Record<AnswerLength, string> = {
   spoken: "Answer in one or two short spoken sentences and stop.",
   short: "Answer in one to three sentences: give the answer first, then stop. Do not restate the question, list alternatives, or add examples unless you are asked for them.",
-  moderate: "Keep the answer as short as the question allows, a paragraph at most, and stop once it is answered. Do not repeat yourself and do not pad.",
-  long: "Give the whole answer the task needs, then stop. Do not repeat yourself and do not pad.",
+  /* A bare "Do not repeat yourself" contradicts "repeat this sentence five times" (iPhone build 22 answered it once). */
+  moderate: "Keep the answer as short as the question allows, a paragraph at most, and stop once it is answered. Do not repeat yourself unless the request asks for repetition, and do not pad.",
+  long: "Give the whole answer the task needs, then stop. Do not repeat yourself unless the request asks for repetition, and do not pad.",
 };
 
 /** The length each use starts from, before the shape of the prompt is read. */

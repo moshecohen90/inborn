@@ -1,0 +1,61 @@
+/* F423 evidence: phone and web answers through the shipped guard and the round-111 guard, streamed 3 code points at a time, no retry. */
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { guardLoops } from "../src/chat/loop";
+import { guardLoops as shipped } from "../src/chat/zz-loop-old";
+import type { Delta } from "../src/llm/types";
+import fx from "./fixtures/r111-device-answers.json";
+
+const QA = join(__dirname, "../../../docs/qa");
+const ANIMALS = "List 30 animals that live in the ocean, one per line, numbered.";
+const source = (file: string) => {
+  const r = JSON.parse(readFileSync(join(QA, "ios-device-pass-22/raw", file), "utf8")) as { steps: { op: string; value?: { props?: { source?: string } } }[] };
+  return r.steps.filter((s) => s.op === "value" && typeof s.value?.props?.source === "string").at(-1)!.value!.props!.source!;
+};
+const M = fx["l07-math-long-div-1"];
+const ES = fx["web-es-list-A4"];
+const HE = fx["web-he-explain-B4"];
+const CASES = [
+  { title: "iPhone · result-l07-list30-animals-2.json", text: source("result-l07-list30-animals-2.json"), request: ANIMALS, how: "the last text the phone rendered" },
+  { title: "iPhone · result-l07-he-explain-2.json", text: source("result-l07-he-explain-2.json"), request: "הסבר לי בפירוט מה זה פוטוסינתזה.", how: "the last text the phone rendered" },
+  { title: "iPhone · result-l02-list30-animals.json (0.2 persona)", text: source("result-l02-list30-animals.json"), request: ANIMALS, how: "the last text the phone rendered" },
+  { title: "iPhone · result-l07-list30-animals-1.json", text: source("result-l07-list30-animals-1.json"), request: ANIMALS, how: "the last text the phone rendered" },
+  { title: "iPhone · result-l07-math-long-div-1.json (the false cut)", text: M.snapshot + M.nextStep, request: M.request, how: "the 1,204 characters the phone showed before its retry, plus the correct next step of the division (it reproduces the phone's log line on the shipped guard)" },
+  { title: "Web round 110 · es-list A#4", text: ES.kept + ES.copy, request: ES.request, how: "the recorded answer up to the logged retry, plus a reconstructed copy of item 1 inside item 18 (it reproduces the logged retry on the shipped guard)" },
+  { title: "Web round 110 · he-explain B#4", text: HE.kept + HE.copy, request: HE.request, how: "the recorded answer up to the logged retry, plus a reconstructed copy of an earlier sentence after \"**הגשה\" (it reproduces the logged retry on the shipped guard)" },
+];
+async function cut(g: typeof guardLoops, text: string, request: string) {
+  const cps = Array.from(text);
+  const stream = (async function* (): AsyncIterable<Delta> {
+    for (let i = 0; i < cps.length; i += 3) yield { text: cps.slice(i, i + 3).join("") };
+  })();
+  for await (const d of g(stream, () => undefined, { request })) if (d.loop) return d.loop;
+  return null;
+}
+/* Where the kept text leaves the answer: a closing "**" the cut adds is not in the answer. */
+const at = (text: string, kept: string) => {
+  let i = 0;
+  while (i < kept.length && kept[i] === text[i]) i++;
+  return text.slice(0, i).trimEnd().length;
+};
+const last = (kept: string) => JSON.stringify(kept.trimEnd().split("\n").pop());
+it("device cuts", async () => {
+  const out = [
+    "# Where the guard cuts the iPhone build 22 and round 110 web answers",
+    "",
+    "Each answer is streamed through the guard 3 code points at a time with no retry. `⟦CUT⟧` marks where the round-111 guard cuts and `⟦SHIPPED CUT⟧` where the shipped guard (origin/main fd8b0201, rounds 107 and 110) cuts; nothing after a cut reaches the screen before the retry.",
+    "",
+  ];
+  for (const c of CASES) {
+    const [a, b] = [await cut(shipped, c.text, c.request), await cut(guardLoops, c.text, c.request)];
+    out.push(`## ${c.title}`, "", `Prompt: ${c.request}`, "", `Text: ${c.how}.`, "");
+    out.push(`- Shipped guard: ${a ? `cut, kept ${a.text.length} of ${c.text.length} chars, last line ${last(a.text)}` : "no cut"}`);
+    out.push(`- Round 111 guard: ${b ? `cut, kept ${b.text.length} of ${c.text.length} chars, last line ${last(b.text)}; repeated unit ${JSON.stringify(b.hit.unit)}` : "no cut"}`, "");
+    const marks = [...(a ? [{ i: at(c.text, a.text), m: "⟦SHIPPED CUT⟧" }] : []), ...(b ? [{ i: at(c.text, b.text), m: "⟦CUT⟧" }] : [])].sort((x, y) => y.i - x.i);
+    let marked = c.text;
+    for (const { i, m } of marks) marked = marked.slice(0, i) + m + marked.slice(i);
+    out.push("```text", marked, "```", "");
+  }
+  writeFileSync(join(QA, "loop-guard-lists/device-cuts.md"), out.join("\n"));
+}, 120_000);

@@ -66,6 +66,11 @@ const ITEM_MIN = 8;
 const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
 /* "**Advantages:**" heads each option's sub-list. */
 const LABEL = /[:：]\s*$/u;
+/* A worked sum repeats its products and phrasing from step to step ("$123 \times 2 = 246$" for 274 and again for 283). */
+const MATH = /\d\$?\s*(?:[=×÷+−]|\\(?:times|div|cdot)\b|\s[*/-]\s)\s*\$?\d/u;
+const NUMBER = /^\d[\d.,]*$/u;
+/* A cut right before a closing quote or bracket keeps it when the kept line opened it ("「東京" + "」"). */
+const CLOSERS: Record<string, string> = { "」": "「", "』": "『", "）": "（", ")": "(", "］": "［", "]": "[", "】": "【", "”": "“", "»": "«", "〉": "〈", "》": "《" };
 
 export interface LoopContext {
   /** The user's own message for this answer: repetition they asked for is not a loop (F389). */
@@ -490,30 +495,68 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     /* A list the user gave that lists an item twice (to translate, sort or fix) may be answered with it twice. */
     const once = Math.max(verse ? 2 : 1, request ? requestItems(context.request!) : 1);
     const listed = new Map<string, number>();
-    for (const { idx, line } of items) {
+    const keys: string[] = [];
+    const firstAt = new Map<string, number>();
+    for (const [m, { idx, line }] of items.entries()) {
       let e = idx;
       while (e < n && s[e] !== "\n") e++;
-      if (DATA_LINE.test(text.slice(line, e < n ? at[e] : text.length)) || inCode(idx, e)) continue;
+      const raw = text.slice(line, e < n ? at[e] : text.length);
       const words = s.slice(idx, e).join("");
       const k = words.replace(ITEM_TAIL, "").trim().toLowerCase();
+      const skip = DATA_LINE.test(raw) || MATH.test(raw) || inCode(idx, e);
+      keys.push(skip ? `\u0000${m}` : k);
+      if (skip) continue;
       if (e < n || final) {
+        if (!firstAt.has(k)) firstAt.set(k, m);
         if (LABEL.test(words) || !itemQualifies(k)) continue;
         const seen = listed.get(k) ?? 0;
         const done = e < n ? e + 1 : n;
         if (seen < once) listed.set(k, seen + 1);
-        else if (!itemHits.has(done)) itemHits.set(done, { line, unit: k });
+        else if (!itemHits.has(done)) {
+          /* A list restarted from scratch repeats its short items too ("1. Apple … 5. Elderberry"): the copy starts where the block does. */
+          let a = m;
+          let b = firstAt.get(k)!;
+          while (b > 0 && a - 1 > b && keys[a - 1] === keys[b - 1]) {
+            a--;
+            b--;
+          }
+          itemHits.set(done, { line: items[a]!.line, unit: k });
+        }
       } else if (k) for (const [x, seen] of listed) if (seen >= once && x.startsWith(k)) itemHold = text.length - line;
     }
   }
   /* A rotation may start inside a word ("he light … ATP. T"): the cut backs up to the word's start. */
   const midWord = (k: number) => k > 0 && k < n && WORD_CHAR.test(s[k - 1]!) && WORD_CHAR.test(s[k]!) && !CJK_CHAR.test(s[k - 1]!) && !CJK_CHAR.test(s[k]!);
+  const lineAt = (k: number) => {
+    let x = k;
+    while (x > 0 && s[x - 1] !== "\n") x--;
+    return x;
+  };
+  /* An echo that starts mid-sentence or mid-item takes that sentence or item with it: "18. La única" or "*   **הגשה" left on screen reads as a glitch (round 110 web trials). */
+  const opening = (k: number, source: number): number => {
+    let x = k;
+    while (x > 0 && s[x - 1] !== "\n" && !(s[x - 1] === " " && TERMINATORS.has(s[x - 2] ?? "")) && !"。！？".includes(s[x - 1]!)) x--;
+    return source < x ? x : k;
+  };
+  const keepAt = (k: number): number => {
+    let x = cut(k);
+    let line = text.slice(text.lastIndexOf("\n", x - 1) + 1, x);
+    const tally = (c: string) => line.split(c).length - 1;
+    for (let c = text[x]; c !== undefined; c = text[x]) {
+      const o = c === '"' ? c : CLOSERS[c];
+      if (!o || (c === '"' ? tally(c) % 2 === 0 : tally(o) <= tally(c))) break;
+      line += c;
+      x++;
+    }
+    return x;
+  };
   let first = 0;
   while (first < n && at[first + 1]! <= from) first++;
   const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b), data) : { hit: null, hold: 0 };
   for (let end = Math.min(Math.max(first + 1, 2 * WIDE_UNIT), n); end <= n; end++) {
-    if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: cut(echo.hit.start) } };
+    if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: keepAt(opening(echo.hit.start, echo.hit.source)) } };
     const again = segmentHits.get(end);
-    if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: cut(again) } };
+    if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: keepAt(again) } };
     const relisted = itemHits.get(end);
     if (relisted) return { hold: 0, hit: { unit: relisted.unit, repeats: 2, start: relisted.line, keep: relisted.line } };
     const found = scan(end, true).hit;
@@ -522,10 +565,18 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     let keep = a + kept * p;
     /* A copy that starts on the sentence's own full stop leaves it with the first copy. */
     for (let x = 0; x < 2 && keep < end && TERMINATORS.has(s[keep]!); x++) keep++;
-    let back = keep;
-    while (back > keep - p && midWord(back)) back--;
-    if (!midWord(back)) keep = back;
-    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: cut(keep), ...(asked ? { asked } : {}) } };
+    const ls = lineAt(keep);
+    if (keep > ls && a < ls && items.some((x) => x.idx === ls)) {
+      /* "12. African Elephant\n13. Asian Elephant\n14. Asian…" repeats from "Afric|an": item 13 is kept whole, it is not the copy; otherwise the item the copy starts in goes. */
+      let e = keep;
+      while (e < n && s[e] !== "\n") e++;
+      keep = e < end && e < a + (kept + 1) * p ? e : ls;
+    } else if (midWord(keep)) {
+      let back = keep;
+      while (back > keep - p && midWord(back)) back--;
+      if (!midWord(back)) keep = back;
+    }
+    return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: keepAt(keep), ...(asked ? { asked } : {}) } };
   }
   const hold = Math.max(scan(n, false).hold, segmentHold, echo.hold);
   return { hold: Math.max(hold > 0 ? text.length - cut(n - hold) : 0, itemHold), hit: null };
@@ -538,8 +589,10 @@ function itemQualifies(key: string): boolean {
   let words = 0;
   let inWord = false;
   for (const c of key) {
-    if (CJK_CHAR.test(c)) (words += 0.5), (inWord = false);
-    else if (WORD_CHAR.test(c)) {
+    if (CJK_CHAR.test(c)) {
+      words += 0.5;
+      inWord = false;
+    } else if (WORD_CHAR.test(c)) {
       if (!inWord) words++;
       inWord = true;
     } else inWord = false;
@@ -568,18 +621,22 @@ export function requestItems(request: string): number {
 }
 
 /* The copy often opens with a word swapped ("their ways" for "their way"): walk back over single swaps while two words on each side match. */
-function echoStart(words: Word[], i: number, j: number, earlierEnd: number): number {
+function echoStart(words: Word[], i: number, j: number, earlierEnd: number): { a: number; b: number; numbers: boolean } {
   let a = i;
   let b = j;
+  /* Whether a swapped word was a number both times: a worked step with new numbers, not a copy (device math-long-div #1). */
+  let numbers = false;
   const same = (x: number, y: number) => x >= 0 && y >= 0 && words[x]!.w === words[y]!.w;
+  const swapped = (x: number, y: number) => x >= 0 && y >= 0 && NUMBER.test(words[x]!.w) && NUMBER.test(words[y]!.w);
   for (;;) {
     if (a - 1 > earlierEnd && same(a - 1, b - 1)) {
       a--;
       b--;
     } else if (a - 3 > earlierEnd && same(a - 2, b - 2) && same(a - 3, b - 3)) {
+      numbers ||= swapped(a - 1, b - 1);
       a -= 3;
       b -= 3;
-    } else return a;
+    } else return { a, b, numbers: numbers || swapped(a - 1, b - 1) };
   }
 }
 
@@ -619,10 +676,10 @@ function wordsOf(s: string[], inCode: (a: number, b: number) => boolean, dataLin
 }
 
 /** The echo rule (F415): a copy that drops the line breaks and punctuation ("…the sky They dance…") is still a loop. */
-function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean, data: boolean[]): { hit: { start: number; end: number } | null; hold: number } {
+function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, b: number) => boolean, data: boolean[]): { hit: { start: number; end: number; source: number } | null; hold: number } {
   const words = wordsOf(s, inCode, data);
   const seen = new Map<string, number[]>();
-  let hit: { start: number; end: number } | null = null;
+  let hit: { start: number; end: number; source: number } | null = null;
   let from = words.length;
   while (from > 0 && words[from - 1]!.end > first) from--;
   from = Math.max(0, from - 4 * ECHO_WORDS);
@@ -635,7 +692,9 @@ function echoAt(s: string[], first: number, final: boolean, inCode: (a: number, 
         for (let k = 0; i + k < words.length && j + k < i && words[j + k]!.w === words[i + k]!.w; k++) {
           weight += words[i + k]!.weight;
           if (weight >= ECHO_WORDS) {
-            if (!hit || words[i + k]!.end < hit.end) hit = { start: lineStart(s, words[echoStart(words, i, j, j + k)]!.start), end: words[i + k]!.end };
+            const back = echoStart(words, i, j, j + k);
+            if (back.numbers && MATH.test(s.slice(words[back.a]!.start, words[i + k]!.end).join(""))) break;
+            if (!hit || words[i + k]!.end < hit.end) hit = { start: lineStart(s, words[back.a]!.start), end: words[i + k]!.end, source: words[back.b]!.start };
             break;
           }
         }
@@ -694,18 +753,21 @@ export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string };
 
 /* A copy that starts after "23." leaves the bare number behind, and whatever continues numbers its next item 24. */
 const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])$/u;
-/* An opening "**" with nothing after it. */
+/* An opening "**" with nothing after it, or a bracket or quote that opens the copy ("展望と目標（"). */
 const OPEN_MARK = /(?<=^|\s)(?:\*\*|__|~~|[*_`])+$/u;
+const OPENER = /[(（[［{「『“‘«〈《【]+$/u;
 const NEXT_ITEM = /^[ \t]*\n\s*(?:\*\*)?(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])/u;
+const ITEM_LINE = /(?:^|\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])[ \t][^\n]*$/u;
 
 export function cutLoop(text: string, hit: LoopHit): LoopCut {
   let kept = text.slice(0, hit.keep);
   for (let before = ""; before !== kept; ) {
     before = kept;
-    kept = kept.trimEnd().replace(OPEN_ITEM, "").replace(OPEN_MARK, "");
+    kept = kept.trimEnd().replace(OPEN_ITEM, "").replace(OPEN_MARK, "").replace(OPENER, "");
   }
-  /* The next item's number goes and its line break stays, so a continuation starts the next item on its own line. */
-  if (NEXT_ITEM.test(text.slice(kept.length))) kept += "\n";
+  /* The next item's number goes and its line break stays, so a continuation starts the next item (or whatever follows a list) on its own line. */
+  const rest = text.slice(kept.length);
+  if (NEXT_ITEM.test(rest) || (ITEM_LINE.test(kept) && /^[ \t]*\n/u.test(rest))) kept += "\n";
   return { text: closeMarks(kept), hit, fullLength: text.length };
 }
 
@@ -742,6 +804,39 @@ export interface GuardOptions extends LoopContext {
   retry?: (kept: string) => AsyncIterable<Delta>;
   /** Told about the silent retry, for the log line. */
   onRetry?: (kept: string, hit: LoopHit) => void;
+  /** Continue: the answer on screen this generation carries on, so a restarted phrase at the seam is dropped. */
+  prefix?: string;
+}
+
+const SEAM_WORDS = 3;
+
+/**
+ * Continue after Stop: "…like Christopher Columbus's fleet," went on "Christopher Columbus's fleet discovered…" on the
+ * phone (build 22). When `next` opens with the end of the prefix's unfinished sentence, three words or more, that overlap
+ * (and a comma the prefix already has) is how much of `next` to drop; -1 while `next` may still grow into one.
+ */
+export function seamOverlap(prefix: string, next: string, final = false): number {
+  const head = prefix.trimEnd();
+  if (!head || TERMINATORS.has(head.at(-1)!) || /\n\s*$/u.test(prefix)) return 0;
+  let st = head.length;
+  while (st > 0 && head[st - 1] !== "\n" && !(/\s/u.test(head[st - 1]!) && TERMINATORS.has(head[st - 2] ?? ""))) st--;
+  const sentence = head.slice(st).replace(/[\s,;:，、；：—–-]+$/u, "");
+  const lead = next.length - next.trimStart().length;
+  const body = next.slice(lead);
+  const starts: number[] = [];
+  for (let i = 0; i < sentence.length; i++) if (!/\s/u.test(sentence[i]!) && (i === 0 || /\s/u.test(sentence[i - 1]!))) starts.push(i);
+  let best = 0;
+  for (let w = starts.length - SEAM_WORDS; w >= 0; w--) {
+    const tail = sentence.slice(starts[w]);
+    if (!final && tail.startsWith(body)) return -1;
+    if (body.startsWith(tail) && (body.length > tail.length ? !WORD_CHAR.test(body[tail.length]!) : final)) best = tail.length;
+  }
+  if (!best) return 0;
+  let drop = lead + best;
+  const rest = next.slice(drop);
+  const mark = rest.trimStart()[0];
+  if (mark && ",;:，、；：".includes(mark) && head.endsWith(mark)) drop += rest.length - rest.trimStart().length + 1;
+  return drop;
 }
 
 /**
@@ -757,6 +852,9 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
   let current = stream;
   /* The retry's first text needs the separator the script uses, like Continue (F390). */
   let joinNext = false;
+  /* What a continuation's first text is held against until it is known not to restart the prefix's last phrase. */
+  let seam = context.prefix ?? "";
+  let opening = "";
   for (;;) {
     let hit: LoopHit | null = null;
     for await (const d of current) {
@@ -765,6 +863,14 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       if (d.reasoning || d.toolCall) yield { ...(d.reasoning ? { reasoning: d.reasoning } : {}), ...(d.toolCall ? { toolCall: d.toolCall } : {}) };
       if (!d.text) continue;
       let piece = d.text;
+      if (seam) {
+        opening += piece;
+        const drop = seamOverlap(seam, opening);
+        if (drop < 0) continue;
+        piece = opening.slice(drop);
+        seam = opening = "";
+        if (!piece) continue;
+      }
       if (joinNext) {
         piece = continuationSeparator(text, piece) + piece;
         joinNext = false;
@@ -787,6 +893,11 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         sent = safe;
       }
     }
+    if (seam && opening && !hit) {
+      const rest = opening.slice(Math.max(0, seamOverlap(seam, opening, true)));
+      text += joinNext && rest ? continuationSeparator(text, rest) + rest : rest;
+    }
+    opening = "";
     if (!hit) hit = tailLoop(text, context, checkedAt, true).hit ?? shortLoop(text, context);
     if (!hit) break;
     const cut = cutLoop(text, hit);
@@ -807,6 +918,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       if (hit.asked || !retry) break;
       retried = true;
       joinNext = true;
+      seam = context.prefix ? context.prefix + continuationSeparator(context.prefix, text) + text : text;
       context.onRetry?.(cut.text, hit);
       current = retry(cut.text);
       continue;
