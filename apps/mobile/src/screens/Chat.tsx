@@ -24,6 +24,7 @@ import {
   describeLoopCut,
   describeLoopRetry,
   guardLoops,
+  CONTINUE_INSTRUCTION,
   LOOP_RETRY,
   findPersona,
   languageHint,
@@ -186,7 +187,7 @@ const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "conten
 
 const NO_SNOOZE: readonly string[] = [];
 
-const CONTINUE_PROMPT = "Continue exactly where you stopped. Do not repeat what you already wrote.";
+const CONTINUE_PROMPT = CONTINUE_INSTRUCTION;
 
 export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, personaId, onNewChat, onOpenDocuments, onOpenPaywall, onOpenVault, onOpenVoice, onSwitchModel, sealState, sealProgress, seed, onSeedConsumed }: ChatProps) {
   const type = useType();
@@ -629,7 +630,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const base = existingMessageId && messages.at(-1)?.content === CONTINUE_PROMPT ? messages.slice(0, -2) : messages;
       const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
       const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
-      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry, prefix })) {
+      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
         if (d.trim !== undefined) {
           reply = d.trim;
           const snapshot = shown();
