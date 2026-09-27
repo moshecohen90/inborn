@@ -1,0 +1,1070 @@
+{
+  "runId": "l07-list30-animals-2",
+  "startedAt": "2026-09-27T16:03:13.412Z",
+  "finishedAt": "2026-09-27T16:03:52.632Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 63 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 258,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but no ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but no",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but no ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carc ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carc",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carc ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7 ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 1 ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n1",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14 ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angel ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angel",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 2 ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n2",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 2 ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n2",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct specie ▍",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct specie",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dolphin 7. Sea Eagle 8. Clownfish 9. Hammerhead Shark 10. Blue Whale 11. Seal 12. Pelican 13. Manta Ray 14. Platypus 15. Octopus 16. Eel (Herring) 17. Angelfish 18. Paddlefish 19. Sea Snake (Ranolette) 20. Tiger Shark 21. Goby 22. Whiting 23. Sardine 24. Mackerel 25. Herring 26. Rockfish 27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+        "props": {
+          "source": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Tiger Shark\n21. Goby\n22. Whiting\n23. Sardine\n24. Mackerel\n25. Herring\n26. Rockfish\n27. Clownfish (again, as listed before but distinct species: Carcharodon)",
+          "disabled": false
+        }
+      },
+      "detail": "Aquatic animals are numerous, but not all species require land to survive. This list includes 30 distinct marine life items: 1. Shark (Carcharodon) 2. Dolphin 3. Whale 4. Sea Lion 5. Sea Turtle 6. Dol"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2873,
+      "detail": "L07-list30-animals-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 205 chars, unit 8 cp x2"
+  ]
+}

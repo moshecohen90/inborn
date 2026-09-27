@@ -1,0 +1,22 @@
+19:10:36 pushing 19 steps as p-persona-02
+19:10:40 shot P01-persona-0.2
+19:10:44 ok     0 deeplink   /chats
+19:10:44 ok     1 waitFor    open-personas appeared
+19:10:44 ok     2 press      open-personas ← onPress
+19:10:44 ok     3 waitFor    persona-add appeared
+19:10:44 ok     4 press      persona-add ← onPress
+19:10:44 ok     5 waitFor    persona-name appeared
+19:10:44 ok     6 type       persona-name = 13 chars
+19:10:44 ok     7 type       persona-prompt = 37 chars
+19:10:44 ok     8 type       persona-temperature = 3 chars
+19:10:44 ok     9 press      persona-save ← onPress
+19:10:44 ok    10 sleep      1500 ms
+19:10:44 ok    11 screenshot P01-persona-0.2
+19:10:44 ok    12 dump       personas
+19:10:44 ok    13 press      personas-sheet-close ← onPress
+19:10:44 ok    14 sleep      800 ms
+19:10:44 ok    15 press      new-chat ← onPress
+19:10:44 ok    16 waitFor    start-chat appeared
+19:10:44 ok    17 dump       new-chat-sheet
+19:10:44 ok    18 press      new-chat-sheet-close ← onPress
+19:10:44 19 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-23/screens

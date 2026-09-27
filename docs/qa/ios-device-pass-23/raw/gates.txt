@@ -1,0 +1,17 @@
+18:47:49 typecheck start
+18:47:58 typecheck rc=0
+18:47:58 lint start
+18:48:05 lint rc=0
+18:48:05 test start
+18:48:30 test rc=0
+GATES-DONE
+
+PASS: all fields within limits.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # fail 0
+apps/desktop test: # pass 4
+apps/desktop test: # tests 4
+apps/mobile test:       Tests  1180 passed (1180)
+packages/core test:       Tests  1064 passed | 4 skipped (1068)
+packages/i18n test:       Tests  24 passed (24)
+packages/ui test:       Tests  23 passed (23)

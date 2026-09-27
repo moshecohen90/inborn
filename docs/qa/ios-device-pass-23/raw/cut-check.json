@@ -1,0 +1,310 @@
+[
+ {
+  "run": "l02-es-list",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 1159,
+    "keptTail": "r hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-fr-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 403,
+    "takenBack": "6",
+    "keptTail": "métal (ex: oreillers, lampes).\n4. Un jouet à la main (ex: robot, voiture).\n5. Un jeu vidéo éducatif ou un jeu d'équipe.\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 403,
+    "keptTail": "\n3. Des objets décoratifs en bois ou en métal (ex: oreillers, lampes).\n4. Un jouet à la main (ex: robot, voiture).\n5. Un jeu vidéo éducatif ou un jeu d'équipe.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-he-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 164,
+    "takenBack": "",
+    "keptTail": "אר שבע, בן גבדין, בר-אילון, בית שם, ברוך יעקב, בורסו, כנרת, דובי, דגל, דפנות, דימיוס, דומה, דודיה, דרצות, דריכה, דרשינה,",
+    "after": ".",
+    "flags": [
+     "half-item"
+    ]
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "half-item"
+  ]
+ },
+ {
+  "run": "l02-ja-list-cities",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 14,
+    "takenBack": "東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井、",
+    "keptTail": "日本の都市を20個挙げます。",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 14,
+    "keptTail": "日本の都市を20個挙げます。",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ja-nenji",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ko-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 273,
+    "takenBack": "",
+    "keptTail": "타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n",
+    "after": "다음은 다음 단계입니다.\n",
+    "flags": [
+     "list-to-prose"
+    ]
+   },
+   {
+    "kind": "cut",
+    "at": 287,
+    "keptTail": "amwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "list-to-prose"
+  ]
+ },
+ {
+  "run": "l02-list30-animals",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 173,
+    "takenBack": "1",
+    "keptTail": " Clownfish\n7. Jellyfish\n8. Octopus\n9. Sea Snake\n10. Sea Bass\n11. Sea Turtle\n12. Sea Lion\n13. Sea Grouper\n14. Sea Oyster\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 173,
+    "keptTail": "olphin\n3. Whale\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Jellyfish\n8. Octopus\n9. Sea Snake\n10. Sea Bass\n11. Sea Turtle\n12. Sea Lion\n13. Sea Grouper\n14. Sea Oyster\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-math-long-div",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 1274,
+    "takenBack": "",
+    "keptTail": "omes 36. Since $123 > 36$, write a 0. Remainder remains 3.\nBring down the next digit, which is 5: The number becomes 35.",
+    "after": " 354 divided by 123 is approximately 2 with a remainder of 90. (Since $123 \\times 2 = 246$, and $354 - 246 = 108$). Bring down the next digit, which is 3: The number becomes 1083. Now divide 1083 by 1",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-2",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 808,
+    "takenBack": "12. Lo más difícil es empezar; n",
+    "keptTail": "da no tiene fecha límite; tu ritmo define el tiempo.\n11. Cada pequeña acción cuenta y se convierte en un gran progreso.\n",
+    "after": "12. La luz de la mañana no viene del cielo, sino que te sale en tu propio corazón si decides seguir trabajando duro.\n13. El tiempo fluye rápido y sin sentido cuando se detiene el esfuerzo genuino en l",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-2",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 663,
+    "takenBack": "9",
+    "keptTail": "ue qui reflètent votre passion ou vos hobbies\n8. Une collection de photos anciennes de famille avec un cadre magnétique\n",
+    "after": "Voici une autre sélection de 30 idées, conçue pour aller au-delà des cadeaux \"tout-en-un\" et offrir plus d'attraction personnelle :\n",
+    "flags": [
+     "list-to-prose"
+    ]
+   },
+   {
+    "kind": "retry",
+    "at": 795,
+    "takenBack": "\n9",
+    "keptTail": "tre sélection de 30 idées, conçue pour aller au-delà des cadeaux \"tout-en-un\" et offrir plus d'attraction personnelle :\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 795,
+    "keptTail": "le avec un cadre magnétique\nVoici une autre sélection de 30 idées, conçue pour aller au-delà des cadeaux \"tout-en-un\" et offrir plus d'attraction personnelle :\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "list-to-prose"
+  ]
+ },
+ {
+  "run": "l07-he-explain-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 290,
+    "takenBack": "",
+    "keptTail": "d Shark\n16. Sea Lion\n17. Blue Whale\n18. Dolphin (multiple species)\n19. Coral Reef\n20. Clownfish\n21. Octopus\n22. Sponges\n",
+    "after": "10. Sponges\n11. Shrimp\n12. Crayfish\n13. Mollusk (Coral Reefs)\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 352,
+    "keptTail": "7. Blue Whale\n18. Dolphin (multiple species)\n19. Coral Reef\n20. Clownfish\n21. Octopus\n22. Sponges\n10. Sponges\n11. Shrimp\n12. Crayfish\n13. Mollusk (Coral Reefs)\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [
+   "22. Sponges -> 10. Sponges"
+  ],
+  "flags": [
+   "renumbered"
+  ]
+ },
+ {
+  "run": "l07-list30-animals-2",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 205,
+    "takenBack": "",
+    "keptTail": "includes 30 distinct marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n6. Dolphin\n",
+    "after": "7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelican\n13. Manta Ray\n14. Platypus\n15. Octopus\n16. Eel (Herring)\n17. Angelfish\n18. Paddlefish\n19. Sea Snake (Ranolette)\n20. Ti",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ }
+]

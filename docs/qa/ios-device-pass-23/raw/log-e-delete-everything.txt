@@ -1,0 +1,25 @@
+19:19:12 pushing 18 steps as e-delete-everything
+19:19:14 shot E01-before-delete
+19:19:28 shot E02-after-delete
+19:19:32 ok     0 deeplink   /settings/storage
+19:19:32 ok     1 waitFor    storage appeared
+19:19:32 ok     2 sleep      1500 ms
+19:19:32 ok     3 value      Chats encrypted (SQLCipher) 4.23 MB
+19:19:32 ok     4 value      Documents 253 B
+19:19:32 ok     5 screenshot E01-before-delete
+19:19:32 ok     6 press      storage-delete-all ← onPress
+19:19:32 ok     7 waitFor    wipe-sheet appeared
+19:19:32 ok     8 value      
+19:19:32 ok     9 press      wipe-step1 ← onPress
+19:19:32 ok    10 waitFor    wipe-step2 appeared
+19:19:32 ok    11 sleep      500 ms
+19:19:32 ok    12 press      wipe-step2 ← onPress
+19:19:32 ok    13 sleep      10000 ms
+19:19:32 ok    14 screenshot E02-after-delete
+19:19:32 FAIL  15 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+19:19:32 FAIL  16 assertText the QA bridge never got a fiber: the anchor view is not mounted
+19:19:32 FAIL  17 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+19:19:32 15 passed, 3 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-23/screens
+19:19:32   ! step 15 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted
+19:19:32   ! step 16 (assertText): the QA bridge never got a fiber: the anchor view is not mounted
+19:19:32   ! step 17 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted

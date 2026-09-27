@@ -6472,6 +6472,35 @@ Not done:
 - No live model run: the Mac was busy with a phone build. The guard is shared code, so web, phone and desktop get it
   unchanged.
 
+## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
+
+Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
+round 111's guard before Moshe tests it. Nothing went to a store.
+
+- **The build.** Commit ede6da76 bumps the build number 22 → 23. Gates exit 0: 1,064 core with 4 skipped, 1,180
+  mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive, with both models byte-exact to the catalog and round
+  111's length line in the bundle. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install, all six
+  are byte-identical and the listing is unchanged. About reads `1.0.0 (23) · ede6da76a99f`, left on the chat root.
+- **Passed on the phone.** The first answer runs at 33.8 tok/s. Delete everything lands on Welcome with no banner and no
+  `.corrupt` file, again after a cold relaunch. Documents reads 253 B for one .txt.
+- **The 24 stress answers (F424).** Pass 22's prompts and yardstick found no repeated block, bold-split phrase or
+  sentence on screen, where build 22 showed three. Still on screen:
+  - two lists named a one-word item twice, one back to back (*"22. Sponges / 23. Sponges"*), which is round 111's
+    open 8-code-point limit;
+  - three broken seams: a restarted list's new intro rendered inside item 8, a retry that wrote one stray prose line
+    under a Korean list, and a Hebrew list ending ",." after a retry that wrote only a period.
+
+  There were 11 silent retries and 7 notices. One Japanese answer took back its whole city line and kept only the
+  intro.
+- **Asked repetition.** The fox sentence came back five times in 1 of 3 tries, up from 0 of 3. The guard never touched
+  it.
+- **Continue.** 2 of 3 tries restated the stopped clause after a new subject (*"…treaties like the" + "British colonial
+  powers established control over … treaties like the Indian Ocean Treaty"*). The seam rule only drops an overlap that
+  opens the continuation.
+
+Evidence: `docs/qa/ios-build-23-2026-09-27.md`, `docs/qa/ios-device-pass-23-2026-09-27.md`, `docs/qa/ios-device-pass-23/`.
+
 ## iOS build 22: main with round 107's loop guard, on Moshe's iPhone only (branch `ios-build-22`) — 27.9.2026
 
 Build 21 was archived before round 107 landed. Build 1.0.0 (22) carries local `main` b5bd2758 (rounds 93–109) to the
