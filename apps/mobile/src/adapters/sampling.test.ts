@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it, vi } from "vitest";
-import { REPEAT_LAST_N, REPEAT_PENALTY, type Delta, type Session } from "@inborn/core";
+import { LOOP_RETRY, REPEAT_LAST_N, REPEAT_PENALTY, type Delta, type Session } from "@inborn/core";
 
 /* F369: every engine adapter samples with the shared repeat penalty from @inborn/core, under the name its engine reads. */
 vi.mock("@wllama/wllama/esm/index.js", () => ({ Wllama: class {}, LoggerWithoutDebug: {}, LogLevel: {} }));
@@ -30,6 +30,11 @@ describe("F369 · the shared repeat penalty reaches every engine", () => {
     Object.assign(lm as object, { wllama: fake, session });
     await drain(lm.generate(session, [{ role: "user", content: "hi" }], {}, new AbortController().signal));
     expect(request).toMatchObject({ repeat_penalty: REPEAT_PENALTY, repeat_last_n: REPEAT_LAST_N, temperature: 0.7, top_p: 0.9 });
+    expect(request).toMatchObject({ dry_multiplier: 0, presence_penalty: 0, frequency_penalty: 0 });
+    /* F414: the loop retry's DRY and presence/frequency under llama-server's names, which the wasm reads. */
+    await drain(lm.generate(session, [{ role: "user", content: "hi" }], LOOP_RETRY, new AbortController().signal));
+    expect(request).toMatchObject({ dry_multiplier: 1, dry_base: 1.75, dry_allowed_length: 2, dry_penalty_last_n: 4096, presence_penalty: 0.15, frequency_penalty: 0.05 });
+    expect(request.dry_sequence_breakers).toEqual(["\n", ":", '"', "*"]);
   });
 
   it("llama.rn sends penalty_repeat / penalty_last_n", async () => {
@@ -39,7 +44,9 @@ describe("F369 · the shared repeat penalty reaches every engine", () => {
     const ctx = { completion: async (p: Record<string, unknown>) => ((params = p), { content: "", timings: {} }), stopCompletion: async () => {} };
     Object.assign(lm as object, { ctx, session });
     await drain(lm.generate(session, [{ role: "user", content: "hi" }], {}, new AbortController().signal));
-    expect(params).toMatchObject({ penalty_repeat: REPEAT_PENALTY, penalty_last_n: REPEAT_LAST_N, temperature: 0.7, top_p: 0.9 });
+    expect(params).toMatchObject({ penalty_repeat: REPEAT_PENALTY, penalty_last_n: REPEAT_LAST_N, temperature: 0.7, top_p: 0.9, dry_multiplier: 0, penalty_present: 0, penalty_freq: 0 });
+    await drain(lm.generate(session, [{ role: "user", content: "hi" }], LOOP_RETRY, new AbortController().signal));
+    expect(params).toMatchObject({ dry_multiplier: 1, dry_base: 1.75, dry_allowed_length: 2, dry_penalty_last_n: 4096, penalty_present: 0.15, penalty_freq: 0.05 });
   });
 
   it("the desktop shell passes repeatPenalty / repeatLastN to the Rust sampler", async () => {
@@ -58,11 +65,14 @@ describe("F369 · the shared repeat penalty reaches every engine", () => {
     const lm = new TauriLM();
     Object.assign(lm as object, { session });
     await drain(lm.generate(session, [{ role: "user", content: "hi" }], {}, new AbortController().signal));
-    expect(args.opts).toMatchObject({ repeatPenalty: REPEAT_PENALTY, repeatLastN: REPEAT_LAST_N, temperature: 0.7, topP: 0.9 });
+    expect(args.opts).toMatchObject({ repeatPenalty: REPEAT_PENALTY, repeatLastN: REPEAT_LAST_N, temperature: 0.7, topP: 0.9, dryMultiplier: 0 });
+    await drain(lm.generate(session, [{ role: "user", content: "hi" }], LOOP_RETRY, new AbortController().signal));
+    expect(args.opts).toMatchObject({ dryMultiplier: 1, dryPenaltyLastN: 4096, presencePenalty: 0.15, frequencyPenalty: 0.05 });
   });
 
   it("a caller's own values still win", async () => {
     const { sampling } = await import("@inborn/core");
     expect(sampling({ repeatPenalty: 1, temperature: 0.3 })).toMatchObject({ repeatPenalty: 1, temperature: 0.3, repeatLastN: REPEAT_LAST_N });
+    expect(sampling({ dryMultiplier: 0.5, presencePenalty: 0.1 })).toMatchObject({ dryMultiplier: 0.5, presencePenalty: 0.1, frequencyPenalty: 0 });
   });
 });

@@ -15,13 +15,24 @@ const LOCALES = ["en", "de", "es", "fr", "pt-BR", "ja", "ko", "zh-Hant"];
 
 describe("F369 · the chat answers through the loop guard", () => {
   it("wraps the answer stream of whatever engine is loaded", () => {
-    expect(chat).toMatch(/for await \(const d of guardLoops\(engine\.generate\(s, messages, opts, ac\.signal\), stopLoop, \{ request: asked \}\)\)/);
+    expect(chat).toMatch(/for await \(const d of guardLoops\(run\(messages, opts\), stopLoop, \{ request: asked, retry, onRetry \}\)\)/);
+    expect(chat).toMatch(/return engine\.generate\(s, wireMessages, o, attempt\.signal\);/);
   });
 
-  it("stopping aborts generation and marks the turn a loop", () => {
-    const stop = chat.slice(chat.indexOf("const stopLoop = () => {"), chat.indexOf("};", chat.indexOf("const stopLoop = () => {")));
-    expect(stop).toContain('stopReason.current = "loop"');
-    expect(stop).toContain("ac.abort()");
+  it("F415: stopping a loop aborts only that generation; the user's Stop still reaches every attempt", () => {
+    expect(chat).toContain("const stopLoop = () => attempt.abort();");
+    expect(chat).toMatch(/const follow = \(\) => attempt\.abort\(\);\s+ac\.signal\.addEventListener\("abort", follow\);/);
+    expect(chat).toMatch(/if \(ac\.signal\.aborted\) attempt\.abort\(\);/);
+  });
+
+  it("F415: the silent retry is Continue of what is on screen, sampled with LOOP_RETRY, and a trim replaces the text quietly", () => {
+    expect(chat).toMatch(/run\(\[\.\.\.base, \{ role: "assistant", content: shown\(\) \}, \{ role: "user", content: CONTINUE_PROMPT \}\], \{ \.\.\.opts, \.\.\.LOOP_RETRY \}\)/);
+    expect(chat).toMatch(/if \(d\.trim !== undefined\) \{\s+reply = d\.trim;/);
+    expect(chat).toContain("console.log(describeLoopRetry(kept, hit))");
+  });
+
+  it("F414: the answer's own sampling carries no DRY; only the retry adds LOOP_RETRY", () => {
+    expect(chat).not.toMatch(/loopSampling|dryMultiplier/);
   });
 
   it("shows the cut text, logs one line for QA, and persists the stop as a loop", () => {

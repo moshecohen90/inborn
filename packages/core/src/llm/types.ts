@@ -43,6 +43,10 @@ export interface GenOpts {
   /** llama.cpp repeat penalty and its look-back in tokens; `sampling()` fills the shared defaults. */
   repeatPenalty?: number;
   repeatLastN?: number;
+  /** DRY strength and the presence/frequency penalties (F414); absent means off, and only the loop retry sets them. */
+  dryMultiplier?: number;
+  presencePenalty?: number;
+  frequencyPenalty?: number;
   stop?: string[];
   /** When false the model is asked not to emit reasoning tokens (Qwen "thinking" off). */
   reasoning?: boolean;

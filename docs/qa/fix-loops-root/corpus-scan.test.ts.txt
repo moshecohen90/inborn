@@ -1,0 +1,68 @@
+/* F415 corpus check: every answer-like string in docs/qa (this round's own runs excluded), through the r97 guard and the r107 guard. */
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { detectLoop, guardLoops } from "../src/chat/loop";
+import type { Delta } from "../src/llm/types";
+
+const ROOT = join(__dirname, "../../../docs/qa");
+const ANSWER = /^(answer|reply|content|text|response|assistant|output|shown|final)$/i;
+const ASK = /^(question|prompt|ask|user|q|input|message|send)$/i;
+function files(d: string): string[] {
+  return readdirSync(d).flatMap((f) => {
+    const p = join(d, f);
+    if (p.slice(ROOT.length).includes("fix-loops-root")) return [];
+    return statSync(p).isDirectory() ? files(p) : p.endsWith(".json") ? [p] : [];
+  });
+}
+async function guarded(answer: string, request: string) {
+  const cps = Array.from(answer);
+  const stream = (async function* (): AsyncIterable<Delta> {
+    for (let i = 0; i < cps.length; i += 3) yield { text: cps.slice(i, i + 3).join("") };
+  })();
+  let shown = "";
+  let loop = false;
+  let retried = false;
+  for await (const d of guardLoops(stream, () => undefined, { request, retry: () => ((retried = true), (async function* () {})()) })) {
+    if (d.trim !== undefined) shown = d.trim;
+    if (d.loop) (loop = true), (shown = d.loop.text);
+    if (d.text) shown += d.text;
+  }
+  return { changed: loop || retried || shown !== answer, shown };
+}
+it("scans", async () => {
+  const seen = new Set<string>();
+  const rows: { file: string; answer: string; ask: string }[] = [];
+  const walk = (v: unknown, file: string) => {
+    if (Array.isArray(v)) return v.forEach((x) => walk(x, file));
+    if (!v || typeof v !== "object") return;
+    const o = v as Record<string, unknown>;
+    const ask = Object.entries(o).find(([k, x]) => ASK.test(k) && typeof x === "string")?.[1] as string | undefined;
+    for (const [k, x] of Object.entries(o)) {
+      if (typeof x === "string" && ANSWER.test(k) && x.length >= 40 && /\p{L}/u.test(x) && !seen.has(x)) {
+        seen.add(x);
+        rows.push({ file: file.slice(ROOT.length + 1), answer: x, ask: ask ?? "" });
+      } else walk(x, file);
+    }
+  };
+  const all = files(ROOT);
+  for (const f of all) {
+    try { walk(JSON.parse(readFileSync(f, "utf8")), f); } catch { /* not JSON */ }
+  }
+  let r97 = 0, bare = 0, ctx = 0, withAsk = 0, worst = 0;
+  const lines: string[] = [];
+  for (const r of rows) {
+    const o = detectLoop(r.answer, { request: r.ask });
+    const n = await guarded(r.answer, "");
+    const t0 = performance.now();
+    const c = await guarded(r.answer, r.ask);
+    worst = Math.max(worst, performance.now() - t0);
+    if (r.ask) withAsk++;
+    if (o) r97++;
+    if (n.changed) bare++;
+    if (c.changed) ctx++;
+    if (o || n.changed || c.changed) lines.push(`${o ? "R97" : "---"} ${n.changed ? "R107" : "----"} ${c.changed ? "CTX" : "---"}  ${r.file}  ${JSON.stringify(r.answer.slice(0, 100))}\n        kept: ${JSON.stringify(c.shown.slice(-100))}`);
+  }
+  const out = [`answers: ${rows.length} (with the user's message: ${withAsk}) from ${all.length} json files`, `r97 guard trips: ${r97}`, `r107 guard, no context: ${bare}`, `r107 guard, with context: ${ctx}`, `slowest streamed answer through the r107 guard: ${worst.toFixed(1)} ms`, "", ...lines].join("\n");
+  writeFileSync(join(ROOT, "fix-loops-root/corpus-scan.txt"), out + "\n");
+}, 600_000);

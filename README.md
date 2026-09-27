@@ -6389,6 +6389,56 @@ parse, as it does on origin/main (not a gate here).
 Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
 `pn check:store` pass. Test counts: 972 core, 1158 mobile, 24 i18n, 23 ui.
 
+## Fixes round 107: a model repeating itself never reaches the screen (branch `fix-loops-root`) — 27.9.2026
+
+Moshe (27.9): repetition must never reach the user, not even three times, and it is a problem if the 1.28 GB model
+does it too. Evidence: `docs/qa/fix-loops-root/` (`before.md`, `after.md`).
+
+- **F413: measured first.** 44 stress prompts ran on Instant and Fast through llama-server, the code wllama compiles
+  to wasm, with the app's own system prompt, length line and sampling, 3 seeds, at 0.7 and at 0.2. The prompts cover
+  long lists, CJK, Hebrew, very short asks, Continue after Stop, translation of repetitive text, JSON and math steps,
+  with two asked-repetition controls and two quoted documents. At the source Instant looped in 7 and 16 of 132 runs,
+  and Fast in 2 and 8. The round-97 guard let 32 of those 33 onto the screen, up to 8 copies, and 11 of its 16 cuts
+  were wrong (the French "Row, row, row your boat").
+- **F415: a second copy is held back.** `tailLoop` runs on every chunk with four rules: a phrase of 12+ code points
+  (6+ CJK, kana or Hangul) twice back to back, a sentence or line of 24+ code points said again anywhere, ten words said
+  again in the same order with punctuation and line breaks ignored (the echo rule), and a word listed a fourth time.
+  Whatever may be the start of such a copy stays off the screen until it diverges. Repetition the user asked for
+  (F389), a song's chorus line twice, what the source text itself repeats (a translation), and data lines are allowed.
+  On a loop `guardLoops` stops that generation, keeps one copy, takes back anything shown past it, and continues once,
+  silently, as the chat's Continue with `LOOP_RETRY`. Only a continuation that loops again ends with the round-86
+  notice. A cut never leaves a bare item number behind.
+- **F414: DRY is wired to all three engines, and only the retry uses it.** wllama sends llama-server's `dry_*`,
+  `presence_penalty` and `frequency_penalty`; llama.rn sends `dry_*`, `penalty_present` and `penalty_freq`; the
+  desktop chains `LlamaSampler::dry` after the penalties. With DRY 0.8 / 1.75 / 2 / 4096 and presence/frequency
+  0.15 / 0.05 on every answer, no answer looped at the source, but answers could no longer copy. An ID format came
+  out as "ORD-2024-XXXXXX" (1.00 to 0.00 on Instant), a document's invoice number and signer 1.00 to 0.33 on both
+  models, a one-character code fix 0.89 to 0.52. So the answer samples exactly as before, byte-identical in 24 of
+  24 checks. The one silent retry uses repeat 1.15, DRY 1.0, presence 0.15 and frequency 0.05; a harsher retry
+  (DRY 1.5, presence 0.5) continued in emoji and word salad.
+
+| Model | Temp | Loops at the source | Repeat on screen, round 97 | Repeat on screen, round 107 | Silent retries | Notices |
+|---|---|---|---|---|---|---|
+| Instant | 0.7 | 7 of 132 | 7 (up to 8 copies) | 0 | 7 | 0 |
+| Instant | 0.2 | 16 of 132 | 15 | 0 | 16 | 0 |
+| Fast | 0.7 | 2 of 132 | 2 | 0 | 2 | 0 |
+| Fast | 0.2 | 8 of 132 | 8 | 1, cut by the final guard | 7 | 0 |
+
+The round-107 column is the live run with commit 8df329f0's guard; the one Fast repeat (the same animal numbered 23
+and 28) is cut by the final guard, checked offline on that answer. On the web build (Instant, headless Chrome at
+1440) 4 of 28 trials showed a repeat before and 0 of 28 after, with 2 silent retries and no notice; that run predates
+the echo rule. A retried list sometimes goes on as prose.
+
+Red first: `red-r107.txt` (55 of 57 failing on the base commit). The real-answers corpus (439 answers from every
+earlier round) has 8 cuts, all visible repeats, and no false cut. A replay of all 1064 stored answers through the final guard and an independent yardstick found 0 misses. Seven gaps found on the way were fixed with
+a test each: a name followed by its full form joined with "・", a poem line ending in a comma read as data, a sentence
+repeated as a bullet and inside a paragraph, "one per line" read as an ask to repeat, "one hundred, one hundred and
+one" read as two copies, and two near-copies from the web trials (a poem line run into the next one, a list item said
+again with one word changed), which the echo rule now catches.
+
+Not done: no phone or desktop run. The answer's sampling is unchanged on every engine, and the retry is shared code
+covered by the adapter tests and `cargo test`.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

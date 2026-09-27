@@ -1,0 +1,1761 @@
+{
+ "model": "fast",
+ "phase": "before",
+ "engine": "llama-server (llama.cpp b10809, Metal), app sampling via core sampling(), thinking off",
+ "temperature": 0.2,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rows": [
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 673,
+   "tps": 98.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Blue shark  \n2. Whale shark  \n3. Great white shark  \n4. Ocean quokka  \n5. Sea otter  \n6. Clownfish  \n7. Starfish  \n8. Jellyfish  \n9. Sea turtle  \n10. Seabird (e.g., penguin)  \n11. Coral reef fish  \n12. Krill  \n13. Octopus  \n14. Squid  \n15. Cuttlefish  \n16. Nautilus  \n17. Sea anemone  \n18. Sea cucumber  \n19. Jellyfish (various species)  \n20. Sea snail  \n21. Sea urchin  \n22. Starfish (various species)  \n23. Sea cucumber (various species)  \n24. Sea anemone (various species)  \n25. Coral polyp  \n26. Sea urchin (various species)  \n27. Starfish (various species)  \n28. Sea cucumber (various species)  \n29. Sea anemone (various species)  \n30. Coral polyp (various species)"
+  },
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 644,
+   "tps": 98.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Bluefin Tuna  \n2. Whale Shark  \n3. Humpback Whale  \n4. Sea Otter  \n5. Ocean Quokka  \n6. Great White Shark  \n7. Clownfish  \n8. Sea Urchin  \n9. Starfish (Sea Star)  \n10. Jellyfish  \n11. Octopus  \n12. Squid  \n13. Crab  \n14. Lobster  \n15. Shrimp  \n16. Snail  \n17. Cuttlefish  \n18. Nautilus  \n19. Sea Anemone  \n20. Sea Cucumber  \n21. Jellyfish (various species)  \n22. Starfish (various species)  \n23. Octopus (various species)  \n24. Squid (various species)  \n25. Crab (various species)  \n26. Lobster (various species)  \n27. Shrimp (various species)  \n28. Snail (various species)  \n29. Cuttlefish (various species)  \n30. Nautilus (various species)"
+  },
+  {
+   "id": "list30-animals",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 458,
+   "tps": 101.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Blue Whale\n2. Humpback Whale\n3. Great White Shark\n4. Oceanic White Shark\n5. Sperm Whale\n6. Manta Ray\n7. Sea Turtle\n8. Dolphin\n9. Seal\n10. Penguin\n11. Octopus\n12. Clownfish\n13. Starfish\n14. Jellyfish\n15. Squid\n16. Crab\n17. Lobster\n18. Shrimp\n19. Sea Urchin\n20. Sea Anemone\n21. Sea Snail\n22. Sea Cucumber\n23. Sea Skate\n24. Sea Dogfish\n25. Sea Bass\n26. Sea Basslet\n27. Sea Bassletlet\n28. Sea Bassletletlet\n29. Sea Bassletletletlet\n30. Sea Bassletletletletlet"
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 239,
+   "tps": 102.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here are 50 popular boy names: Alexander, Benjamin, Christopher, Daniel, Elijah, Ethan, James, Joseph, Kevin, Lucas, Matthew, Nicholas, Oliver, Peter, Samuel, Thomas, William, Jacob, Leo, Mason, Noah, Henry, Luke, Andrew, Jacob, and Elias."
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 209,
+   "tps": 82.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here are 50 popular boy names: Alexander, Benjamin, Christopher, Daniel, Elijah, Ethan, James, Joseph, Kevin, Lucas, Matthew, Nicholas, Oliver, Paul, Quinn, Samuel, Thomas, Tyler, Victor, William, and Zachary."
+  },
+  {
+   "id": "list50-names",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 202,
+   "tps": 97.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here are 50 popular boy names: Alexander, Benjamin, Christopher, Daniel, Edward, Ethan, James, Joseph, Kevin, Lucas, Matthew, Nicholas, Oliver, Peter, Quinn, Samuel, Thomas, Tyler, William, and Zachary."
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 905,
+   "tps": 101.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here are 40 tips for saving money:\n1. Create a budget to track every expense.\n2. Automate transfers to savings accounts.\n3. Cut subscriptions you don't use regularly.\n4. Cook at home instead of eating out often.\n5. Buy in bulk when prices drop.\n6. Use coupons and discount codes online.\n7. Shop sales and clearance sections.\n8. Avoid impulse buys by waiting 24 hours before purchasing.\n9. Choose free or low-cost delivery options for food.\n10. Bring your own reusable containers to grocery stores.\n11. Set a specific date for spending money on non-essentials.\n12. Use cash instead of credit cards to limit overspending.\n13. Look for student discounts at local businesses.\n14. Take advantage of free public transportation or walking.\n15. Reduce food waste by planning meals ahead.\n16. Sell unused items on platforms like eBay or Facebook Marketplace.\n17. Use a zero-based budget to allocate every dollar.\n1"
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 1038,
+   "tps": 104.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Track your spending to identify areas where you can cut costs immediately.\n2. Create a budget that aligns with your income and financial goals.\n3. Automate bill payments to avoid late fees and build good habits.\n4. Choose cheaper alternatives when possible, such as generic brands or store sales.\n5. Avoid impulse purchases by waiting 24 hours before buying non-essentials.\n6. Use cash for small expenses to create a physical barrier against overspending.\n7. Consolidate multiple subscriptions into one service where applicable.\n8. Look for free resources like government assistance programs and community events.\n9. Buy in bulk when items are on sale to reduce packaging waste and costs.\n10. Cook at home more often by planning meals around your grocery list.\n11. Use public transportation or carpooling instead of driving alone daily.\n12. Consider buying second-hand goods from reputable platforms like eBay or Facebook Marketplace.\n13. Shop during sales events such as Black Friday, Cyber Monday, and seasonal clearances.\n14. Reduce"
+  },
+  {
+   "id": "list40-tips",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 1051,
+   "tps": 105.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Create a detailed budget that tracks every expense to understand where your money goes. 2. Automate transfers to savings accounts on payday to ensure funds are set aside automatically. 3. Choose high-yield savings accounts over standard ones to earn more interest on your emergency fund. 4. Consolidate multiple credit cards into one card with a lower annual fee and better rewards. 5. Use cash for small, everyday purchases to physically limit how much you spend in the moment. 6. Shop only at stores that offer loyalty programs or points to increase your spending power. 7. Wait three days before buying anything on sale to avoid impulse buys driven by fear of missing out. 8. Cook meals at home more often than you eat out to save significantly on dining expenses. 9. Buy in bulk for non-perishable items and store them properly to reduce waste. 10. Use coupons, discount codes, or cashback apps when shopping online. 11. Substitute expensive ingredients with cheaper alternatives that still taste good. 12. Freeze food before it spoils to avoid"
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 921,
+   "tps": 108.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here are 25 German verbs with their English meanings:\n\n1. **sein** – to be\n2. **haben** – to have\n3. **gehen** – to go\n4. **kommen** – to come\n5. **sehen** – to see\n6. **sagen** – to say\n7. **wissen** – to know\n8. **denken** – to think\n9. **hören** – to hear\n10. **schreiben** – to write\n11. **lesen** – to read\n12. **sprechen** – to speak\n13. **arbeiten** – to work\n14. **einkaufen** – to shop\n15. **essen** – to eat\n16. **trinken** – to drink\n17. **schlafen** – to sleep\n18. **laufen** – to run\n19. **spielen** – to play\n20. **lernen** – to learn\n21. **sehen** – to see (duplicate for variety)\n22. **hören** – to hear (duplicate for variety)\n23. **schreiben** – to write (duplicate for variety)\n24. **lesen** – to read (duplicate for variety)\n25. **sprechen** – to speak (duplicate for variety)\n\n*Note: Some verbs like \"sehen\" and \"hören\" are repeated here to meet the count of 25, as they appear frequently in German.*"
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 707,
+   "tps": 99.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Hier sind 25 deutsche Verben mit ihren englischen Bedeutungen:\n\n1. **sein** – to be\n2. **haben** – to have\n3. **gehen** – to go\n4. **kommen** – to come\n5. **sehen** – to see\n6. **sprechen** – to speak\n7. **lesen** – to read\n8. **schreiben** – to write\n9. **denken** – to think\n10. **wissen** – to know\n11. **tun** – to do\n12. **machen** – to make/do\n13. **geben** – to give\n14. **nehmen** – to take\n15. **kommen** – to come (again)\n16. **bleiben** – to stay\n17. **gehen** – to go away\n18. **sehen** – to look at\n19. **hören** – to hear\n20. **sagen** – to say/speak\n21. **wollen** – to want\n22. **müssen** – must/need to\n23. **können** – can/could\n24. **haben** – to have (again)\n25. **sein** – to be (again)"
+  },
+  {
+   "id": "list25-verbs-de",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 982,
+   "tps": 114.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Hier sind 25 deutsche Verben mit ihren englischen Bedeutungen:\n\n1. **sein** – to be\n2. **haben** – to have\n3. **geben** – to give\n4. **nehmen** – to take\n5. **sehen** – to see\n6. **sprechen** – to speak\n7. **lernen** – to learn\n8. **wissen** – to know\n9. **denken** – to think\n10. **schreiben** – to write\n11. **lesen** – to read\n12. **gehen** – to go\n13. **kommen** – to come\n14. **sein** (to be) – to exist / to be a person\n15. **haben** (to have) – to possess\n16. **machen** – to do/make\n17. **gehen** (to go) – to walk away\n18. **kommen** (to come) – to arrive\n19. **sein** (to be) – to belong / to exist as a thing\n20. **haben** (to have) – to own something\n21. **geben** (to give) – to hand over\n22. **nehmen** (to take) – to pick up\n23. **sehen** (to see) – to observe visually\n24. **sprechen** (to speak) – to communicate verbally\n25. **lernen** (to learn) – to acquire knowledge\n\nDiese Liste deckt die wichtigsten Grundverben ab, die in fast jedem deutschen Satz vorkommen."
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 460,
+   "tps": 87.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Europe has 50 sovereign states, but there is no single official list of all countries and their capitals because some nations have multiple capitals (such as the United Kingdom's London and Edinburgh) or are divided into different countries within a single region (like Russia, which spans Europe and Asia). Additionally, many European territories like Monaco, San Marino, Vatican City, and Andorra are city-states that do not fit standard country definitions."
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 796,
+   "tps": 60.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here is a list of all countries in Europe and their capitals: Albania (Tirana), Andorra (Andorra la Vella), Armenia (Yerevan - geographically Asia but often included in European contexts; Yerevan is the capital of Armenia, which borders Turkey). *Note: Armenia's capital Yerevan is located on the border between Europe and Asia. The following list includes only countries entirely within Europe.*\n\n**Europe:**\n*   **Albania**: Tirana\n*   **Andorra**: Andorra la Vella\n*   **Austria**: Vienna\n*   **Belarus**: Minsk (geographically in Eastern Europe)\n*   **Bosnia and Herzegovina**: Sarajevo\n*   **Bulgaria**: Sofia\n*   **Croatia**: Zagreb\n*   **Cyprus**: Nicosia\n*   **Czech Republic**: Prague\n*   **Denmark**: Copenhagen\n*   **Estonia**: Tallinn\n*   **Finland**: Helsinki\n*   **France**: Paris\n*"
+  },
+  {
+   "id": "countries-europe",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 813,
+   "tps": 79,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here is a list of all countries in Europe and their capitals: Albania (Alba), Andorra (Andorra la Vella), Armenia (Yerevan - geographically Asia, but culturally often grouped here; however, strictly speaking, it's not in Europe), Austria (Vienna), Azerbaijan (Baku - geographically Asia, but culturally often grouped here; however, strictly speaking, it's not in Europe).\n\n**Correction:** To provide an accurate list of countries *strictly* within the European continent:\n1.  **Albania**: Tirana\n2.  **Andorra**: Andorra la Vella\n3.  **Austria**: Vienna\n4.  **Belgium**: Brussels\n5.  **Bosnia and Herzegovina**: Sarajevo (or Podgorica for the capital of the entity, but Bosnia is a country) -> Actually, the capital of Bosnia and Herzegovina is **Sarajevo**.\n6.  **Bulgaria**: Sofia\n7.  **Croatia**: Zagreb\n8.  **"
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 1123,
+   "tps": 88,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty, thirty-one, thirty-two, thirty-three, thirty-four, thirty-five, thirty-six, thirty-seven, thirty-eight, thirty-nine, forty, forty-one, forty-two, forty-three, forty-four, forty-five, forty-six, forty-seven, forty-eight, forty-nine, fifty, fifty-one, fifty-two, fifty-three, fifty-four, fifty-five, fifty-six, fifty-seven, fifty-eight, fifty-nine, sixty, sixty-one, sixty-two, sixty-three, sixty-four, sixty-five, sixty-six, sixty-seven, sixty-eight, sixty-nine, seventy, seventy-one, seventy-two, seventy-three, seventy-four, seventy-five, seventy-six, seventy-seven, seventy-eight, seventy-nine, eighty, eighty-one, eighty-two, eighty-three, eighty-four, eighty-five, eighty-six, eighty-seven, eighty-eight, eighty-nine, ninety, ninety-one, ninety-two, ninety-three, ninety-four, ninety-five, ninety-six, ninety-seven, ninety-eight, ninety-nine."
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 526,
+   "tps": 100.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty, Twenty-One, Twenty-Two, Twenty-Three, Twenty-Four, Twenty-Five, Twenty-Six, Twenty-Seven, Twenty-Eight, Twenty-Nine, Thirty, Thirty-One, Thirty-Two, Thirty-Three, Thirty-Four, Thirty-Five, Thirty-Six, Thirty-Seventeen, Thirty-Eight, Thirty-Nine, Forty, Forty-One, Forty-Two, Forty-Three, Forty-Four, Forty-Five, Forty-Six, Forty-Seventh, Forty-Eighth, Forty-Ninth, Fiftieth."
+  },
+  {
+   "id": "list-100-numbers",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 1123,
+   "tps": 110.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty, thirty-one, thirty-two, thirty-three, thirty-four, thirty-five, thirty-six, thirty-seven, thirty-eight, thirty-nine, forty, forty-one, forty-two, forty-three, forty-four, forty-five, forty-six, forty-seven, forty-eight, forty-nine, fifty, fifty-one, fifty-two, fifty-three, fifty-four, fifty-five, fifty-six, fifty-seven, fifty-eight, fifty-nine, sixty, sixty-one, sixty-two, sixty-three, sixty-four, sixty-five, sixty-six, sixty-seven, sixty-eight, sixty-nine, seventy, seventy-one, seventy-two, seventy-three, seventy-four, seventy-five, seventy-six, seventy-seven, seventy-eight, seventy-nine, eighty, eighty-one, eighty-two, eighty-three, eighty-four, eighty-five, eighty-six, eighty-seven, eighty-eight, eighty-nine, ninety, ninety-one, ninety-two, ninety-three, ninety-four, ninety-five, ninety-six, ninety-seven, ninety-eight, ninety-nine."
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 37,
+   "tps": 104.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1998年のワールドカップはフランスで開催され、その優勝国はフランスです。"
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 37,
+   "tps": 99.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1998年のワールドカップはフランスで開催され、その優勝国はフランスです。"
+  },
+  {
+   "id": "ja-worldcup",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 38,
+   "tps": 105.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1998年のワールドカップはフランスで開催され、その優勝国はフランスでした。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 84,
+   "tps": 98.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "東京都、大阪府、神奈川県、埼玉県、千葉県、愛知県、福岡県、北海道、新潟県、長野県、静岡県、岐阜県、富山県、石川県、福井県、滋賀県、京都府、兵庫県、奈良県、和歌山県など。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 77,
+   "tps": 96.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "東京、大阪、京都、名古屋、福岡、札幌、横浜、神戸、広島、山口、愛知、新潟、仙台、川崎、千葉、埼玉、長野、北海道、福井、岐阜の都道府県を20個挙げています。"
+  },
+  {
+   "id": "ja-list-cities",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 63,
+   "tps": 103.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "東京、大阪、京都、名古屋、福岡、札幌、横浜、神戸、広島、山口、愛知、新潟、川越、仙台、千葉、埼玉、長野、福井、岐阜、鳥取です。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 1542,
+   "tps": 103.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "ご質問ありがとうございます。\n\n**年次報告書（年度報告書）の書き方について、一般的な企業や組織で広く採用されている「標準的な構成」を以下に示します。**\n\n具体的な業界や目的に合わせて調整が必要なため、この枠組みがベースとなります。\n\n### 1. 基本構成要素\n一般的には以下の 5 つのセクションから成り立っています。\n\n#### ① 概要（Executive Summary）\n*   **内容**: 全報告書の要約。\n*   **目的**: 読者（経営陣や関係者）が数秒で全体を把握できるようにする。\n*   **ポイント**: 最も重要な成果、課題、今後の展望を一言でまとめる。\n\n#### ② 現状分析（Current Situation / KPI）\n*   **内容**: 過去 1〜2 年間の実績データと目標値の比較。\n*   **ポイント**:\n    *   達成率（KPI 達成状況）。\n    *   主要指標（売上、人員、コストなど）の数値。\n    *   グラフや表で視覚的に可視化される。\n\n#### ③ 成果・実績（Achievements / Highlights）\n*   **内容**: 過去に取得した具体的な成功事例や達成した成果。\n*   **ポイント**:\n    *   「何をしたか」を具体的に記述する。\n    *   数値や事例を提示することで、成果の大きさを示す。\n\n#### ④ 課題・改善点（Challenges & Improvements）\n*   **内容**: 達成できなかった部分や、今後の課題。\n*   **ポイント**:\n    *   「なぜ失敗したか」を分析する。\n    *   具体的な改善策と、そのためのアクションプランを示す。\n\n#### ⑤ 将来展望（Future Outlook）\n*   **内容**: 今後 1〜3 ヶ月先の計画や目標。\n*   **ポイント**:\n    *   達成するためのロードマップ。\n    *   必要なリソースやサポートのお願い。\n\n---\n\n### 2. 書き方のコツ・注意点\n\n*   **数値を多用する**：「成果」や「課題」を語る際、具体的な数字（売上額、件数、コスト削減率など）を必ず記載してください。\n*   **事実と評価を区別する**：\n    *   「〇〇が達成された」とは事実です。\n    *   「〇〇の成果は素晴らしい」とは評価です。\n    *   報告書では事実（数値・事例）を基に、その意味で評価・分析を行うのが一般的です。\n*   **結論先行**：読者が最初に知りたい「現状」や「課題」から始めて、詳細な分析や未来の計画へと進む構成が好まれます。\n\n### 3. 例（簡易版）\n\n> **【年次報告書】**\n>\n> *   **概要**: 本年度は売上高 10 億円の目標を達成し、コスト削減率も 5% 向上しました。\n> *   **現状分析**: 主要指標 KPI はすべて超えましたが、人手不足による納期遅延が発生しました。\n> *   **成果・実績**: 新製品 A の販売台数が過去最高となりました。\n> *   **課題・改善点**: 品質管理の徹底が未遂でした。対策として QC チームを強化します。\n> *   **将来展望**: 次年度は売上目標の 10% を超えることを目指し、人手不足解消に集中します。\n\nこの構成をベースに、ご自身の業務内容や目的に合わせて調整していただければ幸いです。何か特定の業界（例：製造業、IT、金融など）や詳細な項目についてさらに知りたい場合は、お知らせください。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 433,
+   "tps": 94.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "年次報告書（年度報告）の書き方について、以下のステップで構成するのが一般的です。\n\n1.  **タイトル**：会社名・部署名＋「年次報告書」または「20XX 年度報告書」と明確に書く。\n2.  **目次**：全体を網羅するよう、重要な項目（経営概況、事業成果、課題、今後の計画など）をリストアップし、ページ番号を付与する。\n3.  **本文の構成**：\n    *   **経営概況**：売上高、利益率などの主要指標を数値で示す。\n    *   **事業活動・成果**：具体的なプロジェクトや施策の結果を詳細に説明する。\n    *   **課題と対策**：現状の問題点とその解決策を提示する。\n    *   **今後の展望**：次の年度に向けた目標やアクションプランを示す。\n4.  **総括・署名**：全体をまとめて最後に「〇〇株式会社（部署名）」でまとめ、氏名と日付を添える。\n\nこの構成であれば、読み手が必要な情報を素早く把握できるため、最も効果的です。"
+  },
+  {
+   "id": "ja-nenji",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 1306,
+   "tps": 91.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "年次報告書（年度報告）の書き方は、**「誰が読んでいるか」「何を伝えたいのか」**によって大きく異なります。一般的に以下のステップで構成するのが最も効果的です。\n\n### 1. 基本構造（標準的な流れ）\n\n*   **タイトル・要約**\n    *   会社名や部署名を明記。\n    *   「今年、何をしたか」「どんな成果があったか」を一言でまとめる。\n*   **現状把握（ここから始まる）**\n    *   現在の状況の概要。\n    *   前年度との比較（変化点）。\n*   **課題・問題点**\n    *   今年、何が不具合や遅れがあったか。\n    *   なぜそれが起きたのか（原因分析）。\n*   **対策・アクションプラン**\n    *   今すぐやるべきこと。\n    *   次年度までの目標設定。\n*   **結論・まとめ**\n    *   最終的なメッセージや次のステップの展望。\n\n---\n\n### 2. 具体的な書き方のポイント（例：営業担当向け）\n\nもし「営業」や「プロジェクト管理」などの分野で使われる場合、以下の要素を盛り込むと説得力が増します。\n\n#### A. 数値化する\n*   「売上は〇〇円増えた」と書くより、「**今年、前年度比 20% 増加し、目標達成率 95%**」と具体的に書くと、読者が一目で理解できます。\n*   グラフやチャート（※PDF や画像として添付する）を入れるのが推奨されます。\n\n#### B. 「なぜ」「どうしたか」を明確に\n*   **原因分析**：なぜ売上が落ちたのか？（競合他社、価格低下、需要不足など）。\n*   **対策内容**：具体的に何をしたのか？（キャンペーン実施、新商品展開、顧客対応改善など）。\n\n#### C. 読者への配慮\n*   経営層向けなら「戦略的意義」「ROI（投資対効果）」を強調。\n*   部下向けなら「具体的なアクションプラン」「次のステップ」を詳しく書く。\n\n---\n\n### 3. 書き方のコツ・避けるべきこと\n\n*   **結論から始める**：読者の目から入ることで、読み手が混乱しません。\n*   **長文は割愛する**：要点だけを残し、詳細は添付資料（PDF）やチャートで補足します。\n*   **「私」ではなく「会社・プロジェクト」**を主語にする\n    *   ❌ 「私は今年、努力した。」\n    *   ✅ 「本プロジェクトでは、〇〇の目標を達成しました。」\n\n### 4. 作成時のチェックリスト\n\n*   [ ] タイトルは明確か？\n*   [ ] 数値（売上、人員、コストなど）が含まれているか？\n*   [ ] 前年度との比較データがあるか？\n*   [ ] 課題と対策がセットになっているか？\n*   [ ] 全体で 3〜5 ページ以内か？\n*   [ ] 添付資料（グラフ、チャートなど）は適切に配置されているか？\n\n**もし「特定の業界や職種（例：IT、製造業、営業）」に合わせて詳細なテンプレートや例文が必要であれば、その分野を指定してください。**"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 64,
+   "tps": 96.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "明月如霜照寒江，清光萬里洗蒼茫；孤影徘徊雲外客，相思入夢夜未央。千年古調風流遠，一輪圓缺寄衷腸。莫道離愁無處訴，清辉滿地共輝煌。"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 94,
+   "tps": 80.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "月光如銀灑滿清冷夜空，它靜默地守望著每一顆沉睡的心靈，將萬里長河染成溫柔的墨色。從古老的青銅器到現代霓虹燈下，這輪明月始終是人類最忠誠的伴侶，在無聲中訴說着關於時間、思念與永恆的古老歌謠。"
+  },
+  {
+   "id": "zh-poem",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 63,
+   "tps": 85.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "月光如練灑滿清輝，它靜默地守望著大地與星辰的交織；那皎潔的身影穿梭在雲層之間，將萬物染上銀白，讓離人心中泛起無限的思緒與懷念。"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 58,
+   "tps": 80.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "台灣著名的夜市包括士林夜市、大稻埕夜市、中正路夜市、信義區夜市、南港夜市等，這些地點以其豐富的美食和熱鬧的氛圍聞名。"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 117,
+   "tps": 77.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "台灣著名的夜市包括士林夜市、大稻埕夜市、中正路夜市、南港島夜市、西門町夜市、北門夜市、三峽夜市、艋舺龍山寺夜市、淡水老街夜市、板橋夜市、新莊夜市、高雄左營夜市、台南安平夜市、台中北屯夜市、新竹竹東夜市、桃園大溪夜市以及嘉義市美食街等。"
+  },
+  {
+   "id": "zh-list",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 69,
+   "tps": 86,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "台灣擁有超過 20 個知名夜市，例如士林夜市、大稻門夜市、員林夜市、西門町夜市以及台北地標夜市等，這些地點均因獨特的風味與熱鬧氛圍而聞名。"
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 180,
+   "tps": 70.6,
+   "source": {
+    "unit": ", 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥",
+    "copies": 2,
+    "kind": "long"
+   },
+   "old": {
+    "shownMax": {
+     "unit": ", 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥",
+     "copies": 2,
+     "kind": "long"
+    },
+    "cut": false
+   },
+   "text": "한국 대표 음식 30 가로는 김치찌개, 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥, 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥입니다."
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 200,
+   "tps": 79.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "한국 대표 음식으로는 김치, 불고기, 된장찌개, 떡볶이, 소면, 감자튀김, 고구마죽, 찌개, 생선구이, 바베큐, 비빔밥, 다진국수, 소주, 떡갈비, 삼겹살, 장어찜, 김치찌개, 된장찌개, 소금면, 감자튀김, 고추장찌개, 찌개, 생선구이, 바베큐, 비빔밥, 다진국수, 소주, 떡갈비, 삼겹살, 장어찜, 김치찌개를 포함하여 총 30 가지의 한국 음식이 있습니다."
+  },
+  {
+   "id": "ko-list",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 297,
+   "tps": 85.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "한국 음식 30 가지는 김치찌개, 불고기, 짬뽕, 소면, 떡볶이, 된장찌개, 감자튀김, 고구마탕, 찌개, 오징어찜, 비빔밥, 스테이크, 치킨, 라면, 파스타, 피자, 샐러드, 튀김, 김밥, 반찬, 소시지, 햄버거, 스치, 드레싱, 소스, 간장, 고추장, 마늘, 양념, 향신료, 채소, 과일, 견과류, 허브, 육수, 국물, 면, 쌀, 밀가루, 고기, 생선, 계란, 파스타, 빵, 음료, 탄산음료, 주스, 차, 커피, 사탕, 초콜릿, 아이스크림, 과자, 간식, 디저트, 반찬, 메인, 소스, 향신료, 채소, 과일, 견과류, 허브, 육수"
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 1,
+   "chars": 497,
+   "tps": 86.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "**인공지능 (AI)** 은 인간의 지능을 모방하거나 초월하는 컴퓨터 시스템의 일종입니다. 구체적으로 다음과 같은 핵심 개념으로 이해할 수 있습니다:\n\n1. **정의**: 인공지능은 인간과 유사한 학습, 추론, 문제 해결 능력을 가진 프로그램이나 시스템을 말합니다.\n2. **주요 유형**:\n   - **지능형 머신러닝 (Machine Learning)**: 데이터를 통해 스스로 패턴을 학습하고 예측하는 기술입니다.\n   - **딥러닝 (Deep Learning)**: 신경망 구조를 기반으로 복잡한 데이터 처리에 특화된 AI 방식입니다.\n   - **자연어 처리 (NLP) 및 컴퓨터 비전**: 텍스트/이미지 이해와 상호작용을 가능하게 하는 분야입니다.\n3. **실제 적용 사례**: 추천 알고리즘, 의료 진단 보조 시스템, 자율주행차, 챗봇 등 다양한 분야에서 활용되고 있습니다.\n\n인공지능은 기술 발전의 핵심 동력으로, 인간의 업무 효율성을 높이고 새로운 혁신을 주도하고 있습니다."
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 2,
+   "chars": 526,
+   "tps": 81.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "인공지능 (AI) 은 인간의 지능을 모방하거나 초월하는 컴퓨터 프로그램과 시스템을 말합니다. 핵심은 **데이터 학습**과 **지능적 의사결정**에 있습니다.\n\n1.  **기본 원리**: AI는 대량의 데이터를 통해 패턴을 배우고, 그 규칙이나 논리를 바탕으로 새로운 상황에 대해 판단하고 행동을 합니다.\n2.  **주요 유형**:\n    *   **머신러닝 (Machine Learning)**: 데이터만 주어도 스스로 학습하여 성능이 향상되는 기술입니다.\n    *   **딥러닝 (Deep Learning)**: 머신러닝의 한 종류로, 신경망 구조를 기반으로 복잡한 패턴을 더 잘 파악하는 기술로, 이미지 인식이나 자연어 처리 등에 널리 쓰입니다.\n3.  **실생활 예시**: 스마트폰 카메라가 얼굴을 인식하거나, 챗봇이 질문을 이해하고 답변하며, 자율주행차가 도로 상황을 판단하는 것 등이 모두 인공지능의 적용 사례입니다.\n\n간단히 말해, AI 는 데이터를 통해 \"학습\"하고, 그 학습된 지능으로 세상을 더 똑똑하게 만드는 기술입니다."
+  },
+  {
+   "id": "ko-explain",
+   "kind": "cjk",
+   "seed": 3,
+   "chars": 400,
+   "tps": 76.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "인공지능 (AI) 은 **지능을 모방하거나 확장하는 기술**입니다. 인간과 유사한 지능을 가진 컴퓨터 시스템을 만들어, 학습, 추론, 문제 해결, 의사결정 등의 작업을 수행합니다.\n\n핵심 개념은 다음과 같습니다:\n\n1.  **학습 능력**: 데이터를 통해 패턴을 배우고 새로운 상황에 적용할 수 있는 능력을 가집니다.\n2.  **자동화 및 확장성**: 반복적이고 복잡한 작업을 자동으로 처리하며, 필요에 따라 규모를 조절할 수 있습니다.\n3.  **다양한 분야**: 자연어 이해 (챗봇), 이미지/영상 인식, 데이터 분석, 의료 진단 등 다양한 분야에서 활용됩니다.\n\nAI 는 단순한 알고리즘을 넘어, 인간의 지능을 모방하거나 보완하는 도구로 발전하고 있으며, 현재는 일상생활에서 점점 더 깊숙이 통합되고 있습니다."
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 2087,
+   "tps": 95.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "פוטוסינתזה היא תהליך כימי-ביולוגי שבו חורש (חלבונים) מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך מתרחש בתוך המוחות של החורשים, כאשר הם מקבלים אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים.\n\nבפוטוסינתזה, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\". במהלך המעבר הזה, החורש מקבל אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים. לאחר מכן, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\".\n\nבפוטוסינתזה, החורש מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך מתרחש בתוך המוחות של החורשים, כאשר הם מקבלים אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים.\n\nבפוטוסינתזה, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\". במהלך המעבר הזה, החורש מקבל אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים. לאחר מכן, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\".\n\nבפוטוסינתזה, החורש מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך מתרחש בתוך המוחות של החורשים, כאשר הם מקבלים אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים.\n\nבפוטוסינתזה, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\". במהלך המעבר הזה, החורש מקבל אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים. לאחר מכן, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\".\n\nבפוטוסינתזה, החורש מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך מתרחש בתוך המוחות של החורשים, כאשר הם מקבלים אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים.\n\nבפוטוסינתזה, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\". במהלך המעבר הזה, החורש מקבל אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים. לאחר מכן, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\".\n\nבפוטוסינתזה, החורש מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך מתרחש בתוך המוחות של החורשים, כאשר הם מקבלים אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או ממגנים חיצוניים.\n\nבפוטוסינתזה, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\". במהלך המעבר הזה, החורש מקבל אנרגיה מהאנרגיה האלקטרומגנטית (כמו השמש) או"
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 1028,
+   "tps": 94.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "**פוטוסינתזה** היא תהליך חיוני בביולוגיה שבו הצמחים (ובחלקם גם חיידים וקודרנים) מייצרים סוכר (גלוקוז) באמצעות קשר בין **אור** לבין **מים**.\n\nהנה הפירוט המפורט של התהליך:\n\n1.  **התנאים הנדרשים:**\n    *   צורך באור חזק (סולאריות).\n    *   קיבוע מים (חמצן) מהאוויר.\n    *   קיימות תאי פוטוסינתזה בתוך העלים של הצמח.\n\n2.  **המיקום:** התהליך מתרחש בעיקר בתאים שנקראים **תאים פוטוסינתטיים** (למשל, בתאי העלים).\n\n3.  **הרכב המוצרים:**\n    *   **מוצר ראשי:** סוכר גלוקוז (או מולקולה דומה) – זוהי \"חלבון\" של הצמח שיכול להשתמש במזון או ליצור חלבונים.\n    *   **מוצר שני:** חמצן ($O_2$).\n\n4.  **התהליך הפיזיקלי (כמה אנרגיה נדרשת):**\n    *   הצמח צורך אנרגיה כדי להפוך את המים והאוויר למוצרי התגובה.\n    *   האנרגיה הנדרשת מגיעה **בדרך כלל מהאור** שמש על העלים.\n\n5.  **התוצאה הסופית:**\n    *   הצמח מקבל \"זכוכיות\" (סוכר) להצמיחה, גדילה וייצור חלבונים.\n    *   חמצן נפלט לאוויר כנפוץ, מה שיוצר את האטמוספירה שלנו.\n\n**לסיכום:** פוטוסינתזה היא הדרך היחידה שבה הצמחים \"מאכלים\" את השמש ומייצרים מזון עבור עצמם, תוך כדי הפקת חמצן לשימוש בחייתיים."
+  },
+  {
+   "id": "he-explain",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 824,
+   "tps": 95.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "**פוטוסינתזה** היא תהליך ביולוגי שבו חלקיקים אוריים (אנרגיה) מופעלים על ידי צמחים, יבולים וצורות חיידקיות כדי להוציא את החומר המרכיב של הגוף שלהם.\n\nהתהליך מתרחש בשני שלבים עיקריים:\n\n1.  **ספיגת אור:** הצומח מוקף באור חזותי (למשל, השמיים). האנרגיה הזו נכנסת לאטמוספירה ומגיעה לפרוטונים בתוך הגוף של הצמח.\n2.  **אבולוציה וייצור:** בעזרת אנרגיית האור, הצומח \"מאבל\" את החומר המרכיב שלו – חמצן (O₂), אטומים אלקטרונים (e⁻) וחנקן (N).\n3.  **יצירת חלבון:** לאחר מכן, הצומח משתמש בחומרים אלו כדי לבנות חלבונים חדשים.\n\n**המסקנה המרכזית:**\nפוטוסינתזה היא הדרך שבה הצמחים \"מאכלים\" את האור והופכים אותו לחומר חי (כמו חלבון), בעוד שהתוצאה השנייה של התהליך היא **חמצן**, שהוא מה שמנשום אנשים ובעלי חיים.\n\n**לסיכום:**\n*   **מקור האנרגיה:** אור.\n*   **המוצר הראשי:** חלבון (בניית צומחים).\n*   **המוצר השני:** חמצן (נשמה של בעלי חיים וצמחים)."
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 155,
+   "tps": 96,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "בדיעבד אין לי גישה לרשימות מודרניות או עדכניות של 30 ערים בישראל, אך אני יכול לספק לך רשימה של ערים נחשקיות בלבן (כמו תל אביב, חיפה, ירושלים וכו') אם תרצה."
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 417,
+   "tps": 82.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "הנה 30 ערים בישראל: אשדוד, תל אביב, ניר, ירושלים, חיפה, תל אביב (לא נפרדת), גבעון, רחובות, שפלה, תל אביב (לא נפרדת), חולון, תל אביב (לא נפרדת), עכו, כרמל, תל אביב (לא נפרדת), ירושלים (לא נפרדת), חיפה (לא נפרדת), גבעון (לא נפרדת), רחובות (לא נפרדת), שפלה (לא נפרדת), עכו (לא נפרדת), כרמל (לא נפרדת).\n\n*הערה: רשימה זו מניחה שהשאלה היא על 30 ערים בודדות, אך ישנם יותר מ-30 ערים בישראל. אם אתה מחפש רשימה של 30 ערים ספציפ"
+  },
+  {
+   "id": "he-list",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 351,
+   "tps": 101,
+   "source": {
+    "unit": ", תל אביב",
+    "copies": 27,
+    "kind": "short"
+   },
+   "old": {
+    "shownMax": {
+     "unit": ", תל אביב",
+     "copies": 3,
+     "kind": "short"
+    },
+    "cut": true
+   },
+   "text": "הנה רשימה של 30 ערים בישראל: תל אביב, חיפה, ניר, ירושלים, תל אביב, גבעון, קריית שמואל, תל אביב, רחובות, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל א"
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 1,
+   "chars": 453,
+   "tps": 109.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "אחד הילדים קטן בשם דניאל נפגש עם דרקון צעיר שחור בעיניים כהות, והוא חושב שהדרקון הוא איום גדול שמכריז עליו להישאר בחוץ. אבל כשהילד ניגש אל הדרקון כדי לשמוע על המסע שלו, הוא נתפס ברגע מפתיע: הדרקון לא רצה ללחום או לחטוך, אלא פשוט נכנס לתוך החולצה של הילד ונשא את אותו חולצתו כמגן מפני האור. \"האם זה לא ייראה מוזר?\" שאל דניאל בפתע, והדרקון רק צחך בעיניים הכהות שלו ואומר: \"לא, כי אני לא רוצה להרוס את המציאות שלך.\" וזה הפתיע את הילד עד שהוא פשוט נשאר עם ה"
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 2,
+   "chars": 371,
+   "tps": 112.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "הילדה שרה לדרקון הגדול והחזק שהגיע למשפחתה כדי להציל אותה מהמכונת המוות, אך כשהדרקון נראה מוכן לעשות זאת, הוא מתעלם ומאפשר את המכונה להתחיל. ברגע שזה קרה, הדרקון השתחרר ופנה כלפי החווה, והילדה חשבה שהיא תמות גם היא, אך במקום זה נראה לה דרקון ענק עם פנים שלמים שמגלה את האמת: שהוא לא הגיע כדי למצוא אותה, אלא כדי ללמד אותה שכל ילד יכול להיות מוכן לעשות כל דבר אם הוא רוצה."
+  },
+  {
+   "id": "he-story",
+   "kind": "hebrew",
+   "seed": 3,
+   "chars": 470,
+   "tps": 115.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "הילד צעיר בשם דניאל נמצא במשכנת חיים קטנה ומתוחזק, אך הוא מתאהב באופי שחור גדול עם עיניים אדומות המציע לו את הדרך ללמוד וליצור. כשהילד מנסה להגיד לו \"אני לא רוצה להיות חסר\", הדרקון נשאר קפוא, אך לאחר זמן מה הוא מתחיל לחשוב על עולם שבו הם יחד: דניאל יוכל ללמד את הדרקון טכנולוגיה חדשה בעוד הדרקון יעזור לו להבין את העולם. ברגע שהם נמצאים יחד, הילד מביט בדרקון ומראה לו את האהבה שלו, והדרקון מתחיל לחשוב על עולם שבו הם יחד: דניאל יוכל ללמד את הדרקון טכנולוגיה חדשה בעוד הד"
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 34,
+   "tps": 132.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Hello! How can I assist you today?"
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 34,
+   "tps": 130.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Hello! How can I assist you today?"
+  },
+  {
+   "id": "short-hi",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 34,
+   "tps": 132.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Hello! How can I assist you today?"
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 75,
+   "tps": 128.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I am ready to help with any questions you have. How can I assist you today?"
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 67,
+   "tps": 122.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I am ready to help with your questions. How can I assist you today?"
+  },
+  {
+   "id": "short-ok",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 84,
+   "tps": 120.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I am ready to help with any questions or tasks you have. How can I assist you today?"
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 354,
+   "tps": 124.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The user's input \"?\", which is a single character representing an unknown symbol, does not provide enough context to determine its meaning without further information. I cannot answer this specific query as it lacks sufficient detail to proceed accurately. Please provide more details about what you are asking or referring to so I can assist you better."
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 256,
+   "tps": 117.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I am an AI and cannot provide medical advice, but if you are experiencing thoughts of self-harm, please reach out to a trusted person or contact a crisis line immediately. If you need immediate assistance, dial 911 in the US or your local emergency number."
+  },
+  {
+   "id": "short-q",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 76,
+   "tps": 129.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I am ready to help with any questions you have. What would you like to know?"
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 133,
+   "tps": 110.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "More is needed for more information about your specific needs; please specify what topic or detail you would like me to elaborate on."
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 354,
+   "tps": 119.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The user is asking for more information about a specific topic that was previously discussed but not detailed enough. To provide a helpful response, I need to know what \"more\" refers to—whether it's additional details on a previous answer, clarification of a concept, or expansion on an idea they had in mind. Could you please specify the subject matter?"
+  },
+  {
+   "id": "short-more",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 311,
+   "tps": 125.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The user's message \"more\" is ambiguous without context; it could refer to additional information about a previous topic, more details on a specific subject, or simply an expression of interest in expanding the conversation. To provide a helpful response, I would need to know what you are asking for more about."
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 233,
+   "tps": 116.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I cannot complete this thought because the previous context was missing; I only have the phrase \"and then\" without any prior information to build upon. Please provide more details about what happened before so I can help you further."
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 204,
+   "tps": 128,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The user's message \"and then\" is incomplete and does not provide enough context to determine what specific action they want me to perform next. Please clarify your request so I can assist you effectively."
+  },
+  {
+   "id": "short-and",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 174,
+   "tps": 113.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The user's message \"and then\" is incomplete and does not provide enough context to determine what they want next. Please clarify your request so I can assist you effectively."
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 1,
+   "chars": 29,
+   "tps": 131.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "はい、お役に立てます。何かお手伝いできることはありますか？"
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 2,
+   "chars": 41,
+   "tps": 129.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "はい、お答えします。何かお手伝いできることがありましたら、お気軽にお尋ねください。"
+  },
+  {
+   "id": "short-yes-ja",
+   "kind": "low-info",
+   "seed": 3,
+   "chars": 28,
+   "tps": 114.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "はい、お答えします。何かお手伝いできることはありますか？"
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 3361,
+   "tps": 68.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "One night, a massive storm rolled in that had no name. The sky turned a bruised purple, and the wind began to howl like a dying beast. Elias's boots slipped on the wet stone as he reached the top lantern room. The salt spray was so thick it fogged his glasses instantly, turning his vision into a blur of gray mist.\n\nHe grabbed the heavy brass lamp from its iron stand and held it up against the darkening sky. Inside, the wick flickered with a dying blue flame, casting a single, trembling beam of light that cut through the chaos below. It was not enough to see the waves crashing against the rocks or to spot a ship in distress drifting toward the cliffs.\n\nA sudden gust tore the canvas awning off the lantern room, sending it spiraling down like a broken kite. The wind howled through the open doorway, rattling the glass panes and shaking Elias's hands. He stumbled back into the main tower, his heart hammering against his ribs like a trapped bird.\n\nHe ran to the small wooden desk in the corner where he kept his logbook and a heavy iron wrench. His fingers trembled as he reached for the pen. The storm was too violent; the wind was tearing at the roof's shingles with a sound that sounded like screaming metal. He needed to write, but his hand wouldn't cooperate.\n\nHe grabbed the wrench instead, his knuckles white as he tightened the screw on the lamp's base. With a final, desperate yank, the brass lamp swung wildly in the air before settling back into its place. The beam flared brightly for a moment, then dimmed to a steady, reliable glow. Elias slumped against the desk, breathing heavily, watching the storm batter the tower.\n\nHours passed. The wind died down just as quickly as it had started. The purple sky slowly faded into a gray morning, and the sea began to calm, its waves lapping gently at the base of the cliffs. Elias sat there for another hour, staring out at the receding water, his mind racing with thoughts of safety, duty, and the sheer absurdity of standing on a crumbling tower while the world below slept.\n\nFinally, he stood up, walked to the window, and looked down one last time before climbing back down the stairs. The path was slick with rain and mud, but as he descended, his legs felt lighter than they had in years. He reached the bottom of the steps just as the first rays of dawn began to pierce the clouds, painting the water in shades of gold and pink.\n\nElias stepped out onto the gravel path below. The lighthouse was dark now, save for a faint, steady light that seemed to pulse against the darkness. A small boat had appeared on the shore nearby, its sails catching the morning breeze as it pulled away from the cliffs. It looked like a tiny speck of life moving toward safety, leaving Elias alone with his thoughts and the towering structure that watched over him.\n\nHe walked back up the stairs, his boots crunching softly against the stones. He didn't need to write anything down; he knew what happened when the storm broke. The lighthouse keeper's job wasn't just to shine light on the world, but to be there when it was darkest and the hardest to see. Elias smiled, a small, tired smile that reached his eyes, and climbed back inside. He turned off the lamp, letting the darkness return, knowing that as long as the beam remained steady in the night, he would never have to look at the horizon alone again."
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 3974,
+   "tps": 98.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The sea watched him back. One night, a massive storm rolled in like a dark, bruised wall, swallowing the horizon in a churning gray fog that smelled of salt and rotting kelp. The light on Elias's tower flickered once, then died completely, leaving only the sound of wind howling through the narrow windows of his small cottage below.\n\nElias sat on the porch, his boots splintered from years of use against the wood. He didn't move for hours, staring at the dark water where a lone fishing boat had vanished into the gloom. The storm was relentless; waves began to batter the pilings of the tower, threatening to knock him over if he stayed too long.\n\nHe remembered his father's story, told in hushed tones during quiet evenings when the wind stopped for just an hour. \"The lighthouse is not a machine, Elias,\" his father had said, his voice rough with age and sorrow. \"It is a promise. If you shine your light, the darkness knows it exists. But if you let it go out because the storm is too loud to see, then the darkness wins.\"\n\nElias looked at the broken lens, then down at the water where the boat's hull was barely visible beneath the churning foam. He realized with a sinking heart that he had been waiting for this moment all night, not just for the light to fail, but for the storm to break so he could return home and tell his wife she hadn't seen him in weeks.\n\nHe stood up slowly, his knees cracking against the cold stone floor of the tower. The wind howled louder now, a deafening scream that rattled the glass panes of his window. He grabbed his heavy lantern from the shelf, the brass handle creaking under his grip. It was heavy, but it felt lighter than the fear weighing him down.\n\nHe climbed the stairs again, not with the reverence he used to feel, but with a desperate need to see what lay beyond the white wall of water. The wind whipped his coat around his face, and the cold bit into his bones, making every step a battle against gravity itself. He reached the top landing, the railing slick with rain and grime.\n\nHe stepped onto the balcony, looking out over the churning sea. The storm was at its peak; the waves were towering ten feet high, crashing against the rocks below in a rhythmic, terrifying drumming that seemed to echo inside his own skull. He could hear the wind tearing through the trees on the cliffside, and he knew that if he stayed here any longer, the tower would crumble under the weight of the elements.\n\nHe turned back toward the cottage, but stopped at the bottom of the stairs. The light was out. The darkness had claimed it. He looked down at his hands; they were trembling, not from cold, but from a profound exhaustion that felt like drowning.\n\nWith a heavy sigh, he descended the steps one by one, leaving the tower behind for just a moment. He walked to the edge of the cliff, where the sea was calmest and the wind died down slightly. He pulled his coat tighter around him, feeling the damp chill seep into his bones. He thought of his wife, waiting in the kitchen with her tea, wondering if he would ever come back.\n\nHe stepped onto the sand below, not looking at the tower anymore. Instead, he looked out toward the open ocean, where a small, solitary bird was flying high above the waves, its wings beating against the wind like tiny, frantic fingers trying to catch the light of day. It was a reminder that even in the darkest moments, there is always something moving forward, something waiting for a chance to take flight.\n\nElias sat on the sand, watching the storm pass slowly over the water. The clouds began to break, revealing patches of blue sky that looked like spilled ink against the gray. He closed his eyes and listened to the wind die down, leaving only the sound of waves lapping at the shore. It was a long night, but as he lay there, listening to the sea breathe in and out, he felt a strange sense of peace settle over him. The tower would stand when it came time for him to return, and so would he."
+  },
+  {
+   "id": "cont-story",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 3465,
+   "tps": 96.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The sea watched him back. One night, a massive storm rolled in like a dark tide, swallowing the horizon in a wall of grey and black. The wind howled with a sound that tore at Elias's throat, rattling his teeth until he could barely speak. He felt the cold seep into his bones, a chill that went straight to his marrow.\n\nHe paused on the landing platform, his boots sinking slightly into the wet sand. The lantern room was dark, save for the faint, dying glow of the oil lamp inside. Elias knew what happened when the wind picked up; he had to climb back down and check the mechanism, but tonight felt different. It wasn't just a storm; it felt like the ocean itself was trying to break through the stone walls.\n\nHe stepped onto the narrow wooden walkway leading to the lantern room. The air grew thin and cold as he ascended the spiral stairs. Every step seemed heavier than the last, the wood groaning under his weight. He reached the top landing and pushed open the heavy iron door. Inside, the oil lamp flickered violently before settling into a steady, amber glow that illuminated the cluttered shelves of tools and the worn leather journal on the desk.\n\nElias sat down heavily at his workbench, his hands trembling slightly as he picked up a small brass wrench. He didn't need to look at the sea anymore; he needed to see if the light was still there. He turned the crank slowly, feeling the smooth resistance of the gears turning against the iron shaft. It clicked with a satisfying *clack* that echoed in the vast, empty room.\n\nThe beam swept across the water below. For a moment, it looked like a golden needle piercing the darkness, but then, as the storm intensified, the light seemed to waver, dimming slightly before flaring back up with renewed intensity. Elias watched the beam dance against the waves, a silent promise that no matter how high the wind or how deep the water, he would remain there.\n\nHe stood up and walked around the desk, his boots crunching on the loose planks of the floorboards. He checked the oil level in the lantern room's reservoir, dipping his hand into the tin to feel its weight before pouring a fresh drop onto the wick. The flame caught instantly, bright and fierce against the gloom.\n\nOutside, the storm had reached its peak. Lightning flashed across the sky in jagged arcs of white light, illuminating the misty sea with electric brilliance. Elias watched the beam cut through the rain, illuminating the spray that danced around it like a silver curtain. He felt a strange sense of peace settle over him, not because the storm was gone, but because he knew what he had to do next.\n\nHe returned to his workbench and picked up his notebook, his pen hovering above the page. The storm seemed to have paused its fury for a moment, allowing him to breathe. He began to write, his hand steady now that the shaking had subsided. He wrote about the lighthouse's history, about the storms he had weathered before, but tonight, as he looked out at the raging sea, he felt a different kind of connection. The light wasn't just for ships; it was a beacon for anyone who needed to find their way home in the dark.\n\nAs the rain began to fall harder, drumming against the glass of the lantern room, Elias leaned back against his chair and closed his eyes. He didn't need to see the storm anymore. The light was on, steady and unyielding, burning through the night with a quiet, persistent fire that no amount of wind could extinguish."
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 415,
+   "tps": 99.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "13. Orange\n14. Peach\n15. Plum\n16. Pomegranate\n17. Quince\n18. Raspberry\n19. Strawberry\n20. Tamarind\n21. Watermelon\n22. Apricot\n23. Blueberry\n24. Cranberry\n25. Guava\n26. Jackfruit\n27. Kiwano (Echo Plant)\n28. Lychee\n29. Mamey Sapote\n30. Nectarine\n31. Olive\n32. Papaya\n33. Persimmon\n34. Pineapple\n35. Passion Fruit\n36. Quince\n37. Rambutan\n38. Rhamnose (Note: This is a fruit, though less common)\n39. Soursop\n40. Tangelo"
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 2739,
+   "tps": 101.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "13. Orange\n14. Papaya\n15. Peach\n16. Pineapple\n17. Plum\n18. Quince\n19. Raspberry\n20. Strawberry\n21. Tamarind\n22. Watermelon\n23. Xigua (Watermelon) - *Note: Often grouped with watermelon, but distinct in some regions.*\n24. Yuzu\n25. Zucchini\n26. Avocado\n27. Coconut\n28. Durian\n29. Fig\n30. Grape\n\n*Correction on previous list to ensure 40 unique fruits:*\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry (Note: Botanically a berry, often included in fruit lists)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawberry\n20. Tamarind\n21. Watermelon\n22. Xigua (Watermelon) - *Note: Often grouped with watermelon, but distinct in some regions.*\n23. Yuzu\n24. Zucchini\n25. Avocado\n26. Coconut\n27. Durian\n28. Fig\n29. Grape\n30. Apple\n\n*Wait, I need to list 40 unique fruits without repeating the ones already in my first attempt (Apple, Banana, Cherry, Date, Elderberry, Fig, Grape, Honeydew, Kiwi, Lemon, Mango, Orange, Papaya, Peach, Pineapple, Plum, Quince, Raspberry, Strawberry, Tamarind, Watermelon).*\n\nLet's restart with a clean list of 40 unique fruits:\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry (Botanical berry)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawberry\n20. Tamarind\n21. Watermelon\n22. Xigua (Watermelon) - *Note: Often grouped with watermelon, but distinct in some regions.*\n23. Yuzu\n24. Zucchini\n25. Avocado\n26. Coconut\n27. Durian\n28. Fig\n29. Grape\n30. Apple\n\n*Correction on previous list to ensure 40 unique fruits:*\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry (Botanical berry)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawberry\n20. Tamarind\n21. Watermelon\n22. Xigua (Watermelon) - *Note: Often grouped with watermelon, but distinct in some regions.*\n23. Yuzu\n24. Zucchini\n25. Avocado\n26. Coconut\n27. Durian\n28. Fig\n29. Grape\n30. Apple\n\n*Wait, I need to list 40 unique fruits without repeating the ones already in my first attempt (Apple, Banana, Cherry, Date, Elderberry, Fig, Grape, Honeydew, Kiwi, Lemon, Mango, Orange, Papaya, Peach, Pineapple, Plum, Quince, Raspberry, Strawberry, Tamarind, Watermelon).*\n\nLet's restart with a clean list of 40 unique fruits:\n1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry (Botanical berry)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawberry\n20. Tamarind\n21. Watermelon\n22. Xigua (Watermelon) - *Note: Often grouped with watermelon, but distinct in some regions.*\n23. Yuzu\n"
+  },
+  {
+   "id": "cont-list",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 224,
+   "tps": 115.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "13. Orange\n14. Papaya\n15. Peach\n16. Plum\n17. Pineapple\n18. Pomegranate\n19. Quince\n20. Rambutan\n21. Strawberry\n22. Tamarind\n23. Watermelon\n24. Xigua (Watermelon)\n25. Yam\n26. Zucchini\n27. Avocado\n28. Coconut\n29. Durian\n30. Fig"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 447,
+   "tps": 109.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "徳川家康の幕府開拓後、東京（江戸）は急速に発展し、日本を統一した「天下り」制度によって全国から人々が流入しました。この時期、町人階級が経済的権力を持ち、町奉行所や商工会議所などの自治体が発足して、都市としての機能が高まりました。\n\nさらに1706年（享祿38年）、徳川家康の長男・家光が死去し、その跡を継ぐ家元が「江戸幕府」に正式に移ったことで、東京は日本史上最大の都市へと成長しました。この時代には、天守閣や浅草寺などの著名な文化施設が完成し、日本の伝統と西洋の技術が融合する繁栄の時代を迎えました。\n\nその後、1868年の戊辰戦争（明治維新）を経て、幕府は廃止され、日本は近代国家へと変革されました。東京はさらに急速に発展し、第二次世界大戦後の高度経済成長期には、東京ドームや東京スカイツリーなどのインフラが完成しました。\n\n現在、東京は日本の首都であり、国際的な大都市として世界的な知名度を有しています。歴史的に見れば、江戸時代から現代まで、東京は日本社会の中心となり続けてきた都市です。"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 134,
+   "tps": 93.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "その後、明治維新により東京は「東京府」となり、さらに大正時代には「東京都」へと名称が変更されました。この時期、東京は西洋の文明を取り入れ、近代都市として発展していきました。第二次世界大戦中は日本軍が占領し、東京は戦後の復興と高度経済成長を支える重要な拠点となりました。"
+  },
+  {
+   "id": "cont-ja",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 123,
+   "tps": 100.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "その後、明治維新により東京は「東京府」に改められ、さらに1872年に「東京市」として成立しました。この時期、西洋の文明が流入し、近代都市としての姿を呈するようになりました。特に大正時代には、東京の発展が加速し、多くの名所や文化施設が誕生しました。"
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 1,
+   "chars": 780,
+   "tps": 110.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Step 3: Add the dissolved yeast mixture to the flour and salt mix, then stir until no lumps remain.\n\nStep 4: Place the dough in a clean bowl, cover it with plastic wrap or a damp cloth, and let it rise for about an hour in a warm place until doubled in size.\n\nStep 5: Preheat your oven to 200°C (400°F) and prepare a baking sheet by greasing it lightly with butter or oil.\n\nStep 6: Punch down the risen dough gently, divide it into two equal portions, and shape each into a smooth ball. Place them on the prepared baking sheets.\n\nStep 7: Let the shaped loaves rest for another 10 minutes to firm up slightly before baking.\n\nStep 8: Bake in the preheated oven for approximately 25-30 minutes, or until the crust is golden brown and the center looks set when you insert a toothpick."
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 2,
+   "chars": 912,
+   "tps": 107.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Step 3: Add the dissolved yeast mixture to the flour and salt mix, then stir until combined.\n\nStep 4: Place the dough in a clean bowl, cover it with plastic wrap or a damp cloth, and let it rise for about an hour (or until doubled in size).\n\nStep 5: Preheat your oven to 200°C (400°F) and prepare a baking sheet by greasing it lightly with butter.\n\nStep 6: Punch down the risen dough gently and shape it into a smooth ball. Place it on the prepared baking sheet, leaving about an inch of space around it.\n\nStep 7: Let the bread rise again for another hour until it puffs up significantly.\n\nStep 8: Preheat your oven rack to the top position so the hot air circulates well.\n\nStep 9: Bake the bread in the preheated oven for about 20-30 minutes, or until it turns golden brown and sounds hollow when tapped on the bottom.\n\nStep 10: Remove from the oven, let it cool slightly on a wire rack before slicing to serve."
+  },
+  {
+   "id": "cont-steps",
+   "kind": "continue",
+   "seed": 3,
+   "chars": 518,
+   "tps": 88.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Step 3: Add the dissolved yeast mixture to the flour and salt mix, then stir until no lumps remain.\n\nStep 4: Place the dough into a clean bowl, cover it with plastic wrap or a damp cloth, and let it rest for about 10 minutes at room temperature before kneading.\n\nStep 5: Knead the dough gently for about 5-7 minutes on a floured surface until it becomes smooth and elastic.\n\nStep 6: Shape the dough into a ball, place it in an oiled bowl, and cover it tightly with plastic wrap or a towel to create a warm environment."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 153,
+   "tps": 121.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Die Regen fällt auf das Dach. Die Regen fällt auf die Straße. Die Regen fällt auf den Fluss. Die Regen fällt auf das Feld. Die Regen fällt auf die Stadt."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 153,
+   "tps": 123.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Der Regen fällt auf das Dach. Der Regen fällt auf die Straße. Der Regen fällt auf den Fluss. Der Regen fällt auf das Feld. Der Regen fällt auf die Stadt."
+  },
+  {
+   "id": "tr-repetitive-en-de",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 260,
+   "tps": 120.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Der Regen fällt auf das Dach. Der Regen fällt auf den Weg. Der Regen fällt über die Brücke. Der Regen fällt auf den Feldweg. Der Regen fällt auf die Stadt.\n\n*(Hinweis: Die Originaltexte enthalten einen kleinen Fehler (\"auf die Brücke\" statt \"auf den Fluss\").)*"
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 70,
+   "tps": 116.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "毎日、起き上がります。\n毎日のように、朝食を食べます。\n毎日のように、仕事に行きます。\n毎日のように、家に帰ります。\n毎日のように、寝ます。"
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 44,
+   "tps": 115.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "毎日、起きる。\n毎日、朝食を食べる。\n毎日、仕事に行く。\n毎日、家に帰る。\n毎日、寝る。"
+  },
+  {
+   "id": "tr-repetitive-en-ja",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 44,
+   "tps": 76.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "毎日、起きる。\n毎日、朝食を食べる。\n毎日、仕事に行う。\n毎日、家に帰る。\n毎日、寝る。"
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 129,
+   "tps": 101.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": true
+   },
+   "text": "Gagnez le fleuve, gagez le fleuve, gagez le fleuve, doucement vers l'abandon. Joyeux, joyeux, joyeux, joyeux, la vie est un rêve."
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 132,
+   "tps": 98.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": true
+   },
+   "text": "Row, row, row votre barque, doucement vers le courant. Joyeusement, joyeusement, joyeusement, joyeusement, la vie est juste un rêve."
+  },
+  {
+   "id": "tr-song-fr",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 110,
+   "tps": 104.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Row, row, row votre barque, doucement vers le courant.  \nMerry, merry, merry, merry, la vie est juste un rêve."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 1,
+   "chars": 65,
+   "tps": 97.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I love the sea. I love the sun. I love the sand. I love the wind."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 2,
+   "chars": 65,
+   "tps": 90.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I love the sea. I love the sun. I love the sand. I love the wind."
+  },
+  {
+   "id": "tr-he-en",
+   "kind": "translation",
+   "seed": 3,
+   "chars": 65,
+   "tps": 104.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I love the sea. I love the sun. I love the sand. I love the wind."
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 1,
+   "chars": 1285,
+   "tps": 102.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "```json\n[\n  {\"id\": \"1\", \"name\": \"Alice Smith\", \"email\": \"alice@example.com\", \"age\": 30},\n  {\"id\": \"2\", \"name\": \"Bob Jones\", \"email\": \"bob@example.com\", \"age\": 25},\n  {\"id\": \"3\", \"name\": \"Carol White\", \"email\": \"carol@example.com\", \"age\": 42},\n  {\"id\": \"4\", \"name\": \"David Brown\", \"email\": \"david@example.com\", \"age\": 19},\n  {\"id\": \"5\", \"name\": \"Eve Davis\", \"email\": \"eve@example.com\", \"age\": 38},\n  {\"id\": \"6\", \"name\": \"Frank Miller\", \"email\": \"frank@example.com\", \"age\": 27},\n  {\"id\": \"7\", \"name\": \"Grace Lee\", \"email\": \"grace@example.com\", \"age\": 55},\n  {\"id\": \"8\", \"name\": \"Henry Wilson\", \"email\": \"henry@example.com\", \"age\": 31},\n  {\"id\": \"9\", \"name\": \"Ivy Taylor\", \"email\": \"ivy@example.com\", \"age\": 24},\n  {\"id\": \"10\", \"name\": \"Jack Anderson\", \"email\": \"jack@example.com\", \"age\": 45},\n  {\"id\": \"11\", \"name\": \"Karen Thomas\", \"email\": \"karen@example.com\", \"age\": 33},\n  {\"id\": \"12\", \"name\": \"Leo Jackson\", \"email\": \"leo@example.com\", \"age\": 29},\n  {\"id\": \"13\", \"name\": \"Mia Harris\", \"email\": \"mia@example.com\", \"age\": 40},\n  {\"id\": \"14\", \"name\": \"Nathan Martin\", \"email\": \"nathan@example.com\", \"age\": 26},\n  {\"id\": \"15\", \"name\": \"Olivia Garcia\", \"email\": \"olivia@example.com\", \"age\": 37},\n  {\"id\": \"16\", \"name\": \"Paul Martinez\", \"email\": \"paul@example.com\", \"age\": 48},\n  {\"id\": \"1"
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 2,
+   "chars": 1230,
+   "tps": 100.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "```json\n[\n  {\"id\": \"U001\", \"name\": \"Alice Smith\", \"email\": \"alice@example.com\", \"age\": 28},\n  {\"id\": \"U002\", \"name\": \"Bob Johnson\", \"email\": \"bob.j@example.com\", \"age\": 34},\n  {\"id\": \"U003\", \"name\": \"Carol White\", \"email\": \"carol.w@example.com\", \"age\": 29},\n  {\"id\": \"U004\", \"name\": \"David Brown\", \"email\": \"david.brown@example.com\", \"age\": 31},\n  {\"id\": \"U005\", \"name\": \"Eve Davis\", \"email\": \"eve.d@example.com\", \"age\": 26},\n  {\"id\": \"U006\", \"name\": \"Frank Miller\", \"email\": \"frank.m@example.com\", \"age\": 38},\n  {\"id\": \"U007\", \"name\": \"Grace Lee\", \"email\": \"grace.lee@example.com\", \"age\": 25},\n  {\"id\": \"U008\", \"name\": \"Henry Wilson\", \"email\": \"henry.w@example.com\", \"age\": 41},\n  {\"id\": \"U009\", \"name\": \"Iris Taylor\", \"email\": \"iris.taylor@example.com\", \"age\": 32},\n  {\"id\": \"U010\", \"name\": \"Jack Anderson\", \"email\": \"jack.anderson@example.com\", \"age\": 27},\n  {\"id\": \"U011\", \"name\": \"Karen Thomas\", \"email\": \"karen.t@example.com\", \"age\": 35},\n  {\"id\": \"U012\", \"name\": \"Leo Jackson\", \"email\": \"leo.jackson@example.com\", \"age\": 40},\n  {\"id\": \"U013\", \"name\": \"Mia Harris\", \"email\": \"mia.h@example.com\", \"age\": 29},\n  {\"id\": \"U014\", \"name\": \"Noah Martin\", \"email\": \"noah.martin@example.com\", \"age\": 33},\n  {\"id\": \"U015\", \"name\": \"Ol"
+  },
+  {
+   "id": "json-users",
+   "kind": "json",
+   "seed": 3,
+   "chars": 1235,
+   "tps": 98.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "```json\n[\n  {\"id\": \"1\", \"name\": \"Alice Johnson\", \"email\": \"alice@example.com\", \"age\": 34},\n  {\"id\": \"2\", \"name\": \"Bob Smith\", \"email\": \"bob.smith@test.org\", \"age\": 29},\n  {\"id\": \"3\", \"name\": \"Charlie Brown\", \"email\": \"charlie.b@example.net\", \"age\": 45},\n  {\"id\": \"4\", \"name\": \"Diana Prince\", \"email\": \"diana@secret.com\", \"age\": 27},\n  {\"id\": \"5\", \"name\": \"Evan Wright\", \"email\": \"evan.wright@mail.io\", \"age\": 31},\n  {\"id\": \"6\", \"name\": \"Fiona Gallagher\", \"email\": \"fiona.g@domain.co.uk\", \"age\": 42},\n  {\"id\": \"7\", \"name\": \"George Martin\", \"email\": \"george.martin@biz.com\", \"age\": 58},\n  {\"id\": \"8\", \"name\": \"Hannah Lee\", \"email\": \"hannah.lee@example.org\", \"age\": 23},\n  {\"id\": \"9\", \"name\": \"Ian Malcolm\", \"email\": \"ian.m@science.edu\", \"age\": 47},\n  {\"id\": \"10\", \"name\": \"Julia Roberts\", \"email\": \"julia.r@film.com\", \"age\": 52},\n  {\"id\": \"11\", \"name\": \"Kevin Hart\", \"email\": \"kevin.hart@gig.com\", \"age\": 36},\n  {\"id\": \"12\", \"name\": \"Laura Bush\", \"email\": \"laura.b@president.gov\", \"age\": 70},\n  {\"id\": \"13\", \"name\": \"Michael Scott\", \"email\": \"michael.s@office.com\", \"age\": 49},\n  {\"id\": \"14\", \"name\": \"Nina Simone\", \"email\": \"nina.s@art.org\", \"age\": 67},\n  {\"id\": \"15\", \"name\": \"Oprah Winfrey\", \"email\": \"oprah.w@media.com\", \"age\": 80},\n"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 1,
+   "chars": 1106,
+   "tps": 100,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "{\n  \"library\": {\n    \"total_books\": 10,\n    \"books\": [\n      {\"title\": \"The Great Gatsby\", \"author\": \"F. Scott Fitzgerald\", \"year\": 1925, \"genres\": [\"Classic Literature\"]},\n      {\"title\": \"To Kill a Mockingbird\", \"author\": \"Harper Lee\", \"year\": 1960, \"genres\": [\"Literary Fiction\"]},\n      {\"title\": \"1984\", \"author\": \"George Orwell\", \"year\": 1949, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"Pride and Prejudice\", \"author\": \"Jane Austen\", \"year\": 1813, \"genres\": [\"Romance\"]},\n      {\"title\": \"The Catcher in the Rye\", \"author\": \"J.D. Salinger\", \"year\": 1951, \"genres\": [\"Coming-of-Age\"]},\n      {\"title\": \"Brave New World\", \"author\": \"Aldous Huxley\", \"year\": 1932, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"The Hobbit\", \"author\": \"J.R.R. Tolkien\", \"year\": 1937, \"genres\": [\"Fantasy\"]},\n      {\"title\": \"Animal Farm\", \"author\": \"George Orwell\", \"year\": 1945, \"genres\": [\"Political Fiction\"]},\n      {\"title\": \"The Odyssey\", \"author\": \"Homer\", \"year\": 800 BC, \"genres\": [\"Epic Poetry\"]},\n      {\"title\": \"War and Peace\", \"author\": \"Leo Tolstoy\", \"year\": 1869, \"genres\": [\"Historical Fiction\"]}\n    ]\n  }\n}"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 2,
+   "chars": 1073,
+   "tps": 102.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "```json\n{\n  \"library\": {\n    \"books\": [\n      {\"title\": \"The Great Gatsby\", \"author\": \"F. Scott Fitzgerald\", \"year\": 1925, \"genres\": [\"Literature\"]},\n      {\"title\": \"To Kill a Mockingbird\", \"author\": \"Harper Lee\", \"year\": 1960, \"genres\": [\"Literature\"]},\n      {\"title\": \"1984\", \"author\": \"George Orwell\", \"year\": 1949, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"Pride and Prejudice\", \"author\": \"Jane Austen\", \"year\": 1813, \"genres\": [\"Romance\"]},\n      {\"title\": \"The Catcher in the Rye\", \"author\": \"J.D. Salinger\", \"year\": 1951, \"genres\": [\"Literature\"]},\n      {\"title\": \"Brave New World\", \"author\": \"Aldous Huxley\", \"year\": 1932, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"The Hobbit\", \"author\": \"J.R.R. Tolkien\", \"year\": 1937, \"genres\": [\"Fantasy\"]},\n      {\"title\": \"Animal Farm\", \"author\": \"George Orwell\", \"year\": 1945, \"genres\": [\"Fiction\"]},\n      {\"title\": \"The Lord of the Rings\", \"author\": \"J.R.R. Tolkien\", \"year\": 1954, \"genres\": [\"Fantasy\"]},\n      {\"title\": \"Moby Dick\", \"author\": \"Herman Melville\", \"year\": 1851, \"genres\": [\"Literature\"]}\n    ]\n  }\n}\n```"
+  },
+  {
+   "id": "json-schema",
+   "kind": "json",
+   "seed": 3,
+   "chars": 1086,
+   "tps": 102.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "```json\n{\n  \"library\": {\n    \"books\": [\n      {\"title\": \"The Great Gatsby\", \"author\": \"F. Scott Fitzgerald\", \"year\": 1925, \"genres\": [\"Classic Literature\"]},\n      {\"title\": \"To Kill a Mockingbird\", \"author\": \"Harper Lee\", \"year\": 1960, \"genres\": [\"Literary Fiction\"]},\n      {\"title\": \"1984\", \"author\": \"George Orwell\", \"year\": 1949, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"Pride and Prejudice\", \"author\": \"Jane Austen\", \"year\": 1813, \"genres\": [\"Romance\"]},\n      {\"title\": \"The Catcher in the Rye\", \"author\": \"J.D. Salinger\", \"year\": 1951, \"genres\": [\"Literary Fiction\"]},\n      {\"title\": \"Brave New World\", \"author\": \"Aldous Huxley\", \"year\": 1932, \"genres\": [\"Dystopian\"]},\n      {\"title\": \"The Hobbit\", \"author\": \"J.R.R. Tolkien\", \"year\": 1937, \"genres\": [\"Fantasy\"]},\n      {\"title\": \"Animal Farm\", \"author\": \"George Orwell\", \"year\": 1945, \"genres\": [\"Political Fiction\"]},\n      {\"title\": \"The Odyssey\", \"author\": \"Homer\", \"year\": -800, \"genres\": [\"Epic Poetry\"]},\n      {\"title\": \"Moby Dick\", \"author\": \"Herman Melville\", \"year\": 1851, \"genres\": [\"Realism\"]}]\n    }\n  }\n}\n```"
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 1,
+   "chars": 1137,
+   "tps": 102.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Here is the long division of 987654321 by 123:\n\n```text\n          7997140\n        _________\n123 | 987654321\n     861\n      ----\n       1265\n       123\n       ----\n         136\n         123\n         ---\n          130\n          123\n          ---\n           74\n           74\n           --\n             0\n```\n\n**Step-by-step breakdown:**\n1. **Divide**: $98 \\div 123 = 0$ (write 0 in quotient, carry over to make 987).\n2. **Divide**: $987 \\div 123 = 8$. ($123 \\times 8 = 984$). Remainder: $3$. Bring down the next digit (**6**). New number: **36**.\n3. **Divide**: $365 \\div 123 = 2$. ($123 \\times 2 = 246$). Remainder: $119$. Bring down the next digit (**5**). New number: **1195**.\n4. **Divide**: $1195 \\div 123 = 9$. ($123 \\times 9 = 1107$). Remainder: $88$. Bring down the next digit (**4**). New number: **884**.\n5. **Divide**: $884 \\div 123 = 7$. ($123 \\times 7 = 861$). Remainder: $23$. Bring down the next digit (**3**). New number: **233**.\n6. **Divide**: $233 \\div 123 = 1$. ($123 \\times 1 = 123$). Remainder: $110$. Bring down the next digit (**2**). New number: **1102**.\n7. **Divide**: $1102 \\div 123 = 8$. ($123 \\times 8 = 984$)."
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 2,
+   "chars": 969,
+   "tps": 96,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "To divide 987654321 by 123:\n\n1. **Set up the problem**: Place 123 outside and 987654321 inside.\n2. **Divide**: 98 ÷ 123 = 0, so write 0 in the quotient. Bring down 7 to make 976.\n3. **Divide**: 976 ÷ 123 ≈ 7 (since 123 × 7 = 861). Write 7 in the quotient. Subtract: 976 - 861 = 115. Bring down 6 to make 1156.\n4. **Divide**: 1156 ÷ 123 ≈ 9 (since 123 × 9 = 1107). Write 9 in the quotient. Subtract: 1156 - 1107 = 49. Bring down 5 to make 495.\n5. **Divide**: 495 ÷ 123 ≈ 4 (since 123 × 4 = 492). Write 4 in the quotient. Subtract: 495 - 492 = 3. Bring down 4 to make 34.\n6. **Divide**: 34 ÷ 123 = 0. Write 0 in the quotient. Bring down 3 to make 343.\n7. **Divide**: 343 ÷ 123 ≈ 2 (since 123 × 2 = 246). Write 2 in the quotient. Subtract: 343 - 246 = 97. Bring down 2 to make 972.\n8. **Divide**: 972 ÷ 123 ≈ 7 (since 123 × 7 = 861). Write 7 in the quotient. Subtract: 972 - 861 = 111. Bring down 1 to make 1111.\n9. **Divide**: 1111 ÷ 123 ≈ 9 (since 123 × 9 = 1107). Write"
+  },
+  {
+   "id": "math-long-div",
+   "kind": "math",
+   "seed": 3,
+   "chars": 1437,
+   "tps": 109.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "To divide **987654321** by **123**, we perform the long division process digit by digit:\n\n1.  **Step 1:** Place 123 outside and 987 inside. Since 123 is larger than 9, take 987 (the first three digits).\n    *   $987 \\div 123 = 8$ with a remainder of $6$. ($123 \\times 8 = 984$)\n    *   Write **8** in the quotient.\n\n2.  **Step 2:** Bring down the next digit, which is **6**. The number becomes **66**.\n    *   Since 123 is larger than 66, take the next available digits to make it at least as large as 123. Take **987** again (from the original dividend).\n    *   $987 \\div 123 = 8$ with a remainder of $6$. ($123 \\times 8 = 984$)\n    *   Write another **8**.\n\n3.  **Step 3:** Bring down the next digit, which is **5**. The number becomes **65** (from the previous step's remainder). Wait, let's re-evaluate the sequence carefully based on standard long division rules where we append digits to the current partial dividend.\n    *   Current quotient: 8. Remainder after first 987 was 6.\n    *   Bring down **6**: Partial number is 66. Too small. Take next digit **5** (making it 665).\n    *   $665 \\div 123 = 5$ with a remainder of $40$. ($123 \\times 5 = 615$)\n    *   Write **5**.\n\n4.  **Step 4:** Bring down the next digit, which is **4**. The number becomes **404**.\n    *   $404 \\div 123 = 3$ with a remainder of $75$. ($123 \\times 3 = 369$)\n    *   Write **3**.\n\n5.  **Step 5:** Bring down the next digit, which is **3**. The number"
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 1,
+   "chars": 610,
+   "tps": 119.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Finding all primes below 200 involves testing divisibility by every integer up to the square root of 196 (which is 14). A number is prime if it has no divisors other than 1 and itself. I systematically checked numbers from 2 to 19: only those not divisible by 2, 3, 5, or any primes less than their respective roots qualify. For example, 17 passes all tests (not divisible by 2, 3, 5, or 7), while 18 is even and 19 is prime but fails the test for 4 (divisible by 2). The complete list of these primes includes 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, and 97."
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 2,
+   "chars": 449,
+   "tps": 120,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I cannot list every single prime number below 200 because there are exactly **112** of them, which is a large amount to write out manually without error. Additionally, I do not have access to your specific device or the ability to perform live calculations on it.\n\nHowever, if you need help verifying a specific list or understanding the method used to find primes (checking divisibility by all integers up to their square root), please let me know!"
+  },
+  {
+   "id": "math-primes",
+   "kind": "math",
+   "seed": 3,
+   "chars": 538,
+   "tps": 105.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I cannot list every single prime number below 200 because there are **113** of them, which is a large amount to write out manually without errors. However, I can provide the first few hundred primes (e.g., 2, 3, 5, ..., 199) and explain my checking method:\n\nI checked each number by testing divisibility only up to its square root. For any candidate $n$, if it is divisible by any integer between 2 and $\\sqrt{n}$, it is not prime; otherwise, it is prime. This ensures I didn't miss any composites or falsely declare a composite as prime."
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 1,
+   "chars": 371,
+   "tps": 110.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Starting with 0, we add terms one by one: 1 (sum=1), 2 (sum=3), 3 (sum=6), 4 (sum=10), 5 (sum=15), 6 (sum=21), 7 (sum=28), 8 (sum=36), 9 (sum=45), 10 (sum=55). Continuing this process, the sequence of partial sums is: 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 90, 102, 115, 129, 144, 159, 175, 191, 208, 225, 243, 261, 280, 300, 321, 343, 366, 390, 415, 441, 468, 495."
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 2,
+   "chars": 83,
+   "tps": 103.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1 = 1  \n1+2 = 3  \n3+3 = 6  \n6+4 = 10  \n10+5 = 15  \n...  \n97+48 = 145  \n145+49 = 194"
+  },
+  {
+   "id": "math-series",
+   "kind": "math",
+   "seed": 3,
+   "chars": 83,
+   "tps": 98,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1 = 1  \n1+2 = 3  \n3+3 = 6  \n6+4 = 10  \n10+5 = 15  \n...  \n98+49 = 147  \n147+50 = 197"
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 1,
+   "chars": 382,
+   "tps": 108.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The first 40 Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1342177, 2178309, 3524578, 5702887, 9227465.\n\nEach number is computed by adding the two preceding numbers in the sequence: $F_n = F_{n-1} + F_{n-2}$, starting with $F_1=1$ and $F_2=1$."
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 2,
+   "chars": 392,
+   "tps": 115.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The first 40 Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1342177, 2178309, 3524578, 5702887, 9227465.\n\nEach number is computed by adding the two preceding numbers in the sequence (F(n) = F(n-1) + F(n-2)), starting with the first two values as 1 and 1."
+  },
+  {
+   "id": "math-fib",
+   "kind": "math",
+   "seed": 3,
+   "chars": 382,
+   "tps": 102.7,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The first 40 Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1342177, 2178309, 3524578, 5702887, 9227465.\n\nEach number is computed by adding the two preceding numbers in the sequence: $F_n = F_{n-1} + F_{n-2}$, starting with $F_1=1$ and $F_2=1$."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 1,
+   "chars": 2416,
+   "tps": 107.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The tide comes rolling in, a silver ribbon tight,\nTo wash the shore where salt and sand have met.\nIt whispers low against the pebbled stone,\nA song of ancient time that never stops.\nFrom cliffs to coves, from dunes to rocks so deep,\nThe ocean breathes with every rising and falling sleep.\n\nAbove the waves, the sun begins its climb,\nTo paint the sky in hues of gold and blue.\nIt turns the clouds into a canvas grand,\nWhere shadows dance and light is found.\nThe horizon line becomes a golden bridge,\nConnecting earth to water's endless tide.\n\nThe sea is not just water, it is deep,\nA living thing that holds its breath within.\nIt carries storms in silent, darkened veins,\nAnd brings the calmest moments from the plains.\nWhen winds are still and stars begin to twinkle bright,\nThe waves become a mirror for the night.\n\nI walk upon the sand where sunbeams play,\nA story of the tides that rise and fall away.\nThe fish swim free beneath the surface deep,\nIn currents that have shaped the world we see.\nThey dart like lightning through the darkened sea,\nBefore they vanish into shadows' sleep.\n\nThere are moments when the water turns to glass,\nAnd secrets of the ocean's hidden past.\nIt holds the memories of the whales and seals,\nWho once lived here before the land was made.\nThe coral gardens bloom in vibrant shades,\nA riot of colors that the sun can't hide.\n\nBut sometimes storms arrive with fury wild,\nTo shake the very foundations of the sand.\nThe sky turns gray as clouds begin to gather round,\nAnd rain begins its fall upon the ground.\nThe waves crash high against the rocky wall,\nA roar that shakes the soul from head to tail.\n\nYet even in the storm, there is a peace,\nIn the rhythm of the crashing and the break.\nIt teaches us that nature's power is not just,\nBut also gentle as it can be made.\nThe sea forgives all wrongs with patient grace,\nAnd waits for morning to begin again.\n\nWhen dawn breaks through the misty veil of gray,\nThe sun returns its golden light to day.\nThe waves retreat and leave the shore alone,\nTo let the quiet morning take its turn.\nThe birds return their songs to earth's own tune,\nAs life begins a new and vibrant run.\n\nSo stand upon the beach where salt has kissed your skin,\nAnd listen to the ocean sing again.\nIt is a great and vast and wild and free,\nA force that shapes the world we live within.\nFrom depths of darkness to the light of day,\nThe sea is everywhere, and nowhere else."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 2,
+   "chars": 2145,
+   "tps": 104.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The tide begins to rise in silver sheets,\nA whispering tide that breaks the night's dark sheets.\nIt rolls upon the sand like soft white foam,\nWhere ancient stones and coral roots are home.\nThe sun dips low, a burning coin of gold,\nThat sinks beneath the deep blue ocean floor.\n\nThe waves crash high against the rocky shore,\nA rhythmic drumbeat that the wind has heard.\nThey carry salt and stories from the past,\nOf storms that broke and shores that were not last.\nA gull cries out above the churning foam,\nAs clouds of gray gather on the eastern dome.\n\nThe ocean breathes in deep, slow, eternal sighs,\nReflecting stars that dance across the sky.\nIt is a mirror broken by the moon's cold light,\nWhere fish and whales swim through the silent night.\nNo shore is found where water meets the land,\nBut currents flow around the world of sand.\n\nThe sea is vast, a boundless ocean deep,\nThat holds the secrets of the ancient sleep.\nIt washes away the dust of human feet,\nAnd leaves behind only silence and the sound.\nA child plays in the foam where shadows play,\nWhile whales sing songs that drift upon the day.\n\nThe storm comes fast with thunder rolling low,\nAs clouds collide to make a dark gray bow.\nThe waves turn white as churning glass of ice,\nAnd crash against the cliffs like falling dice.\nBut soon the wind returns and clears the air,\nLeaving only salt and calm in its place.\n\nThe moon rises high above the water's edge,\nGuiding ships that sail upon the tide.\nIt casts a silver path across the dark,\nWhere sailors find their way through night and light.\nThe sea is not just water, but a song,\nThat flows from mountains to the deepest log.\n\nIt teaches patience in its endless flow,\nAnd mercy in its gentle, rolling sound.\nNo stone remains unbroken by the tide,\nNo secret kept within its silent hide.\nFor every rock has been a story told,\nOf storms and seas that have come before.\n\nThe ocean waits for morning's first light ray,\nTo wash away the shadows of the day.\nIt calls to birds with songs of ancient grace,\nAnd wakes the world from sleep in all its place.\nSo let us listen close to waves and foam,\nAs nature's greatest song is sung by home."
+  },
+  {
+   "id": "poem-refrainless",
+   "kind": "creative",
+   "seed": 3,
+   "chars": 2255,
+   "tps": 111.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "The ocean is a vast and ancient song,\nThat hums beneath the shifting sand below;\nIt holds within its depths the secrets deep,\nOf tides that rise and fall like breathing sleep.\nFrom crystal peaks to jagged cliffs of stone,\nWhere waves have crashed against the rocky throne,\nIt carries stories from the distant shore,\nTo bring them back to where the sun has gone.\n\nThe morning brings a silver, misty gleam,\nAs dawn breaks soft upon the water's face;\nA thousand stars reflect in every wave,\nBefore they fade into the morning haze.\nThe fish swim free beneath the surface light,\nWhile seals and whales drift on their silent track,\nAnd birds of iron feathered sing a song,\nOf freedom vast that no land can keep.\n\nThen comes the day when heat begins to rise,\nAs sunbeams pierce through clouds of gray;\nThe water turns a deep, dark blue,\nA mirror for the sky's own shade.\nThe wind becomes a whisper in the air,\nAnd salt spray dances on the salty hair,\nWhile storms approach with thunder and with rain,\nTo wash away the dust of all the day.\n\nThe sea is not just water, but a soul,\nThat knows no end nor any wall to hold;\nIt stretches out beyond the horizon line,\nInto the unknown where nothing grows.\nIt feeds the land that builds its cities tall,\nAnd gives the fish their home and food to eat,\nA living thing that breathes with every beat,\nOf time that flows without a single halt.\n\nThe moon rises high above the darkened sea,\nAnd casts her silver light upon the shore;\nShe paints the waves in gold and pearl so bright,\nThat even shadows seem to dance around.\nThe tide comes in with rhythmic, heavy steps,\nTo wash away the day's hard work and strife,\nThen pulls back with a gentle, soft release,\nLeaving only silence where the wind has gone.\n\nFor every drop of water that you drink,\nIs part of this great, eternal design;\nThe ocean is the heart of Earth's own breath,\nAnd keeps the world from sinking in despair.\nIt teaches patience to the weary traveler,\nThat time is not a line but endless space,\nA boundless sea where all things find their place,\nNo matter how far they may be chased.\n\nSo let your boat ride out upon the deep,\nWhere stars and tides have danced for ages long;\nThe waves will never break against the shore,\nFor in the end, the ocean is the home."
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 1936,
+   "tps": 110.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Aquí tienes 30 frases motivadoras breves para inspirarte:\n\n1. El esfuerzo es el primer paso hacia la victoria.\n2. Cada día que pasas, te acercas un poco más a tu mejor versión.\n3. La duda es solo una sombra en el camino de la luz.\n4. Tu potencial no tiene límites, solo necesitas abrirlos.\n5. Actúa como si ya tuvieras todo lo que necesitas para triunfar.\n6. El éxito no es un destino, sino un viaje que tú controlas.\n7. La paciencia es la clave del progreso constante.\n8. No dejes que el miedo detenga tu ritmo de vida.\n9. Cada pequeño logro construye una base sólida para lo grande.\n10. Confía en ti mismo cuando todo parece imposible.\n11. La resiliencia te permite levantarte cada vez más fuerte.\n12. Tu mente es un campo de batalla donde puedes ganar siempre.\n13. El futuro no está escrito, tú eres quien escribe las palabras.\n14. La disciplina vence a la impaciencia en el camino al éxito.\n15. Cada obstáculo te enseña una lección valiosa para tu crecimiento.\n16. No busques ser perfecto; busca ser mejor que ayer.\n17. Tu voz es poderosa y merece ser escuchada por todos.\n18. La perseverancia transforma lo difícil en algo hermoso.\n19. El éxito no es un premio, sino una consecuencia de la acción.\n20. Confía en tu capacidad para superar cualquier desafío.\n21. Cada día es una oportunidad única para reinventarte.\n22. La valentía es actuar aunque tengas miedo al resultado.\n23. Tu esfuerzo hoy será el regalo más grande de mañana.\n24. No rindas ante la adversidad; usa cada prueba como entrenamiento.\n25. El camino hacia tu meta está lleno de obstáculos, pero tú eres el arquitecto.\n26. La confianza en ti mismo es tu mejor aliada en cualquier situación.\n27. Cada paso que das te acerca más a las estrellas que deseas alcanzar.\n28. La fuerza no nace del miedo, sino de la decisión de avanzar.\n29. Tu historia está por escribirse y tú eres el autor principal.\n30. El futuro es un regalo esperando ser recibido con gratitud y acción."
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 1509,
+   "tps": 94.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. Tu esfuerzo cuenta más que tus resultados.\n2. Cada paso es un ladrillo en tu futuro.\n3. La duda es solo una sombra, no la luz real.\n4. El miedo te detiene, pero el riesgo avanza.\n5. Hoy es el día perfecto para empezar.\n6. Tu voz tiene poder que nadie más entiende.\n7. No dejes que el pasado defina tu futuro.\n8. La resiliencia es la fuerza de levantarte.\n9. Cada error es una lección en camino a ser mejor.\n10. Confía en ti mismo, incluso cuando dices \"no\".\n11. El éxito no viene de todos lados, sino de donde tú estás.\n12. Tu mente puede soportar todo lo que tu cuerpo pueda soportar.\n13. La paciencia es la clave del cambio constante.\n14. No te rindas cuando el camino se vuelve difícil.\n15. Tu talento no está en tenerlo, sino en usarlo bien.\n16. Cada día nuevo es una oportunidad para crecer.\n17. El éxito es un viaje, no un destino final.\n18. Tu valentía es la primera de tus virtudes.\n19. No esperes a estar listo; empieza cuando estés listo.\n20. La perseverancia vence al obstáculo con el tiempo.\n21. Tu potencial es infinito, solo necesitas abrirlo.\n22. El éxito no se ve, se siente en tu alma.\n23. Cada pequeño esfuerzo suma hacia tu gran meta.\n24. No dejes que la inseguridad controle tus decisiones.\n25. La fuerza real surge del trabajo duro diario.\n26. Tu historia está escrita ahora mismo por ti.\n27. El éxito es un regalo, no una deuda que pagar.\n28. No te rindas cuando el camino se vuelve largo.\n29. Tu valentía es la mejor de tus cualidades.\n30. El futuro se construye con cada acción hoy."
+  },
+  {
+   "id": "es-list",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 1982,
+   "tps": 109.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "1. El éxito no es un destino, sino una carrera que tú controlas.  \n2. Cada paso que das hoy te acerca más a tu meta mañana.  \n3. La duda es el enemigo más fuerte de tus sueños.  \n4. Confía en ti mismo; eres la mejor versión de ti misma.  \n5. El miedo no detiene al coraje, solo lo hace más valiente.  \n6. Tu esfuerzo diario es el ladrillo que construye tu futuro.  \n7. No te rindas cuando todo parece perdido; sigue adelante.  \n8. La paciencia es la llave que abre puertas cerradas por siempre.  \n9. Cada pequeño logro es un paso hacia una gran victoria.  \n10. Tu mente puede soñar sin límites, solo necesitas acción.  \n11. El tiempo no te perdonará si lo desperdías en lamentos.  \n12. La resiliencia es la capacidad de levantarte después del caído.  \n13. No busques el camino fácil; busca el camino difícil y valiente.  \n14. Tu voz tiene poder para cambiar las cosas que no puedes controlar.  \n15. El futuro se construye con los ladrillos de hoy, día tras día.  \n16. La ansiedad es un ruido en tu cabeza, no la música de tu alma.  \n17. Cada error te enseña algo más valioso que el éxito inmediato.  \n18. Tu potencial es infinito; solo necesitas empezar a usarlo.  \n19. No dejes que otros definan quién eres ni cómo valgo mi vida.  \n20. La perseverancia es la fuerza que mueve las montañas hacia abajo.  \n21. El cambio constante es el único camino hacia el crecimiento real.  \n22. Tu valor no está en lo que posees, sino en tu capacidad de dar.  \n23. No esperes a tener todo para empezar; empieza con poco y mucho.  \n24. La esperanza es la luz que guía al barco en tormentas oscuras.  \n25. Cada persona tiene un secreto que solo ella misma conoce.  \n26. El éxito no es el final, sino el camino hacia él.  \n27. Tu determinación es tu motor más potente y necesario.  \n28. No dejes que la incertidumbre te paralice; avanza con confianza.  \n29. La valentía no es la ausencia de miedo, sino actuar a pesar de él.  \n30. El viaje hacia tu propósito es tan importante como el destino final."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 1,
+   "chars": 1689,
+   "tps": 106.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "A fotossíntese é o processo pelo qual as plantas convertem luz solar em energia química, transformando dióxido de carbono e água em glicose e oxigênio. Ocorre principalmente nas folhas através de cloroplastos contendo pigmento verde (clorofila). O ciclo básico envolve três etapas principais: a **fotossíntese luminosa**, onde a luz é capturada por antenas que transferem energia para o centro de reação, gerando ATP e NADPH; a **fase escura** (ciclo Calvin-Benson), que usa esses produtos para fixar o carbono do CO₂ em açúcares sem necessidade direta de luz; e a **fotofossilatação**, onde elétrons são bombeados através da membrana tilacoidal, criando um gradiente de prótons para produzir ATP via transporte químiosmótico.\n\nExemplos práticos incluem:\n1.  **Folhas verdes**: A cor verde vem da clorofila que absorve luz azul e vermelha, refletindo o verde.\n2.  **Flores coloridas**: Pigmentos acessórios como carotenoides (amarelo/laranja) e xantofilas (laranja) capturam espectros de luz não usados pela clorofila para aumentar a eficiência.\n3.  **Cactos**: Usam mecanismos eficientes para capturar pouca luz em ambientes áridos, acumulando reservas de água e produzindo glicose mesmo com baixa luminosidade.\n4.  **Algas marinhas**: Realizam fotossíntese em águas profundas onde a luz solar não chega, usando pigmentos especializados como ficobilina para capturar luz azul profunda.\n5.  **Cáceres (plantas de sombra)**: Possuem folhas mais largas e menos espinhosas que maximizam a captura de luz difusa em ambientes sombreados.\n\nEssa capacidade permite que a Terra suporte ecossistemas complexos, pois fornece o oxigênio essencial para respiração e sustenta a cadeia alimentar global."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 2,
+   "chars": 1108,
+   "tps": 115,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "A fotossíntese é o processo pelo qual as plantas convertem energia solar em energia química, transformando dióxido de carbono e água em glicose e oxigênio. Ocorre principalmente nos cloroplastos, onde a pigmenta **clorofila** absorve luz do espectro visível (principalmente azul e vermelho).\n\nO processo divide-se em duas fases:\n1.  **Fase luminosa:** A energia solar é capturada pelos pigmentos e convertida em ATP e NADPH, enquanto o oxigênio é liberado como subproduto da quebra da água. Exemplo prático: Em uma planta de tomate sob luz forte, as folhas absorvem a radiação azul (onde os cloroplastos são mais ativos) para sintetizar açúcares rapidamente.\n2.  **Fase escura (Calvin Ciclo):** Usando o ATP e NADPH da fase anterior, a planta fixa o CO₂ em um composto intermedi que se transforma em glicose. Exemplo prático: Em uma planta de palmeira, essa fase é crucial para converter o CO₂ atmosférico em reservas de energia que sustentam toda a árvore.\n\nEssa reação não só produz alimento, mas também libera oxigênio vital para os seres vivos, criando um ciclo interdependente essencial à vida na Terra."
+  },
+  {
+   "id": "pt-explain",
+   "kind": "creative",
+   "seed": 3,
+   "chars": 1193,
+   "tps": 111.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "A fotossíntese é o processo pelo qual as plantas convertem luz solar, água e dióxido de carbono em glicose (açúcar) e oxigênio. Funciona em duas etapas principais: a **fotofosforilação** (captura da energia) e a **Calvin Cycle** (conversão química).\n\nNo início, as moléculas de clorofila absorvem fótons da luz solar, excitando elétrons que passam por uma série de reações químicas na membrana dos cloroplastos. Isso gera ATP (energia química) e NADPH (doador de elétrons), que são usados para transformar CO₂ em glicose.\n\n**Exemplos práticos:**\n1. **Plantas verdes**: Usam a clorofila azul-esverdeada para capturar luz, produzindo oxigênio como subproduto vital.\n2. **Cianobactérias**: Também realizam fotossíntese, mas sem clorofila, usando pigmentos diferentes como ficobilina.\n3. **Algas marinhas**: Realizam fotossíntese em ambientes aquáticos, sendo essenciais para a cadeia alimentar marinha e fixando carbono atmosférico.\n4. **Cactos**: Adaptam-se à seca realizando fotossíntese eficiente mesmo com pouca água disponível, usando mecanismos de conservação hídrica.\n\nEssa reação não apenas sustenta as plantas, mas também oxigena a atmosfera e regula o clima global ao remover CO₂ do ar."
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 1,
+   "chars": 839,
+   "tps": 126.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Voici 30 idées de cadeaux d'anniversaire variées pour vous surprendre : des livres, des objets de cuisine, des jeux de société, des vêtements, des expériences, des produits de beauté, des gadgets, des fleurs, des souvenirs, des courses en ligne, des services, des voyages, des cours, des abonnements, des cadeaux personnalisés, des jeux d'argent, des cadeaux numériques, des cadeaux de la nature, des cadeaux de l'art, des cadeaux de la cuisine, des cadeaux de la mode, des cadeaux de la technologie, des cadeaux de la santé, des cadeaux de l'éducation, des cadeaux de la culture, des cadeaux de la famille, des cadeaux de l'amitié, des cadeaux de l'entreprise, des cadeaux de la ville, des cadeaux de la campagne, des cadeaux de la mer, des cadeaux du désert, des cadeaux de la montagne, des cadeaux de la forêt, des cadeaux de la jungle."
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 2,
+   "chars": 1067,
+   "tps": 92.6,
+   "source": {
+    "unit": "e, des voyages, des massages, des courses alimentaires, des articles de sport, des livres d'histoire, des outils de cuisine, des jouets pour enfants, des accessoires informatiques, des plantes d'intérieur, des cartes postales, des bijoux, des vêtements, des produits cosmétiques, des objets de décoration, des expériences culturelles, des cours de langu",
+    "copies": 2,
+    "kind": "long"
+   },
+   "old": {
+    "shownMax": {
+     "unit": "e, des voyages, des massages, des courses alimentaires, des articles de sport, des livres d'histoire, des outils de cuisine, des jouets pour enfants, des accessoires informatiques, des plantes d'intérieur, des cartes postales, des bijoux, des vêtements, des produits cosmétiques, des objets de décoration, des expériences culturelles, des cours de langu",
+     "copies": 2,
+     "kind": "long"
+    },
+    "cut": false
+   },
+   "text": "Voici 30 idées de cadeaux pour un anniversaire : des livres, des jeux de société, des objets de décoration, des expériences culinaires, des vêtements, des gadgets, des fleurs, des souvenirs, des cours en ligne, des voyages, des massages, des courses alimentaires, des articles de sport, des livres d'histoire, des outils de cuisine, des jouets pour enfants, des accessoires informatiques, des plantes d'intérieur, des cartes postales, des bijoux, des vêtements, des produits cosmétiques, des objets de décoration, des expériences culturelles, des cours de langue, des voyages, des massages, des courses alimentaires, des articles de sport, des livres d'histoire, des outils de cuisine, des jouets pour enfants, des accessoires informatiques, des plantes d'intérieur, des cartes postales, des bijoux, des vêtements, des produits cosmétiques, des objets de décoration, des expériences culturelles, des cours de langue, des voyages, des massages, des courses alimentaires, des articles de sport, des livres d'histoire, des outils de cuisine, des jouets pour enfants, des"
+  },
+  {
+   "id": "fr-list",
+   "kind": "enumeration",
+   "seed": 3,
+   "chars": 982,
+   "tps": 107,
+   "source": {
+    "unit": ", des voyages, des courses alimentaires, des produits ménagers, des jouets pour enfants, des livres d'histoire, des livres de fiction, des jeux vidéo, des cartes postales, des photos, des souvenirs collectés, des objets décoratifs, des plantes, des fleurs, des bijoux, des montres, des clés de voiture, des tickets de cinéma, des billets de concert",
+    "copies": 2,
+    "kind": "long"
+   },
+   "old": {
+    "shownMax": {
+     "unit": ", des voyages, des courses alimentaires, des produits ménagers, des jouets pour enfants, des livres d'histoire, des livres de fiction, des jeux vidéo, des cartes postales, des photos, des souvenirs collectés, des objets décoratifs, des plantes, des fleurs, des bijoux, des montres, des clés de voiture, des tickets de cinéma, des billets de concert",
+     "copies": 2,
+     "kind": "long"
+    },
+    "cut": false
+   },
+   "text": "Voici 30 idées de cadeaux pour un anniversaire : des livres, du vin ou du café, des jeux de société, des vêtements, des gadgets, des expériences, des fleurs, des souvenirs, des objets personnels, des services, des courses en ligne, des abonnements, des films, des concerts, des voyages, des courses alimentaires, des produits ménagers, des jouets pour enfants, des livres d'histoire, des livres de fiction, des jeux vidéo, des cartes postales, des photos, des souvenirs collectés, des objets décoratifs, des plantes, des fleurs, des bijoux, des montres, des clés de voiture, des tickets de cinéma, des billets de concert, des voyages, des courses alimentaires, des produits ménagers, des jouets pour enfants, des livres d'histoire, des livres de fiction, des jeux vidéo, des cartes postales, des photos, des souvenirs collectés, des objets décoratifs, des plantes, des fleurs, des bijoux, des montres, des clés de voiture, des tickets de cinéma, des billets de concert, des voyages,"
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 1,
+   "chars": 129,
+   "tps": 110.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "\"I will study every day.\" \"I will study every day.\" \"I will study every day.\" \"I will study every day.\" \"I will study every day.\""
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 2,
+   "chars": 119,
+   "tps": 115.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I will study every day. I will study every day. I will study every day. I will study every day. I will study every day."
+  },
+  {
+   "id": "ask-repeat5",
+   "kind": "asked-repeat",
+   "seed": 3,
+   "chars": 119,
+   "tps": 116.1,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "I will study every day. I will study every day. I will study every day. I will study every day. I will study every day."
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 1,
+   "chars": 751,
+   "tps": 94.3,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "(Verse 1)\nThe morning light is just a ghost in the room\nI'm standing on the edge of nowhere, looking down\nMy feet are heavy like lead inside my shoes\nBut I can't stop from walking toward the door\n\n(Chorus)\nOh, it's time to leave this place where we belong\nNo more waiting for the sun to rise above\nWe're running out of time and space to stay\nSo let's go find something new today\n\n(Verse 2)\nThe coffee cup is cold and sitting there\nA reminder that I'm not what you need to see\nI've got a story in my pocket full of secrets\nBut the truth is, it's just another lie for me\n\n(Chorus)\nOh, it's time to leave this place where we belong\nNo more waiting for the sun to rise above\nWe're running out of time and space to stay\nSo let's go find something new today"
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 2,
+   "chars": 1060,
+   "tps": 108.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "**Verse 1**\nThe morning light is just a ghost in glass\nI'm standing still while time begins to pass\nMy coffee cup sits heavy on the table\nWaiting for a voice I can't decide\n\n**Chorus**\nOh, wait for me when the silence breaks\nLet the rhythm take what's left of us\nNo more holding back no more pretending\nJust the sound of breathing in the street\n\n**Verse 2**\nThe rain starts falling on my shoulder skin\nI'm counting seconds like they're ticking down\nEvery step I take is a new beginning\nBut sometimes it feels like nothing's happening\n\n**Chorus**\nOh, wait for me when the silence breaks\nLet the rhythm take what's left of us\nNo more holding back no more pretending\nJust the sound of breathing in the street\n\n**Bridge**\nMaybe we're just two shadows dancing on a wall\nTrying to find a way out of this hall\nBut I don't know where the exit is or how\nTo make it through the night without a fall\n\n**Chorus**\nOh, wait for me when the silence breaks\nLet the rhythm take what's left of us\nNo more holding back no more pretending\nJust the sound of breathing in the street"
+  },
+  {
+   "id": "ask-lyrics",
+   "kind": "asked-repeat",
+   "seed": 3,
+   "chars": 1272,
+   "tps": 113.6,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "**Verse 1**\nThe morning light is just a gray haze on my face,\nI'm standing in the hallway, waiting for the space to make.\nMy heart is heavy like a stone I can't shake,\nIt's been too long since someone said they'd take care of me.\n\n**Chorus**\nOh, I need you now, oh, I need you so much more,\nTo hold my hand and say that we are all the same.\nNo matter where the road takes us tonight,\nI'll be right here waiting for your arms to come around.\n\n**Verse 2**\nThe coffee cup is cold against my trembling palms,\nAnother day of silence in this crowded room.\nMy thoughts are racing like a train I can't control,\nBut every time I think about you, the world feels slow.\n\n**Chorus**\nOh, I need you now, oh, I need you so much more,\nTo hold my hand and say that we are all the same.\nNo matter where the road takes us tonight,\nI'll be right here waiting for your arms to come around.\n\n**Bridge**\nMaybe it's just a dream, maybe it's just a wish,\nBut I don't care if you believe or not.\nAs long as you're listening, even if you're silent too,\nWe can find our way home together.\n\n**Chorus**\nOh, I need you now, oh, I need you so much more,\nTo hold my hand and say that we are all the same.\nNo matter where the road takes us tonight,\nI'll be right here waiting for your arms to come around."
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 1,
+   "chars": 207,
+   "tps": 126.2,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people; its Sendai head office was founded in 1962 (Quote: \"It employs three hundred and eighty-two people.\" and \"The Sendai head office was founded in 1962\")."
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 2,
+   "chars": 308,
+   "tps": 126.4,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people; its Sendai head office was founded in 1962. The sentence \"It employs three hundred and eighty-two people\" states the employment number, and the sentence \"The Sendai head office was founded in 1962\" provides the founding date for that specific location."
+  },
+  {
+   "id": "quote-en",
+   "kind": "quote",
+   "seed": 3,
+   "chars": 206,
+   "tps": 109.8,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "Aoba Shoji employs three hundred and eighty-two people; its Sendai head office was founded in 1962 (Document: \"It employs three hundred and eighty-two people... The Sendai head office was founded in 1962\")."
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 1,
+   "chars": 45,
+   "tps": 126.5,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "資料によると、青葉商事の社員数は三百八十二名であり、仙台本社は一九六二年に設立されました。"
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 2,
+   "chars": 38,
+   "tps": 110,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "青葉商事は三百八十二名の社員を抱え、仙台の本社は一九六二年に設立されました。"
+  },
+  {
+   "id": "quote-ja",
+   "kind": "quote",
+   "seed": 3,
+   "chars": 55,
+   "tps": 125.9,
+   "source": null,
+   "old": {
+    "shownMax": null,
+    "cut": false
+   },
+   "text": "青葉商事は三百八十二名の社員を抱え、仙台の本社は一九六二年に、福岡の本社は一九八九年にそれぞれ設立されました。"
+  }
+ ]
+}
