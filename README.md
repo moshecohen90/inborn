@@ -6559,34 +6559,36 @@ with `fixtures/r114-device-answers.json`.
   and said "14. 김치찌개 … 18. 닭고기국" again as 24 to 28 ("돼지국" as 7, 17 and 27). After a comma or semicolon, the
   next number in sequence starts an item. The cut lands right before ", 17.". A retry goes on from the line's last
   number. "chapters 1 and 2. Then…" is not split, because no separator comes before the "2.".
-- **An answer that ran out on a bare list marker ends before it.** The token budget left "…20. אשדוד-המערב\n21" and
-  "5. **Société & Économie**\n-". At the end of the answer, a lone next number or a lone dash line goes. When the list
-  is short of the count the request names, the notice shows, with no retry. A list that reached its count ends
-  quietly. The count is the request's number in any language ("30 idées", "25 Verben", "30가지", "30 ערים"). A final
-  number that is not the next item ("The total is:\n42") stays.
+- **An answer that ran out on a bare list marker ends before it, quietly.** The token budget left
+  "…20. אשדוד-המערב\n21" and "5. **Société & Économie**\n-". At the end of the answer, a lone next number or a lone
+  dash line is trimmed. A budget end is not a loop: there is no loop notice and no retry, even when the list is short
+  of the asked count (math-fib stopped at 27 of 40). The row keeps the engine's own end-of-budget behaviour, and a
+  Continue is the user's. A final number that is not the next item ("The total is:\n42") stays.
 
 Offline replay (`docs/qa/loop-guard-item-heads/replay-r114.txt`), round 113 on main against round 114, no retry, 3 code
 points per chunk.
 
 | Set | Answers | Cut by round 113 | Cut by round 114 | New cuts | Moved cuts | Cuts gone |
 |---|---|---|---|---|---|---|
-| stored stress runs | 1,064 | 97 | 103 | 6 | 5 | 0 |
-| shipped-guard runs | 504 | 44 | 49 | 5 | 2 | 0 |
+| stored stress runs | 1,064 | 97 | 102 | 5 | 5 | 0 |
+| shipped-guard runs | 504 | 44 | 48 | 4 | 2 | 0 |
 | real answers in `docs/qa` | 507 | 14 | 18 | 4 | 2 | 0 |
 | iPhone build 22 | 28 | 5 | 6 | 1 | 0 | 0 |
 | iPhone build 23 | 28 | 3 | 3 | 0 | 0 | 0 |
-| iPhone build 24 | 27 | 0 | 6 | 6 | 0 | 0 |
+| iPhone build 24 | 27 | 0 | 5 | 5 | 0 | 0 |
 
 False cuts: 0. Every new or moved cut is a head listed again: "sein" (build 24, items 1 and 5), "gehen" (web, 3 and 20),
 "haben", "sehen", "zu tun", "Plum" (16 and 17), "Pear", "Zebra", "Octopus (octopuses)", and fr-list's "Un gadget portable
 (smartwatch, bracelet)…" (items 4 and 11). Build 24's he-list is cut before "11. תל אביב-המערב" and its ko-list before
 ", 17. 돼지국"; build 22's ko-list before ", 25. 양파" (item 3 again). Three are bare markers the budget left: math-fib's
-"27" (40 asked) and fr-list try 1's lone "-" go, with the notice. The replay's first pass found one false cut: after-instant ja-nenji #1 cut
+"27" (40 asked, in two sets) and fr-list try 1's lone "-". The replay counted them as cuts; they are now trimmed
+quietly, with no notice, so the table above counts them no more (stored 103 to 102, shipped 49 to 48, build 24 6 to 5). The replay's first pass found one false cut: after-instant ja-nenji #1 cut
 "目次" because two sections' bullet runs, split by the bold numbered title "**2. フォーマット例**", were read as one
 list. Bullet runs now restart at such a title, and the second pass has no cut there.
 
 Red first: 15 of the 26 round-114 tests fail on main 22541224 (every cut test); the 11 keep tests pass there too
-(`red-r114-main-22541224.txt`). No live model run and no device run: the next iPhone build measures it.
+(`red-r114-main-22541224.txt`). The quiet budget end came after: its 4 tests fail on 80c2d922, which showed the
+notice. No live model run and no device run: the next iPhone build measures it.
 
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
