@@ -1,0 +1,133 @@
+| Set | Answers | Cut by round 113 (main) | Cut by round 114 | Both | Only round 114 | Only round 113 | Both, cut moved |
+|---|---|---|---|---|---|---|---|
+| stored | 1064 | 97 | 103 | 97 | 6 | 0 | 5 |
+| shipped107 | 504 | 44 | 49 | 44 | 5 | 0 | 2 |
+| corpus | 507 | 14 | 18 | 14 | 4 | 0 | 2 |
+| iphone22 | 28 | 5 | 6 | 5 | 1 | 0 | 0 |
+| iphone23 | 28 | 3 | 3 | 3 | 0 | 0 | 0 |
+| iphone24 | 27 | 0 | 6 | 0 | 6 | 0 | 0 |
+
+MOVED [stored] after-fast-t0.2.json#list25-verbs-de#1
+      unit x2: "sehen"
+      kept 549/727 (r113 kept 624); kept ends: "** – to sleep\n18. **laufen** – to run\n19. **spielen** – to play\n20. **lernen** – to learn\n"
+      cut starts: "21. **sehen** (again) – to look at / see\n22. **hören** (again) – to listen\n23. **schreiben"
+NEW   [stored] after-fast-t0.2.json#list25-verbs-de#3
+      unit x2: "sehen"
+      kept 385/882; kept ends: "o do/make\n11. **geben** – to give\n12. **nehmen** – to take\n13. **hören** – to hear/listen\n"
+      cut starts: "14. **sehen** (wieder) – to see again/look at\n15. **kommen** (wieder) – come back\n16. **bl"
+NEW   [stored] after-instant-t0.2.json#list25-verbs-de#3
+      unit x2: "zu tun"
+      kept 328/883; kept ends: "(glauben) -> to believe\n7. zu wollen (wollen) -> to want\n8. zu machen (machen) -> to make\n"
+      cut starts: "9. zu tun (tun, tun) -> to do\n10. zu gehen (gehen) -> to go\n11. zu kommen (kommen) -> to c"
+NEW   [stored] before-fast-t0.2.json#list25-verbs-de#3
+      unit x2: "sein"
+      kept 377/982; kept ends: "eiben** – to write\n11. **lesen** – to read\n12. **gehen** – to go\n13. **kommen** – to come\n"
+      cut starts: "14. **sein** (to be) – to exist / to be a person\n15. **haben** (to have) – to possess\n16. "
+MOVED [stored] before-fast.json#list25-verbs-de#2
+      unit x2: "haben"
+      kept 514/847 (r113 kept 810); kept ends: "sen** – to know/knowledge\n14. **mögen** – to like/prefer\n15. **müssen** – to have to/must\n"
+      cut starts: "16. **haben** – to have/belonging\n17. **sind** – are/be (plural)\n18. **ist** – is/one's ex"
+MOVED [stored] before-fast.json#cont-list#2
+      unit x2: "persimmon"
+      kept 232/2694 (r113 kept 796); kept ends: "erry\n23. Tamarind\n24. Watermelon\n25. Yam\n26. Coconut\n27. Lychee\n28. Guava\n29. Pomegranate\n"
+      cut starts: "30. Persimmon (continued) - wait, already listed above. Let's swap for: 29. Tamarind, 30. "
+NEW   [stored] before-fast.json#math-fib#1
+      unit x1: "27"
+      kept 698/700; kept ends: "4. **46368** ($17711+28657$)\n25. **75025** ($28657+46368$)\n26. **121393** ($46368+75025$)\n"
+      cut starts: "27"
+NEW   [stored] before-instant-t0.2.json#cont-list#1
+      unit x2: "plum"
+      kept 42/150; kept ends: "13. Pear\n14. Pineapple\n15. Peach\n16. Plum\n"
+      cut starts: "17. Plum\n18. Quince\n19. Raspberry\n20. Strawberry\n21. Taro\n22. Watermelon\n23. Xylophone\n24."
+MOVED [stored] before-instant.json#list25-verbs-de#3
+      unit x2: "zu tun"
+      kept 336/683 (r113 kept 402); kept ends: "ören (hören)\n10. zu verstehen (verstehen)\n11. zu glauben (glauben)\n12. zu wollen (wollen)\n"
+      cut starts: "13. zu tun (tun - noch einmal für Verben wie 'arbeiten', 'gehen')\n14. zu sprechen (spreche"
+NEW   [stored] before-instant.json#cont-list#2
+      unit x2: "pear"
+      kept 34/206; kept ends: "13. Orange\n14. Pear\n15. Pineapple\n"
+      cut starts: "16. Pear\n17. Peach\n18. Plum\n19. Pomegranate\n20. Red Apple\n21. Strawberry\n22. Tangerine\n23."
+NEW   [shipped107] guard-fast-t0.2.json#list25-verbs-de#3
+      unit x2: "sein"
+      kept 377/982; kept ends: "eiben** – to write\n11. **lesen** – to read\n12. **gehen** – to go\n13. **kommen** – to come\n"
+      cut starts: "14. **sein** (to be) – to exist / to be a person\n15. **haben** (to have) – to possess\n16. "
+NEW   [shipped107] guard-fast.json#list25-verbs-de#2
+      unit x2: "haben"
+      kept 514/1073; kept ends: "sen** – to know/knowledge\n14. **mögen** – to like/prefer\n15. **müssen** – to have to/must\n"
+      cut starts: "16. **haben** – to have/belonging\n17. **sind** – are/be (plural)\n18. **ist** – is/one's ex"
+MOVED [shipped107] guard-fast.json#cont-list#2
+      unit x2: "persimmon"
+      kept 232/2694 (r113 kept 796); kept ends: "erry\n23. Tamarind\n24. Watermelon\n25. Yam\n26. Coconut\n27. Lychee\n28. Guava\n29. Pomegranate\n"
+      cut starts: "30. Persimmon (continued) - wait, already listed above. Let's swap for: 29. Tamarind, 30. "
+NEW   [shipped107] guard-fast.json#math-fib#1
+      unit x1: "27"
+      kept 698/700; kept ends: "4. **46368** ($17711+28657$)\n25. **75025** ($28657+46368$)\n26. **121393** ($46368+75025$)\n"
+      cut starts: "27"
+NEW   [shipped107] guard-instant-t0.2.json#cont-list#1
+      unit x2: "plum"
+      kept 42/150; kept ends: "13. Pear\n14. Pineapple\n15. Peach\n16. Plum\n"
+      cut starts: "17. Plum\n18. Quince\n19. Raspberry\n20. Strawberry\n21. Taro\n22. Watermelon\n23. Xylophone\n24."
+MOVED [shipped107] guard-instant.json#list25-verbs-de#3
+      unit x2: "zu tun"
+      kept 336/968 (r113 kept 402); kept ends: "ören (hören)\n10. zu verstehen (verstehen)\n11. zu glauben (glauben)\n12. zu wollen (wollen)\n"
+      cut starts: "13. zu tun (tun - noch einmal für Verben wie 'arbeiten', 'gehen')\n14. zu sprechen (spreche"
+NEW   [shipped107] guard-instant.json#cont-list#2
+      unit x2: "pear"
+      kept 34/206; kept ends: "13. Orange\n14. Pear\n15. Pineapple\n"
+      cut starts: "16. Pear\n17. Peach\n18. Plum\n19. Pomegranate\n20. Red Apple\n21. Strawberry\n22. Tangerine\n23."
+MOVED [stored] e2e/before-2.json#verbs-de#4
+      unit x2: "sein"
+      kept 483/1330 (r113 kept 880); kept ends: "e that.\n6.\nsollen (to ought to/must/shouldn't): Sie sollen -> She should / They must not.\n"
+      cut starts: "7.\nsein (to exist): Das ist -> That is / This exists.\n8.\nist (is): Es ist -> It is / We ar"
+NEW   [corpus] web-fast-loops/result-list30-rerun.json
+      unit x2: "octopus"
+      kept 345/400; kept ends: "b\n21.\nSea urchin\n22.\nSeaweed polyp\n23.\nSea cucumber\n24.\nJelly\n25.\nNautilus\n26.\nCuttlefish\n"
+      cut starts: "27.\nOctopus (octopuses)\n28.\nSquid (squids)\n29.\nSea bass"
+NEW   [corpus] web-fast-loops/result-list30-rerun.json
+      unit x2: "shark"
+      kept 178/1967; kept ends: "\n7.\nKiller Whales  \n8.\nSea Lion  \n9.\nPenguin  \n10.\nWalrus  \n11.\nHumpback Whale  \n12.\nSeal\n"
+      cut starts: "13.\nShark  \n14.\nDolphin  \n15.\nSea Turtle\n16.\nManatee  \n17.\nClownfish  \n18.\nStarfish  \n19.\n"
+NEW   [corpus] web-fast-loops/result.json
+      unit x2: "gehen"
+      kept 459/593; kept ends: "en – to put (in)\n17.\nstehen – to stand\n18.\nliegen – to lie\n19.\nbleiben – to stay / remain\n"
+      cut starts: "20.\ngehen – to go on a trip\n21.\nkommen – to arrive\n22.\nwissen – to know\n23.\nwollen – to wa"
+MOVED [corpus] web-guard-verify/result.json
+      unit x2: "sein"
+      kept 982/1544 (r113 kept 1024); kept ends: "önnen → be able to\n13.\nbilden → make/become shape\n14.\nmachen → make/make something happen\n"
+      cut starts: "15.\nsein → am/is/are (e.g., seinen Namen)\n16.\nhaben → have/have\n17.\ngeben → give/gives\n18."
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "zebra"
+      kept 117/395; kept ends: "\nBear\n5.\nTiger\n6.\nRhino\n7.\nElephant\n8.\nZebra\n9.\nHippo\n10.\nGazelle\n11.\nBuffalo\n12.\nLeopard\n"
+      cut starts: "13.\nZebra\n14.\nHorse\n15.\nPig\n16.\nDog\n17.\nCat\n18.\nMonkey\n19.\nSnake\n20.\nFrog\n21.\nHummingbird\n"
+MOVED [corpus] web-guard-verify/result.json
+      unit x2: "duck"
+      kept 182/389 (r113 kept 191); kept ends: "\n12.\nRhinoceros\n13.\nWhale\n14.\nDolphin\n15.\nShark\n16.\nTurtle\n17.\nPenguin\n18.\nGoose\n19.\nDuck\n"
+      cut starts: "20.\nDuck\n21.\nCat\n22.\nDog\n23.\nBird\n24.\nFish\n25.\nBear\n26.\nLion\n27.\nTiger\n28.\nHorse\n29.\nGoat\n"
+NEW   [iphone22] ios-device-pass-22/raw/result-l02-ko-list.json
+      unit x2: "양파"
+      kept 210/259; kept ends: ", 14. 고추장, 15. 된장, 16. 간장, 17. 마늘, 18. 시금치, 19. 감자, 20. 오이, 21. 바나나, 22. 배, 23. 토마토, 24. 파"
+      cut starts: ", 25. 양파, 26. 고추, 27. 당근, 28. 수박, 29. 채소, 30. 소고기"
+NEW   [iphone24] ios-device-pass-24/raw/result-l02-fr-list.json
+      unit x2: "un gadget portable"
+      kept 764/1039; kept ends: "collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n"
+      cut starts: "11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements i"
+NEW   [iphone24] ios-device-pass-24/raw/result-l02-he-list.json
+      unit x2: "תל אביב"
+      kept 136/314; kept ends: "שלים\n3. חיפה\n4. ניו יורק\n5. בריאן\n6. פתחזיה\n7. מרכז העירייה\n8. דובדינה\n9. קרפון\n10. אשדוד\n"
+      cut starts: "11. תל אביב-המערב\n12. ירושלים-המערב\n13. חיפה-המערב\n14. ניו יורק-המערב\n15. בריאן-המערב\n16. "
+NEW   [iphone24] ios-device-pass-24/raw/result-l02-ko-list.json
+      unit x2: "돼지국"
+      kept 148/269; kept ends: ". 소고기, 7. 돼지국, 8. 닭고기, 9. 생선, 10. 해산물, 11. 야채, 12. 채소, 13. 두부, 14. 김치찌개, 15. 간장찌개, 16. 고기국"
+      cut starts: ", 17. 돼지국, 18. 닭고기국, 19. 생선국, 20. 해산물국, 21. 야채국, 22. 채소국, 23. 두부국, 24. 김치찌개, 25. 간장찌개, 26."
+NEW   [iphone24] ios-device-pass-24/raw/result-l07-fr-list-1.json
+      unit x1: "-"
+      kept 808/812; kept ends: " - Des cartes d'expériences à faire au hasard (art, jardinage).\n5. **Société & Économie**\n"
+      cut starts: "-"
+NEW   [iphone24] ios-device-pass-24/raw/result-l07-list25-verbs-de-1.json
+      unit x2: "sein"
+      kept 200/514; kept ends: "u besitzen, zu erheben\n3. tun: zu machen, zu erledigen\n4. finden: zu suchen, zu entdecken\n"
+      cut starts: "5. sein: zu führen, zu begleiten\n6. bringen: zu befördern, zu bringen\n7. nehmen: zu tragen"
+NEW   [iphone24] ios-device-pass-24/raw/result-l07-list25-verbs-de-2.json
+      unit x2: "sein"
+      kept 101/187; kept ends: " Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n"
+      cut starts: "5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n"

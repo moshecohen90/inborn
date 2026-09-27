@@ -6552,6 +6552,69 @@ round 113's guard before Moshe tests it. Nothing went to a store.
 
 Evidence: `docs/qa/ios-build-24-2026-09-27.md`, `docs/qa/ios-device-pass-24-2026-09-27.md`, `docs/qa/ios-device-pass-24/`.
 
+## Fixes round 114: an item's head is the item, so a verb listed again with a new gloss is cut (branch `loop-guard-item-heads`) — 27.9.2026
+
+Moshe (27.9): repetition must never reach the screen, not even 3 times. iPhone build 24 on round 113's guard (main
+22541224, list25-verbs-de at Instant 0.7) showed "4. sein (to be)" then "5. sein (to exist/remain)", and in the other
+try "sein: …" as items 1, 5 and 11 and "haben: …" as items 2 and 12. The Fast web run showed "3. gehen – to go" and
+"20. gehen – to go on a trip". Round 113 counted an item with a different note as a new item, and in the "verb: gloss"
+form it compared whole lines. Evidence: `docs/qa/loop-guard-item-heads/`. Tests: `packages/core/test/fixes-r114.test.ts`
+with `fixtures/r114-device-answers.json`.
+
+- **F428 · In an enumeration the head is the item.** The head is the item's words before its first " (", ": ", " – ",
+  " — ", " - ", " → ", ", " or "·", keyed like round 113's item (markers, bold, case, trailing punctuation and "again"
+  words dropped). A head listed again in the same list is cut at its second copy, whatever its gloss or note. This
+  changes round 113's rule: "Dolphin (bottlenose)" and "Dolphin (river)", or "Shark (Great White)" and "Shark (Tiger)",
+  are now one animal twice. Round 112's test for that pair now expects the cut.
+- **A repeat before the list holds five distinct heads waits off screen.** With 5 distinct heads the second copy is cut
+  at once. With fewer it waits off screen for up to 3 more items. A fifth distinct head cuts it: build 24's "5. sein" is
+  cut when "6. bringen" or "6. werden" arrives. A list that does not get there is an answer key: it is shown whole and
+  read as one from then on.
+- **What stays:** answer keys and Yes/No lists, asked repetition, table and data lines, and a user's own list that
+  repeats a head. A head followed by its own sub-list is a category and stays ("1. sein – present" with "- ich bin",
+  then "6. sein – past" with "- ich war"). A repeated head waits off screen until its next line shows whether a sub-list
+  follows. Colons inside references and times do not end a head ("Genesis 1:1", "10:00"). Numbered items and bullets at
+  one indent are separate runs, and a bullet run broken by a numbered title ("**2. フォーマット例**") starts anew.
+- **A number alone on its line takes the next line as its words** ("20.\ngehen – to go on a trip"). Such a list stays
+  one list; round 113 split it into one list per item.
+- **An item that goes on from an earlier one is that item again** (build 24 at 0.2). he-list's items 11 to 20 are
+  items 1 to 10 with "-המערב" glued on, and fr-list's item 11 is item 4 plus "et les événements importants". The rule:
+  an item that starts with an earlier item's whole words (3+ code points, trailing punctuation dropped), followed by a
+  mark, is that item's head. When a space follows, the earlier item must be 3+ words long, so "Whale shark" after "Whale"
+  and "Green tea latte" after "Green tea" stay new items, and so does "Level 10" after "Level 1".
+- **A numbered list on one line is read item by item.** ko-list wrote "1. 간장, 2. 김치, … 29. 생선" on one line
+  and said "14. 김치찌개 … 18. 닭고기국" again as 24 to 28 ("돼지국" as 7, 17 and 27). After a comma or semicolon, the
+  next number in sequence starts an item. The cut lands right before ", 17.". A retry goes on from the line's last
+  number. "chapters 1 and 2. Then…" is not split, because no separator comes before the "2.".
+- **An answer that ran out on a bare list marker ends before it.** The token budget left "…20. אשדוד-המערב\n21" and
+  "5. **Société & Économie**\n-". At the end of the answer, a lone next number or a lone dash line goes. When the list
+  is short of the count the request names, the notice shows, with no retry. A list that reached its count ends
+  quietly. The count is the request's number in any language ("30 idées", "25 Verben", "30가지", "30 ערים"). A final
+  number that is not the next item ("The total is:\n42") stays.
+
+Offline replay (`docs/qa/loop-guard-item-heads/replay-r114.txt`), round 113 on main against round 114, no retry, 3 code
+points per chunk.
+
+| Set | Answers | Cut by round 113 | Cut by round 114 | New cuts | Moved cuts | Cuts gone |
+|---|---|---|---|---|---|---|
+| stored stress runs | 1,064 | 97 | 103 | 6 | 5 | 0 |
+| shipped-guard runs | 504 | 44 | 49 | 5 | 2 | 0 |
+| real answers in `docs/qa` | 507 | 14 | 18 | 4 | 2 | 0 |
+| iPhone build 22 | 28 | 5 | 6 | 1 | 0 | 0 |
+| iPhone build 23 | 28 | 3 | 3 | 0 | 0 | 0 |
+| iPhone build 24 | 27 | 0 | 6 | 6 | 0 | 0 |
+
+False cuts: 0. Every new or moved cut is a head listed again: "sein" (build 24, items 1 and 5), "gehen" (web, 3 and 20),
+"haben", "sehen", "zu tun", "Plum" (16 and 17), "Pear", "Zebra", "Octopus (octopuses)", and fr-list's "Un gadget portable
+(smartwatch, bracelet)…" (items 4 and 11). Build 24's he-list is cut before "11. תל אביב-המערב" and its ko-list before
+", 17. 돼지국"; build 22's ko-list before ", 25. 양파" (item 3 again). Three are bare markers the budget left: math-fib's
+"27" (40 asked) and fr-list try 1's lone "-" go, with the notice. The replay's first pass found one false cut: after-instant ja-nenji #1 cut
+"目次" because two sections' bullet runs, split by the bold numbered title "**2. フォーマット例**", were read as one
+list. Bullet runs now restart at such a title, and the second pass has no cut there.
+
+Red first: 15 of the 26 round-114 tests fail on main 22541224 (every cut test); the 11 keep tests pass there too
+(`red-r114-main-22541224.txt`). No live model run and no device run: the next iPhone build measures it.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
