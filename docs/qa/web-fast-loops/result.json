@@ -1,0 +1,408 @@
+{
+ "build": "origin/main 98722df7, apps/web/dist",
+ "model": "Fast (Qwen3.5-2B-Q4_K_M)",
+ "viewport": "1440x900",
+ "exe": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+ "trials": [
+  {
+   "batch": "S",
+   "id": "ja-nenji",
+   "trial": 1,
+   "q": "年次報告書の書き方を詳しく教えてください。",
+   "ms": 33112,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 472,
+    "ttftMs": 6619.474999904633,
+    "tokPerSec": 18.02014981082088
+   },
+   "tokPerSec": 18.02014981082088,
+   "chars": 852,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "年次報告書（通称：年次文書）の書き方は、ご自身の経験や業務内容によって大きく異なりますが、基本的な構成要素と一般的な流れを以下にまとめました。\n1. 基本構造\n一般的に以下の構成で記載されます。\n•\n開頭・タイトル\n•\n「年次報告書」または「年度別業績」などの見出しを設定します。\n•\n要約（概要）\n•\n本年度の総括事項を一言で伝える部分です。売上高、収益率、客数など主要な指標を簡潔に列挙します。\n•\n詳細・実績\n•\n具体的な数字や事実関係を含めていきます。\n•\n売上などの実績: 当期および前年同期との比較（増減率）、推移を示します。\n•\n事業内容: 主な製品やサービス、営業活動の概要を記載します。\n•\n分析・課題\n•\n達成した成果と、未達な点（または改善すべき点）について説明します。「なぜ実現できたか」「何が起こったのか」などの因果関係や要因分析を含めます。\n•\n対策・計画\n•\n本年度以降の取組み方針を記載します。具体的な目標値やアクションプランを含めることが一般的です。\n•\n承認・署名\n•\n担当役員または取締役会の同意を得たことを明記し、署名欄を設定します。\n2. 書き方のポイント\n•\n数字の正確性: 売上高など数値は「期外」を含めて厳密に計算し、前年同期との比較率（%）を正確に記載することが重要です。\n•\n論理的な流れ: 「結果」から「原因」と「対策」へと順を追って伝えると、読み手が理解しやすいです。\n•\n簡潔さ: 余計な形容詞や冗長な文は避け、事実と数字のみを明確にします。\nご自身の状況に合わせて、この構成要素を調整してご使用ください。もし特定の業種や業界特有の形式が必要であれば、さらに詳しい情報をお伝えできます。",
+   "raw": "年次報告書（通称：年次文書）の書き方は、ご自身の経験や業務内容によって大きく異なりますが、基本的な構成要素と一般的な流れを以下にまとめました。\n\n### 1. 基本構造\n一般的に以下の構成で記載されます。\n\n*   **開頭・タイトル**\n    *   「年次報告書」または「年度別業績」などの見出しを設定します。\n*   **要約（概要）**\n    *   本年度の総括事項を一言で伝える部分です。売上高、収益率、客数など主要な指標を簡潔に列挙します。\n*   **詳細・実績**\n    *   具体的な数字や事実関係を含めていきます。\n        *   **売上などの実績**: 当期および前年同期との比較（増減率）、推移を示します。\n        *   **事業内容**: 主な製品やサービス、営業活動の概要を記載します。\n*   **分析・課題**\n    *   達成した成果と、未達な点（または改善すべき点）について説明します。「なぜ実現できたか」「何が起こったのか」などの因果関係や要因分析を含めます。\n*   **対策・計画**\n    *   本年度以降の取組み方針を記載します。具体的な目標値やアクションプランを含めることが一般的です。\n*   **承認・署名**\n    *   担当役員または取締役会の同意を得たことを明記し、署名欄を設定します。\n\n### 2. 書き方のポイント\n*   **数字の正確性**: 売上高など数値は「期外」を含めて厳密に計算し、前年同期との比較率（%）を正確に記載することが重要です。\n*   **論理的な流れ**: 「結果」から「原因」と「対策」へと順を追って伝えると、読み手が理解しやすいです。\n*   **簡潔さ**: 余計な形容詞や冗長な文は避け、事実と数字のみを明確にします。\n\nご自身の状況に合わせて、この構成要素を調整してご使用ください。もし特定の業種や業界特有の形式が必要であれば、さらに詳しい情報をお伝えできます。",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 17,
+    "first": null,
+    "last": null,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "he-explain",
+   "trial": 1,
+   "q": "הסבר לי בפירוט מה זה פוטוסינתזה.",
+   "ms": 34509,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 488,
+    "ttftMs": 6512.829999923706,
+    "tokPerSec": 17.62441646207175
+   },
+   "tokPerSec": 17.62441646207175,
+   "chars": 987,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "פוטוסינתזה היא תהליך פיזיולוגי ביוכימי המאפשר לעצמות הצמחים (למשל, הענפים והחגרים) להשתמש באור הזרקורים בשמש כדי לשלב גזים, ובעיקר CO₂, עם מים שנמצאים בתוך התקרה של הציטול.\nהתוצאה המאכללת היא תרכובת שמכונה סוכר (מפירוט: מוויסטר), שהוא אנרגיה חזקה שיכולה להתפרסם לצמיחה, להצמדה או לשחוק.\nהשלבים המרכזיים של התהליך:\n1.\nשימוש ב-CO₂: הצומח צורך גז קרבון (CO₂) מהאוויר הסביביות כדי ליצור חלבונים, רכיבים אחרים ודלקת.\n2.\nהשתלכות מולקולריות: תחת השפעת האורות והמתח הפיזיקלי, המוצקים מתחילים להשתנות מבחינה כימית, מה שמאפשר להם לתוך התקרה של הציטול.\n3.\nשימוש במים (H₂O): מים משתלטים בתהליך הזה ובין הגזים העשירים ב-CO₂ כדי ליצור את הסוכר.\n4.\nיצירת אנרגיה: תוצאה של התהליך הוא קיבה חומצה אלקטרופוליטית (ATP), מה שמאפשר לעצמות הצמח להגדיל את עצמן ולהתרחב.\nסיכום:\nפוטוסינתזה היא \"המשקל\" של החיים הצמידיים, שיוצרת את האנרגיה והרכיבים הכימיים הנדרשים לצמיחתם, תוך התאמה בין הגזים הזורמים מהמחזור ההווירופילי (גז חמצן מוצל) לבין הגזים המקבלים (קרבון ודלקת).",
+   "raw": "**פוטוסינתזה** היא תהליך פיזיולוגי ביוכימי המאפשר לעצמות הצמחים (למשל, הענפים והחגרים) להשתמש באור הזרקורים בשמש כדי לשלב גזים, ובעיקר **CO₂**, עם מים שנמצאים בתוך התקרה של הציטול.\n\nהתוצאה המאכללת היא תרכובת שמכונה **סוכר** (מפירוט: מוויסטר), שהוא אנרגיה חזקה שיכולה להתפרסם לצמיחה, להצמדה או לשחוק.\n\n### השלבים המרכזיים של התהליך:\n\n1.  **שימוש ב-CO₂**: הצומח צורך גז קרבון (CO₂) מהאוויר הסביביות כדי ליצור חלבונים, רכיבים אחרים ודלקת.\n2.  **השתלכות מולקולריות**: תחת השפעת האורות והמתח הפיזיקלי, המוצקים מתחילים להשתנות מבחינה כימית, מה שמאפשר להם לתוך התקרה של הציטול.\n3.  **שימוש במים (H₂O)**: מים משתלטים בתהליך הזה ובין הגזים העשירים ב-CO₂ כדי ליצור את הסוכר.\n4.  **יצירת אנרגיה**: תוצאה של התהליך הוא קיבה חומצה אלקטרופוליטית (ATP), מה שמאפשר לעצמות הצמח להגדיל את עצמן ולהתרחב.\n\n### סיכום:\nפוטוסינתזה היא \"המשקל\" של החיים הצמידיים, שיוצרת את האנרגיה והרכיבים הכימיים הנדרשים לצמיחתם, תוך התאמה בין הגזים הזורמים מהמחזור ההווירופילי (גז חמצן מוצל) לבין הגזים המקבלים (קרבון ודלקת).",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 4,
+    "first": 1,
+    "last": 4,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "list30-animals",
+   "trial": 1,
+   "q": "List 30 animals that live in the ocean, one per line, numbered.",
+   "ms": 14348,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 13,
+    "ttftMs": 3054.9450001716614,
+    "tokPerSec": 15.705699358479945
+   },
+   "tokPerSec": 15.705699358479945,
+   "chars": 175,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "1.\nShark  \n2.\nDolphin  \n3.\nSea Turtle  \n4.\nCoral Reef Crab  \n5.\nSeahorse  \n6.\nOctopus  \n7.\nClownfish  \n8.\nJellyfish  \n9.\nStarfish  \n10.\nSquid  \n11.\nWhale Shark  \n12.\nSea Bass",
+   "raw": "1. Shark  \n2. Dolphin  \n3. Sea Turtle  \n4. Coral Reef Crab  \n5. Seahorse  \n6. Octopus  \n7. Clownfish  \n8. Jellyfish  \n9. Starfish  \n10. Squid  \n11. Whale Shark  \n12. Sea Bass\n",
+   "worstOnScreen": null,
+   "loopNotices": 1,
+   "retries": [
+    {
+     "kept": 175,
+     "unitCp": 8,
+     "copies": 2
+    }
+   ],
+   "cuts": [
+    "log: [chat] loop cut: kept 175 of 205 chars, unit 9 cp x2"
+   ],
+   "chat": [
+    "log: [chat] loop retry: kept 175 chars, unit 8 cp x2",
+    "log: [chat] loop cut: kept 175 of 205 chars, unit 9 cp x2"
+   ],
+   "retryAt": {
+    "keptTail": "  \n9. Starfish  \n10. Squid  \n11. Whale Shark  \n12. Sea Bass\n",
+    "continuation": "",
+    "keptList": {
+     "items": 12,
+     "first": 1,
+     "last": 12,
+     "gaps": [],
+     "dupes": []
+    },
+    "continuationList": {
+     "items": 0,
+     "first": null,
+     "last": null,
+     "gaps": [],
+     "dupes": []
+    }
+   },
+   "list": {
+    "items": 12,
+    "first": 1,
+    "last": 12,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "es-list",
+   "trial": 1,
+   "q": "Escribe 30 frases motivadoras cortas.",
+   "ms": 33694,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 461,
+    "ttftMs": 6513.305000066757,
+    "tokPerSec": 17.30875450144949
+   },
+   "tokPerSec": 17.30875450144949,
+   "chars": 1664,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "1.\nEl esfuerzo hoy define tu mañana.  \n2.\nCada pequeño paso te acerca a tu destino.  \n3.\nNo dejes que el miedo detenga tu carrera.  \n4.\nTu valentía es más fuerte que tus temores.  \n5.\nEl éxito no se alcanza, se construye día tras día.  \n6.\nConfíe en ti mismo cuando todo parezca imposible.  \n7.\nLa paciencia te dará el tiempo de crecer.  \n8.\nNo ignores las oportunidades que surgieron.  \n9.\nTu mejor versión está esperando salir adelante.  \n10.\nCada dolor aprende una lección valiosa.  \n11.\nLa risa es un remanente de tu fortaleza.  \n12.\nNo temas lo nuevo, ve con curiosidad.  \n13.\nTus sueños son la brújula que guía tus pasos.  \n14.\nEl cambio constante abre puertas ocultas.  \n15.\nTu esfuerzo hoy rinde frutos mañana.  \n16.\nLa esperanza es el puente entre ahora y luego.  \n17.\nNo dejes que el pasado detenga tu avance.  \n18.\nCada victoria, aunque pequeña, suma a la tuya.  \n19.\nLa confianza en ti es tu mayor arma.  \n20.\nEl camino largo exige un pie firme al paso.  \n21.\nTu voz resuena con la fuerza de tus actos.  \n22.\nNo aceptes el \"no\" como una sentencia final.  \n23.\nLa resistencia te da la fuerza para resistir.  \n24.\nCada momento es un refuerzo para tu alma.  \n25.\nEl futuro se construye sobre las bases de hoy.  \n26.\nNo dejes que el silencio tuene poder sobre ti.  \n27.\nTu determinación es tu único aliado real.  \n28.\nLa paciencia transforma lo difícil en posible.  \n29.\nNo olvides que cada amanecer trae un nuevo día.  \n30.\nEl futuro comienza con la decisión de hoy.\nEstas frases están diseñadas para inspirar, motivar y fortalecer el ánimo de quien las lea, ofreciendo una base sólida para enfrentar cualquier desafío o oportunidad que surja en tu vida.",
+   "raw": "1. El esfuerzo hoy define tu mañana.  \n2. Cada pequeño paso te acerca a tu destino.  \n3. No dejes que el miedo detenga tu carrera.  \n4. Tu valentía es más fuerte que tus temores.  \n5. El éxito no se alcanza, se construye día tras día.  \n6. Confíe en ti mismo cuando todo parezca imposible.  \n7. La paciencia te dará el tiempo de crecer.  \n8. No ignores las oportunidades que surgieron.  \n9. Tu mejor versión está esperando salir adelante.  \n10. Cada dolor aprende una lección valiosa.  \n11. La risa es un remanente de tu fortaleza.  \n12. No temas lo nuevo, ve con curiosidad.  \n13. Tus sueños son la brújula que guía tus pasos.  \n14. El cambio constante abre puertas ocultas.  \n15. Tu esfuerzo hoy rinde frutos mañana.  \n16. La esperanza es el puente entre ahora y luego.  \n17. No dejes que el pasado detenga tu avance.  \n18. Cada victoria, aunque pequeña, suma a la tuya.  \n19. La confianza en ti es tu mayor arma.  \n20. El camino largo exige un pie firme al paso.  \n21. Tu voz resuena con la fuerza de tus actos.  \n22. No aceptes el \"no\" como una sentencia final.  \n23. La resistencia te da la fuerza para resistir.  \n24. Cada momento es un refuerzo para tu alma.  \n25. El futuro se construye sobre las bases de hoy.  \n26. No dejes que el silencio tuene poder sobre ti.  \n27. Tu determinación es tu único aliado real.  \n28. La paciencia transforma lo difícil en posible.  \n29. No olvides que cada amanecer trae un nuevo día.  \n30. El futuro comienza con la decisión de hoy.\n\nEstas frases están diseñadas para inspirar, motivar y fortalecer el ánimo de quien las lea, ofreciendo una base sólida para enfrentar cualquier desafío o oportunidad que surja en tu vida.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 30,
+    "first": 1,
+    "last": 30,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "fr-list",
+   "trial": 1,
+   "q": "Donne-moi 30 idées de cadeaux d'anniversaire.",
+   "ms": 9710,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 60,
+    "ttftMs": 6378.6050000190735,
+    "tokPerSec": 19.19797883678806
+   },
+   "tokPerSec": 19.19797883678806,
+   "chars": 249,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "Voici 30 idées de cadeaux pour un anniversaire : livres, plumes, plantes, objets de maison, vêtements en ligne, jouets, produits de beauté, jeux de société, expériences culturelles, outils professionnels, souvenirs, et plus encore !\nCela fait 2017.",
+   "raw": "Voici 30 idées de cadeaux pour un anniversaire : livres, plumes, plantes, objets de maison, vêtements en ligne, jouets, produits de beauté, jeux de société, expériences culturelles, outils professionnels, souvenirs, et plus encore !\n\nCela fait 2017.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 0,
+    "first": null,
+    "last": null,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "poem-refrainless",
+   "trial": 1,
+   "q": "Write a long poem about the sea with many stanzas.",
+   "ms": 31542,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 449,
+    "ttftMs": 5958.115000009537,
+    "tokPerSec": 17.88190970033862
+   },
+   "tokPerSec": 17.88190970033862,
+   "chars": 1834,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "The ocean is a vast and endless blue,\nA mirror cracked by morning's rising hue.\nIt stretches from the deepest trench to sky,\nWhere starlight touches water just below.\nWith waves that crash in thundering foam,\nAnd currents slow like sleepy sea-dogs too.\nIts depths are hidden secrets held in store,\nWhere silent fish drift through a dark and low.\nThe coral gardens grow with vibrant reds,\nA palace built of living sand and beds.\nBut up above the waves, the sun does shine,\nAnd casts a golden light upon the brine.\nThe sea is loud when storms are born to rise,\nWith winds that tear at clouds in high dismay.\nIt roars with rage against the iron wall,\nThen softens to a whisper just for now.\nA creature in the foam may vanish gone,\nOr chase a shadow far beneath the moon.\nThe tide pulls back with rhythmic grace and pace,\nAs salt and water meet to make the face.\nIt lifts the beach where sand is white as snow,\nAnd washes up the shells of old time's love.\nA crab finds home on rocky stones below,\nWhile a whale glides by in silent joy.\nThere are moments when the waters cool and slow,\nAnd silence falls upon the salty floor.\nThe boat drifts like a leaf upon the tide,\nThe sailors sleep while stars begin to glow.\nIt is a place where time moves strangely slow,\nWhere dreams of faraway shores might grow.\nFor all things seek the ocean's vast embrace,\nFrom cliffs that crumble to the sea's deep face.\nA fisherman casts his net with care and fear,\nTo catch the morning song or evening star.\nOr maybe just to feel the salt upon the skin,\nAnd see the endless blue stretch back again.\nThe waves are old, they rise and fall today,\nWith stories of all that have been said.\nThey carry secrets of the ancient past,\nOf legends long forgotten by the vast.\nSo let them crash against the shore's hard stone,\nAs nature plays its ever-changing game.",
+   "raw": "The ocean is a vast and endless blue,\nA mirror cracked by morning's rising hue.\nIt stretches from the deepest trench to sky,\nWhere starlight touches water just below.\nWith waves that crash in thundering foam,\nAnd currents slow like sleepy sea-dogs too.\n\nIts depths are hidden secrets held in store,\nWhere silent fish drift through a dark and low.\nThe coral gardens grow with vibrant reds,\nA palace built of living sand and beds.\nBut up above the waves, the sun does shine,\nAnd casts a golden light upon the brine.\n\nThe sea is loud when storms are born to rise,\nWith winds that tear at clouds in high dismay.\nIt roars with rage against the iron wall,\nThen softens to a whisper just for now.\nA creature in the foam may vanish gone,\nOr chase a shadow far beneath the moon.\n\nThe tide pulls back with rhythmic grace and pace,\nAs salt and water meet to make the face.\nIt lifts the beach where sand is white as snow,\nAnd washes up the shells of old time's love.\nA crab finds home on rocky stones below,\nWhile a whale glides by in silent joy.\n\nThere are moments when the waters cool and slow,\nAnd silence falls upon the salty floor.\nThe boat drifts like a leaf upon the tide,\nThe sailors sleep while stars begin to glow.\nIt is a place where time moves strangely slow,\nWhere dreams of faraway shores might grow.\n\nFor all things seek the ocean's vast embrace,\nFrom cliffs that crumble to the sea's deep face.\nA fisherman casts his net with care and fear,\nTo catch the morning song or evening star.\nOr maybe just to feel the salt upon the skin,\nAnd see the endless blue stretch back again.\n\nThe waves are old, they rise and fall today,\nWith stories of all that have been said.\nThey carry secrets of the ancient past,\nOf legends long forgotten by the vast.\nSo let them crash against the shore's hard stone,\nAs nature plays its ever-changing game.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 0,
+    "first": null,
+    "last": null,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "S",
+   "id": "list25-verbs-de",
+   "trial": 1,
+   "q": "Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch.",
+   "ms": 21446,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 271,
+    "ttftMs": 6463.299999952316,
+    "tokPerSec": 18.25847191412455
+   },
+   "tokPerSec": 18.25847191412455,
+   "chars": 694,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "Here are 25 German verbs with their English meanings:\n1.\nsein – to be\n2.\nhaben – to have\n3.\ngehen – to go\n4.\nkommen – to come\n5.\nsehen – to see\n6.\nsprechen – to speak\n7.\nlernen – to learn\n8.\narbeiten – to work\n9.\nessen – to eat\n10.\ntrinken – to drink\n11.\nschlafen – to sleep\n12.\nlesen – to read\n13.\nschreiben – to write\n14.\nlaufen – to run\n15.\nsitzen – to sit\n16.\nstecken – to put (in)\n17.\nstehen – to stand\n18.\nliegen – to lie\n19.\nbleiben – to stay / remain\n20.\ngehen – to go on a trip\n21.\nkommen – to arrive\n22.\nwissen – to know\n23.\nwollen – to want\n24.\nhassen – to hate\n25.\nlieben – to love",
+   "raw": "Here are 25 German verbs with their English meanings:\n\n1. **sein** – to be\n2. **haben** – to have\n3. **gehen** – to go\n4. **kommen** – to come\n5. **sehen** – to see\n6. **sprechen** – to speak\n7. **lernen** – to learn\n8. **arbeiten** – to work\n9. **essen** – to eat\n10. **trinken** – to drink\n11. **schlafen** – to sleep\n12. **lesen** – to read\n13. **schreiben** – to write\n14. **laufen** – to run\n15. **sitzen** – to sit\n16. **stecken** – to put (in)\n17. **stehen** – to stand\n18. **liegen** – to lie\n19. **bleiben** – to stay / remain\n20. **gehen** – to go on a trip\n21. **kommen** – to arrive\n22. **wissen** – to know\n23. **wollen** – to want\n24. **hassen** – to hate\n25. **lieben** – to love",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 25,
+    "first": 1,
+    "last": 25,
+    "gaps": [],
+    "dupes": [
+     "gehen x2",
+     "kommen x2"
+    ]
+   }
+  },
+  {
+   "batch": "S",
+   "id": "math-long-div",
+   "trial": 1,
+   "q": "Divide 987654321 by 123 step by step, showing every step of long division.",
+   "ms": 38944,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 512,
+    "ttftMs": 7396.514999866486,
+    "tokPerSec": 16.34026638151676
+   },
+   "tokPerSec": 16.34026638151676,
+   "chars": 1115,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": true,
+   "answer": "To divide 987654321 by 123, we perform the long division digit by digit:\n1.\n123 goes into 9 zero times. Take 9 and bring down 8. (Current number: 98)\n•\n98 ÷ 123 = 0 remainder 98.\n2.\nBring down 7, making it 987.\n•\n987 ÷ 123 = 8. (123 × 8 = 984)\n•\nSubtract: 987 - 984 = 3. (Current remainder: 3)\n3.\nBring down 6, making it 36.\n•\n36 ÷ 123 = 0 remainder 36. (Bring down 5) -> Current number: 365\n4.\nBring down 5, making it 365.\n•\n365 ÷ 123 = 2. (123 × 2 = 246)\n•\nSubtract: 365 - 246 = 119. (Current remainder: 119)\n5.\nBring down 4, making it 1194.\n•\n1194 ÷ 123 = 9. (123 × 9 = 1107)\n•\nSubtract: 1194 - 1107 = 87. (Current remainder: 87)\n6.\nBring down 3, making it 873.\n•\n873 ÷ 123 = 7. (123 × 7 = 861)\n•\nSubtract: 873 - 861 = 12. (Current remainder: 12)\n7.\nBring down 2, making it 122.\n•\n122 ÷ 123 = 0 remainder 122. (Bring down 1) -> Current number: 1221\n8.\nBring down **1",
+   "raw": "To divide **987654321** by **123**, we perform the long division digit by digit:\n\n1.  **123 goes into 9** zero times. Take 9 and bring down **8**. (Current number: 98)\n    *   $98 \\div 123 = 0$ remainder **98**.\n2.  Bring down **7**, making it **987**.\n    *   $987 \\div 123 = 8$. ($123 \\times 8 = 984$)\n    *   Subtract: $987 - 984 = 3$. (Current remainder: **3**)\n3.  Bring down **6**, making it **36**.\n    *   $36 \\div 123 = 0$ remainder **36**. (Bring down 5) -> Current number: **365**\n4.  Bring down **5**, making it **365**.\n    *   $365 \\div 123 = 2$. ($123 \\times 2 = 246$)\n    *   Subtract: $365 - 246 = 119$. (Current remainder: **119**)\n5.  Bring down **4**, making it **1194**.\n    *   $1194 \\div 123 = 9$. ($123 \\times 9 = 1107$)\n    *   Subtract: $1194 - 1107 = 87$. (Current remainder: **87**)\n6.  Bring down **3**, making it **873**.\n    *   $873 \\div 123 = 7$. ($123 \\times 7 = 861$)\n    *   Subtract: $873 - 861 = 12$. (Current remainder: **12**)\n7.  Bring down **2**, making it **122**.\n    *   $122 \\div 123 = 0$ remainder **122**. (Bring down 1) -> Current number: **1221**\n8.  Bring down **1",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 19,
+    "first": 1,
+    "last": 8,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "C",
+   "id": "animals-40",
+   "trial": 1,
+   "q": "List 40 animals, one per line, numbered.",
+   "ms": 18945,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 211,
+    "ttftMs": 6555.320000171661,
+    "tokPerSec": 17.32778603288469
+   },
+   "tokPerSec": 17.32778603288469,
+   "chars": 424,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "1.\nTiger 2. Lion 3. Wolf 4. Elephant 5. Eagle 6. Bear 7. Cat 8. Dog 9. Rabbit 10. Horse 11. Cow 12. Pig 13. Chicken 14. Duck 15. Goose 16. Swan 17. Seal 18. Dolphin 19. Shark 20. Whale 21. Fish 22. Octopus 23. Crab 24. Snail 25. Slug 26. Jellyfish 27. Squid 28. Starfish 29. Sea Urchin 30. Clownfish 31. Goldfish 32. Parrot 33. Hummingbird 34. Penguin 35. Albatross 36. Koala 37. Giraffe 38. Ostrich 39. Pigeon 40. Partridge",
+   "raw": "1. Tiger 2. Lion 3. Wolf 4. Elephant 5. Eagle 6. Bear 7. Cat 8. Dog 9. Rabbit 10. Horse 11. Cow 12. Pig 13. Chicken 14. Duck 15. Goose 16. Swan 17. Seal 18. Dolphin 19. Shark 20. Whale 21. Fish 22. Octopus 23. Crab 24. Snail 25. Slug 26. Jellyfish 27. Squid 28. Starfish 29. Sea Urchin 30. Clownfish 31. Goldfish 32. Parrot 33. Hummingbird 34. Penguin 35. Albatross 36. Koala 37. Giraffe 38. Ostrich 39. Pigeon 40. Partridge",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 1,
+    "first": 1,
+    "last": 1,
+    "gaps": [],
+    "dupes": []
+   }
+  },
+  {
+   "batch": "C",
+   "id": "fox-5",
+   "trial": 1,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 9939,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 54,
+    "ttftMs": 6690.115000009537,
+    "tokPerSec": 17.76775179372035
+   },
+   "tokPerSec": 17.76775179372035,
+   "chars": 224,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "list": {
+    "items": 0,
+    "first": null,
+    "last": null,
+    "gaps": [],
+    "dupes": []
+   },
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  }
+ ],
+ "runs": [
+  {
+   "node": 6334,
+   "started": "2026-09-27T16:03:19.119Z",
+   "url": "http://127.0.0.1:8798",
+   "modelStep": "ON-DEVICE\nDownload Fast to this browser\nRECOMMENDED FOR THIS BROWSER\nThe best answers this browser can run.\n1.28 GB, once. It stays on this device. Later visits need no network.\n~4-15 tok/s on your browser\nBest in English, Chinese, Spanish, French and 5 more languages.\nFree in this browser: 11 GB · the browser may clear it when space runs low\nDownload 1.28 GB\nSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.\nOnly the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.\n1 other model runs in this browser",
+   "fastPick": "no choose-fast button: Fast is the step's own pick",
+   "modelStepAfter": "ON-DEVICE\nDownload Fast to this browser\nRECOMMENDED FOR THIS BROWSER\nThe best answers this browser can run.\n1.28 GB, once. It stays on this device. Later visits need no network.\n~4-15 tok/s on your browser\nBest in English, Chinese, Spanish, French and 5 more languages.\nFree in this browser: 11 GB · the browser may clear it when space runs low\nDownload 1.28 GB\nSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.\nOnly the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.\n1 other model runs in this browser\nInstant\n533 MB\nQuick answers, rewrites, summaries. Lightest on battery. Photos: with the photo pack, downloaded on your first photo.\n~7-33 tok/s on your browser\nBest in English, Chinese, Portuguese.\nChoose 533 MB",
+   "loaded": "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1786 ms",
+   "engineLines": [
+    "info: [wllama] loaded fast in 1775 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+    "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1786 ms"
+   ],
+   "console": [
+    "log: [chat] loop retry: kept 175 chars, unit 8 cp x2",
+    "log: [chat] loop cut: kept 175 of 205 chars, unit 9 cp x2"
+   ],
+   "ended": "2026-09-27T16:08:28.674Z"
+  }
+ ]
+}
