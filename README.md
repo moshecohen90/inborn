@@ -6379,6 +6379,29 @@ Tests red first: `raw/red-f418-documents-size.txt`, `raw/red-f419-two-keys.txt`,
 skipped, 1,178 mobile, 24 i18n, 23 ui, 4 desktop. Build 21 went onto the phone as an update, and Moshe's six container
 files are byte-identical. It did not go to any store.
 
+## Fixes round 110: the final loop guard measured in the browser, and an asked repetition ends at its count (branch `web-guard-verify`) — 27.9.2026
+
+Round 107's web trials predate its echo rule. This round reran them on the shipped guard (main 5490c77b): the web
+export, Instant on WASM, headless Chromium at 1440. Evidence: `docs/qa/web-guard-verify.md` and
+`docs/qa/web-guard-verify/`.
+
+| Build | Trials | Repeat on screen | Silent retries | Notices |
+|---|---|---|---|---|
+| base, round-97 guard | 28 | 4 | – | 0 |
+| round 107 before the echo rule | 28 | 0 | 2 | 0 |
+| round 107 final | 28 | 0 | 4 | 0 |
+
+- **F421 · An asked repetition no longer gets a silent retry.** Asked for the fox sentence five times, Instant wrote
+  the copies on one line and began a sixth in 2 of 5 trials. The guard kept the five, then its retry continued a
+  complete answer and invented a sentence ("The next line begins: 'The lazy cat barks at the swift owl.'"). A hit whose
+  kept copies are the ones the user asked for now ends the answer there, with no retry and no notice. On the fixed
+  build, both over-counts in 10 trials ended at exactly five copies. Red first: `red-r110.txt`.
+- **No false cut.** Every fox answer kept all the copies the model wrote, up to five. One-copy answers come from the
+  model itself: 4 of 10 on main, 3 of 10 fixed, with no guard action.
+- **Still open, for round 111.** The guard misses a numbered block said again with new numbers. The animal list
+  repeated items 1–19 as 21–39, and the German verbs repeated a bold block. A retried list went on as prose in 1 of 3.
+  A cut can land inside an item or a bold span, so "18. La única El éxito…" and a raw `**…###` reached the screen.
+
 ## Fixes round 106: the stores' own badges, a model the browser keeps, and returning visits that never download again (branch `web-badges-persist`) — 27.9.2026
 
 Moshe (27.9) asked for two things. The store buttons should be the standard App Store and Google Play badges, like on

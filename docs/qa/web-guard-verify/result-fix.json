@@ -1,0 +1,234 @@
+{
+ "build": "web-guard-verify: 5490c77b + F421 asked-count end, apps/web/dist",
+ "model": "Instant (Qwen3.5-0.8B-Q4_K_M)",
+ "viewport": "1440x900",
+ "exe": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+ "trials": [
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 1,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 3048,
+   "answer": "The quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 1,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 2,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1878,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 3,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 518,
+   "answer": "The quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 1,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 4,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 508,
+   "answer": "The quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": null,
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 1,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 5,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1789,
+   "answer": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+   "raw": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog.",
+    "copies": 5,
+    "kind": "long"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 0,
+    "otherLines": [
+     "the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog."
+    ]
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 6,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1788,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 7,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1781,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 8,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1783,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 9,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1783,
+   "answer": "The quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.\nThe quick brown fox jumps over the lazy dog.",
+   "raw": "The quick brown fox jumps over the lazy dog.\n\nThe quick brown fox jumps over the lazy dog.\n\nThe quick brown fox jumps over the lazy dog.\n\nThe quick brown fox jumps over the lazy dog.\n\nThe quick brown fox jumps over the lazy dog.",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog",
+    "copies": 5,
+    "kind": "segment"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 5,
+    "otherLines": []
+   }
+  },
+  {
+   "batch": "D",
+   "id": "fox-5",
+   "trial": 10,
+   "q": "Repeat exactly this sentence five times, each on its own line: The quick brown fox jumps over the lazy dog.",
+   "ms": 1790,
+   "answer": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+   "raw": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+   "worstOnScreen": {
+    "unit": "The quick brown fox jumps over the lazy dog.",
+    "copies": 5,
+    "kind": "long"
+   },
+   "loopNotices": 0,
+   "retries": [],
+   "cuts": [],
+   "chat": [],
+   "fox": {
+    "foxLines": 0,
+    "otherLines": [
+     "the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog. the quick brown fox jumps over the lazy dog."
+    ]
+   }
+  }
+ ],
+ "runs": [
+  {
+   "node": 53420,
+   "started": "2026-09-27T13:47:32.118Z",
+   "url": "http://127.0.0.1:8797",
+   "loaded": "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1256 ms",
+   "engineLines": [
+    "info: [wllama] loaded instant in 1245 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+    "log: [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1256 ms"
+   ],
+   "console": [],
+   "ended": "2026-09-27T13:48:29.279Z"
+  }
+ ]
+}
