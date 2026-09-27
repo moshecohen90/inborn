@@ -1,0 +1,1095 @@
+{
+  "runId": "l02-math-long-div",
+  "startedAt": "2026-09-27T19:55:57.102Z",
+  "finishedAt": "2026-09-27T19:56:38.285Z",
+  "ok": true,
+  "passed": 108,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-chip-6ddbff16-1329-4c82-b090-1a8054b74a49 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 309,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 543,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654 ▍",
+        "props": {
+          "source": "To divide 987654",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,4 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,4",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,4 ▍"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 745,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the seco ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the seco",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is ",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1004,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make i ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make i",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 737,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 777,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtrac ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtrac",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 871,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make i ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make i",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 726,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to ge ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to ge",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 743,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+        "props": {
+          "source": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first digit of our answer as 1. Now subtract 121 from 987 to get 866. Bring down the next digit (4) to make it 8664. Divide 8664 by 123: 8664 ÷ 123 ≈ 70, so the second digit is 7. Subtract 70 × 123 = 8610 from 8664 to get 54. Bring down the next digit (3) to make it 543. Divide 543 by 123: 543 ÷ 123 ≈ 4, so the third digit is 4. Subtract 4 × 123 = 492 from 543 to get 51. Bring down the next digit (6) to make it 516. Divide 516 by 123: 516 ÷ 123 ≈ 4, so the fourth digit is 4. Subtract 4 × 123 = 492 from 516 to get 24. Bring down the next digit (5) to make it 245. Divide 245 by 123: 245 ÷ 123 ≈ 2, so the fifth digit is 2. Subtract 2 × 123 = 246 from 245 to get -1. Bring down the next digit (7) to make it -17. Divide -17 by 123: -17 ÷ 123 ≈ -0, so the sixth digit is 0. Subtract 0 × 123 = 0 from -17 to get -17. Bring down the next digit (4) to make it -174. Divide -174 by 12",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123 step-by-step, first find the quotient of 987654321 ÷ 1000 (which is 987.654321) and multiply it by 123 to get a rough estimate: 987 × 123 = 121,461. This gives us the first "
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3508,
+      "detail": "L02-math-long-div"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

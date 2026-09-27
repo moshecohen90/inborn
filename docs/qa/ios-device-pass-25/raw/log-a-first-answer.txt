@@ -1,0 +1,42 @@
+22:39:22 launching com.inbornapp.mobile.qa
+22:40:07 pushing 37 steps as a-first-answer
+22:40:34 shot A01-first-answer
+22:40:40 shot A02-ledger-detailed
+22:40:44 ok     0 waitFor    onboarding-welcome appeared
+22:40:44 ok     1 sleep      1500 ms
+22:40:44 ok     2 press      onboarding-continue ← onPress
+22:40:44 ok     3 waitFor    onboarding-model appeared
+22:40:44 ok     4 sleep      2500 ms
+22:40:44 ok     5 press      start-chatting ← onPress
+22:40:44 ok     6 waitFor    onboarding-sealed appeared
+22:40:44 ok     7 sleep      4000 ms
+22:40:44 ok     8 press      sealed-start ← onPress
+22:40:44 ok     9 waitFor    onboarding-lock appeared
+22:40:44 ok    10 sleep      1500 ms
+22:40:44 ok    11 press      lock-start ← onPress
+22:40:44 ok    12 waitFor    composer-input appeared
+22:40:44 ok    13 waitFor    Loading gone
+22:40:44 ok    14 sleep      2000 ms
+22:40:44 ok    15 type       composer-input = 43 chars
+22:40:44 ok    16 send       send ← onPress
+22:40:44 ok    17 waitFor    assistant-text appeared
+22:40:44 ok    18 waitFor    stop gone
+22:40:44 ok    19 sleep      1500 ms
+22:40:44 ok    20 value      A lighthouse lights navigation for ships at sea, guiding them safely to destinations.
+22:40:44 ok    21 screenshot A01-first-answer
+22:40:44 ok    22 waitFor    loop-notice gone
+22:40:44 ok    23 press      ledger-toggle ← onPress
+22:40:44 ok    24 sleep      800 ms
+22:40:44 ok    25 value      INSTANT
+22:40:44 ok    26 value      31 ms
+22:40:44 ok    27 value      222 / 4096
+22:40:44 ok    28 setTier    pro
+22:40:44 ok    29 sleep      1200 ms
+22:40:44 ok    30 value      31.8
+22:40:44 ok    31 value      827 ms
+22:40:44 ok    32 value      207 + 15
+22:40:44 ok    33 value      1.3 s
+22:40:44 ok    34 screenshot A02-ledger-detailed
+22:40:44 ok    35 setTier    free
+22:40:44 ok    36 sleep      800 ms
+22:40:44 37 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-25/docs/qa/ios-device-pass-25/screens

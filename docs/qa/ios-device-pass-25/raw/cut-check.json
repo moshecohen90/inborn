@@ -1,0 +1,268 @@
+[
+ {
+  "run": "l02-es-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 1802,
+    "takenBack": "28",
+    "keptTail": "o.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 1802,
+    "keptTail": " logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-fr-list",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 373,
+    "keptTail": "de livres jeunesse ou des livres de fiction.\n3. Des objets décoratifs faits à la main (pinceaux, crayons).\n4. Des jouets plastiques et des modèles de voitures.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-he-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 211,
+    "takenBack": "14",
+    "keptTail": "רת\n7. קיבוץ חיים\n8. קיבוץ עמק יזרעאל\n9. קיבוץ מלכיה\n10. קיבוץ נפגועים\n11. קיבוץ רבן-דוד\n12. קיבוץ שבת\n13. קיבוץ תל אביב\n",
+    "after": "14. קיבוץ ירושלים\n15. קיבוץ עירובן\n16. קיבוץ נגבית\n17. קיבוץ חרסון\n18. קיבוץ מנזילתה\n19. קיבוץ אריאל\n20. קיבוץ רפ\"א\n21. קיבוץ סלען\n22. קיבוץ גבולות\n23. קיבוט ירושלים\n24. קיבוצת מנזיל\n25. קיבוצה אריאל\n",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ja-list-cities",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ja-nenji",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 832,
+    "takenBack": "\n",
+    "keptTail": "万円の節約ができたが、製品品質は低下している。」\n*   **対策**: 「新製品の導入を 2 月に完了させ、品質改善策を 3 月までに実施する。」\n*   **目標**: 「来年には売上 110 億円と、品質を 95% に引き上げる。」\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 832,
+    "keptTail": "100 億円と目標達成した。」\n*   **課題**: 「コスト削減で 500 万円の節約ができたが、製品品質は低下している。」\n*   **対策**: 「新製品の導入を 2 月に完了させ、品質改善策を 3 月までに実施する。」\n*   **目標**: 「来年には売上 110 億円と、品質を 95% に引き上げる。」\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ko-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 133,
+    "takenBack": "16",
+    "keptTail": "소개합니다:\n\n1.  김치\n2.  고기 (육류)\n3.  국물\n4.  생선\n5.  채소\n6.  간장\n7.  떡\n8.  소고기\n9.  양념장\n10. 야채\n11. 우유\n12. 빵\n13. 면\n14. 고추장\n15. 김치찌개\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 133,
+    "keptTail": "한국 음식 30 가지를 소개합니다:\n\n1.  김치\n2.  고기 (육류)\n3.  국물\n4.  생선\n5.  채소\n6.  간장\n7.  떡\n8.  소고기\n9.  양념장\n10. 야채\n11. 우유\n12. 빵\n13. 면\n14. 고추장\n15. 김치찌개\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-list30-animals",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 172,
+    "takenBack": "",
+    "keptTail": ". Clownfish\n7. Octopus\n8. Jellyfish\n9. Sea Snake\n10. Sea Bass\n11. Sea Lion\n12. Sea Otter\n13. Sea Turtle\n14. Sea Grouper\n",
+    "after": "15. Sea Eagle\n16. Sea Gull\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 199,
+    "keptTail": "5. Seahorse\n6. Clownfish\n7. Octopus\n8. Jellyfish\n9. Sea Snake\n10. Sea Bass\n11. Sea Lion\n12. Sea Otter\n13. Sea Turtle\n14. Sea Grouper\n15. Sea Eagle\n16. Sea Gull\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-math-long-div",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-2",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 336,
+    "takenBack": "13",
+    "keptTail": "ite)\n8. zu bauen (to build)\n9. zu tun (to do)\n10. zu glauben (to believe)\n11. zu tunen (to run)\n12. zu machen (to make)\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 336,
+    "keptTail": "spielen (to play)\n7. zu schreiben (to write)\n8. zu bauen (to build)\n9. zu tun (to do)\n10. zu glauben (to believe)\n11. zu tunen (to run)\n12. zu machen (to make)\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 95,
+    "takenBack": "",
+    "keptTail": "1. Whales\n2. Dolphins\n3. Sea Turtles\n4. Seals\n5. Sharks\n6. Blue Whales\n7. Guppies\n8. Clownfish\n",
+    "after": "9. Crabs\n10. Octopuses\n11. Jellyfish\n12. Kelp\n13. Eels\n14. Breams\n15. Mussels",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-2",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 160,
+    "takenBack": "",
+    "keptTail": "fish\n5. Shark\n6. Turtle\n7. Clownfish\n8. Octopus\n9. Lionfish\n10. Manta Ray\n11. Pelican\n12. Heron\n13. Eagle\n14. Albatross\n",
+    "after": "15. Plover\n16. Stork\n17. Owl\n18. Boar\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 198,
+    "keptTail": "lyfish\n5. Shark\n6. Turtle\n7. Clownfish\n8. Octopus\n9. Lionfish\n10. Manta Ray\n11. Pelican\n12. Heron\n13. Eagle\n14. Albatross\n15. Plover\n16. Stork\n17. Owl\n18. Boar\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ }
+]

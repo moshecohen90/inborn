@@ -1,0 +1,23 @@
+23:04:33 pushing 21 steps as e0-setup-2
+23:04:47 ok     0 deeplink   /chats
+23:04:47 ok     1 waitFor    new-chat appeared
+23:04:47 ok     2 press      new-chat ← onPress
+23:04:47 ok     3 waitFor    start-chat appeared
+23:04:47 ok     4 press      start-chat ← onPress
+23:04:47 ok     5 waitFor    composer-input appeared
+23:04:47 ok     6 sleep      1500 ms
+23:04:47 ok     7 devPrompt  attach: greenhouse-notes.txt
+23:04:47 ok     8 waitFor    attached-docs appeared
+23:04:47 ok     9 sleep      3000 ms
+23:04:47 ok    10 value      greenhouse-notes.txt
+23:04:47 ok    11 deeplink   /documents
+23:04:47 ok    12 waitFor    documents-screen appeared
+23:04:47 ok    13 sleep      2000 ms
+23:04:47 ok    14 value      Documents Close Add file · PRO 1 document · 253 B on this device Answer only from my documents When nothing re
+23:04:47 ok    15 deeplink   /settings/storage
+23:04:47 ok    16 waitFor    storage appeared
+23:04:47 ok    17 sleep      2000 ms
+23:04:47 ok    18 value      Chats encrypted (SQLCipher) 2.17 MB
+23:04:47 ok    19 value      Documents 253 B
+23:04:47 ok    20 value      Models not backed up 0 B
+23:04:47 21 passed, 0 failed, 0 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-25/docs/qa/ios-device-pass-25/screens

@@ -1,0 +1,452 @@
+{
+  "runId": "d2-continue-again",
+  "startedAt": "2026-09-27T20:02:33.395Z",
+  "finishedAt": "2026-09-27T20:04:23.843Z",
+  "ok": true,
+  "passed": 59,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10393,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 23,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 792,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7034,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 26,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began during the Silk Road era, when nomadic Chinese traders traveled north to the Mediterranean, carrying seeds like saffron and cloves that were essential for cooking and dyeing textiles. These early exchanges laid the foundational groundwork for later developments, establishing routes along the Indian Ocean that connected East Asia with Western Europe through controlled ports at sea. Early maritime expansion saw Portuguese explorers begin their involvement in Asian spice markets during the 15th century, seeking a new route to China's spices. The Portuguese were among the first European nations to set sail for India and later seek spices from Southeast Asia via the Dutch East India Company's presence, which expanded trade routes beyond traditional land paths into the Indian Ocean basin. As European powers pursued these ambitions, they established colonies along the coast of India and neighboring regions, creating hubs where trade routes were managed and regulated by European authorities to prevent piracy and ensure commercial safety for their fleets. The rise of modern transoceanic shipping in the late 19th century revolutionized how spices reached Europe, allowing ships like the Lusitania to carry vast quantities of cinnamon, cloves, and turmeric across the Atlantic",
+        "props": {
+          "source": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began during the Silk Road era, when nomadic Chinese traders traveled north to the Mediterranean, carrying seeds like saffron and cloves that were essential for cooking and dyeing textiles. These early exchanges laid the foundational groundwork for later developments, establishing routes along the Indian Ocean that connected East Asia with Western Europe through controlled ports at sea.\n\nEarly maritime expansion saw Portuguese explorers begin their involvement in Asian spice markets during the 15th century, seeking a new route to China's spices. The Portuguese were among the first European nations to set sail for India and later seek spices from Southeast Asia via the Dutch East India Company's presence, which expanded trade routes beyond traditional land paths into the Indian Ocean basin. As European powers pursued these ambitions, they established colonies along the coast of India and neighboring regions, creating hubs where trade routes were managed and regulated by European authorities to prevent piracy and ensure commercial safety for their fleets.\n\nThe rise of modern transoceanic shipping in the late 19th century revolutionized how spices reached Europe, allowing ships like the Lusitania to carry vast quantities of cinnamon, cloves, and turmeric across the Atlantic",
+          "disabled": false
+        }
+      },
+      "detail": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began durin"
+    },
+    {
+      "i": 29,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2880,
+      "detail": "K01-stopped-try2"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 31,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2089,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 18536,
+      "detail": "stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began during the Silk Road era, when nomadic Chinese traders traveled north to the Mediterranean, carrying seeds like saffron and cloves that were essential for cooking and dyeing textiles. These early exchanges laid the foundational groundwork for later developments, establishing routes along the Indian Ocean that connected East Asia with Western Europe through controlled ports at sea. Early maritime expansion saw Portuguese explorers begin their involvement in Asian spice markets during the 15th century, seeking a new route to China's spices. The Portuguese were among the first European nations to set sail for India and later seek spices from Southeast Asia via the Dutch East India Company's presence, which expanded trade routes beyond traditional land paths into the Indian Ocean basin. As European powers pursued these ambitions, they established colonies along the coast of India and neighboring regions, creating hubs where trade routes were managed and regulated by European authorities to prevent piracy and ensure commercial safety for their fleets. The rise of modern transoceanic shipping in the late 19th century revolutionized how spices reached Europe, allowing ships like the Lusitania to carry vast quantities of cinnamon, cloves, and turmeric across the Atlantic The Lusitania, a powerful ship commanded by Captain Arthur Phillip of the Royal Navy, set sail from Portsmouth on October 14, 1862, carrying an estimated 30,000 pounds of spices that would later become legendary. The voyage was not without risk; it encountered violent gale weather and was eventually wrecked off the coast of Newfoundland by a powerful storm in October 1864, killing all but four crew members. This tragic event marked a turning point where the reliance on maritime routes for spice transport began to decline as global trade shifted toward more efficient steam-powered railroads and overland caravan systems that bypassed dangerous coastal conditions. In the late 19th century, this shift was catalyzed by the invention of the steam engine, which allowed ships like the Lusitania to move faster than any other vessel capable of carrying such heavy loads. European powers quickly adopted this technology, leading to a global rush towards direct ocean crossings that eliminated the need for trans-Saharan and Indian Ocean routes entirely. By 1890, the first commercial steamer had successfully transported more than one million pounds of spices across the Atlantic, effectively closing off many traditional chokepoints between Asia and Europe by turning ships into freighters rather than passengers. This technological advance significantly altered the economic structure of the spice trade itself. Previously, traders would spend months traveling thousands of miles on slowboats or barges to gather harvests from distant colonies; now, a single voyage could transport millions of tons of goods in hours. Consequently, major trading hubs shifted geographically, moving closer to port cities that served as central markets for raw materials and finished products rather than being located far out at sea. The discovery of the Pacific Ocean in 1876 further complicated matters by creating a new maritime corridor between China and Japan, opening fresh avenues for Asian merchants who previously had no direct access to the west. The expansion of trade routes also brought about profound cultural and economic shifts that defined the era's global interconnectedness. As spice goods reached Europe through rail, the physical distance traveled became negligible, but the logistical complexity increased dramatically due to the sheer volume of cargo being moved in a single trip. This efficiency meant that European cities like London, Berlin, and Paris could sustain massive populations without needing to maintain vast empires across continents; instead, they functioned as regional distribution centers for their own industries. Simultaneously, Asian markets expanded outward, with Chinese merchants establishing new trading posts along the Pacific coast of Africa and even reaching into South America and Australia, fundamentally reshaping world geography. The long-term impact of this rapid expansion is evident in the modern global economy, which relies on a complex web of connections that spanned continents for over two centuries. Modern supply chains are often built around transatlantic rail and sea routes, but they are frequently disrupted by geopolitical instability or natural disasters that affect specific chokepoints. The history of these spice journeys continues to shape today's infrastructure development, as nations invest heavily in port construction and maritime technology to ensure that the delicate network connecting East Asia with Europe remains stable for future generations. This enduring relationship between civilizations has proven more valuable than any single trade route ever could have been in its early days.",
+        "props": {
+          "source": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began during the Silk Road era, when nomadic Chinese traders traveled north to the Mediterranean, carrying seeds like saffron and cloves that were essential for cooking and dyeing textiles. These early exchanges laid the foundational groundwork for later developments, establishing routes along the Indian Ocean that connected East Asia with Western Europe through controlled ports at sea.\n\nEarly maritime expansion saw Portuguese explorers begin their involvement in Asian spice markets during the 15th century, seeking a new route to China's spices. The Portuguese were among the first European nations to set sail for India and later seek spices from Southeast Asia via the Dutch East India Company's presence, which expanded trade routes beyond traditional land paths into the Indian Ocean basin. As European powers pursued these ambitions, they established colonies along the coast of India and neighboring regions, creating hubs where trade routes were managed and regulated by European authorities to prevent piracy and ensure commercial safety for their fleets.\n\nThe rise of modern transoceanic shipping in the late 19th century revolutionized how spices reached Europe, allowing ships like the Lusitania to carry vast quantities of cinnamon, cloves, and turmeric across the Atlantic The Lusitania, a powerful ship commanded by Captain Arthur Phillip of the Royal Navy, set sail from Portsmouth on October 14, 1862, carrying an estimated 30,000 pounds of spices that would later become legendary. The voyage was not without risk; it encountered violent gale weather and was eventually wrecked off the coast of Newfoundland by a powerful storm in October 1864, killing all but four crew members. This tragic event marked a turning point where the reliance on maritime routes for spice transport began to decline as global trade shifted toward more efficient steam-powered railroads and overland caravan systems that bypassed dangerous coastal conditions.\n\nIn the late 19th century, this shift was catalyzed by the invention of the steam engine, which allowed ships like the Lusitania to move faster than any other vessel capable of carrying such heavy loads. European powers quickly adopted this technology, leading to a global rush towards direct ocean crossings that eliminated the need for trans-Saharan and Indian Ocean routes entirely. By 1890, the first commercial steamer had successfully transported more than one million pounds of spices across the Atlantic, effectively closing off many traditional chokepoints between Asia and Europe by turning ships into freighters rather than passengers.\n\nThis technological advance significantly altered the economic structure of the spice trade itself. Previously, traders would spend months traveling thousands of miles on slowboats or barges to gather harvests from distant colonies; now, a single voyage could transport millions of tons of goods in hours. Consequently, major trading hubs shifted geographically, moving closer to port cities that served as central markets for raw materials and finished products rather than being located far out at sea. The discovery of the Pacific Ocean in 1876 further complicated matters by creating a new maritime corridor between China and Japan, opening fresh avenues for Asian merchants who previously had no direct access to the west.\n\nThe expansion of trade routes also brought about profound cultural and economic shifts that defined the era's global interconnectedness. As spice goods reached Europe through rail, the physical distance traveled became negligible, but the logistical complexity increased dramatically due to the sheer volume of cargo being moved in a single trip. This efficiency meant that European cities like London, Berlin, and Paris could sustain massive populations without needing to maintain vast empires across continents; instead, they functioned as regional distribution centers for their own industries. Simultaneously, Asian markets expanded outward, with Chinese merchants establishing new trading posts along the Pacific coast of Africa and even reaching into South America and Australia, fundamentally reshaping world geography.\n\nThe long-term impact of this rapid expansion is evident in the modern global economy, which relies on a complex web of connections that spanned continents for over two centuries. Modern supply chains are often built around transatlantic rail and sea routes, but they are frequently disrupted by geopolitical instability or natural disasters that affect specific chokepoints. The history of these spice journeys continues to shape today's infrastructure development, as nations invest heavily in port construction and maritime technology to ensure that the delicate network connecting East Asia with Europe remains stable for future generations. This enduring relationship between civilizations has proven more valuable than any single trade route ever could have been in its early days.",
+          "disabled": false
+        }
+      },
+      "detail": "The global spice trade between Asia and Europe has been one of the most significant economic and cultural exchanges in human history, spanning over a thousand years. This intricate network began durin"
+    },
+    {
+      "i": 36,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2231,
+      "detail": "K02-continued-try2"
+    },
+    {
+      "i": 37,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 39,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 41,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 44,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 45,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 535,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7016,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 48,
+      "op": "press",
+      "ok": true,
+      "ms": 175,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2008,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous peoples. These early traders were often nomadic groups who moved between different parts of the world to gather what they needed for survival. They relied heavily on local markets where merchants would exchange goods with neighbors based on their personal connections and trade networks. Over time, these exchanges evolved into complex systems that connected vast regions across continents through established pathways and specialized trading hubs. The earliest recorded spice imports from Asia are often cited as the incense smoke of the Roman Empire, which was harvested from cinnamon, cloves, and nutmeg. These items were used to create perfumes for royal chambers in Rome and later spread throughout Europe via trade routes that linked Mediterranean ports with Asian islands. During this phase, the primary drivers were religious devotion and political alliances; traders sought exclusive rights to produce these valuable commodities for use by high-ranking officials",
+        "props": {
+          "source": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous peoples. These early traders were often nomadic groups who moved between different parts of the world to gather what they needed for survival. They relied heavily on local markets where merchants would exchange goods with neighbors based on their personal connections and trade networks. Over time, these exchanges evolved into complex systems that connected vast regions across continents through established pathways and specialized trading hubs.\n\nThe earliest recorded spice imports from Asia are often cited as the incense smoke of the Roman Empire, which was harvested from cinnamon, cloves, and nutmeg. These items were used to create perfumes for royal chambers in Rome and later spread throughout Europe via trade routes that linked Mediterranean ports with Asian islands. During this phase, the primary drivers were religious devotion and political alliances; traders sought exclusive rights to produce these valuable commodities for use by high-ranking officials",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous people"
+    },
+    {
+      "i": 51,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2878,
+      "detail": "K01-stopped-try3"
+    },
+    {
+      "i": 52,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 53,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 26435,
+      "detail": "stop gone"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous peoples. These early traders were often nomadic groups who moved between different parts of the world to gather what they needed for survival. They relied heavily on local markets where merchants would exchange goods with neighbors based on their personal connections and trade networks. Over time, these exchanges evolved into complex systems that connected vast regions across continents through established pathways and specialized trading hubs. The earliest recorded spice imports from Asia are often cited as the incense smoke of the Roman Empire, which was harvested from cinnamon, cloves, and nutmeg. These items were used to create perfumes for royal chambers in Rome and later spread throughout Europe via trade routes that linked Mediterranean ports with Asian islands. During this phase, the primary drivers were religious devotion and political alliances; traders sought exclusive rights to produce these valuable commodities for use by high-ranking officials The Roman Empire saw these imports first distributed among wealthy families in Italy and France, where they were used to create perfumes for the high court. By the 4th century AD, trade routes expanded southward toward India through a series of strategic points at sea and along the Silk Road. As the empire grew into an empire itself, the demand for these ingredients skyrocketed, necessitating a massive expansion of shipping fleets that could now reach distant Asian islands and oceanic trenches. By the 13th century, European powers such as the Spanish and Portuguese established their own colonial empires along the African coastlines, furthering the global network by bringing in spices from Africa to the Americas. This period marked a shift towards more centralized control of trade routes, as colonies became primary hubs for producing these commodities that were then shipped globally across oceans. The demand also expanded rapidly during the 18th and 19th centuries due to colonial wars, which required massive quantities of goods like opium and indigo to support armies and trade networks in North America. As Europe began its own industrial revolution and developed new maritime technologies, the efficiency of these long-distance journeys improved dramatically. Steam-powered vessels and later more powerful ships allowed spices from distant Asian ports to arrive faster than ever before, making them affordable for merchants across all European powers. This technological leap accelerated the movement of goods from China and India directly into British ports in London and Amsterdam, bypassing traditional overland routes that were slower and less reliable. The 19th century saw a rapid rise in global trade volume driven by industrialization and the need to sustain large armies during conflicts like the Napoleonic Wars and the American Civil War. As European nations sought wealth through colonies, they began to rely even more heavily on Asian sources for raw materials essential for their industries and weapons production. This era also saw the establishment of international monopolies and trade agreements that formalized long-standing exchanges between trading houses in Europe and their colonial holdings in Asia. These developments led to a more complex and regulated system where goods were often taxed, guarded, or restricted by local authorities to ensure fair distribution and prevent exploitation by unscrupulous merchants. Regulations became stricter over time as European powers sought greater control over the flow of these valuable commodities across vast distances. Additionally, the development of commercial shipping lines created new routes that connected ports in Asia with major European cities, further consolidating global supply chains for spices and related goods. In the 20th century, the dominance of Europe expanded into a more unified",
+        "props": {
+          "source": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous peoples. These early traders were often nomadic groups who moved between different parts of the world to gather what they needed for survival. They relied heavily on local markets where merchants would exchange goods with neighbors based on their personal connections and trade networks. Over time, these exchanges evolved into complex systems that connected vast regions across continents through established pathways and specialized trading hubs.\n\nThe earliest recorded spice imports from Asia are often cited as the incense smoke of the Roman Empire, which was harvested from cinnamon, cloves, and nutmeg. These items were used to create perfumes for royal chambers in Rome and later spread throughout Europe via trade routes that linked Mediterranean ports with Asian islands. During this phase, the primary drivers were religious devotion and political alliances; traders sought exclusive rights to produce these valuable commodities for use by high-ranking officials The Roman Empire saw these imports first distributed among wealthy families in Italy and France, where they were used to create perfumes for the high court. By the 4th century AD, trade routes expanded southward toward India through a series of strategic points at sea and along the Silk Road. As the empire grew into an empire itself, the demand for these ingredients skyrocketed, necessitating a massive expansion of shipping fleets that could now reach distant Asian islands and oceanic trenches.\n\nBy the 13th century, European powers such as the Spanish and Portuguese established their own colonial empires along the African coastlines, furthering the global network by bringing in spices from Africa to the Americas. This period marked a shift towards more centralized control of trade routes, as colonies became primary hubs for producing these commodities that were then shipped globally across oceans. The demand also expanded rapidly during the 18th and 19th centuries due to colonial wars, which required massive quantities of goods like opium and indigo to support armies and trade networks in North America.\n\nAs Europe began its own industrial revolution and developed new maritime technologies, the efficiency of these long-distance journeys improved dramatically. Steam-powered vessels and later more powerful ships allowed spices from distant Asian ports to arrive faster than ever before, making them affordable for merchants across all European powers. This technological leap accelerated the movement of goods from China and India directly into British ports in London and Amsterdam, bypassing traditional overland routes that were slower and less reliable.\n\nThe 19th century saw a rapid rise in global trade volume driven by industrialization and the need to sustain large armies during conflicts like the Napoleonic Wars and the American Civil War. As European nations sought wealth through colonies, they began to rely even more heavily on Asian sources for raw materials essential for their industries and weapons production. This era also saw the establishment of international monopolies and trade agreements that formalized long-standing exchanges between trading houses in Europe and their colonial holdings in Asia.\n\nThese developments led to a more complex and regulated system where goods were often taxed, guarded, or restricted by local authorities to ensure fair distribution and prevent exploitation by unscrupulous merchants. Regulations became stricter over time as European powers sought greater control over the flow of these valuable commodities across vast distances. Additionally, the development of commercial shipping lines created new routes that connected ports in Asia with major European cities, further consolidating global supply chains for spices and related goods.\n\nIn the 20th century, the dominance of Europe expanded into a more unified",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began long before the modern era, starting in ancient times with the cultivation of various herbs, spices, and other plant-based substances by indigenous people"
+    },
+    {
+      "i": 58,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3512,
+      "detail": "K02-continued-try3"
+    }
+  ],
+  "errors": []
+}

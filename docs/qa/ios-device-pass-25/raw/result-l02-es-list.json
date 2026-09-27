@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-es-list",
+  "startedAt": "2026-09-27T19:54:57.719Z",
+  "finishedAt": "2026-09-27T19:55:39.059Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-6ddbff16-1329-4c82-b090-1a8054b74a49 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 533,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cor ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesi ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesi",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesi ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El mie ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El mie",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vi ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vi",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu dest ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu dest",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada dí ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada dí",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 785,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carret ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carret",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 923,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 887,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destin ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destin",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 948,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 2 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n2",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 921,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres. 28 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n28",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es haciendo lo que quieres hacer. 3. Cada paso hacia tu objetivo es una victoria real. 4. No te limites a lo que tienes, empieza por lo que no sabes. 5. El miedo es un ruido que puedes escuchar pero no controlar. 6. Tu historia no termina cuando se acaba el presente. 7. La fuerza no viene de tener más, sino de poder hacer menos. 8. Empieza hoy con algo pequeño y deja que la vida te guíe. 9. La perseverancia es lo único que realmente importa. 10. El camino a tu destino está abierto para todos los que intentan. 11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora. 12. La resiliencia es la capacidad de recuperarte cuando fallas. 13. Cada día es un nuevo comienzo con nuevas oportunidades. 14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer. 15. La calma es el motor para lograr grandes cosas. 16. No te detengas si la carretera está llena de obstáculos. 17. El éxito no es un destino, es una experiencia que puedes vivir. 18. Tu capacidad para ser es tan grande como tu capacidad para ser. 19. La disciplina es el camino más largo y menos doloroso. 20. La paz se encuentra con la acción; sin acción hay solo pensamiento. 21. No te desmotiva si no puedes hacer lo que quieres hacer hoy. 22. El futuro está en los pequeños detalles que ahora se construyen. 23. Tu potencial es tan grande como tu capacidad para serlo. 24. La perseverancia es la única fuerza que puede cambiar el destino. 25. Cada pequeño logro es un paso hacia el mayor objetivo. 26. El crecimiento personal es una maratón, no un sprint. 27. No te detengas si el camino te lleva a lo que quieres.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía:\n\n1. Tu potencial es infinito; solo necesitas seguir adelante.\n2. La mejor forma de aprender es haciendo lo que quieres hacer.\n3. Cada paso hacia tu objetivo es una victoria real.\n4. No te limites a lo que tienes, empieza por lo que no sabes.\n5. El miedo es un ruido que puedes escuchar pero no controlar.\n6. Tu historia no termina cuando se acaba el presente.\n7. La fuerza no viene de tener más, sino de poder hacer menos.\n8. Empieza hoy con algo pequeño y deja que la vida te guíe.\n9. La perseverancia es lo único que realmente importa.\n10. El camino a tu destino está abierto para todos los que intentan.\n11. No esperes a ser bueno antes de empezar; empieza siendo bueno ahora.\n12. La resiliencia es la capacidad de recuperarte cuando fallas.\n13. Cada día es un nuevo comienzo con nuevas oportunidades.\n14. Tu valor no se mide por lo que tienes, sino por lo que puedes hacer.\n15. La calma es el motor para lograr grandes cosas.\n16. No te detengas si la carretera está llena de obstáculos.\n17. El éxito no es un destino, es una experiencia que puedes vivir.\n18. Tu capacidad para ser es tan grande como tu capacidad para ser.\n19. La disciplina es el camino más largo y menos doloroso.\n20. La paz se encuentra con la acción; sin acción hay solo pensamiento.\n21. No te desmotiva si no puedes hacer lo que quieres hacer hoy.\n22. El futuro está en los pequeños detalles que ahora se construyen.\n23. Tu potencial es tan grande como tu capacidad para serlo.\n24. La perseverancia es la única fuerza que puede cambiar el destino.\n25. Cada pequeño logro es un paso hacia el mayor objetivo.\n26. El crecimiento personal es una maratón, no un sprint.\n27. No te detengas si el camino te lleva a lo que quieres.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, diseñadas para ser memorables y llenar tu mente con energía: 1. Tu potencial es infinito; solo necesitas seguir adelante. 2. La mejor forma de aprender es hac"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2875,
+      "detail": "L02-es-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 538,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 1802 chars, unit 60 cp x2",
+    "console.log: [chat] loop cut: kept 1802 of 1984 chars, unit 53 cp x2"
+  ]
+}
