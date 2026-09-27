@@ -227,7 +227,8 @@ describe("F415 · healthy text stays whole", () => {
     const line = "I will study every day.";
     const { shown, loop } = await screen(guardLoops(engine(`${line}\n`.repeat(8)), () => undefined, { request }));
     expect(count(shown, line)).toBe(5);
-    expect(loop).toBeDefined();
+    /* F421: the five are the whole answer, so it ends there without the notice. */
+    expect(loop).toBeUndefined();
     const exact = await screen(guardLoops(engine(`${line}\n`.repeat(5)), () => undefined, { request }));
     expect(count(exact.shown, line)).toBe(5);
     expect(exact.loop).toBeUndefined();
