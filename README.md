@@ -6552,6 +6552,33 @@ round 113's guard before Moshe tests it. Nothing went to a store.
 
 Evidence: `docs/qa/ios-build-24-2026-09-27.md`, `docs/qa/ios-device-pass-24-2026-09-27.md`, `docs/qa/ios-device-pass-24/`.
 
+## iOS build 25: main with round 114's loop guard, on Moshe's iPhone only (branch `ios-build-25`) — 27.9.2026
+
+Build 1.0.0 (25) carries local `main` 6312e769 (build 24's main plus round 114) to the iPhone 13 Pro, so the phone has
+round 114's guard before Moshe tests it. Nothing went to a store.
+
+- **The build.** Commit 8b5f43fa bumps the build number 24 → 25. Gates exit 0 on the first run: 1,127 core with 4
+  skipped, 1,180 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive, with both models byte-exact to the
+  catalog, and round 114's head and bare-end patterns in the bundle (build 24's bundle has neither). The QA-bridge and
+  shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install, all six
+  are byte-identical and the listing is unchanged. About reads `1.0.0 (25) · 8b5f43fa2056`, left on the Chats list.
+- **Passed on the phone.** The first answer runs at 31.8 tok/s. Continue restated the stopped clause in 0 of 3 tries.
+  Delete everything lands on Welcome with no banner and no `.corrupt` file, again after a cold relaunch. Documents
+  reads 253 B for one .txt.
+- **The 24 stress answers (F430).** Pass 24's five repeats did not recur: no verb said again with a new gloss, no
+  inline list said again, no suffix block, no item said again with a tail. No broken seam at any of the 15 retries and
+  cuts, no bare marker at any answer's end, and no notice on a budget end. There were 9 silent retries and 7 notices.
+  Two answers still show a repeat on screen, of kinds no rule reads:
+  - at 0.7, a long division written as a code block that subtracts "- 123000000" 16 times, with a wrong new number
+    between each pair, until the token budget ends it. Fenced code is exempt by design;
+  - under 0.2, a Hebrew list that says six places again with their first word misspelled (*"14. קיבוץ ירושלים"* …
+    *"23. קיבוט ירושלים"*). The guard's retry came earlier, and nothing fired after it.
+- **Also seen.** Continue try 1 joins *"…capitals,. These ventures"*, which round 113's seam rule leaves when it drops
+  a restated clause that ends in a period. The fox request got one line in all 3 tries (once the request itself), with no guard action.
+
+Evidence: `docs/qa/ios-build-25-2026-09-27.md`, `docs/qa/ios-device-pass-25-2026-09-27.md`, `docs/qa/ios-device-pass-25/`.
+
 ## Fixes round 114: an item's head is the item, so a verb listed again with a new gloss is cut (branch `loop-guard-item-heads`) — 27.9.2026
 
 Moshe (27.9): repetition must never reach the screen, not even 3 times. iPhone build 24 on round 113's guard (main

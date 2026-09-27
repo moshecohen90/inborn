@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-poem-refrainless-2",
+  "startedAt": "2026-09-27T19:48:41.555Z",
+  "finishedAt": "2026-09-27T19:49:20.308Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 50 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "**The ▍",
+        "props": {
+          "source": "**The",
+          "disabled": false
+        }
+      },
+      "detail": "**The ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns int ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns int",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns int ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidi ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidi",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel sma ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel sma",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily of ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily of",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a w ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a w",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's sti ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's sti",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clea ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clea",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 795,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering gla ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering gla",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before ",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastn ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastn",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the l ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the l",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 752,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one poin ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one poin",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years unt ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nunt",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us fr ▍",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us fr",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 719,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud a low thrumming against my skin, making me feel small in the vastness of the blue. I watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line where the sky gives way to endless white and nothingness. The waves crash down one by one with a wet, rhythmic thud that echoes through my ear as if they are singing a song I cannot quite understand at this moment's stillness. Then the tide rises, lifting the stones from the sand below like heavy boots on dry grass and pushing up into my chest, filling me up until I am almost entirely water and air. The salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss. I breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be. A gust brings the wind down hard upon me, rattling my hair and shattering glass. The waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles where the sun was shining before it set for good on those days I've had no moonlight in my eyes. I keep shifting in the water, trying to find balance between the wave and the shore, though I am lost in this endless dance of rising and falling within the vastness of the sea's embrace. The ocean is not just a body of water; it is an eternal conversation between sky and sea and everything that happens beneath them in silence or together with their sounds. It holds my breath while I catch the last drops of rain before the sun begins to rise again in a way that seems endless, like a star system where we are all just one point on a long line. I walk toward the shore, holding onto a rock that has been washed away by waves for years until it's completely flat and smooth now, waiting patiently for me to find my footing once more. The sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+        "props": {
+          "source": "**The Tide and the Glass**\n\nI stand upon the edge of a vast, rolling ocean where the horizon bends like water\nand turns into a mirror, catching light so bright it glows against the dark grey sea.\nMy boots are worn smooth as polished obsidian, but the waves beat with a rhythm that is ancient and loud\na low thrumming against my skin, making me feel small in the vastness of the blue.\n\nI watch the sunset paint the clouds like fractured ribbons of gold, drifting lazily off the horizon line\nwhere the sky gives way to endless white and nothingness.\nThe waves crash down one by one with a wet, rhythmic thud that echoes through my ear\nas if they are singing a song I cannot quite understand at this moment's stillness.\n\nThen the tide rises, lifting the stones from the sand below like heavy boots on dry grass\nand pushing up into my chest, filling me up until I am almost entirely water and air.\nThe salt water tastes of rain, salty and clean, brushing against my skin with a soft, wet kiss.\nI breathe in that fresh, crisp taste, smelling of the sea where the smell of the sea used to be.\n\nA gust brings the wind down hard upon me, rattling my hair and shattering glass.\nThe waves crash violently again, sending foam dancing across the surface like a thousand tiny bubbles\nwhere the sun was shining before it set for good on those days I've had no moonlight in my eyes.\nI keep shifting in the water, trying to find balance between the wave and the shore, though I am lost\nin this endless dance of rising and falling within the vastness of the sea's embrace.\n\nThe ocean is not just a body of water; it is an eternal conversation between sky and sea\nand everything that happens beneath them in silence or together with their sounds.\nIt holds my breath while I catch the last drops of rain before the sun begins to rise again\nin a way that seems endless, like a star system where we are all just one point on a long line.\n\nI walk toward the shore, holding onto a rock that has been washed away by waves for years\nuntil it's completely flat and smooth now, waiting patiently for me to find my footing once more.\nThe sea keeps watching us from every direction, silent and unblinking until we are all gone.",
+          "disabled": false
+        }
+      },
+      "detail": "The Tide and the Glass I stand upon the edge of a vast, rolling ocean where the horizon bends like water and turns into a mirror, catching light so bright it glows against the dark grey sea. My boots "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2563,
+      "detail": "L07-poem-refrainless-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

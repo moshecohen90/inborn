@@ -1,0 +1,179 @@
+{
+  "runId": "d-continue",
+  "startedAt": "2026-09-27T19:58:31.760Z",
+  "finishedAt": "2026-09-27T19:59:11.729Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 533,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7018,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of cultural exchange, economic shifts, and geopolitical rivalries. This system began not with the arrival of spices themselves but rather with the sophisticated maritime networks that allowed wealthy states across the globe to secure access to these vital commodities through diplomatic treaties, naval alliances, and shared trade routes. The initial phase involved the Mediterranean world exchanging silk, porcelain, and precious metals for valuable Asian goods, establishing a foundation upon which later spice traders built their entire economies. As trade expanded northward, the Silk Road became a critical artery connecting China with India, facilitating the movement of silk and Indian textiles toward Europe while bringing spices from Southeast Asia to the northwestern ports of Britain and France. This region was particularly important for the first industrialization wave, as it supplied European merchants with high-quality dyes and medicinal herbs that were essential for textile production and pharmaceutical development. The medieval period witnessed a dramatic transformation in how spices reached Europe through the Crusades and subsequent European colonization campaigns. The Portuguese and Spanish expeditions to India created an insurmountable barrier between East Asia and West, but their conquests brought massive quantities of precious metals and exotic items into the continent's capitals,",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of cultural exchange, economic shifts, and geopolitical rivalries. This system began not with the arrival of spices themselves but rather with the sophisticated maritime networks that allowed wealthy states across the globe to secure access to these vital commodities through diplomatic treaties, naval alliances, and shared trade routes. The initial phase involved the Mediterranean world exchanging silk, porcelain, and precious metals for valuable Asian goods, establishing a foundation upon which later spice traders built their entire economies. As trade expanded northward, the Silk Road became a critical artery connecting China with India, facilitating the movement of silk and Indian textiles toward Europe while bringing spices from Southeast Asia to the northwestern ports of Britain and France. This region was particularly important for the first industrialization wave, as it supplied European merchants with high-quality dyes and medicinal herbs that were essential for textile production and pharmaceutical development.\n\nThe medieval period witnessed a dramatic transformation in how spices reached Europe through the Crusades and subsequent European colonization campaigns. The Portuguese and Spanish expeditions to India created an insurmountable barrier between East Asia and West, but their conquests brought massive quantities of precious metals and exotic items into the continent's capitals,",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of c"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3197,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 18967,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of cultural exchange, economic shifts, and geopolitical rivalries. This system began not with the arrival of spices themselves but rather with the sophisticated maritime networks that allowed wealthy states across the globe to secure access to these vital commodities through diplomatic treaties, naval alliances, and shared trade routes. The initial phase involved the Mediterranean world exchanging silk, porcelain, and precious metals for valuable Asian goods, establishing a foundation upon which later spice traders built their entire economies. As trade expanded northward, the Silk Road became a critical artery connecting China with India, facilitating the movement of silk and Indian textiles toward Europe while bringing spices from Southeast Asia to the northwestern ports of Britain and France. This region was particularly important for the first industrialization wave, as it supplied European merchants with high-quality dyes and medicinal herbs that were essential for textile production and pharmaceutical development. The medieval period witnessed a dramatic transformation in how spices reached Europe through the Crusades and subsequent European colonization campaigns. The Portuguese and Spanish expeditions to India created an insurmountable barrier between East Asia and West, but their conquests brought massive quantities of precious metals and exotic items into the continent's capitals,. These ventures marked a turning point where European powers realized that controlling trade routes was more important than conquering new lands; instead of seeking territory, they focused on establishing monopolies and exclusive zones to control access to the lucrative spice markets. This shift in strategy allowed nations like Portugal and Spain to establish trading posts not just for raw materials but also for processing goods into finished products such as textiles, ceramics, and metalworking tools. The resulting network became known as the 'Venetian system,' where merchants negotiated with local rulers or guilds to guarantee exclusive rights to specific spices, effectively turning the trade routes into commercial colonies rather than open borders. This era saw the rapid development of early global markets where European nations began shipping goods directly from their ports across the Mediterranean and Atlantic oceans without relying solely on overland caravan routes. Merchants could now bypass traditional chokepoints like the Strait of Gibraltar or the Red Sea, trading with merchants located along the coast of India, China, and Southeast Asia while also sending back raw commodities to Europe via the established maritime network. The physical layout of these trade hubs became a defining feature of European industrialization; large warehouses in major cities like London, Paris, and Amsterdam were built specifically to process goods that had traveled from distant corners of the world for years before reaching their final destinations. The late medieval period was marked by intense rivalry between competing powers who viewed the spice routes as essential lifelines for their expansionist ambitions. While the British monarchy sought to dominate Indian trade through naval power, the Ottoman Empire and the Portuguese established fortified bases along major arteries that would shape European politics for centuries. The Treaty of Tordesillas in 1498, a pivotal diplomatic agreement between Portugal and Spain, attempted to settle the dispute over the Strait of Magellan by dividing Asia around the 50th longitude mark. Although this treaty was never fully implemented due to political deadlock, it created a new framework for international trade that allowed Europe to secure access to Asian goods without direct confrontation with rival powers. The economic boom of the Middle Ages relied heavily on these established routes, generating massive wealth through controlled monopolies and high prices paid in precious metals like gold and silver. Merchants could accumulate enormous fortunes by controlling access to spices, creating a class of wealthy traders who funded wars, built vast estates, and became intermediaries for European consumers. This",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of cultural exchange, economic shifts, and geopolitical rivalries. This system began not with the arrival of spices themselves but rather with the sophisticated maritime networks that allowed wealthy states across the globe to secure access to these vital commodities through diplomatic treaties, naval alliances, and shared trade routes. The initial phase involved the Mediterranean world exchanging silk, porcelain, and precious metals for valuable Asian goods, establishing a foundation upon which later spice traders built their entire economies. As trade expanded northward, the Silk Road became a critical artery connecting China with India, facilitating the movement of silk and Indian textiles toward Europe while bringing spices from Southeast Asia to the northwestern ports of Britain and France. This region was particularly important for the first industrialization wave, as it supplied European merchants with high-quality dyes and medicinal herbs that were essential for textile production and pharmaceutical development.\n\nThe medieval period witnessed a dramatic transformation in how spices reached Europe through the Crusades and subsequent European colonization campaigns. The Portuguese and Spanish expeditions to India created an insurmountable barrier between East Asia and West, but their conquests brought massive quantities of precious metals and exotic items into the continent's capitals,. These ventures marked a turning point where European powers realized that controlling trade routes was more important than conquering new lands; instead of seeking territory, they focused on establishing monopolies and exclusive zones to control access to the lucrative spice markets. This shift in strategy allowed nations like Portugal and Spain to establish trading posts not just for raw materials but also for processing goods into finished products such as textiles, ceramics, and metalworking tools. The resulting network became known as the 'Venetian system,' where merchants negotiated with local rulers or guilds to guarantee exclusive rights to specific spices, effectively turning the trade routes into commercial colonies rather than open borders.\n\nThis era saw the rapid development of early global markets where European nations began shipping goods directly from their ports across the Mediterranean and Atlantic oceans without relying solely on overland caravan routes. Merchants could now bypass traditional chokepoints like the Strait of Gibraltar or the Red Sea, trading with merchants located along the coast of India, China, and Southeast Asia while also sending back raw commodities to Europe via the established maritime network. The physical layout of these trade hubs became a defining feature of European industrialization; large warehouses in major cities like London, Paris, and Amsterdam were built specifically to process goods that had traveled from distant corners of the world for years before reaching their final destinations.\n\nThe late medieval period was marked by intense rivalry between competing powers who viewed the spice routes as essential lifelines for their expansionist ambitions. While the British monarchy sought to dominate Indian trade through naval power, the Ottoman Empire and the Portuguese established fortified bases along major arteries that would shape European politics for centuries. The Treaty of Tordesillas in 1498, a pivotal diplomatic agreement between Portugal and Spain, attempted to settle the dispute over the Strait of Magellan by dividing Asia around the 50th longitude mark. Although this treaty was never fully implemented due to political deadlock, it created a new framework for international trade that allowed Europe to secure access to Asian goods without direct confrontation with rival powers.\n\nThe economic boom of the Middle Ages relied heavily on these established routes, generating massive wealth through controlled monopolies and high prices paid in precious metals like gold and silver. Merchants could accumulate enormous fortunes by controlling access to spices, creating a class of wealthy traders who funded wars, built vast estates, and became intermediaries for European consumers. This",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is one of the most intricate and interconnected narratives in human civilization, spanning over three millennia and defined by a complex web of c"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2561,
+      "detail": "K02-continued"
+    }
+  ],
+  "errors": []
+}
