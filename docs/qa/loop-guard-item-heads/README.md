@@ -10,7 +10,9 @@ Files:
 
 - `device-cuts.md`: the two build 24 verbs-de answers, the web answer (stored and as the screen text reads), and build
   24's ko-list, he-list and fr-list at 0.2, each with the round 114 cut marked.
-- `replay-r114.txt`: the offline replay, round 113 (main) against round 114, with every new or moved cut listed.
+- `replay-r114.txt`: the offline replay, round 113 (main) against round 114, with every new or moved cut listed. It
+  predates the quiet budget end: its three bare-marker rows (math-fib "27" twice, fr-list try 1's lone "-") are now
+  trimmed with no notice. A list short of the asked count ends quietly; a Continue is the user's.
 - `replay-r114.test.ts.txt`: the replay harness. To rerun it, copy it to `packages/core/test/`, put main's `loop.ts` at
   `packages/core/src/chat/zz-loop-old.ts`, and run it with vitest. `PASS23` and `PASS24` point at the phone corpora;
   build 24 defaults to the read-only `/Users/moshecohen/dev/inborn-wt/ios-build-24/docs/qa/ios-device-pass-24`.

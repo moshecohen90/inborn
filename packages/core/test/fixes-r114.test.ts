@@ -237,38 +237,50 @@ describe("F428 · build 24 at 0.2: a numbered list on one line is read item by i
   });
 });
 
-describe("F428 · an answer that ran out on a bare list marker ends before it", () => {
+describe("F428 · an answer that ran out on a bare list marker ends before it, quietly: a budget end is not a loop", () => {
   const cities = `${Array.from({ length: 20 }, (_, i) => `${i + 1}. City ${String.fromCharCode(65 + i)}`).join("\n")}\n21`;
 
-  it("'…20. City T\\n21' short of the 30 asked: the '21' goes and the notice shows, with no retry", async () => {
+  it("'…20. City T\\n21' short of the 30 asked: the '21' goes, with no notice and no retry", async () => {
     let retried = 0;
     const retry = () => {
       retried++;
       return engine("");
     };
     const r = await screen(guardLoops(engine(cities), () => undefined, { request: "Nenne 30 Städte in Israel.", retry }));
-    expect(r.loop).toBeDefined();
+    expect(r.loop).toBeUndefined();
     expect(r.shown.trimEnd().split("\n").at(-1)).toBe("20. City T");
+    expect(r.shown.endsWith("21")).toBe(false);
     expect(retried).toBe(0);
   });
 
-  it("the count is read from '30 idées', '25 Verben', '30가지' and '20 ערים'; a list that reached it ends quietly", async () => {
-    for (const request of ["Nenne 20 Städte.", "Donne-moi 20 idées.", "도시 20가지를 알려주세요.", "תן לי 20 ערים."]) {
-      const r = await screen(guardLoops(engine(cities), () => undefined, { request }));
+  it("short of the count or not, in any language, the marker goes quietly; a Continue is the user's", async () => {
+    for (const request of ["Nenne 20 Städte.", "Donne-moi 20 idées.", "도시 20가지를 알려주세요.", "תן לי 20 ערים.", "Donne-moi 30 idées de cadeaux.", "Nenne 25 deutsche Verben.", "한국 음식 30가지를 알려주세요.", "List some cities."]) {
+      let retried = 0;
+      const retry = () => {
+        retried++;
+        return engine("");
+      };
+      const r = await screen(guardLoops(engine(cities), () => undefined, { request, retry }));
       expect(r.loop, request).toBeUndefined();
+      expect(retried, request).toBe(0);
       expect(r.shown.trimEnd().split("\n").at(-1)).toBe("20. City T");
-    }
-    for (const request of ["Donne-moi 30 idées de cadeaux.", "Nenne 25 deutsche Verben.", "한국 음식 30가지를 알려주세요."]) {
-      const r = await screen(guardLoops(engine(cities), () => undefined, { request }));
-      expect(r.loop, request).toBeDefined();
     }
   });
 
-  it("a lone dash after a heading item goes: '5. **Société & Économie**\\n-'", async () => {
+  it("a lone dash after a heading item goes quietly: '5. **Société & Économie**\\n-'", async () => {
     const text = "Voici 30 idées :\n\n1. **Art**\n2. **Sport**\n3. **Voyage**\n4. **Cuisine**\n5. **Société & Économie**\n-";
     const r = await screen(guardLoops(engine(text), () => undefined, { request: "Donne-moi 30 idées de cadeaux." }));
-    expect(r.loop).toBeDefined();
+    expect(r.loop).toBeUndefined();
     expect(r.shown.trimEnd().split("\n").at(-1)).toBe("5. **Société & Économie**");
+  });
+
+  it("the Fibonacci answer that stopped on '27' of 40 asked ends at item 26 with no notice", async () => {
+    const fib = [0, 1];
+    while (fib.length < 26) fib.push(fib.at(-1)! + fib.at(-2)!);
+    const text = `${fib.map((x, i) => `${i + 1}. **${x}**`).join("\n")}\n27`;
+    const r = await screen(guardLoops(engine(text), () => undefined, { request: "Write the first 40 Fibonacci numbers and show how each one is computed." }));
+    expect(r.loop).toBeUndefined();
+    expect(r.shown.trimEnd().split("\n").at(-1)).toBe(`26. **${fib[25]}**`);
   });
 
   it("an answer ending on a number that is not the next item keeps it", async () => {

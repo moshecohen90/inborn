@@ -15,7 +15,7 @@ export interface LoopHit {
   asked?: boolean;
   /** A retried list that reached the count it was asked for ends at `keep` with no notice (F426). */
   complete?: boolean;
-  /** The answer ran out on a bare list marker ("…20. אשדוד\n21"): the marker goes, and no retry follows (F428). */
+  /** The answer ran out on a bare list marker ("…20. אשדוד\n21"): the marker is trimmed silently, with no notice and no retry (F428). */
   truncated?: boolean;
 }
 
@@ -1267,14 +1267,14 @@ function listCount(text: string): number {
   return lines.length ? (lastNumber(lines.at(-1)!)?.num ?? lines.length) : 0;
 }
 
-/* F428: an answer that ran out of tokens on a bare list marker ("…20. אשדוד\n21", "5. **Société & Économie**\n-") ends before it. */
+/* F428: an answer that ran out of tokens on a bare list marker ("…20. אשדוד\n21", "5. **Société & Économie**\n-") ends before it; that is a budget end, not a loop. */
 const BARE_END = /\n[ \t]*(?:\*\*|__)?(?:(\d{1,3})[.)．]?|[-*•+])(?:\*\*|__)?[ \t]*$/u;
-function bareEnd(text: string, target: number | undefined): LoopHit | null {
+function bareEnd(text: string): LoopHit | null {
   const m = BARE_END.exec(text);
   if (!m) return null;
   const before = text.slice(0, m.index);
   if (m[1] !== undefined && Number(m[1]) !== listCount(before) + 1) return null;
-  return { unit: m[0].trim(), repeats: 1, start: m.index, keep: m.index, truncated: true, complete: target === undefined || listCount(before) >= target };
+  return { unit: m[0].trim(), repeats: 1, start: m.index, keep: m.index, truncated: true };
 }
 
 /**
@@ -1477,12 +1477,12 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     }
     /* he-list build 23: a retry that wrote only "." adds nothing; the answer ends at the cut, with the notice. */
     if (!hit && retried && !/[\p{L}\p{N}]/u.test(text.slice(contFrom))) hit = { unit: "", repeats: 1, start: contFrom, keep: contFrom };
-    if (!hit) hit = bareEnd(text, target);
+    if (!hit) hit = bareEnd(text);
     if (!hit) break;
     const cut = cutLoop(text, hit);
     /* Five asked, a sixth begun: the five are the whole answer, so a retry would only invent more (F421). */
     const retry = retried || hit.truncated ? undefined : context.retry;
-    if (hit.asked || hit.complete || retry) {
+    if (hit.asked || hit.complete || hit.truncated || retry) {
       /* Only whitespace past the cut on screen: nothing to take back. */
       if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {
         text = text.slice(0, sent);
@@ -1494,7 +1494,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         text = cut.text;
       }
       sent = checkedAt = text.length;
-      if (hit.asked || hit.complete || !retry) break;
+      if (hit.asked || hit.complete || hit.truncated || !retry) break;
       retried = true;
       contFrom = text.length;
       const lastLine = ITEM_OPEN.exec(text.replace(/\s+$/u, "").split("\n").at(-1) ?? "");
