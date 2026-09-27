@@ -1,0 +1,3135 @@
+
+> inborn@ web:smoke /Users/moshecohen/dev/inborn-wt/web-badges-persist
+> node scripts/web-smoke.mjs
+
+{
+  "model": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "dist": "/Users/moshecohen/dev/inborn-wt/web-badges-persist/apps/web/dist",
+  "url": "http://127.0.0.1:51394",
+  "isolation": true,
+  "serviceWorker": true,
+  "chromium": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "first": {
+    "catalog": {
+      "status": 200,
+      "type": "application/json",
+      "models": [
+        "instant",
+        "fast"
+      ]
+    },
+    "gateText": "Runs locally in your browser. We never receive your messages. Your browser and OS may still talk to their vendors.Details",
+    "doorOffer": "ON-DEVICEDownload Fast to this browserRECOMMENDED FOR THIS browserThe best answers this browser can run.1.28 GB, once. It stays on this device. Later visits need no network.~4-15 tok/s on your browserBest in English, Chinese, Spanish, French and 5 more languages.Free in this browser: 11 GB · the browser may clear it when space runs lowDownload 1.28 GBSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.Only the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.1 other model runs in this browser",
+    "doorSpeed": "~4-15 tok/s on your browser",
+    "doorOtherIds": [
+      "instant"
+    ],
+    "doorOptionIds": [
+      "fast",
+      "instant"
+    ],
+    "doorLayout": {
+      "390": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-390.png"
+      },
+      "768": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-768.png"
+      },
+      "820": {
+        "scrollWidth": 820,
+        "clientWidth": 820,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-820.png"
+      },
+      "1024": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-1024.png"
+      },
+      "1180": {
+        "scrollWidth": 1180,
+        "clientWidth": 1180,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-1180.png"
+      },
+      "1366": {
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-1366.png"
+      },
+      "1440": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-door-1440.png"
+      }
+    },
+    "storageBefore": 30519071,
+    "resumedFrom": "Resume · 15 MB of 1.28 GB",
+    "onboarding": [
+      "onboarding-welcome",
+      "onboarding-model",
+      "onboarding-sealed",
+      "onboarding-lock"
+    ],
+    "readyMs": 39057,
+    "sessionLoadMs": 2088,
+    "downloadedFile": "/models/fast.gguf",
+    "downloadRequests": [
+      "GET /models/fast.gguf",
+      "GET /models/fast.gguf [bytes=14811136-]"
+    ],
+    "crossOriginIsolated": true,
+    "webgpu": false,
+    "storageAfter": 1311429305,
+    "persisted": false,
+    "persistAsk": "log: [storage] persist after download: refused",
+    "tokPerSec": 17.2,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "modelChip": "FAST",
+    "engineLoadMs": 2076,
+    "threads": 6,
+    "gpuLayers": 0,
+    "a11yProps": {
+      "leaks": [],
+      "icons": [
+        {
+          "id": "attach",
+          "svg": true,
+          "ariaHidden": "true"
+        },
+        {
+          "id": "mic",
+          "svg": true,
+          "ariaHidden": "true"
+        },
+        {
+          "id": "send",
+          "svg": true,
+          "ariaHidden": "true"
+        }
+      ]
+    },
+    "offlineState": "Works offline",
+    "memoryMB": null,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke.png",
+    "vaultDoor": "Stored in this browser's private storage. Clearing site data removes it.",
+    "vaultScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-vault.png",
+    "consoleErrors": [],
+    "reactWarnings": [],
+    "hosts": [
+      "127.0.0.1:51394"
+    ]
+  },
+  "offline": {
+    "readyMs": 2245,
+    "sessionLoadMs": 1880,
+    "tokPerSec": 18.5,
+    "tokens": "10 / 4096",
+    "answer": "Mercury is a planet orbiting our sun.",
+    "modelChip": "FAST",
+    "engineLoadMs": 1862,
+    "threads": 6,
+    "gpuLayers": 0,
+    "requests": [
+      "GET /",
+      "GET /fonts/IBMPlexSans-Regular.woff2",
+      "GET /fonts/IBMPlexMono-Regular.woff2",
+      "GET /_expo/static/js/web/index-a3ba8888612845e8dcb9dc3751cd72f8.js",
+      "GET /models/manifest.json",
+      "GET /fonts/IBMPlexSans-SemiBold.woff2",
+      "GET /fonts/IBMPlexSans-Medium.woff2",
+      "GET /fonts/IBMPlexMono-Medium.woff2",
+      "GET /badges/app-store-en.svg",
+      "GET /badges/google-play-en.svg",
+      "GET /badges/app-store-en.svg",
+      "GET /badges/google-play-en.svg",
+      "GET blob:(worker)",
+      "GET /models/manifest.json",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET blob:(worker)",
+      "GET /wllama/wllama.wasm"
+    ],
+    "hosts": [
+      "127.0.0.1:51394"
+    ],
+    "navigatorOnLine": false,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-offline.png",
+    "consoleErrors": [
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    ]
+  },
+  "phone": {
+    "door": "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience.",
+    "getApp": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-phone.png"
+  },
+  "layout": {
+    "chat": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": {
+            "x": 17,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 61,
+            "y": 846,
+            "w": 224,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 285,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 329,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": {
+            "x": 17,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 61,
+            "y": 846,
+            "w": 224,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 285,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 329,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": {
+            "x": 297,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 341,
+            "y": 846,
+            "w": 322,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 663,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 707,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": {
+            "x": 297,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 341,
+            "y": 846,
+            "w": 322,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 663,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 707,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": {
+            "x": 297,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 341,
+            "y": 846,
+            "w": 374,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 715,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 759,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": {
+            "x": 297,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 341,
+            "y": 846,
+            "w": 374,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 715,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 759,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": {
+            "x": 329,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 373,
+            "y": 846,
+            "w": 514,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 887,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 931,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": {
+            "x": 329,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "input": {
+            "x": 373,
+            "y": 846,
+            "w": 514,
+            "h": 45,
+            "cy": 869
+          },
+          "mic": {
+            "x": 887,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "send": {
+            "x": 931,
+            "y": 847,
+            "w": 44,
+            "h": 44,
+            "cy": 869
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": {
+            "x": 407,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 451,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 965,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1009,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": {
+            "x": 407,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 451,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 965,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1009,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": {
+            "x": 500,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 544,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 1058,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1102,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": {
+            "x": 500,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 544,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 1058,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1102,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": {
+            "x": 537,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 581,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 1095,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1139,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": {
+            "x": 537,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "input": {
+            "x": 581,
+            "y": 766,
+            "w": 514,
+            "h": 45,
+            "cy": 789
+          },
+          "mic": {
+            "x": 1095,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "send": {
+            "x": 1139,
+            "y": 767,
+            "w": 44,
+            "h": 44,
+            "cy": 789
+          },
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-chat-1440-dark.png"
+        }
+      }
+    },
+    "settings": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-settings-1440-dark.png"
+        }
+      }
+    },
+    "paywall": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-paywall-1440-dark.png"
+        }
+      }
+    },
+    "onboarding": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-onboarding-1440-dark.png"
+        }
+      }
+    },
+    "proof": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-proof-1440-dark.png"
+        }
+      }
+    },
+    "vault": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-vault-1440-dark.png"
+        }
+      }
+    },
+    "documents": {
+      "390": {
+        "light": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-390.png"
+        },
+        "dark": {
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-390-dark.png"
+        }
+      },
+      "768": {
+        "light": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-768.png"
+        },
+        "dark": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-768-dark.png"
+        }
+      },
+      "820": {
+        "light": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-820.png"
+        },
+        "dark": {
+          "scrollWidth": 820,
+          "clientWidth": 820,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-820-dark.png"
+        }
+      },
+      "1024": {
+        "light": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1024.png"
+        },
+        "dark": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1024-dark.png"
+        }
+      },
+      "1180": {
+        "light": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1180.png"
+        },
+        "dark": {
+          "scrollWidth": 1180,
+          "clientWidth": 1180,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1180-dark.png"
+        }
+      },
+      "1366": {
+        "light": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1366.png"
+        },
+        "dark": {
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1366-dark.png"
+        }
+      },
+      "1440": {
+        "light": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1440.png"
+        },
+        "dark": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "attach": null,
+          "input": null,
+          "mic": null,
+          "send": null,
+          "small": [],
+          "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-layout-documents-1440-dark.png"
+        }
+      }
+    }
+  },
+  "labels": {
+    "en": {
+      "html": {
+        "lang": "en",
+        "dir": "ltr"
+      },
+      "newChat": "New chat",
+      "incognito": "Incognito",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "Memory"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "Folders, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memory"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Folders, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memory"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Folders, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "de": {
+      "html": {
+        "lang": "de",
+        "dir": "ltr"
+      },
+      "newChat": "Neuer Chat",
+      "incognito": "Inkognito",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "Gedächtnis"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "Ordner, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Gedächtnis"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Ordner, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Gedächtnis"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Ordner, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "fr": {
+      "html": {
+        "lang": "fr",
+        "dir": "ltr"
+      },
+      "newChat": "Nouveau chat",
+      "incognito": "Privé",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "Mémoire"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "Dossiers, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Mémoire"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Dossiers, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Mémoire"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Dossiers, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "es": {
+      "html": {
+        "lang": "es",
+        "dir": "ltr"
+      },
+      "newChat": "Nuevo chat",
+      "incognito": "Incógnito",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "Memoria"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "Carpetas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memoria"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Carpetas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memoria"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Carpetas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "pt-BR": {
+      "html": {
+        "lang": "pt-BR",
+        "dir": "ltr"
+      },
+      "newChat": "Novo chat",
+      "incognito": "Anônimo",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "Memória"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "Pastas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memória"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Pastas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "Personas"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "Memória"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "Pastas, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "ja": {
+      "html": {
+        "lang": "ja",
+        "dir": "ltr"
+      },
+      "newChat": "新しいチャット",
+      "incognito": "シークレット",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "ペルソナ"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "フォルダ, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "ペルソナ"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "フォルダ, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "ペルソナ"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "フォルダ, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "ko": {
+      "html": {
+        "lang": "ko",
+        "dir": "ltr"
+      },
+      "newChat": "새 채팅",
+      "incognito": "시크릿",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "페르소나"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "기억"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "폴더, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "페르소나"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "기억"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "폴더, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "페르소나"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "기억"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "폴더, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "zh-Hant": {
+      "html": {
+        "lang": "zh-Hant",
+        "dir": "ltr"
+      },
+      "newChat": "新對話",
+      "incognito": "無痕",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "角色"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "資料夾, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "角色"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "資料夾, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "角色"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "記憶"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "資料夾, PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    },
+    "pseudo": {
+      "html": {
+        "lang": "en-XA",
+        "dir": "ltr"
+      },
+      "newChat": "[Néw çhàt~~~~]",
+      "incognito": "[Îñçôgñïtô~~~~]",
+      "clipped": [],
+      "footer": {
+        "390": {
+          "footer": {
+            "x": 0,
+            "right": 390,
+            "cy": 779
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 777,
+              "name": "[Pérsôñàs~~~~]"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 777,
+              "name": "[Mémôrÿ~~~]"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 777,
+              "name": "[Fôldérs~~~], PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 390,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 777
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "768": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "[Pérsôñàs~~~~]"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "[Mémôrÿ~~~]"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "[Fôldérs~~~], PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 768,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        },
+        "1180": {
+          "footer": {
+            "x": 0,
+            "right": 279,
+            "cy": 731
+          },
+          "buttons": {
+            "open-personas": {
+              "x": 12,
+              "right": 56,
+              "cy": 729,
+              "name": "[Pérsôñàs~~~~]"
+            },
+            "open-memory": {
+              "x": 64,
+              "right": 108,
+              "cy": 729,
+              "name": "[Mémôrÿ~~~]"
+            },
+            "open-folders": {
+              "x": 116,
+              "right": 184,
+              "cy": 729,
+              "name": "[Fôldérs~~~], PRO"
+            }
+          },
+          "covered": [],
+          "clientWidth": 1180,
+          "pro": {
+            "x": 144,
+            "right": 180,
+            "cy": 729
+          },
+          "proInsideFolders": true,
+          "ellipsized": [],
+          "tabStops": [
+            "open-personas",
+            "open-memory",
+            "open-folders"
+          ]
+        }
+      }
+    }
+  },
+  "pseudoLayout": {
+    "chat": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-chat-390.png"
+    },
+    "settings": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-settings-390.png"
+    },
+    "paywall": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-paywall-390.png"
+    },
+    "onboarding": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-onboarding-390.png"
+    },
+    "proof": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-proof-390.png"
+    },
+    "vault": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-vault-390.png"
+    },
+    "documents": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-pseudo-documents-390.png"
+    }
+  },
+  "theme": {
+    "12": {
+      "osDarkOnLoad": "dark",
+      "osLightLive": "light",
+      "osDarkLive": "dark"
+    },
+    "20": {
+      "osDarkOnLoad": "dark",
+      "osLightLive": "dark",
+      "osDarkLive": "dark"
+    }
+  },
+  "lock": {
+    "title": "What is the capital of France?",
+    "ariaWithSheet": "- button \"Delete everything\":\n  - img \"SEALED\":\n    - img\n- text: Locked Your passcode opens Inborn. Chats in this browser's storage are not encrypted.\n- button \"Use passcode\"\n- dialog:\n  - text: Enter your passcode\n  - textbox \"Enter your passcode\"\n  - text: 4 to 8 digits. It is never stored, only a salted hash.\n  - button \"Cancel\"\n  - button \"Unlock\"",
+    "aria": "- button \"Delete everything\":\n  - img \"SEALED\":\n    - img\n- text: Locked Your passcode opens Inborn. Chats in this browser's storage are not encrypted.\n- button \"Use passcode\"",
+    "stops": [
+      "lock-seal",
+      "unlock-passcode",
+      "BODY"
+    ],
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-locked.png",
+    "inertAfterUnlock": 0
+  },
+  "update": {
+    "ok": true,
+    "idle": {
+      "name": "idle",
+      "loads": 2,
+      "before": "A",
+      "firstPaint": "A",
+      "after": "B",
+      "ok": true
+    },
+    "busy": {
+      "name": "busy",
+      "loads": 0,
+      "before": "A",
+      "lineShown": true,
+      "stillDownloading": true,
+      "buildWhileBusy": "A",
+      "after": "B",
+      "ok": true
+    }
+  },
+  "returning": {
+    "downloadMs": 14041,
+    "first": {
+      "ggufRequests": 1,
+      "persistLine": "[storage] persist after download: refused",
+      "record": "{\"granted\":false,\"reason\":\"download\",\"at\":1790497509747}",
+      "persistedHeadless": false,
+      "settings": "Browser cleanupThe browser may clear it when space runs low"
+    },
+    "granted": {
+      "line": "[storage] persist after onboarded: granted",
+      "persisted": true,
+      "settings": "Browser cleanupStorage is protected from automatic cleanup"
+    },
+    "restart": {
+      "engine": "wllama",
+      "ms": 1628,
+      "ggufRequests": [],
+      "sawModelStep": false,
+      "pageNow": "2026-09-27T08:25:13.858Z",
+      "path": "/",
+      "ok": true,
+      "persisted": false
+    },
+    "eightDays": {
+      "engine": "wllama",
+      "ms": 1834,
+      "ggufRequests": [],
+      "sawModelStep": false,
+      "pageNow": "2026-10-05T08:25:15.755Z",
+      "path": "/",
+      "ok": true
+    },
+    "update": {
+      "handedOver": "B",
+      "handOverMs": 1282,
+      "engine": "wllama",
+      "ms": 1265,
+      "ggufRequests": [],
+      "sawModelStep": false,
+      "pageNow": "2026-09-27T08:25:18.372Z",
+      "path": "/",
+      "ok": true,
+      "buildAfter": "B"
+    },
+    "ms": 22622,
+    "ok": true
+  },
+  "switched": {
+    "vaultOtherIds": [
+      "instant"
+    ],
+    "chosen": "instant",
+    "door": "ON-DEVICEDownload Instant to this browser533 MB, once. It stays on this device. Later visits need no network.~7-33 tok/s on your browserBest in English, Chinese, Portuguese.Free in this browser: 11 GB · the browser may clear it when space runs lowDownload 533 MBSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.Only the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.1 other model runs in this browser",
+    "doorOffers": "instant",
+    "doorIds": [
+      "fast",
+      "instant"
+    ],
+    "readyMs": 15988,
+    "sessionLoadMs": 1438,
+    "modelChip": "INSTANT",
+    "tokPerSec": 34.5,
+    "tokens": "13 / 4096",
+    "answer": "Paris is the capital city and the nation's largest by population.",
+    "engineLoadMs": 1422,
+    "threads": 6,
+    "gpuLayers": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-switched.png",
+    "hosts": [
+      "127.0.0.1:51394"
+    ]
+  },
+  "attach": {
+    "indexModelServed": true,
+    "txt": {
+      "file": "greenhouse-notes.txt",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "holdScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-hold-greenhouse-notes.txt.png",
+      "answer": "This document outlines greenhouse maintenance notes including heating and irrigation schedules for a Lindqvist greenhouse in the Netherlands.",
+      "sources": "SOURCESgreenhouse-notes.txt · part 1",
+      "wordsOnly": true,
+      "noneMatched": false,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-greenhouse-notes.txt.png"
+    },
+    "pdf": {
+      "file": "turbine-report.pdf",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "holdScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-hold-turbine-report.pdf.png",
+      "answer": "The uploaded document outlines a turbine maintenance system for an inborn acceptance test, specifically referencing the Rakovsky turbine (RK-4417).",
+      "sources": "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3",
+      "wordsOnly": false,
+      "noneMatched": false,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-turbine-report.pdf.png"
+    },
+    "txtRowNextVisit": "greenhouse-notes.txtTXT · 1 part · 253 BIndexed · 1 passage",
+    "txtAgain": {
+      "file": "greenhouse-notes.txt",
+      "answer": "This document describes Lindqvist greenhouse maintenance notes, including heating systems and irrigation schedules for the greenhouse on page [1].",
+      "sources": "[1] greenhouse-notes.txt · part 1",
+      "wordsOnly": false,
+      "noneMatched": false,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-greenhouse-notes.txt.png"
+    },
+    "ragLines": [
+      "log: [documents] turbine-report.pdf: indexed (words only, no index model) · 3/3 pages · 3 chunks · 26 ms (9 ms/page)",
+      "log: [rag] strict=false overview reindexing=1/1 hits=3 used=3 0 ms | 59178b71-899e-4fa2-b706-50e891f4cfda#0 cos=0.000 terms=0 bm25=0.00 KEPT · 59178b71-899e-4fa2-b706-50e891f4cfda#1 cos=0.000 terms=0 bm25=0.00 KEPT · 59178b71-899e-4fa2-b706-50e891f4cfda#2 cos=0.000 terms=0 bm25=0.00 KEPT",
+      "log: [documents] greenhouse-notes.txt: indexed · 1/1 pages · 1 chunks · 2349 ms (2349 ms/page)",
+      "log: [documents] turbine-report.pdf: indexed · 3/3 pages · 3 chunks · 1433 ms (478 ms/page)",
+      "log: [rag] strict=false overview hits=1 used=1 0 ms | 5dac0c83-bd52-48e3-86ca-b94c416e67fb#0 cos=0.000 terms=0 bm25=0.00 KEPT"
+    ]
+  },
+  "photo": {
+    "served": true,
+    "photoRowDisabled": false,
+    "hold": "This device has no photo model installed. Download the 205 MB photo pack to ask about pictures.Download · 205 MBRemove the photo",
+    "answer": "The shape in the photo is a red circle, which is commonly known as a Japanese flag's design element. The text written under the circle is 'CAT'.",
+    "photoTurn": "info: [wllama] photo turn · photos=1 ttft=81611 ms total=83923 ms tokens=32",
+    "names": [
+      "red",
+      "circle",
+      "cat"
+    ],
+    "vault": "EXTENSIONSEach one downloads the first time you need it: a photo, a file to search. Your first visit fetches the text model alone.Document indexLets Inborn search your documents on this device.Installed · 468 MBRemovePhoto packLets Instant look at your photos on this device.Installed · 205 MBRemove"
+  },
+  "deployedLike": {
+    "shellForIndexModel": "200 text/html; charset=utf-8",
+    "txt": {
+      "file": "greenhouse-notes.txt",
+      "hold": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched.Download · 468 MBSend, exact words onlyCancel",
+      "holdScreenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-hold-greenhouse-notes.txt.png",
+      "downloadError": "This model is not on the download server yet. Try again later.",
+      "answer": "This document records greenhouse maintenance notes for a heated Lindqvist greenhouse located in October 2021, containing instructions on heating systems and irrigation schedules that must not be followed strictly.",
+      "sources": "SOURCESgreenhouse-notes.txt · part 1",
+      "wordsOnly": true,
+      "noneMatched": false,
+      "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-attach-greenhouse-notes.txt.png"
+    },
+    "modelLines": [
+      "log: [documents] greenhouse-notes.txt: indexed (words only, no index model) · 1/1 pages · 1 chunks · 9 ms (9 ms/page)",
+      "log: [rag] strict=false words-only overview hits=1 used=1 0 ms | 669c82d7-14fa-4832-a82f-1a7c1e1aecdb#0 cos=0.000 terms=0 bm25=0.00 KEPT"
+    ],
+    "photoError": "This model is not on the download server yet. Try again later."
+  },
+  "noSpace": {
+    "text": "Not enough space in this browser: 1.55 GB needed, 105 MB free.",
+    "buttonDisabled": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-nospace.png"
+  },
+  "roomForInstant": {
+    "note": "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.",
+    "door": "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit.ON-DEVICEDownload Instant to this browserRECOMMENDED FOR THIS browserThe best answers this browser can run.Fast needs 1.55 GB; you have 944 MB, so Instant is recommended.533 MB, once. It stays on this device. Later visits need no network.~7-33 tok/s on your browserBest in English, Chinese, Portuguese.Free in this browser: 944 MB · the browser may clear it when space runs lowDownload 533 MBSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.Only the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.1 other model runs in this browser",
+    "noSpaceShown": false,
+    "buttonDisabled": false,
+    "buttonText": "Download 533 MB",
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-room-instant.png"
+  },
+  "brokenCatalog": {
+    "text": "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again",
+    "retry": true,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-catalog-broken.png"
+  },
+  "paywallWithoutModel": {
+    "pro": "PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation",
+    "work": "PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement",
+    "why": "You asked for answers only from your documents. Pro turns that on.",
+    "door": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-paywall-no-model.png",
+    "modelGone": "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit.",
+    "nothingKept": {
+      "onboarded": false,
+      "next": "/onboarding/model"
+    }
+  },
+  "deepLinks": {
+    "/documents": "/onboarding",
+    "/settings": "/onboarding",
+    "/paywall": "/paywall"
+  },
+  "dev": {
+    "dist": "/Users/moshecohen/dev/inborn-wt/web-badges-persist/apps/mobile/web-build/dev",
+    "readyMs": 36312,
+    "sessionLoadMs": 1810,
+    "tokPerSec": 19.6,
+    "tokens": "7 / 4096",
+    "answer": "The capital of France is Paris.",
+    "modelChip": "FAST",
+    "engineLoadMs": 1776,
+    "threads": 6,
+    "gpuLayers": 0,
+    "screenshot": "/private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/r106/smoke3/web-smoke-dev-chat-390.png",
+    "a11yProps": {
+      "leaks": [],
+      "icons": [
+        {
+          "id": "attach",
+          "svg": true,
+          "ariaHidden": "true"
+        },
+        {
+          "id": "mic",
+          "svg": true,
+          "ariaHidden": "true"
+        },
+        {
+          "id": "send",
+          "svg": true,
+          "ariaHidden": "true"
+        }
+      ]
+    },
+    "reactWarnings": [],
+    "failedRequests": []
+  }
+}
+PASS: first visit ready 39057 ms · 17.2 tok/s · context 7 / 4096 · threads=6 · isolated=true
+PASS: offline visit ready 2245 ms · 18.5 tok/s · context 10 / 4096 · requests=21 · model fetches=0
+PASS: one reload after a deploy shows the new build (first paint A, then B); mid-download the "new version" line shows and its Refresh lands on B
+PASS: the finished download asked the browser to keep the model: "log: [storage] persist after download: refused" (F411)
+PASS: returning visits keep the model, no GGUF request, no Model step: restart 1628 ms, clock +8 days 1834 ms, after a deploy 1265 ms; granted -> Settings "Browser cleanupStorage is protected from automatic cleanup" (F411/F412, 22622 ms)
+PASS: onboarding walked onboarding-welcome -> onboarding-model -> onboarding-sealed -> onboarding-lock -> chat
+PASS: onboarded without the model, chats kept: the Model step alone: "This browser no longer has the model: browsers can clear a site's files, Safari after 7 days without a visit."
+PASS: onboarded without the model, nothing kept: Welcome -> /onboarding/model (F405)
+PASS: deep links before onboarding: /documents -> /onboarding, /settings -> /onboarding, /paywall -> /paywall
+PASS: vault door "Stored in this browser's private storage. Clearing site data removes it."
+PASS: phone door "iPhone Safari keeps this tab under 500 MB. Install the app for the full experience."
+PASS: no-space door "Not enough space in this browser: 1.55 GB needed, 105 MB free."
+PASS: 900 MB free leads with the model that fits: "Fast needs 1.55 GB; you have 944 MB, so Instant is recommended." · button "Download 533 MB"
+PASS: catalog application/json · models instant, fast
+PASS: no React Native prop on the DOM, composer icons aria-hidden (attach, mic, send)
+PASS: development export walked onboarding (download in the Model step) -> chat with 0 React warnings, 0 LogBox reports (0 failed requests: none)
+PASS: broken catalog door "The model catalog did not loadThis browser could not read the list of models, so there is nothing to download yet. Check your connection and try again.Try again"
+PASS: attached .txt answered on the word search with SOURCES "SOURCESgreenhouse-notes.txt · part 1"; .pdf answered after installing the index model from this host with SOURCES "SOURCESturbine-report.pdf · p.1turbine-report.pdf · p.2turbine-report.pdf · p.3"; in the next page load the .txt row reads "greenhouse-notes.txtTXT · 1 part · 253 BIndexed · 1 passage" and answers again with SOURCES "[1] greenhouse-notes.txt · part 1" by meaning
+PASS: a photo held on the photo-pack card, the pack downloaded from this host, and Instant answered naming red, circle, cat: "The shape in the photo is a red circle, which is commonly known as a Japanese flag's design element. The text written un" (info: [wllama] photo turn · photos=1 ttft=81611 ms total=83923 ms tokens=32)
+PASS: deployed-like host, the projector fails as "This model is not on the download server yet. Try again later."
+PASS: pseudo-locale at 390 on chat, settings, paywall, onboarding, proof, vault, documents — no horizontal scroll; the PRO chip stays on the Folders row in 9 locales
+PASS: Auto follows a live OS change at 12:00 (dark → light → dark) and stays dark at 20:00 under a light OS
+PASS: layout swept chat, settings, paywall, onboarding, proof, vault, documents at 390 / 768 / 820 / 1024 / 1180 / 1366 / 1440 in light + dark — no horizontal scroll, composer row aligned, every control >= 44px
+PASS: <html lang> follows the UI language in 9 locales (ja = "ja", pseudo = "en-XA")
+PASS: locked, Tab reaches only lock-seal, unlock-passcode, BODY; no chat title in the accessibility tree, no palette, no answer in the DOM; unlocked cleanly
+PASS: 9 locales at 390, no clipped sidebar label (fr incognito = "Privé")
+PASS: no model, the price list still reads PRO$19.99 · one-time purchaseUnlimited documents + OCR, with citationsUnlimited personas + on-device memoryFolders + export all chatsLarger models, Sharp and Sharp (Phi)Hands-free voice and dictation / PRO FOR WORK$69.99 · one-time purchaseClient vaults with their own passcodePer-vault audit log, hash-chainedSigned, verifiable recordsProfession packs: legal, therapy, medical, accountingPrintable architecture statement

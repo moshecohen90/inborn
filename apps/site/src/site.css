@@ -277,6 +277,8 @@ tbody tr:last-child td { border-bottom: 0; }
   background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
 }
 .store:hover { border-color: var(--accent); }
+/* F410: the badge is the store's own artwork at Apple's 40 px floor; the card around it keeps a quarter-height clear space. */
+.store-badge { display: block; align-self: flex-start; height: 40px; width: auto; margin: 0 0 10px; }
 .store-k { font: 500 11px/14px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
 .store-v { font-size: 16px; font-weight: 500; color: var(--text); }
 .store-n { font-size: 13px; color: var(--text-2); }

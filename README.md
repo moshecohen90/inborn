@@ -6290,6 +6290,50 @@ phones' vault moved the photo pack and the document index into the Extensions se
 Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
 `pn check:store` pass. Test counts: 972 core, 1142 mobile, 24 i18n, 23 ui.
 
+## Fixes round 106: the stores' own badges, a model the browser keeps, and returning visits that never download again (branch `web-badges-persist`) — 27.9.2026
+
+Moshe (27.9) asked for two things. The store buttons should be the standard App Store and Google Play badges, like on
+l.hebrewbible.app. And a user must never have to install the model again every few days. Evidence:
+`docs/qa/web-badges-persist/` (its README lists sources, licence terms, screens and the manual Chrome check).
+
+- **F410: official badges.** Apple's black "Download on the App Store" and Google's "Get it on Google Play" badges,
+  in all 8 app languages, are unmodified vector artwork in `apps/mobile/public/badges/` (16 files, precached by the
+  service worker). The only edit was removing editor metadata. One component, `web/StoreBadges.tsx`, draws them at
+  Apple's 40 px floor, with a quarter-height gap and a 44 px touch target. Each badge is a link whose label is the
+  badge's own words in the reader's language, and it opens `STORE_LINKS` (still `inbornapp.com/download`, as
+  approved). They replace the web strip's "Get the app" button, which the phone door sits beside, the paywall's
+  two text buttons, and the browser vault's "Get the app" button. The site's download row (home and `/download`,
+  8 languages) shows the same badges from the same files. The site footer adds Apple's credit line for the Apple
+  logo. The "Get the app" rows inside the attach and mic sheets stay text rows: they are menu items that lead to
+  the download page, and the page shows the badges.
+- **F411: the model is kept.** New `web/durable.ts`. It calls `navigator.storage.persist()` right after the first
+  download completes, before the reload, and again on every onboarded load until granted. It records
+  `{granted, reason, at}` and logs `[storage] persist after <reason>: granted|refused`. Settings, Privacy & storage
+  gets a "Browser cleanup" row on the browser tier: "Storage is protected from automatic cleanup" or "The browser
+  may clear it when space runs low". Safari deletes an unvisited site's data after 7 days, and an installed web app
+  is exempt. So Safari and every iOS browser see a hint in the Model step and in Settings: on the Mac, File → Add to
+  Dock; on iOS, Share → Add to Home Screen. The hint hides in `display-mode: standalone`. The strings are in 8
+  locales plus pseudo.
+- **F412: returning visits.** New `scripts/web-return-check.mjs` runs inside `web:smoke` in 22 to 29 s. A persistent
+  profile downloads Instant once. Then a browser restart, the page clock 8 days ahead, and a deploy hand-over each
+  reach the chat on wllama with 0 GGUF requests and no Model step. The smoke's own first visit now fails unless the
+  finished download asks for persistence.
+
+Headless Chromium refuses `persist()` without engagement. The check proves both states: refused, then granted
+through CDP `Browser.grantPermissions(["durableStorage"])`, with Settings following each. Red first: `red-unit.txt`
+(8 failing before the code) and `red-return-check-sabotaged.txt` (a build without the post-download request fails
+the check).
+
+The smoke's round-105 vault check read the Extensions section on its first frame, before the OPFS read, and failed
+once with the pack installed. It now waits for the pack's Remove.
+
+Not done: the listings are not live, so the badges still lead to the download page (both stores' guidelines expect
+a live listing). No phone build ran; the badges are web-only. `apps/site/check.mjs` still fails on the RTL-set
+parse, as it does on origin/main (not a gate here).
+
+Gates: `pn install --frozen-lockfile`, `pn typecheck`, `pn test`, `pn lint`, `pn web:build`, `pn web:smoke` and
+`pn check:store` pass. Test counts: 972 core, 1158 mobile, 24 i18n, 23 ui.
+
 ## Fixes round 96: every promise the web app makes is true in a browser (branch `web-copy-truth`) — 25.9.2026
 
 The web full pass (F5, F6, F15, W4, W5, W6) found the browser build repeating native copy that a browser cannot

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Linking, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { formatModelBytes } from "@inborn/core";
 import { Screen } from "../../components/shell/Screen";
@@ -10,7 +10,7 @@ import { useType } from "../../services/type";
 import { chooseWebModel, webBoot } from "../../web/boot";
 import { ModelOptions } from "../../web/ModelOptions";
 import { roomNoteParams } from "../../lib/modelSheetLines";
-import { GET_APP_URL } from "../../web/WebShell";
+import { StoreBadges } from "../../web/StoreBadges";
 import { storageEstimate, type StorageEstimate } from "../../web/opfs";
 import { ExtensionsSection } from "../../components/ExtensionsSection";
 
@@ -69,7 +69,7 @@ export function VaultEntry({ onClose }: VaultEntryProps) {
       {/* The only thing this screen can do for a browser reader is the filled button; closing is the aside (QA F252). */}
       <Actions>
         {noCatalog ? <Button testID="vault-catalog-retry" title={t("web.catalog.retry")} onPress={() => location.reload()} /> : null}
-        <Button testID="vault-get-app" variant={noCatalog ? "secondary" : "cta"} title={t("web.getApp")} onPress={() => void Linking.openURL(GET_APP_URL)} />
+        <StoreBadges testID="vault-get-app" />
         <Button variant="link" title={t("vault.close")} onPress={onClose} testID="close-vault" />
       </Actions>
     </Screen>

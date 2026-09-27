@@ -10,6 +10,7 @@ import { Sheet } from "../../components/shell/Sheet";
 import { WipeSheet } from "./WipeSheet";
 import { storageSizes, type StorageSizes } from "./storageSizes";
 import { useType } from "../../services/type";
+import { DurableStorage } from "../../web/DurableStorage";
 
 /** S51: what is stored, where, how much, and how to delete or export it. Export/transfer arrive with Pro (M6). */
 export function Storage() {
@@ -50,6 +51,7 @@ export function Storage() {
         <Row testID="storage-models" label={t("storage.models")} sub={t(Platform.OS === "web" && storageKind !== "sqlcipher" ? "storage.models.web" : "storage.models.sub")} value={sizes?.models === null || sizes?.models === undefined ? "—" : formatModelBytes(sizes.models)} />
         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
         <Row label={t("storage.reports")} value={size(sizes?.reports)} />
+        <DurableStorage theme={theme} />
       </Section>
       <Text testID="storage-backup" style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{t(Platform.OS === "web" ? "storage.backup.web" : Platform.OS === "android" ? "storage.backup.android" : "storage.backup")}</Text>
       <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("storage.noSync")}</Text>

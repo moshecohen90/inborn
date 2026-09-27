@@ -1,0 +1,40 @@
++         <Row testID="storage-documents" label={t("storage.documents")} sub={storageKind === "indexeddb" ? t("storage.chats.browser") : undefined} value={size(sizes?.documents)} />
++         <Row testID="storage-models" label={t("storage.models")} sub={t(Platform.OS === "web" && storageKind !== "sqlcipher" ? "storage.models.web" : "storage.models.sub")} value={sizes?.models === null || sizes?.models === undefined ? "—" : formatModelBytes(sizes.models)} />
++         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
++         <Row label={t("storage.reports")} value={size(sizes?.reports)} />
++       </Section>
++       <Text testID="storage-backup" style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{t(Platform.OS === "web" ? "storage.backup.web" : Platform.OS === "android" ? "storage.backup.android" : "storage.backup")}</Text>
++       <Text style={[type.bodySmall, { color: theme.text3 }]}>{t("storage.noSync")}</Text>
++       <Section title={t("storage.actions")}>
++         <Row testID="storage-delete-chats" label={t("storage.deleteChats")} onPress={() => setConfirmChats(true)} danger chevron />
++         <Row testID="storage-delete-all" label={t("storage.deleteEverything")} sub={t("wipe.row")} onPress={() => setWipeOpen(true)} danger chevron />
++       </Section>
++       <Sheet visible={confirmChats} onClose={() => setConfirmChats(false)} title={t("storage.deleteChats")}>
++         <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("storage.deleteChats.explain")}</Text>
++         <Button title={t("storage.deleteChats")} variant="danger" onPress={() => void deleteChats()} />
++         <Button title={t("chats.cancel")} variant="link" onPress={() => setConfirmChats(false)} />
++       </Sheet>
++       <WipeSheet visible={wipeOpen} onClose={() => setWipeOpen(false)} />
++     </Screen>
++   );
++ }
++
++ const styles = StyleSheet.create({ note: { paddingTop: 16 } });
++
+
+ ❯ test/web-badges-persist-r106.test.ts:76:21
+     74|   it("Privacy & storage shows whether the browser keeps it, and Safari…
+     75|     const storage = read("screens/Settings/Storage.tsx");
+     76|     expect(storage).toContain("<DurableStorage");
+       |                     ^
+     77|     const durable = read("web/DurableStorage.tsx");
+     78|     expect(durable).toContain('testID="storage-durable"');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  8 failed (8)
+   Start at  10:49:14
+   Duration  153ms (tests 40%, transform 37%, import 14%, worker 8%)
+

@@ -12,6 +12,8 @@
  *      retry, instead of a silent empty catalog that reads as "no model on this browser".
  *   2c. F404: a deploy while a tab is open: one reload shows the new build (scripts/web-update-check.mjs), and a
  *       running download gets the "new version is ready" line instead of a reload.
+ *   2d. F411/F412: persistent profile: the persist request after the download, then a browser restart, the page clock
+ *       8 days ahead and a deploy each reach the chat with no GGUF request and no Model step (scripts/web-return-check.mjs).
  *   1b. <html lang> in every locale (F384), and the passcode lock walked by keyboard and accessibility tree (F381);
  *   7. the development export (apps/mobile/web-build/dev, made by web:build) walks the same first run with zero React
  *      warnings: React only reports props it cannot put on an element in development builds (F371).
@@ -41,6 +43,7 @@ import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
 import { defaults, resolveFile, startServer } from "./serve-web.mjs";
 import { updateCheck } from "./web-update-check.mjs";
+import { returnCheck } from "./web-return-check.mjs";
 
 const PROMPT = "What is the capital of France? Answer in one sentence.";
 const PROMPT_OFFLINE = "Name one planet of the solar system in one sentence.";
@@ -667,6 +670,7 @@ try {
     }
     await page.setViewportSize({ width: 1180, height: 800 });
     out.storageBefore = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
+    const linesAtDownload = consoleLines.length;
     await page.getByTestId("download-model").click();
     await page.getByTestId("download-progress").waitFor({ timeout: 60_000 });
     /* Cancel mid-way, then resume: proves the pause/midstate and the Range request. On a fast disk the file may finish first. */
@@ -690,6 +694,9 @@ try {
     out.webgpu = await page.evaluate(async () => (navigator.gpu ? !!(await navigator.gpu.requestAdapter()) : false));
     out.storageAfter = await page.evaluate(() => navigator.storage.estimate().then((e) => e.usage ?? null));
     out.persisted = await page.evaluate(() => navigator.storage.persisted());
+    /* F411: the finished download asks the browser to keep the model (headless Chromium may refuse; the ask is what is proven). */
+    out.persistAsk = consoleLines.slice(linesAtDownload).find((l) => /\[storage\] persist after download: (granted|refused)/.test(l)) ?? null;
+    if (!out.persistAsk) throw new Error("the finished download did not ask the browser to keep the model (navigator.storage.persist)");
     await chat(page, out, PROMPT, consoleLines);
     out.a11yProps = await rnPropLeaks(page);
     assertA11yProps("first visit, chat", out.a11yProps);
@@ -891,6 +898,14 @@ try {
     result.update = { skipped: "no sw.js in the served dist" };
   }
 
+  /* 2d. F411/F412: a returning reader (browser restart, 8 days later, after a deploy) never downloads again or sees the Model step. */
+  if (hasServiceWorker) {
+    result.returning = await returnCheck({ chromium: playwright.chromium, executablePath, dist: defaults.dist, outDir });
+    if (!result.returning.ok) throw new Error(`a returning visit lost the model: ${JSON.stringify(result.returning)}`);
+  } else {
+    result.returning = { skipped: "no sw.js in the served dist" };
+  }
+
   /* 2b. F312: the reader takes another model. The vault lists what the door listed, the pick lands in the door, and
      the chat comes up on the model that was chosen — the second half of "default = recommended, choose a different one". */
   {
@@ -1009,6 +1024,8 @@ try {
       if (!out.names.length) throw new Error(`the photo answer names nothing in the fixture: "${out.answer.slice(0, 200)}"`);
       await page.goto(new URL("/vault", server.url).href);
       await page.getByTestId("vault-extensions").waitFor({ timeout: 60_000 });
+      /* The section starts every extension as missing and reads OPFS after mount; the check waits for that read, not the first frame. */
+      await page.getByTestId("ext-remove-vision-qwen35").waitFor({ timeout: 30_000 }).catch(() => undefined);
       out.vault = ((await page.getByTestId("vault-extensions").textContent()) ?? "").trim();
       for (const id of ["embed-e5", "vision-qwen35"]) if (!(await page.getByTestId(`ext-row-${id}`).count())) throw new Error(`the vault's Extensions section has no ${id} row`);
       if (!(await page.getByTestId("ext-remove-vision-qwen35").count())) throw new Error("the downloaded photo pack has no Remove in the vault");
@@ -1281,6 +1298,11 @@ const o = result.offline;
 console.log(`PASS: first visit ready ${f.readyMs} ms · ${f.tokPerSec} tok/s · context ${f.tokens} · threads=${f.threads ?? "?"} · isolated=${f.crossOriginIsolated}`);
 if (o.readyMs) console.log(`PASS: offline visit ready ${o.readyMs} ms · ${o.tokPerSec} tok/s · context ${o.tokens} · requests=${o.requests.length} · model fetches=0`);
 if (result.update.ok) console.log(`PASS: one reload after a deploy shows the new build (first paint ${result.update.idle.firstPaint}, then ${result.update.idle.after}); mid-download the "new version" line shows and its Refresh lands on ${result.update.busy.after}`);
+console.log(`PASS: the finished download asked the browser to keep the model: "${f.persistAsk}" (F411)`);
+if (result.returning.ok) {
+  const r = result.returning;
+  console.log(`PASS: returning visits keep the model, no GGUF request, no Model step: restart ${r.restart.ms} ms, clock +8 days ${r.eightDays.ms} ms, after a deploy ${r.update.ms} ms; granted -> Settings "${r.granted.settings}" (F411/F412, ${r.ms} ms)`);
+}
 console.log(`PASS: onboarding walked ${f.onboarding.join(" -> ")} -> chat`);
 console.log(`PASS: onboarded without the model, chats kept: the Model step alone: "${result.paywallWithoutModel.modelGone}"`);
 console.log(`PASS: onboarded without the model, nothing kept: Welcome -> ${result.paywallWithoutModel.nothingKept.next} (F405)`);

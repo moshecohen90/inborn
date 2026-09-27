@@ -96,6 +96,11 @@ export const stores = {
   android: { name: "Google Play", href: "https://play.google.com/store/apps/details?id=com.inbornapp.mobile", note: "ui.store.android-note" },
 };
 
+/** Badge widths at Apple's 40 px floor: Apple's localized artwork varies per language, Google's is one ratio. */
+const APPLE_BADGE_WIDTH = { ja: 109, fr: 127, ko: 130, "zh-Hant": 109 };
+const badgeWidth = (id, code) => (id === "ios" ? (APPLE_BADGE_WIDTH[code] ?? 120) : 135);
+export const BADGES_DIR = path.join(repoRoot, "apps/mobile/public/badges");
+
 /** Placeholders we can fill now; everything else stays a visible chip (title attribute explains why). */
 const filled = { PRIVACY_URL: "/privacy" };
 
@@ -243,8 +248,9 @@ export const TOKENS = ["SEAL", "APP_ORIGIN", "STORE_ROW", "STORE_STATE", "FAQ", 
 
 /** Tokens the page fragments may use, so a price or a store link is written in exactly one place. */
 function tokens(l) {
-  const storeRow = Object.values(stores).map((s) => `<a class="store" href="${s.href}" rel="noopener">
-  <span class="store-k">${esc(s.name)}</span>
+  /* F410: the stores' own badges in the page's language (apps/mobile/public/badges, copied to /badges/), never our type. */
+  const storeRow = Object.entries(stores).map(([id, s]) => `<a class="store" href="${s.href}" rel="noopener">
+  <img class="store-badge" src="/badges/${id === "ios" ? "app-store" : "google-play"}-${l.code}.svg" width="${badgeWidth(id, l.code)}" height="40" alt="${esc(t(l, `ui.store.badge-${id}`))}">
   <span class="store-v">${esc(t(l, storesLive ? "ui.store.download" : "ui.store.at-launch"))}</span>
   <span class="store-n">${esc(t(l, s.note))}</span>
 </a>`).join("");
@@ -272,7 +278,7 @@ function fill(l, html) {
 }
 
 /** Files that exist once, at the root, in every language; every other absolute path is a page that exists per locale. */
-const ROOT_FILES = /^\/(site\.css|favicon\.svg|apple-touch-icon\.png|icon-512\.png|robots\.txt|sitemap|og\/|fonts\/)/;
+const ROOT_FILES = /^\/(site\.css|favicon\.svg|apple-touch-icon\.png|icon-512\.png|robots\.txt|sitemap|og\/|fonts\/|badges\/)/;
 
 /**
  * A link written inside a fragment or a translated string names the English path ("/proof"). On a localized page it
@@ -740,6 +746,7 @@ export function build({ out = dist } = {}) {
   rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
   cpSync(path.join(here, "public"), out, { recursive: true });
+  cpSync(BADGES_DIR, path.join(out, "badges"), { recursive: true });
   writeFileSync(path.join(out, "site.css"), readFileSync(path.join(src, "site.css")));
   /* The hero composer is the one form on the site; form-action names exactly where it may post and nothing else. */
   const headers = readFileSync(path.join(here, "public/_headers"), "utf8").replace(/\{\{APP_ORIGIN\}\}/g, appOrigin);
