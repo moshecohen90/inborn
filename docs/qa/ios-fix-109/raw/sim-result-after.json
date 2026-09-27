@@ -1,0 +1,291 @@
+{
+  "runId": "simwipe3",
+  "startedAt": "2026-09-27T12:30:19.020Z",
+  "finishedAt": "2026-09-27T12:31:01.702Z",
+  "ok": true,
+  "passed": 33,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4017,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10851,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2634,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "R01-before-wipe"
+    },
+    {
+      "i": 21,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 318 KB",
+        "props": {
+          "value": "318 KB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 318 KB"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "storage-delete-all ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "wipe-sheet appeared"
+    },
+    {
+      "i": 27,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 516,
+      "detail": "500 ms"
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step2 ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10000,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1592,
+      "detail": "sim-after-wipe"
+    }
+  ],
+  "errors": [
+    "console.warn: [wipe-trace] +35735ms rag openSharedDb key 0c32",
+    "console.warn: [wipe-trace] +35746ms rag openSharedDb ok 0c32",
+    "console.warn: [wipe-trace] +35746ms rag exec \nCREATE TABLE IF NOT EXISTS documents (\n",
+    "console.warn: [wipe-trace] +58592ms wipeAll begin",
+    "console.warn: [wipe-trace] +58595ms wipeAll licence wiped",
+    "console.warn: [wipe-trace] +58598ms wipeAll store closed",
+    "console.warn: [wipe-trace] +58602ms wipe begin SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm",
+    "console.warn: [wipe-trace] +58603ms rag closed waited 0 drained true",
+    "console.warn: [wipe-trace] +58604ms deleteDatabaseAsync ok",
+    "console.warn: [wipe-trace] +58604ms after deleteDatabaseAsync SQLite dir: ",
+    "console.warn: [wipe-trace] +58613ms wipe deleted prefs.json",
+    "console.warn: [wipe-trace] +58613ms wipe deleted device-prefs.json",
+    "console.warn: [wipe-trace] +58614ms wipe deleted qa",
+    "console.warn: [wipe-trace] +58615ms wipe deleted SQLite",
+    "console.warn: [wipe-trace] +58615ms wipe deleted prefs.bak.json",
+    "console.warn: [wipe-trace] +58615ms wipe deleted documents.json",
+    "console.warn: [wipe-trace] +58617ms wipe deleted com.inbornapp.mobile.qa",
+    "console.warn: [wipe-trace] +58618ms wipe deleted incognito",
+    "console.warn: [wipe-trace] +58618ms wipe end SQLite dir: missing",
+    "console.warn: [wipe-trace] +58618ms wipeAll wipe done",
+    "console.warn: [wipe-trace] +58623ms wipeAll end",
+    "console.warn: [wipe-trace] WipeSheet after wipeAll, replacing route",
+    "console.warn: [wipe-trace] +58625ms boot effect generation 1",
+    "console.warn: [wipe-trace] +58625ms boot #2 begin",
+    "console.warn: [wipe-trace] +58629ms RootLayout UNMOUNT xvkt",
+    "console.warn: [wipe-trace] +58629ms provider UNMOUNT upt4",
+    "console.warn: [wipe-trace] +58629ms provider MOUNT 0x6o",
+    "console.warn: [wipe-trace] +58631ms boot effect generation 0",
+    "console.warn: [wipe-trace] +58631ms RootLayout MOUNT jfrl",
+    "console.warn: [wipe-trace] +58631ms fontsReady true",
+    "console.warn: [wipe-trace] +58633ms boot #2 openPersistentStorage",
+    "console.warn: [wipe-trace] +58633ms SqliteChatRepository.open begin",
+    "console.warn: [wipe-trace] +58639ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)",
+    "console.warn: [wipe-trace] +58641ms databaseKeyHex GENERATED 376b",
+    "console.warn: [wipe-trace] +58641ms openKeyed inborn.db key 376b begin",
+    "console.warn: [wipe-trace] +58642ms openKeyed inborn.db key 376b ok",
+    "console.warn: [wipe-trace] +58647ms SqliteChatRepository.open done v5 repaired=no",
+    "console.warn: [wipe-trace] +58647ms boot #2 storage ready",
+    "console.warn: [wipe-trace] +58655ms databaseKeyHex read 376b from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)"
+  ]
+}

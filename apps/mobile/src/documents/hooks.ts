@@ -6,10 +6,11 @@ import { canCiteMarkers, getLibrary, type AskResult, type DocumentLibrary, type 
 
 /* useSyncExternalStore needs a changing snapshot; a counter bumped per notification is enough (same trick as the vault). */
 let version = 0;
-let subscribed = false;
+/* Per library: Delete everything replaces it, and a counter tied to the first one would never move again. */
+const counted = new WeakSet<DocumentLibrary>();
 function snapshot(lib: DocumentLibrary): number {
-  if (!subscribed) {
-    subscribed = true;
+  if (!counted.has(lib)) {
+    counted.add(lib);
     lib.subscribe(() => void version++);
   }
   return version;

@@ -45,9 +45,21 @@ export const licenceIfStarted = (): LicenceManager | null => instance;
  * file. The store still knows the purchase, so "Restore purchases" brings it back; nothing is refunded.
  */
 export async function wipeLicence(): Promise<void> {
-  if (instance) {
-    await instance.wipe();
+  const manager = instance ?? (starting ? await starting.catch(() => null) : null);
+  if (manager) {
+    await manager.wipe();
+    rekeyPending = true;
     return;
   }
   await cacheStorage().clear();
+}
+
+/* The wipe deleted the database key the cache key is derived from; the boot after it creates the new one. */
+let rekeyPending = false;
+
+/** After the boot that follows Delete everything: the cache is sealed under the new database key, not the deleted one. */
+export async function rekeyLicence(): Promise<void> {
+  if (!instance || !rekeyPending) return;
+  rekeyPending = false;
+  instance.rekey(await storageSecretHex());
 }

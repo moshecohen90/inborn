@@ -253,6 +253,26 @@ describe("LicenceManager (spec §12.4, §8.7 states, §10.7 #48–#52)", () => {
     expect(cache.bytes).not.toBeNull();
   });
 
+  /* F419: Delete everything deletes the database key the cache key comes from; a cache sealed after it must open under the new one. */
+  it("after a wipe and a new storage secret, the restored purchase is cached under the new secret", async () => {
+    const provider = new FakeProvider();
+    provider.owned = [raw()];
+    const { manager, cache } = build(provider);
+    await manager.start();
+    await manager.wipe();
+    const fresh = "0a".repeat(32);
+    manager.rekey(fresh);
+    await manager.restore();
+    expect(cache.bytes).not.toBeNull();
+    const offline = new FakeProvider();
+    offline.reachable = false;
+    const logs: string[] = [];
+    const next = new LicenceManager({ provider: offline, cache, storageSecretHex: fresh, randomNonce: () => new Uint8Array(randomBytes(24)), verify: (r) => (r.proof?.kind === "apple-jws" ? verifyAppleJws(r.proof.jws, { extraRoots: [chain.root], now: NOW }) : ({ ok: false, reason: "malformed" } as const)), now: () => NOW, launchAt: null, log: (m) => logs.push(m) });
+    await next.start();
+    expect(logs).not.toContain("licence cache unreadable; ignoring it");
+    expect(next.tier).toBe("pro");
+  });
+
   it("desktop: a licence key is verified offline, cached, and counts as this store's purchase", async () => {
     const provider = new FakeProvider("licence-key");
     const { manager } = build(provider);

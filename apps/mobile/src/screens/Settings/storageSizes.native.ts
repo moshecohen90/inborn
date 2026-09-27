@@ -2,6 +2,7 @@ import { Platform } from "react-native";
 import { Directory, File, Paths } from "expo-file-system";
 import * as SQLite from "expo-sqlite";
 import { DB_NAME } from "../../storage/schema";
+import { storedBytes } from "../../documents/files";
 import { getPackPath } from "../../../modules/asset-packs";
 
 /* Same pack name as devModel.native.ts / app.config.ts; the type-level devModel.ts does not export it. */
@@ -29,5 +30,5 @@ export async function storageSizes(): Promise<StorageSizes> {
   const chats = sizeOf(new File(dbDir, DB_NAME)) + sizeOf(new File(dbDir, `${DB_NAME}-wal`));
   const packDir = Platform.OS === "android" ? getPackPath(MODEL_PACK) : null;
   const models = ggufBytes(new Directory(Paths.document)) + ggufBytes(new Directory(Paths.document, "models")) + ggufBytes(packDir ? new Directory(`file://${packDir}`) : null);
-  return { chats, documents: 0, models, memory: 0, reports: 0 };
+  return { chats, documents: storedBytes(), models, memory: 0, reports: 0 };
 }

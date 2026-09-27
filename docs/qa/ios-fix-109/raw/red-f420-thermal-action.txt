@@ -1,0 +1,11 @@
+     × Instant active, nothing smaller installed (pass 20 on the iPhone): the line stays, with no action 4ms
+     × Instant active with a bigger model installed beside it: still nothing smaller, no action 1ms
+     × Fast active before Instant was delivered: no action to a model that is not there 0ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/components/shell/bannerRows.test.ts > the thermal line offers a smaller model only when there is one (F420) > Instant active, nothing smaller installed (pass 20 on the iPhone): the line stays, with no action
+AssertionError: expected { Object (label, onPress) } to be undefined
+ FAIL  src/components/shell/bannerRows.test.ts > the thermal line offers a smaller model only when there is one (F420) > Instant active with a bigger model installed beside it: still nothing smaller, no action
+AssertionError: expected { Object (label, onPress) } to be undefined
+ FAIL  src/components/shell/bannerRows.test.ts > the thermal line offers a smaller model only when there is one (F420) > Fast active before Instant was delivered: no action to a model that is not there
+AssertionError: expected { Object (label, onPress) } to be undefined
+      Tests  3 failed | 1 passed (4)

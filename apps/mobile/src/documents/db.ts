@@ -82,6 +82,11 @@ export function forgetRagStore(): void {
   void was?.then((s) => (s instanceof PersistedMemoryStore ? s.dispose() : undefined)).catch(() => undefined);
 }
 
+/** Delete everything, the phone's name for it: the browser's store has no connection to close, only a snapshot to stop. */
+export async function closeRagStore(): Promise<void> {
+  forgetRagStore();
+}
+
 export function openRagStore(): Promise<EmbeddingStore> {
   return (opened ??= (async () => {
     if (isTauri()) return SqlEmbeddingStore.open(tauriDriver());

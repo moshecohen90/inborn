@@ -1,0 +1,92 @@
+# F419 before the fix: simulator (iPhone 17 Pro, iOS 26), .qa twin, temporary trace build. Key tags are a 16-bit FNV hash of the key, never key bytes.
+15:21:03 launching com.inbornapp.mobile.qa
+15:21:33 pushing 33 steps as simwipe2
+15:21:59 shot R01-before-wipe
+15:22:13 shot sim-after-wipe
+15:22:15 ok     0 waitFor    onboarding-welcome appeared
+15:22:15 ok     1 sleep      1500 ms
+15:22:15 ok     2 press      onboarding-continue ← onPress
+15:22:15 ok     3 waitFor    onboarding-model appeared
+15:22:15 ok     4 sleep      2000 ms
+15:22:15 ok     5 press      start-chatting ← onPress
+15:22:15 ok     6 waitFor    onboarding-sealed appeared
+15:22:15 ok     7 sleep      4000 ms
+15:22:15 ok     8 press      sealed-start ← onPress
+15:22:15 ok     9 waitFor    onboarding-lock appeared
+15:22:15 ok    10 press      lock-start ← onPress
+15:22:15 ok    11 waitFor    composer-input appeared
+15:22:15 ok    12 waitFor    Loading gone
+15:22:15 ok    13 sleep      2000 ms
+15:22:15 ok    14 type       composer-input = 22 chars
+15:22:15 ok    15 send       send ← onPress
+15:22:15 ok    16 waitFor    assistant-text appeared
+15:22:15 ok    17 sleep      1000 ms
+15:22:15 ok    18 waitFor    stop gone
+15:22:15 ok    19 sleep      1500 ms
+15:22:15 ok    20 screenshot R01-before-wipe
+15:22:15 ok    21 deeplink   /settings/storage
+15:22:15 ok    22 waitFor    storage appeared
+15:22:15 ok    23 sleep      1500 ms
+15:22:15 ok    24 value      Chats encrypted (SQLCipher) 318 KB
+15:22:15 ok    25 press      storage-delete-all ← onPress
+15:22:15 ok    26 waitFor    wipe-sheet appeared
+15:22:15 ok    27 press      wipe-step1 ← onPress
+15:22:15 ok    28 waitFor    wipe-step2 appeared
+15:22:15 ok    29 sleep      500 ms
+15:22:15 ok    30 press      wipe-step2 ← onPress
+15:22:15 ok    31 sleep      10000 ms
+15:22:15 ok    32 screenshot sim-after-wipe
+15:22:15 33 passed, 0 failed, 2 screenshots → <scratch>/sim-run2
+15:22:15   ! console.warn: [wipe-trace] +35671ms rag openSharedDb key 0ba5
+15:22:15   ! console.warn: [wipe-trace] +35681ms rag openSharedDb ok 0ba5
+15:22:15   ! console.warn: [wipe-trace] +35681ms rag exec 
+CREATE TABLE IF NOT EXISTS documents (
+
+15:22:15   ! console.warn: [wipe-trace] +56968ms wipeAll begin
+15:22:15   ! console.warn: [wipe-trace] +56973ms wipeAll licence wiped
+15:22:15   ! console.warn: [wipe-trace] +56976ms wipeAll store closed
+15:22:15   ! console.warn: [wipe-trace] +56979ms wipe begin SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm
+15:22:15   ! console.warn: [wipe-trace] +56987ms deleteDatabaseAsync FAILED FunctionCallException: Calling the 'deleteDatabaseAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)
+→ Cau
+15:22:15   ! console.warn: [wipe-trace] +56989ms after deleteDatabaseAsync SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm
+15:22:15   ! console.warn: [wipe-trace] +56997ms wipe deleted prefs.json
+15:22:15   ! console.warn: [wipe-trace] +56998ms wipe deleted device-prefs.json
+15:22:15   ! console.warn: [wipe-trace] +56999ms wipe deleted qa
+15:22:15   ! console.warn: [wipe-trace] +56999ms wipe deleted SQLite
+15:22:15   ! console.warn: [wipe-trace] +57000ms wipe deleted prefs.bak.json
+15:22:15   ! console.warn: [wipe-trace] +57000ms wipe deleted documents.json
+15:22:15   ! console.warn: [wipe-trace] +57003ms wipe deleted com.inbornapp.mobile.qa
+15:22:15   ! console.warn: [wipe-trace] +57003ms wipe deleted incognito
+15:22:15   ! console.warn: [wipe-trace] +57003ms wipe end SQLite dir: missing
+15:22:15   ! console.warn: [wipe-trace] +57003ms wipeAll wipe done
+15:22:15   ! console.warn: [wipe-trace] +57007ms wipeAll end
+15:22:15   ! console.warn: [wipe-trace] WipeSheet after wipeAll, replacing route
+15:22:15   ! console.warn: [wipe-trace] +57009ms boot effect generation 1
+15:22:15   ! console.warn: [wipe-trace] +57009ms boot #2 begin
+15:22:15   ! console.warn: [wipe-trace] +57013ms RootLayout UNMOUNT w86v
+15:22:15   ! console.warn: [wipe-trace] +57013ms provider UNMOUNT 0aqa
+15:22:15   ! console.warn: [wipe-trace] +57013ms provider MOUNT w9qx
+15:22:15   ! console.warn: [wipe-trace] +57015ms boot effect generation 0
+15:22:15   ! console.warn: [wipe-trace] +57015ms boot #3 begin
+15:22:15   ! console.warn: [wipe-trace] +57016ms RootLayout MOUNT h4b7
+15:22:15   ! console.warn: [wipe-trace] +57016ms fontsReady true
+15:22:15   ! console.warn: [wipe-trace] +57019ms boot #2 openPersistentStorage
+15:22:15   ! console.warn: [wipe-trace] +57019ms SqliteChatRepository.open begin
+15:22:15   ! console.warn: [wipe-trace] +57019ms boot #3 openPersistentStorage
+15:22:15   ! console.warn: [wipe-trace] +57019ms SqliteChatRepository.open begin
+15:22:15   ! console.warn: [wipe-trace] +57023ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)
+15:22:15   ! console.warn: [wipe-trace] +57024ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)
+15:22:15   ! console.warn: [wipe-trace] +57025ms databaseKeyHex GENERATED 29ab
+15:22:15   ! console.warn: [wipe-trace] +57025ms openKeyed inborn.db key 29ab begin
+15:22:15   ! console.warn: [wipe-trace] +57026ms openKeyed inborn.db key 29ab ok
+15:22:15   ! console.warn: [wipe-trace] +57027ms databaseKeyHex GENERATED 0c32
+15:22:15   ! console.warn: [wipe-trace] +57027ms openKeyed inborn.db key 0c32 begin
+15:22:15   ! console.warn: [wipe-trace] +57031ms openKeyed inborn.db key 0c32 FAILED FunctionCallException: Calling the 'prepareAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)
+→ C
+15:22:15   ! console.warn: [wipe-trace] +57038ms openKeyed inborn.db key 0c32 begin
+15:22:15   ! console.warn: [wipe-trace] +57039ms openKeyed inborn.db key 0c32 ok
+15:22:15   ! console.warn: [wipe-trace] +57040ms SqliteChatRepository.open done v5 repaired=no
+15:22:15   ! console.warn: [wipe-trace] +57040ms boot #2 storage ready
+15:22:15   ! console.warn: [storage] chat database started-fresh · kept 0 rows · lost 0 · old file inborn.db.corrupt-2026-09-27T12-22-03-050Z
+15:22:15   ! console.warn: [wipe-trace] +57042ms SqliteChatRepository.open done v5 repaired=started-fresh
+15:22:15   ! console.warn: [wipe-trace] +57042ms boot #3 storage ready

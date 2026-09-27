@@ -59,7 +59,7 @@ export function Settings() {
       case "storage":
         return setDeviceStateForPreview({ ...idleDeviceState, recommendation: { kind: "storageFull", freeBytes: 0 } });
       case "thermalSerious":
-        return setDeviceStateForPreview({ ...idleDeviceState, thermal: "serious" });
+        return setDeviceStateForPreview({ ...idleDeviceState, thermal: "serious", recommendation: { kind: "switchToInstant", reason: "thermal", auto: false } });
       case "thermalCritical":
         return setDeviceStateForPreview({ ...idleDeviceState, thermal: "critical", recommendation: { kind: "pause", reason: "thermal" } });
       case "lowPower":

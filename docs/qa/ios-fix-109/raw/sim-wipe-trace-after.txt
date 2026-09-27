@@ -1,0 +1,80 @@
+# F419 after the fix: same simulator, same 33 steps, temporary trace build.
+15:29:48 launching com.inbornapp.mobile.qa
+15:30:18 pushing 33 steps as simwipe3
+15:30:46 shot R01-before-wipe
+15:31:01 shot sim-after-wipe
+15:31:03 ok     0 waitFor    onboarding-welcome appeared
+15:31:03 ok     1 sleep      1500 ms
+15:31:03 ok     2 press      onboarding-continue ← onPress
+15:31:03 ok     3 waitFor    onboarding-model appeared
+15:31:03 ok     4 sleep      2000 ms
+15:31:03 ok     5 press      start-chatting ← onPress
+15:31:03 ok     6 waitFor    onboarding-sealed appeared
+15:31:03 ok     7 sleep      4000 ms
+15:31:03 ok     8 press      sealed-start ← onPress
+15:31:03 ok     9 waitFor    onboarding-lock appeared
+15:31:03 ok    10 press      lock-start ← onPress
+15:31:03 ok    11 waitFor    composer-input appeared
+15:31:03 ok    12 waitFor    Loading gone
+15:31:03 ok    13 sleep      2000 ms
+15:31:03 ok    14 type       composer-input = 22 chars
+15:31:03 ok    15 send       send ← onPress
+15:31:03 ok    16 waitFor    assistant-text appeared
+15:31:03 ok    17 sleep      1000 ms
+15:31:03 ok    18 waitFor    stop gone
+15:31:03 ok    19 sleep      1500 ms
+15:31:03 ok    20 screenshot R01-before-wipe
+15:31:03 ok    21 deeplink   /settings/storage
+15:31:03 ok    22 waitFor    storage appeared
+15:31:03 ok    23 sleep      1500 ms
+15:31:03 ok    24 value      Chats encrypted (SQLCipher) 318 KB
+15:31:03 ok    25 press      storage-delete-all ← onPress
+15:31:03 ok    26 waitFor    wipe-sheet appeared
+15:31:03 ok    27 press      wipe-step1 ← onPress
+15:31:03 ok    28 waitFor    wipe-step2 appeared
+15:31:03 ok    29 sleep      500 ms
+15:31:03 ok    30 press      wipe-step2 ← onPress
+15:31:03 ok    31 sleep      10000 ms
+15:31:03 ok    32 screenshot sim-after-wipe
+15:31:03 33 passed, 0 failed, 2 screenshots → <scratch>/sim-run3
+15:31:03   ! console.warn: [wipe-trace] +35735ms rag openSharedDb key 0c32
+15:31:03   ! console.warn: [wipe-trace] +35746ms rag openSharedDb ok 0c32
+15:31:03   ! console.warn: [wipe-trace] +35746ms rag exec 
+CREATE TABLE IF NOT EXISTS documents (
+
+15:31:03   ! console.warn: [wipe-trace] +58592ms wipeAll begin
+15:31:03   ! console.warn: [wipe-trace] +58595ms wipeAll licence wiped
+15:31:03   ! console.warn: [wipe-trace] +58598ms wipeAll store closed
+15:31:03   ! console.warn: [wipe-trace] +58602ms wipe begin SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm
+15:31:03   ! console.warn: [wipe-trace] +58603ms rag closed waited 0 drained true
+15:31:03   ! console.warn: [wipe-trace] +58604ms deleteDatabaseAsync ok
+15:31:03   ! console.warn: [wipe-trace] +58604ms after deleteDatabaseAsync SQLite dir: 
+15:31:03   ! console.warn: [wipe-trace] +58613ms wipe deleted prefs.json
+15:31:03   ! console.warn: [wipe-trace] +58613ms wipe deleted device-prefs.json
+15:31:03   ! console.warn: [wipe-trace] +58614ms wipe deleted qa
+15:31:03   ! console.warn: [wipe-trace] +58615ms wipe deleted SQLite
+15:31:03   ! console.warn: [wipe-trace] +58615ms wipe deleted prefs.bak.json
+15:31:03   ! console.warn: [wipe-trace] +58615ms wipe deleted documents.json
+15:31:03   ! console.warn: [wipe-trace] +58617ms wipe deleted com.inbornapp.mobile.qa
+15:31:03   ! console.warn: [wipe-trace] +58618ms wipe deleted incognito
+15:31:03   ! console.warn: [wipe-trace] +58618ms wipe end SQLite dir: missing
+15:31:03   ! console.warn: [wipe-trace] +58618ms wipeAll wipe done
+15:31:03   ! console.warn: [wipe-trace] +58623ms wipeAll end
+15:31:03   ! console.warn: [wipe-trace] WipeSheet after wipeAll, replacing route
+15:31:03   ! console.warn: [wipe-trace] +58625ms boot effect generation 1
+15:31:03   ! console.warn: [wipe-trace] +58625ms boot #2 begin
+15:31:03   ! console.warn: [wipe-trace] +58629ms RootLayout UNMOUNT xvkt
+15:31:03   ! console.warn: [wipe-trace] +58629ms provider UNMOUNT upt4
+15:31:03   ! console.warn: [wipe-trace] +58629ms provider MOUNT 0x6o
+15:31:03   ! console.warn: [wipe-trace] +58631ms boot effect generation 0
+15:31:03   ! console.warn: [wipe-trace] +58631ms RootLayout MOUNT jfrl
+15:31:03   ! console.warn: [wipe-trace] +58631ms fontsReady true
+15:31:03   ! console.warn: [wipe-trace] +58633ms boot #2 openPersistentStorage
+15:31:03   ! console.warn: [wipe-trace] +58633ms SqliteChatRepository.open begin
+15:31:03   ! console.warn: [wipe-trace] +58639ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)
+15:31:03   ! console.warn: [wipe-trace] +58641ms databaseKeyHex GENERATED 376b
+15:31:03   ! console.warn: [wipe-trace] +58641ms openKeyed inborn.db key 376b begin
+15:31:03   ! console.warn: [wipe-trace] +58642ms openKeyed inborn.db key 376b ok
+15:31:03   ! console.warn: [wipe-trace] +58647ms SqliteChatRepository.open done v5 repaired=no
+15:31:03   ! console.warn: [wipe-trace] +58647ms boot #2 storage ready
+15:31:03   ! console.warn: [wipe-trace] +58655ms databaseKeyHex read 376b from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)

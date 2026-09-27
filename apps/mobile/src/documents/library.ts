@@ -125,6 +125,8 @@ export class DocumentLibrary {
   private ram = new MemoryEmbeddingStore();
   private ramDocs = new Set<string>();
   private booted: Promise<void> | null = null;
+  private disposed = false;
+  private stopWatching: (() => void) | null = null;
   private storeKind: string = ragStoreKind();
   embedder: EmbedderStatus = { kind: "loading" };
 
@@ -144,6 +146,7 @@ export class DocumentLibrary {
       saved = new MemoryEmbeddingStore();
       this.storeKind = "memory";
     }
+    if (this.disposed) return;
     this.store = new SplitEmbeddingStore(saved, this.ram, (id) => this.ramDocs.has(id));
     for (const d of await this.store.listDocuments()) {
       /* A crash mid-index leaves "indexing"; it resumes from the committed page on the next tap. */
@@ -161,12 +164,15 @@ export class DocumentLibrary {
     this.notify();
     const mod = await import("./embedder");
     /* The model can land or leave from the vault screen or a dev hook; without this the first ask kept failing with `no-embedder` until a relaunch (and a removal kept "ready", QA O9). */
-    if ("watchEmbedder" in mod) (mod as { watchEmbedder: (cb: () => void) => void }).watchEmbedder(() => void this.refreshEmbedder());
+    if (this.disposed || !("watchEmbedder" in mod)) return;
+    this.stopWatching = (mod as { watchEmbedder: (cb: () => void) => () => void }).watchEmbedder(() => void this.refreshEmbedder());
   }
 
   async refreshEmbedder(): Promise<void> {
+    if (this.disposed) return;
     const mod = await import("./embedder");
     const resolved = "resolveEmbedderAsync" in mod ? await (mod as { resolveEmbedderAsync: () => Promise<ResolvedEmbedder | null> }).resolveEmbedderAsync() : resolveEmbedder();
+    if (this.disposed) return;
     const previous = this.embedderRef;
     if (previous && previous.path !== resolved?.path) void previous.embedder.unload().catch(() => undefined);
     this.embedderRef = resolved;
@@ -220,6 +226,8 @@ export class DocumentLibrary {
   // ---- preferences -------------------------------------------------------------
 
   private savePrefs(): void {
+    /* A screen unmounting after the wipe would otherwise write the old attachments back into a fresh documents.json. */
+    if (this.disposed) return;
     const attachments = Object.fromEntries(Object.entries(this.prefs.attachments).filter(([k]) => !k.startsWith(RAM_ATTACH_PREFIX)));
     writePrefs({ ...this.prefs, attachments });
   }
@@ -545,6 +553,24 @@ export class DocumentLibrary {
     this.notify();
   }
 
+  /**
+   * Delete everything (§5.7): no job, watcher or loaded model of this library outlives the wipe, and nothing it holds
+   * writes again. The model is released only once the aborted job has stopped, never under a running embedding.
+   */
+  async dispose(): Promise<void> {
+    this.disposed = true;
+    this.stopWatching?.();
+    this.stopWatching = null;
+    this.queue = [];
+    for (const job of this.jobs.values()) job.abort.abort();
+    this.retriever = null;
+    this.lanes = null;
+    const embedder = this.embedderRef?.embedder;
+    this.embedderRef = null;
+    for (let i = 0; this.running && i < 50; i++) await new Promise((r) => setTimeout(r, 100));
+    if (!this.running) await embedder?.unload().catch(() => undefined);
+  }
+
   /** Releases the embedding context (called when the app goes idle; the next index or question reloads it). */
   async unloadEmbedder(): Promise<void> {
     await this.embedderRef?.embedder.unload();
@@ -592,6 +618,11 @@ export class DocumentLibrary {
 let shared: DocumentLibrary | null = null;
 export function getLibrary(): DocumentLibrary {
   return (shared ??= new DocumentLibrary());
+}
+
+/** Delete everything, before the files go: the library stops every job, watcher and write it could still make. */
+export async function retireLibrary(): Promise<void> {
+  await shared?.dispose();
 }
 
 /** After Delete everything the next caller boots a library from the emptied store, not the old in-memory list. */
