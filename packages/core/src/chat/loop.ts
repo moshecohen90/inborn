@@ -17,6 +17,8 @@ export interface LoopHit {
   complete?: boolean;
   /** The answer ran out on a bare list marker ("…20. אשדוד\n21"): the marker is trimmed silently, with no notice and no retry (F428). */
   truncated?: boolean;
+  /** A unit of lines said again inside fenced code (F431): the cut closes the fence, and no retry writes into the block. */
+  fence?: boolean;
 }
 
 /** Only the tail is searched, so a check costs the same at token 20 and token 2000. */
@@ -355,6 +357,94 @@ function codeSpans(text: string): [number, number][] {
     if (m[0].length === 0) re.lastIndex++;
   }
   return spans;
+}
+
+/* F431: a fenced line that is only a number (a running remainder) may change between copies of the unit around it. */
+const NUMBER_LINE = /^[-+−]?\s*\d[\d\s.,]*$/u;
+const FENCE_UNIT = 3;
+interface FenceLine {
+  text: string;
+  indent: number;
+  start: number;
+  end: number;
+  whole: boolean;
+}
+
+/** The lines inside each fenced block (``` on its own line opens and closes one; an unclosed fence runs to the end). */
+function fencedLines(text: string, final: boolean): { lines: FenceLine[]; closed: boolean }[] {
+  const blocks: { lines: FenceLine[]; closed: boolean }[] = [];
+  let open: FenceLine[] | null = null;
+  for (let pos = 0; pos <= text.length; ) {
+    let nl = text.indexOf("\n", pos);
+    const whole = nl >= 0 || final;
+    if (nl < 0) nl = text.length;
+    const raw = text.slice(pos, nl);
+    if (/^[ \t]*```/u.test(raw) && (whole || open)) {
+      if (open) blocks.push({ lines: open, closed: true });
+      open = open ? null : [];
+    } else if (open) open.push({ text: raw.trim(), indent: /^[ \t]*/u.exec(raw)![0].length, start: pos, end: nl, whole });
+    if (nl >= text.length) break;
+    pos = nl + 1;
+  }
+  if (open) blocks.push({ lines: open, closed: false });
+  return blocks;
+}
+
+const PARTIAL_NUMBER = /^[-+−]?\s*[\d\s.,]*$/u;
+const stepping = (a: number, b: number, c: number) => (a < b && b < c) || (a > b && b > c);
+
+/**
+ * F431 (iPhone build 25, math-long-div 0.7 #2): inside a fence, a unit of 1–3 lines said identically back to back is a
+ * loop at its third copy. One number line between copies may change ("- 123000000" / "--------" around a new remainder
+ * 16 times). The third copy waits off screen, and a fourth copy cuts the answer before the third; a fence that closes
+ * after three copies ("print('hello world')" three times) is shown whole. Rules alone ("--------") and a unit whose
+ * indent moves every copy (a real division's steps, nested "end"s) are not copies.
+ */
+function fenceLoop(text: string, final: boolean): { hit: { unit: string; start: number; keep: number; done: number } | null; hold: number } {
+  let hit: { unit: string; start: number; keep: number; done: number } | null = null;
+  let hold = 0;
+  for (const { lines, closed } of fencedLines(text, final)) {
+    const m = lines.length;
+    for (let p = 1; p <= FENCE_UNIT + 1; p++)
+      for (let i = 0; i + 2 * p < m; i++) {
+        /* The unit is what the first two copies share; at most one other line of the block, a number both times, may change. */
+        const same: number[] = [];
+        let varying = -1;
+        let ok = true;
+        for (let q = 0; q < p && ok; q++) {
+          const [a, b] = [lines[i + q]!, lines[i + p + q]!];
+          if (!b.whole) ok = false;
+          else if (a.text === b.text) same.push(q);
+          else if (varying < 0 && p > 1 && NUMBER_LINE.test(a.text) && NUMBER_LINE.test(b.text)) varying = q;
+          else ok = false;
+        }
+        if (!ok || !same.length || same.length > FENCE_UNIT || !same.some((q) => /[\p{L}\p{N}]/u.test(lines[i + q]!.text))) continue;
+        /* From the third copy's first unit line to the fourth copy's last. */
+        const from = i + 2 * p + same[0]!;
+        const to = i + 3 * p + same.at(-1)!;
+        let consistent = true;
+        let complete = true;
+        for (let k = from; k <= to && consistent; k++) {
+          const c = lines[k];
+          if (!c) {
+            complete = false;
+            break;
+          }
+          const q = (k - i) % p;
+          if (q === varying) consistent = (c.whole ? NUMBER_LINE : PARTIAL_NUMBER).test(c.text);
+          else if (!c.whole) {
+            consistent = lines[i + q]!.text.startsWith(c.text);
+            complete = false;
+          } else consistent = c.text === lines[i + q]!.text && !stepping(lines[k - 2 * p]!.indent, lines[k - p]!.indent, c.indent);
+        }
+        if (!consistent) continue;
+        if (complete) {
+          const done = lines[to]!.end;
+          if (!hit || done < hit.done) hit = { unit: same.map((q) => lines[i + q]!.text).join("\n"), start: lines[i + same[0]!]!.start, keep: lines[from]!.start, done };
+        } else if (!final && !closed && lines[from]) hold = Math.max(hold, text.length - lines[from]!.start);
+      }
+  }
+  return { hit, hold: hit ? 0 : hold };
 }
 
 function periodic(s: string[], from: number, len: number, q: number): boolean {
@@ -742,6 +832,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
         if (g.key) continue;
         let h = headOf(words, it);
         if (!g.heads.has(h)) h = g.said.find((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key))?.head ?? h;
+        if (!g.heads.has(h)) h = misspeltHead(g.heads, h) ?? h;
         const before = g.heads.get(h) ?? [];
         let again = false;
         if (Array.from(h).length > 1 && before.length >= once && !before.some((x) => kidsOf(x).kids)) {
@@ -786,6 +877,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           if (cut && cut.index > 0) wait = (g.heads.get(headOf(words, it))?.length ?? 0) >= once;
           else if (!cut) for (const [x, at] of g.heads) if (at.length >= once && x.startsWith(k)) wait = true;
           wait ||= g.said.some((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key));
+          wait ||= misspeltHead(g.heads, cut && cut.index > 0 ? headOf(words, it) : k, !cut) !== null;
         }
         if (wait) itemHold = text.length - line;
       }
@@ -833,7 +925,11 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
   let first = 0;
   while (first < n && at[first + 1]! <= from) first++;
   const echo = !ask.asked && source === 1 && !verse ? echoAt(s, first, final, (a, b) => inCode(a, b), data, answerKey) : { hit: null, hold: 0 };
+  const fence = !ask.asked && source === 1 ? fenceLoop(text, final) : { hit: null, hold: 0 };
+  let fenceEnd = n;
+  if (fence.hit) while (fenceEnd > 0 && at[fenceEnd - 1]! >= fence.hit.done) fenceEnd--;
   for (let end = Math.min(Math.max(first + 1, 2 * WIDE_UNIT), n); end <= n; end++) {
+    if (fence.hit && fenceEnd <= end) return { hold: 0, hit: { unit: fence.hit.unit, repeats: 3, start: fence.hit.start, keep: fence.hit.keep, fence: true } };
     if (echo.hit && echo.hit.end <= end) return { hold: 0, hit: { unit: s.slice(echo.hit.start, echo.hit.end).join("").trim(), repeats: 2, start: at[echo.hit.start]!, keep: keepAt(opening(echo.hit.start, echo.hit.source)) } };
     const again = segmentHits.get(end);
     if (again !== undefined) return { hold: 0, hit: { unit: s.slice(again, end).join("").trim(), repeats: 2, start: at[again]!, keep: keepAt(again) } };
@@ -859,7 +955,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: keepAt(keep), ...(asked ? { asked } : {}) } };
   }
   const hold = Math.max(scan(n, false).hold, segmentHold, echo.hold);
-  return { hold: Math.max(hold > 0 ? text.length - cut(n - hold) : 0, itemHold), hit: null };
+  return { hold: Math.max(hold > 0 ? text.length - cut(n - hold) : 0, itemHold, fence.hold), hit: null };
 }
 
 /** An item of two words or more (a CJK character counts half), or of 8 code points, with a letter in it. */
@@ -894,6 +990,60 @@ function goesOnFrom(earlier: string, later: string): boolean {
   const c = String.fromCodePoint(later.codePointAt(earlier.length)!);
   if (WORD_CHAR.test(c)) return false;
   return !/\s/u.test(c) || wordCount(earlier) >= PREFIX_WORDS;
+}
+
+/** Whether a and b differ by one substitution, insertion or deletion of a code point. */
+function oneEdit(a: string, b: string): boolean {
+  const x = Array.from(a);
+  const y = Array.from(b);
+  if (a === b || Math.abs(x.length - y.length) > 1) return false;
+  let i = 0;
+  while (i < x.length && i < y.length && x[i] === y[i]) i++;
+  let j = 0;
+  while (j < x.length - i && j < y.length - i && x[x.length - 1 - j] === y[y.length - 1 - j]) j++;
+  return x.length - i - j <= 1 && y.length - i - j <= 1;
+}
+
+const lettersIn = (w: string) => Array.from(w).filter((c) => LETTER.test(c)).length;
+/* The misspelt word and its original have this many letters or more, and no digit ("Level 1" and "Level 2" are two items). */
+const MISSPELT_MIN = 3;
+/* The original word is the list's shared word when this many heads hold it ("קיבוץ" in items 7–22). */
+const SHARED_HEADS = 3;
+
+/**
+ * F431 (iPhone build 25, he-list 0.2): "23. קיבוט ירושלים" is "14. קיבוץ ירושלים" again with its first word misspelt.
+ * A head of two words or more and 8 code points that matches an earlier head except one word, one edit away, is that
+ * head again when the earlier word is the list's shared word (3 heads hold it) and the new form is in no earlier head.
+ * So "Saint Pauli" after "Saint Paul" and "ellas hablan" after "ellos hablan" stay: the word that differs is what names
+ * the item. With `open`, h is still streaming and its last word may be a prefix of the earlier word's misspelling.
+ */
+function misspeltHead(heads: Map<string, number[]>, h: string, open = false): string | null {
+  const words = h.split(" ");
+  if (!h || (!open && (words.length < 2 || Array.from(h).length < ITEM_MIN))) return null;
+  const holding = (w: string) => {
+    let c = 0;
+    for (const x of heads.keys()) if (x.split(" ").includes(w)) c++;
+    return c;
+  };
+  const misspelt = (was: string, now: string, partial: boolean) => {
+    if (/\p{N}/u.test(was + now) || lettersIn(was) < MISSPELT_MIN || lettersIn(now) < MISSPELT_MIN) return false;
+    const n = Array.from(now).length;
+    const like = partial ? [n - 1, n, n + 1].some((k) => k >= 1 && oneEdit(now, Array.from(was).slice(0, k).join(""))) : oneEdit(was, now);
+    return like && holding(was) >= SHARED_HEADS && (partial || holding(now) === 0);
+  };
+  for (const x of heads.keys()) {
+    const xs = x.split(" ");
+    if (xs.length < 2 || Array.from(x).length < ITEM_MIN) continue;
+    if (open ? words.length > xs.length : words.length !== xs.length) continue;
+    let edits = 0;
+    for (let i = 0; i < words.length && edits < 2; i++) {
+      const last = open && i === words.length - 1;
+      if (last ? xs[i]!.startsWith(words[i]!) : xs[i] === words[i]) continue;
+      edits += misspelt(xs[i]!, words[i]!, last) ? 1 : 2;
+    }
+    if (edits === 1) return x;
+  }
+  return null;
 }
 
 let itemsMemo: { request: string; copies: number } | null = null;
@@ -1047,8 +1197,9 @@ export interface LoopCut {
 /**
  * `trim`: replace the answer on screen with this text, silently (the silent retry continues after it).
  * `loop`: the retry looped too; the answer is `loop.text` and the "started repeating itself" notice shows.
+ * `prefix`: Continue only: the text on screen before this generation now reads this (F431: a dangling comma dropped).
  */
-export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string };
+export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string; prefix?: string };
 
 /* A copy that starts after "23." leaves the bare number behind, and whatever continues numbers its next item 24. */
 const OPEN_ITEM = /(?<=\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])$/u;
@@ -1062,6 +1213,8 @@ const INLINE_LIST = 4;
 const ITEM_LINE = /(?:^|\n)[ \t]*(?:\d{1,3}[.)．、]|[-*•+·]|[(（]\d{1,3}[)）]|[א-ת][.)]|[①-⑳])[ \t][^\n]*$/u;
 
 export function cutLoop(text: string, hit: LoopHit): LoopCut {
+  /* F431: the code block is closed on its own line, so the kept lines still render as code. */
+  if (hit.fence) return { text: `${text.slice(0, hit.keep).trimEnd()}\n\`\`\``, hit, fullLength: text.length };
   let kept = text.slice(0, hit.keep);
   /* fr-list build 23: "8. …\nVoici une autre sélection de 30 idées :\n1. …": a restarted list's intro goes with it. */
   if (RESTART.test(text.slice(hit.keep))) {
@@ -1121,6 +1274,9 @@ export interface GuardOptions extends LoopContext {
 }
 
 const SEAM_WORDS = 3;
+/* F431 (build 25 Continue try 1): "…capitals," then ". These ventures" read "capitals,. These": the comma goes. */
+const DANGLING = /[,;，；、][ \t]*$/u;
+const CLOSES = /^\s*[.!?。！？…]/u;
 
 /**
  * Continue after Stop: "…like Christopher Columbus's fleet," went on "Christopher Columbus's fleet discovered…" on the
@@ -1407,6 +1563,25 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
   const target = listTarget(context.request ?? "");
   /* A retried list that reaches its count ends quietly; one that stops short shows the notice. */
   const listStop = (all: string, at: number): LoopHit => ({ unit: all.slice(at).trim().slice(0, 80), repeats: 1, start: at, keep: at, complete: target !== undefined && listCount(all.slice(0, at)) >= target });
+  /* The text on screen before this generation (Continue), which may lose a dangling comma at the seam. */
+  let prefix = context.prefix ?? "";
+  /* F431: kept text ending in "," or ";" and a continuation that opens with a full stop: the comma goes, from the prefix or from the kept answer. */
+  const closeSeam = (kept: string, piece: string): { piece: string; deltas: GuardedDelta[] } | null => {
+    if (!DANGLING.test(kept) || !CLOSES.test(piece)) return null;
+    const deltas: GuardedDelta[] = [];
+    if (text) {
+      text = text.replace(DANGLING, "");
+      contFrom = Math.min(contFrom, text.length);
+      if (sent > text.length) {
+        deltas.push({ trim: text });
+        sent = checkedAt = text.length;
+      }
+    } else if (prefix) {
+      prefix = prefix.replace(DANGLING, "");
+      deltas.push({ prefix });
+    }
+    return { piece: piece.trimStart(), deltas };
+  };
   for (;;) {
     let hit: LoopHit | null = null;
     for await (const d of current) {
@@ -1420,7 +1595,12 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         const drop = seamOverlap(seam, opening);
         if (drop < 0) continue;
         piece = opening.slice(drop);
+        const closed = closeSeam(seam, piece);
         seam = opening = "";
+        if (closed) {
+          piece = closed.piece;
+          yield* closed.deltas;
+        }
         if (!piece) continue;
       }
       if (joinNext) {
@@ -1462,6 +1642,11 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     }
     if (!hit) {
       let rest = seam && opening ? opening.slice(Math.max(0, seamOverlap(seam, opening, true))) : "";
+      const closed = seam && rest ? closeSeam(seam, rest) : null;
+      if (closed) {
+        rest = closed.piece;
+        yield* closed.deltas;
+      }
       if (joinNext && rest) rest = continuationSeparator(text, rest) + rest;
       text += list ? list.push(rest, true) : rest;
     }
@@ -1481,7 +1666,8 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     if (!hit) break;
     const cut = cutLoop(text, hit);
     /* Five asked, a sixth begun: the five are the whole answer, so a retry would only invent more (F421). */
-    const retry = retried || hit.truncated ? undefined : context.retry;
+    /* A retry into a fenced sum invents numbers (F431). */
+    const retry = retried || hit.truncated || hit.fence ? undefined : context.retry;
     if (hit.asked || hit.complete || hit.truncated || retry) {
       /* Only whitespace past the cut on screen: nothing to take back. */
       if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {
@@ -1500,7 +1686,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       const lastLine = ITEM_OPEN.exec(text.replace(/\s+$/u, "").split("\n").at(-1) ?? "");
       listIndent = lastLine && /\n[ \t]*$/u.test(text) ? indentOf(lastLine[1]!) : -1;
       joinNext = true;
-      seam = context.prefix ? context.prefix + continuationSeparator(context.prefix, text) + text : text;
+      seam = prefix ? prefix + continuationSeparator(prefix, text) + text : text;
       list = new ListSeam(seam);
       context.onRetry?.(cut.text, hit);
       current = retry(cut.text);

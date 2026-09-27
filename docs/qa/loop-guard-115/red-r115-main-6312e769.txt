@@ -1,0 +1,22 @@
+# fixes-r115.test.ts against main 6312e769's packages/core/src/chat/loop.ts (round 114), before the round 115 code. 8 of 17 fail: every cut and seam test. The 9 keep tests pass on main too.
+
+ × test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > build 25 math-long-div 0.7 #2: cut before the third '- 123000000', the fence closed, the third copy never on screen 65ms
+ × test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > no retry writes into the block: the notice shows instead 41ms
+ ✓ test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > a real long division in a fence is not cut: its subtrahends differ and its steps move right 2ms
+ ✓ test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > the same subtrahend three times in a row, one step further right each time (quotient 111), is not cut 0ms
+ ✓ test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > the rule line alone repeating with different numbers between stays exempt 0ms
+ ✓ test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > code that repeats a line between different lines, nested 'end's and a JSON array of objects are not cut 0ms
+ ✓ test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > three copies that close the fence stay, streamed: the third waits off screen and shows when the fence closes 2ms
+ × test/fixes-r115.test.ts > F431 · inside a fence, a unit of lines said identically back to back is a loop at its third copy > a line or a pair of lines said four times in a row is cut before the third; asked repetition is kept 3ms
+ × test/fixes-r115.test.ts > F431 · an item said again with one word misspelt is that item again > build 25 he-list 0.2: cut before '23. קיבוט ירושלים'; no misspelt copy reaches the screen 142ms
+ × test/fixes-r115.test.ts > F431 · an item said again with one word misspelt is that item again > a shared word misspelt in English is cut too, and waits off screen until the list holds five distinct heads 3ms
+ ✓ test/fixes-r115.test.ts > F431 · an item said again with one word misspelt is that item again > real near-names stay: 'Saint Paul' and 'Saint Pauli', 'Anna' and 'Anne', 'Level 1' and 'Level 2', 'New York' and 'New Yorker' 0ms
+ ✓ test/fixes-r115.test.ts > F431 · an item said again with one word misspelt is that item again > conjugations stay: 'ellos hablan' / 'ellas hablan', 'lui parla' / 'lei parla', 'eles falam' / 'elas falam' 1ms
+ ✓ test/fixes-r115.test.ts > F431 · an item said again with one word misspelt is that item again > the same place with a real new word next to the shared one is a new item: 'קיבוץ עין גדי' after 'קיבוץ גדי' is not a misspelling 0ms
+ × test/fixes-r115.test.ts > F431 · Continue never leaves ',.' or ';.' at the seam > build 25 Continue try 1: 'capitals,' + '. These ventures' reads 'capitals. These ventures' 751ms
+ × test/fixes-r115.test.ts > F431 · Continue never leaves ',.' or ';.' at the seam > a restated clause closed with a full stop, and a semicolon, lose the dangling mark too 1ms
+ ✓ test/fixes-r115.test.ts > F431 · Continue never leaves ',.' or ';.' at the seam > a continuation that goes on the sentence keeps the comma 2ms
+ × test/fixes-r115.test.ts > F431 · Continue never leaves ',.' or ';.' at the seam > the silent retry's seam drops a dangling comma the cut kept 4ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  8 failed | 9 passed (17)

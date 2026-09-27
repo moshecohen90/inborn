@@ -631,6 +631,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
       const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
       for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
+        /* F431: the guard dropped a comma the seam left dangling ("capitals," + ". These"). */
+        if (d.prefix !== undefined) prefix = d.prefix;
         if (d.trim !== undefined) {
           reply = d.trim;
           const snapshot = shown();
