@@ -1,0 +1,28 @@
+/* Device pass 22: the final texts the iPhone showed, replayed through round 107's guard exactly as Chat.tsx wraps a stream (no retry). */
+import { readFileSync } from "node:fs";
+import { it } from "vitest";
+import { guardLoops, tailLoop } from "../src/chat/loop";
+
+const DIR = process.env.D22_DIR!;
+const rows = JSON.parse(readFileSync(`${DIR}/raw/loop-rows.json`, "utf8")) as { run: string; final: string }[];
+const prompts = Object.fromEntries((JSON.parse(readFileSync(`${DIR}/../fix-loops-root/stress-prompts.json`, "utf8")) as { id: string; user: string }[]).map((p) => [p.id, p.user]));
+const pick = (process.env.D22_RUNS ?? "").split(",");
+
+it("replays the device answers", async () => {
+  for (const row of rows.filter((r) => pick.includes(r.run))) {
+    const id = row.run.replace(/^l0[27]-/, "").replace(/-\d$/, "");
+    const request = prompts[id]!;
+    async function* chunks() {
+      for (let i = 0; i < row.final.length; i += 3) yield { text: row.final.slice(i, i + 3) };
+    }
+    let shown = "";
+    let loop = null as null | { text: string };
+    for await (const d of guardLoops(chunks(), () => undefined, { request })) {
+      if (d.text) shown += d.text;
+      if (d.trim !== undefined) shown = d.trim;
+      if (d.loop) loop = d.loop;
+    }
+    const tail = tailLoop(row.final, { request }, 0, true);
+    console.log(`${row.run}: guardLoops ${loop ? `cut at ${loop.text.length} of ${row.final.length}` : "no loop"}; tailLoop(final) ${tail.hit ? `hit unit ${JSON.stringify(tail.hit.unit)} x${tail.hit.repeats}` : "no hit"}; shown ${shown.length} chars`);
+  }
+});
