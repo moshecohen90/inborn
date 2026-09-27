@@ -1,0 +1,49 @@
+{
+  "downloadMs": 14024,
+  "first": {
+    "ggufRequests": 1,
+    "persistLine": "[storage] persist after download: refused",
+    "record": "{\"granted\":false,\"reason\":\"download\",\"at\":1790497815779}",
+    "persistedHeadless": false,
+    "settings": "Browser cleanupThe browser may clear it when space runs low"
+  },
+  "granted": {
+    "line": "[storage] persist after onboarded: granted",
+    "persisted": true,
+    "settings": "Browser cleanupStorage is protected from automatic cleanup"
+  },
+  "restart": {
+    "engine": "wllama",
+    "ms": 1625,
+    "ggufRequests": [],
+    "sawModelStep": false,
+    "pageNow": "2026-09-27T08:30:20.033Z",
+    "path": "/",
+    "ok": true,
+    "persisted": false
+  },
+  "eightDays": {
+    "engine": "wllama",
+    "ms": 1622,
+    "ggufRequests": [],
+    "sawModelStep": false,
+    "pageNow": "2026-10-05T08:30:21.722Z",
+    "path": "/",
+    "ok": true
+  },
+  "update": {
+    "handedOver": "B",
+    "handOverMs": 1289,
+    "engine": "wllama",
+    "ms": 1377,
+    "ggufRequests": [],
+    "sawModelStep": false,
+    "pageNow": "2026-09-27T08:30:24.420Z",
+    "path": "/",
+    "ok": true,
+    "buildAfter": "B"
+  },
+  "ms": 22331,
+  "ok": true
+}
+RETURN CHECK: PASS

@@ -15,6 +15,8 @@ import { recordWebTransfer } from "./transfers";
 import { font } from "../services/type";
 import { installFailureText } from "../vault/failureText";
 import { useUpdateHold } from "./updateHold";
+import { protectStorage } from "./durable";
+import { InstallHint } from "./DurableStorage";
 
 type Phase =
   | { kind: "idle" }
@@ -89,7 +91,11 @@ export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: M
     if (end.type === "done") {
       recordWebTransfer({ host: new URL(source.url, location.origin).host, bytesOut: 0, bytesIn: end.have, at: Date.now(), purpose: "model" });
       const status = await settleModelStatus();
-      if (status.kind === "ready") onReady();
+      if (status.kind === "ready") {
+        /* F411: the first finished download is when the browser is asked to keep it; the reload follows the answer. */
+        setPersisted(await protectStorage("download"));
+        onReady();
+      }
       else setPhase({ kind: "error", message: "stored file does not match" });
     }
     storageEstimate().then(setEstimate);
@@ -192,6 +198,7 @@ export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: M
         </Pressable>
       )}
       <Text style={[styles.caption, { color: theme.text3 }]}>{t("web.download.keepExplain")}</Text>
+      <InstallHint theme={theme} />
       {/* F408: the first visit fetches the text model alone; extensions come when a photo or a file first needs one. */}
       <Text testID="web-extensions-later" style={[styles.caption, { color: theme.text3 }]}>
         {t("web.download.extensionsLater")}

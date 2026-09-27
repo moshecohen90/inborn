@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { usePathname } from "expo-router";
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { Icon, MIN_TOUCH, radius, type Theme } from "@inborn/ui";
@@ -14,8 +14,8 @@ import { Toggle } from "../components/shell/primitives";
 import { webDoorsApply } from "./doors";
 import { webRoute } from "./doorRoutes";
 import { browserKeepsData } from "./keptData";
-
-import { GET_APP_URL } from "./links";
+import { StoreBadges } from "./StoreBadges";
+import { protectStorage } from "./durable";
 
 export { GET_APP_URL, STORE_LINKS } from "./links";
 
@@ -44,6 +44,10 @@ function BrowserShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (askKeeps) void browserKeepsData().then(setKeeps);
   }, [askKeeps]);
+  /* F411: once onboarded, the browser is asked (again) to keep the model; Chrome grants more readily with engagement. */
+  useEffect(() => {
+    if (prefs.onboarded) void protectStorage("onboarded");
+  }, [prefs.onboarded]);
   const restart = route.kind === "restart-onboarding";
   useEffect(() => {
     if (restart) updatePrefs({ onboarded: false });
@@ -116,9 +120,7 @@ function Strip({ boot, theme, offline }: { boot: WebBoot; theme: Theme; offline:
           <Icon name={open ? "chevronDown" : "chevronRight"} size={14} color={theme.text2} />
           <Text style={[styles.caption, styles.strong, { color: theme.text2 }]}>{t("web.details")}</Text>
         </Pressable>
-        <Pressable testID="get-app" accessibilityRole="link" onPress={() => void Linking.openURL(GET_APP_URL)} style={[styles.getApp, { borderColor: theme.border }]}>
-          <Text style={[styles.caption, styles.strong, styles.breakAnywhere, { color: theme.text }]}>{t("web.getApp")}</Text>
-        </Pressable>
+        <StoreBadges testID="get-app" style={styles.getApp} />
       </View>
     </View>
   );
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
   stripDetail: { gap: 2, paddingTop: 2 },
   /* The strip is already 44 tall because of Get the app, so the finger target costs no height, and hitSlop={6} buys nothing on the browser tier (F243). */
   detailsBtn: { flexDirection: "row", alignItems: "center", gap: 3, minHeight: MIN_TOUCH },
-  getApp: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderWidth: 1, borderRadius: radius.chip, justifyContent: "center" },
+  getApp: { minHeight: MIN_TOUCH },
   updateLine: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", columnGap: 12, paddingHorizontal: 12, borderBottomWidth: 1 },
   switchRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 2 },
   door: { flex: 1, alignItems: "center", justifyContent: "center", padding: 16 },

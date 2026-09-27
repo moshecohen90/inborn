@@ -147,10 +147,14 @@ describe("F149 · the browser paywall names the price and the way to buy", () =>
   });
   /* Windows and macOS have no listing, and the site's Get section says so; a Desktop button contradicted it (MosheAI item 8, 24.9). */
   it("offers only the two stores that have a listing", () => {
-    expect(block).toContain('(["appStore", "play"] as const)');
+    /* F410: the two stores are drawn by StoreBadges, which names only appStore and play. */
+    const badges = readFileSync(join(__dirname, "../src/web/StoreBadges.tsx"), "utf8");
+    expect(block).toContain('<StoreBadges testID="web-get" />');
     expect(block).not.toContain('"desktop"');
-    expect(block).toContain("testID={`web-get-${where}`}");
-    expect(block).toContain("STORE_LINKS[where]");
+    expect(badges).toContain('(["appStore", "play"] as const)');
+    expect(badges).not.toContain('"desktop"');
+    expect(badges).toContain("testID={`${testID}-${where}`}");
+    expect(badges).toContain("STORE_LINKS[where]");
   });
   it("keeps the promise that the browser stays free", () => {
     expect(block).toContain('testID="web-stays-free"');

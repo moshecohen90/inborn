@@ -23,7 +23,7 @@ import { defaults, startServer } from "./serve-web.mjs";
 const BUILD_META = /<meta name="inborn-build" content="[^"]*">/;
 const settle = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function stamp(dir, build) {
+export function stamp(dir, build) {
   const indexPath = path.join(dir, "index.html");
   const html = readFileSync(indexPath, "utf8").replace(BUILD_META, "");
   writeFileSync(indexPath, html.replace("<head>", `<head><meta name="inborn-build" content="${build}">`));
@@ -51,9 +51,9 @@ function throttlingProxy(upstreamPort) {
   return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve({ url: `http://127.0.0.1:${server.address().port}`, close: () => new Promise((r) => (server.closeAllConnections(), server.close(r))) })));
 }
 
-const buildOf = (page) => page.evaluate(() => document.querySelector('meta[name="inborn-build"]')?.getAttribute("content") ?? "none").catch(() => "navigating");
+export const buildOf = (page) => page.evaluate(() => document.querySelector('meta[name="inborn-build"]')?.getAttribute("content") ?? "none").catch(() => "navigating");
 
-async function waitForBuild(page, want, ms) {
+export async function waitForBuild(page, want, ms) {
   const deadline = Date.now() + ms;
   let seen = await buildOf(page);
   while (seen !== want && Date.now() < deadline) {

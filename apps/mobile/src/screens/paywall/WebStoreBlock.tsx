@@ -1,8 +1,8 @@
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Icon, radius, type Theme } from "@inborn/ui";
 import { PAYWALL_BULLETS, fallbackPrice, offersFor, sellable } from "@inborn/core";
-import { STORE_LINKS } from "../../web/links";
+import { StoreBadges } from "../../web/StoreBadges";
 import { useType } from "../../services/type";
 
 /**
@@ -37,20 +37,8 @@ export function WebStoreBlock({ theme }: { theme: Theme }) {
       <Text testID="web-price-note" style={[type.mono, { color: theme.text3 }]}>
         {t("paywall.web.priceNote")}
       </Text>
-      <View style={styles.buttons}>
-        {/* Windows and macOS have no listing yet, and the site's Get section says so; a Desktop button here contradicted it. */}
-        {(["appStore", "play"] as const).map((where) => (
-          <Pressable
-            key={where}
-            testID={`web-get-${where}`}
-            accessibilityRole="link"
-            onPress={() => void Linking.openURL(STORE_LINKS[where])}
-            style={({ pressed }) => [styles.btn, { borderColor: theme.text2, opacity: pressed ? 0.85 : 1 }]}
-          >
-            <Text style={[type.body, type.strong, { color: theme.text }]}>{t(`paywall.web.${where}`)}</Text>
-          </Pressable>
-        ))}
-      </View>
+      {/* Windows and macOS have no listing yet, and the site's Get section says so; a Desktop badge here contradicted it. */}
+      <StoreBadges testID="web-get" />
       {/* The browser keeps its PRO and WORK marks (spec §4.4: no Pro on the web), so this line says what they are (F386). */}
       <Text testID="web-locks" style={[type.bodySmall, { color: theme.text2 }]}>
         {t("paywall.web.locks")}
@@ -68,6 +56,4 @@ const styles = StyleSheet.create({
   bulletRow: { flexDirection: "row", gap: 8 },
   bulletIcon: { marginTop: 3 },
   bulletText: { flex: 1 },
-  buttons: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  btn: { minHeight: 46, flexGrow: 1, flexBasis: 140, borderWidth: 1, borderRadius: radius.control, alignItems: "center", justifyContent: "center", paddingHorizontal: 14 },
 });

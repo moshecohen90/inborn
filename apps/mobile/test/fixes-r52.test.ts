@@ -188,7 +188,8 @@ describe("F245, F252, F253, F254 · the rest of the review", () => {
 
   it("the browser vault leads with the action, not with Close", () => {
     const entry = source("screens/vault/VaultEntry.web.tsx");
-    expect(entry).toMatch(/<Button testID="vault-get-app"[\s\S]{0,120}\/>\s*<Button variant="link"/);
+    /* F410: the action is the two store badges now; Close is still the aside after them. */
+    expect(entry).toMatch(/<StoreBadges testID="vault-get-app" \/>\s*<Button variant="link"/);
   });
 
   it("the web paywall's bullets carry the same mark as the native card's", () => {
