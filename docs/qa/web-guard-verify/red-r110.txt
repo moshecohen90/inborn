@@ -1,0 +1,10 @@
+ × test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, a sixth begun on the same line (web trial fox-5 #1): five shown, nothing continued 28ms
+ × test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, eight written one per line: five lines, nothing continued 7ms
+ ✓ test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > exactly five stays whole, and a loop nobody asked for still gets its one silent retry 6ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, a sixth begun on the same line (web trial fox-5 #1): five shown, nothing continued
+AssertionError: expected 'The quick brown fox jumps over the la…' to be 'The quick brown fox jumps over the la…' // Object.is equality
+ FAIL  test/fixes-r110.test.ts > F421 · a repetition the user asked for ends at the asked count, with no retry and no notice > five asked, eight written one per line: five lines, nothing continued
+AssertionError: expected [ …(6) ] to deeply equal [ …(5) ]
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
